@@ -162,10 +162,10 @@ const useMap = (props: UseMapProps) => {
 
   const [internalCenter, setCenter] = useState(null);
   const [internalZoom, setZoom] = useState(zoom || DEFAULT_ZOOM);
-  const [layerSources, setLayerSources] = useState(null as Array<Cluster | VectorSource> | null);
-  const [tileSource, setTileSource] = useState(null as TileSource | null);
-  const [error, setError] = useState(undefined as boolean | undefined);
-  const [memoizedMap, setMap] = useState(null as OLMap | null);
+  const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | null>(null);
+  const [tileSource, setTileSource] = useState<TileSource | null>(null);
+  const [error, setError] = useState<boolean | undefined>(undefined);
+  const [memoizedMap, setMap] = useState<OLMap | null>(null);
 
   const handleError = useCallback((e) => {
     handle(e);

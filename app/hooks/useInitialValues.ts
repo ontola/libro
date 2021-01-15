@@ -31,10 +31,10 @@ const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
 
 const getInitialValues = (
   lrs: LinkReduxLRSType,
-  sessionStore: Storage,
+  sessionStore: Storage | undefined,
   addValue: (key: string, value: InputValue[]) => void,
   parentForm: SomeNode,
-  object: SomeNode,
+  object: SomeNode | undefined,
   formContext: string,
   nested: boolean,
 ) => {
@@ -52,7 +52,7 @@ const getInitialValues = (
     dependentResources.push(...shIn);
 
     const path = lrs.getResourceProperty(field, sh.path) as NamedNode;
-    if (path) {
+    if (path && object) {
       const fieldName = calculateFormFieldName(path);
       const storageKey = getStorageKey(formContext, nested ? object : undefined, path);
       const valueFromStorage = storageGet(sessionStore, storageKey);
@@ -104,7 +104,12 @@ const getInitialValues = (
   return dependentResources;
 };
 
-const useInitialValues = (sessionStore: Storage, actionBody: SomeNode, object: SomeNode, formID: string) => {
+const useInitialValues = (
+  sessionStore: Storage | undefined,
+  actionBody: SomeNode,
+  object: SomeNode | undefined,
+  formID: string,
+) => {
   const lrs = useLRS();
   const [timestamp, setTimestamp] = React.useState<null | number>(null);
   const [loading, setLoading] = React.useState<boolean | SomeNode | undefined>(true);

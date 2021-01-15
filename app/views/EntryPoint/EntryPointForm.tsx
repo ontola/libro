@@ -1,33 +1,57 @@
-import { isNamedNode } from '@ontologies/core';
+import { isNamedNode, isNode } from '@ontologies/core';
+import { FormApi } from 'final-form';
+import { SomeNode } from 'link-lib';
 import {
   Property,
   Resource,
-  linkType,
   useDataInvalidation,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import Form from '../../components/Form/Form';
+import { SubmissionErrors } from '../../components/FormField';
 import { LoadingGridContent } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
+import { SubmitHandler } from './useSubmitHandler';
+
 const subscription = {
   submitting: true,
 };
 
-const EntryPointForm = ({
+interface PropTypes {
+  action: SomeNode;
+  actionBody: SomeNode;
+  autoSubmit?: boolean;
+  autofocusForm?: boolean;
+  className?: string;
+  contentWrapper?: any;
+  footerButtons: (submitting: boolean) => React.ReactNode;
+  formID: string;
+  formInstance?: FormApi;
+  httpMethod: string;
+  object?: SomeNode;
+  onKeyUp?: EventHandler<any>;
+  onSubmit: SubmitHandler;
+  sessionStore?: Storage;
+  theme?: string;
+  url: string;
+  whitelist?: number[];
+}
+
+const EntryPointForm: React.FC<PropTypes> = ({
+  action,
   actionBody,
   autofocusForm,
   autoSubmit,
   className,
   contentWrapper,
-  errorResponse,
   footerButtons,
   formID,
   formInstance,
@@ -45,12 +69,13 @@ const EntryPointForm = ({
     sessionStore,
     actionBody,
     object,
-    formID
+    formID,
   );
-  const submissionErrorsTimeStamp = useDataInvalidation(errorResponse || actionBody);
-  const submissionErrors = React.useMemo(() => {
-    if (errorResponse) {
-      const errs = lrs.tryEntity(errorResponse).reduce((acc, triple) => {
+  const [errorResponse] = useResourceProperty(action, ll.errorResponse);
+  const submissionErrorsTimeStamp = useDataInvalidation(isNode(errorResponse) ? errorResponse : undefined);
+  const submissionErrors = React.useMemo<undefined | SubmissionErrors>(() => {
+    if (isNode(errorResponse)) {
+      const errs = lrs.tryEntity(errorResponse).reduce((acc: SubmissionErrors, triple) => {
         const key = btoa(triple.predicate.value);
 
         return {
@@ -65,10 +90,10 @@ const EntryPointForm = ({
       return errs;
     }
 
-    return null;
+    return undefined;
   }, [errorResponse, submissionErrorsTimeStamp]);
 
-  const renderBody = React.useCallback(({ submitting }) => (
+  const renderBody = React.useCallback((submitting) => (
     <React.Fragment>
       <Property
         contentWrapper={contentWrapper}
@@ -94,8 +119,8 @@ const EntryPointForm = ({
   return (
     <Form
       action={url && new URL(url).pathname}
-      autofocusForm={autofocusForm}
-      autoSubmit={autoSubmit}
+      autofocusForm={!!autofocusForm}
+      autoSubmit={!!autoSubmit}
       className={className}
       form={formInstance}
       formID={formID}
@@ -105,7 +130,6 @@ const EntryPointForm = ({
       object={object}
       sessionStore={sessionStore}
       submissionErrors={submissionErrors}
-      submissionErrorsTimeStamp={submissionErrorsTimeStamp}
       subscription={subscription}
       theme={theme}
       whitelist={whitelist}
@@ -115,26 +139,6 @@ const EntryPointForm = ({
       {renderBody}
     </Form>
   );
-};
-
-EntryPointForm.propTypes = {
-  actionBody: linkType,
-  autoSubmit: PropTypes.bool,
-  autofocusForm: PropTypes.bool,
-  className: PropTypes.string,
-  contentWrapper: PropTypes.elementType,
-  errorResponse: linkType,
-  footerButtons: PropTypes.func,
-  formID: PropTypes.string,
-  formInstance: PropTypes.objectOf(PropTypes.any),
-  httpMethod: PropTypes.string,
-  object: linkType,
-  onKeyUp: PropTypes.func,
-  onSubmit: PropTypes.func,
-  sessionStore: PropTypes.objectOf(PropTypes.any),
-  theme: PropTypes.string,
-  url: PropTypes.string,
-  whitelist: PropTypes.arrayOf(PropTypes.number),
 };
 
 export default EntryPointForm;

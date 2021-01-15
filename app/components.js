@@ -8,7 +8,7 @@ import CompBlurButton from './components/BlurButton';
 import CompBreadcrumbsBreadcrumb from './components/Breadcrumbs/Breadcrumb';
 import CompBreadcrumbsBreadcrumbsBar from './components/Breadcrumbs/BreadcrumbsBar';
 import CompButton from './components/Button';
-import CompButtonWithFeedback from './components/ButtonWithFeedback/index';
+import CompButtonWithFeedback from './components/ButtonWithFeedback';
 import CompCardCardActions from './components/Card/CardActions';
 import CompCardCardButton from './components/Card/CardButton';
 import CompCardCardContent from './components/Card/CardContent';

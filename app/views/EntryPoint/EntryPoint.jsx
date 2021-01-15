@@ -1,6 +1,10 @@
 import schema from '@ontologies/schema';
 import classNames from 'classnames';
-import { linkType, register } from 'link-redux';
+import {
+  linkType,
+  register,
+  subjectType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -30,10 +34,16 @@ const EntryPoint = (props) => {
     name,
     onClick,
     stretch,
+    subject,
     variant,
     ...rest
   } = props;
-  const submitHandler = useSubmitHandler(props);
+  const formURL = new URL(subject.value);
+  const formID = [formURL.origin, formURL.pathname].join('');
+  const submitHandler = useSubmitHandler({
+    formID,
+    subject,
+  });
   const label = `${name.value} ${countInParentheses(count)}`;
 
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
@@ -91,6 +101,7 @@ EntryPoint.propTypes = {
   name: linkType,
   onClick: PropTypes.func,
   stretch: PropTypes.bool,
+  subject: subjectType,
   url: linkType,
   variant: PropTypes.string,
 };

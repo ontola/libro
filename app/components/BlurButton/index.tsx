@@ -3,8 +3,8 @@ import React, { MouseEvent } from 'react';
 type OnClickHandler = (e: MouseEvent<HTMLButtonElement>) => any;
 
 // Used to remove the annoying focus outline border after clicking
-const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandler) => {
-  if (onClick !== undefined) {
+const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandler | undefined) => {
+  if (typeof onClick !== 'undefined') {
     onClick(e);
     // Only blur when the event is a click, not for using the Enter button.
     // React fires a clickEvent when the user uses Enter, but the coordinates are zero.
@@ -15,7 +15,7 @@ const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandle
 };
 
 interface PropTypes {
-  onClick: OnClickHandler;
+  onClick?: OnClickHandler;
 }
 
 const BlurButton: React.FC<PropTypes> = ({

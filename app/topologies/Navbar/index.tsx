@@ -15,14 +15,18 @@ import './Navbar.scss';
 
 export const navbarTopology = app.ns('topologies/navbar');
 
-class Navbar extends Topology {
-  constructor(props) {
+interface PropTypes {
+  theme: any;
+}
+
+class Navbar extends Topology<PropTypes> {
+  constructor(props: PropTypes) {
     super(props);
 
     this.topology = navbarTopology;
   }
 
-  renderContent() {
+  public renderContent() {
     const {
       background,
       resolveColor,
@@ -60,7 +64,7 @@ class Navbar extends Topology {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state: any, ownProps: any) {
   return {
     actorType: getCurrentUserType(state),
     redirectUrl: currentLocation(ownProps.location),

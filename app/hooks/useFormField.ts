@@ -116,7 +116,7 @@ const useInputValues = (
   input: InputProps,
   alwaysVisible: boolean,
   minCount: number | undefined,
-  newItem: () => any,
+  newItem: () => InputValue,
 ) => {
   return React.useMemo(() => {
     let currentValue = input.value;

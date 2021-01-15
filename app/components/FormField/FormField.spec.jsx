@@ -33,10 +33,12 @@ const renderWithTestForm = ({ initialValues, resources }) => {
           form={finalForm}
           formID="test"
         >
-          <Resource
-            forceRender
-            subject={iri}
-          />
+          {() => (
+            <Resource
+              forceRender
+              subject={iri}
+            />
+          )}
         </Form>
       </CardMain>
     ), { resources }),

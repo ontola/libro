@@ -1,5 +1,5 @@
 import { Resource } from 'link-redux';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { parseValue } from '../../helpers/persistence';
@@ -14,7 +14,7 @@ import Spinner from '../Spinner';
 import HiddenRequiredInput from './HiddenRequiredInput';
 import Input, { InputType } from './Input';
 
-function handleChange(e: any, values: InputValue[], onChange: ((e: any) => void)) {
+function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>) {
   const newValue = values?.slice() || [];
   const parsedValue = parseValue(e.target.value);
   if (e.target.checked) {

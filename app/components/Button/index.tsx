@@ -61,7 +61,7 @@ interface PropTypes {
   /** Give some margins for inline usage */
   margins?: boolean;
   narrow?: boolean;
-  onClick: EventHandler<any>;
+  onClick?: EventHandler<any>;
   /** Removes all styling. */
   plain?: boolean;
   small?: boolean;

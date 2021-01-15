@@ -32,8 +32,8 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
   return next;
 };
 
-export const withFormLRS = (WrappedComponent: any) => {
-  const WithFormLRS = (props: {}) => {
+export function withFormLRS<P>(WrappedComponent: React.FC<P>) {
+  const WithFormLRS: React.FC<P> = (props: P) => {
     const lrs = useLRS();
     const formLRS = React.useMemo(() => cloneLRS(lrs), ['forceHotReload']);
 
@@ -45,4 +45,4 @@ export const withFormLRS = (WrappedComponent: any) => {
   };
 
   return WithFormLRS;
-};
+}

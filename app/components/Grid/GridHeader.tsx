@@ -1,22 +1,19 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 import ContainerFloat from '../../topologies/Container/ContainerFloat';
 
 import './GridHeader.scss';
 
-const propTypes = {
-  /** The children float to the top right */
-  children: PropTypes.node,
+interface PropTypes {
   /** The header floats to the top left */
-  header: PropTypes.node,
-};
+  header: ReactElement;
+}
 
 /**
  * Holds a header and menu items that float to the top right of the container
  * @returns {component} Component
  */
-const GridHeader = ({
+const GridHeader: React.FC<PropTypes> = ({
   children,
   header,
 }) => (
@@ -27,7 +24,5 @@ const GridHeader = ({
     </ContainerFloat>
   </div>
 );
-
-GridHeader.propTypes = propTypes;
 
 export default GridHeader;

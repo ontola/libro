@@ -1,12 +1,13 @@
 import equal from 'fast-deep-equal';
+import { FormApi } from 'final-form';
 import { SomeNode } from 'link-lib';
-import PropTypes from 'prop-types';
 import React, { EventHandler } from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
 import { withFormLRS } from '../../hooks/useFormLRS';
+import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { SubmissionErrors } from '../FormField';
 import Input, { InputType } from '../Input/Input';
 
@@ -14,22 +15,21 @@ interface PropTypes {
   action: string;
   autofocusForm: boolean;
   autoSubmit: boolean;
-  className: string;
+  className?: string;
   form: any;
   formID: string;
   formIRI: SomeNode;
-  formSection: string;
   initialValues: any;
   method: string;
-  object: SomeNode;
-  onKeyUp: EventHandler<any>;
-  onSubmit: (...props: any) => any;
-  sessionStore: Storage;
-  submissionErrors: SubmissionErrors;
+  object?: SomeNode;
+  onKeyUp?: EventHandler<any>;
+  onSubmit: SubmitHandler;
+  sessionStore?: Storage;
+  submissionErrors?: SubmissionErrors;
   subscription: any;
-  theme: string;
-  validateOnBlur: boolean;
-  whitelist: number[];
+  theme?: string;
+  validateOnBlur?: boolean;
+  whitelist?: number[];
 }
 
 const defaultProps = {
@@ -43,16 +43,16 @@ export interface FormContext {
   formID: string;
   formIRI: SomeNode;
   formSection?: string;
-  object: SomeNode;
-  onKeyUp: ((e: any) => any);
+  object?: SomeNode;
+  onKeyUp?: EventHandler<any>;
   parentObject?: SomeNode;
-  sessionStore: Storage;
-  submissionErrors: SubmissionErrors;
-  theme: string;
+  sessionStore?: Storage;
+  submissionErrors?: SubmissionErrors;
+  theme?: string;
   whitelist?: number[];
 }
 
-export const FormContext = React.createContext<FormContext>({} as FormContext);
+export const FormContext = React.createContext<Partial<FormContext>>({});
 
 const Form: React.FC<PropTypes> = (props) => {
   const {
@@ -77,22 +77,13 @@ const Form: React.FC<PropTypes> = (props) => {
     validateOnBlur,
   } = props;
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
-  const submitHandler = React.useCallback((...args: any) => (
-    onSubmit({onSubmit: submitHandler}, ...args).then(() => {
-      const formApi = args[1];
-
-      if (__CLIENT__) {
-        Object.keys(sessionStorage).forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
-      }
-
-      window.setTimeout(() => formApi?.reset(), 0);
-    }).catch(error)
+  const submitHandler = React.useCallback((values: FormValues, formApi?: FormApi) => (
+    onSubmit(values, formApi, submitHandler).catch(error)
   ), [onSubmit, sessionStorage, formID]) as (args: any) => any;
-  const controlledSubmit = isFunction(children) ? submitHandler : onSubmit;
   React.useEffect(() => {
     if (autoSubmit && !autoSubmitted) {
       setAutoSubmitted(true);
-      controlledSubmit();
+      submitHandler([]);
     }
   }, [autoSubmit, autoSubmitted]);
   const context = React.useMemo(() => ({
@@ -124,7 +115,7 @@ const Form: React.FC<PropTypes> = (props) => {
     <Input name="_method" type={InputType.Hidden} value={method}/>
   );
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
-  const render = React.useCallback(({handleSubmit, ...childProps}) => (
+  const render = React.useCallback(({handleSubmit, submitting}) => (
     <FormContext.Provider value={context}>
       <form
         action={action}
@@ -133,7 +124,7 @@ const Form: React.FC<PropTypes> = (props) => {
         method={formMethod}
         onSubmit={handleSubmit}
       >
-        {isFunction(children) ? children(childProps) : children}
+        {isFunction(children) && children(submitting)}
         {methodInput}
       </form>
     </FormContext.Provider>
@@ -149,11 +140,11 @@ const Form: React.FC<PropTypes> = (props) => {
       render={render}
       subscription={subscription}
       validateOnBlur={validateOnBlur}
-      onSubmit={controlledSubmit}
+      onSubmit={submitHandler}
     />
   );
 };
 
 Form.defaultProps = defaultProps;
 
-export default withFormLRS(Form);
+export default withFormLRS<PropTypes>(Form);

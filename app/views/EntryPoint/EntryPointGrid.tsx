@@ -1,13 +1,15 @@
 import { makeStyles } from '@material-ui/styles';
+import { isNode, SomeTerm } from '@ontologies/core';
 import schema from '@ontologies/schema';
+import clsx from 'clsx';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
-  topologyType,
   useResourceProperty,
 } from 'link-redux';
+import { TopologyContextType } from 'link-redux/dist-types/types';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -20,8 +22,8 @@ import { footerTopology } from '../../topologies/Footer';
 import { gridTopology } from '../../topologies/Grid';
 import { navbarTopology } from '../../topologies/Navbar';
 
-import useSubmitHandler from './useSubmitHandler';
 import EntryPointForm from './EntryPointForm';
+import useSubmitHandler from './useSubmitHandler';
 
 const useStyles = makeStyles({
   navbar: {
@@ -36,23 +38,48 @@ const useStyles = makeStyles({
   },
 });
 
-const EntryPointGrid = (props) => {
+interface PropTypes {
+  action: SomeNode;
+  actionBody: SomeNode;
+  httpMethod: SomeTerm;
+  modal?: boolean;
+  name: SomeTerm;
+  onDone?: (response: any) => void;
+  onStatusForbidden?: () => Promise<void>;
+  responseCallback?: (response: any) => void;
+  smallButton: boolean;
+  topologyCtx: TopologyContextType;
+  url: SomeTerm;
+}
+
+const EntryPointGrid: FC<PropTypes> = (props) => {
   const {
     action,
     actionBody,
     httpMethod,
+    modal,
     name,
+    onDone,
+    onStatusForbidden,
+    responseCallback,
     smallButton,
     subject,
     topologyCtx,
     url,
   } = props;
   const classes = useStyles();
-  const submitHandler = useSubmitHandler(props);
-  const [object] = useResourceProperty(action, schema.object);
-  const className = [footerTopology, navbarTopology].includes(topologyCtx) && classes.navbar;
-
-  const footerButtons = (loading) => (
+  const formURL = new URL(subject.value);
+  const formID = [formURL.origin, formURL.pathname].join('');
+  const submitHandler = useSubmitHandler({
+    formID,
+    modal,
+    onDone,
+    onStatusForbidden,
+    responseCallback,
+    subject,
+  });
+  const [object] = useResourceProperty(isNode(action) ? action : undefined, schema.object);
+  const footerButtons = React.useCallback((loading: boolean) => (
     <FormFooterRight>
       <Button
         loading={loading}
@@ -62,10 +89,11 @@ const EntryPointGrid = (props) => {
         {name?.value}
       </Button>
     </FormFooterRight>
-  );
+  ), [name, smallButton]);
 
-  const formURL = new URL(subject.value);
-  const formID = [formURL.origin, formURL.pathname].join('');
+  const className = clsx({
+    [classes.navbar]: topologyCtx && [footerTopology, navbarTopology].includes(topologyCtx),
+  });
 
   return (
     <React.Fragment>
@@ -76,14 +104,15 @@ const EntryPointGrid = (props) => {
         <Property label={schema.text} />
       </Property>
       <EntryPointForm
+        action={action}
         actionBody={actionBody}
         className={className}
         footerButtons={footerButtons}
         formID={formID}
         httpMethod={httpMethod?.value}
-        object={object}
+        object={isNode(object) ? object : undefined}
         url={url?.value}
-        onKeyUp={null}
+        onKeyUp={undefined}
         onSubmit={submitHandler}
       />
     </React.Fragment>
@@ -104,17 +133,6 @@ EntryPointGrid.mapDataToProps = {
   image: schema.image,
   name: schema.name,
   url: schema.url,
-};
-
-EntryPointGrid.propTypes = {
-  action: linkType,
-  actionBody: linkType,
-  httpMethod: linkType,
-  name: linkType,
-  smallButton: PropTypes.bool,
-  subject: subjectType,
-  topologyCtx: topologyType,
-  url: linkType,
 };
 
 export default register(EntryPointGrid);

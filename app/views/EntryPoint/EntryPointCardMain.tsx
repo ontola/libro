@@ -1,17 +1,17 @@
+import { isNode, Literal } from '@ontologies/core';
 import schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router';
 
-import Button from '../../components/Button';
+import Button, { ButtonTheme } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
@@ -21,21 +21,51 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
 
-const EntryPointCardMain = (props) => {
+interface PropTypes {
+  action: SomeNode;
+  actionBody: SomeNode;
+  autoSubmit: boolean;
+  cancelPath: string;
+  httpMethod: Literal;
+  modal?: boolean;
+  name: Literal;
+  onCancel: EventHandler<any>;
+  onDone?: (response: any) => void;
+  onKeyUp: EventHandler<any>;
+  onStatusForbidden?: () => Promise<void>;
+  responseCallback?: (response: any) => void;
+  sessionStore: Storage;
+  url: SomeNode;
+}
+
+const EntryPointCardMain: FC<PropTypes> = (props) => {
   const {
     action,
     actionBody,
     autoSubmit,
     httpMethod,
     cancelPath,
+    modal,
     name,
     onCancel,
+    onDone,
+    onStatusForbidden,
+    responseCallback,
     sessionStore,
     subject,
     url,
   } = props;
   const history = useHistory();
-  const submitHandler = useSubmitHandler(props);
+  const formURL = new URL(subject.value);
+  const formID = [formURL.origin, formURL.pathname].join('');
+  const submitHandler = useSubmitHandler({
+    formID,
+    modal,
+    onDone,
+    onStatusForbidden,
+    responseCallback,
+    subject,
+  });
   const onCancelClick = React.useCallback((e) => {
     e.preventDefault();
 
@@ -44,14 +74,13 @@ const EntryPointCardMain = (props) => {
     } else {
       history.goBack();
     }
-  });
+  }, [onCancel]);
   const [object] = useResourceProperty(action, schema.object);
-  const [errorResponse] = useResourceProperty(action, ll.errorResponse);
 
   const cancelButton = cancelPath && (
     <Button
       href={cancelPath}
-      theme="transparant"
+      theme={ButtonTheme.Transparant}
       onClick={onCancelClick}
     >
       <FormattedMessage
@@ -61,21 +90,18 @@ const EntryPointCardMain = (props) => {
     </Button>
   );
 
-  const footerButtons = (loading) => (
+  const footerButtons = (loading: boolean) => (
     <FormFooterRight>
       {cancelButton}
       <Button
         loading={loading}
-        theme="submit"
+        theme={ButtonTheme.Submit}
         type="submit"
       >
         {name?.value}
       </Button>
     </FormFooterRight>
   );
-
-  const formURL = new URL(subject.value);
-  const formID = [formURL.origin, formURL.pathname].join('');
 
   return (
     <React.Fragment>
@@ -84,17 +110,17 @@ const EntryPointCardMain = (props) => {
       </CardContent>
       <EntryPointForm
         autofocusForm
+        action={action}
         actionBody={actionBody}
         autoSubmit={autoSubmit}
         contentWrapper={CardContent}
-        errorResponse={errorResponse}
         footerButtons={footerButtons}
         formID={formID}
         httpMethod={httpMethod?.value}
-        object={object}
+        object={isNode(object) ? object : undefined}
         sessionStore={sessionStore}
         url={url?.value}
-        onKeyUp={null}
+        onKeyUp={undefined}
         onSubmit={submitHandler}
       />
     </React.Fragment>
@@ -116,19 +142,6 @@ EntryPointCardMain.mapDataToProps = {
   image: schema.image,
   name: schema.name,
   url: schema.url,
-};
-
-EntryPointCardMain.propTypes = {
-  action: linkType,
-  actionBody: linkType,
-  autoSubmit: PropTypes.bool,
-  cancelPath: PropTypes.string,
-  httpMethod: linkType,
-  name: linkType,
-  onCancel: PropTypes.func,
-  sessionStore: PropTypes.objectOf(PropTypes.any),
-  subject: subjectType,
-  url: linkType,
 };
 
 export default register(EntryPointCardMain);

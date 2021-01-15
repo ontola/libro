@@ -1,6 +1,5 @@
 import { Grid as MaterialGrid } from '@material-ui/core';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LoadingFullResource } from '../../components/Loading';
@@ -12,17 +11,13 @@ import './Grid.scss';
 export const gridTopology = argu.grid;
 
 class Grid extends TopologyProvider {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     this.topology = gridTopology;
   }
 
-  render() {
+  public render() {
     const { children, ...otherProps } = this.props;
 
     return this.wrap((
