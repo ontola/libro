@@ -1,5 +1,5 @@
 import schema from '@ontologies/schema';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {
   TopologyProvider,
   Type,
@@ -37,7 +37,7 @@ class PageHeader extends TopologyProvider {
 
   render() {
     const style = {};
-    const className = classNames({
+    const className = clsx({
       PageHeader,
       PageHeader__background: this.props.background,
     });

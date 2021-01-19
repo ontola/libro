@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
@@ -27,7 +27,7 @@ class CardMain extends Topology<PropTypes> {
   }
 
   public getClassName() {
-    return classNames({
+    return clsx({
       'Card': true,
       'Card--fixed': this.props.fixed,
     });

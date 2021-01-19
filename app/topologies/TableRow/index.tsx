@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 import argu from '../../ontology/argu';
@@ -23,7 +23,7 @@ class TableRow extends Topology {
   }
 
   public getClassName() {
-    return classNames({
+    return clsx({
       'TableRow': true,
       'TableRow--clickable': !!(this.props as any).onClick,
     });

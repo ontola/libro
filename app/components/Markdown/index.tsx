@@ -1,5 +1,5 @@
 import rdf from '@ontologies/core';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useLRS } from 'link-redux';
 import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
@@ -140,7 +140,7 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
       link: noLinks ? stylizedPlaintextLink : routerLink(tabbable ? undefined : -1),
     };
 
-    const classes = classNames({
+    const classes = clsx({
       'Markdown': true,
       'Markdown--no-spacing': noSpacing,
     });

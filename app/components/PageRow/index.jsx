@@ -1,11 +1,11 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import './PageRow.scss';
 
 const PageRow = ({ children, white }) => {
-  const className = classNames({
+  const className = clsx({
     PageRow,
     'PageRow--white': white,
   });

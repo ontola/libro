@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
@@ -67,7 +67,7 @@ const InputElement = (props: InputPropTypes) => {
     active,
   } = meta;
 
-  const className = classNames({
+  const className = clsx({
     'Field__input': true,
     [`Field__input--${type || 'text'}`]: true,
     'Field__input--active': active,

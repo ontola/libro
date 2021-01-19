@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -47,7 +47,7 @@ const CollapseText = ({
 }) => {
   const intl = useIntl();
 
-  const classes = classNames({
+  const classes = clsx({
     CollapseText: true,
     'CollapseText--open': open,
   });

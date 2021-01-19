@@ -1,6 +1,6 @@
 import { darken } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -49,7 +49,7 @@ const CardContent: React.FC<PropTypes> = ({
     return <div />;
   }
 
-  const classes = classNames({
+  const classes = clsx({
     [useStyles().default]: true,
     'CardContent': true,
     'CardContent--align-end': alignEnd,

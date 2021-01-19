@@ -1,5 +1,5 @@
 import schema from '@ontologies/schema';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
@@ -88,7 +88,7 @@ export class DetailComp extends PureComponent {
     } = this.props;
     const Element = url ? 'a' : 'div';
 
-    const detailClass = classNames({
+    const detailClass = clsx({
       Detail: true,
       'Detail--float-right': floatRight,
       'Detail--link': url,

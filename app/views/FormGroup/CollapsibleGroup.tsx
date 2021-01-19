@@ -1,7 +1,7 @@
 import { ButtonBase } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
 import schema from '@ontologies/schema';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {
   Property,
   register,
@@ -30,7 +30,7 @@ const CollapsibleGroup = () => {
     setOpen(true);
   }, [setOpen]);
 
-  const className = classNames({
+  const className = clsx({
     [classes.fieldSet]: true,
     [classes.hidden]: !hasContent,
   });

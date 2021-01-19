@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -22,7 +22,7 @@ class ActionsBar extends TopologyProvider {
   }
 
   render() {
-    const classes = classNames({
+    const classes = clsx({
       ActionsBar: true,
       'ActionsBar--small': this.props.small,
     });

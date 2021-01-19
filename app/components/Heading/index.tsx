@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -89,7 +89,7 @@ const Heading: React.FC<PropTypes> = ({
 }) => {
   const Element = `h${size}` as React.ElementType;
   const classes = useStyles() as any;
-  const headingClass = classNames({
+  const headingClass = clsx({
     Heading: true,
     [className ? className : '']: true,
     [classes.default]: true,

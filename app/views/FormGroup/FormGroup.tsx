@@ -1,5 +1,5 @@
 import schema from '@ontologies/schema';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {
   Property,
   register,
@@ -21,7 +21,7 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
   const { hasContent } = useFormGroup();
   const classes = useStyles();
 
-  const className = classNames({
+  const className = clsx({
     [classes.hidden]: hidden || !hasContent,
   });
 

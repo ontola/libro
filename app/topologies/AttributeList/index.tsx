@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -28,7 +28,7 @@ class AttributeList extends Topology {
   }
 
   public getClassName() {
-    return classNames({
+    return clsx({
       'AttributeList': true,
       'AttributeList--full-label': (this.props as any).fullLabel,
     });

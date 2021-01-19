@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
@@ -23,7 +23,7 @@ class CardRow extends Topology<PropTypes> {
   }
 
   public getClassName() {
-    return classNames({
+    return clsx({
       'CardRow': true,
       'CardRow--backdrop': this.props.backdrop,
       'CardRow--no-border': this.props.noBorder,

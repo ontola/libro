@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Collapse } from 'react-collapse';
@@ -100,7 +100,7 @@ class Collapsible extends React.PureComponent {
 
       return -1;
     };
-    const classes = classNames({
+    const classes = clsx({
       Collapsible: true,
       'Collapsible--preview': preview,
     });

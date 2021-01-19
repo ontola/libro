@@ -1,5 +1,5 @@
 import schema from '@ontologies/schema';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {
   linkType,
   register,
@@ -47,7 +47,7 @@ const EntryPoint = (props) => {
   const label = `${name.value} ${countInParentheses(count)}`;
 
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
-  const classes = classNames({
+  const classes = clsx({
     'Button--has-icon': true,
     'Button--stretched': stretch,
   });

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
@@ -51,11 +51,11 @@ const MapCanvas = (props: PropTypes) => {
     overlayResource,
   });
   const classes = useMapStyles();
-  const wrapperClassName = classNames({
+  const wrapperClassName = clsx({
     [classes.container]: true,
     [classes.containerFullscreen]: large,
   });
-  const canvasClassName = classNames({
+  const canvasClassName = clsx({
     [classes.canvas]: true,
     [classes.canvasFullscreen]: large,
   });

@@ -1,7 +1,7 @@
 import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
   literal,
@@ -291,7 +291,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     invalid,
   } = meta;
   const inputErrors = submissionErrors?.[input.name] || error;
-  const className = classNames({
+  const className = clsx({
     'Field': true,
     [`Field--variant-${theme}`]: theme,
     'Field--active': active,

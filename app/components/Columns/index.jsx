@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 import Column from '../Column';
 import { sizes } from '../shared/config';
@@ -32,7 +32,7 @@ const Columns = ({
   gutter,
   size,
 }) => {
-  const className = classNames({
+  const className = clsx({
     Columns,
     'Columns--flex-grow': flexGrow,
     [`Columns--gutter-${gutter}`]: gutter,

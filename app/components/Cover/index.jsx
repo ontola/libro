@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -33,7 +33,7 @@ const Cover = ({
   image,
   type,
 }) => {
-  const coverClass = classNames({
+  const coverClass = clsx({
     Cover: true,
     [`Cover--${type}`]: true,
     'Cover--fixed': fixed,

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -110,7 +110,7 @@ const Button: React.FC<PropTypes> = ({
   href,
   variant,
 }) => {
-  const btnClass = classNames({
+  const btnClass = clsx({
     'Button': true,
     'Button--active': active,
     'Button--centered': centered,
