@@ -65,6 +65,10 @@
     color: color('black');
     font-size: 1.3rem;
     line-height: 2rem;
+
+    .NavBarContent {
+      min-height: 2rem;
+    }
   }
 
   .NavBar--titlebar--inner {
