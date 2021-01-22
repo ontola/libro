@@ -2,7 +2,7 @@ import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { parseValue } from '../../helpers/persistence';
+import { parseForStorage } from '../../helpers/persistence';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { InputValue } from '../../hooks/useFormField';
 import Select from '../../topologies/Select';
@@ -16,7 +16,13 @@ import Input, { InputType } from './Input';
 
 function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>) {
   const newValue = values?.slice() || [];
-  const parsedValue = parseValue(e.target.value);
+  const parsedValues = parseForStorage(e.target.value);
+  if (typeof parsedValues === 'undefined') {
+    return;
+  }
+
+  const parsedValue = parsedValues[0];
+
   if (e.target.checked) {
     newValue.push(parsedValue);
   } else {
