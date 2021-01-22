@@ -44,6 +44,7 @@ const propTypes = {
 };
 
 const PROPS_WHITELIST = [
+  schema.creator,
   schema.name,
   schema.text,
   ontola.coverPhoto,
