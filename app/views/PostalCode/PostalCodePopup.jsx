@@ -12,11 +12,12 @@ import FontAwesome from 'react-fontawesome';
 
 import AttributeListItem from '../../components/AttributeListItem';
 import Button from '../../components/Button';
+import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import { LoadingCardFixed } from '../../components/Loading';
 import teamGL from '../../ontology/teamGL';
 import AttributeList from '../../topologies/AttributeList';
-import Card, { CardContent } from '../../topologies/Card';
+import Card from '../../topologies/Card';
 import { popupTopology } from '../../topologies/Popup';
 import { useVisitPostalCode } from '../Glapp/helpers';
 

@@ -9,10 +9,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
-import Card, { CardContent } from '../../topologies/Card';
+import Card from '../../topologies/Card';
 
 const useStyles = makeStyles(() => ({
   timelineWrapper: {

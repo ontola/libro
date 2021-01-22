@@ -7,11 +7,11 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CardContent from '../../components/Card/CardContent';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import dexes from '../../ontology/dexes';
 import ontola from '../../ontology/ontola';
-import { CardContent } from '../../topologies/Card';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
