@@ -9,12 +9,13 @@ import {
 import React, { EventHandler } from 'react';
 
 import { handle } from '../../helpers/logging';
-import Link, { LinkTarget } from '../Link';
+import Link, { LinkFeature, LinkTarget } from '../Link';
 
 interface PropTypes {
   children?: React.ReactNode;
   className?: string;
   location?: string;
+  features?: LinkFeature[];
   onClick?: EventHandler<any>;
   subject?: SomeNode;
   target?: LinkTarget;

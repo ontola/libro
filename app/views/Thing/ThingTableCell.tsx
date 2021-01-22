@@ -1,13 +1,14 @@
-import RDFTypes from '@rdfdev/prop-types';
+import { Literal } from '@ontologies/core';
 import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import { register } from 'link-redux';
+import { FC, register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import Detail from '../../components/Detail/index';
+import Detail from '../../components/Detail';
 import LDLink from '../../components/LDLink';
+import { LinkFeature } from '../../components/Link';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const messages = defineMessages({
@@ -17,13 +18,16 @@ const messages = defineMessages({
   },
 });
 
-const ThingTableCell = ({ name }) => {
+interface PropTypes {
+  name: Literal;
+}
+
+const ThingTableCell: FC<PropTypes> = ({ name }) => {
   const { formatMessage } = useIntl();
 
   return (
     <LDLink
-      features={['bold', 'centered']}
-      property={schema.name.value}
+      features={[LinkFeature.Bold, LinkFeature.Centered]}
       title={formatMessage(messages.showProfile, { name: name?.value })}
     >
       <Detail
@@ -45,10 +49,6 @@ ThingTableCell.mapDataToProps = {
       foaf.name,
     ],
   },
-};
-
-ThingTableCell.propTypes = {
-  name: RDFTypes.literal,
 };
 
 export default register(ThingTableCell);

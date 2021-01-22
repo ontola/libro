@@ -1,8 +1,8 @@
-import { DetailComp as Detail } from './index';
+import Detail from './index';
 
 argUnit(Detail, () => {
   it('should be a div', () => {
-    expect(subject).toHaveDisplayName('div');
+    expect(subject.find(marker())).toHaveDisplayName('div');
   });
 
   it('should not render an image', () => {
@@ -21,11 +21,11 @@ argUnit(Detail, () => {
     setProp('url', () => 'http://example.org/');
 
     it('should be an anchor', () => {
-      expect(subject).toHaveDisplayName('a');
+      expect(subject.find(marker())).toHaveDisplayName('a');
     });
 
     it('should be styled as an anchor', () => {
-      expect(subject).toHaveClassName('Detail--link');
+      expect(subject.find(marker())).toHaveClassName('Detail--link');
     });
   });
 
@@ -33,7 +33,7 @@ argUnit(Detail, () => {
     setProp('text', () => 'Some text');
 
     it('should be a div', () => {
-      expect(subject).toHaveDisplayName('div');
+      expect(subject.find(marker())).toHaveDisplayName('div');
     });
 
     it('should not render an image', () => {
@@ -54,7 +54,7 @@ argUnit(Detail, () => {
     setProp('title', () => 'A description');
 
     it('should be a div', () => {
-      expect(subject).toHaveDisplayName('div');
+      expect(subject.find(marker())).toHaveDisplayName('div');
     });
 
     it('should render an image', () => {
@@ -82,7 +82,7 @@ argUnit(Detail, () => {
     setProp('icon', () => 'http://example.org/photo.ico');
 
     it('should be a div', () => {
-      expect(subject).toHaveDisplayName('div');
+      expect(subject.find(marker())).toHaveDisplayName('div');
     });
 
     it('should not render an image', () => {
@@ -121,4 +121,15 @@ argUnit(Detail, () => {
       });
     });
   });
+}, {
+  mount: true,
+  propTypes: {
+    hideIcon: null,
+    icon: null,
+    imageUrl: null,
+    text: null,
+    title: null,
+    url: null,
+  },
+  router: true,
 });

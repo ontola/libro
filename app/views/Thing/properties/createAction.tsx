@@ -1,18 +1,25 @@
 import schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
-  Resource,
-  linkType,
-  linkedPropType,
+  FC,
   register,
+  Resource,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import link from '../../../ontology/link';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
-const CreateAction = ({
+interface PropTypes {
+  isPartOf: SomeNode;
+  linkedProp: SomeNode;
+  omniform: boolean;
+  onLoad: () => void;
+  renderPartOf: boolean;
+}
+
+const CreateAction: FC<PropTypes> = ({
   linkedProp,
   isPartOf,
   omniform,
@@ -39,14 +46,6 @@ CreateAction.topology = allTopologies;
 
 CreateAction.mapDataToProps = {
   isPartOf: schema.isPartOf,
-};
-
-CreateAction.propTypes = {
-  isPartOf: linkType,
-  linkedProp: linkedPropType,
-  omniform: PropTypes.bool,
-  onLoad: PropTypes.func,
-  renderPartOf: PropTypes.bool,
 };
 
 export default register(CreateAction);

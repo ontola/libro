@@ -1,13 +1,12 @@
 import { selectUnit } from '@formatjs/intl-utils';
+import { Literal } from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { linkedPropType, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import { FC, register } from 'link-redux';
 import React from 'react';
 import {
+  defineMessages,
   FormattedMessage,
   FormattedRelativeTime,
-  defineMessages,
-  injectIntl,
   useIntl,
 } from 'react-intl';
 
@@ -27,11 +26,16 @@ const messages = defineMessages({
   },
 });
 
-const ExpiresAt = ({ linkedProp, short }) => {
+interface PropTypes {
+  linkedProp: Literal;
+  short: boolean;
+}
+
+const ExpiresAt: FC<PropTypes> = ({ linkedProp, short }) => {
   const intl = useIntl();
   const d = new Date(linkedProp.value);
 
-  if (isPastDate(d)) {
+  if (isPastDate(linkedProp)) {
     return (
       <Detail
         icon="lock"
@@ -43,7 +47,7 @@ const ExpiresAt = ({ linkedProp, short }) => {
         )}
         title={intl.formatMessage(
           messages.closedTooltip,
-          { date: intl.formatDate(d) }
+          { date: intl.formatDate(d) },
         )}
       />
     );
@@ -65,7 +69,7 @@ const ExpiresAt = ({ linkedProp, short }) => {
       )}
       title={intl.formatMessage(
         messages.expiringTooltip,
-        { date: intl.formatDate(d) }
+        { date: intl.formatDate(d) },
       )}
     />
   );
@@ -76,12 +80,5 @@ ExpiresAt.type = schema.Thing;
 ExpiresAt.property = argu.expiresAt;
 
 ExpiresAt.topology = detailsBarTopology;
-
-ExpiresAt.hocs = [injectIntl];
-
-ExpiresAt.propTypes = {
-  linkedProp: linkedPropType,
-  short: PropTypes.bool,
-};
 
 export default register(ExpiresAt);

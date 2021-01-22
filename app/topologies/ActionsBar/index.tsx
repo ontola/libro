@@ -9,26 +9,26 @@ import './ActionsBar.scss';
 
 export const actionsBarTopology = argu.actionsBar;
 
-class ActionsBar extends TopologyProvider {
-  static propTypes = {
-    small: PropTypes.bool,
-  };
+interface PropTypes {
+  small?: boolean;
+}
 
-  constructor() {
-    super();
+class ActionsBar extends TopologyProvider<PropTypes> {
+  constructor(props: PropTypes) {
+    super(props);
 
     this.className = 'ActionsBar';
     this.topology = actionsBarTopology;
   }
 
-  render() {
+  public render() {
     const classes = clsx({
-      ActionsBar: true,
+      'ActionsBar': true,
       'ActionsBar--small': this.props.small,
     });
 
     if (this.props.children === undefined) {
-      return null;
+      return <React.Fragment />;
     }
 
     return this.wrap((

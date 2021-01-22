@@ -1,11 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-const propTypes = {
-  children: PropTypes.node,
-};
-
-const DetailText = ({ children }) => {
+const DetailText: React.FC = ({ children }) => {
   if (!children) {
     return null;
   }
@@ -16,7 +11,5 @@ const DetailText = ({ children }) => {
     </span>
   );
 };
-
-DetailText.propTypes = propTypes;
 
 export default DetailText;

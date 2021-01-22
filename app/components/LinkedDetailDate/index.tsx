@@ -1,26 +1,25 @@
+import { Literal } from '@ontologies/core';
 import schema from '@ontologies/schema';
-import RDFTypes from '@rdfdev/prop-types';
 import { link } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import argu from '../../ontology/argu';
 import DetailDate from '../DetailDate';
 
-const propTypes = {
-  dateCreated: RDFTypes.literal,
-  dateModified: RDFTypes.literal,
-  datePublished: RDFTypes.literal,
-  dateSubmitted: RDFTypes.literal,
-  duration: RDFTypes.literal,
-  endDate: RDFTypes.literal,
-  floatRight: PropTypes.bool,
-  hideIcon: PropTypes.bool,
-  lastActivityAt: RDFTypes.literal,
-  startDate: RDFTypes.literal,
-};
+interface PropTypes {
+  dateCreated?: Literal;
+  dateModified?: Literal;
+  datePublished?: Literal;
+  dateSubmitted?: Literal;
+  duration?: Literal;
+  endDate?: Literal;
+  floatRight?: boolean;
+  hideIcon?: boolean;
+  lastActivityAt?: Literal;
+  startDate?: Literal;
+}
 
-const LinkedDetailDate = ({
+const LinkedDetailDate: React.FC<PropTypes> = ({
   dateCreated,
   dateModified,
   datePublished,
@@ -46,8 +45,6 @@ const LinkedDetailDate = ({
     startDate={startDate}
   />
 );
-
-LinkedDetailDate.propTypes = propTypes;
 
 export default link({
   dateCreated: schema.dateCreated,

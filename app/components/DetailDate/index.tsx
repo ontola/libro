@@ -1,14 +1,33 @@
-import PropTypes from 'prop-types';
+import { isLiteral, Literal } from '@ontologies/core';
 import React from 'react';
 import {
-  FormattedRelativeTime,
   defineMessages,
+  FormattedRelativeTime,
+  IntlShape,
   useIntl,
 } from 'react-intl';
 
 import { relativeTimeDestructure } from '../../helpers/date';
 import { isDateOrDateTime } from '../../helpers/types';
 import Detail from '../Detail';
+
+interface PropTypes {
+  dateCreated?: Literal;
+  dateModified?: Literal;
+  datePublished?: Literal;
+  dateSubmitted?: Literal;
+  // eslint-disable-next-line react/no-unused-prop-types
+  duration?: Literal;
+  endDate?: Literal;
+  floatRight?: boolean;
+  hideIcon?: boolean;
+  lastActivityAt?: Literal;
+  linkedImage?: boolean;
+  relative?: boolean;
+  startDate?: Literal;
+  // For linking to an event, like a meeting
+  url?: string;
+}
 
 const messages = defineMessages({
   dateCreated: {
@@ -51,15 +70,29 @@ const FORMAT = {
   year: 'numeric',
 };
 
-const formatDuration = (intl, startDate, endDate) => {
-  if (!isDateOrDateTime(startDate) || !isDateOrDateTime(endDate)) {
+const formatDuration = (intl: IntlShape, startDate?: Literal, endDate?: Literal) => {
+  if (!isLiteral(startDate) || !isLiteral(endDate) || !isDateOrDateTime(startDate) || !isDateOrDateTime(endDate)) {
     return null;
   }
 
-  return `Duur: ${intl.formatRelativeTime(new Date(startDate.value), 'day', { initialNow: new Date(endDate.value) })}`;
+  const {
+    value,
+    unit,
+  } = relativeTimeDestructure(new Date(startDate.value).getTime(), new Date(endDate.value).getTime());
+
+  const duration = intl.formatNumber(
+    value,
+    {
+      style: 'unit',
+      unit,
+      unitDisplay: 'long',
+    },
+  );
+
+  return `Duur: ${duration}`;
 };
 
-const DetailDate = (props) => {
+const DetailDate: React.FC<PropTypes> = (props) => {
   const {
     dateCreated,
     dateModified,
@@ -75,22 +108,22 @@ const DetailDate = (props) => {
   } = props;
   const intl = useIntl();
 
-  const format = (prop) => {
+  const format = React.useCallback((prop) => {
     const p = prop.split(':').pop();
-    if (!props[p]) {
+    const rawDate = (props as any)[p];
+    if (!rawDate) {
       return '';
     }
 
-    const rawDate = props[p];
     const date = isDateOrDateTime(rawDate)
       ? intl.formatTime(new Date(rawDate.value), FORMAT)
       : rawDate.value;
 
     return intl.formatMessage(
-      messages[p],
-      { date }
+      (messages as any)[p],
+      { date },
     );
-  };
+  }, [props]);
 
   const mostImportant = () => {
     const date = startDate
@@ -100,13 +133,13 @@ const DetailDate = (props) => {
       || dateModified
       || lastActivityAt;
 
-    if (!date) {
+    if (!isLiteral(date)) {
       return null;
     }
 
     if (isDateOrDateTime(date)) {
       if (relative) {
-        return <FormattedRelativeTime {...relativeTimeDestructure(new Date(date.value))} />;
+        return <FormattedRelativeTime {...relativeTimeDestructure(new Date(date.value).getTime())} />;
       }
 
       return intl.formatTime(new Date(date.value), FORMAT);
@@ -138,23 +171,6 @@ const DetailDate = (props) => {
       url={url}
     />
   );
-};
-
-DetailDate.propTypes = {
-  dateCreated: PropTypes.instanceOf(Date),
-  dateModified: PropTypes.instanceOf(Date),
-  datePublished: PropTypes.instanceOf(Date),
-  dateSubmitted: PropTypes.instanceOf(Date),
-  // eslint-disable-next-line react/no-unused-prop-types
-  duration: PropTypes.instanceOf(Date),
-  endDate: PropTypes.instanceOf(Date),
-  floatRight: PropTypes.bool,
-  hideIcon: PropTypes.bool,
-  lastActivityAt: PropTypes.instanceOf(Date),
-  relative: PropTypes.bool,
-  startDate: PropTypes.instanceOf(Date),
-  // For linking to an event, like a meeting
-  url: PropTypes.string,
 };
 
 DetailDate.defaultProps = {

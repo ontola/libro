@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 
-import { actionsBarTopology } from './topologies/ActionsBar/index';
+import { actionsBarTopology } from './topologies/ActionsBar';
 import { appMenuTopology } from './topologies/AppMenu';
 import { attributeListTopology } from './topologies/AttributeList';
 import { cardTopology } from './topologies/Card';
@@ -14,7 +14,7 @@ import { cardRowTopology } from './topologies/Card/CardRow';
 import { containerTopology } from './topologies/Container';
 import { containerFloatTopology } from './topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from './topologies/ContentDetails/index';
-import { detailsBarTopology } from './topologies/DetailsBar/index';
+import { detailsBarTopology } from './topologies/DetailsBar';
 import { alertDialogTopology } from './topologies/Dialog/index';
 import { footerTopology } from './topologies/Footer';
 import { formFooterTopology } from './topologies/FormFooter/Footer';

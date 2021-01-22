@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Detail from '../../components/Detail';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
-import { detailsBarTopology } from '../../topologies/DetailsBar/index';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 
 const EntryPointDetail = ({ image, name }) => {
   const icon = image && image.value.startsWith('fa-') ? image.value.slice('fa-'.length) : image.value;

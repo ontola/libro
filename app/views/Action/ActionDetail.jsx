@@ -8,7 +8,7 @@ import React from 'react';
 
 import LDLink from '../../components/LDLink';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
-import { detailsBarTopology } from '../../topologies/DetailsBar/index';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 
 const ActionDetail = ({ name }) => (
   <LDLink>

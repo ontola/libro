@@ -1,26 +1,32 @@
 import { TopologyProvider } from 'link-redux';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import VerticalScroller from '../../components/VerticalScroller';
-import { CardFloat } from '../Card';
 import argu from '../../ontology/argu';
+import { CardFloat } from '../Card';
 
 import './DetailsBar.scss';
 
 export const detailsBarTopology = argu.detail;
 
-class DetailsBar extends TopologyProvider {
-  constructor() {
-    super();
+interface PropTypes {
+  className?: string;
+  right?: ReactNode;
+  scrollable?: boolean;
+}
+
+class DetailsBar extends TopologyProvider<PropTypes> {
+  public static defaultProps = {
+    scrollable: true,
+  };
+
+  constructor(props: PropTypes) {
+    super(props);
 
     this.topology = detailsBarTopology;
   }
 
-  static defaultProps = {
-    scrollable: true,
-  };
-
-  render() {
+  public render() {
     const IconWrapper = this.props.scrollable ? VerticalScroller : React.Fragment;
 
     return this.wrap((
