@@ -7,6 +7,10 @@ export default makeStyles((theme: any) => ({
       zIndex: 10,
     },
     '& .ol-control': {
+      '& .MuiSvgIcon-fontSizeSmall': {
+        marginLeft: '0.1em',
+        marginTop: '0.35em',
+      },
       '& button': {
         '&:hover, &:focus': {
           backgroundColor: theme.palette.grey.xLight,
@@ -24,6 +28,10 @@ export default makeStyles((theme: any) => ({
         'lineHeight': 'unset',
         'marginRight': '0.1em',
         'width': '3em',
+      },
+      '&.current-location': {
+        left: 'auto',
+        right: '3.2em',
       },
       '&.ol-full-screen': {
         left: 'auto',
