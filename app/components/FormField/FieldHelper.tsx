@@ -6,8 +6,8 @@ import './FieldHelper.scss';
 import { FormFieldError } from './index';
 
 interface PropTypes {
-  helperText: string | React.ReactNode;
-  error: FormFieldError;
+  helperText?: string | React.ReactNode;
+  error?: FormFieldError;
   right?: React.ReactNode;
 }
 

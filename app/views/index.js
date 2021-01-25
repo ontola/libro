@@ -32,6 +32,7 @@ import Document from './Document';
 import Employment from './Employment';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
+import ErrorResponse from './ErrorResponse';
 import Event from './Event';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
@@ -121,6 +122,7 @@ export function getViews() {
     ...Employment,
     ...EntryPoint,
     ...Error,
+    ...ErrorResponse,
     ...Event,
     ...FilterField,
     ...FilterOption,

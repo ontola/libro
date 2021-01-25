@@ -7,6 +7,7 @@ export default {
 
   /* classes */
   ErrorResource: ll('ErrorResource'),
+  ErrorResponse: ll('ErrorResponse'),
   LoadingResource: ll('LoadingResource'),
 
   /* properties */

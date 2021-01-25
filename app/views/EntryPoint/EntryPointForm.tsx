@@ -3,6 +3,7 @@ import { FormApi } from 'final-form';
 import { SomeNode } from 'link-lib';
 import {
   Property,
+  RenderStoreProvider,
   Resource,
   useDataInvalidation,
   useLRS,
@@ -99,12 +100,19 @@ const EntryPointForm: React.FC<PropTypes> = ({
         contentWrapper={contentWrapper}
         label={ll.actionBody}
       />
+      {errorResponse && (
+        <CardContent>
+          <RenderStoreProvider value={lrs}>
+            <Resource subject={errorResponse}/>
+          </RenderStoreProvider>
+        </CardContent>
+      )}
       <FormFooter>
         <Property label={ll.actionBody} />
         {footerButtons ? footerButtons(submitting) : null}
       </FormFooter>
     </React.Fragment>
-  ), [contentWrapper, footerButtons]);
+  ), [contentWrapper, footerButtons, errorResponse]);
 
   if (loading) {
     return (
