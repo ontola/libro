@@ -15,7 +15,7 @@ import HiddenRequiredInput from './HiddenRequiredInput';
 import Input, { InputType } from './Input';
 
 function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>) {
-  const newValue = values?.slice() || [];
+  const newValue = values?.slice()?.filter((term) => term.value) || [];
   const parsedValues = parseForStorage(e.target.value);
   if (typeof parsedValues === 'undefined') {
     return;
