@@ -16,6 +16,8 @@ import {
   conditionalFormFieldsPath,
   formFieldsPath,
   nestedConditionalFormsPath,
+  nestedConditionalIfInPath,
+  nestedConditionalUnlessInPath,
   nestedFormsPath,
 } from '../helpers/diggers';
 import { calculateFormFieldName, JSONLDObject } from '../helpers/forms';
@@ -45,6 +47,8 @@ const getInitialValues = (
     parentForm,
     ...lrs.dig(parentForm, nestedFormsPath),
     ...lrs.dig(parentForm, nestedConditionalFormsPath),
+    ...lrs.dig(parentForm, nestedConditionalIfInPath),
+    ...lrs.dig(parentForm, nestedConditionalUnlessInPath),
   ];
 
   (fields.concat(conditionalFields)).filter(isNode).forEach((field) => {

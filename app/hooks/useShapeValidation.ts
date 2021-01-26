@@ -71,8 +71,8 @@ const hasMinCount = (_: LinkReduxLRSType, minCount: SomeTerm, values: SomeTerm[]
   return values.length >= tryParseInt(minCount)!;
 };
 
-const hasValue = (_: LinkReduxLRSType, value: SomeTerm, values: SomeTerm[]) => {
-  return values.includes(value);
+const hasValue = (lrs: LinkReduxLRSType, value: SomeTerm, values: SomeTerm[]) => {
+  return values.map((v) => lrs.store.canon(v)).includes(lrs.store.canon(value));
 };
 
 const hasValueIn = (lrs: LinkReduxLRSType, shIn: SomeTerm[], values: SomeTerm[]) => {
@@ -80,7 +80,9 @@ const hasValueIn = (lrs: LinkReduxLRSType, shIn: SomeTerm[], values: SomeTerm[])
     isNamedNode(value) ? containerToArr(lrs, [], value) as SomeTerm[] : value
   ));
 
-  return values.some((value) => inValues.includes(value));
+  return values.some((value) => (
+    inValues.map((v) => lrs.store.canon(v)).includes(lrs.store.canon(value))
+  ));
 };
 
 const resolveCondition = (lrs: LinkReduxLRSType, condition: ShShape, target: SomeNode): boolean => {
