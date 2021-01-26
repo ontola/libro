@@ -26,6 +26,7 @@ export default {
   LegendItem: argu('LegendItem'),
   Link: argu('Link'),
   MakePrimaryAction: argu('MakePrimaryAction'),
+  MapQuestion: argu('MapQuestion'),
   MediaObject: argu('MediaObject'),
   Menu: argu('Menu'),
   MenuSection: argu('MenuSection'),

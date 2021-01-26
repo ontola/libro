@@ -125,6 +125,7 @@ const MapView: React.FC<PropTypes> = ({
   initialLat,
   initialLon,
   initialZoom,
+  large,
   navigate,
   onMapClick,
   onMove,
@@ -172,6 +173,7 @@ const MapView: React.FC<PropTypes> = ({
 
   return (
     <MapCanvas
+      large={large}
       layers={layers}
       navigate={navigate}
       overlayPosition={overlayPosition}

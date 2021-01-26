@@ -1,7 +1,6 @@
-import rdf from '@ontologies/core';
+import rdf, { isNamedNode, NamedNode } from '@ontologies/core';
 import {
   Resource,
-  labelType,
   useDataInvalidation,
   useLRS,
   useProperty,
@@ -13,7 +12,16 @@ import parser from 'uri-template';
 import { entityIsLoaded } from '../../helpers/data';
 import ontola from '../../ontology/ontola';
 
-const Collection = ({
+interface PropTypes {
+  display?: string;
+  label: NamedNode;
+  onLoad?: () => null;
+  page?: number;
+  pageSize?: number;
+  type?: string;
+}
+
+const Collection: React.FC<PropTypes> = ({
   display,
   label,
   page,
@@ -24,9 +32,9 @@ const Collection = ({
 }) => {
   const lrs = useLRS();
   const [baseCollection] = useProperty(label);
-  useDataInvalidation(baseCollection);
+  useDataInvalidation(isNamedNode(baseCollection) ? baseCollection : []);
 
-  if (!baseCollection) {
+  if (!isNamedNode(baseCollection)) {
     return null;
   }
 
@@ -51,15 +59,6 @@ const Collection = ({
   return (
     <Resource subject={rdf.namedNode(collection)} {...otherProps} />
   );
-};
-
-Collection.propTypes = {
-  display: PropTypes.string,
-  label: labelType,
-  onLoad: PropTypes.func,
-  page: PropTypes.number,
-  pageSize: PropTypes.number,
-  type: PropTypes.string,
 };
 
 export default Collection;

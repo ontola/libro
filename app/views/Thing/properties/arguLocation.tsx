@@ -1,7 +1,8 @@
-import rdf from '@ontologies/core';
+import rdf, { isNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
-  linkType,
+  FC,
   register,
   useDataFetching,
   useLRS,
@@ -13,15 +14,22 @@ import { LoadingCard } from '../../../components/Loading';
 import MapView from '../../../containers/MapView';
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
+import { isResource } from '../../../helpers/types';
 import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
-import { isResource } from '../../../helpers/types';
 
-const ArguLocation = ({
+interface PopTypes {
+  childrenPlacements: SomeNode;
+  large: boolean;
+  linkedProp: SomeNode;
+}
+
+const ArguLocation: FC<PopTypes> = ({
   childrenPlacements,
-  schemaLocation,
+  large,
+  linkedProp,
 }) => {
   const lrs = useLRS();
   useDataFetching(childrenPlacements);
@@ -30,7 +38,7 @@ const ArguLocation = ({
     const id = feature?.getId();
     if (id) {
       const partOf = lrs.getResourceProperty(
-        isResource(id) ? id : rdf.namedNode(id), schema.isPartOf
+        isResource(id) ? id : rdf.namedNode(id), schema.isPartOf,
       );
       if (partOf) {
         lrs.actions.ontola.showDialog(partOf);
@@ -43,16 +51,17 @@ const ArguLocation = ({
     return <LoadingCard />;
   }
 
-  if (!schemaLocation && children.length === 0) {
+  if (!linkedProp && children.length === 0) {
     return null;
   }
 
   return (
     <MapView
+      large={large}
       navigate={(resource) => history.push(retrievePath(resource.value))}
       placements={[
-        schemaLocation,
-        ...children.filter((child) => child !== schemaLocation),
+        linkedProp,
+        ...children.filter(isNode).filter((child) => child !== linkedProp),
       ].filter(Boolean)}
       onSelect={onSelect}
     />
@@ -71,12 +80,6 @@ ArguLocation.topology = [
 
 ArguLocation.mapDataToProps = {
   childrenPlacements: argu.childrenPlacements,
-  schemaLocation: schema.location,
-};
-
-ArguLocation.propTypes = {
-  childrenPlacements: linkType,
-  schemaLocation: linkType,
 };
 
 export default register(ArguLocation);

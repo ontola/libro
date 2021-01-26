@@ -17,7 +17,7 @@ import CompCardCardLink from './components/Card/CardLink';
 import CompCheckboxesInput from './components/Input/CheckboxesInput';
 import CompCollapseText from './components/CollapseText/index';
 import CompCollapsible from './components/Collapsible/index';
-import CompCollection from './components/Collection/index';
+import CompCollection from './components/Collection';
 import CompColumn from './components/Column/index';
 import CompColumns from './components/Columns/index';
 import CompContainerHeader from './components/Container/ContainerHeader';

@@ -55,6 +55,7 @@ import PostalCode from './PostalCode';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
+import MapQuestion from './MapQuestion';
 import Measure from './Measure';
 import MeasureType from './MeasureType';
 import MediaObject from './MediaObject';
@@ -142,6 +143,7 @@ export function getViews() {
     ...InterventionType,
     ...InfiniteCollectionPage,
     ...Loading,
+    ...MapQuestion,
     ...Measure,
     ...MeasureType,
     ...MediaObject,

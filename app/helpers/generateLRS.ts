@@ -142,6 +142,9 @@ export default function generateLRS() {
     rdf.quad(schema.WebSite, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebSite, rdfs.subClassOf, schema.Thing),
 
+    rdf.quad(argu.MapQuestion, rdfx.type, rdfs.Class),
+    rdf.quad(argu.MapQuestion, rdfs.subClassOf, schema.Question),
+
     rdf.quad(ontola['Create::Auth::AccessToken'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Auth::AccessToken'], rdfs.subClassOf, schema.CreateAction),
     rdf.quad(ontola['Create::Auth::Confirmation'], rdfx.type, rdfs.Class),
