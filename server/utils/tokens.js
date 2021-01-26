@@ -13,8 +13,6 @@ export const processTokenRequest = async (ctx, request) => {
     }
   } catch (e) {
     if (e instanceof BadRequestError) {
-      ctx.session = null;
-
       return;
     }
 
