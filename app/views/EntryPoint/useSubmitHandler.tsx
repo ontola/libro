@@ -7,7 +7,6 @@ import { useLink, useLRS } from 'link-redux';
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import { convertKeysAtoB } from '../../helpers/data';
 import { handleHTTPRetry, HTTP_RETRY_WITH } from '../../helpers/errorHandling';
 import { retrievePath } from '../../helpers/iris';
 import { InputValue } from '../../hooks/useFormField';
@@ -24,7 +23,9 @@ interface PropTypes {
 export interface FormValues {
   [index: string]: InputValue;
 }
-export type SubmitHandler = (values: FormValues, formApi?: FormApi, onSubmit?: SubmitHandler) => Promise<any>;
+export type RetrySubmitHandler = () => Promise<any>;
+export type SubmitHandler = (formData: FormValues, formApi?: FormApi<FormValues>, retrySubmit?: RetrySubmitHandler) =>
+  Promise<any>;
 
 const useSubmitHandler = ({
   formID,
@@ -46,8 +47,7 @@ const useSubmitHandler = ({
     url: schema.url,
   });
 
-  return React.useCallback((values: FormValues, formApi?: FormApi, onSubmit?: SubmitHandler) => {
-    let formData;
+  return React.useCallback((formData, formApi, retrySubmit) => {
     if (url && httpMethod?.value === 'GET') {
       return new Promise<void>((resolve) => {
         if (modal) {
@@ -58,21 +58,6 @@ const useSubmitHandler = ({
 
         resolve();
       });
-    }
-    if (formApi) {
-      const registeredValues = {
-        ...formApi.getRegisteredFields().reduce((res: {}, key: string) => {
-          if (!Object.keys(values).includes(key)) {
-            return res;
-          }
-
-          return {
-            ...res,
-            [key]: values[key],
-          };
-        }, {}),
-      };
-      formData = convertKeysAtoB(registeredValues);
     }
 
     if (!isNamedNode(action)) {
@@ -101,8 +86,8 @@ const useSubmitHandler = ({
       if (!e.response) {
         throw e;
       }
-      if (e.response.status === HTTP_RETRY_WITH && onSubmit) {
-        return handleHTTPRetry(lrs, e, () => onSubmit(values, formApi));
+      if (e.response.status === HTTP_RETRY_WITH && retrySubmit) {
+        return handleHTTPRetry(lrs, e, () => retrySubmit());
       }
       if (e.response.status === HttpStatus.UNAUTHORIZED) {
         if (onStatusForbidden) {

@@ -4,6 +4,7 @@ import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
+import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
 import { withFormLRS } from '../../hooks/useFormLRS';
@@ -56,6 +57,27 @@ export interface FormContext {
 
 export const FormContext = React.createContext<Partial<FormContext>>({});
 
+const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) => {
+  let formData = {};
+  if (formApi && values) {
+    const registeredValues = {
+      ...formApi.getRegisteredFields().reduce((res: {}, key: string) => {
+        if (!Object.keys(values).includes(key)) {
+          return res;
+        }
+
+        return {
+          ...res,
+          [key]: values[key],
+        };
+      }, {}),
+    };
+    formData = convertKeysAtoB(registeredValues);
+  }
+
+  return formData;
+};
+
 const Form: React.FC<FormProps> = (props) => {
   const {
     action,
@@ -80,13 +102,15 @@ const Form: React.FC<FormProps> = (props) => {
     validateOnBlur,
   } = props;
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
-  const submitHandler = React.useCallback((values: FormValues, formApi?: FormApi) => (
-    onSubmit(values, formApi, submitHandler).catch(error)
-  ), [onSubmit, sessionStorage, formID]) as (args: any) => any;
+  const submitHandler = React.useCallback((values?: FormValues, formApi?: FormApi<FormValues>): Promise<any> => {
+    const formData = formDataFromValues(values, formApi);
+
+    return onSubmit(formData, formApi, () => onSubmit(formData, formApi)).catch(error);
+  }, [onSubmit, sessionStorage, formID]);
   React.useEffect(() => {
     if (autoSubmit && !autoSubmitted) {
       setAutoSubmitted(true);
-      submitHandler([]);
+      submitHandler();
     }
   }, [autoSubmit, autoSubmitted]);
   const context = React.useMemo(() => ({
