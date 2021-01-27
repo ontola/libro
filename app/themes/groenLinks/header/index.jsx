@@ -26,7 +26,8 @@ const GroenLinksHeader = () => {
   const logoSmall = '/assets/logoSmall.png';
 
   React.useEffect(() => {
-    import('./Icon').then((encoded) => setLogo(encoded.default));
+    // eslint-disable-next-line no-inline-comments
+    import(/* webpackChunkName: "GroenLinksTheme" */ './Icon').then((encoded) => setLogo(encoded.default));
   });
 
   return (

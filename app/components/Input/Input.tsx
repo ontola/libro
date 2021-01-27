@@ -97,18 +97,19 @@ export enum InputType {
   Week = 'week',
 }
 
-interface PropTypes {
+export interface PropTypes {
   autoComplete?: InputAutocomplete;
   autoFocus?: boolean;
   capture?: string | boolean;
   checked?: boolean;
   className?: string;
+  'data-testid'?: string;
   element?: any;
   hiddenValue?: string;
   id?: string;
   inputMode?: InputMode;
   minLength?: number;
-  name?: string;
+  name: string;
   onChange?: EventHandler<any>;
   onKeyUp?: EventHandler<any>;
   placeholder?: string;

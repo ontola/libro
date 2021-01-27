@@ -95,9 +95,9 @@ export function getLinkContent(rel: string) {
   return header && header.href;
 }
 
-export function getMetaContent(name: string) {
+export function getMetaContent(name: string): string | undefined {
   const header = __CLIENT__
-    ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
+    ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`) || undefined
     : undefined;
   return header ? header.content : undefined;
 }

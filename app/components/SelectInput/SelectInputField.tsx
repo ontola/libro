@@ -37,7 +37,7 @@ interface InputProps {
   autoFocus?: boolean;
   autoComplete?: InputAutocomplete;
   inputMode?: InputMode;
-  name?: string;
+  name: string;
   onFocus: EventHandler<any>;
   type?: InputType;
   value?: boolean | string | number;

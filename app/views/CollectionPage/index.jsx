@@ -50,9 +50,9 @@ function getCollectionPage({
         label={as.partOf}
         originalCollectionResource={props.originalCollectionResource || props.subject}
         redirectPagination={props.redirectPagination}
-        renderedPage={props.subject}
         renderPartOf={props.renderPartOf}
         renderWhenEmpty={props.renderWhenEmpty}
+        renderedPage={props.subject}
       />
     );
   };

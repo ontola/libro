@@ -13,7 +13,7 @@ const DatePickerLoader = (props: InputComponentProps) => {
   if (!__CLIENT__) {
     return (
       <div className="Field__input Field__input--text">
-        <Input element="input" />
+        <Input element="input" name={props.name} />
       </div>
     );
   }

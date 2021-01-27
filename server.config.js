@@ -111,7 +111,7 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
     fallback: {
       path: require.resolve('path-browserify'),
-    }
+    },
   },
 
   target: 'node',

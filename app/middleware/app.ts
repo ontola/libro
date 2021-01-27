@@ -7,6 +7,7 @@ import rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+
 import app from '../ontology/app';
 import http from '../ontology/http';
 import libro from '../ontology/libro';

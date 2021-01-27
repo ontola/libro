@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, { EventHandler } from 'react';
+import React, { EventHandler, FC } from 'react';
 import Textarea from 'react-autosize-textarea';
 
 import Button, { ButtonTheme } from '../../components/Button';
@@ -10,31 +9,17 @@ import Markdown from '../../components/Markdown';
 import MarkdownInstructions from './MarkdownInstructions';
 import ToggleButton from './ToggleButton';
 
-const propTypes = {
-  autoFocus: PropTypes.bool,
-  disableRich: PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired,
-  maxLength: PropTypes.string,
-  minLength: PropTypes.string,
-  onBlur: PropTypes.func.isRequired,
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  rows: PropTypes.number,
-  value: PropTypes.string,
-};
-
 const defaultProps = {
   autoFocus: false,
 };
 
-interface PropTypes {
+interface PreviewButtonProps {
   show: any;
   onClick: EventHandler<any>;
 }
 
 /* eslint react/prop-types: 0 */
-const PreviewButton: React.FC<PropTypes> = ({ show, onClick }) => (
+const PreviewButton: React.FC<PreviewButtonProps> = ({ show, onClick }) => (
   <Button
     small
     icon={show ? 'caret-down' : 'caret-right'}
@@ -45,7 +30,21 @@ const PreviewButton: React.FC<PropTypes> = ({ show, onClick }) => (
   </Button>
 );
 
-const PlainEditor = ({
+export interface PlainEditorProps {
+  autoFocus?: boolean;
+  disableRich: boolean;
+  id: string;
+  maxLength?: number;
+  minLength?: number;
+  onBlur: EventHandler<any>;
+  onChange?: EventHandler<any>;
+  onFocus: EventHandler<any>;
+  placeholder?: string;
+  rows?: number;
+  value: string;
+}
+
+const PlainEditor: FC<PlainEditorProps> = ({
   autoFocus,
   disableRich,
   id,
@@ -57,7 +56,7 @@ const PlainEditor = ({
   placeholder,
   rows,
   value,
-}: any) => {
+}) => {
   const [showPreview, setShowPreview] = React.useState(false);
   const { onKeyUp } = React.useContext(FormContext);
 
@@ -104,7 +103,6 @@ const PlainEditor = ({
   );
 };
 
-PlainEditor.propTypes = propTypes;
 PlainEditor.defaultProps = defaultProps;
 
 export default PlainEditor;

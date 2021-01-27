@@ -3,21 +3,19 @@ import { SomeNode } from 'link-lib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 
+import { PlainEditorProps } from '../../async/TextEditor/PlainEditor';
 import TextEditor from '../../containers/TextEditor';
 import { InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 import { FormContext } from '../Form/Form';
 import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
+import { PropTypes as InputProps } from '../Input/Input';
 
 import Input, { InputAutocomplete, InputType } from './Input';
 
 const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;
-
-interface InputProps {
-  [key: string]: any;
-}
 
 export interface InputPropTypes {
   autoComplete?: InputAutocomplete;
@@ -73,7 +71,7 @@ const InputElement = (props: InputPropTypes) => {
     'Field__input--active': active,
   });
 
-  const sharedProps = {
+  const sharedProps: InputProps & Partial<PlainEditorProps> & Partial<Omit<Textarea.Props, keyof InputProps>> = {
     'autoFocus': autofocus,
     'data-testid': name,
     'id': name,
@@ -89,7 +87,7 @@ const InputElement = (props: InputPropTypes) => {
     },
     required,
     'value': inputValue?.value,
-  } as InputProps;
+  };
 
   const minRows = maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
 

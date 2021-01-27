@@ -12,7 +12,8 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
   const [logo, setLogo] = React.useState();
 
   React.useEffect(() => {
-    import('./DutchGovernmentLogo').then((encoded) => setLogo(encoded.default));
+    // eslint-disable-next-line no-inline-comments
+    import(/* webpackChunkName: "DutchGovernmentTheme" */ './DutchGovernmentLogo').then((encoded) => setLogo(encoded.default));
   });
 
   return (

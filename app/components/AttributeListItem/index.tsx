@@ -1,14 +1,18 @@
+import { NamedNode } from '@ontologies/core';
 import {
   Property,
   Resource,
-  linkType,
-  useLRS,
   useLinkRenderContext,
+  useLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-const AttributeListItem = ({
+export interface AttributeListItemProps {
+  label: NamedNode;
+  propertyLabel: string;
+}
+
+const AttributeListItem: React.FC<AttributeListItemProps> = ({
   label,
   propertyLabel,
   ...otherProps
@@ -25,18 +29,13 @@ const AttributeListItem = ({
       <th>
         {
           propertyLabel
-            ? <label>{propertyLabel}</label>
+            ? <label htmlFor={label?.value}>{propertyLabel}</label>
             : <Resource subject={label} />
         }
       </th>
       <td><Property label={label} limit={Infinity} {...otherProps} /></td>
     </tr>
   );
-};
-
-AttributeListItem.propTypes = {
-  label: linkType,
-  propertyLabel: PropTypes.string,
 };
 
 export default AttributeListItem;

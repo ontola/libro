@@ -23,7 +23,7 @@ const createOutputStream = () => {
 async function isSourceAllowed(ctx, origin) {
   const manifestData = await ctx.getManifest();
 
-  return (manifestData.ontola?.['allowed_external_sources'] || []).includes(origin);
+  return (manifestData.ontola?.allowed_external_sources || []).includes(origin);
 }
 
 const filterAllowedWriteForbiddenMeta = (ctx, write) => async (iri) => {

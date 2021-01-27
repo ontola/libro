@@ -18,8 +18,8 @@ interface PropTypes {
   autoFocus: boolean;
   disableRich: boolean;
   getMarkdownValue: () => any;
-  maxLength: string;
-  minLength: string;
+  maxLength: number;
+  minLength: number;
   name: string;
   onBlur: (args: any) => any;
   onChange: (args: any) => void;

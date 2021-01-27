@@ -44,9 +44,9 @@ const App = ({
       <WebsiteContext.Provider value={websiteCtxValue}>
         <HelmetProvider context={helmetContext}>
           <IndexContainer
+            Router={router}
             history={history}
             lrs={lrs}
-            Router={router}
             store={store}
             title={title}
           />
@@ -59,7 +59,7 @@ const App = ({
 App.propTypes = {
   helmetContext: PropTypes.shape({}),
   history: PropTypes.shape({
-    location: PropTypes.object.isRequired,
+    location: PropTypes.shape({}).isRequired,
   }),
   location: PropTypes.string,
   lrs: lrsType,

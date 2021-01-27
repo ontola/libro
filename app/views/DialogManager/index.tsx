@@ -1,9 +1,10 @@
 import Dialog from '@material-ui/core/Dialog';
 import rdf from '@ontologies/core';
-import RDFTypes from '@rdfdev/prop-types';
+import { SomeNode } from 'link-lib';
 import {
-  Resource,
+  FC,
   register,
+  Resource,
   useLRS,
 } from 'link-redux';
 import React from 'react';
@@ -14,12 +15,19 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
 
-const DialogManager = ({ resource }) => {
+interface DialogManagerProps {
+  resource: SomeNode;
+}
+
+const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
   const lrs = useLRS();
   const theme = getMetaContent('theme');
 
-  const close = (item, done) => (
-    () => lrs.exec(rdf.namedNode(`${libro.actions.dialog.close.value}?resource=${encodeURIComponent(item.value)}`), { done })
+  const close = (item: SomeNode, done: boolean) => (
+    () => lrs.exec(
+      rdf.namedNode(`${libro.actions.dialog.close.value}?resource=${encodeURIComponent(item.value)}`),
+      { done },
+    )
   );
 
   if (!resource) {
@@ -28,10 +36,11 @@ const DialogManager = ({ resource }) => {
 
   return (
     <Dialog
+      // @ts-ignore
+      PaperComponent="div"
       open
       className={theme}
       maxWidth="md"
-      PaperComponent="div"
       onClose={close(resource, false)}
     >
       <DialogTopology>
@@ -47,10 +56,6 @@ DialogManager.topology = allTopologies;
 
 DialogManager.mapDataToProps = {
   resource: ontola.ns('dialog/resource'),
-};
-
-DialogManager.propTypes = {
-  resource: RDFTypes.namedNode,
 };
 
 export default register(DialogManager);
