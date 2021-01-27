@@ -1,12 +1,12 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
 const common = require('./common.config');
 
 module.exports = merge(common, {
   cache: true,
 
-  devtool: 'cheap-eval-source-map',
+  devtool: 'eval-cheap-source-map',
 
   entry: [
     'webpack-hot-middleware/client',
@@ -71,6 +71,9 @@ module.exports = merge(common, {
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
+    },
+    fallback: {
+      path: require.resolve('path-browserify'),
     },
   },
 });

@@ -1,7 +1,6 @@
 const path = require('path');
 
 const BrotliPlugin = require('brotli-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -10,7 +9,7 @@ const webpack = require('webpack');
 const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ManifestPlugin = require('webpack-assets-manifest');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
 const babelrc = require('../babel.config.json');
 const { bundles } = require('../bundleConfig');
@@ -89,7 +88,7 @@ function createConfig(options) {
   }
 
   return {
-    devtool: 'cheap-source-map',
+    devtool: options.devtool,
 
     entry: {
       main: './app/index.jsx',
@@ -103,7 +102,6 @@ function createConfig(options) {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: process.env.NODE_ENV === 'development',
                 publicPath: '/',
               },
             },
@@ -142,15 +140,9 @@ function createConfig(options) {
 
     optimization: {
       minimizer: [
-        new TerserPlugin({
-          sourceMap: true,
-        }),
+        new TerserPlugin(),
         new OptimizeCSSAssetsPlugin({}),
       ],
-      splitChunks: {
-        chunks: 'all',
-        maxAsyncRequests: 8,
-      },
     },
 
     output: {
@@ -160,11 +152,9 @@ function createConfig(options) {
     },
 
     plugins: [
-      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         chunkFilename: `f_assets/[name]-[id]-[contenthash].${options.buildName}.css`,
         filename: `f_assets/[name]-[contenthash].${options.buildName}.css`,
-        path: path.resolve(__dirname, '..', 'dist'),
       }),
       new webpack.DefinePlugin({
         __LEGACY__: options.bundle === bundles.legacy,
@@ -178,14 +168,13 @@ function createConfig(options) {
         fetch: 'isomorphic-fetch',
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin({
         output: `private/manifest.${options.buildName}.json`,
         publicPath: '/',
       }),
       new CompressionPlugin({
         algorithm: 'gzip',
-        filename: '[path].gz[query]',
+        filename: '[path][base].gz[query]',
         minRatio: 0.9,
         test: /\.js$|\.css$|\.html$/,
         threshold: 0,
@@ -213,6 +202,7 @@ if (process.env.TEST_BUILD) {
     merge(common, createConfig({
       buildName: `min-${bundles.module}`,
       bundle: bundles.module,
+      devtool: 'source-map',
       hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
     })),
   ];
@@ -238,11 +228,13 @@ if (process.env.TEST_BUILD) {
     merge(common, createConfig({
       buildName: `localtest-${bundles.legacy}`,
       bundle: bundles.legacy,
+      devtool: 'eval',
       hostname: 'app.argu.localtest',
     })),
     merge(common, createConfig({
       buildName: `min-${bundles.module}`,
       bundle: bundles.module,
+      devtool: 'source-map',
       hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
     })),
   ].filter(Boolean);

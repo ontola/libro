@@ -60,7 +60,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     whitelist,
   } = props;
   const history = useHistory();
-  const formURL = new URL(subject.value);
+  const formURL = new URL(subject!!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
     formID,
@@ -68,7 +68,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject,
+    subject: subject!!,
   });
   const onCancelClick = React.useCallback((e) => {
     e.preventDefault();

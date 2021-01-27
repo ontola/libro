@@ -5,7 +5,6 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import webpackConfig from '../../webpack/hot.config';
-import { logLevel } from '../config';
 
 export default function (app) {
   if (__PRODUCTION__ === true) {
@@ -20,9 +19,7 @@ export default function (app) {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
-    noInfo: logLevel === 'debug',
     publicPath: webpackConfig.output.publicPath,
-    quiet: logLevel !== 'debug',
   })));
 
   app.use(c2k(webpackHotMiddleware(compiler, compiler)));

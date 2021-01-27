@@ -1,7 +1,6 @@
 import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/styles';
 import schema from '@ontologies/schema';
-import { defaultTopology } from 'link-lib';
 import {
   Property,
   linkType,
@@ -62,8 +61,6 @@ const Banner = ({ dismissedAt }) => {
 };
 
 Banner.type = ontola.Banner;
-
-Banner.topology = defaultTopology;
 
 Banner.mapDataToProps = {
   dismissedAt: ontola.dismissedAt,

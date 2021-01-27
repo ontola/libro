@@ -92,6 +92,9 @@ const common = {
       static: path.resolve('./static'),
     },
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+    },
     modules: ['./node_modules'],
   },
 };

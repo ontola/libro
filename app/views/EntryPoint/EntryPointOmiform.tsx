@@ -59,7 +59,7 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject,
+    subject: subject!!,
   });
   const [object] = useResourceProperty(action, schema.object);
 

@@ -63,7 +63,7 @@ const config = {
         use: [
           {
             loader: 'babel-loader',
-            query: {
+            options: {
               comments: false,
               compact: false,
               minified: false,
@@ -109,6 +109,9 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+    }
   },
 
   target: 'node',
