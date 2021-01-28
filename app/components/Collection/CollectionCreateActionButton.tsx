@@ -1,6 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import { isNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   Property,

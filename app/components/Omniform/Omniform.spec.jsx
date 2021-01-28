@@ -1,8 +1,8 @@
-import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
-import sh from '@ontologies/shacl';
-import schema from '@ontologies/schema';
-import xsd from '@ontologies/xsd';
+import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
+import * as sh from '@ontologies/shacl';
+import * as schema from '@ontologies/schema';
+import * as xsd from '@ontologies/xsd';
 import { createForm } from 'final-form';
 import { Set } from 'immutable';
 import React from 'react';

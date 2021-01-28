@@ -1,5 +1,5 @@
-import as from '@ontologies/as';
-import rdfx from '@ontologies/rdf';
+import * as as from '@ontologies/as';
+import * as rdfx from '@ontologies/rdf';
 import { Property, register } from 'link-redux';
 import React from 'react';
 

@@ -1,7 +1,7 @@
 import rdf, { NamedNode } from '@ontologies/core';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import {
   FC,
   Property,

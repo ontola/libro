@@ -1,5 +1,5 @@
 import RDFTypes from '@rdfdev/prop-types';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
 import React from 'react';

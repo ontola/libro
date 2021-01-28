@@ -4,7 +4,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import { makeStyles } from '@material-ui/styles';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 

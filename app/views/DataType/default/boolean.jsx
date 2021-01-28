@@ -1,5 +1,5 @@
-import rdfs from '@ontologies/rdfs';
-import xsd from '@ontologies/xsd';
+import * as rdfs from '@ontologies/rdfs';
+import * as xsd from '@ontologies/xsd';
 import { linkedPropType, register } from 'link-redux';
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -26,7 +26,7 @@ BooleanRenderer.type = rdfs.Literal;
 
 BooleanRenderer.topology = allTopologies;
 
-BooleanRenderer.property = xsd.boolean;
+BooleanRenderer.property = xsd.xsdboolean;
 
 BooleanRenderer.propTypes = {
   linkedProp: linkedPropType,

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { isNode, SomeTerm } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {

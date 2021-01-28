@@ -1,6 +1,6 @@
 import { QuadPosition } from '@ontologies/core';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import { Context } from 'koa';
 
 import dbo from '../ontology/dbo';

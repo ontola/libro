@@ -1,7 +1,7 @@
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   ReturnType,
   linkType,

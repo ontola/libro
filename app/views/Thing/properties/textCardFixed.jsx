@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 

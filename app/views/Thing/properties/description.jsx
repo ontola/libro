@@ -1,5 +1,5 @@
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
 import React from 'react';
 

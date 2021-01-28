@@ -1,5 +1,5 @@
 import { Literal } from '@ontologies/core';
-import rdfs from '@ontologies/rdfs';
+import * as rdfs from '@ontologies/rdfs';
 import { RENDER_CLASS_NAME } from 'link-lib';
 import { FC, register } from 'link-redux';
 import React from 'react';

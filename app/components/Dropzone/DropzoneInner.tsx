@@ -1,5 +1,5 @@
 import { isNode } from '@ontologies/core';
-import sh from '@ontologies/shacl';
+import * as sh from '@ontologies/shacl';
 import { useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';

@@ -1,5 +1,5 @@
 import { BlankNode, Literal, NamedNode } from '@ontologies/core';
-import xsd from '@ontologies/xsd';
+import * as xsd from '@ontologies/xsd';
 import { JSONLDObject } from './forms';
 
 export const isDate = (prop: any) => (

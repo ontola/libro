@@ -1,5 +1,5 @@
 import { isNamedNode, NamedNode, SomeTerm } from '@ontologies/core';
-import sh from '@ontologies/shacl';
+import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
   LinkReduxLRSType,
@@ -108,7 +108,7 @@ const getNodeProperties = (lrs: LinkReduxLRSType, nodes: SomeNode[]): ShShape[] 
     maxCount: lrs.getResourceProperty(node, sh.maxCount),
     minCount: lrs.getResourceProperty(node, sh.minCount),
     path: lrs.getResourceProperty(node, sh.path),
-    shIn: lrs.getResourceProperties(node, sh.in),
+    shIn: lrs.getResourceProperties(node, sh.shaclin),
     targetNode: lrs.getResourceProperty(node, sh.targetNode),
   }))
 );

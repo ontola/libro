@@ -1,6 +1,6 @@
 import { isNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import { useLRS } from 'link-redux';
 import React from 'react';
 
@@ -28,7 +28,7 @@ const FileInput: React.FC<InputComponentProps> = ({
     [...formFieldsPath, sh.path],
     schema.encodingFormat,
   ).pop();
-  const encodingFormatList = isNode(encodingFormatShape) && lrs.getResourceProperty(encodingFormatShape, sh.in);
+  const encodingFormatList = isNode(encodingFormatShape) && lrs.getResourceProperty(encodingFormatShape, sh.shaclin);
   const encodingFormatConversion = isNode(encodingFormatList) && listToArr(lrs, [], encodingFormatList);
   const encodingFormatTypes = Array.isArray(encodingFormatConversion) && encodingFormatConversion
     .map((lit) => lit.value)

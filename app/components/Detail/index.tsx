@@ -1,4 +1,4 @@
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { Property } from 'link-redux';
 import React, { EventHandler, ReactNode } from 'react';

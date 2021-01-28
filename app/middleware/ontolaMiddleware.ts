@@ -1,6 +1,6 @@
 import rdf, { Literal, NamedNode, Node } from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import { seqPush, seqShift } from '@rdfdev/collections';
 import clipboardCopy from 'clipboard-copy';
 import { History } from 'history';

@@ -1,5 +1,5 @@
 import RDFTypes from '@rdfdev/prop-types';
-import rdfx from '@ontologies/rdf';
+import * as rdfx from '@ontologies/rdf';
 import equal from 'fast-deep-equal';
 import {
   Resource,

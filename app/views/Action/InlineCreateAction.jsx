@@ -1,5 +1,5 @@
 import rdf from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   linkType,

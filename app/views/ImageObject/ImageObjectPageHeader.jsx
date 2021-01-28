@@ -1,4 +1,4 @@
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { ReturnType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';

@@ -1,7 +1,7 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,

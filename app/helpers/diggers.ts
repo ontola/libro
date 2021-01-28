@@ -2,10 +2,10 @@
  * Contains common property paths for use with LinkedRenderStore#dig
  */
 
-import as from '@ontologies/as';
-import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as as from '@ontologies/as';
+import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 
 import form from '../ontology/form';
 import ontola from '../ontology/ontola';

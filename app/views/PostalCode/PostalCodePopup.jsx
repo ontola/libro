@@ -1,5 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   linkType,

@@ -1,7 +1,7 @@
-import foaf from '@ontologies/foaf';
-import schema from '@ontologies/schema';
-import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
+import * as foaf from '@ontologies/foaf';
+import * as schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
 import {
   Property,
   linkType,

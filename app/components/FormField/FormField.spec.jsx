@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import * as xsd from '@ontologies/xsd';
 import { fireEvent } from '@testing-library/dom';

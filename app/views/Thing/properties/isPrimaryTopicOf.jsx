@@ -1,5 +1,5 @@
-import foaf from '@ontologies/foaf';
-import schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf';
+import * as schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';

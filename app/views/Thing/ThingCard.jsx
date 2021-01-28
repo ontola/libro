@@ -1,6 +1,6 @@
-import schema from '@ontologies/schema';
-import rdfs from '@ontologies/rdfs';
-import foaf from '@ontologies/foaf';
+import * as schema from '@ontologies/schema';
+import * as rdfs from '@ontologies/rdfs';
+import * as foaf from '@ontologies/foaf';
 import HttpStatus from 'http-status-codes';
 import { Property, register } from 'link-redux';
 import React from 'react';

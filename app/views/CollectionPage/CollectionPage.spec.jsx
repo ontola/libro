@@ -1,8 +1,8 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
-import dcterms from '@ontologies/dcterms';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as dcterms from '@ontologies/dcterms';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import { Resource } from 'link-redux';
 import React from 'react';
 

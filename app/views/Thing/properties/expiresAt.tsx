@@ -1,6 +1,6 @@
 import { selectUnit } from '@formatjs/intl-utils';
 import { Literal } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
 import {

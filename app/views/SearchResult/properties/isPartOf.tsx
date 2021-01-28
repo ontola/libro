@@ -1,6 +1,6 @@
 import rdf, { NamedNode } from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   PropertyProps,

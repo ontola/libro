@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';

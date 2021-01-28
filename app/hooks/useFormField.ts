@@ -1,6 +1,6 @@
 import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {

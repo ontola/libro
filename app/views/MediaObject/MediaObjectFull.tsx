@@ -1,5 +1,5 @@
-import dcterms from '@ontologies/dcterms';
-import schema from '@ontologies/schema';
+import * as dcterms from '@ontologies/dcterms';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,

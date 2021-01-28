@@ -1,8 +1,8 @@
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/styles';
-import as from '@ontologies/as';
-import schema from '@ontologies/schema';
+import * as as from '@ontologies/as';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,

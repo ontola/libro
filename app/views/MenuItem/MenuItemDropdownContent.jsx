@@ -1,6 +1,6 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import HttpStatus from 'http-status-codes';
 import {
   Property,

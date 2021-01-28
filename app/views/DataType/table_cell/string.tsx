@@ -1,6 +1,6 @@
 import { Literal } from '@ontologies/core';
-import rdfs from '@ontologies/rdfs';
-import xsd from '@ontologies/xsd';
+import * as rdfs from '@ontologies/rdfs';
+import * as xsd from '@ontologies/xsd';
 import { FC, register } from 'link-redux';
 import React from 'react';
 

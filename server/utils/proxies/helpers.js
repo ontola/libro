@@ -1,6 +1,6 @@
 import { URL } from 'url';
 
-import xsd from '@ontologies/xsd';
+import * as xsd from '@ontologies/xsd';
 import HttpStatus from 'http-status-codes';
 
 import * as constants from '../../config';

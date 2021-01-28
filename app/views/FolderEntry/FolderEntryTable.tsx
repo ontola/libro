@@ -1,5 +1,5 @@
 import { NamedNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import RDFTypes from '@rdfdev/prop-types';
 import { FC, Property, register, Resource } from 'link-redux';
 import PropTypes from 'prop-types';

@@ -1,4 +1,4 @@
-import sh from '@ontologies/shacl';
+import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
   FC,

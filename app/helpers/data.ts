@@ -1,7 +1,7 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import rdf, {isBlankNode, isLiteral, Literal, NamedNode, Node, Quad, SomeTerm} from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
+import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
 import { BAD_REQUEST, NOT_FOUND, OK } from 'http-status-codes';
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';

@@ -1,5 +1,5 @@
-import foaf from '@ontologies/foaf';
-import schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf';
+import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 

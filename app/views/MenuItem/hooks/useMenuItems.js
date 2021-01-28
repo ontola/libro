@@ -1,5 +1,5 @@
 import rdf from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
+import * as rdfx from '@ontologies/rdf';
 import { useResourceProperty } from 'link-redux';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';

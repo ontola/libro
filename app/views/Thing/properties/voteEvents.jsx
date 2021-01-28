@@ -1,5 +1,5 @@
-import as from '@ontologies/as';
-import schema from '@ontologies/schema';
+import * as as from '@ontologies/as';
+import * as schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   Property,

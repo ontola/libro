@@ -1,9 +1,9 @@
-import as from '@ontologies/as';
-import foaf from '@ontologies/foaf';
-import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as as from '@ontologies/as';
+import * as foaf from '@ontologies/foaf';
+import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
 import {
   ReturnType,

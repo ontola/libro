@@ -1,5 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import {
   Resource,
   register,

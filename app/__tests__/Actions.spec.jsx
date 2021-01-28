@@ -1,9 +1,9 @@
-import dcterms from '@ontologies/dcterms';
-import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
-import xsd from '@ontologies/xsd';
+import * as dcterms from '@ontologies/dcterms';
+import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
+import * as xsd from '@ontologies/xsd';
 import { Resource } from 'link-redux';
 import React from 'react';
 
@@ -70,7 +70,7 @@ describe('Actions', () => {
                   [rdfx.ns('_1')]: {
                     '@id': locationIRI,
                     [rdfx.type]: form.LocationInput,
-                    [sh.class]: argu.Placement,
+                    [sh.shaclclass]: argu.Placement,
                     [sh.maxCount]: 1,
                     [sh.name]: 'Location',
                     [sh.order]: 1,
@@ -79,7 +79,7 @@ describe('Actions', () => {
                   [rdfx.ns('_2')]: {
                     '@id': pinIRI,
                     [rdfx.type]: form.CheckboxInput,
-                    [sh.datatype]: xsd.boolean,
+                    [sh.datatype]: xsd.xsdboolean,
                     [sh.maxCount]: 1,
                     [sh.name]: 'Pin',
                     [sh.description]: 'Pin to top of collection',

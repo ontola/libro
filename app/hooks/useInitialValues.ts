@@ -1,7 +1,7 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import { isNamedNode, isNode, NamedNode, SomeTerm, Term } from '@ontologies/core';
-import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
   LinkReduxLRSType,
@@ -48,7 +48,7 @@ const getInitialValues = (
   ];
 
   (fields.concat(conditionalFields)).filter(isNode).forEach((field) => {
-    const shIn = lrs.getResourceProperties(field, sh.in);
+    const shIn = lrs.getResourceProperties(field, sh.shaclin);
     dependentResources.push(...shIn);
 
     const path = lrs.getResourceProperty(field, sh.path) as NamedNode;

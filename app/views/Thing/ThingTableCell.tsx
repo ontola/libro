@@ -1,7 +1,7 @@
 import { Literal } from '@ontologies/core';
-import foaf from '@ontologies/foaf';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';

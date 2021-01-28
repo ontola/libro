@@ -1,6 +1,6 @@
 import RDFTypes from '@rdfdev/prop-types';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import { getTermBestLang } from 'link-lib';
 import { Resource, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';

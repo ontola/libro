@@ -1,6 +1,6 @@
 import { isNamedNode, Term } from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import { SomeTerm } from 'link-lib/dist-types/rdf';
 import {

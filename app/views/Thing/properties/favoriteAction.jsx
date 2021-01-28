@@ -1,5 +1,5 @@
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import {
   Resource,
   ReturnType,

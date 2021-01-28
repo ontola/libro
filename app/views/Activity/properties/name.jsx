@@ -1,8 +1,8 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
-import foaf from '@ontologies/foaf';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import { term } from '@rdfdev/iri';
 import RDFTypes from '@rdfdev/prop-types';
 import {

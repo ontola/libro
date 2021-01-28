@@ -1,7 +1,7 @@
-import as from '@ontologies/as';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
-import dcterms from '@ontologies/dcterms';
+import * as as from '@ontologies/as';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
+import * as dcterms from '@ontologies/dcterms';
 import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';

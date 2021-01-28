@@ -1,4 +1,4 @@
-import sh from '@ontologies/shacl';
+import * as sh from '@ontologies/shacl';
 import equal from 'fast-deep-equal';
 import { SomeNode } from 'link-lib';
 import {
@@ -46,7 +46,7 @@ const mapShapeProps = {
   minInclusiveProp: ontola.minInclusive,
   minLength: literal(sh.minLength),
   minLengthProp: ontola.minLength,
-  shIn: sh.in,
+  shIn: sh.shaclin,
 };
 
 const useFieldShape = (props: UseFormFieldProps) => {

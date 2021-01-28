@@ -1,6 +1,6 @@
 import TimelineBase from '@material-ui/lab/Timeline';
 import { makeStyles } from '@material-ui/styles';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,

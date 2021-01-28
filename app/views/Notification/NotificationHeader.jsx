@@ -1,4 +1,4 @@
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';

@@ -1,5 +1,5 @@
 import rdf, { NamedNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { normalizeType, SomeNode } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React from 'react';

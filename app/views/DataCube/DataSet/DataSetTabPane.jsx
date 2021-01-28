@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import {
   Resource,
   linkType,

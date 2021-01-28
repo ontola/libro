@@ -1,4 +1,4 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import { Property, register } from 'link-redux';
 import React from 'react';
 

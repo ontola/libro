@@ -1,5 +1,5 @@
 import { isNamedNode, Quad } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue, SomeNode } from 'link-lib';

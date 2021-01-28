@@ -1,6 +1,6 @@
-import dcterms from '@ontologies/dcterms';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as dcterms from '@ontologies/dcterms';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import { linkType } from 'link-redux';
 import React from 'react';
 

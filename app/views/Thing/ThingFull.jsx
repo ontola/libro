@@ -1,6 +1,6 @@
-import foaf from '@ontologies/foaf';
-import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf';
+import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 

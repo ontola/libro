@@ -3,7 +3,7 @@
  */
 
 import rdf, { NamedNode, Node, Quadruple } from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
+import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';

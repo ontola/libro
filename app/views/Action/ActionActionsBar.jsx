@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
-import schema from '@ontologies/schema';
-import rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
+import * as rdfx from '@ontologies/rdf';
 import {
   Property,
   ReturnType,

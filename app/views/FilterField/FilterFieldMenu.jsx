@@ -1,7 +1,7 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
 import { isNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,

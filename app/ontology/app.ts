@@ -1,8 +1,9 @@
 import rdf, { createNS } from '@ontologies/core';
-import foaf from '@ontologies/foaf';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import { arrayToSeqQuads } from '@rdfdev/collections';
+
 import { getMetaContent } from '../helpers/arguHelpers';
 
 import dbo from './dbo';

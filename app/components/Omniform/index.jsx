@@ -1,5 +1,5 @@
 import rdf, { isNamedNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import { Set } from 'immutable';
 import {
   Property,

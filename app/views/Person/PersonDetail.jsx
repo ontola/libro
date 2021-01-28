@@ -1,7 +1,7 @@
 import RDFTypes from '@rdfdev/prop-types';
-import foaf from '@ontologies/foaf';
+import * as foaf from '@ontologies/foaf';
 import rdf from '@ontologies/core';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   register,

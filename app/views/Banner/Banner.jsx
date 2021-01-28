@@ -1,6 +1,6 @@
 import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/styles';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   linkType,
