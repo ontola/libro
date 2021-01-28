@@ -6,7 +6,7 @@ import {
 } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
 import { Coordinate } from 'ol/coordinate';
-import { click, pointerMove } from 'ol/events/condition';
+import { pointerMove, singleClick } from 'ol/events/condition';
 import { boundingExtent, getCenter } from 'ol/extent';
 import { FeatureLike } from 'ol/Feature';
 import { Point } from 'ol/geom';
@@ -352,7 +352,7 @@ const useMap = (props: UseMapProps): {
   useEffect(() => {
     if (memoizedMap) {
       const select = new Select({
-        condition: click,
+        condition: singleClick,
         // @ts-ignore
         style: false,
       });
