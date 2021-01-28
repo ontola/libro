@@ -21,6 +21,11 @@ const Source = ({ linkedProp }) => {
 
     return <Detail text={text} />;
   }
+  if (linkedProp === app.ns('enums/volunteers/source#moved')) {
+    const text = emoji('🏠 Verhuisd naar deze afdeling');
+
+    return <Detail text={text} />;
+  }
 
   return null;
 };
