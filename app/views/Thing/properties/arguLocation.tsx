@@ -15,23 +15,25 @@ import MapView from '../../../containers/MapView';
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
 import { isResource } from '../../../helpers/types';
+import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
 import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 
-interface PopTypes {
+interface ArguLocationProps {
   childrenPlacements: SomeNode;
   large: boolean;
   linkedProp: SomeNode;
 }
 
-const ArguLocation: FC<PopTypes> = ({
+const ArguLocation: FC<ArguLocationProps> = ({
   childrenPlacements,
   large,
   linkedProp,
 }) => {
   const lrs = useLRS();
+  const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
   const history = useHistory();
   const onSelect = React.useCallback((feature) => {
@@ -63,6 +65,7 @@ const ArguLocation: FC<PopTypes> = ({
         linkedProp,
         ...children.filter(isNode).filter((child) => child !== linkedProp),
       ].filter(Boolean)}
+      onMapClick={onMapClick}
       onSelect={onSelect}
     />
   );

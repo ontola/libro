@@ -90,7 +90,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const storeCoordinates = (newLon: string | number, newLat: string | number) => {
     lonOnChange([rdf.literal(newLon)]);
     latOnChange([rdf.literal(newLat)]);
-    const newZoom = zoomLevel?.value || (initialView as InitialView).zoom || DEFAULT_ZOOM;
+    const newZoom = zoomLevel?.value || initialView.zoom || DEFAULT_ZOOM;
     if (newZoom) {
       zoomLevelOnChange([rdf.literal(newZoom)]);
     }
@@ -102,9 +102,9 @@ const LocationInput: React.FC<InputComponentProps> = ({
       <HiddenRequiredInput name={lonName} value={lon?.value} />
       <HiddenRequiredInput name={zoomLevelName} value={zoomLevel?.value} />
       <MapView
-        initialLat={(initialView as InitialView).lat}
-        initialLon={(initialView as InitialView).lon}
-        initialZoom={(initialView as InitialView).zoom}
+        initialLat={initialView.lat}
+        initialLon={initialView.lon}
+        initialZoom={initialView.zoom}
         placements={placements}
         onMapClick={storeCoordinates}
         onZoom={(newZoom: string | number) => zoomLevelOnChange([rdf.literal(newZoom)])}

@@ -27,7 +27,7 @@ export interface PropTypes {
   initialZoom?: number;
   large?: boolean;
   navigate?: (resource: SomeNode) => void;
-  onMapClick?: (newLon: number, newLat: number) => void;
+  onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
   onMove?: (args: any) => any;
   onSelect?: (feature: Feature, center: Coordinate) => any;
   onZoom?: (args: any) => any;

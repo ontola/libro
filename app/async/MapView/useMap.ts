@@ -1,6 +1,7 @@
 import {
   Feature,
   Map as OLMap,
+  MapBrowserEvent,
   View,
 } from 'ol';
 import {
@@ -128,7 +129,7 @@ export interface UseMapProps {
   accessToken: string;
   layers: Layer[];
   requestAccessToken: () => any;
-  onMapClick: (newLon: number, newLat: number) => void;
+  onMapClick: (newLon: number, newLat: number, newZoom: number) => void;
   onMove: EventHandler<any>;
   onSelect: (feature: Feature | null, center: Coordinate | null) => any;
   onViewChange: (center: Coordinate, zoom: number) => any;
@@ -160,7 +161,7 @@ const useMap = (props: UseMapProps) => {
   }, [accessToken]);
   const { center, zoom } = view || {};
 
-  const [internalCenter, setCenter] = useState(null);
+  const [internalCenter, setCenter] = useState<Coordinate | undefined>(undefined);
   const [internalZoom, setZoom] = useState(zoom || DEFAULT_ZOOM);
   const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | null>(null);
   const [tileSource, setTileSource] = useState<TileSource | null>(null);
@@ -173,15 +174,6 @@ const useMap = (props: UseMapProps) => {
 
     return true;
   }, []);
-  const handleMapClick = useCallback(
-    onMapClick ? (e) => {
-      const [lon, lat] = toLonLat(e.coordinate);
-      onMapClick(lon, lat);
-
-      return true;
-    } : () => true,
-    [onMapClick],
-  );
   const handleLoad = useCallback(() => {
     setError(undefined);
 
@@ -225,29 +217,6 @@ const useMap = (props: UseMapProps) => {
       onSelect(null, null);
     }
   }, [onSelect]);
-  const handleViewChange = useCallback(
-    (e) => {
-      const newCenter = e.map.getView().getCenter();
-      if (newCenter !== internalCenter) {
-        if (onMove) {
-          onMove(newCenter);
-        }
-        setCenter(newCenter);
-      }
-      const newZoom = e.map.getView().getZoom();
-      if (newZoom !== internalZoom) {
-        if (onZoom) {
-          onZoom(newZoom);
-        }
-        setZoom(newZoom);
-      }
-      if (onViewChange) {
-        onViewChange(newCenter, newZoom);
-      }
-
-      return true;
-    }, [internalCenter, internalZoom, onMove, onViewChange, onZoom, setCenter, setZoom],
-  );
 
   useEffect(() => {
     if (accessToken) {
@@ -293,27 +262,63 @@ const useMap = (props: UseMapProps) => {
     });
     setMap(map);
 
-    if (map) {
-      if (handleMapClick) {
-        map.addEventListener('click', handleMapClick);
-      }
-      if (handleViewChange) {
-        map.addEventListener('moveend', handleViewChange);
-      }
-    }
-
     return () => {
       if (map) {
-        if (handleMapClick) {
-          map.removeEventListener('click', handleMapClick);
-        }
-        if (handleViewChange) {
-          map.removeEventListener('moveend', handleViewChange);
-        }
         map.setTarget(undefined);
       }
     };
   }, [mapRef.current, accessToken, layerSources, tileSource]);
+
+  useEffect(() => {
+    const handleViewChange = (e: MapBrowserEvent) => {
+      const newCenter = e.map.getView().getCenter();
+      if (newCenter !== internalCenter) {
+        if (onMove) {
+          onMove(newCenter);
+        }
+        setCenter(newCenter);
+      }
+      const newZoom = e.map.getView().getZoom();
+      if (newZoom && newZoom !== internalZoom) {
+        if (onZoom) {
+          onZoom(newZoom);
+        }
+        setZoom(newZoom);
+      }
+      if (onViewChange && newCenter && newZoom) {
+        onViewChange(newCenter, newZoom);
+      }
+    };
+
+    if (memoizedMap && handleViewChange) {
+      memoizedMap.addEventListener('moveend', handleViewChange as any);
+    }
+
+    return () => {
+      if (memoizedMap && handleViewChange) {
+        memoizedMap.removeEventListener('moveend', handleViewChange as any);
+      }
+    };
+  }, [!!memoizedMap, internalCenter, internalZoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
+
+  useEffect(() => {
+    const handleMapClick = (e: MapBrowserEvent) => {
+      const [lon, lat] = toLonLat(e.coordinate);
+      onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
+
+      return true;
+    };
+
+    if (memoizedMap && onMapClick) {
+      memoizedMap.addEventListener('click', handleMapClick as any);
+    }
+
+    return () => {
+      if (memoizedMap && onMapClick) {
+        memoizedMap.removeEventListener('click', handleMapClick as any);
+      }
+    };
+  }, [!!memoizedMap, onMapClick]);
 
   useEffect(() => {
     if (memoizedMap && (center || zoom)) {
