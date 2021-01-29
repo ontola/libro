@@ -139,6 +139,7 @@ const Omniform = (props) => {
           autofocusForm={autofocusForm}
           footerButtons={footerButtons}
           formInstance={formInstance}
+          key={action.value}
           label={schema.target}
           object={object}
           parentIRI={parentIRI}
