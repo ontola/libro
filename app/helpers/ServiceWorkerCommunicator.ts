@@ -5,7 +5,6 @@ import { handle } from './logging';
 class ServiceWorkerCommunicator {
   private currentController!: ServiceWorker | null;
   private lrs?: LinkReduxLRSType;
-  private readonly updatesChannel!: BroadcastChannel;
 
   constructor() {
     if (!(typeof navigator === 'object' && 'serviceWorker' in navigator)) {
@@ -23,12 +22,16 @@ class ServiceWorkerCommunicator {
         this.controller = serviceWorkerRegistration.active;
       }
     });
-    if (typeof BroadcastChannel !== 'undefined') {
-      this.updatesChannel = new BroadcastChannel('data-updates');
-      this.updatesChannel.addEventListener('message', this.dataUpdate.bind(this));
-    } else {
-      handle(new Error('Browser without BroadcastChannel'));
-    }
+
+    navigator.serviceWorker.addEventListener('message', async (event) => {
+      if (event.data.meta === 'workbox-broadcast-update') {
+        const { cacheName } = event.data.payload;
+
+        if (cacheName === 'data-updates') {
+          return this.dataUpdate(event);
+        }
+      }
+    });
 
     this.onControllerChange = this.onControllerChange.bind(this);
   }

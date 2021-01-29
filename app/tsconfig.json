@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "lib": [
+      "es2019",
+      "dom",
+      "dom.iterable"
+    ],
+    "typeRoots": [
+      "../@types",
+      "../node_modules/@types",
+      "../node_modules/link-lib/@types",
+      "../@types"
+    ]
+  },
+  "include": [
+    "./*.ts",
+    "./**/*.ts",
+    "./*.tsx",
+    "./**/*.tsx"
+  ]
+}

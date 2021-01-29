@@ -2,7 +2,7 @@ const path = require('path');
 
 const StringReplacePlugin = require('string-replace-webpack-plugin');
 const webpack = require('webpack');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 const version = require('./webpack/version');
 
@@ -58,6 +58,7 @@ const config = {
         include: [
           path.resolve(__dirname, './app'),
           path.resolve(__dirname, './server'),
+          path.resolve(__dirname, './src/sw'),
         ],
         test: /\.(m?(t|j)sx?)$/,
         use: [
@@ -67,6 +68,9 @@ const config = {
               comments: false,
               compact: false,
               minified: false,
+              presets: [
+                '@babel/preset-typescript',
+              ],
             },
           },
         ],
@@ -99,19 +103,16 @@ const config = {
       __VERSION__: JSON.stringify(version),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     }),
-    new WorkboxPlugin.InjectManifest({
+    new InjectManifest({
+      compileSrc: false,
       exclude: [/^private\//],
-      importsDirectory: 'f_assets',
       swDest: './public/sw.js',
-      swSrc: './app/sw.js',
+      swSrc: './src/sw/index.js',
     }),
   ],
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
-    fallback: {
-      path: require.resolve('path-browserify'),
-    },
   },
 
   target: 'node',

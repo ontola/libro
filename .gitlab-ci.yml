@@ -50,14 +50,15 @@ stagingTagManual:
 codeQuality:
   stage: test
   script:
-    - ./node_modules/.bin/eslint --ext .jsx,.js .
-    - ./node_modules/.bin/tslint --project tsconfig.json
+    - yarn run lint:code
+    - yarn run lint:style
+    - yarn run lint:translations
 
 test:
   stage: test
   script:
     - yarn run test
-    - ./node_modules/.bin/tsc -p tsconfig.json --noEmit
+    - yarn run ts-compile-check
 
 autoTagProduction:
   stage: tag

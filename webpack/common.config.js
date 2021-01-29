@@ -3,7 +3,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 const version = require('./version');
 
@@ -13,6 +13,7 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   externals: {
     URL: 'self.URL',
+    'any-promise': 'Promise',
     fetch: 'self.fetch',
     'isomorphic-fetch': 'self.fetch',
     jsonld: '{}',
@@ -78,11 +79,10 @@ const common = {
       filename: 'public/offline.html',
       template: 'app/offline.html',
     }),
-    new WorkboxPlugin.InjectManifest({
-      // importWorkboxFrom: 'disabled',
-      importsDirectory: 'f_assets',
+    new InjectManifest({
+      exclude: [/^private\//],
       swDest: './public/sw.js',
-      swSrc: './app/sw.js',
+      swSrc: './src/sw/index.js',
     }),
   ],
 

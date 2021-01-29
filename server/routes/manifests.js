@@ -5,7 +5,8 @@ import HttpStatus from 'http-status-codes';
 
 import logging from '../utils/logging';
 
-const PREFIX = 'self.__precacheManifest = (self.__precacheManifest || []).concat(';
+// TODO: replace with self.__WB_MANIFEST
+const PREFIX = 'self.__WB_MANIFEST = (self.__WB_MANIFEST || []).concat(';
 const SUFFIX = ');';
 
 const precacheManifest = async (ctx) => {

@@ -4,13 +4,10 @@
     "declaration": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
     "lib": [
-      "es2019",
-      "dom",
-      "dom.iterable"
+      "ES2020"
     ],
-    "maxNodeModuleJsDepth":  0,
+    "maxNodeModuleJsDepth": 0,
     "moduleResolution": "node",
     "module": "esnext",
     "noEmit": true,
@@ -18,16 +15,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
-    "target": "esnext",
-    "typeRoots": [
-      "@types",
-      "node_modules/@types",
-      "node_modules/link-lib/@types",
-      "@types"
-    ]
+    "target": "esnext"
   },
-  "include": [
-    "app",
-    "server"
-  ]
+  "include": []
 }
