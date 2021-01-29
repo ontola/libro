@@ -4,10 +4,7 @@ import {
   MapBrowserEvent,
   View,
 } from 'ol';
-import {
-  defaults as defaultControls,
-  FullScreen,
-} from 'ol/control';
+import { defaults as defaultControls } from 'ol/control';
 import { Coordinate } from 'ol/coordinate';
 import { click, pointerMove } from 'ol/events/condition';
 import { boundingExtent, getCenter } from 'ol/extent';
@@ -111,9 +108,7 @@ const createMap = ({
   const map = new OLMap({
     controls: defaultControls({
       rotate: false,
-    }).extend([
-      new FullScreen(),
-    ]),
+    }),
     layers,
     target: current,
     view: new View({
