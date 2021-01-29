@@ -80,6 +80,7 @@ export default {
   grantedGroups: argu('grantedGroups'),
   icon: argu('icon'),
   invitee: argu('invitee'),
+  isDraft: argu('isDraft'),
   isOpinion: argu('isOpinion'),
   lastActivityAt: argu('lastActivityAt'),
   legend: argu('legend'),

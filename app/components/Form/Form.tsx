@@ -11,10 +11,11 @@ import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandl
 import { SubmissionErrors } from '../FormField';
 import Input, { InputType } from '../Input/Input';
 
-interface PropTypes {
+interface FormProps {
   action: string;
   autofocusForm: boolean;
   autoSubmit: boolean;
+  blacklist?: number[];
   className?: string;
   form: any;
   formID: string;
@@ -40,6 +41,7 @@ const defaultProps = {
 
 export interface FormContext {
   autofocusForm: boolean;
+  blacklist?: number[];
   formID: string;
   formIRI: SomeNode;
   formSection?: string;
@@ -54,11 +56,12 @@ export interface FormContext {
 
 export const FormContext = React.createContext<Partial<FormContext>>({});
 
-const Form: React.FC<PropTypes> = (props) => {
+const Form: React.FC<FormProps> = (props) => {
   const {
     action,
     autofocusForm,
     autoSubmit,
+    blacklist,
     children,
     className,
     form,
@@ -88,6 +91,7 @@ const Form: React.FC<PropTypes> = (props) => {
   }, [autoSubmit, autoSubmitted]);
   const context = React.useMemo(() => ({
     autofocusForm,
+    blacklist,
     formID,
     formIRI,
     formSection: undefined,
@@ -100,6 +104,7 @@ const Form: React.FC<PropTypes> = (props) => {
     whitelist,
   }), [
     autofocusForm,
+    blacklist,
     formID,
     formIRI,
     object,
@@ -147,4 +152,4 @@ const Form: React.FC<PropTypes> = (props) => {
 
 Form.defaultProps = defaultProps;
 
-export default withFormLRS<PropTypes>(Form);
+export default withFormLRS<FormProps>(Form);

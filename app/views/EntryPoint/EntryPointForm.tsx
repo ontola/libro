@@ -31,6 +31,7 @@ interface PropTypes {
   actionBody: SomeNode;
   autoSubmit?: boolean;
   autofocusForm?: boolean;
+  blacklist?: number[];
   className?: string;
   contentWrapper?: any;
   footerButtons: (submitting: boolean) => React.ReactNode;
@@ -51,6 +52,7 @@ const EntryPointForm: React.FC<PropTypes> = ({
   actionBody,
   autofocusForm,
   autoSubmit,
+  blacklist,
   className,
   contentWrapper,
   footerButtons,
@@ -129,6 +131,7 @@ const EntryPointForm: React.FC<PropTypes> = ({
       action={url && new URL(url).pathname}
       autofocusForm={!!autofocusForm}
       autoSubmit={!!autoSubmit}
+      blacklist={blacklist}
       className={className}
       form={formInstance}
       formID={formID}

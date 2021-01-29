@@ -168,6 +168,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
   const lrs = useLRS();
   const {
     autofocusForm,
+    blacklist,
     formID,
     formSection,
     object,
@@ -181,8 +182,9 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     fieldProps.path = path;
   }
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
+  const blacklisted = blacklist?.includes(rdf.id(fieldProps.path));
   const fieldName = calculateFormFieldName(formSection, fieldProps.path);
-  if (!whitelisted) {
+  if (blacklisted || !whitelisted) {
     return {
       name: fieldName,
       onChange: () => undefined,

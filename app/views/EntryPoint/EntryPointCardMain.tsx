@@ -25,6 +25,7 @@ interface PropTypes {
   action: SomeNode;
   actionBody: SomeNode;
   autoSubmit: boolean;
+  blacklist?: number[];
   cancelPath: string;
   httpMethod: Literal;
   modal?: boolean;
@@ -36,6 +37,7 @@ interface PropTypes {
   responseCallback?: (response: any) => void;
   sessionStore: Storage;
   url: SomeNode;
+  whitelist?: number[];
 }
 
 const EntryPointCardMain: FC<PropTypes> = (props) => {
@@ -43,6 +45,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     action,
     actionBody,
     autoSubmit,
+    blacklist,
     httpMethod,
     cancelPath,
     modal,
@@ -54,6 +57,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     sessionStore,
     subject,
     url,
+    whitelist,
   } = props;
   const history = useHistory();
   const formURL = new URL(subject.value);
@@ -113,6 +117,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
         action={action}
         actionBody={actionBody}
         autoSubmit={autoSubmit}
+        blacklist={blacklist}
         contentWrapper={CardContent}
         footerButtons={footerButtons}
         formID={formID}
@@ -120,6 +125,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
         object={isNode(object) ? object : undefined}
         sessionStore={sessionStore}
         url={url?.value}
+        whitelist={whitelist}
         onKeyUp={undefined}
         onSubmit={submitHandler}
       />
