@@ -102,7 +102,7 @@
     "react-autosize-textarea": "^7.0.0",
     "react-dropzone": "^10.1.7",
     "react-easy-emoji": "^1.2.0",
-    "react-helmet-async": "^1.0.4",
+    "react-helmet-async": "^1.0.7",
     "react-outside-click-handler": "^1.2.4",
     "react-router-scroll-memory": "^2.0.5",
     "react-typeform-embed": "^0.2.1",

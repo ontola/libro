@@ -1,5 +1,6 @@
-import { createAction, handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
+import { SomeNode } from 'link-lib';
+import { createAction, handleActions } from 'redux-actions';
 
 import {
   OMNIFORM_CLOSE_INLINE,
@@ -23,7 +24,7 @@ export const omniformOpenInline = createAction(OMNIFORM_OPEN_INLINE);
 export const omniformSetAction = createAction(OMNIFORM_SET_ACTION);
 
 // Reducer
-const initialState = new Map({});
+const initialState = new (Map as any)({});
 
 export const omniformReducer = handleActions({
   [OMNIFORM_CLOSE_INLINE]: (state, { payload }) => state.setIn([payload, 'inlineOpened'], false),
@@ -42,5 +43,5 @@ export const omniformReducer = handleActions({
 }, initialState);
 
 // Selectors
-export const getOmniformAction = (state, parentIRI) => state.getIn(['omniform', parentIRI, 'action']);
-export const getOmniformOpenState = (state, parentIRI) => state.getIn(['omniform', parentIRI, 'inlineOpened']) || false;
+export const getOmniformAction = (state: any, parentIRI: SomeNode) => state.getIn(['omniform', parentIRI, 'action']);
+export const getOmniformOpenState = (state: any, parentIRI: SomeNode) => state.getIn(['omniform', parentIRI, 'inlineOpened']) || false;

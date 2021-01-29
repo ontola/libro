@@ -10,7 +10,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
-import { SignInFormLink } from '../../components/SignInForm/index';
+import { SignInFormLink } from '../../components/SignInForm';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import path, { currentLocation } from '../../helpers/paths';
 import ontola from '../../ontology/ontola';

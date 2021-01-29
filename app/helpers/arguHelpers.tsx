@@ -99,7 +99,7 @@ export function getMetaContent(name: string) {
   const header = __CLIENT__
     ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
     : undefined;
-  return header && header.content;
+  return header ? header.content : undefined;
 }
 
 export function getAuthenticityToken() {

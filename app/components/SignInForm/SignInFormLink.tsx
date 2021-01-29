@@ -1,21 +1,25 @@
 import rdf from '@ontologies/core';
-import { lrsType, withLRS } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { useLRS } from 'link-redux';
+import React, { ReactElement, SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { withRouter } from 'react-router';
+import { useLocation } from 'react-router';
 
 import path, { currentLocation } from '../../helpers/paths';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import Link from '../Link';
 
-const SignInFormLink = ({
+interface SignInFormLinkProps {
+  Component: any;
+  label?: string | ReactElement;
+}
+
+const SignInFormLink: React.FC<SignInFormLinkProps> = ({
   Component = Link,
   children,
   label,
-  location,
-  lrs,
 }) => {
+  const lrs = useLRS();
+  const location = useLocation();
   const { actorType } = useCurrentActor();
   const redirectURL = currentLocation(location).value;
   if (actorType?.value !== 'GuestUser') {
@@ -27,7 +31,7 @@ const SignInFormLink = ({
       icon="sign-in"
       label={label}
       to={path.signIn(redirectURL)}
-      onClick={(e) => {
+      onClick={(e: SyntheticEvent<any>) => {
         e.preventDefault();
         lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
       }}
@@ -42,16 +46,4 @@ const SignInFormLink = ({
   );
 };
 
-SignInFormLink.propTypes = {
-  Component: PropTypes.elementType,
-  children: PropTypes.node,
-  label: PropTypes.node,
-  location: PropTypes.shape({
-    href: PropTypes.string,
-  }),
-  lrs: lrsType,
-};
-
-const SignInFormLinkConnected = withRouter(withLRS(SignInFormLink));
-
-export default SignInFormLinkConnected;
+export default SignInFormLink;

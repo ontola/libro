@@ -16,7 +16,7 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import mapCardListDispatchToProps from './helpers';
+import { mapCardListDispatchToProps } from './helpers';
 
 const InlineCreateAction = ({
   actionStatus,

@@ -33,7 +33,7 @@ export const getMetaTags = ({
   text,
   coverURL,
 }: {
-  appName: string,
+  appName?: string,
   name?: string,
   url: string,
   text?: string,

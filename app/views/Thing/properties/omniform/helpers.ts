@@ -1,6 +1,8 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  LinkReduxLRSType,
   useDataFetching,
   useLRS,
 } from 'link-redux';
@@ -32,13 +34,13 @@ export const invalidStatusIds = [
   ontola.ExpiredActionStatus,
 ].map((s) => rdf.id(s));
 
-const actionIsAllowed = (lrs, action) => {
+const actionIsAllowed = (lrs: LinkReduxLRSType, action: SomeNode) => {
   const actionStatus = lrs.getResourceProperty(action, schema.actionStatus);
 
   return !actionStatus || !invalidStatusIds.includes(rdf.id(actionStatus));
 };
 
-export const useActions = (items) => {
+export const useActions = (items: NamedNode[]) => {
   const lrs = useLRS();
   const filteredItems = allowSort(items, OMNIFORM_FILTER, OMNIFORM_ORDER);
 
@@ -47,6 +49,6 @@ export const useActions = (items) => {
   return filteredItems.filter((action) => actionIsAllowed(lrs, action));
 };
 
-export const actionsAreAllDisabled = (items, lrs) => (
+export const actionsAreAllDisabled = (items: NamedNode[], lrs: LinkReduxLRSType) => (
   items.every((action) => !actionIsAllowed(lrs, action))
 );

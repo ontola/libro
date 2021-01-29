@@ -139,7 +139,7 @@ describe('helpers', () => {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/json',
           'Website-Iri': 'https://app.argu.co/freetown',
-          'X-CSRF-Token': null,
+          'X-CSRF-Token': undefined,
           'X-Requested-With': 'XMLHttpRequest',
         });
       });

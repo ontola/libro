@@ -57,7 +57,7 @@ import CompLoading from './components/Loading';
 import CompMarkdown from './components/Markdown';
 import CompMenuItem from './components/MenuItem/index';
 import CompMenuSectionLabel from './components/MenuSectionLabel/index';
-import CompMetadata from './components/Metadata/index';
+import CompMetadata from './components/Metadata';
 import CompNavBarContent from './components/NavBarContent/index';
 import CompNavbarLinkNavbarLinkCount from './components/NavbarLink/NavbarLinkCount';
 import CompNavbarLinkNavbarLinkIcon from './components/NavbarLink/NavbarLinkIcon';

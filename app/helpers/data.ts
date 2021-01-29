@@ -234,19 +234,19 @@ function sort(order: string[]) {
   };
 }
 
-function allow(arr: NamedNode[], whitelist = []) {
+function allow(arr: NamedNode[], whitelist: RegExp[] = []) {
   return arr.filter((op) => whitelist.find(filterFind(op)));
 }
 
-function filter(arr: NamedNode[], blacklist = []) {
+function filter(arr: NamedNode[], blacklist: RegExp[] = []) {
   return arr.filter((op) => !blacklist.find(filterFind(op)));
 }
 
-function filterSort(arr: NamedNode[], blacklist = [], order = []) {
+function filterSort(arr: NamedNode[], blacklist: RegExp[] = [], order: string[] = []) {
   return filter(arr, blacklist).sort(sort(order));
 }
 
-function allowSort(arr: NamedNode[], whitelist = [], order = []) {
+function allowSort(arr: NamedNode[], whitelist: RegExp[] = [], order: string[] = []) {
   return allow(arr, whitelist).sort(sort(order));
 }
 

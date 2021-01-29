@@ -20,7 +20,7 @@ import { normalizeFontAwesomeIRI, retrievePath } from '../../helpers/iris';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import mapCardListDispatchToProps from './helpers';
+import { mapCardListDispatchToProps } from './helpers';
 
 const InlineActionContainerFloat = ({
   actionStatus,
