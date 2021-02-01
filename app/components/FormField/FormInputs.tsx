@@ -112,7 +112,7 @@ const FormInputs = (props: PropTypes) => {
         };
         const inputOnChange = (val: InputValue) => {
           const newValue = values?.slice() || [];
-          newValue[index] = isTerm(val) ? val : rdf.literal(val || '');
+          newValue[index] = isTerm(val) ? val : rdf.literal(val ?? '');
           onChange(newValue);
         };
 
