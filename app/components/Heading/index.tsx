@@ -70,9 +70,9 @@ export enum HeadingVariant {
 interface PropTypes {
   className?: string;
   display?: 'inherit';
-  size: HeadingSize;
+  size?: HeadingSize;
   type?: SomeTerm;
-  variant: HeadingVariant;
+  variant?: HeadingVariant;
 }
 
 const defaultProps = {
@@ -85,7 +85,7 @@ const Heading: React.FC<PropTypes> = ({
   display,
   size,
   type,
-  variant,
+  variant = '',
 }) => {
   const Element = `h${size}` as React.ElementType;
   const classes = useStyles() as any;

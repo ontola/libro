@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 
 import CompActionButton from './components/ActionButton/index';
 import CompAttachmentPreview from './components/AttachmentPreview';
-import CompAttributeListItem from './components/AttributeListItem/index';
+import CompAttributeListItem from './components/AttributeListItem';
 import CompBlurButton from './components/BlurButton';
 import CompBreadcrumbsBreadcrumb from './components/Breadcrumbs/Breadcrumb';
 import CompBreadcrumbsBreadcrumbsBar from './components/Breadcrumbs/BreadcrumbsBar';

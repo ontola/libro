@@ -9,10 +9,10 @@ import React from 'react';
 
 export interface AttributeListItemProps {
   label: NamedNode;
-  propertyLabel: string;
+  propertyLabel?: string;
 }
 
-const AttributeListItem: React.FC<AttributeListItemProps> = ({
+const AttributeListItem: React.FC<AttributeListItemProps & any> = ({
   label,
   propertyLabel,
   ...otherProps
