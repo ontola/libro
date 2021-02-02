@@ -8,6 +8,7 @@ import './Card.scss';
 export const cardTopology = argu.card;
 
 interface PropTypes {
+  about?: string;
   fixed?: boolean;
   shine?: boolean;
   warn?: boolean;

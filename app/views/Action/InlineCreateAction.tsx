@@ -1,24 +1,30 @@
-import rdf from '@ontologies/core';
+import rdf, { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 
 import { filterFind } from '../../helpers/data';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { invalidStatusIds, OMNIFORM_FILTER } from '../Thing/properties/omniform/helpers';
 
 import { mapCardListDispatchToProps } from './helpers';
 
-const InlineCreateAction = ({
+interface InlineCreateActionProps {
+  actionStatus: NamedNode;
+  count: Literal;
+  omniform: boolean;
+  onClick: (e: SyntheticEvent<any>) => Promise<any>;
+  subject: SomeNode;
+}
+
+const InlineCreateAction: FC<InlineCreateActionProps> = ({
   actionStatus,
   count,
   omniform,
@@ -41,7 +47,6 @@ const InlineCreateAction = ({
 InlineCreateAction.type = schema.CreateAction;
 
 InlineCreateAction.topology = [
-  actionsBarTopology,
   cardFloatTopology,
   cardListTopology,
 ];
@@ -54,13 +59,5 @@ InlineCreateAction.mapDataToProps = {
 InlineCreateAction.hocs = [
   connect(null, mapCardListDispatchToProps),
 ];
-
-InlineCreateAction.propTypes = {
-  actionStatus: linkType,
-  count: linkType,
-  omniform: PropTypes.bool,
-  onClick: PropTypes.func,
-  subject: subjectType,
-};
 
 export default register(InlineCreateAction);

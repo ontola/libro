@@ -1,27 +1,33 @@
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import { connectHighlighting, hightlightType } from '../../containers/Highlight';
+import { connectHighlighting } from '../../containers/Highlight';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
-import CardRow from '../../topologies/Card/CardRow';
 import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const ThingContainer = ({ highlighted, subject }) => (
+interface ThingContainerProps {
+  highlighted: boolean;
+  subject: SomeNode;
+}
+
+const ThingContainer: FC<ThingContainerProps> = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
@@ -46,10 +52,5 @@ ThingContainer.topology = [
 ];
 
 ThingContainer.hocs = [connectHighlighting];
-
-ThingContainer.propTypes = {
-  highlighted: hightlightType,
-  subject: subjectType,
-};
 
 export default register(ThingContainer);

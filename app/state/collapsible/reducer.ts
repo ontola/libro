@@ -18,16 +18,16 @@ export const Collapsible = Record({
   opened: false,
 });
 
-const initialState = new Map({
-  items: new Map(),
+const initialState = new (Map as any)({
+  items: new (Map as any)(),
 });
 
 // Opens all collapsibles if one or more in the group are currently closed
 // The group should be a string preferably formatted as 'type_id', e.g. 'event_292104-247914'
-const toggleAll = (state, group) => {
+const toggleAll = (state: any, group: any) => {
   let shouldOpen = false;
 
-  const items = state.get('items').map((coll) => {
+  const items = state.get('items').map((coll: any) => {
     if (coll.group !== group) {
       return coll;
     }
@@ -43,26 +43,26 @@ const toggleAll = (state, group) => {
     return state.set('items', items);
   }
 
-  return state.set('items', state.get('items').map((coll) => coll.set('opened', false)));
+  return state.set('items', state.get('items').map((coll: any) => coll.set('opened', false)));
 };
 
-const closeGroup = (state, group) => {
+const closeGroup = (state: any, group: any) => {
   const modifiedItems = state
     .get('items')
-    .filter((item) => item.get('group') === group)
-    .map((item) => item.set('opened', false));
+    .filter((item: any) => item.get('group') === group)
+    .map((item: any) => item.set('opened', false));
 
   return state.mergeIn(['items'], modifiedItems);
 };
 
-const recordCollapsible = ({ group, startOpened }) => new Collapsible({
+const recordCollapsible = ({ group, startOpened }: any) => new Collapsible({
   group,
   opened: startOpened,
 });
 
-const openOne = (state, payload) => state.setIn(['items', payload.identifier, 'opened'], true);
+const openOne = (state: any, payload: any) => state.setIn(['items', payload.identifier, 'opened'], true);
 
-const closeOne = (state, payload) => state.setIn(['items', payload.identifier, 'opened'], false);
+const closeOne = (state: any, payload: any) => state.setIn(['items', payload.identifier, 'opened'], false);
 
 const collapsible = handleActions({
   '@@router/LOCATION_CHANGE': (state) => closeGroup(state, 'Navbar'),
@@ -70,10 +70,10 @@ const collapsible = handleActions({
   [COLL_ADD]: (state, { payload }) => setRecord(
     state,
     recordCollapsible(payload),
-    payload.identifier
+    payload.identifier,
   ),
 
-  [COLL_CLOSE_ONE]: (state, { payload }) => closeOne(state, payload, 'opened'),
+  [COLL_CLOSE_ONE]: (state, { payload }) => closeOne(state, payload),
 
   [COLL_OPEN_GROUPED]: (state, { payload }) => openOne(closeGroup(state, payload.group), payload),
 

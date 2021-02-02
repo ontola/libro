@@ -3,12 +3,12 @@ import { createAction } from 'redux-actions';
 import * as actions from '../action-types';
 
 /**
-  @typedef CollapsiblePayload
-  @type {object}
-  @property {string} group - a group.
-  @property {string} identifier - uniquer for each collapsible.
-  @property {boolean} age - your age.
-*/
+ * @typedef CollapsiblePayload
+ * @type {object}
+ * @property {string} group - a group.
+ * @property {string} identifier - uniquer for each collapsible.
+ * @property {boolean} age - your age.
+ */
 
 /**
  * Open a single collapsible in a group.

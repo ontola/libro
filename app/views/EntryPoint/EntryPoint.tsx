@@ -1,12 +1,13 @@
+import { Literal, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
+import { SomeNode } from 'link-lib';
 import {
-  linkType,
+  FC,
   register,
-  subjectType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { ButtonTheme, ButtonVariant } from '../../components/Button';
 
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -27,7 +28,21 @@ import { pageTopology } from '../../topologies/Page';
 
 import useSubmitHandler from './useSubmitHandler';
 
-const EntryPoint = (props) => {
+interface EntryPointProps {
+  action: SomeTerm;
+  count: Literal;
+  httpMethod: SomeTerm;
+  image: SomeTerm;
+  name: SomeTerm;
+  onClick: () => Promise<any>;
+  stretch: boolean;
+  subject: SomeNode;
+  theme: ButtonTheme;
+  url: SomeTerm;
+  variant: ButtonVariant;
+}
+
+const EntryPoint: FC<EntryPointProps> = (props) => {
   const {
     count,
     image,
@@ -35,6 +50,7 @@ const EntryPoint = (props) => {
     onClick,
     stretch,
     subject,
+    theme,
     variant,
     ...rest
   } = props;
@@ -58,7 +74,7 @@ const EntryPoint = (props) => {
     <ButtonWithFeedback
       className={classes}
       icon={icon}
-      theme="transparant"
+      theme={theme || ButtonTheme.Transparant}
       variant={variant}
       onClick={handleOnClick}
       {...rest}
@@ -82,7 +98,7 @@ EntryPoint.topology = allTopologiesExcept(
   footerTopology,
   gridTopology,
   omniformFieldsTopology,
-  pageTopology
+  pageTopology,
 );
 
 EntryPoint.mapDataToProps = {
@@ -91,19 +107,6 @@ EntryPoint.mapDataToProps = {
   image: schema.image,
   name: schema.name,
   url: schema.url,
-};
-
-EntryPoint.propTypes = {
-  action: linkType,
-  count: linkType,
-  httpMethod: linkType,
-  image: linkType,
-  name: linkType,
-  onClick: PropTypes.func,
-  stretch: PropTypes.bool,
-  subject: subjectType,
-  url: linkType,
-  variant: PropTypes.string,
 };
 
 export default register(EntryPoint);

@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -36,7 +35,7 @@ export enum ButtonVariant {
   Google = 'google',
 }
 
-interface PropTypes {
+export interface ButtonProps {
   /** Should be true when the button is toggleable and toggled. */
   active?: boolean;
   /** Additional aria label */
@@ -88,7 +87,7 @@ const defaultProps = {
  * Used for any action in the app. Handles touch events and blurs after handling the onClick.
  * @returns {component} Component
  */
-const Button: React.FC<PropTypes> = ({
+const Button: React.FC<ButtonProps> = ({
   active,
   ariaLabel,
   centered,
