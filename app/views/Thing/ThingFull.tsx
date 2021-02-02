@@ -1,8 +1,7 @@
 import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { register } from 'link-redux';
-import PropTypes from 'prop-types';
+import { FC, register } from 'link-redux';
 
 import { components } from '../../components';
 import {
@@ -24,7 +23,11 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { defaultMenus } from '../common';
 
-const ThingFull = ({ renderPartOf }) => {
+interface ThingFullProps {
+  renderPartOf: boolean;
+}
+
+const ThingFull: FC<ThingFullProps> = ({ renderPartOf }) => {
   const { p, c } = useViewBuilderToolkit();
 
   return (
@@ -88,9 +91,5 @@ ThingFull.topology = [
   fullResourceTopology,
   tabPaneTopology,
 ];
-
-ThingFull.propTypes = {
-  renderPartOf: PropTypes.bool,
-};
 
 export default register(ThingFull);

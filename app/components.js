@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 
-import CompActionButton from './components/ActionButton/index';
+import CompActionButton from './components/ActionButton';
 import CompAttachmentPreview from './components/AttachmentPreview';
 import CompAttributeListItem from './components/AttributeListItem';
 import CompBlurButton from './components/BlurButton';
@@ -15,8 +15,8 @@ import CompCardCardDivider from './components/Card/CardDivider';
 import CompCardCardHeader from './components/Card/CardHeader';
 import CompCardCardLink from './components/Card/CardLink';
 import CompCheckboxesInput from './components/Input/CheckboxesInput';
-import CompCollapseText from './components/CollapseText/index';
-import CompCollapsible from './components/Collapsible/index';
+import CompCollapseText from './components/CollapseText';
+import CompCollapsible from './components/Collapsible';
 import CompCollection from './components/Collection';
 import CompColumn from './components/Column/index';
 import CompColumns from './components/Columns/index';

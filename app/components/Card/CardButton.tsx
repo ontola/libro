@@ -1,22 +1,20 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from '../Button';
+import Button, { ButtonTheme, ButtonVariant } from '../Button';
 
 import '../../topologies/Card/Card.scss';
 
-const propTypes = {
-  action: PropTypes.func,
-  active: PropTypes.bool,
-  children: PropTypes.string.isRequired,
-  type: PropTypes.string,
-};
+interface CardButtonProps {
+  action: () => any;
+  active: boolean;
+  type: ButtonVariant;
+}
 
 /**
  * Component to render a Card button. Uses the Button component under the hood.
  * @returns {component} Component
  */
-const CardButton = ({
+const CardButton: React.FC<CardButtonProps> = ({
   action,
   active,
   children,
@@ -25,10 +23,16 @@ const CardButton = ({
   const buttonIcon = {
     comment: 'comment',
     con: 'thumbs-down',
+    error: undefined,
+    facebook: undefined,
+    google: undefined,
     neutral: 'pause',
     no: 'thumbs-down',
+    other: undefined,
     pro: 'thumbs-up',
+    success: undefined,
     upvote: 'arrow-up',
+    warning: undefined,
     yes: 'thumbs-up',
   };
 
@@ -36,14 +40,12 @@ const CardButton = ({
     <Button
       active={active}
       icon={buttonIcon[type]}
-      theme="box"
+      theme={ButtonTheme.Box}
       variant={type}
       onClick={() => action && action()}
     >{children}
     </Button>
   );
 };
-
-CardButton.propTypes = propTypes;
 
 export default CardButton;

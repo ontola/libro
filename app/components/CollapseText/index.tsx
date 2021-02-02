@@ -1,19 +1,18 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import {
-  FormattedMessage,
   defineMessages,
+  FormattedMessage,
   useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';
 
-import Button from '../Button';
-import Markdown from '../Markdown';
 import CollapsibleContainer from '../../containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from '../../state/collapsible/actions';
 import { getCollapsibleOpened } from '../../state/collapsible/selectors';
+import Button from '../Button';
+import Markdown from '../Markdown';
 
 import './CollapseText.scss';
 
@@ -24,20 +23,20 @@ const messages = defineMessages({
   },
 });
 
-const propTypes = {
-  id: PropTypes.string.isRequired,
-  minCharacters: PropTypes.number,
-  noSpacing: PropTypes.bool,
-  onClickToggle: PropTypes.func.isRequired,
-  open: PropTypes.bool,
-  text: PropTypes.string,
-};
+interface CollapseTextProps {
+  id: string;
+  minCharacters: number;
+  noSpacing?: boolean;
+  onClickToggle: () => any;
+  open?: boolean;
+  text: string;
+}
 
 const defaultProps = {
   minCharacters: 700,
 };
 
-const CollapseText = ({
+const CollapseText: React.FC<CollapseTextProps> = ({
   id,
   onClickToggle,
   minCharacters,
@@ -48,7 +47,7 @@ const CollapseText = ({
   const intl = useIntl();
 
   const classes = clsx({
-    CollapseText: true,
+    'CollapseText': true,
     'CollapseText--open': open,
   });
 
@@ -90,10 +89,8 @@ const CollapseText = ({
   return <Markdown noSpacing={noSpacing} text={text} />;
 };
 
-CollapseText.propTypes = propTypes;
-
 export default connect(
-  (state, ownProps) => {
+  (state, ownProps: CollapseTextProps) => {
     const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
 
     return ({
@@ -101,8 +98,8 @@ export default connect(
       open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
     });
   },
-  (dispatch, { id }) => ({
+  (dispatch, { id }: any) => ({
     onClickToggle: () => dispatch(toggleOne(id)),
-    onInitializeCollapsible: (data) => dispatch(initializeCollapsible(data)),
-  })
+    onInitializeCollapsible: (data: any) => dispatch(initializeCollapsible(data)),
+  }),
 )(CollapseText);
