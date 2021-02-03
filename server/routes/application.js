@@ -69,6 +69,10 @@ const handler = (sendResponse) => async (ctx) => {
       ctx.response.status = e.message.includes('ECONNREFUSED') ? BAD_GATEWAY : INTERNAL_SERVER_ERROR;
     }
 
+    if (__DEVELOPMENT__) {
+      return sendResponse(ctx, domain, '');
+    }
+
     ctx.manifest = {
       icons: [],
       ontola: {},

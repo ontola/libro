@@ -3,6 +3,7 @@ import { URL } from 'url';
 
 import HttpStatus from 'http-status-codes';
 
+import logging from './logging';
 import { statusCodeHex } from './proxies/helpers';
 
 const createOutputStream = () => {
@@ -65,10 +66,16 @@ const fetchPrerenderData = async (ctx, includeResources) => {
     .map((iri) => decodeURIComponent(iri))
     .filter(filterAllowedWriteForbiddenMeta(ctx, write));
 
-  const res = await ctx.api.bulk(resources);
-  const text = await res.text();
+  try {
+    const res = await ctx.api.bulk(resources);
+    const text = await res.text();
 
-  return forbidden.data().toString() + text;
+    return forbidden.data().toString() + text;
+  } catch (e) {
+    logging.error(e);
+
+    return forbidden.data().toString();
+  }
 };
 
 export default fetchPrerenderData;

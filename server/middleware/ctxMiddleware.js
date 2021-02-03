@@ -2,6 +2,7 @@ import jwt, { TokenExpiredError } from 'jsonwebtoken';
 import uuidv4 from 'uuid/v4';
 
 import { jwtEncryptionToken } from '../config';
+import defaultManifest from '../utils/defaultManifest';
 import { getBackendManifest } from '../utils/manifest';
 import { EXEC_HEADER_NAME } from '../utils/actions';
 import {
@@ -26,11 +27,22 @@ export function enhanceCtx(ctx) {
 
   ctx.getManifest = async (location) => {
     if (!ctx.manifest) {
-      const manifestLocation = location
-        || ctx.request.headers.manifest
-        || (await ctx.headResponse()).headers.get('Manifest');
-      if (manifestLocation) {
-        ctx.manifest = await getBackendManifest(ctx, manifestLocation);
+      try {
+        const manifestLocation = location
+          || ctx.request.headers.manifest
+          || (await ctx.headResponse())?.headers?.get('Manifest');
+
+        if (manifestLocation) {
+          ctx.manifest = await getBackendManifest(ctx, manifestLocation);
+        } else if (__DEVELOPMENT__) {
+          ctx.manifest = defaultManifest(ctx.request.origin);
+        }
+      } catch (e) {
+        if (!__DEVELOPMENT__) {
+          throw e;
+        }
+
+        ctx.manifest = defaultManifest(ctx.request.origin);
       }
     }
 
