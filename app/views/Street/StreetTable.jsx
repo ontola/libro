@@ -3,10 +3,12 @@ import {
   register,
   subjectType,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import TableCells from '../../components/TableCells';
+import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import teamGL from '../../ontology/teamGL';
 import { tableTopology } from '../../topologies/Table';
@@ -16,8 +18,10 @@ import { columnsType } from '../Thing/ThingTable';
 const StreetTable = (props) => {
   const lrs = useLRS();
   const { actorType } = useCurrentActor();
+  const [pendingFlyerCount] = useProperty(teamGL.pendingFlyerCount);
+  const pendingFlyers = tryParseInt(pendingFlyerCount);
 
-  const onClick = (e) => {
+  const onClick = React.useCallback((e) => {
     e.preventDefault();
     const formIRI = rdf.namedNode(`${props.subject.value}/flyer_actions/new`);
     if (actorType?.value === 'GuestUser') {
@@ -25,10 +29,10 @@ const StreetTable = (props) => {
     } else {
       lrs.actions.ontola.showDialog(formIRI);
     }
-  };
+  }, [props.subject, actorType]);
 
   return (
-    <TableRow onClick={onClick}>
+    <TableRow onClick={pendingFlyers && pendingFlyers > 0 ? onClick : undefined}>
       <TableCells columns={props.columns} />
     </TableRow>
   );

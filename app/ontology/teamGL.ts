@@ -68,6 +68,7 @@ export default {
     participants: teamGL('participants'),
     participantsCount: teamGL('participantsCount'),
     pendingAddresses: teamGL('pendingAddresses'),
+    pendingFlyerCount: teamGL('pendingFlyerCount'),
     postalDigits: teamGL('postalDigits'),
     postalRangeType: teamGL('postalRangeType'),
     postalRanges: teamGL('postalRanges'),
