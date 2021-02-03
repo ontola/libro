@@ -1,22 +1,19 @@
-import RDFTypes from '@rdfdev/prop-types';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { register } from 'link-redux';
-import PropTypes from 'prop-types';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
 import TableCells from '../../components/TableCells';
 import { tableTopology } from '../../topologies/Table';
 import TableRow from '../../topologies/TableRow';
 
-export const columnsType = PropTypes.arrayOf(
-  PropTypes.oneOfType([
-    RDFTypes.namedNode,
-    PropTypes.arrayOf(RDFTypes.namedNode),
-    PropTypes.instanceOf(Promise),
-  ])
-);
+export type ColumnType = NamedNode | NamedNode[] | Promise<any>;
 
-const ThingTable = ({ columns }) => (
+interface ThingTableProps {
+  columns: ColumnType[];
+}
+
+const ThingTable: FC<ThingTableProps> = ({ columns }) => (
   <TableRow>
     <TableCells columns={columns} />
   </TableRow>
@@ -25,9 +22,5 @@ const ThingTable = ({ columns }) => (
 ThingTable.type = schema.Thing;
 
 ThingTable.topology = tableTopology;
-
-ThingTable.propTypes = {
-  columns: columnsType,
-};
 
 export default register(ThingTable);
