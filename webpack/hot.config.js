@@ -62,7 +62,6 @@ module.exports = merge(common, {
   plugins: [
     new webpack.DefinePlugin({
       __LEGACY__: false,
-      'process.env.FRONTEND_HOSTNAME': JSON.stringify(process.env.FRONTEND_HOSTNAME),
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

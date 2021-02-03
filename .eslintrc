@@ -13,7 +13,6 @@
     "__DEV__": true,
     "__DEVELOPMENT__": true,
     "__LEGACY__": true,
-    "__ORIGIN__": true,
     "__PRODUCTION__": true,
     "__TEST__": true,
     "__VERSION__": true

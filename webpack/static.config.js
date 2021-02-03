@@ -158,7 +158,6 @@ function createConfig(options) {
       }),
       new webpack.DefinePlugin({
         __LEGACY__: options.bundle === bundles.legacy,
-        'process.env.FRONTEND_HOSTNAME': JSON.stringify(options.hostname),
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
       new webpack.ProvidePlugin({
@@ -203,39 +202,18 @@ if (process.env.TEST_BUILD) {
       buildName: `min-${bundles.module}`,
       bundle: bundles.module,
       devtool: 'source-map',
-      hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
     })),
   ];
 } else {
   module.exports = [
-    process.env.RAILS_ENV === 'staging' && (
-      merge(common, createConfig({
-        buildName: `localdev-${bundles.module}`,
-        bundle: bundles.module,
-        hostname: 'app.argu.localdev',
-      }))
-    ),
     merge(common, createConfig({
       buildName: `min-${bundles.legacy}`,
       bundle: bundles.legacy,
-      hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
-    })),
-    merge(common, createConfig({
-      buildName: `localtest-${bundles.module}`,
-      bundle: bundles.module,
-      hostname: 'app.argu.localtest',
-    })),
-    merge(common, createConfig({
-      buildName: `localtest-${bundles.legacy}`,
-      bundle: bundles.legacy,
-      devtool: 'eval',
-      hostname: 'app.argu.localtest',
     })),
     merge(common, createConfig({
       buildName: `min-${bundles.module}`,
       bundle: bundles.module,
       devtool: 'source-map',
-      hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
     })),
   ].filter(Boolean);
 }

@@ -15,7 +15,6 @@ export const clientSecret = process.env.ARGU_APP_SECRET || process.env.LIBRO_CLI
 export const defaultBackendSVCName = process.env.DEFAULT_BACKEND_SVC_NAME || 'argu';
 export const defaultServicePort = process.env.DEFAULT_SERVICE_PORT || '3000';
 export const defaultServiceProto = process.env.DEFAULT_SERVICE_PROTO || 'http';
-export const frontendHostname = process.env.FRONTEND_HOSTNAME;
 export const logLevel = process.env.LOG_LEVEL || 'info';
 export const mapboxTileAPIBase = process.env.MAPBOX_TILE_API_BASE || 'https://api.mapbox.com/styles/v1';
 export const mapboxTileStyle = process.env.MAPBOX_TILE_STYLE || 'mapbox/streets-v11';

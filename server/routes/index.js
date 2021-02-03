@@ -9,7 +9,6 @@ import CSRF from 'koa-csrf';
 import serveStatic from 'koa-static';
 import logger from 'koa-logger';
 
-import { appHostname, frontendHostname } from '../config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import ctxMiddleware from '../middleware/ctxMiddleware';
@@ -73,14 +72,6 @@ const routes = async function routes(app, port) {
   if (__DEVELOPMENT__) {
     app.use(logger());
   }
-
-  app.use((ctx, next) => {
-    if (ctx.request.host === frontendHostname) {
-      return ctx.redirect(ctx.request.href.replace(frontendHostname, appHostname));
-    }
-
-    return next();
-  });
 
   app.use(ctxMiddleware);
 

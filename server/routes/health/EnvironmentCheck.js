@@ -28,12 +28,10 @@ export default class EnvironmentCheck extends Check {
     }
 
     [
-      'appHostname',
       'backendApiUrl',
       'bundleName',
       'clientId',
       'clientSecret',
-      'frontendHostname',
       'jwtEncryptionToken',
       'oAuthToken',
       'redisUrl',
