@@ -78,7 +78,6 @@ export const components = {
   ScrollContainer: component('ScrollContainer'),
   SearchForm: component('SearchForm'),
   SelectInputSelectInputField: component('SelectInput/SelectInputField'),
-  SelectInputSelectInputList: component('SelectInput/SelectInputList'),
   SelectInputSelectInputWrapper: component('SelectInput/SelectInputWrapper'),
   SignInFormSignInFormLink: component('SignInForm/SignInFormLink'),
   SignOutForm: component('SignOutForm'),

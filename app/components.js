@@ -21,6 +21,7 @@ import CompCollection from './components/Collection';
 import CompColumn from './components/Column/index';
 import CompColumns from './components/Columns/index';
 import CompContainerHeader from './components/Container/ContainerHeader';
+import SelectInputSelectInputField from './containers/SelectInputField';
 import { HeaderFloat as CompHeaderFloat } from './views/Collection/properties/header';
 import CompCountBubble from './components/CountBubble/index';
 import CompCover from './components/Cover/index';
@@ -73,8 +74,6 @@ import CompProgress from './components/Progress/index';
 import CompResourceBoundary from './components/ResourceBoundary';
 import CompScrollContainer from './components/ScrollContainer/index';
 import CompSearchForm from './components/SearchForm/index';
-import CompSelectInputSelectInputField from './components/SelectInput/SelectInputField';
-import CompSelectInputSelectInputList from './components/SelectInput/SelectInputList';
 import CompSelectInputSelectInputWrapper from './components/SelectInput/SelectInputWrapper';
 import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink';
 import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
@@ -162,8 +161,7 @@ export const componentMap = {
   [rdf.id(components.ResourceBoundary)]: CompResourceBoundary,
   [rdf.id(components.ScrollContainer)]: CompScrollContainer,
   [rdf.id(components.SearchForm)]: CompSearchForm,
-  [rdf.id(components.SelectInputSelectInputField)]: CompSelectInputSelectInputField,
-  [rdf.id(components.SelectInputSelectInputList)]: CompSelectInputSelectInputList,
+  [rdf.id(components.SelectInputSelectInputField)]: SelectInputSelectInputField,
   [rdf.id(components.SelectInputSelectInputWrapper)]: CompSelectInputSelectInputWrapper,
   [rdf.id(components.SignInFormSignInFormLink)]: CompSignInFormSignInFormLink,
   [rdf.id(components.SignOutForm)]: CompSignOutForm,

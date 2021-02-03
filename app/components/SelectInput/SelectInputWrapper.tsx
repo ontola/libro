@@ -14,6 +14,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import parser from 'uri-template';
 import { useDebouncedCallback } from 'use-debounce';
 
+import SelectInputField from '../../containers/SelectInputField';
 import { entityIsLoaded } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
 import { isResource } from '../../helpers/types';
@@ -24,8 +25,6 @@ import ontola from '../../ontology/ontola';
 import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
 import { InputComponentProps } from '../FormField/FormInputs';
 import { LoadingRow } from '../Loading';
-
-import SelectInputField from './SelectInputField';
 
 const DEBOUNCE_TIMER = 500;
 

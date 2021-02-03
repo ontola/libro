@@ -10,7 +10,7 @@ const listStyle = {
   overflowX: 'hidden',
 };
 
-interface PropTypes {
+export interface SelectInputListProps {
   emptyText: string;
   getItemProps: EventHandler<any>;
   highlightedIndex: number | null;
@@ -20,7 +20,7 @@ interface PropTypes {
   selectedItem: SomeTerm;
 }
 
-const SelectInputList: React.FC<PropTypes> = ({
+const SelectInputList: React.FC<SelectInputListProps> = ({
   emptyText,
   getItemProps,
   highlightedIndex,

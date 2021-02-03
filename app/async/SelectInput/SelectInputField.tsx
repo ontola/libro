@@ -1,15 +1,13 @@
 import { isTerm, SomeTerm } from '@ontologies/core';
 import Downshift from 'downshift';
-import {
-  Resource,
-} from 'link-redux';
+import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 
+import { Input } from '../../components/Input';
+import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
+import { InputAutocomplete, InputMode, InputType } from '../../components/Input/Input';
 import { isResource } from '../../helpers/types';
 import Select, { selectTopology } from '../../topologies/Select';
-import { Input } from '../Input';
-import HiddenRequiredInput from '../Input/HiddenRequiredInput';
-import { InputAutocomplete, InputMode, InputType } from '../Input/Input';
 
 import SelectInputList from './SelectInputList';
 
@@ -21,7 +19,7 @@ const style = {
   zIndex: 10,
 };
 
-interface PropTypes {
+export interface SelectInputFieldProps {
   emptyText: string;
   initialSelectedItem?: SomeTerm;
   itemToString: (item: SomeTerm | undefined) => string;
@@ -43,7 +41,7 @@ interface InputProps {
   value?: boolean | string | number;
 }
 
-const SelectInputField: React.FC<PropTypes> = ({
+const SelectInputField: React.FC<SelectInputFieldProps> = ({
   emptyText,
   initialSelectedItem,
   itemToString,
