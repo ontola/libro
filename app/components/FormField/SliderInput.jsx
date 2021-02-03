@@ -48,6 +48,10 @@ const SliderInput = ({
     onChange(val);
   };
 
+  if (!maxInclusive || !minInclusive) {
+    return null;
+  }
+
   const defaultMarks = [{
     label: minInclusive,
     value: minInclusive,
