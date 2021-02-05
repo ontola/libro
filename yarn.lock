@@ -2268,10 +2268,10 @@
   resolved "https://registry.yarnpkg.com/@rdfdev/collections/-/collections-1.1.0-alpha.1.tgz#120ffaa8555c2841be37282562dce31bf6ba944e"
   integrity sha512-vqlC275fUebMlMrvVpeVfuwPpEGwwV8cb5JBG/FMQRknvW9WbQnnIPKzHj/RMPI5nNiK5ZbHtMr8jvYU6wVuCA==
 
-"@rdfdev/delta@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@rdfdev/delta/-/delta-1.0.0.tgz#07ca3f7dabde6c1dbea18b597a0d851fa772313a"
-  integrity sha512-AQLyYT1Wiw4qEx+jcXyaeEgQKXtg1nWke9hOR0l8lmVS8IcPezZlMxGJZghm7hf73zsQStLoAYO55q7WsU3d4w==
+"@rdfdev/delta@^1.1.0-alpha.1":
+  version "1.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@rdfdev/delta/-/delta-1.1.0-alpha.1.tgz#667f8fce3cfe7e44ca9eca3b862a1cc0b7465c44"
+  integrity sha512-yHpj1c1vc9gy8vXndt95Voqgt+zl6lTqRayq3AFHvN35JA0jiY00pt16+fYJB1HoVeclhm0xqlSVmk7x79Vk5A==
 
 "@rdfdev/iri@^1.0.0":
   version "1.0.0"

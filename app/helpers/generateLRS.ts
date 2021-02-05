@@ -32,7 +32,7 @@ import transformers from './transformers';
 import hexjson from './transformers/hexjson';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
-export default function generateLRS() {
+export default function generateLRS(initialDelta: Quad[] = []) {
   const history = __CLIENT__ ? createBrowserHistory() : createMemoryHistory();
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
@@ -337,6 +337,10 @@ export default function generateLRS() {
   ];
 
   lrs.store.addQuads(ontologyData);
+
+  if (initialDelta.length > 0) {
+    lrs.processDelta(initialDelta);
+  }
 
   return {
     history,

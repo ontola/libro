@@ -70,6 +70,7 @@
     "@ontologies/shacl": "^2.0.0-rc.1",
     "@ontologies/xsd": "^2.0.0-rc.1",
     "@rdfdev/actions": "^1.0.3",
+    "@rdfdev/delta": "^1.1.0-alpha.1",
     "@types/classnames": "^2.2.10",
     "@types/koa": "^2.11.6",
     "@types/react-fontawesome": "^1.6.4",
