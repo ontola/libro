@@ -6,7 +6,7 @@ import * as as from '@ontologies/as';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
+import * as sh from '@ontologies/shacl';
 
 import form from '../ontology/form';
 import ontola from '../ontology/ontola';
