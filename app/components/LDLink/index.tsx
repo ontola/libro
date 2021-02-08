@@ -14,6 +14,7 @@ import Link, { LinkFeature, LinkTarget } from '../Link';
 interface PropTypes {
   children?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   location?: string;
   features?: LinkFeature[];
   onClick?: MouseEventHandler;

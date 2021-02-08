@@ -47,6 +47,7 @@ export interface LinkPropTypes {
   allowExternal?: boolean;
   children?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   features?: LinkFeature[];
   isActive?: (to: string) => (locationMatch: match<any> | null, location: Location) => boolean;
   isIndex?: boolean;
@@ -56,6 +57,7 @@ export interface LinkPropTypes {
   tabIndex?: number;
   target?: LinkTarget;
   theme?: LinkTheme;
+  title?: string;
   to: string;
 }
 
@@ -77,6 +79,7 @@ const Link: React.FC<PropTypesWithRef> = ({
   allowExternal = true,
   children,
   className = 'Link',
+  disabled,
   features = [],
   innerRef,
   isActive,
@@ -84,6 +87,7 @@ const Link: React.FC<PropTypesWithRef> = ({
   onClick,
   target,
   theme = 'default',
+  title,
   to,
   ...other
 }) => {
@@ -95,6 +99,17 @@ const Link: React.FC<PropTypesWithRef> = ({
     themeClasses[theme],
     ...features.map((f) => featureClasses[f]),
   );
+
+  if (disabled) {
+    return (
+      <button
+        disabled
+        title={title}
+      >
+        {children}
+      </button>
+    );
+  }
 
   let path;
   if (isDifferentWebsite(to)) {

@@ -1,14 +1,13 @@
-import rdf from '@ontologies/core';
+import rdf, { Literal, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  Property,
-  linkType,
+  FC,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import LDLink from '../../components/LDLink';
+import { LinkFeature, LinkTarget } from '../../components/Link';
 import libro from '../../ontology/libro';
 import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -22,12 +21,29 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 import { menuTopology } from '../../topologies/Menu';
 import { pageTopology } from '../../topologies/Page';
-import { tabPaneTopology } from '../../topologies/TabPane';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { tableRowTopology } from '../../topologies/TableRow';
+import { tabPaneTopology } from '../../topologies/TabPane';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-const CreateActionButton = ({
+interface CreateActionButtonProps {
+  actionStatus: SomeTerm;
+  error: SomeTerm;
+  name: SomeTerm;
+  target: Literal;
+}
+
+export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (
+  !!prop && Object.values(LinkTarget as any).includes(prop)
+);
+
+const normalizeTarget = (targetLiteral: Literal) => {
+  const target = targetLiteral?.value?.split('/')?.pop();
+
+  return isLinkTarget(target) ? target : undefined;
+};
+
+const CreateActionButton: FC<CreateActionButtonProps> = ({
   actionStatus,
   children,
   error,
@@ -35,27 +51,17 @@ const CreateActionButton = ({
   target,
 }) => {
   if (children) {
-    return children;
-  }
-
-  if (error || invalidStatusIds.includes(rdf.id(actionStatus))) {
-    return (
-      <button
-        disabled
-        title={error?.value}
-      >
-        {name?.value}
-      </button>
-    );
+    return <React.Fragment>{children}</React.Fragment>;
   }
 
   return (
     <LDLink
-      disabled={!!actionStatus}
-      target={target?.value?.split('/')?.pop()}
-      title={name?.value}
+      disabled={!!error || invalidStatusIds.includes(rdf.id(actionStatus))}
+      features={[LinkFeature.Bold]}
+      target={normalizeTarget(target)}
+      title={error?.value || name?.value}
     >
-      <Property label={schema.name} />
+      {name?.value}
     </LDLink>
   );
 };
@@ -63,7 +69,6 @@ const CreateActionButton = ({
 CreateActionButton.type = schema.CreateAction;
 
 CreateActionButton.topology = allTopologiesExcept(
-  undefined,
   actionsBarTopology,
   alertDialogTopology,
   cardListTopology,
@@ -77,7 +82,7 @@ CreateActionButton.topology = allTopologiesExcept(
   pageTopology,
   tabPaneTopology,
   tableCellTopology,
-  tableRowTopology
+  tableRowTopology,
 );
 
 CreateActionButton.mapDataToProps = {
@@ -85,14 +90,6 @@ CreateActionButton.mapDataToProps = {
   error: schema.error,
   name: schema.name,
   target: libro.target,
-};
-
-CreateActionButton.propTypes = {
-  actionStatus: linkType,
-  children: PropTypes.element,
-  error: linkType,
-  name: linkType,
-  target: linkType,
 };
 
 export default register(CreateActionButton);
