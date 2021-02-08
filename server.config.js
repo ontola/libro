@@ -60,6 +60,8 @@ const config = {
           path.resolve(__dirname, './app'),
           path.resolve(__dirname, './server'),
           path.resolve(__dirname, './src/sw'),
+          path.resolve(__dirname, './node_modules/link-lib'),
+          path.resolve(__dirname, './node_modules/link-redux'),
         ],
         test: /\.(m?(t|j)sx?)$/,
         use: [
@@ -71,6 +73,14 @@ const config = {
               minified: false,
               presets: [
                 '@babel/preset-typescript',
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      node: 12,
+                    },
+                  },
+                ],
               ],
             },
           },
