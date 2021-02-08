@@ -32,6 +32,13 @@ class FixedPlainFactory extends PlainFactory {
     throw new Error(`Malformed input '${obj}'`);
   }
 
+  namedNode(value) {
+    const nn = PlainFactory.prototype.namedNode.call(this, value);
+    nn.toString = () => `<${value}>`;
+
+    return nn;
+  }
+
   quad(subject, predicate, object, graph) {
     /* eslint-disable sort-keys */
     return {
