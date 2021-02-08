@@ -32,6 +32,11 @@ import {
 } from '../utils/proxies';
 
 import application from './application';
+import {
+  docMiddleware,
+  document,
+  documents,
+} from './document';
 import health from './health';
 import logout from './logout';
 import precacheManifest from './manifests';
@@ -100,6 +105,10 @@ const routes = async function routes(app, port) {
   router.get('/assets/*', backend);
   router.get('/packs/*', backend);
   router.get('/photos/*', backend);
+
+  router.get('/_libro/docs', documents);
+  router.get('/_libro/docs/:id', document);
+  router.use(docMiddleware);
 
   router.use(sessMiddleware);
 

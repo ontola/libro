@@ -40,7 +40,7 @@ import ontSp from '../../ontology/sp';
 import ontTeamGL from '../../ontology/teamGL';
 import ontWdt from '../../ontology/wdt';
 
-const parseToGraph = (source: string): ParsedObject => {
+const parseToGraph = (source: string): ParsedObject[] => {
   // @ts-ignore
   const as = ontAs;
   // @ts-ignore
@@ -124,8 +124,9 @@ const parseToGraph = (source: string): ParsedObject => {
 
   // tslint:disable-next-line:no-eval
   const data = eval(source);
+  const datas = Array.isArray(data) ? data : [data];
 
-  return toGraph(data);
+  return datas.map((d) => toGraph(d));
 };
 
 export default parseToGraph;

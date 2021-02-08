@@ -1,9 +1,9 @@
-import { LRSCtx, LinkedRenderStoreContext } from 'link-redux';
+import { LRSCtx } from 'link-redux';
 import React from 'react';
 
 import { TopologyState, renderErrorComp } from '../../topologies/Topology';
 
-class ErrorBoundary<P extends LinkedRenderStoreContext> extends React.Component<P, TopologyState> {
+class ErrorBoundary<P> extends React.Component<P, TopologyState> {
   constructor(props: P) {
     super(props);
 
