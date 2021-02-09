@@ -1,7 +1,6 @@
 import * as as from '@ontologies/as';
-import { Literal } from '@ontologies/core';
+import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { NamedNode } from 'link-lib/dist-types/rdf';
 import {
   FC,
   register,
