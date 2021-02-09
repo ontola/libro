@@ -104,14 +104,6 @@ import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
   );
 
   /**
-   * Page (html) caching
-   * Serves a fallback html page if offline.
-   */
-  const handler = createHandlerBoundToURL('/public/offline.html');
-  const navigationRoute = new NavigationRoute(handler);
-  registerRoute(navigationRoute);
-
-  /**
    * Page communications
    */
 
