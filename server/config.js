@@ -8,7 +8,6 @@ export const appHostname = process.env.HOSTNAME;
 export const assetsHost = process.env.ASSETS_HOST || '';
 export const backendApiUrl = process.env.ARGU_API_URL || process.env.BACKEND_API_URL || 'https://argu.localdev';
 export const bugsnagKey = process.env.BUGSNAG_KEY;
-export const bundleName = process.env.FE_BUNDLE_NAME || 'min';
 export const cacheDirectory = process.env.CACHE_DIRECTORY;
 export const clientId = process.env.ARGU_APP_ID || process.env.LIBRO_CLIENT_ID;
 export const clientSecret = process.env.ARGU_APP_SECRET || process.env.LIBRO_CLIENT_SECRET;

@@ -29,7 +29,6 @@ export default class EnvironmentCheck extends Check {
 
     [
       'backendApiUrl',
-      'bundleName',
       'clientId',
       'clientSecret',
       'jwtEncryptionToken',

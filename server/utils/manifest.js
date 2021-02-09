@@ -2,7 +2,6 @@ import fs from 'fs';
 
 import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
 
-import { bundleName } from '../config';
 import processResponse from '../api/internal/statusHandler';
 import { isSuccess } from '../../app/helpers/arguHelpers';
 
@@ -58,7 +57,7 @@ function getManifest(build) {
       });
     });
   } else {
-    const manifestFile = fs.readFileSync(`./dist/private/manifest.${bundleName}-${build}.json`);
+    const manifestFile = fs.readFileSync(`./dist/private/manifest.min-${build}.json`);
     fileNames = JSON.parse(manifestFile);
   }
 
