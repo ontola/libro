@@ -2194,14 +2194,7 @@
   resolved "https://registry.yarnpkg.com/@ontologies/as/-/as-2.0.0-rc.1.tgz#3851ed473570746c4af063fa4642648b9cb7c8b2"
   integrity sha512-6OV3JvVOSmZtY4DK8pkFr7v3UY/QHaJjMB1OgLBpVUcMk9tjJxuntC7gVRAfnGeHkooE565voQofx3AHb1aH4A==
 
-"@ontologies/core@>=2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.1.tgz#ab9d4fe18af90482f4a33fc1ca9c6f64d1f7afbb"
-  integrity sha512-L85TS+yMtxAwdgfNVEIrSk5YE0CH1Z9iQ5pyajQeVZ3EoKgXcW6s+wB5WwrtvsuMDpg4jFe+cx8wE/4A9EAMbA==
-  dependencies:
-    "@ungap/global-this" "^0.3.1"
-
-"@ontologies/core@^2.0.2":
+"@ontologies/core@>=2.0.0", "@ontologies/core@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.2.tgz#b19094ee722f0e46d338af76dbf36c2fdc0a58d7"
   integrity sha512-bFlN791V5QwlBQ1fT/i2Ybc4Wjkc9TUeqJJPzWWx3aex89nJ5nAyEsNtpUATCdeIhDO+NsVWzFPblSmY3IlUIg==
