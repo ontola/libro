@@ -1,4 +1,5 @@
 import { NamedNode } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
@@ -20,6 +21,7 @@ import { ColumnType } from '../Thing/ThingTable';
 interface AddressTableProps {
   columns: ColumnType;
   createAction: NamedNode;
+  subject: SomeNode;
 }
 
 const AddressTable: FC<AddressTableProps> = (props) => {

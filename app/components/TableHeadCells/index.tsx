@@ -1,4 +1,4 @@
-import { NamedNode } from 'link-lib/dist-types/rdf';
+import { NamedNode } from '@ontologies/core';
 import { Resource, useLRS } from 'link-redux';
 import React from 'react';
 

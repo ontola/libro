@@ -1,4 +1,4 @@
-import as from '@ontologies/as';
+import * as as from '@ontologies/as';
 import { register } from 'link-redux';
 
 import ontola from '../../../ontology/ontola';

@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
@@ -17,6 +18,7 @@ import { ColumnType } from '../Thing/ThingTable';
 
 interface StreetTableProps {
   columns: ColumnType[];
+  subject: SomeNode;
 }
 
 const StreetTable: FC<StreetTableProps> = ({

@@ -1,5 +1,5 @@
 import CardContent from '@material-ui/core/CardContent';
-import schema from '@ontologies/schema';
+import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,

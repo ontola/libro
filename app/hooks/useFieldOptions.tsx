@@ -1,6 +1,9 @@
-import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import rdf, {
+  SomeTerm,
+  isNamedNode,
+  isNode,
+} from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { SomeTerm } from 'link-lib/dist-types/rdf';
 import {
   useDataFetching,
   useDataInvalidation,

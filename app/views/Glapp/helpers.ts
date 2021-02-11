@@ -1,4 +1,4 @@
-import { NamedNode } from 'link-lib/dist-types/rdf';
+import { NamedNode } from '@ontologies/core';
 import React from 'react';
 import { useHistory } from 'react-router';
 
