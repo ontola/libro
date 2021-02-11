@@ -38,9 +38,13 @@ const ResourceField: FC<PropTypes> = ({
 
   if (object && path) {
     return (
-      <Resource subject={object}>
-        <Property label={path} />
-      </Resource>
+      <React.Fragment>
+        <Property label={[rdfs.label, schema.name, sh.name]} size="3" />
+        <Resource subject={object}>
+          <Property label={path} />
+        </Resource>
+        <Property label={[schema.text, sh.description]} />
+      </React.Fragment>
     );
   }
 
