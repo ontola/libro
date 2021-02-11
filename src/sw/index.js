@@ -5,9 +5,12 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import * as navigationPreload from 'workbox-navigation-preload';
-import { cleanupOutdatedCaches, createHandlerBoundToURL, matchPrecache, precacheAndRoute } from 'workbox-precaching';
-import { NavigationRoute, registerRoute, setCatchHandler } from 'workbox-routing';
-import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { NetworkFirst } from 'workbox-strategies';
+import { offlineFallback } from 'workbox-recipes';
+
+const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line no-magic-numbers
 
 (async () => {
   await self.skipWaiting();
@@ -19,17 +22,8 @@ import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
   cleanupOutdatedCaches();
 
   precacheAndRoute(self.__WB_MANIFEST);
-  setCatchHandler(async ({ request }) => {
-    // Return the precached offline page if a document is being requested
-    if (request.destination === 'document') {
-      const offline = await matchPrecache('/public/offline.html');
-
-      if (offline) {
-        return offline;
-      }
-    }
-
-    return Response.error();
+  offlineFallback({
+    pageFallback: "/public/offline.html"
   });
 
   /**
@@ -37,11 +31,15 @@ import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
    */
   registerRoute(
     /\.(?:js|css|gz)$/,
-    new StaleWhileRevalidate({
+    new NetworkFirst({
       cacheName: 'assets',
       plugins: [
         new CacheableResponsePlugin({
           statuses: [200],
+        }),
+        new ExpirationPlugin({
+          maxAgeSeconds: ONE_MONTH,
+          maxEntries: 120,
         }),
       ],
     }),
@@ -51,11 +49,9 @@ import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
    * Image caching
    */
 
-  const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line no-magic-numbers
-
   registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,
-    new StaleWhileRevalidate({
+    new NetworkFirst({
       cacheName: 'images',
       plugins: [
         new CacheableResponsePlugin({
@@ -95,7 +91,7 @@ import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
         || accept.includes('application/vnd.api+json')
         || accept.includes('application/json')));
     },
-    new StaleWhileRevalidate({
+    new NetworkFirst({
       cacheName: 'data-updates',
       plugins: [
         new BroadcastUpdatePlugin(),
