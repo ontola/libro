@@ -14,9 +14,6 @@ const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line no-magic-numbers
 
 console.log("[SW][0/3] Starting");
 
-if (navigationPreload.isSupported()) {
-  navigationPreload.enable();
-}
 cleanupOutdatedCaches();
 
 precacheAndRoute(self.__WB_MANIFEST);
@@ -122,6 +119,10 @@ self.addEventListener('message', (event) => {
 console.log("[SW][1/3] Configured");
 
 (async () => {
+  if (navigationPreload.isSupported()) {
+    navigationPreload.enable();
+  }
+
   await self.skipWaiting();
   console.log("[SW][2/3] Skipped waiting");
 
