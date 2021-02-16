@@ -39,6 +39,7 @@ export default {
   fields: form('fields'),
   footerGroup: form('footerGroup'),
   form: form('form'),
+  groupedOptions: form('groupedOptions'),
   groups: form('groups'),
   hidden: form('hidden'),
   pages: form('pages'),

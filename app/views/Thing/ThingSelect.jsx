@@ -44,7 +44,7 @@ const ThingSelect = ({
 
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const [labelProp] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
+  const [labelProp] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
 
   if (labelProp) {
     labels.unshift(labelProp);

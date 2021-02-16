@@ -21,7 +21,7 @@ const ThingRadioGroup = ({
 }) => {
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const [label] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
+  const [label] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
 
   if (label) {
     labels.unshift(label);

@@ -60,7 +60,7 @@ export const useItemToString = () => {
     const itemClass = lrs.getResourceProperty<SomeNode>(item, rdfx.type);
     const itemClassDisplayProp = lrs.getResourceProperty<SomeNode>(
       itemClass,
-      ontola.ns('forms/inputs/select/displayProp'),
+      ontola['forms/inputs/select/displayProp'],
     );
     const classDisplayProp = itemClassDisplayProp ?? schema.name;
     const label = lrs.getResourceProperty(item, [classDisplayProp, schema.name]);

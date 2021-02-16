@@ -36,8 +36,8 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
     let optionsArray;
     if (Array.isArray(shIn)) {
       optionsArray = shIn;
-    } else if (loaded) {
-      optionsArray = containerToArr(lrs, [], shIn as SomeNode);
+    } else if (loaded && shIn) {
+      optionsArray = containerToArr(lrs, [], shIn);
     }
 
     if (Array.isArray(optionsArray)) {

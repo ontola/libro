@@ -57,7 +57,7 @@ const PersonSelect: FC<PersonSelectProps> = ({
   });
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const [label] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
+  const [label] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
 
   if (isNamedNode(label)) {
     labels.unshift(label);

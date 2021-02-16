@@ -14,10 +14,13 @@ import {
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  LinkReduxLRSType,
   Property,
   Resource,
+  ReturnType,
   useDataInvalidation,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React, { HTMLAttributes } from 'react';
 import { useIntl } from 'react-intl';
@@ -30,6 +33,8 @@ import { LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import { isResource } from '../../helpers/types';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
+import form from '../../ontology/form';
+import ontola from '../../ontology/ontola';
 import Select, { selectTopology } from '../../topologies/Select';
 import SelectedValue from '../../topologies/SelectedValue';
 
@@ -60,6 +65,28 @@ const FullWidthPopper = (props: PopperProps) => (
   />
 );
 
+const sortByGroup = (lrs: LinkReduxLRSType) => (a: SomeTerm, b: SomeTerm) => {
+  const groupA = isNamedNode(a) ? lrs.getResourceProperty(a, ontola.groupBy)?.value : undefined;
+  const groupB = isNamedNode(b) ? lrs.getResourceProperty(b, ontola.groupBy)?.value : undefined;
+
+  if (!groupA || groupB && groupA < groupB) {
+    return -1;
+  }
+  if (!groupB || groupA > groupB) {
+    return 1;
+  }
+
+  if (a.value === groupA) {
+    return -1;
+  }
+
+  if (b.value === groupB) {
+    return 1;
+  }
+
+  return 0;
+};
+
 const SelectList = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
   ({ children, ...otherProps }, ref) => (
     <Select {...otherProps} innerRef={ref}>
@@ -75,13 +102,17 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   values,
 }) => {
   const multiple = fieldShape.maxCount > 1;
+  const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
   const { formatMessage } = useIntl();
   const lrs = useLRS();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
   const [currentValue, setCurrentValue] = React.useState('');
   const { loading, options, searchable } = useAsyncFieldOptions(open, fieldShape.shIn, currentValue);
-  const createButton = React.useMemo(() => (
+  const sortedOptions = React.useMemo(() => (
+    grouped ? options.sort(sortByGroup(lrs)) : options
+  ), [options]);
+  const createButton = React.useMemo(() => fieldShape.shIn && (
     <Resource subject={fieldShape.shIn} onLoad={() => null}>
       <CollectionCreateActionButton />
     </Resource>
@@ -95,7 +126,12 @@ const SelectInputField: React.FC<InputComponentProps> = ({
     ,
   );
   useDataInvalidation(options.filter(isResource));
+  const groupBy = React.useCallback((option: SomeTerm) => {
+    const group = isNamedNode(option) ? lrs.getResourceProperty(option, ontola.groupBy) : undefined;
+    const groupName = isNamedNode(group) ? lrs.getResourceProperty(group, schema.name) : undefined;
 
+    return groupName?.value || '';
+  }, []);
   const valueProps = React.useMemo(() => {
     const filteredValues = values.filter(isSomeTerm).filter((term) => term.value.length > 0);
 
@@ -160,7 +196,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
 
     return <LoadingRow />;
   }
-  const virtualized = options.length > VIRTUALIZATION_THRESHOLD;
+  const virtualized = !grouped && options.length > VIRTUALIZATION_THRESHOLD;
 
   return (
     <React.Fragment>
@@ -171,13 +207,14 @@ const SelectInputField: React.FC<InputComponentProps> = ({
           ListboxComponent={virtualized ? VirtualizedSelect : SelectList}
           PopperComponent={virtualized ? undefined : FullWidthPopper}
           disableClearable={fieldShape.required}
+          disabled={!fieldShape.shIn}
           filterOptions={searchable ? (opts: SomeTerm[]) => opts : filterOptions}
           getOptionLabel={itemToString}
+          groupBy={grouped ? groupBy : undefined}
           id={name}
           loading={loading}
           noOptionsText={emptyText(formatMessage, searchable, currentValue)}
-          open={open}
-          options={options}
+          options={sortedOptions}
           renderInput={renderInput}
           renderOption={renderOption}
           onChange={handleChange}
