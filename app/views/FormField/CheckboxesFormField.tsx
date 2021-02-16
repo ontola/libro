@@ -16,8 +16,8 @@ const CheckboxesFormField: FC = (props) => {
 
   return (
     <FormField
+      combinedComponent
       {...fieldProps}
-      combinedComponent={false}
       inputComponent={CheckboxesInput}
     />
   );

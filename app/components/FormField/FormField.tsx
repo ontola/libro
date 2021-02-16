@@ -82,7 +82,7 @@ const FormField: React.FC<FormFieldProps> = ({
 );
 
 FormField.defaultProps = {
-  combinedComponent: true,
+  combinedComponent: false,
   preferPlaceholder: false,
   renderHelper: FormFieldHelper,
 };

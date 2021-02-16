@@ -98,7 +98,7 @@ const FormInputs = (props: PropTypes): JSX.Element => {
     return <React.Fragment />;
   }
 
-  if (!combinedComponent) {
+  if (combinedComponent) {
     return <InputComponent {...props} />;
   }
 
