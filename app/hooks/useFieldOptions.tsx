@@ -17,7 +17,11 @@ import {
 const useFieldOptions = (shIn: SomeNode | undefined) => {
   const lrs = useLRS();
   const [options, setOptions] = React.useState<SomeTerm[]>(([]));
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+    setOptions([]);
+    setLoading(true);
+  }, [shIn]);
 
   useDataInvalidation([shIn, ...options].filter(isNamedNode));
   useDataFetching([shIn, ...options].filter(isNamedNode));

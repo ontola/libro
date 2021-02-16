@@ -1,150 +1,173 @@
-import { isTerm, SomeTerm } from '@ontologies/core';
-import Downshift from 'downshift';
-import { Resource } from 'link-redux';
-import React, { EventHandler } from 'react';
+import { InputAdornment, Popper, TextField } from '@material-ui/core';
+import { PopperProps } from '@material-ui/core/Popper/Popper';
+import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
+import { isNamedNode, isSomeTerm, isTerm, SomeTerm } from '@ontologies/core';
+import * as schema from '@ontologies/schema';
+import { Property, Resource, useDataInvalidation, useLRS } from 'link-redux';
+import React, { HTMLAttributes } from 'react';
+import { useIntl } from 'react-intl';
+import { useDebouncedCallback } from 'use-debounce';
 
-import { Input } from '../../components/Input';
+import CollectionCreateActionButton from '../../components/Collection/CollectionCreateActionButton';
+import { InputComponentProps } from '../../components/FormField/FormInputs';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
-import { InputAutocomplete, InputMode, InputType } from '../../components/Input/Input';
+import { LoadingRow } from '../../components/Loading';
+import { entityIsLoaded } from '../../helpers/data';
 import { isResource } from '../../helpers/types';
+import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
 import Select, { selectTopology } from '../../topologies/Select';
+import SelectedValue from '../../topologies/SelectedValue';
 
-import SelectInputList from './SelectInputList';
+import { emptyText, filterOptions, renderOption, useItemToString } from './helpers';
+import VirtualizedSelect from './VirtualizedSelect';
 
-export const MAX_ITEMS = 5;
+const DEBOUNCE_TIMER = 500;
 
-const style = {
-  maxHeight: '20em',
-  position: 'absolute',
-  zIndex: 10,
+const popperStyles = {
+  width: 'fit-content',
 };
 
-export interface SelectInputFieldProps {
-  emptyText: string;
-  initialSelectedItem?: SomeTerm;
-  itemToString: (item: SomeTerm | undefined) => string;
-  items: SomeTerm[];
-  loading: boolean;
-  name: string;
-  onChange: EventHandler<any>;
-  onInputValueChange: EventHandler<any>;
-  required: boolean;
-}
+const FullWidthPopper = (props: PopperProps) => (
+  <Popper {...props} style={popperStyles} placement="bottom-start" />
+);
 
-interface InputProps {
-  autoFocus?: boolean;
-  autoComplete?: InputAutocomplete;
-  inputMode?: InputMode;
-  name: string;
-  onFocus: EventHandler<any>;
-  type?: InputType;
-  value?: boolean | string | number;
-}
+const SelectList = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
+  ({ children, ...otherProps }, ref) => (
+    <Select {...otherProps} innerRef={ref}>
+      {children}
+    </Select>
+  ),
+);
 
-const SelectInputField: React.FC<SelectInputFieldProps> = ({
-  emptyText,
-  initialSelectedItem,
-  itemToString,
-  items,
-  loading,
+const SelectInputField: React.FC<InputComponentProps> = ({
+  fieldShape,
   name,
   onChange,
-  onInputValueChange,
-  required,
+  values,
 }) => {
-  const handleChange = React.useCallback((v) => isTerm(v) ? onChange(v) : null, [onChange]);
+  const multiple = fieldShape.maxCount > 1;
+  const { formatMessage } = useIntl();
+  const lrs = useLRS();
+  const [open, setOpen] = React.useState(false);
+  const itemToString = useItemToString();
+  const [currentValue, setCurrentValue] = React.useState('');
+  const { loading, options, searchable } = useAsyncFieldOptions(open, fieldShape.shIn, currentValue);
+  const createButton = React.useMemo(() => (
+    <Resource subject={fieldShape.shIn} onLoad={() => null}>
+      <CollectionCreateActionButton />
+    </Resource>
+  ), [fieldShape.shIn]);
+  const [handleInputValueChange] = useDebouncedCallback(
+    (_, newValue) => {
+      setCurrentValue(newValue);
+    },
+    searchable ? DEBOUNCE_TIMER : 0,
+    { leading: true }
+    ,
+  );
+  useDataInvalidation(options.filter(isResource));
+
+  const valueProps = React.useMemo(() => {
+    const filteredValues = values.filter(isSomeTerm).filter((term) => term.value.length > 0);
+
+    return (
+      multiple ? {
+        filterSelectedOptions: true,
+        multiple: true,
+        value: filteredValues,
+      } : {
+        multiple: false,
+        value: filteredValues[0],
+      }
+    );
+  }, [multiple, values]);
+  const handleChange = React.useCallback((e, v) => {
+    e.preventDefault();
+    setCurrentValue('');
+
+    if (multiple) {
+      onChange(v.filter(isSomeTerm));
+    } else {
+      onChange(isTerm(v) ? [v] : []);
+    }
+  }, [multiple, onChange]);
+  const renderInput = React.useCallback((params: AutocompleteRenderInputParams) => {
+    const inputProps = {
+      ...params,
+      InputProps: {
+        ...params.InputProps,
+        endAdornment: (
+          <div className="MuiAutocomplete-endAdornment">
+            {(params.InputProps.endAdornment as any)?.props?.children}
+            {createButton}
+          </div>
+        ),
+      },
+    };
+    if (isNamedNode(valueProps.value)) {
+      inputProps.InputProps.startAdornment = (
+        <SelectedValue>
+          <InputAdornment disablePointerEvents position="start">
+            <Resource subject={valueProps.value}>
+              <Property label={schema.image} topology={selectTopology}/>
+            </Resource>
+          </InputAdornment>
+        </SelectedValue>
+      );
+    }
+
+    return (
+      <TextField
+        {...inputProps}
+        style={{
+          flexWrap: 'nowrap',
+        }}
+        variant="outlined"
+      />
+    );
+  }, [createButton, multiple, valueProps.value]);
+
+  const freshValues = values.filter((value) => isNamedNode(value) && !entityIsLoaded(lrs, value));
+  if (__CLIENT__ && freshValues.length > 0) {
+    freshValues.filter(isNamedNode).forEach((value) => {
+      lrs.queueEntity(value);
+    });
+
+    return <LoadingRow />;
+  }
+  const virtualized = options.length > 10;
 
   return (
-    <Downshift
-      id={name}
-      initialSelectedItem={initialSelectedItem}
-      itemToString={itemToString}
-      onChange={handleChange}
-      onInputValueChange={onInputValueChange}
-    >
-      {(downshiftOpts) => {
-        const {
-          getInputProps,
-          getMenuProps,
-          openMenu,
-          isOpen,
-        } = downshiftOpts;
-
-        let list;
-        const onFocus = (e: any) => {
-          e.target.select();
-          openMenu(e);
-        };
-
-        if (isOpen) {
-          list = (
-            <SelectInputList
-              emptyText={emptyText}
-              getItemProps={downshiftOpts.getItemProps}
-              highlightedIndex={downshiftOpts.highlightedIndex}
-              items={items}
-              loading={loading}
-              maxItems={MAX_ITEMS}
-              selectedItem={downshiftOpts.selectedItem}
-            />
-          );
-        } else {
-          list = (
-            <React.Fragment>
-              <option aria-selected="false" className="AriaHidden">Focus to show items</option>
-            </React.Fragment>
-          );
-        }
-
-        const renderClosed = () => {
-          let inner;
-          if (initialSelectedItem) {
-            if (isResource(initialSelectedItem)) {
-              inner = <Resource element="div" subject={initialSelectedItem} topology={selectTopology} />;
-            } else {
-              inner = initialSelectedItem.value;
-            }
-          }
-
-          return (
-            <button
-              className="SelectInput--selected"
-              type="button"
-              onClick={openMenu as any}
-            >
-              {inner}
-            </button>
-          );
-        };
-
-        const renderOpen = () => {
-          const inputProps = getInputProps<InputProps>({
-            autoFocus: true,
-            name,
-            onFocus,
-          });
-
-          return (
-            <Input {...inputProps}/>
-          );
-        };
-
-        return (
-          <div>
-            {isOpen ? renderOpen() : renderClosed()}
-            <Select
-              scrollIntoView={isOpen}
-              {...getMenuProps()}
-              style={style}
-            >
-              {list}
-            </Select>
-            {required
-              && <HiddenRequiredInput name={name} value={initialSelectedItem?.value || ''} />}
-          </div>
-        );
-      }}
-    </Downshift>
+    <React.Fragment>
+      <div className="Field__input Field__input--select">
+        <Autocomplete
+          disableClearable={fieldShape.required}
+          disableListWrap
+          openOnFocus
+          getOptionLabel={itemToString}
+          filterOptions={searchable ? (opts: SomeTerm[]) => opts : filterOptions}
+          id={name}
+          ListboxComponent={virtualized ? VirtualizedSelect : SelectList}
+          loading={loading}
+          noOptionsText={emptyText(formatMessage, searchable, currentValue)}
+          onInputChange={handleInputValueChange}
+          options={options}
+          PopperComponent={virtualized ? undefined : FullWidthPopper}
+          renderInput={renderInput}
+          renderOption={renderOption}
+          onChange={handleChange}
+          open={open}
+          onOpen={() => {
+            setOpen(true);
+          }}
+          onClose={() => {
+            setOpen(false);
+          }}
+          {...valueProps}
+        />
+      </div>
+      {fieldShape.required && <HiddenRequiredInput name={name} value={values[0]?.value}/>}
+    </React.Fragment>
   );
 };
 

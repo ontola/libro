@@ -104,6 +104,7 @@ export default {
   processSteps: argu('processSteps'),
   questions: argu('questions'),
   reactionsCount: argu('reactionsCount'),
+  selectedValue: argu('selectedValue'),
   signInFlow: argu('signInFlow'),
   time: argu('time'),
   timelineItems: argu('timelineItems'),

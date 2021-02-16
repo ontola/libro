@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Ref } from 'react';
 
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
@@ -8,6 +8,8 @@ import './Select.scss';
 export const selectTopology = argu.ns('select');
 
 interface Props {
+  innerRef?: Ref<HTMLDivElement>;
+  role?: string;
   scrollIntoView?: any;
 }
 
@@ -22,13 +24,16 @@ class Select<P extends Props = {}> extends Topology<P> {
     const {
       children,
       scrollIntoView, // eslint-disable-line no-unused-vars
+      innerRef,
       ...props
     } = this.props;
 
     return this.wrap((
-      <ul {...props}>
-        {children}
-      </ul>
+      <div ref={innerRef} role="listbox">
+        <ul {...props}>
+          {children}
+        </ul>
+      </div>
     ));
   }
 }

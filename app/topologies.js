@@ -33,6 +33,7 @@ import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/in
 import { popupTopology } from './topologies/Popup';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
+import { selectedValueTopology } from './topologies/SelectedValue';
 import { tableBodyTopology } from './topologies/TableBody';
 import { tableCellTopology } from './topologies/TableCell';
 import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
@@ -82,6 +83,7 @@ export const allTopologies = [
   primaryCallToActionTopology,
   radioGroupTopology,
   selectTopology,
+  selectedValueTopology,
   tableBodyTopology,
   tableHeaderCellTopology,
   tableHeaderRowTopology,

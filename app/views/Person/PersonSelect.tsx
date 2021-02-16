@@ -1,22 +1,37 @@
+import { InputAdornment } from '@material-ui/core';
+import { isNamedNode, NamedNode } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
-import * as schema from '@ontologies/schema';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
-  linkType,
   register,
   useResourceProperty,
 } from 'link-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { EventHandler } from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { selectTopology } from '../../topologies/Select';
 
-const PersonSelect = ({
+interface PersonSelectProps {
+  'aria-selected': boolean;
+  className: string;
+  element: string;
+  id: string;
+  itemClass: NamedNode;
+  onClick: EventHandler<any>;
+  onMouseDown: EventHandler<any>;
+  onMouseMove: EventHandler<any>;
+  role: string;
+  style: any;
+  wrapperProps: any;
+}
+
+const PersonSelect: FC<PersonSelectProps> = ({
   'aria-selected': ariaSelected,
   className,
   element,
@@ -31,8 +46,8 @@ const PersonSelect = ({
 }) => {
   const defaultWrapperProps = () => ({
     'aria-selected': ariaSelected,
-    className: `SelectItem ${className} SelectPerson`,
-    element: element || 'li',
+    'className': `SelectItem ${className} SelectPerson`,
+    'element': element || 'li',
     id,
     onClick,
     onMouseDown,
@@ -44,13 +59,15 @@ const PersonSelect = ({
 
   const [label] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
 
-  if (label) {
+  if (isNamedNode(label)) {
     labels.unshift(label);
   }
 
   return (
     <ResourceBoundary wrapperProps={wrapperProps || defaultWrapperProps()}>
-      <Property label={schema.image} />
+      <InputAdornment disablePointerEvents position="start">
+        <Property label={schema.image} />
+      </InputAdornment>
       <Property label={labels} />
     </ResourceBoundary>
   );
@@ -65,20 +82,6 @@ PersonSelect.topology = selectTopology;
 
 PersonSelect.mapDataToProps = {
   itemClass: rdfx.type,
-};
-
-PersonSelect.propTypes = {
-  'aria-selected': PropTypes.bool,
-  className: PropTypes.string,
-  element: PropTypes.string,
-  id: PropTypes.string,
-  itemClass: linkType,
-  onClick: PropTypes.func,
-  onMouseDown: PropTypes.func,
-  onMouseMove: PropTypes.func,
-  role: PropTypes.string,
-  style: PropTypes.shape({}),
-  wrapperProps: PropTypes.shape({}),
 };
 
 export default register(PersonSelect);

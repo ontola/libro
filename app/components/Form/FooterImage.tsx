@@ -2,7 +2,7 @@ import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
 interface PropTypes {
-  ariaLabel: string;
+  ariaLabel?: string;
   linkedProp: SomeTerm;
 }
 

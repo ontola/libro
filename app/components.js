@@ -74,7 +74,6 @@ import CompProgress from './components/Progress/index';
 import CompResourceBoundary from './components/ResourceBoundary';
 import CompScrollContainer from './components/ScrollContainer/index';
 import CompSearchForm from './components/SearchForm';
-import CompSelectInputSelectInputWrapper from './components/SelectInput/SelectInputWrapper';
 import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink';
 import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
 import CompSkipNavigation from './components/SkipNavigation/index';
@@ -162,7 +161,6 @@ export const componentMap = {
   [rdf.id(components.ScrollContainer)]: CompScrollContainer,
   [rdf.id(components.SearchForm)]: CompSearchForm,
   [rdf.id(components.SelectInputSelectInputField)]: SelectInputSelectInputField,
-  [rdf.id(components.SelectInputSelectInputWrapper)]: CompSelectInputSelectInputWrapper,
   [rdf.id(components.SignInFormSignInFormLink)]: CompSignInFormSignInFormLink,
   [rdf.id(components.SignOutForm)]: CompSignOutForm,
   [rdf.id(components.SkipNavigation)]: CompSkipNavigation,

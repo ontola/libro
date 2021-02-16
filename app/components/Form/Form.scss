@@ -24,6 +24,7 @@
     border-top: $grey-border;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     // For animating the Omniform preview on hover
     transition: background-color .2s;
 
@@ -36,14 +37,13 @@
       background-size: cover;
       border-radius: 999px;
       height: 1.3em;
-      margin: .6em;
-      margin-right: .5em;
       width: 1.3em;
     }
 
     &--right {
       display: flex;
-      margin-left: auto;
+      flex-grow: 1;
+      justify-content: flex-end;
 
       & > :last-child {
         border-bottom-right-radius: $border-radius-base;

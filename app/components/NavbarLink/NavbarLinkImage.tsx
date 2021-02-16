@@ -1,11 +1,10 @@
 import { makeStyles } from '@material-ui/styles';
-import { linkedPropType } from 'link-redux';
-import PropTypes from 'prop-types';
+import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
-const propTypes = {
-  linkedProp: linkedPropType.isRequired,
-};
+interface NavbarLinkImageProps {
+  linkedProp: SomeTerm;
+}
 
 const useStyles = makeStyles(() => ({
   image: {
@@ -21,12 +20,12 @@ const useStyles = makeStyles(() => ({
       height: '100%',
       marginLeft: '-.5em',
     },
-    height: '100%',
-    paddingLeft: '.5em',
+    'height': '100%',
+    'paddingLeft': '.5em',
   },
 }));
 
-const NavbarLinkImage = ({ linkedProp }) => {
+const NavbarLinkImage: React.FC<NavbarLinkImageProps> = ({ linkedProp }) => {
   const classes = useStyles();
 
   return (
@@ -37,20 +36,12 @@ const NavbarLinkImage = ({ linkedProp }) => {
   );
 };
 
-NavbarLinkImage.propTypes = propTypes;
-
-const wrapperPropTypes = {
-  children: PropTypes.node,
-};
-
-export const NavbarLinkImageWrapper = ({ children }) => {
+export const NavbarLinkImageWrapper: React.FC<NavbarLinkImageProps> = ({ children }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>{children}</div>
   );
 };
-
-NavbarLinkImageWrapper.propTypes = wrapperPropTypes;
 
 export default NavbarLinkImage;
