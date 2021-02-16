@@ -82,6 +82,7 @@ export default {
   footer: ontola('footer'),
   ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
   formSteps: ontola('formSteps'),
+  groupBy: ontola('groupBy'),
   header: ontola('header'),
   helperText: ontola('helperText'),
   hideHeader: ontola('hideHeader'),
