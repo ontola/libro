@@ -89,7 +89,7 @@ const FormInputs = (props: PropTypes) => {
     return null;
   }
 
-  if (!combinedComponent) {
+  if (combinedComponent) {
     return <InputComponent {...props} />;
   }
 
