@@ -1,4 +1,11 @@
 export default () => ({
+  MuiAutocomplete: {
+    listbox: {
+      '& > div': {
+        maxHeight: 'calc(40vh - 16px)',
+      },
+    },
+  },
   MuiInputBase: {
     input: {
       // font: null,
@@ -12,9 +19,6 @@ export default () => ({
       borderColor: '#e6e6e6',
     },
     root: {
-      '&.Mui-focused .MuiInputBase-input': {
-        backgroundColor: '#ffffff',
-      },
       '&:hover .MuiOutlinedInput-notchedOutline': {
         borderColor: '#b3b3b3',
       },

@@ -212,6 +212,10 @@ input {
       position: relative;
       width: 100%;
     }
+
+    &.Field__input--select {
+      border: unset;
+    }
   }
 
   &.Field--active {

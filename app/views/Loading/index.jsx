@@ -43,6 +43,7 @@ import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
 import { popupTopology } from '../../topologies/Popup';
+import { selectedValueTopology } from '../../topologies/SelectedValue';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
@@ -179,6 +180,8 @@ export default [
       cardMainTopology,
       cardMicroRowTopology,
       inlineTopology,
+      selectTopology,
+      selectedValueTopology,
       voteBubbleTopology,
     ]
   ),

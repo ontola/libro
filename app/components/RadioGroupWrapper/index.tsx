@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import RadioGroup from '../../topologies/RadioGroup';
 import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 import { LoadingRow } from '../Loading';
 
 const RadioGroupWrapper: React.FC<InputComponentProps> = ({

@@ -44,25 +44,6 @@ interface PropTypes {
   values?: InputValue[];
 }
 
-export interface InputComponentProps {
-  autofocus: boolean;
-  description?: string;
-  errors: FormFieldError[];
-  field: SomeNode;
-  fieldShape: ShapeForm;
-  id: string;
-  inputIndex: number;
-  inputValue: InputValue;
-  label?: string | React.ReactNode;
-  meta: InputMeta;
-  name: string;
-  onChange: EventHandler<any>;
-  path: SomeNode;
-  placeholder?: string;
-  storeKey: string;
-  values: InputValue[];
-}
-
 const FormInputs = (props: PropTypes): JSX.Element => {
   const {
     addItem,

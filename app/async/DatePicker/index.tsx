@@ -3,7 +3,7 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { InputComponentProps } from '../../components/FormField/FormInputs';
+import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 
 const messages = {
   cancelLabel: {

@@ -8,7 +8,7 @@ import { InputValue } from '../../hooks/useFormField';
 import Select from '../../topologies/Select';
 import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
 import FieldLabel from '../FieldLabel';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 import Spinner from '../Spinner';
 
 import HiddenRequiredInput from './HiddenRequiredInput';

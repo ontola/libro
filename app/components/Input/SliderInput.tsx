@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import React from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 
 const StyledSlider = withStyles({
   active: {},

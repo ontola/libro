@@ -13,7 +13,7 @@ import useFormField, { InputValue } from '../../hooks/useFormField';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { FormContext } from '../Form/Form';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 

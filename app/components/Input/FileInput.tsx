@@ -8,7 +8,7 @@ import { listToArr } from '../../helpers/data';
 import { formFieldsPath } from '../../helpers/diggers';
 import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 import { FormContext } from '../Form/Form';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import './FileInput.scss';
 import HiddenRequiredInput from './HiddenRequiredInput';

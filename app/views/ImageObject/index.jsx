@@ -11,6 +11,7 @@ import { menuTopology } from '../../topologies/Menu';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
+import { selectedValueTopology } from '../../topologies/SelectedValue';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { parentTopology } from '../../topologies/Parent';
@@ -40,6 +41,7 @@ ImageObject.topology = [
   tableCellTopology,
   navbarTopology,
   selectTopology,
+  selectedValueTopology,
   voteBubbleTopology,
 ];
 

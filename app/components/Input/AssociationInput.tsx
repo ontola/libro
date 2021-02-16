@@ -8,7 +8,7 @@ import React from 'react';
 import { isJSONLDObject } from '../../helpers/types';
 import form from '../../ontology/form';
 import { FormSection } from '../Form';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 
 const AssociationInput: React.FC<InputComponentProps> = ({
   field,

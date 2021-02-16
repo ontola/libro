@@ -3,7 +3,7 @@ import { useProperty } from 'link-redux';
 import React from 'react';
 
 import FieldLabel from '../FieldLabel';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import { InputType } from './Input';
 import InputElement from './InputElement';

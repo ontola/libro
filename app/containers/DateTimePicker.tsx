@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputComponentProps } from '../components/FormField/FormInputs';
+import { InputComponentProps } from '../components/FormField/InputComponentProps';
 import { Input } from '../components/Input';
 import Suspense from '../components/Suspense';
 

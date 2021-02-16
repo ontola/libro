@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SelectInputFieldProps } from '../async/SelectInput/SelectInputField';
+import { InputComponentProps } from '../components/FormField/InputComponentProps';
 import LinkLoader from '../components/Loading/LinkLoader';
 import Suspense from '../components/Suspense';
 import useFontsChecker from '../hooks/useFontsChecker';
@@ -10,7 +10,7 @@ const SelectInputField = React.lazy(
   () => import(/* webpackChunkName: "Forms" */ '../async/SelectInput/SelectInputField'),
 );
 
-const SelectInputFieldLoader = (props: SelectInputFieldProps): JSX.Element => {
+const SelectInputFieldLoader = (props: InputComponentProps): JSX.Element => {
   if (!__CLIENT__ || __TEST__) {
     return <LinkLoader />;
   }

@@ -3,7 +3,7 @@ import React, { EventHandler } from 'react';
 
 import { InputValue } from '../../hooks/useFormField';
 import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../views/Glapp/helpers';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 
 interface SingleInputProps {
   className?: string;

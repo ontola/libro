@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { isResource } from '../../helpers/types';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { inlineTopology } from '../../topologies/Inline';
-import { InputComponentProps } from '../FormField/FormInputs';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
 

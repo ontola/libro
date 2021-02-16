@@ -2,7 +2,6 @@ import * as as from '@ontologies/as';
 import {
   BlankNode,
   NamedNode,
-  SomeTerm,
   Term,
   isNamedNode,
   isNode,
@@ -75,7 +74,7 @@ const getInitialValues = (
       dependentResources.push(...value.filter(isResource));
 
       if (isCollection(lrs, value)) {
-        const members = lrs.dig(value[0] as SomeNode, collectionMembers) as SomeTerm[];
+        const members = lrs.dig(value[0] as SomeNode, collectionMembers);
         dependentResources.push(...members.filter(isResource));
         value = members;
       }
