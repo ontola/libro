@@ -52,8 +52,10 @@ import InfiniteCollectionPage from './InfiniteCollectionPage';
 import Intervention from './Intervention';
 import InterventionType from './InterventionType';
 import PostalCode from './PostalCode';
+import ProductPage from './ProductPage';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
+import LandingPage from './LandingPage';
 import Loading from './Loading';
 import MapQuestion from './MapQuestion';
 import Measure from './Measure';
@@ -142,6 +144,7 @@ export function getViews() {
     ...Intervention,
     ...InterventionType,
     ...InfiniteCollectionPage,
+    ...LandingPage,
     ...Loading,
     ...MapQuestion,
     ...Measure,
@@ -158,6 +161,7 @@ export function getViews() {
     ...Person,
     ...Phase,
     ...Project,
+    ...ProductPage,
     ...Placement,
     ...PostalCode,
     ...PropertyQuery,
