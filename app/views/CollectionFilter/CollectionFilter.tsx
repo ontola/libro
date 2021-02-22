@@ -1,12 +1,13 @@
 import Chip from '@material-ui/core/Chip';
-import rdfFactory from '@ontologies/core';
+import rdfFactory, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
+  register,
   Resource,
   ReturnType,
-  register,
   useLRS,
 } from 'link-redux';
 import React from 'react';
@@ -17,7 +18,7 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import { inlineTopology } from '../../topologies/Inline';
 
-const Value = ({ prop }) => {
+const Value = ({ prop }: { prop: SomeTerm }) => {
   const lrs = useLRS();
 
   if (isResource(prop)) {
@@ -27,7 +28,7 @@ const Value = ({ prop }) => {
   const LiteralRenderer = lrs.getComponentForProperty(
     rdfs.Literal,
     rdfFactory.namedNode(prop.datatype.value),
-    inlineTopology
+    inlineTopology,
   );
 
   if (LiteralRenderer) {
@@ -39,45 +40,56 @@ const Value = ({ prop }) => {
     );
   }
 
-  return prop.value;
+  return <React.Fragment>{prop.value}</React.Fragment>;
 };
 
-const CollectionFilter = ({
+interface CollectionFilterProps {
+  filterKey: SomeTerm;
+  filterValues: SomeTerm[];
+  partOf: NamedNode;
+  setCurrentPage: (page: NamedNode) => void;
+}
+
+const CollectionFilter: FC<CollectionFilterProps> = ({
   filterKey,
   filterValues,
   partOf,
   setCurrentPage,
 }) => {
-  const { iriRemoveParam } = useIRITemplate(partOf);
+  const iriTemplate = useIRITemplate(partOf);
 
   return (
-    filterValues.map((filterValue) => {
-      const label = (
-        <React.Fragment>
-          <Property label={ontola.filterKey} />
-          {': '}
-          <Value prop={filterValue} />
-        </React.Fragment>
-      );
-
-      const handleDelete = () => {
-        const url = iriRemoveParam(
-          'filter%5B%5D',
-          `${encodeURIComponent(filterKey.value)}=${encodeURIComponent(filterValue.value)}`
+    <React.Fragment>
+      {filterValues.map((filterValue) => {
+        const label = (
+          <React.Fragment>
+            <Property label={ontola.filterKey} />
+            {': '}
+            <Value prop={filterValue} />
+          </React.Fragment>
         );
 
-        setCurrentPage(url);
-      };
+        const handleDelete = () => {
+          const url = iriTemplate.remove(
+            'filter%5B%5D',
+            `${encodeURIComponent(filterKey.value)}=${encodeURIComponent(filterValue.value)}`,
+          );
 
-      return (
-        <Chip
-          key={filterValue}
-          label={label}
-          variant="outlined"
-          onDelete={handleDelete}
-        />
-      );
-    })
+          if (url) {
+            setCurrentPage(url);
+          }
+        };
+
+        return (
+          <Chip
+            key={filterValue.value}
+            label={label}
+            variant="outlined"
+            onDelete={handleDelete}
+          />
+        );
+      })}
+    </React.Fragment>
   );
 };
 

@@ -1,15 +1,22 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import equal from 'fast-deep-equal';
-import { linkType, useLinkRenderContext } from 'link-redux';
-import PropTypes from 'prop-types';
+import { useLinkRenderContext } from 'link-redux';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, IntlShape } from 'react-intl';
 
-import Button from '../Button';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
+import Button from '../Button';
 
-const SearchForm = ({
+interface SearchFormProps {
+  autoFocus: boolean;
+  intl: IntlShape;
+  placeholder: SomeTerm;
+  query: SomeTerm;
+  setCurrentPage: (page: NamedNode) => void;
+}
+
+const SearchForm: React.FC<SearchFormProps> = ({
   autoFocus,
   placeholder,
   query,
@@ -17,7 +24,7 @@ const SearchForm = ({
 }) => {
   const queryNormalized = query?.value ?? '';
   const { subject } = useLinkRenderContext();
-  const { iriSetParam } = useIRITemplate(subject);
+  const iriTemplate = useIRITemplate(subject);
 
   return (
     <Form
@@ -51,10 +58,13 @@ const SearchForm = ({
       )}
       onSubmit={({ q }) => {
         if (rdf.equals(q === queryNormalized)) {
-          return null;
+          return;
         }
+        const newPage = iriTemplate.replace('q', q || []);
 
-        return setCurrentPage(iriSetParam('q', q));
+        if (newPage) {
+          return setCurrentPage(newPage);
+        }
       }}
     />
   );
@@ -62,16 +72,6 @@ const SearchForm = ({
 
 SearchForm.defaultProps = {
   autoFocus: true,
-};
-
-SearchForm.propTypes = {
-  autoFocus: PropTypes.bool,
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }),
-  placeholder: linkType,
-  query: linkType,
-  setCurrentPage: PropTypes.func,
 };
 
 export default SearchForm;

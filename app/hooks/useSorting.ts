@@ -18,7 +18,7 @@ const sortElementProps = {
 
 export const useSorting = () => {
   const { subject } = useLinkRenderContext();
-  const { iriSetParam } = useIRITemplate(subject);
+  const iriTemplate = useIRITemplate(subject);
   const collectionSorting = useProperty(ontola.collectionSorting);
   const sortOptions = useProperty(ontola.sortOptions);
   const currentSortings = useResourceLinks(collectionSorting.filter(isNode), sortElementProps)
@@ -29,7 +29,10 @@ export const useSorting = () => {
       direction,
       item: option,
       selected: currentSortings.some(([key, dir]) => option === key && dir?.value === direction),
-      url: iriSetParam('sort%5B%5D', direction && `${encodeURIComponent(option.value)}=${direction}`)?.value,
+      url: iriTemplate.replace(
+        'sort%5B%5D',
+        direction ? `${encodeURIComponent(option.value)}=${direction}` : [],
+      )?.value,
     })))
     .flat(1);
 };

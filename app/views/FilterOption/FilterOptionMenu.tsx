@@ -1,12 +1,12 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import MenuItem from '../../components/MenuItem';
@@ -15,7 +15,21 @@ import { useIRITemplate } from '../../hooks/useIRITemplate';
 import ontola from '../../ontology/ontola';
 import { menuTopology } from '../../topologies/Menu';
 
-const FilterOptionMenuComp = ({
+interface FilterOptionMenuCompProps {
+  currentFilters: SomeNode[];
+  filterCount: SomeTerm;
+  filterKey: SomeNode;
+  filterValue: SomeTerm;
+  handleClose: () => void;
+  partOf: SomeNode;
+  setCurrentPage: (page: NamedNode) => void;
+}
+
+interface FilterOptionMenuCompPropsWithRef extends FilterOptionMenuCompProps {
+  innerRef: any;
+}
+
+const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
   currentFilters,
   filterCount,
   filterKey,
@@ -24,12 +38,12 @@ const FilterOptionMenuComp = ({
   partOf,
   setCurrentPage,
 }) => {
-  const { iriAddParam, iriRemoveParam } = useIRITemplate(partOf);
+  const iriTemplate = useIRITemplate(partOf);
   const selected = currentFilters.some((filter) => filter === filterValue);
   const param = `${encodeURIComponent(filterKey.value)}=${encodeURIComponent(filterValue.value)}`;
   const url = selected
-    ? iriRemoveParam('filter%5B%5D', param)?.value
-    : iriAddParam('filter%5B%5D', param)?.value;
+    ? iriTemplate.remove('filter%5B%5D', param)?.value
+    : iriTemplate.add('filter%5B%5D', param)?.value;
 
   if (!url) {
     return null;
@@ -37,13 +51,13 @@ const FilterOptionMenuComp = ({
 
   return (
     <MenuItem
-      action={(e) => {
+      action={(e: MouseEvent<any>) => {
         e.preventDefault();
         handleClose();
         setCurrentPage(rdf.namedNode(url));
       }}
       expandOpen={null}
-      url={url && retrievePath(url)}
+      url={retrievePath(url)}
     >
       <FontAwesome name={selected ? 'check-square-o' : 'square-o'} />
       {' '}
@@ -53,9 +67,9 @@ const FilterOptionMenuComp = ({
   );
 };
 
-const FilterOptionMenu = React.forwardRef(
-  (props, ref) => <FilterOptionMenuComp innerRef={ref} {...props} />
-);
+const FilterOptionMenu = React.forwardRef<FC, FilterOptionMenuCompProps>(
+  (props, ref) => <FilterOptionMenuComp innerRef={ref} {...props} />,
+) as unknown as FC;
 
 FilterOptionMenu.type = ontola.FilterOption;
 
@@ -65,16 +79,6 @@ FilterOptionMenu.mapDataToProps = {
   filterCount: ontola.filterCount,
   filterValue: ontola.filterValue,
   partOf: schema.isPartOf,
-};
-
-FilterOptionMenuComp.propTypes = {
-  currentFilters: PropTypes.arrayOf(linkType),
-  filterCount: linkType,
-  filterKey: linkType,
-  filterValue: linkType,
-  handleClose: PropTypes.func,
-  partOf: linkType,
-  setCurrentPage: PropTypes.func,
 };
 
 export default register(FilterOptionMenu);

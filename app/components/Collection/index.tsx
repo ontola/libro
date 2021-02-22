@@ -1,4 +1,4 @@
-import rdf, { isNamedNode, NamedNode } from '@ontologies/core';
+import { isNamedNode, NamedNode } from '@ontologies/core';
 import {
   Resource,
   useDataInvalidation,
@@ -7,10 +7,9 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import parser from 'uri-template';
 
 import { entityIsLoaded } from '../../helpers/data';
-import ontola from '../../ontology/ontola';
+import { Params, useIRITemplate } from '../../hooks/useIRITemplate';
 
 interface PropTypes {
   display?: string;
@@ -32,7 +31,25 @@ const Collection: React.FC<PropTypes> = ({
 }) => {
   const lrs = useLRS();
   const [baseCollection] = useProperty(label);
-  useDataInvalidation(isNamedNode(baseCollection) ? baseCollection : []);
+  const timestamp = useDataInvalidation(isNamedNode(baseCollection) ? baseCollection : []);
+  const iriTemplate = useIRITemplate(isNamedNode(baseCollection) ? baseCollection : undefined);
+  const collection = React.useMemo(() => {
+    const assignedOpts: Params = {};
+    if (display) {
+      assignedOpts.display = display;
+    }
+    if (page) {
+      assignedOpts.page = page.toString();
+    }
+    if (pageSize) {
+      assignedOpts.page_size = pageSize.toString();
+    }
+    if (type) {
+      assignedOpts.type = type;
+    }
+
+    return iriTemplate.set(assignedOpts);
+  }, [timestamp, display, page, pageSize, type]);
 
   if (!isNamedNode(baseCollection)) {
     return null;
@@ -42,22 +59,12 @@ const Collection: React.FC<PropTypes> = ({
     return <Resource subject={baseCollection} onLoad={onLoad} />;
   }
 
-  const iriTemplate = lrs.getResourceProperty(baseCollection, ontola.iriTemplate);
-
-  if (!iriTemplate) {
+  if (!collection) {
     return null;
   }
 
-  const tmpl = parser.parse(iriTemplate.value);
-  const collection = tmpl.expand({
-    display,
-    page,
-    page_size: pageSize,
-    type,
-  });
-
   return (
-    <Resource subject={rdf.namedNode(collection)} {...otherProps} />
+    <Resource subject={collection} {...otherProps} />
   );
 };
 
