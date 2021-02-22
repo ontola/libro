@@ -1,5 +1,6 @@
 import * as as from '@ontologies/as';
 import { isNamedNode, isNode, NamedNode, SomeTerm, Term } from '@ontologies/core';
+import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
@@ -31,6 +32,18 @@ const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
   return value?.length === 1 && isNode(firstValue) && resourceHasType(lrs, firstValue, as.Collection);
 };
 
+const renderedFieldValue = (fieldType?: NamedNode) => (
+  fieldType && [
+    form.AssociationInput,
+    form.CheckboxGroup,
+    form.CheckboxInput,
+    form.LocationInput,
+    form.RadioGroup,
+    form.SelectInput,
+    form.ToggleButtonGroup,
+  ].includes(fieldType)
+);
+
 const getInitialValues = (
   lrs: LinkReduxLRSType,
   sessionStore: Storage | undefined,
@@ -55,7 +68,8 @@ const getInitialValues = (
     const shIn = lrs.getResourceProperties(field, sh.shaclin);
     dependentResources.push(...shIn);
 
-    const path = lrs.getResourceProperty(field, sh.path) as NamedNode;
+    const path = lrs.getResourceProperty<NamedNode>(field, sh.path);
+    const fieldType = lrs.getResourceProperty<NamedNode>(field, rdfx.type);
     if (path && object) {
       const fieldName = calculateFormFieldName(path);
       const storageKey = getStorageKey(formContext, nested ? object : undefined, path);
@@ -63,12 +77,14 @@ const getInitialValues = (
       const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
 
       let value = valueFromStorage || lrs.getResourceProperties(object, path);
-      dependentResources.push(...value.filter(isResource));
+      if (renderedFieldValue(fieldType)) {
+        dependentResources.push(...value.filter(isResource));
 
-      if (isCollection(lrs, value)) {
-        const members = lrs.dig(value[0] as SomeNode, collectionMembers) as SomeTerm[];
-        dependentResources.push(...members.filter(isResource));
-        value = members;
+        if (isCollection(lrs, value)) {
+          const members = lrs.dig(value[0] as SomeNode, collectionMembers) as SomeTerm[];
+          dependentResources.push(...members.filter(isResource));
+          value = members;
+        }
       }
 
       if (nestedForm) {
