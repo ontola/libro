@@ -18,6 +18,10 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
+        resourceQuery: /raw/,
+        type: 'asset/source',
+      },
+      {
         exclude: /node_modules/,
         test: /\.(m?(t|j)sx?)$/,
         use: ['babel-loader'],

@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-
 import { constants } from 'zlib';
 
 import Router from '@koa/router';
@@ -91,6 +90,12 @@ const routes = async function routes(app, port) {
   }));
 
   const router = new Router();
+
+  if (__DEVELOPMENT__) {
+    // eslint-disable-next-line no-inline-comments
+    const editorContext = await import(/* webpackChunkName: "dev" */'./pageBuilder');
+    router.get('/d/builder/editorContext.bundle.json', editorContext.default);
+  }
 
   router.use(securityHeaders);
 

@@ -76,6 +76,11 @@ if (assetsHost) {
 }
 
 if (__DEVELOPMENT__) {
+  scriptSrc.push('https://cdn.jsdelivr.net');
+  styleSrc.push('https://cdn.jsdelivr.net');
+  fontSrc.push('https://cdn.jsdelivr.net');
+  workerSrc.push('https://cdn.jsdelivr.net');
+
   scriptSrc.push("'unsafe-inline'", "'unsafe-eval'", 'blob:');
   styleSrc.push('blob:');
   workerSrc.push('blob:');
