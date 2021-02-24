@@ -37,32 +37,4 @@ describe('Collapsible reducer', () => {
 
     expect(reduced.getIn(['items', 'CDA', 'opened'])).toEqual(true);
   });
-
-  it('should handle COLL_TOGGLE_GROUP', () => {
-    const initialState = new Map({
-      items: new Map({
-        CDA: new Collapsible({
-          group: 'politiek',
-          opened: true,
-        }),
-        VVD: new Collapsible({
-          group: 'politiek',
-          opened: true,
-        }),
-      }),
-    });
-
-    const reduced = collapsible(initialState, {
-      payload: {
-        id: 'politiek',
-      },
-      type: actions.COLL_TOGGLE_GROUP,
-    });
-
-    expect(reduced.getIn(['items', 'CDA', 'group'])).toEqual('politiek');
-    expect(reduced.getIn(['items', 'CDA', 'opened'])).toEqual(false);
-
-    expect(reduced.getIn(['items', 'VVD', 'group'])).toEqual('politiek');
-    expect(reduced.getIn(['items', 'VVD', 'opened'])).toEqual(false);
-  });
 });

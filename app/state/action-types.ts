@@ -8,7 +8,6 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 // Collapsibles
 export const COLL_ADD = 'COLL_ADD';
 export const COLL_CLOSE_ONE = 'COLL_CLOSE_ONE';
-export const COLL_OPEN_GROUPED = 'COLL_OPEN_GROUPED';
 export const COLL_TOGGLE_ONE = 'COLL_TOGGLE_ONE';
 export const COLL_TOGGLE_GROUP = 'COLL_TOGGLE_GROUP';
 

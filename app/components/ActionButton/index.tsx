@@ -1,28 +1,22 @@
-import rdf from '@ontologies/core';
-import {
-  linkType,
-  subjectType,
-  topologyType,
-} from 'link-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import Button from '../Button';
+import rdf, { Literal, Node, SomeTerm } from '@ontologies/core';
+import React, { EventHandler } from 'react';
 import { countInParentheses } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
+import Button from '../Button';
 
 const defaultTopology = argu.cardList;
 
-class ActionButton extends React.PureComponent {
-  static propTypes = {
-    count: linkType,
-    name: linkType,
-    onClick: PropTypes.func,
-    subject: subjectType,
-    topology: topologyType,
-  };
+export interface ActionButtonProps {
+  count: Literal;
+  name: SomeTerm;
+  onClick: EventHandler<any>;
+  subject: Node;
+  topology: Node;
+}
 
-  render() {
+class ActionButton extends React.PureComponent<ActionButtonProps> {
+
+  public render() {
     const {
       count,
       name,

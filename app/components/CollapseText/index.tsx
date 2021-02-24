@@ -1,19 +1,18 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 import {
-  FormattedMessage,
   defineMessages,
+  FormattedMessage,
   useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';
 
+import CollapsibleContainer from '../../containers/CollapsibleContainer';
+import { initializeCollapsible, InitializeCollapsiblePayload, toggleOne } from '../../state/collapsible/actions';
+import { getCollapsibleOpened } from '../../state/collapsible/selectors';
 import Button from '../Button';
 import Markdown from '../Markdown';
-import CollapsibleContainer from '../../containers/CollapsibleContainer';
-import { initializeCollapsible, toggleOne } from '../../state/collapsible/actions';
-import { getCollapsibleOpened } from '../../state/collapsible/selectors';
 
 import './CollapseText.scss';
 
@@ -24,31 +23,32 @@ const messages = defineMessages({
   },
 });
 
-const propTypes = {
-  id: PropTypes.string.isRequired,
-  minCharacters: PropTypes.number,
-  noSpacing: PropTypes.bool,
-  onClickToggle: PropTypes.func.isRequired,
-  open: PropTypes.bool,
-  text: PropTypes.string,
-};
+export interface CollapseTextProps {
+  id: string;
+  minCharacters?: number;
+  noSpacing?: boolean;
+  onClickToggle: EventHandler<any>;
+  open?: boolean;
+  text?: string;
+}
 
 const defaultProps = {
   minCharacters: 700,
+  text: '',
 };
 
-const CollapseText = ({
+const CollapseText: React.FC<CollapseTextProps> = ({
   id,
   onClickToggle,
-  minCharacters,
+  minCharacters = defaultProps.minCharacters,
   noSpacing,
   open,
-  text,
+  text = defaultProps.text,
 }) => {
   const intl = useIntl();
 
   const classes = clsx({
-    CollapseText: true,
+    'CollapseText': true,
     'CollapseText--open': open,
   });
 
@@ -66,7 +66,7 @@ const CollapseText = ({
           plain
           className="CollapseText__toggle"
           title={intl.formatMessage(messages.expandOrCollapseTitle)}
-          onClick={() => onClickToggle()}
+          onClick={(e) => onClickToggle(e)}
         >
           {open && (
             <FormattedMessage
@@ -90,19 +90,17 @@ const CollapseText = ({
   return <Markdown noSpacing={noSpacing} text={text} />;
 };
 
-CollapseText.propTypes = propTypes;
-
 export default connect(
-  (state, ownProps) => {
-    const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
-
+  (state, ownProps: CollapseTextProps) => {
+    const minCharacters = ownProps.minCharacters ?? defaultProps.minCharacters;
+    const text = ownProps.text ?? defaultProps.text;
     return ({
       minCharacters,
-      open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
+      open: text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
     });
   },
   (dispatch, { id }) => ({
     onClickToggle: () => dispatch(toggleOne(id)),
-    onInitializeCollapsible: (data) => dispatch(initializeCollapsible(data)),
-  })
+    onInitializeCollapsible: (data: InitializeCollapsiblePayload) => dispatch(initializeCollapsible(data)),
+  }),
 )(CollapseText);

@@ -150,6 +150,7 @@
     "@types/markdown-draft-js": "^2.2.2",
     "@types/ol": "^6.4.2",
     "@types/react": "^16.9.11",
+    "@types/react-collapse": "^5.0.0",
     "@types/react-is": "^16.7.1",
     "@types/react-pdf": "^5.0.0",
     "@types/react-redux": "^7.1.1",

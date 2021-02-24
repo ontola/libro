@@ -1,20 +1,17 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import CardFloat from '../../topologies/Card/CardFloat';
 
-const propTypes = {
-  /** The children float to the top left */
-  children: PropTypes.node,
+export interface CardHeaderProps {
   /** The float content floats to the top right */
-  float: PropTypes.node,
-};
+  float?: ReactNode;
+}
 
 /**
  * Holds a header and menu items that float to the top right of the card
- * @returns {component} Component
+ * @returns Component
  */
-const CardHeader = ({
+const CardHeader: React.FC<CardHeaderProps> = ({
   children,
   float,
 }) => (
@@ -25,7 +22,5 @@ const CardHeader = ({
     </CardFloat>
   </div>
 );
-
-CardHeader.propTypes = propTypes;
 
 export default CardHeader;
