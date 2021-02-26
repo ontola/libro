@@ -1,4 +1,5 @@
 import * as as from '@ontologies/as';
+import * as dcterms from '@ontologies/dcterms';
 import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
@@ -45,6 +46,7 @@ const NamePredicates = [
   rdfs.label,
   foaf.name,
   sh.name,
+  dcterms.title,
 ];
 
 const ColoredHeading = ({

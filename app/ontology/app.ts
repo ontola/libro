@@ -1,4 +1,5 @@
 import rdf, { createNS } from '@ontologies/core';
+import * as dcterms from '@ontologies/dcterms';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -22,9 +23,9 @@ const thumbnail = app('thumbnail');
 const title = app('title');
 
 export const appOntology = [
-    ...arrayToSeqQuads([schema.text, schema.description], contents),
+    ...arrayToSeqQuads([schema.text, schema.description, dcterms.description], contents),
     ...arrayToSeqQuads([dbo.thumbnail, wdt.ns('P18')], thumbnail),
-    ...arrayToSeqQuads([schema.name, rdfs.label, foaf.name], title),
+    ...arrayToSeqQuads([schema.name, rdfs.label, foaf.name, dcterms.title], title),
 ];
 
 export default {
