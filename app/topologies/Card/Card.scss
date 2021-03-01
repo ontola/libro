@@ -100,6 +100,7 @@
   padding: units('small', 'large');
   padding-bottom: 0;
   position: relative;
+  word-break: break-word;
 
   &--align-end {
     align-self: flex-end;
