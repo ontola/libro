@@ -8,18 +8,19 @@ import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
 import { tryParseFloat } from '../../helpers/numbers';
+import useJSON from '../../hooks/useJSON';
 import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
-import { GlappMapProps, PostalCodes, PostalStats } from '../../views/Glapp/GlappMap';
 import {
-  postalCodeIri,
-} from '../../views/Glapp/helpers';
-import useJSON from '../../views/Glapp/useJSON';
-
+  GlappMapProps,
+  PostalCodes,
+  PostalStats,
+} from '../../views/GroenLinks/Glapp/GlappMap';
+import { postalCodeIri } from '../../views/GroenLinks/Glapp/helpers';
 import MapCanvas from '../MapView/MapCanvas';
 import { FOCUS_ZOOM, ViewProps } from '../MapView/useMap';
-import useEventsLayer from './useEventsLayer';
 
+import useEventsLayer from './useEventsLayer';
 import usePostalShapes from './usePostalShapes';
 import useSelectedPostalCode from './useSelectedPostalCode';
 

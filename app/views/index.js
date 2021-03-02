@@ -5,12 +5,9 @@
 import Action from './Action/index';
 import ActionBody from './ActionBody';
 import Activity from './Activity';
-import Address from './Address';
 import AppSignOut from './AppSignOut';
-import AppTeam from './AppTeam';
 import ArguHome from './ArguHome';
 import Argument from './Argument/index';
-import Badge from './Badge';
 import Banner from './Banner/Banner';
 import Category from './Category';
 import Collection from './Collection';
@@ -20,10 +17,8 @@ import Comment from './Comment';
 import Condition from './Condition';
 import Confirmation from './Confirmation';
 import ContactPage from './ContactPage';
-import Dashboard from './Dashboard';
 import DataCube from './DataCube';
 import DataType from './DataType';
-import Department from './Department';
 import Dexes from './Dexes';
 import DialogManager from './DialogManager';
 import Document from './Document';
@@ -31,7 +26,6 @@ import Employment from './Employment';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import ErrorResponse from './ErrorResponse';
-import Event from './Event';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
 import FolderEntry from './FolderEntry';
@@ -40,15 +34,13 @@ import FormGroup from './FormGroup';
 import FormOption from './FormOption';
 import FormPage from './FormPage';
 import Forum from './Forum/index';
-import Glapp from './Glapp';
+import GroenLinks from './GroenLinks';
 import Group from './Group';
-import GroupMembership from './GroupMembership';
 import ImageObject from './ImageObject';
 import Incident from './Incident';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import Intervention from './Intervention';
 import InterventionType from './InterventionType';
-import PostalCode from './PostalCode';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
@@ -62,9 +54,7 @@ import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
 import Notification from './Notification';
-import OnlineCampaigner from './OnlineCampaigner';
 import Organization from './Organization/index';
-import Participant from './Participant';
 import Person from './Person';
 import Phase from './Phase';
 import Project from './Project';
@@ -76,14 +66,11 @@ import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
-import Street from './Street';
 import Survey from './Survey';
-import TargetProgress from './TargetProgress';
 import Thing from './Thing';
 import Timeline from './Timeline';
 import Token from './Token';
 import User from './User';
-import Volunteer from './Volunteer';
 import Vote from './Vote';
 import VoteEvent from './VoteEvent';
 import Widget from './Widget';
@@ -92,14 +79,11 @@ export function getViews() {
   return [
     ...ActionBody,
     ...Activity,
-    ...Address,
     ...AppSignOut,
-    ...AppTeam,
     ...ArguHome,
     ...Thing,
     ...Action,
     ...Argument,
-    ...Badge,
     ...Banner,
     ...Category,
     ...Collection,
@@ -109,10 +93,8 @@ export function getViews() {
     ...Condition,
     ...Confirmation,
     ...ContactPage,
-    ...Dashboard,
     ...DataCube,
     ...DataType,
-    ...Department,
     ...Dexes,
     ...Document,
     ...DialogManager,
@@ -120,7 +102,6 @@ export function getViews() {
     ...EntryPoint,
     ...Error,
     ...ErrorResponse,
-    ...Event,
     ...FilterField,
     ...FilterOption,
     ...FolderEntry,
@@ -129,9 +110,8 @@ export function getViews() {
     ...FormOption,
     ...FormPage,
     ...Forum,
-    ...Glapp,
+    ...GroenLinks,
     ...Group,
-    ...GroupMembership,
     ...ImageObject,
     ...Incident,
     ...Intervention,
@@ -148,14 +128,11 @@ export function getViews() {
     ...MenuSection,
     ...Motion,
     ...Notification,
-    ...OnlineCampaigner,
     ...Organization,
-    ...Participant,
     ...Person,
     ...Phase,
     ...Project,
     ...Placement,
-    ...PostalCode,
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
@@ -165,13 +142,10 @@ export function getViews() {
     ...SeqComp,
     ...Snackbar,
     ...SnackbarManager,
-    ...Street,
     ...Survey,
-    ...TargetProgress,
     ...Timeline,
     ...Token,
     ...User,
-    ...Volunteer,
     ...Vote,
     ...VoteEvent,
     ...Widget,

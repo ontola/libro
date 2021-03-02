@@ -4,9 +4,9 @@
  * @module API
  */
 
-import { setMapAccessToken } from '../async/MapView/actions';
 import { handle } from '../helpers/logging';
 import { AFE_API_GET_MAP_ACCESS_TOKEN } from '../state/action-types';
+import { setMapAccessToken } from '../state/MapView/actions';
 
 export default () => () => (next) => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {

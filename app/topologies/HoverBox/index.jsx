@@ -15,6 +15,9 @@ export const propTypes = {
 
 export const hoverBoxTopology = argu.ns('cardHover');
 
+const SPACE_KEY = 32;
+const ENTER_KEY = 13;
+
 export default function(topology = hoverBoxTopology, popout = false) {
   /**
    * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
@@ -51,6 +54,12 @@ export default function(topology = hoverBoxTopology, popout = false) {
       this.showContent();
     }
 
+    handleOnKeyUp(e) {
+      if ([SPACE_KEY, ENTER_KEY].includes(e.keyCode) && this.props.onClick) {
+        this.props.onClick();
+      }
+    }
+
     handleOnBlur() {
       this.hideContent();
     }
@@ -77,7 +86,6 @@ export default function(topology = hoverBoxTopology, popout = false) {
     // When the user hovers over them, the hiddenChildren appear.
     trigger(children) {
       return (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <span
           className="HoverBox-trigger"
           data-test="HoverBox-trigger"
@@ -85,6 +93,7 @@ export default function(topology = hoverBoxTopology, popout = false) {
           onBlur={this.handleOnBlur}
           onClick={this.handleOnClick}
           onFocus={this.handleOnFocus}
+          onKeyUp={this.handleOnKeyUp}
           onMouseEnter={this.handleOnMouseEnter}
           onMouseLeave={this.handleOnMouseLeave}
         >

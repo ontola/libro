@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 import LinkLoader from '../../components/Loading/LinkLoader';
 import OverlayContainer from '../../components/OverlayContainer';
 import withReducer from '../../containers/withReducer';
+import { getMapAccessToken } from '../../state/MapView/actions';
+import reducer, { MapReducerKey } from '../../state/MapView/reducer';
 import { popupTopology } from '../../topologies/Popup';
+import { getAccessToken, getAccessTokenError } from '../../state/MapView/selectors';
 
-import { getMapAccessToken } from './actions';
-import reducer, { MapReducerKey } from './reducer';
-import { getAccessToken, getAccessTokenError } from './selectors';
 import useMap, { UseMapProps } from './useMap';
 import useMapStyles from './useMapStyles';
 import useOverlay from './useOverlay';

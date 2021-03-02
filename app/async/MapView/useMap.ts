@@ -353,8 +353,7 @@ const useMap = (props: UseMapProps): {
     if (memoizedMap) {
       const select = new Select({
         condition: singleClick,
-        // @ts-ignore
-        style: false,
+        style: getStyle('hoverStyle'),
       });
       select.on('select', handleSelect);
       setDeselect(() => () => {

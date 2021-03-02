@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import React, { EventHandler } from 'react';
 
 import { InputValue } from '../../hooks/useFormField';
-import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../views/Glapp/helpers';
+import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../views/GroenLinks/Glapp/helpers';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 interface SingleInputProps {

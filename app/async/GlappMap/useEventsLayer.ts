@@ -3,8 +3,13 @@ import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
-import { Events } from '../../views/Glapp/GlappMap';
-import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS, postalCodeIri } from '../../views/Glapp/helpers';
+
+import { Events } from '../../views/GroenLinks/Glapp/GlappMap';
+import {
+  MAX_POSTAL_DIGITS,
+  MIN_POSTAL_DIGITS,
+  postalCodeIri,
+} from '../../views/GroenLinks/Glapp/helpers';
 import { getStyles } from '../MapView/helpers';
 
 const useEventsLayer = (eventsData?: Events) => {

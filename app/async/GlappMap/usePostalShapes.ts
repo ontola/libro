@@ -1,6 +1,7 @@
 import { useResourceProperty } from 'link-redux';
 import { Feature } from 'ol';
 import GeoJSON from 'ol/format/GeoJSON';
+import Point from 'ol/geom/Point';
 import Fill from 'ol/style/Fill';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
@@ -8,8 +9,13 @@ import React from 'react';
 import { tryParseFloat } from '../../helpers/numbers';
 import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
-import { PostalCodes, Priorities } from '../../views/Glapp/GlappMap';
-import { postalCodeIri } from '../../views/Glapp/helpers';
+import { Priorities } from '../../containers/GroenLinks/GlappMap';
+import { postalCodeIri } from '../../views/GroenLinks/Glapp/helpers';
+
+export interface PostalCodes {
+  features: Array<Feature<Point>>;
+  type: string;
+}
 
 const SHADE_COUNT = 10;
 
