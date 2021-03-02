@@ -4,11 +4,11 @@ import { normalizeType, SomeNode } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import DropzoneOverlay from '../../components/Dropzone/DropzoneOverlay';
-import Spinner from '../../components/Spinner';
-import { convertKeysAtoB } from '../../helpers/data';
-import { handle } from '../../helpers/logging';
-import { getBase64 } from '../MediaObject/omniform/MediaObjectOmniformDropzone';
+import DropzoneOverlay from '../../../components/Dropzone/DropzoneOverlay';
+import Spinner from '../../../components/Spinner';
+import { convertKeysAtoB } from '../../../helpers/data';
+import { handle } from '../../../helpers/logging';
+import { getBase64 } from '../../MediaObject/omniform/MediaObjectOmniformDropzone';
 
 interface UploadTargetProps {
   uploadAction?: SomeNode;

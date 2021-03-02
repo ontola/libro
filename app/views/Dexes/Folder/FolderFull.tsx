@@ -10,23 +10,22 @@ import {
   useLRS,
   useProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-import { components } from '../../components';
-import { useViewBuilderToolkit } from '../../helpers/builder';
-import dexes from '../../ontology/dexes';
-import ontola from '../../ontology/ontola';
-import { containerTopology } from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { components } from '../../../components';
+import { useViewBuilderToolkit } from '../../../helpers/builder';
+import dexes from '../../../ontology/dexes';
+import ontola from '../../../ontology/ontola';
+import { containerTopology } from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
 import UploadTarget from './UploadTarget';
 
-interface PropTypes {
+interface FolderFullProps {
   renderPartOf: LinkedPropType;
 }
 
-const FolderFull: FC<PropTypes> = ({ renderPartOf, subject }) => {
+const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
   const { c, p } = useViewBuilderToolkit();
   const lrs = useLRS();
   const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms });
