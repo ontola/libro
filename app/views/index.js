@@ -23,10 +23,7 @@ import Dashboard from './Dashboard';
 import DataCube from './DataCube';
 import DataType from './DataType';
 import Department from './Department';
-import DexesAgreement from './DexesAgreement';
-import DexesInvite from './DexesInvite';
-import DexesOffer from './DexesOffer';
-import DexTransfer from './DexTransfer';
+import Dexes from './Dexes';
 import DialogManager from './DialogManager';
 import Document from './Document';
 import Employment from './Employment';
@@ -36,7 +33,6 @@ import ErrorResponse from './ErrorResponse';
 import Event from './Event';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
-import Folder from './Folder';
 import FolderEntry from './FolderEntry';
 import FormField from './FormField';
 import FormGroup from './FormGroup';
@@ -114,10 +110,7 @@ export function getViews() {
     ...DataCube,
     ...DataType,
     ...Department,
-    ...DexesAgreement,
-    ...DexesInvite,
-    ...DexesOffer,
-    ...DexTransfer,
+    ...Dexes,
     ...Document,
     ...DialogManager,
     ...Employment,
@@ -127,7 +120,6 @@ export function getViews() {
     ...Event,
     ...FilterField,
     ...FilterOption,
-    ...Folder,
     ...FolderEntry,
     ...FormField,
     ...FormGroup,

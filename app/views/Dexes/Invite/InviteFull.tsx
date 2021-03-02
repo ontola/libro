@@ -1,33 +1,42 @@
+import { isNamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
   useDataFetching,
   useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import CardContent from '../../components/Card/CardContent';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
-import argu from '../../ontology/argu';
-import dexes from '../../ontology/dexes';
-import ontola from '../../ontology/ontola';
-import ActionsBar from '../../topologies/ActionsBar';
-import CardMain from '../../topologies/Card/CardMain';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { defaultMenus } from '../common';
+import CardContent from '../../../components/Card/CardContent';
+import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import argu from '../../../ontology/argu';
+import dexes from '../../../ontology/dexes';
+import ontola from '../../../ontology/ontola';
+import ActionsBar from '../../../topologies/ActionsBar';
+import CardMain from '../../../topologies/Card/CardMain';
+import Container from '../../../topologies/Container';
+import DetailsBar from '../../../topologies/DetailsBar';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import { defaultMenus } from '../../common';
 
-const DexesInviteFull = ({ assigner, renderPartOf }) => {
+interface InviteFullProps {
+  assigner: SomeNode;
+  renderPartOf: boolean;
+}
+
+const InviteFull: FC<InviteFullProps> = ({
+  assigner,
+  renderPartOf,
+}) => {
   const [offer] = useProperty(dexes.offer);
-  const [file] = useResourceProperty(offer, dexes.file);
-  useDataFetching([file]);
-  const [fileName] = useResourceProperty(file, schema.name);
+  const [file] = useResourceProperty(isNamedNode(offer) ? offer : undefined, dexes.file);
+  useDataFetching(isNamedNode(file) ? [file] : []);
+  const [fileName] = useResourceProperty(isNamedNode(file) ? file : undefined, schema.name);
 
   return (
     <React.Fragment>
@@ -61,17 +70,12 @@ const DexesInviteFull = ({ assigner, renderPartOf }) => {
   );
 };
 
-DexesInviteFull.type = dexes.Invite;
+InviteFull.type = dexes.Invite;
 
-DexesInviteFull.topology = fullResourceTopology;
+InviteFull.topology = fullResourceTopology;
 
-DexesInviteFull.mapDataToProps = {
+InviteFull.mapDataToProps = {
   assigner: dexes.assigner,
 };
 
-DexesInviteFull.propTypes = {
-  assigner: linkType,
-  renderPartOf: PropTypes.bool,
-};
-
-export default register(DexesInviteFull);
+export default register(InviteFull);

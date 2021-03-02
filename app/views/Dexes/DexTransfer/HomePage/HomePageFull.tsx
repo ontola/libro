@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
 import { Property, register } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
+import { Size } from '../../../../components/shared/config';
 
-import dexes from '../../../ontology/dexes';
-import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import dexes from '../../../../ontology/dexes';
+import Container from '../../../../topologies/Container';
+import { fullResourceTopology } from '../../../../topologies/FullResource';
 
 import DexTransferLogo from './DexTransferLogo';
 
@@ -60,8 +60,13 @@ const messages = defineMessages({
   },
 });
 
+interface FeatureProps {
+  desc: string;
+  title: string;
+}
+
 // TODO: extract
-const Feature = ({ desc, title }) => {
+const Feature: React.FC<FeatureProps> = ({ desc, title }) => {
   const classes = useStyles();
 
   return (
@@ -71,17 +76,13 @@ const Feature = ({ desc, title }) => {
     </ul>
   );
 };
-Feature.propTypes = {
-  desc: PropTypes.string,
-  title: PropTypes.string,
-};
 
 const HomePagePage = () => {
   const classes = useStyles();
   const { formatMessage } = useIntl();
 
   return (
-    <Container size="medium">
+    <Container size={Size.medium}>
       <DexTransferLogo />
       <div className={classes.root}>
         <div className={classes.formContainer}>

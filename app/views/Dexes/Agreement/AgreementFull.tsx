@@ -3,17 +3,17 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import CardDivider from '../../components/Card/CardDivider';
-import dexes from '../../ontology/dexes';
-import CardMain from '../../topologies/Card/CardMain';
-import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import AttributeList from '../../topologies/AttributeList';
-import AttributeListItem from '../../components/AttributeListItem';
-import Heading from '../../components/Heading';
+import AttributeListItem from '../../../components/AttributeListItem';
+import CardContent from '../../../components/Card/CardContent';
+import CardDivider from '../../../components/Card/CardDivider';
+import Heading from '../../../components/Heading';
+import dexes from '../../../ontology/dexes';
+import AttributeList from '../../../topologies/AttributeList';
+import CardMain from '../../../topologies/Card/CardMain';
+import Container from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const DexesAgreeMentFull = () => (
+const AgreementFull = () => (
   <React.Fragment>
     <Container>
       <CardMain>
@@ -48,8 +48,8 @@ const DexesAgreeMentFull = () => (
   </React.Fragment>
 );
 
-DexesAgreeMentFull.type = dexes.Agreement;
+AgreementFull.type = dexes.Agreement;
 
-DexesAgreeMentFull.topology = fullResourceTopology;
+AgreementFull.topology = fullResourceTopology;
 
-export default register(DexesAgreeMentFull);
+export default register(AgreementFull);
