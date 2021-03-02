@@ -64,7 +64,7 @@ const Progress = ({
           height,
           maxWidth,
         }}
-        value={100 * ((value - min) / (max - min))}
+        value={100 * ((Math.min(value, max) - min) / (max - min))}
         variant="determinate"
       />
       {minLabel && (

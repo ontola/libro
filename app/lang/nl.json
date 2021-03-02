@@ -157,6 +157,12 @@
       "value": "Top!"
     }
   ],
+  "https://app.argu.co/i18n/budgets/submitted": [
+    {
+      "type": 0,
+      "value": "Je budget is ingediend."
+    }
+  ],
   "https://app.argu.co/i18n/collapsible/collapse": [
     {
       "type": 0,

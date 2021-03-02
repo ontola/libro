@@ -42,10 +42,12 @@ const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputVa
       const compareValue = inputValue && normalizedLower(inputValue);
       const searchResultOpts = {} as any;
       if (compareValue?.length > 0) {
+        const filter = shIn ? new URL(shIn.value).searchParams.get('filter[]') : null;
         searchResultOpts.match = 'partial';
         searchResultOpts.page = 1;
         searchResultOpts.q = compareValue;
         searchResultOpts.fragment = 'members';
+        searchResultOpts['filter%5B%5D'] = filter;
       }
       const searchResult = iriFromTemplate(searchTemplate.value, searchResultOpts);
       setCurrentShIn(searchResult);

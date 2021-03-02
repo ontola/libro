@@ -1,13 +1,21 @@
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
+import { register } from 'link-redux';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Detail from '../../components/Detail';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 
-const EntryPointDetail = ({ image, name }) => {
+interface EntryPointDetailProps {
+  image: SomeTerm;
+  name: string;
+}
+
+const EntryPointDetail = ({
+  image,
+  name,
+}: EntryPointDetailProps): JSX.Element => {
   const icon = image && image.value.startsWith('fa-') ? image.value.slice('fa-'.length) : image.value;
 
   return <Detail icon={icon} text={name} />;
@@ -22,11 +30,6 @@ EntryPointDetail.topology = [
 
 EntryPointDetail.mapDataToProps = {
   image: schema.image,
-};
-
-EntryPointDetail.propTypes = {
-  image: linkType,
-  name: PropTypes.string,
 };
 
 export default register(EntryPointDetail);

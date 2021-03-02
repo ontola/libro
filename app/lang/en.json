@@ -157,6 +157,12 @@
       "value": "Great!"
     }
   ],
+  "https://app.argu.co/i18n/budgets/submitted": [
+    {
+      "type": 0,
+      "value": "Your budget is submitted."
+    }
+  ],
   "https://app.argu.co/i18n/collapsible/collapse": [
     {
       "type": 0,

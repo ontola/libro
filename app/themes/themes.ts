@@ -37,3 +37,13 @@ export interface LibroTheme extends Theme {
     [K in Size]: string
   }
 }
+
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+export enum Margin {
+  'Small' = 2.5,
+  'Medium' = 5,
+  'Large' = 7.5,
+}
+/* eslint-enable @typescript-eslint/no-magic-numbers */
+
+export type LibroTheme = Theme;

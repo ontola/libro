@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
@@ -13,6 +14,11 @@ interface PropTypes {
   className?: string;
   right?: ReactNode;
   scrollable?: boolean;
+  variant?: DetailsBarVariant;
+}
+
+export enum DetailsBarVariant {
+  Wide = 'wide',
 }
 
 class DetailsBar extends TopologyProvider<PropTypes> {
@@ -28,9 +34,14 @@ class DetailsBar extends TopologyProvider<PropTypes> {
 
   public render() {
     const IconWrapper = this.props.scrollable ? VerticalScroller : React.Fragment;
+    const classes = clsx({
+      DetailsBar: true,
+      [`DetailsBar--variant-${this.props.variant}`]: this.props.variant,
+      [this.props.className || '']: this.props.className,
+    });
 
     return this.wrap((
-      <div className={`DetailsBar theme ${this.props.className || ''}`}>
+      <div className={classes}>
         <IconWrapper>
           {this.props.children}
         </IconWrapper>

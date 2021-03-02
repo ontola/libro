@@ -52,13 +52,14 @@ const InlineAction: FC<InlineCreateActionProps> = ({
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
+  const useOmniform = omniform && OMNIFORM_FILTER.find(filterFind(subject));
 
-  if (omniform && OMNIFORM_FILTER.find(filterFind(subject))) {
+  if (useOmniform) {
     return (
       <Property
         count={count}
         label={schema.name}
-        onClick={omniform && OMNIFORM_FILTER.find(filterFind(subject)) ? onClick : undefined}
+        onClick={useOmniform ? onClick : null}
       />
     );
   }

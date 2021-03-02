@@ -15,6 +15,13 @@ export const badgeMessages = defineMessages({
   },
 });
 
+export const budgetMessages = defineMessages({
+  submitted: {
+    defaultMessage: 'Your budget is submitted.',
+    id: 'https://app.argu.co/i18n/budgets/submitted',
+  },
+});
+
 export const collapsibleMessages = defineMessages({
   expandOrCollapseTitle: {
     defaultMessage: 'Expand or collapse menu',

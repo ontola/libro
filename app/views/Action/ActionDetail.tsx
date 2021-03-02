@@ -1,16 +1,21 @@
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  linkType,
   register,
 } from 'link-redux';
 import React from 'react';
 
 import LDLink from '../../components/LDLink';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 
-const ActionDetail = ({ name }) => (
+interface ActionDetailProps {
+  name: SomeTerm;
+}
+
+const ActionDetail = ({ name }: ActionDetailProps): JSX.Element => (
   <LDLink>
     <Property
       label={schema.target}
@@ -22,16 +27,13 @@ const ActionDetail = ({ name }) => (
 ActionDetail.type = schema.Action;
 
 ActionDetail.topology = [
+  cardFloatTopology,
   contentDetailsTopology,
   detailsBarTopology,
 ];
 
 ActionDetail.mapDataToProps = {
   name: schema.name,
-};
-
-ActionDetail.propTypes = {
-  name: linkType,
 };
 
 export default register(ActionDetail);

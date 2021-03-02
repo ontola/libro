@@ -124,6 +124,7 @@ export default {
   redirectUrl: ontola('redirectUrl'),
   relevance: ontola('relevance'),
   remove: ontola('remove'),
+  removeFromCart: ontola('removeFromCart'),
   replace: ontola('replace'),
   resource: ontola('resource'),
   sendConfirmationAction: ontola('sendConfirmationAction'),

@@ -7,6 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { ButtonTheme } from '../../../components/Button';
 import link from '../../../ontology/link';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -17,6 +18,7 @@ interface PropTypes {
   omniform: boolean;
   onLoad: () => void;
   renderPartOf: boolean;
+  theme: ButtonTheme;
 }
 
 const CreateAction: FC<PropTypes> = ({
@@ -25,12 +27,14 @@ const CreateAction: FC<PropTypes> = ({
   omniform,
   onLoad,
   renderPartOf,
+  theme,
 }) => (
   <Resource
     isPartOf={isPartOf}
     omniform={omniform}
     renderPartOf={renderPartOf}
     subject={linkedProp}
+    theme={theme}
     onLoad={onLoad}
   />
 );

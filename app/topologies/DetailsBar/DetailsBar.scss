@@ -29,6 +29,15 @@
   .VerticalScroller__scroll {
     padding-left: unit('x-small');
   }
+
+  &--variant-wide {
+    border-bottom: 0;
+    height: 3em;
+
+    & .Button {
+      line-height: 1.9em;
+    }
+  }
 }
 
 .DetailsBar__hider {

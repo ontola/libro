@@ -56,6 +56,7 @@ import PropertyQuery from './PropertyQuery';
 import RIVM from './RIVM';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
+import Shop from './Shop';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import Survey from './Survey';
@@ -124,6 +125,7 @@ export function getViews() {
     ...RIVM,
     ...SearchResult,
     ...SeqComp,
+    ...Shop,
     ...Snackbar,
     ...SnackbarManager,
     ...Survey,

@@ -40,6 +40,7 @@ import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
 import FavoriteAction from './properties/favoriteAction';
 import Predicate from './properties/predicate';
+import Price from './properties/price';
 import PublishAction from './properties/publishAction';
 import RedirectUrlTable from './properties/redirectUrlTable';
 import SuperEvent from './properties/superEvent';
@@ -138,6 +139,7 @@ export default [
   Organization,
   PinnedAt,
   Predicate,
+  Price,
   SuperEvent,
   FavoriteAction,
   PublishAction,
