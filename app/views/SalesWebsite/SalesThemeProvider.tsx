@@ -17,17 +17,45 @@ declare module '@material-ui/core' {
 
 const salesTheme = createMuiTheme({
     palette: {
+        background: {
+            default: '#FFF',
+        },
         primary: {
             main: '#000000',
         },
         secondary: {
+            light: '#F8FBFF',
             main: '#2D7080',
         },
     },
     typography: {
         body1: {
             align: 'justify',
+            alignSelf: 'center',
             color: '000000',
+            margin: 16,
+        },
+        fontFamily: 'Open Sans',
+        h1: {
+            align: 'justify',
+            color: '000000',
+            fontSize: 60,
+            fontWeight: 'bold',
+            margin: 20,
+        },
+        h2: {
+            align: 'justify',
+            color: '000000',
+            fontSize: 40,
+            fontWeight: 'bold',
+            margin: 20,
+        },
+        h3: {
+            align: 'justify',
+            color: '000000',
+            fontSize: 30,
+            fontWeight: 'bold',
+            margin: 20,
         },
     },
 });
