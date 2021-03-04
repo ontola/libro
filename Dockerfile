@@ -25,6 +25,8 @@ COPY --from=builder /usr/src/app/static /usr/src/app/static
 ENV NODE_ENV 'production'
 ARG ARGU_API_URL
 ENV ARGU_API_URL $ARGU_API_URL
+ARG CI_COMMIT_SHA
+ENV CI_COMMIT_SHA $CI_COMMIT_SHA
 
 EXPOSE 8080
 CMD ["node", "./dist/private/server.js"]
