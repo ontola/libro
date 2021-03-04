@@ -11,7 +11,7 @@ import './Grid.scss';
 export const gridTopology = argu.grid;
 
 class Grid extends TopologyProvider {
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.topology = gridTopology;

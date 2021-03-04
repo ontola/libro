@@ -1,4 +1,6 @@
-import rdf, { createNS, CustomPredicateCreator, NamedNode } from '@ontologies/core';
+import rdf, {
+ CustomPredicateCreator, NamedNode, createNS, 
+} from '@ontologies/core';
 
 export interface WebsiteContext {
   app: CustomPredicateCreator;

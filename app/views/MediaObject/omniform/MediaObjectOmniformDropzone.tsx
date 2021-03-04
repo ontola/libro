@@ -1,12 +1,13 @@
-import rdf from '@ontologies/core';
-import * as PropTypes from 'prop-types';
-import React, { EventHandler, Ref } from 'react';
+import rdf, { Literal } from '@ontologies/core';
+import React from 'react';
 import Dropzone from 'react-dropzone';
 
 import DropzoneInner from '../../../components/Dropzone/DropzoneInner';
 import argu from '../../../ontology/argu';
 
-export function getBase64(file: File) {
+import { MediaObjectOmniformDropzoneProps } from './MediaObjectOmniformDropzoneLoader';
+
+export function getBase64(file: File): Promise<Literal> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -18,33 +19,19 @@ export function getBase64(file: File) {
   });
 }
 
-interface PropTypes {
-  encodingFormatTypes: string;
-  inputRef: Ref<any>;
-  name: string;
-  onChange: EventHandler<any>;
-  openDialog: EventHandler<any>;
-  removeItem: EventHandler<any>;
-  value: string;
-}
-
-const MediaObjectOmniformDropzone: React.FC<PropTypes> = ({
+const MediaObjectOmniformDropzone: React.FC<MediaObjectOmniformDropzoneProps> = ({
   encodingFormatTypes,
   inputRef,
   onChange,
   openDialog,
   value,
 }) => {
-  const onDrop = (acceptedFiles: File[]) => (
-    new Promise(() => {
-      const [file] = acceptedFiles;
+  const onDrop = async (acceptedFiles: File[]) => {
+    const [file] = acceptedFiles;
 
-      return getBase64(file)
-        .then((enc) => {
-          onChange(enc);
-        });
-    })
-  );
+    const enc = await getBase64(file);
+    onChange(enc);
+  };
 
   return (
     <Dropzone
@@ -62,7 +49,7 @@ const MediaObjectOmniformDropzone: React.FC<PropTypes> = ({
             file={value}
             isDragActive={isDragActive}
           >
-            {(preview: any) => (
+            {(preview: React.ReactNode) => (
               <button
                 type="button"
                 {...getRootProps({

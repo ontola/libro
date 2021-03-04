@@ -1,4 +1,6 @@
-import {LinkReduxLRSType, RenderStoreProvider, useLRS} from 'link-redux';
+import {
+LinkReduxLRSType, RenderStoreProvider, useLRS,
+} from 'link-redux';
 import React from 'react';
 
 import generateLRS from '../helpers/generateLRS';
@@ -32,7 +34,7 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
   return next;
 };
 
-export function withFormLRS<P>(WrappedComponent: React.FC<P>) {
+export function withFormLRS<P>(WrappedComponent: React.FC<P>): React.FC<P> {
   const WithFormLRS: React.FC<P> = (props: P) => {
     const lrs = useLRS();
     const formLRS = React.useMemo(() => cloneLRS(lrs), ['forceHotReload']);

@@ -1,8 +1,11 @@
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import RDFTypes from '@rdfdev/prop-types';
-import { FC, Property, register, Resource } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+ FC,
+ Property,
+ Resource,
+ register,
+} from 'link-redux';
 import React from 'react';
 
 import Spinner from '../../components/Spinner';
@@ -13,7 +16,7 @@ import TableRow from '../../topologies/TableRow';
 
 interface Props {
   contains: NamedNode;
-  columns?: Array<NamedNode | NamedNode[]> | Promise<any>;
+  columns?: Array<NamedNode | NamedNode[]> | Promise<void>;
 }
 
 const FolderEntryTable: FC<Props> = ({ columns, contains }) => {
@@ -42,18 +45,6 @@ FolderEntryTable.topology = tableTopology;
 
 FolderEntryTable.mapDataToProps = {
   contains: ontola.contains,
-};
-
-FolderEntryTable.propTypes = {
-  columns: PropTypes.oneOfType([
-    PropTypes.instanceOf(Promise),
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        RDFTypes.namedNode,
-        PropTypes.arrayOf(RDFTypes.namedNode),
-      ]),
-    ),
-  ]),
 };
 
 export default register(FolderEntryTable);

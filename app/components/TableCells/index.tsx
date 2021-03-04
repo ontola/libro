@@ -1,5 +1,7 @@
 import { normalizeType } from 'link-lib';
-import { Property, useLinkRenderContext, useLRS } from 'link-redux';
+import {
+ Property, useLRS, useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 
 import Spinner from '../Spinner';

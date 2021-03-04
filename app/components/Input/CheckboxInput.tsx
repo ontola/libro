@@ -4,8 +4,8 @@ import React from 'react';
 
 import FieldLabel from '../FieldLabel';
 import { InputComponentProps } from '../FormField/FormInputs';
-import { InputType } from './Input';
 
+import { InputType } from './Input';
 import InputElement from './InputElement';
 
 interface PropTypes {
@@ -23,7 +23,7 @@ const CheckboxTrailer: React.FC<PropTypes> = ({ name }) => {
   );
 };
 
-const CheckboxInput = (fieldProps: InputComponentProps) => (
+const CheckboxInput = (fieldProps: InputComponentProps): JSX.Element => (
   <InputElement
     {...fieldProps}
     trailer={CheckboxTrailer}

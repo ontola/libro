@@ -1,6 +1,8 @@
 import bugsnag, { Client } from '@bugsnag/js';
 
 const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
+// eslint-disable-next-line no-magic-numbers
+const LOGGING_INTERVAL = 3600 * 1000;
 
 declare global {
   interface Window {
@@ -25,7 +27,8 @@ function getClient() {
   const mockReporter = {
     notify(e: Error) {
       globalThis.logging.errors.push(e);
-      return void(0);
+
+      return void (0);
     },
   } as unknown as Client;
   try {
@@ -35,17 +38,19 @@ function getClient() {
       ?.content;
     if (raw) {
       const config = JSON.parse(decodeURIComponent(raw));
+
       return bugsnag.createClient({
         ...config,
         beforeSend(report: any) {
           globalThis.logging.errors.push(report);
         },
       });
-    } else {
-      return mockReporter;
     }
+
+    return mockReporter;
   } catch (e) {
     error(e);
+
     return mockReporter;
   }
 }
@@ -55,25 +60,25 @@ const client = getClient();
 globalThis.setInterval(() => {
   globalThis.logging.errors = [];
   globalThis.logging.logs = [];
-}, 3600 * 1000);
+}, LOGGING_INTERVAL);
 
-export function error(...msg: any[]) {
+export function error(...msg: any[]): void {
   globalThis.logging.errors.push(msg);
   if (!__PRODUCTION__) {
-    // tslint:disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.error(...msg);
   }
 }
 
-export function handle(exception: Error) {
+export function handle(exception: Error): void {
   error(exception);
   client.notify(exception);
 }
 
-export function log(...msg: any[]) {
+export function log(...msg: any[]): void {
   globalThis.logging.logs.push(msg);
   if (!__PRODUCTION__) {
-    // tslint:disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.log(...msg);
   }
 }

@@ -6,7 +6,7 @@ export const tabPaneTopology = argu.tabPane;
 class TabPane extends TopologyProvider {
   public static displayName = 'TabPane';
 
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.topology = tabPaneTopology;

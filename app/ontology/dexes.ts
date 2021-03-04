@@ -6,6 +6,7 @@ export default {
   ns: dexes,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   Agreement: dexes('Agreement'),
   Folder: dexes('Folder'),
   FolderEntry: dexes('FolderEntry'),

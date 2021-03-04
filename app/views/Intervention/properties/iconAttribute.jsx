@@ -30,6 +30,7 @@ const IconAttribute = ({
     <div className="IconAttribute">
       <span className="img-wrapper">
         <img
+          alt=""
           src={`/assets/rivm/icons/${linkedProp.value.split('#')[1]}.png`}
           title={name.value}
         />

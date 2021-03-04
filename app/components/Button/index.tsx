@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, { EventHandler } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -61,7 +61,7 @@ interface PropTypes {
   /** Give some margins for inline usage */
   margins?: boolean;
   narrow?: boolean;
-  onClick?: EventHandler<any>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** Removes all styling. */
   plain?: boolean;
   small?: boolean;

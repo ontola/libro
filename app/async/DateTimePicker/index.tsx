@@ -56,8 +56,8 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
         showTodayButton
         ampm={false}
         cancelLabel={intl.formatMessage(messages.cancelLabel)}
-        clearable={!!inputValue.value}
         clearLabel={intl.formatMessage(messages.clearLabel)}
+        clearable={!!inputValue.value}
         format="D MMMM YYYY HH:mm"
         id={id}
         inputVariant="outlined"

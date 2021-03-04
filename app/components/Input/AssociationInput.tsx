@@ -4,8 +4,8 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
-import { isJSONLDObject } from '../../helpers/types';
 
+import { isJSONLDObject } from '../../helpers/types';
 import form from '../../ontology/form';
 import { FormSection } from '../Form';
 import { InputComponentProps } from '../FormField/FormInputs';

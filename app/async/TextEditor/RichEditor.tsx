@@ -46,7 +46,7 @@ const style = { display: 'flex' };
 class RichEditor extends PureComponent {
   public componentDidMount() {
     (this.props as any).onSaveEditorState(
-      createDraftFromMarkdown((this.props as any).value),
+      createDraftFromMarkdown((this.props as any).value as string),
     );
   }
 

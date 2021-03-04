@@ -1,31 +1,37 @@
-import { isNamedNode, Quad } from '@ontologies/core';
+import { Quad, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import HttpStatus from 'http-status-codes';
-import { anyRDFValue, SomeNode } from 'link-lib';
-import { useLink, useLRS } from 'link-redux';
+import { SomeNode, anyRDFValue } from 'link-lib';
+import { useLRS, useLink } from 'link-redux';
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import { handleHTTPRetry, HTTP_RETRY_WITH } from '../../helpers/errorHandling';
+import {
+  HTTP_RETRY_WITH,
+  SubmitDataProcessor,
+  handleHTTPRetry,
+} from '../../helpers/errorHandling';
 import { retrievePath } from '../../helpers/iris';
 import { InputValue } from '../../hooks/useFormField';
+
+
 
 interface PropTypes {
   formID: string;
   modal?: boolean;
-  onDone?: (response: any) => void;
+  onDone?: (response: Response) => void;
   onStatusForbidden?: () => Promise<void>;
-  responseCallback?: (response: any) => void;
+  responseCallback?: (response: Response) => void;
   subject: SomeNode;
 }
 
 export interface FormValues {
   [index: string]: InputValue;
 }
-export type RetrySubmitHandler = () => Promise<any>;
+export type RetrySubmitHandler = () => Promise<void>;
 export type SubmitHandler = (formData: FormValues, formApi?: FormApi<FormValues>, retrySubmit?: RetrySubmitHandler) =>
-  Promise<any>;
+  Promise<void>;
 
 const useSubmitHandler = ({
   formID,
@@ -34,8 +40,8 @@ const useSubmitHandler = ({
   subject,
   onDone,
   onStatusForbidden,
-}: PropTypes) => {
-  const lrs = useLRS();
+}: PropTypes): SubmitHandler => {
+  const lrs = useLRS<unknown, SubmitDataProcessor>();
   const history = useHistory();
   const {
     action,
@@ -47,13 +53,13 @@ const useSubmitHandler = ({
     url: schema.url,
   });
 
-  return React.useCallback((formData, formApi, retrySubmit) => {
+  return React.useCallback((formData, formApi, retrySubmit): Promise<void> => {
     if (url && httpMethod?.value === 'GET') {
       return new Promise<void>((resolve) => {
         if (modal) {
           lrs.actions.ontola.showDialog(url);
         } else {
-          history.push(retrievePath(url.value));
+          history.push(retrievePath(url.value) ?? '#');
         }
 
         resolve();
@@ -100,7 +106,7 @@ const useSubmitHandler = ({
         throw e;
       }
 
-      return (lrs.api as any).feedResponse(e.response).then((statements: Quad[]) => {
+      return lrs.api.feedResponse(e.response).then((statements: Quad[]) => {
         const name = anyRDFValue(statements, schema.text);
         if (name) {
           throw new Error(name.value);

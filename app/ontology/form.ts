@@ -6,6 +6,7 @@ export default {
   ns: form,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   AssociationInput: form('AssociationInput'),
   CheckboxGroup: form('CheckboxGroup'),
   CheckboxInput: form('CheckboxInput'),

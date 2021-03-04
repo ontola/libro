@@ -1,8 +1,8 @@
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/styles';
 import React from 'react';
-import { tryParseInt } from '../../helpers/numbers';
 
+import { tryParseInt } from '../../helpers/numbers';
 import { InputComponentProps } from '../FormField/FormInputs';
 
 const StyledSlider = withStyles({

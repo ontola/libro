@@ -11,7 +11,7 @@ export const cardFloatTopology = argu.ns('cardFloat');
  * @returns {component} Component
  */
 class CardFloat extends Topology {
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.className = 'CardFloat';

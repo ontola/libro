@@ -6,5 +6,6 @@ export default {
   ns: org,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   Person: org('Person'),
 };

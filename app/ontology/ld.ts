@@ -8,6 +8,7 @@ export default {
   /**
    * Adds the statement to the store, without duplication.
    */
+  // eslint-disable-next-line sort-keys
   add: ld('add'),
   /**
    * Removes the entire subject from the store.

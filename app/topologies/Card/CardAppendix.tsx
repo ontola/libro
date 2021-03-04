@@ -10,7 +10,7 @@ export const cardAppendixTopology = argu.ns('cardAppendix');
  * @returns {component} Component
  */
 class CardAppendix extends Topology {
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.topology = cardAppendixTopology;

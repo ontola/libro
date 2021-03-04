@@ -1,4 +1,8 @@
-import { isNamedNode, Term } from '@ontologies/core';
+import {
+  NamedNode,
+  Term,
+  isNamedNode,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -103,11 +107,11 @@ const SelectInputWrapper: React.FC<InputComponentProps> = ({
         return 'Loading';
       }
 
-      const itemClass = lrs.getResourceProperty(item, rdfx.type);
+      const itemClass = lrs.getResourceProperty<NamedNode>(item, rdfx.type);
       const classDisplayProp = (
-        isNamedNode(itemClass) && lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'))
+        lrs.getResourceProperty<NamedNode>(itemClass, ontola.ns('forms/inputs/select/displayProp'))
       ) || schema.name;
-      let label = isNamedNode(classDisplayProp) && lrs.getResourceProperty(item, classDisplayProp);
+      let label = lrs.getResourceProperty<NamedNode>(item, classDisplayProp);
       if (!label) {
         label = lrs.getResourceProperty(item, schema.name);
       }
@@ -145,8 +149,8 @@ const SelectInputWrapper: React.FC<InputComponentProps> = ({
       setCurrentValue(newValue);
     },
     iriTemplate ? DEBOUNCE_TIMER : 0,
-    { leading: true }
-    ,
+    { leading: true },
+
   );
   useDataInvalidation(options.filter(isResource));
   const handleChange = React.useCallback((v) => {

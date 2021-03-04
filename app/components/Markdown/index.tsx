@@ -9,7 +9,9 @@ import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
 import { entityIsLoaded } from '../../helpers/data';
-import { expandPath, isDifferentWebsite, retrievePath } from '../../helpers/iris';
+import {
+ expandPath, isDifferentWebsite, retrievePath,
+} from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 import Heading, { HeadingSize, HeadingVariant } from '../Heading';
 import Link from '../Link';
@@ -30,7 +32,7 @@ const routerLink = (tabIndex: number | undefined) => (link: any) => {
     return (
       <Link
         tabIndex={tabIndex}
-        to={retrievePath(extendedLink)}
+        to={retrievePath(extendedLink) ?? '#'}
       >
         {link.children}
       </Link>
@@ -79,12 +81,24 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
     text: PropTypes.string.isRequired,
   };
 
+  public static getDerivedStateFromError(): MarkdownState {
+    return { hasError: true };
+  }
+
   public static defaultProps = {
     tabbable: true,
   };
 
-  public static getDerivedStateFromError() {
-    return { hasError: true };
+  constructor(props: PropTypes) {
+    super(props);
+
+    this.state = {
+      hasError: false,
+    };
+  }
+
+  public componentDidCatch(error: Error): void {
+    handle(error);
   }
 
   public sourceText = memoize((highlightedText, text) => {
@@ -97,18 +111,6 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
 
     return text;
   });
-
-  constructor(props: PropTypes) {
-    super(props);
-
-    this.state = {
-      hasError: false,
-    };
-  }
-
-  public componentDidCatch(error: Error) {
-    handle(error);
-  }
 
   public render() {
     const {

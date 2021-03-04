@@ -21,7 +21,10 @@ const useOverlay = ({
   navigate,
   overlayPosition,
   overlayResource,
-}: PropTypes) => {
+}: PropTypes): {
+  handleOverlayClick: (e: any) => false | void;
+  overlayRef: React.MutableRefObject<HTMLDivElement>;
+} => {
   const overlayRef = useRef(document.createElement('div'));
   const overlay = useMemo(() => {
     if (map) {

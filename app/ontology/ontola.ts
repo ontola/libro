@@ -6,6 +6,7 @@ export default {
   ns: ontola,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   Banner: ontola('Banner'),
   Collection: ontola('Collection'),
   CollectionFilter: ontola('CollectionFilter'),
@@ -42,6 +43,7 @@ export default {
   Widget: ontola('Widget'),
 
   /* properties */
+  // eslint-disable-next-line sort-keys
   _destroy: ontola('_destroy'),
   action: ontola('action'),
   actionsMenu: ontola('actionsMenu'),
@@ -80,17 +82,17 @@ export default {
   filterValue: ontola('filterValue'),
   followMenu: ontola('followMenu'),
   footer: ontola('footer'),
-  ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
   formSteps: ontola('formSteps'),
+  ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
   header: ontola('header'),
   helperText: ontola('helperText'),
   hideHeader: ontola('hideHeader'),
   href: ontola('href'),
   imagePositionY: ontola('imagePositionY'),
-  imgUrl1500x2000: ontola('imgUrl1500x2000'),
+  imgUrl64x64: ontola('imgUrl64x64'),
   imgUrl256x256: ontola('imgUrl256x256'),
   imgUrl568x400: ontola('imgUrl568x400'),
-  imgUrl64x64: ontola('imgUrl64x64'),
+  imgUrl1500x2000: ontola('imgUrl1500x2000'),
   infinitePagination: ontola('infinitePagination'),
   invalidate: ontola('invalidate'),
   iriTemplate: ontola('iriTemplate'),

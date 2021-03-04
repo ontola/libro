@@ -1,10 +1,10 @@
-import { Node } from '@ontologies/core';
+import { Node, SomeTerm } from '@ontologies/core';
 import { useDataInvalidation, useLRS } from 'link-redux';
 import React from 'react';
 
 import { containerToArr } from '../helpers/data';
 
-export function useContainerToArr(subject: Node | Node[] | undefined) {
+export const useContainerToArr = (subject: Node | Node[] | undefined): SomeTerm[] | Promise<void> | undefined  => {
   const lrs = useLRS();
   const lastUpdate = useDataInvalidation(subject);
 
@@ -12,4 +12,4 @@ export function useContainerToArr(subject: Node | Node[] | undefined) {
     () => subject ? containerToArr(lrs, [], subject) : undefined,
     [subject, lastUpdate],
   );
-}
+};

@@ -6,5 +6,6 @@ export default {
   'ns': httph,
 
   /* properties */
+  // eslint-disable-next-line sort-keys
   'exec-action': httph('exec-action'),
 };

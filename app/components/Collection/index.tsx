@@ -1,4 +1,4 @@
-import { isNamedNode, NamedNode } from '@ontologies/core';
+import { NamedNode, isNamedNode } from '@ontologies/core';
 import {
   Resource,
   useDataInvalidation,

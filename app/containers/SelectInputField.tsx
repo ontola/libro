@@ -10,7 +10,7 @@ const SelectInputField = React.lazy(
   () => import(/* webpackChunkName: "Forms" */ '../async/SelectInput/SelectInputField'),
 );
 
-const SelectInputFieldLoader = (props: SelectInputFieldProps) => {
+const SelectInputFieldLoader = (props: SelectInputFieldProps): JSX.Element => {
   if (!__CLIENT__ || __TEST__) {
     return <LinkLoader />;
   }

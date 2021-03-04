@@ -9,7 +9,7 @@ const DatePicker = React.lazy(
   () => import(/* webpackChunkName: "Forms" */ '../async/DatePicker'),
 );
 
-const DatePickerLoader = (props: InputComponentProps) => {
+const DatePickerLoader = (props: InputComponentProps): JSX.Element => {
   if (!__CLIENT__) {
     return (
       <div className="Field__input Field__input--text">

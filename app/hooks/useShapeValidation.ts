@@ -1,4 +1,6 @@
-import { isNamedNode, NamedNode, SomeTerm } from '@ontologies/core';
+import {
+ NamedNode, SomeTerm, isNamedNode, 
+} from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
@@ -169,7 +171,7 @@ const validateShape = (lrs: LinkReduxLRSType, shape: SomeNode, targetFromProp: S
   };
 };
 
-const useShapeValidation = (shape: SomeNode, target: SomeNode | undefined) => {
+const useShapeValidation = (shape: SomeNode, target: SomeNode | undefined): boolean => {
   const lrs = useLRS();
   const [dependentResources, setDependentResources] = React.useState<SomeNode[]>([]);
   const [pass, setPass] = React.useState(false);

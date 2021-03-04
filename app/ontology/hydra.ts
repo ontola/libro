@@ -6,6 +6,7 @@ export default {
   ns: hydra,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   Collection: hydra('Collection'),
 
   /* properties */

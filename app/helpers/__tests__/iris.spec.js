@@ -1,5 +1,5 @@
 import {
-  iris,
+  createCurrentURL,
   retrievePath,
 } from '../iris';
 
@@ -29,13 +29,13 @@ describe('helpers', () => {
 
     describe('currentURL', () => {
       it('should return the window location', () => {
-        const windowed = iris(window);
-        expect(windowed.currentURL()).toEqual('https://argu.dev/o/1');
+        const currentURL = createCurrentURL(window)();
+        expect(currentURL).toEqual('https://argu.dev/o/1');
       });
 
       it('should return undefined without window', () => {
-        const windowLess = iris(undefined);
-        expect(windowLess.currentURL()).toBeUndefined();
+        const currentURL = createCurrentURL(undefined)();
+        expect(currentURL).toBeUndefined();
       });
     });
   });

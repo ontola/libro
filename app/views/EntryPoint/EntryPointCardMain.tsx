@@ -1,4 +1,4 @@
-import { isNode, Literal } from '@ontologies/core';
+import { Literal, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -7,7 +7,7 @@ import {
   register,
   useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler } from 'react';
+import React, { EventHandler, SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router';
 
@@ -30,11 +30,11 @@ interface PropTypes {
   httpMethod: Literal;
   modal?: boolean;
   name: Literal;
-  onCancel: EventHandler<any>;
-  onDone?: (response: any) => void;
-  onKeyUp: EventHandler<any>;
+  onCancel: EventHandler<SyntheticEvent<unknown>>;
+  onDone?: (response: Response) => void;
+  onKeyUp: EventHandler<SyntheticEvent<unknown>>;
   onStatusForbidden?: () => Promise<void>;
-  responseCallback?: (response: any) => void;
+  responseCallback?: (response: Response) => void;
   sessionStore: Storage;
   url: SomeNode;
   whitelist?: number[];
@@ -60,7 +60,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     whitelist,
   } = props;
   const history = useHistory();
-  const formURL = new URL(subject!!.value);
+  const formURL = new URL(subject!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
     formID,
@@ -68,7 +68,7 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject: subject!!,
+    subject: subject!,
   });
   const onCancelClick = React.useCallback((e) => {
     e.preventDefault();

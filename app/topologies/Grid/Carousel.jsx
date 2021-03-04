@@ -94,7 +94,7 @@ class Carousel extends TopologyProvider {
   }
 
   render() {
-    let leftButton, rightButton;
+    let leftButton; let rightButton;
 
     if (this.state.showLeftButton) {
       leftButton = (

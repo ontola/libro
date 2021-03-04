@@ -110,10 +110,11 @@ const CoverImageSlider: React.FC<PropTypes> = ({
 
   return (
     <Slider
+      ThumbComponent={ThumbComponent}
       classes={classes}
+      // eslint-disable-next-line no-magic-numbers
       defaultValue={100 - (imagePositionY || 50)}
       orientation="vertical"
-      ThumbComponent={ThumbComponent}
       track={false}
       value={100 - value}
       onChange={onChange}

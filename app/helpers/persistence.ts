@@ -1,5 +1,6 @@
-import rdf, {NamedNode, SomeTerm} from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
+
 import { calculateFormFieldName } from './forms';
 import { handle } from './logging';
 
@@ -7,7 +8,7 @@ export const serializeForStorage = (value: SomeTerm[] ): string => {
   return JSON.stringify(value);
 };
 
-export const parseValue = (plain: any) => {
+export const parseValue = (plain: Record<string, any> | any): SomeTerm => {
   switch (plain.termType) {
     case 'NamedNode':
       return rdf.namedNode(plain.value);
@@ -42,7 +43,7 @@ export const parseForStorage = (valueFromStorage: string | null): SomeTerm[] | u
   }
 };
 
-export const getStorageKey = (formContext: string, object?: SomeNode, path?: NamedNode) => (
+export const getStorageKey = (formContext: string, object?: SomeNode, path?: NamedNode): string => (
     calculateFormFieldName(formContext, object, path)
 );
 
@@ -50,7 +51,7 @@ export const storageGet = (sessionStore: Storage | undefined, key: string): Some
     __CLIENT__ ? parseForStorage((sessionStore || sessionStorage).getItem(key)) : undefined
 );
 
-export const storageSet = (sessionStore: Storage | undefined, key: string, newValue: SomeTerm[]) => {
+export const storageSet = (sessionStore: Storage | undefined, key: string, newValue: SomeTerm[]): void => {
   if (__CLIENT__ && typeof newValue !== 'undefined') {
     (sessionStore || sessionStorage).setItem(key, serializeForStorage(newValue));
   }

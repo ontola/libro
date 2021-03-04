@@ -1,6 +1,6 @@
 import { Unit as RelativeTimeUnit } from '@formatjs/intl-relativetimeformat';
 import { Unit as NumberUnit } from '@formatjs/intl-unified-numberformat';
-import { isTerm, Term } from '@ontologies/core';
+import { Term, isTerm } from '@ontologies/core';
 
 export const SEC_MS = 1000;
 export const MINUTE_SECS = 60;

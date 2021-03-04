@@ -14,7 +14,12 @@ import {
   entityIsLoaded,
 } from '../helpers/data';
 
-const useFieldOptions = (shIn: SomeNode | undefined) => {
+export interface FieldOptions {
+  loading: boolean;
+  options: SomeTerm[];
+}
+
+const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
   const lrs = useLRS();
   const [options, setOptions] = React.useState<SomeTerm[]>(([]));
   const [loading, setLoading] = React.useState(false);

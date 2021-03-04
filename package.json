@@ -29,8 +29,8 @@
     "coverage": "jest --coverage",
     "doc:style": "sassdoc ./app -d ./docs/sass",
     "lint": "yarn lint:code && yarn lint:style && yarn lint:translations",
-    "lint:code": "yarn lint:code:app && ./node_modules/.bin/eslint --ext .jsx,.js .",
-    "lint:code:app": "tsc -p app/tsconfig.json && tslint --project app/tsconfig.json",
+    "lint:code": "yarn lint:code:app && ./node_modules/.bin/eslint --ext .jsx,.js,.ts,.tsx .",
+    "lint:code:app": "tsc -p app/tsconfig.json",
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
     "lint:translations": "./bin/lint-translations.sh",
     "secure": "nsp check && retire",
@@ -49,6 +49,7 @@
     "@bugsnag/js": "^7.5.1",
     "@bugsnag/plugin-koa": "^7.3.5",
     "@date-io/dayjs": "^1.3.13",
+    "@formatjs/intl-unified-numberformat": "^3.3.7",
     "@formatjs/intl-utils": "^2.2.2",
     "@koa/router": "^8.0.5",
     "@material-ui/core": "^4.9.11",
@@ -156,6 +157,8 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/redux-actions": "^2.6.1",
     "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
     "actioncable": "^5.2.3",
     "autoprefixer": "^9.6.1",
     "babel-core": "^7.0.0-bridge.0",
@@ -177,7 +180,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-matchers": "^7.0.2",
-    "eslint": "^7.18.0",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-plugin-import": "^2.22.1",
@@ -206,8 +209,8 @@
     "jest-plugins-recommended": "^2.9.0",
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^16.4.0",
-    "link-lib": "0.0.0-e7859b6e",
-    "link-redux": "0.0.0-2f8a61fd",
+    "link-lib": "0.0.0-25f56814",
+    "link-redux": "0.0.0-83f678454",
     "lint-staged": "^9.5.0",
     "markdown-draft-js": "^2.1.1",
     "megadraft": "^0.6.14",
@@ -258,9 +261,8 @@
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "ts-jest": "^24.1.0",
-    "tslint": "^5.20.1",
     "type-zoo": "^3.3.0",
-    "typescript": "^4.1.3",
+    "typescript": "^4.2.2",
     "universal-webpack": "^0.6.15",
     "use-debounce": "^2.2.1",
     "webpack": "^5.18.0",
@@ -304,10 +306,10 @@
       "eslint --fix"
     ],
     "*.ts": [
-      "tslint --fix"
+      "eslint --fix"
     ],
     "*.tsx": [
-      "tslint --fix"
+      "eslint --fix"
     ],
     "*.scss": "sass-lint ./app/**/*.scss -q"
   },

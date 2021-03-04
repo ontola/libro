@@ -1,10 +1,19 @@
-import { useResourceLink } from 'link-redux';
+import {
+ BlankNode, Literal, NamedNode, 
+} from '@ontologies/core';
+import {
+ LinkedDataObject, TermOpts, useResourceLink, 
+} from 'link-redux';
 
 import app from '../ontology/app';
 import argu from '../ontology/argu';
 import ontola from '../ontology/ontola';
 
-export const useCurrentActor = () => {
+export const useCurrentActor = (): LinkedDataObject<{
+    actorType: NamedNode;
+    anonymousID: NamedNode;
+    primaryEmail: NamedNode;
+}, TermOpts | undefined, NamedNode | BlankNode | Literal | undefined> => {
     // Might be changed later with a context value
     const actorIRI = app.c_a;
 

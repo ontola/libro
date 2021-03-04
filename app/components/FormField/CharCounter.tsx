@@ -1,4 +1,4 @@
-import { isLiteral, SomeTerm } from '@ontologies/core';
+import { SomeTerm, isLiteral } from '@ontologies/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 

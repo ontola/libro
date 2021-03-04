@@ -60,7 +60,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   return (
     <MapView
       large={large}
-      navigate={(resource) => history.push(retrievePath(resource.value))}
+      navigate={(resource) => history.push(retrievePath(resource.value) ?? '#')}
       placements={[
         linkedProp,
         ...children.filter(isNode).filter((child) => child !== linkedProp),

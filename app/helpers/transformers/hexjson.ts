@@ -1,13 +1,27 @@
-import rdf, { BlankNode, Quad, SomeTerm } from '@ontologies/core';
+import rdf, {
+ BlankNode, Quad, SomeTerm,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 // @ts-ignore
 import NdjsonStream from 'can-ndjson-stream';
-import { ExtensionResponse, RDFLibFetcherResponse, ResponseAndFallbacks } from 'link-lib';
+import {
+ ExtensionResponse, RDFLibFetcherResponse, ResponseAndFallbacks,
+} from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+
+enum HexPosition {
+  Subject = 0,
+  Predicate,
+  Value,
+  Datatype,
+  Language,
+  Graph,
+}
+
 
 let hasReadableStreamConstructor = false;
 try {
-  // tslint:disable-next-line:no-empty no-unused-expression
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   new ReadableStream({ start() {} });
   hasReadableStreamConstructor = true;
 } catch (e) {
@@ -31,6 +45,7 @@ export default {
       if (!bnMap[v]) {
         bnMap[v] = blankNodeF();
       }
+
       return bnMap[v];
     };
 
@@ -47,11 +62,12 @@ export default {
     };
 
     const lineToQuad = (h: string[]) => quad(
-      h[0].startsWith('_:') ? blankNode(h[0]) : namedNode(h[0]),
-      namedNode(h[1]),
-      object(h[2], h[3], h[4]),
-      h[5] ? namedNode(h[5]) : defaultGraph(),
+      h[HexPosition.Subject].startsWith('_:') ? blankNode(h[HexPosition.Subject]) : namedNode(h[HexPosition.Subject]),
+      namedNode(h[HexPosition.Predicate]),
+      object(h[HexPosition.Value], h[HexPosition.Datatype], h[HexPosition.Language]),
+      h[HexPosition.Graph] ? namedNode(h[HexPosition.Graph]) : defaultGraph(),
     );
+
 
     const delta: Quad[] = [];
     let parse;
@@ -69,6 +85,7 @@ export default {
           }
 
           delta.push(lineToQuad(result.value));
+
           return reader.read().then(read);
         });
     } else {
@@ -94,6 +111,7 @@ export default {
     }
 
     return parse
+      // eslint-disable-next-line no-prototype-builtins
       .then(() => store.queueDelta(delta, res.hasOwnProperty('expedite') ? (res as any).expedite : false))
       .then(() => []);
   },

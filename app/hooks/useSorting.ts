@@ -1,4 +1,4 @@
-import { isNode } from '@ontologies/core';
+import { SomeTerm, isNode } from '@ontologies/core';
 import {
   useLinkRenderContext,
   useProperty,
@@ -16,7 +16,14 @@ const sortElementProps = {
   sortKey: ontola.sortKey,
 };
 
-export const useSorting = () => {
+export interface SortOptions  {
+    direction: string | null;
+    item: SomeTerm;
+    selected: boolean;
+    url?: string;
+}
+
+export const useSorting = (): SortOptions[] => {
   const { subject } = useLinkRenderContext();
   const iriTemplate = useIRITemplate(subject);
   const collectionSorting = useProperty(ontola.collectionSorting);

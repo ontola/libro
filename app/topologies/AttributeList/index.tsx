@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import Topology from '../Topology';
+import Topology, { TopologyContent } from '../Topology';
 
 import './AttributeList.scss';
 
@@ -20,21 +20,21 @@ class AttributeList extends Topology {
     fullLabel: true,
   };
 
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.elementType = 'table';
     this.topology = attributeListTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return clsx({
       'AttributeList': true,
       'AttributeList--full-label': (this.props as any).fullLabel,
     });
   }
 
-  public renderContent() {
+  public renderContent(): TopologyContent {
     return this.wrap((subject) => (
       <table
         className={this.getClassName()}

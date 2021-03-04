@@ -1,4 +1,5 @@
 import rdf, { NamedNode } from '@ontologies/core';
+import React from 'react';
 
 import teamGL from '../ontology/teamGL';
 import GroupMembershipContainerGroup from '../views/GroupMembership/GroupMembershipContainerGroup';
@@ -11,6 +12,6 @@ const viewMap = {
   [rdf.id(teamGL.ns('views/group/memberships'))]: GroupMembershipContainerGroup[0].component,
 };
 
-const useViewByIRI = (iri: NamedNode) => viewMap[rdf.id(iri)];
+const useViewByIRI = (iri: NamedNode): React.ComponentType<unknown> => viewMap[rdf.id(iri)];
 
 export default useViewByIRI;

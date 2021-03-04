@@ -10,9 +10,9 @@ class ServiceWorkerCommunicator {
     if (!(typeof navigator === 'object' && 'serviceWorker' in navigator)) {
       // Mock the communicator for browsers which don't have service workers
       return {
-        clearCache() { return void(0); },
-        async dataUpdate(_: MessageEvent) { return void(0); },
-        postMessage(_: any, __?: PostMessageOptions) { return void(0); },
+        clearCache() { return void (0); },
+        async dataUpdate(_: MessageEvent) { return void (0); },
+        postMessage(_: any, __?: PostMessageOptions) { return void (0); },
       } as unknown as ServiceWorkerCommunicator;
     }
 
@@ -36,10 +36,11 @@ class ServiceWorkerCommunicator {
     this.onControllerChange = this.onControllerChange.bind(this);
   }
 
-  public get controller() {
+  public get controller(): ServiceWorker | null {
     if (!this.currentController) {
       throw new TypeError('ServiceWorker controller called before load');
     }
+
     return this.currentController;
   }
 
@@ -81,14 +82,14 @@ class ServiceWorkerCommunicator {
     this.lrs = value;
   }
 
-  public clearCache() {
+  public clearCache(): void {
     this.postMessage({
       meta: 'ontola-request',
       type: 'CLEAR_CACHE_REQUEST',
     });
   }
 
-  public async dataUpdate(event: MessageEvent) {
+  public async dataUpdate(event: MessageEvent): Promise<void> {
     if (!this.lrs) {
       throw new Error('Invariant violation: lrs must be set before receiving data updates');
     }
@@ -119,6 +120,7 @@ class ServiceWorkerCommunicator {
   private postMessage(message: any, transfer?: PostMessageOptions) {
     if (!this.controller) {
       handle(new Error('SW Controller not defined'));
+
       return;
     }
 

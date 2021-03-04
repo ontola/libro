@@ -6,6 +6,7 @@ export default {
     ns: rivm,
 
     /* classes */
+    // eslint-disable-next-line sort-keys
     Category: rivm('Category'),
     Employment: rivm('Employment'),
     Incident: rivm('Incident'),

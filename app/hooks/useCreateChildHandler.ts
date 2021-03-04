@@ -14,9 +14,11 @@ import { conditionalFormFieldsPath, formFieldsPath } from '../helpers/diggers';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 
-const useCreateChildHandler = () => {
+export type CreateChildHandler = ((lon: any, lat: any, zoom: any) => void) | undefined;
+
+const useCreateChildHandler = (): CreateChildHandler => {
   const lrs = useLRS();
-  const createActions = useProperty(ontola.createAction, {returnType: ReturnType.AllTerms}).filter(isNode);
+  const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms }).filter(isNode);
   const actionProps = useResourceLinks(createActions, {
     entryPoint: schema.target,
     status: schema.actionStatus,

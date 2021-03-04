@@ -1,12 +1,16 @@
 {
   "plugins": [
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "import"
   ],
   "env": {
-    "shared-node-browser": true
+    "shared-node-browser": true,
+    "es6": true
   },
-  "extends": "airbnb",
+  "extends": [
+    "eslint:recommended"
+  ],
   "root": true,
   "globals": {
     "__CLIENT__": true,
@@ -19,7 +23,7 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
@@ -42,13 +46,15 @@
     ]
   },
   "rules": {
-    "comma-dangle": ["error", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "never"
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "import/order": ["error", {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+      "newlines-between": "always"
     }],
+    "no-unused-vars": "off",
     // Accessibility
     // The ones that are commented out resulted in errors. May be something wrong with the jsx-a11y plugin.
     // "jsx-a11y/anchor-has-content": 2,
@@ -67,7 +73,7 @@
     "jsx-a11y/img-redundant-alt": 2,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/lang": 2,
-    "jsx-a11y/mouse-events-have-key-events": 2,
+    "jsx-a11y/mouse-events-have-key-events": 2,/* global module */
     "jsx-a11y/no-access-key": 2,
     "jsx-a11y/no-distracting-elements": 2,
     "jsx-a11y/no-noninteractive-tabindex": 1,
@@ -80,7 +86,6 @@
     "jsx-a11y/role-supports-aria-props": 2,
     "jsx-a11y/scope": 2,
     "jsx-a11y/tabindex-no-positive": 2,
-    // Code style
     "import/dynamic-import-chunkname": "error",
     "import/extensions": ["error", {
       "css": "always",
@@ -95,11 +100,7 @@
       "devDependencies": true
     }],
     "import/no-duplicates": "error",
-    "import/order": ["error", {
-      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-      "newlines-between": "always"
-    }],
-    "import/prefer-default-export": 1,
+    "import/prefer-default-export": "off",
     "object-property-newline": ["error", {
       "allowAllPropertiesOnSameLine": false
     }],
@@ -107,12 +108,12 @@
       "ObjectExpression": {
         "consistent": true,
         "multiline": true,
-        "minProperties": 3
+        "minProperties": 2
       },
       "ObjectPattern": {
         "consistent": true,
         "multiline": true,
-        "minProperties": 3
+        "minProperties": 4
       },
       "ImportDeclaration": { "multiline": true, "minProperties": 3 },
       "ExportDeclaration": {
@@ -121,8 +122,8 @@
         "minProperties": 3
       }
     }],
-    "one-var-declaration-per-line": ["error", "initializations"],
-    "one-var": ["error", { "uninitialized": "always" }],
+    "object-curly-spacing": ["error", "always"],
+    "one-var": ["error", { "uninitialized": "never" }],
     "padding-line-between-statements": ["error", {
       "blankLine": "always",
       "next": "return",
@@ -167,10 +168,6 @@
     "no-invalid-this": "error",
     "no-unmodified-loop-condition": "error",
     "no-undef-init": "error",
-    "no-unused-vars": ["error", {
-      "argsIgnorePattern": "([iI]gnored|^_+)",
-      "varsIgnorePattern": "([iI]gnored|^_+)"
-    }],
     "no-inline-comments": "error",
     "new-cap": [
       "error",
@@ -183,9 +180,46 @@
     "react/require-default-props": 0,
     "react/destructuring-assignment": 0,
     "react/prefer-stateless-function": 0,
-    "import/no-webpack-loader-syntax": "error"
+    "import/no-webpack-loader-syntax": "error",
+    "eol-last": ["error", "always"]
   },
   "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "plugins": [ "@typescript-eslint"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "parser": "@typescript-eslint/parser",
+      "rules": {
+        "no-shadow": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-module-boundary-types": ["error", { "allowedNames": ["render"] }],
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-unused-vars": ["warn", {"argsIgnorePattern": "([iI]gnored|^_+)", "varsIgnorePattern": "([iI]gnored|^_+)"}],
+        "@typescript-eslint/semi": "error",
+        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/comma-dangle": ["error", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "always-multiline",
+          "enums": "always-multiline",
+          "generics": "always-multiline",
+          "tuples": "always-multiline"
+        }],
+        "@typescript-eslint/array-type": ["error", {
+          "default": "array-simple",
+          "readonly": "array-simple"
+        }]
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "one-var": "off"
+      }
+    },
     {
       "files": ["app/**/*.js", "app/**/*.jsx"],
       "env": {
@@ -204,6 +238,9 @@
         "jest": true
       },
       "globals": {
+        // Node Specs
+        "global": true,
+
         // Shared specs
         "declareProps": true,
         "defineMarker": true,

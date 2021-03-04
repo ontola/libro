@@ -26,7 +26,7 @@ interface FilterOptionMenuCompProps {
 }
 
 interface FilterOptionMenuCompPropsWithRef extends FilterOptionMenuCompProps {
-  innerRef: any;
+  innerRef: unknown;
 }
 
 const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
@@ -51,13 +51,13 @@ const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
 
   return (
     <MenuItem
-      action={(e: MouseEvent<any>) => {
+      action={(e: MouseEvent) => {
         e.preventDefault();
         handleClose();
         setCurrentPage(rdf.namedNode(url));
       }}
       expandOpen={null}
-      url={retrievePath(url)}
+      url={retrievePath(url) ?? '#'}
     >
       <FontAwesome name={selected ? 'check-square-o' : 'square-o'} />
       {' '}

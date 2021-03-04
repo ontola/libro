@@ -1,33 +1,34 @@
 import IconButton from '@material-ui/core/IconButton';
 import * as schema from '@ontologies/schema';
-import {
-  Property,
-  SubjectType,
-} from 'link-redux';
+import { Property } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
 import { defineMessages, useIntl } from 'react-intl';
-import { Document, Page, pdfjs } from 'react-pdf';
+import {
+  Document,
+  Page,
+  pdfjs,
+} from 'react-pdf';
+
+import { PDFViewerProps } from '../../containers/PDFViewer';
 
 import { keyMap } from './keyMap';
 import PDFLoader from './PDFLoader';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export interface PDFViewerProps {
-  url: string;
-  subject: SubjectType;
-}
+
 
 interface OnLoadSuccessType {
   numPages: number;
 }
 
 const MARGIN_LEFT = 200;
+const MAX_WINDOW_WIDTH = 800;
 
 const calcMaxWidth = (windowWidth: number) => {
-  if (windowWidth > 800) {
+  if (windowWidth > MAX_WINDOW_WIDTH) {
     return windowWidth - MARGIN_LEFT;
   }
 
@@ -53,7 +54,7 @@ const messages = defineMessages({
   },
 });
 
-const PDFViewer = (props: PDFViewerProps) => {
+const PDFViewer = (props: PDFViewerProps): JSX.Element => {
   const intl = useIntl();
   const [pageNumber, setPageNumber] = React.useState(1);
   const [docRef, setDocRef] = React.useState<any>(null);
@@ -110,9 +111,9 @@ const PDFViewer = (props: PDFViewerProps) => {
       <p>
         De PDF kan niet worden geladen.
       </p>
-      <a href={props.url} download >Download het bestand.</a>
+      <a download href={props.url}>Download het bestand.</a>
       {/* If the PDF does not render, show the plaintext */}
-      <Property label={schema.text} />
+      <Property label={schema.text}/>
     </div>
   ), [props.url]);
 
@@ -125,8 +126,8 @@ const PDFViewer = (props: PDFViewerProps) => {
   return (
     <HotKeys
       allowChanges={true}
-      keyMap={keyMap}
       handlers={keyHandlers}
+      keyMap={keyMap}
       ref={() => pdfWrapper}
     >
       <div className="PDFViewer" id="PDFViewer">
@@ -134,24 +135,24 @@ const PDFViewer = (props: PDFViewerProps) => {
           {/* This component catches focus on Opening and deals with keys */}
           <div
             id="pdfWrapper"
-            tabIndex={-1}
+            ref={pdfWrapper}
             style={{
               cursor: 'auto',
               position: 'relative',
               width: drawer.width,
             }}
-            ref={pdfWrapper}
+            tabIndex={-1}
           >
             <Document
               error={<PDFErrorComponent />}
               file={props.url}
-              loading={<PDFLoader />}
               inputRef={(ref: any) => { setDocRef(ref); }}
+              loading={<PDFLoader />}
               onLoadSuccess={onDocumentLoadSuccess}
             >
               <Page
-                loading={<PDFLoader />}
                 error={<PDFErrorComponent />}
+                loading={<PDFLoader />}
                 pageIndex={pageNumber - 1}
                 width={drawer.width}
               />
@@ -167,33 +168,33 @@ const PDFViewer = (props: PDFViewerProps) => {
               }}
             >
               <IconButton
-                onClick={handlePreviousPage}
                 disabled={pageNumber === 1}
-                title={intl.formatMessage(messages.previousPage)}
                 size="small"
+                title={intl.formatMessage(messages.previousPage)}
+                onClick={handlePreviousPage}
               >
                 <FontAwesome name="arrow-left" />
               </IconButton>
               <span>{`${pageNumber} / ${numPages}`}</span>
               <IconButton
-                onClick={handleNextPage}
                 disabled={(pageNumber === (numPages))}
                 size="small"
                 title={intl.formatMessage(messages.nextPage)}
+                onClick={handleNextPage}
               >
                 <FontAwesome name="arrow-right" />
               </IconButton>
               <IconButton
-                onClick={() => window.open(props.url)}
                 size="small"
                 title={intl.formatMessage(messages.download)}
+                onClick={() => window.open(props.url)}
               >
                 <FontAwesome name="download" />
               </IconButton>
               <IconButton
-                onClick={setFillWidth}
                 size="small"
                 title={intl.formatMessage(messages.fullScreen)}
+                onClick={setFillWidth}
               >
                 <FontAwesome name="expand" />
               </IconButton>

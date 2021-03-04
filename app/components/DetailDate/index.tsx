@@ -1,9 +1,10 @@
-import { isLiteral, Literal } from '@ontologies/core';
+import { Literal, isLiteral } from '@ontologies/core';
 import React from 'react';
 import {
-  defineMessages,
+  FormatDateOptions,
   FormattedRelativeTime,
   IntlShape,
+  defineMessages,
   useIntl,
 } from 'react-intl';
 
@@ -64,7 +65,7 @@ const messages = defineMessages({
   },
 });
 
-const FORMAT = {
+const FORMAT: FormatDateOptions = {
   day: 'numeric',
   month: 'long',
   year: 'numeric',

@@ -1,11 +1,15 @@
-import { isTerm, SomeTerm } from '@ontologies/core';
+import { SomeTerm, isTerm } from '@ontologies/core';
 import Downshift from 'downshift';
 import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 
 import { Input } from '../../components/Input';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
-import { InputAutocomplete, InputMode, InputType } from '../../components/Input/Input';
+import {
+ InputAutocomplete,
+ InputMode,
+ InputType,
+} from '../../components/Input/Input';
 import { isResource } from '../../helpers/types';
 import Select, { selectTopology } from '../../topologies/Select';
 
@@ -133,7 +137,6 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
           <div>
             {isOpen ? renderOpen() : renderClosed()}
             <Select
-              scrollIntoView={isOpen}
               {...getMenuProps()}
               style={style}
             >

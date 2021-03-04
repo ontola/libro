@@ -3,7 +3,7 @@ import React from 'react';
 
 import ll from '../../ontology/ll';
 
-const LinkLoader = () => (
+const LinkLoader = (): JSX.Element => (
   <Resource subject={ll.loadingResource} />
 );
 

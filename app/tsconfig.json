@@ -4,15 +4,14 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "lib": [
-      "es2019",
+      "es2020",
       "dom",
       "dom.iterable"
     ],
     "typeRoots": [
       "../@types",
       "../node_modules/@types",
-      "../node_modules/link-lib/@types",
-      "../@types"
+      "../node_modules/link-lib/@types"
     ]
   },
   "include": [

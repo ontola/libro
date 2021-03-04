@@ -1,10 +1,15 @@
 import * as as from '@ontologies/as';
-import rdf, {isBlankNode, isLiteral, Literal, NamedNode, Node, Quad, SomeTerm} from '@ontologies/core';
+import rdf, {
+Literal, NamedNode, Node, Quad, SomeTerm, isBlankNode, isLiteral,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
-import { BAD_REQUEST, NOT_FOUND, OK } from 'http-status-codes';
+import {
+ BAD_REQUEST, NOT_FOUND, OK, 
+} from 'http-status-codes';
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+
 import ontola from '../ontology/ontola';
 
 import { sequenceFilter } from './iris';
@@ -12,7 +17,7 @@ import { sequenceFilter } from './iris';
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
 function filterFind(op: Node) {
-  return (bV: Node | RegExp) => {
+  return (bV: Node | RegExp): boolean => {
     if (bV instanceof RegExp) {
       return bV.test(op.value);
     } else if (Object.prototype.hasOwnProperty.call(bV, 'termType')) {
@@ -23,11 +28,11 @@ function filterFind(op: Node) {
   };
 }
 
-function arraysEqual(a: any[], b: any[]) {
+function arraysEqual(a: any[], b: any[]): boolean {
   return a.length === b.length && a.every((value, index) => value === b[index]);
 }
 
-function bestType(type: LazyNNArgument) {
+function bestType(type: LazyNNArgument): NamedNode | null {
   const normalizedTypes = normalizeType(type);
   let best = null;
 
@@ -49,7 +54,7 @@ function bestType(type: LazyNNArgument) {
   return best;
 }
 
-function compare(a: object | number, b: object | number) {
+function compare(a: Node | number, b: Node | number) {
   if (a < b) { return -1; }
   if (a > b) { return 1; }
 
@@ -88,13 +93,13 @@ function convertKeysAtoB(obj: { [k: string]: any }, aToB = true): { [k: string]:
   return output;
 }
 
-function entityHasError(lrs: LinkReduxLRSType, iri: Node) {
+function entityHasError(lrs: LinkReduxLRSType, iri: Node): boolean {
   const status = lrs.getStatus(iri).status;
 
   return status !== null && status >= BAD_REQUEST;
 }
 
-function entityIsLoaded(lrs: LinkReduxLRSType, iri: Node) {
+function entityIsLoaded(lrs: LinkReduxLRSType, iri: Node): boolean {
   return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK || lrs.getStatus(iri).status === NOT_FOUND;
 }
 
@@ -105,7 +110,7 @@ function numAsc(a: Quad, b: Quad) {
   return aP - bP;
 }
 
-function serializableValue(v: any): object | object[] | File | string {
+function serializableValue(v: any): any | any[] | File | string {
   if (Object.prototype.toString.apply(v) === '[object Object]'
       && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
     return convertKeysAtoB(v);
@@ -162,8 +167,8 @@ function listToArr(
   return acc;
 }
 
-function resourceHasType(lrs: LinkReduxLRSType, resource: Node, type: Node) {
-  return resource && lrs.findSubject(resource, [rdfx.type], type).length > 0;
+function resourceHasType(lrs: LinkReduxLRSType, resource: Node, type: Node): boolean {
+  return !!resource && lrs.findSubject(resource, [rdfx.type], type).length > 0;
 }
 
 function seqToArr(
@@ -222,7 +227,7 @@ function containerToArr(
 }
 
 function sort(order: string[]) {
-  return (a: Node, b: Node) => {
+  return (a: Node, b: Node): number => {
     const oA = order.findIndex((o) => a.value.includes(o));
     const oB = order.findIndex((o) => b.value.includes(o));
 
@@ -234,19 +239,19 @@ function sort(order: string[]) {
   };
 }
 
-function allow(arr: NamedNode[], whitelist: RegExp[] = []) {
+function allow(arr: NamedNode[], whitelist: RegExp[] = []): NamedNode[] {
   return arr.filter((op) => whitelist.find(filterFind(op)));
 }
 
-function filter(arr: NamedNode[], blacklist: RegExp[] = []) {
+function filter(arr: NamedNode[], blacklist: RegExp[] = []): NamedNode[] {
   return arr.filter((op) => !blacklist.find(filterFind(op)));
 }
 
-function filterSort(arr: NamedNode[], blacklist: RegExp[] = [], order: string[] = []) {
+function filterSort(arr: NamedNode[], blacklist: RegExp[] = [], order: string[] = []): NamedNode[] {
   return filter(arr, blacklist).sort(sort(order));
 }
 
-function allowSort(arr: NamedNode[], whitelist: RegExp[] = [], order: string[] = []) {
+function allowSort(arr: NamedNode[], whitelist: RegExp[] = [], order: string[] = []): NamedNode[] {
   return allow(arr, whitelist).sort(sort(order));
 }
 

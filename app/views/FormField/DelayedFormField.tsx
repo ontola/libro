@@ -1,6 +1,8 @@
 import { SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import { FC, register, useProperty } from 'link-redux';
+import {
+ FC, register, useProperty, 
+} from 'link-redux';
 import React from 'react';
 
 import FormField from '../../components/FormField/FormField';

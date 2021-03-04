@@ -1,5 +1,4 @@
 import HttpStatus from 'http-status-codes';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
@@ -11,25 +10,33 @@ import React from 'react';
  * @param {Object} props The props of the imageable element.
  * @returns {ReactElement|undefined} Proper image element.
  */
-export function image(props: any) {
+
+ interface ImageProps {
+  fa: string,
+  image: {
+    className: string,
+    title: string,
+    url: string,
+  },
+ }
+
+export const image = (props: ImageProps): JSX.Element | undefined => {
   if (props.image) {
     return <img alt={props.image.title} className={props.image.className} src={props.image.url} />;
   } else if (props.fa) {
     return <span className={['fa', props.fa].join(' ')} />;
   }
-  return undefined;
-}
 
-image.propTypes = {
-  fa: PropTypes.string,
-  image: PropTypes.shape({
-    className: PropTypes.string,
-    title: PropTypes.string,
-    url: PropTypes.string,
-  }),
+  return undefined;
 };
 
-export function errorMessageForStatus(status: number) {
+interface ErrorMessage {
+  fallback: string | undefined;
+  i18nString: string | undefined;
+  severity: string;
+  type: string;
+}
+export function errorMessageForStatus(status: number): ErrorMessage {
   if (status === HttpStatus.UNAUTHORIZED) {
     return {
       fallback: 'Je moet ingelogd zijn voor deze actie.',
@@ -66,6 +73,7 @@ export function errorMessageForStatus(status: number) {
       type: 'none',
     };
   }
+
   return {
     fallback: undefined,
     i18nString: undefined,
@@ -74,24 +82,26 @@ export function errorMessageForStatus(status: number) {
   };
 }
 
-export function isSuccess(status: number) {
+export function isSuccess(status: number): boolean {
   return (status >= HttpStatus.OK && status < HttpStatus.MULTIPLE_CHOICES)
       || status === HttpStatus.NOT_MODIFIED;
 }
 
-export function json(response: Response) {
+export function json(response: Response): Promise<any> {
   if (typeof response !== 'undefined'
       && response.status !== HttpStatus.NO_CONTENT
       && response.status !== HttpStatus.NOT_MODIFIED) {
     return response.json();
   }
+
   return Promise.resolve();
 }
 
-export function getLinkContent(rel: string) {
+export function getLinkContent(rel: string): string | null | undefined {
   const header = __CLIENT__
     ? document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`)
     : undefined;
+
   return header && header.href;
 }
 
@@ -99,14 +109,15 @@ export function getMetaContent(name: string): string | undefined {
   const header = __CLIENT__
     ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`) || undefined
     : undefined;
+
   return header ? header.content : undefined;
 }
 
-export function getAuthenticityToken() {
+export function getAuthenticityToken(): string | undefined {
   return getMetaContent('csrf-token');
 }
 
-export function authenticityHeader(options?: object) {
+export function authenticityHeader(options?: Record<string, string>): Record<string, string> {
   return Object.assign({}, options || {}, {
     'X-CSRF-Token': getAuthenticityToken(),
     'X-Requested-With': 'XMLHttpRequest',
@@ -118,14 +129,14 @@ export function authenticityHeader(options?: object) {
  * @param {Object} options Object to be merged with jsonHeader options.
  * @returns {Object} The merged object.
  */
-export function jsonHeader(options?: object) {
+export function jsonHeader(options?: Record<string, string>): Record<string, string> {
   return Object.assign({}, options || {}, {
     'Accept': 'application/vnd.api+json',
     'Content-Type': 'application/json',
   });
 }
 
-export function websiteIRIHeader(options?: object) {
+export function websiteIRIHeader(options?: Record<string, string>): Record<string, string> {
   return Object.assign({}, options || {}, {
     'Website-Iri': getMetaContent('website-iri'),
   });
@@ -135,10 +146,10 @@ export function websiteIRIHeader(options?: object) {
  * Lets fetch include credentials in the request. This includes cookies and other possibly sensitive
  * data.
  * Note: Never use for requests across (untrusted) domains.
- * @param {Object} options Object to be merged with safeCredentials options.
- * @returns {Object} The merged object.
+ * @param options Object to be merged with safeCredentials options.
+ * @returns The merged object.
  */
-export function safeCredentials(options: any = {}) {
+export function safeCredentials(options: any = {}): Record<string, string> {
   return Object.assign({}, options, {
     credentials: 'include',
     headers: Object.assign({}, authenticityHeader(), jsonHeader(), websiteIRIHeader(), options.headers),
@@ -146,9 +157,10 @@ export function safeCredentials(options: any = {}) {
   });
 }
 
-export function statusSuccess(response: Response) {
+export function statusSuccess(response: Response): Promise<Response> {
   if (isSuccess(response.status)) {
     return Promise.resolve(response);
   }
+
   return Promise.reject(response);
 }

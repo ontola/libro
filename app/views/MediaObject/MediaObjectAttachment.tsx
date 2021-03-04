@@ -50,7 +50,7 @@ const MediaObjectAttachment: FC<PropTypes> = ({
           download
           className="Attachment__inside-button"
           data-test="Attachment-download"
-          href={contentUrl?.value}
+          href={contentUrl?.value || ''}
           rel="noopener noreferrer"
           target="_blank"
           title="Downloaden"

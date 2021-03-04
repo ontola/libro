@@ -111,7 +111,7 @@ const Link: React.FC<PropTypesWithRef> = ({
     path = retrievePath(to);
   }
 
-  const LinkComp = isLocalAnchor(path) ? DomLink : NavLink;
+  const LinkComp = isLocalAnchor(path ?? '') ? DomLink : NavLink;
   const isExact = LinkComp === DomLink ? undefined : isIndex;
 
   const clickHandler = target !== 'modal'
@@ -133,7 +133,7 @@ const Link: React.FC<PropTypesWithRef> = ({
       innerRef={innerRef}
       isActive={isActive ? isActive(to) : isActiveDefault(to)}
       target={target}
-      to={path}
+      to={path ?? ''}
       onClick={clickHandler}
     >
       {children}

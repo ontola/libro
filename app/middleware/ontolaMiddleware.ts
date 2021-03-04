@@ -1,4 +1,6 @@
-import rdf, { Literal, NamedNode, Node } from '@ontologies/core';
+import rdf, {
+ Literal, NamedNode, Node,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { seqPush, seqShift } from '@rdfdev/collections';
@@ -22,6 +24,7 @@ import app from '../ontology/app';
 import ld from '../ontology/ld';
 import libro from '../ontology/libro';
 import ontola from '../ontology/ontola';
+
 import { redirectPage, reloadPage } from './reloading';
 
 const messages = defineMessages({
@@ -44,6 +47,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   const currentPath = (): string => {
     const l = history.location;
+
     return [l.pathname, l.search, l.hash].filter(Boolean).join('');
   };
 
@@ -156,6 +160,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
     const resourceValue = encodeURIComponent(resource.value);
     const openerValue = opener ? encodeURIComponent(opener.value) : '';
+
     return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
   };
 
@@ -205,18 +210,22 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         if (__CLIENT__) {
           reloadPage(store, false);
         }
+
         return Promise.resolve();
       case rdf.id(libro.actions.reload):
         reloadPage(store, true);
+
         return Promise.resolve();
       case rdf.id(libro.actions.navigation.push):
-      case rdf.id(libro.actions.navigation.pop):
+      case rdf.id(libro.actions.navigation.pop): {
         const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
         const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
         if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
           store.exec(libro.actions.dialog.close);
         }
+
         return next(iri, opts);
+      }
       default:
     }
 
@@ -271,8 +280,9 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         redirectPage(store, location);
       } else {
         // TODO: connect to router
-        history.push(retrievePath(location));
+        history.push(retrievePath(location) ?? '#');
       }
+
       return Promise.resolve();
     }
 
@@ -291,6 +301,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
           return onDone();
         }
       }
+
       return Promise.resolve();
     }
 
@@ -313,6 +324,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.snackbar.finished.value)) {
       store.processDelta(shiftSnackbar(), true);
+
       return Promise.resolve();
     }
 

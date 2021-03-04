@@ -6,6 +6,7 @@ export default {
   ns: ll,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   ErrorResource: ll('ErrorResource'),
   ErrorResponse: ll('ErrorResponse'),
   LoadingResource: ll('LoadingResource'),

@@ -30,7 +30,7 @@ class Card extends Topology<PropTypes> {
     this.topology = cardTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return clsx({
       'Card': true,
       'Card--shine': this.props.shine,

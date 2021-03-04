@@ -1,4 +1,4 @@
-/* global jest */
+/* global jest, module */
 
 const React = jest.requireActual('react');
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface FormGroupContext {
-  addFieldName: (fieldName: string) => void;
+  addFieldName?: (fieldName: string) => void;
   fieldNames: string[];
   groupIndex: number;
   hasContent: boolean;
@@ -10,7 +10,7 @@ interface FormGroupContext {
 
 const FormGroupContext = React.createContext<FormGroupContext>({} as FormGroupContext);
 
-export const useFormGroup = () => React.useContext(FormGroupContext);
+export const useFormGroup = (): FormGroupContext => React.useContext(FormGroupContext);
 
 interface PropTypes {
   sequenceIndex: number;

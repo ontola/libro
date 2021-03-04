@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
@@ -8,16 +6,17 @@ import Topology from '../Topology';
  */
 export const containerFloatTopology = argu.ns('containerFloat');
 
+export interface ContainerFloatProps {
+  children: React.ReactNode
+}
+
 /**
  * Sets the containerFloat topology
  * @returns {component} Component
  */
-class ContainerFloat extends Topology {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+class ContainerFloat extends Topology<ContainerFloatProps> {
 
-  constructor(props: any) {
+  constructor(props: ContainerFloatProps) {
     super(props);
 
     this.className = 'ContainerFloat';

@@ -42,7 +42,7 @@ const CreatedAt = ({ linkedProp }) => {
   const waitingVeryShort = 3;
   const waitingShort = 7;
   const waitingLong = 21;
-  let message, variant;
+  let message; let variant;
 
   if (diff <= waitingVeryShort) {
     message = messages.veryShort;

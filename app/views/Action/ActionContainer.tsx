@@ -1,12 +1,13 @@
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  register,
   Resource,
+  register,
 } from 'link-redux';
 import React from 'react';
 
 import { containerTopology } from '../../topologies/Container';
+
 import { ActionProps, useDoneHandler } from './helpers';
 
 const ActionContainer: FC<ActionProps> = ({

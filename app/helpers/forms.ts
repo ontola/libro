@@ -1,4 +1,6 @@
-import rdf, { isNode, Literal, Node, Term } from '@ontologies/core';
+import rdf, {
+ Literal, Node, Term, isNode, 
+} from '@ontologies/core';
 
 import ontola from '../ontology/ontola';
 
@@ -35,7 +37,7 @@ export function clearRemoval(value: JSONLDObject | undefined): JSONLDObject | un
         return value;
     }
 
-    const { [destroyFieldName]: ignore, ...rest } = value;
+    const { [destroyFieldName]: ignored, ...rest } = value;
 
     return rest as JSONLDObject;
 }
@@ -52,7 +54,7 @@ export function retrieveIdFromValue(value: JSONLDObject | Node | Literal | undef
     return undefined;
 }
 
-export function isMarkedForRemove(value: any): boolean {
+export function isMarkedForRemove(value: Record<string, unknown> | any): boolean {
     if (!value) {
         return true;
     }

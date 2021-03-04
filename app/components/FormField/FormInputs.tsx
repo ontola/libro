@@ -1,16 +1,21 @@
-import rdf, { isNamedNode, isTerm, SomeTerm } from '@ontologies/core';
+import rdf, {
+ SomeTerm, isNamedNode, isTerm,
+} from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import PropTypes from 'prop-types';
 import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { destroyFieldName, isMarkedForRemove, retrieveIdFromValue } from '../../helpers/forms';
+import {
+ destroyFieldName, isMarkedForRemove, retrieveIdFromValue,
+} from '../../helpers/forms';
 import { isJSONLDObject } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 import Button from '../Button';
 
 import FormFieldAddButton from './FormFieldAddButton';
+
 import { FormFieldError, InputMeta } from './index';
 
 interface PropTypes {
@@ -54,7 +59,7 @@ export interface InputComponentProps {
   values: InputValue[];
 }
 
-const FormInputs = (props: PropTypes) => {
+const FormInputs = (props: PropTypes): JSX.Element => {
   const {
     addItem,
     inputErrors,
@@ -86,7 +91,7 @@ const FormInputs = (props: PropTypes) => {
   } = meta;
 
   if (!values) {
-    return null;
+    return <React.Fragment></React.Fragment>;
   }
 
   if (!combinedComponent) {
@@ -132,11 +137,11 @@ const FormInputs = (props: PropTypes) => {
               label={label}
               meta={meta}
               name={name}
-              onChange={inputOnChange}
               path={path}
               placeholder={placeholder}
               storeKey={storeKey}
               values={values}
+              onChange={inputOnChange}
             />
             {removable && (
               <Button

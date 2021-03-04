@@ -6,6 +6,7 @@ export default {
   ns: argu,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   ArguHome: argu('ArguHome'),
   Argument: argu('Argument'),
   BearerToken: argu('BearerToken'),
@@ -126,6 +127,7 @@ export default {
   yes: argu('yes'),
 
   /* datatypes */
+  // eslint-disable-next-line sort-keys
   base64File: argu('base64File'),
 
   /*
@@ -133,6 +135,7 @@ export default {
    * Use the exported constants over these.
    */
 
+  // eslint-disable-next-line sort-keys
   actionsBar: argu('actionsBar'),
   card: argu('card'),
   cardFixed: argu('cardFixed'),

@@ -3,8 +3,8 @@ import rdf from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   FC,
-  register,
   Resource,
+  register,
   useLRS,
 } from 'link-redux';
 import React from 'react';
@@ -36,9 +36,9 @@ const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
 
   return (
     <Dialog
+      open
       // @ts-ignore
       PaperComponent="div"
-      open
       className={theme}
       maxWidth="md"
       onClose={close(resource, false)}

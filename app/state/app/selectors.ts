@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types*/
 import { HIGHLIGHT_RESOURCE, SET_CURRENT_USER } from '../action-types';
 
 /**

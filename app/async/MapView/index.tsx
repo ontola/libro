@@ -1,4 +1,4 @@
-import { useTheme } from '@material-ui/core';
+import { Theme, useTheme } from '@material-ui/core';
 import { isNamedNode, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -46,7 +46,7 @@ const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement) =>
   };
 };
 
-const featureFromPlacement = (lrs: LinkReduxLRSType, placement: SomeNode | Placement, theme: any) => {
+const featureFromPlacement = (lrs: LinkReduxLRSType, placement: SomeNode | Placement, theme: Theme) => {
   const {
     image,
     lat,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types*/
 import { editorStateFromRaw } from 'megadraft';
 
 import { createMarkdownFromDraft } from '../../helpers/markdownHelper';

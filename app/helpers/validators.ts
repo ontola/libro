@@ -1,5 +1,7 @@
 import { isTerm } from '@ontologies/core';
+
 import { InputValue } from '../hooks/useFormField';
+
 import { isMarkedForRemove } from './forms';
 
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
@@ -37,10 +39,10 @@ const valueValidation = (validator: ValueValidator) => (
 
 const validatorMap = {
   isEmail: valueValidation((value) => value && !emailRegex.test(value) && 'Ongeldig e-mailadres'),
-  maxCount: (max: number) => arrayValidation((values) => values && values.length > max && `Maximaal ${max}`),
-  maxLength: (max: number) => valueValidation((value) => value && value.length > max && `Maximaal ${max} tekens, nu ${value.length}`),
-  minCount: (min: number) => arrayValidation((values) => values && values.length < min && `Minimaal ${min}`),
-  minLength: (min: number) => valueValidation((value) => value && value.length < min && `Minimaal ${min} tekens`),
+  maxCount: (max: number): Validator => arrayValidation((values) => values && values.length > max && `Maximaal ${max}`),
+  maxLength: (max: number): Validator => valueValidation((value) => value && value.length > max && `Maximaal ${max} tekens, nu ${value.length}`),
+  minCount: (min: number): Validator => arrayValidation((values) => values && values.length < min && `Minimaal ${min}`),
+  minLength: (min: number): Validator => valueValidation((value) => value && value.length < min && `Minimaal ${min} tekens`),
   required: valueValidation((value) => !value && '*Vereist'),
 };
 

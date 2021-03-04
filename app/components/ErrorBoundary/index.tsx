@@ -1,7 +1,7 @@
-import { LinkedRenderStoreContext, LRSCtx } from 'link-redux';
+import { LRSCtx, LinkedRenderStoreContext } from 'link-redux';
 import React from 'react';
 
-import { renderErrorComp, TopologyState } from '../../topologies/Topology';
+import { TopologyState, renderErrorComp } from '../../topologies/Topology';
 
 class ErrorBoundary<P extends LinkedRenderStoreContext> extends React.Component<P, TopologyState> {
   constructor(props: P) {
@@ -10,7 +10,7 @@ class ErrorBoundary<P extends LinkedRenderStoreContext> extends React.Component<
     this.state = { error: undefined };
   }
 
-  public componentDidCatch(error: Error, _: React.ErrorInfo) {
+  public componentDidCatch(error: Error, _: React.ErrorInfo): void {
     this.context.report(error);
     this.setState({ error });
   }

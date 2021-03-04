@@ -35,7 +35,7 @@ export interface PropTypes {
   placements: Array<Placement | SomeNode>;
 }
 
-const MapViewLoader = (props: PropTypes) => {
+const MapViewLoader = (props: PropTypes): JSX.Element => {
   if (!__CLIENT__ || __TEST__) {
     return <LinkLoader />;
   }

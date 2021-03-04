@@ -1,9 +1,10 @@
+/* eslint-disable no-magic-numbers */
 import { Box, Grid } from '@material-ui/core';
 import { withTheme } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
-import { linkType, Resource } from 'link-redux';
+import { Resource, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, {ComponentType} from 'react';
+import React, { ComponentType } from 'react';
 
 import ontola from '../../ontology/ontola';
 import Topology from '../Topology';
@@ -46,7 +47,7 @@ class Footer extends Topology<Props> {
     const color = resolveColor();
 
     return this.wrap((
-      <Box bgcolor={`${background}.main`} color={color} className={this.getClassName()}>
+      <Box bgcolor={`${background}.main`} className={this.getClassName()} color={color}>
         <div className="Footer__container">
           <Grid container spacing={6}>
             {this.props.resources?.map((iri) => (

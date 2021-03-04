@@ -2,7 +2,7 @@ import React from 'react';
 
 import DropdownMenu from '../../components/DropdownMenu';
 import argu from '../../ontology/argu';
-import Topology from '../Topology';
+import Topology, { TopologyContent } from '../Topology';
 
 export const menuTopology = argu.ns('topologies/menu');
 
@@ -16,7 +16,7 @@ class Menu extends Topology<PropTypes> {
     this.topology = menuTopology;
   }
 
-  public renderContent() {
+  public renderContent(): TopologyContent {
     const {
       children,
       trigger,

@@ -6,6 +6,7 @@ export default {
   ns: meeting,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   AgendaItem: meeting('AgendaItem'),
   Meeting: meeting('Meeting'),
 

@@ -118,17 +118,17 @@ const prerenderMetaTag = (props: TagProps) => {
   return `<${type} ${attrs.join(' ')}>`;
 };
 
-export const prerenderMetaTags = (ctx: Context, data: string) => {
+export const prerenderMetaTags = (ctx: Context, data: string): string => {
   const {
     manifest,
-    request: { href},
+    request: { href },
   } = ctx;
 
   const quads = ([] as string[][]);
   let coverPhoto = '';
   let coverURL;
-  let text;
-  let name;
+   let text;
+   let name;
 
   data?.split('\n')?.forEach((line) => {
     if (line?.length > 0) {

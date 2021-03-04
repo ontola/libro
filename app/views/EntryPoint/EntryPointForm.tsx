@@ -9,7 +9,7 @@ import {
   useLRS,
   useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler } from 'react';
+import React, { EventHandler, SyntheticEvent } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import Form from '../../components/Form/Form';
@@ -33,13 +33,13 @@ interface PropTypes {
   autofocusForm?: boolean;
   blacklist?: number[];
   className?: string;
-  contentWrapper?: any;
+  contentWrapper?: React.ReactNode;
   footerButtons: (submitting: boolean) => React.ReactNode;
   formID: string;
   formInstance?: FormApi;
   httpMethod: string;
   object?: SomeNode;
-  onKeyUp?: EventHandler<any>;
+  onKeyUp?: EventHandler<SyntheticEvent<unknown>>;
   onSubmit: SubmitHandler;
   sessionStore?: Storage;
   theme?: string;
@@ -129,8 +129,8 @@ const EntryPointForm: React.FC<PropTypes> = ({
   return (
     <Form
       action={url && new URL(url).pathname}
-      autofocusForm={!!autofocusForm}
       autoSubmit={!!autoSubmit}
+      autofocusForm={!!autofocusForm}
       blacklist={blacklist}
       className={className}
       form={formInstance}

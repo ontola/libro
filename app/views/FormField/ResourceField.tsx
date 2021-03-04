@@ -5,8 +5,8 @@ import * as sh from '@ontologies/shacl';
 import {
   FC,
   Property,
-  register,
   Resource,
+  register,
 } from 'link-redux';
 import { ResourcePropTypes } from 'link-redux/dist-types/components/Resource';
 import React from 'react';

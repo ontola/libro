@@ -1,7 +1,7 @@
 import {
   Feature,
-  Map as OLMap,
   MapBrowserEvent,
+  Map as OLMap,
   View,
 } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
@@ -132,7 +132,11 @@ export interface UseMapProps {
   view: ViewProps;
 }
 
-const useMap = (props: UseMapProps) => {
+const useMap = (props: UseMapProps): {
+  error: boolean | undefined;
+  map: OLMap | null;
+  mapRef: React.RefObject<HTMLDivElement>;
+} => {
   const {
     accessToken,
     layers,
@@ -280,7 +284,7 @@ const useMap = (props: UseMapProps) => {
         }
         setZoom(newZoom);
       }
-      if (onViewChange && newCenter && newZoom) {
+      if (newCenter && newZoom) {
         onViewChange(newCenter, newZoom);
       }
     };

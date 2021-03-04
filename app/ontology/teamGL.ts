@@ -6,6 +6,7 @@ export default {
     ns: teamGL,
 
     /* classes */
+    // eslint-disable-next-line sort-keys
     Address: teamGL('Address'),
     Badge: teamGL('Badge'),
     ContactedAction: teamGL('ContactedAction'),

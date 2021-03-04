@@ -1,4 +1,4 @@
-import { isTerm, Literal } from '@ontologies/core';
+import { Literal, isTerm } from '@ontologies/core';
 
 export const PERCENTAGE = 100;
 
@@ -42,20 +42,20 @@ export function byteToSize(byte: number): string {
   return `${Math.round(byte / (BYTE_SIZE_TO_KBYTE ** i))} ${SIZES[i]}`;
 }
 
-export function tryParseFloat(linkedProp: any) {
+export function tryParseFloat(linkedProp: unknown): number | undefined {
   const value = isTerm(linkedProp) ? linkedProp.value : linkedProp;
   if (!linkedProp || Number.isNaN(Number(value))) {
     return undefined;
   }
 
-  return Number.parseFloat(value!.toString());
+  return Number.parseFloat(`${value}`);
 }
 
-export function tryParseInt(linkedProp: any) {
+export function tryParseInt(linkedProp: unknown): number | undefined {
   const value = isTerm(linkedProp) ? linkedProp.value : linkedProp;
   if (!linkedProp || Number.isNaN(Number(value))) {
     return undefined;
   }
 
-  return Number.parseInt(value!.toString(), 10);
+  return Number.parseInt(`${value}`, 10);
 }

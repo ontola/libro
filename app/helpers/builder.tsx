@@ -1,10 +1,14 @@
-import rdf, { isNode, isTerm, NamedNode, Node, SomeTerm } from '@ontologies/core';
+import rdf, {
+ NamedNode, Node, SomeTerm, isNode, isTerm, 
+} from '@ontologies/core';
 import { seqToArray } from '@rdfdev/collections';
 import { normalizeType } from 'link-lib';
-import { LabelType, LinkReduxLRSType, Property, Resource, useLRS } from 'link-redux';
+import {
+ LabelType, LinkReduxLRSType, Property, Resource, useLRS, 
+} from 'link-redux';
 import { PropertyPropTypes } from 'link-redux/dist-types/components/Property';
 import { ResourcePropTypes } from 'link-redux/dist-types/components/Resource';
-import React, { ReactElement } from 'react';
+import React from 'react';
 import * as ReactIs from 'react-is';
 
 import { componentMap } from '../components';
@@ -12,6 +16,49 @@ import { topologyComponentMap } from '../topologies';
 
 interface PropertyProps {
   onLoad?: React.ComponentType | null;
+}
+
+const component = (_: LinkReduxLRSType) => {
+  function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: ReactComp[]): ReactComp;
+  function top(t: Node, children?: ReactComp[]): ReactComp;
+  function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | ReactComp[], children?: ReactComp[]): ReactComp {
+    const Comp = topologyComponentMap[rdf.id(t)] || componentMap[rdf.id(t)];
+    const propsIsChildren = Array.isArray(props);
+    const compProps = propsIsChildren ? {} : (props || {});
+    const childElems = propsIsChildren ? props : children;
+
+    return React.createElement(
+      Comp,
+      {
+ key: t.value,
+...compProps, 
+},
+      childElems,
+    );
+  }
+
+  return top;
+};
+
+type ComponentBuilder = ReturnType<typeof component>;
+
+type PropertyBuilder = (
+  label: PropertyPropTypes | NamedNode | NamedNode[] | ReactComp,
+  props?: Record<string, unknown> | ReactComp | ReactComp[],
+  children?: ReactComp[],
+) => ReactComp;
+
+type PropertiesBuilder = (
+  ...props: Array<PropertyPropTypes | NamedNode | NamedNode[] | ReactComp>
+) => ReactComp;
+
+type RecourceBuilder = (props: Node | ResourcePropTypes, children: ReactComp[]) => React.ReactElement;
+
+interface BuilderToolkit {
+  c: ComponentBuilder;
+  p: PropertyBuilder;
+  ps: PropertiesBuilder;
+  r: RecourceBuilder
 }
 
 function isLabel(t: PropertyPropTypes | Node | Node[]): t is LabelType {
@@ -44,27 +91,8 @@ interface DataProps {
   [k: string]: string | boolean | SomeTerm;
 }
 
-const isElement = (p: any): p is ReactElement<any, any> => {
+const isElement = (p: any): p is React.ReactElement<any, any> => {
   return ReactIs.isElement(p);
-};
-
-const component = (_: LinkReduxLRSType) => {
-  function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: ReactComp[]): ReactComp;
-  function top<P = DataProps>(t: Node, children?: ReactComp[]): ReactComp;
-  function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | ReactComp[], children?: ReactComp[]): ReactComp {
-    const Comp = topologyComponentMap[rdf.id(t)] || componentMap[rdf.id(t)];
-    const propsIsChildren = Array.isArray(props);
-    const compProps = propsIsChildren ? {} : (props || {});
-    const childElems = propsIsChildren ? props : children;
-
-    return React.createElement(
-      Comp,
-      { key: t.value, ...compProps },
-      childElems,
-    );
-  }
-
-  return top;
 };
 
 const getPropertyProps = (
@@ -86,7 +114,7 @@ const getPropertyProps = (
 
 export const property = (lrs?: LinkReduxLRSType) => (
   label: PropertyPropTypes | NamedNode | NamedNode[] | ReactComp,
-  props?: {} | ReactComp | ReactComp[],
+  props?: Record<string, unknown> | ReactComp | ReactComp[],
   children?: ReactComp[],
 ): ReactComp => {
   if (!label || typeof label === 'string' || typeof label === 'number') {
@@ -143,14 +171,14 @@ export const properties = (lrs?: LinkReduxLRSType) => (
 };
 
 export const resource = (_?: LinkReduxLRSType) => {
-  return (props: Node | ResourcePropTypes, children: ReactComp[]) => React.createElement(
+  return (props: Node | ResourcePropTypes, children: ReactComp[]): React.ReactElement => React.createElement(
     Resource,
     isNode(props) ? { subject: props } : props,
     children.length === 0 ? null : children,
   );
 };
 
-export const useViewBuilderToolkit = () => {
+export const useViewBuilderToolkit = (): BuilderToolkit => {
   const lrs = useLRS();
 
   return {

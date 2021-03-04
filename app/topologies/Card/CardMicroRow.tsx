@@ -18,7 +18,7 @@ class CardMicroRow extends Topology<PropTypes> {
     this.topology = cardMicroRowTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return `CardMicroRow ${this.props.highlighted ? 'CardMicroRow--shine' : ''}`;
   }
 }

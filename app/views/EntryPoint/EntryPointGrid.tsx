@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import { isNode, SomeTerm } from '@ontologies/core';
+import { SomeTerm, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
@@ -68,7 +68,7 @@ const EntryPointGrid: FC<PropTypes> = (props) => {
     url,
   } = props;
   const classes = useStyles();
-  const formURL = new URL(subject!!.value);
+  const formURL = new URL(subject!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
     formID,
@@ -76,7 +76,7 @@ const EntryPointGrid: FC<PropTypes> = (props) => {
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject: subject!!,
+    subject: subject!,
   });
   const [object] = useResourceProperty(isNode(action) ? action : undefined, schema.object);
   const footerButtons = React.useCallback((loading: boolean) => (

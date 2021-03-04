@@ -1,9 +1,10 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { normalizeType, SomeNode } from 'link-lib';
+import { SomeNode, normalizeType } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import Dropzone from 'react-dropzone';
+
 import DropzoneOverlay from '../../components/Dropzone/DropzoneOverlay';
 import Spinner from '../../components/Spinner';
 import { convertKeysAtoB } from '../../helpers/data';
@@ -38,6 +39,7 @@ const UploadTarget: React.FC<UploadTargetProps> = ({ children, uploadAction }) =
     return Promise.all(actions)
       .then((res) => {
         setUploading(false);
+
         return res;
       }).catch((error) => {
         setUploading(false);
@@ -81,7 +83,7 @@ const UploadTarget: React.FC<UploadTargetProps> = ({ children, uploadAction }) =
         }) => (
           <div
             data-debug="dropzone-wrapper"
-            style={{position: 'relative'}}
+            style={{ position: 'relative' }}
             {...getRootProps()}
           >
             <Spinner loading={uploading} />

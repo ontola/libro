@@ -40,7 +40,7 @@ const actionIsAllowed = (lrs: LinkReduxLRSType, action: SomeNode) => {
   return !actionStatus || !invalidStatusIds.includes(rdf.id(actionStatus));
 };
 
-export const useActions = (items: NamedNode[]) => {
+export const useActions = (items: NamedNode[]): NamedNode[] => {
   const lrs = useLRS();
   const filteredItems = allowSort(items, OMNIFORM_FILTER, OMNIFORM_ORDER);
 
@@ -49,6 +49,6 @@ export const useActions = (items: NamedNode[]) => {
   return filteredItems.filter((action) => actionIsAllowed(lrs, action));
 };
 
-export const actionsAreAllDisabled = (items: NamedNode[], lrs: LinkReduxLRSType) => (
+export const actionsAreAllDisabled = (items: NamedNode[], lrs: LinkReduxLRSType): boolean => (
   items.every((action) => !actionIsAllowed(lrs, action))
 );

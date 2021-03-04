@@ -7,6 +7,7 @@ import { Form as FinalForm } from 'react-final-form';
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
+import { InputValue } from '../../hooks/useFormField';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { SubmissionErrors } from '../FormField';
@@ -60,8 +61,9 @@ export const FormContext = React.createContext<Partial<FormContext>>({});
 const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) => {
   let formData = {};
   if (formApi && values) {
-    const registeredValues = {
-      ...formApi.getRegisteredFields().reduce((res: {}, key: string) => {
+    const registeredValues = formApi
+      .getRegisteredFields()
+      .reduce((res: Record<string, InputValue>, key: string) => {
         if (!Object.keys(values).includes(key)) {
           return res;
         }
@@ -70,8 +72,8 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) 
           ...res,
           [key]: values[key],
         };
-      }, {}),
-    };
+    }, {});
+
     formData = convertKeysAtoB(registeredValues);
   }
 
@@ -144,7 +146,7 @@ const Form: React.FC<FormProps> = (props) => {
     <Input name="_method" type={InputType.Hidden} value={method}/>
   );
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
-  const render = React.useCallback(({handleSubmit, submitting}) => (
+  const render = React.useCallback(({ handleSubmit, submitting }) => (
     <FormContext.Provider value={context}>
       <form
         action={action}

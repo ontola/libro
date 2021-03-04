@@ -61,7 +61,7 @@ const CollapsibleGroup = () => {
   );
 };
 
-const WrappedCollapsibleGroup = ({ sequenceIndex, ...props}: {sequenceIndex: number}) => (
+const WrappedCollapsibleGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => (
   <FormGroupProvider sequenceIndex={sequenceIndex}>
     <CollapsibleGroup {...props} />
   </FormGroupProvider>

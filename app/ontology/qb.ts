@@ -6,6 +6,7 @@ export default {
   ns: qb,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   DataSet: qb('DataSet'),
   MeasureProperty: qb('MeasureProperty'),
   Observation: qb('Observation'),

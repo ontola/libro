@@ -6,5 +6,6 @@ export default {
   ns: fhir,
 
   /* properties */
+  // eslint-disable-next-line sort-keys
   markdown: fhir('markdown'),
 };

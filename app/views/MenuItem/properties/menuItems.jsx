@@ -59,7 +59,7 @@ MenuItems.propTypes = {
 };
 
 MenuItems.defaultProps = {
-  childProps: {},
+  childprops: {},
 };
 
 export default register(MenuItems);

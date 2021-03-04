@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+/* global require */
 import '@formatjs/intl-relativetimeformat/polyfill';
 import 'core-js/features/array/flat';
 import 'core-js/features/array/flat-map';

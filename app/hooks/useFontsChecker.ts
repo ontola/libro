@@ -1,9 +1,10 @@
 import React from 'react';
-import {handle} from '../helpers/logging';
+
+import { handle } from '../helpers/logging';
 
 const TIMEOUT = 1000;
 
-const useFontsChecker = (font: string) => {
+const useFontsChecker = (font: string): boolean => {
   if (!__CLIENT__) {
     return true;
   }
@@ -18,7 +19,7 @@ const useFontsChecker = (font: string) => {
       if (fonts.length > 0) {
         setFontLoaded(true);
       } else {
-        window.setTimeout(loadFonts, 1000);
+        window.setTimeout(loadFonts, TIMEOUT);
       }
     }).catch(() => {
       handle(new Error('Could not load fonts within timeout'));

@@ -10,9 +10,11 @@ import { ShapeForm } from '../../hooks/useShapeProps';
 import { FormContext } from '../Form/Form';
 import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
-import { PropTypes as InputProps } from '../Input/Input';
+import Input, {
+ InputAutocomplete , PropTypes as InputProps, InputType, 
+} from '../Input/Input';
 
-import Input, { InputAutocomplete, InputType } from './Input';
+
 
 const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;
@@ -39,7 +41,7 @@ export interface InputPropTypes {
   type?: InputType;
 }
 
-const InputElement = (props: InputPropTypes) => {
+const InputElement = (props: InputPropTypes): JSX.Element => {
   const {
     autoComplete,
     autofocus,

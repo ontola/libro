@@ -8,13 +8,15 @@ import './TableRow.scss';
 
 export const tableRowTopology = argu.ns('tableRow');
 
+type TableRowElementProps = { onClick: any };
+
 class TableRow extends Topology {
   public static propTypes = {
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
   };
 
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.className = 'TableRow';
@@ -22,14 +24,14 @@ class TableRow extends Topology {
     this.topology = tableRowTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return clsx({
       'TableRow': true,
       'TableRow--clickable': !!(this.props as any).onClick,
     });
   }
 
-  public getElementProps() {
+  public getElementProps(): TableRowElementProps {
     return {
       onClick: (this.props as any).onClick,
     };

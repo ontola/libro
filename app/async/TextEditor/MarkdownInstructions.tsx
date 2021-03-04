@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 /* eslint-enable no-magic-numbers */
 
-const MarkdownInstructions = () => {
+const MarkdownInstructions = (): JSX.Element => {
   const classes = useStyles();
   const [showModal, setModal] = useState(false);
 

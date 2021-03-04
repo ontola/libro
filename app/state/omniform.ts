@@ -43,5 +43,8 @@ export const omniformReducer = handleActions({
 }, initialState);
 
 // Selectors
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getOmniformAction = (state: any, parentIRI: SomeNode) => state.getIn(['omniform', parentIRI, 'action']);
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getOmniformOpenState = (state: any, parentIRI: SomeNode) => state.getIn(['omniform', parentIRI, 'inlineOpened']) || false;

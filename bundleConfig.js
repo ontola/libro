@@ -1,3 +1,4 @@
+/* eslint-env node */
 // Keep in sync with the values in babel.config.js
 const moduleBrowserVersions = {
   chrome: '61',

@@ -6,11 +6,12 @@ import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { createBrowserHistory, createMemoryHistory } from 'history';
-import { createStore, MiddlewareFn } from 'link-lib';
+import { MiddlewareFn, createStore } from 'link-lib';
+import { LinkReduxLRSType } from 'link-redux';
 
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
-import { appMiddleware} from '../middleware/app';
+import { appMiddleware } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
@@ -22,17 +23,23 @@ import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
 import opengov from '../ontology/opengov';
 import teamGL from '../ontology/teamGL';
+import ll from '../ontology/ll';
+
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
-
-import ll from '../ontology/ll';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
 import hexjson from './transformers/hexjson';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
-export default function generateLRS(initialDelta: Quad[] = []) {
+export interface LRSBundle {
+  history: unknown;
+  lrs: LinkReduxLRSType;
+  serviceWorkerCommunicator: ServiceWorkerCommunicator;
+}
+
+export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
   const history = __CLIENT__ ? createBrowserHistory() : createMemoryHistory();
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
@@ -45,7 +52,10 @@ export default function generateLRS(initialDelta: Quad[] = []) {
   ];
   const storeOptions = __CLIENT__
       ? { report: handle }
-      : { apiOpts: { bulkEndpoint: 'http://localhost/link-lib/bulk' }, report: handle };
+      : {
+          apiOpts: { bulkEndpoint: 'http://localhost/link-lib/bulk' },
+          report: handle,
+      };
   const lrs = createStore<React.ComponentType<any>>(storeOptions, middleware);
   serviceWorkerCommunicator.linkedRenderStore = lrs;
   (lrs as any).bulkFetch = true;
@@ -96,6 +106,7 @@ export default function generateLRS(initialDelta: Quad[] = []) {
       return false;
     }
     lrs.schema.addQuads([rdf.quad(q.object, rdfs.subClassOf, schema.Thing)]);
+
     return false;
   });
 

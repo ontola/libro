@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as ontAs from '@ontologies/as';
 import rdf from '@ontologies/core';
 import * as ontDcterms from '@ontologies/dcterms';

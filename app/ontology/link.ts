@@ -6,5 +6,6 @@ export default {
   ns: link,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   Document: link('Document'),
 };

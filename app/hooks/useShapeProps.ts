@@ -2,15 +2,16 @@ import * as sh from '@ontologies/shacl';
 import equal from 'fast-deep-equal';
 import { SomeNode } from 'link-lib';
 import {
-  literal,
   ReturnType,
+  literal,
   useResourceLink,
 } from 'link-redux';
 import React, { useState } from 'react';
+
 import { FormContext } from '../components/Form/Form';
 import { isNumber } from '../helpers/types';
-
 import ontola from '../ontology/ontola';
+
 import { UseFormFieldProps } from './useFormField';
 
 const shapePropsFromObject = ['maxCount', 'maxInclusive', 'maxLength', 'minCount', 'minInclusive', 'minLength', 'shIn'];
@@ -49,7 +50,7 @@ const mapShapeProps = {
   shIn: sh.shaclin,
 };
 
-const useFieldShape = (props: UseFormFieldProps) => {
+const useFieldShape = (props: UseFormFieldProps): ShapeForm => {
   const { object } = React.useContext(FormContext);
   const [fieldShape, setFieldShape] = useState({});
   const shapeProps = useResourceLink(props.subject, mapShapeProps) as unknown as ShapeForm;

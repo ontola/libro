@@ -13,9 +13,9 @@ import { useStrippedMarkdown } from '../../helpers/markdownHelper';
 import {
   COVER_PREDICATES,
   COVER_URL_PREDICATE,
-  getMetaTags,
   NAME_PREDICATES,
   TEXT_PREDICATES,
+  getMetaTags,
 } from '../../helpers/metaData';
 
 const Metadata: React.FC = () => {

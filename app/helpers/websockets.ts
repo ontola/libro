@@ -3,13 +3,16 @@ import { LinkReduxLRSType } from 'link-redux';
 import app from '../ontology/app';
 import ontola from '../ontology/ontola';
 
-export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: string) {
+export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: string): Promise<void> {
   const websocketAddress = app.ns(websocketPath).value.replace('https://', 'wss://');
-  const ActionCable = await import('actioncable');
+  const ActionCable = await import(
+    /* webpackChunkName: "actioncable" */
+    'actioncable'
+  );
   (lrs.api as any).channel = ActionCable.createConsumer(websocketAddress);
 }
 
-export function subscribeDeltaChannel(lrs: LinkReduxLRSType, channel: string) {
+export function subscribeDeltaChannel(lrs: LinkReduxLRSType, channel: string): void {
   (lrs.api as any)
       .channel
       .subscriptions

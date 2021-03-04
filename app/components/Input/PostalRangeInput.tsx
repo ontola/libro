@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import React, { EventHandler } from 'react';
-import { InputValue } from '../../hooks/useFormField';
 
+import { InputValue } from '../../hooks/useFormField';
 import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../views/Glapp/helpers';
 import { InputComponentProps } from '../FormField/FormInputs';
 
@@ -46,7 +46,7 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
 
 const style = { marginBottom: '0.5em' };
 
-function PostalRangeInput(props: InputComponentProps) {
+function PostalRangeInput(props: InputComponentProps): JSX.Element {
   const compProps = {
     index: 0,
     ...props,

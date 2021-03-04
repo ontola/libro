@@ -1,8 +1,9 @@
 import {
   Helpers,
+  LinkRenderContext,
   LinkRenderCtx,
-  renderError,
   TopologyProvider,
+  renderError,
   useCalculateChildProps,
   useLRS,
 } from 'link-redux';
@@ -14,7 +15,9 @@ export interface TopologyState {
   error?: Error;
 }
 
-export const renderErrorComp = (self: React.Component<{}, TopologyState>) => () => {
+export type TopologyContent = React.FunctionComponentElement<React.ConsumerProps<LinkRenderContext>>;
+
+export const renderErrorComp = (self: React.Component<Record<string, unknown>, TopologyState>) => (): JSX.Element => {
   const ErrorRenderer: React.FC<
     TopologyState & Helpers & { context: typeof self.context, props: typeof self.props }
   > = ({
@@ -36,7 +39,7 @@ export const renderErrorComp = (self: React.Component<{}, TopologyState>) => () 
       handle(e);
 
       return (
-        <button onClick={reset}>
+        <button type="button" onClick={reset}>
           Error
         </button>
       );
@@ -53,12 +56,12 @@ export const renderErrorComp = (self: React.Component<{}, TopologyState>) => () 
   );
 };
 
-class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P, S> {
+class Topology<P = Record<string, unknown>, S extends TopologyState = Record<string, unknown>> extends TopologyProvider<P, S> {
   public static contextType = LinkRenderCtx;
   protected style: any;
   protected renderErrorComp: () => any;
 
-  static get displayName() {
+  static get displayName(): string {
     if (this.name === 'Topology') {
       return this.name;
     }
@@ -66,7 +69,7 @@ class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P,
     return `TP(${this.name})`;
   }
 
-  static set displayName(_) {
+  static set displayName(_: string) {
     // ignore
   }
 
@@ -80,24 +83,24 @@ class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P,
     this.style = undefined;
   }
 
-  public componentDidCatch(error: Error, _: ErrorInfo) {
+  public componentDidCatch(error: Error, _: ErrorInfo): void {
     handle(error);
     this.setState({ error });
   }
 
-  public getClassName() {
+  public getClassName(): string | undefined {
     return this.className;
   }
 
-  public getElementProps() {
+  public getElementProps(): Record<string, unknown> {
     return {};
   }
 
-  public getStyle() {
+  public getStyle(): any {
     return this.style;
   }
 
-  public renderContent() {
+  public renderContent(): TopologyContent {
     const Element = this.elementType as React.ElementType;
 
     return this.wrap((subject) => (

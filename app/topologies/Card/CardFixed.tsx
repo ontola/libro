@@ -23,7 +23,7 @@ class CardFixed extends Topology<PropTypes> {
     this.topology = cardFixedTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return `Card Card--fixed${this.props.fill ? ' Card--fill' : ''}`;
   }
 }

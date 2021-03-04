@@ -7,7 +7,7 @@ export const useMultipleFetching = (
     props: DataInvalidationProps,
     lastUpdate?: number,
     setError?: (e: Error) => void,
-) => {
+): void => {
     const lrs = useLRS();
     React.useEffect(() => {
         for (const s of normalizeType(props.dataSubjects)) {
@@ -16,6 +16,7 @@ export const useMultipleFetching = (
                     if (!setError) {
                         throw new Error('No setError given');
                     }
+
                     return setError(new TypeError('TODO: blankNodeWarn'));
                 }
                 lrs.queueEntity(s);

@@ -1,12 +1,17 @@
-import { isNode, Literal, NamedNode } from '@ontologies/core';
+import {
+ Literal,
+ NamedNode,
+ isNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { FormApi } from 'final-form';
 import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
   useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler } from 'react';
+import React, { EventHandler, SyntheticEvent } from 'react';
 
 import ll from '../../ontology/ll';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
@@ -19,12 +24,12 @@ interface PropTypes {
   actionBody: SomeNode;
   autofocusForm: boolean;
   footerButtons: (submitting: boolean) => React.ReactNode;
-  formInstance: any;
+  formInstance: FormApi;
   httpMethod: Literal;
   modal?: boolean;
-  responseCallback?: (response: any) => void;
-  onDone?: (response: any) => void;
-  onKeyUp: EventHandler<any>;
+  responseCallback?: (response: unknown) => void;
+  onDone?: (response: unknown) => void;
+  onKeyUp: EventHandler<SyntheticEvent<unknown>>;
   onStatusForbidden?: () => Promise<void>;
   parentIRI: string;
   sessionStore: Storage;
@@ -59,7 +64,7 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject: subject!!,
+    subject: subject!,
   });
   const [object] = useResourceProperty(action, schema.object);
 

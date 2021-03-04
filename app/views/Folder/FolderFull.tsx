@@ -4,8 +4,8 @@ import { SomeNode } from 'link-lib';
 import {
   FC,
   LinkedPropType,
-  register,
   ReturnType,
+  register,
   useDataFetching,
   useLRS,
   useProperty,
@@ -37,11 +37,14 @@ const FolderFull: FC<PropTypes> = ({ renderPartOf, subject }) => {
     c(components.ResourceBoundary, [
         c(containerTopology, [
           renderPartOf && p(schema.isPartOf),
-          c(components.ContainerHeader, {float: p(dexes.entries, c(components.HeaderFloat))}, [
+          c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
             p(schema.name),
           ]),
-          <UploadTarget uploadAction={uploadAction}>
-            {p(dexes.entries, {hideHeader: true, renderWhenEmpty: true})}
+          <UploadTarget key="UploadTarget" uploadAction={uploadAction}>
+            {p(dexes.entries, {
+                hideHeader: true,
+                renderWhenEmpty: true,
+            })}
           </UploadTarget>,
           // c(containerTopology, [
           // p(ontola.favoriteAction),

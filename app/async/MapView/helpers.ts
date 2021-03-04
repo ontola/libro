@@ -1,3 +1,4 @@
+import { Theme } from '@material-ui/core';
 import fa from 'fontawesome';
 import { Feature } from 'ol';
 import Circle from 'ol/geom/Circle';
@@ -52,7 +53,7 @@ const drawFontAwesomeIcon = (
   vectorContext.drawGeometry(circle);
 
   let renderText;
-  let renderFont;
+   let renderFont;
   if (count > 1) {
     renderText = count.toString();
     renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;
@@ -103,7 +104,10 @@ const getStyle = (image: string, highlight: boolean, theme: any) => (feature: Fe
   return iconCache[cacheKey];
 };
 
-export const getStyles = (image: string, theme: any) => {
+export const getStyles = (image: string, theme: Theme): {
+  hoverStyle: (feature: Feature) => Style,
+  style: (feature: Feature) => Style,
+} => {
   const style = getStyle(image, false, theme);
   const hoverStyle = getStyle(image, true, theme);
 

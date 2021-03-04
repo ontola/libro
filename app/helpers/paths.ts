@@ -48,6 +48,7 @@ const paths = {
    */
   signIn(redirectUrl?: string): string {
     const url = app.ns('u/sign_in').value;
+
     return redirectUrl ? `${url}?redirect_url=${encodeURIComponent(redirectUrl)}` : url;
   },
 };

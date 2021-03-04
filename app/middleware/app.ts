@@ -2,7 +2,9 @@
  * LinkedRenderStore app middleware
  */
 
-import rdf, { NamedNode, Node, Quadruple } from '@ontologies/core';
+import rdf, {
+ NamedNode, Node, Quadruple,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
@@ -31,6 +33,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
   store.processDelta([
       rdf.quad(app.menu, rdfx.type, app.Menu),
+      // eslint-disable-next-line no-magic-numbers
       rdf.quad(app.menu, http.statusCode, rdf.literal(200), ll.meta),
   ], true);
 
@@ -39,11 +42,13 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   const signInLink = (redirectUrl?: NamedNode) => {
     const postFix = redirectUrl ? `?redirect_url=${encodeURIComponent(redirectUrl.value.split('#')[0])}` : '';
+
     return app.ns('u/sign_in' + postFix);
   };
 
   (store as any).actions.app.startSignIn = (redirectUrl?: NamedNode) => {
     const resourceIRI = signInLink(redirectUrl);
+
     return (store as any).actions.ontola.showDialog(resourceIRI);
   };
 
@@ -63,7 +68,10 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   (store as any).actions.app.changePage = (subject: Node, newPage: Node) => dispatch(
     'changePage',
-    { subject, newPage },
+    {
+      newPage,
+      subject,
+    },
   );
 
   /**

@@ -1,3 +1,4 @@
+
 import { isNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { useLRS } from 'link-redux';
@@ -35,10 +36,11 @@ const DropzoneInner: React.FC<PropTypes> = ({
     if (imagePositionYShape) {
       return (
         <DropzoneInnerPositionY
-          children={children}
           file={file}
           imagePositionYShape={imagePositionYShape}
-       />
+        >
+          {children}
+       </DropzoneInnerPositionY>
       );
     }
   }
@@ -46,7 +48,7 @@ const DropzoneInner: React.FC<PropTypes> = ({
   if (file) {
     return children(
       <div>
-        <img src={file} />
+        <img alt="" src={file}/>
       </div>,
     );
   }

@@ -10,7 +10,7 @@ class Parent extends Topology {
     children: PropTypes.node.isRequired,
   };
 
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.topology = parentTopology;

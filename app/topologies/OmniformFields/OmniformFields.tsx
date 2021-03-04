@@ -6,7 +6,7 @@ import argu from '../../ontology/argu';
 export const omniformFieldsTopology = argu.ns('omniformFields');
 
 class OmniformFields extends TopologyProvider {
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.topology = omniformFieldsTopology;

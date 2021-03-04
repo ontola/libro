@@ -5,9 +5,9 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  register,
   Resource,
   ReturnType,
+  register,
   useLRS,
 } from 'link-redux';
 import React from 'react';

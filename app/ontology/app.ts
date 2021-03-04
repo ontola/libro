@@ -30,11 +30,13 @@ export const appOntology = [
 export default {
   ns: app,
 
+  // eslint-disable-next-line sort-keys
   contents,
   thumbnail,
   title,
 
   /* classes */
+  // eslint-disable-next-line sort-keys
   AppSignOut: app('AppSignOut'),
   Menu: app('Menu'),
 

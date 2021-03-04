@@ -21,7 +21,7 @@ class CardList extends Topology<PropTypes> {
     this.topology = cardListTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return `CardList ${this.props.direction === 'column' ? 'CardList--column' : ''}`;
   }
 }

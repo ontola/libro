@@ -26,7 +26,7 @@ class CardMain extends Topology<PropTypes> {
     this.topology = cardMainTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return clsx({
       'Card': true,
       'Card--fixed': this.props.fixed,

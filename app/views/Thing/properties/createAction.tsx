@@ -2,8 +2,8 @@ import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   FC,
-  register,
   Resource,
+  register,
 } from 'link-redux';
 import React from 'react';
 

@@ -1,10 +1,19 @@
-import rdf, { Node, Quad, Quadruple } from '@ontologies/core';
+import rdf, {
+ Node, Quad, Quadruple, 
+} from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
+
+export interface DeltaProcessors {
+  deltas: Quadruple[][];
+  flush(): Quad[];
+  processDelta(delta: Quadruple[]): Quad[];
+  queueDelta(delta: Quadruple[]): void;
+}
 
 function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
   delta
@@ -70,7 +79,7 @@ function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
     lrs.store.addQuadruples(supplants);
 }
 
-function arguDeltaProcessor(lrs: LinkReduxLRSType) {
+function arguDeltaProcessor(lrs: LinkReduxLRSType): DeltaProcessors {
   return {
     deltas: [] as Quadruple[][],
 

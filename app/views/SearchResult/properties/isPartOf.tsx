@@ -4,8 +4,8 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   PropertyProps,
-  register,
   Resource,
+  register,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';

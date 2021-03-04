@@ -1,5 +1,7 @@
 import * as as from '@ontologies/as';
-import { isNamedNode, isNode, NamedNode, SomeTerm, Term } from '@ontologies/core';
+import {
+ BlankNode, NamedNode, SomeTerm, Term, isNamedNode, isNode, 
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
@@ -20,14 +22,16 @@ import {
   nestedConditionalUnlessInPath,
   nestedFormsPath,
 } from '../helpers/diggers';
-import { calculateFormFieldName, JSONLDObject } from '../helpers/forms';
+import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageGet } from '../helpers/persistence';
 import { isResource } from '../helpers/types';
 import form from '../ontology/form';
+
 import { InputValue } from './useFormField';
 
 const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
   const firstValue = value[0];
+
   return value?.length === 1 && isNode(firstValue) && resourceHasType(lrs, firstValue, as.Collection);
 };
 
@@ -113,7 +117,7 @@ const useInitialValues = (
   actionBody: SomeNode,
   object: SomeNode | undefined,
   formID: string,
-) => {
+): [boolean | NamedNode | BlankNode | undefined,  Record<string, unknown> | undefined] => {
   const lrs = useLRS();
   const [timestamp, setTimestamp] = React.useState<null | number>(null);
   const [loading, setLoading] = React.useState<boolean | SomeNode | undefined>(true);
@@ -149,7 +153,7 @@ const useInitialValues = (
     setTimestamp(currentTimestamp);
   }
 
-  return [loading, initialValues];
+  return [loading, initialValues as Record<string, unknown>];
 };
 
 export default useInitialValues;

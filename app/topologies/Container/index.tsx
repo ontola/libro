@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Size, sizes } from '../../components/shared/config';
 import argu from '../../ontology/argu';
-import Topology from '../Topology';
+import Topology, { TopologyContent } from '../Topology';
 
 import './Container.scss';
 
@@ -34,7 +34,7 @@ class Container extends Topology<Props> {
     this.topology = containerTopology;
   }
 
-  public renderContent() {
+  public renderContent(): TopologyContent {
     return this.wrap((
       <MaterialContainer maxWidth={this.maxWidth()} {...this.props} />
     ));

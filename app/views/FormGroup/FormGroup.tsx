@@ -2,15 +2,15 @@ import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
   Property,
-  register,
   ReturnType,
+  register,
 } from 'link-redux';
 import React from 'react';
 
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
-import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 
+import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 import useStyles from './FormGroupStyles';
 
 interface PropTypes {
@@ -35,7 +35,7 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
   );
 };
 
-const WrappedFormGroup = ({ sequenceIndex, ...props}: {sequenceIndex: number}) => (
+const WrappedFormGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => (
   <FormGroupProvider sequenceIndex={sequenceIndex}>
     <FormGroup {...props} />
   </FormGroupProvider>

@@ -30,7 +30,7 @@ const ContentUrl: FC<PropTypes> = ({
 }) => {
   if (isPDF(encodingFormat)) {
     return (
-      <PDFViewer subject={subject} url={linkedProp.value} />
+      <PDFViewer subject={subject!} url={linkedProp.value} />
     );
   }
 

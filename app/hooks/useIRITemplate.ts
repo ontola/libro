@@ -26,6 +26,7 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
         opts[encodeURIComponent(key)] = parsedIriOpts.getAll(key);
       }
     }
+
     return opts;
   }, [iriTemplateOpts]);
 
@@ -65,7 +66,7 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
     const newValues = (currentIriOpts[key] || [])
       .filter((val) => val !== value);
 
-    return set({[key]: Array.from(new Set(newValues))});
+    return set({ [key]: Array.from(new Set(newValues)) });
   }, [currentIriOpts, set]);
 
   return {

@@ -1,21 +1,20 @@
-import { linkedPropType } from 'link-redux';
-import PropTypes from 'prop-types';
+import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const FABase = 'http://fontawesome.io/icon/';
 
-const propTypes = {
-  ariaLabel: PropTypes.string,
-  className: PropTypes.string,
-  linkedProp: linkedPropType.isRequired,
-  override: PropTypes.func,
-  style: PropTypes.shape({
-    maxHeight: PropTypes.string,
-  }),
-};
+export interface ImageProps {
+  ariaLabel?: string,
+  className?: string,
+  linkedProp: SomeTerm,
+  override?: (props: ImageProps) => JSX.Element,
+  style?: {
+    maxHeight?: string,
+  },
+}
 
-function Image(props: any) {
+function Image(props: ImageProps): JSX.Element {
   const {
     ariaLabel,
     className,
@@ -23,6 +22,7 @@ function Image(props: any) {
     style,
     linkedProp,
   } = props;
+
   if (linkedProp?.value?.startsWith(FABase)) {
     return (
       <FontAwesome
@@ -46,7 +46,5 @@ function Image(props: any) {
     />
   );
 }
-
-Image.propTypes = propTypes;
 
 export default Image;

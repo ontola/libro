@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
   literal,
-  useLink,
   useLRS,
+  useLink,
 } from 'link-redux';
 import React from 'react';
 import { useField } from 'react-final-form';
@@ -15,10 +15,10 @@ import { FormContext } from '../components/Form/Form';
 import { FormFieldError, InputMeta } from '../components/FormField';
 import { arraysEqual } from '../helpers/data';
 import {
+  JSONLDObject,
   calculateFormFieldName,
   clearRemoval,
   destroyFieldName,
-  JSONLDObject,
 } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import { isJSONLDObject, isNumber } from '../helpers/types';
@@ -91,6 +91,7 @@ const valueChanged = (oldValue: InputValue[], newValue: InputValue[] | undefined
   if (typeof newValue === 'undefined') {
     return true;
   }
+
   return !arraysEqual(oldValue, newValue);
 };
 

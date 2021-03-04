@@ -22,7 +22,7 @@ class CardRow extends Topology<PropTypes> {
     this.topology = cardRowTopology;
   }
 
-  public getClassName() {
+  public getClassName(): string {
     return clsx({
       'CardRow': true,
       'CardRow--backdrop': this.props.backdrop,

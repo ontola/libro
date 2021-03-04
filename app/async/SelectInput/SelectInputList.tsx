@@ -1,4 +1,8 @@
-import rdf, { isLiteral, isTerm, SomeTerm } from '@ontologies/core';
+import rdf, {
+ SomeTerm,
+ isLiteral,
+ isTerm,
+} from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 import VirtualList from 'react-tiny-virtual-list';

@@ -4,6 +4,7 @@ import React from 'react';
 import form from '../../ontology/form';
 import { allTopologiesExcept } from '../../topologies';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+
 import FormGroupProvider from './FormGroupProvider';
 
 const FooterGroup = () => (
@@ -12,7 +13,7 @@ const FooterGroup = () => (
   />
 );
 
-const WrappedFooterGroup = ({ sequenceIndex, ...props}: {sequenceIndex: number}) => (
+const WrappedFooterGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => (
   <FormGroupProvider sequenceIndex={sequenceIndex}>
     <FooterGroup {...props} />
   </FormGroupProvider>

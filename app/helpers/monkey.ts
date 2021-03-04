@@ -1,11 +1,12 @@
 import { LinkReduxLRSType } from 'link-redux';
+
 import {
     getAuthenticityToken,
     getLinkContent,
     getMetaContent,
 } from './arguHelpers';
 
-function patchRequestInitGenerator(lrs: LinkReduxLRSType) {
+function patchRequestInitGenerator(lrs: LinkReduxLRSType): void {
     (lrs as any).api.requestInitGenerator.constructor.prototype.authenticityHeader =
         function patchedAuthenticityHeader(options: {[k: string]: string} = {}) {
             return Object.assign({}, options, {

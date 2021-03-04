@@ -5,6 +5,7 @@ const libro = createNS('https://ns.ontola.io/libro/');
 export default {
   ns: libro,
 
+  // eslint-disable-next-line sort-keys
   actions: {
     copyToClipboard: libro('actions/copyToClipboard'),
     dialog: {

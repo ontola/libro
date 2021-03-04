@@ -9,7 +9,7 @@ const DateTimePicker = React.lazy(
   () => import(/* webpackChunkName: "Forms" */ '../async/DateTimePicker'),
 );
 
-const DateTimePickerLoader = (props: InputComponentProps) => {
+const DateTimePickerLoader = (props: InputComponentProps): JSX.Element => {
   if (!__CLIENT__) {
     return (
       <div className="Field__input Field__input--text">

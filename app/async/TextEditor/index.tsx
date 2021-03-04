@@ -45,13 +45,13 @@ const UPDATE_DELAY = 300;
 class TextEditor extends Component<PropTypes> {
   public static defaultProps = defaultProps;
 
-  public timer = undefined as any;
-
   constructor(props: PropTypes) {
     super(props);
 
     this.debounce = this.debounce.bind(this);
   }
+
+  public timer = undefined as any;
 
   public debounce() {
     clearTimeout(this.timer);

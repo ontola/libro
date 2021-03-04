@@ -37,7 +37,7 @@ const GroenLinksHeader = () => {
           className={matches ? classes.logo : classes.logoSmall}
           to="/"
         >
-          <img src={matches ? logo : logoSmall} />
+          <img alt="" src={matches ? logo : logoSmall} />
         </Link>
       </NavBarContent>
     </Navbar>

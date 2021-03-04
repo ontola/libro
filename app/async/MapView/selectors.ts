@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types*/
 import { MapReducerKey } from './reducer';
 
 export const getAccessToken = (state: any) => state.getIn([MapReducerKey, 'accessToken']);

@@ -7,6 +7,7 @@ import { FormContext } from '../Form/Form';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
+
 import { FormFieldError } from './index';
 
 interface PropTypes {

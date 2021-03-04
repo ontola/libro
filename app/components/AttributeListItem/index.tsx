@@ -2,8 +2,8 @@ import { NamedNode } from '@ontologies/core';
 import {
   Property,
   Resource,
-  useLinkRenderContext,
   useLRS,
+  useLinkRenderContext,
 } from 'link-redux';
 import React from 'react';
 

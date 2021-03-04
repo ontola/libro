@@ -14,21 +14,21 @@ import TableRow from '../../topologies/TableRow';
 import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
 import CardContent from '../Card/CardContent';
 
-const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
+const LoadingInline = (): JSX.Element => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
 
 const LoadingParagraph = () => <div className="Loading__Paragraph Loading__background" />;
 
-export const LoadingNavbarLink = () => (
+export const LoadingNavbarLink = (): JSX.Element => (
   <div className="LoadingNavbarLink">
     <div className="LoadingNavbarLink__content Loading__background Loading__background--inverse" />
   </div>
 );
 
-export const LoadingButton = () => (
+export const LoadingButton = (): JSX.Element => (
   <div className="Loading__Button Loading__background" />
 );
 
-export const LoadingCard = () => (
+export const LoadingCard = (): JSX.Element => (
   <Card>
     <CardContent>
       <div className="Loading__Header Loading__background" />
@@ -50,7 +50,7 @@ export const LoadingCardFixed: React.FC<{ fill: boolean }> = ({ fill }) => (
   </CardFixed>
 );
 
-export const LoadingCellRow = () => (
+export const LoadingCellRow = (): JSX.Element => (
   <TableRow>
     <TableCell colspan={100}>
       <div className="Loading__CellRow Loading__background" />
@@ -58,7 +58,7 @@ export const LoadingCellRow = () => (
   </TableRow>
 );
 
-export const LoadingPage = () => (
+export const LoadingPage = (): JSX.Element => (
   <FullResourceTopology>
     <Container>
       <BreadcrumbsBar>
@@ -69,7 +69,7 @@ export const LoadingPage = () => (
   </FullResourceTopology>
 );
 
-export const LoadingFullResource = () => (
+export const LoadingFullResource = (): JSX.Element => (
   <FullResourceTopology>
     <Container>
       <LoadingCard />
@@ -77,25 +77,25 @@ export const LoadingFullResource = () => (
   </FullResourceTopology>
 );
 
-export const LoadingDetail = () => (
+export const LoadingDetail = (): JSX.Element => (
   <div className="Loading__Paragraph Loading__Paragraph--detail Loading__background Detail" />
 );
 
-export const LoadingCardFloat = () => (
+export const LoadingCardFloat = (): JSX.Element => (
   <div className="Loading__background Loading__CardFloat" />
 );
 
-export const LoadingOpinion = () => (
+export const LoadingOpinion = (): JSX.Element => (
   <div className="Opinion--icon Loading__background" />
 );
 
-export const LoadingParent = () => (
+export const LoadingParent = (): JSX.Element => (
   <Breadcrumb
     label={<div className="Loading__Paragraph Loading__Paragraph--parent Loading__background" />}
   />
 );
 
-export const LoadingRow = () => (
+export const LoadingRow = (): JSX.Element => (
   <CardRow>
     <CardContent>
       <LoadingParagraph />
@@ -110,7 +110,7 @@ export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => (
 );
 
 // Like a LoadingRow, but with a backdrop
-export const LoadingCardRowAppendix = () => (
+export const LoadingCardRowAppendix = (): JSX.Element => (
   <CardRow backdrop>
     <CardContent>
       <LoadingParagraph />
@@ -118,20 +118,20 @@ export const LoadingCardRowAppendix = () => (
   </CardRow>
 );
 
-export const LoadingMicroRow = () => (
+export const LoadingMicroRow = (): JSX.Element => (
   <CardMicroRow>
     <div className="Loading__Paragraph Loading__Paragraph--micro-row Loading__background" />
   </CardMicroRow>
 );
 
-export const LoadingCoverPhoto = () => (
+export const LoadingCoverPhoto = (): JSX.Element => (
   <div className="CoverImage__wrapper">
     <div className="CoverImage__child Loading__background" />
   </div>
 );
 
 // Requires a wrapper that sets a widget topology
-export const LoadingGridCard = () => (
+export const LoadingGridCard = (): JSX.Element => (
   <CardFixed>
     <CardContent>
       <LoadingGridContent />
@@ -139,7 +139,7 @@ export const LoadingGridCard = () => (
   </CardFixed>
 );
 
-export const LoadingGridContent = () => (
+export const LoadingGridContent = (): JSX.Element => (
   <React.Fragment>
     <div className="Loading__Header Loading__background" />
     <LoadingParagraph />
@@ -152,7 +152,7 @@ export const LoadingGridContent = () => (
  *  @see {@link /app/spinner}
  *  @return {void}
  */
-export const LoadingFiller = () => (
+export const LoadingFiller = (): JSX.Element => (
   <div className="preloader">
     <div className="spinner">
       <div className="rect1" />

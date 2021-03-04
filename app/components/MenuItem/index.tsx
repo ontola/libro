@@ -3,7 +3,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MaterialMenuItem from '@material-ui/core/MenuItem';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { SomeNode } from 'link-lib';
-import React, { HTMLAttributes, MouseEvent, PropsWithChildren } from 'react';
+import React, {
+  HTMLAttributes, MouseEvent, PropsWithChildren,
+} from 'react';
 import { NavLinkProps } from 'react-router-dom';
 
 import Image from '../Image';

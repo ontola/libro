@@ -1,6 +1,7 @@
+import { Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles((theme: any) => ({
+export default makeStyles((theme: Theme) => ({
   caret: {
     alignSelf: 'flex-end',
   },

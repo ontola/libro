@@ -15,12 +15,14 @@ import register from '../../views';
 import defaultSource from './defaultSource';
 import parseToGraph from './parseToGraph';
 
-const PageBuilder = () => {
+const BUFFERED_TEXT_DEBOUNCE_DELAY = 300;
+
+const PageBuilder = (): JSX.Element => {
   const [lrs, setLRS] = React.useState(() => generateLRS());
   const [resource, setResource] = React.useState<SomeNode>(() => lrs.lrs.store.getInternalStore().quads[0].subject);
   const [text, setText] = useStoredState('libro.pagebuilder.value', defaultSource);
 
-  const [bufferedText] = useDebounce(text, 300, { leading: true });
+  const [bufferedText] = useDebounce(text, BUFFERED_TEXT_DEBOUNCE_DELAY, { leading: true });
 
   React.useEffect(() => {
     try {
@@ -31,7 +33,7 @@ const PageBuilder = () => {
       setResource(nextResource);
       setLRS(next);
     } catch (e) {
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.debug(e);
     }
   }, [bufferedText]);
@@ -39,11 +41,11 @@ const PageBuilder = () => {
   return (
     <RenderStoreProvider value={lrs.lrs}>
       <Grid container spacing={1}>
-        <Grid item xs={3} direction="column">
+        <Grid item direction="column" xs={3}>
           <Paper>
             <TextField
-              multiline
               fullWidth
+              multiline
               defaultValue={text}
               value={text}
               variant="outlined"
