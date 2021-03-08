@@ -1,7 +1,5 @@
-import { Paper, Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button/Button';
+import { ThemeOptions } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import { FC, Property, useProperty } from 'link-redux';
@@ -12,9 +10,10 @@ import argu from '../../ontology/argu';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Showcase from '../../topologies/Showcase';
-import { SalesTheme, withSalesTheme } from './SalesThemeProvider';
+import Header from './Header';
+import { withSalesTheme } from './SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>({
+const useStyles = makeStyles<Theme>(theme => ({
     buttonPrimary: {
         backgroundColor: '#B33A00',
         borderRadius: 3,
@@ -37,6 +36,14 @@ const useStyles = makeStyles<SalesTheme>({
     headerTitle: {
         fontSize: '3rem',
     },
+    propositionSelector: {
+        boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+        margin: 'auto',
+        borderRadius: '5px',
+        display: 'flex',
+        overflow: 'hidden',
+        marginBottom: '4rem',
+    },
     paperContainer: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -54,7 +61,12 @@ const useStyles = makeStyles<SalesTheme>({
         textAlign: 'center',
         width: 643,
     },
-});
+    wrapper: {
+        // This should be removed if Page no longer sets a margin
+        marginTop: '-1rem',
+        backgroundColor: theme.palette.background.default,
+    },
+}));
 
 const LandingPageFull: FC = () => {
     const classes = useStyles();
@@ -64,31 +76,22 @@ const LandingPageFull: FC = () => {
     const [demoText] = useProperty(argu.ns('demoText'));
 
     return (
-        <div>
+        <div className={classes.wrapper}>
+            <Header title={title.value} subtitle={text.value} imageUrl="/static/images/header_image.svg" />
             <Grid
                 container
                 alignItems="center"
                 direction="column"
                 className={classes.gridStyle}
             >
-                <Paper style={{
-                        backgroundImage: `url('https://video-images.vice.com/articles/5c7fa9c573bc8c0007df28f7/lede/1551877004855-Johan-Cruijffs-Amsterdam-Cruyff-Betondorp-Johan_Cruijff_Bestanddeelnr_928-0908.jpeg')` }}
-                >
-                    <Typography variant="h1">{title.value}</Typography>
-                    <Typography className={classes.subtitle} variant="body1">{text.value}</Typography>
-                    <Button
-                        className={classes.buttonPrimary}
-                        endIcon={<ArrowRightAltIcon style={{ fontSize: 50 }}/>}
-                    >
-                        {demoText.value}
-                    </Button>
-                    <Showcase>
-                        <Property label={argu.ns('showcase')} />
-                    </Showcase>
-                </Paper>
                 <Container>
-                    <Property label={argu.ns('cases')} />
+                    <Showcase>
+                        <div className={classes.propositionSelector}>
+                            <Property label={argu.ns('showcase')} />
+                        </div>
+                    </Showcase>
                 </Container>
+                <Property label={argu.ns('cases')} />
                 <Container>
                     <Property label={argu.ns('features')} />
                 </Container>

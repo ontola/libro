@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Theme, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
@@ -10,11 +10,11 @@ import React from 'react';
 import Image from '../../../components/Image';
 
 import argu from '../../../ontology/argu';
-import { containerTopology } from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 import Showcase from '../../../topologies/Showcase';
-import { SalesTheme, withSalesTheme } from '../SalesThemeProvider';
+import { withSalesTheme } from '../SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>({
+const useStyles = makeStyles<Theme>(theme => ({
     button: {
         fontSize: 24,
         fontWeight: 'bold',
@@ -22,13 +22,15 @@ const useStyles = makeStyles<SalesTheme>({
         textTransform: 'none',
     },
     gridStyle: {
-        backgroundColor: '#F8FBFF',
+        backgroundColor: theme.palette.primary.light,
+        margin: 'auto',
+        width: '100%',
     },
     imageStyle: {
         marginBottom: '1em',
         maxWidth: '100%',
     },
-});
+}));
 
 const CaseContainer: FC = () => {
     const classes = useStyles();
@@ -65,7 +67,7 @@ const CaseContainer: FC = () => {
 
 CaseContainer.type = argu.ns('Cases');
 
-CaseContainer.topology = containerTopology;
+CaseContainer.topology = fullResourceTopology;
 
 CaseContainer.hocs = [withSalesTheme];
 

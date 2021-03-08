@@ -8,11 +8,12 @@ export interface PageTheme {
 
 export interface SalesTheme {
     pages: { [k: string]: PageTheme };
+    boxShadow: string;
 }
 
 declare module '@material-ui/core' {
     // tslint:disable-next-line:no-empty-interface
-    interface Theme extends SalesTheme {}
+    interface Theme extends SalesTheme { }
 }
 
 const salesTheme = createMuiTheme({
@@ -21,11 +22,12 @@ const salesTheme = createMuiTheme({
             default: '#FFF',
         },
         primary: {
-            main: '#000000',
+            main: '#2D7080',
+            light: '#F8FBFF',
         },
         secondary: {
             light: '#F8FBFF',
-            main: '#2D7080',
+            main: '#B33A00',
         },
     },
     typography: {

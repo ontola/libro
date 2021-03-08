@@ -1,10 +1,11 @@
+import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { SomeNode } from 'link-lib';
 import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { RenderStoreProvider, Resource } from 'link-redux';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 import generateLRS from '../../helpers/generateLRS';
@@ -19,6 +20,7 @@ const PageBuilder = () => {
   const [lrs, setLRS] = React.useState(() => generateLRS());
   const [resource, setResource] = React.useState<SomeNode>(() => lrs.lrs.store.getInternalStore().quads[0].subject);
   const [text, setText] = useStoredState('libro.pagebuilder.value', defaultSource);
+  const [show, setShow] = useState(true);
 
   const [bufferedText] = useDebounce(text, 300, { leading: true });
 
@@ -38,9 +40,11 @@ const PageBuilder = () => {
 
   return (
     <RenderStoreProvider value={lrs.lrs}>
+      {show ?
       <Grid container spacing={1}>
         <Grid item xs={3} direction="column">
           <Paper>
+            <Button onClick={() => setShow(false)}>hide builder (refresh to show)</Button>
             <TextField
               multiline
               fullWidth
@@ -57,6 +61,11 @@ const PageBuilder = () => {
           </Page>
         </Grid>
       </Grid>
+      :
+      <Page>
+        <Resource subject={resource} />
+      </Page>
+    }
     </RenderStoreProvider>
   );
 };

@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Theme, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
 
@@ -10,39 +10,33 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import { showcaseTopology } from '../../../topologies/Showcase';
-import { SalesTheme, withSalesTheme } from '../SalesThemeProvider';
+import { withSalesTheme } from '../SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>({
-    buttonPrimary: {
-        backgroundColor: '#B33A00',
-        borderRadius: 3,
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-    },
-    margin: {
-        marginTop: 100,
-    },
+const useStyles = makeStyles<Theme>((theme) => ({
     productButton: {
-        backgroundColor: '#FFFFFF',
-        border: 3,
-        borderColor: 'grey',
-        borderRadius: 5,
-        boxShadow: '0 3px 5px 2px rgba(0, 0, 0, 0.15)',
-        color: 'black',
-        flex: 'column',
-        height: 170,
-        margin: 10,
-        marginBottom: 112,
-        marginTop: 140,
-        padding: '0 30px',
+        padding: '1rem',
+        textAlign: 'left',
+        alignItems: 'start',
         textTransform: 'none',
-        width: '22%',
+        width: '50%',
+        flex: 1,
+        '&:first-child': {
+            paddingLeft: '2rem',
+        },
+        '&:last-child': {
+            paddingRight: '2rem',
+        },
+        [theme.breakpoints.down('md')]: {
+            width: '25%',
+        },
     },
     typography: {
         fontWeight: 'bold',
     },
-});
+    arrow: {
+        justifySelf: 'flex-end',
+    },
+}));
 
 const ProductShowcase: FC = () => {
     const classes = useStyles();
@@ -50,19 +44,19 @@ const ProductShowcase: FC = () => {
     const [name] = useProperty(schema.name);
 
     return (
-            <Button
-                className={classes.productButton}
+        <Button
+            className={classes.productButton}
+        >
+            <Grid
+                container
+                alignItems="flex-start"
+                direction="column"
             >
-                <Grid
-                    container
-                    alignItems="center"
-                    direction="column"
-                >
-                    <Typography className={classes.typography} variant="h6">{name.value}</Typography>
-                    <Typography variant="h6">{tagline.value}</Typography>
-                    <ArrowRightAltIcon color="secondary" style={{ fontSize: 60 }}/>
-                </Grid>
-            </Button>
+                <Typography className={classes.typography} variant="h6">{name.value}</Typography>
+                <Typography variant="subtitle1">{tagline.value}</Typography>
+                <ArrowRightAltIcon color="primary" style={{ fontSize: 60 }} className={classes.arrow} />
+            </Grid>
+        </Button>
     );
 };
 
