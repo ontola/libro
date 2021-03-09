@@ -23,7 +23,6 @@ export default makeStyles((theme: any) => ({
       borderTopLeftRadius: theme.shape.borderRadius,
     },
     '&:hover': {
-      backgroundColor: theme.palette.common.white,
       color: theme.palette.grey[800],
     },
     '&:last-child': {
@@ -37,7 +36,8 @@ export default makeStyles((theme: any) => ({
       textOverflow: 'ellipsis',
     },
     'alignItems': 'center',
-    'backgroundColor': theme.palette.grey[100],
+    'backgroundColor': theme.palette.common.white,
+    'border': 'solid 1px rgb(230, 230, 230)',
     'borderRight': '1px solid #e6e6e6',
     'boxSizing': 'border-box',
     'color': theme.palette.grey[600],

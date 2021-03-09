@@ -18,6 +18,7 @@
 
 .Card {
   background-color: color('white');
+  border: $grey-border;
   border-radius: $border-radius-base;
   box-shadow: $box-shadow;
   display: flex;
@@ -26,9 +27,9 @@
 
   &--fixed {
     height: 16em;
+    margin: 0;
     max-height: 16em;
     min-height: 16em;
-    margin: 0;
     width: 100%;
 
     // Displaying clickable items directly in card
@@ -45,6 +46,10 @@
       flex-shrink: 1;
       // [AOD-174][AOD-179] Hides overflowing text, should not flex due to rendering in Chrome
       overflow: hidden;
+    }
+
+    &:hover {
+      border: $grey-border-intense;
     }
   }
 

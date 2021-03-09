@@ -26,7 +26,6 @@ const colors = {
     main: colorBaseBlue,
     midLight: lighten(colorBaseBlue, 0.10),
     light: lighten(colorBaseBlue, 0.60),
-    xLight: 'rgb(238, 240, 242)',
     power: '#0060d3',
   },
   brown: {
@@ -119,7 +118,7 @@ const theme = {
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {
-      default: colors.blue.xLight,
+      default: colors.white.main,
       paper: colors.white.main,
     },
     ...colors,

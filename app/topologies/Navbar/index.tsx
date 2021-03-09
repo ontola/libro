@@ -42,6 +42,7 @@ class Navbar extends Topology<PropTypes> {
         <AppBar
           className={this.getClassName()}
           color={background}
+          elevation={0}
           position={position}
           resource={subject && subject.value}
           style={{
