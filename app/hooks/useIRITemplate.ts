@@ -6,6 +6,7 @@ import { iriFromTemplate } from '../helpers/uriTemplate';
 import ontola from '../ontology/ontola';
 
 type Param = string | string[];
+
 export interface Params { [key: string]: Param; }
 
 export interface IRITemplate {

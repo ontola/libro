@@ -1,5 +1,7 @@
 import {
- NamedNode, SomeTerm, isNamedNode, 
+  NamedNode,
+  SomeTerm,
+  isNamedNode,
 } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';

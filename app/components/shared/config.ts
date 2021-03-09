@@ -74,7 +74,7 @@ export const mediaQueries = {
   smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound}) and (max-width: ${mqBreakpoints.smallestUpperBound})`,
 };
 
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 // Here come the shared styles!
 // These should match /shared/config.scss
 export const colors = {

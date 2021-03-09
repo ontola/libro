@@ -1,7 +1,7 @@
 import bugsnag, { Client } from '@bugsnag/js';
 
 const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
-// eslint-disable-next-line no-magic-numbers
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 const LOGGING_INTERVAL = 3600 * 1000;
 
 declare global {

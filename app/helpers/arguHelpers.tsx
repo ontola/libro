@@ -36,6 +36,7 @@ interface ErrorMessage {
   severity: string;
   type: string;
 }
+
 export function errorMessageForStatus(status: number): ErrorMessage {
   if (status === HttpStatus.UNAUTHORIZED) {
     return {

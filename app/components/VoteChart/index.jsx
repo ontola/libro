@@ -13,7 +13,7 @@ const propTypes = {
   result: PropTypes.oneOf(statuses).isRequired,
 };
 
-function VoteChart({ data, result }) {
+const VoteChart = ({ data, result }) => {
   const PERCENTAGE = 100;
   const widthPass = `${data.pass * PERCENTAGE}%`;
   const widthFail = `${data.fail * PERCENTAGE}%`;

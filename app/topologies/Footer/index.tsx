@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { Box, Grid } from '@material-ui/core';
 import { withTheme } from '@material-ui/styles';
 import { Node } from '@ontologies/core';

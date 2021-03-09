@@ -46,7 +46,7 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
 
 const style = { marginBottom: '0.5em' };
 
-function PostalRangeInput(props: InputComponentProps): JSX.Element {
+const PostalRangeInput = (props: InputComponentProps): JSX.Element => {
   const compProps = {
     index: 0,
     ...props,
@@ -59,6 +59,6 @@ function PostalRangeInput(props: InputComponentProps): JSX.Element {
       <PostalDigitsInput rangeIndex={1} {...compProps} />
     </div>
   );
-}
+};
 
 export default PostalRangeInput;

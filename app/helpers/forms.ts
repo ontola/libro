@@ -1,5 +1,8 @@
 import rdf, {
- Literal, Node, Term, isNode, 
+  Literal,
+  Node,
+  Term,
+  isNode,
 } from '@ontologies/core';
 
 import ontola from '../ontology/ontola';

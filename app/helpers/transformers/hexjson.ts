@@ -1,11 +1,15 @@
 import rdf, {
- BlankNode, Quad, SomeTerm,
+  BlankNode,
+  Quad,
+  SomeTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 // @ts-ignore
 import NdjsonStream from 'can-ndjson-stream';
 import {
- ExtensionResponse, RDFLibFetcherResponse, ResponseAndFallbacks,
+  ExtensionResponse,
+  RDFLibFetcherResponse,
+  ResponseAndFallbacks,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
@@ -17,7 +21,6 @@ enum HexPosition {
   Language,
   Graph,
 }
-
 
 let hasReadableStreamConstructor = false;
 try {

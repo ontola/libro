@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 export default makeStyles((theme: any) => ({
   default: {
     '& .Breadcrumb__text': {
@@ -52,4 +52,4 @@ export default makeStyles((theme: any) => ({
     'whiteSpace': 'nowrap',
   },
 }));
-/* eslint-enable no-magic-numbers */
+/* eslint-enable @typescript-eslint/no-magic-numbers */

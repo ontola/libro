@@ -1,10 +1,18 @@
 import rdf, {
- NamedNode, Node, SomeTerm, isNode, isTerm, 
+  NamedNode,
+  Node,
+  SomeTerm,
+  isNode,
+  isTerm,
 } from '@ontologies/core';
 import { seqToArray } from '@rdfdev/collections';
 import { normalizeType } from 'link-lib';
 import {
- LabelType, LinkReduxLRSType, Property, Resource, useLRS, 
+  LabelType,
+  LinkReduxLRSType,
+  Property,
+  Resource,
+  useLRS,
 } from 'link-redux';
 import { PropertyPropTypes } from 'link-redux/dist-types/components/Property';
 import { ResourcePropTypes } from 'link-redux/dist-types/components/Resource';
@@ -31,7 +39,7 @@ const component = (_: LinkReduxLRSType) => {
       Comp,
       {
  key: t.value,
-...compProps, 
+...compProps,
 },
       childElems,
     );

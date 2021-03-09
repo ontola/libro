@@ -2,7 +2,7 @@ import React from 'react';
 
 import Columns from '.';
 
-const exampleChildren = [<div>Joe</div>, <div>Joe</div>];
+const exampleChildren = [<div key={0}>Joe</div>, <div key={1}>Joe</div>];
 
 argUnit(Columns, () => {
   describe('with node child', () => {

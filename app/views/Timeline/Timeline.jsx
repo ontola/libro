@@ -37,7 +37,7 @@ const Timeline = () => {
         <div className={classes.timelineWrapper}>
           <TimelineBase>
             {items.map((item, index) => (
-              <Resource lastItem={index === items.length - 1} subject={item} />
+              <Resource key={item.value} lastItem={index === items.length - 1} subject={item} />
             ))}
           </TimelineBase>
         </div>

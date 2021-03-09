@@ -40,7 +40,7 @@ const DropzoneInner: React.FC<PropTypes> = ({
           imagePositionYShape={imagePositionYShape}
         >
           {children}
-       </DropzoneInnerPositionY>
+        </DropzoneInnerPositionY>
       );
     }
   }

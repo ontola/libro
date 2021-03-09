@@ -15,8 +15,6 @@ import {
 import { retrievePath } from '../../helpers/iris';
 import { InputValue } from '../../hooks/useFormField';
 
-
-
 interface PropTypes {
   formID: string;
   modal?: boolean;

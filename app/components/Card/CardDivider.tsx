@@ -42,8 +42,8 @@ const CardDivider: React.FC<PropTypes> = ({
     >
       {text && (
         <span style={textStyle as any}>
-      {text}
-    </span>
+          {text}
+        </span>
       )}
     </div>
   );

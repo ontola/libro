@@ -8,7 +8,7 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
   const breadcrumbParent = themeOptions.get('breadcrumbParent');
   const breadcrumbParentUrl = themeOptions.get('breadcrumbParentUrl');
   const primaryLine = themeOptions.get('primaryLine') || 'Rijksoverheid';
-  const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line) => <div>{line}</div>);
+  const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line) => <div key={line}>{line}</div>);
   const [logo, setLogo] = React.useState();
 
   React.useEffect(() => {

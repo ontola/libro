@@ -1,6 +1,7 @@
 import {
   checkLuminance,
-  getLuminance, hexToRgb,
+  getLuminance,
+  hexToRgb,
   isRGB,
   percentageToRedOrGreen,
   rgbToArray,

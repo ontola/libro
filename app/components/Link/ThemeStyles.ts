@@ -15,7 +15,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 export default makeStyles((theme) => {
   const style = {
     default: {
@@ -48,4 +48,4 @@ export default makeStyles((theme) => {
 
   return style;
 });
-/* eslint-enable no-magic-numbers */
+/* eslint-enable @typescript-eslint/no-magic-numbers */

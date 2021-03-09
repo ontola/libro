@@ -1,5 +1,7 @@
 import {
- NamedNode, isBlankNode, isNamedNode,
+  NamedNode,
+  isBlankNode,
+  isNamedNode,
 } from '@ontologies/core';
 
 import { frontendOrigin, frontendPathname } from '../ontology/app';

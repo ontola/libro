@@ -19,7 +19,6 @@ import PDFLoader from './PDFLoader';
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
-
 interface OnLoadSuccessType {
   numPages: number;
 }
@@ -125,7 +124,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
 
   return (
     <HotKeys
-      allowChanges={true}
+      allowChanges
       handlers={keyHandlers}
       keyMap={keyMap}
       ref={() => pdfWrapper}

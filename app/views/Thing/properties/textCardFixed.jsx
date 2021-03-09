@@ -9,7 +9,7 @@ import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { popupTopology } from '../../../topologies/Popup';
 
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles(() => ({
   footer: {
     background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 70%, white 100%)',
@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
   },
 }));
-/* eslint-enable no-magic-numbers */
+/* eslint-enable @typescript-eslint/no-magic-numbers */
 
 const STRING_CUTOFF = 150;
 

@@ -10,7 +10,9 @@ import ReactMarkdown from 'react-markdown';
 
 import { entityIsLoaded } from '../../helpers/data';
 import {
- expandPath, isDifferentWebsite, retrievePath,
+  expandPath,
+  isDifferentWebsite,
+  retrievePath,
 } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 import Heading, { HeadingSize, HeadingVariant } from '../Heading';

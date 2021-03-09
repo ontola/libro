@@ -1,4 +1,4 @@
-/* eslint no-magic-numbers: 0 */
+/* eslint @typescript-eslint/no-magic-numbers: 0 */
 
 import { calcPercentage } from '../numbers';
 

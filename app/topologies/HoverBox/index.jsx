@@ -15,7 +15,7 @@ export const propTypes = {
 
 export const hoverBoxTopology = argu.ns('cardHover');
 
-export default function (topology = hoverBoxTopology, popout = false) {
+export default function(topology = hoverBoxTopology, popout = false) {
   /**
    * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
    * state, make sure to add functionality for touch users.

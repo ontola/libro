@@ -1,8 +1,12 @@
 import {
- BlankNode, Literal, NamedNode, 
+  BlankNode,
+  Literal,
+  NamedNode,
 } from '@ontologies/core';
 import {
- LinkedDataObject, TermOpts, useResourceLink, 
+  LinkedDataObject,
+  TermOpts,
+  useResourceLink,
 } from 'link-redux';
 
 import app from '../ontology/app';

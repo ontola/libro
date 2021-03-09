@@ -1,5 +1,7 @@
 import rdf, {
- NamedNode, SomeTerm, isNamedNode, 
+  NamedNode,
+  SomeTerm,
+  isNamedNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {

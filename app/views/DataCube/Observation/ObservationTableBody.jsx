@@ -28,7 +28,7 @@ const ObservationTableBody = ({
         }
 
         return (
-          <TableCell>
+          <TableCell key={value?.value}>
             {value?.value}
           </TableCell>
         );

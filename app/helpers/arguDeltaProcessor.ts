@@ -1,5 +1,7 @@
 import rdf, {
- Node, Quad, Quadruple, 
+  Node,
+  Quad,
+  Quadruple,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';

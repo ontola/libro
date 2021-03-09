@@ -8,7 +8,7 @@ import { semanticColors } from '../shared/config';
 
 import './Heading.scss';
 
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles((theme: any) => {
   const style = {
     default: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: any) => {
 
   return style;
 });
-/* eslint-enable no-magic-numbers */
+/* eslint-enable @typescript-eslint/no-magic-numbers */
 
 export enum HeadingSize {
   XL = 1,

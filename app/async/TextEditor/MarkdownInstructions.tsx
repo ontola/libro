@@ -7,7 +7,7 @@ import Markdown from '../../components/Markdown';
 
 import instructions from './instructions';
 
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles((theme: any) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: any) => ({
     width: 400,
   },
 }));
-/* eslint-enable no-magic-numbers */
+/* eslint-enable @typescript-eslint/no-magic-numbers */
 
 const MarkdownInstructions = (): JSX.Element => {
   const classes = useStyles();

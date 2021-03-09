@@ -15,7 +15,7 @@ const colorBaseBlue = 'rgb(71, 86, 104)';
 const colorBaseRed = 'rgb(200, 20, 20)';
 const colorBaseOrange = 'rgb(161, 98, 37)';
 
-/* eslint-disable sort-keys, no-magic-numbers */
+/* eslint-disable sort-keys, @typescript-eslint/no-magic-numbers */
 // coefficient = (100 - (percentage * 2)) / 100
 const colors = {
   black: {
@@ -87,7 +87,7 @@ const colors = {
     xLight: fade(colorBaseOrange, 0.05),
   },
 };
-/* eslint-enable sort-keys, no-magic-numbers */
+/* eslint-enable sort-keys, @typescript-eslint/no-magic-numbers */
 
 //  6px = 0.375rem = 0.1875 * 2rem
 const SIX_PX = 0.1875;

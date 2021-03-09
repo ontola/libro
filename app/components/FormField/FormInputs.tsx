@@ -1,5 +1,7 @@
 import rdf, {
- SomeTerm, isNamedNode, isTerm,
+  SomeTerm,
+  isNamedNode,
+  isTerm,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import PropTypes from 'prop-types';
@@ -7,7 +9,9 @@ import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import {
- destroyFieldName, isMarkedForRemove, retrieveIdFromValue,
+  destroyFieldName,
+  isMarkedForRemove,
+  retrieveIdFromValue,
 } from '../../helpers/forms';
 import { isJSONLDObject } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
@@ -91,7 +95,7 @@ const FormInputs = (props: PropTypes): JSX.Element => {
   } = meta;
 
   if (!values) {
-    return <React.Fragment></React.Fragment>;
+    return <React.Fragment />;
   }
 
   if (!combinedComponent) {

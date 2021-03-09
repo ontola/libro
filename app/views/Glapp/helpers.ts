@@ -6,6 +6,7 @@ import { retrievePath } from '../../helpers/iris';
 import app from '../../ontology/app';
 
 const MAX_IN_STORAGE = 5;
+
 export const MAX_POSTAL_DIGITS = 9999;
 export const MIN_POSTAL_DIGITS = 1000;
 

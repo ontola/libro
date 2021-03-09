@@ -14,7 +14,7 @@ export interface ImageProps {
   },
 }
 
-function Image(props: ImageProps): JSX.Element {
+const Image = (props: ImageProps): JSX.Element => {
   const {
     ariaLabel,
     className,
@@ -45,6 +45,6 @@ function Image(props: ImageProps): JSX.Element {
       style={style}
     />
   );
-}
+};
 
 export default Image;

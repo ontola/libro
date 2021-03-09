@@ -54,7 +54,7 @@ describe('MediaObject', () => {
 
     expect(queryByText(PARENT_NAME)).toBeNull();
     expect(queryByTitle('Back to parent')).toBeNull();
-    /* eslint-disable-next-line no-magic-numbers */
+    /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
     expect(queryAllByText(FILE_NAME)).toHaveLength(1);
     expect(queryByTitle('Downloaden')).toHaveProperty('href', `${CONTENT_URL}`);
   });

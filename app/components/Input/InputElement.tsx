@@ -11,10 +11,10 @@ import { FormContext } from '../Form/Form';
 import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import Input, {
- InputAutocomplete , PropTypes as InputProps, InputType, 
+  InputAutocomplete ,
+  PropTypes as InputProps,
+  InputType,
 } from '../Input/Input';
-
-
 
 const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;

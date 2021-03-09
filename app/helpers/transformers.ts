@@ -1,5 +1,7 @@
 import {
-LinkedRenderStore, ResponseTransformer, transformers,
+  LinkedRenderStore,
+  ResponseTransformer,
+  transformers,
 } from 'link-lib';
 
 const PRIO_MAX = 1.0;

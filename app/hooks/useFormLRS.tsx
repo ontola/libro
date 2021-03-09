@@ -1,5 +1,7 @@
 import {
-LinkReduxLRSType, RenderStoreProvider, useLRS,
+  LinkReduxLRSType,
+  RenderStoreProvider,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 

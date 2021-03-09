@@ -13,7 +13,7 @@ import ErrorBoundary from '../../components/ErrorBoundary';
 import { useSeqToArr } from '../../hooks/useSeqToArr';
 import { allTopologies } from '../../topologies';
 
-export function Seq({
+export const Seq = ({
   childProps,
   columns,
   depth,
@@ -24,7 +24,7 @@ export function Seq({
   renderGutter,
   separator,
   subject,
-}) {
+}) => {
   const sequences = useSeqToArr(subject);
   const [memoizedProps, setMemoizedProps] = React.useState(childProps);
   React.useEffect(() => {

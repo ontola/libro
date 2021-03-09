@@ -1,5 +1,7 @@
 import {
- BlankNode, Literal, NamedNode, 
+  BlankNode,
+  Literal,
+  NamedNode,
 } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 

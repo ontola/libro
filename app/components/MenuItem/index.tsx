@@ -4,7 +4,9 @@ import MaterialMenuItem from '@material-ui/core/MenuItem';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { SomeNode } from 'link-lib';
 import React, {
-  HTMLAttributes, MouseEvent, PropsWithChildren,
+  HTMLAttributes,
+  MouseEvent,
+  PropsWithChildren,
 } from 'react';
 import { NavLinkProps } from 'react-router-dom';
 
@@ -43,7 +45,7 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
   const actionSafeURL = subject && action && !url ? subject.value : url;
   const component = !isButton
     ? React.forwardRef<any, HTMLAttributes<any> & Omit<NavLinkProps, 'to'>>((props, nestedRef) => {
-      // eslint-disable-next-line no-unused-vars,react/prop-types
+      // eslint-disable-next-line  @typescript-eslint/no-unused-vars,react/prop-types
       const { tabIndex, ...otherProps } = props;
 
       return (

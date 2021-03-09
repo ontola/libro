@@ -1,5 +1,7 @@
 import rdf, {
- Literal, NamedNode, Node,
+  Literal,
+  NamedNode,
+  Node,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';

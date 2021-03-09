@@ -52,7 +52,7 @@ const Pages = ({
   }
 
   const obs = pages.map((iri) => (
-    <Suspense fallback={<LoadingGridContent />}>
+    <Suspense fallback={<LoadingGridContent />} key={`${iri.value}-loader`}>
       <Resource
         collectionDisplay={collectionDisplay}
         columns={columns}

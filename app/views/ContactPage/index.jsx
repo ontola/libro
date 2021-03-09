@@ -236,7 +236,7 @@ const ContactPage = () => {
           <Paper elevation={3}>
             <div className={classes.cardContent}>
               {
-                persons.map((contactprops) => <Person {...contactprops} />)
+                persons.map((contactprops) => <Person key={contactprops.name} {...contactprops} />)
               }
               <div>
                 <b>
@@ -251,7 +251,7 @@ const ContactPage = () => {
               </div>
               <b>Volg ons op:</b>
               {
-                socials.map((socialprops) => <Social {...socialprops} />)
+                socials.map((socialprops) => <Social key={socialprops.link} {...socialprops} />)
               }
             </div>
           </Paper>

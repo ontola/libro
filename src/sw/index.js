@@ -51,7 +51,7 @@ import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
    * Image caching
    */
 
-  const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line no-magic-numbers
+  const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line @typescript-eslint/no-magic-numbers
 
   registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,

@@ -1,5 +1,7 @@
 import rdf, {
- CustomPredicateCreator, NamedNode, createNS, 
+  CustomPredicateCreator,
+  NamedNode,
+  createNS,
 } from '@ontologies/core';
 
 export interface WebsiteContext {

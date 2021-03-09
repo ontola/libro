@@ -6,17 +6,21 @@ exports[`Columns with array child renders 1`] = `
 >
   <Column
     flexBasis="19em"
-    key="col-null"
+    key="col-0"
   >
-    <div>
+    <div
+      key="0"
+    >
       Joe
     </div>
   </Column>
   <Column
     flexBasis="19em"
-    key="col-null"
+    key="col-1"
   >
-    <div>
+    <div
+      key="1"
+    >
       Joe
     </div>
   </Column>

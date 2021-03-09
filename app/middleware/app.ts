@@ -3,7 +3,9 @@
  */
 
 import rdf, {
- NamedNode, Node, Quadruple,
+  NamedNode,
+  Node,
+  Quadruple,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
@@ -33,7 +35,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
   store.processDelta([
       rdf.quad(app.menu, rdfx.type, app.Menu),
-      // eslint-disable-next-line no-magic-numbers
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       rdf.quad(app.menu, http.statusCode, rdf.literal(200), ll.meta),
   ], true);
 

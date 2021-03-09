@@ -1,6 +1,11 @@
 import * as as from '@ontologies/as';
 import {
- BlankNode, NamedNode, SomeTerm, Term, isNamedNode, isNode, 
+  BlankNode,
+  NamedNode,
+  SomeTerm,
+  Term,
+  isNamedNode,
+  isNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';

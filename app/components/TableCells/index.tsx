@@ -1,6 +1,8 @@
 import { normalizeType } from 'link-lib';
 import {
- Property, useLRS, useLinkRenderContext, 
+  Property,
+  useLRS,
+  useLinkRenderContext,
 } from 'link-redux';
 import React from 'react';
 

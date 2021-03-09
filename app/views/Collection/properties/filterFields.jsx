@@ -31,6 +31,7 @@ const FilterFieldsSearch = ({ setCurrentPage }) => {
     .map((field) => (
       <Resource
         handleClose={handleClose}
+        key={field?.value}
         setCurrentPage={setCurrentPage}
         subject={field}
       />

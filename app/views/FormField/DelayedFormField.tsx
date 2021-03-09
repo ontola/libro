@@ -1,7 +1,9 @@
 import { SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import {
- FC, register, useProperty, 
+ FC,
+  register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 

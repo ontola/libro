@@ -112,7 +112,7 @@ describe('Thing', () => {
       queryByText,
     } = renderAs(CardList);
 
-    /* eslint-disable-next-line no-magic-numbers */
+    /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
     expect(queryAllByText(RESOURCE_NAME)).toHaveLength(2);
     expect(queryByText(RESOURCE_TEXT)).toBeNull();
     expect(queryByText(PARENT_NAME)).toBeNull();
