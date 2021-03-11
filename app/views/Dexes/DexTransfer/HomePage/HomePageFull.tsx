@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/styles';
 import { Property, register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
-import { Size } from '../../../../components/shared/config';
 
+import { Size } from '../../../../components/shared/config';
 import dexes from '../../../../ontology/dexes';
 import Container from '../../../../topologies/Container';
 import { fullResourceTopology } from '../../../../topologies/FullResource';

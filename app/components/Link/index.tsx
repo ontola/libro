@@ -2,7 +2,11 @@ import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { Location } from 'history';
 import { useLRS } from 'link-redux';
-import React, { KeyboardEventHandler, MouseEvent, MouseEventHandler } from 'react';
+import React, {
+  KeyboardEventHandler,
+  MouseEvent,
+  MouseEventHandler,
+} from 'react';
 import { match } from 'react-router';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 

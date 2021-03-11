@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import {
-  defineMessages,
   FormattedMessage,
+  defineMessages,
   useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';

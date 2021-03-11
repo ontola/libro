@@ -1,5 +1,5 @@
 import { FilterOptionsState } from '@material-ui/lab';
-import { isLiteral, SomeTerm } from '@ontologies/core';
+import { SomeTerm, isLiteral } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -30,8 +30,8 @@ const stripDiacritics = (str: string) => (
 
 export const filterOptions = (
   options: SomeTerm[],
-  { inputValue, getOptionLabel}: FilterOptionsState<SomeTerm>,
-) => {
+  { inputValue, getOptionLabel }: FilterOptionsState<SomeTerm>,
+): SomeTerm[] => {
   const input = stripDiacritics(inputValue.toLowerCase());
 
   return options.filter((option) => {
@@ -41,7 +41,7 @@ export const filterOptions = (
   });
 };
 
-export const useItemToString = () => {
+export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) => {
   const lrs = useLRS();
 
   return React.useCallback((item: SomeTerm | undefined | null) => {
@@ -69,25 +69,29 @@ export const useItemToString = () => {
   }, [lrs]);
 };
 
-export function emptyText(fm: (args: any) => string, searchable: boolean, currentValue: string) {
+export function emptyMessage(
+  fmt: (args: any) => string,
+  searchable: boolean,
+  currentValue: string,
+): string {
   if (searchable) {
     if (currentValue && currentValue.length > 0) {
-      return fm(messages.noMatchingItems);
+      return fmt(messages.noMatchingItems);
     }
 
-    return fm(messages.typeToSearch);
+    return fmt(messages.typeToSearch);
   }
 
-  return fm(messages.noMatchingItems);
+  return fmt(messages.noMatchingItems);
 }
 
-export const renderOption = (item: SomeTerm) => {
+export const renderOption = (item: SomeTerm): JSX.Element => {
   if (isLiteral(item.termType)) {
     return (
       <option
         className="Field__list-element"
-        value={item.value}
         key={item.value}
+        value={item.value}
       >
         {item.value}
       </option>

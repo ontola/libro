@@ -10576,10 +10576,10 @@ link-lib@0.0.0-25f56814:
   resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-0.0.0-25f56814.tgz#5adeffd4171178cb06fb1c354f97fc832ae218f2"
   integrity sha512-8GSRxYoZTQ7qANpFHctCOEZshhmFkP8vh9elbJKnAenDyheeZ1jGUruGN812WaPswnSgbmTGMWu7VCe+5yoRFA==
 
-link-redux@0.0.0-83f678454:
-  version "0.0.0-83f678454"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-0.0.0-83f678454.tgz#621e2580febe1cd24c2ff67aaf00fec5dcbea9e6"
-  integrity sha512-un3lLkJY8s9jvmhi3ou9QPa3Y85JUEIduZdxZ/b9vRsMJDZpsDfT8EEODH8ShjctrWtU73DU0qT6OeOR2VlY/Q==
+link-redux@0.0.0-d2777515:
+  version "0.0.0-d2777515"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-0.0.0-d2777515.tgz#ac68acabeac956a1f15890b3222ca34578e578a3"
+  integrity sha512-X95TftAqduWpsHp8d9lb1qLS0iLVFHg6TMzFJBrNIVCeSfW/AFvh048w9s7kbBCkljpge11+JGSPnTqtT7JJiA==
 
 lint-staged@^9.5.0:
   version "9.5.0"

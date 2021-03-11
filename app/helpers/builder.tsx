@@ -27,9 +27,9 @@ interface PropertyProps {
 }
 
 const component = (_: LinkReduxLRSType) => {
-  function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: ReactComp[]): ReactComp;
-  function top(t: Node, children?: ReactComp[]): ReactComp;
-  function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | ReactComp[], children?: ReactComp[]): ReactComp {
+  function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: JSX.Element[]): JSX.Element;
+  function top(t: Node, children?: JSX.Element[]): JSX.Element;
+  function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | JSX.Element[], children?: JSX.Element[]): JSX.Element {
     const Comp = topologyComponentMap[rdf.id(t)] || componentMap[rdf.id(t)];
     const propsIsChildren = Array.isArray(props);
     const compProps = propsIsChildren ? {} : (props || {});
@@ -51,16 +51,16 @@ const component = (_: LinkReduxLRSType) => {
 type ComponentBuilder = ReturnType<typeof component>;
 
 type PropertyBuilder = (
-  label: PropertyPropTypes | NamedNode | NamedNode[] | ReactComp,
-  props?: Record<string, unknown> | ReactComp | ReactComp[],
-  children?: ReactComp[],
-) => ReactComp;
+  label: PropertyPropTypes | NamedNode | NamedNode[] | JSX.Element,
+  props?: Record<string, unknown> | JSX.Element | JSX.Element[],
+  children?: JSX.Element[],
+) => JSX.Element;
 
 type PropertiesBuilder = (
-  ...props: Array<PropertyPropTypes | NamedNode | NamedNode[] | ReactComp>
-) => ReactComp;
+  ...props: Array<PropertyPropTypes | NamedNode | NamedNode[] | JSX.Element>
+) => JSX.Element;
 
-type RecourceBuilder = (props: Node | ResourcePropTypes, children: ReactComp[]) => React.ReactElement;
+type RecourceBuilder = (props: Node | ResourcePropTypes, children: JSX.Element[]) => React.ReactElement;
 
 interface BuilderToolkit {
   c: ComponentBuilder;
@@ -94,7 +94,6 @@ export function forceRender(label: NamedNode|NamedNode[]): PropertyPropTypes & P
   });
 }
 
-type ReactComp = React.ReactElement<any, any> | null;
 interface DataProps {
   [k: string]: string | boolean | SomeTerm;
 }
@@ -121,10 +120,10 @@ const getPropertyProps = (
 };
 
 export const property = (lrs?: LinkReduxLRSType) => (
-  label: PropertyPropTypes | NamedNode | NamedNode[] | ReactComp,
-  props?: Record<string, unknown> | ReactComp | ReactComp[],
-  children?: ReactComp[],
-): ReactComp => {
+  label: PropertyPropTypes | NamedNode | NamedNode[] | JSX.Element,
+  props?: Record<string, unknown> | JSX.Element | JSX.Element[],
+  children?: JSX.Element[],
+): JSX.Element => {
   if (!label || typeof label === 'string' || typeof label === 'number') {
     return label;
   }
@@ -153,8 +152,8 @@ export const property = (lrs?: LinkReduxLRSType) => (
 };
 
 export const properties = (lrs?: LinkReduxLRSType) => (
-  ...props: Array<PropertyPropTypes | NamedNode | NamedNode[] | ReactComp>
-): ReactComp => {
+  ...props: Array<PropertyPropTypes | NamedNode | NamedNode[] | JSX.Element>
+): JSX.Element => {
   return React.createElement(
     React.Fragment,
     null,
@@ -179,7 +178,7 @@ export const properties = (lrs?: LinkReduxLRSType) => (
 };
 
 export const resource = (_?: LinkReduxLRSType) => {
-  return (props: Node | ResourcePropTypes, children: ReactComp[]): React.ReactElement => React.createElement(
+  return (props: Node | ResourcePropTypes, children: JSX.Element[]): React.ReactElement => React.createElement(
     Resource,
     isNode(props) ? { subject: props } : props,
     children.length === 0 ? null : children,

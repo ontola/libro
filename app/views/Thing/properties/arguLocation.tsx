@@ -54,7 +54,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   }
 
   if (!linkedProp && children.length === 0) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

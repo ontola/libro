@@ -4,12 +4,12 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  register,
   ReturnType,
+  register,
 } from 'link-redux';
 import React from 'react';
-import { ButtonTheme } from '../../components/Button';
 
+import { ButtonTheme } from '../../components/Button';
 import { bestType } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -27,7 +27,7 @@ function getVariant(types: NamedNode[]) {
   }
 }
 
-interface ActionActionsBarProps {
+export interface ActionActionsBarProps {
   actionStatus: SomeTerm;
   theme: ButtonTheme;
   type: NamedNode[];
@@ -39,7 +39,7 @@ const ActionActionsBar: FC<ActionActionsBarProps> = ({
   type,
 }) => {
   if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

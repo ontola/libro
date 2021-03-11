@@ -1,7 +1,11 @@
 import { EmptyRequestStatus, FulfilledRequestStatus } from 'link-lib';
 import React from 'react';
 
-import Button, { ButtonProps, ButtonTheme, ButtonVariant } from '../Button';
+import Button, {
+  ButtonProps,
+  ButtonTheme,
+  ButtonVariant,
+} from '../Button';
 
 interface ButtonWithFeedbackProps {
   className?: string;

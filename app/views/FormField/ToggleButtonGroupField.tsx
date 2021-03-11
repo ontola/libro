@@ -11,7 +11,7 @@ const ToggleButtonGroupField: FC = (props) => {
   const fieldProps = useFormField(props);
 
   if (!fieldProps.whitelisted) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

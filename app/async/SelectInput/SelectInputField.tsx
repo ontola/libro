@@ -39,7 +39,7 @@ import Select, { selectTopology } from '../../topologies/Select';
 import SelectedValue from '../../topologies/SelectedValue';
 
 import {
-  emptyText,
+  emptyMessage,
   filterOptions,
   renderOption,
   useItemToString,
@@ -213,7 +213,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
           groupBy={grouped ? groupBy : undefined}
           id={name}
           loading={loading}
-          noOptionsText={emptyText(formatMessage, searchable, currentValue)}
+          noOptionsText={emptyMessage(formatMessage, searchable, currentValue)}
           options={sortedOptions}
           renderInput={renderInput}
           renderOption={renderOption}

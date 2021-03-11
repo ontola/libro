@@ -1,7 +1,11 @@
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { FC, Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';

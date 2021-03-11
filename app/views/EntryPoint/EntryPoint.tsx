@@ -7,8 +7,8 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
-import { ButtonTheme, ButtonVariant } from '../../components/Button';
 
+import { ButtonTheme, ButtonVariant } from '../../components/Button';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { countInParentheses } from '../../helpers/numbers';

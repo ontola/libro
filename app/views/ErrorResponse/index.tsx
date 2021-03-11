@@ -7,13 +7,11 @@ import { useContainerToArr } from '../../hooks/useContainerToArr';
 import ll from '../../ontology/ll';
 import { allTopologies } from '../../topologies';
 
-const ErrorResponse: FC = ({
-  subject,
-}) => {
+const ErrorResponse: FC = ({ subject }) => {
   const generalErrors = useContainerToArr(subject);
 
   if (!generalErrors || isPromise(generalErrors) || generalErrors.length === 0) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

@@ -1,5 +1,5 @@
 import { InputAdornment } from '@material-ui/core';
-import { isNamedNode, NamedNode } from '@ontologies/core';
+import { NamedNode, isNamedNode } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';

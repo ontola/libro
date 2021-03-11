@@ -1,11 +1,20 @@
+import { SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React from 'react';
 import parser from 'uri-template';
+
 import normalizedLower from '../helpers/i18n';
 import { iriFromTemplate } from '../helpers/uriTemplate';
 import ontola from '../ontology/ontola';
+
 import useFieldOptions from './useFieldOptions';
+
+export interface AsyncFieldOptions {
+  loading: boolean;
+  options: SomeTerm[];
+  searchable: boolean;
+}
 
 const iriTemplateFromCollection = (lrs: LinkReduxLRSType, shIn: SomeNode) => {
   const [template] = lrs.dig(shIn, [ontola.baseCollection, ontola.iriTemplate]);
@@ -17,7 +26,7 @@ const iriTemplateFromCollection = (lrs: LinkReduxLRSType, shIn: SomeNode) => {
   return searchable ? template : undefined;
 };
 
-const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputValue: string) => {
+const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputValue: string): AsyncFieldOptions => {
   const lrs = useLRS();
   const [currentShIn, setCurrentShIn] = React.useState(shIn);
   const searchTemplate = React.useMemo(() => shIn && iriTemplateFromCollection(lrs, shIn), [shIn]);
@@ -43,7 +52,11 @@ const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputVa
     }
   }, [inputValue]);
 
-  return { loading, searchable: !!searchTemplate, options };
+  return {
+    loading,
+    options,
+    searchable: !!searchTemplate,
+  };
 };
 
 export default useAsyncFieldOptions;

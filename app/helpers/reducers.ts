@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Sets record to items array in immutable Map
  * @param {string} state A state object
@@ -63,7 +64,7 @@ export const toggleValue = (state: any, id: any, key: any) =>
  * @param {string} newValue The new value to replace the old one with
  * @return {string} state Returns new state that has toggled the key of the specified record
  */
-export const updateRecordValue = (state: any, id: any, key: any, newValue: any) =>
+export const updateRecordValue = (state: any, id: string, key: string, newValue: unknown) =>
   state.setIn(['items', id, key], newValue);
 
 /**
@@ -72,4 +73,5 @@ export const updateRecordValue = (state: any, id: any, key: any, newValue: any) 
  * @param {string} value The value to increase by 1
  * @return {string} state Returns new state that has toggled the key of the specified record
  */
-export const increaseValue = (state: any, value: any) => state.update(value, (v: any) => v + 1);
+export const increaseValue = (state: any, value: number) => state.update(value, (v: any) => v + 1);
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */

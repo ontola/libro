@@ -175,6 +175,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     if (reload) {
       query += '&reload=true';
     }
+
     return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
   };
 

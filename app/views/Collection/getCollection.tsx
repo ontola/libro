@@ -33,6 +33,12 @@ export enum EMPTY_STRATEGY {
   Never = 1,
 }
 
+interface GetCollectionOpts {
+  omniform?: boolean;
+  emptyStrategy?: EMPTY_STRATEGY;
+  topology?: NamedNode[];
+}
+
 interface CollectionProps {
   clickToOpen: boolean;
   collectionDisplay: SomeTerm;
@@ -63,13 +69,15 @@ const collectionHasInteraction = (actionStatus: SomeTerm, collectionResourceType
 
 export default function getCollection(
   name: string,
-  {
+  opts: GetCollectionOpts = {},
+): FC<CollectionProps> {
+  const {
     omniform = false,
     emptyStrategy = EMPTY_STRATEGY.Interactable,
     topology = [],
-  } = {},
-) {
-  const Collection: FC<CollectionProps> = (props) => {
+  } = opts;
+
+  const Collection: FC<CollectionProps> & { displayName?: string } = (props) => {
     const {
       clickToOpen,
       collectionDisplay,

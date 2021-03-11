@@ -14,7 +14,7 @@ const PostalRangeFormField: FC = (props) => {
   });
 
   if (!fieldProps.whitelisted) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

@@ -41,8 +41,6 @@ const initialStyle = {
 class Collapsible extends React.PureComponent<CollapsibleProps> {
   public static defaultProps = defaultProps;
 
-  public timeout: number | undefined = undefined;
-
   constructor(props: CollapsibleProps) {
     super(props);
 
@@ -69,6 +67,8 @@ class Collapsible extends React.PureComponent<CollapsibleProps> {
       window.clearTimeout(this.timeout);
     }
   }
+
+  public timeout: number | undefined = undefined;
 
   public render() {
     const {

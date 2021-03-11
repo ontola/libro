@@ -19,7 +19,7 @@ const DateFormField: FC = (props) => {
   const [type] = useProperty(rdfx.type);
 
   if (!fieldProps.whitelisted) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

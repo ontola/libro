@@ -41,7 +41,7 @@ const TextFormField: FC = (props) => {
   ), [type]);
 
   if (!fieldProps.whitelisted) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (

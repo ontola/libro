@@ -5,7 +5,7 @@ import argu from '../../ontology/argu';
 export const selectedValueTopology = argu.selectedValue;
 
 class SelectedValue extends TopologyProvider {
-  constructor(props: {}) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.topology = selectedValueTopology;

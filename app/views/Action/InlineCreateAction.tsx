@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { filterFind } from '../../helpers/data';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import { invalidStatusIds, OMNIFORM_FILTER } from '../Thing/properties/omniform/helpers';
+import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { mapCardListDispatchToProps } from './helpers';
 
@@ -32,7 +32,7 @@ const InlineCreateAction: FC<InlineCreateActionProps> = ({
   subject,
 }) => {
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
-    return null;
+    return <React.Fragment />;
   }
 
   return (
