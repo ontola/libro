@@ -1,7 +1,7 @@
 import { SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import {
- FC,
+  FC,
   register,
   useProperty,
 } from 'link-redux';
@@ -36,7 +36,7 @@ const DelayedFormField: FC = (props) => {
   ), [type]);
 
   if (!fieldProps.whitelisted) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

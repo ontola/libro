@@ -23,16 +23,16 @@ const style = { margin: '.2em' };
 const ThingHoverBoxHidden = ({ text, option }) => {
   let icon;
   switch (option) {
-    case argu.yes.value:
-      icon = 'thumbs-up';
-      break;
-    case argu.no.value:
-      icon = 'thumbs-down';
-      break;
-    case argu.neutral.value:
-    default:
-      icon = 'pause';
-      break;
+  case argu.yes.value:
+    icon = 'thumbs-up';
+    break;
+  case argu.no.value:
+    icon = 'thumbs-down';
+    break;
+  case argu.neutral.value:
+  default:
+    icon = 'pause';
+    break;
   }
 
   return (
@@ -43,7 +43,10 @@ const ThingHoverBoxHidden = ({ text, option }) => {
           <Property label={schema.dateCreated} />
         </DetailsBar>
         <CardContent>
-          <p><FontAwesome name={icon} style={style} />{text}</p>
+          <p>
+            <FontAwesome name={icon} style={style} />
+            {text}
+          </p>
         </CardContent>
       </Card>
     </Container>

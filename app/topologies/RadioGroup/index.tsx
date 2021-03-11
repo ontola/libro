@@ -46,23 +46,21 @@ class RadioGroup extends Topology<PropTypes> {
           onChange(options.find((option) => option.value === v))
         )}
       >
-        {
-          options.map((option) => (
-            <FormControlLabel
-              control={(
-                <Radio
-                  checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-                  icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                  name={name}
-                  required={required}
-                />
-              )}
-              key={option.value}
-              label={isResource(option) ? <Resource subject={option} /> : option.value}
-              value={option.value}
-            />
-          ))
-        }
+        {options.map((option) => (
+          <FormControlLabel
+            control={(
+              <Radio
+                checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
+                icon={<RadioButtonUncheckedIcon fontSize="small" />}
+                name={name}
+                required={required}
+              />
+            )}
+            key={option.value}
+            label={isResource(option) ? <Resource subject={option} /> : option.value}
+            value={option.value}
+          />
+        ))}
       </MaterialRadioGroup>
     ));
   }

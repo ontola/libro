@@ -12,9 +12,7 @@ class ThingTableRow extends React.PureComponent {
 
   render() {
     return (
-      <React.Fragment>
-        <Property label={[schema.name, as.name]} />
-      </React.Fragment>
+      <Property label={[schema.name, as.name]} />
     );
   }
 }

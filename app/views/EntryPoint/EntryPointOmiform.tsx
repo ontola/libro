@@ -1,7 +1,7 @@
 import {
- Literal,
- NamedNode,
- isNode,
+  Literal,
+  NamedNode,
+  isNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';

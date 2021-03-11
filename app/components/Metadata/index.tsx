@@ -25,11 +25,11 @@ const Metadata: React.FC = () => {
     name,
     text,
   } = useLink({
-      coverPhoto: COVER_PREDICATES,
-      name: NAME_PREDICATES,
-      text: TEXT_PREDICATES,
-    },
-    { returnType: ReturnType.Value },
+    coverPhoto: COVER_PREDICATES,
+    name: NAME_PREDICATES,
+    text: TEXT_PREDICATES,
+  },
+  { returnType: ReturnType.Value },
   );
   const [coverURL] = useResourceProperty(
     typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,

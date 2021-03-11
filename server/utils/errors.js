@@ -205,27 +205,27 @@ export class GatewayTimeoutError extends ArguError {
 
 export default function getErrorClass(status) {
   switch (status) {
-    case HttpStatus.BAD_REQUEST:
-      return BadRequestError;
-    case HttpStatus.UNAUTHORIZED:
-      return UnauthorizedError;
-    case HttpStatus.FORBIDDEN:
-      return ForbiddenError;
-    case HttpStatus.NOT_FOUND:
-      return NotFoundError;
-    case HttpStatus.UNPROCESSABLE_ENTITY:
-      return UnprocessableEntityError;
-    case HttpStatus.INTERNAL_SERVER_ERROR:
-      return InternalServerErrorError;
-    case HttpStatus.NOT_IMPLEMENTED:
-      return NotImplementedError;
-    case HttpStatus.BAD_GATEWAY:
-      return BadGatewayError;
-    case HttpStatus.SERVICE_UNAVAILABLE:
-      return ServiceUnavailableError;
-    case HttpStatus.GATEWAY_TIMEOUT:
-      return GatewayTimeoutError;
-    default:
-      return undefined;
+  case HttpStatus.BAD_REQUEST:
+    return BadRequestError;
+  case HttpStatus.UNAUTHORIZED:
+    return UnauthorizedError;
+  case HttpStatus.FORBIDDEN:
+    return ForbiddenError;
+  case HttpStatus.NOT_FOUND:
+    return NotFoundError;
+  case HttpStatus.UNPROCESSABLE_ENTITY:
+    return UnprocessableEntityError;
+  case HttpStatus.INTERNAL_SERVER_ERROR:
+    return InternalServerErrorError;
+  case HttpStatus.NOT_IMPLEMENTED:
+    return NotImplementedError;
+  case HttpStatus.BAD_GATEWAY:
+    return BadGatewayError;
+  case HttpStatus.SERVICE_UNAVAILABLE:
+    return ServiceUnavailableError;
+  case HttpStatus.GATEWAY_TIMEOUT:
+    return GatewayTimeoutError;
+  default:
+    return undefined;
   }
 }

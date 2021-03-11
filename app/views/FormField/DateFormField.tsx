@@ -1,6 +1,6 @@
 import * as rdfx from '@ontologies/rdf';
 import {
- FC,
+  FC,
   register,
   useProperty,
 } from 'link-redux';
@@ -19,7 +19,7 @@ const DateFormField: FC = (props) => {
   const [type] = useProperty(rdfx.type);
 
   if (!fieldProps.whitelisted) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

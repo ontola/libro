@@ -51,11 +51,11 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     execFilter(),
   ];
   const storeOptions = __CLIENT__
-      ? { report: handle }
-      : {
-          apiOpts: { bulkEndpoint: 'http://localhost/link-lib/bulk' },
-          report: handle,
-      };
+    ? { report: handle }
+    : {
+      apiOpts: { bulkEndpoint: 'http://localhost/link-lib/bulk' },
+      report: handle,
+    };
   const lrs = createStore<React.ComponentType<any>>(storeOptions, middleware);
   serviceWorkerCommunicator.linkedRenderStore = lrs;
   (lrs as any).bulkFetch = true;
@@ -71,7 +71,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     handle(new Error('No website in head'));
   }
 
-// @ts-ignore TS2341
+  // @ts-ignore TS2341
   lrs.api.accept.default = FRONTEND_ACCEPT;
 
   // Globally disable anti-jump rendering
@@ -110,7 +110,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     return false;
   });
 
-// tslint:disable max-line-length
+  // tslint:disable max-line-length
   const ontologicalClassData = [
     rdf.quad(schema.Thing, rdfs.subClassOf, rdfs.Resource),
     rdf.quad(owl.Thing, owl.sameAs, schema.Thing),
@@ -277,7 +277,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     rdf.quad(argu.ConvertActivity, rdfx.type, rdfs.Class),
     rdf.quad(argu.ConvertActivity, rdfs.subClassOf, as.Activity),
   ];
-// tslint:enable max-line-length
+  // tslint:enable max-line-length
 
   lrs.addOntologySchematics(ontologicalClassData);
   lrs.store.addQuads(ontologicalClassData);
@@ -320,14 +320,14 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
 
     rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
     rdf.quad(
-        ontola.sendConfirmationAction,
-        rdfs.label,
-        rdf.literal('Send confirmation', languages.en),
+      ontola.sendConfirmationAction,
+      rdfs.label,
+      rdf.literal('Send confirmation', languages.en),
     ),
     rdf.quad(
-        ontola.sendConfirmationAction,
-        rdfs.label,
-        rdf.literal('Verstuur bevestiging', languages.nl),
+      ontola.sendConfirmationAction,
+      rdfs.label,
+      rdf.literal('Verstuur bevestiging', languages.nl),
     ),
 
     rdf.quad(ontola.updateAction, rdfx.type, rdfx.Property),

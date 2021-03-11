@@ -62,10 +62,11 @@ const PlainEditor: FC<PlainEditorProps> = ({
 
   return (
     <div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-      }}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
         <Textarea
           autoFocus={autoFocus}

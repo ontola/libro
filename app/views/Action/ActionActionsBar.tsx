@@ -17,13 +17,13 @@ import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 function getVariant(types: NamedNode[]) {
   switch (rdf.id(bestType(types))) {
-    case rdf.id(teamGL.ContactedAction):
-      return 'success';
-    case rdf.id(teamGL.NotAvailableAction):
-    case rdf.id(teamGL.UnsubscribeAction):
-      return 'error';
-    default:
-      return undefined;
+  case rdf.id(teamGL.ContactedAction):
+    return 'success';
+  case rdf.id(teamGL.NotAvailableAction):
+  case rdf.id(teamGL.UnsubscribeAction):
+    return 'error';
+  default:
+    return undefined;
   }
 }
 
@@ -39,7 +39,7 @@ const ActionActionsBar: FC<ActionActionsBarProps> = ({
   type,
 }) => {
   if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

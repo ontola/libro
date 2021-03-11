@@ -48,7 +48,7 @@ const DropzoneInner: React.FC<PropTypes> = ({
   if (file) {
     return children(
       <div>
-        <img alt="" src={file}/>
+        <img alt="" src={file} />
       </div>,
     );
   }

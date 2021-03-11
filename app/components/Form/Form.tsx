@@ -72,7 +72,7 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) 
           ...res,
           [key]: values[key],
         };
-    }, {});
+      }, {});
 
     formData = convertKeysAtoB(registeredValues);
   }
@@ -143,7 +143,7 @@ const Form: React.FC<FormProps> = (props) => {
 
   const lowerMethod = method.toLowerCase();
   const methodInput = !['get', 'post'].includes(lowerMethod) && (
-    <Input name="_method" type={InputType.Hidden} value={method}/>
+    <Input name="_method" type={InputType.Hidden} value={method} />
   );
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
   const render = React.useCallback(({ handleSubmit, submitting }) => (

@@ -37,20 +37,21 @@ const StreetFull = () => {
   });
 
   return (
-    <React.Fragment>
-      <Container>
-        <CardMain>
-          <CardContent noSpacing>
-            <Property label={[schema.name, rdfs.label]} />
-            <p>
-              <span><Resource subject={teamGL.postalDigits} />: </span>
-              <Property label={teamGL.postalDigits} limit={Infinity} />
-            </p>
-          </CardContent>
-        </CardMain>
-        <Collection display="table" label={teamGL.pendingAddresses} />
-      </Container>
-    </React.Fragment>
+    <Container>
+      <CardMain>
+        <CardContent noSpacing>
+          <Property label={[schema.name, rdfs.label]} />
+          <p>
+            <span>
+              <Resource subject={teamGL.postalDigits} />
+              {': '}
+            </span>
+            <Property label={teamGL.postalDigits} limit={Infinity} />
+          </p>
+        </CardContent>
+      </CardMain>
+      <Collection display="table" label={teamGL.pendingAddresses} />
+    </Container>
   );
 };
 

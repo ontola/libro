@@ -27,11 +27,9 @@ const AttributeListItem: React.FC<AttributeListItemProps & any> = ({
   return (
     <tr>
       <th>
-        {
-          propertyLabel
-            ? <label htmlFor={label?.value}>{propertyLabel}</label>
-            : <Resource subject={label} />
-        }
+        {propertyLabel
+          ? <label htmlFor={label?.value}>{propertyLabel}</label>
+          : <Resource subject={label} />}
       </th>
       <td><Property label={label} limit={Infinity} {...otherProps} /></td>
     </tr>

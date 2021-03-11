@@ -7,12 +7,12 @@ import app, { frontendPathname } from '../ontology/app';
 import appSlashless from '../ontology/appSlashless';
 
 export function currentLocation(location: Location<any>,
-                                fragment = true,
-                                basePath = frontendPathname,
-                                ns: NamespaceMap = { appSlashless }): NamedNode {
+  fragment = true,
+  basePath = frontendPathname,
+  ns: NamespaceMap = { appSlashless }): NamedNode {
   const path = (basePath !== '/' && location.pathname.startsWith(basePath))
-      ? location.pathname.slice(basePath.length)
-      : location.pathname;
+    ? location.pathname.slice(basePath.length)
+    : location.pathname;
   const normalizedPath = path.slice(0, (path.endsWith('/') ? -1 : undefined));
 
   return ns.appSlashless.ns(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);

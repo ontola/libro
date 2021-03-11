@@ -34,22 +34,22 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
 
   return (
     c(components.ResourceBoundary, [
-        c(containerTopology, [
-          renderPartOf && p(schema.isPartOf),
-          c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
-            p(schema.name),
-          ]),
-          <UploadTarget key="UploadTarget" uploadAction={uploadAction}>
-            {p(dexes.entries, {
-                hideHeader: true,
-                renderWhenEmpty: true,
-            })}
-          </UploadTarget>,
-          // c(containerTopology, [
-          // p(ontola.favoriteAction),
-          // ]),
+      c(containerTopology, [
+        renderPartOf && p(schema.isPartOf),
+        c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
+          p(schema.name),
         ]),
-      ])
+        <UploadTarget key="UploadTarget" uploadAction={uploadAction}>
+          {p(dexes.entries, {
+            hideHeader: true,
+            renderWhenEmpty: true,
+          })}
+        </UploadTarget>,
+        // c(containerTopology, [
+        // p(ontola.favoriteAction),
+        // ]),
+      ]),
+    ])
   );
 };
 

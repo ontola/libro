@@ -6,7 +6,11 @@ import React from 'react';
 
 import { allTopologies } from '../../../topologies';
 
-const DataTypeRenderer: FC<{ linkedProp: Literal }> = ({ linkedProp }) => (
+export interface DataTypeRendererProps {
+  linkedProp: Literal;
+}
+
+const DataTypeRenderer: FC<DataTypeRendererProps> = ({ linkedProp }) =>(
   <React.Fragment>
     {linkedProp?.value}
   </React.Fragment>

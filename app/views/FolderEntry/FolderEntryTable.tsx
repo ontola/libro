@@ -1,10 +1,10 @@
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
- FC,
- Property,
- Resource,
- register,
+  FC,
+  Property,
+  Resource,
+  register,
 } from 'link-redux';
 import React from 'react';
 

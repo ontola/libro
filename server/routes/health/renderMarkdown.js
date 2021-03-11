@@ -8,14 +8,14 @@ function renderRow(verdict) {
   const paddedName = verdict.name.padEnd(checkAlignPadding);
 
   switch (verdict.result) {
-    case CheckResult.pass:
-      return `${paddedName}| 🟩 pass |\n`;
-    case CheckResult.warn:
-      return `${paddedName}| 🟨 warn | ${verdict.message}\n`;
-    case CheckResult.fail:
-      return `${paddedName}| 🟥 fail | ${verdict.message}\n`;
-    default:
-      throw new Error('Unknown verdict status');
+  case CheckResult.pass:
+    return `${paddedName}| 🟩 pass |\n`;
+  case CheckResult.warn:
+    return `${paddedName}| 🟨 warn | ${verdict.message}\n`;
+  case CheckResult.fail:
+    return `${paddedName}| 🟥 fail | ${verdict.message}\n`;
+  default:
+    throw new Error('Unknown verdict status');
   }
 }
 

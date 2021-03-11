@@ -70,9 +70,7 @@ import ThingTableHeaderRow from './ThingTableHeaderRow';
 const CardHoverBox = hoverBox();
 
 const ThingHoverBoxHidden = () => (
-  <React.Fragment>
-    <Property label={schema.text} />
-  </React.Fragment>
+  <Property label={schema.text} />
 );
 
 const ThingSection = ({ highlighted }) => (

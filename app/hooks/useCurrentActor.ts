@@ -18,12 +18,12 @@ export const useCurrentActor = (): LinkedDataObject<{
     anonymousID: NamedNode;
     primaryEmail: NamedNode;
 }, TermOpts | undefined, NamedNode | BlankNode | Literal | undefined> => {
-    // Might be changed later with a context value
-    const actorIRI = app.c_a;
+  // Might be changed later with a context value
+  const actorIRI = app.c_a;
 
-    return useResourceLink(actorIRI, {
-        actorType: ontola.actorType,
-        anonymousID: argu.anonymousID,
-        primaryEmail: argu.primaryEmail,
-    });
+  return useResourceLink(actorIRI, {
+    actorType: ontola.actorType,
+    anonymousID: argu.anonymousID,
+    primaryEmail: argu.primaryEmail,
+  });
 };

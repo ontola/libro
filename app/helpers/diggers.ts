@@ -14,12 +14,12 @@ import ontola from '../ontology/ontola';
 export const collectionMembers = [ontola.pages, as.items, rdfs.member];
 export const actionType = [schema.potentialAction, rdfx.type];
 export const formFieldsPath = [
-    form.pages,
-    rdfs.member,
-    form.groups,
-    rdfs.member,
-    form.fields,
-    rdfs.member,
+  form.pages,
+  rdfs.member,
+  form.groups,
+  rdfs.member,
+  form.fields,
+  rdfs.member,
 ];
 export const conditionalFormFieldsPath = [...formFieldsPath, ontola.pass];
 export const nestedFormsPath = [...formFieldsPath, form.form];

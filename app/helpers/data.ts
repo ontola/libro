@@ -46,16 +46,16 @@ function bestType(type: LazyNNArgument): NamedNode | null {
 
   for (const normalizedType of normalizedTypes) {
     switch (normalizedType.value.split('#').pop()) {
-      case 'Resource':
-      case 'Document':
-      case 'RDFDocument':
-        if (!best) {
-          best = normalizedType;
-        }
-        break;
-      default:
+    case 'Resource':
+    case 'Document':
+    case 'RDFDocument':
+      if (!best) {
         best = normalizedType;
-        break;
+      }
+      break;
+    default:
+      best = normalizedType;
+      break;
     }
   }
 
@@ -134,9 +134,9 @@ function serializableValue(v: any): any | any[] | File | string {
 }
 
 function listToArr(
-    lrs: LinkReduxLRSType,
-    acc: SomeTerm[],
-    rest: Node | Node[] | undefined,
+  lrs: LinkReduxLRSType,
+  acc: SomeTerm[],
+  rest: Node | Node[] | undefined,
 ): SomeTerm[] | Promise<void> {
 
   if (Array.isArray(rest)) {
@@ -180,9 +180,9 @@ function resourceHasType(lrs: LinkReduxLRSType, resource: Node, type: Node): boo
 }
 
 function seqToArr(
-    lrs: LinkReduxLRSType,
-    acc: SomeTerm[],
-    rest: Node | Node[],
+  lrs: LinkReduxLRSType,
+  acc: SomeTerm[],
+  rest: Node | Node[],
 ): SomeTerm[] {
   if (Array.isArray(rest)) {
     return rest;
@@ -201,9 +201,9 @@ function seqToArr(
 }
 
 function containerToArr(
-    lrs: LinkReduxLRSType,
-    acc: SomeTerm[],
-    rest: Node | Node[],
+  lrs: LinkReduxLRSType,
+  acc: SomeTerm[],
+  rest: Node | Node[],
 ): SomeTerm[] | Promise<void> {
   if (Array.isArray(rest)) {
     return rest;
@@ -212,8 +212,8 @@ function containerToArr(
   // Detect loaded
   if (__CLIENT__ && !entityIsLoaded(lrs, rest)) {
     return rest.termType === 'NamedNode'
-        ? lrs.getEntity(rest)
-        : Promise.reject(`Can't resolve a ${rest.termType}`);
+      ? lrs.getEntity(rest)
+      : Promise.reject(`Can't resolve a ${rest.termType}`);
   }
 
   if (lrs.getResourceProperty(rest, rdfs.member)) {

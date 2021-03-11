@@ -112,7 +112,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
       </p>
       <a download href={props.url}>Download het bestand.</a>
       {/* If the PDF does not render, show the plaintext */}
-      <Property label={schema.text}/>
+      <Property label={schema.text} />
     </div>
   ), [props.url]);
 
@@ -158,9 +158,10 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
             </Document>
           </div>
         </div>
-        {showButtons &&
+        {showButtons && (
           <div className="PDFViewer__button-bar">
-            <div className="PDFViewer__button-bar-inner"
+            <div
+              className="PDFViewer__button-bar-inner"
               style={{
                 alignItems: 'center',
                 display: 'flex',
@@ -199,7 +200,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
               </IconButton>
             </div>
           </div>
-        }
+        )}
       </div>
     </HotKeys>
   );

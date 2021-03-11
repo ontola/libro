@@ -47,11 +47,17 @@ const Case = ({ image }) => {
           <Heading size="2"><Property label={schema.name} topology={inlineTopology} /></Heading>
           <p><Property label={schema.text} topology={inlineTopology} /></p>
           <p>
-            <b><Property label={argu.votesCount} topology={inlineTopology} /> </b>
+            <b>
+              <Property label={argu.votesCount} topology={inlineTopology} />
+              {' '}
+            </b>
             {formatMessage(messages.votesCount)}
           </p>
           <p>
-            <b><Property label={argu.reactionsCount} topology={inlineTopology} /> </b>
+            <b>
+              <Property label={argu.reactionsCount} topology={inlineTopology} />
+              {' '}
+            </b>
             {formatMessage(messages.reactionsCount)}
           </p>
         </div>

@@ -10,7 +10,10 @@ import { CollectionTypes } from './types';
 
 const CollectionInline = () => (
   <p>
-    <label><Property label={as.name} /> </label>
+    <label>
+      <Property label={as.name} />
+      {' '}
+    </label>
     <Property forceRender insideCollection label={ontola.pages} />
   </p>
 );

@@ -92,7 +92,8 @@ class Collapsible extends React.PureComponent<CollapsibleProps> {
             onClickToggle();
           }
         }}
-      >{trigger}
+      >
+        {trigger}
       </a>
     );
 
@@ -105,7 +106,7 @@ class Collapsible extends React.PureComponent<CollapsibleProps> {
     return (
       <div aria-expanded={opened} className={classes}>
         {trigger && (
-        <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+          <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
         )}
         <div className="Collapsible__visible-content">{visibleContent}</div>
         <Collapse

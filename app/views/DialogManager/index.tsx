@@ -31,7 +31,7 @@ const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
   );
 
   if (!resource) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

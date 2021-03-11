@@ -19,7 +19,7 @@ const AssociationFormField: FC = (props) => {
   });
 
   if (!fieldProps.whitelisted) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

@@ -10,17 +10,17 @@ export const serializeForStorage = (value: SomeTerm[] ): string => {
 
 export const parseValue = (plain: Record<string, any> | any): SomeTerm => {
   switch (plain.termType) {
-    case 'NamedNode':
-      return rdf.namedNode(plain.value);
-    case 'BlankNode':
-      return rdf.blankNode(plain.value);
-    case 'Literal': {
-      const datatype = plain.datatype ? rdf.namedNode(plain.datatype.value) : undefined;
+  case 'NamedNode':
+    return rdf.namedNode(plain.value);
+  case 'BlankNode':
+    return rdf.blankNode(plain.value);
+  case 'Literal': {
+    const datatype = plain.datatype ? rdf.namedNode(plain.datatype.value) : undefined;
 
-      return rdf.literal(plain.value, plain.language || datatype);
-    }
-    default:
-      return plain.value ? rdf.literal(plain.value) : rdf.literal(plain);
+    return rdf.literal(plain.value, plain.language || datatype);
+  }
+  default:
+    return plain.value ? rdf.literal(plain.value) : rdf.literal(plain);
   }
 };
 
@@ -44,11 +44,11 @@ export const parseForStorage = (valueFromStorage: string | null): SomeTerm[] | u
 };
 
 export const getStorageKey = (formContext: string, object?: SomeNode, path?: NamedNode): string => (
-    calculateFormFieldName(formContext, object, path)
+  calculateFormFieldName(formContext, object, path)
 );
 
 export const storageGet = (sessionStore: Storage | undefined, key: string): SomeTerm[] | undefined => (
-    __CLIENT__ ? parseForStorage((sessionStore || sessionStorage).getItem(key)) : undefined
+  __CLIENT__ ? parseForStorage((sessionStore || sessionStorage).getItem(key)) : undefined
 );
 
 export const storageSet = (sessionStore: Storage | undefined, key: string, newValue: SomeTerm[]): void => {

@@ -33,15 +33,15 @@ class Opinion extends Component {
 
     let classes;
     switch (rdf.id(option)) {
-      case rdf.id(argu.yes):
-        classes = 'fa-thumbs-up Opinion--icon-pro';
-        break;
-      case rdf.id(argu.no):
-        classes = 'fa-thumbs-down Opinion--icon-con';
-        break;
-      default:
-        classes = 'fa-pause Opinion--icon-neutral';
-        break;
+    case rdf.id(argu.yes):
+      classes = 'fa-thumbs-up Opinion--icon-pro';
+      break;
+    case rdf.id(argu.no):
+      classes = 'fa-thumbs-down Opinion--icon-con';
+      break;
+    default:
+      classes = 'fa-pause Opinion--icon-neutral';
+      break;
     }
     if (primaryVote.value === 'false') {
       classes += ' Opinion--icon-expired';

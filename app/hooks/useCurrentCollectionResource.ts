@@ -23,10 +23,10 @@ export const useCurrentCollectionResource = (redirectPagination: boolean, origin
 
     return [originalCollectionResource, redirectPage];
   }
-    const setCurrentPage = (newPage: NamedNode) => {
-      lrs.actions.app.changePage(originalCollectionResource, newPage);
-    };
+  const setCurrentPage = (newPage: NamedNode) => {
+    lrs.actions.app.changePage(originalCollectionResource, newPage);
+  };
 
-    return [collectionResource, setCurrentPage];
+  return [collectionResource, setCurrentPage];
 
 };

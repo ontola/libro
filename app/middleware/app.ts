@@ -34,9 +34,9 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
 
   store.processDelta([
-      rdf.quad(app.menu, rdfx.type, app.Menu),
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      rdf.quad(app.menu, http.statusCode, rdf.literal(200), ll.meta),
+    rdf.quad(app.menu, rdfx.type, app.Menu),
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    rdf.quad(app.menu, http.statusCode, rdf.literal(200), ll.meta),
   ], true);
 
   /**
@@ -83,12 +83,12 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     const { base, params: { newPage, subject } } = parse(iri);
 
     switch (base) {
-      case app.ns('changePage'): {
-        const delta: Quadruple[] = [[subject!, app.collectionResource, newPage!, ontola.replace]];
+    case app.ns('changePage'): {
+      const delta: Quadruple[] = [[subject!, app.collectionResource, newPage!, ontola.replace]];
 
-        return store.processDelta(delta, true);
-      }
-      default:
+      return store.processDelta(delta, true);
+    }
+    default:
     }
 
     return next(iri, opts);

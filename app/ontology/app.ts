@@ -23,9 +23,9 @@ const thumbnail = app('thumbnail');
 const title = app('title');
 
 export const appOntology = [
-    ...arrayToSeqQuads([schema.text, schema.description, dcterms.description], contents),
-    ...arrayToSeqQuads([dbo.thumbnail, wdt.ns('P18')], thumbnail),
-    ...arrayToSeqQuads([schema.name, rdfs.label, foaf.name, dcterms.title], title),
+  ...arrayToSeqQuads([schema.text, schema.description, dcterms.description], contents),
+  ...arrayToSeqQuads([dbo.thumbnail, wdt.ns('P18')], thumbnail),
+  ...arrayToSeqQuads([schema.name, rdfs.label, foaf.name, dcterms.title], title),
 ];
 
 export default {

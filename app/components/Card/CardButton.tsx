@@ -43,7 +43,8 @@ const CardButton: React.FC<CardButtonProps> = ({
       theme={ButtonTheme.Box}
       variant={type}
       onClick={() => action && action()}
-    >{children}
+    >
+      {children}
     </Button>
   );
 };

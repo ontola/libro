@@ -31,7 +31,9 @@ const CommentSection = ({ highlighted, subject }) => {
     <CardMicroRow highlighted={highlighted}>
       <Property
         label={schema.creator}
-      />&#9;<Property label={schema.text} />
+      />
+      &#9;
+      <Property label={schema.text} />
     </CardMicroRow>
   );
 };

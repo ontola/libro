@@ -33,7 +33,7 @@ const ResourceField: FC<PropTypes> = ({
 
   const whitelisted = !whitelist || whitelist.includes(rdf.id(path));
   if (!whitelisted) {
-    return <React.Fragment />;
+    return null;
   }
 
   if (object && path) {

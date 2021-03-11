@@ -121,7 +121,7 @@ const Person = (props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.person} href={`mailto:${props.email}`}>
+    <a className={classes.person} href={`mailto:${props.email}`}>
       <img alt="" src={props.image} />
       <div className={classes.personProps}>
         <div className={classes.personName}>
@@ -137,7 +137,7 @@ const Person = (props) => {
           {props.phone}
         </a>
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -235,9 +235,9 @@ const ContactPage = () => {
         <div className={classes.right}>
           <Paper elevation={3}>
             <div className={classes.cardContent}>
-              {
-                persons.map((contactprops) => <Person key={contactprops.name} {...contactprops} />)
-              }
+              {persons.map((contactprops) => (
+                <Person key={contactprops.name} {...contactprops} />
+              ))}
               <div>
                 <b>
                   {'Chat met ons team op '}
@@ -250,9 +250,9 @@ const ContactPage = () => {
                 </b>
               </div>
               <b>Volg ons op:</b>
-              {
-                socials.map((socialprops) => <Social key={socialprops.link} {...socialprops} />)
-              }
+              {socials.map((socialprops) => (
+                <Social key={socialprops.link} {...socialprops} />
+              ))}
             </div>
           </Paper>
         </div>

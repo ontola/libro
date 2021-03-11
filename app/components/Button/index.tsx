@@ -146,12 +146,12 @@ const Button: React.FC<ButtonProps> = ({
         {...sharedProps}
       >
         {currentIcon && (
-        <FontAwesome
-          className="Button__icon"
-          data-test="Button-icon"
-          name={currentIcon}
-          spin={loading}
-        />
+          <FontAwesome
+            className="Button__icon"
+            data-test="Button-icon"
+            name={currentIcon}
+            spin={loading}
+          />
         )}
         <span className="Button__label">
           {children}
@@ -166,17 +166,17 @@ const Button: React.FC<ButtonProps> = ({
       {...sharedProps}
     >
       {currentIcon && (
-      <FontAwesome
-        className="Button__icon"
-        data-test="Button-icon"
-        name={currentIcon}
-        spin={loading}
-      />
+        <FontAwesome
+          className="Button__icon"
+          data-test="Button-icon"
+          name={currentIcon}
+          spin={loading}
+        />
       )}
       {children && (
-      <span className="Button__label">
-        {children}
-      </span>
+        <span className="Button__label">
+          {children}
+        </span>
       )}
     </BlurButton>
   );

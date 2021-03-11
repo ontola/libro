@@ -42,90 +42,90 @@ const getFrame = (wrapper, topology) => {
     const sortOptions = useSorting();
 
     switch (rdf.id(collectionDisplay || collectionDisplayFromData)) {
-      case rdf.id(ontola.ns('collectionDisplay/grid')):
-        Wrapper = wrapper ? LargeContainer : React.Fragment;
+    case rdf.id(ontola.ns('collectionDisplay/grid')):
+      Wrapper = wrapper ? LargeContainer : React.Fragment;
 
-        return (
-          <Wrapper>
-            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
-            {header}
-            <Grid container>
-              {body}
-            </Grid>
-            {pagination}
-            {footer}
-          </Wrapper>
-        );
-      case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
-      case rdf.id(ontola.ns('collectionDisplay/table')):
-        Wrapper = wrapper ? Container : React.Fragment;
-
-        return (
-          <Wrapper>
-            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
-            {header}
-            <Card>
-              <Table>
-                <TableHead>
-                  <TableHeaderRow>
-                    {columns.map((property) => (
-                      <Resource
-                        forceRender
-                        key={property.value}
-                        setCurrentPage={setCurrentPage}
-                        sortOptions={sortOptions.filter((option) => option.item === property)}
-                        subject={property}
-                      />
-                    ))}
-                  </TableHeaderRow>
-                </TableHead>
-                <tbody>
-                  {body}
-                </tbody>
-                <TableFooter>
-                  <TableFooterRow>
-                    <TableFooterCell colSpan={columns.length}>
-                      {pagination}
-                    </TableFooterCell>
-                  </TableFooterRow>
-                </TableFooter>
-              </Table>
-              {footer}
-            </Card>
-          </Wrapper>
-        );
-      case rdf.id(ontola.ns('collectionDisplay/card')):
-        Wrapper = wrapper ? Container : React.Fragment;
-
-        return (
-          <Wrapper>
-            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
-            {header}
-            <Card>
-              {body}
-              <CardAppendix>
-                {pagination}
-              </CardAppendix>
-              {footer}
-            </Card>
-          </Wrapper>
-        );
-      case rdf.id(ontola.ns('collectionDisplay/default')):
-        Wrapper = wrapper ? Container : React.Fragment;
-
-        return (
-          <Wrapper>
-            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
-            {header}
+      return (
+        <Wrapper>
+          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          {header}
+          <Grid container>
             {body}
-            <div style={style}>
-              {pagination}
-            </div>
+          </Grid>
+          {pagination}
+          {footer}
+        </Wrapper>
+      );
+    case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
+    case rdf.id(ontola.ns('collectionDisplay/table')):
+      Wrapper = wrapper ? Container : React.Fragment;
+
+      return (
+        <Wrapper>
+          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          {header}
+          <Card>
+            <Table>
+              <TableHead>
+                <TableHeaderRow>
+                  {columns.map((property) => (
+                    <Resource
+                      forceRender
+                      key={property.value}
+                      setCurrentPage={setCurrentPage}
+                      sortOptions={sortOptions.filter((option) => option.item === property)}
+                      subject={property}
+                    />
+                  ))}
+                </TableHeaderRow>
+              </TableHead>
+              <tbody>
+                {body}
+              </tbody>
+              <TableFooter>
+                <TableFooterRow>
+                  <TableFooterCell colSpan={columns.length}>
+                    {pagination}
+                  </TableFooterCell>
+                </TableFooterRow>
+              </TableFooter>
+            </Table>
             {footer}
-          </Wrapper>
-        );
-      default:
-        return body;
+          </Card>
+        </Wrapper>
+      );
+    case rdf.id(ontola.ns('collectionDisplay/card')):
+      Wrapper = wrapper ? Container : React.Fragment;
+
+      return (
+        <Wrapper>
+          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          {header}
+          <Card>
+            {body}
+            <CardAppendix>
+              {pagination}
+            </CardAppendix>
+            {footer}
+          </Card>
+        </Wrapper>
+      );
+    case rdf.id(ontola.ns('collectionDisplay/default')):
+      Wrapper = wrapper ? Container : React.Fragment;
+
+      return (
+        <Wrapper>
+          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          {header}
+          {body}
+          <div style={style}>
+            {pagination}
+          </div>
+          {footer}
+        </Wrapper>
+      );
+    default:
+      return body;
     }
   };
 

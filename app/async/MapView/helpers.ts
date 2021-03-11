@@ -53,7 +53,7 @@ const drawFontAwesomeIcon = (
   vectorContext.drawGeometry(circle);
 
   let renderText;
-   let renderFont;
+  let renderFont;
   if (count > 1) {
     renderText = count.toString();
     renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;

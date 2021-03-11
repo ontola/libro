@@ -1,5 +1,4 @@
 import { TopologyProvider } from 'link-redux';
-import React from 'react';
 
 import argu from '../../ontology/argu';
 
@@ -13,11 +12,7 @@ class OmniformSupplementBar extends TopologyProvider {
   }
 
   public render() {
-    return this.wrap((
-      <React.Fragment>
-        {this.props.children}
-      </React.Fragment>
-    ));
+    return this.wrap(this.props.children);
   }
 }
 

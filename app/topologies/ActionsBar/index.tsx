@@ -28,7 +28,7 @@ class ActionsBar extends TopologyProvider<PropTypes> {
     });
 
     if (this.props.children === undefined) {
-      return <React.Fragment />;
+      return null;
     }
 
     return this.wrap((

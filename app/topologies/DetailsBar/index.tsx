@@ -35,11 +35,11 @@ class DetailsBar extends TopologyProvider<PropTypes> {
           {this.props.children}
         </IconWrapper>
         {this.props.right && (
-        <div className="DetailsBar__right">
-          <CardFloat>
-            {this.props.right}
-          </CardFloat>
-        </div>
+          <div className="DetailsBar__right">
+            <CardFloat>
+              {this.props.right}
+            </CardFloat>
+          </div>
         )}
       </div>
     ));

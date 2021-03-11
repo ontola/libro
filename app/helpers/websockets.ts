@@ -14,23 +14,23 @@ export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: stri
 
 export function subscribeDeltaChannel(lrs: LinkReduxLRSType, channel: string): void {
   (lrs.api as any)
-      .channel
-      .subscriptions
-      .create(
-          channel,
-          {
-            connected: () => {
-              lrs.exec(ontola.ns(`ws/connected?channel=${channel}`));
-            },
-            disconnected: () => {
-              lrs.exec(ontola.ns(`ws/disconnected?channel=${channel}`));
-            },
-            received: (msg: any) => {
-              lrs.exec(ontola.ns(`ws/received?channel=${channel}`), msg);
-            },
-            rejected: () => {
-              lrs.exec(ontola.ns(`ws/rejected?channel=${channel}`));
-            },
-          },
-        );
+    .channel
+    .subscriptions
+    .create(
+      channel,
+      {
+        connected: () => {
+          lrs.exec(ontola.ns(`ws/connected?channel=${channel}`));
+        },
+        disconnected: () => {
+          lrs.exec(ontola.ns(`ws/disconnected?channel=${channel}`));
+        },
+        received: (msg: any) => {
+          lrs.exec(ontola.ns(`ws/received?channel=${channel}`), msg);
+        },
+        rejected: () => {
+          lrs.exec(ontola.ns(`ws/rejected?channel=${channel}`));
+        },
+      },
+    );
 }

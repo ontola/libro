@@ -186,14 +186,14 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   history.listen((opts, action) => {
     if (['POP', 'PUSH'].includes(action)) {
       store.exec(libro.ns(`actions/navigations/${action.toLowerCase()}`),
-          {
-            hash: opts.hash || '',
-            key: opts.key || '',
-            pathname: opts.pathname || '',
-            search: opts.search || '',
-            state: opts.state || '',
-          },
-        );
+        {
+          hash: opts.hash || '',
+          key: opts.key || '',
+          pathname: opts.pathname || '',
+          search: opts.search || '',
+          state: opts.state || '',
+        },
+      );
     }
   });
 
@@ -213,27 +213,27 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     switch (rdf.id(iri)) {
-      case rdf.id(libro.actions.refresh):
-        if (__CLIENT__) {
-          reloadPage(store, false);
-        }
-
-        return Promise.resolve();
-      case rdf.id(libro.actions.reload):
-        reloadPage(store, true);
-
-        return Promise.resolve();
-      case rdf.id(libro.actions.navigation.push):
-      case rdf.id(libro.actions.navigation.pop): {
-        const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
-        const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
-        if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
-          store.exec(libro.actions.dialog.close);
-        }
-
-        return next(iri, opts);
+    case rdf.id(libro.actions.refresh):
+      if (__CLIENT__) {
+        reloadPage(store, false);
       }
-      default:
+
+      return Promise.resolve();
+    case rdf.id(libro.actions.reload):
+      reloadPage(store, true);
+
+      return Promise.resolve();
+    case rdf.id(libro.actions.navigation.push):
+    case rdf.id(libro.actions.navigation.pop): {
+      const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
+      const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
+      if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
+        store.exec(libro.actions.dialog.close);
+      }
+
+      return next(iri, opts);
+    }
+    default:
     }
 
     if (iri.value.startsWith(libro.actions.copyToClipboard.value)) {
@@ -322,7 +322,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
       history.push(currentPath());
       if (!resource) {
-          throw new Error("Argument 'value' was missing.");
+        throw new Error("Argument 'value' was missing.");
       }
       store.processDelta(showDialog(resource, opener), true);
 
@@ -338,7 +338,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     if (iri.value.startsWith(libro.actions.snackbar.show.value)) {
       const value = new URL(iri.value).searchParams.get('text');
       if (!value) {
-          throw new Error("Argument 'value' was missing.");
+        throw new Error("Argument 'value' was missing.");
       }
       store.processDelta(queueSnackbar(value), true);
 

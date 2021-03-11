@@ -127,8 +127,8 @@ export const prerenderMetaTags = (ctx: Context, data: string): string => {
   const quads = ([] as string[][]);
   let coverPhoto = '';
   let coverURL;
-   let text;
-   let name;
+  let text;
+  let name;
 
   data?.split('\n')?.forEach((line) => {
     if (line?.length > 0) {

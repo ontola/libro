@@ -38,9 +38,9 @@ const component = (_: LinkReduxLRSType) => {
     return React.createElement(
       Comp,
       {
- key: t.value,
-...compProps,
-},
+        key: t.value,
+        ...compProps,
+      },
       childElems,
     );
   }
@@ -136,7 +136,7 @@ export const property = (lrs?: LinkReduxLRSType) => (
   const childProps = propsAreChildren ? {} : props || {};
   const childrenNormalized = propsAreChildren
     ? props : (!children || children.length === 0)
-    ? undefined : children;
+      ? undefined : children;
 
   if (ReactIs.isValidElementType(label)) {
     return React.createElement(label, null, childrenNormalized || null);

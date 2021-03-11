@@ -39,34 +39,35 @@ const InviteFull: FC<InviteFullProps> = ({
   const [fileName] = useResourceProperty(isNamedNode(file) ? file : undefined, schema.name);
 
   return (
-    <React.Fragment>
-      <Container>
-        {renderPartOf && <Property label={schema.isPartOf} />}
-        <Property label={argu.trashedAt} />
-        <Property label={ontola.publishAction} onLoad={() => null} />
-        <CardMain>
-          <DetailsBar right={defaultMenus}>
-            <Property label={schema.creator} />
-            <Property label={rdfx.type} />
-            <LinkedDetailDate />
-          </DetailsBar>
-          <CardContent endSpacing>
-            <p>
-              <strong>{assigner?.value}</strong> wil
-              het bestand <strong>{fileName?.value}</strong> met je delen.
-            </p>
-            <Property label={dexes.offer}>
-              <Property label={dexes.prohibitions} renderWhenEmpty={false} />
-              <Property label={dexes.permissions} renderWhenEmpty={false} />
-              <Property label={dexes.obligations} renderWhenEmpty={false} />
-            </Property>
-          </CardContent>
-          <ActionsBar>
-            <Property label={ontola.favoriteAction} />
-          </ActionsBar>
-        </CardMain>
-      </Container>
-    </React.Fragment>
+    <Container>
+      {renderPartOf && <Property label={schema.isPartOf} />}
+      <Property label={argu.trashedAt} />
+      <Property label={ontola.publishAction} onLoad={() => null} />
+      <CardMain>
+        <DetailsBar right={defaultMenus}>
+          <Property label={schema.creator} />
+          <Property label={rdfx.type} />
+          <LinkedDetailDate />
+        </DetailsBar>
+        <CardContent endSpacing>
+          <p>
+            <strong>{assigner?.value}</strong>
+            {' wil'}
+            {'het bestand '}
+            <strong>{fileName?.value}</strong>
+            {' met je delen.'}
+          </p>
+          <Property label={dexes.offer}>
+            <Property label={dexes.prohibitions} renderWhenEmpty={false} />
+            <Property label={dexes.permissions} renderWhenEmpty={false} />
+            <Property label={dexes.obligations} renderWhenEmpty={false} />
+          </Property>
+        </CardContent>
+        <ActionsBar>
+          <Property label={ontola.favoriteAction} />
+        </ActionsBar>
+      </CardMain>
+    </Container>
   );
 };
 

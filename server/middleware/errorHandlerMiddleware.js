@@ -46,15 +46,15 @@ export default async function backendErrorHandler(ctx, next) {
 
     let error;
     switch (err.status) {
-      case errors.BadGatewayError.status:
-      case errors.ServiceUnavailableError.status:
-        error = new errors.ServiceUnavailableError();
-        break;
-      case errors.NotFoundError.status:
-        error = new errors.NotFoundError();
-        break;
-      default:
-        error = new errors.InternalServerErrorError();
+    case errors.BadGatewayError.status:
+    case errors.ServiceUnavailableError.status:
+      error = new errors.ServiceUnavailableError();
+      break;
+    case errors.NotFoundError.status:
+      error = new errors.NotFoundError();
+      break;
+    default:
+      error = new errors.InternalServerErrorError();
     }
     ctx.response.status = error.status;
   }

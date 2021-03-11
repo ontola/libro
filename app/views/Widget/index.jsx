@@ -25,15 +25,15 @@ const Widget = ({ topology, widgetSize }) => {
   let Wrapper;
   let wrapperOpts = {};
   switch (topology) {
-    case argu.grid:
-      Wrapper = GridItem;
-      wrapperOpts = { size: 3 };
-      break;
-    case argu.container:
-      Wrapper = Container;
-      break;
-    default:
-      Wrapper = FullResource;
+  case argu.grid:
+    Wrapper = GridItem;
+    wrapperOpts = { size: 3 };
+    break;
+  case argu.container:
+    Wrapper = Container;
+    break;
+  default:
+    Wrapper = FullResource;
   }
 
   return (

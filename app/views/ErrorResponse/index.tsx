@@ -11,7 +11,7 @@ const ErrorResponse: FC = ({ subject }) => {
   const generalErrors = useContainerToArr(subject);
 
   if (!generalErrors || isPromise(generalErrors) || generalErrors.length === 0) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

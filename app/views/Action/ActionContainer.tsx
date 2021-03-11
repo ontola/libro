@@ -18,7 +18,7 @@ const ActionContainer: FC<ActionProps> = ({
   const onDoneHandler = useDoneHandler(onDone);
 
   if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

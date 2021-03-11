@@ -19,7 +19,7 @@ const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {
   const [parentType] = useResourceProperty(linkedProp as NamedNode, rdfx.type);
 
   if (rdf.equals(parentType, argu.Page)) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

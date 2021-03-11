@@ -1,25 +1,25 @@
 import { withLRS } from 'link-redux';
-import PropTypes from 'prop-types';
+import { LinkedRenderStoreContext } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import DropdownMenu from '../../components/DropdownMenu';
+import DropdownMenu, { RenderProp } from '../../components/DropdownMenu';
 import { isFunction } from '../../helpers/types';
 import app from '../../ontology/app';
 import Topology from '../Topology';
 
 export const appMenuTopology = app.ns('topologies/appMenu');
 
-class AppMenu extends Topology {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-      PropTypes.func,
-    ]),
-    trigger: PropTypes.func,
-  };
+export interface AppMenuProps {
+  children: React.ReactNode | RenderProp;
+  trigger: () => void;
+}
 
-  constructor(props) {
+class AppMenu extends Topology<
+  AppMenuProps & LinkedRenderStoreContext,
+  Record<string, unknown>,
+  () => void
+> {
+  constructor(props: AppMenuProps & LinkedRenderStoreContext) {
     super(props);
 
     this.topology = appMenuTopology;
@@ -42,16 +42,16 @@ class AppMenu extends Topology {
     );
   }
 
-  renderContent(handleClose) {
+  renderContent(handleClose: () => void): JSX.Element {
     return this.wrap((subject) => {
       if (isFunction(this.props.children)) {
         return this.props.children({
           handleClose,
           subject,
-        });
+        }) as React.ReactNode;
       }
 
-      return this.props.children;
+      return this.props.children as JSX.Element;
     });
   }
 }

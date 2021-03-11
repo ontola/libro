@@ -10,7 +10,9 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import { CollectionTypes } from '../types';
 
 const UnreadCount = ({ linkedProp }) => (
-  <span> ({linkedProp.value})</span>
+  <span>
+    {` (${linkedProp.value})`}
+  </span>
 );
 
 UnreadCount.propTypes = {

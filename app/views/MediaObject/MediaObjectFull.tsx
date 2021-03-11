@@ -19,12 +19,10 @@ interface PropTypes {
 const MediaObjectFull: FC<PropTypes> = ({
   renderPartOf,
 }) => (
-  <React.Fragment>
-    <Container>
-      {renderPartOf && <Property label={[schema.isPartOf, dcterms.isReferencedBy]} />}
-      <Property label={schema.contentUrl} />
-    </Container>
-  </React.Fragment>
+  <Container>
+    {renderPartOf && <Property label={[schema.isPartOf, dcterms.isReferencedBy]} />}
+    <Property label={schema.contentUrl} />
+  </Container>
 );
 
 MediaObjectFull.type = [

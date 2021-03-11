@@ -14,38 +14,36 @@ import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const AgreementFull = () => (
-  <React.Fragment>
-    <Container>
-      <CardMain>
-        <CardContent noSpacing>
-          <Heading>DataDeal</Heading>
-          <AttributeList>
-            <Property label={dexes.assigner}>
-              <AttributeListItem label={foaf.name} propertyLabel="Deler" />
-            </Property>
-            <Property label={dexes.assignee}>
-              <AttributeListItem label={foaf.name} propertyLabel="Ontvanger" />
-            </Property>
-            <AttributeListItem label={dexes.dateSigned} propertyLabel="Deal gesloten op" />
-            <AttributeListItem label={dexes.file} propertyLabel="Bestand" />
-            <Property label={dexes.file}>
-              <AttributeListItem label={schema.encodingFormat} propertyLabel="Formaat" />
-            </Property>
-          </AttributeList>
-        </CardContent>
-        <CardDivider />
-        <CardContent>
-          <Heading>Condities</Heading>
-          <Property label={dexes.offer}>
-            {/* <AttributeListItem label={dexes.prohibitions} propertyLabel="Condities" /> */}
-            <Property label={dexes.prohibitions} renderWhenEmpty={false} />
-            <Property label={dexes.permissions} renderWhenEmpty={false} />
-            <Property label={dexes.obligations} renderWhenEmpty={false} />
+  <Container>
+    <CardMain>
+      <CardContent noSpacing>
+        <Heading>DataDeal</Heading>
+        <AttributeList>
+          <Property label={dexes.assigner}>
+            <AttributeListItem label={foaf.name} propertyLabel="Deler" />
           </Property>
-        </CardContent>
-      </CardMain>
-    </Container>
-  </React.Fragment>
+          <Property label={dexes.assignee}>
+            <AttributeListItem label={foaf.name} propertyLabel="Ontvanger" />
+          </Property>
+          <AttributeListItem label={dexes.dateSigned} propertyLabel="Deal gesloten op" />
+          <AttributeListItem label={dexes.file} propertyLabel="Bestand" />
+          <Property label={dexes.file}>
+            <AttributeListItem label={schema.encodingFormat} propertyLabel="Formaat" />
+          </Property>
+        </AttributeList>
+      </CardContent>
+      <CardDivider />
+      <CardContent>
+        <Heading>Condities</Heading>
+        <Property label={dexes.offer}>
+          {/* <AttributeListItem label={dexes.prohibitions} propertyLabel="Condities" /> */}
+          <Property label={dexes.prohibitions} renderWhenEmpty={false} />
+          <Property label={dexes.permissions} renderWhenEmpty={false} />
+          <Property label={dexes.obligations} renderWhenEmpty={false} />
+        </Property>
+      </CardContent>
+    </CardMain>
+  </Container>
 );
 
 AgreementFull.type = dexes.Agreement;

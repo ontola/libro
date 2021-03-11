@@ -21,7 +21,7 @@ const FormFieldDescription: React.FC<PropTypes> = ({
   }
 
   return (
-    <div className="Field__description">{text && <Markdown text={text}/>}</div>
+    <div className="Field__description">{text && <Markdown text={text} />}</div>
   );
 };
 

@@ -172,7 +172,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
         <SelectedValue>
           <InputAdornment disablePointerEvents position="start">
             <Resource subject={valueProps.value}>
-              <Property label={schema.image} topology={selectTopology}/>
+              <Property label={schema.image} topology={selectTopology} />
             </Resource>
           </InputAdornment>
         </SelectedValue>

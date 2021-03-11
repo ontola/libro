@@ -20,20 +20,19 @@ const DropzoneOverlay: React.FC<Props> = ({ isDragActive, overlay }) => {
         className="MediaObjectOmniformFields__icon"
         name="cloud-upload"
       />
-      {
-        isDragActive
-          ? (
-            <FormattedMessage
-              defaultMessage="Release to select this file"
-              id="https://app.argu.co/i18n/forms/dropzone/hoverText"
-            />
-          ) : (
-            <FormattedMessage
-              defaultMessage="Drag & Drop your file here or click to select a file"
-              id="https://app.argu.co/i18n/forms/dropzone/passiveText"
-            />
-          )
-      }
+      {isDragActive
+        ? (
+          <FormattedMessage
+            defaultMessage="Release to select this file"
+            id="https://app.argu.co/i18n/forms/dropzone/hoverText"
+          />
+        )
+        : (
+          <FormattedMessage
+            defaultMessage="Drag & Drop your file here or click to select a file"
+            id="https://app.argu.co/i18n/forms/dropzone/passiveText"
+          />
+        )}
     </div>
   );
 };

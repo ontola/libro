@@ -11,7 +11,7 @@ const RadioGroupFormField: FC = (props) => {
   const fieldProps = useFormField(props);
 
   if (!fieldProps.whitelisted) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

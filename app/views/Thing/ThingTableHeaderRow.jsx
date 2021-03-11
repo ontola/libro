@@ -39,7 +39,9 @@ const SortableHeader = ({
 
   return (
     <button type="button" onClick={clickHandler}>
-      {name.value} {current && <FontAwesome name={`sort-${current.direction}`} />}
+      {name.value}
+      {' '}
+      {current && <FontAwesome name={`sort-${current.direction}`} />}
     </button>
   );
 };

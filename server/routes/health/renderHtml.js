@@ -4,12 +4,12 @@ import { CheckResult } from './check';
 function humanStatus(result) {
   // eslint-disable-next-line default-case
   switch (result) {
-    case CheckResult.pass:
-      return '🟩 pass';
-    case CheckResult.fail:
-      return '🟥 fail';
-    case CheckResult.warn:
-      return '🟨 warn';
+  case CheckResult.pass:
+    return '🟩 pass';
+  case CheckResult.fail:
+    return '🟥 fail';
+  case CheckResult.warn:
+    return '🟨 warn';
   }
 }
 

@@ -53,27 +53,27 @@ export const icons = (ctx) => ctx
 
 export const navbarBackground = ({ manifest: { ontola } }) => {
   switch (ontola.header_background) {
-    case 'white':
-      return '#FFFFFF';
-    case 'secondary':
-      return ontola.secondary_color;
-    case 'primary':
-      return ontola.primary_color;
-    default:
-      return ontola.header_background;
+  case 'white':
+    return '#FFFFFF';
+  case 'secondary':
+    return ontola.secondary_color;
+  case 'primary':
+    return ontola.primary_color;
+  default:
+    return ontola.header_background;
   }
 };
 
 export const navbarColor = ({ manifest: { ontola } }) => {
   switch (ontola.header_text) {
-    case 'auto':
-      return '#222222';
-    case 'secondary':
-      return ontola.secondary_color;
-    case 'primary':
-      return ontola.primary_color;
-    default:
-      return ontola.header_text;
+  case 'auto':
+    return '#222222';
+  case 'secondary':
+    return ontola.secondary_color;
+  case 'primary':
+    return ontola.primary_color;
+  default:
+    return ontola.header_text;
   }
 };
 

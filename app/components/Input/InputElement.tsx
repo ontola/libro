@@ -95,23 +95,23 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
 
   let element;
   switch (type) {
-    case 'textarea':
-      element = Textarea;
-      sharedProps.async = true;
-      sharedProps.rows = minRows;
-      sharedProps.maxRows = 50;
-      break;
-    case 'markdown':
-      element = TextEditor;
-      sharedProps.id = storeKey;
-      sharedProps.rows = minRows;
-      break;
-    case 'checkbox': {
-      const currentValue = inputValue;
-      sharedProps.checked = currentValue.value === 'true';
-      break;
-    } default:
-      element = 'input';
+  case 'textarea':
+    element = Textarea;
+    sharedProps.async = true;
+    sharedProps.rows = minRows;
+    sharedProps.maxRows = 50;
+    break;
+  case 'markdown':
+    element = TextEditor;
+    sharedProps.id = storeKey;
+    sharedProps.rows = minRows;
+    break;
+  case 'checkbox': {
+    const currentValue = inputValue;
+    sharedProps.checked = currentValue.value === 'true';
+    break;
+  } default:
+    element = 'input';
   }
 
   return (

@@ -1,9 +1,16 @@
 import MaterialMenu from '@material-ui/core/Menu/Menu';
+import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { isFunction } from '../../helpers/types';
 
-interface PropTypes {
+export interface Test2 extends SubjectProp {
+  handleClose: () => void;
+}
+export type RenderProp = (props: Test2) => JSX.Element;
+
+export interface DropdownMenuProps {
+  children: React.ReactNode | RenderProp;
   className: string;
   disablePadding?: boolean;
   trigger: (...args: any[]) => any;
@@ -22,12 +29,12 @@ const childComponent = (children: React.ReactNode | ((props: any) => any), handl
   return children;
 };
 
-const DropdownMenu: React.FC<PropTypes> = ({
+const DropdownMenu = ({
   children,
   className,
   disablePadding,
   trigger,
-}) => {
+}: DropdownMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event: any) => {

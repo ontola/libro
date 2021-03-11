@@ -97,16 +97,14 @@ const Phases = ({
   return (
     <AppBar color="inherit" elevation={0} position="static">
       <TabBar value={(selectedPhase || currentPhase)?.value}>
-        {
-          items.map((item) => (
-            <PhaseTabBar
-              current={currentPhase === item}
-              key={item.value}
-              subject={item}
-              value={item.value}
-            />
-          ))
-        }
+        {items.map((item) => (
+          <PhaseTabBar
+            current={currentPhase === item}
+            key={item.value}
+            subject={item}
+            value={item.value}
+          />
+        ))}
         {newPhaseTab}
       </TabBar>
     </AppBar>

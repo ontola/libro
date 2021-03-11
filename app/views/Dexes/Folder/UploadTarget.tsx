@@ -12,6 +12,7 @@ import { handle } from '../../../helpers/logging';
 import { getBase64 } from '../../MediaObject/omniform/MediaObjectOmniformDropzone';
 
 interface UploadTargetProps {
+  children: JSX.Element;
   uploadAction?: SomeNode;
 }
 
@@ -20,7 +21,7 @@ interface UploadTargetProps {
  *
  * In addition, files can be pasted into the document as well.
  */
-const UploadTarget: React.FC<UploadTargetProps> = ({ children, uploadAction }) => {
+const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Element => {
   const lrs = useLRS();
   const [uploading, setUploading] = React.useState(false);
 
@@ -64,11 +65,7 @@ const UploadTarget: React.FC<UploadTargetProps> = ({ children, uploadAction }) =
   });
 
   if (!uploadAction) {
-    return (
-      <React.Fragment>
-        {children}
-      </React.Fragment>
-    );
+    return children;
   }
 
   return (
@@ -77,22 +74,21 @@ const UploadTarget: React.FC<UploadTargetProps> = ({ children, uploadAction }) =
       onDrop={onDrop}
     >
       {({
-          getInputProps,
-          getRootProps,
-          isDragActive,
-        }) => (
-          <div
-            data-debug="dropzone-wrapper"
-            style={{ position: 'relative' }}
-            {...getRootProps()}
-          >
-            <Spinner loading={uploading} />
-            {isDragActive && <DropzoneOverlay isDragActive overlay />}
-            {children}
-            <input {...getInputProps()} type="hidden" />
-          </div>
-        )
-      }
+        getInputProps,
+        getRootProps,
+        isDragActive,
+      }) => (
+        <div
+          data-debug="dropzone-wrapper"
+          style={{ position: 'relative' }}
+          {...getRootProps()}
+        >
+          <Spinner loading={uploading} />
+          {isDragActive && <DropzoneOverlay isDragActive overlay />}
+          {children}
+          <input {...getInputProps()} type="hidden" />
+        </div>
+      )}
     </Dropzone>
   );
 

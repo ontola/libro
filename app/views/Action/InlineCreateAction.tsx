@@ -32,7 +32,7 @@ const InlineCreateAction: FC<InlineCreateActionProps> = ({
   subject,
 }) => {
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
-    return <React.Fragment />;
+    return null;
   }
 
   return (

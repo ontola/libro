@@ -25,10 +25,10 @@ const SignOutFormLink = ({
     }}
   >
     {children || (
-    <FormattedMessage
-      defaultMessage="Log out"
-      id="https://app.argu.co/i18n/forms/signOut/link/label"
-    />
+      <FormattedMessage
+        defaultMessage="Log out"
+        id="https://app.argu.co/i18n/forms/signOut/link/label"
+      />
     )}
   </Component>
 );

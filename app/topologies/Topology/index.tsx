@@ -1,6 +1,5 @@
 import {
   Helpers,
-  LinkRenderContext,
   LinkRenderCtx,
   TopologyProvider,
   renderError,
@@ -15,7 +14,7 @@ export interface TopologyState {
   error?: Error;
 }
 
-export type TopologyContent = React.FunctionComponentElement<React.ConsumerProps<LinkRenderContext>>;
+export type TopologyContent = JSX.Element;
 
 export const renderErrorComp = (self: React.Component<Record<string, unknown>, TopologyState>) => (): JSX.Element => {
   const ErrorRenderer: React.FC<
@@ -56,7 +55,11 @@ export const renderErrorComp = (self: React.Component<Record<string, unknown>, T
   );
 };
 
-class Topology<P = Record<string, unknown>, S extends TopologyState = Record<string, unknown>> extends TopologyProvider<P, S> {
+class Topology<
+  P = Record<string, unknown>,
+  S extends TopologyState = Record<string, unknown>,
+  T extends unknown | undefined = undefined,
+> extends TopologyProvider<P, S> {
   public static contextType = LinkRenderCtx;
   protected style: any;
   protected renderErrorComp: () => any;
@@ -100,7 +103,7 @@ class Topology<P = Record<string, unknown>, S extends TopologyState = Record<str
     return this.style;
   }
 
-  public renderContent(): TopologyContent {
+  public renderContent(..._: T[]): TopologyContent {
     const Element = this.elementType as React.ElementType;
 
     return this.wrap((subject) => (

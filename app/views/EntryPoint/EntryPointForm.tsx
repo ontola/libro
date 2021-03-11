@@ -105,7 +105,7 @@ const EntryPointForm: React.FC<PropTypes> = ({
       {errorResponse && (
         <CardContent>
           <RenderStoreProvider value={lrs}>
-            <Resource subject={errorResponse}/>
+            <Resource subject={errorResponse} />
           </RenderStoreProvider>
         </CardContent>
       )}

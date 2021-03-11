@@ -1,20 +1,20 @@
 import { LinkReduxLRSType } from 'link-redux';
 
 import {
-    getAuthenticityToken,
-    getLinkContent,
-    getMetaContent,
+  getAuthenticityToken,
+  getLinkContent,
+  getMetaContent,
 } from './arguHelpers';
 
 function patchRequestInitGenerator(lrs: LinkReduxLRSType): void {
-    (lrs as any).api.requestInitGenerator.constructor.prototype.authenticityHeader =
+  (lrs as any).api.requestInitGenerator.constructor.prototype.authenticityHeader =
         function patchedAuthenticityHeader(options: {[k: string]: string} = {}) {
-            return Object.assign({}, options, {
-                'Manifest': getLinkContent('manifest'),
-                'Website-Iri': getMetaContent('website-iri'),
-                'X-CSRF-Token': getAuthenticityToken(),
-                'X-Requested-With': this.xRequestedWith,
-            });
+          return Object.assign({}, options, {
+            'Manifest': getLinkContent('manifest'),
+            'Website-Iri': getMetaContent('website-iri'),
+            'X-CSRF-Token': getAuthenticityToken(),
+            'X-Requested-With': this.xRequestedWith,
+          });
         };
 }
 

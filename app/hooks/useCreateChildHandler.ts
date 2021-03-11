@@ -25,8 +25,8 @@ const useCreateChildHandler = (): CreateChildHandler => {
   }).filter(({ status }) => status === schema.PotentialActionStatus);
   const entryPoints = React.useMemo(() => (
     actionProps
-    .map(({ entryPoint }) => entryPoint)
-     .filter(isNamedNode)
+      .map(({ entryPoint }) => entryPoint)
+      .filter(isNamedNode)
   ), [actionProps]);
   const entryPointsProps = useResourceLinks(
     entryPoints || [],
@@ -44,12 +44,12 @@ const useCreateChildHandler = (): CreateChildHandler => {
 
   const locationActions = React.useMemo(() => (
     entryPointsProps
-    .filter(({ form }) => (
-      isNamedNode(form)
+      .filter(({ form }) => (
+        isNamedNode(form)
       && (lrs.dig(form, [...formFieldsPath, sh.path]).concat(
         lrs.dig(form, [...conditionalFormFieldsPath, sh.path]),
       )).includes(schema.location)
-    )).map(({ action }) => action)
+      )).map(({ action }) => action)
   ), [entryPointsProps]);
 
   const createChildHandler = React.useCallback((lon, lat, zoom) => {

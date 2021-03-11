@@ -20,7 +20,10 @@ const InterventionTypeGrid = () => (
         <Property label={[schema.name, rdfs.label]} />
         <Property label={[schema.text, schema.description, dbo.abstract]} />
         <AttributeList>
-          <tr><th>Praktische ervaring aandragers</th><th>Gemiddelde beoordeling</th></tr>
+          <tr>
+            <th>Praktische ervaring aandragers</th>
+            <th>Gemiddelde beoordeling</th>
+          </tr>
           <AttributeListItem label={rivm.securityImprovedScore} />
           <AttributeListItem label={rivm.oneOffCostsScore} />
           <AttributeListItem label={rivm.recurringCostsScore} />

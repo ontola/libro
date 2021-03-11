@@ -90,34 +90,34 @@ class TextEditor extends Component<PropTypes> {
     return (
       <div className="TextEditor">
         {(showRichEditor && !disableRich) && (
-        <RichEditor
-          autoFocus={autoFocus}
-          id={name}
-          placeholder={placeholder}
-          value={value}
-          onBlur={(e: any) => {
-            onBlur(e);
-            // Convert the DraftJS object to Markdown and pass it through.
-            onChange({ target: { value: getMarkdownValue() } });
-          }}
-          onChange={this.debounce}
-          onFocus={onFocus}
-        />
+          <RichEditor
+            autoFocus={autoFocus}
+            id={name}
+            placeholder={placeholder}
+            value={value}
+            onBlur={(e: any) => {
+              onBlur(e);
+              // Convert the DraftJS object to Markdown and pass it through.
+              onChange({ target: { value: getMarkdownValue() } });
+            }}
+            onChange={this.debounce}
+            onFocus={onFocus}
+          />
         )}
         {(!showRichEditor || disableRich) && (
-        <PlainEditor
-          autoFocus={autoFocus}
-          disableRich={disableRich}
-          id={name}
-          maxLength={maxLength}
-          minLength={minLength}
-          placeholder={placeholder}
-          rows={rows}
-          value={value}
-          onBlur={onBlur}
-          onChange={onChange}
-          onFocus={onFocus}
-        />
+          <PlainEditor
+            autoFocus={autoFocus}
+            disableRich={disableRich}
+            id={name}
+            maxLength={maxLength}
+            minLength={minLength}
+            placeholder={placeholder}
+            rows={rows}
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
+          />
         )}
       </div>
     );

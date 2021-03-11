@@ -188,23 +188,23 @@ export default function getCollection(
       pagination = <Property label={as.totalItems} />;
     } else {
       switch (rdf.id(collectionType)) {
-        case rdf.id(ontola['collectionType/infinite']):
-          pagination = (
-            <Property
-              forceRender
-              label={ontola.infinitePagination}
-            />
-          );
-          break;
-        default:
-          pagination = (
-            <Property
-              forceRender
-              collectionResource={collectionResource}
-              label={ontola.defaultPagination}
-              setCurrentPage={setCollectionResource}
-            />
-          );
+      case rdf.id(ontola['collectionType/infinite']):
+        pagination = (
+          <Property
+            forceRender
+            label={ontola.infinitePagination}
+          />
+        );
+        break;
+      default:
+        pagination = (
+          <Property
+            forceRender
+            collectionResource={collectionResource}
+            label={ontola.defaultPagination}
+            setCurrentPage={setCollectionResource}
+          />
+        );
       }
     }
 

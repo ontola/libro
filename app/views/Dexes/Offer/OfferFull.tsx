@@ -23,26 +23,24 @@ interface DexesOfferFullProps {
 }
 
 const DexesOfferFull: FC<DexesOfferFullProps> = ({ renderPartOf }) => (
-  <React.Fragment>
-    <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
-      <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
-      <CardMain>
-        <DetailsBar right={defaultMenus}>
-          <Property label={schema.creator} />
-          <Property label={rdfx.type} />
-          <LinkedDetailDate />
-        </DetailsBar>
-        <CardContent>
-          <Property label={dexes.file}>
-            <Property label={schema.name} />
-          </Property>
-          <Property label={dexes.invites} />
-        </CardContent>
-      </CardMain>
-    </Container>
-  </React.Fragment>
+  <Container>
+    {renderPartOf && <Property label={schema.isPartOf} />}
+    <Property label={argu.trashedAt} />
+    <Property label={ontola.publishAction} onLoad={() => null} />
+    <CardMain>
+      <DetailsBar right={defaultMenus}>
+        <Property label={schema.creator} />
+        <Property label={rdfx.type} />
+        <LinkedDetailDate />
+      </DetailsBar>
+      <CardContent>
+        <Property label={dexes.file}>
+          <Property label={schema.name} />
+        </Property>
+        <Property label={dexes.invites} />
+      </CardContent>
+    </CardMain>
+  </Container>
 );
 
 DexesOfferFull.type = dexes.Offer;

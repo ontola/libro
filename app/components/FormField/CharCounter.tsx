@@ -40,7 +40,9 @@ const CharCounter: React.FC<PropTypes> = ({
 
   return (
     <span className={`CharCounter${charError}`}>
-      {currentLength}/{maxLength}
+      {currentLength}
+      /
+      {maxLength}
     </span>
   );
 };

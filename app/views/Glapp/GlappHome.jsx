@@ -54,16 +54,14 @@ const GlappHome = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <React.Fragment>
-      <div className={matches ? classes.wrapperFull : classes.wrapperSmall}>
-        <Card>
-          <CardContent endSpacing>
-            <h2>{emoji(`Hoi ${name?.value || 'daar'}! 👋`)}</h2>
-            <SearchPostalForm />
-          </CardContent>
-        </Card>
-      </div>
-    </React.Fragment>
+    <div className={matches ? classes.wrapperFull : classes.wrapperSmall}>
+      <Card>
+        <CardContent endSpacing>
+          <h2>{emoji(`Hoi ${name?.value || 'daar'}! 👋`)}</h2>
+          <SearchPostalForm />
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

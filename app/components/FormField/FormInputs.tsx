@@ -44,7 +44,7 @@ interface PropTypes {
   values?: InputValue[];
 }
 
-const FormInputs = (props: PropTypes): JSX.Element => {
+const FormInputs = (props: PropTypes): JSX.Element | null => {
   const {
     addItem,
     inputErrors,
@@ -76,7 +76,7 @@ const FormInputs = (props: PropTypes): JSX.Element => {
   } = meta;
 
   if (!values) {
-    return <React.Fragment />;
+    return null;
   }
 
   if (combinedComponent) {

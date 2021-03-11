@@ -62,15 +62,15 @@ class ServiceWorkerCommunicator {
 
     if (this.currentController.state === 'redundant') {
       navigator.serviceWorker
-          .getRegistration()
-          .then((reg) => {
-            if (reg && reg.active) {
-              this.controller = reg.active;
-            } else {
-              handle(new Error('Serviceworker redundant and registration undefined or not active'));
-            }
-          })
-          .catch(handle);
+        .getRegistration()
+        .then((reg) => {
+          if (reg && reg.active) {
+            this.controller = reg.active;
+          } else {
+            handle(new Error('Serviceworker redundant and registration undefined or not active'));
+          }
+        })
+        .catch(handle);
     }
 
     this.currentController.addEventListener('controllerchange', this.onControllerChange);

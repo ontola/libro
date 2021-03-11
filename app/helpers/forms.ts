@@ -17,52 +17,52 @@ export interface JSONLDObject {
 export const destroyFieldName = btoa(ontola._destroy.value);
 
 export function calculateFormFieldName(...segments: Array<string | number | Term | JSONLDObject | undefined>): string {
-    return segments
-        .map((segment) => {
-            if (typeof segment === 'undefined') {
-                return '';
-            }
-            if (typeof segment === 'number' || typeof segment === 'string') {
-                return segment;
-            }
-            if (isJSONLDObject(segment)) {
-                return btoa((segment as JSONLDObject)['@id'].value);
-            }
+  return segments
+    .map((segment) => {
+      if (typeof segment === 'undefined') {
+        return '';
+      }
+      if (typeof segment === 'number' || typeof segment === 'string') {
+        return segment;
+      }
+      if (isJSONLDObject(segment)) {
+        return btoa((segment as JSONLDObject)['@id'].value);
+      }
 
-            return btoa(segment.value);
-        })
-        .filter((v) => typeof v === 'number' || Boolean(v))
-        .join('.');
+      return btoa(segment.value);
+    })
+    .filter((v) => typeof v === 'number' || Boolean(v))
+    .join('.');
 }
 
 export function clearRemoval(value: JSONLDObject | undefined): JSONLDObject | undefined {
-    if (!value) {
-        return value;
-    }
+  if (!value) {
+    return value;
+  }
 
-    const { [destroyFieldName]: ignored, ...rest } = value;
+  const { [destroyFieldName]: ignored, ...rest } = value;
 
-    return rest as JSONLDObject;
+  return rest as JSONLDObject;
 }
 
 export function retrieveIdFromValue(value: JSONLDObject | Node | Literal | undefined): Node | undefined {
-    if (isJSONLDObject(value)) {
-        return value['@id'];
-    }
+  if (isJSONLDObject(value)) {
+    return value['@id'];
+  }
 
-    if (typeof value === 'undefined' || isNode(value)) {
-        return value;
-    }
+  if (typeof value === 'undefined' || isNode(value)) {
+    return value;
+  }
 
-    return undefined;
+  return undefined;
 }
 
 export function isMarkedForRemove(value: Record<string, unknown> | any): boolean {
-    if (!value) {
-        return true;
-    }
+  if (!value) {
+    return true;
+  }
 
-    const hasStatement = Object.prototype.hasOwnProperty.call(value, destroyFieldName);
+  const hasStatement = Object.prototype.hasOwnProperty.call(value, destroyFieldName);
 
-    return hasStatement && rdf.equals(value[destroyFieldName], rdf.literal(true));
+  return hasStatement && rdf.equals(value[destroyFieldName], rdf.literal(true));
 }

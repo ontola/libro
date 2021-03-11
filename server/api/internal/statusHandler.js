@@ -4,10 +4,10 @@ import getErrorClass from '../../utils/errors';
 
 function getDevMessage(status) {
   switch (status) {
-    case HttpStatus.UNAUTHORIZED:
-      return 'Not authenticated to backend (is an oauth token present?)';
-    default:
-      return undefined;
+  case HttpStatus.UNAUTHORIZED:
+    return 'Not authenticated to backend (is an oauth token present?)';
+  default:
+    return undefined;
   }
 }
 

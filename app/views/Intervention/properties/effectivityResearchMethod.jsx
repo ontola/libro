@@ -16,9 +16,9 @@ const EffectivityResearchMethod = ({ linkedProp }) => {
   return (
     <p>
       De effectiviteit van de interventie is na toepassing in het bedrijf
-      <strong> {researched ? 'wel' : 'niet'} </strong>
+      <strong>{researched ? ' wel ' : ' niet '}</strong>
       in kaart gebracht
-      {researched ? `, door middel van ${researchMethod}` : ''}.
+      {researched ? `, door middel van ${researchMethod}.` : '.'}
       <Property label={rivm.securityImproved} />
     </p>
   );
