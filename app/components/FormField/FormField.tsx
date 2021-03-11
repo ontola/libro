@@ -23,7 +23,7 @@ export interface FormFieldProps extends PermittedFormField {
  *
  * @returns {component} Component
  */
-const FormField: React.FC<FormFieldProps> = ({
+const FormField = ({
   addItem,
   inputErrors,
   autofocus,
@@ -43,7 +43,7 @@ const FormField: React.FC<FormFieldProps> = ({
   renderHelper,
   storeKey,
   values,
-}) => (
+}: FormFieldProps): JSX.Element => (
   <div className={className}>
     {label && (
       <FormFieldLabel

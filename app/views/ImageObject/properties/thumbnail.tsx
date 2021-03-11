@@ -1,11 +1,12 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { FC, register } from 'link-redux';
-import React, { FunctionComponent } from 'react';
+import { ComponentRegistration } from 'link-lib';
+import { register } from 'link-redux';
+import React from 'react';
 
 import DetailImage from '../../../components/Detail/image';
 import FormFooterImage from '../../../components/Form/FooterImage';
-import Image from '../../../components/Image';
+import Image, { ImageBaseProps, ImageProps } from '../../../components/Image';
 import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -15,18 +16,16 @@ import { formFooterTopology } from '../../../topologies/FormFooter/Footer';
 import { pageTopology } from '../../../topologies/Page';
 import { selectedValueTopology } from '../../../topologies/SelectedValue';
 
-interface ImageProps {
-  ariaLabel?: string;
-  linkedProp: SomeTerm;
-}
-
 const style = {
   height: '100%',
 };
 
-export const registerThumbnail = (topology: NamedNode | NamedNode[], override: FunctionComponent<ImageProps>) => {
-  const ImageProp: FC<ImageProps> = ({ ariaLabel, linkedProp }) => (
-    <Image
+export function registerThumbnail<T extends ImageBaseProps = ImageBaseProps>(
+  topology: NamedNode | NamedNode[],
+  override: (props: T) => JSX.Element,
+): Array<ComponentRegistration<React.ComponentType<ImageProps<T>>>> {
+  const ImageProp = ({ ariaLabel, linkedProp }: ImageProps<T>): JSX.Element => (
+    <Image<T>
       ariaLabel={ariaLabel}
       data-test="ImageObject-ImageObjectThumbnail"
       linkedProp={linkedProp}
@@ -41,8 +40,8 @@ export const registerThumbnail = (topology: NamedNode | NamedNode[], override: F
 
   ImageProp.topology = topology;
 
-  return register(ImageProp);
-};
+  return register<ImageProps<T>>(ImageProp);
+}
 
 export default [
   registerThumbnail(

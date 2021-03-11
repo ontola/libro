@@ -2,7 +2,9 @@ import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
-interface NavbarLinkImageProps {
+import { ImageBaseProps } from '../Image';
+
+export interface NavbarLinkImageProps extends ImageBaseProps {
   linkedProp: SomeTerm;
 }
 
@@ -25,7 +27,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NavbarLinkImage: React.FC<NavbarLinkImageProps> = ({ linkedProp }) => {
+const NavbarLinkImage = ({ linkedProp }: NavbarLinkImageProps): JSX.Element => {
   const classes = useStyles();
 
   return (

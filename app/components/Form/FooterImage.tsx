@@ -1,12 +1,12 @@
 import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
-interface PropTypes {
+export interface FormFooterImageProps {
   ariaLabel?: string;
   linkedProp: SomeTerm;
 }
 
-const FormFooterImage: React.FC<PropTypes> = ({ ariaLabel, linkedProp }) => (
+const FormFooterImage = ({ ariaLabel, linkedProp }: FormFooterImageProps): JSX.Element => (
   <div
     className="Form__footer-image"
     style={{ backgroundImage: `url(${linkedProp.value})` }}

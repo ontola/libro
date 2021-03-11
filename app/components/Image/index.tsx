@@ -4,24 +4,28 @@ import FontAwesome from 'react-fontawesome';
 
 const FABase = 'http://fontawesome.io/icon/';
 
-export interface ImageProps {
+export interface ImageBaseProps {
   ariaLabel?: string,
   className?: string,
   linkedProp: SomeTerm,
-  override?: (props: ImageProps) => JSX.Element,
-  style?: {
-    maxHeight?: string,
-  },
+  style?: React.CSSProperties,
 }
 
-const Image = (props: ImageProps): JSX.Element => {
+export interface ImageProps<T extends ImageBaseProps = ImageBaseProps> extends ImageBaseProps {
+  override?: (props: T) => JSX.Element,
+}
+
+const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
+  const {
+    override,
+    ...overrideProps
+  } = props;
   const {
     ariaLabel,
     className,
-    override,
     style,
     linkedProp,
-  } = props;
+  } = overrideProps;
 
   if (linkedProp?.value?.startsWith(FABase)) {
     return (
@@ -34,7 +38,7 @@ const Image = (props: ImageProps): JSX.Element => {
     );
   }
   if (typeof override !== 'undefined') {
-    return override(props);
+    return override(overrideProps as T);
   }
 
   return (

@@ -1,12 +1,12 @@
 import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
-interface DetailImageProps {
+export interface DetailImageProps {
   linkedProp: SomeTerm;
   title?: string;
 }
 
-const DetailImage: React.FC<DetailImageProps> = ({ linkedProp, title }) => linkedProp && (
+const DetailImage = ({ linkedProp, title }: DetailImageProps): JSX.Element => linkedProp && (
   <img
     alt={title}
     className="Detail__image"
