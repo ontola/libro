@@ -38,7 +38,6 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({
       wrapperProps={wrapperProps}
     >
       <LinkDuo
-        className={`Collection__Depth-${depth + 1}`}
         to={subject.value}
         onClick={open}
         onKeyUp={open}

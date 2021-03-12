@@ -212,6 +212,9 @@ export default function getCollection(
       if (emptyStrategy === EMPTY_STRATEGY.Never) {
         return <Property label={ontola.query} setCurrentPage={setCollectionResource} />;
       }
+      if (clickToOpen) {
+        return null;
+      }
       if (emptyStrategy === EMPTY_STRATEGY.Interactable
         && !collectionHasInteraction(actionStatus, collectionResourceType)) {
         return <div data-test="invalid-status" />;
