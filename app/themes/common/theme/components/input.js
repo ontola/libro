@@ -5,6 +5,11 @@ export default () => ({
         maxHeight: 'calc(40vh - 16px)',
       },
     },
+    root: {
+      '& .MuiAutocomplete-inputRoot .MuiAutocomplete-input': {
+        minWidth: 0,
+      }
+    },
   },
   MuiInputBase: {
     input: {

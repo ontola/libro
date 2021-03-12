@@ -1,4 +1,3 @@
-import ActionActionsBar from './ActionActionsBar';
 import ActionCardMain from './ActionCardMain';
 import ActionCardRow from './ActionCardRow';
 import ActionContainer from './ActionContainer';
@@ -14,7 +13,7 @@ import CreateActionButton from './CreateActionButton';
 import CreateSession from './CreateSession';
 import CreateSessionActionsBar from './CreateSessionActionsBar';
 import CreateVote from './CreateVote';
-import InlineCreateAction from './InlineCreateAction';
+import InlineAction from './InlineAction';
 import InlineActionContainerFloat from './InlineActionContainerFloat';
 import InlineActionTableRow from './InlineActionTableRow';
 import ReadActionCard from './ReadActionCard';
@@ -26,7 +25,6 @@ export default [
   CreateActionButton,
   CreateSessionActionsBar,
   CreateVote,
-  ActionActionsBar,
   ActionCardMain,
   ActionCardRow,
   ActionContainer,
@@ -39,7 +37,7 @@ export default [
   ActionTableRow,
   ActionWidget,
   CreateSession,
-  InlineCreateAction,
+  InlineAction,
   InlineActionContainerFloat,
   ...InlineActionTableRow,
   ReadActionCard,
