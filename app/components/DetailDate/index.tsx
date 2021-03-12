@@ -2,8 +2,8 @@ import { Literal, isLiteral } from '@ontologies/core';
 import React from 'react';
 import {
   FormatDateOptions,
-  defineMessages,
   IntlShape,
+  defineMessages,
   useIntl,
 } from 'react-intl';
 

@@ -41,7 +41,9 @@ interface SearchPostalFormProps {
   setSelectedPostalCode?: (digits: number) => void;
 }
 
-const SearchPostalForm = ({ setSelectedPostalCode }: SearchPostalFormProps) => {
+const SearchPostalForm: React.FC<SearchPostalFormProps> = ({
+  setSelectedPostalCode,
+}) => {
   const classes = useStyles();
   const [postalCode, setPostalCode] = React.useState<number | undefined>(undefined);
   const {
@@ -92,12 +94,12 @@ const SearchPostalForm = ({ setSelectedPostalCode }: SearchPostalFormProps) => {
               key={digits}
               onClick={(e) => {
                 e.preventDefault();
-                handlePostalClick(digits);
+                handlePostalClick(parseInt(digits));
               }}
             >
               {digits}
             </button>
-          )).reduce<JSX.Element[]>((result, item) => ([
+          )).reduce<JSX.Element[]>((result, item, index) => ([
             ...result,
             <React.Fragment key={index}>
               {result.length > 0 ? ', ' : ''}

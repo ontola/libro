@@ -38,7 +38,7 @@ const AddressTable: FC<AddressTableProps> = (props) => {
       if (__CLIENT__ && !entityIsLoaded(lrs, props.createAction)) {
         lrs.queueEntity(props.createAction);
       }
-      history.push(retrievePath(props.subject.value));
+      history.push(retrievePath(props.subject.value)!);
     }
   };
 

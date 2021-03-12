@@ -135,6 +135,7 @@ export interface UseMapProps {
 }
 
 const useMap = (props: UseMapProps): {
+  deselect: (() => void) | null;
   error: boolean | undefined;
   map: OLMap | null;
   mapRef: React.RefObject<HTMLDivElement>;

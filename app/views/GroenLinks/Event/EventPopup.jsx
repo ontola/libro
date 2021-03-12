@@ -2,7 +2,9 @@ import IconButton from '@material-ui/core/IconButton';
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  register, topologyType, useLRS,
+  register,
+  topologyType,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';

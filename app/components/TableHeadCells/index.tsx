@@ -22,21 +22,25 @@ const TableHeadCells = ({
 }: TableHeadCellsProps): JSX.Element => {
   const lrs = useLRS();
 
-  return columns.map((property) => {
-    if (!entityIsLoaded(lrs, property)) {
-      return <TableHeaderCell />;
-    }
+  return (
+    <React.Fragment>
+      {columns.map((property) => {
+        if (!entityIsLoaded(lrs, property)) {
+          return <TableHeaderCell />;
+        }
 
-    return (
-      <Resource
-        forceRender
-        key={property.value}
-        setCurrentPage={setCurrentPage}
-        sortOptions={sortOptions.filter((option) => option.item === property)}
-        subject={property}
-      />
-    );
-  });
+        return (
+          <Resource
+            forceRender
+            key={property.value}
+            setCurrentPage={setCurrentPage}
+            sortOptions={sortOptions.filter((option) => option.item === property)}
+            subject={property}
+          />
+        );
+      })}
+    </React.Fragment>
+  );
 };
 
 export default TableHeadCells;

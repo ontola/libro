@@ -33,7 +33,7 @@ export interface GlappMapProps {
   setSelectedPostalCode: (postalDigits?: number) => void;
 }
 
-const GlappMapLoader = (props: GlappMapProps) => {
+const GlappMapLoader: React.FC<GlappMapProps> = (props) => {
   if (!__CLIENT__ || __TEST__) {
     return <LinkLoader />;
   }
@@ -41,11 +41,11 @@ const GlappMapLoader = (props: GlappMapProps) => {
   const fontLoaded = useFontsChecker('normal 18px FontAwesome');
 
   if (!fontLoaded) {
-    return <LinkLoader />;
+    return null;
   }
 
   return (
-    <React.Suspense fallback={<LinkLoader />}>
+    <React.Suspense fallback={() => null}>
       <GlappMap {...props} />
     </React.Suspense>
   );

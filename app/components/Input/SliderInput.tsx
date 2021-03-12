@@ -4,7 +4,6 @@ import React from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
 import { InputComponentProps } from '../FormField/InputComponentProps';
-
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 const StyledSlider = withStyles({

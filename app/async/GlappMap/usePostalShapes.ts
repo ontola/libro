@@ -6,6 +6,7 @@ import Fill from 'ol/style/Fill';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import React from 'react';
+
 import { tryParseFloat } from '../../helpers/numbers';
 import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
@@ -17,6 +18,8 @@ export interface PostalCodes {
   type: string;
 }
 
+const DEFAULT_MAX_PRIORITY = 5;
+const DEFAULT_MIN_PRIORITY = 1;
 const SHADE_COUNT = 10;
 
 const hoverShapeStyle = new Style({
@@ -39,9 +42,9 @@ interface ShapeStyle {
 
 const shapeStyle: ShapeStyle = {};
 for (let i = 0; i <= SHADE_COUNT; i++) {
-  /* eslint-disable no-magic-numbers */
+  /* eslint-disable @typescript-eslint/no-magic-numbers */
   const fillColor = `hsla(120, 64%, ${(65 - (5 * i)).toFixed()}%, ${(0.2 + 0.06 * i).toFixed(2)})`;
-  /* eslint-enable no-magic-numbers */
+  /* eslint-enable @typescript-eslint/no-magic-numbers */
 
   shapeStyle[i] = new Style({
     fill: new Fill({
@@ -74,7 +77,12 @@ const useStyleForPostalCode = (priorities?: Priorities) => {
   const minPriority = tryParseFloat(minPriorityProp);
 
   const getStyle = React.useCallback((feature: Feature) => (
-    priorities && styleForPostalCode(feature, maxPriority || 5, minPriority || 1, priorities)
+    priorities && styleForPostalCode(
+      feature,
+      maxPriority || DEFAULT_MAX_PRIORITY,
+      minPriority || DEFAULT_MIN_PRIORITY,
+      priorities,
+    )
   ), [maxPriority, minPriority, priorities]);
 
   return getStyle;
@@ -88,7 +96,7 @@ interface UsePostalShapes {
 const usePostalShapes = ({
   priorities,
   postalCodes,
-}: UsePostalShapes) => {
+}: UsePostalShapes): PostalMapping => {
   const getPostalCodeStyle = useStyleForPostalCode(priorities);
   const [postalShapes, setPostalShapes] = React.useState<PostalMapping>({});
 

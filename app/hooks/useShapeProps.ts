@@ -1,4 +1,4 @@
-import { isNamedNode, NamedNode } from '@ontologies/core';
+import { NamedNode, isNamedNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import equal from 'fast-deep-equal';
 import { SomeNode } from 'link-lib';

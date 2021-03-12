@@ -1,6 +1,9 @@
 import * as schema from '@ontologies/schema';
 import {
-  Property, register, subjectType, useLRS,
+  Property,
+  register,
+  subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 

@@ -1,11 +1,13 @@
 import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
-import { extend, Extent } from 'ol/extent';
+import { Extent, extend } from 'ol/extent';
 import Fill from 'ol/style/Fill';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import React from 'react';
+
 import { FOCUS_ZOOM, ViewProps } from '../MapView/useMap';
+
 import { PostalMapping } from './usePostalShapes';
 
 const HALF = 0.5;
@@ -34,7 +36,7 @@ const useSelectedPostalCode = ({
   setView,
   setOverlayPosition,
   view,
-}: UseSelectedPostalCode) => {
+}: UseSelectedPostalCode): [Feature[]] => {
   const [selectedFeatures, setSelectedFeatures] = React.useState<Feature[]>([]);
 
   React.useEffect(() => {

@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 
 import { getAccessToken } from '../../../state/MapView/selectors';
 import CardContent from '../../../components/Card/CardContent';
-import LinkLoader from '../../../components/Loading/LinkLoader';
 import GlappMap from '../../../containers/GroenLinks/GlappMap';
 import withReducer from '../../../containers/withReducer';
 import app from '../../../ontology/app';
@@ -79,7 +78,7 @@ const GlappHome: FC<GlappHomeProps> = ({
   }, [accessToken]);
 
   if (!accessToken) {
-    return <LinkLoader />;
+    return null;
   }
 
   return (

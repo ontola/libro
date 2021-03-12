@@ -13,15 +13,14 @@ import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
 import {
   GlappMapProps,
-  PostalCodes,
   PostalStats,
-} from '../../views/GroenLinks/Glapp/GlappMap';
+} from '../../containers/GroenLinks/GlappMap';
 import { postalCodeIri } from '../../views/GroenLinks/Glapp/helpers';
 import MapCanvas from '../MapView/MapCanvas';
 import { FOCUS_ZOOM, ViewProps } from '../MapView/useMap';
 
 import useEventsLayer from './useEventsLayer';
-import usePostalShapes from './usePostalShapes';
+import usePostalShapes, { PostalCodes } from './usePostalShapes';
 import useSelectedPostalCode from './useSelectedPostalCode';
 
 const FULL_POSTAL_LEVEL = 8.6;
@@ -91,7 +90,7 @@ const GlappMap: React.FC<GlappMapProps> = ({
     });
   }, [setView]);
 
-  const overlayResource = selectedPostalCode && postalCodeIri(selectedPostalCode);
+  const overlayResource = selectedPostalCode && postalCodeIri(selectedPostalCode.toString());
 
   return (
     <MapCanvas

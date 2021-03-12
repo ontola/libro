@@ -101,7 +101,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   onChange,
   values,
 }) => {
-  const multiple = fieldShape.maxCount > 1;
+  const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
   const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
   const { formatMessage } = useIntl();
   const lrs = useLRS();

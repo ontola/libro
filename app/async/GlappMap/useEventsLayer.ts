@@ -4,7 +4,7 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import { Events } from '../../views/GroenLinks/Glapp/GlappMap';
+import { Events } from '../../containers/GroenLinks/GlappMap';
 import {
   MAX_POSTAL_DIGITS,
   MIN_POSTAL_DIGITS,
@@ -12,7 +12,12 @@ import {
 } from '../../views/GroenLinks/Glapp/helpers';
 import { getStyles } from '../MapView/helpers';
 
-const useEventsLayer = (eventsData?: Events) => {
+interface EventsLayer {
+  clustered: boolean;
+  features: Feature[],
+}
+
+const useEventsLayer = (eventsData?: Events): EventsLayer => {
   const [eventsFeatures, setEventsFeatures] = React.useState<Feature[]>([]);
   const theme = useTheme();
 
@@ -21,7 +26,7 @@ const useEventsLayer = (eventsData?: Events) => {
       const newEvents: Feature[] = [];
 
       for (let digits = MIN_POSTAL_DIGITS; digits <= MAX_POSTAL_DIGITS; digits++) {
-        const iri = postalCodeIri(digits).value;
+        const iri = postalCodeIri(digits.toString()).value;
         if (eventsData[iri]) {
           const {
             image,

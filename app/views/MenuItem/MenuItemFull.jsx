@@ -55,7 +55,11 @@ const MenuItemFull = ({
         <CardMain>
           {isPartOf
             ? <Property label={schema.isPartOf} />
-            : <CardContent><Property label={schema.name} /> </CardContent>}
+            : (
+              <CardContent>
+                <Property label={schema.name} />
+              </CardContent>
+            )}
           <Property
             forceRender
             currentTab={currentTab}
