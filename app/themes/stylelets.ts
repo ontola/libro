@@ -1,6 +1,7 @@
 import { checkLuminance, hexToRgb } from '../helpers/color';
+import { LibroTheme } from './common/theme/types';
 
-export const hoverHighlight = (theme) => ({
+export const hoverHighlight = (theme: LibroTheme) => ({
   '&:hover': {
     backgroundColor: checkLuminance(hexToRgb(theme.palette.primary.contrastText))
       ? theme.palette.grey['300']

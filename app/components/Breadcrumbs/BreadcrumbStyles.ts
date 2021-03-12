@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
+import { LibroTheme } from '../../themes/common/theme/variables';
 
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-export default makeStyles((theme: any) => ({
+/* eslint-disable no-magic-numbers */
+export default makeStyles((theme: LibroTheme) => ({
   default: {
     '& .Breadcrumb__text': {
       overflow: 'hidden',
@@ -18,27 +19,14 @@ export default makeStyles((theme: any) => ({
       display: 'inline-block',
       marginRight: '.3rem',
     },
-    '&:first-child': {
-      borderBottomLeftRadius: theme.shape.borderRadius,
-      borderTopLeftRadius: theme.shape.borderRadius,
-    },
     '&:hover': {
       color: theme.palette.grey[800],
-    },
-    '&:last-child': {
-      borderBottomRightRadius: theme.shape.borderRadius,
-      borderRight: '0',
-      borderTopRightRadius: theme.shape.borderRadius,
-      flexGrow: '1',
-      flexShrink: '1',
-      maxWidth: 'none',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
+      border: theme.border.styleHover,
     },
     'alignItems': 'center',
     'backgroundColor': theme.palette.common.white,
-    'border': 'solid 1px rgb(230, 230, 230)',
-    'borderRight': '1px solid #e6e6e6',
+    'borderRadius': theme.border.radius,
+    'border': theme.border.style,
     'boxSizing': 'border-box',
     'color': theme.palette.grey[600],
     'display': 'inline-flex',

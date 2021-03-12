@@ -2,15 +2,21 @@ import { createMuiTheme } from '@material-ui/core';
 import deepmerge from 'deepmerge';
 
 import common from './common/theme';
+import { LibroTheme } from './common/theme/types';
 import dutchGovernment from './dutchGovernment/theme';
 import groenLinks from './groenLinks/theme';
+
+interface generateStyleType {
+  components: LibroTheme,
+  variables: LibroTheme,
+}
 
 const generateStyle = ({
   components,
   variables,
-}) => (variableOverwrites) => {
+}: generateStyleType) => (variableOverwrites: generateStyleType) => {
   const mergedVariables = deepmerge(variables, variableOverwrites);
-  const theme = createMuiTheme(mergedVariables);
+  const theme = createMuiTheme(mergedVariables) as unknown as LibroTheme;
 
   theme.overrides.MuiCssBaseline = {
     '@global': {

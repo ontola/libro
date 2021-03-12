@@ -4,6 +4,8 @@ import {
   lighten,
 } from '@material-ui/core/styles/colorManipulator';
 
+import { LibroTheme } from './types';
+
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
  */
@@ -17,7 +19,7 @@ const colorBaseOrange = 'rgb(161, 98, 37)';
 
 /* eslint-disable sort-keys, @typescript-eslint/no-magic-numbers */
 // coefficient = (100 - (percentage * 2)) / 100
-const colors = {
+export const colors = {
   black: {
     main: 'rgb(0, 0, 0)',
   },
@@ -92,12 +94,20 @@ const colors = {
 //  6px = 0.375rem = 0.1875 * 2rem
 const SIX_PX = 0.1875;
 
-const theme = {
+const theme: LibroTheme = {
   appBar: {
     height: '3.2rem',
     iconBreakPoint: 'md',
     maxWidth: 'xl',
     position: 'relative',
+  },
+  border: {
+    /** Border radius for things like cards */
+    radius: '5px',
+    /** Border style for cards and other floating items */
+    style: 'solid 1px rgb(230, 230, 230)',
+    /** Border style for cards when interactive and hovering */
+    styleHover: 'solid 1px rgb(200, 200, 200)',
   },
   breakpoints: {
     /* eslint-disable sort-keys */
@@ -135,7 +145,7 @@ const theme = {
       secondary: colors.grey.midDark,
     },
   },
-  spacing: (factor) => `${SIX_PX * factor}rem`,
+  spacing: (factor: number) => `${SIX_PX * factor}rem`,
   typography: {
     body1: {
       fontSize: '1rem',

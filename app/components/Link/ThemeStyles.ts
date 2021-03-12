@@ -1,6 +1,7 @@
 import { darken } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { LibroTheme } from '../../themes/common/theme/types';
 import { semanticColors } from '../shared/config';
 
 export const HOVER_COEFFICIENT = 0.3;
@@ -16,7 +17,7 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-export default makeStyles((theme) => {
+export default makeStyles((theme: LibroTheme) => {
   const style = {
     default: {
       '&:hover .Heading': {
