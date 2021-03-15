@@ -76,9 +76,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
 
   // Globally disable anti-jump rendering
   (lrs as any).broadcast_old = (lrs as any).broadcast;
-  (lrs as any).broadcast = (_: boolean, __: number) => {
-    return (lrs as any).broadcast_old(false, 0);
-  };
+  (lrs as any).broadcast = (_: boolean, __: number) => (lrs as any).broadcast_old(false, 0);
 
   const languages = {
     en: 'en',

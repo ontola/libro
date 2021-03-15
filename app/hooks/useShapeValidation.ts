@@ -67,17 +67,14 @@ const getDependentResources = (lrs: LinkReduxLRSType, conditions: ShShape[], tar
   return resources;
 };
 
-const hasMaxCount = (_: LinkReduxLRSType, maxCount: SomeTerm, values: SomeTerm[]) => {
-  return values.length <= tryParseInt(maxCount)!;
-};
+const hasMaxCount = (_: LinkReduxLRSType, maxCount: SomeTerm, values: SomeTerm[]) =>
+  values.length <= tryParseInt(maxCount)!;
 
-const hasMinCount = (_: LinkReduxLRSType, minCount: SomeTerm, values: SomeTerm[]) => {
-  return values.length >= tryParseInt(minCount)!;
-};
+const hasMinCount = (_: LinkReduxLRSType, minCount: SomeTerm, values: SomeTerm[]) =>
+  values.length >= tryParseInt(minCount)!;
 
-const hasValue = (lrs: LinkReduxLRSType, value: SomeTerm, values: SomeTerm[]) => {
-  return values.map((v) => lrs.store.canon(v)).includes(lrs.store.canon(value));
-};
+const hasValue = (lrs: LinkReduxLRSType, value: SomeTerm, values: SomeTerm[]) =>
+  values.map((v) => lrs.store.canon(v)).includes(lrs.store.canon(value));
 
 const hasValueIn = (lrs: LinkReduxLRSType, shIn: SomeTerm[], values: SomeTerm[]) => {
   const inValues = shIn.flatMap((value) => (

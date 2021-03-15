@@ -108,9 +108,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return seqShift(store.store, queue);
   };
 
-  (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
-    return store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
-  };
+  (store as any).actions.ontola.showSnackbar = (message: Literal | string) =>
+    store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
 
   /**
    * Ontola dialog setup
@@ -158,9 +157,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
   };
 
-  (store as any).actions.ontola.hideDialog = () => {
-    return store.exec(libro.actions.dialog.close);
-  };
+  (store as any).actions.ontola.hideDialog = () =>
+    store.exec(libro.actions.dialog.close);
 
   (store as any).actions.ontola.navigate = (resource: NamedNode, reload = false) => {
     let query = `location=${encodeURIComponent(resource.value)}`;

@@ -51,9 +51,10 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
     });
   }, [iriTemplate, currentIriOpts]);
 
-  const replace = useCallback((key: string, value: string | string[]) => {
-    return set({ [key]: value });
-  }, [set]);
+  const replace = useCallback(
+    (key: string, value: string | string[]) => set({ [key]: value }),
+    [currentIriOpts, set],
+  );
 
   const add = useCallback((key: string, value: string) => {
     const newValues = (currentIriOpts[key] || [])
