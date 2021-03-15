@@ -10,7 +10,7 @@ export interface DataTypeRendererProps {
   linkedProp: Literal;
 }
 
-const DataTypeRenderer: FC<DataTypeRendererProps> = ({ linkedProp }) =>(
+const DataTypeRenderer: FC<DataTypeRendererProps> = ({ linkedProp }) => (
   <React.Fragment>
     {linkedProp?.value}
   </React.Fragment>

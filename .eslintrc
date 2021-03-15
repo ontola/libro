@@ -57,6 +57,9 @@
         "ignoreEnums": true
       }
     ],
+    "arrow-parens": ["error", "always"],
+    "arrow-body-style": ["error", "as-needed"],
+    "arrow-spacing": "error",
     "eol-last": ["error", "always"],
     "import/dynamic-import-chunkname": "error",
     "import/extensions": ["error",

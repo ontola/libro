@@ -122,27 +122,25 @@ const useInputValues = (
   alwaysVisible: boolean,
   minCount: number | undefined,
   newItem: () => InputValue,
-) => {
-  return React.useMemo(() => {
-    let currentValue = input.value;
+) => React.useMemo(() => {
+  let currentValue = input.value;
 
-    if (currentValue && !Array.isArray(currentValue)) {
-      currentValue = [currentValue];
+  if (currentValue && !Array.isArray(currentValue)) {
+    currentValue = [currentValue];
+  }
+
+  if (!currentValue || currentValue.length === 0) {
+    const showEmptyField = typeof minCount === 'undefined' ? alwaysVisible : minCount > 0;
+
+    if (showEmptyField) {
+      return [newItem()];
     }
 
-    if (!currentValue || currentValue.length === 0) {
-      const showEmptyField = typeof minCount === 'undefined' ? alwaysVisible : minCount > 0;
+    return [];
+  }
 
-      if (showEmptyField) {
-        return [newItem()];
-      }
-
-      return [];
-    }
-
-    return currentValue;
-  }, [input.value, alwaysVisible, minCount, newItem]);
-};
+  return currentValue;
+}, [input.value, alwaysVisible, minCount, newItem]);
 
 const defaultProps = {
   alwaysVisible: true,

@@ -9,8 +9,8 @@ declare global {
   }
 }
 
-const analyticsMiddleware = () => () => {
-  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: unknown): Promise<any> => {
+const analyticsMiddleware = () => () =>
+  (next: MiddlewareActionHandler) => (iri: NamedNode, opts: unknown): Promise<any> => {
     if (rdf.id(iri) === rdf.id(libro.actions.navigation.push)
       || rdf.id(iri) === rdf.id(libro.actions.navigation.pop)) {
       if (typeof window !== 'undefined' && window._paq) {
@@ -24,6 +24,5 @@ const analyticsMiddleware = () => () => {
 
     return next(iri, opts);
   };
-};
 
 export default analyticsMiddleware;

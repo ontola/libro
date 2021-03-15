@@ -97,13 +97,11 @@ const schema = {
 };
 
 const exportDeclarationNewline = {
-  create: (context) => {
-    return {
-      ExportNamedDeclaration(node) {
-        lintModuleVariablesNewline(node, context, EXPORT_NAMED)
-      },
-    }
-  },
+  create: (context) => ({
+    ExportNamedDeclaration(node) {
+      lintModuleVariablesNewline(node, context, EXPORT_NAMED)
+    },
+  }),
   meta: {
     schema: [
       schema
@@ -113,13 +111,11 @@ const exportDeclarationNewline = {
 
 
 const importDeclarationNewline = {
-  create: (context) => {
-    return {
-      ImportDeclaration(node) {
-        lintModuleVariablesNewline(node, context, IMPORT)
-      },
-    }
-  },
+  create: (context) => ({
+    ImportDeclaration(node) {
+      lintModuleVariablesNewline(node, context, IMPORT)
+    },
+  }),
   meta: {
     fixable: true,
     schema: [

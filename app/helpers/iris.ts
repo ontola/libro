@@ -49,9 +49,7 @@ export const expandPath = (pathString: string | undefined): string | undefined =
   return new URL(pathString, frontendOrigin).href;
 };
 
-export const isLocalAnchor = (iriString: string): boolean => {
-  return iriString === '#';
-};
+export const isLocalAnchor = (iriString: string): boolean => iriString === '#';
 
 export const isDifferentWebsite = (iri: string | NamedNode | URL): boolean => {
   if (isDifferentOrigin(iri)) {

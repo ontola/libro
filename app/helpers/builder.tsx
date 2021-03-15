@@ -98,9 +98,7 @@ interface DataProps {
   [k: string]: string | boolean | SomeTerm;
 }
 
-const isElement = (p: any): p is React.ReactElement<any, any> => {
-  return ReactIs.isElement(p);
-};
+const isElement = (p: any): p is React.ReactElement<any, any> => ReactIs.isElement(p);
 
 const getPropertyProps = (
   lrs: LinkReduxLRSType | undefined,
@@ -153,37 +151,29 @@ export const property = (lrs?: LinkReduxLRSType) => (
 
 export const properties = (lrs?: LinkReduxLRSType) => (
   ...props: Array<PropertyPropTypes | NamedNode | NamedNode[] | JSX.Element>
-): JSX.Element => {
-  return React.createElement(
-    React.Fragment,
-    null,
-    props.map((p, i) => {
-      if (!p || typeof p === 'string' || typeof p === 'number') {
-        return p;
-      }
+): JSX.Element => React.createElement(React.Fragment, null, props.map((p, i) => {
+  if (!p || typeof p === 'string' || typeof p === 'number') {
+    return p;
+  }
 
-      if (isElement(p)) {
-        return React.createElement(React.Fragment, { key: i }, p);
-      }
+  if (isElement(p)) {
+    return React.createElement(React.Fragment, { key: i }, p);
+  }
 
-      if (ReactIs.isValidElementType(p)) {
-        return React.createElement(p, { key: i }, null);
-      }
+  if (ReactIs.isValidElementType(p)) {
+    return React.createElement(p, { key: i }, null);
+  }
 
-      const childProps = getPropertyProps(lrs, p);
+  const childProps = getPropertyProps(lrs, p);
 
-      return <Property key={normalizeType(childProps.label).join(',') + i} {...childProps} />;
-    }),
-  );
-};
+  return <Property key={normalizeType(childProps.label).join(',') + i} {...childProps} />;
+}));
 
-export const resource = (_?: LinkReduxLRSType) => {
-  return (props: Node | ResourcePropTypes, children: JSX.Element[]): React.ReactElement => React.createElement(
-    Resource,
-    isNode(props) ? { subject: props } : props,
-    children.length === 0 ? null : children,
-  );
-};
+export const resource = (_?: LinkReduxLRSType) => (props: Node | ResourcePropTypes, children: JSX.Element[]): React.ReactElement => React.createElement(
+  Resource,
+  isNode(props) ? { subject: props } : props,
+  children.length === 0 ? null : children,
+);
 
 export const useViewBuilderToolkit = (): BuilderToolkit => {
   const lrs = useLRS();
