@@ -4,7 +4,7 @@ import React from 'react';
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 
-const NavbarNavigationsMenu = () => (
+const NavbarNavigationsMenu = (): JSX.Element => (
   <Resource
     forceRender
     subject={frontendIRI}

@@ -86,8 +86,8 @@ export const renderFullPage = async (ctx, data) => {
           <meta name="msapplication-starturl" content="${manifest.start_url || ''}">
           <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
           <meta content="269911176456825" property="fb:app_id">
-          <meta name="theme" content="${manifest.ontola.theme || 'common'}">
-          <meta name="themeOpts" content="${manifest.ontola.theme_options || ''}">
+          <meta name="theme" content="salesWebsite">
+          <meta name="themeOpts" content="footerResources=https%3A%2F%2Fargu.localdev%2Finfo%2Fmenus%2Ffooter%2Fargu%2Chttps%3A%2F%2Fargu.localdev%2Finfo%2Fmenus%2Ffooter%2Fkb">
           
           <link rel="preconnect" href="https://storage.googleapis.com" />
           ${manifest.ontola.preconnect?.map((origin) => `<link rel="preconnect" href="${origin}" />`).join('\n') || ''}

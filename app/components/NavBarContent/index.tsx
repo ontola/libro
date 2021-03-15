@@ -7,7 +7,11 @@ import app from '../../ontology/app';
 import './NavBarContent.scss';
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';
 
-const NavBarContent = ({ children }) => (
+export interface NavBarContentProps {
+  children: React.ReactNode;
+}
+
+const NavBarContent = ({ children }: NavBarContentProps): JSX.Element => (
   <React.Fragment>
     <NavbarNavigationsMenu />
     {children}

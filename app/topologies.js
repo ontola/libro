@@ -34,6 +34,7 @@ import { popupTopology } from './topologies/Popup';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
 import { selectedValueTopology } from './topologies/SelectedValue';
+import { showcaseTopology } from './topologies/Showcase';
 import { tableBodyTopology } from './topologies/TableBody';
 import { tableCellTopology } from './topologies/TableCell';
 import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
@@ -84,6 +85,7 @@ export const allTopologies = [
   radioGroupTopology,
   selectTopology,
   selectedValueTopology,
+  showcaseTopology,
   tableBodyTopology,
   tableHeaderCellTopology,
   tableHeaderRowTopology,

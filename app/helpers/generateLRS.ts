@@ -6,6 +6,7 @@ import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { createBrowserHistory, createMemoryHistory } from 'history';
+import { OK } from 'http-status-codes';
 import { MiddlewareFn, createStore } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
@@ -15,9 +16,10 @@ import { appMiddleware } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
-import { appOntology, website } from '../ontology/app';
+import app, { appOntology, website } from '../ontology/app';
 import argu from '../ontology/argu';
 import form from '../ontology/form';
+import http from '../ontology/http';
 import link from '../ontology/link';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
@@ -346,6 +348,40 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
   ];
 
   lrs.store.addQuads(ontologyData);
+
+  const salesFooter = [
+    rdf.quad(app.ns('info/menus/footer/argu'), http.statusCode, rdf.literal(OK), ll.meta),
+    rdf.quad(app.ns('info/menus/footer/argu'), rdfx.type, ontola.MenuItem),
+    rdf.quad(app.ns('info/menus/footer/argu'), schema.name, rdf.literal('Argu')),
+    rdf.quad(app.ns('info/menus/footer/argu'), argu.ns('menuLabel'), rdf.literal('Argu')),
+    rdf.quad(app.ns('info/menus/footer/argu'), argu.ns('labelTranslation'), rdf.literal(false)),
+    rdf.quad(app.ns('info/menus/footer/argu'), ontola.menuItems, app.ns('info/menus/footer/items')),
+
+    rdf.quad(app.ns('info/menus/footer/argu/items'), http.statusCode, rdf.literal(OK), ll.meta),
+    rdf.quad(app.ns('info/menus/footer/argu/items'), rdfx.type, rdfx.Seq),
+    rdf.quad(app.ns('info/menus/footer/argu/items'), rdfx.ns('_1'), app.ns('info/menus/about')),
+    rdf.quad(app.ns('info/menus/footer/argu/items'), rdfx.ns('_2'), app.ns('info/menus/about')),
+    rdf.quad(app.ns('info/menus/footer/argu/items'), rdfx.ns('_3'), app.ns('info/menus/about')),
+
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), http.statusCode, rdf.literal(OK), ll.meta),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), rdfx.type, ontola.MenuItem),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), schema.name, rdf.literal('Contact')),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), argu.ns('menuLabel'), rdf.literal('Contact')),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), argu.ns('labelTranslation'), rdf.literal(false)),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), argu.ns('order'), rdf.literal(1)),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), argu.ns('rawHref'), rdf.literal('https://argu.localdev/i/contact')),
+    rdf.quad(app.ns('info/menus/footer/argu/items/about'), ontola.href, rdf.namedNode('https://argu.localdev/i/contact')),
+
+    rdf.quad(app.ns('info/menus/footer/kb'), http.statusCode, rdf.literal(OK), ll.meta),
+    rdf.quad(app.ns('info/menus/footer/kb'), rdfx.type, ontola.MenuItem),
+    rdf.quad(app.ns('info/menus/footer/kb'), schema.name, rdf.literal('Kennisbank')),
+    rdf.quad(app.ns('info/menus/footer/kb'), argu.ns('menuLabel'), rdf.literal('Kennisbank')),
+    rdf.quad(app.ns('info/menus/footer/kb'), argu.ns('labelTranslation'), rdf.literal(false)),
+    rdf.quad(app.ns('info/menus/footer/kb'), ontola.menuItems, app.ns('info/menus/footer/items')),
+
+  ];
+
+  lrs.processDelta(salesFooter);
 
   if (initialDelta.length > 0) {
     lrs.processDelta(initialDelta);

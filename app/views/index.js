@@ -11,6 +11,10 @@ import ArguHome from './ArguHome';
 import Argument from './Argument/index';
 import Badge from './Badge';
 import Banner from './Banner/Banner';
+import BlogContainer from './SalesWebsite/BlogContainer';
+import BlogShowcase from './SalesWebsite/BlogShowcase';
+import CaseContainer from './SalesWebsite/CaseContainer';
+import CaseShowcase from './SalesWebsite/CaseShowcase';
 import Category from './Category';
 import Collection from './Collection';
 import CollectionFilter from './CollectionFilter';
@@ -31,6 +35,8 @@ import EntryPoint from './EntryPoint';
 import Error from './Error';
 import ErrorResponse from './ErrorResponse';
 import Event from './Event';
+import FeatureIcon from './SalesWebsite/FeatureIcon';
+import FeatureShowcase from './SalesWebsite/FeatureShowcase';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
 import FolderEntry from './FolderEntry';
@@ -48,8 +54,10 @@ import InfiniteCollectionPage from './InfiniteCollectionPage';
 import Intervention from './Intervention';
 import InterventionType from './InterventionType';
 import PostalCode from './PostalCode';
+import ProductPage from './SalesWebsite/ProductPage';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
+import LandingPage from './SalesWebsite';
 import Loading from './Loading';
 import MapQuestion from './MapQuestion';
 import Measure from './Measure';
@@ -74,6 +82,7 @@ import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
+import Solutions from './SalesWebsite/DuoBlockContainer';
 import Street from './Street';
 import Survey from './Survey';
 import TargetProgress from './TargetProgress';
@@ -98,6 +107,10 @@ export function getViews() {
     ...Argument,
     ...Badge,
     ...Banner,
+    ...BlogContainer,
+    ...BlogShowcase,
+    ...CaseContainer,
+    ...CaseShowcase,
     ...Category,
     ...Collection,
     ...CollectionPage,
@@ -118,6 +131,8 @@ export function getViews() {
     ...Error,
     ...ErrorResponse,
     ...Event,
+    ...FeatureIcon,
+    ...FeatureShowcase,
     ...FilterField,
     ...FilterOption,
     ...FolderEntry,
@@ -134,6 +149,7 @@ export function getViews() {
     ...Intervention,
     ...InterventionType,
     ...InfiniteCollectionPage,
+    ...LandingPage,
     ...Loading,
     ...MapQuestion,
     ...Measure,
@@ -150,6 +166,7 @@ export function getViews() {
     ...Person,
     ...Phase,
     ...Project,
+    ...ProductPage,
     ...Placement,
     ...PostalCode,
     ...PropertyQuery,
@@ -161,6 +178,7 @@ export function getViews() {
     ...SeqComp,
     ...Snackbar,
     ...SnackbarManager,
+    ...Solutions,
     ...Street,
     ...Survey,
     ...TargetProgress,
