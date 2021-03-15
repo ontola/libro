@@ -70,4 +70,4 @@ const ConnectedPopup = connect(
   null,
 )(Popup);
 
-export default ConnectedPopup;
+export default ConnectedPopup as unknown as React.ComponentType;

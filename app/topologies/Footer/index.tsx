@@ -2,9 +2,8 @@
 import { Box, Grid } from '@material-ui/core';
 import { withTheme } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
-import { Resource, linkType } from 'link-redux';
-import PropTypes from 'prop-types';
-import React, { ComponentType } from 'react';
+import { Resource } from 'link-redux';
+import React from 'react';
 
 import ontola from '../../ontology/ontola';
 import Topology from '../Topology';
@@ -13,8 +12,11 @@ import './index.scss';
 
 export const footerTopology = ontola.ns('footer');
 
-interface Props {
+export interface FooterProps {
   resources?: Node[];
+}
+
+export interface FooterPropsWithTheme extends FooterProps {
   theme: {
     appBar: {
       background: string,
@@ -23,12 +25,8 @@ interface Props {
   };
 }
 
-class Footer extends Topology<Props> {
-  public static propTypes = {
-    resources: PropTypes.arrayOf(linkType),
-  };
-
-  constructor(props: Props) {
+class Footer extends Topology<FooterPropsWithTheme> {
+  constructor(props: FooterPropsWithTheme) {
     super(props);
 
     this.className = 'Footer';
@@ -81,4 +79,4 @@ class Footer extends Topology<Props> {
   }
 }
 
-export default withTheme(Footer as unknown as ComponentType);
+export default withTheme(Footer as unknown as React.ComponentType) as unknown as React.ComponentType<FooterProps>;
