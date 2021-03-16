@@ -37,7 +37,7 @@ const useStyles = makeStyles({
   },
 });
 
-const FeatureIcon: FC = () => {
+const Feature: FC = () => {
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [color] = useProperty(schema.color);
@@ -59,8 +59,8 @@ const FeatureIcon: FC = () => {
   );
 };
 
-FeatureIcon.type = argu.ns('FeatureIcon');
+Feature.type = argu.ns('FeatureIcon');
 
-FeatureIcon.topology = showcaseTopology;
+Feature.topology = showcaseTopology;
 
-export default FeatureIcon;
+export default Feature;

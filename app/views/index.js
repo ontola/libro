@@ -35,7 +35,7 @@ import EntryPoint from './EntryPoint';
 import Error from './Error';
 import ErrorResponse from './ErrorResponse';
 import Event from './Event';
-import FeatureIcon from './SalesWebsite/FeatureIcon';
+import FeatureIcon from './SalesWebsite/Feature';
 import FeatureShowcase from './SalesWebsite/FeatureShowcase';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';

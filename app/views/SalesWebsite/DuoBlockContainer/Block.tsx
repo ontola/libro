@@ -11,16 +11,9 @@ import argu from '../../../ontology/argu';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
-  buttonMain: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-    margin: 30,
-    textAlign: 'center',
-    textTransform: 'none',
-  },
-  buttonSecondary: {
+const useStyles = makeStyles<SalesTheme>(() => ({
+  button: {
+    color: (props: Record<string, string>) => props.color,
     fontSize: 24,
     fontWeight: 'bold',
     margin: 30,
@@ -28,74 +21,52 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textTransform: 'none',
   },
   container: {
-    backgroundColor: 'orange',
-    width: '50%',
-  },
-  headerMain: {
-    fontWeight: 'bold',
-  },
-  headerSecondary: {
-    fontWeight: 'bold',
-  },
-  iconMain: {
-    color: 'white',
-  },
-  iconSecondary: {
-    color: theme.palette.primary.main,
-  },
-  subTitleMain: {
-    fontSize: 24,
-    maxWidth: 335,
-    textAlign: 'center',
-  },
-  subTitleSecondary: {
-    fontSize: 24,
-    maxWidth: 563,
-    textAlign: 'center',
-  },
-  viewMain: {
-    backgroundColor: '#2D7080',
+    backgroundColor: (props: Record<string, string>) => props.backgroundColor,
+    borderBottomLeftRadius: 0,
     borderColor: 'grey',
     borderRadius: 5,
-    color: 'white',
+    borderTopLeftRadius: 0,
+    color: (props: Record<string, string>) => props.color,
     marginTop: 50,
     padding: '0 30px',
     width: '50%',
   },
-  viewSecondary: {
-    borderColor: 'grey',
-    borderRadius: 5,
-    color: 'black',
-    marginTop: 50,
-    padding: '0 30px',
-    width: '50%',
+  header: {
+    fontWeight: 'bold',
+  },
+  icon: {
+    color: (props: Record<string, string>) => props.color,
+  },
+  subTitle: {
+    fontSize: 24,
+    maxWidth: 575,
+    textAlign: 'center',
   },
 }));
 
 const Block: FC = () => {
-  const classes = useStyles();
   const [URL] = useProperty(schema.URL);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [toggle] = useProperty(argu.ns('toggle'));
-  const backgroundColor = toggle?.value === 'false' ? classes.viewMain : classes.viewSecondary;
-  const headerStyle = toggle?.value === 'false' ? classes.headerMain : classes.headerSecondary;
-  const subTitleStyle = toggle?.value === 'false' ? classes.subTitleMain : classes.subTitleSecondary;
-  const iconStyle = toggle?.value === 'false' ? classes.iconMain : classes.iconSecondary;
-  const buttonStyle = toggle?.value === 'false' ? classes.buttonMain : classes.buttonSecondary;
+  const [color] = useProperty(schema.color);
+  const [textColor] = useProperty(argu.ns('textColor'));
+  const classes = useStyles({
+    backgroundColor: color.value,
+    color: textColor.value,
+  });
 
   return (
     <Grid
       container
       alignItems="center"
-      className={backgroundColor}
+      className={classes.container}
       direction="column"
     >
-      <Typography className={headerStyle} variant="h2">{name.value}</Typography>
-      <Typography className={subTitleStyle} variant="body2">{text.value}</Typography>
+      <Typography className={classes.header} variant="h2">{name.value}</Typography>
+      <Typography className={classes.subTitle} variant="body2">{text.value}</Typography>
       <Button
-        className={buttonStyle}
-        endIcon={<ArrowRightAltIcon className={iconStyle} style={{ fontSize: 40 }} />}
+        className={classes.button}
+        endIcon={<ArrowRightAltIcon className={classes.icon} style={{ fontSize: 40 }} />}
       >
         {URL.value}
       </Button>
