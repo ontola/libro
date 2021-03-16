@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -21,10 +22,17 @@ const useStyles = makeStyles({
 
 const Toolbar: React.FC = () => {
   const classes = useStyles();
-  const { index, resources, setIndex } = React.useContext(builderContext);
+  const {
+    index, resources, setIndex, showEditor, setShowEditor,
+  } = React.useContext(builderContext);
 
   return (
     <Paper className={classes.toolbar} elevation={3}>
+      <Button onClick={() => setShowEditor(!showEditor)}>
+        {showEditor ? 'hide' : 'show'}
+        {' '}
+        editor
+      </Button>
       <FormControl>
         <InputLabel htmlFor="pagebuilder-resource">
           {`Resource (selected no ${index + 1}/${resources.length})`}
