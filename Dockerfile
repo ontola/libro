@@ -1,4 +1,4 @@
-FROM node:12 as builder
+FROM node:14 as builder
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
@@ -13,7 +13,7 @@ ENV TEST_BUILD $TEST_BUILD
 RUN yarn run build:server
 RUN yarn run build:bundle
 
-FROM node:12-alpine
+FROM node:14-alpine
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock /usr/src/app/
