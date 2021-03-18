@@ -20,9 +20,9 @@ export const ElementButton: React.FC<ElementButtonProps> = ({
   return (
     <ToggleButton
       id={id}
-      onClick={(editor: Editor) => getPreventDefaultHandler(editor.toggleType, type)}
       selected={(editor: Editor) => isNodeTypeIn(editor, type)}
       title={title}
+      onClick={(editor: Editor) => getPreventDefaultHandler(editor.toggleType, type)}
     >
       {children}
     </ToggleButton>

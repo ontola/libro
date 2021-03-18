@@ -191,7 +191,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
           key: opts.key || '',
           pathname: opts.pathname || '',
           search: opts.search || '',
-          state: opts.state || '',
+          state: opts.state as string || '',
         },
       );
     }

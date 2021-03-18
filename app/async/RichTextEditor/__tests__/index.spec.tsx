@@ -1,22 +1,32 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import {
   DEFAULTS_BOLD,
   DEFAULTS_CODE_BLOCK,
-  DEFAULTS_HEADING, DEFAULTS_IMAGE,
-  DEFAULTS_ITALIC, DEFAULTS_LINK,
+  DEFAULTS_HEADING,
+  DEFAULTS_IMAGE,
+  DEFAULTS_ITALIC,
+  DEFAULTS_LINK,
   DEFAULTS_LIST,
   DEFAULTS_PARAGRAPH,
   DEFAULTS_UNDERLINE,
 } from '@udecode/slate-plugins';
-import { Browser, chromium, Page } from 'playwright';
+import {
+  Browser,
+  Page,
+  chromium,
+} from 'playwright';
 import { getDocument, queries } from 'playwright-testing-library';
 import { ElementHandle } from 'playwright-testing-library/lib/typedefs';
+
 import {
   BOLD_COMMAND_KEY,
   CODE_BLOCK_COMMAND_KEY,
   HEADING1_COMMAND_KEY,
   HEADING2_COMMAND_KEY,
-  HEADING3_COMMAND_KEY, IMAGE_COMMAND_KEY,
-  ITALIC_COMMAND_KEY, LINK_COMMAND_KEY,
+  HEADING3_COMMAND_KEY,
+  IMAGE_COMMAND_KEY,
+  ITALIC_COMMAND_KEY,
+  LINK_COMMAND_KEY,
   ORDERED_LIST_COMMAND_KEY,
   UNDERLINE_COMMAND_KEY,
   UNORDERED_LIST_COMMAND_KEY,
@@ -99,20 +109,21 @@ expect.extend({
           `expected no text node '${text}'`,
         pass: true,
       };
-    } else {
-      return {
-        message: () =>
-          `expected text node '${text}'`,
-        pass: false,
-      };
     }
+
+    return {
+      message: () =>
+        `expected text node '${text}'`,
+      pass: false,
+    };
+
   },
 
   hasNrOfElements: async (container: ElementHandle, nrOfElements: number, className?: string) => {
     const count = className ?
       await container.$$eval(
-      `.${className}`,
-      (elements) => elements.length,
+        `.${className}`,
+        (elements) => elements.length,
       ) :
       await container.$$eval(
         'css=div >> css=[data-slate-node=element]',
@@ -124,13 +135,14 @@ expect.extend({
           `expected not ${nrOfElements} elements with class name '${className}'`,
         pass: true,
       };
-    } else {
-      return {
-        message: () =>
-          `expected ${nrOfElements}, not ${count} elements with class name '${className}'`,
-        pass: false,
-      };
     }
+
+    return {
+      message: () =>
+        `expected ${nrOfElements}, not ${count} elements with class name '${className}'`,
+      pass: false,
+    };
+
   },
 });
 
@@ -204,7 +216,12 @@ describe('RichTextEditor', () => {
 
       // double click first word
       const textNode = await getByText(editor, INPUT);
-      await textNode.dblclick({position: { x: 5, y: 5 }});
+      await textNode.dblclick({
+        position: {
+          x: 5,
+          y: 5,
+        },
+      });
 
       const markButton = await getByTestId(toolbar, commandKey2);
       await markButton.click();

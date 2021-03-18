@@ -1,8 +1,8 @@
 import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import {
   MARK_UNDERLINE,
-  UnderlinePlugin as UnderlinePluginBase,
   UnderlinePluginOptions as UnderlinePluginOptionsBase,
+  UnderlinePlugin as underlinePluginBase,
 } from '@udecode/slate-plugins';
 import React from 'react';
 
@@ -22,19 +22,19 @@ export type UnderlineCommandPluginOptions = UnderlinePluginOptionsBase & {
   underline: ButtonOptions;
 };
 
-export const UnderlinePlugin = (options?: UnderlineCommandPluginOptions): UnderlineCommandPlugin => ({
-  ...UnderlinePluginBase(options),
+export const underlinePlugin = (options?: UnderlineCommandPluginOptions): UnderlineCommandPlugin => ({
+  ...underlinePluginBase(options),
   commands: {
     [UNDERLINE_COMMAND_KEY]: {
       button:
-        <MarkButton
-          id={UNDERLINE_COMMAND_KEY}
-          key={UNDERLINE_COMMAND_KEY}
-          title={options?.underline.buttonTitle || 'Underline'}
-          type={MARK_UNDERLINE}
-        >
-          <FormatUnderlined/>
-        </MarkButton>,
+  <MarkButton
+    id={UNDERLINE_COMMAND_KEY}
+    key={UNDERLINE_COMMAND_KEY}
+    title={options?.underline.buttonTitle || 'Underline'}
+    type={MARK_UNDERLINE}
+  >
+    <FormatUnderlined />
+  </MarkButton>,
     },
   },
 });

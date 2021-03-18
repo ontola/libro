@@ -14,4 +14,4 @@ export interface Commands {
   [name: string]: Command | undefined;
 }
 
-export interface CommandButtonProps extends Omit<ToolbarButtonProps, 'icon'> {}
+export type CommandButtonProps = Omit<ToolbarButtonProps, 'icon'>;

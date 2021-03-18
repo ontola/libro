@@ -11,7 +11,7 @@ export interface PluginEditor extends Editor {
   serializeMarkdown: (nodes: Node[]) => string;
 }
 
-export const withPlugins = (plugins: CommandPlugins) => <T extends ReactEditor>(e: T) => {
+export const withPlugins = (plugins: CommandPlugins) => <T extends ReactEditor>(e: T): T & PluginEditor => {
   const editor = e as T & PluginEditor;
   editor.plugins = plugins;
   editor.deserializeMarkdown = deserializeMarkdown(plugins);

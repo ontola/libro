@@ -1,7 +1,20 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { createEditor, Editor, Node, Transforms } from 'slate';
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import {
+  Editor,
+  Node,
+  Transforms,
+  createEditor,
+} from 'slate';
 import { withHistory } from 'slate-history';
-import { ReactEditor, Slate, withReact } from 'slate-react';
+import {
+  ReactEditor,
+  Slate,
+  withReact,
+} from 'slate-react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { CommandPlugins } from '../plugins/types';
@@ -60,13 +73,14 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       onChange={(newValue: Node[]) => {
         setNormalizedValue(newValue);
         debouncedOnChange(newValue);
-      }}>
-        <EditableWithPlugins
-          onBlur={onBlur && (() => onBlur(editor, normalizedValue))}
-          placeholder={placeholder}
-          plugins={plugins}
-          {...props}
-        />
+      }}
+    >
+      <EditableWithPlugins
+        placeholder={placeholder}
+        plugins={plugins}
+        onBlur={onBlur && (() => onBlur(editor, normalizedValue))}
+        {...props}
+      />
     </Slate>
   );
 };

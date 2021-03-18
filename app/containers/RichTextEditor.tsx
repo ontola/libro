@@ -3,7 +3,7 @@ import React from 'react';
 import Spinner from '../components/Spinner';
 
 export interface RichTextEditorWrapperProps {
-  onChange: React.EventHandler<React.ChangeEvent<HTMLInputElement>>;
+  onChange: (e: string) => void;
   placeholder: string;
   value: string;
 }
