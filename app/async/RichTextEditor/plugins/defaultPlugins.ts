@@ -14,36 +14,39 @@ import {
   ELEMENT_H3,
   ELEMENT_PARAGRAPH,
   ExitBreakPluginOptions,
-  isBlockAboveEmpty,
-  isSelectionAtBlockStart,
   ResetBlockTypePluginOptions,
   SoftBreakPluginOptions,
   WithToggleTypeOptions,
   WithTrailingNode,
+  isBlockAboveEmpty,
+  isSelectionAtBlockStart,
 } from '@udecode/slate-plugins';
 
 import {
-  CodeBlockPlugin,
-  HeadingPlugin,
-  ImagePlugin,
-  LinkPlugin,
-  ListPlugin,
-  ParagraphPlugin,
+  HeadingCommandPluginOptions,
+  CodeBlockPlugin as codeBlockPlugin,
+  headingPlugin,
+  imagePlugin,
+  linkPlugin,
+  listPlugin,
+  paragraphPlugin,
 } from './elements';
-
 import {
-  InlineVoidPlugin,
-  ToggleTypePlugin,
-  TrailingNodePlugin,
-  TransformsPlugin,
+  inlineVoidPlugin,
+  toggleTypePlugin,
+  trailingNodePlugin,
+  transformsPlugin,
 } from './extensions';
-
-import { ExitBreakPlugin, ResetBlockTypePlugin, SoftBreakPlugin } from './handlers';
-
-import { BoldPlugin } from './marks';
-import { ItalicPlugin } from './marks';
-import { UnderlinePlugin } from './marks';
-
+import {
+  exitBreakPlugin,
+  resetBlockTypePlugin,
+  softBreakPlugin,
+} from './handlers';
+import {
+  boldPlugin,
+  italicPlugin,
+  underlinePlugin,
+} from './marks';
 import { DefaultCommandPlugins, DefaultCommandPluginsOptions } from './types';
 
 const exitBreakPluginOptions: ExitBreakPluginOptions = {
@@ -118,7 +121,7 @@ export const defaultPluginsOptions: DefaultCommandPluginsOptions = {
   bold: DEFAULTS_BOLD,
   codeBlock: DEFAULTS_CODE_BLOCK,
   exitBreak: exitBreakPluginOptions,
-  heading: DEFAULTS_HEADING,
+  heading: DEFAULTS_HEADING as HeadingCommandPluginOptions,
   image: DEFAULTS_IMAGE,
   italic: DEFAULTS_ITALIC,
   link: DEFAULTS_LINK,
@@ -133,22 +136,22 @@ export const defaultPluginsOptions: DefaultCommandPluginsOptions = {
 
 export const getDefaultPlugins = (options: DefaultCommandPluginsOptions): DefaultCommandPlugins => {
   const plugins: DefaultCommandPlugins = {
-    bold: BoldPlugin(options.bold),
-    codeBlock: CodeBlockPlugin(options.codeBlock),
-    exitBreak: ExitBreakPlugin(options.exitBreak),
-    heading: HeadingPlugin(options.heading),
-    image: ImagePlugin(options.image),
-    inlineVoid: InlineVoidPlugin,
-    italic: ItalicPlugin(options.italic),
-    link: LinkPlugin(options.link),
-    list: ListPlugin(options.list),
-    paragraph: ParagraphPlugin(options.paragraph),
-    resetBlockType: ResetBlockTypePlugin(options.resetBlockType),
-    softBreak: SoftBreakPlugin(options.softBreak),
-    toggleType: ToggleTypePlugin(options.toggleType),
-    trailingNode: TrailingNodePlugin(options.trailingNode),
-    transforms: TransformsPlugin,
-    underline: UnderlinePlugin(options.underline),
+    bold: boldPlugin(options.bold),
+    codeBlock: codeBlockPlugin(options.codeBlock),
+    exitBreak: exitBreakPlugin(options.exitBreak),
+    heading: headingPlugin(options.heading),
+    image: imagePlugin(options.image),
+    inlineVoid: inlineVoidPlugin,
+    italic: italicPlugin(options.italic),
+    link: linkPlugin(options.link),
+    list: listPlugin(options.list),
+    paragraph: paragraphPlugin(options.paragraph),
+    resetBlockType: resetBlockTypePlugin(options.resetBlockType),
+    softBreak: softBreakPlugin(options.softBreak),
+    toggleType: toggleTypePlugin(options.toggleType),
+    trailingNode: trailingNodePlugin(options.trailingNode),
+    transforms: transformsPlugin,
+    underline: underlinePlugin(options.underline),
   };
 
   // Button order

@@ -10,7 +10,7 @@ renderer.paragraph = (text: string) => `<p>${text.replace(/(\n|\s)+/g, ' ')}</p>
 marked.use({ renderer });
 
 // Taken from marked/helpers.js
-const caret = /(^|[^\[])\^/g;
+const caret = /(^|[^[])\^/g;
 const edit = (regex: RegExp, opt?: string) => {
   let regex1: string = regex.source || regex.toString();
   opt = opt || '';
@@ -22,15 +22,20 @@ const edit = (regex: RegExp, opt?: string) => {
       let val1: string = val.source || val.toString();
       val1 = val1.replace(caret, '$1');
       regex1 = regex1.replace(name, val1);
+
       return obj;
     },
   };
+
   return obj;
 };
 
 export const deserializeMarkdown = (plugins: CommandPlugins) => (markdown: string): Node[] => {
   if (!markdown || !markdown.trim()) {
-    return [{ children: [{ text: '' }], type: 'p' }];
+    return [{
+      children: [{ text: '' }],
+      type: 'p',
+    }];
   }
 
   /*

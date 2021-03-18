@@ -5,7 +5,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import { Literal } from '@ontologies/core';
 import React, { useState } from 'react';
+
+import MediaObjectOmniformDropzoneLoader from '../../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 
 const KEY_ENTER = 13;
 
@@ -33,11 +36,27 @@ export const InputDialog = ({
   text,
   title,
   type,
-}: InputDialogProps) => {
+}: InputDialogProps): JSX.Element => {
   const [value, setValue] = useState(initialValue);
+
+  const inputRef = React.createRef<HTMLInputElement>();
 
   const handleOnChange = (event: any) => {
     setValue(event.target.value);
+  };
+
+  const handleDropChange = (event: Literal) => {
+    setValue(event.value);
+  };
+
+  const openDialog = () => {
+    const { current } = inputRef;
+
+    if (!current) {
+      throw new Error('No input ref on dropzone');
+    }
+
+    current.click();
   };
 
   const handleOK = () => {
@@ -49,37 +68,52 @@ export const InputDialog = ({
     setOpen(false);
   };
 
+  const renderDropzone = () => (
+    <MediaObjectOmniformDropzoneLoader
+      encodingFormatTypes="image/*"
+      inputRef={inputRef}
+      name="RTE-image"
+      openDialog={openDialog}
+      value={value}
+      onChange={handleDropChange}
+    />
+  );
+
+  const renderTextField = () => (
+    <TextField
+      autoFocus
+      fullWidth
+      data-testid={`${id}_text`}
+      id={`${id}_input`}
+      margin="dense"
+      type={type}
+      value={value}
+      onChange={handleOnChange}
+      onKeyUp={(e) => {
+        if (e.keyCode === KEY_ENTER) {
+          handleOK();
+        }
+      }}
+    />
+  );
+
   return (
     <Dialog
       aria-labelledby="form-dialog-title"
       data-testid={id}
-      onClose={handleCancel}
       open={open}
+      onClose={handleCancel}
     >
       <DialogTitle id="form-dialog-title">{title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{text}</DialogContentText>
-        <TextField
-          autoFocus
-          data-testid={`${id}_text`}
-          fullWidth
-          id={`${id}_input`}
-          margin="dense"
-          onChange={handleOnChange}
-          onKeyUp={(e) => {
-            if (e.keyCode === KEY_ENTER) {
-              handleOK();
-            }
-          }}
-          type={type}
-          value={value}
-        />
+        {type === 'file' ? renderDropzone() : renderTextField()}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel} color="primary" data-testid={`${id}_cancel`}>
+        <Button color="primary" data-testid={`${id}_cancel`} onClick={handleCancel}>
           {buttonCancel || 'Cancel'}
         </Button>
-        <Button onClick={handleOK} color="primary" data-testid={`${id}_ok`}>
+        <Button color="primary" data-testid={`${id}_ok`} onClick={handleOK}>
           {buttonOK || 'OK'}
         </Button>
       </DialogActions>

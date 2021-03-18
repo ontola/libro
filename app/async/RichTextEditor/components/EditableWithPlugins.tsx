@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import {
   EditablePlugins,
   EditablePluginsProps,
@@ -5,9 +6,14 @@ import {
   ToolbarStyles,
 } from '@udecode/slate-plugins';
 import { IStyleFunctionOrObject } from '@uifabric/utilities';
+import clsx from 'clsx';
 import React, { useCallback, useMemo } from 'react';
 
-import { Command, compareButtonIndexes, toCommandsArray } from '../commands';
+import {
+  Command,
+  compareButtonIndexes,
+  toCommandsArray,
+} from '../commands';
 import { CommandPlugins, toPluginsArray } from '../plugins';
 
 export interface EditableWithPluginsProps extends Omit<EditablePluginsProps, 'plugins'> {
@@ -16,12 +22,25 @@ export interface EditableWithPluginsProps extends Omit<EditablePluginsProps, 'pl
   toolbarStyles?: IStyleFunctionOrObject<ToolbarStyleProps, ToolbarStyles>;
 }
 
+const useStyles = makeStyles({
+  textArea: {
+    '& a': {
+      color: '#004ead !important',
+    },
+  },
+});
+
 export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({
   onBlur,
   plugins,
   toolbarClassName,
   ...props
 }) => {
+  const classes = useStyles();
+  const className = clsx({
+    [classes.textArea]: true,
+    [props.className]: props.className,
+  });
   const pluginsArray = useMemo(() => toPluginsArray(plugins), [plugins]);
 
   const buttons = useMemo(() => (
@@ -56,7 +75,11 @@ export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({
           {buttons}
         </div>
       )}
-      <EditablePlugins plugins={pluginsArray} {...props}/>
+      <EditablePlugins
+        plugins={pluginsArray}
+        {...props}
+        className={className}
+      />
     </div>
   );
 };

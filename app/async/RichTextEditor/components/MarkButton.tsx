@@ -1,4 +1,8 @@
-import { getPreventDefaultHandler, isMarkActive, toggleMark } from '@udecode/slate-plugins';
+import {
+  getPreventDefaultHandler,
+  isMarkActive,
+  toggleMark, 
+} from '@udecode/slate-plugins';
 import React from 'react';
 import { Editor } from 'slate';
 
@@ -20,9 +24,9 @@ export const MarkButton: React.FC<MarkButtonProps> = ({
   return (
     <ToggleButton
       id={id}
-      onClick={(editor: Editor) => getPreventDefaultHandler(toggleMark, editor, type)}
       selected={(editor: Editor) => isMarkActive(editor, type)}
       title={title}
+      onClick={(editor: Editor) => getPreventDefaultHandler(toggleMark, editor, type)}
     >
       {children}
     </ToggleButton>

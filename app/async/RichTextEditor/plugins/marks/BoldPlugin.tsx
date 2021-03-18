@@ -1,8 +1,8 @@
 import FormatBold from '@material-ui/icons/FormatBold';
 import {
-  BoldPlugin as BoldPluginBase,
   BoldPluginOptions,
   MARK_BOLD,
+  BoldPlugin as boldPluginBase,
 } from '@udecode/slate-plugins';
 import React from 'react';
 
@@ -22,19 +22,19 @@ export type BoldCommandPluginOptions = BoldPluginOptions  & {
   bold: ButtonOptions;
 };
 
-export const BoldPlugin = (options?: BoldCommandPluginOptions): BoldCommandPlugin => ({
-  ...BoldPluginBase(options),
+export const boldPlugin = (options?: BoldCommandPluginOptions): BoldCommandPlugin => ({
+  ...boldPluginBase(options),
   commands: {
     [BOLD_COMMAND_KEY]: {
       button:
-        <MarkButton
-          id={BOLD_COMMAND_KEY}
-          key={BOLD_COMMAND_KEY}
-          title={options?.bold.buttonTitle || 'Bold'}
-          type={MARK_BOLD}
-        >
-          <FormatBold/>
-        </MarkButton>,
+  <MarkButton
+    id={BOLD_COMMAND_KEY}
+    key={BOLD_COMMAND_KEY}
+    title={options?.bold.buttonTitle || 'Bold'}
+    type={MARK_BOLD}
+  >
+    <FormatBold />
+  </MarkButton>,
     },
   },
 });

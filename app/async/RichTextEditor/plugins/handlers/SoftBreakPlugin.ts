@@ -1,8 +1,8 @@
-import { SoftBreakPlugin as SoftBreakPluginBase, SoftBreakPluginOptions } from '@udecode/slate-plugins';
+import { SoftBreakPluginOptions, SoftBreakPlugin as softBreakPluginBase } from '@udecode/slate-plugins';
 
 import { CommandPlugin } from '../types';
 
-export const SoftBreakPlugin = (options?: SoftBreakPluginOptions): CommandPlugin => ({
-  ...SoftBreakPluginBase(options),
+export const softBreakPlugin = (options?: SoftBreakPluginOptions): CommandPlugin => ({
+  ...softBreakPluginBase(options),
   commands: {},
 });
