@@ -14,12 +14,7 @@ import { showcaseTopology } from '../../../topologies/Showcase';
 
 const useStyles = makeStyles({
   container: {
-    backgroundColor: '#FFFFFF',
-    borderColor: 'grey',
-    borderRadius: 5,
-    marginTop: 50,
-    padding: '0 30px',
-    width: '24%',
+    marginTop: 75,
   },
   header: {
     fontWeight: 'bold',
@@ -49,6 +44,10 @@ const Feature: FC = () => {
       alignItems="center"
       className={classes.container}
       direction="column"
+      justify="center"
+      lg={3}
+      md={6}
+      sm={12}
     >
       <div className={classes.icon}>
         <Property label={schema.image} />

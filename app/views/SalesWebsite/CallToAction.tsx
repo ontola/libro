@@ -15,7 +15,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundColor: theme.palette.background.default,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
     paddingBottom: '5rem',
