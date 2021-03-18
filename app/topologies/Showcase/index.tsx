@@ -19,6 +19,7 @@ class Showcase extends Topology {
       <Grid
         container
         direction="row"
+        justify="center"
       >
         {children}
       </Grid>

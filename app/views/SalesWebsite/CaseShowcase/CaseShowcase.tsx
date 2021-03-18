@@ -16,24 +16,27 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     color: '#2D7080',
     fontSize: 60,
   },
-  buttonPrimary: {
-    backgroundColor: '#B33A00',
-    borderRadius: 3,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-  },
   margin: {
     marginTop: 100,
   },
   productButton: {
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '40%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '25%',
+    },
     alignItems: 'flex-start',
+    justifyContent: 'center',
     margin: 10,
     marginTop: 50,
+    maxWidth: 500,
     padding: '0 30px',
     textAlign: 'left',
     textTransform: 'none',
-    width: '30%',
   },
   themeIndicator: {
     color: theme.palette.primary.main,
@@ -53,10 +56,11 @@ const CaseShowcase: FC = () => {
   const [text] = useProperty(schema.text);
 
   return (
-    <Button className={classes.productButton}>
+    <Button
+      className={classes.productButton}
+    >
       <Grid
         container
-        direction="column"
         justify="flex-start"
       >
         <Typography className={classes.themeIndicator} variant="h6">{name.value}</Typography>

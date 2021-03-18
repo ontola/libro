@@ -61,6 +61,8 @@ const Block: FC = () => {
       alignItems="center"
       className={classes.container}
       direction="column"
+      md={6}
+      sm={12}
     >
       <Typography className={classes.header} variant="h2">{name.value}</Typography>
       <Typography className={classes.subTitle} variant="body2">{text.value}</Typography>

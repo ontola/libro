@@ -16,21 +16,29 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     fontSize: 50,
   },
   productButton: {
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '40%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '25%',
+    },
     '&:first-child': {
       paddingLeft: '2rem',
     },
     '&:last-child': {
       paddingRight: '2rem',
     },
-    alignItems: 'start',
-    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // flex: 1,
+    // margin: 10,
     padding: '1rem',
     textAlign: 'left',
     textTransform: 'none',
-    [theme.breakpoints.down('md')]: {
-      width: '25%',
-    },
-    width: '50%',
+    // width: '50%',
   },
   subTextContainer: {
     minHeight: 55,

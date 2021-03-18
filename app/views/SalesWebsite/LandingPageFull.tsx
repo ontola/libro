@@ -50,8 +50,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   propositionSelector: {
     borderRadius: 5,
     boxShadow: '0 0 25px rgba(0,0,0,0.2)',
-    display: 'flex',
-    margin: 'auto',
+    // display: 'flex',
+    // margin: 'auto',
     marginBottom: '4rem',
     overflow: 'hidden',
   },

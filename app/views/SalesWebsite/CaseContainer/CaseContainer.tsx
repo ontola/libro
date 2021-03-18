@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     margin: 30,
     textTransform: 'none',
   },
-  gridStyle: {
+  container: {
     margin: 'auto',
     width: '100%',
   },
@@ -31,9 +31,11 @@ const useStyles = makeStyles({
     color: '#2D7080',
     fontSize: 60,
   },
-  imageStyle: {
-    marginBottom: '1em',
-    maxWidth: '100%',
+  image: {
+    backgroundSize: 'percentage',
+    // marginBottom: '1em',
+    // position: 'absolute',
+    // width: 900,
   },
   subTitle: {
     margin: 'auto',
@@ -54,15 +56,14 @@ const CaseContainer: FC = () => {
     <Grid
       container
       alignItems="center"
-      className={classes.gridStyle}
+      className={classes.container}
       direction="column"
-      justify="flex-start"
-      style={{ background: 'linear-gradient(to bottom, #f8fbff, #ffffff)' }}
+      justify="center"
     >
       <Typography variant="h2">{name.value}</Typography>
       <Typography className={classes.subTitle}>{text.value}</Typography>
       <Image
-        className={classes.imageStyle}
+        className={classes.image}
         linkedProp={image}
       />
       <Showcase>
