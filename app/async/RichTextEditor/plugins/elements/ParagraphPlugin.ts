@@ -1,8 +1,8 @@
-import { ParagraphPlugin as ParagraphPluginBase, ParagraphPluginOptions } from '@udecode/slate-plugins';
+import { ParagraphPluginOptions, ParagraphPlugin as paragraphPluginBase } from '@udecode/slate-plugins';
 
 import { CommandPlugin } from '../types';
 
-export const ParagraphPlugin = (options?: ParagraphPluginOptions): CommandPlugin => ({
-  ...ParagraphPluginBase(options),
+export const paragraphPlugin = (options?: ParagraphPluginOptions): CommandPlugin => ({
+  ...paragraphPluginBase(options),
   commands: {},
 });

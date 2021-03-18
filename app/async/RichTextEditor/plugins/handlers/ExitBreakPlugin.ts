@@ -1,8 +1,8 @@
-import { ExitBreakPlugin as ExitBreakPluginBase, ExitBreakPluginOptions } from '@udecode/slate-plugins';
+import { ExitBreakPluginOptions, ExitBreakPlugin as exitBreakPluginBase } from '@udecode/slate-plugins';
 
 import { CommandPlugin } from '../types';
 
-export const ExitBreakPlugin = (options?: ExitBreakPluginOptions): CommandPlugin => ({
-  ...ExitBreakPluginBase(options),
+export const exitBreakPlugin = (options?: ExitBreakPluginOptions): CommandPlugin => ({
+  ...exitBreakPluginBase(options),
   commands: {},
 });

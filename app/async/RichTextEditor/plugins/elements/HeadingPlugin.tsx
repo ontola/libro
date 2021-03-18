@@ -5,8 +5,8 @@ import {
   ELEMENT_H1,
   ELEMENT_H2,
   ELEMENT_H3,
-  HeadingPlugin as HeadingPluginBase,
   HeadingPluginOptions,
+  HeadingPlugin as headingPluginBase,
 } from '@udecode/slate-plugins';
 import React from 'react';
 
@@ -32,43 +32,43 @@ export type HeadingCommandPluginOptions = HeadingPluginOptions & {
   h3: ButtonOptions;
 };
 
-export const HeadingPlugin = (options?: HeadingCommandPluginOptions): HeadingCommandPlugin => ({
-  ...HeadingPluginBase(options),
+export const headingPlugin = (options?: HeadingCommandPluginOptions): HeadingCommandPlugin => ({
+  ...headingPluginBase(options),
   commands: {
     [HEADING1_COMMAND_KEY]: {
       button:
-        <ElementButton
-          id={HEADING1_COMMAND_KEY}
-          key={HEADING1_COMMAND_KEY}
-          title={options?.h1.buttonTitle || 'Heading level 1'}
-          type={options?.h1?.type || ELEMENT_H1}
-        >
-          <LooksOne/>
-        </ElementButton>,
+  <ElementButton
+    id={HEADING1_COMMAND_KEY}
+    key={HEADING1_COMMAND_KEY}
+    title={options?.h1.buttonTitle || 'Heading level 1'}
+    type={options?.h1?.type || ELEMENT_H1}
+  >
+    <LooksOne />
+  </ElementButton>,
     },
 
     [HEADING2_COMMAND_KEY]: {
       button:
-        <ElementButton
-          id={HEADING2_COMMAND_KEY}
-          key={HEADING2_COMMAND_KEY}
-          title={options?.h2.buttonTitle || 'Heading level 2'}
-          type={options?.h2?.type || ELEMENT_H2}
-        >
-          <LooksTwo/>
-        </ElementButton>,
+  <ElementButton
+    id={HEADING2_COMMAND_KEY}
+    key={HEADING2_COMMAND_KEY}
+    title={options?.h2.buttonTitle || 'Heading level 2'}
+    type={options?.h2?.type || ELEMENT_H2}
+  >
+    <LooksTwo />
+  </ElementButton>,
     },
 
     [HEADING3_COMMAND_KEY]: {
       button:
-        <ElementButton
-          id={HEADING3_COMMAND_KEY}
-          key={HEADING3_COMMAND_KEY}
-          title={options?.h3.buttonTitle || 'Heading level 3'}
-          type={options?.h3?.type || ELEMENT_H3}
-        >
-          <Looks3/>
-        </ElementButton>,
+  <ElementButton
+    id={HEADING3_COMMAND_KEY}
+    key={HEADING3_COMMAND_KEY}
+    title={options?.h3.buttonTitle || 'Heading level 3'}
+    type={options?.h3?.type || ELEMENT_H3}
+  >
+    <Looks3 />
+  </ElementButton>,
     },
   },
 });

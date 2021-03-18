@@ -1,9 +1,13 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import { Node } from 'slate';
 
 import { deserializeMarkdown } from '../markdown/deserializeMarkdown';
 import { CommandPlugins } from '../plugins';
-import { PluginEditor} from '../transforms/withPlugins';
+import { PluginEditor } from '../transforms/withPlugins';
 
 import { EditableWithPluginsProps } from './EditableWithPlugins';
 import RichTextEditor from './RichTextEditor';
@@ -30,7 +34,10 @@ const useEditorCallbackIfPresent = (
   callback
     ? (editor: PluginEditor, nodes: Node[]) => {
       const markdown = editor.serializeMarkdown(nodes);
-      setValues({ value: nodes, valueMd: markdown });
+      setValues({
+        value: nodes,
+        valueMd: markdown,
+      });
       callback(markdown);
     }
     : () => undefined,
@@ -56,18 +63,18 @@ export const RichTextEditorMd: React.FC<RichTextEditorMdProps> = ({
   const value = useMemo(() => {
     if (valueMd && valueMd === currentValues.valueMd) {
       return currentValues.value;
-    } else {
-      return [{ children: deserializeMarkdown(plugins || {})(valueMd || '') }];
     }
+
+    return [{ children: deserializeMarkdown(plugins || {})(valueMd || '') }];
   }, [valueMd]);
 
   return (
     <RichTextEditor
-      onBlur={onBlur}
-      onChange={onChange}
       placeholder={placeholder}
       plugins={plugins}
       value={value}
+      onBlur={onBlur}
+      onChange={onChange}
       {...props}
     />
   );

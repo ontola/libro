@@ -1,6 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { Editor, Transforms } from 'slate';
 import { ReactEditor, useSlate } from 'slate-react';
+
 import { InputDialog } from './InputDialog';
 import { ToggleButton } from './ToggleButton';
 
@@ -42,8 +47,8 @@ export const ToggleButtonWithInputDialog: React.FC<ToggleButtonWithInputDialogPr
   }, []);
 
   const handleDialogOK = useCallback((editor1: Editor) => (input: string) => {
-      Transforms.select(editor1, selection);
-      onDialogOK(editor)(input);
+    Transforms.select(editor1, selection);
+    onDialogOK(editor)(input);
   }, [selection]);
 
   useEffect(() => {
@@ -56,9 +61,9 @@ export const ToggleButtonWithInputDialog: React.FC<ToggleButtonWithInputDialogPr
     <div>
       <ToggleButton
         id={buttonId}
-        onClick={handleButtonClick}
         selected={buttonSelected}
         title={buttonTitle}
+        onClick={handleButtonClick}
       >
         {children}
       </ToggleButton>

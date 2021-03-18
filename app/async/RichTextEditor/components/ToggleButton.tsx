@@ -28,9 +28,9 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
       <MaterialToggleButton
         area-label={id}
         data-testid={id}
-        onClick={onClick(editor)}
         selected={selected(editor)}
         value={id}
+        onClick={onClick(editor)}
         {...rest}
       >
         {children}

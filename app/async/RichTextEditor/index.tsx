@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/styles';
 import { mergeAndCompare } from 'merge-anything';
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { RichTextEditorWrapperProps } from '../../containers/RichTextEditor';
 
+import { RichTextEditorWrapperProps } from '../../containers/RichTextEditor';
 import { concatStrings } from '../../helpers/merge';
 
 import RichTextEditorMd from './components/RichTextEditorMd';
@@ -90,7 +90,8 @@ const useStyles = makeStyles((theme: any) => ({
       'padding': '.45em',
     },
     'borderBottom': `1px solid ${theme?.palette?.grey?.xLight}`,
-    'display': 'flex',
+    'display': 'grid',
+    'grid-template-columns': 'repeat(auto-fit, 2.5em)',
     'margin': '0px',
     'padding': '2px',
   },

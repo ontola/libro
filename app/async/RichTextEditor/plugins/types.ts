@@ -14,6 +14,7 @@ import {
 import { Editor } from 'slate';
 
 import { Commands } from '../commands/types';
+
 import { CodeBlockCommandPlugin, CodeBlockCommandPluginOptions } from './elements/CodeBlockPlugin';
 import { HeadingCommandPlugin, HeadingCommandPluginOptions } from './elements/HeadingPlugin';
 import { ImageCommandPlugin, ImageCommandPluginOptions } from './elements/ImagePlugin';

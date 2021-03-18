@@ -4,8 +4,8 @@ import {
   DEFAULTS_LIST,
   ELEMENT_OL,
   ELEMENT_UL,
-  ListPlugin as ListPluginBase,
-  ListPluginOptions as ListPluginOptions,
+  ListPluginOptions,
+  ListPlugin as listPluginBase,
 } from '@udecode/slate-plugins';
 import React from 'react';
 import { Editor } from 'slate';
@@ -13,7 +13,6 @@ import { Editor } from 'slate';
 import { Command, Commands } from '../../commands';
 import { ListButton } from '../../components';
 import { withListItems } from '../../transforms';
-
 import { ButtonOptions, CommandPlugin } from '../types';
 
 export const ORDERED_LIST_COMMAND_KEY = 'formatListOrdered';
@@ -31,32 +30,32 @@ export type ListCommandPluginOptions = ListPluginOptions & {
   ul: ButtonOptions;
 };
 
-export const ListPlugin = (options: ListCommandPluginOptions = DEFAULTS_LIST): ListCommandPlugin => ({
-  ...ListPluginBase(options),
+export const listPlugin = (options: ListCommandPluginOptions = DEFAULTS_LIST): ListCommandPlugin => ({
+  ...listPluginBase(options),
   commands: {
     [ORDERED_LIST_COMMAND_KEY]: {
       button:
-        <ListButton
-          id={ORDERED_LIST_COMMAND_KEY}
-          key={ORDERED_LIST_COMMAND_KEY}
-          options={options}
-          title={options.ol.buttonTitle || 'Numbered list'}
-          type={options.ol?.type || ELEMENT_OL}
-        >
-          <FormatListNumbered/>
-        </ListButton>,
+  <ListButton
+    id={ORDERED_LIST_COMMAND_KEY}
+    key={ORDERED_LIST_COMMAND_KEY}
+    options={options}
+    title={options.ol.buttonTitle || 'Numbered list'}
+    type={options.ol?.type || ELEMENT_OL}
+  >
+    <FormatListNumbered />
+  </ListButton>,
     },
     [UNORDERED_LIST_COMMAND_KEY]: {
       button:
-        <ListButton
-          id={UNORDERED_LIST_COMMAND_KEY}
-          key={UNORDERED_LIST_COMMAND_KEY}
-          options={options}
-          title={options.ul.buttonTitle || 'Bulleted list'}
-          type={options.ul?.type || ELEMENT_UL}
-        >
-          <FormatListBulleted/>
-        </ListButton>,
+  <ListButton
+    id={UNORDERED_LIST_COMMAND_KEY}
+    key={UNORDERED_LIST_COMMAND_KEY}
+    options={options}
+    title={options.ul.buttonTitle || 'Bulleted list'}
+    type={options.ul?.type || ELEMENT_UL}
+  >
+    <FormatListBulleted />
+  </ListButton>,
     },
   },
   extendEditor: withListItems as <T extends Editor>(editor: T) => T,

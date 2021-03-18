@@ -51,7 +51,7 @@
     "@typescript-eslint/no-magic-numbers": ["error",
       {
         "ignore": [
-          -1, 0, 1,
+          -1, 0, 1, 2,
           100
         ],
         "ignoreEnums": true

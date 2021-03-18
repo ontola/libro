@@ -1,8 +1,8 @@
-import { ResetBlockTypePlugin as ResetBlockTypePluginBase, ResetBlockTypePluginOptions } from '@udecode/slate-plugins';
+import { ResetBlockTypePluginOptions, ResetBlockTypePlugin as resetBlockTypePluginBase } from '@udecode/slate-plugins';
 
 import { CommandPlugin } from '../types';
 
-export const ResetBlockTypePlugin = (options: ResetBlockTypePluginOptions): CommandPlugin => ({
-  ...ResetBlockTypePluginBase(options),
+export const resetBlockTypePlugin = (options: ResetBlockTypePluginOptions): CommandPlugin => ({
+  ...resetBlockTypePluginBase(options),
   commands: {},
 });

@@ -1,4 +1,9 @@
-import { getPreventDefaultHandler, isNodeTypeIn, ListOptions, toggleList } from '@udecode/slate-plugins';
+import {
+  ListOptions,
+  getPreventDefaultHandler,
+  isNodeTypeIn,
+  toggleList, 
+} from '@udecode/slate-plugins';
 import React from 'react';
 import { Editor } from 'slate';
 
@@ -22,6 +27,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
   return (
     <ToggleButton
       id={id}
+      selected={(editor: Editor) => isNodeTypeIn(editor, type)}
+      title={title}
       onClick={(editor: Editor) => getPreventDefaultHandler(
         toggleList,
         editor,
@@ -30,8 +37,6 @@ export const ListButton: React.FC<ListButtonProps> = ({
           typeList: type,
         },
       )}
-      selected={(editor: Editor) => isNodeTypeIn(editor, type)}
-      title={title}
     >
       {children}
     </ToggleButton>

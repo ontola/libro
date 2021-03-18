@@ -1,8 +1,8 @@
 import FormatItalic from '@material-ui/icons/FormatItalic';
 import {
-  ItalicPlugin as ItalicPluginBase,
   ItalicPluginOptions as ItalicPluginOptionsBase,
   MARK_ITALIC,
+  ItalicPlugin as italicPluginBase,
 } from '@udecode/slate-plugins';
 import React from 'react';
 
@@ -22,19 +22,19 @@ export type ItalicCommandPluginOptions = ItalicPluginOptionsBase  & {
   italic: ButtonOptions;
 };
 
-export const ItalicPlugin = (options?: ItalicCommandPluginOptions): ItalicCommandPlugin => ({
-  ...ItalicPluginBase(options),
+export const italicPlugin = (options?: ItalicCommandPluginOptions): ItalicCommandPlugin => ({
+  ...italicPluginBase(options),
   commands: {
     [ITALIC_COMMAND_KEY]: {
       button:
-        <MarkButton
-          id={ITALIC_COMMAND_KEY}
-          key={ITALIC_COMMAND_KEY}
-          title={options?.italic.buttonTitle || 'Italic'}
-          type={MARK_ITALIC}
-        >
-          <FormatItalic/>
-        </MarkButton>,
+  <MarkButton
+    id={ITALIC_COMMAND_KEY}
+    key={ITALIC_COMMAND_KEY}
+    title={options?.italic.buttonTitle || 'Italic'}
+    type={MARK_ITALIC}
+  >
+    <FormatItalic />
+  </MarkButton>,
     },
   },
 });

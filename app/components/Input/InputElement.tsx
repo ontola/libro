@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
-import React, { ChangeEvent, EventHandler } from 'react';
+import React from 'react';
 import Textarea from 'react-autosize-textarea';
 
 import RichTextEditor, { RichTextEditorWrapperProps } from '../../containers/RichTextEditor';
@@ -12,7 +12,7 @@ import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import Input, {
   InputAutocomplete ,
-  InputProps as InputProps,
+  InputProps,
   InputType,
 } from '../Input/Input';
 
@@ -82,12 +82,12 @@ const InputElement = (props: InputElementProps): JSX.Element => {
     'data-testid': name,
     id: name,
     name,
-    onChange: (e: React.ChangeEvent<HTMLInputElement | string>) => {
+    onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => {
       let val;
       if (isHTMLInputEvent(e)) {
         val = type === 'checkbox' ? e.target.checked : e.target.value;
       } else {
-        val = e === null ? '' : e;
+        val = e ?? '';
       }
       onChange(val);
     },

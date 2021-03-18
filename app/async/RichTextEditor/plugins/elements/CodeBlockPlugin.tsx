@@ -1,8 +1,8 @@
 import Code from '@material-ui/icons/Code';
 import {
-  CodeBlockPlugin as CodeBlockPluginBase,
   CodeBlockPluginOptions,
   ELEMENT_CODE_BLOCK,
+  CodeBlockPlugin as codeBlockPluginBase,
 } from '@udecode/slate-plugins';
 import React from 'react';
 
@@ -23,18 +23,18 @@ export type CodeBlockCommandPluginOptions = CodeBlockPluginOptions & {
 };
 
 export const CodeBlockPlugin = (options?: CodeBlockCommandPluginOptions): CodeBlockCommandPlugin => ({
-  ...CodeBlockPluginBase(options),
+  ...codeBlockPluginBase(options),
   commands: {
     [CODE_BLOCK_COMMAND_KEY]: {
       button:
-        <ElementButton
-          id={CODE_BLOCK_COMMAND_KEY}
-          key={CODE_BLOCK_COMMAND_KEY}
-          title={options?.code_block.buttonTitle || 'Code block'}
-          type={options?.code_block?.type || ELEMENT_CODE_BLOCK}
-        >
-          <Code/>
-        </ElementButton>,
+  <ElementButton
+    id={CODE_BLOCK_COMMAND_KEY}
+    key={CODE_BLOCK_COMMAND_KEY}
+    title={options?.code_block.buttonTitle || 'Code block'}
+    type={options?.code_block?.type || ELEMENT_CODE_BLOCK}
+  >
+    <Code />
+  </ElementButton>,
     },
   },
 });

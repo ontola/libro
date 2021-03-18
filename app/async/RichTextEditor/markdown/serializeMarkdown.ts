@@ -19,5 +19,6 @@ turndownService.addRule('li-p', {
 
 export const serializeMarkdown = (plugins: CommandPlugins) => (nodes: Node[]): string => {
   const html = serializeHTMLFromNodes(toPluginsArray(plugins))(nodes);
+
   return turndownService.turndown(html);
 };

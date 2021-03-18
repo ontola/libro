@@ -5,7 +5,7 @@ import { Editor } from 'slate';
  * See Slate's withHistory.
  * (Alternative: manipulate the history?)
  */
-export const withHistoryEntry = (editor: Editor, fn: () => void) => {
+export const withHistoryEntry = (editor: Editor, fn: () => void): void => {
   // Prevents merging with previous command
   editor.operations = [];
   fn();

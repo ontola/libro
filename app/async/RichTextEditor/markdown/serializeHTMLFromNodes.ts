@@ -30,17 +30,16 @@ const stripClassNames = (html: string) => {
   const allClasses = html.split(/(class="[^"]*")/g);
 
   let filteredHtml = '';
-  allClasses.forEach((item, index) => {
-    if (index % 2 === 0) {
-      filteredHtml += item;
-
-      return;
+  for (let i = 0; i < allClasses.length; i++) {
+    if (i % 2 === 0) {
+      filteredHtml += allClasses[i];
+      continue;
     }
-    const slateClassNames = item.match(/(slate-[^"\s]*)/g);
+    const slateClassNames = allClasses[i].match(/(slate-[^"\s]*)/g);
     if (slateClassNames) {
       filteredHtml += `class="${slateClassNames.join(' ')}"`;
     }
-  });
+  }
 
   return filteredHtml;
 };
@@ -114,7 +113,10 @@ export const serializeHTMLFromNodes = (plugins: SlatePlugin[]) => (nodes: SlateN
 
       return getNode(
         {
-          attributes: { 'data-slate-node': 'element', 'ref': null },
+          attributes: {
+            'data-slate-node': 'element',
+            'ref': null,
+          },
           children: encodeURIComponent(serializeHTMLFromNodes(plugins)(node.children)),
           element: node,
         },

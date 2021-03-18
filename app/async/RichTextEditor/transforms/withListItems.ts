@@ -1,18 +1,28 @@
-import { Editor, Node, NodeEntry, Text, Transforms } from 'slate';
+import {
+  Editor,
+  Node,
+  NodeEntry,
+  Text,
+  Transforms,
+} from 'slate';
 
-export const withListItems = (editor: Editor) => {
+export const withListItems = (editor: Editor): Editor => {
   const { normalizeNode } = editor;
 
   editor.normalizeNode = ([node, path]: NodeEntry) => {
     // If the element is a text node, and its parent a list item, wrap it in a paragraph.
     if (node.type === 'li') {
-      for (const [child, childPath] of Array.from(Node.children(editor, path))) {
+      for (const [child, childPath] of Node.children(editor, path)) {
         if (Text.isText(child)) {
           Transforms.wrapNodes(
             editor,
-            { type: 'p', children: [] },
+            {
+              children: [],
+              type: 'p',
+            },
             { at: childPath },
           );
+
           return;
         }
       }
