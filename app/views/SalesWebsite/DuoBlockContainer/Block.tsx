@@ -29,10 +29,6 @@ const useStyles = makeStyles<SalesTheme>(() => ({
     color: (props: Record<string, string>) => props.color,
     marginTop: 50,
     padding: '0 30px',
-    width: '50%',
-  },
-  header: {
-    fontWeight: 'bold',
   },
   icon: {
     color: (props: Record<string, string>) => props.color,
@@ -40,6 +36,10 @@ const useStyles = makeStyles<SalesTheme>(() => ({
   subTitle: {
     fontSize: 24,
     maxWidth: 575,
+    textAlign: 'center',
+  },
+  title: {
+    fontWeight: 'bold',
     textAlign: 'center',
   },
 }));
@@ -62,9 +62,8 @@ const Block: FC = () => {
       className={classes.container}
       direction="column"
       md={6}
-      sm={12}
     >
-      <Typography className={classes.header} variant="h2">{name.value}</Typography>
+      <Typography className={classes.title} variant="h2">{name.value}</Typography>
       <Typography className={classes.subTitle} variant="body2">{text.value}</Typography>
       <Button
         className={classes.button}

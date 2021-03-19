@@ -18,8 +18,7 @@ const useStyles = makeStyles<SalesTheme>({
     fontSize: 60,
   },
   imageStyle: {
-    height: 143,
-    width: 333,
+    maxWidth: '100%',
   },
   productButton: {
     backgroundColor: '#FFFFFF',

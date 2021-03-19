@@ -25,8 +25,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   subtitle: {
     margin: 'auto',
-    marginBottom: '3rem',
     maxWidth: '40rem',
+    padding: '2rem',
+    paddingBottom: '3rem',
     textAlign: 'center',
   },
   title: {

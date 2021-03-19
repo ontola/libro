@@ -48,10 +48,20 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     width: 250,
   },
   propositionSelector: {
+    [theme.breakpoints.down('sm')]: {
+      boxShadow: 'unset',
+      gridGap: 40,
+      gridTemplateColumns: '1fr 1fr',
+      padding: 20,
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: '1fr',
+    },
     borderRadius: 5,
     boxShadow: '0 0 25px rgba(0,0,0,0.2)',
-    // display: 'flex',
-    // margin: 'auto',
+    display: 'grid',
+    flex: 1,
+    gridTemplateColumns: '1fr 1fr 1fr 1fr',
     marginBottom: '4rem',
     overflow: 'hidden',
   },

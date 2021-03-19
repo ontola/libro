@@ -15,8 +15,9 @@ import Image from '../../../components/Image';
 import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
+import { SalesTheme } from '../SalesThemeProvider';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -35,7 +36,24 @@ const useStyles = makeStyles({
     backgroundSize: 'percentage',
     // marginBottom: '1em',
     // position: 'absolute',
-    // width: 900,
+    maxWidth: '100%',
+  },
+  propositionSelector: {
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: '1fr 1fr 1fr',
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: '1fr',
+    },
+    // borderRadius: 5,
+    // boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+    display: 'grid',
+    // flex: 1,
+    gridTemplateColumns: '1fr 1fr 1fr',
+    // marginTop: 50,
+    // padding: '0 30px',
+    // textAlign: 'left',
+    // textTransform: 'none',
   },
   subTitle: {
     margin: 'auto',
@@ -43,7 +61,7 @@ const useStyles = makeStyles({
     maxWidth: 519,
     textAlign: 'center',
   },
-});
+}));
 
 const CaseContainer: FC = () => {
   const classes = useStyles();
@@ -67,7 +85,9 @@ const CaseContainer: FC = () => {
         linkedProp={image}
       />
       <Showcase>
-        <Property label={argu.ns('caseShowcase')} />
+        <div className={classes.propositionSelector}>
+          <Property label={argu.ns('caseShowcase')} />
+        </div>
       </Showcase>
       <Button
         className={classes.button}

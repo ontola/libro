@@ -20,20 +20,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     marginTop: 100,
   },
   productButton: {
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '40%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '25%',
-    },
     alignItems: 'flex-start',
     justifyContent: 'center',
     margin: 10,
-    marginTop: 50,
-    maxWidth: 500,
     padding: '0 30px',
     textAlign: 'left',
     textTransform: 'none',
