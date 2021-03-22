@@ -14,10 +14,6 @@
   display: flex;
   height: unit('x-large');
 
-  + .CardRow {
-    border-top: 0;
-  }
-
   .CardContent & {
     background: none;
     border: 0;

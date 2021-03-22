@@ -47,7 +47,7 @@ const MeasureFull = ({ renderPartOf }) => (
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
         </CardContent>
-        <CardRow noBorder>
+        <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />
           <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>

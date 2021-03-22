@@ -60,7 +60,7 @@ const InterventionTypeFull = ({ renderPartOf }) => (
             <AttributeListItem label={rivm.recurringCostsScore} />
           </AttributeList>
         </CardContent>
-        <CardRow noBorder>
+        <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />
           <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>

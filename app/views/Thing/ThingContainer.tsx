@@ -34,7 +34,7 @@ const ThingContainer: FC<ThingContainerProps> = ({ highlighted, subject }) => (
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
     </CardContent>
-    <CardRow noBorder>
+    <CardRow>
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
     <CardAppendix>

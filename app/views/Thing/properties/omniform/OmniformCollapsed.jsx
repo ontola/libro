@@ -75,7 +75,7 @@ const CollapsedOmniformProp = (props) => {
     );
 
     return (
-      <CardRow>
+      <CardRow borderTop>
         <OmniformConnector
           autofocusForm
           closeForm={closeForm}
@@ -95,7 +95,7 @@ const CollapsedOmniformProp = (props) => {
 
   return (
     <Collapse mountOnEnter in={shouldShow}>
-      <CardRow>
+      <CardRow borderTop>
         <OmniformPreview
           primaryAction={items[0]}
           onClick={toggle}

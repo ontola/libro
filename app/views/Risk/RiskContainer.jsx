@@ -29,7 +29,7 @@ const RiskContainer = ({ subject }) => (
       <Property label={[schema.text, schema.description, dbo.abstract]} />
       <Collection display="table" label={rivm.incidents} />
     </CardContent>
-    <CardRow noBorder>
+    <CardRow>
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
   </Card>

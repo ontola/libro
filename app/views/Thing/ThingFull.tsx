@@ -55,7 +55,7 @@ const ThingFull: FC<ThingFullProps> = ({ renderPartOf }) => {
             p(app.contents),
             p(withoutLoading(foaf.isPrimaryTopicOf)),
           ]),
-          c(cardRowTopology, { noBorder: true }, [
+          c(cardRowTopology, [
             p(withoutLoading(argu.attachments)),
             p(withoutLoading(meeting.attachment)),
           ]),

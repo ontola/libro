@@ -28,10 +28,6 @@
     // For animating the Omniform preview on hover
     transition: background-color .2s;
 
-    .CardRow + & {
-      border-top: 0;
-    }
-
     &-image {
       align-self: center;
       background-size: cover;

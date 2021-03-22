@@ -197,7 +197,7 @@ const getPagination = (Wrapper, topology) => {
 };
 
 export const CardAppendixContent = ({ children }) => (
-  <CardRow backdrop>
+  <CardRow backdrop borderTop>
     <CardContent>
       {children}
     </CardContent>

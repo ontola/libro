@@ -46,7 +46,7 @@ const MotionFull = ({ renderPartOf }) => (
           <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
-        <CardRow noBorder>
+        <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />
           <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>

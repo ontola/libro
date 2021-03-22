@@ -117,7 +117,7 @@ const InterventionFull: FC<InterventionFullProps> = ({
           </AttributeList>
           <p><Property label={rivm.securityImprovementReason} /></p>
         </CardContent>
-        <CardRow noBorder>
+        <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />
           <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>

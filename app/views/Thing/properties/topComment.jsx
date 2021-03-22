@@ -40,7 +40,7 @@ class TopComment extends React.PureComponent {
     const count = tryParseInt(commentsCount);
 
     return (
-      <CardRow backdrop>
+      <CardRow backdrop borderTop>
         <Resource subject={topComment} />
         {count > 1 && (
           <CardMicroRow>

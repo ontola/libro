@@ -50,7 +50,7 @@ const MapQuestionFull: FC<PropTypes> = ({ renderPartOf }) => (
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
-        <CardRow noBorder>
+        <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />
           <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>

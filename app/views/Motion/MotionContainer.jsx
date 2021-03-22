@@ -29,7 +29,7 @@ const MotionContainer = ({ highlighted, subject }) => (
       <Property label={[schema.name, rdfs.label]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
     </CardContent>
-    <CardRow noBorder>
+    <CardRow>
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
     <Property label={argu.voteableVoteEvent} />

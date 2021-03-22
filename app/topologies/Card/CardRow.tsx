@@ -7,7 +7,7 @@ export const cardRowTopology = argu.ns('cardRow');
 
 interface PropTypes {
   backdrop?: boolean;
-  noBorder?: boolean;
+  borderTop?: boolean;
   showArrow?: boolean;
 }
 
@@ -26,7 +26,7 @@ class CardRow extends Topology<PropTypes> {
     return clsx({
       'CardRow': true,
       'CardRow--backdrop': this.props.backdrop,
-      'CardRow--no-border': this.props.noBorder,
+      'CardRow--border-top': this.props.borderTop,
       'CardRow--show-arrow': this.props.showArrow,
     });
   }

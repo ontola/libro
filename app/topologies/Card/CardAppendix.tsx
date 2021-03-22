@@ -1,5 +1,7 @@
+import React from 'react';
+
 import argu from '../../ontology/argu';
-import Topology from '../Topology';
+import Topology, { TopologyContent } from '../Topology';
 
 import './Card.scss';
 
@@ -14,6 +16,14 @@ class CardAppendix extends Topology {
     super(props);
 
     this.topology = cardAppendixTopology;
+  }
+
+  public renderContent(): TopologyContent {
+    return this.wrap(() => (
+      <React.Fragment>
+        {this.props.children}
+      </React.Fragment>
+    ));
   }
 }
 

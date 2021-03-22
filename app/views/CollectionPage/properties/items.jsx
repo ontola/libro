@@ -27,6 +27,9 @@ const itemList = (props, columns, separator, view, maxColumns) => {
 
     if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])) {
       wrapper = CardRow;
+      wrapperOpts = {
+        borderTop: true,
+      }
     }
     if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
       wrapper = GridItem;
