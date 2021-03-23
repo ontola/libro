@@ -4,7 +4,6 @@ import * as sh from '@ontologies/shacl';
 import * as schema from '@ontologies/schema';
 import * as xsd from '@ontologies/xsd';
 import { createForm } from 'final-form';
-import { Set } from 'immutable';
 import React from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';

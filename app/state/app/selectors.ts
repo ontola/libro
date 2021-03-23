@@ -1,10 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types*/
+import { Node } from '@ontologies/core';
+import { Map } from 'immutable';
+
 import { HIGHLIGHT_RESOURCE, SET_CURRENT_USER } from '../action-types';
+
+import { ActorType, AppState } from './reducer';
 
 /**
  * @deprecated
  * Use useCurrentActor instead
  */
-export const getCurrentUserType = (state: any) => state.getIn(['app', SET_CURRENT_USER, 'actorType']);
+export const getCurrentUserType = (state: Map<string, AppState>): ActorType =>
+  state.get('app')[SET_CURRENT_USER].actorType;
 
-export const isHighlighted = (state: any, iri: any) => state.getIn(['app', HIGHLIGHT_RESOURCE]) === iri.value;
+export const isHighlighted = (state: Map<string, AppState>, iri: Node): boolean =>
+  state.get('app')[HIGHLIGHT_RESOURCE] === iri.value;

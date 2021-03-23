@@ -1,9 +1,8 @@
-import RDFTypes from '@rdfdev/prop-types';
+import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { getTermBestLang } from 'link-lib';
 import { Resource, useLRS } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
   FormattedMessage,
@@ -23,21 +22,21 @@ const messages = defineMessages({
   },
 });
 
-const propTypes = {
-  onClick: PropTypes.func.isRequired,
-  primaryAction: RDFTypes.namedNode,
-};
+export interface OmniformPreviewProps {
+  onClick: React.MouseEventHandler,
+  primaryAction: Node,
+}
 
 const OmniformPreview = ({
   onClick,
   primaryAction,
-}) => {
+}: OmniformPreviewProps): JSX.Element => {
   const intl = useIntl();
   const lrs = useLRS();
 
   const actionLabel = primaryAction && getTermBestLang(
     lrs.dig(primaryAction, [schema.result, rdfs.label]),
-    lrs.store.langPrefs
+    (lrs.store as any).langPrefs,
   )?.value;
 
   return (
@@ -61,7 +60,5 @@ const OmniformPreview = ({
     </button>
   );
 };
-
-OmniformPreview.propTypes = propTypes;
 
 export default OmniformPreview;

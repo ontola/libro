@@ -1,47 +1,59 @@
-import rdf, { isNamedNode } from '@ontologies/core';
+import rdf, { Node, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { Set } from 'immutable';
 import {
   Property,
   Resource,
-  subjectType,
+  SubjectType,
   useLRS,
   withLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
+import { LinkedRenderStoreContext } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
-import { getOmniformAction, omniformSetAction } from '../../state/omniform';
+import {
+  OmniformState,
+  getOmniformAction,
+  omniformSetAction,
+} from '../../state/omniform';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
-import Button from '../Button';
+import Button, { ButtonTheme } from '../Button';
 import { FormFooterRight } from '../Form';
-import { formFieldError } from '../FormField';
+import { FormFieldError } from '../FormField';
 
 import './Omniform.scss';
 
-const propTypes = {
+export interface OmniformProps {
+  actions: Set<Node>;
+  autofocusForm?: boolean;
+  closeForm?: () => void;
+  error?: FormFieldError;
+  formInstance?: Record<string, unknown>;
+  onCancel?: () => void;
+  onDone?: () => void;
+  onKeyUp?: () => void;
+  parentIRI: Node;
+  sessionStore?: Record<string, unknown>;
+}
+
+export type OmniformOwnProps = LinkedRenderStoreContext & OmniformProps;
+
+export interface OmniformDispatchProps {
+  dispatchHighlightResource: (iri: Node) => void;
+  onActionChange: (iri: Node) => void;
+}
+
+export interface OmniformStateProps {
   // The NamedNode of the currently selected form.
-  action: subjectType,
-  actions: PropTypes.instanceOf(Set).isRequired,
-  autofocusForm: PropTypes.bool,
-  closeForm: PropTypes.func,
-  dispatchHighlightResource: PropTypes.func,
-  error: formFieldError,
-  formInstance: PropTypes.objectOf(PropTypes.any),
-  onActionChange: PropTypes.func.isRequired,
-  onCancel: PropTypes.func,
-  onDone: PropTypes.func,
-  onKeyUp: PropTypes.func,
-  onStatusForbidden: PropTypes.func,
-  parentIRI: PropTypes.string,
-  sessionStore: PropTypes.objectOf(PropTypes.any),
-};
+  action: SubjectType;
+  onStatusForbidden?: (e: () => Promise<void>) => Promise<void>;
+}
 
 const PROPS_WHITELIST = [
   schema.creator,
@@ -54,21 +66,22 @@ const PROPS_WHITELIST = [
   ontola.coverPhoto,
 ].map((t) => rdf.id(t));
 
-const convertFieldContext = (parentIRI, actionIRI) => {
-  const omniformKey = `${atob(parentIRI)}.omniform`;
+const convertFieldContext = (parentIRI: Node, actionIRI: Node) => {
+  const omniformKey = `${atob(parentIRI.value)}.omniform`;
+
   Array(sessionStorage.length)
     .fill(null)
-    .map((_, i) => sessionStorage.key(i))
+    .map((_, i) => sessionStorage.key(i)!)
     .filter((key) => key.startsWith(omniformKey))
     .forEach((key) => {
       const newKey = key.replace(omniformKey, actionIRI.value);
-      const value = sessionStorage.getItem(key);
+      const value = sessionStorage.getItem(key)!;
       sessionStorage.setItem(newKey, value);
       sessionStorage.removeItem(key);
     });
 };
 
-const Omniform = (props) => {
+const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchProps): JSX.Element | null => {
   const {
     action,
     actions,
@@ -86,41 +99,44 @@ const Omniform = (props) => {
     sessionStore,
   } = props;
   const lrs = useLRS();
+
   const types = React.useMemo(() => (
-    actions.map((iri) => (
-      <Resource key={iri} subject={iri}>
+    Array.from(actions).map((iri) => (
+      <Resource key={iri!.value} subject={iri}>
         <Property
           current={rdf.equals(iri, action)}
           label={schema.result}
-          onClick={onActionChange(iri)}
+          onClick={onActionChange(iri!)}
         />
       </Resource>
     ))
-  ));
+  ), [actions, action]);
+
   const responseCallback = React.useCallback((response) => {
     if (response.iri) {
       dispatchHighlightResource(response.iri);
     }
-  });
+  }, [dispatchHighlightResource]);
+
   const linkedFieldset = React.useCallback(() => {
     if (!isNamedNode(action)) {
       return null;
     }
     const object = lrs.getResourceProperty(action, schema.object);
 
-    const footerButtons = (loading) => (
+    const footerButtons = (loading: boolean): JSX.Element => (
       <React.Fragment>
         {types}
         <FormFooterRight>
           <Button
-            theme="transparant"
+            theme={ButtonTheme.Transparant}
             onClick={closeForm}
           >
             <FormattedMessage id="https://app.argu.co/i18n/forms/actions/cancel" />
           </Button>
           <Button
             loading={loading}
-            theme="submit"
+            theme={ButtonTheme.Submit}
             type="submit"
           >
             <FormattedMessage
@@ -153,13 +169,25 @@ const Omniform = (props) => {
         />
       </Resource>
     );
-  });
+  }, [
+    autofocusForm,
+    formInstance,
+    action,
+    parentIRI,
+    responseCallback,
+    sessionStore,
+    PROPS_WHITELIST,
+    onCancel,
+    onDone,
+    onKeyUp,
+    onStatusForbidden,
+  ]);
 
-  if (actions.length === 0) {
+  if (actions.size === 0) {
     return null;
   }
 
-  if (!action || types.size === 0) {
+  if (!action || types.length === 0) {
     return null;
   }
 
@@ -178,14 +206,12 @@ const Omniform = (props) => {
   );
 };
 
-Omniform.propTypes = propTypes;
-
-const mapStateToProps = (state, ownProps) => {
-  const action = getOmniformAction(state, ownProps.parentIRI) || ownProps.actions.first();
+const mapStateToProps = (state: OmniformState, ownProps: OmniformOwnProps): OmniformStateProps => {
+  const action = getOmniformAction(state, ownProps.parentIRI) || ownProps.actions.values().next().value;
 
   return ({
     action,
-    onStatusForbidden: (e) => {
+    onStatusForbidden: (e: () => Promise<void>) => {
       convertFieldContext(ownProps.parentIRI, action);
       ownProps.lrs.actions.ontola.navigate(action);
 
@@ -199,9 +225,9 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
-const mapDispatchToProps = (dispatch, props) => ({
-  dispatchHighlightResource: (iri) => dispatch(highlightResource(iri.value)),
-  onActionChange: (action) => () => {
+const mapDispatchToProps = (dispatch: (action: Action) => void, props: OmniformOwnProps) => ({
+  dispatchHighlightResource: (iri: Node) => dispatch(highlightResource(iri.value)),
+  onActionChange: (action: Node) => () => {
     dispatch(omniformSetAction({
       action,
       parentIRI: props.parentIRI,
@@ -209,7 +235,11 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
 });
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+const mergeProps = (
+  stateProps: OmniformStateProps,
+  dispatchProps: OmniformDispatchProps,
+  ownProps: OmniformOwnProps,
+) => ({
   ...ownProps,
   ...stateProps,
   ...dispatchProps,
@@ -218,7 +248,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
 const OmniformContainer = withLRS(connect(
   mapStateToProps,
   mapDispatchToProps,
-  mergeProps
+  mergeProps,
 )(Omniform));
 
 export default OmniformContainer;

@@ -1,3 +1,4 @@
+import { NamedNode } from '@ontologies/core';
 import { Map, Record } from 'immutable';
 import { SomeNode } from 'link-lib';
 import { createAction, handleActions } from 'redux-actions';
@@ -8,6 +9,14 @@ import {
   OMNIFORM_OPEN_INLINE,
   OMNIFORM_SET_ACTION,
 } from './action-types';
+
+export interface OmniformRecordType {
+  action: NamedNode | undefined;
+  inlineOpened: false;
+  parentIRI: string;
+}
+
+export type OmniformState = Map<string, OmniformRecordType>;
 
 // Factory
 export const OmniformRecord = Record({
@@ -24,7 +33,8 @@ export const omniformOpenInline = createAction(OMNIFORM_OPEN_INLINE);
 export const omniformSetAction = createAction(OMNIFORM_SET_ACTION);
 
 // Reducer
-const initialState = new (Map as any)({});
+// @ts-ignore
+const initialState = new Map<string, OmniformRecordType>({});
 
 export const omniformReducer = handleActions({
   [OMNIFORM_CLOSE_INLINE]: (state, { payload }) => state.setIn([payload, 'inlineOpened'], false),
@@ -44,7 +54,7 @@ export const omniformReducer = handleActions({
 
 // Selectors
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getOmniformAction = (state: any, parentIRI: SomeNode) => state.getIn(['omniform', parentIRI, 'action']);
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getOmniformOpenState = (state: any, parentIRI: SomeNode) => state.getIn(['omniform', parentIRI, 'inlineOpened']) || false;
+export const getOmniformAction = (state: OmniformState, parentIRI: SomeNode): NamedNode | undefined =>
+  state.getIn(['omniform', parentIRI, 'action']);
+export const getOmniformOpenState = (state: OmniformState, parentIRI: SomeNode): boolean =>
+  state.getIn(['omniform', parentIRI, 'inlineOpened']) || false;
