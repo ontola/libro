@@ -1,10 +1,14 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import './PageRow.scss';
 
-const PageRow = ({ children, white }) => {
+export interface PageRowProps {
+  children: React.ComponentType;
+  white?: boolean;
+}
+
+const PageRow = ({ children, white }: PageRowProps): JSX.Element => {
   const className = clsx({
     PageRow,
     'PageRow--white': white,
@@ -15,11 +19,6 @@ const PageRow = ({ children, white }) => {
       {children}
     </div>
   );
-};
-
-PageRow.propTypes = {
-  children: PropTypes.node,
-  white: PropTypes.bool,
 };
 
 export default PageRow;
