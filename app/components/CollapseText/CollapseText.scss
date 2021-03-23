@@ -40,7 +40,8 @@
   }
 }
 
-.CardMicroRow {
+.CardMicroRow,
+.CardRow--backdrop {
   .CollapseText__toggle {
     background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('grey', 'xx-light') 30%, color('grey', 'xx-light') 100%);
   }

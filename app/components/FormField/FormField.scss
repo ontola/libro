@@ -330,3 +330,24 @@ input {
     padding-top: 0;
   }
 }
+
+.Form__footer {
+  .Field__input--select {
+    cursor: pointer;
+
+    input {
+      cursor: pointer;
+    }
+
+    fieldset {
+      border: 0;
+      border-radius: unset;
+      border-right: $grey-border;
+    }
+
+    &:hover {
+      box-shadow: unset;
+      filter: brightness(.96);
+    }
+  }
+}

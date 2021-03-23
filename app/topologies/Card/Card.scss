@@ -188,6 +188,14 @@
 .CardMicroRow {
   font-size: .9em;
   padding: .3rem 1.3rem;
+
+  .Link {
+    font-style: italic;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .CardRow {
@@ -202,6 +210,10 @@
   }
 
   &:last-child {
+    border-bottom: 0;
+  }
+
+  &:last-of-type {
     border-bottom: 0;
   }
 

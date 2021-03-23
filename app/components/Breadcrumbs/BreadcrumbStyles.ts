@@ -1,5 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
 
+const breadCrumBorder = '1px solid #e6e6e6';
+const hoverBorderColor = '#c8c8c8';
+
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export default makeStyles((theme: any) => ({
   default: {
@@ -23,22 +26,27 @@ export default makeStyles((theme: any) => ({
       borderTopLeftRadius: theme.shape.borderRadius,
     },
     '&:hover': {
+      borderColor: hoverBorderColor,
       color: theme.palette.grey[800],
     },
     '&:last-child': {
+      '&:hover': {
+        borderColor: hoverBorderColor,
+      },
       borderBottomRightRadius: theme.shape.borderRadius,
-      borderRight: '0',
+      borderRight: breadCrumBorder,
       borderTopRightRadius: theme.shape.borderRadius,
       flexGrow: '1',
       flexShrink: '1',
       maxWidth: 'none',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+
     },
     'alignItems': 'center',
     'backgroundColor': theme.palette.common.white,
-    'border': 'solid 1px rgb(230, 230, 230)',
-    'borderRight': '1px solid #e6e6e6',
+    'border': breadCrumBorder,
+    'borderRight': 0,
     'boxSizing': 'border-box',
     'color': theme.palette.grey[600],
     'display': 'inline-flex',
