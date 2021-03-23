@@ -1,9 +1,23 @@
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import './NetworkStatusIndicator.scss';
+import { LibroTheme } from '../../themes/themes';
 
-const NetworkStatusIndicator = () => {
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  networkStatusIndicator: {
+    backgroundColor: theme.palette.error.dark,
+    color: theme.palette.getContrastText(theme.palette.error.dark),
+    fontSize: '1rem',
+    padding: '.2em',
+    textAlign: 'center',
+    width: '100%',
+    zIndex: theme.zIndex.snackbar,
+  },
+}));
+
+const NetworkStatusIndicator = (): JSX.Element | null => {
+  const classes = useStyles();
   const [onLine, setOnLine] = React.useState(__CLIENT__ ? navigator.onLine : true);
 
   if (__CLIENT__) {
@@ -25,7 +39,7 @@ const NetworkStatusIndicator = () => {
   }
 
   return (
-    <div className="NetworkStatusIndicator">
+    <div className={classes.networkStatusIndicator}>
       <FormattedMessage
         defaultMessage="Network connection lost"
         description="Message shown to the user when the navigator lost its network connection"
