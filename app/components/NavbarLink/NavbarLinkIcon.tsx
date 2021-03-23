@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-const propTypes = {
-  children: PropTypes.node,
-};
+export interface NavbarLinkIconProps {
+  children: React.ReactNode;
+}
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -16,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NavbarLinkIcon = ({ children }) => {
+const NavbarLinkIcon = ({ children }: NavbarLinkIconProps): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -25,7 +24,5 @@ const NavbarLinkIcon = ({ children }) => {
     </div>
   );
 };
-
-NavbarLinkIcon.propTypes = propTypes;
 
 export default NavbarLinkIcon;

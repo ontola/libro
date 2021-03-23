@@ -1,16 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-const propTypes = {
-  children: PropTypes.node,
-};
+export interface NavbarLinkLabelProps {
+  children: React.ReactNode;
+}
 
-const NavbarLinkLabel = ({ children }) => (
+const NavbarLinkLabel = ({ children }: NavbarLinkLabelProps): JSX.Element => (
   <div className="NavbarLink__label">
     <span className="NavbarLink__truncated-label">{children}</span>
   </div>
 );
-
-NavbarLinkLabel.propTypes = propTypes;
 
 export default NavbarLinkLabel;

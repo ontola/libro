@@ -1,35 +1,27 @@
 import { useTheme } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import Button, { ButtonProps } from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/styles';
-import { Resource, linkType } from 'link-redux';
-import PropTypes from 'prop-types';
+import { Node } from '@ontologies/core';
+import { Resource } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { NavLink } from 'react-router-dom';
+import { NavLink, NavLinkProps } from 'react-router-dom';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
+import { LibroTheme } from '../../themes/themes';
 import ExternalLink from '../Link/ExternalLink';
 
-const propTypes = {
-  children: PropTypes.node,
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
-  image: linkType,
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
-  onClick: PropTypes.func,
-  ref: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.elementType }),
-  ]),
-  to: PropTypes.string,
-};
+export interface NavbarLinkLinkProps {
+  children: React.ReactNode;
+  icon: string | JSX.Element;
+  image: Node;
+  label: string | JSX.Element;
+  onClick: React.MouseEventHandler;
+  ref: React.Ref<HTMLButtonElement>,
+  to: string;
+}
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -45,9 +37,9 @@ const NavbarLinkLink = ({
   onClick,
   ref,
   to,
-}) => {
+}: NavbarLinkLinkProps): JSX.Element => {
   const classes = useStyles();
-  const theme = useTheme();
+  const theme = useTheme<LibroTheme>();
   const matches = useMediaQuery(theme.breakpoints.up(theme.appBar.iconBreakPoint));
 
   if (to === undefined && !onClick) {
@@ -65,27 +57,29 @@ const NavbarLinkLink = ({
     </Icon>
   );
 
-  let Component;
-  const buttonProps = {
+  let Component: React.ComponentType<any> | string;
+  const buttonProps: Partial<React.ButtonHTMLAttributes<unknown> & NavLinkProps & ButtonProps> = {
     className: classes.button,
   };
   if (!to) {
     Component = 'button';
     buttonProps.onClick = onClick;
   } else if (isDifferentWebsite(to)) {
-    buttonProps.href = to;
     Component = ExternalLink;
+    buttonProps.href = to;
   } else {
+    Component = NavLink;
     buttonProps.exact = true;
     buttonProps.activeClassName = 'active';
     buttonProps.to = retrievePath(to);
     buttonProps.ref = ref;
-    Component = NavLink;
   }
 
   if (!children && image) {
     return (
-      <Component {...buttonProps}><Resource subject={image} /></Component>
+      <Component {...buttonProps as NavLinkProps}>
+        <Resource subject={image} />
+      </Component>
     );
   }
 
@@ -95,7 +89,7 @@ const NavbarLinkLink = ({
     <Button
       {...buttonProps}
       color="inherit"
-      component={Component}
+      component={Component as React.ComponentType<any>}
       startIcon={!hideLabel && iconCom}
       onClick={onClick}
     >
@@ -103,7 +97,5 @@ const NavbarLinkLink = ({
     </Button>
   );
 };
-
-NavbarLinkLink.propTypes = propTypes;
 
 export default NavbarLinkLink;
