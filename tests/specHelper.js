@@ -136,7 +136,8 @@ function argUnitCustom(desc, comp, props, func) {
 function argUnit(comp, func, opts = {}) {
   const desc = comp.displayName || comp.name;
   // eslint-disable-next-line react/forbid-foreign-prop-types
-  const props = Object.keys(opts.propTypes || comp.propTypes);
+  const propTypes = opts.propTypes || comp.propTypes;
+  const props = propTypes ? Object.keys(propTypes) : [];
 
   const render = (p) => {
     const method = (opts.mount === true || opts.intl) ? mount : shallow;

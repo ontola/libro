@@ -25,16 +25,10 @@ export const sides = [
 ];
 
 export enum Size {
-  small = 'small',
-  medium = 'medium',
-  large = 'large',
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
 }
-
-export const sizes = [
-  'small',
-  'medium',
-  'large',
-];
 
 export const statuses = [
   'pass',

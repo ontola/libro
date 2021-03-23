@@ -1,8 +1,7 @@
 import { Container as MaterialContainer } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Size, sizes } from '../../components/shared/config';
+import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import Topology, { TopologyContent } from '../Topology';
 
@@ -10,7 +9,7 @@ import './Container.scss';
 
 export const containerTopology = argu.container;
 
-interface Props {
+export interface ContainerProps {
   size: Size;
 }
 
@@ -18,17 +17,12 @@ interface Props {
  * Centers the content and defines width
  * @returns {component} Container with children
  */
-class Container extends Topology<Props> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    size: PropTypes.oneOf(sizes),
-  };
-
+class Container extends Topology<ContainerProps> {
   public static defaultProps = {
     size: 'medium',
   };
 
-  constructor(props: Props) {
+  constructor(props: ContainerProps) {
     super(props);
 
     this.topology = containerTopology;
@@ -41,10 +35,10 @@ class Container extends Topology<Props> {
   }
 
   private maxWidth() {
-    if (this.props.size === Size.large) {
+    if (this.props.size === Size.Large) {
       return 'xl';
     }
-    if (this.props.size === Size.small) {
+    if (this.props.size === Size.Small) {
       return 'md';
     }
 
@@ -52,12 +46,14 @@ class Container extends Topology<Props> {
   }
 }
 
-export const LargeContainer: React.FC = ({ children }) => (
-  <Container size={Size.large}>{children}</Container>
-);
+export interface LargeContainerProps {
+  children: React.ReactNode
+}
 
-LargeContainer.propTypes = {
-  children: PropTypes.node,
-};
+export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => (
+  <Container size={Size.Large}>
+    {children}
+  </Container>
+);
 
 export default Container;

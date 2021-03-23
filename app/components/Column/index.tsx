@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import './Column.scss';
 
-const propTypes = {
+export interface ColumnProps {
   /** Each child becomes a column. */
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.node,
-  ]).isRequired,
-  flexBasis: PropTypes.string,
-};
+  children: JSX.Element,
+  flexBasis?: string,
+}
 
 const defaultProps = {
   flexBasis: '19em',
@@ -19,7 +15,7 @@ const defaultProps = {
 const Column = ({
   children,
   flexBasis,
-}) => (
+}: ColumnProps): JSX.Element => (
   <div
     className="Column"
     style={{ flexBasis }}
@@ -28,7 +24,6 @@ const Column = ({
   </div>
 );
 
-Column.propTypes = propTypes;
 Column.defaultProps = defaultProps;
 
 export default Column;

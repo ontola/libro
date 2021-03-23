@@ -82,7 +82,7 @@ const HomePagePage = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <Container size={Size.medium}>
+    <Container size={Size.Medium}>
       <DexTransferLogo />
       <div className={classes.root}>
         <div className={classes.formContainer}>

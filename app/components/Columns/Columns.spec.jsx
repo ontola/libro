@@ -4,6 +4,10 @@ import Columns from '.';
 
 const exampleChildren = [<div key={0}>Joe</div>, <div key={1}>Joe</div>];
 
+const propTypes = {
+  children: {},
+};
+
 argUnit(Columns, () => {
   describe('with node child', () => {
     setProp('children', () => <p>test</p>);
@@ -24,4 +28,4 @@ argUnit(Columns, () => {
       expect(subject.children()).toHaveLength(exampleChildren.length);
     });
   });
-});
+}, { propTypes });

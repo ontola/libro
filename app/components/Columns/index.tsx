@@ -1,23 +1,19 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import clsx from 'clsx';
 
 import Column from '../Column';
-import { sizes } from '../shared/config';
+import { Size } from '../shared/config';
 
 import './Columns.scss';
 
-const propTypes = {
+interface ColumnsProps {
   /** Each child becomes a column. */
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.node,
-  ]).isRequired,
-  flexBasis: PropTypes.string,
-  flexGrow: PropTypes.bool,
-  gutter: PropTypes.oneOf(sizes),
-  size: PropTypes.oneOf(sizes),
-};
+  children: JSX.Element;
+  flexBasis?: string;
+  flexGrow?: boolean;
+  gutter?: Size;
+  size: Size;
+}
 
 const defaultProps = {
   flexBasis: '19em',
@@ -31,7 +27,7 @@ const Columns = ({
   flexGrow,
   gutter,
   size,
-}) => {
+}: ColumnsProps): JSX.Element => {
   const className = clsx({
     Columns,
     'Columns--flex-grow': flexGrow,
@@ -40,7 +36,7 @@ const Columns = ({
   });
 
   const normChildren = Array.isArray(children) ? children : [children];
-  const renderColumns = normChildren.map((child) => (
+  const renderColumns = normChildren.map((child: JSX.Element) => (
     <Column
       flexBasis={flexBasis}
       key={`col-${child.key}`}
@@ -54,7 +50,6 @@ const Columns = ({
   );
 };
 
-Columns.propTypes = propTypes;
 Columns.defaultProps = defaultProps;
 
 export default Columns;
