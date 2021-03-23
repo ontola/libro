@@ -38,6 +38,23 @@ export const setRecordIfNew = (
   return state;
 };
 
+export const setPlainRecordIfNew = (
+  state: any,
+  record: any,
+  id = record.id,
+) => {
+  const stateId = (record && record['@id']) || id;
+
+  if (state[stateId] === undefined) {
+    return {
+      ...state,
+      [stateId]: record,
+    };
+  }
+
+  return state;
+};
+
 /**
  * Deletes record to items array in immutable Map
  * @param {string} state A state object

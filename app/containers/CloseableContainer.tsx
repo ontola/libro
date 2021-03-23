@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { closeCloseable, initializeCloseable } from '../state/closeable/actions';
+import { CloseableRecord, CloseableState } from '../state/closeable/reducer';
 import { getCloseableOpened } from '../state/closeable/selectors';
 import Button from '../components/Button';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  id: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onInitializeCloseable: PropTypes.func.isRequired,
-  opened: PropTypes.bool.isRequired,
-};
+export interface CloseableContainerProps {
+  children: React.ReactNode;
+  id: string;
+  onClick: React.MouseEventHandler;
+  onInitializeCloseable: (args: CloseableRecord) => void;
+  opened: boolean;
+}
 
-const style = { position: 'relative' };
+const style: React.CSSProperties = { position: 'relative' };
 
-class CloseableContainer extends Component {
+class CloseableContainer extends React.Component<CloseableContainerProps> {
   componentDidMount() {
     if (this.props.id === undefined) {
       throw new Error();
@@ -47,14 +47,12 @@ class CloseableContainer extends Component {
   }
 }
 
-CloseableContainer.propTypes = propTypes;
-
 export default connect(
-  (state, ownProps) => ({
+  (state: { closeable: CloseableState }, ownProps: CloseableContainerProps) => ({
     opened: getCloseableOpened(state, ownProps.id) || false,
   }),
-  (dispatch, { id }) => ({
+  (dispatch, { id }: CloseableContainerProps) => ({
     onClick: () => dispatch(closeCloseable(id)),
-    onInitializeCloseable: (data) => dispatch(initializeCloseable(data)),
-  })
+    onInitializeCloseable: (data: CloseableRecord) => dispatch(initializeCloseable(data)),
+  }),
 )(CloseableContainer);
