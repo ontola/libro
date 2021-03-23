@@ -55,6 +55,7 @@ import Intervention from './Intervention';
 import InterventionType from './InterventionType';
 import PostalCode from './PostalCode';
 import ProductPage from './SalesWebsite/ProductPage';
+import ProductShowcase from './SalesWebsite/ProductShowcase';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import LandingPage from './SalesWebsite';
@@ -167,6 +168,7 @@ export function getViews() {
     ...Phase,
     ...Project,
     ...ProductPage,
+    ...ProductShowcase,
     ...Placement,
     ...PostalCode,
     ...PropertyQuery,

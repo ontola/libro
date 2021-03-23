@@ -1,7 +1,7 @@
 import { register } from 'link-redux';
 
-import ProductShowcase from './ProductShowcase';
+import ProductPage from './ProductPage';
 
 export default [
-  ...register(ProductShowcase),
+  ...register(ProductPage),
 ];

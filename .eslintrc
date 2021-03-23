@@ -48,6 +48,9 @@
     ]
   },
   "rules": {
+    "max-len": ["error", {
+      "tabWidth": 2
+    }],
     "@typescript-eslint/no-magic-numbers": ["error",
       {
         "ignore": [

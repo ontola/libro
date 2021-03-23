@@ -7,7 +7,7 @@ import SplitPane from 'react-split-pane';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import { storageKey } from '../../config';
 
-import { builderContext, PageBuilderContext } from './builderContext';
+import { PageBuilderContext, builderContext } from './builderContext';
 import Editor from './Editor';
 import PageViewer from './PageViewer';
 import Toolbar from './Toolbar';
@@ -72,8 +72,7 @@ const PageBuilder = (): JSX.Element => {
             </Grid>
           </SplitPane>
         </Grid> :
-        <PageViewer />
-      }
+        <PageViewer />}
     </React.Fragment>
   );
 };

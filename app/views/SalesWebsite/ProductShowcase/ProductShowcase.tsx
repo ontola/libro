@@ -20,17 +20,19 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       boxShadow: '0 0 25px rgba(0,0,0,0.2)',
       width: '100%',
     },
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: 'white',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     padding: '1rem',
     textAlign: 'left',
     textTransform: 'none',
   },
   subTextContainer: {
-    minHeight: 55,
+    [theme.breakpoints.up('md')]: {
+      height: 56,
+    },
   },
-  typography: {
+  title: {
     fontWeight: theme.typography.fontWeightBold,
   },
 }));
@@ -49,14 +51,19 @@ const ProductShowcase: FC = () => {
         alignItems="flex-start"
         direction="column"
       >
-        <Typography className={classes.typography} variant="h6">{name.value}</Typography>
-        <div className={classes.subTextContainer}>
+        <Typography
+          className={classes.title}
+          variant="h6"
+        >
+          {name.value}
+        </Typography>
+        <div className={classes.subTextContainer} >
           <Typography variant="subtitle1">{tagline.value}</Typography>
         </div>
         <ArrowRightAltIcon
           className={classes.arrow}
           color="primary"
-          fontSize="large"
+          fontSize="small"
         />
       </Grid>
     </Button>

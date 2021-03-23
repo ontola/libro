@@ -18,6 +18,17 @@ import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  '@keyframes myEffect': {
+    '0%': {
+      transform: 'translateX(-100%)',
+    },
+    '50%': {
+      transform: 'translateX(0)',
+    },
+    '100%': {
+      transform: 'translateX(-100%)',
+    },
+  },
   button: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -25,35 +36,34 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textTransform: 'none',
   },
   container: {
+    flex: 1,
     margin: 'auto',
-    width: '100%',
   },
   iconStyle: {
     color: '#2D7080',
     fontSize: 60,
   },
   image: {
-    backgroundSize: 'percentage',
-    // marginBottom: '1em',
-    // position: 'absolute',
-    maxWidth: '100%',
+    [theme.breakpoints.down('md')]: {
+      animation: `$myEffect 10s ${theme.transitions.easing.easeInOut} infinite`,
+      backgroundSize: 'fill',
+      maxWidth: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundSize: 'percentage',
+      maxWidth: '100%',
+    },
+    marginBottom: 75,
   },
   propositionSelector: {
-    [theme.breakpoints.up('sm')]: {
-      gridTemplateColumns: '1fr 1fr 1fr',
-    },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       gridTemplateColumns: '1fr',
     },
-    // borderRadius: 5,
-    // boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: '1fr 1fr 1fr',
+    },
     display: 'grid',
-    // flex: 1,
     gridTemplateColumns: '1fr 1fr 1fr',
-    // marginTop: 50,
-    // padding: '0 30px',
-    // textAlign: 'left',
-    // textTransform: 'none',
   },
   subTitle: {
     margin: 'auto',

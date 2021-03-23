@@ -14,7 +14,7 @@ import { SalesTheme } from '../SalesThemeProvider';
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   arrow: {
     color: '#2D7080',
-    fontSize: 60,
+    fontSize: 40,
   },
   margin: {
     marginTop: 100,
@@ -50,10 +50,21 @@ const CaseShowcase: FC = () => {
     >
       <Grid
         container
+        direction="column"
         justify="flex-start"
       >
-        <Typography className={classes.themeIndicator} variant="h6">{name.value}</Typography>
-        <Typography className={classes.title} variant="h6">{tagline.value}</Typography>
+        <Typography
+          className={classes.themeIndicator}
+          variant="h6"
+        >
+          {name.value}
+        </Typography>
+        <Typography
+          className={classes.title}
+          variant="h6"
+        >
+          {tagline.value}
+        </Typography>
         <Typography variant="h6">{text.value}</Typography>
         <ArrowRightAltIcon className={classes.arrow} />
       </Grid>
