@@ -1,20 +1,25 @@
-// We always throw, so the implicit return value is void
 import React from 'react';
 
 class SuspendedLoader extends React.Component {
-  constructor(props) {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.resolve = undefined;
-    this.promise = new Promise((resolve) => {
+    this.promise = new Promise<void>((resolve) => {
       this.resolve = resolve;
     });
   }
 
   componentWillUnmount() {
-    this.resolve();
+    if (this.resolve) {
+      this.resolve();
+    }
   }
+  private resolve: ((value: void | PromiseLike<void>) => void) | undefined;
+  private promise: Promise<void> | undefined;
 
+
+  // @ts-ignore
   // eslint-disable-next-line react/require-render-return
   render() {
     throw this.promise;
