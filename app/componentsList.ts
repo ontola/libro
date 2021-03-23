@@ -26,7 +26,6 @@ export const components = {
   Columns: component('Columns'),
   ContainerHeader: component('ContainerHeader'),
   CountBubble: component('CountBubble'),
-  Cover: component('Cover'),
   CoverImage: component('CoverImage'),
   Detail: component('Detail'),
   DetailDate: component('DetailDate'),
