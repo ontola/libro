@@ -1,17 +1,16 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import './CountBubble.scss';
 
-const propTypes = {
+export interface CountBubbleProps {
   /** The number displayed in the bubble */
-  count: PropTypes.number,
-};
+  count: number,
+}
 
 // Small item to indicate the count of something important.
 const CountBubble = ({
   count,
-}) => (
+}: CountBubbleProps): JSX.Element => (
   <div
     className="CountBubble CountBubble--pop-out"
   >
@@ -20,8 +19,5 @@ const CountBubble = ({
     </div>
   </div>
 );
-
-
-CountBubble.propTypes = propTypes;
 
 export default CountBubble;

@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import ContainerFloat from '../../topologies/Container/ContainerFloat';
 
-const propTypes = {
+export interface ContainerHeaderProps {
   /** The children float to the left */
-  children: PropTypes.node,
+  children: React.ReactNode,
   /** The float content floats to the right */
-  float: PropTypes.node,
-};
+  float: React.ReactNode,
+}
 
 /**
  * Holds a header and menu items that float to the top right of the container
@@ -17,7 +16,7 @@ const propTypes = {
 const ContainerHeader = ({
   children,
   float,
-}) => (
+}: ContainerHeaderProps): JSX.Element => (
   <div className="ContainerHeader">
     <div className="ContainerHeader--header">{children}</div>
     <ContainerFloat>
@@ -25,7 +24,5 @@ const ContainerHeader = ({
     </ContainerFloat>
   </div>
 );
-
-ContainerHeader.propTypes = propTypes;
 
 export default ContainerHeader;
