@@ -1,5 +1,5 @@
-import { Grid as MaterialGrid } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import { GridProps, Grid as MaterialGrid } from '@material-ui/core';
+import { GridSize } from '@material-ui/core/Grid/Grid';
 import React from 'react';
 
 import LinkLoader from '../Loading/LinkLoader';
@@ -11,15 +11,22 @@ const MD_BASE = 9;
 const SM_BASE = 6;
 const XS_BASE = 4;
 
-const columnWidth = (base, size, factor) => (
+const columnWidth = (base: number, size: number, factor: number): GridSize => (
   Math.max(
     0,
     Math.min(
       GRID_FULL,
-      size * (GRID_FULL / Math.floor((base / GRID_FULL) * factor))
-    )
-  )
+      size * (GRID_FULL / Math.floor((base / GRID_FULL) * factor)),
+    ),
+  ) as GridSize
 );
+
+export interface GridItemProps extends GridProps {
+  Fallback?: React.ComponentType,
+  children: React.ReactNode,
+  maxColumns: number,
+  size: number,
+}
 
 const GridItem = ({
   children,
@@ -27,7 +34,7 @@ const GridItem = ({
   maxColumns,
   size,
   ...otherProps
-}) => {
+}: GridItemProps): JSX.Element => {
   const lg = columnWidth(LG_BASE, size, maxColumns);
   const md = columnWidth(MD_BASE, size, maxColumns);
   const sm = columnWidth(SM_BASE, size, maxColumns);
@@ -45,13 +52,6 @@ const GridItem = ({
 GridItem.defaultProps = {
   maxColumns: 3,
   size: 1,
-};
-
-GridItem.propTypes = {
-  Fallback: PropTypes.elementType,
-  children: PropTypes.node,
-  maxColumns: PropTypes.number,
-  size: PropTypes.number,
 };
 
 export default GridItem;
