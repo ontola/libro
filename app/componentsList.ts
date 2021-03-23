@@ -81,6 +81,5 @@ export const components = {
   Spinner: component('Spinner'),
   UnorderedList: component('UnorderedList'),
   VerticalScroller: component('VerticalScroller'),
-  VoteChart: component('VoteChart'),
   VoteData: component('VoteData'),
 };

@@ -77,7 +77,6 @@ import CompSkipNavigation from './components/SkipNavigation/index';
 import CompSpinner from './components/Spinner';
 import CompUnorderedList from './components/UnorderedList/index';
 import CompVerticalScroller from './components/VerticalScroller';
-import CompVoteChart from './components/VoteChart/index';
 import CompVoteData from './components/VoteData/index';
 import { component, components } from './componentsList';
 
@@ -161,6 +160,5 @@ export const componentMap = {
   [rdf.id(components.Spinner)]: CompSpinner,
   [rdf.id(components.UnorderedList)]: CompUnorderedList,
   [rdf.id(components.VerticalScroller)]: CompVerticalScroller,
-  [rdf.id(components.VoteChart)]: CompVoteChart,
   [rdf.id(components.VoteData)]: CompVoteData,
 };
