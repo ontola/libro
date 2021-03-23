@@ -387,6 +387,13 @@ export const pdfMessages = defineMessages({
   },
 });
 
+export const phaseMessages = defineMessages({
+  phaseStepperHeader: {
+    defaultMessage: 'Phase {number}: ',
+    id: 'https://app.argu.co/i18n/phases/stepper/header',
+  },
+});
+
 export const statusMessages = defineMessages({
   closedTooltip: {
     defaultMessage: 'Closed on {date}',

@@ -124,6 +124,7 @@
   "https://app.argu.co/i18n/pdf/fullScreen": "Scherm vullen (F)",
   "https://app.argu.co/i18n/pdf/nextPage":  "Volgende pagina (→)",
   "https://app.argu.co/i18n/pdf/previousPage": "Vorige pagina (←)",
+  "https://app.argu.co/i18n/phases/stepper/header": "Fase {number}: ",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Vastgezet op {date}",
   "https://app.argu.co/i18n/schema:Person/postedByText": "Geplaatst door {name}",
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Toon profiel van {name}",

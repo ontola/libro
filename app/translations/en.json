@@ -124,6 +124,7 @@
   "https://app.argu.co/i18n/pdf/fullScreen": "Fullscreen (F)",
   "https://app.argu.co/i18n/pdf/nextPage":  "Next page (→)",
   "https://app.argu.co/i18n/pdf/previousPage": "Previous page (←)",
+  "https://app.argu.co/i18n/phases/stepper/header": "Phase {number}: ",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Pinned at {date}",
   "https://app.argu.co/i18n/schema:Person/postedByText": "Posted by {name}",
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Show {name}'s profile",
