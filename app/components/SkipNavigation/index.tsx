@@ -2,7 +2,9 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+import { LibroTheme } from '../../themes/themes';
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   link: {
     '&:focus': {
       clip: 'auto',
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
  * Enables keyboard-only users to quickly set focus to the main content.
  * Is hidden for mouse users.
  */
-const SkipNavigation = () => {
+const SkipNavigation = (): JSX.Element => {
   const classes = useStyles();
 
   return (
