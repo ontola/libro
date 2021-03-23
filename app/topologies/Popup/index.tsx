@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -5,6 +6,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import argu from '../../ontology/argu';
+import { PopupObject } from '../../state/popup/reducer';
 import { getCurrentLocation, getCurrentPopup } from '../../state/popup/selectors';
 import Topology, { TopologyState } from '../Topology';
 
@@ -62,7 +64,7 @@ class Popup extends Topology<PropTypes, State> {
 }
 
 const ConnectedPopup = connect(
-  (state) => ({
+  (state: Map<string, PopupObject>) => ({
     location: getCurrentLocation(state),
     popup: getCurrentPopup(state),
   }),
