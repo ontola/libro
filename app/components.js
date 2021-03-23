@@ -43,12 +43,10 @@ import CompGridGridHeader from './components/Grid/GridHeader';
 import CompGridGridItem from './components/Grid/GridItem';
 import CompHeaderWithMenu from './components/HeaderWithMenu';
 import CompHeading from './components/Heading';
-import CompHoverPopup from './components/HoverPopup/HoverPopup';
 import CompImage from './components/Image';
 import CompInputFileInput from './components/Input/FileInput';
 import CompInputInput from './components/Input/Input';
 import CompLDLink from './components/LDLink';
-import CompLabeledAttribute from './components/LabeledAttribute/index';
 import CompLink from './components/Link';
 import CompLinkDuo from './components/LinkDuo';
 import CompLinkLinkLabel from './components/Link/LinkLabel';
@@ -128,12 +126,10 @@ export const componentMap = {
   [rdf.id(components.HeaderWithMenu)]: CompHeaderWithMenu,
   [rdf.id(components.HeaderFloat)]: CompHeaderFloat,
   [rdf.id(components.Heading)]: CompHeading,
-  [rdf.id(components.HoverPopup)]: CompHoverPopup,
   [rdf.id(components.Image)]: CompImage,
   [rdf.id(components.InputFileInput)]: CompInputFileInput,
   [rdf.id(components.InputInput)]: CompInputInput,
   [rdf.id(components.LDLink)]: CompLDLink,
-  [rdf.id(components.LabeledAttribute)]: CompLabeledAttribute,
   [rdf.id(components.Link)]: CompLink,
   [rdf.id(components.LinkDuo)]: CompLinkDuo,
   [rdf.id(components.LinkLinkLabel)]: CompLinkLinkLabel,
