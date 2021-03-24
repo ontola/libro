@@ -1,4 +1,3 @@
-import { Map } from 'immutable';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -64,7 +63,7 @@ class Popup extends Topology<PropTypes, State> {
 }
 
 const ConnectedPopup = connect(
-  (state: Map<string, PopupObject>) => ({
+  (state: Record<string, PopupObject>) => ({
     location: getCurrentLocation(state),
     popup: getCurrentPopup(state),
   }),

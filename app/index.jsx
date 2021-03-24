@@ -19,7 +19,6 @@ import patchRequestInitGenerator from './helpers/monkey';
   const {
     lrs,
     history,
-    serviceWorkerCommunicator,
   } = generateLRS();
   patchRequestInitGenerator(lrs);
 
@@ -40,7 +39,6 @@ import patchRequestInitGenerator from './helpers/monkey';
       <App
         history={history}
         lrs={lrs}
-        serviceWorkerCommunicator={serviceWorkerCommunicator}
         title={getMetaContent('application-name')}
         website={getMetaContent('website-iri')}
       />,

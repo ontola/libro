@@ -18,7 +18,7 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
 import {
-  OmniformState,
+  UnscopedOmniformState,
   getOmniformAction,
   omniformSetAction,
 } from '../../state/omniform';
@@ -206,7 +206,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
   );
 };
 
-const mapStateToProps = (state: OmniformState, ownProps: OmniformOwnProps): OmniformStateProps => {
+const mapStateToProps = (state: UnscopedOmniformState, ownProps: OmniformOwnProps): OmniformStateProps => {
   const action = getOmniformAction(state, ownProps.parentIRI) || ownProps.actions.values().next().value;
 
   return ({

@@ -1,6 +1,5 @@
 import { NamedNode } from '@ontologies/core';
 import { Location } from 'history';
-import { Map } from 'immutable';
 import { NamespaceMap } from 'link-lib';
 
 import app, { frontendPathname } from '../ontology/app';
@@ -18,8 +17,8 @@ export function currentLocation(location: Location<any>,
   return ns.appSlashless.ns(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
 }
 
-export function absoluteRouterLocation(state: Map<string, Map<string, any>>): string {
-  const location: Map<string, any> = state.getIn(['router', 'location']);
+export function absoluteRouterLocation(state: Record<string, Record<string, any>>): string {
+  const location: Record<string, any> = state.router.location;
 
   return location && location.get('pathname') + location.get('search') + location.get('hash');
 }

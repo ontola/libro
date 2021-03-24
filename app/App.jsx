@@ -1,4 +1,4 @@
-import { ConnectedRouter } from 'connected-react-router/immutable';
+import { ConnectedRouter } from 'connected-react-router';
 import { lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -17,11 +17,10 @@ const App = ({
   history,
   location,
   lrs,
-  serviceWorkerCommunicator,
   website,
   title,
 }) => {
-  const store = configureStore(history, serviceWorkerCommunicator);
+  const store = configureStore(history);
   register(lrs);
   const websiteCtxValue = getWebsiteContextFromWebsite(website);
 
@@ -63,7 +62,6 @@ App.propTypes = {
   }),
   location: PropTypes.string,
   lrs: lrsType,
-  serviceWorkerCommunicator: PropTypes.shape({}),
   title: PropTypes.string,
   website: PropTypes.string,
 };

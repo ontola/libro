@@ -4,11 +4,13 @@
  * @module API
  */
 
+import { Action } from 'redux-actions';
+
 import { handle } from '../helpers/logging';
 import { AFE_API_GET_MAP_ACCESS_TOKEN } from '../state/action-types';
 import { setMapAccessToken } from '../state/MapView/actions';
 
-export default () => () => (next) => (action) => {
+export default () => () => (next: (a: unknown) => void) => (action: Action<unknown>): Promise<unknown> | void => {
   if (!action.type.startsWith('@AFE_API/')) {
     return next(action);
   }

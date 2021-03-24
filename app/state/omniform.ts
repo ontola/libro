@@ -1,5 +1,4 @@
 import { NamedNode } from '@ontologies/core';
-import { Map, Record } from 'immutable';
 import { SomeNode } from 'link-lib';
 import { createAction, handleActions } from 'redux-actions';
 
@@ -13,18 +12,20 @@ import {
 export interface OmniformRecordType {
   action: NamedNode | undefined;
   inlineOpened: false;
-  parentIRI: string;
+  parentIRI: string | undefined;
 }
 
-export type OmniformState = Map<string, OmniformRecordType>;
+export type UnscopedOmniformState = { omniform: Record<string, OmniformRecordType | undefined> };
+export type OmniformState = Record<string, OmniformRecordType | undefined>;
 
 // Factory
-export const OmniformRecord = Record({
+export const createOmniformRecord = (opts: Partial<OmniformRecordType>): OmniformRecordType => ({
   // NamedNode
   action: undefined,
   inlineOpened: false,
   // Base64 encoded IRI
   parentIRI: undefined,
+  ...opts,
 });
 
 // Action Creators
@@ -33,28 +34,48 @@ export const omniformOpenInline = createAction(OMNIFORM_OPEN_INLINE);
 export const omniformSetAction = createAction(OMNIFORM_SET_ACTION);
 
 // Reducer
-// @ts-ignore
-const initialState = new Map<string, OmniformRecordType>({});
+const initialState: Record<string, OmniformRecordType | undefined> = {};
 
-export const omniformReducer = handleActions({
-  [OMNIFORM_CLOSE_INLINE]: (state, { payload }) => state.setIn([payload, 'inlineOpened'], false),
+export const omniformReducer = handleActions<any, any>({
+  [OMNIFORM_CLOSE_INLINE]: (state, { payload }) => ({
+    ...state,
+    [payload]: {
+      ...state[payload],
+      inlineOpened: false,
+    },
+  }),
   [OMNIFORM_INITIALIZE]: (state, { payload }) => {
-    if (state.get(payload.parentIRI)) {
+    if (state[payload.parentIRI]) {
       return state;
     }
 
-    return state.set(payload.parentIRI, new OmniformRecord({
-      action: payload.action,
-      parentIRI: payload.parentIRI,
-    }));
+    return ({
+      ...state,
+      [payload.parentIRI]: createOmniformRecord({
+        action: payload.action,
+        parentIRI: payload.parentIRI,
+      }),
+    });
   },
-  [OMNIFORM_OPEN_INLINE]: (state, { payload }) => state.setIn([payload, 'inlineOpened'], true),
-  [OMNIFORM_SET_ACTION]: (state, { payload }) => state.setIn([payload.parentIRI, 'action'], payload.action),
+  [OMNIFORM_OPEN_INLINE]: (state, { payload }) => ({
+    ...state,
+    [payload]: {
+      ...state[payload],
+      inlineOpened: true,
+    },
+  }),
+  [OMNIFORM_SET_ACTION]: (state, { payload }) => ({
+    ...state,
+    [payload.parentIRI]: {
+      ...state[payload.parentIRI],
+      action: payload.action,
+    },
+  }),
 }, initialState);
 
 // Selectors
 
-export const getOmniformAction = (state: OmniformState, parentIRI: SomeNode): NamedNode | undefined =>
-  state.getIn(['omniform', parentIRI, 'action']);
-export const getOmniformOpenState = (state: OmniformState, parentIRI: SomeNode): boolean =>
-  state.getIn(['omniform', parentIRI, 'inlineOpened']) || false;
+export const getOmniformAction = (state: UnscopedOmniformState, parentIRI: SomeNode): NamedNode | undefined =>
+  state.omniform[parentIRI.toString()]?.action;
+export const getOmniformOpenState = (state: UnscopedOmniformState, parentIRI: SomeNode): boolean =>
+  state.omniform[parentIRI.toString()]?.inlineOpened ?? false;

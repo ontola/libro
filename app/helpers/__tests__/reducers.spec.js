@@ -1,37 +1,35 @@
-import { Map, Record } from 'immutable';
-
 import {
   deleteRecord,
-  increaseValue,
   setRecord,
   toggleValue,
   updateRecordValue,
 } from '../reducers';
 
-const TestRecord = new Record({
+const createTestRecord = (record) => ({
   id: '',
   individual: true,
   option: '',
+  ...record,
 });
 
-const record = new TestRecord({
+const record = createTestRecord({
   id: '1',
   individual: true,
   option: 'pro',
 });
 
-const recordToggled = new TestRecord({
+const recordToggled = createTestRecord({
   id: '1',
   individual: false,
   option: 'pro',
 });
 
-const initialState = new Map({
-  items: new Map(),
-});
+const initialState = {
+  items: {},
+};
 
-const expectedState = (rec) => new Map({
-  items: new Map({
+const expectedState = (rec) => ({
+  items: ({
     [rec.id]: rec,
   }),
 });
@@ -66,16 +64,6 @@ describe('helpers', () => {
       it('toggles a value', () => {
         expect(updateRecordValue(expectedState(record), record.id, 'individual', false))
           .toEqual(expectedState(recordToggled));
-      });
-    });
-
-    describe('increaseValue', () => {
-      const subject = new Map({ counter: 0 });
-      const expected = new Map({ counter: 1 });
-
-      it('increments the value', () => {
-        expect(increaseValue(subject, 'counter'))
-          .toEqual(expected);
       });
     });
   });

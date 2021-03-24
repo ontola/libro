@@ -1,6 +1,5 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Map } from 'immutable';
 import LinkedRenderStore from 'link-lib';
 import { createStore } from 'redux';
 
@@ -8,7 +7,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 export const generateStore = () => createStore(
   (state) => state,
-  new Map()
+  {}
 );
 
 export function defaultContext(properties = {}) {

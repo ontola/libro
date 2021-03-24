@@ -1,4 +1,3 @@
-import { Map, Record } from 'immutable';
 import { handleActions } from 'redux-actions';
 
 import {
@@ -13,58 +12,130 @@ import {
   COLL_TOGGLE_ONE,
 } from '../action-types';
 
-export const Collapsible = Record({
+interface Collapsible {
+  group?: string | undefined;
+  opened: boolean;
+}
+
+interface CollapsibleState {
+  items: Record<string, Collapsible | undefined>;
+}
+
+interface CollapsiblePayload {
+  identifier: string;
+  group: string;
+}
+
+export const createCollapsible = (opts: Partial<Collapsible>): Collapsible => ({
   group: undefined,
   opened: false,
+  ...opts,
 });
 
-const initialState = new (Map as any)({
-  items: new (Map as any)(),
-});
+const initialState: CollapsibleState = {
+  items: {},
+};
 
 // Opens all collapsibles if one or more in the group are currently closed
 // The group should be a string preferably formatted as 'type_id', e.g. 'event_292104-247914'
-const toggleAll = (state: any, group: any) => {
+const toggleAll = (state: CollapsibleState, group: string | undefined) => {
   let shouldOpen = false;
 
-  const items = state.get('items').map((coll: any) => {
-    if (coll.group !== group) {
-      return coll;
-    }
+  const items = Object
+    .entries(state.items)
+    .reduce((acc, [k, coll]) => {
+      if (coll?.group !== group) {
+        return {
+          ...acc,
+          [k]: coll,
+        };
+      }
 
-    if (coll.opened === false) {
-      shouldOpen = true;
-    }
+      if (coll?.opened === false) {
+        shouldOpen = true;
+      }
 
-    return coll.set('opened', true);
-  });
+      return {
+        ...acc,
+        [k]: {
+          ...coll ?? {},
+          opened: true,
+        },
+      };
+    }, {});
 
   if (shouldOpen) {
-    return state.set('items', items);
+    return {
+      ...state,
+      items,
+    };
   }
 
-  return state.set('items', state.get('items').map((coll: any) => coll.set('opened', false)));
+  return {
+    ...state,
+    items: Object
+      .entries(state.items)
+      .reduce((acc: Record<string, Collapsible | undefined>, [k, coll]: [string, Collapsible | undefined]) => ({
+        ...acc,
+        [k]: {
+          ...coll ?? {},
+          opened: false,
+        },
+      }), {}),
+  };
 };
 
-const closeGroup = (state: any, group: any) => {
-  const modifiedItems = state
-    .get('items')
-    .filter((item: any) => item.get('group') === group)
-    .map((item: any) => item.set('opened', false));
+const closeGroup = (state: CollapsibleState, group: string | undefined): CollapsibleState => ({
+  ...state,
+  items: Object
+    .entries(state.items)
+    .filter(([_, item]: any) => item.group === group)
+    .reduce((acc, [k, item]: any) => {
+      if (item.group !== group) {
+        return {
+          ...acc,
+          [k]: item,
+        };
+      }
 
-  return state.mergeIn(['items'], modifiedItems);
-};
+      return {
+        ...acc,
+        [k]: {
+          ...item,
+          opened: false,
+        },
+      };
+    }, {}),
+});
 
-const recordCollapsible = ({ group, startOpened }: any) => new Collapsible({
+const recordCollapsible = ({ group, startOpened }: any) => createCollapsible({
   group,
   opened: startOpened,
 });
 
-const openOne = (state: any, payload: any) => state.setIn(['items', payload.identifier, 'opened'], true);
+const openOne = (state: any, payload: any) => ({
+  ...state,
+  items: {
+    ...state.items,
+    [payload.identifier]: {
+      ...state.items[payload.identifier],
+      opened: true,
+    },
+  },
+});
 
-const closeOne = (state: any, payload: any) => state.setIn(['items', payload.identifier, 'opened'], false);
+const closeOne = (state: any, payload: any) => ({
+  ...state,
+  items: {
+    ...state.items,
+    [payload.identifier]: {
+      ...state.items[payload.identifier],
+      opened: false,
+    },
+  },
+});
 
-const collapsible = handleActions({
+const collapsible = handleActions<CollapsibleState, CollapsiblePayload>({
   '@@router/LOCATION_CHANGE': (state) => closeGroup(state, 'Navbar'),
 
   [COLL_ADD]: (state, { payload }) => setRecord(

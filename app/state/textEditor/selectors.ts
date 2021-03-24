@@ -6,7 +6,7 @@ import { createMarkdownFromDraft } from '../../helpers/markdownHelper';
 const makeSlice = (state: any) => state.get('textEditor');
 
 const getDraftSlice = (stateSlice: any, id: any) => {
-  const instance = stateSlice.get(id);
+  const instance = stateSlice[id];
 
   if (instance === undefined) {
     return editorStateFromRaw();
@@ -17,8 +17,8 @@ const getDraftSlice = (stateSlice: any, id: any) => {
 
 export const getDraftState = (state: any, id: any) => getDraftSlice(makeSlice(state), id);
 
-export const getEditorShowRich = (state: any) => state.getIn(['textEditor', 'showRichEditor']);
-export const getEditorShowPreview = (state: any) => state.getIn(['textEditor', 'showPreview']);
+export const getEditorShowRich = (state: any) => state.textEditor.showRichEditor;
+export const getEditorShowPreview = (state: any) => state.textEditor.showPreview;
 
 export const getMarkdownTextFromDraft = (state: any, id: any) => {
   const content = getDraftState(state, id);
@@ -31,7 +31,7 @@ export const getMarkdownTextFromDraft = (state: any, id: any) => {
 };
 
 export const getMarkdownTextPlainSlice = (stateSlice: any, id: any) => {
-  const content = stateSlice.getIn([`${id}_plain`]);
+  const content = stateSlice[`${id}_plain`];
   if (content === undefined) {
     return getMarkdownTextFromDraft(stateSlice, id);
   }
@@ -42,7 +42,7 @@ export const getMarkdownTextPlainSlice = (stateSlice: any, id: any) => {
 export const getSliceDraftContent = (stateSlice: any, id: any) => stateSlice.get(id);
 
 export const getMarkdownTextPlain = (state: any, id: any) => {
-  let content = state.getIn(['textEditor', `${id}_plain`]);
+  let content = state.textEditor[`${id}_plain`];
   if (content === undefined) {
     content = getMarkdownTextFromDraft(state, id);
   }
