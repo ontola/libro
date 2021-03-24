@@ -55,7 +55,10 @@ const Metadata: React.FC = () => {
           ...tagProps
         } = metaTag;
 
-        return React.createElement(type, tagProps);
+        return React.createElement(type, {
+          key: `${tagProps.name ?? tagProps.id ?? tagProps.rel}:${tagProps.href ?? tagProps.content}`,
+          ...tagProps,
+        });
       })}
     </Helmet>
   );
