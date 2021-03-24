@@ -1,3 +1,5 @@
+import URL from 'url';
+
 import rdf, {
   isBlankNode,
   isLiteral,
@@ -27,6 +29,24 @@ const hexJSONDataType = (object) => {
   return isNamedNode(object)
     ? rdfx.ns('namedNode').value
     : rdfx.ns('blankNode').value;
+};
+
+const stemIri = (iri) => {
+  const url = new URL(iri);
+
+  return `${url.origin}${url.pathname}`;
+};
+
+const findStartRoute = async (iri) => {
+  const startRoute = `${redisSettingsNS}.routes.start`;
+
+  const startKeys = await client.keys(`${startRoute}.*`);
+  const strippedKeys = startKeys.map((key) => key.replace(`${startRoute}.`, ''));
+  const result = strippedKeys.find((key) => stemIri(iri) === key || iri.startsWith(`${key}/`));
+
+  if (result) {
+    return client.get(`${startRoute}.${result}`);
+  }
 };
 
 const renderDoc = async (ctx, key) => {
@@ -79,7 +99,7 @@ export const docMiddleware = async (ctx, next) => {
     const pathDoc = await client.get(`${redisSettingsNS}.routes.${path}`);
     const websiteRelativePathDoc = await client.get(`${redisSettingsNS}.routes.${websiteRelativePath}`);
 
-    const docKey = iriDoc ?? pathDoc ?? websiteRelativePathDoc;
+    const docKey = iriDoc ?? pathDoc ?? websiteRelativePathDoc ?? await findStartRoute(iri);
 
     if (!docKey) {
       return next();
@@ -110,7 +130,8 @@ export const document = async (ctx) => {
   try {
     const key = `${redisSettingsNS}.docs.${ctx.params.id}`;
     if (await client.exists(key)) {
-      await renderDoc(ctx, key);
+      ctx.res.setHeader('Content-Type', 'application/json');
+      ctx.body = await client.hgetall(key);
     } else {
       ctx.status = 404;
     }
@@ -119,3 +140,19 @@ export const document = async (ctx) => {
     ctx.status = 404;
   }
 };
+
+export const saveDocument = async (ctx) => {
+  const key = `${redisSettingsNS}.docs.${ctx.params.id}`;
+  let source;
+  try {
+    source = ctx.request.body.source;
+  } catch (err) {
+    ctx.status = 400;
+  }
+  try {
+    await client.hset(key, 'source', source);
+    ctx.status = 200;
+  } catch (err) {
+    ctx.status = 500;
+  }
+}

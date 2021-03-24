@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     overflow: 'hidden',
   },
   editor: {
+    height: '100%',
     overflow: 'scroll',
   },
   resizer: {

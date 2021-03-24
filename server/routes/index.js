@@ -35,6 +35,7 @@ import {
   docMiddleware,
   document,
   documents,
+  saveDocument,
 } from './document';
 import health from './health';
 import logout from './logout';
@@ -111,8 +112,11 @@ const routes = async function routes(app, port) {
   router.get('/packs/*', backend);
   router.get('/photos/*', backend);
 
+  router.use('/_libro/docs', bodyParser());
   router.get('/_libro/docs', documents);
   router.get('/_libro/docs/:id', document);
+  __DEVELOPMENT__ && router.post('/_libro/docs/:id', saveDocument);
+
   router.use(docMiddleware);
 
   router.use(sessMiddleware);

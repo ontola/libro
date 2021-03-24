@@ -9,8 +9,8 @@ import ContentFrame from '../App/ContentFrame';
 import { builderContext } from './builderContext';
 
 const PageViewer = (): JSX.Element => {
-  const { index, resources } = React.useContext(builderContext);
-  const currentResource = resources[index];
+  const { resourceIndex, resources } = React.useContext(builderContext);
+  const currentResource = resources[resourceIndex];
   const theme = 'salesWebsite';
   const footerResources = [
     app.ns('menus/footer/argu').value,
