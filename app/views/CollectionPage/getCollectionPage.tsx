@@ -1,24 +1,10 @@
 import * as as from '@ontologies/as';
 import { NamedNode, SomeTerm } from '@ontologies/core';
-import {
-  FC,
-  Property,
-  register,
-} from 'link-redux';
+import { FC, Property } from 'link-redux';
 import React from 'react';
 
 import ontola from '../../ontology/ontola';
-import { allTopologiesExcept } from '../../topologies';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { inlineTopology } from '../../topologies/Inline';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { pageTopology } from '../../topologies/Page';
 
-import CollectionPageInline from './CollectionPageInline';
-import Empty from './properties/empty';
-import Items from './properties/items';
-import Name from './properties/name';
-import Views from './properties/views';
 import { CollectionViewTypes } from './types';
 
 interface CollectionPageProps {
@@ -35,13 +21,10 @@ interface CollectionPageProps {
   view: SomeTerm;
 }
 
-function getCollectionPage({
-  hidePagination = true,
-  topology = [],
-}: {
+export default function getCollectionPage(
   hidePagination: boolean,
   topology: NamedNode | NamedNode[],
-}) {
+): FC<CollectionPageProps> {
   const CollectionPage: FC<CollectionPageProps> = (props) => {
     if (props.insideCollection) {
       return (
@@ -84,33 +67,3 @@ function getCollectionPage({
   return CollectionPage;
 }
 
-const DefaultCollectionPage = getCollectionPage({
-  hidePagination: true,
-  topology: allTopologiesExcept(
-    alertDialogTopology,
-    fullResourceTopology,
-    inlineTopology,
-    pageTopology,
-  ),
-});
-
-const PageCollectionPage = getCollectionPage({
-  hidePagination: false,
-  topology: fullResourceTopology,
-});
-
-const AlertPage = getCollectionPage({
-  hidePagination: false,
-  topology: alertDialogTopology,
-});
-
-export default [
-  register(AlertPage),
-  register(DefaultCollectionPage),
-  register(PageCollectionPage),
-  CollectionPageInline,
-  Empty,
-  ...Items,
-  Name,
-  ...Views,
-];

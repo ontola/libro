@@ -1,14 +1,7 @@
-import { register } from 'link-redux';
-
-import { cardTopology } from '../../topologies/Card';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { containerTopology } from '../../topologies/Container';
-import { gridTopology } from '../../topologies/Grid';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { tabPaneTopology } from '../../topologies/TabPane';
-
+import CollectionCard from './CollectionCard';
 import CollectionDialog from './CollectionDialog';
-import getCollection, { EMPTY_STRATEGY } from './getCollection';
+import CollectionVisibleOnEmpty from './CollectionVisibleOnEmpty';
+import CollectionWithOmniform from './CollectionWithOmniform';
 import CollectionFilterCollection from './properties/collectionFilter';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
@@ -32,36 +25,8 @@ import TotalItems from './properties/totalItems';
 import './Collection.scss';
 
 export default [
-  CollectionTableCell,
-  register(
-    getCollection('CollectionVisibleOnEmpty', {
-      emptyStrategy: EMPTY_STRATEGY.Always,
-      topology: [
-        fullResourceTopology,
-        tabPaneTopology,
-        gridTopology,
-      ],
-    }),
-  ),
-  register(
-    getCollection('CollectionWithOmniform', {
-      emptyStrategy: EMPTY_STRATEGY.Interactable,
-      omniform: true,
-      topology: [
-        containerTopology,
-      ],
-    }),
-  ),
-  register(
-    getCollection('CardCollection', {
-      emptyStrategy: EMPTY_STRATEGY.Interactable,
-      topology: [
-        cardTopology,
-        cardMainTopology,
-      ],
-    }),
-  ),
   ...TotalItems,
+  CollectionCard,
   CollectionCardAppendix,
   CollectionDialog,
   CollectionInline,
@@ -70,6 +35,9 @@ export default [
   CollectionFullPage,
   CollectionPopup,
   ...CollectionSection,
+  CollectionTableCell,
+  CollectionVisibleOnEmpty,
+  CollectionWithOmniform,
   CreateAction,
   ...FilterFields,
   ...Header,
