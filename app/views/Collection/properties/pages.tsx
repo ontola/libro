@@ -1,11 +1,10 @@
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Resource,
   ReturnType,
-  linkType,
-  linkedPropType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Suspense from '../../../components/Suspense';
@@ -14,7 +13,20 @@ import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 import { LoadingGridContent } from '../../../components/Loading';
 
-const Pages = ({
+interface PagesProps {
+  collectionDisplay: SomeTerm;
+  columns: NamedNode[];
+  depth: number;
+  insideCollection: boolean;
+  linkedProp: SomeTerm;
+  maxColumns: number;
+  pages: SomeTerm[];
+  renderWhenEmpty: boolean;
+  singlePage: boolean;
+  view: SomeTerm;
+}
+
+const Pages: FC<PagesProps> = ({
   children,
   collectionDisplay,
   columns,
@@ -88,20 +100,6 @@ Pages.mapDataToProps = {
     label: ontola.pages,
     returnType: ReturnType.AllTerms,
   },
-};
-
-Pages.propTypes = {
-  children: PropTypes.node,
-  collectionDisplay: linkType,
-  columns: linkType,
-  depth: PropTypes.number,
-  insideCollection: PropTypes.bool,
-  linkedProp: linkedPropType,
-  maxColumns: PropTypes.number,
-  pages: linkType,
-  renderWhenEmpty: PropTypes.bool,
-  singlePage: PropTypes.bool,
-  view: linkType,
 };
 
 export default [register(Pages)];

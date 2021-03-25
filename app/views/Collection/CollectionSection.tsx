@@ -1,22 +1,29 @@
 import * as as from '@ontologies/as';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Property,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import ontola from '../../ontology/ontola';
-import CardList, { cardListTopology } from '../../topologies/Card/CardList';
+import CardList, { CardListDirection, cardListTopology } from '../../topologies/Card/CardList';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 import { CollectionTypes } from './types';
 
-const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, topology) => {
-  const CollectionSection = ({
+interface CollectionSectionProps {
+  direction: CardListDirection,
+  to: SomeTerm;
+  totalItems: SomeTerm;
+}
+
+const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, topology: NamedNode | NamedNode[]) => {
+
+  const CollectionSection: FC<CollectionSectionProps> = ({
     direction,
     totalItems,
     to,
@@ -43,12 +50,6 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, t
     totalItems: as.totalItems,
   };
 
-  CollectionSection.propTypes = {
-    direction: PropTypes.oneOf(['column']),
-    to: linkType,
-    totalItems: linkType,
-  };
-
   return CollectionSection;
 };
 
@@ -60,6 +61,6 @@ export default [
       cardFixedTopology,
       cardListTopology,
       cardRowTopology,
-    ]
+    ],
   )),
 ];

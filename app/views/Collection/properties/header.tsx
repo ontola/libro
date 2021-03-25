@@ -1,12 +1,8 @@
 import * as as from '@ontologies/as';
-import {
-  Property,
-  linkType,
-  subjectType,
-  topologyType,
-} from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
+import { Property } from 'link-redux';
+import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
 import CollectionCreateActionButton from '../../../components/Collection/CollectionCreateActionButton';
@@ -19,11 +15,26 @@ import Container, { LargeContainer, containerTopology } from '../../../topologie
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
+interface HeaderFloatProps {
+  hidePagination?: boolean;
+  omniform?: boolean;
+  setCurrentPage?: (page: NamedNode) => void;
+}
+
+interface HeaderProps {
+  children?: ReactNode;
+  collectionDisplay: SomeTerm;
+  omniform: boolean,
+  setCurrentPage: (page: NamedNode) => void;
+  subject: SomeNode;
+  topologyCtx: SomeNode;
+}
+
 export const HeaderFloat = ({
   hidePagination,
   omniform,
   setCurrentPage,
-}) => {
+}: HeaderFloatProps): JSX.Element => {
   const renderPagination = setCurrentPage && !hidePagination;
 
   return (
@@ -34,13 +45,8 @@ export const HeaderFloat = ({
     </React.Fragment>
   );
 };
-HeaderFloat.propTypes = {
-  hidePagination: PropTypes.bool,
-  omniform: PropTypes.bool,
-  setCurrentPage: PropTypes.func,
-};
 
-const cardCollectionHeader = (props) => (
+const cardCollectionHeader = (props: HeaderProps): JSX.Element => (
   <CardHeader float={<HeaderFloat {...props} />}>
     <Property label={as.name} />
     <div>
@@ -52,20 +58,14 @@ const cardCollectionHeader = (props) => (
     </div>
   </CardHeader>
 );
-cardCollectionHeader.propTypes = {
-  collectionDisplay: linkType,
-  omniform: PropTypes.bool,
-  setCurrentPage: PropTypes.func,
-  subject: subjectType,
-};
 
-const containerCollectionHeader = (props) => {
+const containerCollectionHeader = (props: HeaderProps): JSX.Element => {
   const {
     collectionDisplay,
     setCurrentPage,
     topologyCtx,
   } = props;
-  let Wrapper = React.Fragment;
+  let Wrapper = React.Fragment as React.ElementType;
   if (collectionDisplay === ontola['collectionDisplay/default'] && topologyCtx !== containerTopology) {
     Wrapper = Container;
   }
@@ -88,15 +88,8 @@ const containerCollectionHeader = (props) => {
     </Wrapper>
   );
 };
-containerCollectionHeader.propTypes = {
-  collectionDisplay: linkType,
-  omniform: PropTypes.bool,
-  setCurrentPage: PropTypes.func,
-  subject: subjectType,
-  topologyCtx: topologyType,
-};
 
-const registerHeader = buildRegister({
+const registerHeader = buildRegister<HeaderProps>({
   property: ontola.header,
   type: CollectionTypes,
 });

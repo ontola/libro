@@ -1,20 +1,26 @@
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Resource,
-  linkType,
-  linkedPropType,
   register,
 } from 'link-redux';
 import React from 'react';
 
 import BreadcrumbsBar from '../../../components/Breadcrumbs/BreadcrumbsBar';
-import Container from '../../../topologies/Container';
-import { CollectionTypes } from '../types';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import { Size } from '../../../components/shared/config';
 import ontola from '../../../ontology/ontola';
+import Container from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import { CollectionTypes } from '../types';
 
-const IsPartOfPage = ({ collectionDisplay, linkedProp }) => (
-  <Container size={collectionDisplay === ontola.ns('collectionDisplay/grid') ? 'large' : null}>
+export interface IsPartOfProps {
+  collectionDisplay: SomeTerm;
+  linkedProp: SomeTerm,
+}
+
+const IsPartOfPage: FC<IsPartOfProps> = ({ collectionDisplay, linkedProp }) => (
+  <Container size={collectionDisplay === ontola.ns('collectionDisplay/grid') ? Size.Large : undefined}>
     <BreadcrumbsBar>
       <Resource subject={linkedProp} />
     </BreadcrumbsBar>
@@ -29,11 +35,6 @@ IsPartOfPage.topology = fullResourceTopology;
 
 IsPartOfPage.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
-};
-
-IsPartOfPage.propTypes = {
-  collectionDisplay: linkType,
-  linkedProp: linkedPropType,
 };
 
 export default register(IsPartOfPage);

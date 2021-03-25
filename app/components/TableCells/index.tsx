@@ -1,3 +1,4 @@
+import { NamedNode } from '@ontologies/core';
 import { normalizeType } from 'link-lib';
 import {
   Property,
@@ -9,7 +10,7 @@ import React from 'react';
 import Spinner from '../Spinner';
 
 interface PropTypes {
-  columns: any;
+  columns: NamedNode[];
 }
 
 const TableCells: React.FC<PropTypes> = ({ columns }) => {

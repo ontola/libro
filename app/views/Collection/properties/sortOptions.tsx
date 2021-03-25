@@ -1,11 +1,11 @@
 import IconButton from '@material-ui/core/IconButton';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Resource,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { retrievePath } from '../../../helpers/iris';
@@ -16,22 +16,30 @@ import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
 import { CollectionTypes } from '../types';
 
-const SortOptions = ({ setCurrentPage }) => {
+export interface SortOptionsProps {
+  linkedProp: SomeTerm;
+  setCurrentPage: (page: NamedNode) => void;
+}
+interface MenuItemsProps {
+  handleClose: () => void;
+}
+
+const trigger = (onClick: MouseEventHandler) => (
+  <IconButton
+    centerRipple
+    color="default"
+    size="small"
+    onClick={onClick}
+  >
+    <FontAwesome name="sort" />
+  </IconButton>
+);
+
+const SortOptions: FC<SortOptionsProps> = ({ setCurrentPage }) => {
   const sortOptions = useSorting();
 
-  const trigger = (onClick) => (
-    <IconButton
-      centerRipple
-      color="default"
-      size="small"
-      onClick={onClick}
-    >
-      <FontAwesome name="sort" />
-    </IconButton>
-  );
-
-  const menuItems = ({ handleClose }) => sortOptions
-    .filter((option) => option.direction)
+  const menuItems = ({ handleClose }: MenuItemsProps) => sortOptions
+    .filter((option) => option.direction && option.url)
     .map(({
       item,
       url,
@@ -46,7 +54,7 @@ const SortOptions = ({ setCurrentPage }) => {
         }}
         expandOpen={null}
         key={url}
-        url={retrievePath(url)}
+        url={retrievePath(url!)!}
       >
         <FontAwesome name={selected ? 'circle' : 'circle-o'} />
         {' '}
@@ -72,9 +80,5 @@ SortOptions.type = CollectionTypes;
 SortOptions.topology = allTopologies;
 
 SortOptions.property = ontola.sortOptions;
-
-SortOptions.propTypes = {
-  setCurrentPage: PropTypes.func,
-};
 
 export default register(SortOptions);

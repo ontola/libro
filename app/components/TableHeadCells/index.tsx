@@ -3,16 +3,13 @@ import { Resource, useLRS } from 'link-redux';
 import React from 'react';
 
 import { entityIsLoaded } from '../../helpers/data';
+import { SortOptions } from '../../hooks/useSorting';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
-
-interface SortOption {
-  item: NamedNode;
-}
 
 export interface TableHeadCellsProps {
   columns: NamedNode[],
-  setCurrentPage: (newPage: NamedNode) => null,
-  sortOptions: SortOption[],
+  setCurrentPage: (newPage: NamedNode) => void,
+  sortOptions: SortOptions[],
 }
 
 const TableHeadCells = ({

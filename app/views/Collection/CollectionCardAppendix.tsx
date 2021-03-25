@@ -1,7 +1,8 @@
 import * as as from '@ontologies/as';
+import { SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Property,
-  linkType,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -13,7 +14,11 @@ import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { CollectionTypes } from './types';
 
-const CollectionCardAppendix = ({ totalItems }) => {
+interface CollectionCardAppendixProps {
+  totalItems: SomeTerm;
+}
+
+const CollectionCardAppendix: FC<CollectionCardAppendixProps> = ({ totalItems }) => {
   if (tryParseInt(totalItems) === 0) {
     return null;
   }
@@ -31,10 +36,6 @@ CollectionCardAppendix.topology = cardAppendixTopology;
 
 CollectionCardAppendix.mapDataToProps = {
   totalItems: as.totalItems,
-};
-
-CollectionCardAppendix.propTypes = {
-  totalItems: linkType,
 };
 
 export default register(CollectionCardAppendix);

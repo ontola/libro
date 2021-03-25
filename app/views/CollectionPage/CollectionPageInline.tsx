@@ -1,16 +1,16 @@
 import * as as from '@ontologies/as';
 import {
+  FC,
   Property,
   register,
 } from 'link-redux';
 import React from 'react';
-import { withRouter } from 'react-router';
 
 import { inlineTopology } from '../../topologies/Inline';
 
 import { CollectionViewTypes } from './types';
 
-const CollectionPageInline = () => (
+const CollectionPageInline: FC = () => (
   <Property
     forceRender
     label={as.items}
@@ -22,7 +22,5 @@ const CollectionPageInline = () => (
 CollectionPageInline.type = CollectionViewTypes;
 
 CollectionPageInline.topology = inlineTopology;
-
-CollectionPageInline.hocs = [withRouter];
 
 export default register(CollectionPageInline);

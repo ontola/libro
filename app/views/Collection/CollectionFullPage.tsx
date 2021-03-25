@@ -11,7 +11,7 @@ import { CollectionViewTypes } from '../CollectionPage/types';
 
 import { CollectionTypes } from './types';
 
-const CollectionFullPage = (props) => (
+const CollectionFullPage = (props: Record<string, unknown>) => (
   <React.Fragment>
     <Metadata />
     <FullResource>

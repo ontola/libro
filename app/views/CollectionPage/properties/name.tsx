@@ -1,24 +1,42 @@
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  linkedPropType,
+  FC,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import Heading from '../../../components/Heading';
+import Heading, { HeadingSize } from '../../../components/Heading';
 import Link from '../../../components/Link';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
-const CollectionPageName = ({ linkedProp }) => {
+interface CollectionPageNameProps {
+  linkedProp: SomeTerm;
+}
+
+const CollectionPageName: FC<CollectionPageNameProps> = ({ linkedProp }) => {
   const [href] = useProperty(ontola.href);
-  const Wrapper = typeof href !== 'undefined' ? Link : 'div';
+  const Wrapper = React.useCallback(
+    ({ children }) => {
+      if (typeof href === 'undefined') {
+        return (<div>{children}</div>);
+      }
+
+      return (
+        <Link to={href.value}>
+          {children}
+        </Link>
+      );
+    },
+    [href],
+  );
 
   return (
-    <Wrapper to={href}>
-      <Heading size="2">
+    <Wrapper>
+      <Heading size={HeadingSize.LG}>
         {linkedProp.value}
       </Heading>
     </Wrapper>
@@ -30,9 +48,5 @@ CollectionPageName.type = CollectionViewTypes;
 CollectionPageName.property = schema.name;
 
 CollectionPageName.topology = allTopologies;
-
-CollectionPageName.propTypes = {
-  linkedProp: linkedPropType,
-};
 
 export default register(CollectionPageName);

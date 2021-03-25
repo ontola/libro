@@ -2,12 +2,11 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import {
+  FC,
   Property,
   Resource,
   register,
-  subjectType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -17,7 +16,7 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 
 import { CollectionTypes } from './types';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   wrapper: {
     background: theme.palette.background.default,
     borderRadius: '.5em',
@@ -26,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CollectionDialog = ({ onDone, subject }) => {
+interface CollectionDialogProps {
+  onDone: () => void;
+}
+
+const CollectionDialog: FC<CollectionDialogProps> = ({ onDone, subject }) => {
   const classes = useStyles();
   const closeButton = (
     <IconButton
@@ -54,10 +57,5 @@ const CollectionDialog = ({ onDone, subject }) => {
 CollectionDialog.type = CollectionTypes;
 
 CollectionDialog.topology = alertDialogTopology;
-
-CollectionDialog.propTypes = {
-  onDone: PropTypes.func,
-  subject: subjectType,
-};
 
 export default register(CollectionDialog);

@@ -1,4 +1,4 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   FC,
@@ -14,10 +14,9 @@ import { useCurrentActor } from '../../../hooks/useCurrentActor';
 import teamGL from '../../../ontology/teamGL';
 import { tableTopology } from '../../../topologies/Table';
 import TableRow from '../../../topologies/TableRow';
-import { ColumnType } from '../../Thing/ThingTable';
 
 interface StreetTableProps {
-  columns: ColumnType[];
+  columns: NamedNode[];
   subject: SomeNode;
 }
 

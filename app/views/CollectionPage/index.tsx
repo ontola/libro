@@ -1,13 +1,11 @@
 import * as as from '@ontologies/as';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { withRouter } from 'react-router';
 
 import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
@@ -23,11 +21,28 @@ import Name from './properties/name';
 import Views from './properties/views';
 import { CollectionViewTypes } from './types';
 
+interface CollectionPageProps {
+  collectionDisplay: SomeTerm;
+  collectionDisplayFromData: SomeTerm;
+  columns: NamedNode[];
+  depth: number;
+  insideCollection: boolean;
+  maxColumns: number;
+  originalCollectionResource: SomeTerm;
+  redirectPagination: boolean;
+  renderPartOf: boolean;
+  renderWhenEmpty: boolean;
+  view: SomeTerm;
+}
+
 function getCollectionPage({
   hidePagination = true,
   topology = [],
-} = {}) {
-  const CollectionPage = (props) => {
+}: {
+  hidePagination: boolean,
+  topology: NamedNode | NamedNode[],
+}) {
+  const CollectionPage: FC<CollectionPageProps> = (props) => {
     if (props.insideCollection) {
       return (
         <Property
@@ -61,40 +76,21 @@ function getCollectionPage({
 
   CollectionPage.topology = topology;
 
-  CollectionPage.hocs = [withRouter];
-
   CollectionPage.mapDataToProps = {
     collectionDisplayFromData: ontola.collectionDisplay,
     partOf: as.partOf,
-  };
-
-  CollectionPage.propTypes = {
-    collectionDisplay: linkType,
-    collectionDisplayFromData: linkType,
-    columns: linkType,
-    depth: PropTypes.number,
-    insideCollection: PropTypes.bool,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-    }),
-    maxColumns: PropTypes.number,
-    originalCollectionResource: linkType,
-    redirectPagination: PropTypes.bool,
-    renderPartOf: PropTypes.bool,
-    renderWhenEmpty: PropTypes.bool,
-    subject: subjectType,
-    view: linkType,
   };
 
   return CollectionPage;
 }
 
 const DefaultCollectionPage = getCollectionPage({
+  hidePagination: true,
   topology: allTopologiesExcept(
     alertDialogTopology,
     fullResourceTopology,
     inlineTopology,
-    pageTopology
+    pageTopology,
   ),
 });
 

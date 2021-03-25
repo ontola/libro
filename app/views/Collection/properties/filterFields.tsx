@@ -1,33 +1,39 @@
 import IconButton from '@material-ui/core/IconButton';
 import * as as from '@ontologies/as';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Resource,
   register,
   useProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
 
-const FilterFieldsSearch = ({ setCurrentPage }) => {
+interface FilterFieldsSearchProps {
+  linkedProp: SomeTerm;
+  setCurrentPage: (page: NamedNode) => void;
+}
+
+const trigger = (onClick: MouseEventHandler) => (
+  <IconButton
+    centerRipple
+    color="default"
+    size="small"
+    onClick={onClick}
+  >
+    <FontAwesome name="filter" />
+  </IconButton>
+);
+
+const FilterFieldsSearch: FC<FilterFieldsSearchProps> = ({ setCurrentPage }) => {
   const filterFields = useProperty(ontola.filterFields);
 
-  const trigger = (onClick) => (
-    <IconButton
-      centerRipple
-      color="default"
-      size="small"
-      onClick={onClick}
-    >
-      <FontAwesome name="filter" />
-    </IconButton>
-  );
-
-  const menuItems = ({ handleClose }) => filterFields
+  const menuItems = React.useCallback(({ handleClose }) => filterFields
     .map((field) => (
       <Resource
         handleClose={handleClose}
@@ -35,7 +41,7 @@ const FilterFieldsSearch = ({ setCurrentPage }) => {
         setCurrentPage={setCurrentPage}
         subject={field}
       />
-    ));
+    )), [filterFields, setCurrentPage]);
 
   return (
     <Menu
@@ -51,11 +57,6 @@ FilterFieldsSearch.type = ontola.SearchResult;
 FilterFieldsSearch.topology = allTopologies;
 
 FilterFieldsSearch.property = ontola.filterFields;
-
-FilterFieldsSearch.propTypes = {
-  setCurrentPage: PropTypes.func,
-};
-
 
 const FilterFieldsCollection = () => null;
 

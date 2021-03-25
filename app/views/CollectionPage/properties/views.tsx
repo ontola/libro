@@ -1,7 +1,8 @@
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Resource,
   ReturnType,
-  labelType,
   register,
   useProperty,
 } from 'link-redux';
@@ -12,7 +13,12 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
-const Views = ({ label }) => {
+interface ViewsProps {
+  linkedProp: SomeTerm;
+  label: NamedNode;
+}
+
+const Views: FC<ViewsProps> = ({ label }) => {
   const prop = useProperty(label, { returnType: ReturnType.AllStatements });
 
   if (prop.length === 1) {
@@ -22,7 +28,11 @@ const Views = ({ label }) => {
   if (obs && obs.length > 1) {
     return <Columns>{obs}</Columns>;
   } else if (obs) {
-    return obs;
+    return (
+      <React.Fragment>
+        {obs}
+      </React.Fragment>
+    );
   }
 
   return null;
@@ -33,9 +43,5 @@ Views.type = CollectionViewTypes;
 Views.property = ontola.pages;
 
 Views.topology = allTopologies;
-
-Views.propTypes = {
-  label: labelType,
-};
 
 export default register(Views);

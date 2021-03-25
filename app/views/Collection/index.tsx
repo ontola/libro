@@ -41,7 +41,7 @@ export default [
         tabPaneTopology,
         gridTopology,
       ],
-    })
+    }),
   ),
   register(
     getCollection('CollectionWithOmniform', {
@@ -50,7 +50,7 @@ export default [
       topology: [
         containerTopology,
       ],
-    })
+    }),
   ),
   register(
     getCollection('CardCollection', {
@@ -59,7 +59,7 @@ export default [
         cardTopology,
         cardMainTopology,
       ],
-    })
+    }),
   ),
   ...TotalItems,
   CollectionCardAppendix,

@@ -7,10 +7,8 @@ import TableCells from '../../components/TableCells';
 import { tableTopology } from '../../topologies/Table';
 import TableRow from '../../topologies/TableRow';
 
-export type ColumnType = NamedNode | NamedNode[] | Promise<any>;
-
 interface ThingTableProps {
-  columns: ColumnType[];
+  columns: NamedNode[];
 }
 
 const ThingTable: FC<ThingTableProps> = ({ columns }) => (

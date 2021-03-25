@@ -1,7 +1,11 @@
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import { register, useResourceProperty } from 'link-redux';
+import {
+  FC,
+  register,
+  useResourceProperty,
+} from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -15,7 +19,14 @@ import Container, { containerTopology } from '../../../topologies/Container';
 import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
 
-const Empty = ({
+interface EmptyProps {
+  baseCollection: NamedNode;
+  collectionDisplay: NamedNode;
+  linkedProp: SomeTerm;
+  topology: NamedNode;
+}
+
+const Empty: FC<EmptyProps> = ({
   baseCollection,
   collectionDisplay,
   topology,
@@ -38,7 +49,7 @@ const Empty = ({
   }
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
-    return <GridItem endSpacing>{message}</GridItem>;
+    return <GridItem>{message}</GridItem>;
   }
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/default']) && topology !== containerTopology) {

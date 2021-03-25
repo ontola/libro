@@ -1,12 +1,12 @@
 import * as as from '@ontologies/as';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Property,
   Resource,
   ReturnType,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import ontola from '../../../ontology/ontola';
@@ -16,8 +16,13 @@ import CardRow from '../../../topologies/Card/CardRow';
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
-const getPagination = (Wrapper, topology) => {
-  const InfinitePagination = ({ pages }) => {
+export interface InfinitePaginationProps {
+  linkedProp: SomeTerm;
+  pages: SomeTerm[];
+}
+
+const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
+  const InfinitePagination: FC<InfinitePaginationProps> = ({ pages }) => {
     const lastPage = pages && pages[pages.length - 1];
 
     if (!lastPage) {
@@ -46,19 +51,14 @@ const getPagination = (Wrapper, topology) => {
     },
   };
 
-  InfinitePagination.propTypes = {
-    pages: linkType,
-  };
-
   return InfinitePagination;
 };
 
-export const CardAppendixContent = ({ children }) => (
+export const CardAppendixContent: React.FC = ({ children }) => (
   <CardRow backdrop borderTop>
     {children}
   </CardRow>
 );
-CardAppendixContent.propTypes = { children: PropTypes.node };
 
 export default [
   register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology, pageTopology))),

@@ -1,8 +1,12 @@
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
+export enum CardListDirection {
+  Column = 'column',
+}
+
 interface PropTypes {
-  direction: 'column' | undefined;
+  direction?: CardListDirection;
 }
 
 /**

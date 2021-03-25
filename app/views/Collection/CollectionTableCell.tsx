@@ -8,21 +8,17 @@ import { tableCellTopology } from '../../topologies/TableCell';
 
 import { CollectionTypes } from './types';
 
-class CollectionTableCell extends React.PureComponent {
-  static type = CollectionTypes;
+const CollectionTableCell = () => (
+  <span>
+    <LDLink>
+      <Property label={as.totalItems} />
+    </LDLink>
+    <Property label={ontola.createAction} />
+  </span>
+);
 
-  static topology = tableCellTopology;
+CollectionTableCell.type = CollectionTypes;
 
-  render() {
-    return (
-      <span>
-        <LDLink>
-          <Property label={as.totalItems} />
-        </LDLink>
-        <Property label={ontola.createAction} />
-      </span>
-    );
-  }
-}
+CollectionTableCell.topology = tableCellTopology;
 
 export default register(CollectionTableCell);

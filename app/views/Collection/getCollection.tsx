@@ -45,7 +45,7 @@ interface CollectionProps {
   collectionDisplayFromData: SomeTerm;
   collectionFilter: SomeTerm[];
   collectionType: SomeTerm;
-  columns: SomeNode[];
+  columns: SomeNode;
   depth: number;
   hideHeader: boolean;
   hidePagination: boolean;
@@ -120,7 +120,8 @@ export default function getCollection(
 
     const [opened, setOpen] = React.useState(false);
     const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
-    const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
+    const columnList = columns ? listToArr(lrs, [], columns) : undefined;
+    const resolvedColumns = Array.isArray(columnList) ? columnList : undefined;
     useDataInvalidation(collectionResource);
     const wrapperProps = React.useMemo(() => ({
       className: `Collection Collection__Depth-${depth}`,

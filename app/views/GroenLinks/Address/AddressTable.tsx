@@ -16,10 +16,9 @@ import ontola from '../../../ontology/ontola';
 import teamGL from '../../../ontology/teamGL';
 import { tableTopology } from '../../../topologies/Table';
 import TableRow from '../../../topologies/TableRow';
-import { ColumnType } from '../../Thing/ThingTable';
 
 interface AddressTableProps {
-  columns: ColumnType;
+  columns: NamedNode[];
   createAction: NamedNode;
   subject: SomeNode;
 }

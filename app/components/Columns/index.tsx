@@ -8,11 +8,11 @@ import './Columns.scss';
 
 interface ColumnsProps {
   /** Each child becomes a column. */
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   flexBasis?: string;
   flexGrow?: boolean;
   gutter?: Size;
-  size: Size;
+  size?: Size;
 }
 
 const defaultProps = {

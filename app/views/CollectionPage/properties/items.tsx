@@ -1,14 +1,14 @@
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
   Resource,
   ReturnType,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { CSSProperties, ElementType } from 'react';
 
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
@@ -20,47 +20,65 @@ import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
 
-const itemList = (props, columns, separator, view, maxColumns) => {
+export interface ItemProps {
+  columns: NamedNode[];
+  collectionDisplay: SomeTerm;
+  maxColumns: number;
+  depth: number;
+  items: SomeNode[];
+  linkedProp: SomeTerm;
+  renderLimit: number;
+  separator: string;
+  subject: SomeNode;
+  // @deprecated - refactor to classes
+  style: CSSProperties;
+  topology: NamedNode;
+  totalCount: SomeTerm;
+  view?: NamedNode;
+}
+
+const itemList = (props: ItemProps) => {
+  const view = props.view && useViewByIRI(props.view);
   const [itemWrapper, itemWrapperOpts] = React.useMemo(() => {
-    let wrapper = React.Fragment;
+    let wrapper: ElementType = React.Fragment;
     let wrapperOpts = {};
 
     if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])) {
       wrapper = CardRow;
       wrapperOpts = {
         borderTop: true,
-      }
+      };
     }
     if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
       wrapper = GridItem;
       wrapperOpts = {
         Fallback: LoadingCardFixed,
-        maxColumns,
+        maxColumns: props.maxColumns,
       };
     }
 
     return [wrapper, wrapperOpts];
-  }, [props.collectionDisplay, maxColumns]);
+  }, [props.collectionDisplay, props.maxColumns]);
 
   return (
     props.items
       .slice(0, props.renderLimit)
       .map((iri) => (
         <Resource
-          columns={columns}
+          columns={props.columns}
           depth={props.depth}
           itemRenderer={view}
           itemWrapper={itemWrapper}
           itemWrapperOpts={itemWrapperOpts}
           key={`${props.subject}:${iri.value}`}
-          separator={separator}
+          separator={props.separator}
           subject={iri}
         />
       ))
   );
 };
 
-const styleWrapper = (props, itemListElem) => {
+const styleWrapper = (props: ItemProps, itemListElem: JSX.Element | JSX.Element[] | null) => {
   if (props.style && props.style !== {}) {
     return (
       <div style={props.style}>
@@ -69,24 +87,19 @@ const styleWrapper = (props, itemListElem) => {
     );
   }
 
-  return itemListElem;
+  return <React.Fragment>{itemListElem}</React.Fragment>;
 };
 
-const Items = (props) => {
+const Items: FC<ItemProps> = (props) => {
   const {
-    columns,
     collectionDisplay,
     depth,
     items,
     linkedProp,
-    maxColumns,
-    separator,
     topology,
     totalCount,
-    view: viewIRI,
   } = props;
   let children = null;
-  const view = viewIRI && useViewByIRI(viewIRI);
 
   if (tryParseInt(totalCount) === 0) {
     return (
@@ -102,9 +115,7 @@ const Items = (props) => {
   if (Array.isArray(items) && items.length === 0) {
     children = null;
   } else if (Array.isArray(items)) {
-    children = itemList(props, columns, separator, view, maxColumns);
-  } else if (typeof items.toArray !== 'undefined') {
-    children = itemList(props, columns, separator, view, maxColumns).toKeyedSeq();
+    children = itemList(props);
   } else {
     children = (
       <Resource
@@ -114,7 +125,7 @@ const Items = (props) => {
     );
   }
 
-  return styleWrapper(props, children, columns || []);
+  return styleWrapper(props, children);
 };
 
 Items.type = CollectionViewTypes;
@@ -129,16 +140,6 @@ Items.mapDataToProps = {
     returnType: ReturnType.AllTerms,
   },
   totalCount: { label: as.totalItems },
-};
-
-Items.propTypes = {
-  depth: PropTypes.number,
-  items: linkType,
-  /** The amount of items to render. Leave undefined for all items */
-  renderLimit: PropTypes.number,
-  separator: PropTypes.string,
-  totalCount: linkType,
-  view: linkType,
 };
 
 export default register(Items);

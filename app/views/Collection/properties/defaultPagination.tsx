@@ -1,17 +1,16 @@
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
+import { SomeNode } from 'link-lib';
 import {
-  linkType,
+  FC,
   register,
-  subjectType,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import Button from '../../../components/Button';
+import Button, { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -31,8 +30,26 @@ export const messages = defineMessages({
   },
 });
 
-const getPagination = (Wrapper, topology) => {
-  const DefaultPagination = (props) => {
+export interface PaginationProps {
+  collectionResource: SomeNode;
+  first: SomeTerm;
+  last: SomeTerm;
+  linkedProp: SomeTerm;
+  setCurrentPage: (page: NamedNode) => void;
+}
+
+interface PaginationButtonProps {
+  active?: boolean;
+  ariaLabel?: string;
+  disabled?: boolean;
+  icon?: string;
+  key?: string;
+  label?: string;
+  url?: string;
+}
+
+const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
+  const DefaultPagination: FC<PaginationProps> = (props) => {
     const {
       collectionResource,
       first,
@@ -41,7 +58,7 @@ const getPagination = (Wrapper, topology) => {
       subject,
     } = props;
     const { formatMessage } = useIntl();
-    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type);
+    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
 
     if (!first) {
       return null;
@@ -49,25 +66,28 @@ const getPagination = (Wrapper, topology) => {
 
     const pageProp = 'page';
     const baseUrl = new URL(first.value);
-    const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
-    const lastPage = Number.parseInt(new URL(last.value).searchParams.get(pageProp), 10);
+    const firstPageParam = baseUrl.searchParams.get(pageProp);
+    const firstPage = firstPageParam ? Number.parseInt(firstPageParam, 10) : 1;
+    const lastPageParam = new URL(last.value).searchParams.get(pageProp);
+    const lastPage = lastPageParam ? Number.parseInt(lastPageParam, 10) : undefined;
     const currentOrFirst = typeof collectionResource === 'undefined' || CollectionTypes.includes(collectionResourceType)
       ? first.value
       : collectionResource.value;
     const currentPageUrl = new URL(currentOrFirst);
-    const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
+    const currentPageParam = currentPageUrl.searchParams.get(pageProp);
+    const currentPageNr = currentPageParam ? Number.parseInt(currentPageParam, 10) : 1;
 
     const nextPage = () => {
-      currentPageUrl.searchParams.set(pageProp, currentPageNr + 1);
+      currentPageUrl.searchParams.set(pageProp, (currentPageNr + 1).toString());
 
       return currentPageUrl.href;
     };
     const previousPage = () => {
-      currentPageUrl.searchParams.set(pageProp, currentPageNr - 1);
+      currentPageUrl.searchParams.set(pageProp, (currentPageNr - 1).toString());
 
       return currentPageUrl.href;
     };
-    if (firstPage > lastPage || typeof lastPage === 'undefined') {
+    if (typeof lastPage === 'undefined' || firstPage > lastPage) {
       throw new Error('First page is higher than last page or last is undefined');
     }
 
@@ -78,24 +98,24 @@ const getPagination = (Wrapper, topology) => {
 
     const paginationButton = ({
       active,
-      alt,
+      ariaLabel,
       disabled = false,
       icon,
       key,
       label,
       url,
-    } = {}) => {
-      const className = active ? 'Button--active' : null;
+    }: PaginationButtonProps = {}) => {
+      const className = active ? 'Button--active' : undefined;
 
       return (
         <Button
           small
-          alt={alt}
+          ariaLabel={ariaLabel}
           className={className}
           disabled={disabled}
           icon={icon}
           key={`${key}-${subject.value}-page-switcher-${key}`}
-          theme="pagination"
+          theme={ButtonTheme.Pagination}
           onClick={(e) => {
             e.preventDefault();
             setCurrentPage(rdf.namedNode(url));
@@ -106,32 +126,22 @@ const getPagination = (Wrapper, topology) => {
       );
     };
 
-    paginationButton.propTypes = {
-      active: PropTypes.bool,
-      alt: PropTypes.string,
-      disabled: PropTypes.bool,
-      icon: PropTypes.string,
-      key: PropTypes.string,
-      label: PropTypes.string,
-      url: PropTypes.string,
-    };
-
-    const singlePageButton = (page) => {
-      baseUrl.searchParams.set(pageProp, page);
+    const singlePageButton = (page: number) => {
+      baseUrl.searchParams.set(pageProp, page.toString());
       const isCurrent = currentOrFirst === baseUrl.toString();
 
       return paginationButton({
         active: isCurrent,
         disabled: isCurrent,
-        key: page,
-        label: page,
+        key: page.toString(),
+        label: page.toString(),
         url: baseUrl.toString(),
       });
     };
 
     const pages = [];
     pages.push(paginationButton({
-      alt: formatMessage(messages.nextLabel),
+      ariaLabel: formatMessage(messages.nextLabel),
       disabled: currentPageNr === firstPage,
       icon: 'arrow-left',
       key: 'prev',
@@ -157,7 +167,7 @@ const getPagination = (Wrapper, topology) => {
     pages.push(singlePageButton(lastPage));
 
     pages.push(paginationButton({
-      alt: formatMessage(messages.nextLabel),
+      ariaLabel: formatMessage(messages.nextLabel),
       disabled: currentPageNr === lastPage,
       icon: 'arrow-right',
       key: 'next',
@@ -185,25 +195,16 @@ const getPagination = (Wrapper, topology) => {
     last: as.last,
   };
 
-  DefaultPagination.propTypes = {
-    collectionResource: linkType,
-    first: linkType,
-    last: linkType,
-    setCurrentPage: PropTypes.func,
-    subject: subjectType,
-  };
-
   return DefaultPagination;
 };
 
-export const CardAppendixContent = ({ children }) => (
+export const CardAppendixContent: React.FC = ({ children }) => (
   <CardRow backdrop borderTop>
     <CardContent>
       {children}
     </CardContent>
   </CardRow>
 );
-CardAppendixContent.propTypes = { children: PropTypes.node };
 
 export default [
   register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology, pageTopology))),

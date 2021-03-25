@@ -1,11 +1,9 @@
-import RDFTypes from '@rdfdev/prop-types';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import {
+  FC,
   Property,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import TableHeadCells from '../../../components/TableHeadCells';
@@ -27,8 +25,20 @@ import { CollectionTypes } from '../types';
 
 const style = { marginBottom: '1em' };
 
-const getFrame = (wrapper, topology) => {
-  const collectionFrame = ({
+interface CollectionFrameProps {
+  body: React.ReactElement;
+  collectionDisplay: SomeTerm;
+  collectionDisplayFromData: SomeTerm;
+  columns: NamedNode[];
+  footer: React.ReactNode;
+  header: React.ReactNode;
+  linkedProp: SomeTerm;
+  pagination: React.ReactNode;
+  setCurrentPage: (page: NamedNode) => void;
+}
+
+const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
+  const collectionFrame: FC<CollectionFrameProps> = ({
     body,
     collectionDisplay,
     collectionDisplayFromData,
@@ -133,16 +143,6 @@ const getFrame = (wrapper, topology) => {
 
   collectionFrame.mapDataToProps = {
     collectionDisplayFromData: ontola.collectionDisplay,
-  };
-
-  collectionFrame.propTypes = {
-    body: PropTypes.node,
-    collectionDisplay: linkType,
-    collectionDisplayFromData: linkType,
-    columns: PropTypes.arrayOf(RDFTypes.namedNode),
-    header: PropTypes.node,
-    pagination: PropTypes.node,
-    setCurrentPage: PropTypes.func,
   };
 
   return collectionFrame;

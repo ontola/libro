@@ -10,6 +10,7 @@ import './Container.scss';
 export const containerTopology = argu.container;
 
 export interface ContainerProps {
+  className?: string;
   size: Size;
 }
 

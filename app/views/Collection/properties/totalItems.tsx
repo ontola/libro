@@ -1,38 +1,46 @@
 import * as as from '@ontologies/as';
-import { linkType } from 'link-redux';
-import React from 'react';
+import { NamedNode, SomeTerm } from '@ontologies/core';
+import React, { ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import LDLink from '../../../components/LDLink';
-import Heading from '../../../components/Heading';
 import CardContent from '../../../components/Card/CardContent';
-import { tryParseInt } from '../../../helpers/numbers';
-import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
-import { allTopologiesExcept } from '../../../topologies';
+import Heading, { HeadingSize } from '../../../components/Heading';
+import LDLink from '../../../components/LDLink';
 import { buildRegister } from '../../../helpers/buildRegister';
-import { CollectionTypes } from '../types';
+import { tryParseInt } from '../../../helpers/numbers';
+import { allTopologiesExcept } from '../../../topologies';
+import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
 import { pageTopology } from '../../../topologies/Page';
 import { tableCellTopology } from '../../../topologies/TableCell';
+import { CollectionTypes } from '../types';
 
 const mapDataToProps = {
   first: as.first,
   last: as.last,
 };
 
+interface CollectionTotalItemsProps {
+  children?: ReactNode;
+  first: SomeTerm;
+  last: SomeTerm;
+  linkedProp: SomeTerm;
+  to: NamedNode;
+}
+
 const defaultCollectionTotalItems = ({
   first,
   last,
   linkedProp,
   to,
-}) => {
+}: CollectionTotalItemsProps): JSX.Element | null => {
   if (tryParseInt(linkedProp) === 0 || first === last) {
     return null;
   }
 
   return (
     <LDLink to={to}>
-      <Heading size="4">
+      <Heading size={HeadingSize.SM}>
         <FormattedMessage
           defaultMessage="View all {count}..."
           id="https://app.argu.co/i18n/collection/readAll"
@@ -45,18 +53,11 @@ const defaultCollectionTotalItems = ({
 
 defaultCollectionTotalItems.mapDataToProps = mapDataToProps;
 
-defaultCollectionTotalItems.propTypes = {
-  first: linkType,
-  last: linkType,
-  linkedProp: linkType,
-  to: linkType,
-};
-
 const cardAppendixCollectionTotalItems = ({
   first,
   last,
   linkedProp,
-}) => {
+}: CollectionTotalItemsProps): JSX.Element | null => {
   if (linkedProp.value === '0' || first === last) {
     return null;
   }
@@ -65,7 +66,7 @@ const cardAppendixCollectionTotalItems = ({
     <CardRow backdrop>
       <CardContent>
         <LDLink>
-          <Heading size="4">
+          <Heading size={HeadingSize.SM}>
             <FormattedMessage
               defaultMessage="View all {count}..."
               id="https://app.argu.co/i18n/collection/readAll"
@@ -80,13 +81,7 @@ const cardAppendixCollectionTotalItems = ({
 
 cardAppendixCollectionTotalItems.mapDataToProps = mapDataToProps;
 
-cardAppendixCollectionTotalItems.propTypes = {
-  first: linkType,
-  last: linkType,
-  linkedProp: linkType,
-};
-
-const registerTotalItems = buildRegister({
+const registerTotalItems = buildRegister<CollectionTotalItemsProps>({
   property: as.totalItems,
   type: CollectionTypes,
 });

@@ -1,6 +1,10 @@
 import * as as from '@ontologies/as';
 import * as rdfx from '@ontologies/rdf';
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import ontola from '../../ontology/ontola';
@@ -8,7 +12,7 @@ import { inlineTopology } from '../../topologies/Inline';
 
 import { CollectionTypes } from './types';
 
-const CollectionInline = () => (
+const CollectionInline: FC = () => (
   <p>
     <label>
       <Property label={as.name} />
