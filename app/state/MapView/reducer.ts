@@ -4,6 +4,16 @@ import * as actions from './actions';
 
 export const MapReducerKey = 'MapView';
 
+export interface MapViewState {
+  accessToken: string;
+  error: Error | undefined;
+  expiresAt: string;
+}
+
+export type MapViewStateTree = {
+  [MapReducerKey]: MapViewState;
+};
+
 const initialState = {
   accessToken: '',
   error: undefined,

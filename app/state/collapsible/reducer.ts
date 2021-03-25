@@ -12,16 +12,20 @@ import {
   COLL_TOGGLE_ONE,
 } from '../action-types';
 
-interface Collapsible {
+export interface Collapsible {
   group?: string | undefined;
   opened: boolean;
 }
 
-interface CollapsibleState {
+export interface CollapsibleState {
   items: Record<string, Collapsible | undefined>;
 }
 
-interface CollapsiblePayload {
+export type CollapsibleStateTree = {
+  collapsible: CollapsibleState;
+};
+
+export interface CollapsiblePayload {
   identifier: string;
   group: string;
 }

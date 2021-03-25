@@ -4,6 +4,7 @@ import { Action } from 'redux-actions';
 
 import Collapsible from '../components/Collapsible';
 import { initializeCollapsible, toggleOne } from '../state/collapsible/actions';
+import { CollapsibleStateTree } from '../state/collapsible/reducer';
 import { getCollapsibleOpened } from '../state/collapsible/selectors';
 
 interface CollapsibleContainerProps {
@@ -75,7 +76,7 @@ class CollapsibleContainer extends Component<CollapsibleContainerProps, Collapsi
 }
 
 export default connect(
-  (state, ownProps: CollapsibleContainerProps) => ({
+  (state: CollapsibleStateTree, ownProps: CollapsibleContainerProps) => ({
     opened: getCollapsibleOpened(state, ownProps.id),
   }),
   (dispatch, { id }: any) => ({

@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import CollapsibleContainer from '../../containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from '../../state/collapsible/actions';
+import { CollapsibleStateTree } from '../../state/collapsible/reducer';
 import { getCollapsibleOpened } from '../../state/collapsible/selectors';
 import Button from '../Button';
 import Markdown from '../Markdown';
@@ -90,7 +91,7 @@ const CollapseText: React.FC<CollapseTextProps> = ({
 };
 
 export default connect(
-  (state, ownProps: CollapseTextProps) => {
+  (state: CollapsibleStateTree, ownProps: CollapseTextProps) => {
     const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
 
     return ({
