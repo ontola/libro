@@ -7,27 +7,25 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
+
   Property,
   Resource,
   useDataFetching,
-  useDataInvalidation,
-  useLRS,
   useLink,
   useProperty,
   useResourceProperty,
 } from 'link-redux';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
-import ResourceBoundary from '../../components/ResourceBoundary';
 import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 import { useListToArr } from '../../hooks/useListToArr';
 import { SortProps, useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
-import { CollectionTypes } from '../../views/Collection/types';
 import { invalidStatusIds } from '../../views/Thing/properties/omniform/helpers';
+import ResourceBoundary from '../ResourceBoundary';
 
 export enum EMPTY_STRATEGY {
   Always = 0,
@@ -41,11 +39,9 @@ export interface CollectionProps {
   depth?: number;
   hideHeader?: boolean;
   hidePagination?: boolean;
-  originalCollectionResource?: NamedNode;
   redirectPagination?: boolean;
   renderPartOf?: boolean;
   renderWhenEmpty?: boolean;
-  renderedPage?: NamedNode;
   subject: SomeNode;
 }
 
@@ -56,9 +52,9 @@ interface CollectionProviderProps extends CollectionProps {
 
 export interface CollectionContext {
   collectionDisplay?: NamedNode;
-  collectionResource?: SomeNode;
-  collectionResourceType?: NamedNode;
   columns?: NamedNode[];
+  currentCollection?: SomeNode;
+  currentCollectionPages?: SomeNode[];
   depth?: number;
   emptyStrategy: EMPTY_STRATEGY;
   hasInteraction?: boolean;
@@ -91,7 +87,13 @@ const CollectionContext = React.createContext<CollectionContext>({} as Collectio
 
 export const useCollectionOptions = (): CollectionContext => React.useContext(CollectionContext);
 
-const collectionHasInteraction = (actionStatus: SomeTerm, collectionResourceType: NamedNode) => {
+const useHasInteraction = (collectionResource: SomeNode) => {
+  const [createAction] = useResourceProperty(collectionResource, ontola.createAction) as NamedNode[];
+  useDataFetching(createAction);
+  const [actionStatus] = useResourceProperty(createAction, schema.actionStatus) as NamedNode[];
+
+  const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
+
   if (collectionResourceType === ontola.SearchResult) {
     return true;
   }
@@ -110,12 +112,8 @@ const CollectionProvider = ({
   redirectPagination,
   renderWhenEmpty,
   renderPartOf,
-  renderedPage,
   subject,
 }: CollectionProviderProps): JSX.Element | null => {
-  const {
-    collectionResource: originalCollectionResource,
-  } = useCollectionOptions();
   const {
     collectionDisplayFromData,
     columns,
@@ -124,38 +122,26 @@ const CollectionProvider = ({
     view,
   } = useLink(propMap) as CollectionDataProps;
   const collectionFilters = useProperty(ontola.collectionFilter);
-  const lrs = useLRS();
-  const [collectionResource, setCollectionResource] = useCurrentCollectionResource(
+  const [currentCollection, currentCollectionPages, setCollectionResource] = useCurrentCollectionResource(
     !!redirectPagination,
-    originalCollectionResource ?? subject,
+    subject,
   );
-  const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
-  const [createAction] = useResourceProperty(subject, ontola.createAction) as NamedNode[];
-  useDataFetching(createAction);
-  const [actionStatus] = useResourceProperty(createAction, schema.actionStatus) as NamedNode[];
-
-  useEffect(() => {
-    if (!collectionResource && renderedPage) {
-      setCollectionResource(renderedPage);
-    }
-  }, [subject, collectionResource, renderedPage]);
 
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
   const columnList = useListToArr<NamedNode>(columns);
   const resolvedColumns = Array.isArray(columnList) ? columnList : undefined;
-  useDataInvalidation(collectionResource);
   const wrapperProps = React.useMemo(() => ({
     className: `Collection Collection__Depth-${depth}`,
   }), [depth]);
-  const hasInteraction = collectionHasInteraction(actionStatus, collectionResourceType);
-  const sortOptions = useSorting();
+  const hasInteraction = useHasInteraction(currentCollection);
+  const sortOptions = useSorting(currentCollection);
 
   const collectionOptions = React.useMemo(() => ({
     collectionDisplay: resolvedCollectionDisplay,
-    collectionResource,
-    collectionResourceType,
     columns: resolvedColumns,
+    currentCollection,
+    currentCollectionPages,
     depth,
     emptyStrategy,
     hasInteraction,
@@ -168,8 +154,8 @@ const CollectionProvider = ({
     view,
   }), [
     resolvedCollectionDisplay,
-    collectionResource,
-    collectionResourceType,
+    currentCollection,
+    currentCollectionPages,
     resolvedColumns,
     depth,
     emptyStrategy,
@@ -182,18 +168,6 @@ const CollectionProvider = ({
     sortOptions,
     view,
   ]);
-
-  const mainCollectionIsOverwritten = collectionResource
-    && CollectionTypes.includes(collectionResourceType)
-    && collectionResource !== subject;
-
-  if (mainCollectionIsOverwritten) {
-    return (
-      <CollectionContext.Provider value={collectionOptions}>
-        <Resource subject={collectionResource} />
-      </CollectionContext.Provider>
-    );
-  }
 
   if (clickToOpen && depth && depth > 1 && tryParseInt(totalItems) !== 0 && !opened && subject) {
     return (
@@ -213,20 +187,21 @@ const CollectionProvider = ({
     if (clickToOpen) {
       return null;
     }
-    if (emptyStrategy === EMPTY_STRATEGY.Interactable
-      && !collectionHasInteraction(actionStatus, collectionResourceType)) {
+    if (emptyStrategy === EMPTY_STRATEGY.Interactable && !hasInteraction) {
       return <div data-test="invalid-status" />;
     }
   }
 
   return (
     <CollectionContext.Provider value={collectionOptions}>
-      <ResourceBoundary subject={collectionResource} wrapperProps={wrapperProps}>
-        {renderPartOf && <Property label={schema.isPartOf} />}
-        <Property
-          forceRender
-          label={ontola.collectionFrame}
-        />
+      <ResourceBoundary subject={currentCollection} wrapperProps={wrapperProps}>
+        <Resource subject={currentCollection}>
+          {renderPartOf && <Property label={schema.isPartOf} />}
+          <Property
+            forceRender
+            label={ontola.collectionFrame}
+          />
+        </Resource>
       </ResourceBoundary>
     </CollectionContext.Provider>
   );

@@ -17,6 +17,7 @@ import { CollectionTypes } from '../types';
 
 interface HeaderProps {
   children?: ReactNode;
+  hideHeader?: boolean;
   subject: SomeNode;
   topologyCtx: SomeNode;
 }
@@ -34,11 +35,9 @@ export const HeaderFloat = (): JSX.Element => {
   );
 };
 
-const cardCollectionHeader = (): JSX.Element | null => {
-  const {
-    hideHeader,
-  } = useCollectionOptions();
-
+const cardCollectionHeader = ({
+  hideHeader,
+}: HeaderProps): JSX.Element | null => {
   if (hideHeader) {
     return null;
   }
@@ -56,14 +55,11 @@ const cardCollectionHeader = (): JSX.Element | null => {
   );
 };
 
-const containerCollectionHeader = (props: HeaderProps): JSX.Element | null => {
-  const {
-    topologyCtx,
-  } = props;
-  const {
-    collectionDisplay,
-    hideHeader,
-  } = useCollectionOptions();
+const containerCollectionHeader = ({
+  hideHeader,
+  topologyCtx,
+}: HeaderProps): JSX.Element | null => {
+  const { collectionDisplay } = useCollectionOptions();
 
   let Wrapper = React.Fragment as React.ElementType;
   if (collectionDisplay === ontola['collectionDisplay/default'] && topologyCtx !== containerTopology) {

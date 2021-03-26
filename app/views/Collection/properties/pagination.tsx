@@ -20,9 +20,7 @@ interface PaginationProps {
 }
 
 const Pagination: FC<PaginationProps> = () => {
-  const {
-    hidePagination,
-  } = useCollectionOptions();
+  const { hidePagination } = useCollectionOptions();
   const [collectionType] = useProperty(ontola.collectionType);
 
   if (hidePagination) {

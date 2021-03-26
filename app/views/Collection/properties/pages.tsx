@@ -22,21 +22,11 @@ interface PagesProps {
 }
 
 const Pages: FC<PagesProps> = ({
-  children,
   insideCollection,
-  linkedProp,
   pages,
   renderWhenEmpty,
   singlePage,
 }) => {
-  if (children) {
-    return (
-      <Resource subject={linkedProp}>
-        {children}
-      </Resource>
-    );
-  }
-
   if (singlePage || pages.length === 1) {
     return (
       <Resource

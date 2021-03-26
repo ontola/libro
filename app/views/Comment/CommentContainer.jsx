@@ -47,6 +47,7 @@ const CommentContainer = ({ depth = 0, highlighted }) => (
     </Card>
     <Property
       clickToOpen
+      hideHeader
       depth={depth + 1}
       label={schema.comment}
       onLoad={() => null}

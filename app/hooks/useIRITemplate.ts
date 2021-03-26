@@ -49,11 +49,11 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
       ...currentIriOpts,
       ...sanitizedOpts,
     });
-  }, [iriTemplate]);
+  }, [iriTemplate, currentIriOpts]);
 
   const replace = useCallback((key: string, value: string | string[]) => {
     return set({ [key]: value });
-  }, [currentIriOpts, set]);
+  }, [set]);
 
   const add = useCallback((key: string, value: string) => {
     const newValues = (currentIriOpts[key] || [])

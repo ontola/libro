@@ -68,7 +68,8 @@ const SortOption = ({
 };
 
 const SortOptions: FC<SortOptionsProps> = () => {
-  const sortOptions = useSorting();
+  const { currentCollection } = useCollectionOptions();
+  const sortOptions = useSorting(currentCollection);
 
   const menuItems = React.useCallback(({ handleClose }: MenuItemsProps) => (
     sortOptions

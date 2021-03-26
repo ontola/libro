@@ -1,15 +1,16 @@
 import * as as from '@ontologies/as';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import { FC, Property } from 'link-redux';
 import React from 'react';
 
+import CollectionProvider, { EMPTY_STRATEGY } from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
 
 import { CollectionViewTypes } from './types';
 
 interface CollectionPageProps {
-  collectionDisplay: SomeTerm;
-  collectionDisplayFromData: SomeTerm;
+  collectionDisplay?: NamedNode;
+  collectionDisplayFromData?: NamedNode;
   insideCollection: boolean;
   redirectPagination: boolean;
   renderPartOf: boolean;
@@ -33,14 +34,11 @@ export default function getCollectionPage(
     }
 
     return (
-      <Property
+      <CollectionProvider
+        {...props}
         collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
+        emptyStrategy={EMPTY_STRATEGY.Always}
         hidePagination={hidePagination}
-        label={as.partOf}
-        redirectPagination={props.redirectPagination}
-        renderPartOf={props.renderPartOf}
-        renderWhenEmpty={props.renderWhenEmpty}
-        renderedPage={props.subject}
       />
     );
   };

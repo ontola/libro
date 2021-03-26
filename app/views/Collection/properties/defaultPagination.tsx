@@ -1,11 +1,8 @@
 import * as as from '@ontologies/as';
 import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
-import * as rdfx from '@ontologies/rdf';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
@@ -32,7 +29,6 @@ export const messages = defineMessages({
 });
 
 export interface PaginationProps {
-  collectionResource: SomeNode;
   first: SomeTerm;
   last: SomeTerm;
   linkedProp: SomeTerm;
@@ -56,11 +52,10 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
       subject,
     } = props;
     const {
-      collectionResource,
+      currentCollectionPages,
       setCollectionResource,
     } = useCollectionOptions();
     const { formatMessage } = useIntl();
-    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
 
     if (!first) {
       return null;
@@ -72,9 +67,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     const firstPage = firstPageParam ? Number.parseInt(firstPageParam, 10) : 1;
     const lastPageParam = new URL(last.value).searchParams.get(pageProp);
     const lastPage = lastPageParam ? Number.parseInt(lastPageParam, 10) : undefined;
-    const currentOrFirst = typeof collectionResource === 'undefined' || CollectionTypes.includes(collectionResourceType)
-      ? first.value
-      : collectionResource.value;
+    const currentOrFirst = (currentCollectionPages?.[0] || first).value;
     const currentPageUrl = new URL(currentOrFirst);
     const currentPageParam = currentPageUrl.searchParams.get(pageProp);
     const currentPageNr = currentPageParam ? Number.parseInt(currentPageParam, 10) : 1;

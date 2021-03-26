@@ -22,7 +22,6 @@ interface CollectionSectionProps {
 }
 
 const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, topology: NamedNode | NamedNode[]) => {
-
   const CollectionSection: FC<CollectionSectionProps> = ({
     direction,
     totalItems,

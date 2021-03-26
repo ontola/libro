@@ -39,7 +39,11 @@ export const LoadingCard = (): JSX.Element => (
   </Card>
 );
 
-export const LoadingCardFixed: React.FC<{ fill: boolean }> = ({ fill }) => (
+export interface LoadingCardFixedProps {
+  fill?: boolean;
+}
+
+export const LoadingCardFixed = ({ fill }: LoadingCardFixedProps): JSX.Element => (
   <CardFixed fill={fill}>
     <CardContent>
       <div className="Loading__Header Loading__background" style={{ minWidth: '18em' }} />

@@ -1,155 +1,106 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
-import { SomeNode } from 'link-lib';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/styles';
+import * as as from '@ontologies/as';
+import rdf, { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Property,
-  Resource,
   register,
 } from 'link-redux';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
+import CollectionFrame from '../../../components/Collection/CollectionFrame';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
-import TableHeadCells from '../../../components/TableHeadCells';
-import app from '../../../ontology/app';
+import HeaderWithMenu from '../../../components/HeaderWithMenu';
 import ontola from '../../../ontology/ontola';
-import Card from '../../../topologies/Card';
-import CardAppendix from '../../../topologies/Card/CardAppendix';
+import { LibroTheme } from '../../../themes/themes';
 import Container, { LargeContainer, containerTopology } from '../../../topologies/Container';
-import Grid, { gridTopology } from '../../../topologies/Grid';
+import { alertDialogTopology } from '../../../topologies/Dialog';
+import { gridTopology } from '../../../topologies/Grid';
 import { pageTopology } from '../../../topologies/Page';
-import Table from '../../../topologies/Table';
-import TableFooter from '../../../topologies/TableFooter';
-import TableFooterCell from '../../../topologies/TableFooterCell';
-import TableFooterRow from '../../../topologies/TableFooterRow';
-import TableHead from '../../../topologies/TableHead';
-import TableHeaderRow from '../../../topologies/TableHeaderRow';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
-const style = { marginBottom: '1em' };
-
 interface CollectionFrameProps {
   linkedProp: SomeTerm;
-  subject: SomeNode;
+  onDone?: () => void;
 }
 
-const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
-  const collectionFrame: FC<CollectionFrameProps> = ({
-    subject,
-  }) => {
-    let Wrapper;
-    const {
-      collectionDisplay,
-      collectionResource,
-      columns,
-    } = useCollectionOptions();
-    let body;
-    if (!collectionResource || collectionResource === subject) {
-      body = (
-        <Property
-          forceRender
-          insideCollection
-          label={ontola.pages}
-        />
-      );
-    } else if (collectionResource) {
-      body = (
-        <Resource
-          forceRender
-          insideCollection
-          subject={collectionResource}
-        />
-      );
-    } else {
-      body = <div className="Collection__Empty-frame" />;
-    }
+const LARGE_CONTAINER_DISPLAYS = [
+  rdf.id(ontola.ns('collectionDisplay/grid')),
+  rdf.id(ontola.ns('collectionDisplay/settingsTable')),
+  rdf.id(ontola.ns('collectionDisplay/table')),
+];
 
-    switch (rdf.id(collectionDisplay)) {
-    case rdf.id(ontola.ns('collectionDisplay/grid')):
-      Wrapper = wrapper ? LargeContainer : React.Fragment;
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  wrapper: {
+    background: theme.palette.background.default,
+    borderRadius: '.5em',
+    overflow: 'hidden',
+    padding: '1em',
+  },
+}));
 
-      return (
-        <Wrapper>
-          <Property label={ontola.query} />
-          <Property forceRender label={ontola.header} />
-          <Grid container>
-            {body}
-          </Grid>
-          <Property forceRender label={app.pagination} />
-        </Wrapper>
-      );
-    case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
-    case rdf.id(ontola.ns('collectionDisplay/table')):
-      Wrapper = wrapper ? LargeContainer : React.Fragment;
+const DefaultCollectionFrame: FC<CollectionFrameProps> = () => {
+  const {
+    collectionDisplay,
+    hideHeader,
+  } = useCollectionOptions();
 
-      return (
-        <Wrapper>
-          <Property label={ontola.query} />
-          <Property forceRender label={ontola.header} />
-          <Card>
-            <Table>
-              <TableHead>
-                <TableHeaderRow>
-                  <TableHeadCells />
-                </TableHeaderRow>
-              </TableHead>
-              <tbody>
-                {body}
-              </tbody>
-              <TableFooter>
-                <TableFooterRow>
-                  <TableFooterCell colSpan={columns?.length}>
-                    <Property forceRender label={app.pagination} />
-                  </TableFooterCell>
-                </TableFooterRow>
-              </TableFooter>
-            </Table>
-          </Card>
-        </Wrapper>
-      );
-    case rdf.id(ontola.ns('collectionDisplay/card')):
-      Wrapper = wrapper ? Container : React.Fragment;
+  const Wrapper = (LARGE_CONTAINER_DISPLAYS.includes(rdf.id(collectionDisplay))) ? LargeContainer : Container;
 
-      return (
-        <Wrapper>
-          <Property label={ontola.query} />
-          <Property forceRender label={ontola.header} />
-          <Card>
-            {body}
-            <CardAppendix>
-              <Property forceRender label={app.pagination} />
-            </CardAppendix>
-          </Card>
-        </Wrapper>
-      );
-    case rdf.id(ontola.ns('collectionDisplay/default')):
-      Wrapper = wrapper ? Container : React.Fragment;
-
-      return (
-        <Wrapper>
-          <Property label={ontola.query} />
-          <Property forceRender label={ontola.header} />
-          {body}
-          <div style={style}>
-            <Property forceRender label={app.pagination} />
-          </div>
-        </Wrapper>
-      );
-    default:
-      return body;
-    }
-  };
-
-  collectionFrame.type = CollectionTypes;
-
-  collectionFrame.topology = topology;
-
-  collectionFrame.property = ontola.collectionFrame;
-
-  return collectionFrame;
+  return (
+    <CollectionFrame Wrapper={Wrapper} hideHeader={hideHeader} />
+  );
 };
+DefaultCollectionFrame.type = CollectionTypes;
+DefaultCollectionFrame.topology = allTopologiesExcept(alertDialogTopology, containerTopology, gridTopology, pageTopology);
+DefaultCollectionFrame.property = ontola.collectionFrame;
+
+const WrappedCollectionFrame: FC<CollectionFrameProps> = () => {
+  const { hideHeader } = useCollectionOptions();
+
+  return (
+    <CollectionFrame Wrapper={React.Fragment} hideHeader={hideHeader} />
+  );
+};
+WrappedCollectionFrame.type = CollectionTypes;
+WrappedCollectionFrame.topology = [containerTopology, gridTopology];
+WrappedCollectionFrame.property = ontola.collectionFrame;
+
+const DialogCollectionFrame: FC<CollectionFrameProps> = ({
+  onDone,
+}) => {
+  const classes = useStyles();
+  const closeButton = React.useCallback(() => (
+    <IconButton
+      size="small"
+      title="Sluiten"
+      type="button"
+      onClick={onDone}
+    >
+      <FontAwesome name="close" />
+    </IconButton>
+  ), [onDone]);
+
+  return (
+    <Container className={classes.wrapper}>
+      <HeaderWithMenu
+        menu={closeButton}
+      >
+        <Property label={as.name} wrapper={React.Fragment} />
+      </HeaderWithMenu>
+      <CollectionFrame hideHeader Wrapper={React.Fragment} />
+    </Container>
+  );
+};
+DialogCollectionFrame.type = CollectionTypes;
+DialogCollectionFrame.topology = alertDialogTopology;
+DialogCollectionFrame.property = ontola.collectionFrame;
 
 export default [
-  register(getFrame(true, allTopologiesExcept(containerTopology, gridTopology, pageTopology))),
-  register(getFrame(false, [containerTopology, gridTopology])),
+  register(DialogCollectionFrame),
+  register(DefaultCollectionFrame),
+  register(WrappedCollectionFrame),
 ];

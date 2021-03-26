@@ -1,33 +1,83 @@
+import * as as from '@ontologies/as';
 import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
+  useDataFetching,
   useLRS,
   useResourceProperty,
 } from 'link-redux';
+import React from 'react';
 import { useHistory } from 'react-router';
 
+import { entityIsLoaded, resourceHasType } from '../helpers/data';
 import { retrievePath } from '../helpers/iris';
 import app from '../ontology/app';
+import ontola from '../ontology/ontola';
+import CollectionTypes from '../views/Collection/types';
 
-type CurrentCollectionResource = [SomeNode, (newPage: NamedNode) => void];
+/**
+ * A callback to change the filters, sorting or page of a rendered collection.
+ * @param newCollectionResource An `as.Collection` or an `as.CollectionPage`
+ */
+type SetCollectionResource = (newCollectionResource: NamedNode) => void;
 
+/**
+ * The as.Collection currently rendered
+ */
+type CurrentCollection = SomeNode;
+
+/**
+ * A currently rendered as.CollectionPage of the {CurrentCollection}
+ */
+type CurrentCollectionPage = SomeNode;
+
+type CurrentCollectionResource = [CurrentCollection, CurrentCollectionPage[], SetCollectionResource];
+
+/**
+ * @param redirectPagination Let {SetCollectionResource} redirect the entire page,
+ *        instead of overriding the collection resource inline when `false`.
+ * @param originalCollectionResource The `as.Collection` or an `as.CollectionPage` originally rendered
+ */
 export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: SomeNode):
   CurrentCollectionResource => {
   const lrs = useLRS();
   const history = useHistory();
   const [collectionResource] = useResourceProperty(originalCollectionResource, app.collectionResource) as NamedNode[];
-
-  if (redirectPagination) {
-    const redirectPage = (newPage: NamedNode) => (
-      history.push(retrievePath(newPage?.value) ?? '#')
-    );
-
-    return [originalCollectionResource, redirectPage];
-  }
-  const setCurrentPage = (newPage: NamedNode) => {
+  const redirectPage = React.useCallback((newPage: NamedNode) => (
+    history.push(retrievePath(newPage?.value) ?? '#')
+  ), [history]);
+  const setCurrentPage = React.useCallback((newPage: NamedNode) => {
     lrs.actions.app.changePage(originalCollectionResource, newPage);
-  };
+  }, [originalCollectionResource, lrs]);
 
-  return [collectionResource, setCurrentPage];
+  const setCollectionResource = redirectPagination ? redirectPage : setCurrentPage;
 
+  const currentCollectionResource = redirectPagination ? originalCollectionResource : collectionResource ?? originalCollectionResource;
+  const [currentCollection, currentCollectionPages] = useCurrentCollectionAndPage(currentCollectionResource);
+
+  useDataFetching([currentCollectionResource]);
+  useDataFetching(currentCollectionPages);
+
+  return [currentCollection, currentCollectionPages, setCollectionResource];
+};
+
+const useCurrentCollectionAndPage = (currentCollectionResource: SomeNode): [CurrentCollection, CurrentCollectionPage[]] => {
+  const lrs = useLRS();
+  const isCollection = CollectionTypes.find((type) => resourceHasType(lrs, currentCollectionResource, type));
+  const [partOf] = useResourceProperty(currentCollectionResource, as.partOf) as NamedNode[];
+  const pages = useResourceProperty(currentCollectionResource, ontola.pages) as NamedNode[];
+  const currentCollection = isCollection ? currentCollectionResource : partOf;
+  const [collection, setCollection] = React.useState(currentCollection);
+
+  React.useEffect(() => {
+    if (currentCollection && entityIsLoaded(lrs, currentCollection)) {
+      setCollection(currentCollection);
+    }
+  }, [currentCollection]);
+
+  if (isCollection) {
+    return [collection, pages];
+  }
+
+  return [collection, [currentCollectionResource]];
 };

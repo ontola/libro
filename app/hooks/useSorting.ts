@@ -1,9 +1,10 @@
 import { SomeTerm, isNode } from '@ontologies/core';
 import {
-  useLinkRenderContext,
-  useProperty,
+  LaxNode,
   useResourceLinks,
+  useResourceProperty,
 } from 'link-redux';
+import React from 'react';
 
 import ontola from '../ontology/ontola';
 
@@ -23,23 +24,26 @@ export interface SortProps  {
     url?: string;
 }
 
-export const useSorting = (): SortProps[] => {
-  const { subject } = useLinkRenderContext();
+export const useSorting = (subject: LaxNode): SortProps[] => {
   const iriTemplate = useIRITemplate(subject);
-  const collectionSorting = useProperty(ontola.collectionSorting);
-  const sortOptions = useProperty(ontola.sortOptions);
-  const currentSortings = useResourceLinks(collectionSorting.filter(isNode), sortElementProps)
-    .map(({ sortKey, sortDirection }) => [sortKey, sortDirection]);
+  const collectionSorting = useResourceProperty(subject, ontola.collectionSorting);
+  const sortOptions = useResourceProperty(subject, ontola.sortOptions);
+  const currentSortingsRaw = useResourceLinks(collectionSorting.filter(isNode), sortElementProps);
+  const currentSortings = React.useMemo(() => (
+    currentSortingsRaw.map(({ sortKey, sortDirection }) => [sortKey, sortDirection])
+  ), [currentSortingsRaw]);
 
-  return sortOptions
-    .map((option) => sortDirections.map((direction) => ({
-      direction,
-      item: option,
-      selected: currentSortings.some(([key, dir]) => option === key && dir?.value === direction),
-      url: iriTemplate.replace(
-        'sort%5B%5D',
-        direction ? `${encodeURIComponent(option.value)}=${direction}` : [],
-      )?.value,
-    })))
-    .flat(1);
+  return React.useMemo(() => (
+    sortOptions
+      .map((option) => sortDirections.map((direction) => ({
+        direction,
+        item: option,
+        selected: currentSortings.some(([key, dir]) => option === key && dir?.value === direction),
+        url: iriTemplate.replace(
+          'sort%5B%5D',
+          direction ? `${encodeURIComponent(option.value)}=${direction}` : [],
+        )?.value,
+      })))
+      .flat(1)
+  ), [sortOptions, currentSortings]);
 };
