@@ -19,7 +19,6 @@ const Widget = ({ topology, widgetSize }) => {
   const size = tryParseInt(widgetSize);
   const childProps = React.useMemo(() => ({
     onError: handleErrorStatuses([HttpStatus.FORBIDDEN]),
-    renderWhenEmpty: true,
   }));
 
   let Wrapper;

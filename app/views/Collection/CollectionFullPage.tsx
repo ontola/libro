@@ -15,7 +15,12 @@ const CollectionFullPage = (props: Record<string, unknown>) => (
   <React.Fragment>
     <Metadata />
     <FullResource>
-      <Resource redirectPagination renderPartOf {...props} />
+      <Resource
+        redirectPagination
+        renderPartOf
+        renderWhenEmpty
+        {...props}
+      />
     </FullResource>
   </React.Fragment>
 );

@@ -7,12 +7,11 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
-
+  LaxNode,
   Property,
   Resource,
   useDataFetching,
   useLink,
-  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -26,12 +25,6 @@ import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { invalidStatusIds } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
-
-export enum EMPTY_STRATEGY {
-  Always = 0,
-  Interactable = 2,
-  Never = 1,
-}
 
 export interface CollectionProps {
   clickToOpen?: boolean;
@@ -47,7 +40,6 @@ export interface CollectionProps {
 
 interface CollectionProviderProps extends CollectionProps {
   omniform?: boolean;
-  emptyStrategy: EMPTY_STRATEGY;
 }
 
 export interface CollectionContext {
@@ -56,7 +48,6 @@ export interface CollectionContext {
   currentCollection?: SomeNode;
   currentCollectionPages?: SomeNode[];
   depth?: number;
-  emptyStrategy: EMPTY_STRATEGY;
   hasInteraction?: boolean;
   hideHeader?: boolean;
   hidePagination?: boolean;
@@ -71,6 +62,7 @@ export interface CollectionDataProps {
   collectionDisplayFromData: NamedNode;
   columns: SomeNode;
   maxColumns: SomeTerm;
+  partOf: LaxNode;
   totalItems: SomeTerm;
   view?: NamedNode;
 }
@@ -79,6 +71,7 @@ const propMap = {
   collectionDisplayFromData: ontola.collectionDisplay,
   columns: ontola.columns,
   maxColumns: ontola.maxColumns,
+  partOf: as.partOf,
   totalItems: as.totalItems,
   view: ll.view,
 };
@@ -105,7 +98,6 @@ const CollectionProvider = ({
   clickToOpen,
   collectionDisplay,
   depth,
-  emptyStrategy,
   hideHeader,
   hidePagination,
   omniform,
@@ -118,14 +110,16 @@ const CollectionProvider = ({
     collectionDisplayFromData,
     columns,
     maxColumns,
+    partOf,
     totalItems,
     view,
   } = useLink(propMap) as CollectionDataProps;
-  const collectionFilters = useProperty(ontola.collectionFilter);
+  const originalCollection = partOf || subject;
   const [currentCollection, currentCollectionPages, setCollectionResource] = useCurrentCollectionResource(
     !!redirectPagination,
     subject,
   );
+  const [firstPageItems] = useResourceProperty(currentCollectionPages[0], as.totalItems);
 
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
@@ -136,6 +130,9 @@ const CollectionProvider = ({
   }), [depth]);
   const hasInteraction = useHasInteraction(currentCollection);
   const sortOptions = useSorting(currentCollection);
+  const originalFilters = useResourceProperty(originalCollection, ontola.collectionFilter);
+  const currentFilters = useResourceProperty(currentCollection, ontola.collectionFilter);
+  const appliedFilters = currentFilters.filter(filter => !originalFilters.includes(filter));
 
   const collectionOptions = React.useMemo(() => ({
     collectionDisplay: resolvedCollectionDisplay,
@@ -143,7 +140,6 @@ const CollectionProvider = ({
     currentCollection,
     currentCollectionPages,
     depth,
-    emptyStrategy,
     hasInteraction,
     hideHeader,
     hidePagination,
@@ -158,7 +154,6 @@ const CollectionProvider = ({
     currentCollectionPages,
     resolvedColumns,
     depth,
-    emptyStrategy,
     hasInteraction,
     hideHeader,
     hidePagination,
@@ -180,14 +175,12 @@ const CollectionProvider = ({
     );
   }
 
-  if (tryParseInt(totalItems) === 0 && collectionFilters.length === 0 && !renderWhenEmpty) {
-    if (emptyStrategy === EMPTY_STRATEGY.Never) {
-      return <Property label={ontola.query} />;
-    }
+  if (tryParseInt(totalItems || firstPageItems) === 0 && appliedFilters.length === 0 && !renderWhenEmpty) {
     if (clickToOpen) {
       return null;
     }
-    if (emptyStrategy === EMPTY_STRATEGY.Interactable && !hasInteraction) {
+
+    if (!hasInteraction) {
       return <div data-test="invalid-status" />;
     }
   }

@@ -1,6 +1,4 @@
-import CollectionCard from './CollectionCard';
-import CollectionDialog from './CollectionDialog';
-import CollectionVisibleOnEmpty from './CollectionVisibleOnEmpty';
+import CollectionDefault from './CollectionDefault';
 import CollectionWithOmniform from './CollectionWithOmniform';
 import CollectionFilterCollection from './properties/collectionFilter';
 import CreateAction from './properties/createAction';
@@ -26,16 +24,14 @@ import './Collection.scss';
 
 export default [
   ...TotalItems,
-  CollectionCard,
   CollectionCardAppendix,
-  CollectionDialog,
   CollectionInline,
   ...CollectionFrame,
   CollectionFilterCollection,
   CollectionFullPage,
   ...CollectionSection,
   CollectionTableCell,
-  CollectionVisibleOnEmpty,
+  CollectionDefault,
   CollectionWithOmniform,
   CreateAction,
   ...FilterFields,

@@ -3,7 +3,7 @@ import { NamedNode } from '@ontologies/core';
 import { FC, Property } from 'link-redux';
 import React from 'react';
 
-import CollectionProvider, { EMPTY_STRATEGY } from '../../components/Collection/CollectionProvider';
+import CollectionProvider from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
 
 import { CollectionViewTypes } from './types';
@@ -14,7 +14,6 @@ interface CollectionPageProps {
   insideCollection: boolean;
   redirectPagination: boolean;
   renderPartOf: boolean;
-  renderWhenEmpty: boolean;
 }
 
 export default function getCollectionPage(
@@ -35,9 +34,9 @@ export default function getCollectionPage(
 
     return (
       <CollectionProvider
+        renderWhenEmpty
         {...props}
         collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
-        emptyStrategy={EMPTY_STRATEGY.Always}
         hidePagination={hidePagination}
       />
     );
