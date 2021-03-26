@@ -1,13 +1,16 @@
 import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
+  Resource,
   register,
 } from 'link-redux';
 import React from 'react';
 
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import TableHeadCells from '../../../components/TableHeadCells';
+import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
@@ -26,24 +29,40 @@ import { CollectionTypes } from '../types';
 const style = { marginBottom: '1em' };
 
 interface CollectionFrameProps {
-  body: React.ReactElement;
-  header: React.ReactNode;
   linkedProp: SomeTerm;
-  pagination: React.ReactNode;
+  subject: SomeNode;
 }
 
 const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
   const collectionFrame: FC<CollectionFrameProps> = ({
-    body,
-    header,
-    pagination,
+    subject,
   }) => {
     let Wrapper;
-
     const {
       collectionDisplay,
+      collectionResource,
       columns,
     } = useCollectionOptions();
+    let body;
+    if (!collectionResource || collectionResource === subject) {
+      body = (
+        <Property
+          forceRender
+          insideCollection
+          label={ontola.pages}
+        />
+      );
+    } else if (collectionResource) {
+      body = (
+        <Resource
+          forceRender
+          insideCollection
+          subject={collectionResource}
+        />
+      );
+    } else {
+      body = <div className="Collection__Empty-frame" />;
+    }
 
     switch (rdf.id(collectionDisplay)) {
     case rdf.id(ontola.ns('collectionDisplay/grid')):
@@ -52,11 +71,11 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
       return (
         <Wrapper>
           <Property label={ontola.query} />
-          {header}
+          <Property forceRender label={ontola.header} />
           <Grid container>
             {body}
           </Grid>
-          {pagination}
+          <Property forceRender label={app.pagination} />
         </Wrapper>
       );
     case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
@@ -66,7 +85,7 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
       return (
         <Wrapper>
           <Property label={ontola.query} />
-          {header}
+          <Property forceRender label={ontola.header} />
           <Card>
             <Table>
               <TableHead>
@@ -80,7 +99,7 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
               <TableFooter>
                 <TableFooterRow>
                   <TableFooterCell colSpan={columns?.length}>
-                    {pagination}
+                    <Property forceRender label={app.pagination} />
                   </TableFooterCell>
                 </TableFooterRow>
               </TableFooter>
@@ -94,11 +113,11 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
       return (
         <Wrapper>
           <Property label={ontola.query} />
-          {header}
+          <Property forceRender label={ontola.header} />
           <Card>
             {body}
             <CardAppendix>
-              {pagination}
+              <Property forceRender label={app.pagination} />
             </CardAppendix>
           </Card>
         </Wrapper>
@@ -109,10 +128,10 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
       return (
         <Wrapper>
           <Property label={ontola.query} />
-          {header}
+          <Property forceRender label={ontola.header} />
           {body}
           <div style={style}>
-            {pagination}
+            <Property forceRender label={app.pagination} />
           </div>
         </Wrapper>
       );

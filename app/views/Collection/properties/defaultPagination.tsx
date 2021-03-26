@@ -51,16 +51,16 @@ interface PaginationButtonProps {
 const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
   const DefaultPagination: FC<PaginationProps> = (props) => {
     const {
-      collectionResource,
       first,
       last,
       subject,
     } = props;
-    const { formatMessage } = useIntl();
-    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
     const {
+      collectionResource,
       setCollectionResource,
     } = useCollectionOptions();
+    const { formatMessage } = useIntl();
+    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
 
     if (!first) {
       return null;

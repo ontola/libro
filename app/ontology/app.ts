@@ -50,6 +50,7 @@ export default {
   menuTabs: app('menuTabs'),
   n: app('n'),
   omniform: app('omniform'),
+  pagination: app('pagination'),
   policy: app('policy'),
   privacy: app('privacy'),
   search: app('search'),

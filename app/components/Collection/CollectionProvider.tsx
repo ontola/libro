@@ -62,6 +62,8 @@ export interface CollectionContext {
   depth?: number;
   emptyStrategy: EMPTY_STRATEGY;
   hasInteraction?: boolean;
+  hideHeader?: boolean;
+  hidePagination?: boolean;
   maxColumns?: number;
   omniform?: boolean;
   setCollectionResource: (resource: NamedNode) => void;
@@ -71,7 +73,6 @@ export interface CollectionContext {
 
 export interface CollectionDataProps {
   collectionDisplayFromData: NamedNode;
-  collectionType: SomeTerm;
   columns: SomeNode;
   maxColumns: SomeTerm;
   totalItems: SomeTerm;
@@ -80,7 +81,6 @@ export interface CollectionDataProps {
 
 const propMap = {
   collectionDisplayFromData: ontola.collectionDisplay,
-  collectionType: ontola.collectionType,
   columns: ontola.columns,
   maxColumns: ontola.maxColumns,
   totalItems: as.totalItems,
@@ -118,7 +118,6 @@ const CollectionProvider = ({
   } = useCollectionOptions();
   const {
     collectionDisplayFromData,
-    collectionType,
     columns,
     maxColumns,
     totalItems,
@@ -160,6 +159,8 @@ const CollectionProvider = ({
     depth,
     emptyStrategy,
     hasInteraction,
+    hideHeader,
+    hidePagination,
     maxColumns: tryParseInt(maxColumns),
     omniform,
     setCollectionResource,
@@ -173,6 +174,8 @@ const CollectionProvider = ({
     depth,
     emptyStrategy,
     hasInteraction,
+    hideHeader,
+    hidePagination,
     maxColumns,
     omniform,
     setCollectionResource,
@@ -192,7 +195,7 @@ const CollectionProvider = ({
     );
   }
 
-  if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened && subject) {
+  if (clickToOpen && depth && depth > 1 && tryParseInt(totalItems) !== 0 && !opened && subject) {
     return (
       <CollectionPreview
         depth={depth}
@@ -201,52 +204,6 @@ const CollectionProvider = ({
         totalItems={totalItems}
       />
     );
-  }
-
-  const body = () => {
-    if (!collectionResource || collectionResource === subject) {
-      return (
-        <Property
-          forceRender
-          insideCollection
-          label={ontola.pages}
-        />
-      );
-    } else if (collectionResource) {
-      return (
-        <Resource
-          forceRender
-          insideCollection
-          subject={collectionResource}
-        />
-      );
-    }
-
-    return null;
-  };
-
-  let pagination;
-  if (hidePagination) {
-    pagination = <Property label={as.totalItems} />;
-  } else {
-    switch (rdf.id(collectionType)) {
-    case rdf.id(ontola['collectionType/infinite']):
-      pagination = (
-        <Property
-          forceRender
-          label={ontola.infinitePagination}
-        />
-      );
-      break;
-    default:
-      pagination = (
-        <Property
-          forceRender
-          collectionResource={collectionResource}
-          label={ontola.defaultPagination}
-        />
-      );
-    }
   }
 
   if (tryParseInt(totalItems) === 0 && collectionFilters.length === 0 && !renderWhenEmpty) {
@@ -262,24 +219,13 @@ const CollectionProvider = ({
     }
   }
 
-  const header = (!depth || depth === 0) && !hideHeader && (
-    <Property
-      forceRender
-      label={ontola.header}
-      omniform={omniform}
-    />
-  );
-
   return (
     <CollectionContext.Provider value={collectionOptions}>
       <ResourceBoundary subject={collectionResource} wrapperProps={wrapperProps}>
         {renderPartOf && <Property label={schema.isPartOf} />}
         <Property
           forceRender
-          body={body()}
-          header={header}
           label={ontola.collectionFrame}
-          pagination={pagination}
         />
       </ResourceBoundary>
     </CollectionContext.Provider>

@@ -15,21 +15,14 @@ import Container, { LargeContainer, containerTopology } from '../../../topologie
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
-interface HeaderFloatProps {
-  hidePagination?: boolean;
-  omniform?: boolean;
-}
-
 interface HeaderProps {
   children?: ReactNode;
-  omniform: boolean,
   subject: SomeNode;
   topologyCtx: SomeNode;
 }
 
-export const HeaderFloat = ({
-  hidePagination,
-}: HeaderFloatProps): JSX.Element => {
+export const HeaderFloat = (): JSX.Element => {
+  const { hidePagination } = useCollectionOptions();
   const renderPagination = !hidePagination;
 
   return (
@@ -41,24 +34,35 @@ export const HeaderFloat = ({
   );
 };
 
-const cardCollectionHeader = (props: HeaderProps): JSX.Element => (
-  <CardHeader float={<HeaderFloat {...props} />}>
-    <Property label={as.name} />
-    <div>
-      <Property
-        label={ontola.collectionFilter}
-        limit={Infinity}
-      />
-    </div>
-  </CardHeader>
-);
+const cardCollectionHeader = (): JSX.Element | null => {
+  const {
+    hideHeader,
+  } = useCollectionOptions();
 
-const containerCollectionHeader = (props: HeaderProps): JSX.Element => {
+  if (hideHeader) {
+    return null;
+  }
+
+  return (
+    <CardHeader float={<HeaderFloat />}>
+      <Property label={as.name} />
+      <div>
+        <Property
+          label={ontola.collectionFilter}
+          limit={Infinity}
+        />
+      </div>
+    </CardHeader>
+  );
+};
+
+const containerCollectionHeader = (props: HeaderProps): JSX.Element | null => {
   const {
     topologyCtx,
   } = props;
   const {
     collectionDisplay,
+    hideHeader,
   } = useCollectionOptions();
 
   let Wrapper = React.Fragment as React.ElementType;
@@ -69,9 +73,13 @@ const containerCollectionHeader = (props: HeaderProps): JSX.Element => {
     Wrapper = LargeContainer;
   }
 
+  if (hideHeader) {
+    return null;
+  }
+
   return (
     <Wrapper>
-      <ContainerHeader float={<HeaderFloat {...props} />}>
+      <ContainerHeader float={<HeaderFloat />}>
         <Property label={as.name} />
         <div>
           <Property
