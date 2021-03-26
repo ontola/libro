@@ -8,7 +8,7 @@ import {
   useLRS,
   useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 import parser from 'uri-template';
 
 import { entityIsLoaded } from '../../helpers/data';
@@ -76,7 +76,7 @@ const AttachmentPreview: React.FC<PropTypes> = ({
     if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsPageIri)) {
       lrs.queueEntity(attachmentsPageIri);
     }
-    const handleClick: EventHandler<any> = (e) => {
+    const handleClick: MouseEventHandler = (e) => {
       e.preventDefault();
       lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
       lrs.actions.ontola.showDialog(attachmentsPageIri);

@@ -10,7 +10,7 @@ import {
   register,
   useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
@@ -23,9 +23,9 @@ interface PersonSelectProps {
   element: string;
   id: string;
   itemClass: NamedNode;
-  onClick: EventHandler<any>;
-  onMouseDown: EventHandler<any>;
-  onMouseMove: EventHandler<any>;
+  onClick: MouseEventHandler;
+  onMouseDown: MouseEventHandler;
+  onMouseMove: MouseEventHandler;
   role: string;
   style: any;
   wrapperProps: any;

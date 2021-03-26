@@ -1,4 +1,8 @@
-import React, { EventHandler, FC } from 'react';
+import React, {
+  EventHandler,
+  FC,
+  MouseEventHandler, 
+} from 'react';
 import Textarea from 'react-autosize-textarea';
 
 import Button, { ButtonTheme } from '../../components/Button';
@@ -15,7 +19,7 @@ const defaultProps = {
 
 interface PreviewButtonProps {
   show: any;
-  onClick: EventHandler<any>;
+  onClick: MouseEventHandler;
 }
 
 /* eslint react/prop-types: 0 */

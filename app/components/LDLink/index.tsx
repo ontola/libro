@@ -6,7 +6,7 @@ import {
   useLinkRenderContext,
   useProperty,
 } from 'link-redux';
-import React, { EventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import { handle } from '../../helpers/logging';
 import Link, { LinkFeature, LinkTarget } from '../Link';
@@ -16,7 +16,7 @@ interface PropTypes {
   className?: string;
   location?: string;
   features?: LinkFeature[];
-  onClick?: EventHandler<any>;
+  onClick?: MouseEventHandler;
   subject?: SomeNode;
   target?: LinkTarget;
   title?: string;

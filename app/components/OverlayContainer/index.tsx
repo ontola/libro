@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { EventHandler, MouseEvent } from 'react';
+import React, { MouseEvent, MouseEventHandler } from 'react';
 import * as ReactDOM from 'react-dom';
 
 import './OverlayContainer.scss';
 
 interface PropTypes {
-  clickHandler: EventHandler<any>;
+  clickHandler: MouseEventHandler;
   overlayRef: HTMLElement;
 }
 

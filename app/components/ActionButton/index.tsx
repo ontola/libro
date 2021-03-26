@@ -1,6 +1,6 @@
 import rdf, { Literal } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import React, { EventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import { countInParentheses } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
@@ -11,7 +11,7 @@ const defaultTopology = argu.cardList;
 interface ActionButtonProps {
   count: Literal;
   name: Literal;
-  onClick: EventHandler<any>;
+  onClick: MouseEventHandler;
   subject: SomeNode;
   topology: SomeNode;
 }

@@ -1,10 +1,10 @@
-import React, { EventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 interface PropTypes {
   className?: string;
   href?: string;
   ref?: any;
-  onClick?: EventHandler<any>;
+  onClick?: MouseEventHandler;
 }
 
 const ExternalLink: React.FC<PropTypes> = ({ children, ...otherProps }) => (

@@ -1,7 +1,10 @@
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { Property } from 'link-redux';
-import React, { EventHandler, ReactNode } from 'react';
+import React, {
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useHistory } from 'react-router';
 
@@ -27,7 +30,7 @@ interface PropTypes {
   icon?: string;
   imageUrl?: string;
   linkedImage?: boolean;
-  onClick?: EventHandler<any>;
+  onClick?: MouseEventHandler;
   spin?: boolean;
   text?: ReactNode;
   /** HTML title attribute */

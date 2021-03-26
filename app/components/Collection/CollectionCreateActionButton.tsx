@@ -13,7 +13,7 @@ import {
   useResourceLinks,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { EventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { entityIsLoaded, sort } from '../../helpers/data';
@@ -49,7 +49,7 @@ const CollectionCreateActionButton: React.FC<PropTypes> = ({
   useDataInvalidation(createActions);
   useDataFetching(createActions);
 
-  const trigger = (onClick: EventHandler<any>) => (
+  const trigger = (onClick: MouseEventHandler) => (
     <IconButton
       centerRipple
       color="default"
