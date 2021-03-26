@@ -20,9 +20,9 @@ import React, { useEffect } from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
 import ResourceBoundary from '../../components/ResourceBoundary';
-import { listToArr } from '../../helpers/data';
 import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
+import { useListToArr } from '../../hooks/useListToArr';
 import { SortProps, useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
@@ -142,7 +142,7 @@ const CollectionProvider = ({
 
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
-  const columnList = columns ? listToArr<NamedNode>(lrs, [], columns) : undefined;
+  const columnList = useListToArr<NamedNode>(columns);
   const resolvedColumns = Array.isArray(columnList) ? columnList : undefined;
   useDataInvalidation(collectionResource);
   const wrapperProps = React.useMemo(() => ({
