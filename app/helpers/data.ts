@@ -5,6 +5,7 @@ import rdf, {
   Node,
   Quad,
   SomeTerm,
+  Term,
   isBlankNode,
   isLiteral,
 } from '@ontologies/core';
@@ -133,11 +134,11 @@ function serializableValue(v: any): any | any[] | File | string {
   return v;
 }
 
-function listToArr(
+function listToArr<I extends Term = SomeTerm>(
   lrs: LinkReduxLRSType,
-  acc: SomeTerm[],
-  rest: Node | Node[] | undefined,
-): SomeTerm[] | Promise<void> {
+  acc: I[],
+  rest: Node | I[] | undefined,
+): I[] | Promise<void> {
 
   if (Array.isArray(rest)) {
     return rest;
@@ -149,9 +150,9 @@ function listToArr(
   let first;
   if (rest.termType === 'BlankNode') {
     const firstStatement = lrs.store.find(rest, rdfx.first, null, null);
-    first = firstStatement && firstStatement.object;
+    first = firstStatement && firstStatement.object as I;
   } else {
-    first = lrs.getResourceProperty<Node>(rest, rdfx.first);
+    first = lrs.getResourceProperty(rest, rdfx.first) as I;
 
     if (!first) {
       return lrs.getEntity(rest);

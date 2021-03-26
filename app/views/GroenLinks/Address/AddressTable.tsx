@@ -18,7 +18,6 @@ import { tableTopology } from '../../../topologies/Table';
 import TableRow from '../../../topologies/TableRow';
 
 interface AddressTableProps {
-  columns: NamedNode[];
   createAction: NamedNode;
   subject: SomeNode;
 }
@@ -43,7 +42,7 @@ const AddressTable: FC<AddressTableProps> = (props) => {
 
   return (
     <TableRow onClick={onClick}>
-      <TableCells columns={props.columns} />
+      <TableCells />
     </TableRow>
   );
 };

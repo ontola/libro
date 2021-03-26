@@ -10,6 +10,7 @@ import {
 } from 'link-redux';
 import React, { CSSProperties, ElementType } from 'react';
 
+import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
 import { tryParseInt } from '../../../helpers/numbers';
@@ -21,10 +22,6 @@ import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
 
 export interface ItemProps {
-  columns: NamedNode[];
-  collectionDisplay: SomeTerm;
-  maxColumns: number;
-  depth: number;
   items: SomeNode[];
   linkedProp: SomeTerm;
   renderLimit: number;
@@ -34,47 +31,58 @@ export interface ItemProps {
   style: CSSProperties;
   topology: NamedNode;
   totalCount: SomeTerm;
-  view?: NamedNode;
 }
 
-const itemList = (props: ItemProps) => {
-  const view = props.view && useViewByIRI(props.view);
+const ItemList = ({
+  items,
+  renderLimit,
+  subject,
+  separator,
+}: ItemProps): JSX.Element => {
+  const {
+    collectionDisplay,
+    depth,
+    maxColumns,
+    view: viewIRI,
+  } = useCollectionOptions();
+  const view = viewIRI && useViewByIRI(viewIRI);
   const [itemWrapper, itemWrapperOpts] = React.useMemo(() => {
     let wrapper: ElementType = React.Fragment;
     let wrapperOpts = {};
 
-    if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])) {
+    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/card'])) {
       wrapper = CardRow;
       wrapperOpts = {
         borderTop: true,
       };
     }
-    if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
+    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
       wrapper = GridItem;
       wrapperOpts = {
         Fallback: LoadingCardFixed,
-        maxColumns: props.maxColumns,
+        maxColumns,
       };
     }
 
     return [wrapper, wrapperOpts];
-  }, [props.collectionDisplay, props.maxColumns]);
+  }, [collectionDisplay]);
 
   return (
-    props.items
-      .slice(0, props.renderLimit)
-      .map((iri) => (
-        <Resource
-          columns={props.columns}
-          depth={props.depth}
-          itemRenderer={view}
-          itemWrapper={itemWrapper}
-          itemWrapperOpts={itemWrapperOpts}
-          key={`${props.subject}:${iri.value}`}
-          separator={props.separator}
-          subject={iri}
-        />
-      ))
+    <React.Fragment>
+      {items
+        .slice(0, renderLimit)
+        .map((iri) => (
+          <Resource
+            depth={depth}
+            itemRenderer={view}
+            itemWrapper={itemWrapper}
+            itemWrapperOpts={itemWrapperOpts}
+            key={`${subject}:${iri.value}`}
+            separator={separator}
+            subject={iri}
+          />
+        ))}
+    </React.Fragment>
   );
 };
 
@@ -92,20 +100,18 @@ const styleWrapper = (props: ItemProps, itemListElem: JSX.Element | JSX.Element[
 
 const Items: FC<ItemProps> = (props) => {
   const {
-    collectionDisplay,
-    depth,
     items,
     linkedProp,
     topology,
     totalCount,
   } = props;
+  const { depth } = useCollectionOptions();
   let children = null;
 
   if (tryParseInt(totalCount) === 0) {
     return (
       <Property
         forceRender
-        collectionDisplay={collectionDisplay}
         label={app.empty}
         topology={topology}
       />
@@ -115,7 +121,7 @@ const Items: FC<ItemProps> = (props) => {
   if (Array.isArray(items) && items.length === 0) {
     children = null;
   } else if (Array.isArray(items)) {
-    children = itemList(props);
+    children = <ItemList {...props} />;
   } else {
     children = (
       <Resource

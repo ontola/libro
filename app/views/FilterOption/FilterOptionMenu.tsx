@@ -1,4 +1,4 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -9,6 +9,7 @@ import {
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { useCollectionOptions } from '../../components/Collection/CollectionProvider';
 import MenuItem from '../../components/MenuItem';
 import { retrievePath } from '../../helpers/iris';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
@@ -22,7 +23,6 @@ interface FilterOptionMenuCompProps {
   filterValue: SomeTerm;
   handleClose: () => void;
   partOf: SomeNode;
-  setCurrentPage: (page: NamedNode) => void;
 }
 
 interface FilterOptionMenuCompPropsWithRef extends FilterOptionMenuCompProps {
@@ -36,9 +36,9 @@ const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
   filterValue,
   handleClose,
   partOf,
-  setCurrentPage,
 }) => {
   const iriTemplate = useIRITemplate(partOf);
+  const { setCollectionResource } = useCollectionOptions();
   const selected = currentFilters.some((filter) => filter === filterValue);
   const param = `${encodeURIComponent(filterKey.value)}=${encodeURIComponent(filterValue.value)}`;
   const url = selected
@@ -54,7 +54,7 @@ const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
       action={(e: MouseEvent) => {
         e.preventDefault();
         handleClose();
-        setCurrentPage(rdf.namedNode(url));
+        setCollectionResource(rdf.namedNode(url));
       }}
       expandOpen={null}
       url={retrievePath(url) ?? '#'}

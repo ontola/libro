@@ -1,6 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import * as as from '@ontologies/as';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Resource,
@@ -16,7 +16,6 @@ import Menu from '../../../topologies/Menu';
 
 interface FilterFieldsSearchProps {
   linkedProp: SomeTerm;
-  setCurrentPage: (page: NamedNode) => void;
 }
 
 const trigger = (onClick: MouseEventHandler) => (
@@ -30,7 +29,7 @@ const trigger = (onClick: MouseEventHandler) => (
   </IconButton>
 );
 
-const FilterFieldsSearch: FC<FilterFieldsSearchProps> = ({ setCurrentPage }) => {
+const FilterFieldsSearch: FC<FilterFieldsSearchProps> = () => {
   const filterFields = useProperty(ontola.filterFields);
 
   const menuItems = React.useCallback(({ handleClose }) => filterFields
@@ -38,10 +37,9 @@ const FilterFieldsSearch: FC<FilterFieldsSearchProps> = ({ setCurrentPage }) => 
       <Resource
         handleClose={handleClose}
         key={field?.value}
-        setCurrentPage={setCurrentPage}
         subject={field}
       />
-    )), [filterFields, setCurrentPage]);
+    )), [filterFields]);
 
   return (
     <Menu

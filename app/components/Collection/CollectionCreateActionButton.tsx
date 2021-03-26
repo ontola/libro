@@ -12,7 +12,6 @@ import {
   useProperty,
   useResourceLinks,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -21,6 +20,8 @@ import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import { LoadingCardFloat } from '../Loading';
 import ResourceBoundary from '../ResourceBoundary';
+
+import { useCollectionOptions } from './CollectionProvider';
 
 const ORDER = [
   '/participants/add_all',
@@ -36,29 +37,25 @@ const useValidActions = (actions: SomeNode[]) => {
     .filter(isNode);
 };
 
-interface PropTypes {
-  omniform?: boolean;
-}
+const trigger = (onClick: MouseEventHandler) => (
+  <IconButton
+    centerRipple
+    color="default"
+    size="small"
+    onClick={onClick}
+  >
+    <FontAwesome name="plus" />
+  </IconButton>
+);
 
-const CollectionCreateActionButton: React.FC<PropTypes> = ({
-  omniform,
-}) => {
+const CollectionCreateActionButton: React.FC = () => {
   const lrs = useLRS();
   const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms }).filter(isNode);
   const validActions = useValidActions(createActions);
   useDataInvalidation(createActions);
   useDataFetching(createActions);
 
-  const trigger = (onClick: MouseEventHandler) => (
-    <IconButton
-      centerRipple
-      color="default"
-      size="small"
-      onClick={onClick}
-    >
-      <FontAwesome name="plus" />
-    </IconButton>
-  );
+  const { omniform } = useCollectionOptions();
 
   if (createActions.length > 1) {
     const freshAction = createActions.find((action) => !entityIsLoaded(lrs, action));

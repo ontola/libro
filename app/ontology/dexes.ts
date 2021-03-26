@@ -9,7 +9,6 @@ export default {
   // eslint-disable-next-line sort-keys
   Agreement: dexes('Agreement'),
   Folder: dexes('Folder'),
-  FolderEntry: dexes('FolderEntry'),
   HomePage: dexes('HomePage'),
   Invite: dexes('Invite'),
   Offer: dexes('Offer'),

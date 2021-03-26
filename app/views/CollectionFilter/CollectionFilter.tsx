@@ -12,6 +12,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useCollectionOptions } from '../../components/Collection/CollectionProvider';
 import { isResource } from '../../helpers/types';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import ontola from '../../ontology/ontola';
@@ -47,16 +48,15 @@ interface CollectionFilterProps {
   filterKey: SomeTerm;
   filterValues: SomeTerm[];
   partOf: NamedNode;
-  setCurrentPage: (page: NamedNode) => void;
 }
 
 const CollectionFilter: FC<CollectionFilterProps> = ({
   filterKey,
   filterValues,
   partOf,
-  setCurrentPage,
 }) => {
   const iriTemplate = useIRITemplate(partOf);
+  const { setCollectionResource } = useCollectionOptions();
 
   return (
     <React.Fragment>
@@ -76,7 +76,7 @@ const CollectionFilter: FC<CollectionFilterProps> = ({
           );
 
           if (url) {
-            setCurrentPage(url);
+            setCollectionResource(url);
           }
         };
 

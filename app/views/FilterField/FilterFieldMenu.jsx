@@ -26,7 +26,6 @@ const FilterFieldMenuComp = ({
   innerRef,
   options,
   partOf,
-  setCurrentPage,
   subject,
 }) => {
   const lrs = useLRS();
@@ -59,7 +58,6 @@ const FilterFieldMenuComp = ({
               filterKey={filterKey}
               handleClose={handleClose}
               key={option}
-              setCurrentPage={setCurrentPage}
               subject={option}
             />
           ))}
@@ -92,7 +90,6 @@ FilterFieldMenuComp.propTypes = {
   innerRef: PropTypes.func,
   options: PropTypes.arrayOf(linkType),
   partOf: linkType,
-  setCurrentPage: PropTypes.func,
   subject: subjectType,
 };
 

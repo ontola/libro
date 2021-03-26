@@ -1,30 +1,33 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, { SomeTerm } from '@ontologies/core';
 import equal from 'fast-deep-equal';
-import { useLinkRenderContext } from 'link-redux';
+import {
+  useLRS,
+  useLinkRenderContext,
+} from 'link-redux';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import { FormattedMessage, IntlShape } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import Button from '../Button';
+import { useCollectionOptions } from '../Collection/CollectionProvider';
 
 interface SearchFormProps {
-  autoFocus: boolean;
-  intl: IntlShape;
+  autoFocus?: boolean;
   placeholder: SomeTerm;
   query: SomeTerm;
-  setCurrentPage: (page: NamedNode) => void;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
   autoFocus,
   placeholder,
   query,
-  setCurrentPage,
 }) => {
+  const lrs = useLRS();
   const queryNormalized = query?.value ?? '';
   const { subject } = useLinkRenderContext();
   const iriTemplate = useIRITemplate(subject);
+  const { setCollectionResource } = useCollectionOptions();
 
   return (
     <Form
@@ -63,7 +66,11 @@ const SearchForm: React.FC<SearchFormProps> = ({
         const newPage = iriTemplate.replace('q', q || []);
 
         if (newPage) {
-          return setCurrentPage(newPage);
+          if (setCollectionResource) {
+            return setCollectionResource(newPage);
+          }
+
+          return lrs.actions.ontola.navigate(newPage);
         }
       }}
     />

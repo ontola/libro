@@ -12,6 +12,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import Button, { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
+import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
@@ -35,7 +36,6 @@ export interface PaginationProps {
   first: SomeTerm;
   last: SomeTerm;
   linkedProp: SomeTerm;
-  setCurrentPage: (page: NamedNode) => void;
 }
 
 interface PaginationButtonProps {
@@ -54,11 +54,13 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
       collectionResource,
       first,
       last,
-      setCurrentPage,
       subject,
     } = props;
     const { formatMessage } = useIntl();
     const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
+    const {
+      setCollectionResource,
+    } = useCollectionOptions();
 
     if (!first) {
       return null;
@@ -118,7 +120,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
           theme={ButtonTheme.Pagination}
           onClick={(e) => {
             e.preventDefault();
-            setCurrentPage(rdf.namedNode(url));
+            setCollectionResource(rdf.namedNode(url));
           }}
         >
           {label}

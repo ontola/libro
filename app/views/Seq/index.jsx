@@ -1,4 +1,3 @@
-import RDFTypes from '@rdfdev/prop-types';
 import * as rdfx from '@ontologies/rdf';
 import equal from 'fast-deep-equal';
 import {
@@ -15,7 +14,6 @@ import { allTopologies } from '../../topologies';
 
 export const Seq = ({
   childProps,
-  columns,
   depth,
   itemRenderer: ItemRenderer,
   itemWrapper: ItemWrapper,
@@ -51,7 +49,6 @@ export const Seq = ({
         <ErrorBoundary data-debug={s.toString()}>
           <Resource
             {...memoizedProps}
-            columns={columns}
             count={sequences.length}
             data-test={`Seq-${i}-${s.value}`}
             depth={depth}
@@ -66,7 +63,7 @@ export const Seq = ({
         </ErrorBoundary>
       </ItemWrapper>
     ))
-  ), [subject, sequences, memoizedProps, columns, depth]);
+  ), [subject, sequences, memoizedProps, depth]);
 
   const primaryItems = React.useMemo(
     () => (
@@ -98,7 +95,6 @@ Seq.defaultProps = {
 
 Seq.propTypes = {
   childProps: PropTypes.objectOf(PropTypes.any),
-  columns: PropTypes.arrayOf(RDFTypes.namedNode),
   depth: PropTypes.number,
   gutter: PropTypes.number,
   itemRenderer: PropTypes.elementType,

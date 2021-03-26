@@ -10,15 +10,10 @@ import { CollectionViewTypes } from './types';
 interface CollectionPageProps {
   collectionDisplay: SomeTerm;
   collectionDisplayFromData: SomeTerm;
-  columns: NamedNode[];
-  depth: number;
   insideCollection: boolean;
-  maxColumns: number;
-  originalCollectionResource: SomeTerm;
   redirectPagination: boolean;
   renderPartOf: boolean;
   renderWhenEmpty: boolean;
-  view: SomeTerm;
 }
 
 export default function getCollectionPage(
@@ -31,12 +26,8 @@ export default function getCollectionPage(
         <Property
           forceRender
           collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
-          columns={props.columns}
-          depth={props.depth}
           label={as.items}
-          maxColumns={props.maxColumns}
           renderLimit={Infinity}
-          view={props.view}
         />
       );
     }
@@ -46,7 +37,6 @@ export default function getCollectionPage(
         collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
         hidePagination={hidePagination}
         label={as.partOf}
-        originalCollectionResource={props.originalCollectionResource || props.subject}
         redirectPagination={props.redirectPagination}
         renderPartOf={props.renderPartOf}
         renderWhenEmpty={props.renderWhenEmpty}

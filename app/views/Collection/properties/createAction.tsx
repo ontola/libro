@@ -9,6 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 
@@ -16,23 +17,25 @@ interface PropTypes {
   createAction: SomeNode;
   isPartOf: SomeNode;
   linkedProp: SomeNode;
-  omniform: boolean;
   totalItems: Literal;
 }
 
 const CreateAction: FC<PropTypes> = ({
   linkedProp,
   isPartOf,
-  omniform,
   totalItems,
-}) => (
-  <Resource
-    count={totalItems}
-    isPartOf={isPartOf}
-    omniform={omniform}
-    subject={linkedProp}
-  />
-);
+}) => {
+  const { omniform } = useCollectionOptions();
+
+  return (
+    <Resource
+      count={totalItems}
+      isPartOf={isPartOf}
+      omniform={omniform}
+      subject={linkedProp}
+    />
+  );
+};
 
 CreateAction.type = as.Collection;
 

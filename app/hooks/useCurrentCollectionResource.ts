@@ -1,4 +1,5 @@
 import { NamedNode } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
   useLRS,
   useResourceProperty,
@@ -8,9 +9,9 @@ import { useHistory } from 'react-router';
 import { retrievePath } from '../helpers/iris';
 import app from '../ontology/app';
 
-type CurrentCollectionResource = [NamedNode, (newPage: NamedNode) => void];
+type CurrentCollectionResource = [SomeNode, (newPage: NamedNode) => void];
 
-export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: NamedNode):
+export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: SomeNode):
   CurrentCollectionResource => {
   const lrs = useLRS();
   const history = useHistory();

@@ -10,6 +10,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
+import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import GridItem from '../../../components/Grid/GridItem';
 import { isTableDisplay } from '../../../helpers/collections';
 import app from '../../../ontology/app';
@@ -21,16 +22,15 @@ import TableRow from '../../../topologies/TableRow';
 
 interface EmptyProps {
   baseCollection: NamedNode;
-  collectionDisplay: NamedNode;
   linkedProp: SomeTerm;
   topology: NamedNode;
 }
 
 const Empty: FC<EmptyProps> = ({
   baseCollection,
-  collectionDisplay,
   topology,
 }) => {
+  const { collectionDisplay } = useCollectionOptions();
   const collectionType = useResourceProperty(baseCollection, rdfx.type);
 
   if (collectionType.includes(ontola.SearchResult)) {

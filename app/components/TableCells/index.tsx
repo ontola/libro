@@ -1,4 +1,3 @@
-import { NamedNode } from '@ontologies/core';
 import { normalizeType } from 'link-lib';
 import {
   Property,
@@ -7,13 +6,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useCollectionOptions } from '../Collection/CollectionProvider';
 import Spinner from '../Spinner';
 
-interface PropTypes {
-  columns: NamedNode[];
-}
-
-const TableCells: React.FC<PropTypes> = ({ columns }) => {
+const TableCells: React.FC = () => {
+  const { columns } = useCollectionOptions();
   const { subject } = useLinkRenderContext();
   const lrs = useLRS();
 

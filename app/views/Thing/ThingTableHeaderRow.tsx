@@ -1,41 +1,38 @@
-import rdf from '@ontologies/core';
+import rdf, { SomeTerm } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import {
-  linkType,
-  register,
-} from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { FC, register } from 'link-redux';
+import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { useCollectionOptions } from '../../components/Collection/CollectionProvider';
+import { SortProps } from '../../hooks/useSorting';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
 import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
-const propTypes = {
-  name: linkType,
-  setCurrentPage: PropTypes.func,
-  sortOptions: PropTypes.arrayOf(linkType),
-};
+interface ThingTableHeaderRowProps {
+  name: SomeTerm;
+  sortOptions: SortProps[]
+}
 
 const SortableHeader = ({
   name,
-  setCurrentPage,
   sortOptions,
-}) => {
+}: ThingTableHeaderRowProps): JSX.Element => {
+  const { setCollectionResource } = useCollectionOptions();
   const [current, clickHandler] = React.useMemo(() => {
     const currentOption = sortOptions.find((option) => option.selected);
-    const currentIndex = sortOptions.indexOf(currentOption);
+    const currentIndex = currentOption ? sortOptions.indexOf(currentOption) : -1;
     const nextOption = sortOptions[((currentIndex + 1) % sortOptions.length)];
 
-    const onClick = (e) => {
+    const onClick = (e: MouseEvent) => {
       e.preventDefault();
-      setCurrentPage(rdf.namedNode(nextOption.url));
+      setCollectionResource(rdf.namedNode(nextOption.url));
     };
 
     return [currentOption, onClick];
-  }, [sortOptions]);
+  }, [sortOptions, setCollectionResource]);
 
   return (
     <button type="button" onClick={clickHandler}>
@@ -46,15 +43,12 @@ const SortableHeader = ({
   );
 };
 
-SortableHeader.propTypes = propTypes;
-
-const ThingTableHeaderRow = ({
+const ThingTableHeaderRow: FC<ThingTableHeaderRowProps> = ({
   name,
   sortOptions,
-  setCurrentPage,
 }) => {
   const inner = name && sortOptions?.length > 0
-    ? <SortableHeader name={name} setCurrentPage={setCurrentPage} sortOptions={sortOptions} />
+    ? <SortableHeader name={name} sortOptions={sortOptions} />
     : name?.value;
 
   return (
@@ -73,7 +67,5 @@ ThingTableHeaderRow.mapDataToProps = {
     label: [schema.name, rdfs.label, foaf.name],
   },
 };
-
-ThingTableHeaderRow.propTypes = propTypes;
 
 export default register(ThingTableHeaderRow);

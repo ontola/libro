@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import TableHeadCells from '../../../components/TableHeadCells';
-import { useSorting } from '../../../hooks/useSorting';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
@@ -27,37 +27,33 @@ const style = { marginBottom: '1em' };
 
 interface CollectionFrameProps {
   body: React.ReactElement;
-  collectionDisplay: SomeTerm;
-  collectionDisplayFromData: SomeTerm;
-  columns: NamedNode[];
   footer: React.ReactNode;
   header: React.ReactNode;
   linkedProp: SomeTerm;
   pagination: React.ReactNode;
-  setCurrentPage: (page: NamedNode) => void;
 }
 
 const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
   const collectionFrame: FC<CollectionFrameProps> = ({
     body,
-    collectionDisplay,
-    collectionDisplayFromData,
-    columns,
     footer,
     header,
     pagination,
-    setCurrentPage,
   }) => {
     let Wrapper;
-    const sortOptions = useSorting();
 
-    switch (rdf.id(collectionDisplay || collectionDisplayFromData)) {
+    const {
+      collectionDisplay,
+      columns,
+    } = useCollectionOptions();
+
+    switch (rdf.id(collectionDisplay)) {
     case rdf.id(ontola.ns('collectionDisplay/grid')):
       Wrapper = wrapper ? LargeContainer : React.Fragment;
 
       return (
         <Wrapper>
-          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          <Property label={ontola.query} />
           {header}
           <Grid container>
             {body}
@@ -72,17 +68,13 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
 
       return (
         <Wrapper>
-          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          <Property label={ontola.query} />
           {header}
           <Card>
             <Table>
               <TableHead>
                 <TableHeaderRow>
-                  <TableHeadCells
-                    columns={columns}
-                    setCurrentPage={setCurrentPage}
-                    sortOptions={sortOptions}
-                  />
+                  <TableHeadCells />
                 </TableHeaderRow>
               </TableHead>
               <tbody>
@@ -90,7 +82,7 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
               </tbody>
               <TableFooter>
                 <TableFooterRow>
-                  <TableFooterCell colSpan={columns.length}>
+                  <TableFooterCell colSpan={columns?.length}>
                     {pagination}
                   </TableFooterCell>
                 </TableFooterRow>
@@ -105,7 +97,7 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
 
       return (
         <Wrapper>
-          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          <Property label={ontola.query} />
           {header}
           <Card>
             {body}
@@ -121,7 +113,7 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
 
       return (
         <Wrapper>
-          <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+          <Property label={ontola.query} />
           {header}
           {body}
           <div style={style}>
@@ -140,10 +132,6 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
   collectionFrame.topology = topology;
 
   collectionFrame.property = ontola.collectionFrame;
-
-  collectionFrame.mapDataToProps = {
-    collectionDisplayFromData: ontola.collectionDisplay,
-  };
 
   return collectionFrame;
 };

@@ -1,4 +1,4 @@
-import { isNode } from '@ontologies/core';
+import { SomeTerm, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import { useLRS } from 'link-redux';
@@ -29,7 +29,7 @@ const FileInput: React.FC<InputComponentProps> = ({
     schema.encodingFormat,
   ).pop();
   const encodingFormatList = isNode(encodingFormatShape) && lrs.getResourceProperty(encodingFormatShape, sh.shaclin);
-  const encodingFormatConversion = isNode(encodingFormatList) && listToArr(lrs, [], encodingFormatList);
+  const encodingFormatConversion = isNode(encodingFormatList) && listToArr<SomeTerm>(lrs, [], encodingFormatList);
   const encodingFormatTypes = Array.isArray(encodingFormatConversion) && encodingFormatConversion
     .map((lit) => lit.value)
     .join(', ');

@@ -1,4 +1,4 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   FC,
@@ -16,12 +16,10 @@ import { tableTopology } from '../../../topologies/Table';
 import TableRow from '../../../topologies/TableRow';
 
 interface StreetTableProps {
-  columns: NamedNode[];
   subject: SomeNode;
 }
 
 const StreetTable: FC<StreetTableProps> = ({
-  columns,
   subject,
 }) => {
   const lrs = useLRS();
@@ -42,7 +40,7 @@ const StreetTable: FC<StreetTableProps> = ({
 
   return (
     <TableRow onClick={hasAction ? onClick : undefined}>
-      <TableCells columns={columns} />
+      <TableCells />
     </TableRow>
   );
 };

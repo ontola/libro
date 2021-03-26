@@ -16,14 +16,14 @@ const sortElementProps = {
   sortKey: ontola.sortKey,
 };
 
-export interface SortOptions  {
+export interface SortProps  {
     direction: string | null;
     item: SomeTerm;
     selected: boolean;
     url?: string;
 }
 
-export const useSorting = (): SortOptions[] => {
+export const useSorting = (): SortProps[] => {
   const { subject } = useLinkRenderContext();
   const iriTemplate = useIRITemplate(subject);
   const collectionSorting = useProperty(ontola.collectionSorting);
