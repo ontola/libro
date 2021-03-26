@@ -1,10 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
 
+import { LibroTheme } from '../../themes/themes';
+
 const breadCrumBorder = '1px solid #e6e6e6';
 const hoverBorderColor = '#c8c8c8';
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-export default makeStyles((theme: any) => ({
+export default makeStyles<LibroTheme>((theme) => ({
   default: {
     '& .Breadcrumb__text': {
       overflow: 'hidden',

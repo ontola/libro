@@ -5,16 +5,6 @@ import { semanticColors } from '../shared/config';
 
 export const HOVER_COEFFICIENT = 0.3;
 
-declare module '@material-ui/core/styles/createPalette' {
-  interface LinkOptions {
-    header: string;
-  }
-
-  interface Palette {
-    link: LinkOptions;
-  }
-}
-
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export default makeStyles((theme) => {
   const style = {

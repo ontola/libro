@@ -4,11 +4,12 @@ import React, { useState } from 'react';
 
 import Button, { ButtonTheme } from '../../components/Button';
 import Markdown from '../../components/Markdown';
+import { LibroTheme } from '../../themes/themes';
 
 import instructions from './instructions';
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],

@@ -4,12 +4,13 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { LibroTheme } from '../../themes/themes';
 import { semanticColors } from '../shared/config';
 
 import './Heading.scss';
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-const useStyles = makeStyles((theme: any) => {
+const useStyles = makeStyles<LibroTheme>((theme) => {
   const style = {
     default: {
       '& b': {

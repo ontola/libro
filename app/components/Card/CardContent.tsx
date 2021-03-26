@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import '../../topologies/Card/Card.scss';
+import { LibroTheme } from '../../themes/themes';
 import { HOVER_COEFFICIENT } from '../Link/ThemeStyles';
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   default: {
     '& a:not(.Button):not(.AttachmentPreview)': {
       color: theme.palette.link?.text,
