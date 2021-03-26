@@ -84,7 +84,6 @@ export default {
   filterOptions: ontola('filterOptions'),
   filterValue: ontola('filterValue'),
   followMenu: ontola('followMenu'),
-  footer: ontola('footer'),
   formSteps: ontola('formSteps'),
   ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
   groupBy: ontola('groupBy'),

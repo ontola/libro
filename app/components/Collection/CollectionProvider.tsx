@@ -270,14 +270,6 @@ const CollectionProvider = ({
     />
   );
 
-  const footer = (!depth || depth === 0) && !hideHeader && (
-    <Property
-      forceRender
-      label={ontola.footer}
-      omniform={omniform}
-    />
-  );
-
   return (
     <CollectionContext.Provider value={collectionOptions}>
       <ResourceBoundary subject={collectionResource} wrapperProps={wrapperProps}>
@@ -285,7 +277,6 @@ const CollectionProvider = ({
         <Property
           forceRender
           body={body()}
-          footer={footer}
           header={header}
           label={ontola.collectionFrame}
           pagination={pagination}

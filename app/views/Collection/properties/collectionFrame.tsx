@@ -27,7 +27,6 @@ const style = { marginBottom: '1em' };
 
 interface CollectionFrameProps {
   body: React.ReactElement;
-  footer: React.ReactNode;
   header: React.ReactNode;
   linkedProp: SomeTerm;
   pagination: React.ReactNode;
@@ -36,7 +35,6 @@ interface CollectionFrameProps {
 const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
   const collectionFrame: FC<CollectionFrameProps> = ({
     body,
-    footer,
     header,
     pagination,
   }) => {
@@ -59,7 +57,6 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
             {body}
           </Grid>
           {pagination}
-          {footer}
         </Wrapper>
       );
     case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
@@ -88,7 +85,6 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
                 </TableFooterRow>
               </TableFooter>
             </Table>
-            {footer}
           </Card>
         </Wrapper>
       );
@@ -104,7 +100,6 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
             <CardAppendix>
               {pagination}
             </CardAppendix>
-            {footer}
           </Card>
         </Wrapper>
       );
@@ -119,7 +114,6 @@ const getFrame = (wrapper: boolean, topology: NamedNode | NamedNode[]) => {
           <div style={style}>
             {pagination}
           </div>
-          {footer}
         </Wrapper>
       );
     default:
