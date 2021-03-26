@@ -1,6 +1,9 @@
 import { SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { LinkReduxLRSType, useLRS } from 'link-redux';
+import {
+  LinkReduxLRSType,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
 import parser from 'uri-template';
 

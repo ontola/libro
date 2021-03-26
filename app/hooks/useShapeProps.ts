@@ -23,6 +23,7 @@ export interface ShapeForm extends ResolvedShapeForm{
   minCountProp?: SomeNode;
   minInclusiveProp?: SomeNode;
   minLengthProp?: SomeNode;
+  shInProp?: SomeNode;
 }
 
 export interface ShapeFromObjectForm {
@@ -56,6 +57,7 @@ const mapShapeProps = {
   minLength: literal(sh.minLength),
   minLengthProp: ontola.minLength,
   shIn: sh.shaclin,
+  shInProp: ontola.shIn,
 };
 
 const useFieldShape = (props: UseFormFieldProps): ResolvedShapeForm => {

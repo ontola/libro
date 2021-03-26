@@ -31,6 +31,7 @@ import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageGet } from '../helpers/persistence';
 import { isResource } from '../helpers/types';
 import form from '../ontology/form';
+import ontola from '../ontology/ontola';
 
 import { InputValue } from './useFormField';
 
@@ -73,7 +74,10 @@ const getInitialValues = (
   ];
 
   (fields.concat(conditionalFields)).filter(isNode).forEach((field) => {
-    const shIn = lrs.getResourceProperties(field, sh.shaclin);
+    const shInProp = lrs.getResourceProperty(field, ontola.shIn);
+    const shIn = isNamedNode(shInProp)
+      ? lrs.getResourceProperties(object, shInProp)
+      : lrs.getResourceProperties(field, sh.shaclin);
     dependentResources.push(...shIn);
 
     const path = lrs.getResourceProperty<NamedNode>(field, sh.path);

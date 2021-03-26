@@ -129,6 +129,7 @@ export default {
   resource: ontola('resource'),
   sendConfirmationAction: ontola('sendConfirmationAction'),
   settingsMenu: ontola('settingsMenu'),
+  shIn: ontola('shIn'),
   shareMenu: ontola('shareMenu'),
   signUpAction: ontola('signUpAction'),
   sortDirection: ontola('sortDirection'),
