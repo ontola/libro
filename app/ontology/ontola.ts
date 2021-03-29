@@ -136,6 +136,7 @@ export default {
   startedAction: ontola('startedAction'),
   tabsMenu: ontola('tabsMenu'),
   topology: ontola('topology'),
+  trashAction: ontola('trashAction'),
   updateAction: ontola('updateAction'),
   widgetResource: ontola('widgetResource'),
   widgetSize: ontola('widgetSize'),

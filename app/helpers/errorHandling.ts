@@ -9,7 +9,9 @@ export interface SubmitDataProcessor extends Omit<DataProcessor, 'feedResponse' 
   execExecHeader: (header: string | null, args: unknown) => void;
 }
 
-export const handleHTTPRetry = (lrs: LinkReduxLRSType<unknown, SubmitDataProcessor>, e: { response: Response }, onDone: () => Promise<void>): Promise<never> => {
+export type LRS = LinkReduxLRSType<unknown, SubmitDataProcessor>;
+
+export const handleHTTPRetry = (lrs: LRS, e: { response: Response }, onDone: () => Promise<void>): Promise<never> => {
   const actionsHeader = e.response.headers.get('Exec-Action');
 
   lrs.api.execExecHeader(actionsHeader, { onDone });

@@ -108,7 +108,7 @@ function entityHasError(lrs: LinkReduxLRSType, iri: Node): boolean {
   return status !== null && status >= BAD_REQUEST;
 }
 
-function entityIsLoaded(lrs: LinkReduxLRSType, iri: Node): boolean {
+function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRSType>(lrs: T, iri: Node): boolean {
   return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK || lrs.getStatus(iri).status === NOT_FOUND;
 }
 

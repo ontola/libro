@@ -1,30 +1,52 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
+  LinkReduxLRSType,
   Resource,
-  ReturnType,
-  linkType,
   register,
-  subjectType,
   useDataFetching,
-  useDataInvalidation,
   useLRS,
   useProperty,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import {
+  MessageDescriptor,
+  defineMessages,
+  useIntl,
+} from 'react-intl';
 import { connect } from 'react-redux';
+import { Action } from 'redux';
 
-import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
+import { entityIsLoaded } from '../../helpers/data';
+import {
+  HTTP_RETRY_WITH,
+  LRS,
+  SubmitDataProcessor,
+  handleHTTPRetry,
+} from '../../helpers/errorHandling';
 import { handle } from '../../helpers/logging';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { allTopologies } from '../../topologies';
 import { CollectionTypes } from '../Collection/types';
+
+interface CreateVoteProps {
+  lrs: LinkReduxLRSType;
+  openOmniform: () => undefined | Promise<any>,
+  subject: NamedNode;
+  subjectCtx: NamedNode;
+}
+
+enum Option {
+  Yes = 'yes',
+  No = 'no',
+  Other = 'other',
+}
 
 const messages = defineMessages({
   closedMessage: {
@@ -45,20 +67,20 @@ const messages = defineMessages({
   },
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: (action: Action) => void, ownProps: CreateVoteProps) => ({
   openOmniform: () => {
     const isVoteEventVote = ownProps.lrs.findSubject(
       ownProps.subject,
       [schema.object, rdfx.type],
-      CollectionTypes
+      CollectionTypes,
     );
     const inlineFormTarget = isVoteEventVote.length > 0
-      ? ownProps.lrs.getResourceProperty(ownProps.subjectCtx, schema.isPartOf)
+      ? ownProps.lrs.getResourceProperty(ownProps.subjectCtx, schema.isPartOf) as NamedNode
       : ownProps.subjectCtx;
     const hasOpinionAction = ownProps.lrs.findSubject(
       inlineFormTarget,
       [schema.potentialAction, rdfx.type],
-      [ontola['Create::Opinion'], argu['Update::Opinion']]
+      [ontola['Create::Opinion'], argu['Update::Opinion']],
     );
 
     if (!hasOpinionAction) {
@@ -72,17 +94,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       dispatch(omniformOpenInline(inlineFormTarget)),
       dispatch(omniformSetAction({
         action: createOpinion,
-        parentIRI: btoa(inlineFormTarget),
+        parentIRI: inlineFormTarget ? btoa(inlineFormTarget.value) : null,
       })),
       dispatch(omniformSetAction({
         action: updateOpinion,
-        parentIRI: btoa(inlineFormTarget),
+        parentIRI: inlineFormTarget ? btoa(inlineFormTarget.value) : null,
       })),
     ]);
   },
 });
 
-function countAttribute(option) {
+function countAttribute(option: string) {
   if (option === 'yes') {
     return argu.votesProCount;
   } else if (option === 'no') {
@@ -92,16 +114,15 @@ function countAttribute(option) {
   return argu.votesNeutralCount;
 }
 
-function useCurrentOption(parent, subject) {
-  const [vote] = useResourceProperty(parent, argu.currentVote);
-  useDataInvalidation(subject);
+function useCurrentVote(parent: SomeNode) {
+  const [vote] = useResourceProperty(parent, argu.currentVote) as NamedNode[];
   useDataFetching([parent, vote]);
-  const [currentOption] = useResourceProperty(vote, schema.option);
+  const [currentOption] = useResourceProperty(vote, schema.option) as SomeNode[];
 
-  return currentOption;
+  return [vote, currentOption];
 }
 
-function getTitle(variant, parentType, expired, fm) {
+function getTitle(variant: string, parentType: SomeNode, expired: boolean, fm: (message: MessageDescriptor) => string) {
   if (expired) {
     return fm(messages.closedMessage);
   }
@@ -121,17 +142,19 @@ function getTitle(variant, parentType, expired, fm) {
   return null;
 }
 
-function getOption(subject) {
+const isOption = (v: string): v is Option => ['yes', 'no', 'other'].includes(v);
+
+function getOption(subject: SomeNode): Option {
   const variant = new URL(subject.value).searchParams.get('filter[]')?.split('=')?.pop();
 
-  if (variant) {
+  if (variant && isOption(variant)) {
     return variant;
   }
 
-  return 'yes';
+  return Option.Yes;
 }
 
-function getVariant(option, parentType) {
+function getVariant(option: string, parentType: SomeNode) {
   if (rdf.equals(parentType, argu.ProArgument)) {
     return 'yes';
   }
@@ -149,29 +172,37 @@ function getVariant(option, parentType) {
  * Currently includes alternative behaviour to override the color and state for argument votes since
  * those aren't based on the vote but rather on the argument (see {propTypes}).
  */
-const CreateVote = ({
-  actionStatus,
+const CreateVote: FC<CreateVoteProps> = ({
   openOmniform,
   subject,
-  target,
 }) => {
-  const lrs = useLRS();
+  const lrs = useLRS<unknown, SubmitDataProcessor>();
   const { formatMessage } = useIntl();
-  const [isPartOf] = useProperty(schema.isPartOf);
-  const currentOption = useCurrentOption(isPartOf, subject);
-  const [parentType] = useResourceProperty(isPartOf, rdfx.type);
-  const option = getOption(subject, parentType);
+  const [isPartOf] = useProperty(schema.isPartOf) as SomeNode[];
+  const [currentVote, currentOption] = useCurrentVote(isPartOf);
+  const [deleteVoteAction] = useResourceProperty(currentVote, ontola.trashAction) as NamedNode[];
+  const option = getOption(subject);
+  const active = rdf.equals(currentOption, argu[option]);
+  const action = active && entityIsLoaded<LRS>(lrs, deleteVoteAction)
+    ? deleteVoteAction
+    : subject;
+  useDataFetching(deleteVoteAction);
+  const [actionStatus] = useResourceProperty(action, schema.actionStatus);
+  const [target] = useResourceProperty(action, schema.target) as SomeNode[];
+  const [parentType] = useResourceProperty(isPartOf, rdfx.type) as SomeNode[];
   const [count] = useResourceProperty(isPartOf, countAttribute(option));
-  const handleClick = () => lrs
-    .exec(subject)
-    .then(openOmniform)
-    .catch((e) => {
-      if (e.response.status === HTTP_RETRY_WITH) {
-        return handleHTTPRetry(lrs, e, () => handleClick());
-      }
+  const handleClick: () => Promise<any> = React.useCallback(() => (
+    lrs
+      .exec(action)
+      .then(openOmniform)
+      .catch((e) => {
+        if (e.response.status === HTTP_RETRY_WITH) {
+          return handleHTTPRetry(lrs, e, () => handleClick());
+        }
 
-      return handle(e);
-    });
+        return handle(e);
+      })
+  ), [lrs, action, openOmniform]);
 
   if (!target) {
     return null;
@@ -187,7 +218,7 @@ const CreateVote = ({
 
   return (
     <Resource
-      active={rdf.equals(currentOption, argu[option])}
+      active={active}
       count={count}
       disabled={disabled || expired}
       grow={rdf.equals(parentType, argu.VoteEvent)}
@@ -212,20 +243,7 @@ CreateVote.topology = allTopologies;
 CreateVote.hocs = [connect(null, mapDispatchToProps)];
 
 CreateVote.mapDataToProps = {
-  actionStatus: schema.actionStatus,
   isPartOf: schema.isPartOf,
-  target: schema.target,
-  type: {
-    label: rdfx.type,
-    returnType: ReturnType.AllTerms,
-  },
-};
-
-CreateVote.propTypes = {
-  actionStatus: linkType,
-  openOmniform: PropTypes.func,
-  subject: subjectType,
-  target: linkType,
 };
 
 export default register(CreateVote);
