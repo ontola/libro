@@ -1,21 +1,33 @@
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   ReturnType,
-  linkType,
   register,
 } from 'link-redux';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const SNACKBAR_TIMEOUT = 2750;
 
-const SnackbarView = ({ close, text }) => {
+interface SnackbarViewProps {
+  close: () => void;
+  text: SomeTerm;
+}
+
+const messages = {
+  close: {
+    id: 'https://app.argu.co/i18n/forms/actions/close',
+  },
+};
+
+const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
+  const { formatMessage } = useIntl();
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => setOpen(false);
@@ -24,11 +36,11 @@ const SnackbarView = ({ close, text }) => {
     <Snackbar
       action={[
         <IconButton
-          aria-label="Close"
+          aria-label={formatMessage(messages.close)}
           color="inherit"
           href="#"
           key="close"
-          title="Sluiten"
+          title={formatMessage(messages.close)}
           onClick={handleClose}
         >
           <CloseIcon />
@@ -52,12 +64,6 @@ SnackbarView.mapDataToProps = {
 };
 
 SnackbarView.linkOpts = { returnType: ReturnType.Value };
-
-SnackbarView.propTypes = {
-  close: PropTypes.func,
-  text: linkType,
-};
-
 
 export default [
   register(SnackbarView),

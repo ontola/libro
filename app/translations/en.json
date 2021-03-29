@@ -84,6 +84,7 @@
   "https://app.argu.co/i18n/expireable/states/expiring/tooltip": "Closing on {date}",
   "https://app.argu.co/i18n/forms/actions/cancel": "cancel",
   "https://app.argu.co/i18n/forms/actions/clear": "clear",
+  "https://app.argu.co/i18n/forms/actions/close": "Close",
   "https://app.argu.co/i18n/forms/actions/ok": "ok",
   "https://app.argu.co/i18n/forms/actions/showToday": "now",
   "https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage": "Invalid Date Format",

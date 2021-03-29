@@ -1,6 +1,7 @@
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import Button, { ButtonTheme } from '../../components/Button';
 import Markdown from '../../components/Markdown';
@@ -22,7 +23,14 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 }));
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 
+const messages = {
+  close: {
+    id: 'https://app.argu.co/i18n/forms/actions/close',
+  },
+};
+
 const MarkdownInstructions = (): JSX.Element => {
+  const { formatMessage } = useIntl();
   const classes = useStyles();
   const [showModal, setModal] = useState(false);
 
@@ -48,7 +56,7 @@ const MarkdownInstructions = (): JSX.Element => {
             theme={ButtonTheme.Transparant}
             onClick={() => setModal(false)}
           >
-            Sluiten
+            {formatMessage(messages.close)}
           </Button>
           <Markdown
             text={instructions}

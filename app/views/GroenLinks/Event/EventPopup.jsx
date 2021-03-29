@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { useIntl } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../components/HeaderWithMenu';
@@ -20,16 +21,23 @@ import ContentDetails from '../../../topologies/ContentDetails';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { popupTopology } from '../../../topologies/Popup';
 
+const messages = {
+  close: {
+    id: 'https://app.argu.co/i18n/forms/actions/close',
+  },
+};
+
 const EventPopup = ({
   onClose,
   topology,
 }) => {
+  const { formatMessage } = useIntl();
   const lrs = useLRS();
   const handleClose = topology === alertDialogTopology ? lrs.actions.ontola.hideDialog() : onClose;
   const closeButton = handleClose && (
     <IconButton
       size="small"
-      title="Sluiten"
+      title={formatMessage(messages.close)}
       type="button"
       onClick={handleClose}
     >

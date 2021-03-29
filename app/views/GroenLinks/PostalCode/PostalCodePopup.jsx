@@ -8,6 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { useIntl } from 'react-intl';
 
 import AttributeListItem from '../../../components/AttributeListItem';
 import Button from '../../../components/Button';
@@ -20,17 +21,23 @@ import ContentDetails from '../../../topologies/ContentDetails';
 import { popupTopology } from '../../../topologies/Popup';
 import { useVisitPostalCode } from '../Glapp/helpers';
 
+const messages = {
+  close: {
+    id: 'https://app.argu.co/i18n/forms/actions/close',
+  },
+};
 
 const PostalCodePopup = ({
   onClose,
   postalDigits,
 }) => {
+  const { formatMessage } = useIntl();
   const { visitPostalCode } = useVisitPostalCode();
 
   const closeButton = (
     <IconButton
       size="small"
-      title="Sluiten"
+      title={formatMessage(messages.close)}
       type="button"
       onClick={onClose}
     >

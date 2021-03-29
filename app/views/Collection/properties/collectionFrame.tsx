@@ -9,6 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { defineMessages, useIntl } from 'react-intl';
 
 import CollectionFrame from '../../../components/Collection/CollectionFrame';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
@@ -26,6 +27,13 @@ interface CollectionFrameProps {
   linkedProp: SomeTerm;
   onDone?: () => void;
 }
+
+const messages = defineMessages({
+  close: {
+    defaultMessage: 'Close',
+    id: 'https://app.argu.co/i18n/forms/actions/close',
+  },
+});
 
 const LARGE_CONTAINER_DISPLAYS = [
   rdf.id(ontola.ns('collectionDisplay/grid')),
@@ -72,11 +80,12 @@ WrappedCollectionFrame.property = ontola.collectionFrame;
 const DialogCollectionFrame: FC<CollectionFrameProps> = ({
   onDone,
 }) => {
+  const { formatMessage } = useIntl();
   const classes = useStyles();
   const closeButton = React.useCallback(() => (
     <IconButton
       size="small"
-      title="Sluiten"
+      title={formatMessage(messages.close)}
       type="button"
       onClick={onDone}
     >

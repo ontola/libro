@@ -84,6 +84,7 @@
   "https://app.argu.co/i18n/expireable/states/expiring/tooltip": "sluit op {date}",
   "https://app.argu.co/i18n/forms/actions/cancel": "annuleren",
   "https://app.argu.co/i18n/forms/actions/clear": "legen",
+  "https://app.argu.co/i18n/forms/actions/close": "Sluiten",
   "https://app.argu.co/i18n/forms/actions/ok": "ok",
   "https://app.argu.co/i18n/forms/actions/showToday": "nu",
   "https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage": "Ongeldig datum formaat",
