@@ -15,7 +15,6 @@ import {
 import React from 'react';
 import {
   MessageDescriptor,
-  defineMessages,
   useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';
@@ -33,6 +32,7 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { allTopologies } from '../../topologies';
+import { voteMessages } from '../../translations/messages';
 import { CollectionTypes } from '../Collection/types';
 
 interface CreateVoteProps {
@@ -47,25 +47,6 @@ enum Option {
   No = 'no',
   Other = 'other',
 }
-
-const messages = defineMessages({
-  closedMessage: {
-    defaultMessage: 'Voting no longer possible',
-    id: 'https://app.argu.co/i18n/votes/expireable/states/closed/message',
-  },
-  conMessage: {
-    defaultMessage: 'Click to vote against this idea',
-    id: 'https://app.argu.co/i18n/votes/con/message',
-  },
-  neutralMessage: {
-    defaultMessage: 'Click to vote neutral on this idea',
-    id: 'https://app.argu.co/i18n/votes/neutral/message',
-  },
-  proMessage: {
-    defaultMessage: 'Click to vote for this idea',
-    id: 'https://app.argu.co/i18n/votes/pro/message',
-  },
-});
 
 const mapDispatchToProps = (dispatch: (action: Action) => void, ownProps: CreateVoteProps) => ({
   openOmniform: () => {
@@ -124,7 +105,7 @@ function useCurrentVote(parent: SomeNode) {
 
 function getTitle(variant: string, parentType: SomeNode, expired: boolean, fm: (message: MessageDescriptor) => string) {
   if (expired) {
-    return fm(messages.closedMessage);
+    return fm(voteMessages.closedMessage);
   }
 
   if (rdf.equals(parentType, argu.ProArgument) || rdf.equals(parentType, argu.ConArgument)) {
@@ -132,11 +113,11 @@ function getTitle(variant: string, parentType: SomeNode, expired: boolean, fm: (
   }
 
   if (variant === 'yes') {
-    return fm(messages.proMessage);
+    return fm(voteMessages.proMessage);
   } else if (variant === 'no') {
-    return fm(messages.conMessage);
+    return fm(voteMessages.conMessage);
   } else if (variant === 'other') {
-    return fm(messages.neutralMessage);
+    return fm(voteMessages.neutralMessage);
   }
 
   return null;

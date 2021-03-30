@@ -6,21 +6,14 @@ import { Resource, useLRS } from 'link-redux';
 import React from 'react';
 import {
   FormattedMessage,
-  defineMessages,
   useIntl,
 } from 'react-intl';
 
 import app from '../../ontology/app';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formMessages } from '../../translations/messages';
 
 import './Omniform.scss';
-
-const messages = defineMessages({
-  defaultResponseType: {
-    defaultMessage: 'response',
-    id: 'https://app.argu.co/i18n/forms/omniform/defaultResponseType',
-  },
-});
 
 export interface OmniformPreviewProps {
   onClick: React.MouseEventHandler,
@@ -52,7 +45,7 @@ const OmniformPreview = ({
           id="https://app.argu.co/i18n/forms/omniform/newResponsePreview"
           values={{
             type: (
-              actionLabel || intl.formatMessage(messages.defaultResponseType)
+              actionLabel || intl.formatMessage(formMessages.defaultResponseType)
             ).toLocaleLowerCase(),
           }}
         />

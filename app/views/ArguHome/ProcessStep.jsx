@@ -11,7 +11,7 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Heading from '../../components/Heading';
 import { LoadingRow } from '../../components/Loading';
@@ -20,25 +20,7 @@ import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
 import { allTopologies } from '../../topologies';
 import './ProcessStepp.scss';
-
-const messages = defineMessages({
-  acceptedDecision: {
-    defaultMessage: 'Accepted',
-    id: 'https://app.argu.co/i18n/arguHome/acceptedDecision',
-  },
-  motionExampleTitle: {
-    defaultMessage: 'Idea',
-    id: 'https://app.argu.co/i18n/arguHome/motionExampleTitle',
-  },
-  questionExampleTitle: {
-    defaultMessage: 'How do we solve problem Y?',
-    id: 'https://app.argu.co/i18n/arguHome/questionExampleTitle',
-  },
-  surveyExampleTitle: {
-    defaultMessage: 'How satisfied are you with X?',
-    id: 'https://app.argu.co/i18n/arguHome/surveyExampleTitle',
-  },
-});
+import { homeMessages } from '../../translations/messages';
 
 const featurePropMap = {
   icons: {
@@ -62,7 +44,7 @@ const ProcessStep = ({
   const exampleContent = {
     [argu.Survey.id]: (
       <div className="CardContent">
-        <Heading>{formatMessage(messages.surveyExampleTitle)}</Heading>
+        <Heading>{formatMessage(homeMessages.surveyExampleTitle)}</Heading>
         <ul className="ProcessStep--box-icons">
           <li>
             <h3>
@@ -87,7 +69,7 @@ const ProcessStep = ({
     ),
     [argu.Question.id]: (
       <div className="CardContent">
-        <Heading variant="question">{formatMessage(messages.questionExampleTitle)}</Heading>
+        <Heading variant="question">{formatMessage(homeMessages.questionExampleTitle)}</Heading>
         <span className="ProcessStep--filler-bar" />
         <span className="ProcessStep--filler-bar" />
         <span className="ProcessStep--filler-bar" style={{ width: '30%' }} />
@@ -115,13 +97,13 @@ const ProcessStep = ({
     ),
     [argu.Motion.id]: (
       <div className="CardContent">
-        <Heading variant="motion">{formatMessage(messages.motionExampleTitle)}</Heading>
+        <Heading variant="motion">{formatMessage(homeMessages.motionExampleTitle)}</Heading>
         <div className="detailsBar li-motion-4 animate landing__detail-decision">
           <div className="detail detail--decision--approved">
             <div className="detail__icon">
               <div className="fa fa-check-square-o" />
             </div>
-            <div className="detail__text">{formatMessage(messages.acceptedDecision)}</div>
+            <div className="detail__text">{formatMessage(homeMessages.acceptedDecision)}</div>
           </div>
         </div>
         <span className="ProcessStep--filler-bar" />

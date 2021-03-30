@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import CollectionFrame from '../../../components/Collection/CollectionFrame';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
@@ -21,19 +21,13 @@ import { alertDialogTopology } from '../../../topologies/Dialog';
 import { gridTopology } from '../../../topologies/Grid';
 import { pageTopology } from '../../../topologies/Page';
 import { allTopologiesExcept } from '../../../topologies';
+import { formMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
 
 interface CollectionFrameProps {
   linkedProp: SomeTerm;
   onDone?: () => void;
 }
-
-const messages = defineMessages({
-  close: {
-    defaultMessage: 'Close',
-    id: 'https://app.argu.co/i18n/forms/actions/close',
-  },
-});
 
 const LARGE_CONTAINER_DISPLAYS = [
   rdf.id(ontola.ns('collectionDisplay/grid')),
@@ -85,7 +79,7 @@ const DialogCollectionFrame: FC<CollectionFrameProps> = ({
   const closeButton = React.useCallback(() => (
     <IconButton
       size="small"
-      title={formatMessage(messages.close)}
+      title={formatMessage(formMessages.close)}
       type="button"
       onClick={onDone}
     >

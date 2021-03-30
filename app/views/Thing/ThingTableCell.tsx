@@ -4,19 +4,13 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Detail from '../../components/Detail';
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
 import { tableCellTopology } from '../../topologies/TableCell';
-
-const messages = defineMessages({
-  showProfile: {
-    defaultMessage: "Show {name}'s profile",
-    id: 'https://app.argu.co/i18n/schema:Thing/showResourceText',
-  },
-});
+import { thingMessages } from '../../translations/messages';
 
 interface PropTypes {
   name: Literal;
@@ -28,7 +22,7 @@ const ThingTableCell: FC<PropTypes> = ({ name }) => {
   return (
     <LDLink
       features={[LinkFeature.Bold, LinkFeature.Centered]}
-      title={formatMessage(messages.showProfile, { name: name?.value })}
+      title={formatMessage(thingMessages.showProfile, { name: name?.value })}
     >
       <Detail
         linkedImage

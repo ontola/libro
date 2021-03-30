@@ -5,7 +5,7 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import CardContent from '../../components/Card/CardContent';
 import Heading from '../../components/Heading';
@@ -15,17 +15,7 @@ import CardFixed from '../../topologies/Card/CardFixed';
 import { inlineTopology } from '../../topologies/Inline';
 import './Case.scss';
 import GridItem from '../../components/Grid/GridItem';
-
-const messages = defineMessages({
-  reactionsCount: {
-    defaultMessage: 'comments and arguments',
-    id: 'https://app.argu.co/i18n/arguHome/reactionsCount',
-  },
-  votesCount: {
-    defaultMessage: 'votes',
-    id: 'https://app.argu.co/i18n/arguHome/votesCount',
-  },
-});
+import { homeMessages } from '../../translations/messages';
 
 const Case = ({ image }) => {
   const { formatMessage } = useIntl();
@@ -51,14 +41,14 @@ const Case = ({ image }) => {
               <Property label={argu.votesCount} topology={inlineTopology} />
               {' '}
             </b>
-            {formatMessage(messages.votesCount)}
+            {formatMessage(homeMessages.votesCount)}
           </p>
           <p>
             <b>
               <Property label={argu.reactionsCount} topology={inlineTopology} />
               {' '}
             </b>
-            {formatMessage(messages.reactionsCount)}
+            {formatMessage(homeMessages.reactionsCount)}
           </p>
         </div>
       </GridItem>

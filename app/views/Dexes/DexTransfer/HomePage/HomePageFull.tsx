@@ -1,12 +1,13 @@
 import { makeStyles } from '@material-ui/styles';
 import { Property, register } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { Size } from '../../../../components/shared/config';
 import dexes from '../../../../ontology/dexes';
 import Container from '../../../../topologies/Container';
 import { fullResourceTopology } from '../../../../topologies/FullResource';
+import { dexesMessages } from '../../../../translations/dexes';
 
 import DexTransferLogo from './DexTransferLogo';
 
@@ -22,41 +23,6 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-});
-
-const messages = defineMessages({
-  featureDecentralizedDesc: {
-    defaultMessage: 'DexTransfer is powered by the DexPod - a free, open source server that you can host yourself.',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/decentralized/desc',
-  },
-  featureDecentralizedTitle: {
-    defaultMessage: 'Decentralized',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/decentralized/title',
-  },
-  featureMonetizeDesc: {
-    defaultMessage: 'Set a price for your data. If you want, we can help people find your data by sharing it in the Dexes Marketplace',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/monetize/desc',
-  },
-  featureMonetizeTitle: {
-    defaultMessage: 'Make money',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/monetize/title',
-  },
-  featureSecureDesc: {
-    defaultMessage: 'Fully encrypted, requires verified e-mail addresses.',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/secure/desc',
-  },
-  featureSecureTitle: {
-    defaultMessage: 'Secure',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/secure/title',
-  },
-  featureSignedDesc: {
-    defaultMessage: 'When you share something on DexTransfer,',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/signed/desc',
-  },
-  featureSignedTitle: {
-    defaultMessage: 'Signed licenses',
-    id: 'https://dextransfer.eu/i18n/dexTransferHome/signed/title',
   },
 });
 
@@ -90,20 +56,20 @@ const HomePagePage = () => {
         </div>
         <div className={classes.featureList}>
           <Feature
-            desc={formatMessage(messages.featureSecureDesc)}
-            title={formatMessage(messages.featureSecureTitle)}
+            desc={formatMessage(dexesMessages.featureSecureDesc)}
+            title={formatMessage(dexesMessages.featureSecureTitle)}
           />
           <Feature
-            desc={formatMessage(messages.featureSignedDesc)}
-            title={formatMessage(messages.featureSignedTitle)}
+            desc={formatMessage(dexesMessages.featureSignedDesc)}
+            title={formatMessage(dexesMessages.featureSignedTitle)}
           />
           <Feature
-            desc={formatMessage(messages.featureMonetizeDesc)}
-            title={formatMessage(messages.featureMonetizeTitle)}
+            desc={formatMessage(dexesMessages.featureMonetizeDesc)}
+            title={formatMessage(dexesMessages.featureMonetizeTitle)}
           />
           <Feature
-            desc={formatMessage(messages.featureDecentralizedDesc)}
-            title={formatMessage(messages.featureDecentralizedTitle)}
+            desc={formatMessage(dexesMessages.featureDecentralizedDesc)}
+            title={formatMessage(dexesMessages.featureDecentralizedTitle)}
           />
         </div>
       </div>

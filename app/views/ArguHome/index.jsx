@@ -8,7 +8,7 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Heading from '../../components/Heading';
 import Link from '../../components/Link';
@@ -19,6 +19,7 @@ import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
 import { entityIsLoaded } from '../../helpers/data';
+import { homeMessages } from '../../translations/messages';
 
 import Case from './Case';
 import Customer from './Customer';
@@ -26,37 +27,6 @@ import Feature from './Feature';
 import Triad from './Triad';
 import './ArguHome.scss';
 import ProcessStep from './ProcessStep';
-
-const messages = defineMessages({
-  casesBody: {
-    defaultMessage: 'From support level measurement to idea generation: Argu can be used in various civic engagement projects.',
-    id: 'https://app.argu.co/i18n/arguHome/casesBody',
-  },
-  casesHeader: {
-    defaultMessage: 'Examples of online civic engagement',
-    id: 'https://app.argu.co/i18n/arguHome/casesHeader',
-  },
-  customersBody: {
-    defaultMessage: 'We have experience with many municipalities, semi-governments, associations and corporations.',
-    id: 'https://app.argu.co/i18n/arguHome/customersBody',
-  },
-  customersHeader: {
-    defaultMessage: 'Some of our customers',
-    id: 'https://app.argu.co/i18n/arguHome/customersHeader',
-  },
-  featuresBody: {
-    defaultMessage: 'We host Argu and will continue to develop it, so you can always use the latest features.',
-    id: 'https://app.argu.co/i18n/arguHome/featuresBody',
-  },
-  featuresHeader: {
-    defaultMessage: 'Features',
-    id: 'https://app.argu.co/i18n/arguHome/featuresHeader',
-  },
-  requestDemo: {
-    defaultMessage: 'Request a demo',
-    id: 'https://app.argu.co/i18n/arguHome/requestDemo',
-  },
-});
 
 const contactRoute = '/argu/edges/contact';
 
@@ -77,7 +47,7 @@ const ArguHomePage = ({ subject }) => {
             <Triad subject={subject} />
             <div className="ArguHome--button-wrapper">
               <Link className="ArguHome--button" to={contactRoute}>
-                {formatMessage(messages.requestDemo)}
+                {formatMessage(homeMessages.requestDemo)}
               </Link>
             </div>
           </Container>
@@ -91,22 +61,22 @@ const ArguHomePage = ({ subject }) => {
             </PageRow>
             <PageRow>
               <Container size="large">
-                <Heading>{formatMessage(messages.casesHeader)}</Heading>
-                <p>{formatMessage(messages.casesBody)}</p>
+                <Heading>{formatMessage(homeMessages.casesHeader)}</Heading>
+                <p>{formatMessage(homeMessages.casesBody)}</p>
                 <Grid>
                   <Property label={argu.cases} limit={Infinity} />
                 </Grid>
                 <div className="ArguHome--button-wrapper">
                   <Link className="ArguHome--button" to={contactRoute}>
-                    {formatMessage(messages.requestDemo)}
+                    {formatMessage(homeMessages.requestDemo)}
                   </Link>
                 </div>
               </Container>
             </PageRow>
             <PageRow white>
               <Container size="large">
-                <Heading>{formatMessage(messages.customersHeader)}</Heading>
-                <p>{formatMessage(messages.customersBody)}</p>
+                <Heading>{formatMessage(homeMessages.customersHeader)}</Heading>
+                <p>{formatMessage(homeMessages.customersBody)}</p>
               </Container>
               <Container size="medium">
                 <Grid>
@@ -116,14 +86,14 @@ const ArguHomePage = ({ subject }) => {
             </PageRow>
             <PageRow>
               <Container size="large">
-                <Heading>{formatMessage(messages.featuresHeader)}</Heading>
-                <p>{formatMessage(messages.featuresBody)}</p>
+                <Heading>{formatMessage(homeMessages.featuresHeader)}</Heading>
+                <p>{formatMessage(homeMessages.featuresBody)}</p>
                 <Grid>
                   <Property label={argu.features} limit={Infinity} />
                 </Grid>
                 <div className="ArguHome--button-wrapper">
                   <Link className="ArguHome--button" to={contactRoute}>
-                    {formatMessage(messages.requestDemo)}
+                    {formatMessage(homeMessages.requestDemo)}
                   </Link>
                 </div>
               </Container>

@@ -7,7 +7,7 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { withRouter } from 'react-router';
 
 import Button from '../../../components/Button';
@@ -21,13 +21,7 @@ import { containerTopology } from '../../../topologies/Container';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import FormFooter from '../../../topologies/FormFooter/Footer';
 import { fullResourceTopology } from '../../../topologies/FullResource';
-
-const messages = defineMessages({
-  continue: {
-    defaultMessage: 'Great!',
-    id: 'https://app.argu.co/i18n/badges/continue',
-  },
-});
+import { badgeMessages } from '../../../translations/messages';
 
 const BadgeContainer = ({
   image,
@@ -58,7 +52,7 @@ const BadgeContainer = ({
             theme="submit"
             onClick={() => lrs.actions.ontola.hideDialog()}
           >
-            {formatMessage(messages.continue)}
+            {formatMessage(badgeMessages.continue)}
           </Button>
         </FormFooterRight>
       </FormFooter>

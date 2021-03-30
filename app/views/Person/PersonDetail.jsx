@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Detail from '../../components/Detail';
 import LDLink from '../../components/LDLink';
@@ -17,17 +17,7 @@ import argu from '../../ontology/argu';
 import person from '../../ontology/person';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { tableCellTopology } from '../../topologies/TableCell';
-
-const messages = defineMessages({
-  postedBy: {
-    defaultMessage: 'Posted by {name}',
-    id: 'https://app.argu.co/i18n/schema:Person/postedByText',
-  },
-  showProfile: {
-    defaultMessage: "Show {name}'s profile",
-    id: 'https://app.argu.co/i18n/schema:Person/showProfileText',
-  },
-});
+import { personMessages } from '../../translations/messages';
 
 const PersonDetail = ({
   hideName,
@@ -38,7 +28,7 @@ const PersonDetail = ({
 }) => {
   const { formatMessage } = useIntl();
 
-  const title = formatMessage(messages[titleKey || 'showProfile'], { name: name.value });
+  const title = formatMessage(personMessages[titleKey || 'showProfile'], { name: name.value });
 
   if (hideName) {
     return (

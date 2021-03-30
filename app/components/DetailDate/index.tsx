@@ -3,12 +3,12 @@ import React from 'react';
 import {
   FormatDateOptions,
   IntlShape,
-  defineMessages,
   useIntl,
 } from 'react-intl';
 
 import { relativeTimeDestructure } from '../../helpers/date';
 import { isDateOrDateTime } from '../../helpers/types';
+import { dateMessages } from '../../translations/messages';
 import Detail from '../Detail';
 import RelativeDate from '../RelativeDate';
 
@@ -29,41 +29,6 @@ interface PropTypes {
   // For linking to an event, like a meeting
   url?: string;
 }
-
-const messages = defineMessages({
-  dateCreated: {
-    defaultMessage: 'created: {date}',
-    id: 'https://app.argu.co/i18n/schema:dateCreated/label',
-  },
-  dateModified: {
-    defaultMessage: 'edited: {date}',
-    id: 'https://app.argu.co/i18n/schema:dateModified/label',
-  },
-  datePublished: {
-    defaultMessage: 'published: {date}',
-    id: 'https://app.argu.co/i18n/schema:datePublished/label',
-  },
-  dateSubmitted: {
-    defaultMessage: 'submitted: {date}',
-    id: 'https://app.argu.co/i18n/schema:dateSubmitted/label',
-  },
-  duration: {
-    defaultMessage: 'replaceme {date}',
-    id: 'https://app.argu.co/i18n/schema:duration/label',
-  },
-  endDate: {
-    defaultMessage: 'end date: {date}',
-    id: 'https://app.argu.co/i18n/schema:endDate/label',
-  },
-  lastActivityAt: {
-    defaultMessage: 'last activity: {date}',
-    id: 'https://app.argu.co/i18n/argu:lastActivityAt/label',
-  },
-  startDate: {
-    defaultMessage: 'start date: {date}',
-    id: 'https://app.argu.co/i18n/schema:startDate/label',
-  },
-});
 
 const FORMAT: FormatDateOptions = {
   day: 'numeric',
@@ -121,7 +86,7 @@ const DetailDate: React.FC<PropTypes> = (props) => {
       : rawDate.value;
 
     return intl.formatMessage(
-      (messages as any)[p],
+      (dateMessages as any)[p],
       { date },
     );
   }, [props]);

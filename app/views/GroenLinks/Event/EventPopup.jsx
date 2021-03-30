@@ -20,12 +20,7 @@ import Card from '../../../topologies/Card';
 import ContentDetails from '../../../topologies/ContentDetails';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { popupTopology } from '../../../topologies/Popup';
-
-const messages = {
-  close: {
-    id: 'https://app.argu.co/i18n/forms/actions/close',
-  },
-};
+import { formMessages } from '../../../translations/messages';
 
 const EventPopup = ({
   onClose,
@@ -37,7 +32,7 @@ const EventPopup = ({
   const closeButton = handleClose && (
     <IconButton
       size="small"
-      title={formatMessage(messages.close)}
+      title={formatMessage(formMessages.close)}
       type="button"
       onClick={handleClose}
     >

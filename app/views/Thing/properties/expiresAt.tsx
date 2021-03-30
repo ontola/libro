@@ -6,7 +6,6 @@ import React from 'react';
 import {
   FormattedMessage,
   FormattedRelativeTime,
-  defineMessages,
   useIntl,
 } from 'react-intl';
 
@@ -14,17 +13,7 @@ import Detail from '../../../components/Detail';
 import isPastDate from '../../../helpers/date';
 import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-
-const messages = defineMessages({
-  closedTooltip: {
-    defaultMessage: 'Closed on {date}',
-    id: 'https://app.argu.co/i18n/expireable/states/closed/tooltip',
-  },
-  expiringTooltip: {
-    defaultMessage: 'Closing on {date}',
-    id: 'https://app.argu.co/i18n/expireable/states/expiring/tooltip',
-  },
-});
+import { statusMessages } from '../../../translations/messages';
 
 interface PropTypes {
   linkedProp: Literal;
@@ -46,7 +35,7 @@ const ExpiresAt: FC<PropTypes> = ({ linkedProp, short }) => {
           />
         )}
         title={intl.formatMessage(
-          messages.closedTooltip,
+          statusMessages.closedTooltip,
           { date: intl.formatDate(d) },
         )}
       />
@@ -68,7 +57,7 @@ const ExpiresAt: FC<PropTypes> = ({ linkedProp, short }) => {
         />
       )}
       title={intl.formatMessage(
-        messages.expiringTooltip,
+        statusMessages.expiringTooltip,
         { date: intl.formatDate(d) },
       )}
     />

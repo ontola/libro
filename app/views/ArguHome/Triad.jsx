@@ -10,15 +10,16 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
+import Heading from '../../components/Heading';
+import { LoadingGridContent } from '../../components/Loading';
+import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 import Suspense from '../../components/Suspense';
 import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
-import Heading from '../../components/Heading';
-import { LoadingGridContent } from '../../components/Loading';
-import SuspendedLoader from '../../components/Loading/SuspendedLoader';
+import { homeMessages } from '../../translations/messages';
 
 import './Triad.scss';
 
@@ -58,21 +59,6 @@ Animations.propTypes = {
   slide: PropTypes.number,
 };
 
-const messages = defineMessages({
-  again: {
-    defaultMessage: 'Again',
-    id: 'https://app.argu.co/i18n/arguHome/triadAgain',
-  },
-  next: {
-    defaultMessage: 'Next',
-    id: 'https://app.argu.co/i18n/arguHome/triadNext',
-  },
-  triadHeader: {
-    defaultMessage: 'Engaged throughout your entire decision making process',
-    id: 'https://app.argu.co/i18n/arguHome/triadHeader',
-  },
-});
-
 const stepMap = {
   color: value(schema.color),
   icon: value(argu.icon),
@@ -98,7 +84,7 @@ const Triad = ({ subject }) => {
           type="button"
           onClick={() => setSlide(slide + 1)}
         >
-          {formatMessage(messages.next)}
+          {formatMessage(homeMessages.next)}
         </button>
       );
     }
@@ -109,14 +95,14 @@ const Triad = ({ subject }) => {
         type="button"
         onClick={() => setSlide(0)}
       >
-        {formatMessage(messages.again)}
+        {formatMessage(homeMessages.again)}
       </button>
     );
   };
 
   return (
     <div className="Triad">
-      <Heading size="1">{formatMessage(messages.triadHeader)}</Heading>
+      <Heading size="1">{formatMessage(homeMessages.triadHeader)}</Heading>
       <Suspense fallback={<LoadingGridContent />}>
         <div className="Triad--selector">
           {processStepsData.map((

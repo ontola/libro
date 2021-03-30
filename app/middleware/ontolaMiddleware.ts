@@ -15,7 +15,6 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
-import { defineMessages } from 'react-intl';
 
 import { safeCredentials } from '../helpers/arguHelpers';
 import { retrievePath } from '../helpers/iris';
@@ -26,16 +25,9 @@ import app from '../ontology/app';
 import ld from '../ontology/ld';
 import libro from '../ontology/libro';
 import ontola from '../ontology/ontola';
+import { actionMessages } from '../translations/messages';
 
 import { redirectPage, reloadPage } from './reloading';
-
-const messages = defineMessages({
-  copyFinished: {
-    defaultMessage: 'Copied value to clipboard',
-    description: 'The (inline) message to indicate the value was copied to their clipboard',
-    id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
-  },
-});
 
 const onDoneHandlers: { [key: string]: () => Promise<any> } = {};
 
@@ -244,7 +236,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       }
 
       (store as any).actions.ontola.showSnackbar(
-        (store as any).intl.formatMessage(messages.copyFinished),
+        (store as any).intl.formatMessage(actionMessages.copyFinished),
       );
 
       return clipboardCopy(value);

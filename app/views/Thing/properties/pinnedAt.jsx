@@ -1,18 +1,12 @@
 import * as schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
 import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-
-const messages = defineMessages({
-  pinnedAtLabel: {
-    defaultMessage: 'Pinned at {date}',
-    id: 'https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel',
-  },
-});
+import { statusMessages } from '../../../translations/messages';
 
 const PinnedAt = ({ linkedProp }) => {
   const { formatDate, formatMessage } = useIntl();
@@ -21,7 +15,7 @@ const PinnedAt = ({ linkedProp }) => {
     <Detail
       icon="thumb-tack"
       title={formatMessage(
-        messages.pinnedAtLabel,
+        statusMessages.pinnedAtLabel,
         {
           date: formatDate(
             new Date(linkedProp.value),

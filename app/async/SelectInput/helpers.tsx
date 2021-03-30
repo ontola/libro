@@ -5,22 +5,11 @@ import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import { Resource, useLRS } from 'link-redux';
 import React from 'react';
-import { defineMessages } from 'react-intl';
 
 import { entityIsLoaded } from '../../helpers/data';
 import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
-
-const messages = defineMessages({
-  noMatchingItems: {
-    defaultMessage: 'No matching items',
-    id: 'https://app.argu.co/i18n/forms/select/noMatchingItems',
-  },
-  typeToSearch: {
-    defaultMessage: 'Type to start searching',
-    id: 'https://app.argu.co/i18n/forms/select/typeToSearch',
-  },
-});
+import { formMessages } from '../../translations/messages';
 
 const stripDiacritics = (str: string) => (
   typeof str.normalize !== 'undefined'
@@ -76,13 +65,13 @@ export function emptyMessage(
 ): string {
   if (searchable) {
     if (currentValue && currentValue.length > 0) {
-      return fmt(messages.noMatchingItems);
+      return fmt(formMessages.noMatchingItems);
     }
 
-    return fmt(messages.typeToSearch);
+    return fmt(formMessages.typeToSearch);
   }
 
-  return fmt(messages.noMatchingItems);
+  return fmt(formMessages.noMatchingItems);
 }
 
 export const renderOption = (item: SomeTerm): JSX.Element => {

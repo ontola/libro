@@ -12,6 +12,7 @@ import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
+import { formMessages } from '../../translations/messages';
 
 const SNACKBAR_TIMEOUT = 2750;
 
@@ -19,12 +20,6 @@ interface SnackbarViewProps {
   close: () => void;
   text: SomeTerm;
 }
-
-const messages = {
-  close: {
-    id: 'https://app.argu.co/i18n/forms/actions/close',
-  },
-};
 
 const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
   const { formatMessage } = useIntl();
@@ -36,11 +31,11 @@ const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
     <Snackbar
       action={[
         <IconButton
-          aria-label={formatMessage(messages.close)}
+          aria-label={formatMessage(formMessages.close)}
           color="inherit"
           href="#"
           key="close"
-          title={formatMessage(messages.close)}
+          title={formatMessage(formMessages.close)}
           onClick={handleClose}
         >
           <CloseIcon />

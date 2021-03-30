@@ -19,13 +19,8 @@ import AttributeList from '../../../topologies/AttributeList';
 import Card from '../../../topologies/Card';
 import ContentDetails from '../../../topologies/ContentDetails';
 import { popupTopology } from '../../../topologies/Popup';
+import { formMessages } from '../../../translations/messages';
 import { useVisitPostalCode } from '../Glapp/helpers';
-
-const messages = {
-  close: {
-    id: 'https://app.argu.co/i18n/forms/actions/close',
-  },
-};
 
 const PostalCodePopup = ({
   onClose,
@@ -37,7 +32,7 @@ const PostalCodePopup = ({
   const closeButton = (
     <IconButton
       size="small"
-      title={formatMessage(messages.close)}
+      title={formatMessage(formMessages.close)}
       type="button"
       onClick={onClose}
     >

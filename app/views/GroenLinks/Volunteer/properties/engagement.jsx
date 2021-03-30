@@ -1,33 +1,16 @@
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
-import {
-  defineMessages,
-  useIntl,
-} from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Detail from '../../../../components/Detail';
 import teamGL from '../../../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
+import { groenlinksMessages } from '../../../../translations/groenlinks';
 
 const propTypes = {
   linkedProp: linkedPropType,
 };
-
-const messages = defineMessages({
-  active: {
-    defaultMessage: '💪 actief',
-    id: 'https://team.groenlinks.nl/i18n/engagement/active',
-  },
-  inactive: {
-    defaultMessage: '💤 inactief',
-    id: 'https://team.groenlinks.nl/i18n/engagement/inactive',
-  },
-  veryActive: {
-    defaultMessage: '🔥 hyperactief',
-    id: 'https://team.groenlinks.nl/i18n/engagement/veryActive',
-  },
-});
 
 const Engagement = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
@@ -37,11 +20,11 @@ const Engagement = ({ linkedProp }) => {
   let message;
 
   if (linkedProp.value < active) {
-    message = messages.inactive;
+    message = groenlinksMessages.inactive;
   } else if (linkedProp.value < veryActive) {
-    message = messages.active;
+    message = groenlinksMessages.active;
   } else {
-    message = messages.veryActive;
+    message = groenlinksMessages.veryActive;
   }
 
   return (

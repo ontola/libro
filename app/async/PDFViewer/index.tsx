@@ -4,7 +4,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import {
   Document,
   Page,
@@ -12,6 +12,7 @@ import {
 } from 'react-pdf';
 
 import { PDFViewerProps } from '../../containers/PDFViewer';
+import { pdfMessages } from '../../translations/messages';
 
 import { keyMap } from './keyMap';
 import PDFLoader from './PDFLoader';
@@ -33,25 +34,6 @@ const calcMaxWidth = (windowWidth: number) => {
 
   return windowWidth;
 };
-
-const messages = defineMessages({
-  download: {
-    defaultMessage: 'Download file (D)',
-    id: 'https://app.argu.co/i18n/pdf/download',
-  },
-  fullScreen: {
-    defaultMessage: 'Fullscreen (F)',
-    id: 'https://app.argu.co/i18n/pdf/fullScreen',
-  },
-  nextPage: {
-    defaultMessage: 'Next page (→)',
-    id: 'https://app.argu.co/i18n/pdf/nextPage',
-  },
-  previousPage: {
-    defaultMessage: 'Previous page (←)',
-    id: 'https://app.argu.co/i18n/pdf/previousPage',
-  },
-});
 
 const PDFViewer = (props: PDFViewerProps): JSX.Element => {
   const intl = useIntl();
@@ -170,7 +152,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
               <IconButton
                 disabled={pageNumber === 1}
                 size="small"
-                title={intl.formatMessage(messages.previousPage)}
+                title={intl.formatMessage(pdfMessages.previousPage)}
                 onClick={handlePreviousPage}
               >
                 <FontAwesome name="arrow-left" />
@@ -179,21 +161,21 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
               <IconButton
                 disabled={(pageNumber === (numPages))}
                 size="small"
-                title={intl.formatMessage(messages.nextPage)}
+                title={intl.formatMessage(pdfMessages.nextPage)}
                 onClick={handleNextPage}
               >
                 <FontAwesome name="arrow-right" />
               </IconButton>
               <IconButton
                 size="small"
-                title={intl.formatMessage(messages.download)}
+                title={intl.formatMessage(pdfMessages.download)}
                 onClick={() => window.open(props.url)}
               >
                 <FontAwesome name="download" />
               </IconButton>
               <IconButton
                 size="small"
-                title={intl.formatMessage(messages.fullScreen)}
+                title={intl.formatMessage(pdfMessages.fullScreen)}
                 onClick={setFillWidth}
               >
                 <FontAwesome name="expand" />

@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import Button, { ButtonTheme } from '../../components/Button';
 import Markdown from '../../components/Markdown';
 import { LibroTheme } from '../../themes/themes';
+import { formMessages } from '../../translations/messages';
 
 import instructions from './instructions';
 
@@ -22,12 +23,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 /* eslint-enable @typescript-eslint/no-magic-numbers */
-
-const messages = {
-  close: {
-    id: 'https://app.argu.co/i18n/forms/actions/close',
-  },
-};
 
 const MarkdownInstructions = (): JSX.Element => {
   const { formatMessage } = useIntl();
@@ -56,7 +51,7 @@ const MarkdownInstructions = (): JSX.Element => {
             theme={ButtonTheme.Transparant}
             onClick={() => setModal(false)}
           >
-            {formatMessage(messages.close)}
+            {formatMessage(formMessages.close)}
           </Button>
           <Markdown
             text={instructions}

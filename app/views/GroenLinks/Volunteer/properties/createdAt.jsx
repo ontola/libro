@@ -2,37 +2,16 @@ import * as schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
-import {
-  defineMessages,
-  useIntl,
-} from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Detail from '../../../../components/Detail';
 import teamGL from '../../../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
+import { groenlinksMessages } from '../../../../translations/groenlinks';
 
 const propTypes = {
   linkedProp: linkedPropType,
 };
-
-const messages = defineMessages({
-  long: {
-    defaultMessage: '😞 Wacht al {diff} dagen',
-    id: 'https://team.groenlinks.nl/i18n/waiting/long',
-  },
-  short: {
-    defaultMessage: '🤔 Wacht enkele dagen',
-    id: 'https://team.groenlinks.nl/i18n/waiting/short',
-  },
-  veryLong: {
-    defaultMessage: '😱 Wacht al {diff} dagen',
-    id: 'https://team.groenlinks.nl/i18n/waiting/veryLong',
-  },
-  veryShort: {
-    defaultMessage: '😀 Net aangemeld',
-    id: 'https://team.groenlinks.nl/i18n/waiting/veryShort',
-  },
-});
 
 const CreatedAt = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
@@ -45,14 +24,14 @@ const CreatedAt = ({ linkedProp }) => {
   let message; let variant;
 
   if (diff <= waitingVeryShort) {
-    message = messages.veryShort;
+    message = groenlinksMessages.veryShort;
   } else if (diff <= waitingShort) {
-    message = messages.short;
+    message = groenlinksMessages.short;
   } else if (diff <= waitingLong) {
-    message = messages.long;
+    message = groenlinksMessages.long;
     variant = 'warning';
   } else {
-    message = messages.veryLong;
+    message = groenlinksMessages.veryLong;
     variant = 'error';
   }
 

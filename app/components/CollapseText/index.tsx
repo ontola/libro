@@ -3,7 +3,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import {
   FormattedMessage,
-  defineMessages,
   useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';
@@ -12,17 +11,11 @@ import CollapsibleContainer from '../../containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from '../../state/collapsible/actions';
 import { CollapsibleStateTree } from '../../state/collapsible/reducer';
 import { getCollapsibleOpened } from '../../state/collapsible/selectors';
+import { collapsibleMessages } from '../../translations/messages';
 import Button from '../Button';
 import Markdown from '../Markdown';
 
 import './CollapseText.scss';
-
-const messages = defineMessages({
-  expandOrCollapseTitle: {
-    defaultMessage: 'Expand or collapse menu',
-    id: 'https://app.argu.co/i18n/collapsible/expandOrCollapseMenu',
-  },
-});
 
 interface CollapseTextProps {
   id: string;
@@ -65,7 +58,7 @@ const CollapseText: React.FC<CollapseTextProps> = ({
         <Button
           plain
           className="CollapseText__toggle"
-          title={intl.formatMessage(messages.expandOrCollapseTitle)}
+          title={intl.formatMessage(collapsibleMessages.expandOrCollapseTitle)}
           onClick={() => onClickToggle()}
         >
           {open && (

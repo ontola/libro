@@ -3,23 +3,16 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import {
   FormattedMessage,
-  defineMessages,
   injectIntl,
 } from 'react-intl';
 
 import BlurButton from '../../components/BlurButton';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../components/NavbarLink/NavbarLinkLabel';
+import { errorMessages } from '../../translations/messages';
 
 import { ErrorButtonWithFeedbackBase } from './ErrorButtonWithFeedback';
 import { messageBodyForStatus } from './ErrorMessages';
-
-const messages = defineMessages({
-  clickRetry: {
-    defaultMessage: 'Click to retry',
-    id: 'https://app.argu.co/i18n/errors/clickToRetry/label',
-  },
-});
 
 const propTypes = {
   linkRequestStatus: PropTypes.shape({
@@ -33,7 +26,7 @@ class ErrorButtonHeader extends ErrorButtonWithFeedbackBase {
   render() {
     const { intl, linkRequestStatus } = this.props;
 
-    const retryText = intl.formatMessage(messages.clickRetry);
+    const retryText = intl.formatMessage(errorMessages.clickRetry);
     let bodyText = messageBodyForStatus(linkRequestStatus);
     if (bodyText) {
       bodyText = intl.formatMessage(bodyText);

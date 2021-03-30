@@ -11,10 +11,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  defineMessages,
-  useIntl,
-} from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
 import { LoadingDetail } from '../../../components/Loading';
@@ -26,27 +23,9 @@ import { allTopologiesExcept } from '../../../topologies';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import DetailsBar, { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { entityIsLoaded } from '../../../helpers/data';
+import { grantedGroupMessages } from '../../../translations/messages';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));
-
-const messages = defineMessages({
-  privateText: {
-    defaultMessage: 'Private',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/text',
-  },
-  privateTitle: {
-    defaultMessage: 'Visible for {groupNames}',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/title',
-  },
-  publicText: {
-    defaultMessage: 'Public',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/public/text',
-  },
-  publicTitle: {
-    defaultMessage: 'Visible for everyone',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/public/title',
-  },
-});
 
 const GrantedGroupsDetail = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
@@ -73,8 +52,8 @@ const GrantedGroupsDetail = ({ linkedProp }) => {
     return (
       <Detail
         icon="group"
-        text={formatMessage(messages.privateText)}
-        title={formatMessage(messages.privateTitle, { groupNames })}
+        text={formatMessage(grantedGroupMessages.privateText)}
+        title={formatMessage(grantedGroupMessages.privateTitle, { groupNames })}
       />
     );
   }
@@ -82,8 +61,8 @@ const GrantedGroupsDetail = ({ linkedProp }) => {
   return (
     <Detail
       icon="globe"
-      text={formatMessage(messages.publicText)}
-      title={formatMessage(messages.publicTitle)}
+      text={formatMessage(grantedGroupMessages.publicText)}
+      title={formatMessage(grantedGroupMessages.publicTitle)}
     />
   );
 };

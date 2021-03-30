@@ -4,33 +4,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
-
-const messages = {
-  cancelLabel: {
-    id: 'https://app.argu.co/i18n/forms/actions/cancel',
-  },
-  clearLabel: {
-    id: 'https://app.argu.co/i18n/forms/actions/clear',
-  },
-  invalidDateMessage: {
-    id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage',
-  },
-  invalidLabel: {
-    id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidLabel',
-  },
-  maxDateMessage: {
-    id: 'https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage',
-  },
-  minDateMessage: {
-    id: 'https://app.argu.co/i18n/forms/datetimepicker/minDateMessage',
-  },
-  okLabel: {
-    id: 'https://app.argu.co/i18n/forms/actions/ok',
-  },
-  todayLabel: {
-    id: 'https://app.argu.co/i18n/forms/actions/showToday',
-  },
-};
+import { formMessages } from '../../translations/messages';
 
 const DatePickerComponent: React.FC<InputComponentProps> = ({
   id,
@@ -46,19 +20,19 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
       <DatePicker
         autoOk
         showTodayButton
-        cancelLabel={intl.formatMessage(messages.cancelLabel)}
-        clearLabel={intl.formatMessage(messages.clearLabel)}
+        cancelLabel={intl.formatMessage(formMessages.cancelLabel)}
+        clearLabel={intl.formatMessage(formMessages.clearLabel)}
         clearable={!!inputValue.value}
         format="D MMMM YYYY"
         id={id}
         inputVariant="outlined"
-        invalidDateMessage={intl.formatMessage(messages.invalidDateMessage)}
-        invalidLabel={intl.formatMessage(messages.invalidLabel)}
+        invalidDateMessage={intl.formatMessage(formMessages.invalidDateMessage)}
+        invalidLabel={intl.formatMessage(formMessages.invalidLabel)}
         margin="dense"
-        maxDateMessage={intl.formatMessage(messages.maxDateMessage)}
-        minDateMessage={intl.formatMessage(messages.minDateMessage)}
-        okLabel={intl.formatMessage(messages.okLabel)}
-        todayLabel={intl.formatMessage(messages.todayLabel)}
+        maxDateMessage={intl.formatMessage(formMessages.maxDateMessage)}
+        minDateMessage={intl.formatMessage(formMessages.minDateMessage)}
+        okLabel={intl.formatMessage(formMessages.okLabel)}
+        todayLabel={intl.formatMessage(formMessages.todayLabel)}
         value={inputValue.value?.length > 0 ? inputValue.value : null}
         onChange={(e) => onChange(e === null ? null : e?.format())}
       />

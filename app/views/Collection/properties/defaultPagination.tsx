@@ -5,7 +5,7 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Button, { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
@@ -15,18 +15,8 @@ import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
 import { pageTopology } from '../../../topologies/Page';
+import { collectionMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
-
-export const messages = defineMessages({
-  nextLabel: {
-    defaultMessage: 'next',
-    id: 'https://app.argu.co/i18n/as:CollectionPage/as:next/label',
-  },
-  previousLabel: {
-    defaultMessage: 'previous',
-    id: 'https://app.argu.co/i18n/as:CollectionPage/as:previous/label',
-  },
-});
 
 export interface PaginationProps {
   first: SomeTerm;
@@ -136,7 +126,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
 
     const pages = [];
     pages.push(paginationButton({
-      ariaLabel: formatMessage(messages.nextLabel),
+      ariaLabel: formatMessage(collectionMessages.nextLabel),
       disabled: currentPageNr === firstPage,
       icon: 'arrow-left',
       key: 'prev',
@@ -162,7 +152,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     pages.push(singlePageButton(lastPage));
 
     pages.push(paginationButton({
-      ariaLabel: formatMessage(messages.nextLabel),
+      ariaLabel: formatMessage(collectionMessages.nextLabel),
       disabled: currentPageNr === lastPage,
       icon: 'arrow-right',
       key: 'next',
