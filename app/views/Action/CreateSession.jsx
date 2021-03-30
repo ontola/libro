@@ -83,7 +83,7 @@ const CreateSession = ({
         onDone={(location) => {
           if (isDifferentWebsite(location)) {
             lrs.actions.ontola.hideDialog();
-            lrs.actions.ontola.navigate(location.value, true);
+            lrs.actions.ontola.navigate(location, true);
           } else {
             setSubject(location);
           }
