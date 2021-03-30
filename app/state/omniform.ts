@@ -1,5 +1,4 @@
 import { NamedNode } from '@ontologies/core';
-import { SomeNode } from 'link-lib';
 import { createAction, handleActions } from 'redux-actions';
 
 import {
@@ -75,7 +74,7 @@ export const omniformReducer = handleActions<any, any>({
 
 // Selectors
 
-export const getOmniformAction = (state: UnscopedOmniformState, parentIRI: SomeNode): NamedNode | undefined =>
+export const getOmniformAction = (state: UnscopedOmniformState, parentIRI: string): NamedNode | undefined =>
   state.omniform[parentIRI.toString()]?.action;
-export const getOmniformOpenState = (state: UnscopedOmniformState, parentIRI: SomeNode): boolean =>
+export const getOmniformOpenState = (state: UnscopedOmniformState, parentIRI: string): boolean =>
   state.omniform[parentIRI.toString()]?.inlineOpened ?? false;

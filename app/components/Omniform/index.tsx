@@ -38,7 +38,7 @@ export interface OmniformProps {
   onCancel?: () => void;
   onDone?: () => void;
   onKeyUp?: () => void;
-  parentIRI: Node;
+  parentIRI: string;
   sessionStore?: Record<string, unknown>;
 }
 
@@ -66,9 +66,8 @@ const PROPS_WHITELIST = [
   ontola.coverPhoto,
 ].map((t) => rdf.id(t));
 
-const convertFieldContext = (parentIRI: Node, actionIRI: Node) => {
-  const omniformKey = `${atob(parentIRI.value)}.omniform`;
-
+const convertFieldContext = (parentIRI: string, actionIRI: Node) => {
+  const omniformKey = `${atob(parentIRI)}.omniform`;
   Array(sessionStorage.length)
     .fill(null)
     .map((_, i) => sessionStorage.key(i)!)
