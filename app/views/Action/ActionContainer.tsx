@@ -21,6 +21,10 @@ const ActionContainer: FC<ActionProps> = ({
     return null;
   }
 
+  if (!target) {
+    return null;
+  }
+
   return (
     <Resource
       subject={target}
