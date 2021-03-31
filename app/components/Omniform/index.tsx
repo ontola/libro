@@ -245,6 +245,7 @@ const mergeProps = (
   ...dispatchProps,
 });
 
+// @ts-ignore
 const OmniformContainer = withLRS(connect(
   mapStateToProps,
   mapDispatchToProps,

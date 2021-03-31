@@ -10,6 +10,7 @@ import './Container.scss';
 export const containerTopology = argu.container;
 
 export interface ContainerProps {
+  children: NonNullable<React.ReactNode>;
   size: Size;
 }
 
@@ -47,7 +48,7 @@ class Container extends Topology<ContainerProps> {
 }
 
 export interface LargeContainerProps {
-  children: React.ReactNode
+  children: NonNullable<React.ReactNode>
 }
 
 export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => (
