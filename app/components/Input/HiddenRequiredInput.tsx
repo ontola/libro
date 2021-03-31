@@ -7,6 +7,7 @@ interface PropTypes {
 
 const HiddenRequiredInput: React.FC<PropTypes> = ({ name, value }) => (
   <input
+    readOnly
     required
     className="hidden-field"
     id={name}

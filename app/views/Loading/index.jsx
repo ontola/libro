@@ -34,6 +34,7 @@ import { containerFloatTopology } from '../../topologies/Container/ContainerFloa
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
@@ -179,6 +180,7 @@ export default [
       cardListTopology,
       cardMainTopology,
       cardMicroRowTopology,
+      formFooterTopology,
       inlineTopology,
       selectTopology,
       selectedValueTopology,

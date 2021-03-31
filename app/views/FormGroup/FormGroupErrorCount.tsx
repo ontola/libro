@@ -19,10 +19,12 @@ const FormGroupErrorCount: React.FC<PropTypes> = ({
     },
   });
 
-  const invalidCount = Object
-    .keys(formState.errors)
-    .filter((i) => fieldNames.includes(i))
-    .length;
+  const invalidCount = formState.errors === undefined
+    ? 0
+    : Object
+      .keys(formState.errors)
+      .filter((i) => fieldNames.includes(i))
+      .length;
 
   if (invalidCount === 0) {
     return null;
