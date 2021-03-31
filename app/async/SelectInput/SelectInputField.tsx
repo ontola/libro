@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper/Popper';
 import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
-import { CSSProperties } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import {
   SomeTerm,
   isNamedNode,
@@ -49,21 +49,26 @@ import VirtualizedSelect from './VirtualizedSelect';
 const DEBOUNCE_TIMEOUT = 500;
 const VIRTUALIZATION_THRESHOLD = 10;
 
-const popperStyles: CSSProperties = {
-  width: 'fit-content',
-};
+const useStyles = makeStyles({
+  input: {
+    flexWrap: 'nowrap',
+  },
+  popper: {
+    width: 'fit-content',
+  },
+});
 
-const inputStyles: CSSProperties = {
-  flexWrap: 'nowrap',
-};
+const FullWidthPopper = (props: PopperProps) => {
+  const classes = useStyles();
 
-const FullWidthPopper = (props: PopperProps) => (
-  <Popper
-    {...props}
-    placement="bottom-start"
-    style={popperStyles}
-  />
-);
+  return (
+    <Popper
+      {...props}
+      className={classes.popper}
+      placement="bottom-start"
+    />
+  );
+};
 
 const sortByGroup = (lrs: LinkReduxLRSType) => (a: SomeTerm, b: SomeTerm) => {
   const groupA = isNamedNode(a) ? lrs.getResourceProperty(a, ontola.groupBy)?.value : undefined;
@@ -105,6 +110,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
   const { formatMessage } = useIntl();
   const lrs = useLRS();
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
   const [currentValue, setCurrentValue] = React.useState('');
@@ -182,7 +188,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
     return (
       <TextField
         {...inputProps}
-        style={inputStyles}
+        className={classes.input}
         variant="outlined"
       />
     );

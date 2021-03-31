@@ -1,4 +1,3 @@
-import { Unit as RelativeTimeUnit } from '@formatjs/intl-relativetimeformat';
 import { Unit as NumberUnit } from '@formatjs/intl-unified-numberformat';
 import { Term, isTerm } from '@ontologies/core';
 
@@ -16,7 +15,7 @@ const MONTH_SECS = MONTH_DAYS * DAY_SECS;
 const YEAR_SECS = YEAR_DAYS * DAY_SECS;
 
 interface RelativeTimeDestructure {
-  unit: RelativeTimeUnit & NumberUnit;
+  unit: Intl.RelativeTimeFormatUnit & NumberUnit;
   value: number;
 }
 

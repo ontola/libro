@@ -131,7 +131,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
             theme={ButtonTheme.Transparant}
             onClick={closeForm}
           >
-            <FormattedMessage id="https://app.argu.co/i18n/forms/actions/cancel" />
+            <FormattedMessage defaultMessage="cancel" id="https://app.argu.co/i18n/forms/actions/cancel" />
           </Button>
           <Button
             loading={loading}

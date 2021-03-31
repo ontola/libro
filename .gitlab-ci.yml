@@ -1,4 +1,4 @@
-image: node:12
+image: node:14
 
 cache:
   paths:
@@ -53,7 +53,7 @@ codeQuality:
   script:
     - yarn run lint:code
     - yarn run lint:style
-    - yarn run lint:translations
+    - yarn run t10s:lint
 
 test:
   stage: test

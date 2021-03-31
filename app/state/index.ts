@@ -32,11 +32,9 @@ const configureStore = (
   } else {
     middleware = compose(
       appliedMiddleware,
-      /* eslint-disable no-underscore-dangle */
       typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
         ? window.__REDUX_DEVTOOLS_EXTENSION__()
         : ((f: () => void) => f) as any,
-      /* eslint-enable no-underscore-dangle */
     );
   }
 

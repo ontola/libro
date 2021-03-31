@@ -1,0 +1,1121 @@
+{
+  "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": [
+    {
+      "type": 0,
+      "value": "Primary e-mail address"
+    }
+  ],
+  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": [
+    {
+      "type": 0,
+      "value": "Already confirmed"
+    }
+  ],
+  "https://app.argu.co/i18n/actions/labels/save": [
+    {
+      "type": 0,
+      "value": "save"
+    }
+  ],
+  "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": [
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " ideas"
+    }
+  ],
+  "https://app.argu.co/i18n/argu:lastActivityAt/label": [
+    {
+      "type": 0,
+      "value": "last activity: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/acceptedDecision": [
+    {
+      "type": 0,
+      "value": "Accepted"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/casesBody": [
+    {
+      "type": 0,
+      "value": "From support level measurement to idea generation: Argu can be used in various civic engagement projects."
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/casesHeader": [
+    {
+      "type": 0,
+      "value": "Examples of online civic engagement"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/customersBody": [
+    {
+      "type": 0,
+      "value": "We have experience with many municipalities, semi-governments, associations and corporations."
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/customersHeader": [
+    {
+      "type": 0,
+      "value": "Some of our customers"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/featuresBody": [
+    {
+      "type": 0,
+      "value": "We host Argu and will continue to develop it, so you can always use the latest features."
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/featuresHeader": [
+    {
+      "type": 0,
+      "value": "Features"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/motionExampleTitle": [
+    {
+      "type": 0,
+      "value": "Idea"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/questionExampleTitle": [
+    {
+      "type": 0,
+      "value": "How do we solve problem Y?"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/reactionsCount": [
+    {
+      "type": 0,
+      "value": "comments and arguments"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/requestDemo": [
+    {
+      "type": 0,
+      "value": "Request a demo"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/surveyExampleTitle": [
+    {
+      "type": 0,
+      "value": "How satisfied are you with X?"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/triadAgain": [
+    {
+      "type": 0,
+      "value": "Again"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/triadHeader": [
+    {
+      "type": 0,
+      "value": "Engaged throughout your entire decision making process"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/triadNext": [
+    {
+      "type": 0,
+      "value": "Next"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/votesCount": [
+    {
+      "type": 0,
+      "value": "votes"
+    }
+  ],
+  "https://app.argu.co/i18n/as:CollectionPage/as:next/label": [
+    {
+      "type": 0,
+      "value": "next"
+    }
+  ],
+  "https://app.argu.co/i18n/as:CollectionPage/as:previous/label": [
+    {
+      "type": 0,
+      "value": "previous"
+    }
+  ],
+  "https://app.argu.co/i18n/auth/newSessionLink": [
+    {
+      "type": 0,
+      "value": "Log in / sign up"
+    }
+  ],
+  "https://app.argu.co/i18n/badges/continue": [
+    {
+      "type": 0,
+      "value": "Great!"
+    }
+  ],
+  "https://app.argu.co/i18n/collapsible/collapse": [
+    {
+      "type": 0,
+      "value": "Collapse"
+    }
+  ],
+  "https://app.argu.co/i18n/collapsible/expand": [
+    {
+      "type": 0,
+      "value": "Read more"
+    }
+  ],
+  "https://app.argu.co/i18n/collapsible/expandOrCollapseMenu": [
+    {
+      "type": 0,
+      "value": "Expand or collapse menu"
+    }
+  ],
+  "https://app.argu.co/i18n/collection/empty/message": [
+    {
+      "type": 0,
+      "value": "No items yet"
+    }
+  ],
+  "https://app.argu.co/i18n/collection/loadMore": [
+    {
+      "type": 0,
+      "value": "Load more"
+    }
+  ],
+  "https://app.argu.co/i18n/collection/readAll": [
+    {
+      "type": 0,
+      "value": "View all "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": "..."
+    }
+  ],
+  "https://app.argu.co/i18n/collections/showRepliesLabel": [
+    {
+      "type": 0,
+      "value": "Show "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " additional replies..."
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/private/text": [
+    {
+      "type": 0,
+      "value": "Private"
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/private/title": [
+    {
+      "type": 0,
+      "value": "Visible for "
+    },
+    {
+      "type": 1,
+      "value": "groupNames"
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/public/text": [
+    {
+      "type": 0,
+      "value": "Public"
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": [
+    {
+      "type": 0,
+      "value": "Visible for everyone"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/clickToRetry/label": [
+    {
+      "type": 0,
+      "value": "Click to retry"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/client/offline/header": [
+    {
+      "type": 0,
+      "value": "Network connection lost"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/informRequest": [
+    {
+      "type": 0,
+      "value": "Let us know."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/inlineButton/label": [
+    {
+      "type": 0,
+      "value": "Retry"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/map/loadError": [
+    {
+      "type": 0,
+      "value": "Error loading map"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/markdown/renderError": [
+    {
+      "type": 0,
+      "value": "An error occurred while formatting the text. The original text in markdown format is as follows:"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/mistaken": [
+    {
+      "type": 0,
+      "value": "Is this an error?"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/200/body": [
+    {
+      "type": 0,
+      "value": "The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/200/header": [
+    {
+      "type": 0,
+      "value": "Bad request (400 Bad Request)"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/401/body": [
+    {
+      "type": 0,
+      "value": "You have to be logged in to view this resource."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/401/header": [
+    {
+      "type": 0,
+      "value": "Unauthorized"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/403/body": [
+    {
+      "type": 0,
+      "value": "Maybe it's visible after logging in."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/403/header": [
+    {
+      "type": 0,
+      "value": "This item is hidden"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/404/body": [
+    {
+      "type": 0,
+      "value": "Maybe the item you are looking for is deleted or never existed."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/404/header": [
+    {
+      "type": 0,
+      "value": "This item is not found"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/406/body": [
+    {
+      "type": 0,
+      "value": "This resource cannot be viewed in the current format."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/406/header": [
+    {
+      "type": 0,
+      "value": "Not acceptable"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/408/body": [
+    {
+      "type": 0,
+      "value": "The request took too long, refresh the page or try again later."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/408/header": [
+    {
+      "type": 0,
+      "value": "Request timeout"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/409/body": [
+    {
+      "type": 0,
+      "value": "The change could not be persisted because the resource was edited since it was opened locally."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/409/header": [
+    {
+      "type": 0,
+      "value": "Conflict"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/410/body": [
+    {
+      "type": 0,
+      "value": "The resource has been deleted permanently."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/410/header": [
+    {
+      "type": 0,
+      "value": "Gone"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/413/body": [
+    {
+      "type": 0,
+      "value": "The item that you are uploading is too large. Go back and try a smaller file."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/413/header": [
+    {
+      "type": 0,
+      "value": "Request entity too large (413 Payload Too Large)"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/422/body": [
+    {
+      "type": 0,
+      "value": "The item that you are trying to create cannot be processed."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/422/header": [
+    {
+      "type": 0,
+      "value": "Unprocessable Entity"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/429/body": [
+    {
+      "type": 0,
+      "value": "You're making too many request, try again in half a minute."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/429/header": [
+    {
+      "type": 0,
+      "value": "Too many requests"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/499/body": [
+    {
+      "type": 0,
+      "value": "There was a (network) issue during this request, check the internet connection, please retry or try a different browser."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/499/header": [
+    {
+      "type": 0,
+      "value": "Problem with the browser"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/500/body": [
+    {
+      "type": 0,
+      "value": "An error occurred on our side, please try again later."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/500/header": [
+    {
+      "type": 0,
+      "value": "Internal server error"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/501/body": [
+    {
+      "type": 0,
+      "value": "This feature isn't implemented, please try again later."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/501/header": [
+    {
+      "type": 0,
+      "value": "Not implemented"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/502/body": [
+    {
+      "type": 0,
+      "value": "There was a networking issue during this request, please retry or try again later"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/502/header": [
+    {
+      "type": 0,
+      "value": "Bad gateway"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/503/body": [
+    {
+      "type": 0,
+      "value": "There was a networking issue during this request, please retry or try again later"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/503/header": [
+    {
+      "type": 0,
+      "value": "Service unavailable"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/504/body": [
+    {
+      "type": 0,
+      "value": "There was a networking issue during this request, please retry or try again later"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/504/header": [
+    {
+      "type": 0,
+      "value": "Gateway timeout"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/retryButton/label": [
+    {
+      "type": 0,
+      "value": "Try again"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/closed/closedMessage": [
+    {
+      "type": 0,
+      "value": "Responding is no longer possible"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/closed/label": [
+    {
+      "type": 0,
+      "value": "closed"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/closed/tooltip": [
+    {
+      "type": 0,
+      "value": "Closed on "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/expiring/label": [
+    {
+      "type": 0,
+      "value": "Due "
+    },
+    {
+      "type": 1,
+      "value": "relativeDate"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/expiring/tooltip": [
+    {
+      "type": 0,
+      "value": "Closing on "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/cancel": [
+    {
+      "type": 0,
+      "value": "cancel"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/clear": [
+    {
+      "type": 0,
+      "value": "clear"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/close": [
+    {
+      "type": 0,
+      "value": "Close"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/ok": [
+    {
+      "type": 0,
+      "value": "ok"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/showToday": [
+    {
+      "type": 0,
+      "value": "now"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage": [
+    {
+      "type": 0,
+      "value": "Invalid Date Format"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidLabel": [
+    {
+      "type": 0,
+      "value": "unknown"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage": [
+    {
+      "type": 0,
+      "value": "Date should not be after maximal date"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/minDateMessage": [
+    {
+      "type": 0,
+      "value": "Date should not be before minimal date"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/dropzone/hoverText": [
+    {
+      "type": 0,
+      "value": "Release to select this file"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/dropzone/passiveText": [
+    {
+      "type": 0,
+      "value": "Drag & Drop your file here or click to select a file"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/omniform/defaultResponseType": [
+    {
+      "type": 0,
+      "value": "response"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/omniform/newResponsePreview": [
+    {
+      "type": 0,
+      "value": "Share a response..."
+    }
+  ],
+  "https://app.argu.co/i18n/forms/radioGroup/noOptions": [
+    {
+      "type": 0,
+      "value": "No options available"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/required/helperText": [
+    {
+      "type": 0,
+      "value": "*Required"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/select/noMatchingItems": [
+    {
+      "type": 0,
+      "value": "No matching items"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/select/typeToSearch": [
+    {
+      "type": 0,
+      "value": "Type to start searching"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": [
+    {
+      "type": 0,
+      "value": "Please confirm your vote by clicking the link we've sent to "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/link/label": [
+    {
+      "type": 0,
+      "value": "Log in"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/signOut/link/label": [
+    {
+      "type": 0,
+      "value": "Log out"
+    }
+  ],
+  "https://app.argu.co/i18n/navbar/search": [
+    {
+      "type": 0,
+      "value": "Search"
+    }
+  ],
+  "https://app.argu.co/i18n/navbar/skipToMain": [
+    {
+      "type": 0,
+      "value": "Skip navigation"
+    }
+  ],
+  "https://app.argu.co/i18n/navbar/troubleNavigating": [
+    {
+      "type": 0,
+      "value": "Having trouble with navigation? Mail us!"
+    }
+  ],
+  "https://app.argu.co/i18n/pages/closed": [
+    {
+      "type": 0,
+      "value": "This page is private. Only members are allowed to view its contents. Ask a member or the managers about how you can get access."
+    }
+  ],
+  "https://app.argu.co/i18n/pages/noHomepage": [
+    {
+      "type": 0,
+      "value": "Welcome to "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": "!"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/download": [
+    {
+      "type": 0,
+      "value": "Download file (D)"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/fullScreen": [
+    {
+      "type": 0,
+      "value": "Fullscreen (F)"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/nextPage": [
+    {
+      "type": 0,
+      "value": "Next page (→)"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/previousPage": [
+    {
+      "type": 0,
+      "value": "Previous page (←)"
+    }
+  ],
+  "https://app.argu.co/i18n/phases/stepper/header": [
+    {
+      "type": 0,
+      "value": "Phase "
+    },
+    {
+      "type": 1,
+      "value": "number"
+    },
+    {
+      "type": 0,
+      "value": ":"
+    }
+  ],
+  "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": [
+    {
+      "type": 0,
+      "value": "Pinned at "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Person/postedByText": [
+    {
+      "type": 0,
+      "value": "Posted by "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Person/showProfileText": [
+    {
+      "type": 0,
+      "value": "Show "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": "'s profile"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": [
+    {
+      "type": 0,
+      "value": "View all "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " reactions..."
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": [
+    {
+      "type": 0,
+      "value": "External information"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel": [
+    {
+      "type": 0,
+      "value": "View location"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel": [
+    {
+      "type": 0,
+      "value": "Discussed in:"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/showResourceText": [
+    {
+      "type": 0,
+      "value": "Show "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": "'s profile"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:dateCreated/label": [
+    {
+      "type": 0,
+      "value": "created: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:dateModified/label": [
+    {
+      "type": 0,
+      "value": "edited: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:datePublished/label": [
+    {
+      "type": 0,
+      "value": "published: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:dateSubmitted/label": [
+    {
+      "type": 0,
+      "value": "submitted: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:duration/label": [
+    {
+      "type": 0,
+      "value": "replaceme "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:endDate/label": [
+    {
+      "type": 0,
+      "value": "end date: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:startDate/label": [
+    {
+      "type": 0,
+      "value": "start date: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/search/button/label": [
+    {
+      "type": 0,
+      "value": "Search"
+    }
+  ],
+  "https://app.argu.co/i18n/search/header/prefix": [
+    {
+      "type": 0,
+      "value": "Search in:"
+    }
+  ],
+  "https://app.argu.co/i18n/teamGL/glappNotUsed": [
+    {
+      "type": 0,
+      "value": "🚪 GLAPP nog niet gebruikt."
+    }
+  ],
+  "https://app.argu.co/i18n/teamGL/glappUsedAt": [
+    {
+      "type": 0,
+      "value": "🚪 GLAPP laatst gebruikt op "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "https://app.argu.co/i18n/teamGL/volunteersCount": [
+    {
+      "style": null,
+      "type": 2,
+      "value": "volunteerCount"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "vrijwilliger"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "vrijwilligers"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "volunteerCount"
+    }
+  ],
+  "https://app.argu.co/i18n/trashable/deletedNotice": [
+    {
+      "type": 0,
+      "value": "This resource has been deleted on "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/voteFlow/confirmMessage": [
+    {
+      "type": 0,
+      "value": "Confirm your vote via e-mail:"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/con/message": [
+    {
+      "type": 0,
+      "value": "Click to vote against this idea"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/expireable/states/closed/message": [
+    {
+      "type": 0,
+      "value": "Voting no longer possible"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/neutral/message": [
+    {
+      "type": 0,
+      "value": "Click to vote neutral on this idea"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/pro/message": [
+    {
+      "type": 0,
+      "value": "Click to vote for this idea"
+    }
+  ],
+  "https://app.argu.co/i18n/xsd:boolean/false": [
+    {
+      "type": 0,
+      "value": "No"
+    }
+  ],
+  "https://app.argu.co/i18n/xsd:boolean/true": [
+    {
+      "type": 0,
+      "value": "Yes"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/desc": [
+    {
+      "type": 0,
+      "value": "DexTransfer is powered by the DexPod - a free, open source server that you can host yourself."
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/title": [
+    {
+      "type": 0,
+      "value": "Decentralized"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/monetize/desc": [
+    {
+      "type": 0,
+      "value": "Set a price for your data. If you want, we can help people find your data by sharing it in the Dexes Marketplace"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/monetize/title": [
+    {
+      "type": 0,
+      "value": "Make money"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/secure/desc": [
+    {
+      "type": 0,
+      "value": "Fully encrypted, requires verified e-mail addresses."
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/secure/title": [
+    {
+      "type": 0,
+      "value": "Secure"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/signed/desc": [
+    {
+      "type": 0,
+      "value": "When you share something on DexTransfer,"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/signed/title": [
+    {
+      "type": 0,
+      "value": "Signed licenses"
+    }
+  ],
+  "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": [
+    {
+      "type": 0,
+      "value": "Copied value to clipboard"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/engagement/active": [
+    {
+      "type": 0,
+      "value": "💪 actief"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/engagement/inactive": [
+    {
+      "type": 0,
+      "value": "💤 inactief"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/engagement/veryActive": [
+    {
+      "type": 0,
+      "value": "🔥 hyperactief"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/long": [
+    {
+      "type": 0,
+      "value": "😞 Wacht al "
+    },
+    {
+      "type": 1,
+      "value": "diff"
+    },
+    {
+      "type": 0,
+      "value": " dagen"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/short": [
+    {
+      "type": 0,
+      "value": "🤔 Wacht enkele dagen"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/veryLong": [
+    {
+      "type": 0,
+      "value": "😱 Wacht al "
+    },
+    {
+      "type": 1,
+      "value": "diff"
+    },
+    {
+      "type": 0,
+      "value": " dagen"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/veryShort": [
+    {
+      "type": 0,
+      "value": "😀 Net aangemeld"
+    }
+  ]
+}

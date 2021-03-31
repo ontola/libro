@@ -11,6 +11,7 @@ export const containerTopology = argu.container;
 
 export interface ContainerProps {
   className?: string;
+  children: NonNullable<React.ReactNode>;
   disableGutters?: boolean;
   fixed?: boolean;
   size: Size;
@@ -50,7 +51,7 @@ class Container extends Topology<ContainerProps> {
 }
 
 export interface LargeContainerProps {
-  children: React.ReactNode
+  children: NonNullable<React.ReactNode>
 }
 
 export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => (

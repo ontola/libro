@@ -1,6 +1,5 @@
 import { defineMessages } from 'react-intl';
 
-
 export const actionMessages = defineMessages({
   copyFinished: {
     defaultMessage: 'Copied value to clipboard',

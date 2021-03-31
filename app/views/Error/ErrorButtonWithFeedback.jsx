@@ -96,7 +96,7 @@ export class ErrorButtonWithFeedbackBase extends React.Component {
         onClick={this.reload}
         {...this.props}
       >
-        {this.props.children || <FormattedMessage id="https://app.argu.co/i18n/errors/inlineButton/label" />}
+        {this.props.children || <FormattedMessage defaultMessage="Retry" id="https://app.argu.co/i18n/errors/inlineButton/label" />}
       </Button>
     );
   }

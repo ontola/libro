@@ -13,8 +13,8 @@ import { Provider } from 'react-redux';
 import { getMetaContent } from '../helpers/arguHelpers';
 import AppFrame from '../routes/App';
 import themes from '../themes';
-import englishMessages from '../translations/en.json';
-import dutchMessages from '../translations/nl.json';
+import englishMessages from '../lang/en.json';
+import dutchMessages from '../lang/nl.json';
 
 const propTypes = {
   Router: PropTypes.func,

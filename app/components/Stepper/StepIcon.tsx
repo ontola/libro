@@ -35,7 +35,7 @@ export const StepIcon = (props: CustomStepIconProps): JSX.Element => {
   const classes = useStepIconStyles(props);
 
   return (
-    <div className={classes.stepBackground} >
+    <div className={classes.stepBackground}>
       {props.icon}
     </div>
   );

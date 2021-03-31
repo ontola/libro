@@ -48,7 +48,10 @@ class ErrorButtonHeader extends ErrorButtonWithFeedbackBase {
           />
         </NavbarLinkIcon>
         <NavbarLinkLabel>
-          <FormattedMessage id="https://app.argu.co/i18n/errors/inlineButton/label" />
+          <FormattedMessage
+            defaultMessage="Retry"
+            id="https://app.argu.co/i18n/errors/inlineButton/label"
+          />
         </NavbarLinkLabel>
       </BlurButton>
     );

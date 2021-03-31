@@ -9,6 +9,7 @@ declare const __PRODUCTION__: boolean;
 declare const __TEST__: boolean;
 declare const __VERSION__: string;
 
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION__?: any;
 }

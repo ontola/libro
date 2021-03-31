@@ -1,0 +1,1175 @@
+{
+  "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": [
+    {
+      "type": 0,
+      "value": "Primair e-mail adres"
+    }
+  ],
+  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": [
+    {
+      "type": 0,
+      "value": "Reeds bevestigd"
+    }
+  ],
+  "https://app.argu.co/i18n/actions/labels/save": [
+    {
+      "type": 0,
+      "value": "opslaan"
+    }
+  ],
+  "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": [
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " ideeën"
+    }
+  ],
+  "https://app.argu.co/i18n/argu:lastActivityAt/label": [
+    {
+      "type": 0,
+      "value": "Laatste activiteit: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/acceptedDecision": [
+    {
+      "type": 0,
+      "value": "Aangenomen"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/casesBody": [
+    {
+      "type": 0,
+      "value": "Van draagvlakmeting tot ideegeneratie: Argu is flexibel inzetbaar voor diverse vormen van online inspraak en interactieve beleidsvorming."
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/casesHeader": [
+    {
+      "type": 0,
+      "value": "Voorbeelden e-participatie"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/customersBody": [
+    {
+      "type": 0,
+      "value": "We hebben onder andere ervaring met vele gemeenten, semi-overheden, verenigingen en bedrijven."
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/customersHeader": [
+    {
+      "type": 0,
+      "value": "Een paar van onze klanten"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/featuresBody": [
+    {
+      "type": 0,
+      "value": "Wij hosten Argu en blijven het ontwikkelen, zodat je altijd over de nieuwste mogelijkheden beschikt."
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/featuresHeader": [
+    {
+      "type": 0,
+      "value": "Functionaliteiten"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/motionExampleTitle": [
+    {
+      "type": 0,
+      "value": "Idee"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/questionExampleTitle": [
+    {
+      "type": 0,
+      "value": "Hoe lossen we probleem Y op?"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/reactionsCount": [
+    {
+      "type": 0,
+      "value": "reacties en argumenten"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/requestDemo": [
+    {
+      "type": 0,
+      "value": "Vraag een demo aan"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/surveyExampleTitle": [
+    {
+      "type": 0,
+      "value": "Hoe tevreden bent u met X?"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/triadAgain": [
+    {
+      "type": 0,
+      "value": "Opnieuw"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/triadHeader": [
+    {
+      "type": 0,
+      "value": "Betrokken bij de gehele beleidscyclus"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/triadNext": [
+    {
+      "type": 0,
+      "value": "Volgende"
+    }
+  ],
+  "https://app.argu.co/i18n/arguHome/votesCount": [
+    {
+      "type": 0,
+      "value": "stemmen geplaatst"
+    }
+  ],
+  "https://app.argu.co/i18n/as:CollectionPage/as:next/label": [
+    {
+      "type": 0,
+      "value": "volgende"
+    }
+  ],
+  "https://app.argu.co/i18n/as:CollectionPage/as:previous/label": [
+    {
+      "type": 0,
+      "value": "vorige"
+    }
+  ],
+  "https://app.argu.co/i18n/auth/newSessionLink": [
+    {
+      "type": 0,
+      "value": "Log in / registreer"
+    }
+  ],
+  "https://app.argu.co/i18n/badges/continue": [
+    {
+      "type": 0,
+      "value": "Top!"
+    }
+  ],
+  "https://app.argu.co/i18n/collapsible/collapse": [
+    {
+      "type": 0,
+      "value": "Inklappen"
+    }
+  ],
+  "https://app.argu.co/i18n/collapsible/expand": [
+    {
+      "type": 0,
+      "value": "Lees meer"
+    }
+  ],
+  "https://app.argu.co/i18n/collapsible/expandOrCollapseMenu": [
+    {
+      "type": 0,
+      "value": "Menu uitvouwen of inklappen"
+    }
+  ],
+  "https://app.argu.co/i18n/collection/empty/message": [
+    {
+      "type": 0,
+      "value": "Nog geen items"
+    }
+  ],
+  "https://app.argu.co/i18n/collection/loadMore": [
+    {
+      "type": 0,
+      "value": "Meer laden"
+    }
+  ],
+  "https://app.argu.co/i18n/collection/readAll": [
+    {
+      "type": 0,
+      "value": "Alle "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " bekijken ..."
+    }
+  ],
+  "https://app.argu.co/i18n/collections/showRepliesLabel": [
+    {
+      "type": 0,
+      "value": "Toon "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " verborgen reacties..."
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/private/text": [
+    {
+      "type": 0,
+      "value": "Privé"
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/private/title": [
+    {
+      "type": 0,
+      "value": "Zichtbaar voor "
+    },
+    {
+      "type": 1,
+      "value": "groupNames"
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/public/text": [
+    {
+      "type": 0,
+      "value": "Publiek"
+    }
+  ],
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": [
+    {
+      "type": 0,
+      "value": "Zichtbaar voor iedereen"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/clickToRetry/label": [
+    {
+      "type": 0,
+      "value": "Klik om het opnieuw te proberen."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/client/offline/header": [
+    {
+      "type": 0,
+      "value": "Netwerkverbinding verbroken"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/informRequest": [
+    {
+      "type": 0,
+      "value": "Laat het ons weten."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/inlineButton/label": [
+    {
+      "type": 0,
+      "value": "Opnieuw"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/map/loadError": [
+    {
+      "type": 0,
+      "value": "Fout tijdens het laden van de kaart"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/markdown/renderError": [
+    {
+      "type": 0,
+      "value": "Er is een fout opgetreden tijdens het opmaken van de tekst. De brontekst in markdown-formaat is als volgt:"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/mistaken": [
+    {
+      "type": 0,
+      "value": "Is dit een fout?"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/200/body": [
+    {
+      "type": 0,
+      "value": "Het verzoek bevat een fout waardoor het niet verwerkt kan worden, check de URL parameters en probeer de pagina welke naar deze verwees te herladen."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/200/header": [
+    {
+      "type": 0,
+      "value": "Fout in het verzoek (400 Bad Request)"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/401/body": [
+    {
+      "type": 0,
+      "value": "Je moet ingelogd zijn om dit te kunnen zien."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/401/header": [
+    {
+      "type": 0,
+      "value": "Niet ingelogd"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/403/body": [
+    {
+      "type": 0,
+      "value": "Mogelijk is het zichtbaar na te hebben ingelogt."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/403/header": [
+    {
+      "type": 0,
+      "value": "Dit item is verborgen"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/404/body": [
+    {
+      "type": 0,
+      "value": "Misschien is het item dat je zoekt verwijderd of heeft het nooit bestaan."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/404/header": [
+    {
+      "type": 0,
+      "value": "Dit item is niet gevonden"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/406/body": [
+    {
+      "type": 0,
+      "value": "Dit resource kan niet bekeken worden in dit formaat."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/406/header": [
+    {
+      "type": 0,
+      "value": "Dit resource kan niet worden bekeken in dit formaat."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/408/body": [
+    {
+      "type": 0,
+      "value": "Het verzoek duurde te lang, probeer het opnieuw of later nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/408/header": [
+    {
+      "type": 0,
+      "value": "Verzoek stilgevallen"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/409/body": [
+    {
+      "type": 0,
+      "value": "De verandering kon niet worden doorgevoerd omdat het item bewerkt is sinds deze lokaal was geopend."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/409/header": [
+    {
+      "type": 0,
+      "value": "Conflict"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/410/body": [
+    {
+      "type": 0,
+      "value": "Dit item is permanent verwijderd."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/410/header": [
+    {
+      "type": 0,
+      "value": "Item verwijderd"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/413/body": [
+    {
+      "type": 0,
+      "value": "Het item dat je probeert te verzenden is te groot. Ga terug en probeer een kleiner bestand."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/413/header": [
+    {
+      "type": 0,
+      "value": "Verzoek te groot"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/422/body": [
+    {
+      "type": 0,
+      "value": "Het item dat je probeert aan te maken kan niet worden verwerkt."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/422/header": [
+    {
+      "type": 0,
+      "value": "Het item kan niet worden verwerkt"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/429/body": [
+    {
+      "type": 0,
+      "value": "Je maakt te veel verzoeken, probeer het over halve minuut nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/429/header": [
+    {
+      "type": 0,
+      "value": "Te veel verzoeken"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/499/body": [
+    {
+      "type": 0,
+      "value": "Er was een (netwerk) probleem voor dit verzoek, controleer de internet verbinding, probeer het later nog eens of in een andere browser."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/499/header": [
+    {
+      "type": 0,
+      "value": "Probleem met de browser"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/500/body": [
+    {
+      "type": 0,
+      "value": "Er ging iets aan onze kant fout, probeer het later nog eens"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/500/header": [
+    {
+      "type": 0,
+      "value": "Interne serverfout"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/501/body": [
+    {
+      "type": 0,
+      "value": "Deze functionaliteit is niet geïmplementeerd, probeer het later nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/501/header": [
+    {
+      "type": 0,
+      "value": "Deze functionaliteit is niet geïmplementeerd, probeer het later nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/502/body": [
+    {
+      "type": 0,
+      "value": "Er was een netwerkprobleem tijdens dit verzoek, probeer het opnieuw of later nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/502/header": [
+    {
+      "type": 0,
+      "value": "Slechte doorgang"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/503/body": [
+    {
+      "type": 0,
+      "value": "Er was een netwerkprobleem tijdens dit verzoek, probeer het opnieuw of later nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/503/header": [
+    {
+      "type": 0,
+      "value": "Service niet beschikbaar"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/504/body": [
+    {
+      "type": 0,
+      "value": "Er was een netwerkprobleem tijdens dit verzoek, probeer het opnieuw of later nog eens."
+    }
+  ],
+  "https://app.argu.co/i18n/errors/request/504/header": [
+    {
+      "type": 0,
+      "value": "Doorgang stilgevallen"
+    }
+  ],
+  "https://app.argu.co/i18n/errors/retryButton/label": [
+    {
+      "type": 0,
+      "value": "Probeer opnieuw"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/closed/closedMessage": [
+    {
+      "type": 0,
+      "value": "Het is niet meer mogelijk om te reageren"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/closed/label": [
+    {
+      "type": 0,
+      "value": "gesloten"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/closed/tooltip": [
+    {
+      "type": 0,
+      "value": "gesloten op "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/expiring/label": [
+    {
+      "type": 0,
+      "value": "sluit "
+    },
+    {
+      "type": 1,
+      "value": "relativeDate"
+    }
+  ],
+  "https://app.argu.co/i18n/expireable/states/expiring/tooltip": [
+    {
+      "type": 0,
+      "value": "sluit op "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/cancel": [
+    {
+      "type": 0,
+      "value": "annuleren"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/clear": [
+    {
+      "type": 0,
+      "value": "legen"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/close": [
+    {
+      "type": 0,
+      "value": "Sluiten"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/ok": [
+    {
+      "type": 0,
+      "value": "ok"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/actions/showToday": [
+    {
+      "type": 0,
+      "value": "nu"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage": [
+    {
+      "type": 0,
+      "value": "Ongeldig datum formaat"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidLabel": [
+    {
+      "type": 0,
+      "value": "Ongeldig"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage": [
+    {
+      "type": 0,
+      "value": "Datum mag niet na maximum datum zijn"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/datetimepicker/minDateMessage": [
+    {
+      "type": 0,
+      "value": "Datum mag niet voor minimum datum zijn"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/dropzone/hoverText": [
+    {
+      "type": 0,
+      "value": "Laat los om het bestand te selecteren"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/dropzone/passiveText": [
+    {
+      "type": 0,
+      "value": "Klik of sleep een bestand om te selecteren"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/omniform/defaultResponseType": [
+    {
+      "type": 0,
+      "value": "reactie"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/omniform/newResponsePreview": [
+    {
+      "type": 0,
+      "value": "Plaats een "
+    },
+    {
+      "type": 1,
+      "value": "type"
+    },
+    {
+      "type": 0,
+      "value": "..."
+    }
+  ],
+  "https://app.argu.co/i18n/forms/radioGroup/noOptions": [
+    {
+      "type": 0,
+      "value": "Geen opties beschikbaar"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/required/helperText": [
+    {
+      "type": 0,
+      "value": "*Vereist"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/select/noMatchingItems": [
+    {
+      "type": 0,
+      "value": "Geen matchende items"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/select/typeToSearch": [
+    {
+      "type": 0,
+      "value": "Typ om te zoeken"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/accountLocked": [
+    {
+      "type": 0,
+      "value": "Account vergendeld door te veel mislukte login pogingen"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/accountLocked/label": [
+    {
+      "type": 0,
+      "value": "Account vergrendeld?"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/back": [
+    {
+      "type": 0,
+      "value": "terug"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/confirmationLink/label": [
+    {
+      "type": 0,
+      "value": "Bevestigingslink opnieuw sturen?"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/email/label": [
+    {
+      "type": 0,
+      "value": "Jouw e-mail adres"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/email/placeholder": [
+    {
+      "type": 0,
+      "value": "email@voorbeeld.nl"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": [
+    {
+      "type": 0,
+      "value": "Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild naar "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/forgotLink/label": [
+    {
+      "type": 0,
+      "value": "Wachtwoord vergeten?"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/link/label": [
+    {
+      "type": 0,
+      "value": "Log in"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/login": [
+    {
+      "type": 0,
+      "value": "inloggen"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/or": [
+    {
+      "type": 0,
+      "value": "of"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/password/invalid": [
+    {
+      "type": 0,
+      "value": "Fout of ongeldig wachtwoord"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/password/label": [
+    {
+      "type": 0,
+      "value": "Jouw wachtwoord"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/register": [
+    {
+      "type": 0,
+      "value": "registreren"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/session/signinregister/label": [
+    {
+      "type": 0,
+      "value": "Log in of registreer"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/signOut/link/label": [
+    {
+      "type": 0,
+      "value": "Uitloggen"
+    }
+  ],
+  "https://app.argu.co/i18n/navbar/search": [
+    {
+      "type": 0,
+      "value": "Zoeken"
+    }
+  ],
+  "https://app.argu.co/i18n/navbar/skipToMain": [
+    {
+      "type": 0,
+      "value": "Navigatie overslaan"
+    }
+  ],
+  "https://app.argu.co/i18n/navbar/troubleNavigating": [
+    {
+      "type": 0,
+      "value": "Moeite met navigeren? Mail ons!"
+    }
+  ],
+  "https://app.argu.co/i18n/pages/closed": [
+    {
+      "type": 0,
+      "value": "Deze pagina is privé. Alleen leden kunnen de content bekijken. Vraag een lid of een van de managers hoe je toegang kan krijgen tot deze website."
+    }
+  ],
+  "https://app.argu.co/i18n/pages/noHomepage": [
+    {
+      "type": 0,
+      "value": "Welkom bij "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": "!"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/download": [
+    {
+      "type": 0,
+      "value": "Download bestand (D)"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/fullScreen": [
+    {
+      "type": 0,
+      "value": "Scherm vullen (F)"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/nextPage": [
+    {
+      "type": 0,
+      "value": "Volgende pagina (→)"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/previousPage": [
+    {
+      "type": 0,
+      "value": "Vorige pagina (←)"
+    }
+  ],
+  "https://app.argu.co/i18n/phases/stepper/header": [
+    {
+      "type": 0,
+      "value": "Fase "
+    },
+    {
+      "type": 1,
+      "value": "number"
+    },
+    {
+      "type": 0,
+      "value": ": "
+    }
+  ],
+  "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": [
+    {
+      "type": 0,
+      "value": "Vastgezet op "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Person/postedByText": [
+    {
+      "type": 0,
+      "value": "Geplaatst door "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Person/showProfileText": [
+    {
+      "type": 0,
+      "value": "Toon profiel van "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": [
+    {
+      "type": 0,
+      "value": "Toon alle "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " reacties..."
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": [
+    {
+      "type": 0,
+      "value": "External information"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel": [
+    {
+      "type": 0,
+      "value": "Bekijk locatie"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel": [
+    {
+      "type": 0,
+      "value": "Besproken in:"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:Thing/showResourceText": [
+    {
+      "type": 0,
+      "value": "Toon het profiel van "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:dateCreated/label": [
+    {
+      "type": 0,
+      "value": "Aangemaakt: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:dateModified/label": [
+    {
+      "type": 0,
+      "value": "Bijgewerkt: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:datePublished/label": [
+    {
+      "type": 0,
+      "value": "Gepubliceerd: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:dateSubmitted/label": [
+    {
+      "type": 0,
+      "value": "Ingediend: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:duration/label": [
+    {
+      "type": 0,
+      "value": "Duur: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:endDate/label": [
+    {
+      "type": 0,
+      "value": "Einde: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/schema:startDate/label": [
+    {
+      "type": 0,
+      "value": "Begin: "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/search/button/label": [
+    {
+      "type": 0,
+      "value": "Zoek"
+    }
+  ],
+  "https://app.argu.co/i18n/search/header/prefix": [
+    {
+      "type": 0,
+      "value": "Zoek in:"
+    }
+  ],
+  "https://app.argu.co/i18n/session/confirmLabel": [
+    {
+      "type": 0,
+      "value": "Bevestig"
+    }
+  ],
+  "https://app.argu.co/i18n/session/continueLabel": [
+    {
+      "type": 0,
+      "value": "Ga verder"
+    }
+  ],
+  "https://app.argu.co/i18n/session/noPassword": [
+    {
+      "type": 0,
+      "value": "Dit account heeft nog geen wachtwoord. We hebben zojuist een nieuw email gestuurd waarmee een wachtwoord kan worden ingesteld. Doe dit eerst voor je verder kan gaan."
+    }
+  ],
+  "https://app.argu.co/i18n/session/unexpectedStateLabel": [
+    {
+      "type": 0,
+      "value": "Overwachtse staat"
+    }
+  ],
+  "https://app.argu.co/i18n/teamGL/glappNotUsed": [
+    {
+      "type": 0,
+      "value": "🚪 GLAPP nog niet gebruikt."
+    }
+  ],
+  "https://app.argu.co/i18n/teamGL/glappUsedAt": [
+    {
+      "type": 0,
+      "value": "🚪 GLAPP laatst gebruikt op "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "https://app.argu.co/i18n/teamGL/volunteersCount": [
+    {
+      "style": null,
+      "type": 2,
+      "value": "volunteerCount"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "vrijwilliger"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "vrijwilligers"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "volunteerCount"
+    }
+  ],
+  "https://app.argu.co/i18n/trashable/deletedNotice": [
+    {
+      "type": 0,
+      "value": " Dit item is verwijderd op "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
+  "https://app.argu.co/i18n/voteFlow/confirmMessage": [
+    {
+      "type": 0,
+      "value": "Bevestig jouw stem via e-mail"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/con/message": [
+    {
+      "type": 0,
+      "value": "Klik om tegen dit idee te stemmen"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/expireable/states/closed/message": [
+    {
+      "type": 0,
+      "value": "Stemmen is niet langer mogelijk"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/neutral/message": [
+    {
+      "type": 0,
+      "value": "Klik om neutraal op dit idee te stemmen"
+    }
+  ],
+  "https://app.argu.co/i18n/votes/pro/message": [
+    {
+      "type": 0,
+      "value": "Klik om voor dit idee te stemmen"
+    }
+  ],
+  "https://app.argu.co/i18n/xsd:boolean/false": [
+    {
+      "type": 0,
+      "value": "Nee"
+    }
+  ],
+  "https://app.argu.co/i18n/xsd:boolean/true": [
+    {
+      "type": 0,
+      "value": "Ja"
+    }
+  ],
+  "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": [
+    {
+      "type": 0,
+      "value": "Waarde is naar klembord gekopieerd"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/engagement/active": [
+    {
+      "type": 0,
+      "value": "💪 actief"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/engagement/inactive": [
+    {
+      "type": 0,
+      "value": "💤 inactief"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/engagement/veryActive": [
+    {
+      "type": 0,
+      "value": "🔥 hyperactief"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/long": [
+    {
+      "type": 0,
+      "value": "😞 Wacht al "
+    },
+    {
+      "type": 1,
+      "value": "diff"
+    },
+    {
+      "type": 0,
+      "value": " dagen"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/short": [
+    {
+      "type": 0,
+      "value": "🤔 Wacht enkele dagen"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/veryLong": [
+    {
+      "type": 0,
+      "value": "😱 Wacht al "
+    },
+    {
+      "type": 1,
+      "value": "diff"
+    },
+    {
+      "type": 0,
+      "value": " dagen"
+    }
+  ],
+  "https://team.groenlinks.nl/i18n/waiting/veryShort": [
+    {
+      "type": 0,
+      "value": "😀 Net aangemeld}"
+    }
+  ]
+}

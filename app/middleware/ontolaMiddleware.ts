@@ -173,15 +173,15 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    * Miscellaneous
    */
 
-  history.listen((opts, action) => {
+  history.listen((location, action) => {
     if (['POP', 'PUSH'].includes(action)) {
       store.exec(libro.ns(`actions/navigations/${action.toLowerCase()}`),
         {
-          hash: opts.hash || '',
-          key: opts.key || '',
-          pathname: opts.pathname || '',
-          search: opts.search || '',
-          state: opts.state || '',
+          hash: location.hash || '',
+          key: location.key || '',
+          pathname: location.pathname || '',
+          search: location.search || '',
+          state: location.state || '',
         },
       );
     }

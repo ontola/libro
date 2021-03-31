@@ -54,7 +54,7 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
   }
 
   if (options.length === 0) {
-    return <FormattedMessage id="https://app.argu.co/i18n/collection/empty/message" />;
+    return <FormattedMessage defaultMessage="No items yet" id="https://app.argu.co/i18n/collection/empty/message" />;
   }
 
   const items = options.map((item) => {

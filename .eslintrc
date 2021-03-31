@@ -255,8 +255,9 @@
         "shorthandFirst": true
       }
     ],
-    "react/jsx-space-before-closing": ["error", "always"],
-    "react/jsx-tag-spacing": "error",
+    "react/jsx-tag-spacing": ["error", {
+      "beforeClosing": "never"
+    }],
     "react/jsx-wrap-multilines": "error",
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
