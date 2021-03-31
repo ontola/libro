@@ -1,4 +1,5 @@
 import CollectionDefault from './CollectionDefault';
+import CollectionTabPane from './CollectionTabPane';
 import CollectionWithOmniform from './CollectionWithOmniform';
 import CollectionFilterCollection from './properties/collectionFilter';
 import CreateAction from './properties/createAction';
@@ -30,6 +31,7 @@ export default [
   CollectionFilterCollection,
   CollectionFullPage,
   ...CollectionSection,
+  CollectionTabPane,
   CollectionTableCell,
   CollectionDefault,
   CollectionWithOmniform,

@@ -6,7 +6,6 @@ import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
-import { tabPaneTopology } from '../../topologies/TabPane';
 
 import { CollectionTypes } from './types';
 
@@ -23,7 +22,6 @@ CollectionDefault.topology = [
   cardMainTopology,
   fullResourceTopology,
   gridTopology,
-  tabPaneTopology,
 ];
 
 export default register(CollectionDefault);
