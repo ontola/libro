@@ -35,6 +35,9 @@ Coupons.type = argu.CouponBadge;
 
 Coupons.topology = allTopologies;
 
-Coupons.property = argu.coupons;
+Coupons.property = [
+  argu.coupons,
+  argu.usedCoupons,
+];
 
 export default register(Coupons);

@@ -132,6 +132,7 @@ export default {
   update_opinion: argu('update_opinion'),
   url: argu('url'),
   usages: argu('usages'),
+  usedCoupons: argu('usedCoupons'),
   voteEvents: argu('voteEvents'),
   voteableVoteEvent: argu('voteableVoteEvent'),
   votes: argu('votes'),
