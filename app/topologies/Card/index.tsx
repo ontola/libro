@@ -7,26 +7,31 @@ import './Card.scss';
 
 export const cardTopology = argu.card;
 
-interface PropTypes {
+interface CardProps {
   about?: string;
   className?: string;
   fixed?: boolean;
+  onClick?: any;
   shine?: boolean;
   warn?: boolean;
 }
+
+type CardElementProps = {
+  onClick: any;
+};
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class Card extends Topology<PropTypes> {
+class Card extends Topology<CardProps> {
   public static defaultProps = {
     fixed: false,
     shine: false,
     warn: false,
   };
 
-  constructor(props: PropTypes) {
+  constructor(props: CardProps) {
     super(props);
 
     this.topology = cardTopology;
@@ -39,6 +44,12 @@ class Card extends Topology<PropTypes> {
       'Card--warn': this.props.warn,
       [this.props.className || '']: true,
     });
+  }
+
+  public getElementProps(): CardElementProps {
+    return {
+      onClick: this.props.onClick,
+    };
   }
 }
 

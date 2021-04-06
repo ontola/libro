@@ -59,6 +59,13 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
   useDataInvalidation(comments.filter(isNode));
   const commentProps = useResourceLinks(comments, commentPropMap) as CommentProps[];
   const [pageNumber, setPageNumber] = React.useState(1);
+  const handleCommentClick = React.useCallback((comment) => {
+    const commentPage = commentProps.find(({ subject: subj }) => rdf.equals(subj, comment))?.page;
+
+    if (commentPage) {
+      setPageNumber(commentPage);
+    }
+  }, [lrs, setPageNumber]);
   const [commentMode, setCommentMode] = React.useState<boolean>(false);
   const handlePageClick = React.useCallback((e: MouseEvent, docRef: any): void => {
     const wrapper = docRef.getBoundingClientRect();
@@ -105,6 +112,7 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
       sidebar={(
         <Property
           label={schema.comment}
+          onItemClick={handleCommentClick}
         />
       )}
     >

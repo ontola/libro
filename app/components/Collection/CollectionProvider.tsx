@@ -32,6 +32,7 @@ export interface CollectionProps {
   depth?: number;
   hideHeader?: boolean;
   hidePagination?: boolean;
+  onItemClick?: () => void;
   redirectPagination?: boolean;
   renderPartOf?: boolean;
   renderWhenEmpty?: boolean;
@@ -53,6 +54,7 @@ export interface CollectionContext {
   hidePagination?: boolean;
   maxColumns?: number;
   omniform?: boolean;
+  onItemClick?: () => void;
   setCollectionResource: (resource: NamedNode) => void;
   sortOptions: SortProps[];
   view?: NamedNode;
@@ -101,6 +103,7 @@ const CollectionProvider = ({
   hideHeader,
   hidePagination,
   omniform,
+  onItemClick,
   redirectPagination,
   renderWhenEmpty,
   renderPartOf,
@@ -145,6 +148,7 @@ const CollectionProvider = ({
     hidePagination,
     maxColumns: tryParseInt(maxColumns),
     omniform,
+    onItemClick,
     setCollectionResource,
     sortOptions,
     view,
@@ -159,6 +163,7 @@ const CollectionProvider = ({
     hidePagination,
     maxColumns,
     omniform,
+    onItemClick,
     setCollectionResource,
     sortOptions,
     view,

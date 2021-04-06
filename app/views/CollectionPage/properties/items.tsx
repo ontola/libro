@@ -43,6 +43,7 @@ const ItemList = ({
     collectionDisplay,
     depth,
     maxColumns,
+    onItemClick,
     view: viewIRI,
   } = useCollectionOptions();
   const view = viewIRI && useViewByIRI(viewIRI);
@@ -73,6 +74,7 @@ const ItemList = ({
         .slice(0, renderLimit)
         .map((iri) => (
           <Resource
+            childProps={{ onItemClick }}
             depth={depth}
             itemRenderer={view}
             itemWrapper={itemWrapper}
