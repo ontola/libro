@@ -6,13 +6,17 @@ import { Context } from 'koa';
 import dbo from '../ontology/dbo';
 import ontola from '../ontology/ontola';
 
-// @ts-ignore
 import { stripMarkdown } from './markdownHelper';
 
 export const COVER_PREDICATES = [ontola.coverPhoto];
-export const COVER_URL_PREDICATE = ontola.imgUrl1500x2000;
+export const COVER_URL_PREDICATES = [ontola.imgUrl1500x2000];
 export const NAME_PREDICATES = [schema.name, rdfs.label];
 export const TEXT_PREDICATES = [dbo.abstract, schema.description, schema.text];
+
+const COVER_PREDICATES_RAW = COVER_PREDICATES.map((n) => n.value);
+const COVER_URL_PREDICATES_RAW = COVER_URL_PREDICATES.map((n) => n.value);
+const NAME_PREDICATES_RAW = NAME_PREDICATES.map((n) => n.value);
+const TEXT_PREDICATES_RAW = TEXT_PREDICATES.map((n) => n.value);
 
 interface TagProps {
   children?: string;
@@ -40,7 +44,7 @@ export const getMetaTags = ({
   coverURL?: string,
 }): TagProps[] => {
   const title = [name, appName].filter(Boolean).join(' | ');
-  const tags = [{
+  const tags: TagProps[] = [{
     children: name && name.length > 0 ? name : appName,
     type: 'title',
   }, {
@@ -64,7 +68,7 @@ export const getMetaTags = ({
     content: coverURL ? 'summary_large_image' : 'summary',
     name: 'twitter:card',
     type: 'meta',
-  }] as TagProps[];
+  }];
 
   if (coverURL) {
     tags.push({
@@ -118,41 +122,36 @@ const prerenderMetaTag = (props: TagProps) => {
   return `<${type} ${attrs.join(' ')}>`;
 };
 
+const findValue = (subjectQuads: string[], predicates: string[]): string | undefined => subjectQuads
+  .filter((q) => predicates.includes(q[QuadPosition.predicate]))
+  .find((q) => q[QuadPosition.object])
+  ?.[QuadPosition.object];
+
 export const prerenderMetaTags = (ctx: Context, data: string): string => {
   const {
     manifest,
     request: { href },
   } = ctx;
 
-  const quads = ([] as string[][]);
-  let coverPhoto = '';
-  let coverURL;
-  let text;
-  let name;
-
-  data?.split('\n')?.forEach((line) => {
-    if (line?.length > 0) {
-      const quad = JSON.parse(line);
-
-      if (quad[QuadPosition.subject] === href) {
-        if (NAME_PREDICATES.find((pred) => pred.value === quad[QuadPosition.predicate])) {
-          name = quad[QuadPosition.object];
-        } else if (COVER_PREDICATES.find((pred) => pred.value === quad[QuadPosition.predicate])) {
-          coverPhoto = quad[QuadPosition.object];
-        } else if (TEXT_PREDICATES.find((pred) => pred.value === quad[QuadPosition.predicate])) {
-          text = quad[QuadPosition.object];
-        }
-      } else {
-        quads.push(quad);
+  const quads = data
+    .split('\n')
+    .map((line) => {
+      try {
+        return line && JSON.parse(line);
+      } catch (e) {
+        return undefined;
       }
-    }
-  });
+    })
+    .filter((q) => Array.isArray(q));
+  const subjects = href.endsWith('/') ? [href, href.slice(0, -1)] : [href];
+  const subjectQuads = quads.filter((quad) => subjects.includes(quad[QuadPosition.subject]));
 
-  if (coverPhoto.length > 0) {
-    coverURL = quads
-      .find(([subject, predicate]) => subject === coverPhoto && predicate === COVER_URL_PREDICATE.value)
-      ?.[QuadPosition.object];
-  }
+
+  const text = findValue(subjectQuads, TEXT_PREDICATES_RAW);
+  const name = findValue(subjectQuads, NAME_PREDICATES_RAW);
+  const coverPhoto = findValue(subjectQuads, COVER_PREDICATES_RAW);
+  const coverPhotoQuads = quads.filter((q) => q[QuadPosition.subject] == coverPhoto);
+  const coverURL = findValue(coverPhotoQuads, COVER_URL_PREDICATES_RAW);
 
   const strippedText = stripMarkdown(text)?.replace(/"/g, '&quot;');
 

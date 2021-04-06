@@ -64,6 +64,7 @@ export const renderFullPage = async (ctx, data) => {
     nonceStr
   );
   /* eslint-enable camelcase */
+  const seed = data?.toString('utf-8') ?? ''
 
   return (
     `<!doctype html>
@@ -72,7 +73,7 @@ export const renderFullPage = async (ctx, data) => {
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
-          ${prerenderMetaTags(ctx, data)}
+          ${prerenderMetaTags(ctx, seed)}
 
           <meta name="website-iri" content="${manifest.scope || ''}">
           <meta property="og:type" content="website">
@@ -117,7 +118,7 @@ export const renderFullPage = async (ctx, data) => {
                });
              }
           </script>
-          <script id="seed" nonce="${nonceStr}" type="application/hex+x-ndjson">${data?.toString('utf-8') ?? ''}</script>
+          <script id="seed" nonce="${nonceStr}" type="application/hex+x-ndjson">${seed}</script>
           <script nonce="${nonceStr}" type="application/javascript">
               var seed = document.getElementById('seed');
               window.INITIAL__DATA = seed ? seed.textContent : '';

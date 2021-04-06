@@ -12,7 +12,7 @@ import { getMetaContent } from '../../helpers/arguHelpers';
 import { useStrippedMarkdown } from '../../helpers/markdownHelper';
 import {
   COVER_PREDICATES,
-  COVER_URL_PREDICATE,
+  COVER_URL_PREDICATES,
   NAME_PREDICATES,
   TEXT_PREDICATES,
   getMetaTags,
@@ -33,7 +33,7 @@ const Metadata: React.FC = () => {
   );
   const [coverURL] = useResourceProperty(
     typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,
-    COVER_URL_PREDICATE,
+    COVER_URL_PREDICATES[0],
   );
   const appName = getMetaContent('application-name');
   const strippedText = useStrippedMarkdown(text);
