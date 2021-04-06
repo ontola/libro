@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import { BreadcrumbsBar } from '../../../components/Breadcrumbs';
+import { parentProps } from '../../../ontology/app';
 import { containerTopology } from '../../../topologies/Container';
 
 const IsPartOfContainer = ({ linkedProp }) => (
@@ -17,7 +18,7 @@ const IsPartOfContainer = ({ linkedProp }) => (
 
 IsPartOfContainer.type = schema.Thing;
 
-IsPartOfContainer.property = schema.isPartOf;
+IsPartOfContainer.property = parentProps;
 
 IsPartOfContainer.topology = containerTopology;
 

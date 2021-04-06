@@ -1,4 +1,3 @@
-import * as dcterms from '@ontologies/dcterms';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -7,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { parentProps } from '../../ontology/app';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
@@ -20,7 +20,7 @@ const MediaObjectFull: FC<PropTypes> = ({
   renderPartOf,
 }) => (
   <Container>
-    {renderPartOf && <Property label={[schema.isPartOf, dcterms.isReferencedBy]} />}
+    {renderPartOf && <Property label={parentProps} />}
     <Property label={schema.contentUrl} />
   </Container>
 );

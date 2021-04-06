@@ -33,7 +33,7 @@ const ThingFull: FC<ThingFullProps> = ({ renderPartOf }) => {
   return (
     c(components.ResourceBoundary, [
       c(containerTopology, [
-        renderPartOf && p([schema.isPartOf, schema.superEvent]),
+        renderPartOf && p(app.parent),
         p(argu.trashedAt),
         p(withoutLoading(ontola.publishAction)),
         c(cardMainTopology, { 'data-test': 'Thing-thing' }, [

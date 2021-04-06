@@ -19,13 +19,20 @@ export const frontendOrigin = new URL(frontendIRIStr).origin;
 const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
 
 const contents = app('contents');
+const parent = app('parent');
 const thumbnail = app('thumbnail');
 const title = app('title');
 
+export const contentsProps = [schema.text, schema.description, dcterms.description];
+export const thumbnailProps = [dbo.thumbnail, wdt.ns('P18')];
+export const titleProps = [schema.name, rdfs.label, foaf.name, dcterms.title];
+export const parentProps = [schema.isPartOf, schema.superEvent, dcterms.isReferencedBy];
+
 export const appOntology = [
-  ...arrayToSeqQuads([schema.text, schema.description, dcterms.description], contents),
-  ...arrayToSeqQuads([dbo.thumbnail, wdt.ns('P18')], thumbnail),
-  ...arrayToSeqQuads([schema.name, rdfs.label, foaf.name, dcterms.title], title),
+  ...arrayToSeqQuads(contentsProps, contents),
+  ...arrayToSeqQuads(thumbnailProps, thumbnail),
+  ...arrayToSeqQuads(titleProps, title),
+  ...arrayToSeqQuads(parentProps, parent),
 ];
 
 export default {
@@ -33,6 +40,7 @@ export default {
 
   // eslint-disable-next-line sort-keys
   contents,
+  parent,
   thumbnail,
   title,
 
