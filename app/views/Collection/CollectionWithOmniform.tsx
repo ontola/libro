@@ -3,6 +3,7 @@ import React from 'react';
 
 import CollectionProvider from '../../components/Collection/CollectionProvider';
 import { containerTopology } from '../../topologies/Container';
+import { alertDialogTopology } from '../../topologies/Dialog';
 
 import { CollectionTypes } from './types';
 
@@ -16,6 +17,7 @@ const CollectionWithOmniform: FC = (props) => (
 CollectionWithOmniform.type = CollectionTypes;
 
 CollectionWithOmniform.topology = [
+  alertDialogTopology,
   containerTopology,
 ];
 

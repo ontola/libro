@@ -20,6 +20,7 @@ export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Li
   }
 }
 
-export function isPDF(encodingFormat: Literal): boolean {
-  return encodingFormat?.value === 'application/pdf';
+export function isPDF(encodingFormat: Literal, contentUrl: NamedNode): boolean {
+  return encodingFormat?.value === 'application/pdf'
+    || contentUrl?.value.includes('api.openraadsinformatie.nl');
 }

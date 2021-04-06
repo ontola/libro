@@ -33,7 +33,7 @@ const MediaObjectPreview: FC<PropTypes> = ({
     filename={filename}
     isPartOf={isPartOf}
     sequenceIndex={sequenceIndex}
-    showPreviewDialog={isPDF(encodingFormat)}
+    showPreviewDialog={isPDF(encodingFormat, contentUrl)}
     thumbnailURL={imageRepresentationUrl({ encodingFormat })}
   />
 );
