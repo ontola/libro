@@ -18,6 +18,8 @@ import {
   getMetaTags,
 } from '../../helpers/metaData';
 
+const MAX_TEXT_LENGTH = 300;
+
 const Metadata: React.FC = () => {
   const { subject } = useLinkRenderContext();
   const {
@@ -36,7 +38,8 @@ const Metadata: React.FC = () => {
     COVER_URL_PREDICATES[0],
   );
   const appName = getMetaContent('application-name');
-  const strippedText = useStrippedMarkdown(text);
+  const trimmedText = text?.substring(0, MAX_TEXT_LENGTH);
+  const strippedText = useStrippedMarkdown(trimmedText);
   const metaTags = React.useMemo(() => (
     getMetaTags({
       appName,
@@ -45,7 +48,7 @@ const Metadata: React.FC = () => {
       text: strippedText,
       url: subject.value,
     })
-  ), [appName, name, subject, text, coverURL]);
+  ), [appName, name, subject, strippedText, coverURL]);
 
   return (
     <Helmet>
