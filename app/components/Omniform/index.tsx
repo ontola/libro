@@ -8,7 +8,7 @@ import {
   withLRS,
 } from 'link-redux';
 import { LinkedRenderStoreContext } from 'link-redux/dist-types/types';
-import React from 'react';
+import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ export interface OmniformProps {
   formInstance?: Record<string, unknown>;
   onCancel?: () => void;
   onDone?: () => void;
-  onKeyUp?: () => void;
+  onKeyUp?: KeyboardEventHandler;
   parentIRI: string;
   sessionStore?: Record<string, unknown>;
 }
@@ -127,12 +127,14 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
       <React.Fragment>
         {types}
         <FormFooterRight>
-          <Button
-            theme={ButtonTheme.Transparant}
-            onClick={closeForm}
-          >
-            <FormattedMessage defaultMessage="cancel" id="https://app.argu.co/i18n/forms/actions/cancel" />
-          </Button>
+          {closeForm && (
+            <Button
+              theme={ButtonTheme.Transparant}
+              onClick={closeForm}
+            >
+              <FormattedMessage defaultMessage="cancel" id="https://app.argu.co/i18n/forms/actions/cancel" />
+            </Button>
+          )}
           <Button
             loading={loading}
             theme={ButtonTheme.Submit}

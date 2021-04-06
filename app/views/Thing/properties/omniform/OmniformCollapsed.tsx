@@ -1,21 +1,23 @@
 import Collapse from '@material-ui/core/Collapse';
+import { NamedNode, SomeTerm } from '@ontologies/core';
+import * as owl from '@ontologies/owl';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   ReturnType,
-  linkType,
   register,
+  useDataFetching,
   useLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { Action } from 'redux';
 
-import Button from '../../../../components/Button';
 import OmniformPreview from '../../../../components/Omniform/OmniformPreview';
 import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';
 import {
+  UnscopedOmniformState,
   getOmniformOpenState,
   omniformCloseInline,
   omniformOpenInline,
@@ -30,24 +32,38 @@ import OmniformConnector from './OmniformConnector';
 
 const KEY_ESCAPE = 27;
 
-const mapInlineStateToProps = (state, ownProps) => ({
-  opened: getOmniformOpenState(state, ownProps.subject),
+export interface CollapsedOmniformProps {
+  clickToOpen?: boolean;
+  closeForm: () => void;
+  linkedProp: SomeTerm;
+  openForm: () => void;
+  opened?: boolean;
+  potentialAction: NamedNode[];
+  sameAs: NamedNode[];
+  subject: NamedNode;
+}
+
+const mapInlineStateToProps = (state: UnscopedOmniformState, ownProps: CollapsedOmniformProps) => ({
+  opened: getOmniformOpenState(state, ownProps.subject)
+    || !!ownProps.sameAs.find((sameAs: NamedNode) => getOmniformOpenState(state, sameAs)),
 });
 
-const mapInlineDispatchToProps = (dispatch, ownProps) => ({
+const mapInlineDispatchToProps = (dispatch: (action: Action) => void, ownProps: CollapsedOmniformProps) => ({
   closeForm: () => Promise.resolve(dispatch(omniformCloseInline(ownProps.subject))),
   openForm: () => Promise.resolve(dispatch(omniformOpenInline(ownProps.subject))),
 });
 
-const CollapsedOmniformProp = (props) => {
+const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   const {
     clickToOpen,
     closeForm,
     openForm,
     opened,
     potentialAction,
+    sameAs,
   } = props;
   const lrs = useLRS();
+  useDataFetching(sameAs);
   const items = useActions(potentialAction);
 
   const toggle = React.useCallback(() => {
@@ -65,21 +81,10 @@ const CollapsedOmniformProp = (props) => {
   }, [closeForm]);
 
   if (opened) {
-    const backButton = (
-      <Button
-        theme="transparant"
-        onClick={closeForm}
-      >
-        <FormattedMessage defaultMessage="cancel" id="https://app.argu.co/i18n/forms/actions/cancel" />
-      </Button>
-    );
-
     return (
       <CardRow borderTop>
         <OmniformConnector
           autofocusForm
-          closeForm={closeForm}
-          formFooterButtons={backButton}
           items={items}
           onDone={toggle}
           onKeyUp={handleKey}
@@ -120,19 +125,15 @@ CollapsedOmniformProp.mapDataToProps = {
     label: schema.potentialAction,
     returnType: ReturnType.AllTerms,
   },
+  sameAs: {
+    label: owl.sameAs,
+    returnType: ReturnType.AllTerms,
+  },
 };
 
 CollapsedOmniformProp.hocs = [
   connect(mapInlineStateToProps, mapInlineDispatchToProps),
 ];
-
-CollapsedOmniformProp.propTypes = {
-  clickToOpen: PropTypes.bool,
-  closeForm: PropTypes.func,
-  openForm: PropTypes.func,
-  opened: PropTypes.bool.isRequired,
-  potentialAction: linkType,
-};
 
 CollapsedOmniformProp.defaultProps = {
   clickToOpen: true,

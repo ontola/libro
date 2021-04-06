@@ -1,16 +1,16 @@
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   ReturnType,
-  linkType,
   register,
-  subjectType,
+  useLRS,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { KeyboardEventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Heading from '../../../../components/Heading';
+import Heading, { HeadingVariant } from '../../../../components/Heading';
 import isPastDate from '../../../../helpers/date';
 import app from '../../../../ontology/app';
 import argu from '../../../../ontology/argu';
@@ -24,9 +24,18 @@ import { pageTopology } from '../../../../topologies/Page';
 import { actionsAreAllDisabled, useActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
-const useIsSelfOrParentExpired = (expiresAt, isPartOf) => {
+export interface OmniformProps {
+  expiresAt: SomeTerm;
+  isPartOf: NamedNode;
+  linkedProp: SomeTerm;
+  onDone: () => void,
+  onKeyUp: KeyboardEventHandler,
+  potentialAction: NamedNode[];
+}
+
+const useIsSelfOrParentExpired = (expiresAt: SomeTerm, isPartOf: NamedNode) => {
   const [parentExpiry] = useResourceProperty(isPartOf, argu.expiresAt);
-  const [grandParent] = useResourceProperty(isPartOf, schema.isPartOf);
+  const [grandParent] = useResourceProperty(isPartOf, schema.isPartOf) as NamedNode[];
   const [grandParentExpiry] = useResourceProperty(grandParent, argu.expiresAt);
 
   if (isPastDate(expiresAt)) {
@@ -40,22 +49,22 @@ const useIsSelfOrParentExpired = (expiresAt, isPartOf) => {
   return false;
 };
 
-const OmniformProp = ({
+const OmniformProp: FC<OmniformProps> = ({
   expiresAt,
-  formFooterButtons,
   isPartOf,
   onDone,
   onKeyUp,
   potentialAction,
   subject,
 }) => {
+  const lrs = useLRS();
   const items = useActions(potentialAction);
   const isExpired = useIsSelfOrParentExpired(expiresAt, isPartOf);
-  const allDisabled = actionsAreAllDisabled(items);
+  const allDisabled = actionsAreAllDisabled(items, lrs);
 
   if (isExpired) {
     return (
-      <Heading variant="notice">
+      <Heading variant={HeadingVariant.Notice}>
         <FormattedMessage
           defaultMessage="Responding is no longer possible"
           id="https://app.argu.co/i18n/expireable/states/closed/closedMessage"
@@ -71,9 +80,7 @@ const OmniformProp = ({
   return (
     <Card>
       <OmniformConnector
-        opened
         autofocusForm={false}
-        formFooterButtons={formFooterButtons}
         items={items}
         subject={subject}
         onDone={onDone}
@@ -91,7 +98,7 @@ OmniformProp.topology = allTopologiesExcept(
   cardTopology,
   cardMainTopology,
   cardAppendixTopology,
-  pageTopology
+  pageTopology,
 );
 
 OmniformProp.mapDataToProps = {
@@ -101,16 +108,6 @@ OmniformProp.mapDataToProps = {
     label: schema.potentialAction,
     returnType: ReturnType.AllTerms,
   },
-};
-
-OmniformProp.propTypes = {
-  expiresAt: linkType,
-  formFooterButtons: PropTypes.node,
-  isPartOf: linkType,
-  onDone: PropTypes.func,
-  onKeyUp: PropTypes.func,
-  potentialAction: linkType,
-  subject: subjectType,
 };
 
 export default register(OmniformProp);

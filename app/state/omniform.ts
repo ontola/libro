@@ -76,5 +76,5 @@ export const omniformReducer = handleActions<any, any>({
 
 export const getOmniformAction = (state: UnscopedOmniformState, parentIRI: string): NamedNode | undefined =>
   state.omniform[parentIRI.toString()]?.action;
-export const getOmniformOpenState = (state: UnscopedOmniformState, parentIRI: string): boolean =>
+export const getOmniformOpenState = (state: UnscopedOmniformState, parentIRI: NamedNode): boolean =>
   state.omniform[parentIRI.toString()]?.inlineOpened ?? false;
