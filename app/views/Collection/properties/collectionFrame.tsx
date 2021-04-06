@@ -21,6 +21,7 @@ import { alertDialogTopology } from '../../../topologies/Dialog';
 import { gridTopology } from '../../../topologies/Grid';
 import { pageTopology } from '../../../topologies/Page';
 import { allTopologiesExcept } from '../../../topologies';
+import { sideBarTopology } from '../../../topologies/SideBar';
 import { formMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
 
@@ -57,7 +58,13 @@ const DefaultCollectionFrame: FC<CollectionFrameProps> = () => {
   );
 };
 DefaultCollectionFrame.type = CollectionTypes;
-DefaultCollectionFrame.topology = allTopologiesExcept(alertDialogTopology, containerTopology, gridTopology, pageTopology);
+DefaultCollectionFrame.topology = allTopologiesExcept(
+  alertDialogTopology,
+  containerTopology,
+  gridTopology,
+  pageTopology,
+  sideBarTopology,
+);
 DefaultCollectionFrame.property = ontola.collectionFrame;
 
 const WrappedCollectionFrame: FC<CollectionFrameProps> = () => {
@@ -68,7 +75,7 @@ const WrappedCollectionFrame: FC<CollectionFrameProps> = () => {
   );
 };
 WrappedCollectionFrame.type = CollectionTypes;
-WrappedCollectionFrame.topology = [containerTopology, gridTopology];
+WrappedCollectionFrame.topology = [containerTopology, gridTopology, sideBarTopology];
 WrappedCollectionFrame.property = ontola.collectionFrame;
 
 const DialogCollectionFrame: FC<CollectionFrameProps> = ({

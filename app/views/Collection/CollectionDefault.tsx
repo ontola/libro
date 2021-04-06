@@ -5,6 +5,7 @@ import CollectionProvider from '../../components/Collection/CollectionProvider';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import { sideBarTopology } from '../../topologies/SideBar';
 
 import { CollectionTypes } from './types';
 
@@ -20,6 +21,7 @@ CollectionDefault.topology = [
   cardTopology,
   cardMainTopology,
   fullResourceTopology,
+  sideBarTopology,
 ];
 
 export default register(CollectionDefault);
