@@ -1,3 +1,5 @@
+const SPACE_KEY = 32;
+const ENTER_KEY = 13;
 
 export const defaultKeymap = {
   exit: 'escape',
@@ -19,4 +21,10 @@ export const devKeymap = {
     sequence: 'alt',
   },
   ...defaultKeymap,
+};
+
+export const convertOnClick = (e: KeyboardEvent, onAction: (e: unknown) => void): void => {
+  if ([SPACE_KEY, ENTER_KEY].includes(e.keyCode) && onAction) {
+    onAction(e);
+  }
 };

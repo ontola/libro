@@ -2,6 +2,7 @@ import { TopologyProvider, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { convertOnClick } from '../../helpers/keyboard';
 import argu from '../../ontology/argu';
 
 import './HoverBox.scss';
@@ -14,9 +15,6 @@ export const propTypes = {
 };
 
 export const hoverBoxTopology = argu.ns('cardHover');
-
-const SPACE_KEY = 32;
-const ENTER_KEY = 13;
 
 export default function(topology = hoverBoxTopology, popout = false) {
   /**
@@ -55,9 +53,7 @@ export default function(topology = hoverBoxTopology, popout = false) {
     }
 
     handleOnKeyUp(e) {
-      if ([SPACE_KEY, ENTER_KEY].includes(e.keyCode) && this.props.onClick) {
-        this.props.onClick();
-      }
+      convertOnClick(e, this.props.onClick);
     }
 
     handleOnBlur() {
