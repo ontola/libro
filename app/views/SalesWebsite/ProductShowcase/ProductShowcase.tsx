@@ -1,10 +1,14 @@
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import { ArrowForward } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { FC, useProperty } from 'link-redux';
+import {
+  FC,
+  Property,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 
 import argu from '../../../ontology/argu';
@@ -53,17 +57,17 @@ const ProductShowcase: FC = () => {
       >
         <Typography
           className={classes.title}
-          variant="h6"
+          variant="h3"
         >
           {name.value}
         </Typography>
         <div className={classes.subTextContainer} >
           <Typography variant="subtitle1">{tagline.value}</Typography>
         </div>
-        <ArrowRightAltIcon
-          className={classes.arrow}
+        <Property label={schema.image} />
+        <ArrowForward
           color="primary"
-          fontSize="small"
+          fontSize="large"
         />
       </Grid>
     </Button>

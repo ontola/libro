@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     marginTop: 75,
   },
   header: {
+    color: (props: Record<string, string>) => props.textColor,
     fontWeight: 'bold',
   },
   icon: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles({
     height: 44,
   },
   subtitle: {
+    color: (props: Record<string, string>) => props.textColor,
     textAlign: 'center',
   },
 });
@@ -38,7 +40,11 @@ const Feature: FC = () => {
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [color] = useProperty(schema.color);
-  const classes = useStyles({ color: color.value });
+  const [textColor] = useProperty(argu.ns('textColor'));
+  const classes = useStyles({
+    color: color.value,
+    textColor: textColor.value,
+  });
 
   return (
     <Grid

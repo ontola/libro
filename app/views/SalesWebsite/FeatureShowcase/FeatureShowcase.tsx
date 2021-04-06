@@ -8,11 +8,11 @@ import Showcase from '../../../topologies/Showcase';
 
 const FeatureShowcase: FC = () => (
   <Showcase>
-    <Property label={argu.ns('features')} />
+    <Property label={argu.ns('Features')} />
   </Showcase>
 );
 
-FeatureShowcase.type = argu.ns('Features');
+FeatureShowcase.type = argu.ns('FeatureShowcase');
 
 FeatureShowcase.topology = containerTopology;
 

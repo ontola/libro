@@ -47,6 +47,25 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: '0 30px',
     width: 250,
   },
+  propositionSelector: {
+    [theme.breakpoints.down('sm')]: {
+      boxShadow: 'unset',
+      gridGap: 40,
+      gridTemplateColumns: '1fr 1fr',
+      padding: 20,
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: '1fr',
+    },
+    borderRadius: 5,
+    boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+    display: 'grid',
+    flex: 1,
+    gridTemplateColumns: '1fr 1fr 1fr 1fr',
+    marginBottom: 100,
+    marginTop: 100,
+    overflow: 'hidden',
+  },
   subtitle: {
     textAlign: 'center',
     width: 643,
@@ -60,7 +79,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const LandingPageFull: FC = () => {
   const classes = useStyles();
-  const [image] = useProperty(schema.image);
+  const [backgroundImage] = useProperty(argu.ns('backgroundImage'));
+  const [backgroundImageMobile] = useProperty(argu.ns('backgroundImageMobile'));
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [buttonText] = useProperty(argu.ns('buttonText'));
@@ -71,11 +91,20 @@ const LandingPageFull: FC = () => {
   return (
     <div className={classes.wrapper}>
       <Header
+        backgroundImageUrl={backgroundImage.value}
+        backgroundImageUrlMobile={backgroundImageMobile.value}
         buttonText={buttonText.value}
-        imageUrl={image.value}
         subtitle={text.value}
         title={title.value}
-      />
+      >
+        <Container>
+          <Showcase>
+            <div className={classes.propositionSelector}>
+              <Property label={argu.ns('showcase')} />
+            </div>
+          </Showcase>
+        </Container>
+      </Header>
       <div className={classes.caseContainer}>
         <Container>
           <Property label={argu.ns('cases')} />

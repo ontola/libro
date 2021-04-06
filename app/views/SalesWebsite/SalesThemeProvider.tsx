@@ -13,6 +13,9 @@ export interface SalesTheme extends Theme {
 }
 
 const salesTheme = createMuiTheme({
+  // desktop fontsize: H1 50, H2 37, H3 24,
+  // mobiel H1 30, H2 27, H3 20
+  // overal tekst 18
   palette: {
     background: {
       default: '#FFF',
@@ -40,27 +43,34 @@ const salesTheme = createMuiTheme({
     },
     fontFamily: 'Open Sans',
     h1: {
+      '@media (max-width:600px)': {
+        fontSize: '2.5rem',
+      },
       color: '000000',
-      fontSize: 60,
+      fontSize: '3.125rem',
       fontWeight: 'bold',
       margin: 20,
     },
     h2: {
+      '@media (max-width:600px)': {
+        fontSize: '1.69rem',
+      },
       color: '000000',
-      fontSize: 40,
+      fontSize: '2.31rem',
       fontWeight: 'bold',
       margin: 20,
     },
     h3: {
+      '@media (max-width:600px)': {
+        fontSize: '1.25rem',
+      },
       color: '000000',
-      fontSize: 22,
+      fontSize: '1.5rem',
       fontWeight: 'bold',
-      margin: 20,
     },
-    h4: {
+    subtitle1: {
       color: '000000',
-      fontSize: 18,
-      fontWeight: 'bold',
+      fontSize: '1.125rem',
       margin: 20,
     },
   },
