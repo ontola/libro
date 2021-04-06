@@ -28,6 +28,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   caseContainer: {
     background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
   },
+  featureContainer: {
+    marginBottom: 40,
+    marginTop: 75,
+  },
   gridStyle: {
     marginBottom: 20,
     marginTop: 20,
@@ -111,7 +115,9 @@ const LandingPageFull: FC = () => {
         </Container>
       </div>
       <Container>
-        <Property label={argu.ns('features')} />
+        <div className={classes.featureContainer}>
+          <Property label={argu.ns('features')} />
+        </div>
         <Showcase>
           <Property label={argu.ns('duoBlock')} />
         </Showcase>

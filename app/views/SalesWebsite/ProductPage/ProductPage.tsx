@@ -21,15 +21,22 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   featureTitle: {
     color: '#FFF',
   },
-  subtitle: {
-    paddingLeft: 30,
-    paddingRight: 30,
+  textBlock: {
+    maxWidth: '60rem',
     textAlign: 'center',
+  },
+  textBlockContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
   },
   title: {
     marginTop: '9rem',
-    paddingLeft: 30,
-    paddingRight: 30,
+    textAlign: 'center',
+  },
+  titleFeatureBlock: {
+    color: theme.palette.background.default,
+    padding: 40,
     textAlign: 'center',
   },
   wrapper: {
@@ -49,7 +56,7 @@ const ProductPage: FC = () => {
   const [text] = useProperty(schema.text);
   const [productTextTitle] = useProperty(argu.ns('productTextTitle'));
   const [productTextContent] = useProperty(argu.ns('productTextContent'));
-  // const [featureTitle] = useProperty(argu.ns('featureTitle'));
+  const [featureTitle] = useProperty(argu.ns('featureTitle'));
 
   return (
     <div className={classes.wrapper}>
@@ -68,16 +75,24 @@ const ProductPage: FC = () => {
           >
             {productTextTitle.value}
           </Typography>
-          <Typography
-            className={classes.subtitle}
-            variant="subtitle1"
-          >
-            {productTextContent.value}
-          </Typography>
+          <div className={classes.textBlockContainer}>
+            <Typography
+              className={classes.textBlock}
+              variant="subtitle1"
+            >
+              {productTextContent.value}
+            </Typography>
+          </div>
         </Container>
       </HeaderProductPages>
       <div className={classes.featureShowcaseBackground}>
         <Container>
+          <Typography
+            className={classes.titleFeatureBlock}
+            variant="h2"
+          >
+            {featureTitle.value}
+          </Typography>
           <Property label={argu.ns('features')} />
         </Container>
       </div>

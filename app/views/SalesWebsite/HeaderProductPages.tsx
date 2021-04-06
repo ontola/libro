@@ -95,6 +95,10 @@ const HeaderProductPages: React.FC<HeaderProps> = ({
   const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
     ? backgroundImageUrlMobile : backgroundImageUrl;
 
+  // return hele image div'je / componentje hier
+  const image = useMediaQuery(styles.breakpoints.down('sm'))
+    ? null : imageUrl;
+
   return (
     <div
       className={classes.header}
@@ -136,7 +140,7 @@ const HeaderProductPages: React.FC<HeaderProps> = ({
             <div className={classes.imageWrapper}>
               <Image
                 className={classes.image}
-                linkedProp={imageUrl}
+                linkedProp={image}
               />
             </div>
           </Grid>

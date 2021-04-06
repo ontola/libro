@@ -13,10 +13,6 @@ import argu from '../../../ontology/argu';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
 const useStyles = makeStyles({
-  container: {
-    marginBottom: 40,
-    marginTop: 75,
-  },
   header: {
     color: (props: Record<string, string>) => props.textColor,
     fontWeight: 'bold',
@@ -50,7 +46,6 @@ const Feature: FC = () => {
     <Grid
       container
       alignItems="center"
-      className={classes.container}
       direction="column"
       justify="center"
       md={3}

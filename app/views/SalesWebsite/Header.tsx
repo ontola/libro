@@ -17,7 +17,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   header: {
     alignItems: 'center',
-    // backgroundAttachment: 'fixed',
     backgroundColor: theme.palette.background.default,
     backgroundPosition: '50% 20%',
     backgroundRepeat: 'no-repeat',
@@ -25,16 +24,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    // [theme.breakpoints.down('sm')]: {
-    //   backgroundPositionX: '14%',
-    //   backgroundPositionY: '30%',
-    //   backgroundSize: '225%',
-    // },
-    // [theme.breakpoints.down('xs')]: {
-    //   backgroundPositionX: '14%',
-    //   backgroundPositionY: '20%',
-    //   backgroundSize: '300%',
-    // },
   },
   subtitle: {
     maxWidth: '40rem',
