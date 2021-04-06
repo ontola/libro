@@ -17,6 +17,7 @@ import Loading, {
   LoadingSelect,
 } from '../../components/Loading';
 import SuspendedLoader from '../../components/Loading/SuspendedLoader';
+import Spinner from '../../components/Spinner';
 import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -186,5 +187,11 @@ export default [
       selectedValueTopology,
       voteBubbleTopology,
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    Spinner,
+    ll.LoadingResource,
+    RENDER_CLASS_NAME,
+    formFooterTopology
   ),
 ];

@@ -1,11 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import './Spinner.scss';
-
-const propTypes = {
-  loading: PropTypes.bool.isRequired,
-};
 
 interface Props {
   loading: boolean;
@@ -18,6 +13,8 @@ const Spinner: React.FC<Props> = ({ loading }) => (
   />
 );
 
-Spinner.propTypes = propTypes;
+Spinner.defaultProps = {
+  loading: true,
+};
 
 export default Spinner;

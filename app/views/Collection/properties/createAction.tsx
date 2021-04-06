@@ -17,21 +17,23 @@ interface PropTypes {
   createAction: SomeNode;
   isPartOf: SomeNode;
   linkedProp: SomeNode;
+  omniform?: boolean;
   totalItems: Literal;
 }
 
 const CreateAction: FC<PropTypes> = ({
   linkedProp,
   isPartOf,
+  omniform,
   totalItems,
 }) => {
-  const { omniform } = useCollectionOptions();
+  const { omniform: collectionOmniform } = useCollectionOptions();
 
   return (
     <Resource
       count={totalItems}
       isPartOf={isPartOf}
-      omniform={omniform}
+      omniform={omniform || collectionOmniform}
       subject={linkedProp}
     />
   );
