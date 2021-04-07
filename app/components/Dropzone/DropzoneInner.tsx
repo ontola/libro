@@ -1,11 +1,10 @@
-
 import { isNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { useLRS } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { formFieldsPath } from '../../helpers/diggers';
+import { PreviewedFile } from '../../hooks/useFileStore';
 import ontola from '../../ontology/ontola';
 import { FormContext } from '../Form/Form';
 
@@ -14,7 +13,7 @@ import DropzoneOverlay from './DropzoneOverlay';
 
 interface PropTypes {
   children: (props: any) => any;
-  file: string;
+  file?: PreviewedFile;
   isDragActive: boolean;
 }
 
@@ -48,7 +47,7 @@ const DropzoneInner: React.FC<PropTypes> = ({
   if (file) {
     return children(
       <div>
-        <img alt="" src={file} />
+        <img alt={file.name} src={file.preview} />
       </div>,
     );
   }

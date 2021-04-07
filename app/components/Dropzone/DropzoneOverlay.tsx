@@ -10,14 +10,14 @@ interface Props {
 
 const DropzoneOverlay: React.FC<Props> = ({ isDragActive, overlay }) => {
   const classes = clsx({
-    MediaObjectOmniformFields__messages: true,
-    MediaObjectOmniformFields__overlay: overlay,
+    Dropzone__messages: true,
+    Dropzone__overlay: overlay,
   });
 
   return (
     <div className={classes}>
       <FontAwesome
-        className="MediaObjectOmniformFields__icon"
+        className="Dropzone__icon"
         name="cloud-upload"
       />
       {isDragActive

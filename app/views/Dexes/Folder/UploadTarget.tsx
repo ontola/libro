@@ -1,6 +1,6 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode, normalizeType } from 'link-lib';
+import { normalizeType } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import Dropzone from 'react-dropzone';
@@ -9,11 +9,11 @@ import DropzoneOverlay from '../../../components/Dropzone/DropzoneOverlay';
 import Spinner from '../../../components/Spinner';
 import { convertKeysAtoB } from '../../../helpers/data';
 import { handle } from '../../../helpers/logging';
-import { getBase64 } from '../../MediaObject/omniform/MediaObjectOmniformDropzone';
+import useFileStore from '../../../hooks/useFileStore';
 
 interface UploadTargetProps {
   children: JSX.Element;
-  uploadAction?: SomeNode;
+  uploadAction?: NamedNode;
 }
 
 /**
@@ -24,28 +24,33 @@ interface UploadTargetProps {
 const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Element => {
   const lrs = useLRS();
   const [uploading, setUploading] = React.useState(false);
+  const [storeFile] = useFileStore();
 
-  const onDrop = (e: File | File[]) => {
+  const onDrop = (acceptedFiles: File | File[]) => {
+    if (!uploadAction) {
+      return [];
+    }
+
     setUploading(true);
-    const actions = normalizeType(e)
-      .map((f) => getBase64(f).then((file) => {
-        const formData = convertKeysAtoB({
-          '@id': rdf.blankNode(),
-          [schema.contentUrl.toString()]: file,
-        }, false);
+    const actions = normalizeType(acceptedFiles).map((file) => {
+      const [fileReference, newStore] = storeFile(file);
 
-        return lrs.execActionByIRI(uploadAction as NamedNode, formData);
-      }));
+      const formData = convertKeysAtoB({
+        '@id': rdf.blankNode(),
+        [schema.contentUrl.toString()]: fileReference,
+      }, newStore, false);
 
-    return Promise.all(actions)
-      .then((res) => {
-        setUploading(false);
+      return lrs.execActionByIRI(uploadAction, formData);
+    });
 
-        return res;
-      }).catch((error) => {
-        setUploading(false);
-        handle(error);
-      });
+    return Promise.all(actions).then((res) => {
+      setUploading(false);
+
+      return res;
+    }).catch((error) => {
+      setUploading(false);
+      handle(error);
+    });
   };
 
   React.useEffect(() => {

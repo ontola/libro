@@ -7,6 +7,7 @@ import { Form as FinalForm } from 'react-final-form';
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
+import useFileStore, { FileStore, StoreFile } from '../../hooks/useFileStore';
 import { InputValue } from '../../hooks/useFormField';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
@@ -44,6 +45,7 @@ const defaultProps = {
 export interface FormContext {
   autofocusForm: boolean;
   blacklist?: number[];
+  fileStore: FileStore;
   formID: string;
   formIRI: SomeNode;
   formSection?: string;
@@ -52,15 +54,16 @@ export interface FormContext {
   parentObject?: SomeNode;
   sessionStore?: Storage;
   submissionErrors?: SubmissionErrors;
+  storeFile?: StoreFile;
   theme?: string;
   whitelist?: number[];
 }
 
 export const FormContext = React.createContext<Partial<FormContext>>({});
 
-const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) => {
+const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>, fileStore?: FileStore) => {
   let formData = {};
-  if (formApi && values) {
+  if (formApi && values && fileStore) {
     const registeredValues = formApi
       .getRegisteredFields()
       .reduce((res: Record<string, InputValue>, key: string) => {
@@ -74,7 +77,7 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) 
         };
       }, {});
 
-    formData = convertKeysAtoB(registeredValues);
+    formData = convertKeysAtoB(registeredValues, fileStore);
   }
 
   return formData;
@@ -103,12 +106,13 @@ const Form: React.FC<FormProps> = (props) => {
     whitelist,
     validateOnBlur,
   } = props;
+  const [storeFile, fileStore] = useFileStore();
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
   const submitHandler = React.useCallback((values?: FormValues, formApi?: FormApi<FormValues>): Promise<any> => {
-    const formData = formDataFromValues(values, formApi);
+    const formData = formDataFromValues(values, formApi, fileStore);
 
     return onSubmit(formData, formApi, () => onSubmit(formData, formApi)).catch(error);
-  }, [onSubmit, sessionStorage, formID]);
+  }, [onSubmit, sessionStorage, formID, fileStore]);
   React.useEffect(() => {
     if (autoSubmit && !autoSubmitted) {
       setAutoSubmitted(true);
@@ -118,6 +122,7 @@ const Form: React.FC<FormProps> = (props) => {
   const context = React.useMemo(() => ({
     autofocusForm,
     blacklist,
+    fileStore,
     formID,
     formIRI,
     formSection: undefined,
@@ -125,17 +130,20 @@ const Form: React.FC<FormProps> = (props) => {
     onKeyUp,
     parentObject: undefined,
     sessionStore,
+    storeFile,
     submissionErrors,
     theme,
     whitelist,
   }), [
     autofocusForm,
     blacklist,
+    fileStore,
     formID,
     formIRI,
     object,
     onKeyUp,
     sessionStore,
+    storeFile,
     submissionErrors,
     theme,
     whitelist,

@@ -1,6 +1,5 @@
 import * as as from '@ontologies/as';
 import rdf, {
-  Literal,
   NamedNode,
   Node,
   Quad,
@@ -20,6 +19,7 @@ import {
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
+import { FileStore } from '../hooks/useFileStore';
 import ontola from '../ontology/ontola';
 
 import { sequenceFilter } from './iris';
@@ -71,32 +71,13 @@ function compare(a: Node | number, b: Node | number) {
   return 0;
 }
 
-function dataURItoBlob(literal: Literal): File {
-  const dataURI = literal.value;
-  const filename = literal.datatype.value.split('filename=').pop();
-  const [preamble, data] = dataURI.split(',');
-  const byteString = atob(data);
-  const ia = new Uint8Array(new ArrayBuffer(byteString.length));
-
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  const options = {
-    encoding: 'UTF-8',
-    type: preamble.split(':').pop()!.split(';').shift(),
-  };
-  const b = new Blob([ia], options);
-
-  return new File([b], filename || '', options);
-}
-
-function convertKeysAtoB(obj: { [k: string]: any }, aToB = true): { [k: string]: any } {
+function convertKeysAtoB(obj: { [k: string]: any }, fileStore: FileStore, aToB = true): { [k: string]: any } {
   const output: { [k: string]: any } = {};
   Object.entries(obj).forEach(([k, v]) => {
     if (k === '@id') {
       output[k] = v;
     } else {
-      output[aToB ? atob(k) : k] = serializableValue(v);
+      output[aToB ? atob(k) : k] = serializableValue(v, fileStore);
     }
   });
 
@@ -124,14 +105,14 @@ function numAsc(a: Quad, b: Quad) {
   return aP - bP;
 }
 
-function serializableValue(v: any): any | any[] | File | string {
+function serializableValue(v: any, fileStore: FileStore): any | any[] | File | string {
   if (Object.prototype.toString.apply(v) === '[object Object]'
       && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
-    return convertKeysAtoB(v);
+    return convertKeysAtoB(v, fileStore);
   } else if (Array.isArray(v)) {
-    return v.map((i) => serializableValue(i));
+    return v.map((i) => serializableValue(i, fileStore));
   } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
-    return dataURItoBlob(v);
+    return fileStore[v.value];
   } else if (isLiteral(v) || isBlankNode(v)) {
     return v.value;
   }

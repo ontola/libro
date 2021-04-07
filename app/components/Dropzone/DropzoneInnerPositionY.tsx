@@ -1,12 +1,13 @@
 import { SomeNode } from 'link-lib';
 import React, { useState } from 'react';
 
+import { PreviewedFile } from '../../hooks/useFileStore';
 import CoverImage from '../CoverImage';
 import CoverImageSlider from '../CoverImageSlider';
 
 interface PropTypes {
   children: (props: any) => any;
-  file: string;
+  file: PreviewedFile;
   imagePositionYShape: SomeNode;
 }
 
@@ -28,7 +29,7 @@ const DropzoneInnerPositionY: React.FC<PropTypes> = ({
         <div style={{ flexGrow: 1 }}>
           <CoverImage
             positionY={positionY}
-            url={file}
+            url={file.preview}
           />
         </div>,
       )}

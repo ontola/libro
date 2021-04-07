@@ -1,3 +1,4 @@
+import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -30,7 +31,7 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
   const lrs = useLRS();
   const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms });
   useDataFetching(createActions as SomeNode[]);
-  const uploadAction = lrs.findSubject(subject!, [ontola.createAction, rdfx.type], ontola['Create::MediaObject']).pop();
+  const [uploadAction] = lrs.findSubject(subject!, [ontola.createAction, rdfx.type], ontola['Create::MediaObject']) as NamedNode[];
 
   return (
     c(components.ResourceBoundary, [

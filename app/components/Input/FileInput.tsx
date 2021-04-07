@@ -4,13 +4,12 @@ import * as sh from '@ontologies/shacl';
 import { useLRS } from 'link-redux';
 import React from 'react';
 
+import Dropzone from '../../containers/Dropzone';
 import { listToArr } from '../../helpers/data';
 import { formFieldsPath } from '../../helpers/diggers';
-import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 import { FormContext } from '../Form/Form';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
-import './FileInput.scss';
 import HiddenRequiredInput from './HiddenRequiredInput';
 
 const FileInput: React.FC<InputComponentProps> = ({
@@ -21,8 +20,29 @@ const FileInput: React.FC<InputComponentProps> = ({
 }) => {
   const { required } = fieldShape;
   const lrs = useLRS();
-  const { formIRI } = React.useContext(FormContext);
+  const {
+    fileStore,
+    formIRI,
+    storeFile,
+  } = React.useContext(FormContext);
   const inputRef = React.createRef<HTMLInputElement>();
+  const handleFileChange = React.useCallback((newFile) => {
+    if (storeFile) {
+      const [fileReference] = storeFile(newFile);
+      onChange(fileReference);
+    }
+  }, [storeFile, onChange]);
+  const openDialog = React.useCallback(() => {
+    const { current } = inputRef;
+
+    if (!current) {
+      throw new Error('No input ref on dropzone');
+    }
+
+    current.click();
+  }, [inputRef]);
+  const currentFile = fileStore ? fileStore[inputValue.value] : undefined;
+
   const encodingFormatShape = formIRI && lrs.findSubject(
     formIRI,
     [...formFieldsPath, sh.path],
@@ -34,26 +54,16 @@ const FileInput: React.FC<InputComponentProps> = ({
     .map((lit) => lit.value)
     .join(', ');
 
-  const openDialog = () => {
-    const { current } = inputRef;
-
-    if (!current) {
-      throw new Error('No input ref on dropzone');
-    }
-
-    current.click();
-  };
-
   return (
     <React.Fragment>
       {required && <HiddenRequiredInput name={name} value={inputValue?.value} />}
-      <MediaObjectOmniformDropzoneLoader
+      <Dropzone
         encodingFormatTypes={encodingFormatTypes || ''}
         inputRef={inputRef}
         name={name}
         openDialog={openDialog}
-        value={inputValue?.value}
-        onChange={onChange}
+        value={currentFile}
+        onChange={handleFileChange}
       />
     </React.Fragment>
   );
