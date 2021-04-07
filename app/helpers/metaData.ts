@@ -10,11 +10,15 @@ import { stripMarkdown } from './markdownHelper';
 
 export const COVER_PREDICATES = [ontola.coverPhoto];
 export const COVER_URL_PREDICATES = [ontola.imgUrl1500x2000];
+export const AVATAR_URL_PREDICATES = [ontola.imgUrl256x256];
+export const IMAGE_PREDICATES = [schema.image];
 export const NAME_PREDICATES = [schema.name, rdfs.label];
 export const TEXT_PREDICATES = [dbo.abstract, schema.description, schema.text];
 
 const COVER_PREDICATES_RAW = COVER_PREDICATES.map((n) => n.value);
 const COVER_URL_PREDICATES_RAW = COVER_URL_PREDICATES.map((n) => n.value);
+const AVATAR_URL_PREDICATES_RAW = AVATAR_URL_PREDICATES.map((n) => n.value);
+const IMAGE_PREDICATES_RAW = IMAGE_PREDICATES.map((n) => n.value);
 const NAME_PREDICATES_RAW = NAME_PREDICATES.map((n) => n.value);
 const TEXT_PREDICATES_RAW = TEXT_PREDICATES.map((n) => n.value);
 
@@ -30,19 +34,23 @@ interface TagProps {
   type: string;
 }
 
+interface MetaData {
+  appName?: string;
+  name?: string;
+  url: string;
+  text?: string;
+  coverURL?: string;
+  imageURL?: string;
+}
+
 export const getMetaTags = ({
   appName,
-  name,
-  url,
-  text,
   coverURL,
-}: {
-  appName?: string,
-  name?: string,
-  url: string,
-  text?: string,
-  coverURL?: string,
-}): TagProps[] => {
+  imageURL,
+  name,
+  text,
+  url,
+}: MetaData): TagProps[] => {
   const title = [name, appName].filter(Boolean).join(' | ');
   const tags: TagProps[] = [{
     children: name && name.length > 0 ? name : appName,
@@ -70,14 +78,14 @@ export const getMetaTags = ({
     type: 'meta',
   }];
 
-  if (coverURL) {
+  if (coverURL || imageURL) {
     tags.push({
-      content: coverURL,
+      content: coverURL ?? imageURL,
       id: 'og:image',
       property: 'og:image',
       type: 'meta',
     }, {
-      content: coverURL,
+      content: coverURL ?? imageURL,
       name: 'twitter:image',
       type: 'meta',
     });
@@ -146,18 +154,21 @@ export const prerenderMetaTags = (ctx: Context, data: string): string => {
   const subjects = href.endsWith('/') ? [href, href.slice(0, -1)] : [href];
   const subjectQuads = quads.filter((quad) => subjects.includes(quad[QuadPosition.subject]));
 
-
   const text = findValue(subjectQuads, TEXT_PREDICATES_RAW);
   const name = findValue(subjectQuads, NAME_PREDICATES_RAW);
   const coverPhoto = findValue(subjectQuads, COVER_PREDICATES_RAW);
   const coverPhotoQuads = quads.filter((q) => q[QuadPosition.subject] == coverPhoto);
   const coverURL = findValue(coverPhotoQuads, COVER_URL_PREDICATES_RAW);
+  const image = findValue(subjectQuads, IMAGE_PREDICATES_RAW);
+  const imageQuads = quads.filter((q) => q[QuadPosition.subject] == image);
+  const imageURL = findValue(imageQuads, AVATAR_URL_PREDICATES_RAW);
 
   const strippedText = stripMarkdown(text)?.replace(/"/g, '&quot;');
 
   const metaTags = getMetaTags({
     appName: manifest.short_name,
     coverURL,
+    imageURL,
     name,
     text: strippedText,
     url: href,
