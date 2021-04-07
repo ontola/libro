@@ -161,7 +161,7 @@ export const prerenderMetaTags = (ctx: Context, data: string): string => {
   const coverURL = findValue(coverPhotoQuads, COVER_URL_PREDICATES_RAW);
   const image = findValue(subjectQuads, IMAGE_PREDICATES_RAW);
   const imageQuads = quads.filter((q) => q[QuadPosition.subject] == image);
-  const imageURL = findValue(imageQuads, AVATAR_URL_PREDICATES_RAW);
+  const imageURL = findValue(imageQuads, AVATAR_URL_PREDICATES_RAW) ?? manifest.imageURL;
 
   const strippedText = stripMarkdown(text)?.replace(/"/g, '&quot;');
 

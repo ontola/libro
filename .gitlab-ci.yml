@@ -56,9 +56,12 @@ codeQuality:
 
 test:
   stage: test
+  image: mcr.microsoft.com/playwright:bionic
+  before_script:
+    - yarn run start &
   script:
-    - yarn run test
     - yarn run ts-compile-check
+    - yarn run test
 
 autoTagProduction:
   stage: tag
