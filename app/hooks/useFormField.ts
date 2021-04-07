@@ -275,10 +275,14 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
   const {
     active,
     dirty,
+    dirtySinceLastSubmit,
     error,
+    pristine,
     invalid,
   } = meta;
-  const inputErrors = submissionErrors?.[input.name] || error;
+  const metaError = pristine ? undefined : error;
+  const submissionError = dirtySinceLastSubmit ? undefined : submissionErrors?.[input.name];
+  const inputErrors = submissionError || metaError;
   const className = clsx({
     'Field': true,
     [`Field--variant-${theme}`]: theme,

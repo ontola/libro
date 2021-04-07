@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import {
   destroyFieldName,
   isMarkedForRemove,
-  retrieveIdFromValue, 
+  retrieveIdFromValue,
 } from '../../helpers/forms';
 import { isJSONLDObject } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
@@ -42,15 +42,10 @@ const FormInput: React.FC<FormInputProps> = ({
     removable,
     required,
   } = fieldShape || {};
-  const {
-    dirtySinceLastSubmit,
-    pristine,
-  } = meta || {};
-
   if (isMarkedForRemove(value)) {
     return null;
   }
-  const removeItem = () => {
+  const removeItem = React.useCallback(() => {
     const newValue = values?.slice() || [];
     const curentValue = newValue[index];
     if (isJSONLDObject(curentValue) && isNamedNode(retrieveIdFromValue(curentValue))) {
@@ -60,14 +55,16 @@ const FormInput: React.FC<FormInputProps> = ({
     }
 
     onChange(newValue);
-  };
-  const inputOnChange = (val: InputValue) => {
+  }, [values, index, onChange]);
+  const inputOnChange = React.useCallback((val: InputValue) => {
     const newValue = values?.slice() || [];
     newValue[index] = isTerm(val) ? val : rdf.literal(val ?? '');
     onChange(newValue);
-  };
+  }, [values, index, onChange]);
 
-  const errors = inputErrors?.filter((err) => err?.index === index);
+  const errors = React.useMemo(() => (
+    inputErrors?.filter((err) => err?.index === index)
+  ), [inputErrors, index]);
 
   return (
     <div className="Field__wrapper" key={[name, index].join('.')}>
@@ -101,7 +98,7 @@ const FormInput: React.FC<FormInputProps> = ({
       {HelperRenderer && (
         <HelperRenderer
           description={description}
-          error={(dirtySinceLastSubmit || pristine) ? undefined : errors}
+          error={errors}
           maxLength={maxLength}
           required={required}
           value={value}

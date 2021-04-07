@@ -1,11 +1,10 @@
-import { isNamedNode, isNode } from '@ontologies/core';
+import { isNamedNode } from '@ontologies/core';
 import { FormApi } from 'final-form';
 import { SomeNode } from 'link-lib';
 import {
   Property,
   RenderStoreProvider,
   Resource,
-  useDataInvalidation,
   useLRS,
   useResourceProperty,
 } from 'link-redux';
@@ -13,13 +12,13 @@ import React, { EventHandler, SyntheticEvent } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import Form from '../../components/Form/Form';
-import { SubmissionErrors } from '../../components/FormField';
 import { LoadingGridContent } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
+import useSubmissionErrors from './useSubmissionErrors';
 import { SubmitHandler } from './useSubmitHandler';
 
 const subscription = {
@@ -74,28 +73,13 @@ const EntryPointForm: React.FC<PropTypes> = ({
     object,
     formID,
   );
-  const [errorResponse] = useResourceProperty(action, ll.errorResponse);
-  const submissionErrorsTimeStamp = useDataInvalidation(isNode(errorResponse) ? errorResponse : undefined);
-  const submissionErrors = React.useMemo<undefined | SubmissionErrors>(() => {
-    if (isNode(errorResponse)) {
-      const errs = lrs.tryEntity(errorResponse).reduce((acc: SubmissionErrors, triple) => {
-        const key = btoa(triple.predicate.value);
+  const [errorResponse] = useResourceProperty(action, ll.errorResponse) as SomeNode[];
+  const [submissionErrors, clearErrors] = useSubmissionErrors(errorResponse);
+  const handleSubmit = React.useCallback<SubmitHandler>((formData, formApi, retrySubmit) => {
+    clearErrors();
 
-        return {
-          ...acc,
-          [key]: (acc[key] || []).concat([{
-            error: triple.object.value,
-            index: 0,
-          }]),
-        };
-      }, {});
-
-      return errs;
-    }
-
-    return undefined;
-  }, [errorResponse, submissionErrorsTimeStamp]);
-
+    return onSubmit(formData, formApi, retrySubmit);
+  }, [clearErrors]);
   const renderBody = React.useCallback((submitting) => (
     <React.Fragment>
       <Property
@@ -145,7 +129,7 @@ const EntryPointForm: React.FC<PropTypes> = ({
       theme={theme}
       whitelist={whitelist}
       onKeyUp={onKeyUp}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       {renderBody}
     </Form>
