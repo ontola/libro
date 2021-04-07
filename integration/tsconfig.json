@@ -1,0 +1,26 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "typeRoots": [
+      "../@types",
+      "../node_modules/@types",
+      "../node_modules/@types/jest",
+      "../node_modules/jest-playwright-preset",
+      "../node_modules/expect-playwright",
+      "../node_modules/link-lib/@types"
+    ]
+  },
+  "include": [
+    "./integration/__tests__",
+    "../app/*.ts",
+    "../app/**/*.ts",
+    "../app/*.tsx",
+    "../app/**/*.tsx"
+  ]
+}

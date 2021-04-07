@@ -1,4 +1,10 @@
 /* eslint-disable @typescript-eslint/no-namespace */
+
+import 'jest';
+
+// import * as jest from 'jest';
+import 'jest-playwright-preset';
+
 import {
   DEFAULTS_BOLD,
   DEFAULTS_CODE_BLOCK,
@@ -10,34 +16,26 @@ import {
   DEFAULTS_PARAGRAPH,
   DEFAULTS_UNDERLINE,
 } from '@udecode/slate-plugins';
-import {
-  Browser,
-  Page,
-  chromium,
-} from 'playwright';
+import { ElementHandle } from 'playwright';
 import { getDocument, queries } from 'playwright-testing-library';
-import { ElementHandle } from 'playwright-testing-library/lib/typedefs';
+import { ElementHandle as PlaywrightElementHandle } from 'playwright/types/types';
 
-import {
-  BOLD_COMMAND_KEY,
-  CODE_BLOCK_COMMAND_KEY,
-  HEADING1_COMMAND_KEY,
-  HEADING2_COMMAND_KEY,
-  HEADING3_COMMAND_KEY,
-  IMAGE_COMMAND_KEY,
-  ITALIC_COMMAND_KEY,
-  LINK_COMMAND_KEY,
-  ORDERED_LIST_COMMAND_KEY,
-  UNDERLINE_COMMAND_KEY,
-  UNORDERED_LIST_COMMAND_KEY,
-} from '../plugins';
+const BOLD_COMMAND_KEY = 'formatBold';
+const CODE_BLOCK_COMMAND_KEY = 'formatCodeBlock';
+const HEADING1_COMMAND_KEY = 'formatHeading1';
+const HEADING2_COMMAND_KEY = 'formatHeading2';
+const HEADING3_COMMAND_KEY = 'formatHeading3';
+const IMAGE_COMMAND_KEY = 'insertImage';
+const ITALIC_COMMAND_KEY = 'formatItalic';
+const LINK_COMMAND_KEY = 'insertLink';
+const ORDERED_LIST_COMMAND_KEY = 'formatListOrdered';
+const UNORDERED_LIST_COMMAND_KEY = 'formatListUnordered';
+const UNDERLINE_COMMAND_KEY = 'formatUnderline';
 
 const { getByTestId, getByText } = queries;
 
 const EDITOR_URL = 'https://argu.localdev/d/editor?test';
-const LAUNCH_BROWSER_TIMEOUT = 30000;
 const LOAD_PAGE_TIMEOUT = 30000;
-const LOAD_ELEMENT_TIMEOUT = 10000;
 
 // elements
 const CODE_BLOCK_CLASS_NAME = DEFAULTS_CODE_BLOCK.code_block.rootProps.className!;
@@ -147,34 +145,15 @@ expect.extend({
 });
 
 describe('RichTextEditor', () => {
-  let browser: Browser;
-  let page: Page;
-  let $document: ElementHandle;
-  let editor: ElementHandle;
-  let toolbar: ElementHandle;
-
-  beforeAll(async () => {
-    browser = await chromium.launch({
-      args: ['--ignore-certificate-errors'],
-      headless: true,
-    });
-  }, LAUNCH_BROWSER_TIMEOUT);
-
-  afterAll(async () => {
-    await browser.close();
-  });
+  let $document: PlaywrightElementHandle<SVGElement | HTMLElement>;
+  let editor: ElementHandle<SVGElement | HTMLElement>;
+  let toolbar: ElementHandle<SVGElement | HTMLElement>;
 
   beforeEach(async () => {
-    if (!page) {
-      page = await browser.newPage();
-      await page.goto(EDITOR_URL);
-    } else {
-      await page.reload();
-    }
+    await page.goto(EDITOR_URL);
     $document = await getDocument(page);
-    // Never null with default option { state: visible }:
-    editor = (await page.waitForSelector('[role=textbox]', { timeout: LOAD_ELEMENT_TIMEOUT }))!;
-    toolbar = (await page.waitForSelector('.Toolbar', { timeout: LOAD_ELEMENT_TIMEOUT }))!;
+    editor = await page.waitForSelector('[role=textbox]');
+    toolbar = await page.waitForSelector('.Toolbar');
   }, LOAD_PAGE_TIMEOUT);
 
   it('starts with just one empty paragraph', async () => {

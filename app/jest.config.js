@@ -20,7 +20,7 @@ module.exports = {
     '\\.(scss|css|less)$': 'identity-obj-proxy',
   },
   setupFiles: [
-    './useFactory.js',
+    './useFactory.ts',
     'jest-plugin-context/setup',
     'jest-plugin-set/setup',
   ],
