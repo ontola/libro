@@ -1,44 +1,58 @@
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { Literal, SomeTerm } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { term } from '@rdfdev/iri';
-import RDFTypes from '@rdfdev/prop-types';
 import {
+  FC,
   Resource,
   register,
 } from 'link-redux';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-import DetailText from '../../../components/Detail/text';
+import Detail from '../../../components/Detail';
+import { LinkFeature } from '../../../components/Link';
 import SuspendedLoader from '../../../components/Loading/SuspendedLoader';
 import { allTopologies } from '../../../topologies';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
 
-const ActivityName = (props) => {
+interface ActivityNameProps {
+  linkedProp: SomeTerm;
+  name: Literal;
+
+  [prop: string]: SomeTerm;
+}
+
+const ActivityName: FC<ActivityNameProps> = (props) => {
   const template = props.name.value;
   const matches = template.match(uriMatch);
   const split = template.split(uriMatch);
 
-  const elems = split.reduce((previousValue, currentValue, index) => {
+  if (!matches) {
+    return null;
+  }
+
+  const elems = split.reduce<ReactElement[]>((previousValue, currentValue, index) => {
     const iri = matches[index]?.slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
     const iriTerm = iri && term(rdf.namedNode(iri));
+    const prop = props[iriTerm];
+    const features = iriTerm === term(as.actor) ? [] : [LinkFeature.Bold];
 
     return previousValue.concat(
       <React.Fragment key={`${iri}-${currentValue}`}>
-        <DetailText>{currentValue}</DetailText>
+        <Detail text={currentValue} />
         {iriTerm && (
           <Resource
-            key={props[iriTerm]}
-            subject={props[iriTerm]}
-            theme={iriTerm === term(as.actor) ? 'default' : 'parent'}
+            features={features}
+            key={prop.value}
+            subject={prop}
             onLoad={SuspendedLoader}
           />
         )}
-      </React.Fragment>
+      </React.Fragment>,
     );
   }, []);
 
@@ -65,10 +79,6 @@ ActivityName.mapDataToProps = {
   name: schema.name,
   object: as.object,
   target: as.target,
-};
-
-ActivityName.propTypes = {
-  name: RDFTypes.literal,
 };
 
 export default register(ActivityName);
