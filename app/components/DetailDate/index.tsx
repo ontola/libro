@@ -21,9 +21,7 @@ interface PropTypes {
   duration?: Literal;
   endDate?: Literal;
   floatRight?: boolean;
-  hideIcon?: boolean;
   lastActivityAt?: Literal;
-  linkedImage?: boolean;
   relative?: boolean;
   startDate?: Literal;
   // For linking to an event, like a meeting
@@ -66,7 +64,6 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     dateSubmitted,
     endDate,
     floatRight,
-    hideIcon,
     lastActivityAt,
     relative,
     url,
@@ -131,7 +128,6 @@ const DetailDate: React.FC<PropTypes> = (props) => {
   return (
     <Detail
       floatRight={floatRight}
-      hideIcon={hideIcon}
       text={<DateText />}
       title={hoverText}
       url={url}

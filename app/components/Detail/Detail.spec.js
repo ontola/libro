@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+
 import Detail from './index';
 
 argUnit(Detail, () => {
@@ -6,11 +8,11 @@ argUnit(Detail, () => {
   });
 
   it('should not render an image', () => {
-    expect(subject.find(marker('image'))).not.toExist();
+    expect(subject.find(marker('image')).find('img')).not.toExist();
   });
 
   it('should not render an icon', () => {
-    expect(subject.find(marker('icon'))).not.toExist();
+    expect(subject.find(marker('image')).find('.fa')).not.toExist();
   });
 
   it('should not render text', () => {
@@ -23,10 +25,6 @@ argUnit(Detail, () => {
     it('should be an anchor', () => {
       expect(subject.find(marker())).toHaveDisplayName('a');
     });
-
-    it('should be styled as an anchor', () => {
-      expect(subject.find(marker())).toHaveClassName('Detail--link');
-    });
   });
 
   describe('with text', () => {
@@ -37,11 +35,11 @@ argUnit(Detail, () => {
     });
 
     it('should not render an image', () => {
-      expect(subject.find(marker('image'))).not.toExist();
+      expect(subject.find(marker('image')).find('img')).not.toExist();
     });
 
     it('should not render an icon', () => {
-      expect(subject.find(marker('icon'))).not.toExist();
+      expect(subject.find(marker('image')).find('.fa')).not.toExist();
     });
 
     it('should render text', () => {
@@ -50,7 +48,7 @@ argUnit(Detail, () => {
   });
 
   describe('with an image', () => {
-    setProp('imageUrl', () => 'http://example.org/photo.jpg');
+    setProp('imageUrl', () => rdf.namedNode('http://example.org/photo.jpg'));
     setProp('title', () => 'A description');
 
     it('should be a div', () => {
@@ -58,19 +56,19 @@ argUnit(Detail, () => {
     });
 
     it('should render an image', () => {
-      expect(subject.find(marker('image'))).toExist();
+      expect(subject.find(marker('image')).find('img')).toExist();
     });
 
     it('should have the correct url', () => {
-      expect(subject.find(marker('image'))).toHaveProp('src', 'http://example.org/photo.jpg');
+      expect(subject.find(marker('image')).find('img')).toHaveProp('src', 'http://example.org/photo.jpg');
     });
 
     it('should have the correct alt text', () => {
-      expect(subject.find(marker('image'))).toHaveProp('alt', 'A description');
+      expect(subject.find(marker('image')).find('img')).toHaveProp('alt', 'A description');
     });
 
     it('should not render an icon', () => {
-      expect(subject.find(marker('icon'))).not.toExist();
+      expect(subject.find(marker('image')).find('.fa')).not.toExist();
     });
 
     it('should not render text', () => {
@@ -86,11 +84,11 @@ argUnit(Detail, () => {
     });
 
     it('should not render an image', () => {
-      expect(subject.find(marker('image'))).not.toExist();
+      expect(subject.find(marker('image')).find('img')).not.toExist();
     });
 
     it('should render an icon', () => {
-      expect(subject.find(marker('icon'))).toExist();
+      expect(subject.find(marker('image')).find('.fa')).toExist();
     });
 
     it('should not render text', () => {
@@ -98,33 +96,21 @@ argUnit(Detail, () => {
     });
 
     describe('with image', () => {
-      setProp('imageUrl', () => 'http://example.org/photo.jpg');
-
-      it('should render an image', () => {
-        expect(subject.find(marker('image'))).toExist();
-      });
-
-      it('should not render an icon', () => {
-        expect(subject.find(marker('icon'))).not.toExist();
-      });
-    });
-
-    describe('with hideIcon', () => {
-      setProp('hideIcon', () => true);
+      setProp('imageUrl', () => rdf.namedNode('http://example.org/photo.jpg'));
 
       it('should not render an image', () => {
-        expect(subject.find(marker('image'))).not.toExist();
+        expect(subject.find(marker('image')).find('img')).not.toExist();
       });
 
-      it('should not render an icon', () => {
-        expect(subject.find(marker('icon'))).not.toExist();
+      it('should render an icon', () => {
+        expect(subject.find(marker('image')).find('.fa')).toExist();
       });
     });
   });
 }, {
+  link: true,
   mount: true,
   propTypes: {
-    hideIcon: null,
     icon: null,
     imageUrl: null,
     text: null,
@@ -132,4 +118,5 @@ argUnit(Detail, () => {
     url: null,
   },
   router: true,
+  themeProvider: true,
 });

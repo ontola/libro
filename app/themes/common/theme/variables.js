@@ -44,7 +44,7 @@ const colors = {
   },
   grey: {
     dark: darken(colorBaseGrey, 0.99),
-    midDark: darken(colorBaseGrey, 0.60),
+    midDark: darken(colorBaseGrey, 0.40),
     main: colorBaseGrey,
     midLight: lighten(colorBaseGrey, 0.20),
     light: lighten(colorBaseGrey, 0.40),

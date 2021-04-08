@@ -43,9 +43,10 @@ const ActivityName: FC<ActivityNameProps> = (props) => {
 
     return previousValue.concat(
       <React.Fragment key={`${iri}-${currentValue}`}>
-        <Detail text={currentValue} />
+        {currentValue && <Detail smallMargin text={currentValue} />}
         {iriTerm && (
           <Resource
+            smallMargin
             features={features}
             key={prop.value}
             subject={prop}

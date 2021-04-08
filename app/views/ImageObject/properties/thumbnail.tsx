@@ -4,14 +4,12 @@ import { ComponentRegistration } from 'link-lib';
 import { register } from 'link-redux';
 import React from 'react';
 
-import DetailImage from '../../../components/Detail/image';
 import FormFooterImage from '../../../components/Form/FooterImage';
 import Image, { ImageBaseProps, ImageProps } from '../../../components/Image';
 import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardListTopology } from '../../../topologies/Card/CardList';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { formFooterTopology } from '../../../topologies/FormFooter/Footer';
 import { pageTopology } from '../../../topologies/Page';
 import { selectedValueTopology } from '../../../topologies/SelectedValue';
@@ -47,16 +45,11 @@ export default [
   registerThumbnail(
     allTopologiesExcept(
       cardListTopology,
-      detailsBarTopology,
       formFooterTopology,
       pageTopology,
       selectedValueTopology,
     ),
     NavbarLinkImage,
-  ),
-  registerThumbnail(
-    detailsBarTopology,
-    DetailImage,
   ),
   registerThumbnail(
     [formFooterTopology, selectedValueTopology],

@@ -1,12 +1,13 @@
 import * as schema from '@ontologies/schema';
-import LinkedRenderStore from 'link-lib';
 import {
-  Property,
+  FC,
+  PropertyProps,
   Resource,
-  linkedPropType,
+  register,
 } from 'link-redux';
 import React from 'react';
 
+import LDDetail from '../../../components/LDDetail';
 import argu from '../../../ontology/argu';
 import { cardTopology } from '../../../topologies/Card';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
@@ -15,28 +16,27 @@ import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
-
-const Creator = ({ linkedProp }) => (
+const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Resource subject={linkedProp} topology={detailsBarTopology}>
-    <Property label={schema.image} />
+    <LDDetail
+      smallMargin
+      text={undefined}
+      title={undefined}
+    />
   </Resource>
 );
 
-Creator.propTypes = propTypes;
+Creator.type = argu.Notification;
 
-export default LinkedRenderStore.registerRenderer(
-  Creator,
-  argu.Notification,
-  schema.creator,
-  [
-    fullResourceTopology,
-    cardTopology,
-    cardMainTopology,
-    containerTopology,
-    detailsBarTopology,
-    navbarTopology,
-  ]
-);
+Creator.property = schema.creator;
+
+Creator.topology = [
+  fullResourceTopology,
+  cardTopology,
+  cardMainTopology,
+  containerTopology,
+  detailsBarTopology,
+  navbarTopology,
+];
+
+export default register(Creator);

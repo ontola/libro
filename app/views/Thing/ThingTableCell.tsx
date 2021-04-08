@@ -6,7 +6,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Detail from '../../components/Detail';
+import LDDetail from '../../components/LDDetail';
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
 import { tableCellTopology } from '../../topologies/TableCell';
@@ -24,10 +24,7 @@ const ThingTableCell: FC<PropTypes> = ({ name }) => {
       features={[LinkFeature.Bold, LinkFeature.Centered]}
       title={formatMessage(thingMessages.showProfile, { name: name?.value })}
     >
-      <Detail
-        linkedImage
-        text={name?.value}
-      />
+      <LDDetail text={name?.value} />
     </LDLink>
   );
 };

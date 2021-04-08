@@ -1,36 +1,36 @@
-import * as schema from '@ontologies/schema';
+import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
-import { Property } from 'link-redux';
 import React, {
   MouseEventHandler,
   ReactNode,
 } from 'react';
-import FontAwesome from 'react-fontawesome';
 import { useHistory } from 'react-router';
 
 import { isDifferentWebsite } from '../../helpers/iris';
+import fa4 from '../../ontology/fa4';
+import Image from '../Image';
 
-import './Detail.scss';
-import DetailText from './text';
+import useStyles from './DetailStyles';
+import DetailText from './DetailText';
 
 export enum DetailVariant {
+  Default = 'default',
   Error = 'error',
   Success = 'success',
   Warning = 'warning',
 }
 
-interface PropTypes {
+export interface DetailProps {
   className?: string;
   /**
    * Since Detail uses flexbox, you need to place right floating Details
    * detail at the very end of a DetailsBar.
    */
   floatRight?: boolean;
-  hideIcon?: boolean;
   icon?: string;
-  imageUrl?: string;
-  linkedImage?: boolean;
+  imageUrl?: NamedNode;
   onClick?: MouseEventHandler;
+  smallMargin?: boolean;
   spin?: boolean;
   text?: ReactNode;
   /** HTML title attribute */
@@ -42,22 +42,23 @@ interface PropTypes {
 const defaultProps = {
   spin: false,
   title: '',
+  variant: DetailVariant.Default,
 };
 
-const Detail: React.FC<PropTypes> = ({
+const Detail: React.FC<DetailProps> = ({
   className,
   floatRight,
-  hideIcon,
   icon,
-  linkedImage,
   imageUrl,
   onClick,
+  smallMargin,
   spin,
   text,
   title,
   url,
   variant,
 }) => {
+  const styles = useStyles();
   const history = useHistory();
   const handleExternalClick = React.useCallback((e) => {
     e.preventDefault();
@@ -69,12 +70,13 @@ const Detail: React.FC<PropTypes> = ({
   const Element = url ? 'a' : 'div';
 
   const detailClass = clsx({
-    'Detail': true,
-    'Detail--float-right': floatRight,
-    'Detail--link': url,
-    [`Detail--variant-${variant}`]: variant,
+    [styles.wrapper]: true,
+    [styles.floatRight]: floatRight,
+    [smallMargin ? styles.smallMargin : styles.defaultMargin]: true,
     [className || '']: className,
   });
+
+  const image = icon ? fa4.ns(icon) : imageUrl;
 
   return (
     <Element
@@ -85,24 +87,19 @@ const Detail: React.FC<PropTypes> = ({
       title={title}
       onClick={handleClick}
     >
-      {linkedImage ? (
-        <Property data-test="Detail-linked-image" label={schema.image} />
-      ) : (
-        imageUrl ? (
-          <img
-            alt={title}
-            className="Detail__image"
-            data-test="Detail-image"
-            src={imageUrl}
-          />
-        ) : null
+      {image && (
+        <Image
+          ariaLabel={title}
+          className={styles.image}
+          data-test="Detail-image"
+          linkedProp={image}
+          spin={spin}
+        />
       )}
-      {!imageUrl && icon && !hideIcon && (
-        <span className="Detail__icon" data-test="Detail-icon">
-          <FontAwesome name={icon} spin={spin} />
-        </span>
-      )}
-      <DetailText data-test="Detail-DetailText">
+      <DetailText
+        data-test="Detail-DetailText"
+        variant={variant}
+      >
         {text}
       </DetailText>
     </Element>

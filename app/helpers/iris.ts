@@ -1,5 +1,6 @@
 import {
   NamedNode,
+  SomeTerm,
   isBlankNode,
   isNamedNode,
 } from '@ontologies/core';
@@ -20,7 +21,7 @@ export function isFontAwesomeIRI(iri: string): boolean {
   return iri.startsWith(FABase);
 }
 
-export function normalizeFontAwesomeIRI(stringOrIRI: string | NamedNode): string {
+export function normalizeFontAwesomeIRI(stringOrIRI: string | SomeTerm): string {
   const str = typeof stringOrIRI !== 'string' ? stringOrIRI.value : stringOrIRI;
 
   return isFontAwesomeIRI(str) ? str.split(FABase).pop()! : str;

@@ -29,7 +29,6 @@ export const components = {
   CoverImage: component('CoverImage'),
   Detail: component('Detail'),
   DetailDate: component('DetailDate'),
-  DetailImage: component('Detail/image'),
   DetailText: component('Detail/text'),
   DropdownMenu: component('DropdownMenu'),
   Error: component('Error'),

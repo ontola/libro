@@ -27,8 +27,7 @@ import CompCountBubble from './components/CountBubble/index';
 import CompCoverImage from './components/CoverImage';
 import CompDetail from './components/Detail';
 import CompDetailDate from './components/DetailDate';
-import CompDetailImage from './components/Detail/image';
-import CompDetailText from './components/Detail/text';
+import CompDetailText from './components/Detail/DetailText';
 import CompDropdownMenu from './components/DropdownMenu';
 import CompError from './components/Error/index';
 import CompFieldLabel from './components/FieldLabel';
@@ -108,7 +107,6 @@ export const componentMap = {
   [rdf.id(components.CoverImage)]: CompCoverImage,
   [rdf.id(components.Detail)]: CompDetail,
   [rdf.id(components.DetailDate)]: CompDetailDate,
-  [rdf.id(components.DetailImage)]: CompDetailImage,
   [rdf.id(components.DetailText)]: CompDetailText,
   [rdf.id(components.DropdownMenu)]: CompDropdownMenu,
   [rdf.id(components.Error)]: CompError,

@@ -153,7 +153,7 @@ function argUnit(comp, func, opts = {}) {
       element = React.createElement(IntlProvider, { locale: 'en' }, element);
     }
     if (opts.themeProvider) {
-      element = React.createElement(ThemeProvider, { theme: themes.common }, element);
+      element = React.createElement(ThemeProvider, { theme: themes.common({}) }, element);
     }
     if (opts.router || opts.intl) {
       element = React.createElement(StaticRouter, {}, element);

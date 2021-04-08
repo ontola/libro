@@ -2,12 +2,13 @@ import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const FABase = 'http://fontawesome.io/icon/';
+import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 
 export interface ImageBaseProps {
   ariaLabel?: string,
   className?: string,
   linkedProp: SomeTerm,
+  spin?: boolean;
   style?: React.CSSProperties,
 }
 
@@ -23,18 +24,21 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
   const {
     ariaLabel,
     className,
+    spin,
     style,
     linkedProp,
   } = overrideProps;
 
-  if (linkedProp?.value?.startsWith(FABase)) {
+  if (isFontAwesomeIRI(linkedProp.value)) {
     return (
-      <FontAwesome
-        ariaLabel={ariaLabel || ''}
-        className={className}
-        name={linkedProp.value.split(FABase)[1]}
-        style={style}
-      />
+      <span className={className}>
+        <FontAwesome
+          ariaLabel={ariaLabel || ''}
+          name={normalizeFontAwesomeIRI(linkedProp)}
+          spin={spin}
+          style={style}
+        />
+      </span>
     );
   }
   if (typeof override !== 'undefined') {

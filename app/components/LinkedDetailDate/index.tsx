@@ -14,7 +14,6 @@ interface PropTypes {
   duration?: Literal;
   endDate?: Literal;
   floatRight?: boolean;
-  hideIcon?: boolean;
   lastActivityAt?: Literal;
   startDate?: Literal;
 }
@@ -27,12 +26,10 @@ const LinkedDetailDate: React.FC<PropTypes> = ({
   duration,
   endDate,
   floatRight,
-  hideIcon,
   lastActivityAt,
   startDate,
 }) => (
   <DetailDate
-    linkedImage
     dateCreated={dateCreated}
     dateModified={dateModified}
     datePublished={datePublished}
@@ -40,7 +37,6 @@ const LinkedDetailDate: React.FC<PropTypes> = ({
     duration={duration}
     endDate={endDate}
     floatRight={floatRight}
-    hideIcon={hideIcon}
     lastActivityAt={lastActivityAt}
     startDate={startDate}
   />

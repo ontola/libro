@@ -3,13 +3,12 @@ import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  Property,
   register,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Detail from '../../components/Detail';
+import LDDetail from '../../components/LDDetail';
 import LDLink from '../../components/LDLink';
 import { LinkFeature, LinkTheme } from '../../components/Link';
 import argu from '../../ontology/argu';
@@ -21,6 +20,7 @@ import { personMessages } from '../../translations/messages';
 interface PersonDetailProps {
   hideName: boolean;
   name: Literal;
+  smallMargin?: boolean;
   theme: LinkTheme;
   titleKey: 'showProfile' | 'postedBy';
   topology: NamedNode;
@@ -29,6 +29,7 @@ interface PersonDetailProps {
 const PersonDetail: FC<PersonDetailProps> = ({
   hideName,
   name,
+  smallMargin,
   theme,
   titleKey,
   topology,
@@ -37,24 +38,14 @@ const PersonDetail: FC<PersonDetailProps> = ({
 
   const title = formatMessage(personMessages[titleKey || 'showProfile'], { name: name.value });
 
-  if (hideName) {
-    return (
-      <LDLink features={[LinkFeature.Centered]}>
-        <div className="Detail" title={title}>
-          <Property label={schema.image} />
-        </div>
-      </LDLink>
-    );
-  }
-
   return (
     <LDLink
-      features={['centered', rdf.equals(topology, tableCellTopology) && 'bold'].filter(Boolean)}
+      features={[LinkFeature.Centered, rdf.equals(topology, tableCellTopology) && LinkFeature.Bold].filter(Boolean)}
       theme={theme}
     >
-      <Detail
-        linkedImage
-        text={name.value}
+      <LDDetail
+        smallMargin={smallMargin}
+        text={hideName ? undefined : name.value}
         title={title}
       />
     </LDLink>
