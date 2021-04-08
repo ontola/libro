@@ -13,14 +13,15 @@ import argu from '../../../ontology/argu';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
 const useStyles = makeStyles({
-  header: {
-    color: (props: Record<string, string>) => props.textColor,
-    fontWeight: 'bold',
+  container: {
+    marginBottom: 20,
+    marginTop: 20,
   },
   icon: {
     color: (props: Record<string, string>) => props.color,
     fontSize: 70,
     margin: 30,
+    textAlign: 'center',
   },
   image: {
     color: 'yellow',
@@ -28,6 +29,15 @@ const useStyles = makeStyles({
   },
   subtitle: {
     color: (props: Record<string, string>) => props.textColor,
+    fontSize: '1.125rem',
+    lineHeight: '1.7rem',
+    margin: 10,
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  title: {
+    color: (props: Record<string, string>) => props.textColor,
+    fontWeight: 'bold',
     textAlign: 'center',
   },
 });
@@ -44,10 +54,8 @@ const Feature: FC = () => {
 
   return (
     <Grid
-      container
-      alignItems="center"
-      direction="column"
-      justify="center"
+      item
+      className={classes.container}
       md={3}
       sm={6}
       xs={12}
@@ -56,17 +64,15 @@ const Feature: FC = () => {
         <Property label={schema.image} />
       </div>
       <Typography
-        className={classes.header}
-        variant="h6"
+        className={classes.title}
+        variant="h3"
       >
         {name.value}
       </Typography>
-      <Typography
+      <div
         className={classes.subtitle}
-        variant="h6"
-      >
-        {text.value}
-      </Typography>
+        dangerouslySetInnerHTML={{ __html: text.value }}
+      />
     </Grid>
   );
 };

@@ -53,7 +53,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       backgroundSize: 'percentage',
       maxWidth: '100%',
     },
-    marginBottom: 75,
+  },
+  imageContainer: {
+    marginBottom: 85,
   },
   propositionSelector: {
     [theme.breakpoints.down('md')]: {
@@ -79,6 +81,22 @@ const CaseContainer: FC = () => {
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [caseButtonText] = useProperty(argu.ns('caseButtonText'));
+  let renderedImage;
+
+  if (image !== undefined) {
+    renderedImage = (
+      <div className={classes.imageContainer}>
+        <Image
+          className={classes.image}
+          linkedProp={image}
+        />
+      </div>
+    );
+  } else {
+    renderedImage = (
+      <div />
+    );
+  }
 
   return (
     <Grid
@@ -90,10 +108,7 @@ const CaseContainer: FC = () => {
     >
       <Typography variant="h2">{name.value}</Typography>
       <Typography className={classes.subTitle}>{text.value}</Typography>
-      <Image
-        className={classes.image}
-        linkedProp={image}
-      />
+      {renderedImage}
       <Showcase>
         <div className={classes.propositionSelector}>
           <Property label={argu.ns('caseShowcase')} />

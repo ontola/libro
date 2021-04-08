@@ -11,12 +11,19 @@ import React from 'react';
 import argu from '../../../ontology/argu';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
+import CallToAction from '../CallToAction';
 import HeaderProductPages from '../HeaderProductPages';
 import { SalesTheme, withSalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  caseContainer: {
+    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
+    padding: 20,
+    paddingTop: 60,
+  },
   featureShowcaseBackground: {
     background: theme.palette.primary.main,
+    padding: 40,
   },
   featureTitle: {
     color: '#FFF',
@@ -28,7 +35,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   textBlockContainer: {
     alignItems: 'center',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    marginBottom: 50,
   },
   title: {
     marginTop: '9rem',
@@ -36,7 +45,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   titleFeatureBlock: {
     color: theme.palette.background.default,
-    padding: 40,
+    marginBottom: -20,
     textAlign: 'center',
   },
   wrapper: {
@@ -55,8 +64,13 @@ const ProductPage: FC = () => {
   const [title] = useProperty(schema.description);
   const [text] = useProperty(schema.text);
   const [productTextTitle] = useProperty(argu.ns('productTextTitle'));
-  const [productTextContent] = useProperty(argu.ns('productTextContent'));
+  const [productText1] = useProperty(argu.ns('productTextContentAlinea1'));
+  const [productText2] = useProperty(argu.ns('productTextContentAlinea2'));
+  const [productText3] = useProperty(argu.ns('productTextContentAlinea3'));
   const [featureTitle] = useProperty(argu.ns('featureTitle'));
+  const [callToActionButtonText] = useProperty(argu.ns('buttonText'));
+  const [callToActionText] = useProperty(argu.ns('callToActionText'));
+  const [callToActionTitle] = useProperty(argu.ns('callToActionTitle'));
 
   return (
     <div className={classes.wrapper}>
@@ -78,9 +92,21 @@ const ProductPage: FC = () => {
           <div className={classes.textBlockContainer}>
             <Typography
               className={classes.textBlock}
-              variant="subtitle1"
+              variant="body1"
             >
-              {productTextContent.value}
+              {productText1.value}
+            </Typography>
+            <Typography
+              className={classes.textBlock}
+              variant="body1"
+            >
+              {productText2.value}
+            </Typography>
+            <Typography
+              className={classes.textBlock}
+              variant="body1"
+            >
+              {productText3.value}
             </Typography>
           </div>
         </Container>
@@ -96,6 +122,17 @@ const ProductPage: FC = () => {
           <Property label={argu.ns('features')} />
         </Container>
       </div>
+      <div className={classes.caseContainer}>
+        <Container>
+          <Property label={argu.ns('cases')} />
+        </Container>
+      </div>
+      <CallToAction
+        buttonText={callToActionButtonText.value}
+        imageUrl="/static/images/call_to_action_background.svg"
+        subtitle={callToActionText.value}
+        title={callToActionTitle.value}
+      />
     </div>
   );
 };

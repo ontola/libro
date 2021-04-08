@@ -20,7 +20,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     display: 'flex',
     fontSize: 18,
     justifyContent: 'center',
-    marginLeft: 20,
+    marginLeft: 8,
     textTransform: 'none',
   },
   buttonWrapper: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.down('md')]: {
-      margin: 50,
+      margin: -25,
     },
   },
   subtitle: {

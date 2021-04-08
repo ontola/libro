@@ -27,10 +27,11 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   caseContainer: {
     background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
+    padding: 20,
   },
   featureContainer: {
-    marginBottom: 40,
-    marginTop: 75,
+    marginBottom: 30,
+    marginTop: 45,
   },
   gridStyle: {
     marginBottom: 20,
