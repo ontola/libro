@@ -26,7 +26,7 @@ const ThingGrid: FC = () => (
         <Property label={[schema.text, schema.description, dbo.abstract]} />
       </CardContent>
     </LDLink>
-    <DetailsBar>
+    <DetailsBar borderBottom={false}>
       <Property hideName label={schema.creator} />
       <Property label={argu.pinnedAt} />
       <Property short label={argu.expiresAt} />

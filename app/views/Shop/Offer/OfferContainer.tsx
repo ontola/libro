@@ -36,6 +36,7 @@ const OfferContainer: FC = ({ subject }) => (
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
     <DetailsBar
+      borderBottom={false}
       right={<OfferActionButtons />}
       variant={DetailsBarVariant.Wide}
     >

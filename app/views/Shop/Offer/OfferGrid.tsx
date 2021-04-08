@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 
@@ -29,6 +29,7 @@ const OfferGrid: FC = () => (
       </CardContent>
     </LDLink>
     <DetailsBar
+      borderBottom={false}
       right={<OfferActionButtons />}
       variant={DetailsBarVariant.Wide}
     >

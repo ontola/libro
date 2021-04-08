@@ -1,6 +1,7 @@
 .ActionsBar {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
 
   &--small {
     flex-direction: row-reverse;

@@ -30,7 +30,7 @@ const InterventionTypeGrid = () => (
         </AttributeList>
       </CardContent>
     </LDLink>
-    <DetailsBar />
+    <DetailsBar borderBottom={false} />
   </CardFixed>
 );
 

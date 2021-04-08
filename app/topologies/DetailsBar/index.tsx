@@ -1,3 +1,5 @@
+import { withStyles } from '@material-ui/core';
+import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
@@ -6,11 +8,13 @@ import VerticalScroller from '../../components/VerticalScroller';
 import argu from '../../ontology/argu';
 import { CardFloat } from '../Card';
 
-import './DetailsBar.scss';
+import DetailsBarStyles from './DetailsBarStyles';
 
 export const detailsBarTopology = argu.detail;
 
-interface PropTypes {
+export interface DetailsBarProps {
+  borderBottom: boolean;
+  classes: Classes;
   className?: string;
   right?: ReactNode;
   scrollable?: boolean;
@@ -18,15 +22,18 @@ interface PropTypes {
 }
 
 export enum DetailsBarVariant {
+  Default = 'default',
   Wide = 'wide',
 }
 
-class DetailsBar extends TopologyProvider<PropTypes> {
+class DetailsBar extends TopologyProvider<DetailsBarProps> {
   public static defaultProps = {
+    borderBottom: true,
     scrollable: true,
+    variant: DetailsBarVariant.Default,
   };
 
-  constructor(props: PropTypes) {
+  constructor(props: DetailsBarProps) {
     super(props);
 
     this.topology = detailsBarTopology;
@@ -35,8 +42,9 @@ class DetailsBar extends TopologyProvider<PropTypes> {
   public render() {
     const IconWrapper = this.props.scrollable ? VerticalScroller : React.Fragment;
     const classes = clsx({
-      DetailsBar: true,
-      [`DetailsBar--variant-${this.props.variant}`]: this.props.variant,
+      [this.props.classes.borderBottom]: this.props.borderBottom,
+      [this.props.classes.shared]: true,
+      [this.props.variant ? this.props.classes[this.props.variant] : '']: this.props.variant,
       [this.props.className || '']: this.props.className,
     });
 
@@ -46,7 +54,7 @@ class DetailsBar extends TopologyProvider<PropTypes> {
           {this.props.children}
         </IconWrapper>
         {this.props.right && (
-          <div className="DetailsBar__right">
+          <div className={this.props.classes.right}>
             <CardFloat>
               {this.props.right}
             </CardFloat>
@@ -57,4 +65,4 @@ class DetailsBar extends TopologyProvider<PropTypes> {
   }
 }
 
-export default DetailsBar;
+export default withStyles(DetailsBarStyles)(DetailsBar);

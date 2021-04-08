@@ -44,7 +44,7 @@ const InterventionGrid = ({ renderPartOf }) => (
         </AttributeList>
       </CardContent>
     </LDLink>
-    <DetailsBar>
+    <DetailsBar borderBottom={false}>
       <Property hideName label={schema.creator} />
       {renderPartOf && <Property label={schema.isPartOf} />}
       <LinkedDetailDate />

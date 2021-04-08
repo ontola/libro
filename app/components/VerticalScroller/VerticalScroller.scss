@@ -30,17 +30,15 @@ $transparent-fix: rgba(255, 255, 255, 0);
     background-repeat: no-repeat;
     background-size: 50px 100%, 50px 100%, 10px 100%, 10px 100%;
 
+    border-top-left-radius: $border-radius-base;
     display: flex;
     height: 100%;
     overflow-x: auto;
+    padding-left: unit('x-small');
     position: relative;
     scrollbar-width: none; // sass-lint:disable-line no-misspelled-properties
     white-space: nowrap;
     width: 100%;
-
-    .DetailsBar & {
-      border-top-left-radius: $border-radius-base;
-    }
   }
 
   &__hider {

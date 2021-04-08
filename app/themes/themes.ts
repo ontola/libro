@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Size } from '../components/shared/config';
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@material-ui/core/index' {
   interface Color {
     dark: string;
     midDark: string;
@@ -16,7 +16,9 @@ declare module '@material-ui/core/styles/createPalette' {
     xxLightForegroundSmall: string;
     xxLightForegroundLarge: string;
   }
+}
 
+declare module '@material-ui/core/styles/createPalette' {
   interface LinkOptions {
     header: string;
     text: string;
@@ -27,16 +29,20 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    appBar: AppBarThemeOpts;
+    containerWidth: {
+      [K in Size]: string
+    }
+  }
+}
+
 export interface AppBarThemeOpts extends React.CSSProperties {
   iconBreakPoint: Breakpoint;
 }
 
-export interface LibroTheme extends Theme {
-  appBar: AppBarThemeOpts;
-  containerWidth: {
-    [K in Size]: string
-  }
-}
+export type LibroTheme = Theme;
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export enum Margin {
@@ -45,5 +51,3 @@ export enum Margin {
   'Large' = 7.5,
 }
 /* eslint-enable @typescript-eslint/no-magic-numbers */
-
-export type LibroTheme = Theme;

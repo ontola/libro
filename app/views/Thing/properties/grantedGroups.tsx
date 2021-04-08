@@ -1,9 +1,10 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
+  PropertyProps,
   ReturnType,
-  linkedPropType,
   register,
   useDataFetching,
   useLRS,
@@ -20,27 +21,27 @@ import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { allTopologiesExcept } from '../../../topologies';
-import { contentDetailsTopology } from '../../../topologies/ContentDetails';
-import DetailsBar, { detailsBarTopology } from '../../../topologies/DetailsBar';
+import ContentDetails, { contentDetailsTopology } from '../../../topologies/ContentDetails';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { entityIsLoaded } from '../../../helpers/data';
 import { grantedGroupMessages } from '../../../translations/messages';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));
 
-const GrantedGroupsDetail = ({ linkedProp }) => {
+const GrantedGroupsDetail: FC<PropertyProps> = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
-  useDataFetching(linkedProp);
-  const groups = __CLIENT__ && useContainerToArr(linkedProp);
+  useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
+  const groups = useContainerToArr<NamedNode>(isNamedNode(linkedProp) ? linkedProp : undefined);
   const groupNames = useResourceLinks(
     isPromise(groups) ? undefined : groups,
     { name: schema.name },
-    { returnType: ReturnType.Value }
+    { returnType: ReturnType.Value },
   ).map(({ name }) => name)
     .filter(Boolean)
     .join(', ');
 
-  if (!entityIsLoaded(lrs, linkedProp)) {
+  if (isNamedNode(linkedProp) && !entityIsLoaded(lrs, linkedProp)) {
     return <LoadingDetail />;
   }
 
@@ -73,17 +74,10 @@ GrantedGroupsDetail.topology = [detailsBarTopology, contentDetailsTopology];
 
 GrantedGroupsDetail.property = argu.grantedGroups;
 
-GrantedGroupsDetail.propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }),
-  linkedProp: linkedPropType,
-};
-
 const GrantedGroups = () => (
-  <DetailsBar scrollable={false}>
+  <ContentDetails>
     <Property label={argu.grantedGroups} />
-  </DetailsBar>
+  </ContentDetails>
 );
 
 GrantedGroups.type = schema.Thing;
