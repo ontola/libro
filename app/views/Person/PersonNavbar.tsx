@@ -1,16 +1,16 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
   Resource,
-  linkType,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import LDLink from '../../components/LDLink';
+import Link from '../../components/Link';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLink from '../../components/NavbarLink/NavbarLinkLink';
 import app from '../../ontology/app';
@@ -30,7 +30,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PersonNavbar = ({ image }) => {
+interface PersonNavbarProps {
+  image: SomeNode;
+}
+
+const PersonNavbar: FC<PersonNavbarProps> = ({ image }) => {
   const classes = useStyles();
   const [menuIri] = useProperty(ontola.profileMenu);
 
@@ -44,9 +48,9 @@ const PersonNavbar = ({ image }) => {
         </NavbarLinkIcon>
       </NavbarLinkLink>
       <Resource subject={app.n} topology={navbarTopology}>
-        <LDLink to={rdf.namedNode(`${menuIri.value}#notifications`)}>
+        <Link to={`${menuIri.value}#notifications`}>
           <Property label={argu.unreadCount} />
-        </LDLink>
+        </Link>
       </Resource>
       <Property label={schema.email} />
     </div>
@@ -59,10 +63,6 @@ PersonNavbar.topology = navbarTopology;
 
 PersonNavbar.mapDataToProps = {
   image: schema.image,
-};
-
-PersonNavbar.propTypes = {
-  image: linkType,
 };
 
 export default register(PersonNavbar);

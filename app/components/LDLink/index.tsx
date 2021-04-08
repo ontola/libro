@@ -1,34 +1,19 @@
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   ReturnType,
   useLinkRenderContext,
   useProperty,
 } from 'link-redux';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 
 import { handle } from '../../helpers/logging';
-import Link, { LinkFeature, LinkTarget } from '../Link';
+import Link, { LinkPropTypes } from '../Link';
 
-interface PropTypes {
-  children?: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
-  location?: string;
-  features?: LinkFeature[];
-  onClick?: MouseEventHandler;
-  subject?: SomeNode;
-  target?: LinkTarget;
-  title?: string;
-  to?: NamedNode;
+export interface LDLinkProps extends Omit<LinkPropTypes, 'to'> {
+  to?: string;
 }
 
-const LDLink: React.FC<PropTypes> = ({
-  children,
-  to,
-  ...rest
-}) => {
+const LDLink: React.FC<LDLinkProps> = (props) => {
   const { subject } = useLinkRenderContext();
   const url = useProperty(schema.url, { returnType: ReturnType.Value });
 
@@ -37,17 +22,13 @@ const LDLink: React.FC<PropTypes> = ({
 
     return <div />;
   }
-  const href = to?.value
-    || url
-    || subject.value;
+  const to = url || subject.value;
 
   return (
     <Link
-      to={href}
-      {...rest}
-    >
-      {children}
-    </Link>
+      to={to}
+      {...props}
+    />
   );
 };
 

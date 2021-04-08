@@ -43,7 +43,7 @@ const defaultCollectionTotalItems = ({
   }
 
   return (
-    <LDLink to={to}>
+    <LDLink to={to?.value}>
       <Heading size={HeadingSize.SM}>
         <FormattedMessage
           defaultMessage="View all {count}..."

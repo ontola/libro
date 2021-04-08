@@ -15,11 +15,11 @@ import ExternalLink from '../Link/ExternalLink';
 
 export interface NavbarLinkLinkProps {
   children: React.ReactNode;
-  icon: string | JSX.Element;
+  icon?: string | JSX.Element;
   image: Node;
-  label: string | JSX.Element;
-  onClick: React.MouseEventHandler;
-  ref: React.Ref<HTMLButtonElement>,
+  label?: string | JSX.Element;
+  onClick?: React.MouseEventHandler;
+  ref?: React.Ref<HTMLButtonElement>,
   to: string;
 }
 

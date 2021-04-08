@@ -1,6 +1,7 @@
 import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
 } from 'link-redux';
@@ -9,19 +10,15 @@ import React from 'react';
 import ontola from '../../ontology/ontola';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-class PersonFull extends React.PureComponent {
-  static type = [
-    schema.Person,
-    foaf.Person,
-  ];
+const PersonFull: FC = () => (
+  <Property label={ontola.profileMenu} />
+);
 
-  static topology = fullResourceTopology;
+PersonFull.type = [
+  schema.Person,
+  foaf.Person,
+];
 
-  render() {
-    return (
-      <Property label={ontola.profileMenu} />
-    );
-  }
-}
+PersonFull.topology = fullResourceTopology;
 
 export default register(PersonFull);
