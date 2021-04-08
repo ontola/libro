@@ -1,6 +1,6 @@
 import * as schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
-import { Resource, linkedPropType } from 'link-redux';
+import { PropertyProps, Resource } from 'link-redux';
 import React from 'react';
 
 import dbo from '../../../ontology/dbo';
@@ -9,32 +9,26 @@ import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { voteBubbleTopology } from '../../../topologies/VoteBubble';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
-
-const PersonImageProp = ({ linkedProp }) => (
+const PersonImageProp = ({ linkedProp }: PropertyProps) => (
   <Resource
     subject={linkedProp}
     topology={voteBubbleTopology}
   />
 );
 
-PersonImageProp.propTypes = propTypes;
-
 export default [
   LinkedRenderStore.registerRenderer(
     PersonImageProp,
     [schema.Person],
     [schema.image, dbo.thumbnail, wdt.ns('P18')],
-    [detailsBarTopology, voteBubbleTopology]
+    [detailsBarTopology, voteBubbleTopology],
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => (
+    ({ linkedProp }: PropertyProps) => (
       <Resource subject={linkedProp} />
     ),
     [schema.Person],
     [schema.image, dbo.thumbnail, wdt.ns('P18')],
-    navbarTopology
+    navbarTopology,
   ),
 ];

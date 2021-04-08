@@ -1,15 +1,30 @@
+import { Literal } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as xsd from '@ontologies/xsd';
-import { linkedPropType, register } from 'link-redux';
+import {
+  FC,
+  register,
+} from 'link-redux';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { allTopologies } from '../../../topologies';
 import { typeTranslation } from '../../../translations/messages';
 
-const BooleanRenderer = ({ linkedProp }) => {
+interface BooleanLiteral extends Literal {
+  value: 'true' | 'false'
+}
+
+interface BooleanProps {
+  linkedProp: BooleanLiteral;
+}
+
+const BooleanRenderer: FC<BooleanProps> = ({ linkedProp }) => {
   const intl = useIntl();
 
-  return intl.formatMessage(typeTranslation[linkedProp.value]);
+  return (
+    <React.Fragment>{intl.formatMessage(typeTranslation[linkedProp.value])}</React.Fragment>
+  );
 };
 
 BooleanRenderer.type = rdfs.Literal;
@@ -17,9 +32,5 @@ BooleanRenderer.type = rdfs.Literal;
 BooleanRenderer.topology = allTopologies;
 
 BooleanRenderer.property = xsd.xsdboolean;
-
-BooleanRenderer.propTypes = {
-  linkedProp: linkedPropType,
-};
 
 export default register(BooleanRenderer);

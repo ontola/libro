@@ -1,25 +1,32 @@
-import RDFTypes from '@rdfdev/prop-types';
+import rdf, { Literal, NamedNode } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
-  topologyType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import Detail from '../../components/Detail';
 import LDLink from '../../components/LDLink';
+import { LinkFeature, LinkTheme } from '../../components/Link';
 import argu from '../../ontology/argu';
 import person from '../../ontology/person';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { personMessages } from '../../translations/messages';
 
-const PersonDetail = ({
+interface PersonDetailProps {
+  hideName: boolean;
+  name: Literal;
+  theme: LinkTheme;
+  titleKey: 'showProfile' | 'postedBy';
+  topology: NamedNode;
+}
+
+const PersonDetail: FC<PersonDetailProps> = ({
   hideName,
   name,
   theme,
@@ -32,7 +39,7 @@ const PersonDetail = ({
 
   if (hideName) {
     return (
-      <LDLink features={['centered']}>
+      <LDLink features={[LinkFeature.Centered]}>
         <div className="Detail" title={title}>
           <Property label={schema.image} />
         </div>
@@ -69,14 +76,6 @@ PersonDetail.mapDataToProps = {
       foaf.name,
     ],
   },
-};
-
-PersonDetail.propTypes = {
-  hideName: PropTypes.bool,
-  name: RDFTypes.literal,
-  theme: PropTypes.string,
-  titleKey: PropTypes.string,
-  topology: topologyType,
 };
 
 export default register(PersonDetail);

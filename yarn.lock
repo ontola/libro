@@ -4846,6 +4846,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-responsive@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "@types/react-responsive@npm:8.0.2"
+  dependencies:
+    "@types/react": "*"
+  checksum: 48bc498859226af961233c1bf4764b5f0af132a81e3dcb7089c40ce14bf4e94eec40bb960a85621dd8bf798f40e2caaf0addc649d3ddb9ec6bda7f9bac5d30ac
+  languageName: node
+  linkType: hard
+
 "@types/react-router-dom@npm:^5.1.7":
   version: 5.1.7
   resolution: "@types/react-router-dom@npm:5.1.7"
@@ -5993,6 +6002,7 @@ __metadata:
     "@types/react-is": ^17.0.0
     "@types/react-pdf": ^5.0.0
     "@types/react-redux": ^7.1.1
+    "@types/react-responsive": ^8.0.2
     "@types/react-router": ^5.1.13
     "@types/react-router-dom": ^5.1.7
     "@types/redux-actions": ^2.6.1

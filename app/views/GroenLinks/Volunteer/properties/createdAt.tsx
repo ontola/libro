@@ -1,23 +1,24 @@
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { linkedPropType, register } from 'link-redux';
+import { FC, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 import { useIntl } from 'react-intl';
 
-import Detail from '../../../../components/Detail';
+import Detail, { DetailVariant } from '../../../../components/Detail';
 import teamGL from '../../../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
 import { groenlinksMessages } from '../../../../translations/groenlinks';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
+interface VolunteerCreatedAtProps {
+  linkedProp: SomeTerm;
+}
 
-const CreatedAt = ({ linkedProp }) => {
+const CreatedAt: FC<VolunteerCreatedAtProps> = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
 
   const daySpan = 86400000;
-  const diff = Math.floor((new Date() - new Date(linkedProp.value)) / (daySpan));
+  const diff = Math.floor((new Date().getTime() - new Date(linkedProp.value).getTime()) / (daySpan));
   const waitingVeryShort = 3;
   const waitingShort = 7;
   const waitingLong = 21;
@@ -29,10 +30,10 @@ const CreatedAt = ({ linkedProp }) => {
     message = groenlinksMessages.short;
   } else if (diff <= waitingLong) {
     message = groenlinksMessages.long;
-    variant = 'warning';
+    variant = DetailVariant.Warning;
   } else {
     message = groenlinksMessages.veryLong;
-    variant = 'error';
+    variant = DetailVariant.Error;
   }
 
   return (
@@ -49,7 +50,5 @@ CreatedAt.type = teamGL.NewVolunteer;
 CreatedAt.property = schema.dateCreated;
 
 CreatedAt.topology = allTopologies;
-
-CreatedAt.propTypes = propTypes;
 
 export default register(CreatedAt);

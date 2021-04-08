@@ -18,8 +18,6 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
-import './properties/name';
-
 const useStyles = makeStyles(() => ({
   wrapper: {
     '& a': {

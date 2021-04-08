@@ -49,6 +49,7 @@ import Text from './properties/text';
 import TextCardFixed from './properties/textCardFixed';
 import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
+import Type from './properties/type';
 import VoteEvents from './properties/voteEvents';
 import ThingCard from './ThingCard';
 import ThingContainer from './ThingContainer';
@@ -149,5 +150,6 @@ export default [
   TextCardFixed,
   TopComment,
   TrashedAt,
+  Type,
   VoteEvents,
 ];
