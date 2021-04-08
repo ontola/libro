@@ -8,6 +8,7 @@ import rdf, {
   Term,
   isBlankNode,
   isLiteral,
+  isNamedNode,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
@@ -137,7 +138,7 @@ function serializableValue(v: any): any | any[] | File | string {
 function listToArr<I extends Term = SomeTerm>(
   lrs: LinkReduxLRSType,
   acc: I[],
-  rest: Node | I[] | undefined,
+  rest: Node | I[],
 ): I[] | Promise<void> {
 
   if (Array.isArray(rest)) {
@@ -180,11 +181,11 @@ function resourceHasType(lrs: LinkReduxLRSType, resource: Node, type: Node): boo
   return !!resource && lrs.findSubject(resource, [rdfx.type], type).length > 0;
 }
 
-function seqToArr(
+function seqToArr<I extends Term = SomeTerm>(
   lrs: LinkReduxLRSType,
-  acc: SomeTerm[],
-  rest: Node | Node[],
-): SomeTerm[] {
+  acc: I[],
+  rest: Node | I[],
+): I[] {
   if (Array.isArray(rest)) {
     return rest;
   }
@@ -192,35 +193,34 @@ function seqToArr(
     return acc;
   }
 
-  lrs
-    .tryEntity(rest)
+  lrs.tryEntity(rest)
     .filter((s) => s && s.predicate.value.match(sequenceFilter) !== null)
     .sort(numAsc)
-    .map((s) => acc.push(s.object));
+    .map((s) => acc.push(s.object as I));
 
   return acc;
 }
 
-function containerToArr(
+function containerToArr<I extends Term = SomeTerm>(
   lrs: LinkReduxLRSType,
-  acc: SomeTerm[],
-  rest: Node | Node[],
-): SomeTerm[] | Promise<void> {
+  acc: I[],
+  rest: Node | I[],
+): I[] | Promise<void> {
   if (Array.isArray(rest)) {
     return rest;
   }
 
   // Detect loaded
-  if (__CLIENT__ && !entityIsLoaded(lrs, rest)) {
-    return rest.termType === 'NamedNode'
+  if (__CLIENT__ && rest && !entityIsLoaded(lrs, rest)) {
+    return isNamedNode(rest)
       ? lrs.getEntity(rest)
       : Promise.reject(`Can't resolve a ${rest.termType}`);
   }
 
   if (lrs.getResourceProperty(rest, rdfs.member)) {
-    return seqToArr(lrs, acc, rest);
+    return seqToArr<I>(lrs, acc, rest);
   } else if (lrs.getResourceProperty(rest, rdfx.first)) {
-    return listToArr(lrs, acc, rest);
+    return listToArr<I>(lrs, acc, rest);
   }
 
   const pages = lrs.getResourceProperty<NamedNode>(rest, ontola.pages);
@@ -229,7 +229,7 @@ function containerToArr(
   }
   const items = lrs.getResourceProperty<NamedNode>(rest, as.items);
   if (items) {
-    return seqToArr(lrs, acc, items);
+    return seqToArr<I>(lrs, acc, items);
   }
 
   return acc;
