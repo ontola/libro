@@ -1,12 +1,16 @@
-import { linkedPropType, register } from 'link-redux';
+import { SomeTerm } from '@ontologies/core';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
 import Detail from '../../../components/Detail';
 import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 
+export interface TimeProps {
+  linkedProp: SomeTerm;
+}
 
-const Time = ({ linkedProp }) => (
+const Time: FC<TimeProps> = ({ linkedProp }) => (
   <Detail
     icon="clock-o"
     text={linkedProp.value}
@@ -19,9 +23,5 @@ Time.type = argu.Phase;
 Time.topology = allTopologies;
 
 Time.property = argu.time;
-
-Time.propTypes = {
-  linkedProp: linkedPropType,
-};
 
 export default register(Time);

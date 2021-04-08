@@ -1,18 +1,21 @@
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
   Resource,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { useLocation } from 'react-router';
 
 import CardContent from '../../components/Card/CardContent';
 import CardDivider from '../../components/Card/CardDivider';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
+import { Size } from '../../components/shared/config';
+import usePhases from '../../hooks/usePhases';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
@@ -25,12 +28,22 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
 
-const ProjectFull = ({
+interface ProjectFullProps {
+  currentPhase: SomeNode;
+  phases: SomeNode;
+  renderPartOf: boolean;
+}
+
+const ProjectFull: FC<ProjectFullProps> = ({
   currentPhase,
   renderPartOf,
-  selectedPhase,
+  subject,
 }) => {
-  const renderPhase = selectedPhase || currentPhase;
+  const location = useLocation();
+  const [phases] = usePhases(subject);
+  const phaseIndex = parseInt(location.hash.replace('#', ''));
+  const selectedPhase = phaseIndex ? phases[phaseIndex - 1] : null;
+  const renderPhase = selectedPhase ?? currentPhase ?? phases[0];
 
   return (
     <React.Fragment>
@@ -77,7 +90,7 @@ const ProjectFull = ({
       </Container>
       {renderPhase && (
         <Resource subject={renderPhase}>
-          <Container disableGutters size="large">
+          <Container disableGutters size={Size.Large}>
             <Grid container spacing={6}>
               <Property label={ontola.widgets} />
             </Grid>
@@ -95,12 +108,6 @@ ProjectFull.topology = fullResourceTopology;
 ProjectFull.mapDataToProps = {
   currentPhase: argu.currentPhase,
   name: schema.name,
-};
-
-ProjectFull.propTypes = {
-  currentPhase: linkType,
-  renderPartOf: PropTypes.bool,
-  selectedPhase: linkType,
 };
 
 export default register(ProjectFull);

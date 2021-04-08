@@ -1,5 +1,9 @@
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
@@ -10,7 +14,7 @@ import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 
-const PhaseContainer = () => (
+const PhaseContainer: FC = () => (
   <Card>
     <CardContent>
       <HeaderWithMenu

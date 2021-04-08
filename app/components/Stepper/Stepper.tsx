@@ -17,7 +17,7 @@ export interface StepperProps<T> {
   itemToKey: (item: T) => string;
   activeStep: number;
   renderStepLabel: (item: T) => JSX.Element;
-  createStepOnClick: (item: T) => (e: React.MouseEvent) => void;
+  createStepOnClick: (item: T, index: number) => (e: React.MouseEvent) => void;
   showNewStepButton?: boolean;
   onNewStepClick?: (e: React.MouseEvent) => void;
   overrideClasses?: Partial<ClassNameMap<StepperClasskey>>;
@@ -86,7 +86,7 @@ export function stepperBuilder<T>(): ((props: StepperProps<T>) => JSX.Element) {
     const renderStep = (item: T, index: number) => createStep({
       children: [renderStepLabel(item)],
       key: itemToKey(item),
-      onClick: createStepOnClick(item),
+      onClick: createStepOnClick(item, index),
       stepLabelOverrideClasses: stepLabelOverrideClasses,
       stepNumber: index,
       stepOverrideClasses,

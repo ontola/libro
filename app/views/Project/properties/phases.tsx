@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/styles';
 import {
   NamedNode,
   Node,
-  isNamedNode,
   isNode,
 } from '@ontologies/core';
 import * as as from '@ontologies/as';
@@ -22,26 +21,21 @@ import { IconButton, Typography } from '@material-ui/core';
 import { useIntl } from 'react-intl';
 
 import { containerToArr, entityIsLoaded } from '../../../helpers/data';
+import { phaseIRI } from '../../../hooks/usePhases';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { LibroTheme } from '../../../themes/themes';
 import { stepperBuilder } from '../../../components/Stepper/Stepper';
-import app from '../../../ontology/app';
 import { phaseMessages } from '../../../translations/messages';
 
 const STEPPER_PADDING = 7;
-
-export interface PhaseProps {
-  current: boolean;
-  subject: Node;
-}
 
 export interface PhasesProps {
   currentPhase: Node,
   linkedProp: Node,
   selectedPhase: Node,
-  subject: Node,
+  subject: NamedNode,
 }
 
 const useStepperOverrideStyles = makeStyles(() => ({
@@ -68,6 +62,14 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
     fontWeight: 'bold',
   },
 }));
+
+const renderStepLabel = (item: Node) => (
+  <Resource subject={item}>
+    <Property label={schema.name} />
+  </Resource>
+);
+
+const itemToKey = (item: Node) => item.value;
 
 const Phases: FC<PhasesProps> = ({
   currentPhase,
@@ -100,6 +102,30 @@ const Phases: FC<PhasesProps> = ({
     }
   }, [createActionStatus]);
 
+  const nodes = React.useMemo(() => (
+    Array.isArray(items)
+      ? items.filter(isNode)
+      : []
+  ), [items]);
+
+  const activeStep = nodes.findIndex((x) => x === (selectedPhase || currentPhase));
+
+  const createStepOnClick = React.useCallback(
+    (_: Node, index: number) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      const iri = phaseIRI(subject, index);
+      lrs.actions.ontola.navigate(iri);
+    },
+    [lrs]);
+
+  const handleNavButtonClick = React.useCallback((mod: number) => (
+    createStepOnClick(nodes[activeStep + mod], activeStep + mod)
+  ), [activeStep]);
+
+  const onNewStepClick = React.useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    lrs.actions.ontola.showDialog(createAction);
+  }, [lrs, createAction]);
   const Stepper = stepperBuilder<Node>();
 
   if (!entityIsLoaded(lrs, linkedProp)) {
@@ -118,32 +144,9 @@ const Phases: FC<PhasesProps> = ({
     return null;
   }
 
-  const nodes = items.filter(isNode);
-
   if (nodes.length === 0) {
     return null;
   }
-
-  const activeStep = nodes.findIndex((x) => x === (selectedPhase || currentPhase));
-
-  const renderStepLabel = (item: Node) => (
-    <Resource subject={item}>
-      <Property label={schema.name} />
-    </Resource>
-  );
-
-  const createStepOnClick = (item: Node) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    lrs.actions.ontola.navigate(isNamedNode(item) ? item : app.ns('#'));
-  };
-
-  const handleNavButtonClick = (mod: number) => createStepOnClick(nodes[activeStep + mod]);
-
-  const onNewStepClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    lrs.actions.ontola.showDialog(createAction);
-  };
-  const itemToKey = (item: Node) => item.value;
 
   return (
     <div className={classes.phaseStepperContainer}>

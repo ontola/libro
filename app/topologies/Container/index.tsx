@@ -11,6 +11,8 @@ export const containerTopology = argu.container;
 
 export interface ContainerProps {
   className?: string;
+  disableGutters?: boolean;
+  fixed?: boolean;
   size: Size;
 }
 
