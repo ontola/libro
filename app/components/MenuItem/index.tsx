@@ -11,7 +11,7 @@ import React, {
 import { NavLinkProps } from 'react-router-dom';
 
 import Image from '../Image';
-import Link, { LinkTheme } from '../Link';
+import Link from '../Link';
 
 interface MenuItemProps {
   action?: (e: MouseEvent<any>) => void;
@@ -58,7 +58,6 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
         ref={nestedRef}
         {...props}
         isActive={undefined}
-        theme={LinkTheme.Menu}
         to={actionSafeURL!}
       />
     ));

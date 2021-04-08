@@ -33,7 +33,6 @@ export enum LinkTarget {
 
 export enum LinkTheme {
   Default = 'default',
-  Menu = 'menu',
 }
 
 export enum LinkFeature {
