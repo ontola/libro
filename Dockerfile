@@ -2,8 +2,8 @@ FROM node:14 as builder
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
-RUN yarn --non-interactive --frozen-lockfile
 COPY . ./
+RUN yarn --immutable
 ARG BUGSNAG_KEY
 ENV BUGSNAG_KEY $BUGSNAG_KEY
 ARG CI_COMMIT_BRANCH
@@ -18,7 +18,7 @@ WORKDIR /usr/src/app
 
 COPY package.json yarn.lock /usr/src/app/
 # The packages are needed to build shrink-ray-current's native extensions
-RUN apk add python alpine-sdk && yarn install --production --frozen-lockfile --non-interactive && apk del python alpine-sdk
+RUN apk add python alpine-sdk && yarn install --production --immutable && apk del python alpine-sdk
 COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 COPY --from=builder /usr/src/app/static /usr/src/app/static
 

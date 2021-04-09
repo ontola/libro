@@ -3,10 +3,11 @@ image: node:12
 cache:
   paths:
     - node_modules/
+    - .yarn
 
 default:
   before_script:
-    - yarn --non-interactive --frozen-lockfile
+    - yarn --immutable
 
 build:
   stage: build
