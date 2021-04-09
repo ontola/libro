@@ -5,7 +5,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import AttachmentPreview from '../../components/AttachmentPreview';
-import { imageRepresentationUrl } from '../../helpers/attachments';
+import { imageRepresentationUrl, isPDF } from '../../helpers/attachments';
 import dbo from '../../ontology/dbo';
 import { cardListTopology } from '../../topologies/Card/CardList';
 
@@ -27,11 +27,13 @@ const MediaObjectPreview: FC<PropTypes> = ({
   sequenceIndex,
 }) => (
   <AttachmentPreview
+    isDocument
     caption={caption}
     contentUrl={contentUrl}
     filename={filename}
     isPartOf={isPartOf}
     sequenceIndex={sequenceIndex}
+    showPreviewDialog={isPDF(encodingFormat)}
     thumbnailURL={imageRepresentationUrl({ encodingFormat })}
   />
 );

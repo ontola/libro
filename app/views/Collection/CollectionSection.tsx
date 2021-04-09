@@ -17,6 +17,7 @@ import { CollectionTypes } from './types';
 
 interface CollectionSectionProps {
   direction: CardListDirection,
+  wrap?: boolean;
   to: SomeTerm;
   totalItems: SomeTerm;
 }
@@ -24,6 +25,7 @@ interface CollectionSectionProps {
 const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, topology: NamedNode | NamedNode[]) => {
   const CollectionSection: FC<CollectionSectionProps> = ({
     direction,
+    wrap,
     totalItems,
     to,
   }) => {
@@ -31,7 +33,7 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, t
 
     return (
       <CardContent noStartSpacing>
-        <CardList direction={direction}>
+        <CardList direction={direction} wrap={wrap}>
           {pagesShouldRender && <Property forceRender insideCollection label={ontola.pages} />}
           <Property label={as.totalItems} to={to} />
           <Property label={ontola.createAction} omniform={omniform} />

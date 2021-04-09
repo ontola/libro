@@ -14,27 +14,31 @@ import parser from 'uri-template';
 import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import Image from '../Image';
 
-import './AttachmentPreview.scss';
+import { DocumentAttachmentPreview } from './DocumentAttachmentPreview';
+import { ImageAttachmentPreview } from './ImageAttachmentPreview';
 
-interface PropTypes {
+interface AttachmentPreviewProps {
   caption: SomeTerm;
   contentUrl: SomeTerm;
   filename: SomeTerm;
+  isDocument: boolean;
   isPartOf: SomeNode;
   sequenceIndex: number;
+  showPreviewDialog?: boolean;
   thumbnailURL: SomeTerm;
 }
 
-const AttachmentPreview: React.FC<PropTypes> = ({
+const AttachmentPreview = ({
   caption,
   contentUrl,
+  isDocument,
   filename,
   isPartOf,
   sequenceIndex,
+  showPreviewDialog,
   thumbnailURL,
-}) => {
+}: AttachmentPreviewProps): JSX.Element => {
   const lrs = useLRS();
   const [attachments] = useResourceProperty(isPartOf, argu.attachments) as NamedNode[];
   const [attachmentsIriTemplate] = useResourceProperty(attachments, ontola.iriTemplate) as NamedNode[];
@@ -51,57 +55,42 @@ const AttachmentPreview: React.FC<PropTypes> = ({
     attachments && !entityIsLoaded(lrs, attachments),
   ]);
 
-  let wrapperProps;
+  const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
+  const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({
+    display: 'default',
+    page_size: 1,
+  }));
+  const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
+    display: 'default',
+    page: (sequenceIndex || 0) + 1,
+    page_size: 1,
+  }));
 
-  if (contentUrl) {
-    wrapperProps = {
-      download: true,
-      href: contentUrl.value,
-      title: 'Download',
-    };
-  } else {
-    const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
-    const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({
-      display: 'default',
-      page_size: 1,
-    }));
-    const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
-      display: 'default',
-      page: (sequenceIndex || 0) + 1,
-      page_size: 1,
-    }));
-    if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsIri)) {
-      lrs.queueEntity(attachmentsIri);
-    }
-    if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsPageIri)) {
-      lrs.queueEntity(attachmentsPageIri);
-    }
-    const handleClick: MouseEventHandler = (e) => {
-      e.preventDefault();
-      lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
-      lrs.actions.ontola.showDialog(attachmentsPageIri);
-    };
-    wrapperProps = {
-      href: attachmentsPageIri.value,
-      onClick: handleClick,
-    };
+  if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsIri)) {
+    lrs.queueEntity(attachmentsIri);
   }
+  if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsPageIri)) {
+    lrs.queueEntity(attachmentsPageIri);
+  }
+
+  const handleClick: MouseEventHandler = (e) => {
+    e.preventDefault();
+    lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
+    lrs.actions.ontola.showDialog(attachmentsPageIri);
+  };
+
   const label = caption && caption.value ? caption.value : filename && filename.value;
 
+  const Preview = isDocument ? DocumentAttachmentPreview : ImageAttachmentPreview;
+
   return (
-    <a
-      className="AttachmentPreview"
-      rel="noopener noreferrer"
-      target="_blank"
-      {...wrapperProps}
-    >
-      <Image className="AttachmentPreview__image" linkedProp={thumbnailURL} />
-      {label && (
-        <h1 className="AttachmentPreview__title" title={label}>
-          {label}
-        </h1>
-      )}
-    </a>
+    <Preview
+      downloadURL={contentUrl?.value}
+      label={label}
+      showPreviewDialog={!!showPreviewDialog}
+      thumbnailURL={thumbnailURL}
+      onPreviewClick={handleClick}
+    />
   );
 };
 

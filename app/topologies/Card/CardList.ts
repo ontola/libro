@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
@@ -7,6 +9,7 @@ export enum CardListDirection {
 
 interface PropTypes {
   direction?: CardListDirection;
+  wrap?: boolean;
 }
 
 /**
@@ -26,7 +29,11 @@ class CardList extends Topology<PropTypes> {
   }
 
   public getClassName(): string {
-    return `CardList ${this.props.direction === 'column' ? 'CardList--column' : ''}`;
+    return clsx({
+      'CardList': true,
+      'CardList--column': this.props.direction === 'column',
+      'CardList--wrap': this.props.wrap,
+    });
   }
 }
 
