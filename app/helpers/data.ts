@@ -109,8 +109,12 @@ function entityHasError(lrs: LinkReduxLRSType, iri: Node): boolean {
   return status !== null && status >= BAD_REQUEST;
 }
 
-function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRSType>(lrs: T, iri: Node): boolean {
-  return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK || lrs.getStatus(iri).status === NOT_FOUND;
+function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRSType>(lrs: T, iri: Node | undefined): boolean {
+  if (!iri) {
+    return false;
+  }
+
+  return lrs.tryEntity(iri).length > 0 || [OK, NOT_FOUND].includes(lrs.getStatus(iri).status!);
 }
 
 function numAsc(a: Quad, b: Quad) {
