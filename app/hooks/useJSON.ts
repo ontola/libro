@@ -2,16 +2,18 @@ import React from 'react';
 
 import { handle } from '../helpers/logging';
 
-const useJSON = <T>(path: string): T | undefined => {
+const useJSON = <T>(path: string | undefined): T | undefined => {
   const [json, setJSON] = React.useState<T | undefined>(undefined);
 
   React.useEffect(() => {
-    fetch(path)
-      .then((res) => res.json())
-      .then(setJSON)
-      .catch((e) => {
-        handle(e);
-      });
+    if (path) {
+      fetch(path)
+        .then((res) => res.json())
+        .then(setJSON)
+        .catch((e) => {
+          handle(e);
+        });
+    }
   }, [path]);
 
   return json;
