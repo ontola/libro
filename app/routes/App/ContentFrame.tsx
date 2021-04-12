@@ -23,7 +23,6 @@ import headers from '../../themes/headers';
 
 export interface ContentFrameProps {
   children: React.ReactNode;
-  footResources: string[];
   theme: string;
   themeOptions: URLSearchParams;
   title: string;
