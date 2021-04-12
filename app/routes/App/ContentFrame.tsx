@@ -51,7 +51,7 @@ const ContentFrame = ({
         />
         <SkipNavigation />
         <div className={CONTAINER_ELEMENT} id={CONTAINER_ELEMENT}>
-          <Header footerResources={footerResources} />
+          <Header themeOptions={themeOptions} />
           <div className="Banners">
             <Resource subject={app.bannerMembers} />
           </div>

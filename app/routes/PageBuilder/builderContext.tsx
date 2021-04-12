@@ -3,6 +3,7 @@ import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
 import React from 'react';
 
 import useJSON from '../../hooks/useJSON';
+import useStoredState from '../../hooks/useStoredState';
 
 import { EditorContextBundle } from './useEditorContextBundle';
 import { useParsedSource } from './useParsedSource';
@@ -19,9 +20,11 @@ export interface BuilderContext {
   setResourceIndex: (s: number) => void;
   setShowEditor: (b: boolean) => void;
   setSource: (s: string) => void;
+  setTheme: (s: string) => void;
   showEditor: boolean;
   source: string | undefined;
   saveDocument: (id: string) => Promise<unknown>;
+  theme: string | undefined;
 }
 
 export const builderContext = React.createContext<BuilderContext>({
@@ -37,8 +40,10 @@ export const builderContext = React.createContext<BuilderContext>({
   setResourceIndex: (_: number) => undefined,
   setShowEditor: (_: boolean) => undefined,
   setSource: (_: string) => undefined,
+  setTheme: (_: string) => undefined,
   showEditor: true,
   source: '',
+  theme: 'common',
 });
 
 export const PageBuilderContext: React.FC = ({ children }) => {
@@ -49,6 +54,7 @@ export const PageBuilderContext: React.FC = ({ children }) => {
   const [resourceIndex, setResourceIndex] = React.useState<number>(0);
   const [showEditor, setShowEditor] = React.useState<boolean>(true);
   const document = useJSON<{ source: string }>(documents?.[documentIndex]);
+  const [theme, setTheme] = useStoredState('libro.pagebuilder.slectedTheme', 'common');
 
   const saveDocument = (id: string) => (
     fetch(`/_libro/docs/${id}`, {
@@ -73,8 +79,10 @@ export const PageBuilderContext: React.FC = ({ children }) => {
     setResourceIndex,
     setShowEditor,
     setSource,
+    setTheme,
     showEditor,
     source,
+    theme,
   });
   const [ctx, setCtx] = React.useState<BuilderContext>(() => nextContext());
   React.useEffect(() => {
@@ -91,7 +99,9 @@ export const PageBuilderContext: React.FC = ({ children }) => {
     setDocumentIndex,
     setResourceIndex,
     setShowEditor,
+    setTheme,
     showEditor,
+    theme,
   ]);
 
   React.useEffect(() => {

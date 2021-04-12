@@ -132,7 +132,7 @@ const CollectionProvider = ({
   const sortOptions = useSorting(currentCollection);
   const originalFilters = useResourceProperty(originalCollection, ontola.collectionFilter);
   const currentFilters = useResourceProperty(currentCollection, ontola.collectionFilter);
-  const appliedFilters = currentFilters.filter(filter => !originalFilters.includes(filter));
+  const appliedFilters = currentFilters.filter((filter) => !originalFilters.includes(filter));
 
   const collectionOptions = React.useMemo(() => ({
     collectionDisplay: resolvedCollectionDisplay,

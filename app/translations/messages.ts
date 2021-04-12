@@ -356,6 +356,40 @@ export const motionMessages = defineMessages({
   },
 });
 
+export const pageBuilderToolbarMessages = defineMessages({
+  documentDropdownLabel: {
+    defaultMessage: 'Documents',
+    id: 'https://app.argu.co/i18n/pagebuilder/documentDropdownLabel',
+  },
+  override: {
+    defaultMessage: 'Are you sure you want to overwrite:\n{docID}?',
+    id: 'https://app.argu.co/i18n/pagebuilder/override',
+  },
+  resourceDropdownLabel: {
+    defaultMessage: 'Resource (selected no {current}/{total})',
+    id: 'https://app.argu.co/i18n/pagebuilder/resourceDropdownLabel',
+  },
+  saveAsButtonLabel: {
+    defaultMessage: 'Save As',
+    id: 'https://app.argu.co/i18n/pagebuilder/saveAsButtonLabel',
+  },
+  saveAsPrompt: {
+    defaultMessage: 'Save document as:',
+    id: 'https://app.argu.co/i18n/pagebuilder/saveAsPrompt',
+  },
+  saveButtonLabel: {
+    defaultMessage: 'Save',
+    id: 'https://app.argu.co/i18n/pagebuilder/saveButtonLabel',
+  },
+  savedNotification: {
+    defaultMessage: 'Document saved.',
+    id: 'https://app.argu.co/i18n/pagebuilder/savedNotification',
+  },
+  themeDropdownLabel: {
+    defaultMessage: 'Theme',
+    id: 'https://app.argu.co/i18n/pagebuilder/themeDropdownLabel',
+  },
+});
 
 export const personMessages = defineMessages({
   postedBy: {
