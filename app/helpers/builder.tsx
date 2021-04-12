@@ -33,7 +33,16 @@ const component = (_: LinkReduxLRSType) => {
     const Comp = topologyComponentMap[rdf.id(t)] || componentMap[rdf.id(t)];
     const propsIsChildren = Array.isArray(props);
     const compProps = propsIsChildren ? {} : (props || {});
-    const childElems = propsIsChildren ? props : children;
+    const childElems = React.Children.map(
+      propsIsChildren
+        ? props as JSX.Element[]
+        : children,
+      (child, i) => (
+        <React.Fragment key={i}>
+          {child}
+        </React.Fragment>
+      ),
+    );
 
     return React.createElement(
       Comp,
