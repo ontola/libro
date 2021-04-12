@@ -7,14 +7,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import Showcase from '../../topologies/Showcase';
-
-import CallToAction from './CallToAction';
-import Header from './Header';
-import { SalesTheme, withSalesTheme } from './SalesThemeProvider';
+import argu from '../../../ontology/argu';
+import Container from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import Showcase from '../../../topologies/Showcase';
+import CallToAction from '../CallToAction/CallToAction';
+import Header from '../Headers/Header';
+import { SalesTheme, withSalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   buttonPrimary: {
@@ -82,7 +81,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const LandingPageFull: FC = () => {
+const HomePage: FC = () => {
   const classes = useStyles();
   const [backgroundImage] = useProperty(argu.ns('backgroundImage'));
   const [backgroundImageMobile] = useProperty(argu.ns('backgroundImageMobile'));
@@ -134,10 +133,10 @@ const LandingPageFull: FC = () => {
   );
 };
 
-LandingPageFull.type = argu.ns('LandingPage');
+HomePage.type = argu.ns('HomePage');
 
-LandingPageFull.topology = fullResourceTopology;
+HomePage.topology = fullResourceTopology;
 
-LandingPageFull.hocs = [withSalesTheme];
+HomePage.hocs = [withSalesTheme];
 
-export default LandingPageFull;
+export default HomePage;

@@ -131,6 +131,7 @@
   "https://app.argu.co/i18n/pdf/nextPage":  "Next page (→)",
   "https://app.argu.co/i18n/pdf/previousPage": "Previous page (←)",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Pinned at {date}",
+  "https://app.argu.co/i18n/sales/readmore": "Read more",
   "https://app.argu.co/i18n/schema:Person/postedByText": "Posted by {name}",
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Show {name}'s profile",
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": "View all {count} reactions...",

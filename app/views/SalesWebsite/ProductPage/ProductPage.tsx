@@ -1,5 +1,6 @@
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { Node, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -8,11 +9,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import argu from '../../../ontology/argu';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
-import CallToAction from '../CallToAction';
-import HeaderProductPages from '../HeaderProductPages';
+import CallToAction from '../CallToAction/CallToAction';
+import HeaderProductPages from '../Headers/HeaderProductPages';
+import Parallax from '../Parallax/Parallax';
 import { SalesTheme, withSalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
@@ -64,13 +67,16 @@ const ProductPage: FC = () => {
   const [title] = useProperty(schema.description);
   const [text] = useProperty(schema.text);
   const [productTextTitle] = useProperty(argu.ns('productTextTitle'));
-  const [productText1] = useProperty(argu.ns('productTextContentAlinea1'));
-  const [productText2] = useProperty(argu.ns('productTextContentAlinea2'));
-  const [productText3] = useProperty(argu.ns('productTextContentAlinea3'));
+  const [productText1] = useProperty(argu.ns('productTextContent')) as Node[];
+  const productTexts = useContainerToArr(productText1);
   const [featureTitle] = useProperty(argu.ns('featureTitle'));
   const [callToActionButtonText] = useProperty(argu.ns('buttonText'));
   const [callToActionText] = useProperty(argu.ns('callToActionText'));
   const [callToActionTitle] = useProperty(argu.ns('callToActionTitle'));
+  const [parallax] = useProperty(argu.ns('parallax'));
+  const [titleFunctionaliteiten] = useProperty(argu.ns('titleFunctionaliteiten'));
+  const [buttonTextFunctionaliteiten] = useProperty(argu.ns('buttonTextFunctionaliteiten'));
+  const [textFunctionaliteiten] = useProperty(argu.ns('textFunctionaliteiten'));
 
   return (
     <div className={classes.wrapper}>
@@ -90,24 +96,16 @@ const ProductPage: FC = () => {
             {productTextTitle.value}
           </Typography>
           <div className={classes.textBlockContainer}>
-            <Typography
-              className={classes.textBlock}
-              variant="body1"
-            >
-              {productText1.value}
-            </Typography>
-            <Typography
-              className={classes.textBlock}
-              variant="body1"
-            >
-              {productText2.value}
-            </Typography>
-            <Typography
-              className={classes.textBlock}
-              variant="body1"
-            >
-              {productText3.value}
-            </Typography>
+            {Array.isArray(productTexts) && productTexts
+              .map((paragraph: SomeTerm, i: number) => (
+                <Typography
+                  className={classes.textBlock}
+                  key={i}
+                  variant="body1"
+                >
+                  {paragraph.value}
+                </Typography>
+              ))}
           </div>
         </Container>
       </HeaderProductPages>
@@ -127,6 +125,9 @@ const ProductPage: FC = () => {
           <Property label={argu.ns('cases')} />
         </Container>
       </div>
+      <Container>
+        <Property label={argu.ns('functionalities')} />
+      </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}
         imageUrl="/static/images/call_to_action_background.svg"

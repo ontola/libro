@@ -1,9 +1,14 @@
-import { Button, Typography } from '@material-ui/core';
+import {
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { SalesTheme } from './SalesThemeProvider';
+import { SalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
@@ -13,56 +18,60 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   header: {
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
-    backgroundPosition: 'center',
+    backgroundPosition: '50% 20%',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+    backgroundSize: '1375 px',
     display: 'flex',
     flexDirection: 'column',
-    paddingBottom: '5rem',
-    paddingTop: '2rem',
-    width: '100%',
+    justifyContent: 'center',
   },
   subtitle: {
-    color: 'white',
-    fontSize: 22,
-    margin: 'auto',
-    marginBottom: '3rem',
     maxWidth: '40rem',
+    paddingBottom: '2rem',
+    paddingLeft: '2rem',
+    paddingRight: '2rem',
     textAlign: 'center',
   },
   title: {
-    color: 'white',
-    maxWidth: 900,
+    marginTop: '8rem',
     textAlign: 'center',
   },
 }));
 
 interface HeaderProps {
+  backgroundImageUrl: string,
+  backgroundImageUrlMobile: string,
   buttonText: string,
   title: string,
   subtitle: string,
-  imageUrl: string,
 }
 
 /** Full page with a branded header */
-const CallToAction = ({
+const Header: React.FC<HeaderProps> = ({
+  backgroundImageUrl,
+  backgroundImageUrlMobile,
   buttonText,
   title,
   subtitle,
-  imageUrl,
-}: HeaderProps): JSX.Element => {
+  children,
+}) => {
   const classes = useStyles();
+  const styles = useTheme();
+  const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
+    ? backgroundImageUrlMobile : backgroundImageUrl;
 
   return (
     <div
       className={classes.header}
-      style={{
-        backgroundColor: '#2D7080',
-        backgroundImage: `url(${imageUrl})`,
-      }}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <Typography className={classes.title} variant="h1">{title}</Typography>
-      <Typography className={classes.subtitle} variant="subtitle1">{subtitle}</Typography>
+      <Typography
+        className={classes.subtitle}
+        variant="subtitle1"
+      >
+        {subtitle}
+      </Typography>
       <Button
         className={classes.button}
         color="secondary"
@@ -71,8 +80,9 @@ const CallToAction = ({
       >
         {buttonText}
       </Button>
-    </div>
+      {children}
+    </div >
   );
 };
 
-export default CallToAction;
+export default Header;

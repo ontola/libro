@@ -1,60 +1,43 @@
 import {
-  Button,
   Grid,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
+import Button from '@material-ui/core/Button/Button';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import Image from '../../components/Image';
-import Container from '../../topologies/Container';
+import Container from '../../../topologies/Container';
 
-import { SalesTheme } from './SalesThemeProvider';
+import { SalesTheme } from './../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
-    alignItems: 'center',
-    display: 'flex',
-    fontSize: 18,
+    fontSize: 24,
+    fontWeight: 'bold',
     justifyContent: 'center',
-    marginLeft: 8,
+    margin: 30,
     textTransform: 'none',
+    [theme.breakpoints.up('md')]: {
+      justifyContent: 'flex-end',
+    },
   },
   buttonWrapper: {
-    alignItems: 'left',
     display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.up('md')]: {
-      alignItems: 'left',
-      justifyContent: 'left',
-    },
   },
   header: {
     alignItems: 'center',
+    backgroundAttachment: 'fixed',
     backgroundColor: theme.palette.background.default,
-    backgroundPosition: '50% 2%',
+    backgroundPosition: '50% 40%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '1375 px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-  },
-  image: {
-    borderRadius: '50%',
-    padding: 20,
-  },
-  imageContainer: {
-    flex: 1,
-  },
-  imageWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.down('md')]: {
-      margin: -25,
-    },
+
   },
   subtitle: {
     textAlign: 'center',
@@ -71,38 +54,32 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-interface HeaderProps {
+interface ParallaxProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
   buttonText: string,
   title: string,
   subtitle: string,
-  imageUrl: any,
 }
 
 /** Full page with a branded header */
-const HeaderProductPages: React.FC<HeaderProps> = ({
+const Parallax: React.FC<ParallaxProps> = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
   buttonText,
   title,
   subtitle,
-  imageUrl,
   children,
 }) => {
   const classes = useStyles();
   const styles = useTheme();
-  const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
+  const parallax = useMediaQuery(styles.breakpoints.down('xs'))
     ? backgroundImageUrlMobile : backgroundImageUrl;
-
-  // return hele image div'je / componentje hier
-  const image = useMediaQuery(styles.breakpoints.down('sm'))
-    ? null : imageUrl;
 
   return (
     <div
       className={classes.header}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: `url(${parallax})` }}
     >
       <Container>
         <Grid
@@ -111,8 +88,7 @@ const HeaderProductPages: React.FC<HeaderProps> = ({
           direction="row"
           justify="center"
         >
-          <Grid item md={1} />
-          <Grid item direction="column" md={6} sm={12}>
+          <Grid item direction="column" md={7} sm={12}>
             <Typography
               className={classes.title}
               variant="h2"
@@ -125,24 +101,25 @@ const HeaderProductPages: React.FC<HeaderProps> = ({
             >
               {subtitle}
             </Typography>
-            <div className={classes.buttonWrapper}>
-              <Button
-                className={classes.button}
-                color="secondary"
-                endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
-                variant="contained"
-              >
-                {buttonText}
-              </Button>
-            </div>
           </Grid>
-          <Grid item className={classes.imageContainer} md={5} sm={12}>
-            <div className={classes.imageWrapper}>
-              <Image
-                className={classes.image}
-                linkedProp={image}
-              />
-            </div>
+          <Grid
+            item
+            className={classes.buttonWrapper}
+            direction="column"
+            md={5}
+            sm={12}
+          >
+            <Button
+              className={classes.button}
+              endIcon={(
+                <ArrowRightAltIcon
+                  color="primary"
+                  style={{ fontSize: 35 }}
+                />
+              )}
+            >
+              {buttonText}
+            </Button>
           </Grid>
           {children}
         </Grid>
@@ -151,4 +128,4 @@ const HeaderProductPages: React.FC<HeaderProps> = ({
   );
 };
 
-export default HeaderProductPages;
+export default Parallax;

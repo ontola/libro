@@ -39,12 +39,14 @@ import FeatureIcon from './SalesWebsite/Feature';
 import FeatureShowcase from './SalesWebsite/FeatureShowcase';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
+import FunctionalitiesContainer from './SalesWebsite/FunctionalitiesContainer';
 import FolderEntry from './FolderEntry';
 import FormField from './FormField';
 import FormGroup from './FormGroup';
 import FormOption from './FormOption';
 import FormPage from './FormPage';
 import Forum from './Forum/index';
+import Functionality from './SalesWebsite/Functionality';
 import Glapp from './Glapp';
 import Group from './Group';
 import GroupMembership from './GroupMembership';
@@ -58,7 +60,7 @@ import ProductPage from './SalesWebsite/ProductPage';
 import ProductShowcase from './SalesWebsite/ProductShowcase';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
-import LandingPage from './SalesWebsite';
+import HomePage from './SalesWebsite/HomePage';
 import Loading from './Loading';
 import MapQuestion from './MapQuestion';
 import Measure from './Measure';
@@ -142,6 +144,8 @@ export function getViews() {
     ...FormOption,
     ...FormPage,
     ...Forum,
+    ...Functionality,
+    ...FunctionalitiesContainer,
     ...Glapp,
     ...Group,
     ...GroupMembership,
@@ -150,7 +154,7 @@ export function getViews() {
     ...Intervention,
     ...InterventionType,
     ...InfiniteCollectionPage,
-    ...LandingPage,
+    ...HomePage,
     ...Loading,
     ...MapQuestion,
     ...Measure,
