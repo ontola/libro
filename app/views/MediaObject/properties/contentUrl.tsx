@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AnnotatedPDFViewer from '../../../components/AnnotatedPDFViewer';
 import Image from '../../../components/Image';
-import PDFViewer from '../../../containers/PDFViewer';
 import {
   downloadUrl,
   imageRepresentationUrl,
@@ -28,9 +28,12 @@ const ContentUrl: FC<PropTypes> = ({
   linkedProp,
   subject,
 }) => {
-  if (isPDF(encodingFormat)) {
+  if (isPDF(encodingFormat, linkedProp)) {
     return (
-      <PDFViewer subject={subject!} url={linkedProp.value} />
+      <AnnotatedPDFViewer
+        subject={subject}
+        url={linkedProp.value}
+      />
     );
   }
 

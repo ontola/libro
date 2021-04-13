@@ -349,6 +349,15 @@
   "https://app.argu.co/i18n/pages/noHomepage": {
     "defaultMessage": "Welcome to {name}!"
   },
+  "https://app.argu.co/i18n/pdf/commentClickToAdd": {
+    "defaultMessage": "Click where you want to add your comment"
+  },
+  "https://app.argu.co/i18n/pdf/commentMode/disable": {
+    "defaultMessage": "Cancel"
+  },
+  "https://app.argu.co/i18n/pdf/commentMode/enable": {
+    "defaultMessage": "Add comment"
+  },
   "https://app.argu.co/i18n/pdf/download": {
     "defaultMessage": "Download file (D)"
   },

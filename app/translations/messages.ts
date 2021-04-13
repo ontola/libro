@@ -402,6 +402,18 @@ export const personMessages = defineMessages({
 });
 
 export const pdfMessages = defineMessages({
+  commentClickToAdd: {
+    defaultMessage: 'Click where you want to add your comment',
+    id: 'https://app.argu.co/i18n/pdf/commentClickToAdd',
+  },
+  commentModeDisable: {
+    defaultMessage: 'Cancel',
+    id: 'https://app.argu.co/i18n/pdf/commentMode/disable',
+  },
+  commentModeEnable: {
+    defaultMessage: 'Add comment',
+    id: 'https://app.argu.co/i18n/pdf/commentMode/enable',
+  },
   download: {
     defaultMessage: 'Download file (D)',
     id: 'https://app.argu.co/i18n/pdf/download',

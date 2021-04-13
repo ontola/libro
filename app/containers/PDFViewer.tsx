@@ -6,8 +6,13 @@ import { LoadingGridContent } from '../components/Loading';
 import Suspense from '../components/Suspense';
 
 export interface PDFViewerProps {
+  AdditionalButtons?: React.ElementType;
+  Overlay?: React.ElementType;
   url: string;
   subject: SubjectType;
+  pageNumber: number;
+  onClick?: (e: MouseEvent, docRef: any) => void;
+  onPageNumberChange: (num: number) => void;
 }
 
 const PDFViewer = React.lazy(

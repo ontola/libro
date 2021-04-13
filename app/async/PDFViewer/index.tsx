@@ -19,7 +19,6 @@ import PDFLoader from './PDFLoader';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-
 interface OnLoadSuccessType {
   numPages: number;
 }
@@ -35,9 +34,17 @@ const calcMaxWidth = (windowWidth: number) => {
   return windowWidth;
 };
 
-const PDFViewer = (props: PDFViewerProps): JSX.Element => {
+const onKeyUp = () => null;
+
+const PDFViewer = ({
+  AdditionalButtons,
+  Overlay,
+  pageNumber,
+  onClick,
+  onPageNumberChange,
+  url,
+}: PDFViewerProps): JSX.Element => {
   const intl = useIntl();
-  const [pageNumber, setPageNumber] = React.useState(1);
   const [docRef, setDocRef] = React.useState<any>(null);
   const [numPages, setNumPages] = React.useState<number>(0);
   const [maxWidth] = React.useState<number>(calcMaxWidth(window.innerWidth));
@@ -48,25 +55,31 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
   };
   const pdfWrapper = React.createRef<HTMLInputElement>();
 
+  const wrappedOnClick = React.useCallback((e) => {
+    if (onClick) {
+      onClick(e, docRef);
+    }
+  }, [docRef, onClick]);
+
   const handlePreviousPage = React.useCallback(() => {
     if (pageNumber === 1) {
       return;
     }
-    setPageNumber(pageNumber - 1);
-  }, [pageNumber, setPageNumber]);
+    onPageNumberChange(pageNumber - 1);
+  }, [pageNumber, onPageNumberChange]);
 
   const handleNextPage = React.useCallback(() => {
     if (numPages === pageNumber) {
       return;
     }
-    setPageNumber(pageNumber + 1);
-  }, [pageNumber, setPageNumber]);
+    onPageNumberChange(pageNumber + 1);
+  }, [pageNumber, onPageNumberChange]);
 
   const onDocumentLoadSuccess = React.useCallback((e: OnLoadSuccessType) => {
     setNumPages(e.numPages);
-    setPageNumber(1);
+    onPageNumberChange(1);
     setShowButtons(true);
-  }, [setNumPages, setPageNumber, setShowButtons]);
+  }, [setNumPages, onPageNumberChange, setShowButtons]);
 
   const setFillWidth = React.useCallback(() => {
     if (docRef !== null) {
@@ -92,11 +105,11 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
       <p>
         De PDF kan niet worden geladen.
       </p>
-      <a download href={props.url}>Download het bestand.</a>
+      <a download href={url}>Download het bestand.</a>
       {/* If the PDF does not render, show the plaintext */}
       <Property label={schema.text} />
     </div>
-  ), [props.url]);
+  ), [url]);
 
   const keyHandlers = React.useMemo(() => ({
     FULLSCREEN: setFillWidth,
@@ -123,10 +136,12 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
               width: drawer.width,
             }}
             tabIndex={-1}
+            onClick={wrappedOnClick}
+            onKeyUp={onKeyUp}
           >
             <Document
               error={<PDFErrorComponent />}
-              file={props.url}
+              file={url}
               inputRef={(ref: any) => { setDocRef(ref); }}
               loading={<PDFLoader />}
               onLoadSuccess={onDocumentLoadSuccess}
@@ -138,6 +153,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
                 width={drawer.width}
               />
             </Document>
+            {Overlay && <Overlay />}
           </div>
         </div>
         {showButtons && (
@@ -169,7 +185,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
               <IconButton
                 size="small"
                 title={intl.formatMessage(pdfMessages.download)}
-                onClick={() => window.open(props.url)}
+                onClick={() => window.open(url)}
               >
                 <FontAwesome name="download" />
               </IconButton>
@@ -180,6 +196,7 @@ const PDFViewer = (props: PDFViewerProps): JSX.Element => {
               >
                 <FontAwesome name="expand" />
               </IconButton>
+              {AdditionalButtons && <AdditionalButtons />}
             </div>
           </div>
         )}

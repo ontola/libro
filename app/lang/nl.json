@@ -647,42 +647,6 @@
       "value": "Typ om te zoeken"
     }
   ],
-  "https://app.argu.co/i18n/forms/session/accountLocked": [
-    {
-      "type": 0,
-      "value": "Account vergendeld door te veel mislukte login pogingen"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/accountLocked/label": [
-    {
-      "type": 0,
-      "value": "Account vergrendeld?"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/back": [
-    {
-      "type": 0,
-      "value": "terug"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/confirmationLink/label": [
-    {
-      "type": 0,
-      "value": "Bevestigingslink opnieuw sturen?"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/email/label": [
-    {
-      "type": 0,
-      "value": "Jouw e-mail adres"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/email/placeholder": [
-    {
-      "type": 0,
-      "value": "email@voorbeeld.nl"
-    }
-  ],
   "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": [
     {
       "type": 0,
@@ -693,52 +657,10 @@
       "value": "email"
     }
   ],
-  "https://app.argu.co/i18n/forms/session/forgotLink/label": [
-    {
-      "type": 0,
-      "value": "Wachtwoord vergeten?"
-    }
-  ],
   "https://app.argu.co/i18n/forms/session/link/label": [
     {
       "type": 0,
       "value": "Log in"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/login": [
-    {
-      "type": 0,
-      "value": "inloggen"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/or": [
-    {
-      "type": 0,
-      "value": "of"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/password/invalid": [
-    {
-      "type": 0,
-      "value": "Fout of ongeldig wachtwoord"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/password/label": [
-    {
-      "type": 0,
-      "value": "Jouw wachtwoord"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/register": [
-    {
-      "type": 0,
-      "value": "registreren"
-    }
-  ],
-  "https://app.argu.co/i18n/forms/session/signinregister/label": [
-    {
-      "type": 0,
-      "value": "Log in of registreer"
     }
   ],
   "https://app.argu.co/i18n/forms/signOut/link/label": [
@@ -765,6 +687,78 @@
       "value": "Moeite met navigeren? Mail ons!"
     }
   ],
+  "https://app.argu.co/i18n/pagebuilder/documentDropdownLabel": [
+    {
+      "type": 0,
+      "value": "Documenten"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/override": [
+    {
+      "type": 0,
+      "value": "Weet je zeker dat je het document wilt overschrijven: "
+    },
+    {
+      "type": 1,
+      "value": "docID"
+    },
+    {
+      "type": 0,
+      "value": "?"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/resourceDropdownLabel": [
+    {
+      "type": 0,
+      "value": "Resource ("
+    },
+    {
+      "type": 1,
+      "value": "current"
+    },
+    {
+      "type": 0,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "value": "total"
+    },
+    {
+      "type": 0,
+      "value": " geselecteerd)"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveAsButtonLabel": [
+    {
+      "type": 0,
+      "value": "Opslaan als"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveAsPrompt": [
+    {
+      "type": 0,
+      "value": "Document opslaan als:"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveButtonLabel": [
+    {
+      "type": 0,
+      "value": "Opslaan"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/savedNotification": [
+    {
+      "type": 0,
+      "value": "Document opgeslagen."
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/themeDropdownLabel": [
+    {
+      "type": 0,
+      "value": "Theme"
+    }
+  ],
   "https://app.argu.co/i18n/pages/closed": [
     {
       "type": 0,
@@ -783,6 +777,24 @@
     {
       "type": 0,
       "value": "!"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/commentClickToAdd": [
+    {
+      "type": 0,
+      "value": "Klik waar je de reactie wil plaatsen"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/commentMode/disable": [
+    {
+      "type": 0,
+      "value": "Annuleren"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/commentMode/enable": [
+    {
+      "type": 0,
+      "value": "Nieuwe reactie"
     }
   ],
   "https://app.argu.co/i18n/pdf/download": [
@@ -977,30 +989,6 @@
       "value": "Zoek in:"
     }
   ],
-  "https://app.argu.co/i18n/session/confirmLabel": [
-    {
-      "type": 0,
-      "value": "Bevestig"
-    }
-  ],
-  "https://app.argu.co/i18n/session/continueLabel": [
-    {
-      "type": 0,
-      "value": "Ga verder"
-    }
-  ],
-  "https://app.argu.co/i18n/session/noPassword": [
-    {
-      "type": 0,
-      "value": "Dit account heeft nog geen wachtwoord. We hebben zojuist een nieuw email gestuurd waarmee een wachtwoord kan worden ingesteld. Doe dit eerst voor je verder kan gaan."
-    }
-  ],
-  "https://app.argu.co/i18n/session/unexpectedStateLabel": [
-    {
-      "type": 0,
-      "value": "Overwachtse staat"
-    }
-  ],
   "https://app.argu.co/i18n/teamGL/glappNotUsed": [
     {
       "type": 0,
@@ -1106,6 +1094,54 @@
     {
       "type": 0,
       "value": "Ja"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/desc": [
+    {
+      "type": 0,
+      "value": "DexTransfer gebruikt de DexPod - een gratis, open source server welke je zelf kunt hosten."
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/title": [
+    {
+      "type": 0,
+      "value": "Gedecentraliseerd"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/monetize/desc": [
+    {
+      "type": 0,
+      "value": "Geef een prijs aan jouw data. Kies ervoor om jouw data vindbaar te maken door het eenvoudig in de Dexes Marketplace te delen"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/monetize/title": [
+    {
+      "type": 0,
+      "value": "Verdien geld"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/secure/desc": [
+    {
+      "type": 0,
+      "value": "Volledig versleuteld, vereist gevalideerde e-mail adressen."
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/secure/title": [
+    {
+      "type": 0,
+      "value": "Veilig"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/signed/desc": [
+    {
+      "type": 0,
+      "value": "Wanneer je iets deelt op DexTransfer,"
+    }
+  ],
+  "https://dextransfer.eu/i18n/dexTransferHome/signed/title": [
+    {
+      "type": 0,
+      "value": "Ondertekende licentie"
     }
   ],
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": [

@@ -679,6 +679,78 @@
       "value": "Having trouble with navigation? Mail us!"
     }
   ],
+  "https://app.argu.co/i18n/pagebuilder/documentDropdownLabel": [
+    {
+      "type": 0,
+      "value": "Documents"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/override": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to overwrite: "
+    },
+    {
+      "type": 1,
+      "value": "docID"
+    },
+    {
+      "type": 0,
+      "value": "?"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/resourceDropdownLabel": [
+    {
+      "type": 0,
+      "value": "Resource (selected no "
+    },
+    {
+      "type": 1,
+      "value": "current"
+    },
+    {
+      "type": 0,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "value": "total"
+    },
+    {
+      "type": 0,
+      "value": ")"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveAsButtonLabel": [
+    {
+      "type": 0,
+      "value": "Save As"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveAsPrompt": [
+    {
+      "type": 0,
+      "value": "Save document as:"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveButtonLabel": [
+    {
+      "type": 0,
+      "value": "Save"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/savedNotification": [
+    {
+      "type": 0,
+      "value": "Document saved."
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/themeDropdownLabel": [
+    {
+      "type": 0,
+      "value": "Theme"
+    }
+  ],
   "https://app.argu.co/i18n/pages/closed": [
     {
       "type": 0,
@@ -697,6 +769,24 @@
     {
       "type": 0,
       "value": "!"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/commentClickToAdd": [
+    {
+      "type": 0,
+      "value": "Click where you want to add your comment"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/commentMode/disable": [
+    {
+      "type": 0,
+      "value": "Cancel"
+    }
+  ],
+  "https://app.argu.co/i18n/pdf/commentMode/enable": [
+    {
+      "type": 0,
+      "value": "Add comment"
     }
   ],
   "https://app.argu.co/i18n/pdf/download": [
