@@ -117,11 +117,11 @@ const routes = async function routes(app, port) {
   router.get('/_libro/docs/:id', document);
   __DEVELOPMENT__ && router.post('/_libro/docs/:id', saveDocument);
 
-  router.use(docMiddleware);
-
   router.use(sessMiddleware);
 
   router.use(apiMiddleware);
+
+  router.use(docMiddleware);
 
   router.use(authenticationMiddleware);
 
