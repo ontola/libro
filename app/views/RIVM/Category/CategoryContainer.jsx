@@ -5,12 +5,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import rivm from '../../ontology/rivm';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import CardContent from '../../components/Card/CardContent';
-import Card from '../../topologies/Card';
+import rivm from '../../../ontology/rivm';
+import { containerTopology } from '../../../topologies/Container';
+import { alertDialogTopology } from '../../../topologies/Dialog';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import CardContent from '../../../components/Card/CardContent';
+import Card from '../../../topologies/Card';
 
 const CategoryContainer = () => (
   <Card>

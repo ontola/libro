@@ -9,8 +9,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import rivm from '../../../ontology/rivm';
-import { allTopologies } from '../../../topologies';
+import rivm from '../../../../ontology/rivm';
+import { allTopologies } from '../../../../topologies';
 
 import './iconAttribute.scss';
 

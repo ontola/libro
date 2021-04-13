@@ -6,39 +6,46 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import Collection from '../../components/Collection';
-import app from '../../ontology/app';
-import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import meeting from '../../ontology/meeting';
-import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
-import wdt from '../../ontology/wdt';
-import ActionsBar from '../../topologies/ActionsBar';
-import CardAppendix from '../../topologies/Card/CardAppendix';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import { defaultMenus } from '../common';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import CardContent from '../../../components/Card/CardContent';
+import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import app from '../../../ontology/app';
+import argu from '../../../ontology/argu';
+import dbo from '../../../ontology/dbo';
+import meeting from '../../../ontology/meeting';
+import ontola from '../../../ontology/ontola';
+import rivm from '../../../ontology/rivm';
+import wdt from '../../../ontology/wdt';
+import ActionsBar from '../../../topologies/ActionsBar';
+import CardAppendix from '../../../topologies/Card/CardAppendix';
+import CardMain from '../../../topologies/Card/CardMain';
+import CardRow from '../../../topologies/Card/CardRow';
+import Container from '../../../topologies/Container';
+import DetailsBar from '../../../topologies/DetailsBar';
+import { inlineTopology } from '../../../topologies/Inline';
+import { defaultMenus } from '../../common';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const IncidentFull = ({ renderPartOf }) => (
+const MeasureTypeFull = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
-        <Property label={schema.superEvent} />
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
+          <LinkedDetailDate />
+          <Property label={argu.pinnedAt} />
+          <Property label={argu.expiresAt} />
+          <Property label={argu.followsCount} />
+          <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
+          <Property label={rivm.category} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+          <Property label={rivm.exampleOf} topology={inlineTopology} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
         </CardContent>
@@ -49,22 +56,13 @@ const IncidentFull = ({ renderPartOf }) => (
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
         </ActionsBar>
-        <Property label={meeting.agenda} onLoad={() => null} />
         <CardAppendix>
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
-      <Property label={argu.voteEvents} onLoad={() => null} />
-      <Collection
-        label={argu.blogPosts}
-        pageSize={1}
-        onLoad={() => null}
-      />
-      <Property label={schema.location} onLoad={() => null} />
-      <Property label={argu.motions} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={rivm.scenarios} />
+      <Property forceRender renderWhenEmpty label={rivm.measures} />
     </Container>
     <Container>
       <Property label={schema.comment} />
@@ -72,12 +70,12 @@ const IncidentFull = ({ renderPartOf }) => (
   </React.Fragment>
 );
 
-IncidentFull.type = rivm.Incident;
+MeasureTypeFull.type = rivm.MeasureType;
 
-IncidentFull.topology = fullResourceTopology;
+MeasureTypeFull.topology = fullResourceTopology;
 
-IncidentFull.propTypes = {
+MeasureTypeFull.propTypes = {
   renderPartOf: PropTypes.bool,
 };
 
-export default register(IncidentFull);
+export default register(MeasureTypeFull);

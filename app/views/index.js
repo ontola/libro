@@ -9,7 +9,6 @@ import AppSignOut from './AppSignOut';
 import ArguHome from './ArguHome';
 import Argument from './Argument/index';
 import Banner from './Banner/Banner';
-import Category from './Category';
 import Collection from './Collection';
 import CollectionFilter from './CollectionFilter';
 import CollectionPage from './CollectionPage';
@@ -22,7 +21,6 @@ import DataType from './DataType';
 import Dexes from './Dexes';
 import DialogManager from './DialogManager';
 import Document from './Document';
-import Employment from './Employment';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import ErrorResponse from './ErrorResponse';
@@ -36,16 +34,11 @@ import Forum from './Forum/index';
 import GroenLinks from './GroenLinks';
 import Group from './Group';
 import ImageObject from './ImageObject';
-import Incident from './Incident';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
-import Intervention from './Intervention';
-import InterventionType from './InterventionType';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
 import MapQuestion from './MapQuestion';
-import Measure from './Measure';
-import MeasureType from './MeasureType';
 import MediaObject from './MediaObject';
 import Meeting from './Meeting/properties/agenda';
 import Menu from './MenuNavbar';
@@ -59,8 +52,7 @@ import Phase from './Phase';
 import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
-import Risk from './Risk';
-import Scenario from './Scenario';
+import RIVM from './RIVM';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Snackbar from './Snackbar';
@@ -84,7 +76,6 @@ export function getViews() {
     ...Action,
     ...Argument,
     ...Banner,
-    ...Category,
     ...Collection,
     ...CollectionPage,
     ...CollectionFilter,
@@ -97,7 +88,6 @@ export function getViews() {
     ...Dexes,
     ...Document,
     ...DialogManager,
-    ...Employment,
     ...EntryPoint,
     ...Error,
     ...ErrorResponse,
@@ -111,14 +101,9 @@ export function getViews() {
     ...GroenLinks,
     ...Group,
     ...ImageObject,
-    ...Incident,
-    ...Intervention,
-    ...InterventionType,
     ...InfiniteCollectionPage,
     ...Loading,
     ...MapQuestion,
-    ...Measure,
-    ...MeasureType,
     ...MediaObject,
     ...Meeting,
     ...Menu,
@@ -134,8 +119,7 @@ export function getViews() {
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
-    ...Risk,
-    ...Scenario,
+    ...RIVM,
     ...SearchResult,
     ...SeqComp,
     ...Snackbar,

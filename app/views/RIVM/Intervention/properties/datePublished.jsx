@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import { useIntl } from 'react-intl';
 
-import rivm from '../../../ontology/rivm';
-import { attributeListTopology } from '../../../topologies/AttributeList';
+import rivm from '../../../../ontology/rivm';
+import { attributeListTopology } from '../../../../topologies/AttributeList';
 
 
 const DatePublished = ({ linkedProp }) => {

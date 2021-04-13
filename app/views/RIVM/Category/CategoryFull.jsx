@@ -7,14 +7,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import dbo from '../../ontology/dbo';
-import rivm from '../../ontology/rivm';
-import CardMain from '../../topologies/Card/CardMain';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { defaultMenus } from '../common';
+import CardContent from '../../../components/Card/CardContent';
+import dbo from '../../../ontology/dbo';
+import rivm from '../../../ontology/rivm';
+import CardMain from '../../../topologies/Card/CardMain';
+import Container from '../../../topologies/Container';
+import DetailsBar from '../../../topologies/DetailsBar';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import { defaultMenus } from '../../common';
 
 const CategoryFull = () => (
   <Container>

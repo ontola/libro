@@ -6,23 +6,23 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CardContent from '../../components/Card/CardContent';
-import Collection from '../../components/Collection';
-import app from '../../ontology/app';
-import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import meeting from '../../ontology/meeting';
-import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
-import wdt from '../../ontology/wdt';
-import ActionsBar from '../../topologies/ActionsBar';
-import CardAppendix from '../../topologies/Card/CardAppendix';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import { defaultMenus } from '../common';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import CardContent from '../../../components/Card/CardContent';
+import Collection from '../../../components/Collection';
+import app from '../../../ontology/app';
+import argu from '../../../ontology/argu';
+import dbo from '../../../ontology/dbo';
+import meeting from '../../../ontology/meeting';
+import ontola from '../../../ontology/ontola';
+import rivm from '../../../ontology/rivm';
+import wdt from '../../../ontology/wdt';
+import ActionsBar from '../../../topologies/ActionsBar';
+import CardAppendix from '../../../topologies/Card/CardAppendix';
+import CardMain from '../../../topologies/Card/CardMain';
+import CardRow from '../../../topologies/Card/CardRow';
+import Container from '../../../topologies/Container';
+import DetailsBar from '../../../topologies/DetailsBar';
+import { defaultMenus } from '../../common';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const ScenarioFull = ({ renderPartOf }) => (
   <React.Fragment>

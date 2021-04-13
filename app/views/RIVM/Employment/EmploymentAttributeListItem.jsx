@@ -8,9 +8,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
-import { attributeListTopology } from '../../topologies/AttributeList';
+import ontola from '../../../ontology/ontola';
+import rivm from '../../../ontology/rivm';
+import { attributeListTopology } from '../../../topologies/AttributeList';
 
 const EmploymentAttributeListItem = ({ image }) => (
   <React.Fragment>

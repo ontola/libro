@@ -4,18 +4,18 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import AttributeListItem from '../../components/AttributeListItem';
-import CardContent from '../../components/Card/CardContent';
-import LDLink from '../../components/LDLink';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
-import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
-import CardFixed from '../../topologies/Card/CardFixed';
-import DetailsBar from '../../topologies/DetailsBar';
-import AttributeList from '../../topologies/AttributeList';
-import { gridTopology } from '../../topologies/Grid';
+import AttributeListItem from '../../../components/AttributeListItem';
+import CardContent from '../../../components/Card/CardContent';
+import LDLink from '../../../components/LDLink';
+import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import argu from '../../../ontology/argu';
+import dbo from '../../../ontology/dbo';
+import ontola from '../../../ontology/ontola';
+import rivm from '../../../ontology/rivm';
+import CardFixed from '../../../topologies/Card/CardFixed';
+import DetailsBar from '../../../topologies/DetailsBar';
+import AttributeList from '../../../topologies/AttributeList';
+import { gridTopology } from '../../../topologies/Grid';
 
 const InterventionGrid = ({ renderPartOf }) => (
   <CardFixed>

@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import rivm from '../../../ontology/rivm';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import rivm from '../../../../ontology/rivm';
+import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 
 const EffectivityResearchMethod = ({ linkedProp }) => {
   const researchSplit = linkedProp.value.split(',');

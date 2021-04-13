@@ -3,15 +3,15 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import AttributeListItem from '../../components/AttributeListItem';
-import CardContent from '../../components/Card/CardContent';
-import LDLink from '../../components/LDLink';
-import dbo from '../../ontology/dbo';
-import CardFixed from '../../topologies/Card/CardFixed';
-import rivm from '../../ontology/rivm';
-import DetailsBar from '../../topologies/DetailsBar';
-import AttributeList from '../../topologies/AttributeList';
-import { gridTopology } from '../../topologies/Grid';
+import AttributeListItem from '../../../components/AttributeListItem';
+import CardContent from '../../../components/Card/CardContent';
+import LDLink from '../../../components/LDLink';
+import dbo from '../../../ontology/dbo';
+import CardFixed from '../../../topologies/Card/CardFixed';
+import rivm from '../../../ontology/rivm';
+import DetailsBar from '../../../topologies/DetailsBar';
+import AttributeList from '../../../topologies/AttributeList';
+import { gridTopology } from '../../../topologies/Grid';
 
 const InterventionTypeGrid = () => (
   <CardFixed>

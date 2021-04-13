@@ -8,9 +8,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import rivm from '../../../ontology/rivm';
-import { attributeListTopology } from '../../../topologies/AttributeList';
-import { tryParseFloat } from '../../../helpers/numbers';
+import rivm from '../../../../ontology/rivm';
+import { attributeListTopology } from '../../../../topologies/AttributeList';
+import { tryParseFloat } from '../../../../helpers/numbers';
 
 import './ratingAttribute.scss';
 
