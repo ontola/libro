@@ -4,23 +4,28 @@ import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  Property,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import argu from '../../../ontology/argu';
 import { showcaseTopology } from '../../../topologies/Showcase';
+import Image from '../../../components/Image';
 
 const useStyles = makeStyles({
   container: {
+    backgroundColor: 'FFF',
+    borderColor: '000',
+    borderWidth: 1,
+    boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+    display: 'flex',
     marginBottom: 20,
     marginTop: 20,
+    paddingTop: 20,
   },
   icon: {
     color: (props: Record<string, string>) => props.color,
     fontSize: 70,
-    margin: 30,
     textAlign: 'center',
   },
   image: {
@@ -46,6 +51,7 @@ const Functionality: FC = () => {
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [color] = useProperty(schema.color);
+  const [image] = useProperty(schema.image);
   const [textColor] = useProperty(argu.ns('textColor'));
   const classes = useStyles({
     color: color.value,
@@ -54,27 +60,27 @@ const Functionality: FC = () => {
 
   return (
     <Grid
-      item
+      container
       className={classes.container}
-      md={3}
-      sm={6}
-      xs={12}
+      direction="column"
+      justify="flex-start"
     >
-      <div className={classes.icon}>
-        <Property label={schema.image} />
-      </div>
+      <Image linkedProp={image} />
       <Typography
         className={classes.title}
         variant="h3"
       >
         {name.value}
       </Typography>
-      <div
+      <Typography
         className={classes.subtitle}
-        dangerouslySetInnerHTML={{ __html: text.value }}
-      />
+        variant="body1"
+      >
+        {text.value}
+      </Typography>
     </Grid>
   );
+
 };
 
 Functionality.type = argu.ns('Functionality');

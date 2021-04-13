@@ -15,7 +15,6 @@ import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import CallToAction from '../CallToAction/CallToAction';
 import HeaderProductPages from '../Headers/HeaderProductPages';
-import Parallax from '../Parallax/Parallax';
 import { SalesTheme, withSalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
@@ -73,10 +72,6 @@ const ProductPage: FC = () => {
   const [callToActionButtonText] = useProperty(argu.ns('buttonText'));
   const [callToActionText] = useProperty(argu.ns('callToActionText'));
   const [callToActionTitle] = useProperty(argu.ns('callToActionTitle'));
-  const [parallax] = useProperty(argu.ns('parallax'));
-  const [titleFunctionaliteiten] = useProperty(argu.ns('titleFunctionaliteiten'));
-  const [buttonTextFunctionaliteiten] = useProperty(argu.ns('buttonTextFunctionaliteiten'));
-  const [textFunctionaliteiten] = useProperty(argu.ns('textFunctionaliteiten'));
 
   return (
     <div className={classes.wrapper}>
@@ -125,7 +120,7 @@ const ProductPage: FC = () => {
           <Property label={argu.ns('cases')} />
         </Container>
       </div>
-      <Container>
+      <Container size="large">
         <Property label={argu.ns('functionalities')} />
       </Container>
       <CallToAction

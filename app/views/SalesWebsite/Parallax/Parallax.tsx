@@ -10,8 +10,7 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import Container from '../../../topologies/Container';
-
-import { SalesTheme } from './../SalesThemeProvider';
+import { SalesTheme } from '../SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
@@ -37,7 +36,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-
+    [theme.breakpoints.down('sm')]: {
+      backgroundAttachment: 'scroll',
+      backgroundPosition: '50% 0%',
+    },
   },
   subtitle: {
     textAlign: 'center',
@@ -73,7 +75,7 @@ const Parallax: React.FC<ParallaxProps> = ({
 }) => {
   const classes = useStyles();
   const styles = useTheme();
-  const parallax = useMediaQuery(styles.breakpoints.down('xs'))
+  const parallax = useMediaQuery(styles.breakpoints.down('sm'))
     ? backgroundImageUrlMobile : backgroundImageUrl;
 
   return (

@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  Property,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -25,14 +24,15 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
     alignItems: 'flex-start',
     backgroundColor: 'white',
+    display: 'flex',
     justifyContent: 'flex-start',
     padding: '1rem',
     textAlign: 'left',
     textTransform: 'none',
   },
   subTextContainer: {
-    [theme.breakpoints.up('md')]: {
-      height: 56,
+    [theme.breakpoints.up('xs')]: {
+      height: 66,
     },
   },
   title: {
@@ -61,10 +61,9 @@ const ProductShowcase: FC = ({ subject }) => {
         >
           {name.value}
         </Typography>
-        <div className={classes.subTextContainer} >
-          <Typography variant="subtitle1">{tagline.value}</Typography>
+        <div className={classes.subTextContainer}>
+          <Typography variant="body1">{tagline.value}</Typography>
         </div>
-        <Property label={schema.image} />
         <ReadMoreButton />
       </Grid>
     </Button>
