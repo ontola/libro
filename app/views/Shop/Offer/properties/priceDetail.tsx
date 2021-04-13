@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import { FormattedNumber } from 'react-intl';
 
-import Detail from '../../../../components/Detail';
+import Detail, { DetailVariant } from '../../../../components/Detail';
 import { tryParseInt } from '../../../../helpers/numbers';
 import { detailsBarTopology } from '../../../../topologies/DetailsBar';
 
@@ -32,6 +32,7 @@ const PriceDetail: FC<PriceProps> = ({
           value={priceInt}
         />
       )}
+      variant={DetailVariant.Bold}
     />
   );
 };

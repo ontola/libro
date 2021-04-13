@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/styles';
 import { LibroTheme } from '../../themes/themes';
 
 export default makeStyles((theme: LibroTheme) => ({
+  bold: {
+    color: theme.palette.grey.midDark,
+    fontWeight: 'bold',
+  },
   default: {
     'a:hover &': {
       color: theme.palette.grey.midDark,

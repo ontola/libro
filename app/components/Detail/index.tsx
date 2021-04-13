@@ -16,6 +16,7 @@ import DetailText from './DetailText';
 export enum DetailVariant {
   Default = 'default',
   Error = 'error',
+  Bold = 'bold',
   Success = 'success',
   Warning = 'warning',
 }
