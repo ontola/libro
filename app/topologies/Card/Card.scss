@@ -50,6 +50,7 @@
       flex-shrink: 1;
       // [AOD-174][AOD-179] Hides overflowing text, should not flex due to rendering in Chrome
       overflow: hidden;
+      width: 100%;
     }
 
     &:hover {
@@ -182,6 +183,11 @@
 
   &.CardList--column {
     flex-direction: column;
+  }
+
+  &--overflow {
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 
   &--wrap {

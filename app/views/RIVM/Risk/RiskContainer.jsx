@@ -8,18 +8,18 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import Collection from '../../components/Collection';
-import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import meeting from '../../ontology/meeting';
-import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
-import Card from '../../topologies/Card';
-import CardRow from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import CardContent from '../../../components/Card/CardContent';
+import Collection from '../../../components/Collection';
+import argu from '../../../ontology/argu';
+import dbo from '../../../ontology/dbo';
+import meeting from '../../../ontology/meeting';
+import ontola from '../../../ontology/ontola';
+import rivm from '../../../ontology/rivm';
+import Card from '../../../topologies/Card';
+import CardRow from '../../../topologies/Card/CardRow';
+import { containerTopology } from '../../../topologies/Container';
+import { alertDialogTopology } from '../../../topologies/Dialog';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const RiskContainer = ({ subject }) => (
   <Card about={subject?.value}>

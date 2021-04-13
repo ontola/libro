@@ -4,13 +4,16 @@ import React, { ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
+import Detail from '../../../components/Detail';
 import Heading, { HeadingSize } from '../../../components/Heading';
 import LDLink from '../../../components/LDLink';
 import { buildRegister } from '../../../helpers/buildRegister';
+import retrievePath from '../../../helpers/iris';
 import { tryParseInt } from '../../../helpers/numbers';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { pageTopology } from '../../../topologies/Page';
 import { tableCellTopology } from '../../../topologies/TableCell';
 import { CollectionTypes } from '../types';
@@ -25,6 +28,7 @@ interface CollectionTotalItemsProps {
   first: SomeTerm;
   last: SomeTerm;
   linkedProp: SomeTerm;
+  subject: NamedNode;
   to: NamedNode;
 }
 
@@ -81,6 +85,32 @@ const cardAppendixCollectionTotalItems = ({
 
 cardAppendixCollectionTotalItems.mapDataToProps = mapDataToProps;
 
+const DetailsBarCollectionTotalItems = ({
+  first,
+  last,
+  linkedProp,
+  subject,
+}: CollectionTotalItemsProps): JSX.Element | null => {
+  if (linkedProp.value === '0' || first === last) {
+    return null;
+  }
+
+  return (
+    <Detail
+      text={(
+        <FormattedMessage
+          defaultMessage="View all {count}..."
+          id="https://app.argu.co/i18n/collection/readAll"
+          values={{ count: linkedProp.value }}
+        />
+      )}
+      url={retrievePath(subject)}
+    />
+  );
+};
+
+DetailsBarCollectionTotalItems.mapDataToProps = mapDataToProps;
+
 const registerTotalItems = buildRegister<CollectionTotalItemsProps>({
   property: as.totalItems,
   type: CollectionTypes,
@@ -88,9 +118,17 @@ const registerTotalItems = buildRegister<CollectionTotalItemsProps>({
 
 export default [
   registerTotalItems(defaultCollectionTotalItems, {
-    topology: allTopologiesExcept(cardAppendixTopology, tableCellTopology, pageTopology),
+    topology: allTopologiesExcept(
+      cardAppendixTopology,
+      detailsBarTopology,
+      tableCellTopology,
+      pageTopology,
+    ),
   }),
   registerTotalItems(cardAppendixCollectionTotalItems, {
     topology: cardAppendixTopology,
+  }),
+  registerTotalItems(DetailsBarCollectionTotalItems, {
+    topology: detailsBarTopology,
   }),
 ];

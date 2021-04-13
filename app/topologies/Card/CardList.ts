@@ -9,6 +9,7 @@ export enum CardListDirection {
 
 interface PropTypes {
   direction?: CardListDirection;
+  overflow?: boolean;
   wrap?: boolean;
 }
 
@@ -31,7 +32,8 @@ class CardList extends Topology<PropTypes> {
   public getClassName(): string {
     return clsx({
       'CardList': true,
-      'CardList--column': this.props.direction === 'column',
+      'CardList--column': this.props.direction === CardListDirection.Column,
+      'CardList--overflow': this.props.overflow,
       'CardList--wrap': this.props.wrap,
     });
   }

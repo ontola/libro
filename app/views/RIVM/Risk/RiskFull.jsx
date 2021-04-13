@@ -9,24 +9,24 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CardContent from '../../components/Card/CardContent';
-import Collection from '../../components/Collection';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
-import app from '../../ontology/app';
-import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import meeting from '../../ontology/meeting';
-import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
-import wdt from '../../ontology/wdt';
-import ActionsBar from '../../topologies/ActionsBar';
-import CardAppendix from '../../topologies/Card/CardAppendix';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { defaultMenus } from '../common';
+import CardContent from '../../../components/Card/CardContent';
+import Collection from '../../../components/Collection';
+import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import app from '../../../ontology/app';
+import argu from '../../../ontology/argu';
+import dbo from '../../../ontology/dbo';
+import meeting from '../../../ontology/meeting';
+import ontola from '../../../ontology/ontola';
+import rivm from '../../../ontology/rivm';
+import wdt from '../../../ontology/wdt';
+import ActionsBar from '../../../topologies/ActionsBar';
+import CardAppendix from '../../../topologies/Card/CardAppendix';
+import CardMain from '../../../topologies/Card/CardMain';
+import CardRow from '../../../topologies/Card/CardRow';
+import Container from '../../../topologies/Container';
+import DetailsBar from '../../../topologies/DetailsBar';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import { defaultMenus } from '../../common';
 
 const RiskFull = ({ renderPartOf }) => (
   <React.Fragment>
