@@ -30,7 +30,7 @@ export default [
   ...CollectionFrame,
   CollectionFilterCollection,
   CollectionFullPage,
-  ...CollectionSection,
+  CollectionSection,
   CollectionTabPane,
   CollectionTableCell,
   CollectionDefault,

@@ -5,13 +5,15 @@ import {
   useLRS,
   useProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { entityIsLoaded } from '../../helpers/data';
 import { Params, useIRITemplate } from '../../hooks/useIRITemplate';
+import { CollectionSectionProps } from '../../views/Collection/CollectionSection';
 
-interface PropTypes {
+import { CollectionProps } from './CollectionProvider';
+
+export interface CollectionComponentProps extends Partial<CollectionProps & CollectionSectionProps> {
   display?: string;
   label: NamedNode;
   onLoad?: () => null;
@@ -20,7 +22,7 @@ interface PropTypes {
   type?: string;
 }
 
-const Collection: React.FC<PropTypes> = ({
+const Collection: React.FC<CollectionComponentProps> = ({
   display,
   label,
   page,

@@ -80,7 +80,7 @@ const CollectionContext = React.createContext<CollectionContext>({} as Collectio
 
 export const useCollectionOptions = (): CollectionContext => React.useContext(CollectionContext);
 
-const useHasInteraction = (collectionResource: SomeNode) => {
+export const useHasInteraction = (collectionResource: SomeNode): boolean => {
   const [createAction] = useResourceProperty(collectionResource, ontola.createAction) as NamedNode[];
   useDataFetching(createAction);
   const [actionStatus] = useResourceProperty(createAction, schema.actionStatus) as NamedNode[];

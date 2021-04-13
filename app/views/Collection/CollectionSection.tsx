@@ -1,5 +1,5 @@
 import * as as from '@ontologies/as';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Property,
@@ -8,60 +8,56 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { useHasInteraction } from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
-import CardList, { CardListDirection, cardListTopology } from '../../topologies/Card/CardList';
+import CardList, { CardListDirection } from '../../topologies/Card/CardList';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 import { CollectionTypes } from './types';
 
-interface CollectionSectionProps {
+export interface CollectionSectionProps {
   direction: CardListDirection,
   wrap?: boolean;
   to: SomeTerm;
   totalItems: SomeTerm;
 }
 
-const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, topology: NamedNode | NamedNode[]) => {
-  const CollectionSection: FC<CollectionSectionProps> = ({
-    direction,
-    wrap,
-    totalItems,
-    to,
-  }) => {
-    const pagesShouldRender = renderWhenEmpty || totalItems.value !== '0';
+const CollectionSection: FC<CollectionSectionProps> = ({
+  direction,
+  subject,
+  totalItems,
+  to,
+  wrap,
+}) => {
+  const pagesShouldRender = totalItems?.value !== '0';
+  const hasInteraction = useHasInteraction(subject);
 
-    return (
-      <CardContent noStartSpacing>
-        <CardList direction={direction} wrap={wrap}>
-          {pagesShouldRender && <Property forceRender insideCollection label={ontola.pages} />}
-          <Property label={as.totalItems} to={to} />
-          <Property label={ontola.createAction} omniform={omniform} />
-        </CardList>
-      </CardContent>
-    );
-  };
+  if (!pagesShouldRender && !hasInteraction) {
+    return null;
+  }
 
-  CollectionSection.type = CollectionTypes;
-
-  CollectionSection.topology = topology;
-
-  CollectionSection.mapDataToProps = {
-    collectionType: ontola.collectionType,
-    totalItems: as.totalItems,
-  };
-
-  return CollectionSection;
+  return (
+    <CardContent>
+      <CardList direction={direction} wrap={wrap}>
+        {pagesShouldRender && <Property forceRender insideCollection label={ontola.pages} />}
+        <Property label={as.totalItems} to={to} />
+        <Property omniform label={ontola.createAction} />
+      </CardList>
+    </CardContent>
+  );
 };
 
+CollectionSection.type = CollectionTypes;
 
-export default [
-  register(collectionSection(
-    { omniform: true },
-    [
-      cardFixedTopology,
-      cardListTopology,
-      cardRowTopology,
-    ],
-  )),
+CollectionSection.topology = [
+  cardFixedTopology,
+  cardRowTopology,
 ];
+
+CollectionSection.mapDataToProps = {
+  collectionType: ontola.collectionType,
+  totalItems: as.totalItems,
+};
+
+export default register(CollectionSection);
