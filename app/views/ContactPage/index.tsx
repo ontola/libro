@@ -1,17 +1,31 @@
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/styles';
 import { register } from 'link-redux';
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const PIPEDRIVE_FORM_URL = 'https://pipedrivewebforms.com/form/b71321e1b145fce798bb512eceadbd02918860';
-const PIPEDRIVE_SCRIPT_URL = 'https://cdn.eu-central-1.pipedriveassets.com/web-form-assets/webforms.min.js';
+const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/JJw99yDkXav2SVTvGiEs7pXNHJTAxP2zGw1UTQ6NK8AmCp643bD97K3WeRzXfVN';
+const PIPEDRIVE_SCRIPT_URL = 'https://webforms.pipedrive.com/f/loader';
 
-const useStyles = makeStyles((theme) => ({
+interface PersonProps {
+  email: string;
+  image: string;
+  name: string;
+  phone: string;
+  task: string;
+}
+
+interface SocialProps {
+  color: string;
+  icon: string;
+  link: string;
+}
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   bg: {
     height: 'auto',
     width: '100vw',
@@ -19,12 +33,16 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     padding: '2rem',
   },
+  contactPaper: {
+    height: '34rem',
+    padding: '1rem',
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
     margin: 'auto auto',
     maxWidth: theme.containerWidth.large,
-    zIndex: '1',
+    zIndex: 1,
   },
   header: {
     '& h1': {
@@ -46,13 +64,14 @@ const useStyles = makeStyles((theme) => ({
     width: theme.containerWidth.large,
   },
   iframe: {
-    height: '36rem',
     overflow: 'hidden',
     width: '100%',
   },
   left: {
     flex: 1,
     flexBasis: '20rem',
+    marginLeft: '1rem',
+    marginTop: '2rem',
   },
   person: {
     '& img': {
@@ -117,7 +136,7 @@ const persons = [
   },
 ];
 
-const Person = (props) => {
+const Person = (props: PersonProps) => {
   const classes = useStyles();
 
   return (
@@ -140,16 +159,6 @@ const Person = (props) => {
     </a>
   );
 };
-
-const personPropTypes = {
-  email: PropTypes.string,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  phone: PropTypes.string,
-  task: PropTypes.string,
-};
-
-Person.propTypes = personPropTypes;
 
 const socials = [
   {
@@ -174,7 +183,7 @@ const socials = [
   },
 ];
 
-const Social = (props) => {
+const Social = (props: SocialProps) => {
   const classes = useStyles();
 
   return (
@@ -191,28 +200,20 @@ const Social = (props) => {
   );
 };
 
-const socialPropTypes = {
-  color: PropTypes.string,
-  icon: PropTypes.string,
-  link: PropTypes.string,
-};
-
-Social.propTypes = socialPropTypes;
-
 const ContactPage = () => {
   const classes = useStyles();
+  const pipedriveDivRef = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const script = document.createElement('script');
     script.src = PIPEDRIVE_SCRIPT_URL;
 
-    const div = document.createElement('div');
-    div.setAttribute('data-pd-webforms', PIPEDRIVE_FORM_URL);
-    div.appendChild(script);
-    document.body.appendChild(div);
+    const div = pipedriveDivRef.current;
+
+    div && div.appendChild(script);
 
     return () => {
-      document.body.removeChild(div);
+      div && document.body.removeChild(div);
     };
   }, []);
 
@@ -225,12 +226,13 @@ const ContactPage = () => {
       </div>
       <div className={classes.container}>
         <div className={classes.left}>
-          <iframe
-            className={classes.iframe}
-            scrolling="no"
-            src={PIPEDRIVE_FORM_URL}
-            title="pipedrive"
-          />
+          <Paper className={classes.contactPaper} elevation={3}>
+            <div
+              className="pipedriveWebForms"
+              data-pd-webforms={PIPEDRIVE_FORM_URL}
+              ref={pipedriveDivRef}
+            />
+          </Paper>
         </div>
         <div className={classes.right}>
           <Paper elevation={3}>

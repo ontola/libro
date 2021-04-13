@@ -20,7 +20,7 @@ const frameSrc = [
   'https://youtube.com',
   'https://www.youtube.com',
   'https://*.typeform.com/',
-  'https://pipedrivewebforms.com/',
+  'https://webforms.pipedrive.com',
 ];
 const imgSrc = [
   "'self'",
@@ -47,7 +47,8 @@ const scriptSrc = [
   'https://d2wy8f7a9ursnm.cloudfront.net',
   'https://storage.googleapis.com',
   'https://www.googletagmanager.com',
-  'https://cdn.eu-central-1.pipedriveassets.com',
+  'https://webforms.pipedrive.com/f/loader',
+  'https://cdn.eu-central-1.pipedriveassets.com/leadbooster-chat/assets/web-forms/loader.min.js',
   'https://browser-update.org',
   'https://argu-logos.s3.eu-central-1.amazonaws.com',
   'https://cdnjs.cloudflare.com',

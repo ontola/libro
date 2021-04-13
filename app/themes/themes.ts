@@ -2,6 +2,8 @@ import { Theme } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import React from 'react';
 
+import { Size } from '../components/shared/config';
+
 declare module '@material-ui/core/styles/createPalette' {
   interface Color {
     dark: string;
@@ -31,4 +33,7 @@ export interface AppBarThemeOpts extends React.CSSProperties {
 
 export interface LibroTheme extends Theme {
   appBar: AppBarThemeOpts;
+  containerWidth: {
+    [K in Size]: string
+  }
 }
