@@ -1,3 +1,5 @@
+import { KeyboardEvent } from 'react';
+
 const SPACE_KEY = 32;
 const ENTER_KEY = 13;
 
@@ -23,7 +25,7 @@ export const devKeymap = {
   ...defaultKeymap,
 };
 
-export const convertOnClick = (e: KeyboardEvent, onAction: (e: unknown) => void): void => {
+export const convertOnClick = (e: KeyboardEvent<unknown>, onAction: (e: any) => void): void => {
   if ([SPACE_KEY, ENTER_KEY].includes(e.keyCode) && onAction) {
     onAction(e);
   }

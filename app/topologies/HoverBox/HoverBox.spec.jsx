@@ -1,8 +1,6 @@
 import React from 'react';
 
-import hoverBox, { propTypes } from '.';
-
-const HoverBox = hoverBox();
+import HoverBox from '.';
 
 argUnit(HoverBox, () => {
   set('markerNS', () => 'HoverBox');
@@ -77,5 +75,8 @@ argUnit(HoverBox, () => {
 }, {
   link: true,
   mount: true,
-  propTypes,
+  propTypes: {
+    children: true,
+    hiddenChildren: true,
+  },
 });

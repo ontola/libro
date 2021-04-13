@@ -10,9 +10,7 @@ import React from 'react';
 import teamGL from '../../../ontology/teamGL';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import ContentDetails from '../../../topologies/ContentDetails';
-import hoverBox from '../../../topologies/HoverBox';
-
-const CardHoverBox = hoverBox();
+import HoverBox from '../../../topologies/HoverBox';
 
 const EventCardList = ({
   subject,
@@ -20,7 +18,7 @@ const EventCardList = ({
   const lrs = useLRS();
 
   return (
-    <CardHoverBox
+    <HoverBox
       hiddenChildren={<Property label={schema.text} />}
       onClick={() => {
         lrs.actions.ontola.showDialog(subject);
@@ -34,7 +32,7 @@ const EventCardList = ({
         <Property label={schema.startDate} />
         <Property label={schema.location} />
       </ContentDetails>
-    </CardHoverBox>
+    </HoverBox>
   );
 };
 

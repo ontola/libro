@@ -10,7 +10,7 @@ import {
 } from '../../containers/Highlight';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
-import hoverBox from '../../topologies/HoverBox';
+import HoverBox from '../../topologies/HoverBox';
 
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
@@ -68,16 +68,14 @@ import ThingTableCell from './ThingTableCell';
 import ThingTableRow from './ThingTableRow';
 import ThingTableHeaderRow from './ThingTableHeaderRow';
 
-const CardHoverBox = hoverBox();
-
 const ThingHoverBoxHidden = () => (
   <Property label={schema.text} />
 );
 
 const ThingSection = ({ highlighted }) => (
-  <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
+  <HoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
     <Property label={schema.name} />
-  </CardHoverBox>
+  </HoverBox>
 );
 
 ThingSection.propTypes = hightlightPropTypes;

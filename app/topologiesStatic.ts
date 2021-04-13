@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import { ComponentClass, FunctionComponent } from 'react';
 
 import actionsBarTopologyComponent, { actionsBarTopology } from './topologies/ActionsBar';
 import appMenuTopologyComponent, { appMenuTopology } from './topologies/AppMenu';
@@ -43,7 +44,11 @@ import tableHeaderRowTopologyComponent, { tableHeaderRowTopology } from './topol
 import tableRowTopologyComponent, { tableRowTopology } from './topologies/TableRow';
 import tabPaneTopologyComponent, { tabPaneTopology } from './topologies/TabPane';
 
-export default {
+interface TopologyMap {
+  [k: number]: FunctionComponent<any> | ComponentClass<any>;
+}
+
+const topologyMap: TopologyMap = {
   [rdf.id(actionsBarTopology)]: actionsBarTopologyComponent,
   [rdf.id(appMenuTopology)]: appMenuTopologyComponent,
   [rdf.id(attributeListTopology)]: attributeListTopologyComponent,
@@ -87,3 +92,5 @@ export default {
   [rdf.id(tabBarTopology)]: tableRowTopologyComponent,
   [rdf.id(tabPaneTopology)]: tabPaneTopologyComponent,
 };
+
+export default topologyMap;

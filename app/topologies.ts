@@ -1,4 +1,4 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 
 import { actionsBarTopology } from './topologies/ActionsBar';
 import { appMenuTopology } from './topologies/AppMenu';
@@ -13,23 +13,23 @@ import { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
 import { cardRowTopology } from './topologies/Card/CardRow';
 import { containerTopology } from './topologies/Container';
 import { containerFloatTopology } from './topologies/Container/ContainerFloat';
-import { contentDetailsTopology } from './topologies/ContentDetails/index';
+import { contentDetailsTopology } from './topologies/ContentDetails';
 import { detailsBarTopology } from './topologies/DetailsBar';
-import { alertDialogTopology } from './topologies/Dialog/index';
+import { alertDialogTopology } from './topologies/Dialog';
 import { footerTopology } from './topologies/Footer';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { fullResourceTopology } from './topologies/FullResource';
 import { gridTopology } from './topologies/Grid';
-import { hoverBoxTopology } from './topologies/HoverBox/index';
-import { inlineTopology } from './topologies/Inline/index';
+import { hoverBoxTopology } from './topologies/HoverBox';
+import { inlineTopology } from './topologies/Inline';
 import { menuTopology } from './topologies/Menu';
 import { navbarTopology } from './topologies/Navbar';
 import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
 import { omniformSupplementBarTopology } from './topologies/OmniformSupplementBar/OmniformSupplementBar';
 import { pageTopology } from './topologies/Page';
-import { pageHeaderTopology } from './topologies/PageHeader/index';
-import { parentTopology } from './topologies/Parent/index';
-import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/index';
+import { pageHeaderTopology } from './topologies/PageHeader';
+import { parentTopology } from './topologies/Parent';
+import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction';
 import { popupTopology } from './topologies/Popup';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
@@ -42,14 +42,14 @@ import { tableFooterCellTopology } from './topologies/TableFooterCell';
 import { tableFooterRowTopology } from './topologies/TableFooterRow';
 import { tableRowTopology } from './topologies/TableRow';
 import { tableTopology } from './topologies/Table';
-import { tabBarTopology } from './topologies/TabBar/index';
-import { tabPaneTopology } from './topologies/TabPane/index';
-import { voteBubbleTopology } from './topologies/VoteBubble/index';
+import { tabBarTopology } from './topologies/TabBar';
+import { tabPaneTopology } from './topologies/TabPane';
+import { voteBubbleTopology } from './topologies/VoteBubble';
 
 export { default as topologyComponentMap } from './topologiesStatic';
 
-export const allTopologies = [
-  undefined,
+export const allTopologies: NamedNode[] = [
+  undefined as unknown as NamedNode,
   actionsBarTopology,
   appMenuTopology,
   attributeListTopology,
@@ -97,7 +97,7 @@ export const allTopologies = [
   voteBubbleTopology,
 ];
 
-export function allTopologiesExcept(...topologies) {
+export function allTopologiesExcept(...topologies: NamedNode[]): NamedNode[] {
   const filtered = allTopologies.slice();
   topologies.forEach((t) => {
     const i = filtered.findIndex((f) => rdf.equals(f, t));
@@ -109,5 +109,5 @@ export function allTopologiesExcept(...topologies) {
   return filtered;
 }
 
-export const getTopologyNumber = (topology) => allTopologies
+export const getTopologyNumber = (topology: NamedNode): number => allTopologies
   .findIndex((item) => rdf.equals(topology, item));
