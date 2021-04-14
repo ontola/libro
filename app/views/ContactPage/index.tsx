@@ -1,4 +1,3 @@
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/styles';
 import { register } from 'link-redux';
 import React from 'react';
@@ -6,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import Card from '../../topologies/Card';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/JJw99yDkXav2SVTvGiEs7pXNHJTAxP2zGw1UTQ6NK8AmCp643bD97K3WeRzXfVN';
@@ -226,16 +226,16 @@ const ContactPage = () => {
       </div>
       <div className={classes.container}>
         <div className={classes.left}>
-          <Paper className={classes.contactPaper} elevation={3}>
+          <Card className={classes.contactPaper}>
             <div
               className="pipedriveWebForms"
               data-pd-webforms={PIPEDRIVE_FORM_URL}
               ref={pipedriveDivRef}
             />
-          </Paper>
+          </Card>
         </div>
         <div className={classes.right}>
-          <Paper elevation={3}>
+          <Card>
             <div className={classes.cardContent}>
               {persons.map((contactprops) => (
                 <Person key={contactprops.name} {...contactprops} />
@@ -256,7 +256,7 @@ const ContactPage = () => {
                 <Social key={socialprops.link} {...socialprops} />
               ))}
             </div>
-          </Paper>
+          </Card>
         </div>
       </div>
     </React.Fragment>
