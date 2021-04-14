@@ -63,7 +63,12 @@ export const ImageAttachmentPreview = ({
   const classes = useStyles();
 
   return (
-    <button className={classes.attachmentPreview} type="button" onClick={onPreviewClick}>
+    <button
+      className={classes.attachmentPreview}
+      data-test="ImageAttachmentPreview"
+      type="button"
+      onClick={onPreviewClick}
+    >
       <Image className={classes.attachmentPreviewImage} linkedProp={thumbnailURL} />
       {label && (
         <span className={classes.attachmentPreviewTitle} title={label}>
