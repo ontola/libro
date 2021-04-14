@@ -22,31 +22,29 @@ export interface CouponBadgeFullProps {
 
 const CouponBadgeFull: FC<CouponBadgeFullProps> = ({
   renderPartOf,
-}) => {
-  return (
-    <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
-      <CardMain>
-        <CardContent endSpacing>
-          <Property label={schema.name} />
-          <Heading size={HeadingSize.LG}>
-            <Resource subject={argu.coupons} />
-          </Heading>
-          <Grid container spacing={2}>
-            <Property label={argu.coupons} limit={Infinity} />
-          </Grid>
-          <CardDivider margin />
-          <Heading size={HeadingSize.LG}>
-            <Resource subject={argu.usedCoupons} />
-          </Heading>
-          <Grid container spacing={2}>
-            <Property label={argu.usedCoupons} limit={Infinity} />
-          </Grid>
-        </CardContent>
-      </CardMain>
-    </Container>
-  );
-};
+}) => (
+  <Container>
+    {renderPartOf && <Property label={schema.isPartOf} />}
+    <CardMain>
+      <CardContent endSpacing>
+        <Property label={schema.name} />
+        <Heading size={HeadingSize.LG}>
+          <Resource subject={argu.coupons} />
+        </Heading>
+        <Grid container spacing={2}>
+          <Property label={argu.coupons} limit={Infinity} />
+        </Grid>
+        <CardDivider margin />
+        <Heading size={HeadingSize.LG}>
+          <Resource subject={argu.usedCoupons} />
+        </Heading>
+        <Grid container spacing={2}>
+          <Property label={argu.usedCoupons} limit={Infinity} />
+        </Grid>
+      </CardContent>
+    </CardMain>
+  </Container>
+);
 
 CouponBadgeFull.type = argu.CouponBadge;
 
