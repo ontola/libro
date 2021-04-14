@@ -89,7 +89,7 @@ const ArguHomePage = ({ subject }) => {
                 <Heading>{formatMessage(homeMessages.featuresHeader)}</Heading>
                 <p>{formatMessage(homeMessages.featuresBody)}</p>
                 <Grid>
-                  <Property label={argu.features} limit={Infinity} />
+                  <Property label={argu.features} />
                 </Grid>
                 <div className="ArguHome--button-wrapper">
                   <Link className="ArguHome--button" to={contactRoute}>

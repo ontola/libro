@@ -33,6 +33,7 @@ import { popupTopology } from './topologies/Popup';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
 import { selectedValueTopology } from './topologies/SelectedValue';
+import { showcaseTopology } from './topologies/Showcase';
 import { sideBarTopology } from './topologies/SideBar';
 import { tableBodyTopology } from './topologies/TableBody';
 import { tableCellTopology } from './topologies/TableCell';
@@ -83,6 +84,7 @@ export const allTopologies: NamedNode[] = [
   radioGroupTopology,
   selectTopology,
   selectedValueTopology,
+  showcaseTopology,
   sideBarTopology,
   tableBodyTopology,
   tableHeaderCellTopology,

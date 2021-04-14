@@ -42,7 +42,7 @@ export const useParsedSource = (): [
       // eslint-disable-next-line no-console
       console.debug(e);
     }
-  }, [text, bufferedText]);
+  }, [bufferedText]);
 
   return [bundle.lrs, resources, bufferedText, setText];
 };

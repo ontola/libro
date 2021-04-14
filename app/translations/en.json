@@ -391,6 +391,9 @@
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": {
     "defaultMessage": "Pinned at {date}"
   },
+  "https://app.argu.co/i18n/sales/readmore": {
+    "defaultMessage": "Read more"
+  },
   "https://app.argu.co/i18n/schema:Person/postedByText": {
     "defaultMessage": "Posted by {name}"
   },

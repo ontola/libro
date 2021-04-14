@@ -53,6 +53,7 @@ import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
 import RIVM from './RIVM';
+import SalesWebsite from './SalesWebsite';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Shop from './Shop';
@@ -119,6 +120,7 @@ export function getViews() {
     ...Person,
     ...Phase,
     ...Project,
+    ...SalesWebsite,
     ...Placement,
     ...PropertyQuery,
     ...RDFProperty,

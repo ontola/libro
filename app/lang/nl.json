@@ -907,6 +907,12 @@
       "value": "date"
     }
   ],
+  "https://app.argu.co/i18n/sales/readmore": [
+    {
+      "type": 0,
+      "value": "Lees meer"
+    }
+  ],
   "https://app.argu.co/i18n/schema:Person/postedByText": [
     {
       "type": 0,

@@ -389,6 +389,9 @@
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": {
     "defaultMessage": "Vastgezet op {date}"
   },
+  "https://app.argu.co/i18n/sales/readmore": {
+    "defaultMessage": "Lees meer"
+  },
   "https://app.argu.co/i18n/schema:Person/postedByText": {
     "defaultMessage": "Geplaatst door {name}"
   },
