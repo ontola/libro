@@ -124,6 +124,9 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
+    fallback: {
+      pnpapi: false,
+    },
   },
 
   target: 'node',
