@@ -34,6 +34,7 @@
     "lint:code:app": "tsc -p app/tsconfig.json",
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
     "start": "cross-env NODE_ENV=development yarn run build:server && cross-env NODE_ENV=development node -r dotenv/config --use-openssl-ca ./dist/private/server.js",
+    "standalone": "cross-env STANDALONE=true yarn run start",
     "start:prod": "cross-env NODE_ENV=production node --use-openssl-ca ./dist/private/server.js",
     "stats:bundle": "cross-env NODE_ENV=production webpack -p --config ./webpack/static.config.js --json > stats.json",
     "test": "NODE_ENV=test jest",

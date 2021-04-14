@@ -19,7 +19,7 @@ const logging = {
 };
 
 export function getErrorMiddleware() {
-  if (process.env.NODE_ENV !== 'development') {
+  if (config.standaloneLibro ? false : process.env.NODE_ENV !== 'development') {
     const bugsnagClient = bugsnag.createClient({
       apiKey: config.bugsnagKey,
       appType: 'fe_back',

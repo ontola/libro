@@ -4,7 +4,6 @@ if (__CLIENT__) {
 
 export * from '../app/config';
 
-export const appHostname = process.env.HOSTNAME;
 export const assetsHost = process.env.ASSETS_HOST || '';
 export const backendApiUrl = process.env.ARGU_API_URL || process.env.BACKEND_API_URL || 'https://argu.localdev';
 export const bugsnagKey = process.env.BUGSNAG_KEY;
@@ -23,6 +22,7 @@ export const portProduction = process.env.PORT_PRODUCTION || '8080';
 export const port = process.env.PORT || (__DEVELOPMENT__ ? portDevelopment : portProduction);
 export const serverName = process.env.SERVER_NAME;
 export const sessionCookieName = process.env.SESSION_COOKIE_NAME || 'koa:sess';
+export const standaloneLibro = process.env.STANDALONE === 'true';
 export const websocketPath = process.env.WEBSOCKET_PATH;
 export const cacheChannel = process.env.CACHE_CHANNEL;
 

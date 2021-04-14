@@ -1,7 +1,7 @@
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
 import uuidv4 from 'uuid/v4';
 
-import { jwtEncryptionToken } from '../config';
+import { jwtEncryptionToken, standaloneLibro } from '../config'
 import defaultManifest from '../utils/defaultManifest';
 import { getBackendManifest } from '../utils/manifest';
 import { EXEC_HEADER_NAME } from '../utils/actions';
@@ -26,6 +26,10 @@ export function enhanceCtx(ctx) {
   };
 
   ctx.getManifest = async (location) => {
+    if (standaloneLibro) {
+      ctx.manifest = defaultManifest(ctx.request.origin)
+    }
+
     if (!ctx.manifest) {
       try {
         const manifestLocation = location
@@ -50,6 +54,10 @@ export function enhanceCtx(ctx) {
   };
 
   ctx.headResponse = async () => {
+    if (standaloneLibro) {
+      return undefined;
+    }
+
     if (!ctx.headResponseResult) {
       ctx.headResponseResult = await Promise.race([
         ctx.api.headRequest(ctx.request),

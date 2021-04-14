@@ -7,7 +7,8 @@ import {
   TEMPORARY_REDIRECT,
 } from 'http-status-codes';
 
-import { assetsHost } from '../config';
+import { assetsHost, standaloneLibro } from '../config'
+import defaultManifest from '../utils/defaultManifest'
 import fetchPrerenderData from '../utils/fetchPrerenderData';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
@@ -21,6 +22,12 @@ import { handleRender } from '../utils/render';
 
 const handler = (sendResponse) => async (ctx) => {
   const domain = ctx.request.headers.host.replace(/:.*/, '');
+
+  if (standaloneLibro) {
+    ctx.manifest = defaultManifest(ctx.request.origin);
+
+    return sendResponse(ctx, domain, '');
+  }
 
   try {
     const headResponse = await ctx.headResponse();
@@ -73,12 +80,7 @@ const handler = (sendResponse) => async (ctx) => {
       return sendResponse(ctx, domain, '');
     }
 
-    ctx.manifest = {
-      icons: [],
-      ontola: {},
-      scope: `https://${ctx.request.get('host')}`,
-      serviceworker: {},
-    };
+    ctx.manifest = defaultManifest(ctx.request.origin);
 
     return sendResponse(ctx, domain, '');
   }

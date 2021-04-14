@@ -8,6 +8,7 @@ import CSRF from 'koa-csrf';
 import serveStatic from 'koa-static';
 import logger from 'koa-logger';
 
+import { standaloneLibro } from '../config'
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import ctxMiddleware from '../middleware/ctxMiddleware';
@@ -15,6 +16,7 @@ import ensureAccessTokenMiddleware from '../middleware/ensureAccessTokenMiddlewa
 import backendErrorHandler from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
+import defaultManifest from '../utils/defaultManifest'
 import deviceIdMiddleware from '../utils/deviceId';
 import {
   isBackend,
@@ -67,8 +69,7 @@ const errorMiddleware = getErrorMiddleware();
 const routes = async function routes(app, port) {
   const isPlainAPIReq = await isPlainAPI();
   const sessMiddleware = sessionMiddleware(app);
-  const backend = backendProxy(app);
-  const login = loginProxy(app);
+  const backend = !standaloneLibro ? backendProxy(app) : undefined;
 
   app.use(errorMiddleware.requestHandler);
 
@@ -100,6 +101,12 @@ const routes = async function routes(app, port) {
 
   router.use(securityHeaders);
 
+  if (standaloneLibro) {
+    router.get('/manifest.json', (ctx) => {
+      ctx.body = defaultManifest(ctx.request.origin);
+    })
+  }
+
   router.get('/d/health', health);
   router.get('*/sw.js*', serviceWorker);
   router.get('/robots.txt', robots);
@@ -108,9 +115,11 @@ const routes = async function routes(app, port) {
   router.get('/static/*', serveStatic('.', staticCompressionOpts), () => {});
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => {});
-  router.get('/assets/*', backend);
-  router.get('/packs/*', backend);
-  router.get('/photos/*', backend);
+  if (!standaloneLibro) {
+    router.get('/assets/*', backend);
+    router.get('/packs/*', backend);
+    router.get('/photos/*', backend);
+  }
 
   router.use('/_libro/docs', bodyParser());
   router.get('/_libro/docs', documents);
@@ -119,33 +128,46 @@ const routes = async function routes(app, port) {
 
   router.use(sessMiddleware);
 
-  router.use(apiMiddleware);
+  if (!standaloneLibro) {
+    router.use(apiMiddleware);
+  }
 
   router.use(docMiddleware);
 
-  router.use(authenticationMiddleware);
+  if (!standaloneLibro) {
+    router.use(authenticationMiddleware);
 
-  router.all('*', isPlainAPIReq(backend));
+    router.all('*', isPlainAPIReq(backend));
+  }
 
   router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
   router.post(['/logout', '/*/logout'], logout);
 
-  router.use(ensureAccessTokenMiddleware);
+  if (!standaloneLibro) {
+    router.use(ensureAccessTokenMiddleware);
 
-  router.post(['/follows/*', '/*/follows/*'], backend);
+    router.post(['/follows/*', '/*/follows/*'], backend);
+  }
 
   router.use(new CSRF());
 
-  router.post(['/login', '/*/login'], login);
-  router.all('*', isWebsocket(backend));
-  router.all('*', isBackend(backend));
+  if (!standaloneLibro) {
+    const login = loginProxy(app);
+    router.post(['/login', '/*/login'], login);
+    router.all('*', isWebsocket(backend));
+    router.all('*', isBackend(backend));
+  }
 
   router.use(bodyParser());
-  router.get(['/users/auth/*', '/*/users/auth/*'], backend);
+  if (!standaloneLibro) {
+    router.get(['/users/auth/*', '/*/users/auth/*'], backend);
+  }
   router.get('/api/maps/accessToken', maps);
 
-  router.get('/*/media_objects/*', isBinaryishRequest(fileProxy));
+  if (!standaloneLibro) {
+    router.get('/*/media_objects/*', isBinaryishRequest(fileProxy));
+  }
 
   router.use(csp);
 

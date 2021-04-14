@@ -2,6 +2,7 @@ import HttpStatus from 'http-status-codes';
 
 import { prerenderMetaTags } from '../../app/helpers/metaData';
 import { bundles } from '../../bundleConfig';
+import { standaloneLibro } from '../config'
 import * as constants from '../config';
 
 import logging from './logging';
@@ -95,7 +96,7 @@ export const renderFullPage = async (ctx, data) => {
 
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
-          ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
+          ${constants.websocketPath && !standaloneLibro ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
           ${constants.bugsnagKey ? '<script async src="https://d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
           <meta name="mapboxTileURL" content="${constants.mapboxTileURL}">
