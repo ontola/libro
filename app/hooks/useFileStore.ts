@@ -30,7 +30,7 @@ const useFileStore = (): [StoreFile, FileStore] => {
     setFileStore(newStore);
 
     return [literal, newStore];
-  }, []);
+  }, [fileStore]);
 
   // Free memory of stored files
   React.useEffect(() => () => {
