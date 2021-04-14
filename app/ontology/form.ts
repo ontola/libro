@@ -23,6 +23,7 @@ export default {
   HiddenGroup: form('HiddenGroup'),
   LocationInput: form('LocationInput'),
   MarkdownInput: form('MarkdownInput'),
+  MoneyInput: form('MoneyInput'),
   NumberInput: form('NumberInput'),
   Page: form('Page'),
   PasswordInput: form('PasswordInput'),

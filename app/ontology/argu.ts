@@ -113,6 +113,7 @@ export default {
   phases: argu('phases'),
   pinned: argu('pinned'),
   pinnedAt: argu('pinnedAt'),
+  price: argu('price'),
   primaryEmail: argu('primaryEmail'),
   primaryVote: argu('primaryVote'),
   proArguments: argu('proArguments'),

@@ -9,6 +9,7 @@ import React from 'react';
 import { FormattedNumber } from 'react-intl';
 
 import { tryParseInt } from '../../../helpers/numbers';
+import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 
 interface PriceProps {
@@ -35,6 +36,6 @@ Price.type = schema.Thing;
 
 Price.topology = allTopologies;
 
-Price.property = schema.price;
+Price.property = argu.price;
 
 export default register(Price);

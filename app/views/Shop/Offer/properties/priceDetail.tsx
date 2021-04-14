@@ -10,6 +10,7 @@ import { FormattedNumber } from 'react-intl';
 
 import Detail, { DetailVariant } from '../../../../components/Detail';
 import { tryParseInt } from '../../../../helpers/numbers';
+import argu from '../../../../ontology/argu';
 import { detailsBarTopology } from '../../../../topologies/DetailsBar';
 
 interface PriceProps {
@@ -29,7 +30,7 @@ const PriceDetail: FC<PriceProps> = ({
           currency={priceCurrency?.value}
           currencyDisplay="narrowSymbol"
           style="currency"
-          value={priceInt}
+          value={priceInt / 100}
         />
       )}
       variant={DetailVariant.Bold}
@@ -41,6 +42,6 @@ PriceDetail.type = schema.Offer;
 
 PriceDetail.topology = detailsBarTopology;
 
-PriceDetail.property = schema.price;
+PriceDetail.property = argu.price;
 
 export default register(PriceDetail);

@@ -96,7 +96,7 @@ const CartContainer: FC<CartProps> = ({
               currency={priceCurrency.value}
               currencyDisplay="narrowSymbol"
               style="currency"
-              value={totalPriceInt}
+              value={totalPriceInt / 100}
             />
             {budgetMaxInt && (
               <React.Fragment>
@@ -105,7 +105,7 @@ const CartContainer: FC<CartProps> = ({
                   currency={priceCurrency.value}
                   currencyDisplay="narrowSymbol"
                   style="currency"
-                  value={budgetMaxInt}
+                  value={budgetMaxInt / 100}
                 />
               </React.Fragment>
             )}

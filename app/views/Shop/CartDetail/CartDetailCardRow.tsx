@@ -25,7 +25,7 @@ const CartDetailCardRow: FC = (): JSX.Element => {
       <Property label={schema.name} />
       <div className={styles.wrapper}>
         <Property label={schema.isPartOf}>
-          <Property label={schema.price} />
+          <Property label={argu.price} />
         </Property>
       </div>
     </CardMicroRow>

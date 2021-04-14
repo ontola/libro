@@ -40,7 +40,7 @@ const OfferContainer: FC = ({ subject }) => (
       right={<OfferActionButtons />}
       variant={DetailsBarVariant.Wide}
     >
-      <Property label={schema.price} />
+      <Property label={argu.price} />
     </DetailsBar>
   </Card>
 );

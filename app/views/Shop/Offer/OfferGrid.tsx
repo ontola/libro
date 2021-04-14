@@ -11,6 +11,7 @@ import React from 'react';
 import CardContent from '../../../components/Card/CardContent';
 import LDLink from '../../../components/LDLink';
 import { LinkTarget } from '../../../components/Link';
+import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import ontola from '../../../ontology/ontola';
 import CardFixed from '../../../topologies/Card/CardFixed';
@@ -33,7 +34,7 @@ const OfferGrid: FC = () => (
       right={<OfferActionButtons />}
       variant={DetailsBarVariant.Wide}
     >
-      <Property label={schema.price} />
+      <Property label={argu.price} />
     </DetailsBar>
   </CardFixed>
 );
