@@ -154,6 +154,9 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     rdf.quad(argu.MapQuestion, rdfx.type, rdfs.Class),
     rdf.quad(argu.MapQuestion, rdfs.subClassOf, schema.Question),
 
+    rdf.quad(argu.BudgetShop, rdfx.type, rdfs.Class),
+    rdf.quad(argu.BudgetShop, rdfs.subClassOf, argu.Shop),
+
     rdf.quad(ontola['Create::Auth::AccessToken'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Auth::AccessToken'], rdfs.subClassOf, schema.CreateAction),
     rdf.quad(ontola['Create::Auth::Confirmation'], rdfx.type, rdfs.Class),

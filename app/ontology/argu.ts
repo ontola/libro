@@ -10,6 +10,7 @@ export default {
   ArguHome: argu('ArguHome'),
   Argument: argu('Argument'),
   BearerToken: argu('BearerToken'),
+  BudgetShop: argu('BudgetShop'),
   Cart: argu('Cart'),
   CartDetail: argu('CartDetail'),
   Case: argu('Case'),
