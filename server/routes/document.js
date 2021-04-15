@@ -1,3 +1,4 @@
+// @ts-check
 import { URL } from 'url';
 
 import rdf, {
@@ -38,15 +39,17 @@ const stemIri = (iri) => {
 };
 
 const findStartRoute = async (iri) => {
-  const startRoute = `${redisSettingsNS}.routes.start`;
+  const startRoute = `${redisSettingsNS}.routes.start.`;
 
-  const startKeys = await client.keys(`${startRoute}.*`);
-  const strippedKeys = startKeys.map((key) => key.replace(`${startRoute}.`, ''));
+  const startKeys = await client.keys(`${startRoute}*`);
+  const strippedKeys = startKeys.map((key) => key.replace(startRoute, ''));
   const result = strippedKeys.find((key) => stemIri(iri) === key || iri.startsWith(`${key}/`));
 
-  if (result) {
-    return client.get(`${startRoute}.${result}`);
+  if (!result) {
+    return undefined;
   }
+
+  return client.get(`${startRoute}${result}`);
 };
 
 const renderDoc = async (ctx, key) => {
@@ -79,27 +82,8 @@ const renderDoc = async (ctx, key) => {
 };
 
 export const docMiddleware = async (ctx, next) => {
-  const iri = ctx.request.href;
-  const { path } = ctx.request;
-  let websiteIRI
-  let websiteRelativePath;
-
   try {
-    websiteIRI = await ctx.getWebsiteIRI();
-  } catch (e) {
-    logging.error(e);
-  }
-
-  if (websiteIRI && iri.startsWith(websiteIRI)) {
-    websiteRelativePath = iri.substring(websiteIRI.length);
-  }
-
-  try {
-    const iriDoc = await client.get(`${redisSettingsNS}.routes.${iri}`);
-    const pathDoc = await client.get(`${redisSettingsNS}.routes.${path}`);
-    const websiteRelativePathDoc = await client.get(`${redisSettingsNS}.routes.${websiteRelativePath}`);
-
-    const docKey = iriDoc ?? pathDoc ?? websiteRelativePathDoc ?? await findStartRoute(iri);
+    const docKey = await findStartRoute(ctx.request.href);
 
     if (!docKey) {
       return next();
