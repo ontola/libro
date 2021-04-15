@@ -427,6 +427,15 @@
   "https://app.argu.co/i18n/search/header/prefix": {
     "defaultMessage": "Search in:"
   },
+  "https://app.argu.co/i18n/survey/button/closed": {
+    "defaultMessage": "Survey Closed"
+  },
+  "https://app.argu.co/i18n/survey/button/start": {
+    "defaultMessage": "Start!"
+  },
+  "https://app.argu.co/i18n/survey/contribution": {
+    "defaultMessage": "Thank you for your contribution."
+  },
   "https://app.argu.co/i18n/teamGL/glappNotUsed": {
     "defaultMessage": "🚪 GLAPP nog niet gebruikt."
   },

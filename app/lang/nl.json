@@ -995,6 +995,24 @@
       "value": "Zoek in:"
     }
   ],
+  "https://app.argu.co/i18n/survey/button/closed": [
+    {
+      "type": 0,
+      "value": "Enquête Gesloten"
+    }
+  ],
+  "https://app.argu.co/i18n/survey/button/start": [
+    {
+      "type": 0,
+      "value": "Start!"
+    }
+  ],
+  "https://app.argu.co/i18n/survey/contribution": [
+    {
+      "type": 0,
+      "value": "Bedankt voor je bijdrage."
+    }
+  ],
   "https://app.argu.co/i18n/teamGL/glappNotUsed": [
     {
       "type": 0,

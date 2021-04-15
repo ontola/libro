@@ -498,3 +498,18 @@ export const voteMessages = defineMessages({
   },
 });
 
+export const surveyMessages = defineMessages({
+  closedButtonText: {
+    defaultMessage: 'Survey Closed',
+    id: 'https://app.argu.co/i18n/survey/button/closed',
+  },
+  startButtonText: {
+    defaultMessage: 'Start!',
+    id: 'https://app.argu.co/i18n/survey/button/start',
+  },
+  thankyouMessage: {
+    defaultMessage: 'Thank you for your contribution.',
+    id: 'https://app.argu.co/i18n/survey/contribution',
+  },
+});
+

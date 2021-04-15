@@ -8,7 +8,9 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
+import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import isPastDate from '../../helpers/date';
@@ -20,6 +22,7 @@ import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import { surveyMessages } from '../../translations/messages';
 
 interface PropTypes {
   expiresAt: Literal;
@@ -30,7 +33,21 @@ const SurveyFull: FC<PropTypes> = ({
   expiresAt,
   renderPartOf,
 }) => {
-  const expired = expiresAt && isPastDate(expiresAt);
+  const intl = useIntl();
+
+  const renderSurveyAction = () => {
+    const expired = expiresAt && isPastDate(expiresAt);
+
+    if (!expired) {
+      return <Property label={argu.externalIRI} />;
+    }
+
+    return (
+      <Button disabled>
+        {intl.formatMessage(surveyMessages.closedButtonText)}
+      </Button>
+    );
+  };
 
   return (
     <Container>
@@ -61,7 +78,7 @@ const SurveyFull: FC<PropTypes> = ({
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <ActionsBar>
-            {!expired && <Property label={argu.externalIRI} />}
+            {renderSurveyAction()}
           </ActionsBar>
         </CardContent>
       </CardMain>
