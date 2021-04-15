@@ -2,8 +2,11 @@ import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../../components/Card/CardContent';
@@ -24,7 +27,13 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
-const MeasureFull = ({ renderPartOf }) => (
+interface MeasureFullProps {
+  renderPartOf: boolean;
+}
+
+const MeasureFull: FC<MeasureFullProps> = ({
+  renderPartOf,
+}) => (
   <React.Fragment>
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
@@ -68,9 +77,5 @@ const MeasureFull = ({ renderPartOf }) => (
 MeasureFull.type = rivm.Measure;
 
 MeasureFull.topology = fullResourceTopology;
-
-MeasureFull.propTypes = {
-  renderPartOf: PropTypes.bool,
-};
 
 export default register(MeasureFull);

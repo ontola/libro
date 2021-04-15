@@ -9,13 +9,13 @@ import Risk from './Risk';
 import Scenario from './Scenario';
 
 export default [
-  Category,
-  Employment,
-  Incident,
-  Intervention,
-  InterventionType,
-  Measure,
-  MeasureType,
-  Risk,
-  Scenario,
+  ...Category,
+  ...Employment,
+  ...Incident,
+  ...Intervention,
+  ...InterventionType,
+  ...Measure,
+  ...MeasureType,
+  ...Risk,
+  ...Scenario,
 ];
