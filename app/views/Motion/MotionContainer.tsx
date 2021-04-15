@@ -1,14 +1,14 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import { connectHighlighting, hightlightType } from '../../containers/Highlight';
+import { connectHighlighting } from '../../containers/Highlight';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -22,7 +22,14 @@ import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const MotionContainer = ({ highlighted, subject }) => (
+interface MotionContainerProps {
+  highlighted: boolean;
+}
+
+const MotionContainer: FC<MotionContainerProps> = ({
+  highlighted,
+  subject,
+}) => (
   <Card about={subject?.value} shine={highlighted}>
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
@@ -50,10 +57,5 @@ MotionContainer.topology = [
 ];
 
 MotionContainer.hocs = [connectHighlighting];
-
-MotionContainer.propTypes = {
-  highlighted: hightlightType,
-  subject: subjectType,
-};
 
 export default register(MotionContainer);

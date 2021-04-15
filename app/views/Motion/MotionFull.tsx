@@ -1,13 +1,17 @@
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import CardContent from '../../components/Card/CardContent';
 import Collection from '../../components/Collection';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
+import { Size } from '../../components/shared/config';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -23,7 +27,13 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { defaultMenus } from '../common';
 
-const MotionFull = ({ renderPartOf }) => (
+interface MotionFullProps {
+  renderPartOf: boolean;
+}
+
+const MotionFull: FC<MotionFullProps> = ({
+  renderPartOf,
+}) => (
   <React.Fragment>
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
@@ -63,7 +73,7 @@ const MotionFull = ({ renderPartOf }) => (
       />
       <Property label={schema.location} onLoad={() => null} />
     </Container>
-    <Container size="large">
+    <Container size={Size.Large}>
       <Property forceRender label={argu.arguments} />
     </Container>
     <Container>
@@ -75,9 +85,5 @@ const MotionFull = ({ renderPartOf }) => (
 MotionFull.type = [argu.Motion, opengov.Motion];
 
 MotionFull.topology = fullResourceTopology;
-
-MotionFull.propTypes = {
-  renderPartOf: PropTypes.bool,
-};
 
 export default register(MotionFull);
