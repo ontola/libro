@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
@@ -31,15 +31,20 @@ const BlogContainer: FC = () => {
       className={classes.gridStyle}
       direction="column"
     >
-      <Typography className={classes.textStyle} variant="h2">{name.value}</Typography>
+      <Typography
+        className={classes.textStyle}
+        variant="h2"
+      >
+        {name.value}
+      </Typography>
       <Showcase>
-        <Property label={argu.ns('blogShowcase')} />
+        <Property label={sales.blogShowcase} />
       </Showcase>
     </Grid>
   );
 };
 
-BlogContainer.type = argu.ns('Blogs');
+BlogContainer.type = sales.Blogs;
 
 BlogContainer.topology = containerTopology;
 

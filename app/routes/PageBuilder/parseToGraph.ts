@@ -36,6 +36,7 @@ import ontOrg from '../../ontology/org';
 import ontPerson from '../../ontology/person';
 import ontQb from '../../ontology/qb';
 import ontRivm from '../../ontology/rivm';
+import ontSales from '../../ontology/sales';
 import ontSp from '../../ontology/sp';
 import ontTeamGL from '../../ontology/teamGL';
 import ontWdt from '../../ontology/wdt';
@@ -108,6 +109,8 @@ const parseToGraph = (source: string): ParsedObject[] => {
   const qb = ontQb;
   // @ts-ignore
   const rivm = ontRivm;
+  // @ts-ignore
+  const sales = ontSales;
   // @ts-ignore
   const sp = ontSp;
   // @ts-ignore

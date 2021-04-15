@@ -10,6 +10,7 @@ import {
 import React from 'react';
 
 import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
 const useStyles = makeStyles({
@@ -42,7 +43,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Feature: FC = () => {
+const FeatureIconShowcase: FC = () => {
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [color] = useProperty(schema.color);
@@ -77,8 +78,8 @@ const Feature: FC = () => {
   );
 };
 
-Feature.type = argu.ns('FeatureIcon');
+FeatureIconShowcase.type = sales.FeatureIcon;
 
-Feature.topology = showcaseTopology;
+FeatureIconShowcase.topology = showcaseTopology;
 
-export default Feature;
+export default FeatureIconShowcase;

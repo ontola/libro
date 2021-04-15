@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import { ReadMoreButton } from '../../../components/SalesWebsite';
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
@@ -40,9 +40,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const ProductShowcase: FC = ({ subject }) => {
+const ProductPageShowcase: FC = ({ subject }) => {
   const classes = useStyles();
-  const [tagline] = useProperty(argu.ns('tagline'));
+  const [tagline] = useProperty(sales.tagline);
   const [name] = useProperty(schema.name);
 
   return (
@@ -62,7 +62,9 @@ const ProductShowcase: FC = ({ subject }) => {
           {name.value}
         </Typography>
         <div className={classes.subTextContainer}>
-          <Typography variant="body1">{tagline.value}</Typography>
+          <Typography variant="body1">
+            {tagline.value}
+          </Typography>
         </div>
         <ReadMoreButton />
       </Grid>
@@ -70,8 +72,8 @@ const ProductShowcase: FC = ({ subject }) => {
   );
 };
 
-ProductShowcase.type = argu.ns('ProductPage');
+ProductPageShowcase.type = sales.ProductPage;
 
-ProductShowcase.topology = showcaseTopology;
+ProductPageShowcase.topology = showcaseTopology;
 
-export default ProductShowcase;
+export default ProductPageShowcase;

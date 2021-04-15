@@ -12,7 +12,7 @@ import {
 import React from 'react';
 
 import Image from '../../../components/Image';
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
@@ -80,7 +80,7 @@ const CaseContainer: FC = () => {
   const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [caseButtonText] = useProperty(argu.ns('caseButtonText'));
+  const [caseButtonText] = useProperty(sales.caseButtonText);
   let renderedImage;
 
   if (image !== undefined) {
@@ -111,7 +111,7 @@ const CaseContainer: FC = () => {
       {renderedImage}
       <Showcase>
         <div className={classes.propositionSelector}>
-          <Property label={argu.ns('caseShowcase')} />
+          <Property label={sales.caseShowcase} />
         </div>
       </Showcase>
       <Button
@@ -124,7 +124,7 @@ const CaseContainer: FC = () => {
   );
 };
 
-CaseContainer.type = argu.ns('Cases');
+CaseContainer.type = sales.Cases;
 
 CaseContainer.topology = containerTopology;
 

@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { Parallax } from '../../../components/SalesWebsite';
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
@@ -35,10 +35,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const FunctionalitiesContainer: FC = () => {
   const classes = useStyles();
   const [image] = useProperty(schema.image);
-  const [backgroundImageMobile] = useProperty(argu.ns('backgroundImageMobile'));
+  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [buttonText] = useProperty(argu.ns('buttonText'));
+  const [buttonText] = useProperty(sales.buttonText);
 
   return (
     <Parallax
@@ -50,14 +50,14 @@ const FunctionalitiesContainer: FC = () => {
     >
       <Showcase>
         <div className={classes.propositionSelector}>
-          <Property label={argu.ns('functionalitiesShowcase')} />
+          <Property label={sales.functionalitiesShowcase} />
         </div>
       </Showcase>
     </Parallax>
   );
 };
 
-FunctionalitiesContainer.type = argu.ns('FunctionalitiesContainer');
+FunctionalitiesContainer.type = sales.FunctionalitiesContainer;
 
 FunctionalitiesContainer.topology = containerTopology;
 

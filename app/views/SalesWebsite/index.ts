@@ -1,27 +1,23 @@
+import Block from './Block';
 import BlogContainer from './BlogContainer';
-import BlogShowcase from './BlogShowcase';
-import CaseContainer from './CaseContainer';
-import CaseShowcase from './CaseShowcase';
-import DuoBlockContainer from './DuoBlockContainer';
-import Feature from './Feature';
+import BlogPage from './BlogPage';
+import Cases from './Cases';
+import FeatureIcon from './FeatureIcon';
 import FeatureShowcase from './FeatureShowcase';
 import FunctionalitiesContainer from './FunctionalitiesContainer';
 import Functionality from './Functionality';
 import HomePage from './HomePage';
 import ProductPage from './ProductPage';
-import ProductShowcase from './ProductShowcase';
 
 export default [
+  ...Block,
   ...BlogContainer,
-  ...BlogShowcase,
-  ...CaseContainer,
-  ...CaseShowcase,
-  ...DuoBlockContainer,
-  ...Feature,
+  ...BlogPage,
+  ...Cases,
+  ...FeatureIcon,
   ...FeatureShowcase,
   ...FunctionalitiesContainer,
   ...Functionality,
   ...HomePage,
   ...ProductPage,
-  ...ProductShowcase,
 ];

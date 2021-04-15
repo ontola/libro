@@ -12,7 +12,7 @@ import React from 'react';
 import { CallToAction, HeaderProductPages } from '../../../components/SalesWebsite';
 import { Size } from '../../../components/shared/config';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
@@ -57,21 +57,21 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const ProductPage: FC = () => {
+const ProductPageFull: FC = () => {
   const classes = useStyles();
-  const [buttonText] = useProperty(argu.ns('buttonText'));
+  const [buttonText] = useProperty(sales.buttonText);
   const [image] = useProperty(schema.image);
-  const [backgroundImage] = useProperty(argu.ns('backgroundImage'));
-  const [backgroundImageMobile] = useProperty(argu.ns('backgroundImageMobile'));
+  const [backgroundImage] = useProperty(sales.backgroundImage);
+  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.description);
   const [text] = useProperty(schema.text);
-  const [productTextTitle] = useProperty(argu.ns('productTextTitle'));
-  const [productText1] = useProperty(argu.ns('productTextContent')) as Node[];
+  const [productTextTitle] = useProperty(sales.productTextTitle);
+  const [productText1] = useProperty(sales.productTextContent) as Node[];
   const productTexts = useContainerToArr(productText1);
-  const [featureTitle] = useProperty(argu.ns('featureTitle'));
-  const [callToActionButtonText] = useProperty(argu.ns('buttonText'));
-  const [callToActionText] = useProperty(argu.ns('callToActionText'));
-  const [callToActionTitle] = useProperty(argu.ns('callToActionTitle'));
+  const [featureTitle] = useProperty(sales.featureTitle);
+  const [callToActionButtonText] = useProperty(sales.buttonText);
+  const [callToActionText] = useProperty(sales.callToActionText);
+  const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
   return (
     <div className={classes.wrapper}>
@@ -112,16 +112,16 @@ const ProductPage: FC = () => {
           >
             {featureTitle?.value}
           </Typography>
-          <Property label={argu.ns('features')} />
+          <Property label={sales.features} />
         </Container>
       </div>
       <div className={classes.caseContainer}>
         <Container>
-          <Property label={argu.ns('cases')} />
+          <Property label={sales.cases} />
         </Container>
       </div>
       <Container size={Size.Large}>
-        <Property label={argu.ns('functionalities')} />
+        <Property label={sales.functionalities} />
       </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}
@@ -133,10 +133,10 @@ const ProductPage: FC = () => {
   );
 };
 
-ProductPage.type = argu.ns('ProductPage');
+ProductPageFull.type = sales.ProductPage;
 
-ProductPage.topology = fullResourceTopology;
+ProductPageFull.topology = fullResourceTopology;
 
-ProductPage.hocs = [withSalesTheme];
+ProductPageFull.hocs = [withSalesTheme];
 
-export default ProductPage;
+export default ProductPageFull;

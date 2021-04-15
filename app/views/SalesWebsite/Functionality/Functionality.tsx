@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import Image from '../../../components/Image';
 
@@ -52,7 +52,7 @@ const Functionality: FC = () => {
   const [text] = useProperty(schema.text);
   const [color] = useProperty(schema.color);
   const [image] = useProperty(schema.image);
-  const [textColor] = useProperty(argu.ns('textColor'));
+  const [textColor] = useProperty(sales.textColor);
   const classes = useStyles({
     color: color.value,
     textColor: textColor.value,
@@ -83,7 +83,7 @@ const Functionality: FC = () => {
 
 };
 
-Functionality.type = argu.ns('Functionality');
+Functionality.type = sales.Functionality;
 
 Functionality.topology = showcaseTopology;
 

@@ -7,7 +7,7 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const CaseShowcase: FC = () => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
-  const [tagline] = useProperty(argu.ns('tagline'));
+  const [tagline] = useProperty(sales.tagline);
   const [text] = useProperty(schema.text);
 
   return (
@@ -65,14 +65,16 @@ const CaseShowcase: FC = () => {
         >
           {tagline.value}
         </Typography>
-        <Typography variant="h6">{text.value}</Typography>
+        <Typography variant="h6">
+          {text.value}
+        </Typography>
         <ArrowRightAltIcon className={classes.arrow} />
       </Grid>
     </Button>
   );
 };
 
-CaseShowcase.type = argu.ns('CasePage');
+CaseShowcase.type = sales.CasePage;
 
 CaseShowcase.topology = showcaseTopology;
 

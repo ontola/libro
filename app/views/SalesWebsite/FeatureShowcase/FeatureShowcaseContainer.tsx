@@ -6,14 +6,14 @@ import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 
-const FeatureShowcase: FC = () => (
+const FeatureShowcaseContainer: FC = () => (
   <Showcase>
     <Property label={argu.ns('Features')} />
   </Showcase>
 );
 
-FeatureShowcase.type = argu.ns('FeatureShowcase');
+FeatureShowcaseContainer.type = argu.ns('FeatureShowcase');
 
-FeatureShowcase.topology = containerTopology;
+FeatureShowcaseContainer.topology = containerTopology;
 
-export default FeatureShowcase;
+export default FeatureShowcaseContainer;

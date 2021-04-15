@@ -8,7 +8,7 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
 import Image from '../../../components/Image';
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
@@ -36,11 +36,11 @@ const useStyles = makeStyles<SalesTheme>({
   },
 });
 
-const BlogShowcase: FC = () => {
+const BlogPageShowcase: FC = () => {
   const classes = useStyles();
   const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
-  const [theme] = useProperty(argu.ns('theme'));
+  const [theme] = useProperty(sales.theme);
 
   return (
     <Button
@@ -63,8 +63,8 @@ const BlogShowcase: FC = () => {
   );
 };
 
-BlogShowcase.type = argu.ns('BlogPage');
+BlogPageShowcase.type = sales.BlogPage;
 
-BlogShowcase.topology = showcaseTopology;
+BlogPageShowcase.topology = showcaseTopology;
 
-export default BlogShowcase;
+export default BlogPageShowcase;

@@ -1,7 +1,7 @@
 import { register } from 'link-redux';
 
-import HomePage from './HomePage';
+import HomePageFull from './HomePageFull';
 
 export default [
-  ...register(HomePage),
+  ...register(HomePageFull),
 ];

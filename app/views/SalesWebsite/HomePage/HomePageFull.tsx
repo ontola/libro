@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
+import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
@@ -83,16 +83,16 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const HomePage: FC = () => {
+const HomePageFull: FC = () => {
   const classes = useStyles();
-  const [backgroundImage] = useProperty(argu.ns('backgroundImage'));
-  const [backgroundImageMobile] = useProperty(argu.ns('backgroundImageMobile'));
+  const [backgroundImage] = useProperty(sales.backgroundImage);
+  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [buttonText] = useProperty(argu.ns('buttonText'));
-  const [callToActionButtonText] = useProperty(argu.ns('buttonText'));
-  const [callToActionText] = useProperty(argu.ns('callToActionText'));
-  const [callToActionTitle] = useProperty(argu.ns('callToActionTitle'));
+  const [buttonText] = useProperty(sales.buttonText);
+  const [callToActionButtonText] = useProperty(sales.buttonText);
+  const [callToActionText] = useProperty(sales.callToActionText);
+  const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
   return (
     <div className={classes.wrapper}>
@@ -106,24 +106,24 @@ const HomePage: FC = () => {
         <Container>
           <Showcase>
             <div className={classes.propositionSelector}>
-              <Property label={argu.ns('showcase')} />
+              <Property label={sales.showcase} />
             </div>
           </Showcase>
         </Container>
       </Header>
       <div className={classes.caseContainer}>
         <Container>
-          <Property label={argu.ns('cases')} />
+          <Property label={sales.cases} />
         </Container>
       </div>
       <Container>
         <div className={classes.featureContainer}>
-          <Property label={argu.ns('features')} />
+          <Property label={sales.features} />
         </div>
         <Showcase>
-          <Property label={argu.ns('duoBlock')} />
+          <Property label={sales.duoBlock} />
         </Showcase>
-        <Property label={argu.ns('blogs')} />
+        <Property label={sales.blogs} />
       </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}
@@ -135,10 +135,10 @@ const HomePage: FC = () => {
   );
 };
 
-HomePage.type = argu.ns('HomePage');
+HomePageFull.type = sales.HomePage;
 
-HomePage.topology = fullResourceTopology;
+HomePageFull.topology = fullResourceTopology;
 
-HomePage.hocs = [withSalesTheme];
+HomePageFull.hocs = [withSalesTheme];
 
-export default HomePage;
+export default HomePageFull;

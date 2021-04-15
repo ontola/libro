@@ -1,7 +1,7 @@
 import { register } from 'link-redux';
 
-import FeatureShowcase from './FeatureShowcase';
+import FeatureShowcaseContainer from './FeatureShowcaseContainer';
 
 export default [
-  ...register(FeatureShowcase),
+  ...register(FeatureShowcaseContainer),
 ];
