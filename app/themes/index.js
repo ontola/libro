@@ -4,6 +4,7 @@ import deepmerge from 'deepmerge';
 import common from './common/theme';
 import dutchGovernment from './dutchGovernment/theme';
 import groenLinks from './groenLinks/theme';
+import salesWebsite from './salesWebsite/theme';
 import { LIBRO_THEMES } from './LibroThemes';
 
 const generateStyle = ({
@@ -58,4 +59,5 @@ export default {
   [LIBRO_THEMES.COMMON]: generateStyle(common),
   [LIBRO_THEMES.DUTCHGOVERNMENT]: generateStyle(dutchGovernment),
   [LIBRO_THEMES.GROENLINKS]: generateStyle(groenLinks),
+  [LIBRO_THEMES.SALES]: generateStyle(salesWebsite),
 };

@@ -3,4 +3,5 @@ export const LIBRO_THEMES = {
   DEXTRANSFER: 'dexTransfer',
   DUTCHGOVERNMENT: 'dutchGovernment',
   GROENLINKS: 'groenLinks',
+  SALES: 'salesWebsite',
 };
