@@ -5,6 +5,9 @@ import {
 } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 
+import { InputValue } from '../hooks/useFormField';
+import argu from '../ontology/argu';
+
 import { JSONLDObject } from './forms';
 
 export const isDate = (prop: unknown): boolean => (
@@ -17,6 +20,10 @@ export const isDateTime = (prop: unknown): boolean => (
 
 export const isDateOrDateTime = (prop: unknown): boolean => (
   isDate(prop) || isDateTime(prop)
+);
+
+export const isFileType = (v: InputValue): boolean => (
+  isLiteral(v) && v?.datatype === argu.ns('base64File')
 );
 
 export const isFunction = (value: unknown): value is ((...props: any) => any) => typeof value === 'function';

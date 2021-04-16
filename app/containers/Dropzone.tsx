@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 
 import Suspense from '../components/Suspense';
-import { PreviewedFile } from '../hooks/useFileStore';
 
 import './Dropzone.scss';
 
@@ -15,12 +14,14 @@ const Dropzone = React.lazy(
 );
 
 export interface DropzoneProps {
+  encodingFormat?: string;
+  fileName?: string;
   encodingFormatTypes: string;
   inputRef: Ref<HTMLInputElement>;
   name: string;
   onChange: (acceptedFile: File) => void;
   openDialog: EventHandler<SyntheticEvent<unknown>>;
-  value?: PreviewedFile;
+  preview?: string;
 }
 
 const DropzoneLoader = (props: DropzoneProps): JSX.Element => (

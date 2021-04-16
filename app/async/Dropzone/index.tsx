@@ -5,11 +5,13 @@ import DropzoneInner from '../../components/Dropzone/DropzoneInner';
 import { DropzoneProps } from '../../containers/Dropzone';
 
 const Dropzone: React.FC<DropzoneProps> = ({
+  encodingFormat,
+  fileName,
   encodingFormatTypes,
   inputRef,
   onChange,
   openDialog,
-  value,
+  preview,
 }) => {
   const onDrop = React.useCallback((acceptedFiles) => {
     const [file] = acceptedFiles;
@@ -34,10 +36,12 @@ const Dropzone: React.FC<DropzoneProps> = ({
       }) => (
         <div className="Dropzone__button-spacer">
           <DropzoneInner
-            file={value}
+            encodingFormat={encodingFormat}
+            fileName={fileName}
             isDragActive={isDragActive}
+            preview={preview}
           >
-            {(preview: React.ReactNode) => (
+            {(renderedPreview: React.ReactNode) => (
               <button
                 type="button"
                 {...getRootProps({
@@ -46,7 +50,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
                   type: 'button',
                 })}
               >
-                {preview}
+                {renderedPreview}
                 <input
                   {...getInputProps()}
                   className="Dropzone__input"

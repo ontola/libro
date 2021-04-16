@@ -23,6 +23,7 @@ import { FileStore } from '../hooks/useFileStore';
 import ontola from '../ontology/ontola';
 
 import { sequenceFilter } from './iris';
+import { isFileType } from './types';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
@@ -111,7 +112,7 @@ function serializableValue(v: any, fileStore: FileStore): any | any[] | File | s
     return convertKeysAtoB(v, fileStore);
   } else if (Array.isArray(v)) {
     return v.map((i) => serializableValue(i, fileStore));
-  } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
+  } else if (isFileType(v)) {
     return fileStore[v.value];
   } else if (isLiteral(v) || isBlankNode(v)) {
     return v.value;

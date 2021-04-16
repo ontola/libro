@@ -6,7 +6,6 @@ import React from 'react';
 
 import { imageRepresentationUrl } from '../../helpers/attachments';
 import { formFieldsPath } from '../../helpers/diggers';
-import { PreviewedFile } from '../../hooks/useFileStore';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext } from '../Form/Form';
@@ -19,7 +18,9 @@ const DOCUMENT_PREVIEW_IMAGE_MARGIN_RIGHT = 1;
 
 interface DropzoneInnerProps {
   children: (props: any) => any;
-  file?: PreviewedFile;
+  preview?: string;
+  encodingFormat?: string;
+  fileName?: string;
   isDragActive: boolean;
 }
 
@@ -38,25 +39,27 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
 const DropzoneInner = ({
   children,
-  file,
+  preview,
+  encodingFormat,
+  fileName,
   isDragActive,
 }: DropzoneInnerProps): JSX.Element => {
   const classes = useStyles();
   const lrs = useLRS();
   const { formIRI } = React.useContext(FormContext);
 
-  if (file && !file.type.startsWith('image/')) {
-    const fileImage = imageRepresentationUrl({ encodingFormat: rdf.literal(file.type) });
+  if (preview && !encodingFormat?.startsWith('image/')) {
+    const fileImage = imageRepresentationUrl({ encodingFormat: rdf.literal(encodingFormat) });
 
     return children(
       <div className={classes.documentPreviewWrapper}>
         <Image className={classes.documentPreviewImage} linkedProp={fileImage} />
-        <span className={classes.documentPreviewFileName}>{file.name}</span>
+        <span className={classes.documentPreviewFileName}>{fileName}</span>
       </div>,
     );
   }
 
-  if (file && isNode(formIRI)) {
+  if (preview && isNode(formIRI)) {
     const imagePositionYShape = lrs.findSubject(
       formIRI,
       [...formFieldsPath, sh.path],
@@ -66,8 +69,8 @@ const DropzoneInner = ({
     if (imagePositionYShape) {
       return (
         <DropzoneInnerPositionY
-          file={file}
           imagePositionYShape={imagePositionYShape}
+          preview={preview}
         >
           {children}
         </DropzoneInnerPositionY>
@@ -75,10 +78,10 @@ const DropzoneInner = ({
     }
   }
 
-  if (file) {
+  if (preview) {
     return children(
       <div>
-        <img alt={file.name} src={file.preview} />
+        <img alt={fileName} src={preview} />
       </div>,
     );
   }

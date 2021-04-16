@@ -13,6 +13,7 @@ const HiddenRequiredInput: React.FC<PropTypes> = ({ name, value }) => (
     name={name}
     type="text"
     value={value || ''}
+    onChange={() => null}
   />
 );
 
