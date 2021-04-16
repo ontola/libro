@@ -8,7 +8,7 @@ import Showcase from '../../../topologies/Showcase';
 
 const FeatureShowcaseContainer: FC = () => (
   <Showcase>
-    <Property label={argu.ns('Features')} />
+    <Property label={argu.ns('features')} />
   </Showcase>
 );
 

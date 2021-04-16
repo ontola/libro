@@ -31,6 +31,7 @@ import pageHeaderTopologyComponent, { pageHeaderTopology } from './topologies/Pa
 import parentTopologyComponent, { parentTopology } from './topologies/Parent';
 import popupTopologyComponent, { popupTopology } from './topologies/Popup';
 import radioGroupTopologyComponent, { radioGroupTopology } from './topologies/RadioGroup';
+import blueBlockTopologyComponent, { blueBlockTopology } from './topologies/SalesWebsite/BlueBlock';
 import selectTopologyComponent, { selectTopology } from './topologies/Select';
 import tabBarTopologyComponent, { tabBarTopology } from './topologies/TabBar';
 import tableTopologyComponent, { tableTopology } from './topologies/Table';
@@ -51,6 +52,7 @@ const topologyMap: TopologyMap = {
   [rdf.id(actionsBarTopology)]: actionsBarTopologyComponent,
   [rdf.id(appMenuTopology)]: appMenuTopologyComponent,
   [rdf.id(attributeListTopology)]: attributeListTopologyComponent,
+  [rdf.id(blueBlockTopology)]: blueBlockTopologyComponent,
   [rdf.id(cardTopology)]: cardTopologyComponent,
   [rdf.id(cardAppendixTopology)]: cardAppendixTopologyComponent,
   [rdf.id(cardFixedTopology)]: cardFixedTopologyComponent,

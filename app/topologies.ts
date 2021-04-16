@@ -31,6 +31,7 @@ import { pageHeaderTopology } from './topologies/PageHeader';
 import { parentTopology } from './topologies/Parent';
 import { popupTopology } from './topologies/Popup';
 import { radioGroupTopology } from './topologies/RadioGroup';
+import { blueBlockTopology } from './topologies/SalesWebsite/BlueBlock';
 import { selectTopology } from './topologies/Select';
 import { selectedValueTopology } from './topologies/SelectedValue';
 import { showcaseTopology } from './topologies/Showcase';
@@ -54,6 +55,7 @@ export const allTopologies: NamedNode[] = [
   actionsBarTopology,
   appMenuTopology,
   attributeListTopology,
+  blueBlockTopology,
   cardTopology,
   cardAppendixTopology,
   cardFixedTopology,

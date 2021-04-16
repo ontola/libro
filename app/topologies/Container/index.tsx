@@ -21,12 +21,12 @@ export interface ContainerProps {
  * Centers the content and defines width
  * @returns {component} Container with children
  */
-class Container extends Topology<ContainerProps> {
+class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
   public static defaultProps = {
     size: 'medium',
   };
 
-  constructor(props: ContainerProps) {
+  constructor(props: P) {
     super(props);
 
     this.topology = containerTopology;

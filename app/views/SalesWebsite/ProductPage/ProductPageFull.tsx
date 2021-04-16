@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { Node, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
@@ -16,16 +16,13 @@ import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
+import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   caseContainer: {
     background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     padding: 20,
     paddingTop: 60,
-  },
-  featureShowcaseBackground: {
-    background: theme.palette.primary.main,
-    padding: 40,
   },
   featureTitle: {
     color: '#FFF',
@@ -72,6 +69,7 @@ const ProductPageFull: FC = () => {
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
+  const [test] = useProperty(sales.propositions);
 
   return (
     <div className={classes.wrapper}>
@@ -104,17 +102,17 @@ const ProductPageFull: FC = () => {
           </div>
         </Container>
       </HeaderProductPages>
-      <div className={classes.featureShowcaseBackground}>
-        <Container>
-          <Typography
-            className={classes.titleFeatureBlock}
-            variant="h2"
-          >
-            {featureTitle?.value}
-          </Typography>
-          <Property label={sales.features} />
-        </Container>
-      </div>
+      <BlueBlock>
+        <Typography
+          className={classes.titleFeatureBlock}
+          variant="h2"
+        >
+          {featureTitle?.value}
+        </Typography>
+        <Grid container direction="row">
+          <Property label={sales.propositions} />
+        </Grid>
+      </BlueBlock>
       <div className={classes.caseContainer}>
         <Container>
           <Property label={sales.cases} />

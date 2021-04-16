@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -118,7 +119,9 @@ const HomePageFull: FC = () => {
       </div>
       <Container>
         <div className={classes.featureContainer}>
-          <Property label={sales.features} />
+          <Grid container direction="row">
+            <Property label={sales.propositions} />
+          </Grid>
         </div>
         <Showcase>
           <Property label={sales.duoBlock} />

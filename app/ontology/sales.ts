@@ -8,15 +8,21 @@ export default {
   /* classes */
   // eslint-disable-next-line sort-keys
   Block: sales('Block'),
+  /** A page containing a blogpost. */
   BlogPage: sales('BlogPage'),
+  /** Collection of BlogPage.  */
   Blogs: sales('Blogs'),
+  /** A page describing a case. */
   CasePage: sales('CasePage'),
+  /** Collection of CasePage.  */
   Cases: sales('Cases'),
-  FeatureIcon: sales('FeatureIcon'),
+  FeatureShowcase: sales('FeatureShowcase'),
+  Features: sales('Features'),
   FunctionalitiesContainer: sales('FunctionalitiesContainer'),
   Functionality: sales('Functionality'),
   HomePage: sales('HomePage'),
   ProductPage: sales('ProductPage'),
+  Proposition: sales('Proposition'),
 
   /* properties */
   backgroundImage: sales('backgroundImage'),
@@ -36,6 +42,7 @@ export default {
   functionalitiesShowcase: sales('functionalitiesShowcase'),
   productTextContent: sales('productTextContent'),
   productTextTitle: sales('productTextTitle'),
+  propositions: sales('propositions'),
   showcase: sales('showcase'),
   tagline: sales('tagline'),
   textColor: sales('textColor'),
