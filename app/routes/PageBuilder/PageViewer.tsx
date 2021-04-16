@@ -18,7 +18,7 @@ const PageViewer = (): JSX.Element => {
     resources,
     theme,
   } = React.useContext(builderContext);
-  const currentResource = resources[resourceIndex];
+  const currentResource = resources[Math.min(resources.length - 1, resourceIndex)];
   const footerResources = [
     app.ns('menus/footer/argu').value,
     app.ns('menus/footer/kb').value,

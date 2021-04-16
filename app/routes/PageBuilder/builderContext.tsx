@@ -50,10 +50,10 @@ export const PageBuilderContext: React.FC = ({ children }) => {
   const [lrs, resources, source, setSource] = useParsedSource();
   const documents = useJSON<string[]>('/_libro/docs');
   const [context, setContext] = React.useState<EditorContextBundle | undefined>(undefined);
-  const [documentIndex, setDocumentIndex] = React.useState<number>(0);
-  const [resourceIndex, setResourceIndex] = React.useState<number>(0);
-  const [showEditor, setShowEditor] = React.useState<boolean>(true);
-  const document = useJSON<{ source: string }>(documents?.[documentIndex]);
+  const [documentIndex, setDocumentIndex] = useStoredState('libro.pagebuilder.documentIndex', '0');
+  const [resourceIndex, setResourceIndex] = useStoredState('libro.pagebuilder.resourceIndex', '0');
+  const [showEditor, setShowEditor] = useStoredState('libro.pagebuilder.showEditor', 'true');
+  const document = useJSON<{ source: string }>(documents?.[Number.parseInt(documentIndex!)]);
   const [theme, setTheme] = useStoredState('libro.pagebuilder.slectedTheme', 'common');
 
   const saveDocument = (id: string) => (
@@ -68,19 +68,19 @@ export const PageBuilderContext: React.FC = ({ children }) => {
 
   const nextContext = () => ({
     context,
-    documentIndex,
+    documentIndex: Number.parseInt(documentIndex!),
     documents,
     lrs,
-    resourceIndex,
+    resourceIndex: Number.parseInt(resourceIndex!),
     resources,
     saveDocument,
     setContext,
-    setDocumentIndex,
-    setResourceIndex,
-    setShowEditor,
+    setDocumentIndex: (v: number) => setDocumentIndex(v.toString()),
+    setResourceIndex: (v: number) => setResourceIndex(v.toString()),
+    setShowEditor: (v: boolean) => setShowEditor(v.toString()),
     setSource,
     setTheme,
-    showEditor,
+    showEditor: Boolean(showEditor),
     source,
     theme,
   });

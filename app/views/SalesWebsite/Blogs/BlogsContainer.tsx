@@ -20,7 +20,7 @@ const useStyles = makeStyles<SalesTheme>({
   },
 });
 
-const BlogContainer: FC = () => {
+const BlogsContainer: FC = () => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
 
@@ -44,8 +44,8 @@ const BlogContainer: FC = () => {
   );
 };
 
-BlogContainer.type = sales.Blogs;
+BlogsContainer.type = sales.Blogs;
 
-BlogContainer.topology = containerTopology;
+BlogsContainer.topology = containerTopology;
 
-export default BlogContainer;
+export default BlogsContainer;

@@ -9,20 +9,29 @@ import React from 'react';
 
 import { Parallax } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { containerTopology } from '../../../topologies/Container';
+import Container, { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
-  container: {
-    backgroundColor: 'yellowgreen',
-    flex: 1,
-    margin: 'auto',
-  },
   propositionSelector: {
     display: 'grid',
     gridGap: 20,
     gridTemplateColumns: '1fr 1fr 1fr 1fr',
+    marginBottom: 70,
+    marginTop: 30,
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: '1fr 1fr',
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: '1fr',
+    },
+  },
+  screenDivider: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    marginBottom: 160,
+    marginTop: 70,
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr 1fr',
     },
@@ -48,11 +57,19 @@ const FunctionalitiesContainer: FC = () => {
       subtitle={text.value}
       title={name.value}
     >
-      <Showcase>
-        <div className={classes.propositionSelector}>
-          <Property label={sales.functionalitiesShowcase} />
-        </div>
-      </Showcase>
+      <div>
+        <Showcase>
+          <div className={classes.propositionSelector}>
+            <Property label={sales.functionalitiesShowcase} />
+          </div>
+        </Showcase>
+        <Container>
+          <div className={classes.screenDivider}>
+            <Property label={sales.blogs} />
+            <div />
+          </div>
+        </Container>
+      </div>
     </Parallax>
   );
 };

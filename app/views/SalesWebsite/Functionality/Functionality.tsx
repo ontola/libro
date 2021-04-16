@@ -14,7 +14,7 @@ import Image from '../../../components/Image';
 
 const useStyles = makeStyles({
   container: {
-    backgroundColor: 'FFF',
+    backgroundColor: 'white',
     borderColor: '000',
     borderWidth: 1,
     boxShadow: '0 0 25px rgba(0,0,0,0.2)',
@@ -80,7 +80,6 @@ const Functionality: FC = () => {
       </Typography>
     </Grid>
   );
-
 };
 
 Functionality.type = sales.Functionality;

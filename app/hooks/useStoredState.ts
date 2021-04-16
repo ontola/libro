@@ -5,7 +5,7 @@ const useStoredState = (
   initialValue: string | undefined,
   storage: Storage = localStorage,
 ): [string | undefined, Dispatch<SetStateAction<string | undefined>>] => {
-  const [stored, setValue] = React.useState<string | undefined>(storage.getItem(key) || initialValue);
+  const [stored, setValue] = React.useState<string | undefined>(storage.getItem(key) ?? initialValue);
 
   React.useEffect(() => {
     if (stored) {

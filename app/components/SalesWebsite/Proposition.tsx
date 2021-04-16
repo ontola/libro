@@ -2,16 +2,15 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import {
-  FC,
-  Property,
-  useProperty,
-} from 'link-redux';
+import { Property } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import sales from '../../../ontology/sales';
-import { showcaseTopology } from '../../../topologies/Showcase';
+interface PropositionProps {
+  name: string;
+  text: string;
+  color: string;
+  textColor: string;
+}
 
 const useStyles = makeStyles({
   container: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles({
     marginTop: 20,
   },
   icon: {
-    color: (props: Record<string, string>) => props.color,
+    color: (props: PropositionProps) => props.color,
     fontSize: 70,
     margin: 30,
     textAlign: 'center',
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
     height: 44,
   },
   subtitle: {
-    color: (props: Record<string, string>) => props.textColor,
+    color: (props: PropositionProps) => props.textColor,
     fontSize: '1.125rem',
     lineHeight: '1.7rem',
     margin: 10,
@@ -37,21 +36,14 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
   title: {
-    color: (props: Record<string, string>) => props.textColor,
+    color: (props: PropositionProps) => props.textColor,
     fontWeight: 'bold',
     textAlign: 'center',
   },
 });
 
-const FeatureIconShowcase: FC = () => {
-  const [name] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
-  const [color] = useProperty(schema.color);
-  const [textColor] = useProperty(argu.ns('textColor'));
-  const classes = useStyles({
-    color: color.value,
-    textColor: textColor.value,
-  });
+const Proposition = (props: PropositionProps): JSX.Element => {
+  const classes = useStyles(props);
 
   return (
     <Grid
@@ -68,18 +60,14 @@ const FeatureIconShowcase: FC = () => {
         className={classes.title}
         variant="h3"
       >
-        {name.value}
+        {props.name}
       </Typography>
       <div
         className={classes.subtitle}
-        dangerouslySetInnerHTML={{ __html: text.value }}
+        dangerouslySetInnerHTML={{ __html: props.text }}
       />
     </Grid>
   );
 };
 
-FeatureIconShowcase.type = sales.FeatureIcon;
-
-FeatureIconShowcase.topology = showcaseTopology;
-
-export default FeatureIconShowcase;
+export default Proposition;
