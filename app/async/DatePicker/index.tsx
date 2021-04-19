@@ -4,19 +4,23 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
+import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { formMessages } from '../../translations/messages';
 
 const DatePickerComponent: React.FC<InputComponentProps> = ({
+  fieldShape,
   id,
   inputValue,
   onChange,
 }) => {
   const intl = useIntl();
+  const value = inputValue.value?.length > 0 ? inputValue.value : null;
 
   return (
     <MuiPickersUtilsProvider
       utils={DayJSUtils}
     >
+      {fieldShape.required && <HiddenRequiredInput name={id} value={value} />}
       <DatePicker
         autoOk
         showTodayButton
@@ -33,7 +37,7 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
         minDateMessage={intl.formatMessage(formMessages.minDateMessage)}
         okLabel={intl.formatMessage(formMessages.okLabel)}
         todayLabel={intl.formatMessage(formMessages.todayLabel)}
-        value={inputValue.value?.length > 0 ? inputValue.value : null}
+        value={value}
         onChange={(e) => onChange(e === null ? null : e?.format())}
       />
     </MuiPickersUtilsProvider>
