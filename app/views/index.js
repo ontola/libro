@@ -60,10 +60,12 @@ import Shop from './Shop';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import Survey from './Survey';
+import Term from './Term';
 import Thing from './Thing';
 import Timeline from './Timeline';
 import Token from './Token';
 import User from './User';
+import Vocabulary from './Vocabulary';
 import Vote from './Vote';
 import VoteEvent from './VoteEvent';
 import Widget from './Widget';
@@ -74,6 +76,7 @@ export function getViews() {
     ...Activity,
     ...AppSignOut,
     ...ArguHome,
+    ...Term,
     ...Thing,
     ...Action,
     ...Argument,
@@ -132,6 +135,7 @@ export function getViews() {
     ...Timeline,
     ...Token,
     ...User,
+    ...Vocabulary,
     ...Vote,
     ...VoteEvent,
     ...Widget,
