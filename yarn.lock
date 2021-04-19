@@ -6081,7 +6081,7 @@ __metadata:
     koa-static: ^5.0.0
     koa-webpack: ^6.0.0
     koa2-connect: ^1.0.2
-    link-lib: 0.0.0-fd98a597
+    link-lib: 0.0.0-be8bf512
     link-redux: 0.0.0-0452814a
     lint-staged: ^10.5.4
     markdown-draft-js: ^2.1.1
@@ -14695,9 +14695,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"link-lib@npm:0.0.0-fd98a597":
-  version: 0.0.0-fd98a597
-  resolution: "link-lib@npm:0.0.0-fd98a597"
+"link-lib@npm:0.0.0-be8bf512":
+  version: 0.0.0-be8bf512
+  resolution: "link-lib@npm:0.0.0-be8bf512"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -14707,7 +14707,7 @@ fsevents@~2.3.1:
     "@ontologies/xsd": ">=1.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.0-3
-  checksum: d22d1d63d03c54e3a42265a6507cae124e4b5a31b788feb9cfb2faabdc809d73dd4e2678388faccf06084d6515372c44a536df3e6ede7e7ac862a6aaf996eeab
+  checksum: 1a0c8bda8e2e0accba8d167cb0f30c780b6136f9297ef87258590ea1075f9f8f1fb2e9b74456789a807321dc73526a7d8579ff3d97fac62695836769d3ac4fe5
   languageName: node
   linkType: hard
 
