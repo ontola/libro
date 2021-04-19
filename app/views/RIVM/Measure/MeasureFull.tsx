@@ -1,4 +1,3 @@
-import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -9,16 +8,16 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AttributeListItem from '../../../components/AttributeListItem';
 import CardContent from '../../../components/Card/CardContent';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
-import meeting from '../../../ontology/meeting';
 import ontola from '../../../ontology/ontola';
 import rivm from '../../../ontology/rivm';
-import wdt from '../../../ontology/wdt';
 import ActionsBar from '../../../topologies/ActionsBar';
+import AttributeList from '../../../topologies/AttributeList';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
 import CardMain from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -46,19 +45,23 @@ const MeasureFull: FC<MeasureFullProps> = ({
           <LinkedDetailDate />
           <Property label={argu.pinnedAt} />
           <Property label={argu.expiresAt} />
-          <Property label={argu.followsCount} />
           <Property label={schema.location} />
-          <Property label={argu.grantedGroups} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
-          <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
+          <AttributeList>
+            <AttributeListItem label={rivm.phases} propertyLabel="Fases" />
+            <AttributeListItem label={rivm.categories} propertyLabel="Categorieën" />
+            <AttributeListItem label={rivm.secondOpinionBy} />
+            <AttributeListItem label={rivm.measureOwner} />
+            <AttributeListItem label={rivm.contactInfo} />
+            <AttributeListItem label={rivm.moreInfo} />
+            <AttributeListItem label={rivm.attachmentPublicationDate} />
+          </AttributeList>
         </CardContent>
         <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
