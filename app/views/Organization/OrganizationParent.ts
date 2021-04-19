@@ -1,18 +1,13 @@
 import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
-import React from 'react';
 
 import argu from '../../ontology/argu';
 import { parentTopology } from '../../topologies/Parent';
 
-class OrganizationParent extends React.PureComponent {
-  static type = [schema.Organization, argu.Page];
+const OrganizationParent = () => null;
 
-  static topology = parentTopology;
+OrganizationParent.type = [schema.Organization, argu.Page];
 
-  render() {
-    return null;
-  }
-}
+OrganizationParent.topology = parentTopology;
 
 export default register(OrganizationParent);
