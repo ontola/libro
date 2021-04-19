@@ -34,7 +34,7 @@ const useAddFormValue = (values: InputValue[], onChange: OnInputChange, itemFact
     }
 
     onChange(newValues);
-  }, [values, onChange])
+  }, [values, onChange, itemFactory])
 );
 
 export default useAddFormValue;

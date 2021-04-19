@@ -16,6 +16,8 @@ interface PostalRangeFilterProps {
   setPostalRange: (newValue: Literal[]) => void;
 }
 
+const newItem = () => rdf.literal('');
+
 const PostalRangeFilter: React.FC<PostalRangeFilterProps> = ({
   label,
   postalRanges,
@@ -24,7 +26,7 @@ const PostalRangeFilter: React.FC<PostalRangeFilterProps> = ({
   const handleChange = React.useCallback((newValues: InputValue[]) => {
     setPostalRange(newValues.filter(isLiteral));
   }, [setPostalRange]);
-  const addFormValue = useAddFormValue(postalRanges, handleChange, () => rdf.literal(''));
+  const addFormValue = useAddFormValue(postalRanges, handleChange, newItem);
 
   return (
     <FormField

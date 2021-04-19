@@ -10,6 +10,10 @@ import { ontolaActionPrefix } from '../middleware/ontolaMiddleware';
 // @ts-ignore
 import register from '../views';
 
+export interface ClonedLRS extends LinkReduxLRSType {
+  originalLRS: LinkReduxLRSType
+}
+
 const cloneLRS = (old: LinkReduxLRSType) =>  {
   const { lrs: next } = generateLRS();
 
@@ -24,6 +28,7 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
 
     const nextDispatch = next.dispatch;
 
+    (next as ClonedLRS).originalLRS = old;
     next.dispatch = (iri, ...args) => {
       if (iri.value.startsWith(ontolaActionPrefix)) {
         return old.dispatch(iri, ...args);
