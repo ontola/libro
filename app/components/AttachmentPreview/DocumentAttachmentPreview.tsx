@@ -16,6 +16,10 @@ export interface DocumentAttachmentPreviewProps {
   onPreviewClick: React.MouseEventHandler;
 }
 
+export interface FileNameFallbackProps {
+  downloadURL: string;
+}
+
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   attachmentPreview: {
     alignItems: 'center',
@@ -77,6 +81,25 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
+const FileNameFallback = ({ downloadURL }: FileNameFallbackProps) => {
+  const [fileName, setFileName] = React.useState(downloadURL.replace('content/content', ''));
+
+  React.useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    fetch(downloadURL, { signal }).then((res) => {
+      abortController.abort();
+
+      const url = new URL(res.url);
+      const resolvedName = url.pathname.split('/').pop();
+      resolvedName && setFileName(resolvedName);
+    });
+  }, [downloadURL]);
+
+  return <React.Fragment>{fileName}</React.Fragment>;
+};
+
 export const DocumentAttachmentPreview = ({
   downloadURL,
   label,
@@ -90,11 +113,11 @@ export const DocumentAttachmentPreview = ({
     showPreviewDialog ? (
       <button
         className={classes.attachmentPreviewTitle}
-        title={label}
+        title={label ?? ''}
         type="button"
         onClick={onPreviewClick}
       >
-        {label}
+        {label ?? <FileNameFallback downloadURL={downloadURL} />}
       </button>
     ) : (
       <a
@@ -103,9 +126,9 @@ export const DocumentAttachmentPreview = ({
         href={downloadURL}
         rel="noopener noreferrer"
         target="_blank"
-        title={label}
+        title={label ?? ''}
       >
-        {label}
+        {label ?? <FileNameFallback downloadURL={downloadURL} />}
       </a>
     );
 
@@ -115,7 +138,7 @@ export const DocumentAttachmentPreview = ({
         className={`${classes.attachmentPreviewImage} ${classes.centerIcon}`}
         linkedProp={thumbnailURL}
       />
-      {label && renderFileName()}
+      {renderFileName()}
       <a
         download
         className={`${classes.downloadButton} ${classes.centerIcon}`}
