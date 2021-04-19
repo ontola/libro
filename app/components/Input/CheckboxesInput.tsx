@@ -76,9 +76,6 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
           htmlFor={item.value}
           label={label}
         />
-        <Resource subject={shIn} onLoad={() => null}>
-          <CollectionCreateActionButton />
-        </Resource>
       </div>
     );
   });
@@ -87,6 +84,9 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
     <Select>
       {required && <HiddenRequiredInput name={name} value={values?.[0]?.value} />}
       {items}
+      <Resource subject={shIn} onLoad={() => null}>
+        <CollectionCreateActionButton />
+      </Resource>
     </Select>
   );
 };
