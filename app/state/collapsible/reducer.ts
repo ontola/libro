@@ -91,25 +91,19 @@ const toggleAll = (state: CollapsibleState, group: string | undefined) => {
 
 const closeGroup = (state: CollapsibleState, group: string | undefined): CollapsibleState => ({
   ...state,
-  items: Object
-    .entries(state.items)
-    .filter(([_, item]: any) => item.group === group)
-    .reduce((acc, [k, item]: any) => {
-      if (item.group !== group) {
-        return {
-          ...acc,
-          [k]: item,
-        };
-      }
-
-      return {
+  items: {
+    ...state.items,
+    ...Object
+      .entries(state.items)
+      .filter(([_, item]: [string, Collapsible | undefined]) => item?.group === group)
+      .reduce((acc, [k, item]: [string, Collapsible | undefined]) => ({
         ...acc,
         [k]: {
           ...item,
           opened: false,
         },
-      };
-    }, {}),
+      }), {}),
+  },
 });
 
 const recordCollapsible = ({ group, startOpened }: any) => createCollapsible({
