@@ -122,6 +122,9 @@
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Opnieuw"
   },
+  "https://app.argu.co/i18n/errors/lr/circularRender": {
+    "defaultMessage": "Error tijdens het weergeven van extern resource."
+  },
   "https://app.argu.co/i18n/errors/map/loadError": {
     "defaultMessage": "Fout tijdens het laden van de kaart"
   },

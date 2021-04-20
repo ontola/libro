@@ -124,6 +124,9 @@
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Retry"
   },
+  "https://app.argu.co/i18n/errors/lr/circularRender": {
+    "defaultMessage": "Error rendering external resource."
+  },
   "https://app.argu.co/i18n/errors/map/loadError": {
     "defaultMessage": "Error loading map"
   },
