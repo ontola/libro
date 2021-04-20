@@ -54,7 +54,7 @@ const useStyles = makeStyles({
     flexWrap: 'nowrap',
   },
   popper: {
-    width: 'fit-content',
+    width: 'fit-content !important',
   },
 });
 
@@ -77,6 +77,7 @@ const sortByGroup = (lrs: LinkReduxLRSType) => (a: SomeTerm, b: SomeTerm) => {
   if (!groupA || groupB && groupA < groupB) {
     return -1;
   }
+
   if (!groupB || groupA > groupB) {
     return 1;
   }
@@ -107,6 +108,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   values,
 }) => {
   const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
+
   const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
   const { formatMessage } = useIntl();
   const lrs = useLRS();
@@ -115,14 +117,17 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   const itemToString = useItemToString();
   const [currentValue, setCurrentValue] = React.useState('');
   const { loading, options, searchable } = useAsyncFieldOptions(open, fieldShape.shIn, currentValue);
+
   const sortedOptions = React.useMemo(() => (
     grouped ? options.sort(sortByGroup(lrs)) : options
   ), [options]);
+
   const createButton = React.useMemo(() => fieldShape.shIn && (
     <Resource subject={fieldShape.shIn} onLoad={() => null}>
       <CollectionCreateActionButton />
     </Resource>
   ), [fieldShape.shIn]);
+
   const [handleInputValueChange] = useDebouncedCallback(
     (_, newValue) => {
       setCurrentValue(newValue);
@@ -131,6 +136,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
     { leading: true }
     ,
   );
+
   useDataInvalidation(options.filter(isResource));
   const groupBy = React.useCallback((option: SomeTerm) => {
     const group = isNamedNode(option) ? lrs.getResourceProperty(option, ontola.groupBy) : undefined;
@@ -138,6 +144,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
 
     return groupName?.value || '';
   }, []);
+
   const valueProps = React.useMemo(() => {
     const filteredValues = values.filter(isSomeTerm).filter((term) => term.value.length > 0);
 
@@ -150,6 +157,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
       value: filteredValues[0],
     };
   }, [multiple, values]);
+
   const handleChange = React.useCallback((e, v) => {
     e.preventDefault();
     setCurrentValue('');
@@ -160,6 +168,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
       onChange(isTerm(v) ? [v] : []);
     }
   }, [multiple, onChange]);
+
   const renderInput = React.useCallback((params: AutocompleteRenderInputParams) => {
     const inputProps = {
       ...params,
@@ -173,6 +182,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
         ),
       },
     };
+
     if (isNamedNode(valueProps.value)) {
       inputProps.InputProps.startAdornment = (
         <SelectedValue>
@@ -195,6 +205,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   }, [createButton, multiple, valueProps.value]);
 
   const freshValues = values.filter((value) => isNamedNode(value) && !entityIsLoaded(lrs, value));
+
   if (__CLIENT__ && freshValues.length > 0) {
     freshValues.filter(isNamedNode).forEach((value) => {
       lrs.queueEntity(value);
@@ -202,6 +213,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
 
     return <LoadingRow />;
   }
+
   const virtualized = !grouped && options.length > VIRTUALIZATION_THRESHOLD;
 
   return (
