@@ -92,12 +92,26 @@ export const HeaderProductPages = ({
 }: HeaderProductPagesProps): JSX.Element => {
   const classes = useStyles();
   const styles = useTheme();
+
+  const imageView = (
+    <div className={classes.imageWrapper}>
+      <Image
+        className={classes.image}
+        linkedProp={imageUrl}
+      />
+    </div>
+  );
+
+  const emptyView = (
+    <div />
+  );
+
   const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
     ? backgroundImageUrlMobile : backgroundImageUrl;
 
   // return hele image div'je / componentje hier
   const image = useMediaQuery(styles.breakpoints.down('sm'))
-    ? null : imageUrl;
+    ? emptyView : imageView;
 
   return (
     <div
@@ -136,14 +150,8 @@ export const HeaderProductPages = ({
               </Button>
             </div>
           </Grid>
-          <Grid item className={classes.imageContainer} md={5} sm={12}>
-            <div className={classes.imageWrapper}>
-              <Image
-                className={classes.image}
-                linkedProp={image}
-              />
-            </div>
-          </Grid>
+          <Grid item className={classes.imageContainer} md={5} sm={12} />
+          {image}
           {children}
         </Grid>
       </Container>

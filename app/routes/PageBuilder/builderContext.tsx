@@ -80,7 +80,7 @@ export const PageBuilderContext: React.FC = ({ children }) => {
     setShowEditor: (v: boolean) => setShowEditor(v.toString()),
     setSource,
     setTheme,
-    showEditor: Boolean(showEditor),
+    showEditor: showEditor === 'true',
     source,
     theme,
   });
