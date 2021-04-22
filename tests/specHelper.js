@@ -194,7 +194,7 @@ function createContext(opts = {}) {
  * @return {undefined}
  */
 function describeView(desc, components, resources, subject, func) {
-  describe(desc, () => {
+  describe(desc, async () => {
     defineMarker(desc);
     set('c', () => undefined);
     set('ch', () => undefined);
@@ -204,7 +204,7 @@ function describeView(desc, components, resources, subject, func) {
       s: subject,
       t: argu.fullResource,
     });
-    set('subject', () => mount(createContext()));
+    set('subject', async () => mount(await createContext()));
     func();
   });
 }

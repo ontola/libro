@@ -100,7 +100,7 @@ describe('Form', () => {
 
       const {
         getByTestId,
-      } = render(({ iri }) => (
+      } = await render(({ iri }) => (
         <Page>
           <Resource
             forceRender
@@ -122,7 +122,7 @@ describe('Form', () => {
 
       const {
         getByTestId,
-      } = render(({ iri }) => (
+      } = await render(({ iri }) => (
         <Page>
           <Resource
             forceRender

@@ -73,8 +73,8 @@ describe('MenuItem', () => {
       </AppMenu>
     ), { resources });
 
-    it('opens the menu on click', () => {
-      const { getByText } = renderMenu();
+    it('opens the menu on click', async () => {
+      const { getByText } = await renderMenu();
 
       const trigger = getByText('Menu Trigger');
       fireEvent.click(trigger);
@@ -82,8 +82,8 @@ describe('MenuItem', () => {
       expect(getByText('Gebruiker weergeven')).toBeVisible();
     });
 
-    it('closes the menu on click outside', () => {
-      const { getByText } = renderMenu();
+    it('closes the menu on click outside', async () => {
+      const { getByText } = await renderMenu();
 
       const trigger = getByText('Menu Trigger');
       fireEvent.click(trigger);
@@ -93,8 +93,8 @@ describe('MenuItem', () => {
       expect(getByText('Gebruiker weergeven')).not.toBeVisible();
     });
 
-    it('closes the menu on menu item click', () => {
-      const { getByText } = renderMenu();
+    it('closes the menu on menu item click', async () => {
+      const { getByText } = await renderMenu();
 
       const trigger = getByText('Menu Trigger');
       fireEvent.click(trigger);

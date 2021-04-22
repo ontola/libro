@@ -15,13 +15,13 @@ const context = (iri, lrs, store, history, serviceWorkerCommunicator) => default
   subject: iri,
 });
 
-function chargeLRS(id, obj, store) {
+async function chargeLRS(id, obj, store) {
   const {
     lrs,
     history,
     serviceWorkerCommunicator,
   } = generateLRS();
-  lrs.store.addQuads(obj);
+  await lrs.processDelta(obj, true);
   lrs.store.flush();
 
   return context(id ? exNS(id) : undefined, lrs, store, history, serviceWorkerCommunicator);

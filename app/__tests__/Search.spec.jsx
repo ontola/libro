@@ -64,11 +64,11 @@ describe('Search', () => {
   };
 
   describe('within Page', () => {
-    it('renders the form components', () => {
+    it('renders the form components', async () => {
       const {
         getByTestId,
         getByText,
-      } = render(({ iri }) => (
+      } = await render(({ iri }) => (
         <Page>
           <Resource forceRender subject={iri} />
         </Page>

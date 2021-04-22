@@ -8,8 +8,8 @@ import Dropzone from '../index';
 afterEach(cleanup);
 
 describe('Dropzone', () => {
-  it('Displays an invitation message', () => {
-    const { getByText } = render((
+  it('Displays an invitation message', async () => {
+    const { getByText } = await render((
       <Form formID="test" onSubmit={() => undefined}>
         {() => (
           <Field

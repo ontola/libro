@@ -46,12 +46,12 @@ const resources = {
 
 describeView('MenuSection', components, resources, resource, () => {
   as(navbarTopology, () => {
-    it('renders a MenuSection', () => {
-      expect(subject.find(marker('menu-section'))).toExist();
+    it('renders a MenuSection', async () => {
+      expect((await subject).find(marker('menu-section'))).toExist();
     });
 
-    it('renders the label', () => {
-      expect(subject.find(marker('MenuSectionLabel'))).toExist();
+    it('renders the label', async () => {
+      expect((await subject).find(marker('MenuSectionLabel'))).toExist();
     });
   });
 });

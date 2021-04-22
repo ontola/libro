@@ -19,7 +19,7 @@ import Form from '../Form/Form';
 
 const field = example.ns('field');
 
-const renderWithTestForm = ({ initialValues, resources }) => {
+const renderWithTestForm = async ({ initialValues, resources }) => {
   const finalForm = createForm({
     initialValues,
     onSubmit: () => null,
@@ -27,7 +27,7 @@ const renderWithTestForm = ({ initialValues, resources }) => {
 
   return {
     finalForm,
-    ...render(({ iri }) => (
+    ...await render(({ iri }) => (
       <CardMain>
         <Form
           form={finalForm}
@@ -73,8 +73,8 @@ describe('FormField', () => {
 
   const schemaName = calculateFormFieldName(schema.name);
 
-  it('renders a plain input', () => {
-    const { getByTestId } = renderWithTestForm({
+  it('renders a plain input', async () => {
+    const { getByTestId } = await renderWithTestForm({
       resources: textField,
     });
     expect(getByTestId('test')).toHaveFormValues({
@@ -82,8 +82,8 @@ describe('FormField', () => {
     });
   });
 
-  it('accepts an initial value', () => {
-    const { getByTestId } = renderWithTestForm({
+  it('accepts an initial value', async () => {
+    const { getByTestId } = await renderWithTestForm({
       initialValues: {
         [schemaName]: [rdf.literal('Test value')],
       },
@@ -95,12 +95,12 @@ describe('FormField', () => {
     });
   });
 
-  it('toggles checkboxes', () => {
+  it('toggles checkboxes', async () => {
     const pinned = calculateFormFieldName(argu.pinned);
     const {
       getByTestId,
       finalForm,
-    } = renderWithTestForm({
+    } = await renderWithTestForm({
       resources: checkboxField,
     });
 

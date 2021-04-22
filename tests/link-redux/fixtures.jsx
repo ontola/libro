@@ -25,12 +25,12 @@ const context = (iri, lrs, store) => defaultContext({
   subject: iri,
 });
 
-function chargeLRS(id, obj, store) {
+async function chargeLRS(id, obj, store) {
   const lrs = new LinkedRenderStore({
     // eslint-disable-next-line no-console
     report: console.error,
   });
-  lrs.store.addQuads(obj);
+  await lrs.processDelta(obj, true);
   lrs.store.flush();
 
   return context(exNS(id), lrs, store);
@@ -85,7 +85,7 @@ export const empty = (id = '0', store = false) => chargeLRS(id, [], store);
  * @param {rdf.NamedNode} topology The topology to pass to the LOC.
  * @return {*} A wrapped LOC component with the appropriate context for testing.
  */
-export const loc = ({
+export const loc = async ({
   children = undefined,
   components,
   subject,
@@ -96,7 +96,7 @@ export const loc = ({
     throw new Error('No subject nor resources given');
   }
 
-  const ctx = generateCtx(resources, subject);
+  const ctx = await generateCtx(resources, subject);
   if (Array.isArray(components)) {
     ctx.lrs.registerAll(...components);
   }
@@ -145,10 +145,10 @@ loc.propTypes = {
  * @see {loc}
  * @return {*} A wrapped Property component with the appropriate context for testing.
  */
-export const prop = ({ property, ...props }) => {
+export const prop = async ({ property, ...props }) => {
   const children = <Property label={property} />;
 
-  return loc({
+  return await loc({
     children,
     ...props,
   });

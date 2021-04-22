@@ -38,12 +38,12 @@ describe('MediaObject', () => {
     },
   };
 
-  it('renders as Page', () => {
+  it('renders as Page', async () => {
     const {
       queryAllByText,
       queryByText,
       queryByTitle,
-    } = render(
+    } = await render(
       ({ iri }) => (
         <Card>
           <Resource forceRender subject={iri} />

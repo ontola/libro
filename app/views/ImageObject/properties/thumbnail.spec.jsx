@@ -21,12 +21,12 @@ const resources = {
 describeView('ImageObject', components, resources, resource, () => {
   set('ch', () => <Property label={schema.thumbnail} />);
 
-  it('renders a thumbnail', () => {
-    expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
+  it('renders a thumbnail', async () => {
+    expect((await subject).find(marker('ImageObjectThumbnail'))).toExist();
   });
 
-  it('passes the correct url', () => {
-    expect(subject.find(marker('ImageObjectThumbnail')))
+  it('passes the correct url', async () => {
+    expect((await subject).find(marker('ImageObjectThumbnail')))
       .toHaveProp('linkedProp', example.ns('1.thumb.png'));
   });
 });

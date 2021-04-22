@@ -137,7 +137,7 @@ describe('Omniform', () => {
       getByTestId,
       getByLabelText,
       getByText,
-    } = render((
+    } = await render((
       <Card>
         <Omniform
           actions={new Set([

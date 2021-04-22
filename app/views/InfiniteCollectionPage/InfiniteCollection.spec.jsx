@@ -75,7 +75,7 @@ describe('Collection', () => {
   it('renders the members', async () => {
     const {
       queryByText,
-    } = render(
+    } = await render(
       ({ iri }) => (
         <Page>
           <Resource forceRender subject={iri} />

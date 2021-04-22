@@ -79,7 +79,7 @@ describe('Collection', () => {
     const {
       queryByTestId,
       queryByText,
-    } = render(
+    } = await render(
       ({ iri }) => (
         <Page>
           <Resource forceRender subject={iri} />

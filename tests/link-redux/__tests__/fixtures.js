@@ -13,8 +13,8 @@ describe('tests', () => {
   describe('link-redux', () => {
     describe('fixtures', () => {
       describe('prop', () => {
-        it('should raise without a subject', () => {
-          const tree = mount(prop({
+        it('should raise without a subject', async () => {
+          const tree = mount(await prop({
             property: schema.name,
             resources: [],
             subject: argu.ns('test'),
@@ -25,7 +25,7 @@ describe('tests', () => {
 
       describe('loc', () => {
         it('should raise without a subject', () => {
-          expect(() => loc({})).toThrowError('No subject nor resources given');
+          expect(async () => await loc({})).toThrowError('No subject nor resources given');
         });
       });
 

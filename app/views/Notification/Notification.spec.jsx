@@ -93,7 +93,7 @@ describe('Notification', () => {
     },
   };
 
-  describe('in container', () => {
+  describe('in container', async () => {
     const renderInContainer = (resources) => render(
       ({ iri }) => (
         <Container>
@@ -103,19 +103,19 @@ describe('Notification', () => {
       { resources }
     );
 
-    it('renders', () => {
+    it('renders', async () => {
       const {
         getByText,
-      } = renderInContainer(readResources);
+      } = await renderInContainer(readResources);
 
       expect(getByText(NOTIFICATION_TEXT)).toBeVisible();
     });
 
-    it('has no unread marker when read', () => {
+    it('has no unread marker when read', async () => {
       const {
         getByText,
         queryByTitle,
-      } = renderInContainer(readResources);
+      } = await renderInContainer(readResources);
 
       const notificationText = getByText(NOTIFICATION_TEXT);
       expect(notificationText).toBeVisible();
@@ -127,7 +127,7 @@ describe('Notification', () => {
         getByText,
         getByTitle,
         queryByTitle,
-      } = renderInContainer(unreadResources);
+      } = await renderInContainer(unreadResources);
 
       const delta = `${resource.toString()} ${argu.unread.toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${ontola.replace.toString()} .`;
       fetch.mockResponse(

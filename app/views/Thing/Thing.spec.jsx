@@ -72,7 +72,7 @@ describe('Thing', () => {
     const {
       queryByText,
       queryByTestId,
-    } = renderAs(Page);
+    } = await renderAs(Page);
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
@@ -87,7 +87,7 @@ describe('Thing', () => {
     const {
       queryByText,
       queryByTestId,
-    } = renderAs(Container);
+    } = await renderAs(Container);
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByTestId('coverImage')).toHaveStyle(`
@@ -96,21 +96,21 @@ describe('Thing', () => {
     `);
   });
 
-  it('renders as Card', () => {
+  it('renders as Card', async () => {
     const {
       queryByText,
-    } = renderAs(Card);
+    } = await renderAs(Card);
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByText(PARENT_NAME)).toBeNull();
   });
 
-  it('renders as CardList', () => {
+  it('renders as CardList', async () => {
     const {
       queryAllByText,
       queryByText,
-    } = renderAs(CardList);
+    } = await renderAs(CardList);
 
     /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
     expect(queryAllByText(RESOURCE_NAME)).toHaveLength(2);
@@ -118,10 +118,10 @@ describe('Thing', () => {
     expect(queryByText(PARENT_NAME)).toBeNull();
   });
 
-  it('renders as BreadcrumbsBar', () => {
+  it('renders as BreadcrumbsBar', async () => {
     const {
       queryByText,
-    } = renderAs(BreadcrumbsBar);
+    } = await renderAs(BreadcrumbsBar);
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeNull();

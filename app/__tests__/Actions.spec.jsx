@@ -103,7 +103,7 @@ describe('Actions', () => {
     const {
       getByTestId,
       getByText,
-    } = render(({ iri }) => (
+    } = await render(({ iri }) => (
       <Page>
         <Resource
           forceRender

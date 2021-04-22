@@ -1,7 +1,10 @@
 import { ThemeProvider } from '@material-ui/styles';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import { toGraph } from 'link-lib';
+import {
+  RDFStore,
+  toGraph,
+} from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -62,7 +65,24 @@ const wrapProviders = ({
   return TestWrapper;
 };
 
-const customRender = (ui, {
+const resourcesToGraph = (resources) => {
+  if (Array.isArray(resources)) {
+    const graphs = resources.map((r) => toGraph(r));
+    const mainIRI = graphs[0][0];
+    const store = new RDFStore().getInternalStore();
+    for (const g of graphs) {
+      const s = g[1];
+      store.addQuads(s.quads);
+    }
+    const dataObjects = graphs.reduce((acc, [,, namedBlobTuple]) => [...acc, ...namedBlobTuple], []);
+
+    return [mainIRI, store, dataObjects];
+  }
+
+  return toGraph(resources);
+};
+
+const customRender = async (ui, {
   resources,
   location,
   ...options
@@ -79,8 +99,8 @@ const customRender = (ui, {
       ...options,
     });
   }
-  const [iri, graph] = toGraph(resources);
-  const ctx = generateCtx(graph, iri);
+  const [iri, graph] = resourcesToGraph(resources);
+  const ctx = await generateCtx(graph, iri);
 
   const result = render(
     isFunction(ui) ? ui({ iri }) : ui,
@@ -91,7 +111,7 @@ const customRender = (ui, {
         views: getViews(),
       }),
       ...options,
-    }
+    },
   );
 
   return {

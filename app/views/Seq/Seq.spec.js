@@ -70,18 +70,18 @@ const resources = {
 const children = Object.keys(resources[resource]).length - 1;
 
 describeView('Seq', components, resources, resource, () => {
-  it('renders the children', () => {
-    expect(subject.find('Seq').children()).toHaveLength(children);
+  it('renders the children', async () => {
+    expect((await subject).find('Seq').children()).toHaveLength(children);
   });
 
   describe('#sequences', () => {
-    it('filters its data', () => {
-      const result = subject.find('Seq > ErrorBoundary > ForwardRef > Resource');
+    it('filters its data', async () => {
+      const result = (await subject).find('Seq > ErrorBoundary > ForwardRef > Resource');
       expect(result).toHaveLength(children);
     });
 
-    it('orders its data', () => {
-      const results = subject.find('Seq > ErrorBoundary > ForwardRef > Resource');
+    it('orders its data', async () => {
+      const results = (await subject).find('Seq > ErrorBoundary > ForwardRef > Resource');
 
       expect(results).toHaveLength(seq.length);
       for (let i = 0; i < children; i++) {

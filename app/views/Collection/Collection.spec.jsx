@@ -64,13 +64,13 @@ describe('Collection', () => {
     },
   };
 
-  const { getByText } = render((
-    <Page>
-      <Resource subject={collectionWithPages} />
-    </Page>
-  ), { resources });
+  it('renders the views', async () => {
+    const { getByText } = await render((
+      <Page>
+        <Resource subject={collectionWithPages} />
+      </Page>
+    ), { resources });
 
-  it('renders the views', () => {
     expect(getByText('Member name')).toBeVisible();
   });
 });

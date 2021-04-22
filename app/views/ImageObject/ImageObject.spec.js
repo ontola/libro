@@ -30,27 +30,27 @@ const resources = {
 
 describeView('ImageObject', components, resources, resource, () => {
   as(argu.cardMain, () => {
-    it('renders an image', () => {
-      expect(subject.find(marker('image'))).toHaveProp('src', url);
+    it('renders an image', async () => {
+      expect((await subject).find(marker('image'))).toHaveProp('src', url);
     });
   });
 
   as(argu.detail, () => {
-    it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
+    it('renders a thumbnail', async () => {
+      expect((await subject).find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 
   as(navbarTopology, () => {
-    it('renders a thumbnail', () => {
-      expect(subject.find(marker('navbar'))).toExist();
-      expect(subject.find(marker('ImageObjectBox'))).toExist();
+    it('renders a thumbnail', async () => {
+      expect((await subject).find(marker('navbar'))).toExist();
+      expect((await subject).find(marker('ImageObjectBox'))).toExist();
     });
   });
 
   as(argu.voteBubble, () => {
-    it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
+    it('renders a thumbnail', async () => {
+      expect((await subject).find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 });
