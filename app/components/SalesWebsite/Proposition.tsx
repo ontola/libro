@@ -6,9 +6,9 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 interface PropositionProps {
+  color: string;
   name: string;
   text: string;
-  color: string;
   textColor: string;
 }
 

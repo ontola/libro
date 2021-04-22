@@ -93,6 +93,9 @@ export const HeaderProductPages = ({
   const classes = useStyles();
   const styles = useTheme();
 
+  const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
+    ? backgroundImageUrlMobile : backgroundImageUrl;
+
   const imageView = (
     <div className={classes.imageWrapper}>
       <Image
@@ -102,14 +105,8 @@ export const HeaderProductPages = ({
     </div>
   );
 
-  const emptyView = (
-    <div />
-  );
+  const emptyView = null;
 
-  const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
-    ? backgroundImageUrlMobile : backgroundImageUrl;
-
-  // return hele image div'je / componentje hier
   const image = useMediaQuery(styles.breakpoints.down('sm'))
     ? emptyView : imageView;
 
@@ -126,7 +123,7 @@ export const HeaderProductPages = ({
           justify="center"
         >
           <Grid item md={1} />
-          <Grid item direction="column" md={6} sm={12}>
+          <Grid item md={6} sm={12}>
             <Typography
               className={classes.title}
               variant="h2"

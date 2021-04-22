@@ -16,7 +16,7 @@ import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>({
   gridStyle: {
-    backgroundColor: '#F8FBFF',
+    backgroundColor: '#FFFF',
   },
 });
 
@@ -28,7 +28,6 @@ const BlogsContainer: FC = () => {
     <Grid
       container
       alignItems="center"
-      className={classes.gridStyle}
       direction="column"
     >
       <Typography

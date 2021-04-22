@@ -31,10 +31,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     padding: 20,
   },
-  featureContainer: {
-    marginBottom: 30,
-    marginTop: 45,
-  },
   gridStyle: {
     marginBottom: 20,
     marginTop: 20,
@@ -53,6 +49,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     margin: 10,
     padding: '0 30px',
     width: 250,
+  },
+  propositionContainer: {
+    marginBottom: 30,
+    marginTop: 45,
   },
   propositionSelector: {
     [theme.breakpoints.down('sm')]: {
@@ -118,7 +118,7 @@ const HomePageFull: FC = () => {
         </Container>
       </div>
       <Container>
-        <div className={classes.featureContainer}>
+        <div className={classes.propositionContainer}>
           <Grid container direction="row">
             <Property label={sales.propositions} />
           </Grid>

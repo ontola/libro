@@ -38,7 +38,7 @@ class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
     ));
   }
 
-  private maxWidth() {
+  protected maxWidth(): 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false {
     if (this.props.size === Size.Large) {
       return 'xl';
     }

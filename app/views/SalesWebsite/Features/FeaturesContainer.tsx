@@ -33,15 +33,12 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     marginBottom: 160,
     marginTop: 70,
     [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: '1fr 1fr',
-    },
-    [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: '1fr',
     },
   },
 }));
 
-const FunctionalitiesContainer: FC = () => {
+const FeaturesContainer: FC = () => {
   const classes = useStyles();
   const [image] = useProperty(schema.image);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
@@ -60,13 +57,13 @@ const FunctionalitiesContainer: FC = () => {
       <div>
         <Showcase>
           <div className={classes.propositionSelector}>
-            <Property label={sales.functionalitiesShowcase} />
+            <Property label={sales.featuresShowcase} />
           </div>
         </Showcase>
         <Container>
           <div className={classes.screenDivider}>
             <Property label={sales.blogs} />
-            <div />
+            <Property label={sales.moreInformationBlock} />
           </div>
         </Container>
       </div>
@@ -74,8 +71,8 @@ const FunctionalitiesContainer: FC = () => {
   );
 };
 
-FunctionalitiesContainer.type = sales.FunctionalitiesContainer;
+FeaturesContainer.type = sales.Features;
 
-FunctionalitiesContainer.topology = containerTopology;
+FeaturesContainer.topology = containerTopology;
 
-export default FunctionalitiesContainer;
+export default FeaturesContainer;

@@ -29,7 +29,6 @@ const useStyles = makeStyles<SalesTheme>({
     marginTop: 50,
     padding: '0 30px',
     textTransform: 'none',
-    width: '30%',
   },
   textStyle: {
     textAlign: 'left',

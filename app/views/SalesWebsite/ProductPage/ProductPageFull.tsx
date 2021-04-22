@@ -69,7 +69,6 @@ const ProductPageFull: FC = () => {
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
-  const [test] = useProperty(sales.propositions);
 
   return (
     <div className={classes.wrapper}>
@@ -102,7 +101,7 @@ const ProductPageFull: FC = () => {
           </div>
         </Container>
       </HeaderProductPages>
-      <BlueBlock>
+      <BlueBlock size={Size.Large}>
         <Typography
           className={classes.titleFeatureBlock}
           variant="h2"
@@ -119,7 +118,7 @@ const ProductPageFull: FC = () => {
         </Container>
       </div>
       <Container size={Size.Large}>
-        <Property label={sales.functionalities} />
+        <Property label={sales.features} />
       </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}

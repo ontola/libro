@@ -9,8 +9,8 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { showcaseTopology } from '../../../topologies/Showcase';
 import Image from '../../../components/Image';
+import { showcaseTopology } from '../../../topologies/Showcase';
 
 const useStyles = makeStyles({
   container: {
@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     paddingTop: 20,
   },
   icon: {
-    color: (props: Record<string, string>) => props.color,
     fontSize: 70,
     textAlign: 'center',
   },
@@ -33,7 +32,6 @@ const useStyles = makeStyles({
     height: 44,
   },
   subtitle: {
-    color: (props: Record<string, string>) => props.textColor,
     fontSize: '1.125rem',
     lineHeight: '1.7rem',
     margin: 10,
@@ -41,22 +39,16 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
   title: {
-    color: (props: Record<string, string>) => props.textColor,
     fontWeight: 'bold',
     textAlign: 'center',
   },
 });
 
-const Functionality: FC = () => {
+const Feature: FC = () => {
+  const classes = useStyles();
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [color] = useProperty(schema.color);
   const [image] = useProperty(schema.image);
-  const [textColor] = useProperty(sales.textColor);
-  const classes = useStyles({
-    color: color.value,
-    textColor: textColor.value,
-  });
 
   return (
     <Grid
@@ -82,8 +74,8 @@ const Functionality: FC = () => {
   );
 };
 
-Functionality.type = sales.Functionality;
+Feature.type = sales.Feature;
 
-Functionality.topology = showcaseTopology;
+Feature.topology = showcaseTopology;
 
-export default Functionality;
+export default Feature;
