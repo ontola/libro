@@ -22,8 +22,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   productButton: {
     alignItems: 'flex-start',
     justifyContent: 'center',
-    margin: 10,
-    padding: '0 30px',
+    padding: 20,
     textAlign: 'left',
     textTransform: 'none',
   },

@@ -35,10 +35,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     margin: 30,
     textTransform: 'none',
   },
-  container: {
-    flex: 1,
-    margin: 'auto',
-  },
   iconStyle: {
     color: '#2D7080',
     fontSize: 60,
@@ -68,7 +64,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
   },
   subTitle: {
-    margin: 'auto',
     marginBottom: '3rem',
     maxWidth: 519,
     textAlign: 'center',
@@ -102,7 +97,6 @@ const CaseContainer: FC = () => {
     <Grid
       container
       alignItems="center"
-      className={classes.container}
       direction="column"
       justify="center"
     >

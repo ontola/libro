@@ -29,9 +29,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   screenDivider: {
     display: 'grid',
+    gridGap: 20,
     gridTemplateColumns: '1fr 1fr',
-    marginBottom: 160,
-    marginTop: 70,
+    marginBottom: 80,
+    marginTop: 80,
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr',
     },

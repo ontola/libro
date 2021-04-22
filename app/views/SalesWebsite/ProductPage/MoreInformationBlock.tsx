@@ -2,6 +2,8 @@ import {
   Button,
   Grid,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
@@ -13,21 +15,27 @@ import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { containerTopology } from '../../../topologies/Container';
 
-const useStyles = makeStyles<SalesTheme>(() => ({
+const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     textTransform: 'none',
   },
-  subtitle: {
-    paddingBottom: '2rem',
-    paddingLeft: '2rem',
-    paddingRight: '2rem',
+  buttonText: {
     textAlign: 'right',
   },
-  title: {
+  container: {
+    backgroundColor: 'yellow',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 50,
+    },
+  },
+  subtitle: {
     textAlign: 'right',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'left',
+    },
   },
 }));
 
@@ -38,13 +46,18 @@ const MoreInformationBlock = (): JSX.Element => {
   const [buttonText] = useProperty(sales.buttonText);
   const [buttonTextTwo] = useProperty(sales.buttonTextTwo);
 
+  const styles = useTheme();
+  const flexDirection = useMediaQuery(styles.breakpoints.down('sm'))
+    ? 'flex-start' : 'flex-end';
+
   return (
     <Grid
       container
-      alignItems="flex-end"
+      alignItems={flexDirection}
+      className={classes.container}
       direction="column"
     >
-      <Typography className={classes.title} variant="h2">{title.value}</Typography>
+      <Typography className={classes.buttonText} variant="h2">{title.value}</Typography>
       <Button
         className={classes.button}
         endIcon={(

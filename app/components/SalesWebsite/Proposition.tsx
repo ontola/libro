@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import * as schema from '@ontologies/schema';
 import { Property } from 'link-redux';
 import React from 'react';
@@ -14,8 +14,8 @@ interface PropositionProps {
 
 const useStyles = makeStyles({
   container: {
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 10,
+    marginTop: 10,
   },
   icon: {
     color: (props: PropositionProps) => props.color,
