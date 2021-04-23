@@ -2,6 +2,7 @@ import Block from './Block';
 import BlogContainer from './Blogs';
 import BlogPage from './BlogPage';
 import Cases from './Cases';
+import ProcessPage from './ProcessPage';
 import Proposition from './Propositions';
 import FeaturesContainer from './Features';
 import HomePage from './HomePage';
@@ -15,5 +16,6 @@ export default [
   ...Proposition,
   ...FeaturesContainer,
   ...HomePage,
+  ...ProcessPage,
   ...ProductPage,
 ];

@@ -26,7 +26,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textAlign: 'right',
   },
   container: {
-    backgroundColor: 'yellow',
     [theme.breakpoints.down('sm')]: {
       marginTop: 50,
     },

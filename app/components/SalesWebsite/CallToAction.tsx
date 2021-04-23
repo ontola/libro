@@ -18,6 +18,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
+    padding: 20,
     paddingBottom: '5rem',
     paddingTop: '2rem',
     width: '100%',

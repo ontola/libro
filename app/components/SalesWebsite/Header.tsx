@@ -42,7 +42,7 @@ export interface HeaderProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
   buttonText: string,
-  children: React.ReactChild;
+  children?: React.ReactChild;
   title: string,
   subtitle: string,
 }
