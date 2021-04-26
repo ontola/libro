@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn run ts-compile-check && lint-staged
+yarn run ts-compile-check && ./node_modules/.bin/lint-staged
