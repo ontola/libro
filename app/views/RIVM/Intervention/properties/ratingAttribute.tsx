@@ -1,8 +1,11 @@
+import { NamedNode, SomeTerm } from '@ontologies/core';
+import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
-  labelType,
-  linkedPropType,
+  FC,
+  PropertyProps,
   register,
+  useDataFetching,
   useProperty,
   useResourceProperty,
 } from 'link-redux';
@@ -16,8 +19,13 @@ import './ratingAttribute.scss';
 
 const ICON_COUNT = 5;
 
-const renderIcon = (value, index, src) => {
-  const float = tryParseFloat(value);
+export interface RatingAttributeProps extends PropertyProps {
+  label: NamedNode;
+  labelFrom: NamedNode;
+}
+
+const renderIcon = (value: SomeTerm, index: number, src: string) => {
+  const float = tryParseFloat(value) || 0;
   if (float >= index) {
     return (
       <div className="Rating--image-wrapper" style={{ width: `${100 * (float - index)}%` }}>
@@ -29,13 +37,15 @@ const renderIcon = (value, index, src) => {
   return null;
 };
 
-const RatingAttribute = ({
+const RatingAttribute: FC<RatingAttributeProps> = ({
   label,
   labelFrom,
   linkedProp,
 }) => {
-  const [labelObj] = useProperty(labelFrom);
-  const labelValue = useResourceProperty(labelObj, schema.name);
+  const [labelObj] = useProperty(labelFrom) as NamedNode[];
+  useDataFetching(labelObj);
+  const [schemaName] = useResourceProperty(labelObj, schema.name);
+  const [rdfsLabel] = useResourceProperty(labelObj, rdfs.label);
 
   const icon = label.value.includes('Costs') ? 'euro' : 'star';
   const src = `/assets/rivm/icons/${icon}`;
@@ -43,12 +53,12 @@ const RatingAttribute = ({
   /* eslint-disable react/no-array-index-key */
   return (
     <React.Fragment>
-      {Array(ICON_COUNT).fill().map((_, index) => (
+      {Array(ICON_COUNT).fill(null, 0, ICON_COUNT).map((_, index) => (
         <div
           className="Rating"
           key={`${src}-${index}`}
           style={{ backgroundImage: `url(${src}-bgr.png)` }}
-          title={labelValue?.value}
+          title={schemaName?.value || rdfsLabel?.value}
         >
           {renderIcon(linkedProp, index, src)}
         </div>
@@ -67,11 +77,5 @@ RatingAttribute.property = [
   rivm.oneOffCostsScore,
   rivm.recurringCostsScore,
 ];
-
-RatingAttribute.propTypes = {
-  label: labelType,
-  labelFrom: labelType,
-  linkedProp: linkedPropType,
-};
 
 export default register(RatingAttribute);

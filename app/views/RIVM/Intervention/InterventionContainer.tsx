@@ -1,16 +1,16 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
 
 import AttributeListItem from '../../../components/AttributeListItem';
 import CardContent from '../../../components/Card/CardContent';
 import LDLink from '../../../components/LDLink';
-import { connectHighlighting, hightlightType } from '../../../containers/Highlight';
+import { connectHighlighting } from '../../../containers/Highlight';
 import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import meeting from '../../../ontology/meeting';
@@ -23,7 +23,11 @@ import { containerTopology } from '../../../topologies/Container';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const InterventionContainer = ({ highlighted, subject }) => (
+interface InterventionContainerProps {
+  highlighted: boolean;
+}
+
+const InterventionContainer: FC<InterventionContainerProps> = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
@@ -65,10 +69,5 @@ InterventionContainer.topology = [
 ];
 
 InterventionContainer.hocs = [connectHighlighting];
-
-InterventionContainer.propTypes = {
-  highlighted: hightlightType,
-  subject: subjectType,
-};
 
 export default register(InterventionContainer);

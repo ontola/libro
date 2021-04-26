@@ -1,6 +1,10 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import AttributeListItem from '../../../components/AttributeListItem';
@@ -13,7 +17,7 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import AttributeList from '../../../topologies/AttributeList';
 import { gridTopology } from '../../../topologies/Grid';
 
-const InterventionTypeGrid = () => (
+const InterventionTypeGrid: FC = () => (
   <CardFixed>
     <LDLink>
       <CardContent noSpacing>

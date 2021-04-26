@@ -1,6 +1,7 @@
 import {
+  FC,
   Property,
-  linkedPropType,
+  PropertyProps,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -8,7 +9,7 @@ import React from 'react';
 import rivm from '../../../../ontology/rivm';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 
-const EffectivityResearchMethod = ({ linkedProp }) => {
+const EffectivityResearchMethod: FC<PropertyProps> = ({ linkedProp }) => {
   const researchSplit = linkedProp.value.split(',');
   const researched = researchSplit[0] === 'Ja';
   const researchMethod = researchSplit[1];
@@ -29,9 +30,5 @@ EffectivityResearchMethod.type = rivm.Intervention;
 EffectivityResearchMethod.topology = cardMainTopology;
 
 EffectivityResearchMethod.property = rivm.effectivityResearchMethod;
-
-EffectivityResearchMethod.propTypes = {
-  linkedProp: linkedPropType,
-};
 
 export default register(EffectivityResearchMethod);

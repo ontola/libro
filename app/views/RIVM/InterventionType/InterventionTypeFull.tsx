@@ -1,9 +1,13 @@
+import { NamedNode } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import AttributeListItem from '../../../components/AttributeListItem';
@@ -28,7 +32,11 @@ import { inlineTopology } from '../../../topologies/Inline';
 import { defaultMenus } from '../../common';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const InterventionTypeFull = ({ renderPartOf }) => (
+interface InterventionTypeFullProps {
+  renderPartOf?: boolean;
+}
+
+const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
@@ -75,11 +83,11 @@ const InterventionTypeFull = ({ renderPartOf }) => (
     <Container>
       <Property forceRender renderWhenEmpty label={rivm.interventions} />
       <Property label={ontola.createAction}>
-        {(createActions) => {
+        {(createActions: NamedNode[]) => {
           const newInterventionAction = createActions.find((a) => a.value.endsWith('/interventies/new'));
 
           return newInterventionAction && (
-            <Button href={newInterventionAction}>
+            <Button href={newInterventionAction.value}>
               Heb jij dit interventietype toegepast? Deel jouw interventie hier!
             </Button>
           );
@@ -95,9 +103,5 @@ const InterventionTypeFull = ({ renderPartOf }) => (
 InterventionTypeFull.type = rivm.InterventionType;
 
 InterventionTypeFull.topology = fullResourceTopology;
-
-InterventionTypeFull.propTypes = {
-  renderPartOf: PropTypes.bool,
-};
 
 export default register(InterventionTypeFull);

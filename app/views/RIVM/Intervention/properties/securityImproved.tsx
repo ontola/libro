@@ -1,6 +1,7 @@
 import {
+  FC,
+  PropertyProps,
   Resource,
-  linkedPropType,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -9,9 +10,9 @@ import rivm from '../../../../ontology/rivm';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import { inlineTopology } from '../../../../topologies/Inline';
 
-const SecurityImproved = ({ linkedProp }) => {
+const SecurityImproved: FC<PropertyProps> = ({ linkedProp }) => {
   if (linkedProp.value === 'Weet niet') {
-    return 'Het is onbekend of de veiligheid door het uitvoeren van de interventie is verbeterd.';
+    return <span>Het is onbekend of de veiligheid door het uitvoeren van de interventie is verbeterd.</span>;
   }
 
   return (
@@ -28,9 +29,5 @@ SecurityImproved.type = rivm.Intervention;
 SecurityImproved.topology = cardMainTopology;
 
 SecurityImproved.property = rivm.securityImproved;
-
-SecurityImproved.propTypes = {
-  linkedProp: linkedPropType,
-};
 
 export default register(SecurityImproved);

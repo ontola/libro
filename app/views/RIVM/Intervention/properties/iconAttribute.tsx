@@ -1,8 +1,9 @@
+import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  linkedPropType,
+  FC,
+  PropertyProps,
   register,
-  subjectType,
   useDataFetching,
   useDataInvalidation,
   useResourceProperty,
@@ -14,14 +15,14 @@ import { allTopologies } from '../../../../topologies';
 
 import './iconAttribute.scss';
 
-const IconAttribute = ({
+const IconAttribute: FC<PropertyProps> = ({
   linkedProp,
   subject,
 }) => {
   useDataInvalidation(subject);
-  useDataFetching(linkedProp);
+  useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
 
-  const [name] = useResourceProperty(linkedProp, schema.name);
+  const [name] = useResourceProperty(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
   if (!name) {
     return null;
   }
@@ -48,10 +49,5 @@ IconAttribute.property = [
   rivm.interventionEffects,
   rivm.targetAudience,
 ];
-
-IconAttribute.propTypes = {
-  linkedProp: linkedPropType,
-  subject: subjectType,
-};
 
 export default register(IconAttribute);

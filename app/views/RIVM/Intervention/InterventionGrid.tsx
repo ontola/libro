@@ -1,7 +1,10 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import AttributeListItem from '../../../components/AttributeListItem';
@@ -17,7 +20,11 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import AttributeList from '../../../topologies/AttributeList';
 import { gridTopology } from '../../../topologies/Grid';
 
-const InterventionGrid = ({ renderPartOf }) => (
+interface InterventionGridProps {
+  renderPartOf: boolean;
+}
+
+const InterventionGrid: FC<InterventionGridProps> = ({ renderPartOf }) => (
   <CardFixed>
     <LDLink>
       <Property label={ontola.coverPhoto} />
@@ -59,9 +66,5 @@ const InterventionGrid = ({ renderPartOf }) => (
 InterventionGrid.type = rivm.Intervention;
 
 InterventionGrid.topology = gridTopology;
-
-InterventionGrid.propTypes = {
-  renderPartOf: PropTypes.bool,
-};
 
 export default register(InterventionGrid);
