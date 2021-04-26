@@ -15,9 +15,18 @@ import ontola from '../ontology/ontola';
 
 import { UseFormFieldProps } from './useFormField';
 
-const shapePropsFromObject = ['maxCount', 'maxInclusive', 'maxLength', 'minCount', 'minInclusive', 'minLength', 'shIn'];
+const shapePropsFromObject = [
+  'maxCount',
+  'maxInclusive',
+  'maxLength',
+  'minCount',
+  'minInclusive',
+  'minLength',
+  'pattern',
+  'shIn',
+];
 
-export interface ShapeForm extends ResolvedShapeForm{
+export interface ShapeForm extends ResolvedShapeForm {
   maxCountProp?: SomeNode;
   maxInclusiveProp?: SomeNode;
   minCountProp?: SomeNode;
@@ -37,11 +46,12 @@ interface ResolvedShapeForm {
   minCount?: number;
   minInclusive?: number;
   minLength?: number;
+  pattern?: string,
   required?: boolean;
   removable?: boolean;
   shIn?: SomeNode;
 
-  [key: string]: SomeNode | number | boolean | undefined;
+  [key: string]: SomeNode | number | boolean | string | undefined;
 }
 
 const mapShapeProps = {
@@ -56,6 +66,7 @@ const mapShapeProps = {
   minInclusiveProp: ontola.minInclusive,
   minLength: literal(sh.minLength),
   minLengthProp: ontola.minLength,
+  pattern: literal(sh.pattern),
   shIn: sh.shaclin,
   shInProp: ontola.shIn,
 };

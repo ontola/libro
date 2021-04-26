@@ -273,6 +273,12 @@
       "value": "Opnieuw"
     }
   ],
+  "https://app.argu.co/i18n/errors/lr/circularRender": [
+    {
+      "type": 0,
+      "value": "Error tijdens het weergeven van extern resource."
+    }
+  ],
   "https://app.argu.co/i18n/errors/map/loadError": [
     {
       "type": 0,
@@ -607,6 +613,56 @@
     {
       "type": 0,
       "value": "Klik of sleep een bestand om te selecteren"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": [
+    {
+      "type": 0,
+      "value": "Email is ongeldig."
+    }
+  ],
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": [
+    {
+      "type": 0,
+      "value": "Maximaal aantal emails berijkt ("
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "value": "maxCount"
+    },
+    {
+      "type": 0,
+      "value": ")."
+    }
+  ],
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": [
+    {
+      "type": 0,
+      "value": "Bericht is te lang ("
+    },
+    {
+      "type": 1,
+      "value": "length"
+    },
+    {
+      "type": 0,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "value": "maxLength"
+    },
+    {
+      "type": 0,
+      "value": ")."
     }
   ],
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": [

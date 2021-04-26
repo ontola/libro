@@ -6,6 +6,7 @@ import DelayedFormField from './DelayedFormField';
 import FileFormField from './FileFormField';
 import LocationFormField from './LocationFormField';
 import MoneyField from './MoneyInputField';
+import MultipleEmailFormField from './MultipleEmailFormField';
 import PasswordFormField from './PasswordFormField';
 import PostalRangeFormField from './PostalRangeFormField';
 import RadioGroupFormField from './RadioGroupFormField';
@@ -24,6 +25,7 @@ export default [
   FileFormField,
   LocationFormField,
   MoneyField,
+  MultipleEmailFormField,
   PasswordFormField,
   PostalRangeFormField,
   RadioGroupFormField,

@@ -237,6 +237,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     rdf.quad(form.SliderInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.TextAreaInput, rdfx.type, rdfs.Class),
     rdf.quad(form.TextAreaInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.MultipleEmailInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.TextInput, rdfx.type, rdfs.Class),
     rdf.quad(form.TextInput, rdfs.subClassOf, form.Field),
 

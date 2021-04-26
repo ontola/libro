@@ -24,6 +24,7 @@ export default {
   LocationInput: form('LocationInput'),
   MarkdownInput: form('MarkdownInput'),
   MoneyInput: form('MoneyInput'),
+  MultipleEmailInput: form('MultipleEmailInput'),
   NumberInput: form('NumberInput'),
   Page: form('Page'),
   PasswordInput: form('PasswordInput'),

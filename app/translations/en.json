@@ -289,6 +289,15 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Drag & Drop your file here or click to select a file"
   },
+  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
+    "defaultMessage": "Email is invalid."
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": {
+    "defaultMessage": "Maximum amount of emails reached ({count}/{maxCount})."
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
+    "defaultMessage": "Message is too long ({length}/{maxLength})."
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "response"
   },

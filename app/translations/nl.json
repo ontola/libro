@@ -287,6 +287,15 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Klik of sleep een bestand om te selecteren"
   },
+  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
+    "defaultMessage": "Email is ongeldig."
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": {
+    "defaultMessage": "Maximaal aantal emails berijkt ({count}/{maxCount})."
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
+    "defaultMessage": "Bericht is te lang ({length}/{maxLength})."
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "reactie"
   },

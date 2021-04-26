@@ -273,6 +273,12 @@
       "value": "Retry"
     }
   ],
+  "https://app.argu.co/i18n/errors/lr/circularRender": [
+    {
+      "type": 0,
+      "value": "Error rendering external resource."
+    }
+  ],
   "https://app.argu.co/i18n/errors/map/loadError": [
     {
       "type": 0,
@@ -607,6 +613,56 @@
     {
       "type": 0,
       "value": "Drag & Drop your file here or click to select a file"
+    }
+  ],
+  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": [
+    {
+      "type": 0,
+      "value": "Email is invalid."
+    }
+  ],
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": [
+    {
+      "type": 0,
+      "value": "Maximum amount of emails reached ("
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "value": "maxCount"
+    },
+    {
+      "type": 0,
+      "value": ")."
+    }
+  ],
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": [
+    {
+      "type": 0,
+      "value": "Message is too long ("
+    },
+    {
+      "type": 1,
+      "value": "length"
+    },
+    {
+      "type": 0,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "value": "maxLength"
+    },
+    {
+      "type": 0,
+      "value": ")."
     }
   ],
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": [
