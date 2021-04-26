@@ -37,7 +37,6 @@ import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
-import LinkedRecord from './LinkedRecord';
 import Loading from './Loading';
 import MapQuestion from './MapQuestion';
 import MediaObject from './MediaObject';
@@ -107,7 +106,6 @@ export function getViews() {
     ...Group,
     ...ImageObject,
     ...InfiniteCollectionPage,
-    ...LinkedRecord,
     ...Loading,
     ...MapQuestion,
     ...MediaObject,

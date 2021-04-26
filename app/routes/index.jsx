@@ -9,7 +9,7 @@ import PageBuilder from './PageBuilder';
 import Sandbox from './Sandbox';
 
 const subRoutes = [
-  <Route key="externalResources" path="(/\w*)?/resource" component={ExternalLinkedObject} />,
+  <Route key="externalResources" path="(/\w*)?/resource\?" component={ExternalLinkedObject} />,
   <Route key="linkedResources" path="*" component={LinkedObject} />,
 ];
 

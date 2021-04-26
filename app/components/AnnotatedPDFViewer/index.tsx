@@ -77,10 +77,12 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
     const yPercentage = wrapperClickDistanceY / wrapper.height;
     const x = Math.round(xPercentage * 100);
     const y = Math.round(yPercentage * 100);
-    const query = `filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}`
-      +`&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}`
-      + `&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`;
-    const actionIRI = rdf.namedNode(`${createCommentAction.value}?${query}`);
+    const actionURI = new URL(createCommentAction.value);
+    actionURI.searchParams.set('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPage=${pageNumber}`);
+    actionURI.searchParams.set('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPositionX=${x}`);
+    actionURI.searchParams.set('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPositiony=${y}`);
+    actionURI.searchParams.sort();
+    const actionIRI = rdf.namedNode(actionURI.toString());
 
     lrs.actions.ontola.showDialog(actionIRI);
     setCommentMode(false);

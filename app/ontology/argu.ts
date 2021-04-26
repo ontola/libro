@@ -30,7 +30,6 @@ export default {
   Group: argu('Group'),
   LegendItem: argu('LegendItem'),
   Link: argu('Link'),
-  LinkedRecord: argu('LinkedRecord'),
   MakePrimaryAction: argu('MakePrimaryAction'),
   Manifest: argu('Manifest'),
   MapQuestion: argu('MapQuestion'),
