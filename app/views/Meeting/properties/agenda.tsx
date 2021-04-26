@@ -10,9 +10,9 @@ import {
 import React from 'react';
 
 import LinkLoader from '../../../components/Loading/LinkLoader';
-import { listToArr } from '../../../helpers/data';
 import { handle } from '../../../helpers/logging';
 import { tryParseInt } from '../../../helpers/numbers';
+import { useListToArr } from '../../../hooks/useListToArr';
 import meeting from '../../../ontology/meeting';
 import { allTopologies } from '../../../topologies';
 
@@ -30,10 +30,10 @@ interface PropTypes {
 
 const Agenda: FC<PropTypes> = ({ linkedProp, subject }) => {
   const lrs = useLRS();
+  const agendaArray = useListToArr<SomeNode>(linkedProp);
 
   const ordered: SomeTerm[] = [];
   const unordered: SomeTerm[] = [];
-  const agendaArray = listToArr<SomeNode>(lrs, [], linkedProp);
 
   if (!Array.isArray(agendaArray)) {
     return <LinkLoader />;
