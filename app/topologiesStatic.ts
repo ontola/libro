@@ -30,7 +30,6 @@ import { pageTopology, Page as pageTopologyComponent } from './topologies/Page';
 import pageHeaderTopologyComponent, { pageHeaderTopology } from './topologies/PageHeader';
 import parentTopologyComponent, { parentTopology } from './topologies/Parent';
 import popupTopologyComponent, { popupTopology } from './topologies/Popup';
-import { primaryCallToActionTopology, PrimaryCallToAction as primaryCallToActionTopologyComponent } from './topologies/PrimaryCallToAction';
 import radioGroupTopologyComponent, { radioGroupTopology } from './topologies/RadioGroup';
 import selectTopologyComponent, { selectTopology } from './topologies/Select';
 import tabBarTopologyComponent, { tabBarTopology } from './topologies/TabBar';
@@ -76,8 +75,7 @@ const topologyMap: TopologyMap = {
   [rdf.id(pageTopology)]: pageTopologyComponent,
   [rdf.id(pageHeaderTopology)]: pageHeaderTopologyComponent,
   [rdf.id(parentTopology)]: parentTopologyComponent,
-  [rdf.id(primaryCallToActionTopology)]: popupTopologyComponent,
-  [rdf.id(popupTopology)]: primaryCallToActionTopologyComponent,
+  [rdf.id(popupTopology)]: popupTopologyComponent,
   [rdf.id(radioGroupTopology)]: radioGroupTopologyComponent,
   [rdf.id(selectTopology)]: selectTopologyComponent,
   [rdf.id(tableBodyTopology)]: tableBodyComponent,

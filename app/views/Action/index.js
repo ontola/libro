@@ -5,7 +5,6 @@ import ActionDetail from './ActionDetail';
 import ActionDropdownContent from './ActionDropdownContent';
 import ActionNested from './ActionNested';
 import ActionFull from './ActionFull';
-import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
 import ActionWidget from './ActionGrid';
@@ -31,7 +30,6 @@ export default [
   ActionDropdownContent,
   ActionNested,
   ActionFull,
-  ActionPrimaryCallToAction,
   ActionTableCell,
   ActionTableRow,
   ActionWidget,
