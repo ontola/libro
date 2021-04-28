@@ -49,6 +49,7 @@ export default {
   SendConfirmationAction: argu('SendConfirmationAction'),
   Shop: argu('Shop'),
   SubMenu: argu('SubMenu'),
+  SubmitAction: argu('SubmitAction'),
   Survey: argu('Survey'),
   Term: argu('Term'),
   Timeline: argu('Timeline'),

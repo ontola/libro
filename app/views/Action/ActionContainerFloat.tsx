@@ -1,30 +1,36 @@
 import IconButton from '@material-ui/core/IconButton';
-import rdf from '@ontologies/core';
+import rdf, { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
-  linkType,
+  FC,
   register,
-  subjectType,
   useDataInvalidation,
   useLRS,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 
 import { entityIsLoaded, filterFind } from '../../helpers/data';
 import { normalizeFontAwesomeIRI, retrievePath } from '../../helpers/iris';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import { mapCardListDispatchToProps } from './helpers';
+import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
 
-const InlineActionContainerFloat = ({
+interface ActionContainerFloatProps {
+  actionStatus?: SomeNode;
+  name?: Literal
+  omniform: boolean;
+  onClick: CardListOnClick;
+  target?: NamedNode;
+}
+
+const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
   actionStatus,
-  history,
   name,
   omniform,
   onClick,
@@ -32,6 +38,7 @@ const InlineActionContainerFloat = ({
   target,
 }) => {
   const lrs = useLRS();
+  const history = useHistory();
   const [image] = useResourceProperty(target, schema.image);
   useDataInvalidation(target);
 
@@ -53,45 +60,32 @@ const InlineActionContainerFloat = ({
   return (
     <IconButton
       size="small"
-      title={name.value}
+      title={name?.value}
       type="button"
-      onClick={useOmniform ? onClick : () => history.push(retrievePath(subject.value))}
+      onClick={useOmniform ? onClick : () => history.push(retrievePath(subject.value)!)}
     >
       {icon}
     </IconButton>
   );
 };
 
-InlineActionContainerFloat.type = schema.Action;
+ActionContainerFloat.type = schema.Action;
 
-InlineActionContainerFloat.topology = [
+ActionContainerFloat.topology = [
   containerFloatTopology,
 ];
 
-InlineActionContainerFloat.mapDataToProps = {
+ActionContainerFloat.mapDataToProps = {
   actionStatus: schema.actionStatus,
   name: schema.name,
   object: schema.object,
   target: schema.target,
 };
 
-InlineActionContainerFloat.hocs = [
+ActionContainerFloat.hocs = [
   connect(null, mapCardListDispatchToProps),
-  withRouter,
 ];
 
-InlineActionContainerFloat.displayName = 'InlineActionContainerFloatButton';
+ActionContainerFloat.displayName = 'ActionContainerFloatButton';
 
-InlineActionContainerFloat.propTypes = {
-  actionStatus: linkType,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
-  name: linkType,
-  omniform: PropTypes.bool,
-  onClick: PropTypes.func,
-  subject: subjectType,
-  target: linkType,
-};
-
-export default register(InlineActionContainerFloat);
+export default register(ActionContainerFloat);

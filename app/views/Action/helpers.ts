@@ -7,7 +7,11 @@ import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { redirectPage } from '../../middleware/reloading';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 
-type DispatchToProps = { onClick: (e: SyntheticEvent<any>) => Promise<[any, any]>};
+export type CardListOnClick = (e: SyntheticEvent<any>) => Promise<[any, any]>;
+
+interface DispatchToProps {
+  onClick: CardListOnClick;
+}
 
 export const mapCardListDispatchToProps = (dispatch: (...args: any[]) => void, ownProps: Record<string, any>): DispatchToProps => ({
   onClick: (e: SyntheticEvent<any>) => {

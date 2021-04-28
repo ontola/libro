@@ -20,20 +20,20 @@ import {
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 
-import { entityIsLoaded } from '../../helpers/data';
+import { entityIsLoaded } from '../../../helpers/data';
 import {
   HTTP_RETRY_WITH,
   LRS,
   SubmitDataProcessor,
   handleHTTPRetry,
-} from '../../helpers/errorHandling';
-import { handle } from '../../helpers/logging';
-import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
-import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
-import { allTopologies } from '../../topologies';
-import { voteMessages } from '../../translations/messages';
-import { CollectionTypes } from '../Collection/types';
+} from '../../../helpers/errorHandling';
+import { handle } from '../../../helpers/logging';
+import argu from '../../../ontology/argu';
+import ontola from '../../../ontology/ontola';
+import { omniformOpenInline, omniformSetAction } from '../../../state/omniform';
+import { allTopologies } from '../../../topologies';
+import { voteMessages } from '../../../translations/messages';
+import { CollectionTypes } from '../../Collection/types';
 
 interface CreateVoteProps {
   lrs: LinkReduxLRSType;

@@ -157,6 +157,9 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     rdf.quad(argu.BudgetShop, rdfx.type, rdfs.Class),
     rdf.quad(argu.BudgetShop, rdfs.subClassOf, argu.Shop),
 
+    rdf.quad(argu.SubmitAction, rdfx.type, rdfs.Class),
+    rdf.quad(argu.SubmitAction, rdfs.subClassOf, schema.CreateAction),
+
     rdf.quad(ontola['Create::Auth::AccessToken'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Auth::AccessToken'], rdfs.subClassOf, schema.CreateAction),
     rdf.quad(ontola['Create::Auth::Confirmation'], rdfx.type, rdfs.Class),
@@ -327,12 +330,12 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     rdf.quad(
       ontola.sendConfirmationAction,
       rdfs.label,
-      rdf.literal('Send confirmation', languages.en),
+      rdf.literal('Confirmation link', languages.en),
     ),
     rdf.quad(
       ontola.sendConfirmationAction,
       rdfs.label,
-      rdf.literal('Verstuur bevestiging', languages.nl),
+      rdf.literal('Bevestigingslink', languages.nl),
     ),
 
     rdf.quad(ontola.updateAction, rdfx.type, rdfx.Property),

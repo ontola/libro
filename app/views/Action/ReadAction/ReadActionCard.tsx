@@ -1,29 +1,32 @@
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  linkType,
+  FC,
   register,
-  subjectType,
   useLRS,
 } from 'link-redux';
 import React from 'react';
 
-import { cardTopology } from '../../topologies/Card';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
 
-const propTypes = {
-  name: linkType,
-  subject: subjectType,
-};
+interface ReadActionCardProps {
+  name?: Literal;
+}
 
-const ReadActionCard = ({ subject, name }) => {
+const ReadActionCard: FC<ReadActionCardProps> = ({ subject, name }) => {
   const lrs = useLRS();
+  const execAction = React.useCallback(
+    () => subject ?? lrs.exec(subject),
+    [lrs, subject],
+  );
 
   return (
     <div
       data-test="Notification-ReadAction"
-      onClick={() => lrs.exec(subject)}
-      onKeyUp={() => lrs.exec(subject)}
+      onClick={execAction}
+      onKeyUp={execAction}
     >
       <div
         data-test="Notification-Unread"
@@ -56,7 +59,5 @@ ReadActionCard.topology = [
 ReadActionCard.mapDataToProps = {
   name: schema.name,
 };
-
-ReadActionCard.propTypes = propTypes;
 
 export default register(ReadActionCard);

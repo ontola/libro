@@ -7,7 +7,7 @@ import {
   ReturnType,
   register,
 } from 'link-redux';
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { ButtonTheme } from '../../components/Button';
@@ -17,13 +17,13 @@ import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import { mapCardListDispatchToProps } from './helpers';
+import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
 
 interface InlineCreateActionProps {
   actionStatus: NamedNode;
   count: Literal;
   omniform: boolean;
-  onClick: (e: SyntheticEvent<any>) => Promise<any>;
+  onClick: CardListOnClick;
   theme: ButtonTheme;
   type: NamedNode[];
 }
@@ -40,7 +40,7 @@ function getVariant(types: NamedNode[]) {
   }
 }
 
-const InlineAction: FC<InlineCreateActionProps> = ({
+const ActionInline: FC<InlineCreateActionProps> = ({
   actionStatus,
   count,
   omniform,
@@ -74,14 +74,14 @@ const InlineAction: FC<InlineCreateActionProps> = ({
   );
 };
 
-InlineAction.type = schema.Action;
+ActionInline.type = schema.Action;
 
-InlineAction.topology = [
+ActionInline.topology = [
   actionsBarTopology,
   cardListTopology,
 ];
 
-InlineAction.mapDataToProps = {
+ActionInline.mapDataToProps = {
   actionStatus: schema.actionStatus,
   object: schema.object,
   type: {
@@ -90,8 +90,8 @@ InlineAction.mapDataToProps = {
   },
 };
 
-InlineAction.hocs = [
+ActionInline.hocs = [
   connect(null, mapCardListDispatchToProps),
 ];
 
-export default register(InlineAction);
+export default register(ActionInline);

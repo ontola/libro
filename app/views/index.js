@@ -2,7 +2,7 @@
  * This document is purely for including all the views into the code.
  * Please properly include each file when access to the code is needed.
  */
-import Action from './Action/index';
+import Action from './Action';
 import ActionBody from './ActionBody';
 import Activity from './Activity';
 import AppSignOut from './AppSignOut';

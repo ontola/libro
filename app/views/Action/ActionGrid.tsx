@@ -1,9 +1,9 @@
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,7 +13,11 @@ import { gridTopology } from '../../topologies/Grid';
 import Button from '../../components/Button';
 import { footerTopology } from '../../topologies/Footer';
 
-const ActionGrid = ({ name, subject }) => (
+interface ActionGridProps {
+  name?: Literal;
+}
+
+const ActionGrid: FC<ActionGridProps> = ({ name, subject }) => (
   <div>
     <GridHeader header={<Property label={schema.name} />}>
       <Property label={ontola.updateAction} onLoad={() => null} />
@@ -21,9 +25,9 @@ const ActionGrid = ({ name, subject }) => (
     <Property label={schema.text} />
     <Button
       href={subject.value}
-      title={name.value}
+      title={name?.value}
     >
-      {name.value}
+      {name?.value}
     </Button>
   </div>
 );
@@ -37,11 +41,6 @@ ActionGrid.topology = [
 
 ActionGrid.mapDataToProps = {
   name: schema.name,
-};
-
-ActionGrid.propTypes = {
-  name: linkType,
-  subject: subjectType,
 };
 
 export default register(ActionGrid);
