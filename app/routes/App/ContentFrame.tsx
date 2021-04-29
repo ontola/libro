@@ -7,14 +7,12 @@ import { HotKeys } from 'react-hotkeys';
 import ScrollMemory from 'react-router-scroll-memory';
 
 import { CONTAINER_ELEMENT } from '../../config';
-// @ts-ignore
+import Banners from '../../components/Banners';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
-// @ts-ignore
 import SkipNavigation from '../../components/SkipNavigation';
 // @ts-ignore
 import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
-import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import Footer from '../../topologies/Footer';
 import Popup from '../../topologies/Popup';
@@ -52,9 +50,7 @@ const ContentFrame = ({
         <SkipNavigation />
         <div className={CONTAINER_ELEMENT} id={CONTAINER_ELEMENT}>
           <Header themeOptions={themeOptions} />
-          <div className="Banners">
-            <Resource subject={app.bannerMembers} />
-          </div>
+          <Banners />
           <NetworkStatusIndicator />
           <div id="start-of-content">
             <ScrollMemory />
