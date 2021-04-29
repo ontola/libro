@@ -105,10 +105,8 @@ export const HeaderProductPages = ({
     </div>
   );
 
-  const emptyView = null;
-
   const image = useMediaQuery(styles.breakpoints.down('sm'))
-    ? emptyView : imageView;
+    ? null : imageView;
 
   return (
     <div
@@ -147,8 +145,9 @@ export const HeaderProductPages = ({
               </Button>
             </div>
           </Grid>
-          <Grid item className={classes.imageContainer} md={5} sm={12} />
-          {image}
+          <Grid item className={classes.imageContainer} md={5} sm={12}>
+            {image}
+          </Grid>
           {children}
         </Grid>
       </Container>

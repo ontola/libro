@@ -1,14 +1,17 @@
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
+  Property,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { VerticalLinearStepper } from '../../../components/SalesWebsite/Stepper';
+import Image from '../../../components/Image';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import {
   CallToAction,
@@ -24,15 +27,22 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     margin: 20,
     padding: 20,
   },
-  caseContainer: {
-    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
-    padding: 20,
-  },
   gridStyle: {
     marginBottom: 20,
     marginTop: 20,
     paddingBottom: 20,
     paddingTop: 20,
+  },
+  image: {
+    borderRadius: '50%',
+    padding: 20,
+  },
+  imageWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      margin: -25,
+    },
   },
   paperContainer: {
     alignItems: 'center',
@@ -74,6 +84,13 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textAlign: 'center',
     width: 643,
   },
+  textBlock: {
+    marginBottom: 120,
+    maxWidth: 650,
+  },
+  title: {
+    maxWidth: 600,
+  },
   wrapper: {
     // This should be removed if Page no longer sets a margin
     backgroundColor: theme.palette.background.default,
@@ -87,30 +104,55 @@ const ProcessPage: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [buttonText] = useProperty(sales.buttonText);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
   const [image] = useProperty(schema.image);
 
-  // const [productText1] = useProperty(sales.stepper) as Node[];
-  // const productTexts = useContainerToArr(productText1);
+  const [textTitle] = useProperty(sales.textTitle);
+  const [textBlock] = useProperty(sales.textBlock);
+
 
   return (
     <div className={classes.wrapper}>
       <Header
         backgroundImageUrl={backgroundImage.value}
         backgroundImageUrlMobile={backgroundImageMobile.value}
-        buttonText={buttonText.value}
         subtitle={text.value}
         title={title.value}
       />
-      <VerticalLinearStepper
-        // steps={productTexts.map((paragraph: SomeTerm) => (paragraph.value))}
-        imageUrl={image}
-        steps={['tja']}
-      />
-
+      <Container>
+        <Typography
+          className={classes.title}
+          variant="h2"
+        >
+          {textTitle.value}
+        </Typography>
+        <Typography
+          className={classes.textBlock}
+          variant="body1"
+        >
+          {textBlock.value}
+        </Typography>
+        <Grid
+          container
+          alignItems="center"
+          direction="row"
+          justify="center"
+        >
+          <Grid item md={7} sm={12}>
+            <Property label={sales.stepper} />
+          </Grid>
+          <Grid item className={classes.imageContainer} md={5} sm={12}>
+            <div className={classes.imageWrapper}>
+              <Image
+                className={classes.image}
+                linkedProp={image}
+              />
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}
         imageUrl="/static/images/call_to_action_background.svg"

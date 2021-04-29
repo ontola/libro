@@ -82,7 +82,7 @@ class Topology<
     this.renderErrorComp = renderErrorComp(this);
     this.state = {
       error: undefined,
-    } as any;
+    } as S;
     this.style = undefined;
   }
 

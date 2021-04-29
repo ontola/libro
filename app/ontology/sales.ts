@@ -26,6 +26,7 @@ export default {
   ProductPage: sales('ProductPage'),
   ProductPropositionBlock: sales('ProductPropositionBlock'),
   Proposition: sales('Proposition'),
+  Step: sales('Step'),
 
   /* properties */
   backgroundImage: sales('backgroundImage'),
@@ -55,6 +56,8 @@ export default {
   showcase: sales('showcase'),
   stepper: sales('stepper'),
   tagline: sales('tagline'),
+  textBlock: sales('textBlock'),
   textColor: sales('textColor'),
+  textTitle: sales('textTitle'),
   theme: sales('theme'),
 };

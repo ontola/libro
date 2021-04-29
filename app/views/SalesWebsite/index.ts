@@ -7,6 +7,8 @@ import Proposition from './Propositions';
 import FeaturesContainer from './Features';
 import HomePage from './HomePage';
 import ProductPage from './ProductPage';
+import Stepper from './Stepper';
+
 
 export default [
   ...Block,
@@ -18,4 +20,5 @@ export default [
   ...HomePage,
   ...ProcessPage,
   ...ProductPage,
+  ...Stepper,
 ];

@@ -24,6 +24,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    paddingBottom: 100,
   },
   subtitle: {
     maxWidth: '40rem',
@@ -41,7 +42,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 export interface HeaderProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
-  buttonText: string,
+  buttonText?: string,
   children?: React.ReactChild;
   title: string,
   subtitle: string,
@@ -73,14 +74,17 @@ export const Header = ({
       >
         {subtitle}
       </Typography>
-      <Button
-        className={classes.button}
-        color="secondary"
-        endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
-        variant="contained"
-      >
-        {buttonText}
-      </Button>
+      {buttonText === undefined ?
+        null
+        :
+        <Button
+          className={classes.button}
+          color="secondary"
+          endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+          variant="contained"
+        >
+          {buttonText}
+        </Button>}
       {children}
     </div>
   );
