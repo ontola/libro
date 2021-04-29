@@ -12,6 +12,7 @@ import { surveyMessages } from '../../translations/messages';
 const Typeform = (props: ReactTypeformEmbedProps): JSX.Element => {
   const intl = useIntl();
   const [ref, setRef] = useState<TypeFormWrapper | null>(null);
+  React.useEffect(() => () => ref?.typeform?.close());
 
   return (
     <React.Fragment>

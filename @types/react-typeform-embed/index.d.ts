@@ -2,6 +2,7 @@ declare module 'react-typeform-embed' {
   import React from 'react';
 
   export interface TypeForm {
+    close: () => void;
     open: () => void;
   }
 
