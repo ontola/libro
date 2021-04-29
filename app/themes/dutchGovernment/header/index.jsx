@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './DutchGovernmentHeader.scss';
 import DefaultHeader from '../../common/header';
+
+import useStyles from './useStyles';
 
 const DutchGovernmentHeader = ({ themeOptions }) => {
   const breadcrumbParent = themeOptions.get('breadcrumbParent');
@@ -10,6 +11,7 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
   const primaryLine = themeOptions.get('primaryLine') || 'Rijksoverheid';
   const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line) => <div key={line}>{line}</div>);
   const [logo, setLogo] = React.useState();
+  const styles = useStyles();
 
   React.useEffect(() => {
     // eslint-disable-next-line no-inline-comments
@@ -18,27 +20,25 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
 
   return (
     <React.Fragment>
-      <div className="DutchGovernmentHeader">
-        <header>
-          <div className="Logo">
+      <div className={styles.wrapper}>
+        <header className={styles.header}>
+          <div className={styles.logo}>
             <img
               alt="Rijksoverheid logo"
               height={77}
               src={logo}
               width={44}
             />
-            <span className="Wordmark">
-              <span className="Primary">{primaryLine}</span>
-              <span className="Secondary">{secondaryLine}</span>
+            <span className={styles.wordmark}>
+              <span>{primaryLine}</span>
+              <span className={styles.wordmarkSecondary}>{secondaryLine}</span>
             </span>
           </div>
         </header>
         {breadcrumbParent && (
-          <div className="NavBar--titlebar">
-            <div className="NavBar--titlebar--inner">
-              <div className="NavBarContent">
-                <a href={breadcrumbParentUrl}>{breadcrumbParent}</a>
-              </div>
+          <div className={styles.navBarTitlebar}>
+            <div className="NavBarContent">
+              <a href={breadcrumbParentUrl}>{breadcrumbParent}</a>
             </div>
           </div>
         )}
