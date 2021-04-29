@@ -1,17 +1,17 @@
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   ReturnType,
   register,
   useLink,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { withRouter } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
+import Button, { ButtonTheme } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
-import Heading from '../../components/Heading';
-import Button from '../../components/Button';
+import Heading, { HeadingSize, HeadingVariant } from '../../components/Heading';
 import { SignInFormLink } from '../../components/SignInForm';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import ll from '../../ontology/ll';
@@ -23,8 +23,8 @@ import { gridTopology } from '../../topologies/Grid';
 import { menuTopology } from '../../topologies/Menu';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
-import { bodyForStatus, headerForStatus } from './ErrorMessages';
-import { propTypes, shouldShowSignIn } from './helpers';
+import { bodyDescriptorForStatus, headerDescriptorForStatus } from './ErrorMessages';
+import { ErrorComponentProps, shouldShowSignIn } from './helpers';
 
 const propMap = {
   message: schema.text,
@@ -36,8 +36,7 @@ const dataErrOpts = {
   returnType: ReturnType.Literal,
 };
 
-const ErrorCardComp = (props) => {
-  const { formatMessage } = useIntl();
+const ErrorCard: FC<ErrorComponentProps> = (props) => {
   const {
     caughtError,
     error,
@@ -46,17 +45,19 @@ const ErrorCardComp = (props) => {
   const { actorType } = useCurrentActor();
   const errFromData = useLink(propMap, dataErrOpts);
 
-  const err = caughtError || error || errFromData;
+  const err = caughtError ?? error ?? errFromData;
+  const headerDescription = headerDescriptorForStatus(linkRequestStatus);
+  const bodyDescriptor = bodyDescriptorForStatus(linkRequestStatus);
 
   let mainAction = (
-    <ErrorButtonWithFeedback theme="box" {...props}>
+    <ErrorButtonWithFeedback theme={ButtonTheme.Box} {...props}>
       <FormattedMessage
         defaultMessage="Try again"
         id="https://app.argu.co/i18n/errors/retryButton/label"
       />
     </ErrorButtonWithFeedback>
   );
-  if (shouldShowSignIn(actorType?.value, linkRequestStatus.status)) {
+  if (shouldShowSignIn(actorType?.value, linkRequestStatus)) {
     mainAction = (
       <SignInFormLink Component={Button} />
     );
@@ -65,12 +66,12 @@ const ErrorCardComp = (props) => {
   return (
     <Card>
       <CardContent endSpacing>
-        <Heading size="2" variant="alert">
+        <Heading size={HeadingSize.LG} variant={HeadingVariant.Alert}>
           <FontAwesome name="exclamation-triangle" />
           {' '}
-          {headerForStatus(formatMessage, linkRequestStatus) || (err && err.name)}
+          {headerDescription ? <FormattedMessage {...headerDescription} /> : (err && err.name)}
         </Heading>
-        <p>{bodyForStatus(formatMessage, linkRequestStatus)}</p>
+        {bodyDescriptor ? <p><FormattedMessage {...bodyDescriptor} /></p> : null}
         {err && <p>{err.message}</p>}
         {__DEVELOPMENT__ && err && <pre>{err.stack}</pre>}
         {mainAction}
@@ -78,10 +79,6 @@ const ErrorCardComp = (props) => {
     </Card>
   );
 };
-
-ErrorCardComp.propTypes = propTypes;
-
-export const ErrorCard = withRouter(ErrorCardComp);
 
 ErrorCard.type = ll.ErrorResource;
 

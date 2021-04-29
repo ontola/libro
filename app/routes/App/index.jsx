@@ -5,7 +5,6 @@ import { withRouter } from 'react-router';
 import '../../components/shared/init.scss';
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
-import headers from '../../themes/headers';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import routes from '../index';
 

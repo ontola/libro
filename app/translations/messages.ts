@@ -1,6 +1,8 @@
-import { defineMessages } from 'react-intl';
+import { MessageDescriptor, defineMessages } from 'react-intl';
 
-export const actionMessages = defineMessages({
+type Messages = { [key: string]: MessageDescriptor };
+
+export const actionMessages: Messages = defineMessages({
   copyFinished: {
     defaultMessage: 'Copied value to clipboard',
     description: 'The (inline) message to indicate the value was copied to their clipboard',
@@ -8,28 +10,28 @@ export const actionMessages = defineMessages({
   },
 });
 
-export const badgeMessages = defineMessages({
+export const badgeMessages: Messages = defineMessages({
   continue: {
     defaultMessage: 'Great!',
     id: 'https://app.argu.co/i18n/badges/continue',
   },
 });
 
-export const budgetMessages = defineMessages({
+export const budgetMessages: Messages = defineMessages({
   submitted: {
     defaultMessage: 'Your budget is submitted.',
     id: 'https://app.argu.co/i18n/budgets/submitted',
   },
 });
 
-export const collapsibleMessages = defineMessages({
+export const collapsibleMessages: Messages = defineMessages({
   expandOrCollapseTitle: {
     defaultMessage: 'Expand or collapse menu',
     id: 'https://app.argu.co/i18n/collapsible/expandOrCollapseMenu',
   },
 });
 
-export const collectionMessages = defineMessages({
+export const collectionMessages: Messages = defineMessages({
   nextLabel: {
     defaultMessage: 'next',
     id: 'https://app.argu.co/i18n/as:CollectionPage/as:next/label',
@@ -40,7 +42,7 @@ export const collectionMessages = defineMessages({
   },
 });
 
-export const dateMessages = defineMessages({
+export const dateMessages: Messages = defineMessages({
   dateCreated: {
     defaultMessage: 'created: {date}',
     id: 'https://app.argu.co/i18n/schema:dateCreated/label',
@@ -75,7 +77,7 @@ export const dateMessages = defineMessages({
   },
 });
 
-export const errorMessages = defineMessages({
+export const errorMessages: Messages = defineMessages({
   '400/body': {
     defaultMessage: 'The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource.',
     id: 'https://app.argu.co/i18n/errors/request/200/body',
@@ -218,7 +220,7 @@ export const errorMessages = defineMessages({
   },
 });
 
-export const formMessages = defineMessages({
+export const formMessages: Messages = defineMessages({
   cancelLabel: {
     defaultMessage: 'cancel',
     id: 'https://app.argu.co/i18n/forms/actions/cancel',
@@ -281,7 +283,7 @@ export const formMessages = defineMessages({
   },
 });
 
-export const grantedGroupMessages = defineMessages({
+export const grantedGroupMessages: Messages = defineMessages({
   privateText: {
     defaultMessage: 'Private',
     id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/text',
@@ -300,7 +302,7 @@ export const grantedGroupMessages = defineMessages({
   },
 });
 
-export const homeMessages = defineMessages({
+export const homeMessages: Messages = defineMessages({
   acceptedDecision: {
     defaultMessage: 'Accepted',
     id: 'https://app.argu.co/i18n/arguHome/acceptedDecision',
@@ -367,14 +369,14 @@ export const homeMessages = defineMessages({
   },
 });
 
-export const motionMessages = defineMessages({
+export const motionMessages: Messages = defineMessages({
   motionsCount: {
     defaultMessage: '{count} ideas',
     id: 'https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label',
   },
 });
 
-export const pageBuilderToolbarMessages = defineMessages({
+export const pageBuilderToolbarMessages: Messages = defineMessages({
   documentDropdownLabel: {
     defaultMessage: 'Documents',
     id: 'https://app.argu.co/i18n/pagebuilder/documentDropdownLabel',
@@ -409,7 +411,7 @@ export const pageBuilderToolbarMessages = defineMessages({
   },
 });
 
-export const personMessages = defineMessages({
+export const personMessages: Messages = defineMessages({
   postedBy: {
     defaultMessage: 'Posted by {name}',
     id: 'https://app.argu.co/i18n/schema:Person/postedByText',
@@ -420,7 +422,7 @@ export const personMessages = defineMessages({
   },
 });
 
-export const pdfMessages = defineMessages({
+export const pdfMessages: Messages = defineMessages({
   commentClickToAdd: {
     defaultMessage: 'Click where you want to add your comment',
     id: 'https://app.argu.co/i18n/pdf/commentClickToAdd',
@@ -451,14 +453,14 @@ export const pdfMessages = defineMessages({
   },
 });
 
-export const phaseMessages = defineMessages({
+export const phaseMessages: Messages = defineMessages({
   phaseStepperHeader: {
     defaultMessage: 'Phase {number}: ',
     id: 'https://app.argu.co/i18n/phases/stepper/header',
   },
 });
 
-export const statusMessages = defineMessages({
+export const statusMessages: Messages = defineMessages({
   closedTooltip: {
     defaultMessage: 'Closed on {date}',
     id: 'https://app.argu.co/i18n/expireable/states/closed/tooltip',
@@ -473,14 +475,14 @@ export const statusMessages = defineMessages({
   },
 });
 
-export const thingMessages = defineMessages({
+export const thingMessages: Messages = defineMessages({
   showProfile: {
     defaultMessage: "Show {name}'s profile",
     id: 'https://app.argu.co/i18n/schema:Thing/showResourceText',
   },
 });
 
-export const typeTranslation = defineMessages({
+export const typeTranslation: Messages = defineMessages({
   false: {
     defaultMessage: 'No',
     id: 'https://app.argu.co/i18n/xsd:boolean/false',
@@ -491,7 +493,7 @@ export const typeTranslation = defineMessages({
   },
 });
 
-export const voteMessages = defineMessages({
+export const voteMessages: Messages = defineMessages({
   closedMessage: {
     defaultMessage: 'Voting no longer possible',
     id: 'https://app.argu.co/i18n/votes/expireable/states/closed/message',
@@ -510,7 +512,7 @@ export const voteMessages = defineMessages({
   },
 });
 
-export const surveyMessages = defineMessages({
+export const surveyMessages: Messages = defineMessages({
   closedButtonText: {
     defaultMessage: 'Survey Closed',
     id: 'https://app.argu.co/i18n/survey/button/closed',

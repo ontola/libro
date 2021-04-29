@@ -14,13 +14,15 @@ import { LibroTheme } from '../../themes/themes';
 import ExternalLink from '../Link/ExternalLink';
 
 export interface NavbarLinkLinkProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   icon?: string | JSX.Element;
-  image: Node;
+  image?: Node;
   label?: string | JSX.Element;
   onClick?: React.MouseEventHandler;
+  spin?: boolean,
   ref?: React.Ref<HTMLButtonElement>,
-  to: string;
+  title?: string,
+  to?: string;
 }
 
 const useStyles = makeStyles(() => ({
@@ -36,6 +38,8 @@ const NavbarLinkLink = ({
   label,
   onClick,
   ref,
+  spin,
+  title,
   to,
 }: NavbarLinkLinkProps): JSX.Element => {
   const classes = useStyles();
@@ -53,13 +57,14 @@ const NavbarLinkLink = ({
 
   const iconCom = typeof icon !== 'string' ? icon : (
     <Icon color="inherit" fontSize="small">
-      <FontAwesome name={icon} />
+      <FontAwesome name={icon} spin={spin} />
     </Icon>
   );
 
   let Component: React.ComponentType<any> | string;
   const buttonProps: Partial<React.ButtonHTMLAttributes<unknown> & NavLinkProps & ButtonProps> = {
     className: classes.button,
+    title: title,
   };
   if (!to) {
     Component = 'button';

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Location } from 'history';
 import { useLRS } from 'link-redux';
 import React, {
+  CSSProperties,
   KeyboardEventHandler,
   MouseEvent,
   MouseEventHandler,
@@ -52,6 +53,7 @@ export interface LinkPropTypes {
   onClick?: MouseEventHandler<Element>;
   onKeyUp?: KeyboardEventHandler<Element>;
   role?: string;
+  style?: CSSProperties;
   tabIndex?: number;
   target?: LinkTarget;
   theme?: LinkTheme;

@@ -14,7 +14,7 @@ import argu from '../ontology/argu';
 import ontola from '../ontology/ontola';
 
 export const useCurrentActor = (): LinkedDataObject<{
-    actorType: NamedNode;
+    actorType: Literal;
     anonymousID: NamedNode;
     primaryEmail: NamedNode;
 }, TermOpts | undefined, NamedNode | BlankNode | Literal | undefined> => {

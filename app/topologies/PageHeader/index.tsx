@@ -1,9 +1,7 @@
-import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
   TopologyProvider,
   Type,
-  link,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,11 +21,10 @@ const defaultPercentage = 50;
 
 export interface PageHeaderProps {
   // URL to the background image
-  background: string;
+  background?: string;
   // Number between 0 and 100
-  positionY: number;
+  positionY?: number;
 }
-
 
 /**
  * Page filler with title and nav items at the top of a page
@@ -72,4 +69,4 @@ class PageHeader extends TopologyProvider<PageHeaderProps> {
   }
 }
 
-export default link({ name: schema.name })(PageHeader);
+export default PageHeader;

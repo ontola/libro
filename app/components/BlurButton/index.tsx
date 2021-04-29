@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { CSSProperties, MouseEvent } from 'react';
 
 type OnClickHandler = (e: MouseEvent<HTMLButtonElement>) => any;
 
@@ -15,6 +15,9 @@ const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandle
 };
 
 interface PropTypes {
+  className?: string;
+  style?: CSSProperties;
+  title?: string;
   onClick?: OnClickHandler;
 }
 

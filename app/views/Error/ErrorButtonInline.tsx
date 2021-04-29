@@ -1,9 +1,9 @@
-import { register } from 'link-redux';
-import PropTypes from 'prop-types';
+import { FC, register } from 'link-redux';
 import React from 'react';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-import Button from '../../components/Button';
+import Button, { ButtonTheme } from '../../components/Button';
+import useErrorReload from '../../hooks/useErrorReload';
 import ll from '../../ontology/ll';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { cardTopology } from '../../topologies/Card';
@@ -20,45 +20,40 @@ import { omniformFieldsTopology } from '../../topologies/OmniformFields/Omniform
 import { parentTopology } from '../../topologies/Parent';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 
-import { ErrorButtonWithFeedbackBase } from './ErrorButtonWithFeedback';
-import { titleForStatus } from './ErrorMessages';
+import { useTitleForStatus } from './ErrorMessages';
+import { ErrorComponentProps } from './helpers';
 
-const propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }),
-  linkRequestStatus: PropTypes.shape({
-    status: PropTypes.number,
-  }),
-  location: PropTypes.string,
-  reloadLinkedObject: PropTypes.func.isRequired,
+const ErrorButtonInline: FC<ErrorComponentProps> = ({
+  linkRequestStatus,
+  reloadLinkedObject,
+  subject,
+}) => {
+  const {
+    loading,
+    reload,
+  } = useErrorReload(subject, reloadLinkedObject);
+  const titleForStatus = useTitleForStatus(linkRequestStatus);
+
+  return (
+    <Button
+      small
+      icon="exclamation-triangle"
+      loading={loading}
+      theme={ButtonTheme.Subtle}
+      title={titleForStatus}
+      onClick={reload}
+    >
+      <FormattedMessage
+        defaultMessage="Retry"
+        id="https://app.argu.co/i18n/errors/inlineButton/label"
+      />
+    </Button>
+  );
 };
 
-class ErrorButtonSideBar extends ErrorButtonWithFeedbackBase {
-  render() {
-    const { intl: { formatMessage }, linkRequestStatus } = this.props;
+ErrorButtonInline.type = ll.ErrorResource;
 
-    return (
-      <Button
-        small
-        icon="exclamation-triangle"
-        loading={this.state.loading}
-        theme="subtle"
-        title={titleForStatus(formatMessage, linkRequestStatus)}
-        onClick={this.reload}
-      >
-        <FormattedMessage
-          defaultMessage="Retry"
-          id="https://app.argu.co/i18n/errors/inlineButton/label"
-        />
-      </Button>
-    );
-  }
-}
-
-ErrorButtonSideBar.type = ll.ErrorResource;
-
-ErrorButtonSideBar.topology = [
+ErrorButtonInline.topology = [
   attributeListTopology,
   cardFixedTopology,
   cardFloatTopology,
@@ -75,8 +70,4 @@ ErrorButtonSideBar.topology = [
   voteBubbleTopology,
 ];
 
-ErrorButtonSideBar.hocs = [injectIntl];
-
-ErrorButtonSideBar.propTypes = propTypes;
-
-export default register(ErrorButtonSideBar);
+export default register(ErrorButtonInline);
