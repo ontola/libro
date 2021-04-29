@@ -142,6 +142,11 @@ const theme = {
     },
     fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
   },
+  zIndex: {
+    appBar: 910,
+    drawer: 920,
+    modal: 930,
+  },
 };
 
 export default theme;

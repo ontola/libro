@@ -12,7 +12,6 @@ export default (theme) => ({
         height: theme.appBar.height,
         minHeight: theme.appBar.height,
       },
-      zIndex: 1299,
     },
   },
 });

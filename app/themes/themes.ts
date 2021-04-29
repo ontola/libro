@@ -1,5 +1,6 @@
 import { Theme } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { CSSProperties } from '@material-ui/styles';
 import React from 'react';
 
 import { Size } from '../components/shared/config';
@@ -40,9 +41,12 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 export interface AppBarThemeOpts extends React.CSSProperties {
   iconBreakPoint: Breakpoint;
+  resolveColor: () => string | undefined;
 }
 
 export type LibroTheme = Theme;
+
+export type CSSPropertiesMap = { [key: string]: CSSProperties };
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export enum Margin {

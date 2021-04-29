@@ -1,7 +1,11 @@
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
-import { withTheme } from '@material-ui/styles';
+import {
+  withStyles,
+  withTheme,
+} from '@material-ui/styles';
+import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -9,15 +13,22 @@ import { withRouter } from 'react-router';
 import { currentLocation } from '../../helpers/paths';
 import app from '../../ontology/app';
 import { getCurrentUserType } from '../../state/app/selectors';
+import { CSSPropertiesMap, LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
-
-import './Navbar.scss';
 
 export const navbarTopology = app.ns('topologies/navbar');
 
 interface PropTypes {
+  classes: ClassNameMap;
   theme: any;
 }
+
+const styles = (theme: LibroTheme): CSSPropertiesMap => ({
+  wrapper: {
+    color: theme.appBar.resolveColor(),
+    zIndex: theme.zIndex.appBar + 1,
+  },
+});
 
 class Navbar extends Topology<PropTypes> {
   constructor(props: PropTypes) {
@@ -26,16 +37,17 @@ class Navbar extends Topology<PropTypes> {
     this.topology = navbarTopology;
   }
 
+  getClassName(): string | undefined {
+    return this.props.classes.wrapper;
+  }
+
   public renderContent() {
     const {
       background,
-      resolveColor,
       height,
       maxWidth,
       position,
     } = this.props.theme.appBar;
-    const zIndex = this.props.theme.overrides.MuiAppBar.root.zIndex + 1;
-    const color = resolveColor();
 
     return this.wrap((subject) => (
       <React.Fragment>
@@ -45,10 +57,6 @@ class Navbar extends Topology<PropTypes> {
           elevation={0}
           position={position}
           resource={subject && subject.value}
-          style={{
-            color,
-            zIndex,
-          }}
         >
           <Container maxWidth={maxWidth}>
             <Toolbar
@@ -72,4 +80,4 @@ function mapStateToProps(state: any, ownProps: any) {
   };
 }
 
-export default withTheme(withRouter(connect(mapStateToProps)(Navbar)));
+export default withTheme(withRouter(connect(mapStateToProps)(withStyles(styles)(Navbar))));
