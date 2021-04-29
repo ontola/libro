@@ -144,31 +144,13 @@ $container-padding-main: 2rem;
 
 // Z-INDICES
 $zindex-1: 100;
-$zindex-2: 200;
-$zindex-3: 300;
-$zindex-4: 400;
 $zindex-5: 1200;
-$zindex-6: 1300;
-$zindex-7: 1400;
-$zindex-8: 1500;
-$zindex-9: 1600;
-$zindex-10: 1700;
-$zindex-11: 1800;
 $zindex-12: 1900;
 
 $z-layers: (
   'hoverbox': $zindex-1,
-  'progressbar': $zindex-1,
-  'cover': $zindex-2,
-  'dropdown': $zindex-3,
-  'menu': $zindex-4,
   'loader': $zindex-5,
-  'navbar': $zindex-6,
-  'modal-drop': $zindex-10,
-  'modal': $zindex-11,
   'overlay': $zindex-12,
-  'snackbar': $zindex-8,
-  'tooltip': $zindex-9,
 );
 
 // OTHERS
