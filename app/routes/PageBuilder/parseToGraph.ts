@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as ontAs from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { isTerm } from '@ontologies/core';
 import * as ontDcterms from '@ontologies/dcterms';
 import * as ontFoaf from '@ontologies/foaf';
 import * as ontOwl from '@ontologies/owl';
@@ -9,7 +9,12 @@ import * as ontRdfs from '@ontologies/rdfs';
 import * as ontSchema from '@ontologies/schema';
 import * as ontShacl from '@ontologies/shacl';
 import * as ontXsd from '@ontologies/xsd';
-import { toGraph } from 'link-lib';
+import {
+  DataObject,
+  SerializableDataTypes,
+  normalizeType,
+  toGraph,
+} from 'link-lib';
 import { ParsedObject } from 'link-lib/dist-types/types';
 
 import ontApp from '../../ontology/app';
@@ -39,6 +44,48 @@ import ontRivm from '../../ontology/rivm';
 import ontSp from '../../ontology/sp';
 import ontTeamGL from '../../ontology/teamGL';
 import ontWdt from '../../ontology/wdt';
+
+const isSerializablePrimitive = (obj: any): obj is Exclude<SerializableDataTypes, DataObject> => {
+  if (obj === undefined || obj === null) {
+    throw new Error('Value in serializable object was empty.');
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.every((e) => isSerializablePrimitive(e));
+  }
+
+  const isDataValue = typeof obj === 'boolean'
+    || typeof obj === 'number'
+    || typeof obj === 'string'
+    || isTerm(obj)
+    || obj.constructor === Date
+    || obj.constructor === File;
+
+  if (!isDataValue && typeof obj !== 'object') {
+    throw new Error(`Data wasn't a serializable primitive nor a DataObject ('${typeof obj}', '${obj}')`);
+  }
+
+  return isDataValue;
+};
+const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, path: string): T => {
+  if (Array.isArray(obj)) {
+    return obj.map((e, i) => nameIdempotently(e, `${path}.${i}`)) as T;
+  }
+  if (isSerializablePrimitive(obj)) {
+    return obj;
+  }
+
+  const seed: DataObject = { '@id': (obj as any)['@id'] ?? rdf.blankNode(path) };
+
+  return Object.entries(obj)
+    .reduce(
+      (acc, [k, v]) => ({
+        ...acc,
+        [k]: nameIdempotently(v, `${path}.${k}`),
+      }),
+      seed,
+    ) as T;
+};
 
 const parseToGraph = (source: string): ParsedObject[] => {
   // @ts-ignore
@@ -124,9 +171,10 @@ const parseToGraph = (source: string): ParsedObject[] => {
 
   // tslint:disable-next-line:no-eval
   const data = eval(source);
-  const datas = Array.isArray(data) ? data : [data];
 
-  return datas.map((d) => toGraph(d));
+  return normalizeType(data)
+    .map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
+    .map((t) => toGraph(t));
 };
 
 export default parseToGraph;
