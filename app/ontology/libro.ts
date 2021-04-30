@@ -18,6 +18,7 @@ export default {
       pop: libro('actions/navigations/pop'),
       push: libro('actions/navigations/push'),
     },
+    playAudio: libro('actions/playAudio'),
     redirect: libro('actions/redirect'),
     refresh: libro('actions/refresh'),
     reload: libro('actions/reload'),
