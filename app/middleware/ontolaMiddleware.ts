@@ -169,6 +169,9 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
   };
 
+  (store as any).actions.ontola.playAudio = (resource: NamedNode) =>
+    store.exec(rdf.namedNode(`${libro.actions.playAudio.value}?resource=${encodeURIComponent(resource.value)}`));
+
   /**
    * Miscellaneous
    */
@@ -333,6 +336,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       store.processDelta(queueSnackbar(value), true);
 
       return Promise.resolve();
+    }
+
+    if (iri.value.startsWith(libro.actions.playAudio.value)) {
+      const resource = new URL(iri.value).searchParams.get('resource');
+      if (!resource) {
+        throw new Error("Argument 'resource' was missing.");
+      }
+      const audio = new Audio(resource);
+
+      return audio.play();
     }
 
     return next(iri, opts);
