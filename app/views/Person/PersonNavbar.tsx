@@ -6,7 +6,6 @@ import {
   Property,
   Resource,
   register,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -32,13 +31,15 @@ interface PersonNavbarProps {
   image: SomeNode;
 }
 
-const PersonNavbar: FC<PersonNavbarProps> = ({ image }) => {
+const PersonNavbar: FC<PersonNavbarProps> = ({
+  image,
+  subject,
+}) => {
   const classes = useStyles();
-  const [menuIri] = useProperty(ontola.profileMenu);
 
   return (
     <div className={classes.wrapper}>
-      <NavbarLinkLink image={image} to={menuIri.value}>
+      <NavbarLinkLink image={image} to={subject.value}>
         <NavbarLinkIcon>
           <Property label={schema.image}>
             <Property label={[schema.thumbnail, ontola.imgUrl64x64]} />
@@ -46,7 +47,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({ image }) => {
         </NavbarLinkIcon>
       </NavbarLinkLink>
       <Resource subject={app.n} topology={navbarTopology}>
-        <Link to={`${menuIri.value}#notifications`}>
+        <Link to={`${subject.value}#notifications`}>
           <Property label={argu.unreadCount} />
         </Link>
       </Resource>

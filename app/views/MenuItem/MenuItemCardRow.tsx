@@ -1,23 +1,34 @@
+import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
-import Link from '../../components/Link';
+import Link, { IsActiveCheck } from '../../components/Link';
 import ontola from '../../ontology/ontola';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 import { MenuTypes } from './types';
 
-const MenuItemCardRow = ({
+interface MenuItemCardRowProps {
+  href: NamedNode;
+  isActive: IsActiveCheck;
+  name?: Literal;
+  onClick: () => void;
+}
+
+const MenuItemCardRow: FC<MenuItemCardRowProps> = ({
   isActive,
   href,
   name,
   onClick,
 }) => (
   <li>
-    <Link isActive={isActive} to={href.value} onClick={onClick}>
-      {name.value}
+    <Link
+      isActive={isActive}
+      to={href.value}
+      onClick={onClick}
+    >
+      {name?.value}
     </Link>
   </li>
 );
@@ -29,13 +40,6 @@ MenuItemCardRow.topology = cardRowTopology;
 MenuItemCardRow.mapDataToProps = {
   href: ontola.href,
   name: schema.name,
-};
-
-MenuItemCardRow.propTypes = {
-  href: linkType,
-  isActive: PropTypes.func,
-  name: linkType,
-  onClick: PropTypes.func,
 };
 
 export default register(MenuItemCardRow);

@@ -522,7 +522,7 @@ export const surveyMessages: Messages = defineMessages({
     id: 'https://app.argu.co/i18n/survey/button/start',
   },
   thankyouMessage: {
-    defaultMessage: 'Thank you for your contribution.',
+    defaultMessage: 'Thank you for your response.',
     id: 'https://app.argu.co/i18n/survey/contribution',
   },
 });

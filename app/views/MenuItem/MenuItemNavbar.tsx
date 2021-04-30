@@ -1,12 +1,12 @@
+import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Resource,
-  linkType,
   register,
-  subjectType,
 } from 'link-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ForwardedRef } from 'react';
 
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -15,32 +15,45 @@ import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 
-const MenuItemNavbar = ({
+interface MenuItemNavbarProps {
+  href?: NamedNode;
+  image?: SomeNode;
+  imageOnly?: boolean;
+  name?: Literal;
+  menuItems?: SomeNode;
+}
+
+interface MenuChildProps {
+  handleClose: () => void;
+  ref: ForwardedRef<unknown>;
+}
+
+const MenuItemNavbar: FC<MenuItemNavbarProps> = ({
   href,
   image,
   name,
   menuItems,
 }) => {
-  const menuItemLabel = (onClick) => {
+  const menuItemLabel = React.useCallback((onClick) => {
     const icon = (image && isFontAwesomeIRI(image.value))
       ? normalizeFontAwesomeIRI(image)
-      : null;
+      : undefined;
 
     return (
       <NavbarLinkLink
         icon={icon}
-        image={icon ? null : image}
+        image={icon ? undefined : image}
         label={name?.value}
         to={href?.value}
         onClick={onClick}
       />
     );
-  };
+  }, [image, name, href]);
 
   if (menuItems) {
     return (
       <Menu trigger={menuItemLabel}>
-        {({ handleClose, ref }) => (
+        {({ handleClose, ref }: MenuChildProps) => (
           <Resource
             childProps={{
               onClose: handleClose,
@@ -53,7 +66,7 @@ const MenuItemNavbar = ({
     );
   }
 
-  return menuItemLabel();
+  return menuItemLabel(undefined);
 };
 
 MenuItemNavbar.type = [
@@ -69,14 +82,6 @@ MenuItemNavbar.mapDataToProps = {
   image: schema.image,
   menuItems: ontola.menuItems,
   name: schema.name,
-};
-
-MenuItemNavbar.propTypes = {
-  href: linkType,
-  image: linkType,
-  imageOnly: PropTypes.bool,
-  menuItems: linkType,
-  subject: subjectType,
 };
 
 export default register(MenuItemNavbar);

@@ -53,6 +53,7 @@ export default {
   bannerMembers: app('banners?page=1#members'),
   c_a: app('c_a'),
   collectionResource: app('collectionResource'),
+  currentTab: app('currentTab'),
   empty: app('empty'),
   menu: app('menu'),
   menuTabs: app('menuTabs'),

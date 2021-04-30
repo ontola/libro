@@ -1,8 +1,12 @@
-import { Property, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { IsActiveCheck } from '../../components/Link';
 import UnorderedList from '../../components/UnorderedList';
 import ontola from '../../ontology/ontola';
 import { CardRow } from '../../topologies/Card';
@@ -10,7 +14,12 @@ import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { MenuTypes } from './types';
 
-const MenuItemCardAppendix = ({
+interface MenuItemCardAppendixProps {
+  isActive: IsActiveCheck;
+  onClick: () => void;
+}
+
+const MenuItemCardAppendix: FC<MenuItemCardAppendixProps> = ({
   onClick,
   isActive,
 }) => {
@@ -36,10 +45,5 @@ const MenuItemCardAppendix = ({
 MenuItemCardAppendix.type = MenuTypes;
 
 MenuItemCardAppendix.topology = cardAppendixTopology;
-
-MenuItemCardAppendix.propTypes = {
-  isActive: PropTypes.func,
-  onClick: PropTypes.func,
-};
 
 export default register(MenuItemCardAppendix);

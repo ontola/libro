@@ -4,6 +4,7 @@ import React from 'react';
 
 import app from '../../ontology/app';
 import { CardAppendix } from '../../topologies/Card';
+import { IsActiveCheck } from '../Link';
 
 export interface AccountHelpersCardAppendixProps {
   currentSubject: Node;
@@ -13,15 +14,22 @@ export interface AccountHelpersCardAppendixProps {
 const AccountHelpersCardAppendix = ({
   currentSubject,
   onClick,
-}: AccountHelpersCardAppendixProps): JSX.Element => (
-  <CardAppendix>
-    <Resource
-      currentSubject={currentSubject}
-      isActive={(to: string) => () => new URL(to).pathname === new URL(currentSubject.value).pathname}
-      subject={app.ns('menus/session')}
-      onClick={onClick}
-    />
-  </CardAppendix>
-);
+}: AccountHelpersCardAppendixProps): JSX.Element => {
+  const isActive = React.useCallback<IsActiveCheck>(
+    (to: string) => () => new URL(to).pathname === new URL(currentSubject.value).pathname,
+    [currentSubject.value],
+  );
+
+  return (
+    <CardAppendix>
+      <Resource
+        currentSubject={currentSubject}
+        isActive={isActive}
+        subject={app.ns('menus/session')}
+        onClick={onClick}
+      />
+    </CardAppendix>
+  );
+};
 
 export default AccountHelpersCardAppendix;

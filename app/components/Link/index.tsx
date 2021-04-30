@@ -41,6 +41,8 @@ export enum LinkFeature {
   Centered = 'centered',
 }
 
+export type IsActiveCheck = (to: string) => (locationMatch: match<any> | null, location: Location) => boolean;
+
 export interface LinkPropTypes {
   activeClassName?: string;
   allowExternal?: boolean;
@@ -48,7 +50,7 @@ export interface LinkPropTypes {
   className?: string;
   disabled?: boolean;
   features?: LinkFeature[];
-  isActive?: (to: string) => (locationMatch: match<any> | null, location: Location) => boolean;
+  isActive?: IsActiveCheck;
   isIndex?: boolean;
   onClick?: MouseEventHandler<Element>;
   onKeyUp?: KeyboardEventHandler<Element>;

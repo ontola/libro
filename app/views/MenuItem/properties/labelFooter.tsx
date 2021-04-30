@@ -1,14 +1,19 @@
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
-import Heading from '../../../components/Heading';
+import Heading, { HeadingSize, HeadingVariant } from '../../../components/Heading';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { footerTopology } from '../../../topologies/Footer';
 
-const MenuItemLabelFooter = ({ linkedProp, nested }) => {
+interface MenuItemLabelFooterProps {
+  linkedProp: Literal;
+  nested: boolean;
+}
+
+const MenuItemLabelFooter: FC<MenuItemLabelFooterProps> = ({ linkedProp, nested }) => {
   if (nested) {
     return (
       <div className="">
@@ -18,7 +23,10 @@ const MenuItemLabelFooter = ({ linkedProp, nested }) => {
   }
 
   return (
-    <Heading size="3" variant="navbar">
+    <Heading
+      size={HeadingSize.MD}
+      variant={HeadingVariant.Navbar}
+    >
       {linkedProp.value}
     </Heading>
   );
@@ -37,11 +45,6 @@ MenuItemLabelFooter.topology = footerTopology;
 MenuItemLabelFooter.mapDataToProps = {
   image: schema.image,
   name: schema.name,
-};
-
-MenuItemLabelFooter.propTypes = {
-  linkedProp: linkType,
-  nested: PropTypes.bool,
 };
 
 export default register(MenuItemLabelFooter);

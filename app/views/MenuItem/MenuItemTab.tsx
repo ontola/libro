@@ -1,19 +1,25 @@
 import Tab from '@material-ui/core/Tab';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   Resource,
   register,
-  subjectType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { tabBarTopology } from '../../topologies/TabBar';
 
 import { MenuTypes } from './types';
 
-const MenuItemTab = ({ subject, onClick }) => (
+interface MenuItemTabProps {
+  onClick: React.EventHandler<any>;
+}
+
+const MenuItemTab: FC<MenuItemTabProps> = ({
+  subject,
+  onClick,
+}) => (
   <Tab
     icon={(
       <Resource subject={subject}>
@@ -37,11 +43,6 @@ MenuItemTab.topology = tabBarTopology;
 
 MenuItemTab.mapDataToProps = {
   name: schema.name,
-};
-
-MenuItemTab.propTypes = {
-  onClick: PropTypes.func,
-  subject: subjectType,
 };
 
 export default register(MenuItemTab);

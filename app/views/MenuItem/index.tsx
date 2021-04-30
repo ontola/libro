@@ -7,16 +7,24 @@ import MenuItemPage from './MenuItemFull';
 import MenuItemHeader from './MenuItemNavbar';
 import MenuItemNested from './MenuItemNested';
 import MenuItemTab from './MenuItemTab';
+import CurrentTab from './properties/currentTab';
 import Href from './properties/href';
-import IsPartOf from './properties/isPartOf';
+import IsPartOfCardMain from './properties/isPartOfCardMain';
 import LabelCard from './properties/labelCard';
 import LabelFooter from './properties/labelFooter';
 import LabelHeader from './properties/labelHeader';
-import menuItemsComp from './properties/menuItems';
+import LabelTableRow from './properties/labelTableRow';
+import MenuItemsComp from './properties/menuItems';
 import MenuTabs from './properties/menuTabs';
-import Name from './properties/name';
 
 export default [
+  CurrentTab,
+  IsPartOfCardMain,
+  Href,
+  LabelCard,
+  LabelFooter,
+  LabelHeader,
+  LabelTableRow,
   MenuItemCardAppendix,
   MenuItemCardRow,
   MenuItemDropdown,
@@ -26,12 +34,6 @@ export default [
   MenuItemNested,
   MenuItemTab,
   MenuItemDropdownContent,
+  MenuItemsComp,
   MenuTabs,
-  Href,
-  IsPartOf,
-  LabelCard,
-  LabelFooter,
-  LabelHeader,
-  menuItemsComp,
-  Name,
 ];

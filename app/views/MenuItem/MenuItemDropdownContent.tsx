@@ -1,15 +1,15 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
+import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import HttpStatus from 'http-status-codes';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
-  lrsType,
   register,
-  subjectType,
+  useLRS,
 } from 'link-redux';
-import * as PropTypes from 'prop-types';
 import React from 'react';
 
 import MenuItem from '../../components/MenuItem';
@@ -17,18 +17,33 @@ import ontola from '../../ontology/ontola';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';
 
+interface MenuItemDropdownContentProps {
+  action?: NamedNode;
+  hideIcon?: boolean;
+  href?: SomeNode;
+  image?: SomeNode;
+  menuItems?: SomeNode;
+  name?: Literal;
+  onClose?: () => void;
+  subject: SomeNode;
+}
+
+interface MenuItemDropdownContentPropsWithRef extends MenuItemDropdownContentProps {
+  innerRef: any;
+}
+
 const MenuItemDropdownContentComp = ({
   action,
   hideIcon,
   href,
   image,
   innerRef,
-  lrs,
   menuItems,
   name,
   onClose,
   subject,
-}) => {
+}: MenuItemDropdownContentPropsWithRef): JSX.Element => {
+  const lrs = useLRS();
   const [open, setOpen] = React.useState(menuItems ? false : null);
 
   const handleClick = React.useCallback((e) => {
@@ -42,7 +57,7 @@ const MenuItemDropdownContentComp = ({
       e.preventDefault();
     }
     lrs
-      .exec(action)
+      .exec(action!)
       .catch((error) => {
         if (!error.response) {
           throw error;
@@ -62,7 +77,7 @@ const MenuItemDropdownContentComp = ({
 
   const sharedProps = {
     expandOpen: open,
-    icon: hideIcon ? null : image,
+    icon: hideIcon ? undefined : image,
     lrs,
     ref: innerRef,
     subject,
@@ -73,12 +88,11 @@ const MenuItemDropdownContentComp = ({
       <React.Fragment>
         <MenuItem
           action={handleClick}
-          subject={subject}
           {...sharedProps}
         >
-          {name.value}
+          {name?.value}
         </MenuItem>
-        <Collapse unmountOnExit in={open} timeout="auto">
+        <Collapse unmountOnExit in={open === null ? undefined : open} timeout="auto">
           <List disablePadding component="div">
             <Property
               childProps={childProps}
@@ -97,27 +111,19 @@ const MenuItemDropdownContentComp = ({
       url={href && href.value}
       {...sharedProps}
     >
-      {name.value}
+      {name?.value}
     </MenuItem>
   );
 };
 
-MenuItemDropdownContentComp.propTypes = {
-  action: linkType,
-  hideIcon: PropTypes.bool,
-  href: linkType,
-  image: linkType,
-  innerRef: PropTypes.func,
-  lrs: lrsType,
-  menuItems: linkType,
-  name: linkType,
-  onClose: PropTypes.func,
-  subject: subjectType,
-};
-
-const MenuItemDropdownContent = React.forwardRef(
-  (props, ref) => <MenuItemDropdownContentComp innerRef={ref} {...props} />
-);
+const MenuItemDropdownContent = React.forwardRef<FC, MenuItemDropdownContentProps> (
+  (props, ref) => (
+    <MenuItemDropdownContentComp
+      innerRef={ref}
+      {...props}
+    />
+  ),
+) as unknown as FC;
 
 MenuItemDropdownContent.type = ontola.MenuItem;
 

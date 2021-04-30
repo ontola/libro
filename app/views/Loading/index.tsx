@@ -15,12 +15,12 @@ import Loading, {
   LoadingParent,
   LoadingRow,
   LoadingSelect,
+  LoadingTabbar,
 } from '../../components/Loading';
 import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 import Spinner from '../../components/Spinner';
 import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { cardTopology } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
@@ -59,7 +59,7 @@ export default [
     LoadingPage,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    pageTopology
+    pageTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingFullResource,
@@ -68,13 +68,13 @@ export default [
     [
       fullResourceTopology,
       tabPaneTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     LoadingParent,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    parentTopology
+    parentTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCard,
@@ -84,7 +84,7 @@ export default [
       alertDialogTopology,
       containerTopology,
       cardListTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     SuspendedLoader,
@@ -92,25 +92,25 @@ export default [
     RENDER_CLASS_NAME,
     [
       gridTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     LoadingMicroRow,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    cardRowTopology
+    cardRowTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingSelect,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    selectTopology
+    selectTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardRowAppendix,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    cardAppendixTopology
+    cardAppendixTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingRow,
@@ -124,7 +124,7 @@ export default [
       hoverBoxTopology,
       menuTopology,
       omniformFieldsTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCellRow,
@@ -132,13 +132,13 @@ export default [
     RENDER_CLASS_NAME,
     [
       tableTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     LoadingNavbarLink,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    navbarTopology
+    navbarTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingDetail,
@@ -149,28 +149,33 @@ export default [
       detailsBarTopology,
       contentDetailsTopology,
       tableCellTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardFixed,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    popupTopology
+    popupTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardFloat,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    cardFloatTopology
+    cardFloatTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingButton,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
-      actionsBarTopology,
       tabBarTopology,
-    ]
+    ],
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingTabbar,
+    ll.LoadingResource,
+    RENDER_CLASS_NAME,
+    tabBarTopology,
   ),
   LinkedRenderStore.registerRenderer(
     Loading,
@@ -186,12 +191,12 @@ export default [
       selectTopology,
       selectedValueTopology,
       voteBubbleTopology,
-    ]
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     Spinner,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    formFooterTopology
+    formFooterTopology,
   ),
 ];

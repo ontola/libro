@@ -1,4 +1,7 @@
+import Tab from '@material-ui/core/Tab';
+import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import './Loading.scss';
 
@@ -26,6 +29,15 @@ export const LoadingNavbarLink = (): JSX.Element => (
 
 export const LoadingButton = (): JSX.Element => (
   <div className="Loading__Button Loading__background" />
+);
+
+export const LoadingTabbar = ({
+  subject,
+}: SubjectProp): JSX.Element => (
+  <Tab
+    icon={<FontAwesome spin name="spinner" />}
+    key={subject.value}
+  />
 );
 
 export const LoadingCard = (): JSX.Element => (

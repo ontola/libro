@@ -1,10 +1,10 @@
+import { NamedNode } from '@ontologies/core';
 import {
+  FC,
   Resource,
   ReturnType,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import argu from '../../../ontology/argu';
@@ -12,24 +12,31 @@ import ontola from '../../../ontology/ontola';
 import { menuTopology } from '../../../topologies/Menu';
 import { navbarTopology } from '../../../topologies/Navbar';
 
-const MenuItems = ({
+interface MenuItemsProps {
+  childProps: any;
+  linkedProp: NamedNode;
+  menuItems: NamedNode[];
+}
+
+const MenuItems: FC<MenuItemsProps> = ({
   childProps,
-  labelComp,
   menuItems,
 }) => {
-  const rawProp = menuItems;
-  if (rawProp.length === 0) {
-    return labelComp;
+  if (menuItems.length === 0) {
+    return null;
   }
 
-  return rawProp
-    .map((item) => (
-      <Resource
-        childProps={childProps}
-        key={`menu-${item}`}
-        subject={item}
-      />
-    ));
+  return (
+    <React.Fragment>
+      {menuItems.map((item) => (
+        <Resource
+          childProps={childProps}
+          key={`menu-${item}`}
+          subject={item}
+        />
+      ))}
+    </React.Fragment>
+  );
 };
 
 MenuItems.type = [
@@ -50,16 +57,6 @@ MenuItems.mapDataToProps = {
     label: ontola.menuItems,
     returnType: ReturnType.AllTerms,
   },
-};
-
-MenuItems.propTypes = {
-  childProps: PropTypes.objectOf(PropTypes.any),
-  labelComp: PropTypes.node,
-  menuItems: linkType,
-};
-
-MenuItems.defaultProps = {
-  childprops: {},
 };
 
 export default register(MenuItems);
