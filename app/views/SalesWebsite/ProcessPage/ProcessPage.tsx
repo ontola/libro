@@ -1,4 +1,11 @@
-import { Grid, Typography } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
+import Button from '@material-ui/core/Button/Button';
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -19,6 +26,14 @@ import {
 } from '../../../components/SalesWebsite';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  academyContainer: {
+    margin: 20,
+  },
+  button: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textTransform: 'none',
+  },
   buttonPrimary: {
     backgroundColor: '#B33A00',
     borderRadius: 3,
@@ -27,6 +42,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     margin: 20,
     padding: 20,
   },
+  container: {
+    marginTop: 100,
+  },
   gridStyle: {
     marginBottom: 20,
     marginTop: 20,
@@ -34,12 +52,13 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     paddingTop: 20,
   },
   image: {
-    borderRadius: '50%',
     padding: 20,
   },
   imageWrapper: {
+    alignItems: 'flex-end',
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    marginTop: -250,
     [theme.breakpoints.down('md')]: {
       margin: -25,
     },
@@ -57,39 +76,21 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: '0 30px',
     width: 250,
   },
-  propositionContainer: {
-    marginBottom: 30,
-    marginTop: 45,
-  },
-  propositionSelector: {
-    [theme.breakpoints.down('sm')]: {
-      boxShadow: 'unset',
-      gridGap: 40,
-      gridTemplateColumns: '1fr 1fr',
-      padding: 20,
-    },
-    [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: '1fr',
-    },
-    borderRadius: 5,
-    boxShadow: '0 0 25px rgba(0,0,0,0.2)',
-    display: 'grid',
-    flex: 1,
-    gridTemplateColumns: '1fr 1fr 1fr 1fr',
-    marginBottom: 100,
-    marginTop: 100,
-    overflow: 'hidden',
+  stepperWrapper: {
+    marginTop: 50,
   },
   subtitle: {
     textAlign: 'center',
     width: 643,
   },
-  textBlock: {
-    marginBottom: 120,
-    maxWidth: 650,
-  },
-  title: {
-    maxWidth: 600,
+  textBlockWrapper: {
+    margin: 10,
+    marginBottom: 140,
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: 120,
+      marginTop: -80,
+      textAlign: 'center',
+    },
   },
   wrapper: {
     // This should be removed if Page no longer sets a margin
@@ -100,6 +101,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const ProcessPage: FC = () => {
   const classes = useStyles();
+  const styles = useTheme();
+
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
@@ -108,6 +111,8 @@ const ProcessPage: FC = () => {
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
   const [image] = useProperty(schema.image);
+  const [secondaryImage] = useProperty(sales.secondaryImage);
+  const [tertiaryImage] = useProperty(sales.tertiaryImage);
 
   const [textTitle] = useProperty(sales.textTitle);
   const [textBlock] = useProperty(sales.textBlock);
@@ -121,37 +126,75 @@ const ProcessPage: FC = () => {
         subtitle={text.value}
         title={title.value}
       />
+      <Container className={classes.textBlockWrapper}>
+        <Grid item md={8} sm={12}>
+          <Typography
+            className={classes.title}
+            variant="h2"
+          >
+            {textTitle.value}
+          </Typography>
+          <Typography
+            variant="body1"
+          >
+            {textBlock.value}
+          </Typography>
+        </Grid>
+      </Container>
       <Container>
-        <Typography
-          className={classes.title}
-          variant="h2"
-        >
-          {textTitle.value}
-        </Typography>
-        <Typography
-          className={classes.textBlock}
-          variant="body1"
-        >
-          {textBlock.value}
-        </Typography>
         <Grid
           container
           alignItems="center"
+          className={classes.container}
           direction="row"
           justify="center"
         >
-          <Grid item md={7} sm={12}>
+          <Grid item className={classes.stepperWrapper} md={8} sm={12}>
             <Property label={sales.stepper} />
           </Grid>
-          <Grid item className={classes.imageContainer} md={5} sm={12}>
-            <div className={classes.imageWrapper}>
-              <Image
-                className={classes.image}
-                linkedProp={image}
-              />
-            </div>
+          <Grid item className={classes.imageWrapper} md={4} sm={12}>
+            {useMediaQuery(styles.breakpoints.down('md')) ?
+              null
+              :
+              <div>
+                <Image
+                  className={classes.image}
+                  linkedProp={image}
+                />
+                <Image
+                  className={classes.image}
+                  linkedProp={secondaryImage}
+                />
+                <Image
+                  className={classes.image}
+                  linkedProp={tertiaryImage}
+                />
+              </div>}
           </Grid>
         </Grid>
+      </Container>
+      <Container>
+        <div className={classes.academyContainer}>
+          <Typography
+            className={classes.title}
+            variant="h2"
+          >
+            Onze Academy
+          </Typography>
+          <Typography
+            variant="body1"
+          >
+            Naast onze bewezen werkwijze hebben wij een academy ingericht waarmee
+            wij jou in staat stellen Argu zo optimaal mogelijk in te zetten voor
+            jouw vraagstuk.
+          </Typography>
+          <Button
+            className={classes.button}
+            endIcon={<ArrowRightAltIcon color="primary" style={{ fontSize: 35 }} />}
+          >
+            Bekijk onze academy.
+          </Button>
+        </div>
       </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}

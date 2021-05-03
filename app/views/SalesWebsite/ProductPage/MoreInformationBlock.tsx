@@ -24,6 +24,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   buttonText: {
     textAlign: 'right',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'left',
+    },
   },
   container: {
     [theme.breakpoints.down('sm')]: {

@@ -2,12 +2,14 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
+import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+
 interface StepProps {
   name: string;
   text: string;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<SalesTheme>((theme: SalesTheme) => ({
   circleSmall: {
     border: '3px solid #2D7080',
     borderRadius: '50%',
@@ -15,6 +17,10 @@ const useStyles = makeStyles({
     height: 69,
     width: 67,
     zIndex: 5,
+    [theme.breakpoints.down('sm')]: {
+      height: 50,
+      width: 48,
+    },
   },
   circleTransparent: {
     backgroundColor: 'white',
@@ -24,6 +30,10 @@ const useStyles = makeStyles({
     marginLeft: 70,
     marginTop: '-3px',
     width: 35,
+    [theme.breakpoints.down('sm')]: {
+      height: 50,
+      marginLeft: 50,
+    },
   },
   icon: {
     fontSize: 70,
@@ -67,13 +77,19 @@ const useStyles = makeStyles({
     marginBottom: 80,
     marginLeft: 15,
     marginTop: -80,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: -80,
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginTop: -110,
+    },
   },
   title: {
     fontWeight: 'bold',
-    marginBottom: -7,
-    marginTop: 12,
+    lineHeight: 0,
+    paddingTop: 12,
   },
-});
+}));
 
 const Step = (props: StepProps): JSX.Element => {
   const classes = useStyles(props);

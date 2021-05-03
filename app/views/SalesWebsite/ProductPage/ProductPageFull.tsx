@@ -44,7 +44,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   titleFeatureBlock: {
     color: theme.palette.background.default,
-    marginBottom: -20,
     textAlign: 'center',
   },
   wrapper: {

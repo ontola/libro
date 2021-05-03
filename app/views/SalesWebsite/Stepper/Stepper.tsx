@@ -1,4 +1,3 @@
-import { Grid } from '@material-ui/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -15,16 +14,10 @@ const Stepper: FC = () => {
   const [text] = useProperty(schema.text);
 
   return (
-    <Grid
-      container
-      direction="column"
-    >
-      <Step
-        name={name.value}
-        text={text.value}
-      />
-    </Grid>
-
+    <Step
+      name={name.value}
+      text={text.value}
+    />
   );
 };
 

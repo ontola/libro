@@ -14,8 +14,7 @@ interface PropositionProps {
 
 const useStyles = makeStyles({
   container: {
-    marginBottom: 10,
-    marginTop: 10,
+    backgroundColor: 'white',
   },
   icon: {
     color: (props: PropositionProps) => props.color,
@@ -48,7 +47,6 @@ const Proposition = (props: PropositionProps): JSX.Element => {
   return (
     <Grid
       item
-      className={classes.container}
       md={3}
       sm={6}
       xs={12}
