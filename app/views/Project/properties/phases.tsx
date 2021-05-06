@@ -21,6 +21,7 @@ import { IconButton, Typography } from '@material-ui/core';
 import { useIntl } from 'react-intl';
 
 import { containerToArr, entityIsLoaded } from '../../../helpers/data';
+import useAction from '../../../hooks/useAction';
 import { phaseIRI } from '../../../hooks/usePhases';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
@@ -82,9 +83,8 @@ const Phases: FC<PhasesProps> = ({
   const stepperOverrideClasses = useStepperOverrideStyles();
   const classes = useStyles();
   const [page] = useResourceProperty(linkedProp, ontola.pages) as Node[];
-  const [createAction] = useResourceProperty(linkedProp, ontola.createAction) as NamedNode[];
-  const [createActionStatus] = useResourceProperty(createAction, schema.actionStatus) as Node[];
-  const [itemSequence] = useResourceProperty(page || subject, as.items) as Node[];
+  const [createAction, createActionStatus] = useAction(linkedProp, ontola.createAction);
+  const [itemSequence] = useResourceProperty(page ?? subject, as.items) as Node[];
   const items = itemSequence ? containerToArr(lrs, [], itemSequence) : [];
   const itemsIsLoading = !Array.isArray(items);
   useDataInvalidation([page, linkedProp, ...(itemsIsLoading ? [] : items as Node[])]);

@@ -10,7 +10,6 @@ import {
   LaxNode,
   Property,
   Resource,
-  useDataFetching,
   useLink,
   useResourceProperty,
 } from 'link-redux';
@@ -18,6 +17,7 @@ import React from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
 import { tryParseInt } from '../../helpers/numbers';
+import useAction from '../../hooks/useAction';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 import { useListToArr } from '../../hooks/useListToArr';
 import { SortProps, useSorting } from '../../hooks/useSorting';
@@ -83,10 +83,7 @@ const CollectionContext = React.createContext<CollectionContext>({} as Collectio
 export const useCollectionOptions = (): CollectionContext => React.useContext(CollectionContext);
 
 export const useHasInteraction = (collectionResource: SomeNode): boolean => {
-  const [createAction] = useResourceProperty(collectionResource, ontola.createAction) as NamedNode[];
-  useDataFetching(createAction);
-  const [actionStatus] = useResourceProperty(createAction, schema.actionStatus) as NamedNode[];
-
+  const [_, actionStatus] = useAction(collectionResource, ontola.createAction);
   const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
 
   if (collectionResourceType === ontola.SearchResult) {
