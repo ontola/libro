@@ -1,16 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import DefaultHeader from '../../common/header';
 
 import useStyles from './useStyles';
 
-const DutchGovernmentHeader = ({ themeOptions }) => {
+interface DutchGovernmentHeader {
+  themeOptions: URLSearchParams;
+}
+
+const DutchGovernmentHeader = ({ themeOptions }: DutchGovernmentHeader): JSX.Element => {
   const breadcrumbParent = themeOptions.get('breadcrumbParent');
   const breadcrumbParentUrl = themeOptions.get('breadcrumbParentUrl');
   const primaryLine = themeOptions.get('primaryLine') || 'Rijksoverheid';
-  const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line) => <div key={line}>{line}</div>);
-  const [logo, setLogo] = React.useState();
+  const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line: string) => <div key={line}>{line}</div>);
+  const [logo, setLogo] = React.useState<string | undefined>();
   const styles = useStyles();
 
   React.useEffect(() => {
@@ -38,7 +41,11 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
         {breadcrumbParent && (
           <div className={styles.navBarTitlebar}>
             <div className="NavBarContent">
-              <a href={breadcrumbParentUrl}>{breadcrumbParent}</a>
+              {breadcrumbParentUrl ? (
+                <a href={breadcrumbParentUrl}>{breadcrumbParent}</a>
+              ) : (
+                <span>{breadcrumbParent}</span>
+              )}
             </div>
           </div>
         )}
@@ -46,11 +53,6 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
       <DefaultHeader />
     </React.Fragment>
   );
-};
-
-DutchGovernmentHeader.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  themeOptions: PropTypes.object,
 };
 
 export default DutchGovernmentHeader;

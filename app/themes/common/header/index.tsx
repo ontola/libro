@@ -5,7 +5,7 @@ import NavBarContent from '../../../components/NavBarContent';
 
 const style = { flexGrow: 1 };
 
-const CommonHeader = () => (
+const CommonHeader = (): JSX.Element => (
   <Navbar>
     <NavBarContent>
       <div style={style} />

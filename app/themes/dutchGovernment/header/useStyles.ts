@@ -13,7 +13,7 @@ interface IndexablePalette {
 
 const useStyles = makeStyles((theme: LibroTheme): CSSPropertiesMap => {
   const backgroundColor = theme.appBar.background
-    ? (theme.palette as unknown as IndexablePalette)[theme.appBar.background]?.main || theme.palette.common.black
+    ? (theme.palette as unknown as IndexablePalette)[theme.appBar.background]?.main ?? theme.palette.common.black
     : theme.palette.common.black;
 
   return ({
