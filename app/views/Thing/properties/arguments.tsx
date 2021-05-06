@@ -1,4 +1,4 @@
-import { SomeTerm } from '@ontologies/core';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -21,10 +21,12 @@ export interface ArgumentsProps extends ArgumentColumnsProps{
 
 interface ArgumentColumnsProps {
   pageSize: number;
+  subject: NamedNode;
 }
 
 const ArgumentColumns = ({
   pageSize,
+  subject,
 }: ArgumentColumnsProps): JSX.Element => (
   <Columns>
     <Collection
@@ -33,6 +35,7 @@ const ArgumentColumns = ({
       key="pro"
       label={argu.proArguments}
       pageSize={pageSize}
+      to={subject}
     />
     <Collection
       renderWhenEmpty
@@ -40,6 +43,7 @@ const ArgumentColumns = ({
       key="con"
       label={argu.conArguments}
       pageSize={pageSize}
+      to={subject}
     />
   </Columns>
 );

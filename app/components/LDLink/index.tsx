@@ -22,12 +22,12 @@ const LDLink: React.FC<LDLinkProps> = (props) => {
 
     return <div />;
   }
-  const to = url || subject.value;
+  const to = props.to ?? url ?? subject.value;
 
   return (
     <Link
-      to={to}
       {...props}
+      to={to}
     />
   );
 };
