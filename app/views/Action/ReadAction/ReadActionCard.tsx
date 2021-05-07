@@ -1,4 +1,4 @@
-import { Literal } from '@ontologies/core';
+import { Literal, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -18,7 +18,11 @@ interface ReadActionCardProps {
 const ReadActionCard: FC<ReadActionCardProps> = ({ subject, name }) => {
   const lrs = useLRS();
   const execAction = React.useCallback(
-    () => subject ?? lrs.exec(subject),
+    () => {
+      if (isNamedNode(subject)) {
+        lrs.exec(subject);
+      }
+    },
     [lrs, subject],
   );
 

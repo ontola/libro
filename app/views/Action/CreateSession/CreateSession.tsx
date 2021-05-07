@@ -7,9 +7,10 @@ import {
   useLRS,
 } from 'link-redux';
 import { TopologyContextType } from 'link-redux/dist-types/types';
-import React from 'react';
+import React, { ReactChild } from 'react';
 import { Redirect } from 'react-router';
 
+import CardContent from '../../../components/Card/CardContent';
 import AccountHelpersCardAppendix from '../../../components/SignInForm/AccountHelpersCardAppendix';
 import { isDifferentWebsite, retrievePath } from '../../../helpers/iris';
 import { serializeForStorage } from '../../../helpers/persistence';
@@ -20,10 +21,12 @@ import { allTopologiesExcept } from '../../../topologies';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 
 interface CreateSessionProps {
+  reason: ReactChild;
   topologyCtx: TopologyContextType;
 }
 
 const CreateSession: FC<CreateSessionProps> = ({
+  reason,
   subject,
   topologyCtx,
 }) => {
@@ -90,6 +93,7 @@ const CreateSession: FC<CreateSessionProps> = ({
 
   return (
     <Resource subject={currentSubject}>
+      {reason && <CardContent endSpacing>{reason}</CardContent>}
       <ActionComponent
         appendix={appendix}
         key={currentSubject.value}
