@@ -131,20 +131,20 @@ const DashboardPageFull: FC<PropTypes> = ({ dashboard }) => {
         </CardContent>
         <CardDivider />
         {tabBar}
-        <div style={{ marginTop: '1em' }}>
-          <TabPane>
-            <Resource
-              nextPage={() => setPage(page + 1)}
-              previousPage={() => setPage(page - 1)}
-              subject={iriFromTemplate(iriTemplate.value, {
-                date_range: dateRangeToS(dateRange),
-                page,
-                postal_range: filteredPostalRanges?.map((range) => range.value)?.join(','),
-              })}
-            />
-          </TabPane>
-        </div>
       </CardMain>
+      <div style={{ marginTop: '1em' }}>
+        <TabPane>
+          <Resource
+            nextPage={() => setPage(page + 1)}
+            previousPage={() => setPage(page - 1)}
+            subject={iriFromTemplate(iriTemplate.value, {
+              date_range: dateRangeToS(dateRange),
+              page,
+              postal_range: filteredPostalRanges?.map((range) => range.value)?.join(','),
+            })}
+          />
+        </TabPane>
+      </div>
     </Container>
   );
 };

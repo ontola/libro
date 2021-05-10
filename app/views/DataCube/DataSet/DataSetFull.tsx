@@ -1,22 +1,21 @@
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   Resource,
-  subjectType,
+  register,
 } from 'link-redux';
 import React from 'react';
 
+import { Size } from '../../../components/shared/config';
 import qb from '../../../ontology/qb';
-import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const DataSetFull = ({ subject }) => (
-  <Container size="large">
+const DataSetFull: FC = ({ subject }) => (
+  <Container size={Size.Large}>
     <Property label={schema.isPartOf} />
-    <CardMain>
-      <Resource subject={subject} />
-    </CardMain>
+    <Resource subject={subject} />
   </Container>
 );
 
@@ -24,8 +23,4 @@ DataSetFull.type = qb.DataSet;
 
 DataSetFull.topology = fullResourceTopology;
 
-DataSetFull.propTypes = {
-  subject: subjectType,
-};
-
-export default DataSetFull;
+export default register(DataSetFull);

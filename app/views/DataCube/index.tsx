@@ -6,20 +6,18 @@
  * @link https://raw.githubusercontent.com/UKGovLD/publishing-statistical-data/master/specs/src/main/vocab/cube.ttl
  * @link https://www.w3.org/TR/vocab-data-cube/
  */
-import { register } from 'link-redux';
-
 import MeasurePropertyTableRow from './MeasureProperty/MeasurePropertyTableRow';
-import DataSetCard from './DataSet/DataSetCard';
+import DataSetContainer from './DataSet/DataSetContainer';
 import DataSetFull from './DataSet/DataSetFull';
 import DataSetTabPane from './DataSet/DataSetTabPane';
 import DownloadUrl from './DataSet/properties/downloadUrl';
 import ObservationTableBody from './Observation/ObservationTableBody';
 
 export default [
-  register(DataSetFull),
-  register(DataSetCard),
-  register(DataSetTabPane),
-  register(DownloadUrl),
-  register(MeasurePropertyTableRow),
-  register(ObservationTableBody),
+  DataSetFull,
+  DataSetContainer,
+  DataSetTabPane,
+  DownloadUrl,
+  MeasurePropertyTableRow,
+  ObservationTableBody,
 ];

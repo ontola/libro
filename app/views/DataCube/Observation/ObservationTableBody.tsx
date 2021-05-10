@@ -1,7 +1,9 @@
+import { SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
-  linkType,
+  FC,
+  register,
   useLink,
-  withLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -10,14 +12,18 @@ import { tableBodyTopology } from '../../../topologies/TableBody';
 import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
 
-const ObservationTableBody = ({
+export interface ObservationTableBodyProps {
+  measures: SomeNode[];
+}
+
+const ObservationTableBody: FC<ObservationTableBodyProps> = ({
   measures,
 }) => {
   const propMap = measures.reduce((acc, propIRI, i) => ({
     [i]: propIRI,
     ...acc,
   }), {});
-  const properties = useLink(propMap);
+  const properties = useLink(propMap) as Record<string, SomeTerm>;
 
   return (
     <TableRow>
@@ -41,10 +47,4 @@ ObservationTableBody.type = qb.Observation;
 
 ObservationTableBody.topology = tableBodyTopology;
 
-ObservationTableBody.hocs = [withLRS];
-
-ObservationTableBody.propTypes = {
-  measures: linkType,
-};
-
-export default ObservationTableBody;
+export default register(ObservationTableBody);

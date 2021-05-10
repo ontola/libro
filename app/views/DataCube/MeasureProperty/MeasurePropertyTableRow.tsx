@@ -1,14 +1,20 @@
+import { Literal } from '@ontologies/core';
 import * as dcterms from '@ontologies/dcterms';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { linkType } from 'link-redux';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
 import qb from '../../../ontology/qb';
 import TableHeaderCell from '../../../topologies/TableHeaderCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
-const MeasurePropertyTableRow = ({ name, text }) => (
+interface MeasurePropertyTableRowProps {
+  name: Literal;
+  text: Literal;
+}
+
+const MeasurePropertyTableRow: FC<MeasurePropertyTableRowProps> = ({ name, text }) => (
   <TableHeaderCell elementProps={{ title: text?.value }}>
     {name?.value}
   </TableHeaderCell>
@@ -27,9 +33,4 @@ MeasurePropertyTableRow.mapDataToProps = {
   },
 };
 
-MeasurePropertyTableRow.propTypes = {
-  name: linkType,
-  text: linkType,
-};
-
-export default MeasurePropertyTableRow;
+export default register(MeasurePropertyTableRow);

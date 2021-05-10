@@ -1,24 +1,45 @@
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import { CardFloat } from '../../topologies/Card';
 
-import './HeaderWithMenu.scss';
-
 interface PropTypes {
   menu: React.ReactNode;
+  noMargin?: boolean;
 }
 
-const HeaderWithMenu: React.FC<PropTypes> = ({ children, menu }) => (
-  <div className="HeaderWithMenu">
-    <div className="HeaderWithMenu__header">
-      {children}
+const useStyles = makeStyles(() => ({
+  header: {
+    flexGrow: 1,
+  },
+  menuWithMargin: {
+    marginRight: '-1rem',
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+}));
+
+const HeaderWithMenu: React.FC<PropTypes> = ({
+  children,
+  menu,
+  noMargin,
+}) => {
+  const styles = useStyles();
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        {children}
+      </div>
+      <div className={noMargin ? undefined : styles.menuWithMargin}>
+        <CardFloat>
+          {menu}
+        </CardFloat>
+      </div>
     </div>
-    <div className="HeaderWithMenu__menu">
-      <CardFloat>
-        {menu}
-      </CardFloat>
-    </div>
-  </div>
-);
+  );
+};
 
 export default HeaderWithMenu;

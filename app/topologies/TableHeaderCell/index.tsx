@@ -7,12 +7,16 @@ import './TableHeaderCell.scss';
 
 export const tableHeaderCellTopology = argu.ns('tableHeaderCell');
 
-class TableHeaderCell extends TopologyProvider {
+export interface TableHeaderCellProps {
+  elementProps?: Record<string, unknown>;
+}
+
+class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor(props: Record<string, unknown>) {
+  constructor(props: TableHeaderCellProps) {
     super(props);
 
     this.className = 'TableHeaderCell';
