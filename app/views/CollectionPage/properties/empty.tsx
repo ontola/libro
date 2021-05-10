@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
@@ -15,6 +16,7 @@ import GridItem from '../../../components/Grid/GridItem';
 import { isTableDisplay } from '../../../helpers/collections';
 import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
+import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 import Container, { containerTopology } from '../../../topologies/Container';
 import TableCell from '../../../topologies/TableCell';
@@ -26,10 +28,17 @@ interface EmptyProps {
   topology: NamedNode;
 }
 
+const useStyles = makeStyles((theme: LibroTheme) => ({
+  empty: {
+    color: theme.palette.grey.midDark,
+  },
+}));
+
 const Empty: FC<EmptyProps> = ({
   baseCollection,
   topology,
 }) => {
+  const styles = useStyles();
   const { collectionDisplay } = useCollectionOptions();
   const collectionType = useResourceProperty(baseCollection, rdfx.type);
 
@@ -38,10 +47,12 @@ const Empty: FC<EmptyProps> = ({
   }
 
   const message = (
-    <FormattedMessage
-      defaultMessage="No items yet"
-      id="https://app.argu.co/i18n/collection/empty/message"
-    />
+    <span className={styles.empty}>
+      <FormattedMessage
+        defaultMessage="No items yet"
+        id="https://app.argu.co/i18n/collection/empty/message"
+      />
+    </span>
   );
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/card'])) {
