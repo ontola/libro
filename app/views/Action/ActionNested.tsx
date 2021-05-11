@@ -6,6 +6,7 @@ import {
   register,
   useLRS,
   useProperty,
+  useTopology,
 } from 'link-redux';
 import React from 'react';
 
@@ -32,13 +33,14 @@ const ActionNested: FC<ActionProps> = ({
   onDone,
   responseCallback,
   sessionStore,
-  topology,
 }) => {
+  const topology = useTopology();
   const [actionStatus] = useProperty(schema.actionStatus);
   const [object] = useProperty(schema.object);
 
   const onDoneHandler = useDoneHandler(onDone);
   const lrs = useLRS();
+  const isModal = topology === alertDialogTopology;
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return (
@@ -55,8 +57,7 @@ const ActionNested: FC<ActionProps> = ({
   }
 
   const Appendix = appendix;
-  const closeModal = topology === alertDialogTopology
-    && (() => lrs.actions.ontola.hideDialog());
+  const closeModal = isModal ? (() => lrs.actions.ontola.hideDialog()) : undefined;
 
   return (
     <Container>
@@ -67,7 +68,7 @@ const ActionNested: FC<ActionProps> = ({
         <Property
           header
           blacklist={PROPS_BLACKLIST}
-          cancelPath={object && retrievePath(object.value)}
+          cancelPath={isModal && object ? retrievePath(object.value) : undefined}
           label={schema.target}
           responseCallback={responseCallback}
           sessionStore={sessionStore}
