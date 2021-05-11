@@ -83,15 +83,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textAlign: 'center',
     width: 643,
   },
-  textBlockWrapper: {
-    margin: 10,
-    marginBottom: 140,
-    [theme.breakpoints.down('xs')]: {
-      marginBottom: 120,
-      marginTop: -80,
-      textAlign: 'center',
-    },
-  },
   wrapper: {
     // This should be removed if Page no longer sets a margin
     backgroundColor: theme.palette.background.default,
@@ -126,7 +117,7 @@ const ProcessPage: FC = () => {
         subtitle={text.value}
         title={title.value}
       />
-      <Container className={classes.textBlockWrapper}>
+      <Container>
         <Grid item md={8} sm={12}>
           <Typography
             className={classes.title}
