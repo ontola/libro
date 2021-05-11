@@ -102,13 +102,6 @@ export function isBackend(next) {
       return next(ctx, nextRoute);
     }
 
-    const contentType = ctx.request.get('Content-Type');
-    if (contentType && (contentType.includes('application/x-www-form-urlencoded'))) {
-      logging.debug('[ROUTING] isBackend: true');
-
-      return next(ctx, nextRoute);
-    }
-
     const trailer = ctx.request.url.split('/').pop();
     const extension = trailer?.includes('.') && trailer
       .split('.')
