@@ -111,11 +111,11 @@ const PersonFull: FC = () => {
             label={app.menuTabs}
           />
         </CardMain>
-        <Property
-          forceRender
-          label={app.currentTab}
-        />
       </Container>
+      <Property
+        forceRender
+        label={app.currentTab}
+      />
     </TabbarProvider>
   );
 };
