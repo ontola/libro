@@ -59,6 +59,7 @@ const customVariables: ThemeOptions = {
     },
     subtitle1: {
       color: '000',
+      // fontSize: 18
       fontSize: '1.125rem',
       margin: 10,
       marginBottom: 24,

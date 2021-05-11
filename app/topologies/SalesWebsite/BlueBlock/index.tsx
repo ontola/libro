@@ -12,7 +12,7 @@ export const blueBlockTopology = sales.ns('blueBlock');
 const styles = (theme: SalesTheme) => ({
   root: {
     background: theme.palette.primary.main,
-    padding: 40,
+    padding: 30,
   },
 });
 

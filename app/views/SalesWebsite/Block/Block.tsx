@@ -22,13 +22,13 @@ const useStyles = makeStyles<SalesTheme>(() => ({
   },
   container: {
     backgroundColor: (props: Record<string, string>) => props.backgroundColor,
-    borderBottomLeftRadius: 0,
+    // borderBottomLeftRadius: 0,
     borderColor: 'grey',
     borderRadius: 5,
-    borderTopLeftRadius: 0,
+    // borderTopLeftRadius: 0,
     color: (props: Record<string, string>) => props.color,
     marginTop: 50,
-    padding: '0 30px',
+    padding: 10,
   },
   icon: {
     color: (props: Record<string, string>) => props.color,

@@ -73,6 +73,8 @@ const styleSrc = [
 const workerSrc = [
   "'self'",
 ];
+const mediaSrc = [];
+
 if (assetsHost) {
   workerSrc.push(assetsHost);
 }
@@ -86,6 +88,7 @@ if (__DEVELOPMENT__) {
   scriptSrc.push("'unsafe-inline'", "'unsafe-eval'", 'blob:');
   styleSrc.push('blob:');
   workerSrc.push('blob:');
+  mediaSrc.push('https://argu.localdev')
 }
 
 if (['production', 'staging', 'test'].includes(process.env.NODE_ENV)) {
@@ -107,6 +110,7 @@ export default async (ctx, next) => {
         fontSrc,
         frameSrc,
         imgSrc,
+        mediaSrc,
         objectSrc,
         sandbox,
         scriptSrc,
