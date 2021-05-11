@@ -20,6 +20,7 @@ import Loading, {
 import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 import Spinner from '../../components/Spinner';
 import ll from '../../ontology/ll';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { cardTopology } from '../../topologies/Card';
@@ -167,9 +168,7 @@ export default [
     LoadingButton,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    [
-      tabBarTopology,
-    ],
+    actionsBarTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingTabbar,
