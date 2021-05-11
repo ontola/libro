@@ -1,6 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import * as schema from '@ontologies/schema';
-import { Property } from 'link-redux';
+import { Property, useLRS } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
@@ -44,6 +44,7 @@ const PDFViewer = ({
   onPageNumberChange,
   url,
 }: PDFViewerProps): JSX.Element => {
+  const lrs = useLRS();
   const intl = useIntl();
   const [docRef, setDocRef] = React.useState<any>(null);
   const [numPages, setNumPages] = React.useState<number>(0);
@@ -110,6 +111,10 @@ const PDFViewer = ({
       <Property label={schema.text} />
     </div>
   ), [url]);
+  const handleDownload = React.useCallback(
+    () => lrs.actions.ontola.openWindow(url),
+    [lrs, url],
+  );
 
   const keyHandlers = React.useMemo(() => ({
     FULLSCREEN: setFillWidth,
@@ -185,7 +190,7 @@ const PDFViewer = ({
               <IconButton
                 size="small"
                 title={intl.formatMessage(pdfMessages.download)}
-                onClick={() => window.open(url)}
+                onClick={handleDownload}
               >
                 <FontAwesome name="download" />
               </IconButton>

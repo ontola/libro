@@ -169,6 +169,12 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
   };
 
+  (store as any).actions.ontola.openWindow = (url: string) => {
+    const query = `url=${encodeURIComponent(url)}`;
+
+    return store.exec(rdf.namedNode(`${libro.actions.window.open.value}?${query}`));
+  };
+
   /**
    * Miscellaneous
    */
@@ -331,6 +337,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         throw new Error("Argument 'value' was missing.");
       }
       store.processDelta(queueSnackbar(value), true);
+
+      return Promise.resolve();
+    }
+
+    if (iri.value.startsWith(libro.actions.window.open.value)) {
+      const url = new URL(iri.value).searchParams.get('url');
+      if (!url) {
+        throw new Error("Argument 'url' was missing.");
+      }
+      window.open(url);
 
       return Promise.resolve();
     }

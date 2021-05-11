@@ -25,6 +25,9 @@ export default {
       finished: libro('actions/snackbar/finished'),
       show: libro('actions/snackbar'),
     },
+    window: {
+      open: libro('actions/window/open'),
+    },
   },
   target: libro('target'),
   targets: {
