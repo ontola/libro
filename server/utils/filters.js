@@ -59,6 +59,27 @@ export function isWebsocket(next) {
   };
 }
 
+function isDifferentOrigin(ctx) {
+  const fetchMode = ctx.request.get('sec-fetch-mode');
+  if (fetchMode !== 'cors' || !ctx.request.host) {
+    return false;
+  }
+
+  try {
+    const referer = ctx.request.get('referer');
+    const refererHost = referer ? new URL(referer).host : undefined;
+    if (refererHost && refererHost !== ctx.request.host) {
+      logging.debug('[ROUTING] DIFFERENT ORIGIN - isBackend: true', referer, ctx.request.host);
+
+      return true;
+    }
+
+    return false;
+  } catch {
+    return false;
+  }
+}
+
 export function isBackend(next) {
   return async (ctx, nextRoute) => {
     if (ctx.request.originalUrl.match(FRONTEND_ROUTES)) {
@@ -106,12 +127,7 @@ export function isBackend(next) {
       return next(ctx, nextRoute);
     }
 
-    const referer = ctx.request.get('referer');
-    const fetchMode = ctx.request.get('sec-fetch-mode');
-
-    if (referer && ctx.request.host && new URL(referer).host !== ctx.request.host && fetchMode === 'cors') {
-      logging.debug('[ROUTING] DIFFERENT ORIGIN - isBackend: true', referer, ctx.request.host);
-
+    if (isDifferentOrigin(ctx)) {
       return next(ctx, nextRoute);
     }
 
