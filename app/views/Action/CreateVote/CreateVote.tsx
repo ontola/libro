@@ -161,9 +161,9 @@ const CreateVote: FC<CreateVoteProps> = ({
   const { formatMessage } = useIntl();
   const [isPartOf] = useProperty(schema.isPartOf) as SomeNode[];
   const [currentVote, currentOption] = useCurrentVote(isPartOf);
-  const [deleteVoteAction] = useResourceProperty(currentVote, ontola.trashAction) as NamedNode[];
   const option = getOption(subject);
   const active = rdf.equals(currentOption, argu[option]);
+  const [deleteVoteAction] = useResourceProperty(active ? currentVote : undefined, ontola.trashAction) as NamedNode[];
   const action = active && entityIsLoaded<LRS>(lrs, deleteVoteAction)
     ? deleteVoteAction
     : subject;
