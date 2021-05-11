@@ -28,7 +28,7 @@ interface PropTypes {
   url?: string;
 }
 
-const FORMAT: FormatDateOptions = {
+export const DATE_FORMAT: FormatDateOptions = {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
@@ -79,7 +79,7 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     }
 
     const date = isDateOrDateTime(rawDate)
-      ? intl.formatTime(new Date(rawDate.value), FORMAT)
+      ? intl.formatTime(new Date(rawDate.value), DATE_FORMAT)
       : rawDate.value;
 
     return intl.formatMessage(
@@ -95,22 +95,6 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     || dateModified
     || lastActivityAt;
 
-  const DateText = React.useCallback(() => {
-    if (!isLiteral(mostImportant)) {
-      return null;
-    }
-
-    if (isDateOrDateTime(mostImportant)) {
-      if (relative) {
-        return <RelativeDate date={mostImportant} />;
-      }
-
-      return <React.Fragment>{intl.formatTime(new Date(mostImportant.value), FORMAT)}</React.Fragment>;
-    }
-
-    return <React.Fragment>{mostImportant.value}</React.Fragment>;
-  }, [relative, mostImportant]);
-
   const hoverText = [
     format('argu:lastActivityAt'),
     format('schema:startDate'),
@@ -124,6 +108,22 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     .filter(Boolean)
     .join('. \n')
     .concat('.');
+
+  const DateText = React.useCallback(() => {
+    if (!isLiteral(mostImportant)) {
+      return null;
+    }
+
+    if (isDateOrDateTime(mostImportant)) {
+      if (relative) {
+        return <RelativeDate date={mostImportant} title={hoverText} />;
+      }
+
+      return <React.Fragment>{intl.formatTime(new Date(mostImportant.value), DATE_FORMAT)}</React.Fragment>;
+    }
+
+    return <React.Fragment>{mostImportant.value}</React.Fragment>;
+  }, [relative, mostImportant, hoverText]);
 
   return (
     <Detail
