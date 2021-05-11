@@ -35,6 +35,7 @@ import { isResource } from '../../helpers/types';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
+import { LibroTheme } from '../../themes/themes';
 import Select, { selectTopology } from '../../topologies/Select';
 import SelectedValue from '../../topologies/SelectedValue';
 
@@ -49,14 +50,15 @@ import VirtualizedSelect from './VirtualizedSelect';
 const DEBOUNCE_TIMEOUT = 500;
 const VIRTUALIZATION_THRESHOLD = 10;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   input: {
     flexWrap: 'nowrap',
   },
   popper: {
     width: 'fit-content !important',
+    zIndex: theme.zIndex.drawer + 1,
   },
-});
+}));
 
 const FullWidthPopper = (props: PopperProps) => {
   const classes = useStyles();
