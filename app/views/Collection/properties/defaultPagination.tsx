@@ -20,7 +20,7 @@ import { CollectionTypes } from '../types';
 
 export interface PaginationProps {
   first: SomeTerm;
-  last: SomeTerm;
+  last?: SomeTerm;
   linkedProp: SomeTerm;
 }
 
@@ -55,7 +55,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     const baseUrl = new URL(first.value);
     const firstPageParam = baseUrl.searchParams.get(pageProp);
     const firstPage = firstPageParam ? Number.parseInt(firstPageParam, 10) : 1;
-    const lastPageParam = new URL(last.value).searchParams.get(pageProp);
+    const lastPageParam = last ? new URL(last.value).searchParams.get(pageProp) : undefined;
     const lastPage = lastPageParam ? Number.parseInt(lastPageParam, 10) : undefined;
     const currentOrFirst = (currentCollectionPages?.[0] || first).value;
     const currentPageUrl = new URL(currentOrFirst);
