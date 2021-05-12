@@ -16,11 +16,11 @@ import { CardMain } from '../../../topologies/Card';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-export interface CouponBadgeFullProps {
+export interface CouponBatchFullProps {
   renderPartOf: boolean;
 }
 
-const CouponBadgeFull: FC<CouponBadgeFullProps> = ({
+const CouponBatchFull: FC<CouponBatchFullProps> = ({
   renderPartOf,
 }) => (
   <Container>
@@ -46,8 +46,8 @@ const CouponBadgeFull: FC<CouponBadgeFullProps> = ({
   </Container>
 );
 
-CouponBadgeFull.type = argu.CouponBadge;
+CouponBatchFull.type = argu.CouponBatch;
 
-CouponBadgeFull.topology = fullResourceTopology;
+CouponBatchFull.topology = fullResourceTopology;
 
-export default register(CouponBadgeFull);
+export default register(CouponBatchFull);

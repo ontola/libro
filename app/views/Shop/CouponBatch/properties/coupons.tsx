@@ -31,7 +31,7 @@ const Coupons: FC<CouponsProps> = ({
   );
 };
 
-Coupons.type = argu.CouponBadge;
+Coupons.type = argu.CouponBatch;
 
 Coupons.topology = allTopologies;
 

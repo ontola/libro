@@ -1,7 +1,7 @@
-import CouponBadgeFull from './CouponBadgeFull';
+import CouponBatchFull from './CouponBatchFull';
 import Coupons from './properties/coupons';
 
 export default [
-  CouponBadgeFull,
+  CouponBatchFull,
   Coupons,
 ];

@@ -24,7 +24,7 @@ export default {
   ContainerNode: argu('ContainerNode'),
   ConvertActivity: argu('ConvertActivity'),
   CopyAction: argu('CopyAction'),
-  CouponBadge: argu('CouponBadge'),
+  CouponBatch: argu('CouponBatch'),
   Customer: argu('Customer'),
   EmailToken: argu('EmailToken'),
   Feature: argu('Feature'),
