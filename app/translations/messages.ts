@@ -550,6 +550,10 @@ export const surveyMessages: Messages = defineMessages({
     defaultMessage: 'Continue',
     id: 'https://app.argu.co/i18n/survey/button/continue',
   },
+  startButtonText: {
+    defaultMessage: 'Fill in survey',
+    id: 'https://app.argu.co/i18n/survey/button/start',
+  },
   thankyouMessage: {
     defaultMessage: 'Thank you for your response.',
     id: 'https://app.argu.co/i18n/survey/contribution',

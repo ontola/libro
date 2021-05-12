@@ -7,7 +7,7 @@ import Button, {
   ButtonVariant,
 } from '../Button';
 
-interface ButtonWithFeedbackProps {
+export interface ButtonWithFeedbackProps {
   className?: string;
   feedbackIcon?: string;
   icon?: string;

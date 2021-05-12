@@ -56,6 +56,7 @@ export default {
   alt: ontola('alt'),
   ariaLabel: ontola('ariaLabel'),
   baseCollection: ontola('baseCollection'),
+  claimRewardAction: ontola('claimRewardAction'),
   collectionDisplay: ontola('collectionDisplay'),
   ['collectionDisplay/card']: ontola('collectionDisplay/card'),
   ['collectionDisplay/default']: ontola('collectionDisplay/default'),

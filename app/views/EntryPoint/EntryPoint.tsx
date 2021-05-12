@@ -10,7 +10,7 @@ import {
 import React from 'react';
 
 import { ButtonTheme, ButtonVariant } from '../../components/Button';
-import ButtonWithFeedback from '../../components/ButtonWithFeedback';
+import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
@@ -29,16 +29,14 @@ import { pageTopology } from '../../topologies/Page';
 
 import useSubmitHandler from './useSubmitHandler';
 
-interface EntryPointProps {
+interface EntryPointProps extends ButtonWithFeedbackProps {
   action: SomeTerm;
   count: Literal;
   httpMethod: SomeTerm;
   image: SomeTerm;
   name: SomeTerm;
-  onClick: () => Promise<any>;
   stretch: boolean;
   subject: SomeNode;
-  theme: ButtonTheme;
   url: SomeTerm;
   variant: ButtonVariant;
 }
@@ -62,7 +60,7 @@ const EntryPoint: FC<EntryPointProps> = ({
   });
   const label = `${name.value} ${countInParentheses(count)}`;
 
-  const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
+  const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : undefined;
   const classes = clsx({
     'Button--has-icon': true,
     'Button--stretched': stretch,

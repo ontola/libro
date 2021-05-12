@@ -5,14 +5,13 @@ import HttpStatus from 'http-status-codes';
 import { SomeNode, anyRDFValue } from 'link-lib';
 import { useLRS, useLink } from 'link-redux';
 import React from 'react';
-import { useHistory } from 'react-router';
 
 import {
   HTTP_RETRY_WITH,
   SubmitDataProcessor,
   handleHTTPRetry,
 } from '../../helpers/errorHandling';
-import { retrievePath } from '../../helpers/iris';
+import { isDifferentWebsite } from '../../helpers/iris';
 import { InputValue } from '../../hooks/useFormField';
 
 interface PropTypes {
@@ -40,7 +39,6 @@ const useSubmitHandler = ({
   onStatusForbidden,
 }: PropTypes): SubmitHandler => {
   const lrs = useLRS<unknown, SubmitDataProcessor>();
-  const history = useHistory();
   const {
     action,
     httpMethod,
@@ -56,8 +54,10 @@ const useSubmitHandler = ({
       return new Promise<void>((resolve) => {
         if (modal) {
           lrs.actions.ontola.showDialog(url);
+        } else if (isDifferentWebsite(url.value)) {
+          lrs.actions.ontola.openWindow(url.value);
         } else {
-          history.push(retrievePath(url.value) ?? '#');
+          lrs.actions.ontola.navigate(url);
         }
 
         resolve();
