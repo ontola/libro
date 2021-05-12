@@ -431,8 +431,8 @@
   "https://app.argu.co/i18n/survey/button/closed": {
     "defaultMessage": "Enquête Gesloten"
   },
-  "https://app.argu.co/i18n/survey/button/start": {
-    "defaultMessage": "Start!"
+  "https://app.argu.co/i18n/survey/button/continue": {
+    "defaultMessage": "Continue"
   },
   "https://app.argu.co/i18n/survey/contribution": {
     "defaultMessage": "Bedankt voor je reactie."

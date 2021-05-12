@@ -66,6 +66,7 @@ import Shop from './Shop';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import SocialButton from './SocialButton';
+import Submission from './Submission';
 import Survey from './Survey';
 import Term from './Term';
 import Thing from './Thing';
@@ -142,6 +143,7 @@ export function getViews() {
     ...Snackbar,
     ...SnackbarManager,
     ...SocialButton,
+    ...Submission,
     ...Survey,
     ...Timeline,
     ...Token,

@@ -151,6 +151,7 @@ export default {
   sortKey: ontola('sortKey'),
   sortOptions: ontola('sortOptions'),
   startedAction: ontola('startedAction'),
+  submitAction: ontola('submitAction'),
   tabsMenu: ontola('tabsMenu'),
   topology: ontola('topology'),
   trashAction: ontola('trashAction'),

@@ -409,8 +409,8 @@
   "https://app.argu.co/i18n/survey/button/closed": {
     "defaultMessage": "Survey Closed"
   },
-  "https://app.argu.co/i18n/survey/button/start": {
-    "defaultMessage": "Start!"
+  "https://app.argu.co/i18n/survey/button/continue": {
+    "defaultMessage": "Continue"
   },
   "https://app.argu.co/i18n/survey/contribution": {
     "defaultMessage": "Thank you for your response."

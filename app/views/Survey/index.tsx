@@ -1,5 +1,5 @@
-import SurveyPage from './SurveyFull';
 import ExternalIRI from './properties/externalIRI';
+import SurveyPage from './SurveyFull';
 
 export default [
   ExternalIRI,
