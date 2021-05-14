@@ -1,7 +1,8 @@
-import LinkedRenderStore from 'link-lib';
 import {
+  FC,
   Property,
-  linkedPropType,
+  PropertyProps,
+  register,
 } from 'link-redux';
 import React from 'react';
 
@@ -14,13 +15,10 @@ import { containerTopology } from '../../../topologies/Container';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
-
-const Unread = ({ linkedProp }) => {
-  // eslint-disable-next-line eqeqeq
-  if (linkedProp == undefined || linkedProp == false || linkedProp.value === 'false') {
+const Unread: FC<PropertyProps> = ({
+  linkedProp,
+}) => {
+  if (linkedProp.value === 'false') {
     return null;
   }
 
@@ -32,18 +30,17 @@ const Unread = ({ linkedProp }) => {
   );
 };
 
-Unread.propTypes = propTypes;
+Unread.type = argu.Notification;
 
-export default LinkedRenderStore.registerRenderer(
-  Unread,
-  argu.Notification,
-  argu.unread,
-  [
-    cardFixedTopology,
-    cardMainTopology,
-    cardTopology,
-    containerTopology,
-    navbarTopology,
-    fullResourceTopology,
-  ]
-);
+Unread.property = argu.unread;
+
+Unread.topology = [
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  navbarTopology,
+  fullResourceTopology,
+];
+
+export default register(Unread);

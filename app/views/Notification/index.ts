@@ -1,4 +1,5 @@
 import Notification from './Notification';
+import NotificationFull from './NotificationFull';
 import NotificationHeader from './NotificationHeader';
 import Creator from './properties/creator';
 import Name from './properties/name';
@@ -7,6 +8,7 @@ import Unread from './properties/unread';
 
 export default [
   Notification,
+  NotificationFull,
   NotificationHeader,
   Creator,
   Name,

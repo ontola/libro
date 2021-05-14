@@ -1,7 +1,9 @@
 import * as schema from '@ontologies/schema';
-import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  FC,
+  PropertyProps,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import Link from '../../../components/Link';
@@ -14,13 +16,11 @@ import { containerTopology } from '../../../topologies/Container';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const propTypes = {
-  children: PropTypes.node,
-  linkedProp: linkedPropType,
-  onClick: PropTypes.func,
-};
+interface TargetProps extends PropertyProps {
+  onClick: () => void;
+}
 
-const Target = ({
+const Target: FC<TargetProps> = ({
   children = null,
   linkedProp,
   onClick,
@@ -31,25 +31,24 @@ const Target = ({
       flexGrow: 1,
       paddingTop: '.5em',
     }}
-    to={retrievePath(linkedProp.value)}
+    to={retrievePath(linkedProp.value)!}
     onClick={onClick}
   >
     {children}
   </Link>
 );
 
-Target.propTypes = propTypes;
+Target.type = argu.Notification;
 
-export default LinkedRenderStore.registerRenderer(
-  Target,
-  argu.Notification,
-  schema.target,
-  [
-    cardFixedTopology,
-    cardMainTopology,
-    cardTopology,
-    containerTopology,
-    navbarTopology,
-    fullResourceTopology,
-  ]
-);
+Target.property = schema.target;
+
+Target.topology = [
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  navbarTopology,
+  fullResourceTopology,
+];
+
+export default register(Target);

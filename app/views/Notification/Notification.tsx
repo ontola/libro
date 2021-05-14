@@ -1,9 +1,10 @@
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
-  linkType,
-  lrsType,
   register,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -14,19 +15,19 @@ import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const propTypes = {
-  lrs: lrsType,
-  readAction: linkType,
-  target: linkType,
-};
+interface NotificationProps {
+  readAction?: NamedNode;
+  target?: NamedNode;
+}
 
 const style = { width: '100%' };
 
-const Notification = ({
-  lrs,
+const Notification: FC<NotificationProps> = ({
   readAction,
   target,
 }) => {
+  const lrs = useLRS();
+
   let content = <Property label={schema.name} />;
   if (target) {
     content = (
@@ -64,7 +65,5 @@ Notification.mapDataToProps = {
   readAction: ontola.readAction,
   target: schema.target,
 };
-
-Notification.propTypes = propTypes;
 
 export default register(Notification);
