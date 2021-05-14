@@ -9,6 +9,9 @@ import Button from '../components/Button';
 export interface CloseableContainerProps {
   children: React.ReactNode;
   id: string;
+}
+
+interface CommectedCloseableContainerProps extends CloseableContainerProps {
   onClick: React.MouseEventHandler;
   onInitializeCloseable: (args: CloseableRecord) => void;
   opened: boolean;
@@ -16,7 +19,7 @@ export interface CloseableContainerProps {
 
 const style: React.CSSProperties = { position: 'relative' };
 
-class CloseableContainer extends React.Component<CloseableContainerProps> {
+class CloseableContainer extends React.Component<CommectedCloseableContainerProps> {
   componentDidMount() {
     if (this.props.id === undefined) {
       throw new Error();

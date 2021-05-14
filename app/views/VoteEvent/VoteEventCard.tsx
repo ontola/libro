@@ -1,4 +1,8 @@
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import VoteData from '../../components/VoteData';
@@ -7,7 +11,7 @@ import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 
-const VoteEventCard = () => (
+const VoteEventCard: FC = () => (
   <div itemScope>
     <ActionsBar>
       <Property label={ontola.favoriteAction} />

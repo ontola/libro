@@ -1,14 +1,16 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
+  PropertyProps,
   Resource,
-  linkType,
   register,
   useDataInvalidation,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useLocation } from 'react-router';
 
 import CardContent from '../../../components/Card/CardContent';
 import CloseableContainer from '../../../containers/CloseableContainer';
@@ -18,11 +20,16 @@ import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
 
-const SignInFlow = ({
+interface SignInFlowProps extends PropertyProps {
+  currentVote?: NamedNode;
+}
+
+const SignInFlow: FC<SignInFlowProps> = ({
   currentVote,
 }) => {
   const { actorType, primaryEmail } = useCurrentActor();
-  const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value);
+  const location = useLocation();
+  const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value || '');
   useDataInvalidation(currentVote);
   const [currentOption] = useResourceProperty(currentVote, schema.option);
 
@@ -40,7 +47,7 @@ const SignInFlow = ({
                 defaultMessage="Please confirm your vote by clicking the link we've sent to {email}"
                 id="https://app.argu.co/i18n/forms/session/emailConfirmationReminder"
                 values={{
-                  email: <b>{primaryEmail.value}</b>,
+                  email: <b>{primaryEmail?.value}</b>,
                 }}
               />
             </p>
@@ -59,7 +66,7 @@ const SignInFlow = ({
             id="https://app.argu.co/i18n/voteFlow/confirmMessage"
           />
         )}
-        subject={rdf.namedNode(path.signIn(currentLocation(window.location).value))}
+        subject={rdf.namedNode(path.signIn(currentLocation(location).value))}
       />
     </CardRow>
   );
@@ -73,10 +80,6 @@ SignInFlow.property = argu.signInFlow;
 
 SignInFlow.mapDataToProps = {
   currentVote: argu.currentVote,
-};
-
-SignInFlow.propTypes = {
-  currentVote: linkType,
 };
 
 export default register(SignInFlow);

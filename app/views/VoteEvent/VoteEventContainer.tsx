@@ -1,4 +1,8 @@
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import VoteData from '../../components/VoteData';
@@ -7,10 +11,9 @@ import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardTopology } from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 import ActionsBar from '../../topologies/ActionsBar';
 
-const VoteEventContainer = () => (
+const VoteEventContainer: FC = () => (
   <React.Fragment key="VoteEventContainer">
     <ActionsBar>
       <Property label={ontola.favoriteAction} />
@@ -30,7 +33,6 @@ VoteEventContainer.topology = [
   cardAppendixTopology,
   cardTopology,
   containerTopology,
-  fullResourceTopology,
 ];
 
 export default register(VoteEventContainer);

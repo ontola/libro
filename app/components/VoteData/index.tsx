@@ -3,7 +3,7 @@ import React from 'react';
 import './VoteData.scss';
 
 export interface VoteDataProps {
-  card: boolean,
+  card?: boolean,
   children: React.ReactNode,
 }
 

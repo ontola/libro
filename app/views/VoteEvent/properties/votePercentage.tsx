@@ -1,43 +1,36 @@
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
-  labelType,
-  linkType,
+  FC,
   register,
 } from 'link-redux';
 import React from 'react';
 
 import { tryParseInt } from '../../../helpers/numbers';
+import useDisplayPercentage from '../../../hooks/useDisplayPercentage';
 import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 
-const HUNDRED_PERCENT = 100;
-const LOWER_LIMIT = 5;
-const THREE_SIDE_STALEMATE = 33;
+export interface VotePercentageProps {
+  label?: NamedNode;
+  linkedProp: SomeTerm;
+  votesConCount?: SomeTerm;
+  votesNeutralCount?: SomeTerm;
+  votesProCount?: SomeTerm;
+}
 
-const VotePercentage = ({
+const VotePercentage: FC<VotePercentageProps> = ({
   label,
   linkedProp,
   votesConCount,
   votesNeutralCount,
   votesProCount,
 }) => {
-  const sideCount = tryParseInt(linkedProp);
-  const voteEventCount = tryParseInt(votesConCount)
-    + tryParseInt(votesNeutralCount)
-    + tryParseInt(votesProCount);
-  const option = label.value.split('#').pop();
-
-  const percentages = () => {
-    if (voteEventCount === 0) {
-      return [0, THREE_SIDE_STALEMATE];
-    }
-
-    const votePercentage = (sideCount / voteEventCount) * HUNDRED_PERCENT;
-    const displayPercentage = votePercentage < LOWER_LIMIT ? LOWER_LIMIT : votePercentage;
-
-    return [votePercentage, displayPercentage];
-  };
-
-  const [votePercentage, displayPercentage] = percentages();
+  const sideCount = tryParseInt(linkedProp) ?? 0;
+  const voteEventCount = (tryParseInt(votesConCount) ?? 0)
+    + (tryParseInt(votesNeutralCount) ?? 0)
+    + (tryParseInt(votesProCount) ?? 0);
+  const option = label?.value?.split('#')?.pop();
+  const [votePercentage, displayPercentage] = useDisplayPercentage(sideCount, voteEventCount);
 
   return (
     <div
@@ -62,14 +55,6 @@ VotePercentage.mapDataToProps = {
   votesConCount: argu.votesConCount,
   votesNeutralCount: argu.votesNeutralCount,
   votesProCount: argu.votesProCount,
-};
-
-VotePercentage.propTypes = {
-  label: labelType,
-  linkedProp: linkType,
-  votesConCount: linkType,
-  votesNeutralCount: linkType,
-  votesProCount: linkType,
 };
 
 export default register(VotePercentage);
