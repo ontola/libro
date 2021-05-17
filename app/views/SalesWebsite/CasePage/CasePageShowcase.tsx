@@ -37,7 +37,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const CaseShowcase: FC = () => {
+const CasePageShowcase: FC = () => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
   const [tagline] = useProperty(sales.tagline);
@@ -73,8 +73,8 @@ const CaseShowcase: FC = () => {
   );
 };
 
-CaseShowcase.type = sales.CasePage;
+CasePageShowcase.type = sales.CasePage;
 
-CaseShowcase.topology = showcaseTopology;
+CasePageShowcase.topology = showcaseTopology;
 
-export default CaseShowcase;
+export default CasePageShowcase;

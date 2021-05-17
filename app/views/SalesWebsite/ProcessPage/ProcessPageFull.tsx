@@ -90,7 +90,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const ProcessPage: FC = () => {
+const ProcessPageFull: FC = () => {
   const classes = useStyles();
   const styles = useTheme();
 
@@ -197,10 +197,10 @@ const ProcessPage: FC = () => {
   );
 };
 
-ProcessPage.type = sales.ProcessPage;
+ProcessPageFull.type = sales.ProcessPage;
 
-ProcessPage.topology = fullResourceTopology;
+ProcessPageFull.topology = fullResourceTopology;
 
-ProcessPage.hocs = [withSalesTheme];
+ProcessPageFull.hocs = [withSalesTheme];
 
-export default ProcessPage;
+export default ProcessPageFull;

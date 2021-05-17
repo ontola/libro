@@ -1,7 +1,7 @@
 import { register } from 'link-redux';
 
-import Stepper from './Stepper';
+import StepperContainer from './StepperContainer';
 
 export default [
-  ...register(Stepper),
+  ...register(StepperContainer),
 ];

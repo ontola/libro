@@ -41,7 +41,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const MoreInformationBlock = (): JSX.Element => {
+const MoreInformationBlockContainer = (): JSX.Element => {
   const classes = useStyles();
   const [text] = useProperty(schema.text);
   const [title] = useProperty(schema.name);
@@ -98,8 +98,8 @@ const MoreInformationBlock = (): JSX.Element => {
   );
 };
 
-MoreInformationBlock.type = sales.MoreInformationBlock;
+MoreInformationBlockContainer.type = sales.MoreInformationBlock;
 
-MoreInformationBlock.topology = containerTopology;
+MoreInformationBlockContainer.topology = containerTopology;
 
-export default MoreInformationBlock;
+export default MoreInformationBlockContainer;

@@ -28,7 +28,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const FacetPage: FC = () => {
+const FacetPageFull: FC = () => {
   const [color] = useProperty(schema.color);
 
   const classes = useStyles({
@@ -66,10 +66,10 @@ const FacetPage: FC = () => {
   );
 };
 
-FacetPage.type = sales.FacetPage;
+FacetPageFull.type = sales.FacetPage;
 
-FacetPage.topology = fullResourceTopology;
+FacetPageFull.topology = fullResourceTopology;
 
-FacetPage.hocs = [withSalesTheme];
+FacetPageFull.hocs = [withSalesTheme];
 
-export default FacetPage;
+export default FacetPageFull;

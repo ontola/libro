@@ -9,7 +9,7 @@ import Step from '../../../components/SalesWebsite/Step';
 import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 
-const Stepper: FC = () => {
+const StepperContainer: FC = () => {
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
 
@@ -21,8 +21,8 @@ const Stepper: FC = () => {
   );
 };
 
-Stepper.type = sales.Step;
+StepperContainer.type = sales.Step;
 
-Stepper.topology = containerTopology;
+StepperContainer.topology = containerTopology;
 
-export default Stepper;
+export default StepperContainer;

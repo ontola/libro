@@ -44,7 +44,7 @@ const useStyles = makeStyles<SalesTheme>(() => ({
   },
 }));
 
-const Block: FC = () => {
+const BlockShowcase: FC = () => {
   const [URL] = useProperty(schema.URL);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
@@ -90,8 +90,8 @@ const Block: FC = () => {
   );
 };
 
-Block.type = sales.Block;
+BlockShowcase.type = sales.Block;
 
-Block.topology = showcaseTopology;
+BlockShowcase.topology = showcaseTopology;
 
-export default Block;
+export default BlockShowcase;

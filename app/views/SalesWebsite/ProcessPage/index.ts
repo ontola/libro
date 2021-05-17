@@ -1,7 +1,7 @@
 import { register } from 'link-redux';
 
-import ProcessPage from './ProcessPage';
+import ProcessPageFull from './ProcessPageFull';
 
 export default [
-  ...register(ProcessPage),
+  ...register(ProcessPageFull),
 ];

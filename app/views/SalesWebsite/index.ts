@@ -1,9 +1,11 @@
 import Block from './Block';
 import BlogContainer from './Blogs';
 import BlogPage from './BlogPage';
+import CasePage from './CasePage';
 import Cases from './Cases';
 import Facet from './Facet';
-import FeaturesContainer from './Features';
+import Feature from './Feature';
+import Features from './Features';
 import HomePage from './HomePage';
 import ProcessPage from './ProcessPage';
 import ProductPage from './ProductPage';
@@ -14,9 +16,11 @@ export default [
   ...Block,
   ...BlogContainer,
   ...BlogPage,
+  ...CasePage,
   ...Cases,
   ...Facet,
-  ...FeaturesContainer,
+  ...Feature,
+  ...Features,
   ...HomePage,
   ...ProcessPage,
   ...ProductPage,
