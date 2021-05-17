@@ -63,8 +63,8 @@ argUnit(Detail, () => {
       expect(subject.find(marker('image')).find('img')).toHaveProp('src', 'http://example.org/photo.jpg');
     });
 
-    it('should have the correct alt text', () => {
-      expect(subject.find(marker('image')).find('img')).toHaveProp('alt', 'A description');
+    it('should have the correct aria text', () => {
+      expect(subject.find(marker('image')).find('img')).toHaveProp('aria-label', 'A description');
     });
 
     it('should not render an icon', () => {

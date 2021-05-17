@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 
 export interface ImageBaseProps {
+  alt?: string,
   ariaLabel?: string,
   className?: string,
   linkedProp: SomeTerm,
@@ -22,6 +23,7 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
     ...overrideProps
   } = props;
   const {
+    alt,
     ariaLabel,
     className,
     spin,
@@ -47,7 +49,8 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
 
   return (
     <img
-      alt={ariaLabel || ''}
+      alt={alt}
+      aria-label={ariaLabel}
       className={className}
       src={linkedProp?.value}
       style={style}

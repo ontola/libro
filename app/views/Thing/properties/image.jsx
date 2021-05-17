@@ -26,13 +26,21 @@ const propTypes = {
 const ThingImageProp = ({
   ariaLabel,
   children,
+  className,
   linkedProp,
 }) => {
   const lrs = useLRS();
   useDataInvalidation(linkedProp);
 
   if (children) {
-    return <Resource subject={linkedProp}>{children}</Resource>;
+    return (
+      <Resource
+        className={className}
+        subject={linkedProp}
+      >
+        {children}
+      </Resource>
+    );
   }
 
   if (!linkedProp) {
@@ -49,7 +57,11 @@ const ThingImageProp = ({
   }
 
   return (
-    <Resource ariaLabel={ariaLabel} subject={linkedProp} />
+    <Resource
+      ariaLabel={ariaLabel}
+      className={className}
+      subject={linkedProp}
+    />
   );
 };
 

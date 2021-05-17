@@ -7,9 +7,10 @@ import {
 } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
+import { Property } from 'link-redux';
 import React from 'react';
 
-import Image from '../../components/Image';
 import Container from '../../topologies/Container';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
@@ -77,7 +78,6 @@ export interface HeaderProductPagesProps {
   children: React.ReactChild;
   title: string,
   subtitle: string,
-  imageUrl: any,
 }
 
 /** Full page with a branded header */
@@ -87,7 +87,6 @@ export const HeaderProductPages = ({
   buttonText,
   title,
   subtitle,
-  imageUrl,
   children,
 }: HeaderProductPagesProps): JSX.Element => {
   const classes = useStyles();
@@ -98,9 +97,9 @@ export const HeaderProductPages = ({
 
   const imageView = (
     <div className={classes.imageWrapper}>
-      <Image
+      <Property
         className={classes.image}
-        linkedProp={imageUrl}
+        label={schema.image}
       />
     </div>
   );

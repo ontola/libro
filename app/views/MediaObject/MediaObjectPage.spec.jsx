@@ -39,7 +39,7 @@ describe('MediaObject', () => {
 
   it('renders as Page', async () => {
     const {
-      queryByAltText,
+      queryByLabelText,
       queryByText,
       queryByTitle,
     } = await render(
@@ -54,6 +54,6 @@ describe('MediaObject', () => {
     expect(queryByText(PARENT_NAME)).toBeVisible();
     expect(queryByText(FILE_NAME)).toBeVisible();
     expect(queryByTitle('Downloaden')).toHaveProperty('href', `${CONTENT_URL}?download=true`);
-    expect(queryByAltText(FILE_NAME)).toHaveProperty('src', CONTENT_URL);
+    expect(queryByLabelText(FILE_NAME)).toHaveProperty('src', CONTENT_URL);
   });
 });

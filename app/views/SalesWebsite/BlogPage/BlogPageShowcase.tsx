@@ -4,20 +4,23 @@ import Grid from '@material-ui/core/Grid';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { FC, useProperty } from 'link-redux';
+import {
+  FC,
+  Property,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 
-import Image from '../../../components/Image';
 import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>({
-  iconStyle: {
+  icon: {
     color: '#2D7080',
     fontSize: 60,
   },
-  imageStyle: {
+  image: {
     maxWidth: '100%',
   },
   productButton: {
@@ -30,14 +33,13 @@ const useStyles = makeStyles<SalesTheme>({
     padding: '0 30px',
     textTransform: 'none',
   },
-  textStyle: {
+  text: {
     textAlign: 'left',
   },
 });
 
 const BlogPageShowcase: FC = () => {
   const classes = useStyles();
-  const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
   const [theme] = useProperty(sales.theme);
 
@@ -50,13 +52,10 @@ const BlogPageShowcase: FC = () => {
         alignItems="center"
         direction="column"
       >
-        <Image
-          className={classes.imageStyle}
-          linkedProp={image}
-        />
-        <Typography className={classes.textStyle} variant="h4">{name.value}</Typography>
-        <Typography className={classes.textStyle}>{theme.value}</Typography>
-        <ArrowRightAltIcon className={classes.iconStyle} />
+        <Property className={classes.image} label={schema.image} />
+        <Typography className={classes.text} variant="h4">{name.value}</Typography>
+        <Typography className={classes.text}>{theme.value}</Typography>
+        <ArrowRightAltIcon className={classes.icon} />
       </Grid>
     </Button>
   );

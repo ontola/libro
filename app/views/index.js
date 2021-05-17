@@ -46,6 +46,7 @@ import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
 import Notification from './Notification';
+import ontola from './ontola';
 import Organization from './Organization/index';
 import Person from './Person';
 import Phase from './Phase';
@@ -116,6 +117,7 @@ export function getViews() {
     ...MenuSection,
     ...Motion,
     ...Notification,
+    ...ontola,
     ...Organization,
     ...Person,
     ...Phase,

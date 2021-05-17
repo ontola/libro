@@ -56,7 +56,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const ProductPageFull: FC = () => {
   const classes = useStyles();
   const [buttonText] = useProperty(sales.buttonText);
-  const [image] = useProperty(schema.image);
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.description);
@@ -75,7 +74,6 @@ const ProductPageFull: FC = () => {
         backgroundImageUrl={backgroundImage.value}
         backgroundImageUrlMobile={backgroundImageMobile.value}
         buttonText={buttonText.value}
-        imageUrl={image}
         subtitle={text.value}
         title={title.value}
       >

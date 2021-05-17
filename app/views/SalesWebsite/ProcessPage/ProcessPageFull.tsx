@@ -15,7 +15,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Image from '../../../components/Image';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
@@ -101,13 +100,9 @@ const ProcessPageFull: FC = () => {
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
-  const [image] = useProperty(schema.image);
-  const [secondaryImage] = useProperty(sales.secondaryImage);
-  const [tertiaryImage] = useProperty(sales.tertiaryImage);
 
   const [textTitle] = useProperty(sales.textTitle);
   const [textBlock] = useProperty(sales.textBlock);
-
 
   return (
     <div className={classes.wrapper}>
@@ -148,17 +143,17 @@ const ProcessPageFull: FC = () => {
               null
               :
               <div>
-                <Image
+                <Property
                   className={classes.image}
-                  linkedProp={image}
+                  label={schema.image}
                 />
-                <Image
+                <Property
                   className={classes.image}
-                  linkedProp={secondaryImage}
+                  label={sales.secondaryImage}
                 />
-                <Image
+                <Property
                   className={classes.image}
-                  linkedProp={tertiaryImage}
+                  label={sales.tertiaryImage}
                 />
               </div>}
           </Grid>

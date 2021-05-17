@@ -89,6 +89,7 @@ if (__DEVELOPMENT__) {
   styleSrc.push('blob:');
   workerSrc.push('blob:');
   mediaSrc.push('https://argu.localdev')
+  mediaSrc.push('http://localhost:3001')
 }
 
 if (['production', 'staging', 'test'].includes(process.env.NODE_ENV)) {
