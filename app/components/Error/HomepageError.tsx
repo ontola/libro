@@ -4,7 +4,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Card from '../../topologies/Card';
-import CardContent from '../../components/Card/CardContent';
+import CardContent from '../Card/CardContent';
 import Container from '../../topologies/Container';
 import PageHeader from '../../topologies/PageHeader';
 

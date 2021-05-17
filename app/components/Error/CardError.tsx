@@ -1,8 +1,6 @@
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   ReturnType,
-  register,
   useLink,
 } from 'link-redux';
 import React from 'react';
@@ -14,16 +12,10 @@ import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize, HeadingVariant } from '../../components/Heading';
 import { SignInFormLink } from '../../components/SignInForm';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
-import ll from '../../ontology/ll';
 import Card from '../../topologies/Card';
-import { cardListTopology } from '../../topologies/Card/CardList';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { gridTopology } from '../../topologies/Grid';
-import { menuTopology } from '../../topologies/Menu';
+import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
 
-import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
-import { bodyDescriptorForStatus, headerDescriptorForStatus } from './ErrorMessages';
+import { bodyDescriptorForStatus, headerDescriptorForStatus } from './errorMessages';
 import { ErrorComponentProps, shouldShowSignIn } from './helpers';
 
 const propMap = {
@@ -36,7 +28,7 @@ const dataErrOpts = {
   returnType: ReturnType.Literal,
 };
 
-const ErrorCard: FC<ErrorComponentProps> = (props) => {
+const CardError = (props: ErrorComponentProps): JSX.Element => {
   const {
     caughtError,
     error,
@@ -80,14 +72,4 @@ const ErrorCard: FC<ErrorComponentProps> = (props) => {
   );
 };
 
-ErrorCard.type = ll.ErrorResource;
-
-ErrorCard.topology = [
-  alertDialogTopology,
-  containerTopology,
-  menuTopology,
-  cardListTopology,
-  gridTopology,
-];
-
-export default register(ErrorCard);
+export default CardError;

@@ -19,9 +19,8 @@ import { inlineTopology } from '../../topologies/Inline';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { parentTopology } from '../../topologies/Parent';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
-
-import { useTitleForStatus } from './ErrorMessages';
-import { ErrorComponentProps } from './helpers';
+import { useTitleForStatus } from '../../components/Error/errorMessages';
+import { ErrorComponentProps } from '../../components/Error/helpers';
 
 const ErrorButtonInline: FC<ErrorComponentProps> = ({
   linkRequestStatus,

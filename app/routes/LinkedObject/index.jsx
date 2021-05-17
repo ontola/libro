@@ -3,11 +3,11 @@ import { Resource, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
 import { handle } from '../../helpers/logging';
 import { currentLocation } from '../../helpers/paths';
 import { withWebsiteCtx } from '../../location';
 import { Page } from '../../topologies/Page';
-import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 
 const wildcardMap = new Map();
 wildcardMap.set('/media_objects/', ['page']);

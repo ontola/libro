@@ -1,5 +1,5 @@
 import ErrorButtonInline from './ErrorButtonInline';
-import ErrorCardReg from './ErrorCard';
+import ErrorCardReg from './ErrorContainer';
 import ErrorNavbar from './ErrorNavbar';
 import ErrorPrimaryResource from './ErrorFull';
 

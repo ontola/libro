@@ -11,9 +11,8 @@ import useErrorReload from '../../hooks/useErrorReload';
 import ll from '../../ontology/ll';
 import { navbarTopology } from '../../topologies/Navbar';
 import { errorMessages } from '../../translations/messages';
-
-import { bodyDescriptorForStatus } from './ErrorMessages';
-import { ErrorComponentProps } from './helpers';
+import { bodyDescriptorForStatus } from '../../components/Error/errorMessages';
+import { ErrorComponentProps } from '../../components/Error/helpers';
 
 const ErrorNavbar: FC<ErrorComponentProps> = (props) => {
   const {

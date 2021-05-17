@@ -25,7 +25,7 @@ export interface ErrorReload {
 
 type StatusMap = { [id: string]: RequestStatus };
 
-const useErrorReload = (subject: SomeNode, reloadLinkedObject: ReloadLinkedObject): ErrorReload => {
+const useErrorReload = (subject: SomeNode | undefined, reloadLinkedObject: ReloadLinkedObject): ErrorReload => {
   const lrs = useLRS();
   const [loading, setLoading] = React.useState(false);
   const timestamp = useDataInvalidation(subject);

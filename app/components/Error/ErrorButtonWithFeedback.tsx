@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonProps } from '../../components/Button';
+import Button, { ButtonProps } from '../Button';
 import useErrorReload from '../../hooks/useErrorReload';
 
-import { useTitleForStatus } from './ErrorMessages';
 import { ErrorComponentProps } from './helpers';
+import { useTitleForStatus } from './errorMessages';
 
 const ErrorButtonWithFeedback = (props: ErrorComponentProps & ButtonProps): JSX.Element => {
   const {

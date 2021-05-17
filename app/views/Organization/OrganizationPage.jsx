@@ -15,7 +15,7 @@ import Card from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
-import HomepageError from '../Error/HomepageError';
+import HomepageError from '../../components/Error/HomepageError';
 
 const OrganizationPage = ({
   homepage,
