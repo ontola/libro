@@ -73,15 +73,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     marginTop: 100,
     overflow: 'hidden',
   },
-  questions: {
-    backgroundColor: 'transparent',
-    height: 'auto',
-    marginTop: -114,
-    position: 'absolute',
-    right: 104,
-    transform: 'rotate(30deg)',
-    width: 25,
-  },
   subtitle: {
     textAlign: 'center',
     width: 643,
@@ -90,14 +81,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     // This should be removed if Page no longer sets a margin
     backgroundColor: theme.palette.background.default,
     marginTop: '-1rem',
-  },
-  zooComplot: {
-    backgroundColor: 'transparent',
-    height: 'auto',
-    marginTop: -76,
-    position: 'absolute',
-    right: -20,
-    width: 200,
   },
 }));
 
@@ -127,16 +110,6 @@ const HomePageFull: FC = () => {
               <Property label={sales.showcase} />
             </div>
           </Showcase>
-          <img
-            alt="The giraffe went away"
-            className={classes.zooComplot}
-            src="https://freesvg.org/img/1580290489giraffe-silhouette-freesvg.org.png"
-          />
-          <img
-            alt="More questions"
-            className={classes.questions}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Red_question_mark.svg/450px-Red_question_mark.svg.png"
-          />
         </Container>
       </Header>
       <div className={classes.caseContainer}>

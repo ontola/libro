@@ -55,11 +55,13 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
     color: '#707070',
     fontWeight: 'bold',
     lineHeight: 1.2,
+    textAlign: 'left',
   },
   buttonTextSelected: {
     color: '#000',
     fontWeight: 'bold',
     lineHeight: 1.2,
+    textAlign: 'left',
   },
   containerRow: {
     flexDirection: 'row',
