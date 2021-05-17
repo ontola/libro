@@ -1,4 +1,6 @@
-export default () => ({
+import { MaterialStyleMap } from '../../../themes';
+
+export default (): MaterialStyleMap => ({
   MuiAutocomplete: {
     listbox: {
       '& > div': {
@@ -8,7 +10,7 @@ export default () => ({
     root: {
       '& .MuiAutocomplete-inputRoot .MuiAutocomplete-input': {
         minWidth: 0,
-      }
+      },
     },
   },
   MuiInputBase: {

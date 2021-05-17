@@ -23,7 +23,7 @@ const customVariables = deepmerge(
     shape: {
       borderRadius: 0,
     },
-  }
+  },
 );
 
 export default customVariables;

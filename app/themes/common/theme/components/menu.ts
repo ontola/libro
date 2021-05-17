@@ -1,8 +1,10 @@
-export default (theme) => ({
+import { LibroTheme, MaterialStyleMap } from '../../../themes';
+
+export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiListItem: {
     root: {
-      lineHeight: null,
-      minHeight: null,
+      lineHeight: undefined,
+      minHeight: undefined,
     },
   },
   MuiListItemIcon: {
@@ -28,9 +30,9 @@ export default (theme) => ({
       [theme.breakpoints.up('md')]: {
         maxWidth: '14em',
       },
-      lineHeight: null,
-      minHeight: null,
-      whiteSpace: null,
+      lineHeight: undefined,
+      minHeight: undefined,
+      whiteSpace: undefined,
     },
   },
 });

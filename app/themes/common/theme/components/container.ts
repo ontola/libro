@@ -1,4 +1,6 @@
-export default () => ({
+import { MaterialStyleMap } from '../../../themes';
+
+export default (): MaterialStyleMap => ({
   MuiContainer: {
     root: {
       '.MuiGrid-root &': {

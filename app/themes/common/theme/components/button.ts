@@ -1,7 +1,9 @@
-export default () => ({
+import { MaterialStyleMap } from '../../../themes';
+
+export default (): MaterialStyleMap => ({
   MuiButton: {
     root: {
-      textTransform: null,
+      textTransform: undefined,
     },
   },
   MuiFormControlLabel: {

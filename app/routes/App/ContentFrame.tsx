@@ -35,7 +35,7 @@ const ContentFrame = ({
   const footerResources = (themeOptions.get('footerResources')?.split(',') ?? [])
     .map((iri) => rdf.namedNode(iri) as Node);
   const footerResource = themeOptions.get('footerResource');
-  const Header = headers[theme] || headers.common;
+  const Header = headers[theme || ''] || headers.common;
 
   return (
     <HotKeys

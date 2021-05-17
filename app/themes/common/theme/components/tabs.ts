@@ -1,4 +1,6 @@
-export default (theme) => ({
+import { LibroTheme, MaterialStyleMap } from '../../../themes';
+
+export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiTab: {
     labelIcon: {
       '& $wrapper :first-child': {
@@ -6,11 +8,11 @@ export default (theme) => ({
         marginBottom: 0,
         marginRight: 6,
       },
-      minHeight: null,
-      paddingTop: null,
+      minHeight: undefined,
+      paddingTop: undefined,
     },
     root: {
-      textTransform: null,
+      textTransform: undefined,
       [theme.breakpoints.up('sm')]: {
         minWidth: null,
       },

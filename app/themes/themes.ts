@@ -19,6 +19,12 @@ declare module '@material-ui/core/index' {
   }
 }
 
+interface MapIcon {
+  background: string,
+  backgroundHover: string,
+  text: string,
+}
+
 declare module '@material-ui/core/styles/createPalette' {
   interface LinkOptions {
     header: string;
@@ -27,6 +33,7 @@ declare module '@material-ui/core/styles/createPalette' {
 
   interface Palette {
     link: LinkOptions;
+    mapIcon: MapIcon;
   }
 }
 
@@ -47,6 +54,7 @@ export interface AppBarThemeOpts extends React.CSSProperties {
 export type LibroTheme = Theme;
 
 export type CSSPropertiesMap = { [key: string]: CSSProperties };
+export type MaterialStyleMap = { [key: string]: CSSPropertiesMap };
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export enum Margin {

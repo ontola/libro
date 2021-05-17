@@ -1,6 +1,7 @@
 import appbar from '../../../common/theme/components/appbar';
+import { LibroTheme, MaterialStyleMap } from '../../../themes';
 
-export default (theme) => {
+export default (theme: LibroTheme): MaterialStyleMap => {
   const customAppBar = appbar(theme);
   customAppBar.MuiAppBar.root = {
     ...customAppBar.MuiAppBar.root,

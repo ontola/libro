@@ -1,4 +1,6 @@
-export default (theme) => ({
+import { LibroTheme, MaterialStyleMap } from '../../../themes';
+
+export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiAppBar: {
     root: {
       '& .MuiButton-root': {

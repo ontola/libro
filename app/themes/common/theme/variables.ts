@@ -135,7 +135,7 @@ const theme = {
       secondary: colors.grey.midDark,
     },
   },
-  spacing: (factor) => `${SIX_PX * factor}rem`,
+  spacing: (factor: number): string => `${SIX_PX * factor}rem`,
   typography: {
     body1: {
       fontSize: '1rem',

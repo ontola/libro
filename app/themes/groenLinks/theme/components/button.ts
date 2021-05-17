@@ -1,9 +1,10 @@
 import deepmerge from 'deepmerge';
 
 import button from '../../../common/theme/components/button';
+import { MaterialStyleMap } from '../../../themes';
 
-export default (theme) => (
-  deepmerge(button(theme), {
+export default (): MaterialStyleMap => (
+  deepmerge(button(), {
     MuiButton: {
       label: {
         fontFamily: 'Suisse Webfont',

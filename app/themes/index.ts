@@ -1,4 +1,6 @@
 import { createMuiTheme } from '@material-ui/core';
+import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { PaletteColor } from '@material-ui/core/styles/createPalette';
 import deepmerge from 'deepmerge';
 
 import common from './common/theme';
@@ -6,18 +8,26 @@ import dutchGovernment from './dutchGovernment/theme';
 import groenLinks from './groenLinks/theme';
 import salesWebsite from './salesWebsite/theme';
 import { LIBRO_THEMES } from './LibroThemes';
+import { LibroTheme, MaterialStyleMap } from './themes';
+
+type ComponentStyle = (theme: LibroTheme) => MaterialStyleMap;
+
+interface GenerateStyle {
+  components?: ComponentStyle[];
+  variables?: ThemeOptions;
+}
 
 const generateStyle = ({
   components,
   variables,
-}) => (variableOverwrites) => {
-  const mergedVariables = deepmerge(variables, variableOverwrites);
+}: GenerateStyle) => (variableOverwrites: Record<string, unknown>) => {
+  const mergedVariables = deepmerge(variables ?? {}, variableOverwrites);
   const theme = createMuiTheme(mergedVariables);
 
-  theme.overrides.MuiCssBaseline = {
+  (theme.overrides!).MuiCssBaseline = {
     '@global': {
       html: {
-        background: mergedVariables.palette.background.default,
+        background: (mergedVariables.palette as any).background.default,
       },
     },
   };
@@ -28,7 +38,7 @@ const generateStyle = ({
         ...acc,
         ...component(theme),
       }),
-      theme.overrides
+      theme.overrides,
     );
   }
 
@@ -44,12 +54,12 @@ const generateStyle = ({
     const { appBar: { background, color }, palette } = theme;
 
     if (color === 'auto' && background) {
-      return palette[background].contrastText;
+      return (palette as unknown as { [background: string]: PaletteColor })[background].contrastText;
     } else if (color) {
-      return palette[color].main;
+      return (palette as unknown as { [color: string]: PaletteColor })[color].main;
     }
 
-    return null;
+    return undefined;
   };
 
   return theme;

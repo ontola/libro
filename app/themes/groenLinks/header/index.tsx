@@ -18,8 +18,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const GroenLinksHeader = () => {
-  const [logo, setLogo] = React.useState();
+const GroenLinksHeader = (): JSX.Element => {
+  const [logo, setLogo] = React.useState<string | undefined>();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
