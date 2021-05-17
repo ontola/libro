@@ -3,11 +3,12 @@ import { Helmet } from 'react-helmet-async';
 
 import CardContent from '../../components/Card/CardContent';
 import Heading from '../../components/Heading';
+import { Size } from '../../components/shared/config';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 
-const NotFound = () => (
-  <Container size="small">
+const NotFound = (): JSX.Element => (
+  <Container size={Size.Small}>
     <Helmet title="404 Not Found" />
     <Heading>404 Niet gevonden</Heading>
     <Card>

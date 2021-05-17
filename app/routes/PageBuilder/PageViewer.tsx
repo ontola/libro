@@ -25,10 +25,11 @@ const PageViewer = (): JSX.Element => {
   ].join(',');
   const themeOptions = new URLSearchParams();
   themeOptions.set('footerResources', footerResources);
+  const resolvedTheme = themes[theme ?? ''] || themes[LIBRO_THEMES.COMMON];
 
   return (
     <ErrorBoundary key={currentResource.value}>
-      <ThemeProvider theme={themes[theme] || themes[LIBRO_THEMES.COMMON]}>
+      <ThemeProvider theme={resolvedTheme({})}>
         <ContentFrame
           theme={theme!}
           themeOptions={themeOptions}

@@ -1,8 +1,8 @@
 import rdf from '@ontologies/core';
 import { term } from '@rdfdev/iri';
-import { lrsType, withLinkCtx } from 'link-redux';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import { History, Location } from 'history';
+import { LinkReduxLRSType, withLRS } from 'link-redux';
+import React, { ChangeEvent, Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { withRouter } from 'react-router-dom';
 
@@ -13,16 +13,11 @@ import { allTopologies, getTopologyNumber } from '../../topologies';
 import TopologyWrapper from './TopologyWrapper';
 import './DevBrowser.scss';
 
-const propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-  location: PropTypes.shape({
-    hash: PropTypes.string.isRequired,
-    search: PropTypes.string.isRequired,
-  }).isRequired,
-  lrs: lrsType,
-};
+interface DevBrowserProps {
+  history: History;
+  location: Location;
+  lrs: LinkReduxLRSType;
+}
 
 const specialTopologies = [
   undefined,
@@ -32,8 +27,8 @@ const specialTopologies = [
   argu.inline,
 ];
 
-class DevBrowser extends Component {
-  constructor(props) {
+class DevBrowser extends Component<DevBrowserProps> {
+  constructor(props: DevBrowserProps) {
     super(props);
 
     this.handleChangeIri = this.handleChangeIri.bind(this);
@@ -45,10 +40,11 @@ class DevBrowser extends Component {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
 
-    const resourceParam = params.get('iri').match(/^[a-z]+:\/\/[a-z]+/) ? params.get('iri') : app.ns('').value;
+    const iriFromParam = params.get('iri')?.match(/^[a-z]+:\/\/[a-z]+/);
+    const resourceParam = iriFromParam ? params.get('iri') : app.ns('').value;
     const resource = rdf.namedNode(resourceParam);
 
-    const selectedTopology = params.get('topology') || 0;
+    const selectedTopology = params.get('topology') ?? '0';
     const pureString = params.get('pure');
     const top = allTopologies[parseInt(selectedTopology, 10)];
 
@@ -60,22 +56,26 @@ class DevBrowser extends Component {
     };
   }
 
-  setParam(param, value) {
+  setParam(param: string, value?: string) {
     const params = new URLSearchParams(this.props.location.search);
-    params.set(param, value);
+    if (value) {
+      params.set(param, value);
+    } else {
+      params.delete(param);
+    }
     this.props.history.push(`?${params.toString()}`);
   }
 
-  handleChangeIri(event) {
+  handleChangeIri(event: ChangeEvent<any>) {
     this.setParam('iri', event.target.value);
   }
 
-  handleChangeTopology(event) {
+  handleChangeTopology(event: ChangeEvent<any>) {
     this.setParam('topology', event.target.value);
   }
 
-  handleChangePure(event) {
-    this.setParam('pure', event.target.checked);
+  handleChangePure(event: ChangeEvent<any>) {
+    this.setParam('pure', event.target.checked.toString());
   }
 
   render() {
@@ -86,7 +86,7 @@ class DevBrowser extends Component {
       selectedTopology,
     } = this.getPropsFromURL();
 
-    const resourcesKeys = Object.keys(this.props.lrs.store.store.subjectIndex);
+    const resourcesKeys = Object.keys((this.props.lrs.store as any).store.subjectIndex);
 
     return (
       <div data-marker="DevBrowser">
@@ -123,7 +123,7 @@ class DevBrowser extends Component {
           >
             {allTopologies.slice(0).map((topology, i) => (
               <option
-                key={(topology === undefined) ? 'default' : topology}
+                key={(topology === undefined) ? 'default' : topology.value}
                 value={i}
               >
                 {(topology === undefined) ? 'default' : term(topology)}
@@ -170,6 +170,4 @@ class DevBrowser extends Component {
   }
 }
 
-DevBrowser.propTypes = propTypes;
-
-export default withRouter(withLinkCtx(DevBrowser));
+export default withRouter(withLRS(DevBrowser));

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sandbox = () => (
+const Sandbox = (): JSX.Element => (
   <h1>Sandbox!</h1>
 );
 

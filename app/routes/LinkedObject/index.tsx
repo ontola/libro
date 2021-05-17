@@ -1,30 +1,28 @@
-import RDFTypes from '@rdfdev/prop-types';
-import { Resource, withLRS } from 'link-redux';
-import PropTypes from 'prop-types';
+import { NamedNode } from '@ontologies/core';
+import { Location } from 'history';
+import { Resource } from 'link-redux';
 import React from 'react';
 
-import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
+import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
 import { currentLocation } from '../../helpers/paths';
-import { withWebsiteCtx } from '../../location';
+import { WithWebsiteCtx, withWebsiteCtx } from '../../location';
 import { Page } from '../../topologies/Page';
 
 const wildcardMap = new Map();
 wildcardMap.set('/media_objects/', ['page']);
 
-class LinkedObject extends React.PureComponent {
-  static propTypes = {
-    iri: RDFTypes.namedNode,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-      search: PropTypes.string,
-    }),
-    websiteCtx: PropTypes.shape({
-      websitePathname: PropTypes.string,
-    }),
-  };
+export interface LinkedObjectProps extends WithWebsiteCtx {
+  iri: NamedNode;
+  location: Location;
+}
 
-  constructor(props) {
+export interface LinkedObjectState {
+  caughtError?: Error;
+}
+
+class LinkedObject extends React.Component<LinkedObjectProps, LinkedObjectState> {
+  constructor(props: LinkedObjectProps) {
     super(props);
 
     this.retry = this.retry.bind(this);
@@ -33,13 +31,13 @@ class LinkedObject extends React.PureComponent {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: LinkedObjectProps, prevState: LinkedObjectState) {
     if (prevState.caughtError && this.props.location.pathname !== prevProps.location.pathname) {
       this.retry();
     }
   }
 
-  componentDidCatch(e, ignored) {
+  componentDidCatch(e: Error) {
     handle(e);
     this.setState({ caughtError: e });
   }
@@ -61,19 +59,24 @@ class LinkedObject extends React.PureComponent {
     let invalidateIRI = iri;
     let resourceIRI = iri;
 
-    if (!iri) {
+    if (this.state.caughtError) {
+      return (
+        <PageError
+          caughtError={this.state.caughtError}
+          reloadLinkedObject={this.retry}
+        />
+      );
+    }
+
+    if (!iri && websiteCtx) {
       const { websitePathname } = websiteCtx;
       let routedLocation = location;
-
-      if (typeof this.state.caughtError !== 'undefined') {
-        return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
-      }
 
       for (const pathMatch of wildcardMap.keys()) {
         if (typeof pathMatch === 'string') {
           if (location.pathname.startsWith(pathMatch)) {
             const search = new URLSearchParams(location.search);
-            wildcardMap.get(pathMatch).forEach((v) => search.delete(v));
+            wildcardMap.get(pathMatch).forEach((v: string) => search.delete(v));
 
             routedLocation = {
               ...location,
@@ -100,4 +103,4 @@ class LinkedObject extends React.PureComponent {
   }
 }
 
-export default withLRS(withWebsiteCtx(LinkedObject));
+export default withWebsiteCtx<LinkedObjectProps>(LinkedObject);

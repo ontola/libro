@@ -1,14 +1,10 @@
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  Resource,
-  subjectType,
-  topologyType,
-} from 'link-redux';
+import { Resource } from 'link-redux';
 
 import CardContent from '../../components/Card/CardContent';
-import Heading from '../../components/Heading';
+import Heading, { HeadingSize } from '../../components/Heading';
 import Card, { cardTopology } from '../../topologies/Card';
 import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import CardMain, { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -20,19 +16,21 @@ import { inlineTopology } from '../../topologies/Inline';
 import { navbarTopology } from '../../topologies/Navbar';
 import { parentTopology } from '../../topologies/Parent';
 
-const propTypes = {
-  pure: PropTypes.bool,
-  subject: subjectType,
-  topology: topologyType,
-};
+export interface TopologyWrapperProps {
+  pure: boolean;
+  subject?: SomeNode;
+  topology: NamedNode;
+}
 
 /* Wraps a LRC in a suitable container */
 const TopologyWrapper = ({
   pure,
   topology,
   subject,
-}) => {
-  if (subject === 'null') return null;
+}: TopologyWrapperProps): JSX.Element | null => {
+  if (!subject) {
+    return null;
+  }
 
   const LRC = () => (
     <Resource
@@ -57,7 +55,7 @@ const TopologyWrapper = ({
       <Container>
         <Card>
           <CardContent>
-            <Heading size="1">Detail</Heading>
+            <Heading size={HeadingSize.XL}>Detail</Heading>
             <DetailsBar>
               <LRC />
             </DetailsBar>
@@ -81,7 +79,7 @@ const TopologyWrapper = ({
       <Container>
         <CardMain>
           <CardContent>
-            <Heading size="1">CardMain</Heading>
+            <Heading size={HeadingSize.XL}>CardMain</Heading>
           </CardContent>
           <LRC />
         </CardMain>
@@ -92,7 +90,7 @@ const TopologyWrapper = ({
       <Container>
         <CardFixed>
           <CardContent>
-            <Heading size="3">CardFixed</Heading>
+            <Heading size={HeadingSize.MD}>CardFixed</Heading>
           </CardContent>
           <LRC />
         </CardFixed>
@@ -103,11 +101,11 @@ const TopologyWrapper = ({
       <Container>
         <CardMain>
           <CardContent>
-            <Heading size="1">Card with Row</Heading>
+            <Heading size={HeadingSize.XL}>Card with Row</Heading>
           </CardContent>
           <CardRow>
             <CardContent>
-              <Heading size="3">CardRow</Heading>
+              <Heading size={HeadingSize.MD}>CardRow</Heading>
             </CardContent>
             <LRC />
           </CardRow>
@@ -163,7 +161,5 @@ const TopologyWrapper = ({
 
   return <LRC />;
 };
-
-TopologyWrapper.propTypes = propTypes;
 
 export default TopologyWrapper;

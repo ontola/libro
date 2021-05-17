@@ -1,22 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
+import React, { ComponentType } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 import '../../components/shared/init.scss';
+import PageError from '../../components/Error/PageError';
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
-import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
 import routes from '../index';
 
 import './index.scss';
 import ContentFrame from './ContentFrame';
 
-class App extends React.PureComponent {
-  static propTypes = {
-    title: PropTypes.string,
-  };
+export interface AppProps extends RouteComponentProps {
+  title: string;
+}
 
-  constructor(props) {
+export interface AppState {
+  caughtError?: Error;
+}
+
+class App extends React.PureComponent<AppProps, AppState> {
+  constructor(props: AppProps) {
     super(props);
 
     this.retry = this.retry.bind(this);
@@ -31,7 +34,7 @@ class App extends React.PureComponent {
     }
   }
 
-  componentDidCatch(e, ignored) {
+  componentDidCatch(e: Error) {
     handle(e);
     this.setState({ caughtError: e });
   }
@@ -46,7 +49,12 @@ class App extends React.PureComponent {
 
   render() {
     if (typeof this.state.caughtError !== 'undefined') {
-      return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
+      return (
+        <PageError
+          caughtError={this.state.caughtError}
+          reloadLinkedObject={this.retry}
+        />
+      );
     }
 
     const theme = getMetaContent('theme');
@@ -64,4 +72,4 @@ class App extends React.PureComponent {
   }
 }
 
-export default withRouter(App);
+export default withRouter<AppProps, ComponentType<AppProps>>(App);

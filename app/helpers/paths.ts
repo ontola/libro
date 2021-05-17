@@ -5,10 +5,14 @@ import { NamespaceMap } from 'link-lib';
 import app, { frontendPathname } from '../ontology/app';
 import appSlashless from '../ontology/appSlashless';
 
-export function currentLocation(location: Location<any>,
+import { WebsiteCtx } from './app';
+
+export function currentLocation(
+  location: Location<any>,
   fragment = true,
   basePath = frontendPathname,
-  ns: NamespaceMap = { appSlashless }): NamedNode {
+  ns: NamespaceMap | WebsiteCtx = { appSlashless },
+): NamedNode {
   const path = (basePath !== '/' && location.pathname.startsWith(basePath))
     ? location.pathname.slice(basePath.length)
     : location.pathname;

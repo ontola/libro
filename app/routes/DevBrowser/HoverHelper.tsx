@@ -1,18 +1,21 @@
 import rdf from '@ontologies/core';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import { HotKeys } from 'react-hotkeys';
 
 import { expandPath } from '../../helpers/iris';
 
-const propTypes = {
-  children: PropTypes.node,
-};
-
 const TRIGGER_KEYS = ['Alt', 'AltGraph'];
 
-class HoverHelper extends Component {
-  static getElement(e) {
+interface HoverHelperProps {
+  children?: React.ReactNode;
+}
+
+interface HoverHelperState {
+  activated?: boolean;
+}
+
+class HoverHelper extends Component<HoverHelperProps, HoverHelperState> {
+  static getElement(e: MouseEvent): void {
     e.preventDefault();
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
@@ -21,12 +24,18 @@ class HoverHelper extends Component {
     const elementMouseIsOver = document.elementFromPoint(x, y);
     let currentElement = elementMouseIsOver;
     const maxDepth = 100;
+
     for (let i = 0; i < maxDepth; i++) {
+      if (!currentElement) {
+        break;
+      }
+
       const resourceLink = currentElement.getAttribute('resource')
-        || expandPath(currentElement.getAttribute('href'));
+        ?? expandPath(currentElement.getAttribute('href') ?? undefined);
       if (resourceLink) {
-        /* global dev:true */
+        // @ts-ignore
         const trips = dev.getLRS().tryEntity(rdf.namedNode(resourceLink));
+        // @ts-ignore
         console.log(dev.toObject(trips)); // eslint-disable-line no-console
         break;
       }
@@ -38,23 +47,23 @@ class HoverHelper extends Component {
     }
   }
 
-  constructor(props) {
+  constructor(props: HoverHelperProps) {
     super(props);
     this.state = {
       activated: false,
     };
   }
 
-  handleKeyDown(e) {
-    if (e.key === TRIGGER_KEYS) {
+  handleKeyDown(e: KeyboardEvent): void {
+    if (TRIGGER_KEYS.includes(e.key)) {
       this.setState({
         activated: true,
       });
     }
   }
 
-  handleKeyUp(e) {
-    if (e.key === TRIGGER_KEYS) {
+  handleKeyUp(e: KeyboardEvent): void {
+    if (TRIGGER_KEYS.includes(e.key)) {
       this.setState({
         activated: false,
       });
@@ -66,7 +75,7 @@ class HoverHelper extends Component {
       return this.props.children;
     }
 
-    const listeners = this.state.activated ? { onClick: (e) => HoverHelper.getElement(e) } : {};
+    const listeners = this.state.activated ? { onClick: (e: MouseEvent) => HoverHelper.getElement(e) } : {};
 
     const handlers = {
       startHoverHelper: () => this.setState({
@@ -80,7 +89,7 @@ class HoverHelper extends Component {
     return (
       <HotKeys
         handlers={handlers}
-        tabIndex={null}
+        tabIndex={undefined}
       >
         <div
           className={`${this.state.activated ? 'HoverHelper--show-borders' : ''}`}
@@ -92,7 +101,5 @@ class HoverHelper extends Component {
     );
   }
 }
-
-HoverHelper.propTypes = propTypes;
 
 export default HoverHelper;

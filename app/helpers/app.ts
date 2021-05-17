@@ -4,7 +4,7 @@ import rdf, {
   createNS,
 } from '@ontologies/core';
 
-export interface WebsiteContext {
+export interface WebsiteCtx {
   app: CustomPredicateCreator;
   appSlashless: CustomPredicateCreator;
 
@@ -14,7 +14,7 @@ export interface WebsiteContext {
   websitePathname: string;
 }
 
-export const getWebsiteContextFromWebsite = (website: string): WebsiteContext => {
+export const getWebsiteContextFromWebsite = (website: string): WebsiteCtx => {
   const websiteIRI = rdf.namedNode(website);
   const websiteIRIStr = websiteIRI.value;
   const websiteOrigin = new URL(websiteIRIStr).origin;

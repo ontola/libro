@@ -113,5 +113,5 @@ export function allTopologiesExcept(...topologies: NamedNode[]): NamedNode[] {
   return filtered;
 }
 
-export const getTopologyNumber = (topology: NamedNode): number => allTopologies
+export const getTopologyNumber = (topology?: NamedNode): number => allTopologies
   .findIndex((item) => rdf.equals(topology, item));
