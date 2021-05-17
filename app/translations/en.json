@@ -1,10 +1,4 @@
 {
-  "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": {
-    "defaultMessage": "Primary e-mail address"
-  },
-  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": {
-    "defaultMessage": "Already confirmed"
-  },
   "https://app.argu.co/i18n/actions/labels/save": {
     "defaultMessage": "save"
   },
@@ -118,23 +112,14 @@
     "defaultMessage": "Network connection lost",
     "description": "Message shown to the user when the navigator lost its network connection"
   },
-  "https://app.argu.co/i18n/errors/informRequest": {
-    "defaultMessage": "Let us know."
-  },
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Retry"
-  },
-  "https://app.argu.co/i18n/errors/lr/circularRender": {
-    "defaultMessage": "Error rendering external resource."
   },
   "https://app.argu.co/i18n/errors/map/loadError": {
     "defaultMessage": "Error loading map"
   },
   "https://app.argu.co/i18n/errors/markdown/renderError": {
     "defaultMessage": "An error occurred while formatting the text. The original text in markdown format is as follows:"
-  },
-  "https://app.argu.co/i18n/errors/mistaken": {
-    "defaultMessage": "Is this an error?"
   },
   "https://app.argu.co/i18n/errors/request/200/body": {
     "defaultMessage": "The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource."
@@ -237,9 +222,6 @@
   },
   "https://app.argu.co/i18n/errors/request/504/header": {
     "defaultMessage": "Gateway timeout"
-  },
-  "https://app.argu.co/i18n/errors/retryButton/label": {
-    "defaultMessage": "Try again"
   },
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
     "defaultMessage": "Responding is no longer possible"
@@ -352,6 +334,9 @@
   "https://app.argu.co/i18n/pagebuilder/saveButtonLabel": {
     "defaultMessage": "Save"
   },
+  "https://app.argu.co/i18n/pagebuilder/saveFailedNotification": {
+    "defaultMessage": "Failed to save document."
+  },
   "https://app.argu.co/i18n/pagebuilder/savedNotification": {
     "defaultMessage": "Document saved."
   },
@@ -449,7 +434,7 @@
     "defaultMessage": "Start!"
   },
   "https://app.argu.co/i18n/survey/contribution": {
-    "defaultMessage": "Thank you for your contribution."
+    "defaultMessage": "Thank you for your response."
   },
   "https://app.argu.co/i18n/teamGL/glappNotUsed": {
     "defaultMessage": "🚪 GLAPP nog niet gebruikt."

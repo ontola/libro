@@ -137,6 +137,7 @@ export const saveDocument = async (ctx) => {
     await client.hset(key, 'source', source);
     ctx.status = 200;
   } catch (err) {
+    logging.error(err);
     ctx.status = 500;
   }
 }

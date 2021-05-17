@@ -1,10 +1,4 @@
 {
-  "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": {
-    "defaultMessage": "Primair e-mail adres"
-  },
-  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": {
-    "defaultMessage": "Reeds bevestigd"
-  },
   "https://app.argu.co/i18n/actions/labels/save": {
     "defaultMessage": "opslaan"
   },
@@ -116,23 +110,14 @@
   "https://app.argu.co/i18n/errors/client/offline/header": {
     "defaultMessage": "Netwerkverbinding verbroken"
   },
-  "https://app.argu.co/i18n/errors/informRequest": {
-    "defaultMessage": "Laat het ons weten."
-  },
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Opnieuw"
-  },
-  "https://app.argu.co/i18n/errors/lr/circularRender": {
-    "defaultMessage": "Error tijdens het weergeven van extern resource."
   },
   "https://app.argu.co/i18n/errors/map/loadError": {
     "defaultMessage": "Fout tijdens het laden van de kaart"
   },
   "https://app.argu.co/i18n/errors/markdown/renderError": {
     "defaultMessage": "Er is een fout opgetreden tijdens het opmaken van de tekst. De brontekst in markdown-formaat is als volgt:"
-  },
-  "https://app.argu.co/i18n/errors/mistaken": {
-    "defaultMessage": "Is dit een fout?"
   },
   "https://app.argu.co/i18n/errors/request/200/body": {
     "defaultMessage": "Het verzoek bevat een fout waardoor het niet verwerkt kan worden, check de URL parameters en probeer de pagina welke naar deze verwees te herladen."
@@ -235,9 +220,6 @@
   },
   "https://app.argu.co/i18n/errors/request/504/header": {
     "defaultMessage": "Doorgang stilgevallen"
-  },
-  "https://app.argu.co/i18n/errors/retryButton/label": {
-    "defaultMessage": "Probeer opnieuw"
   },
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
     "defaultMessage": "Het is niet meer mogelijk om te reageren"
@@ -349,6 +331,9 @@
   },
   "https://app.argu.co/i18n/pagebuilder/saveButtonLabel": {
     "defaultMessage": "Opslaan"
+  },
+  "https://app.argu.co/i18n/pagebuilder/saveFailedNotification": {
+    "defaultMessage": "Kon document niet opslaan."
   },
   "https://app.argu.co/i18n/pagebuilder/savedNotification": {
     "defaultMessage": "Document opgeslagen."

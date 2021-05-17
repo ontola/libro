@@ -401,6 +401,10 @@ export const pageBuilderToolbarMessages: Messages = defineMessages({
     defaultMessage: 'Save',
     id: 'https://app.argu.co/i18n/pagebuilder/saveButtonLabel',
   },
+  saveFailedNotification: {
+    defaultMessage: 'Failed to save document.',
+    id: 'https://app.argu.co/i18n/pagebuilder/saveFailedNotification',
+  },
   savedNotification: {
     defaultMessage: 'Document saved.',
     id: 'https://app.argu.co/i18n/pagebuilder/savedNotification',

@@ -58,42 +58,55 @@ const Toolbar: React.FC = () => {
   } = React.useContext(builderContext);
   const lrs = useLRS();
   const intl = useIntl();
+  const [saving, setSaving] = React.useState(false);
 
   const stripID = (id: string) => id.replace(/^https:\/\/.*\/_libro\/docs\//i, '');
 
   const showMessage = (msg: string) => lrs.actions.ontola.showSnackbar(msg);
 
+  const handleSave = async (id: string) => {
+    setSaving(true);
+    try {
+      await saveDocument(id);
+      await showMessage(intl.formatMessage(pageBuilderToolbarMessages.savedNotification));
+      setSaving(false);
+    } catch(_) {
+      await showMessage(intl.formatMessage(pageBuilderToolbarMessages.saveFailedNotification));
+      setSaving(false);
+    }
+  };
+
   const onSave = () => {
     if (documents && documents.length > 0) {
       const overwrite = confirm(intl.formatMessage(pageBuilderToolbarMessages.override, { docID: documents?.[documentIndex] }));
 
-      if (overwrite) {
-        const id = stripID(documents?.[documentIndex]);
-
-        saveDocument(id).then(() => {
-          showMessage(intl.formatMessage(pageBuilderToolbarMessages.savedNotification));
-        });
+      if (!overwrite) {
+        return Promise.resolve();
       }
-    } else {
-      onSaveAs();
+
+      const id = stripID(documents?.[documentIndex]);
+
+      return handleSave(id);
     }
+
+    return onSaveAs();
   };
 
   const onSaveAs = () => {
     const newID = prompt(intl.formatMessage(pageBuilderToolbarMessages.saveAsPrompt));
 
     if (newID === null) {
-      return;
+      return Promise.reject();
     }
     const strippedID = stripID(newID);
     const duplicate = documents?.map(stripID).some((docID) => docID === strippedID);
     const save = !duplicate || confirm(intl.formatMessage(pageBuilderToolbarMessages.override, { docID: documents?.[documentIndex] }));
 
-    if (save) {
-      saveDocument(strippedID).then(() => {
-        showMessage(intl.formatMessage(pageBuilderToolbarMessages.savedNotification));
-      });
+    if (!save) {
+      return Promise.reject();
     }
+
+    return handleSave(strippedID);
   };
 
   return (
@@ -171,6 +184,7 @@ const Toolbar: React.FC = () => {
         </Select>
       </FormControl>
       <Button
+        disabled={saving}
         startIcon={<FontAwesome name="save" />}
         variant="outlined"
         onClick={onSave}
@@ -178,6 +192,7 @@ const Toolbar: React.FC = () => {
         {intl.formatMessage(pageBuilderToolbarMessages.saveButtonLabel)}
       </Button>
       <Button
+        disabled={saving}
         startIcon={<FontAwesome name="save" />}
         variant="outlined"
         onClick={onSaveAs}

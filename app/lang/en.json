@@ -1,16 +1,4 @@
 {
-  "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": [
-    {
-      "type": 0,
-      "value": "Primary e-mail address"
-    }
-  ],
-  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": [
-    {
-      "type": 0,
-      "value": "Already confirmed"
-    }
-  ],
   "https://app.argu.co/i18n/actions/labels/save": [
     {
       "type": 0,
@@ -261,22 +249,10 @@
       "value": "Network connection lost"
     }
   ],
-  "https://app.argu.co/i18n/errors/informRequest": [
-    {
-      "type": 0,
-      "value": "Let us know."
-    }
-  ],
   "https://app.argu.co/i18n/errors/inlineButton/label": [
     {
       "type": 0,
       "value": "Retry"
-    }
-  ],
-  "https://app.argu.co/i18n/errors/lr/circularRender": [
-    {
-      "type": 0,
-      "value": "Error rendering external resource."
     }
   ],
   "https://app.argu.co/i18n/errors/map/loadError": [
@@ -289,12 +265,6 @@
     {
       "type": 0,
       "value": "An error occurred while formatting the text. The original text in markdown format is as follows:"
-    }
-  ],
-  "https://app.argu.co/i18n/errors/mistaken": [
-    {
-      "type": 0,
-      "value": "Is this an error?"
     }
   ],
   "https://app.argu.co/i18n/errors/request/200/body": [
@@ -499,12 +469,6 @@
     {
       "type": 0,
       "value": "Gateway timeout"
-    }
-  ],
-  "https://app.argu.co/i18n/errors/retryButton/label": [
-    {
-      "type": 0,
-      "value": "Try again"
     }
   ],
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": [
@@ -801,6 +765,12 @@
       "value": "Save"
     }
   ],
+  "https://app.argu.co/i18n/pagebuilder/saveFailedNotification": [
+    {
+      "type": 0,
+      "value": "Failed to save document."
+    }
+  ],
   "https://app.argu.co/i18n/pagebuilder/savedNotification": [
     {
       "type": 0,
@@ -1072,7 +1042,7 @@
   "https://app.argu.co/i18n/survey/contribution": [
     {
       "type": 0,
-      "value": "Thank you for your contribution."
+      "value": "Thank you for your response."
     }
   ],
   "https://app.argu.co/i18n/teamGL/glappNotUsed": [

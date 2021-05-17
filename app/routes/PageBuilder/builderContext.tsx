@@ -1,4 +1,5 @@
 import { Node } from '@ontologies/core';
+import { MULTIPLE_CHOICES } from 'http-status-codes';
 import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
 import React from 'react';
 
@@ -63,6 +64,12 @@ export const PageBuilderContext: React.FC = ({ children }) => {
         'Content-Type': 'application/json',
       },
       method: 'POST',
+    }).then((res) => {
+      if (res.status >= MULTIPLE_CHOICES) {
+        return Promise.reject();
+      }
+
+      return Promise.resolve();
     })
   );
 

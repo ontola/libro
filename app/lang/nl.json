@@ -1,16 +1,4 @@
 {
-  "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": [
-    {
-      "type": 0,
-      "value": "Primair e-mail adres"
-    }
-  ],
-  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": [
-    {
-      "type": 0,
-      "value": "Reeds bevestigd"
-    }
-  ],
   "https://app.argu.co/i18n/actions/labels/save": [
     {
       "type": 0,
@@ -261,22 +249,10 @@
       "value": "Netwerkverbinding verbroken"
     }
   ],
-  "https://app.argu.co/i18n/errors/informRequest": [
-    {
-      "type": 0,
-      "value": "Laat het ons weten."
-    }
-  ],
   "https://app.argu.co/i18n/errors/inlineButton/label": [
     {
       "type": 0,
       "value": "Opnieuw"
-    }
-  ],
-  "https://app.argu.co/i18n/errors/lr/circularRender": [
-    {
-      "type": 0,
-      "value": "Error tijdens het weergeven van extern resource."
     }
   ],
   "https://app.argu.co/i18n/errors/map/loadError": [
@@ -289,12 +265,6 @@
     {
       "type": 0,
       "value": "Er is een fout opgetreden tijdens het opmaken van de tekst. De brontekst in markdown-formaat is als volgt:"
-    }
-  ],
-  "https://app.argu.co/i18n/errors/mistaken": [
-    {
-      "type": 0,
-      "value": "Is dit een fout?"
     }
   ],
   "https://app.argu.co/i18n/errors/request/200/body": [
@@ -499,12 +469,6 @@
     {
       "type": 0,
       "value": "Doorgang stilgevallen"
-    }
-  ],
-  "https://app.argu.co/i18n/errors/retryButton/label": [
-    {
-      "type": 0,
-      "value": "Probeer opnieuw"
     }
   ],
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": [
@@ -807,6 +771,12 @@
     {
       "type": 0,
       "value": "Opslaan"
+    }
+  ],
+  "https://app.argu.co/i18n/pagebuilder/saveFailedNotification": [
+    {
+      "type": 0,
+      "value": "Kon document niet opslaan."
     }
   ],
   "https://app.argu.co/i18n/pagebuilder/savedNotification": [
