@@ -23,7 +23,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       width: '100%',
     },
     alignItems: 'flex-start',
-    backgroundColor: 'white',
     display: 'flex',
     justifyContent: 'flex-start',
     padding: '1rem',

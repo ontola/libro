@@ -1,12 +1,17 @@
-import { Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button/Button';
-import Grid from '@material-ui/core/Grid';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   FC,
-  Property,
+  Resource,
+  Type,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -21,7 +26,12 @@ const useStyles = makeStyles<SalesTheme>({
     fontSize: 60,
   },
   image: {
-    maxWidth: '100%',
+    maxHeight: '15em',
+    objectFit: 'cover',
+    width: '100%',
+  },
+  mediaRoot: {
+    position: 'relative',
   },
   productButton: {
     backgroundColor: '#FFFFFF',
@@ -36,28 +46,43 @@ const useStyles = makeStyles<SalesTheme>({
   text: {
     textAlign: 'left',
   },
+  themeChip: {
+    backgroundColor: 'white',
+    borderRadius: '.4em',
+    bottom: 0,
+    fontWeight: 'bold',
+    left: 0,
+    padding: '.3em 1em',
+    position: 'absolute',
+  },
 });
 
-const BlogPageShowcase: FC = () => {
+const BlogPageShowcase: FC = ({ subject }) => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
+  const [image] = useProperty(schema.image) as SomeNode[];
   const [theme] = useProperty(sales.theme);
+  const TypeWithClassName = Type as any;
 
   return (
-    <Button
-      className={classes.productButton}
-    >
-      <Grid
-        container
-        alignItems="center"
-        direction="column"
-      >
-        <Property className={classes.image} label={schema.image} />
-        <Typography className={classes.text} variant="h4">{name.value}</Typography>
-        <Typography className={classes.text}>{theme.value}</Typography>
-        <ArrowRightAltIcon className={classes.icon} />
-      </Grid>
-    </Button>
+    <Card>
+      <CardActionArea href={subject.value}>
+        <CardMedia
+          classes={{ root: classes.mediaRoot }}
+          component="picture"
+        >
+          <Resource subject={image}>
+            <TypeWithClassName className={classes.image} element={React.Fragment} />
+            <Typography className={classes.themeChip} variant="body1">
+              {theme.value}
+            </Typography>
+          </Resource>
+        </CardMedia>
+        <CardContent>
+          <Typography className={classes.text} variant="h3">{name.value}</Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 

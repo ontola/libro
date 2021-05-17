@@ -21,6 +21,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   productButton: {
     alignItems: 'flex-start',
+    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     justifyContent: 'center',
     padding: 20,
     textAlign: 'left',

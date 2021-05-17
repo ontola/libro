@@ -55,6 +55,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   propositionSelector: {
     display: 'grid',
+    gridGap: '5em',
     gridTemplateColumns: '1fr 1fr 1fr',
     [theme.breakpoints.up('md')]: {
       gridTemplateColumns: '1fr 1fr 1fr',

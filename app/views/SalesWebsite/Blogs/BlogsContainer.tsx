@@ -27,7 +27,7 @@ const BlogsContainer: FC = () => {
   return (
     <Grid
       container
-      alignItems="center"
+      alignItems="flex-start"
       direction="column"
     >
       <Typography

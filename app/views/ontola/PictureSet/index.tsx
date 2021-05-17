@@ -11,9 +11,10 @@ import { allTopologies } from '../../../topologies';
 
 interface PictureSetProps {
   className: string,
+  element: React.ElementType,
 }
 
-const PictureSet: FC<PictureSetProps> = ({ className }) => {
+const PictureSet: FC<PictureSetProps> = ({ className, element: Element }) => {
   const [alt] = useProperty(ontola.alt);
   const [ariaLabel] = useProperty(ontola.ariaLabel);
 
@@ -27,7 +28,7 @@ const PictureSet: FC<PictureSetProps> = ({ className }) => {
   const mostConservative = svg ?? png ?? jpg ?? gif ?? webp ?? apng ?? avif;
 
   return (
-    <picture>
+    <Element>
       {svg && <source srcSet={svg.value} type="image/svg+xml" />}
       {avif && <source srcSet={avif.value} type="image/avif" />}
       {webp && <source srcSet={webp.value} type="image/webp" />}
@@ -42,13 +43,17 @@ const PictureSet: FC<PictureSetProps> = ({ className }) => {
         className={className}
         linkedProp={mostConservative}
       />
-    </picture>
+    </Element>
   );
 };
 
 PictureSet.type = ontola.PictureSet;
 
 PictureSet.topology = allTopologies;
+
+PictureSet.defaultProps = {
+  element: 'picture',
+};
 
 export default [
   ...register(PictureSet),

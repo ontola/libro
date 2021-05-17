@@ -20,7 +20,6 @@ import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   caseContainer: {
-    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     padding: 20,
     paddingTop: 60,
   },

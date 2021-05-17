@@ -28,7 +28,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: 20,
   },
   caseContainer: {
-    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     padding: 20,
   },
   gridStyle: {

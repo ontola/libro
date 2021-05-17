@@ -14,16 +14,23 @@ import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
-    fontSize: 24,
+    fontSize: '2em',
     fontWeight: 'bold',
     justifyContent: 'center',
-    margin: 30,
+    margin: 0,
     textTransform: 'none',
     [theme.breakpoints.up('md')]: {
       justifyContent: 'flex-end',
     },
   },
+  buttonEndIcon: {
+    '& > *:first-child': {
+      fontSize: '1.5em',
+    },
+    marginLeft: 0,
+  },
   buttonWrapper: {
+    alignSelf: 'flex-end',
     display: 'flex',
   },
   header: {
@@ -113,11 +120,13 @@ export const Parallax = ({
             sm={12}
           >
             <Button
-              className={classes.button}
+              classes={{
+                endIcon: classes.buttonEndIcon,
+                root: classes.button,
+              }}
               endIcon={(
                 <ArrowRightAltIcon
                   color="primary"
-                  style={{ fontSize: 35 }}
                 />
               )}
             >
