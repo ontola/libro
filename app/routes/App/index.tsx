@@ -11,7 +11,7 @@ import './index.scss';
 import ContentFrame from './ContentFrame';
 
 export interface AppProps extends RouteComponentProps {
-  title: string;
+  title?: string;
 }
 
 export interface AppState {

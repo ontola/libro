@@ -2,6 +2,7 @@ import './helpers/polyfills';
 import './useFactory';
 
 import enableDevtools from '@ontola/link-devtools';
+import { MemoryHistory } from 'history';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -23,11 +24,11 @@ import patchRequestInitGenerator from './helpers/monkey';
   patchRequestInitGenerator(lrs);
 
   if (document.documentElement.lang) {
-    lrs.store.langPrefs.unshift(document.documentElement.lang);
+    (lrs.store as any).langPrefs.unshift(document.documentElement.lang);
   }
 
   const BOOT_TIMEOUT = 10000;
-  let timeout;
+  let timeout: undefined | number;
 
   function mount() {
     log('Mounting app');
@@ -37,12 +38,12 @@ import patchRequestInitGenerator from './helpers/monkey';
 
     render(
       <App
-        history={history}
+        history={history as MemoryHistory}
         lrs={lrs}
         title={getMetaContent('application-name')}
         website={getMetaContent('website-iri')}
       />,
-      document.getElementById(APP_ELEMENT)
+      document.getElementById(APP_ELEMENT),
     );
   }
 
@@ -51,7 +52,7 @@ import patchRequestInitGenerator from './helpers/monkey';
       log('Seeding LRS');
       const seedRequest = new Response(
         window.INITIAL__DATA,
-        { headers: new Headers({ 'Content-Type': 'application/hex+x-ndjson' }) }
+        { headers: new Headers({ 'Content-Type': 'application/hex+x-ndjson' }) },
       );
 
       timeout = window.setTimeout(() => {
@@ -59,8 +60,7 @@ import patchRequestInitGenerator from './helpers/monkey';
         mount();
       }, BOOT_TIMEOUT);
 
-      lrs
-        .api
+      (lrs.api as any)
         .feedResponse(seedRequest, true)
         .then(resolve)
         .catch(reject);
@@ -86,9 +86,9 @@ import patchRequestInitGenerator from './helpers/monkey';
     ['preloader', 'navbar-preview'].forEach((id) => {
       const elem = document.getElementById(id);
       if (elem) {
-        elem.parentElement.removeChild(elem);
+        elem.parentElement?.removeChild(elem);
       }
     });
-    document.getElementById(APP_ELEMENT).classList.remove('preloader-fixed');
+    document.getElementById(APP_ELEMENT)?.classList?.remove('preloader-fixed');
   }, preloaderTimeout);
 }());

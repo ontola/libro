@@ -14,7 +14,7 @@ export interface WebsiteCtx {
   websitePathname: string;
 }
 
-export const getWebsiteContextFromWebsite = (website: string): WebsiteCtx => {
+export const getWebsiteContextFromWebsite = (website?: string): WebsiteCtx => {
   const websiteIRI = rdf.namedNode(website);
   const websiteIRIStr = websiteIRI.value;
   const websiteOrigin = new URL(websiteIRIStr).origin;

@@ -1,10 +1,13 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { ComponentRegistration } from 'link-lib';
 import {
+  FC,
+  MapDataToPropsParam,
   register,
   value,
 } from 'link-redux';
-import React from 'react';
+import { ComponentType } from 'react';
 
 import { createTypographyComponent } from './components/RichText/TypographyElements';
 import CompActionButton from './components/ActionButton';
@@ -107,6 +110,10 @@ const childElementMap = {
 const childLinkMap = {
   ...childElementMap,
   href: value(ontola.href),
+};
+
+export interface ComponentMap {
+  [k: number]: [FC, MapDataToPropsParam] | [FC];
 }
 
 export const componentMap = {
@@ -208,12 +215,14 @@ export const componentMap = {
   [rdf.id(components.VoteData)]: [CompVoteData],
 };
 
-export const componentRegistrations = () => Object
-  .entries(componentMap)
-  .map(([id, [comp, propMap]]) => {
-    comp.type = rdf.fromId(id);
-    comp.topology = allTopologies;
-    comp.mapDataToProps = propMap;
+export const componentRegistrations = (): Array<Array<ComponentRegistration<ComponentType<any>>>> => (
+  Object
+    .entries((componentMap as unknown as ComponentMap))
+    .map(([id, [comp, propMap]]) => {
+      comp.type = rdf.fromId(id);
+      comp.topology = allTopologies;
+      comp.mapDataToProps = propMap;
 
-    return register(comp);
-  });
+      return register(comp);
+    })
+);

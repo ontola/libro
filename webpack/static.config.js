@@ -91,7 +91,7 @@ function createConfig(options) {
     devtool: options.devtool,
 
     entry: {
-      main: './app/index.jsx',
+      main: './app/index.tsx',
     },
 
     module: {

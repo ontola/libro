@@ -10,7 +10,7 @@ module.exports = merge(common, {
 
   entry: [
     'webpack-hot-middleware/client',
-    './app/index.jsx',
+    './app/index.tsx',
   ],
 
   mode: 'development',

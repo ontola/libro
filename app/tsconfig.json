@@ -8,6 +8,7 @@
       "dom",
       "dom.iterable"
     ],
+    "resolveJsonModule": true,
     "typeRoots": [
       "../@types",
       "../node_modules/@types",

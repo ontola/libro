@@ -16,7 +16,7 @@ import * as reducers from './reducers';
 
 const configureStore = (
   history: MemoryHistory,
-  preloadedState: unknown,
+  preloadedState?: unknown,
 ): Store => {
   let middleware;
 

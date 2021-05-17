@@ -3,12 +3,15 @@ import { ThemeProvider } from '@material-ui/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nl';
 import 'dayjs/locale/en';
-import LinkedRenderStore from 'link-lib';
-import { RenderStoreProvider, useLRS } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import {
+  LinkReduxLRSType,
+  RenderStoreProvider,
+  useLRS,
+} from 'link-redux';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
+import { Store } from 'redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 import AppFrame from '../routes/App';
@@ -16,32 +19,37 @@ import themes from '../themes';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
 
-const propTypes = {
-  Router: PropTypes.func,
-  lrs: PropTypes.instanceOf(LinkedRenderStore).isRequired,
-  store: PropTypes.shape({
-    dispatch: PropTypes.func.isRequired,
-    getState: PropTypes.func.isRequired,
-    subscribe: PropTypes.func.isRequired,
-  }).isRequired,
-  title: PropTypes.string,
-};
+export interface RouterProps {
+  children?: ReactNode;
+}
 
-const UpdateLRSIntl = ({ children }) => {
+export interface IndexContainerProps {
+  Router: FunctionComponent<RouterProps>;
+  lrs: LinkReduxLRSType;
+  store: Store;
+  title?: string;
+}
+
+export interface UpdateLRSIntlProps {
+  children: JSX.Element;
+}
+
+const UpdateLRSIntl = ({ children }: UpdateLRSIntlProps) => {
   const intl = useIntl();
   const lrs = useLRS();
-  lrs.intl = intl;
+  (lrs as any).intl = intl;
 
   return children;
 };
 
 const getThemeVariables = () => {
-  if (!__CLIENT__ || typeof window.WEBSITE_META === 'undefined' || Object.keys(window.WEBSITE_META).length === 0) {
+  const websiteMeta = __CLIENT__ ? window.WEBSITE_META : undefined;
+  if (typeof websiteMeta === 'undefined' || Object.keys(websiteMeta).length === 0) {
     return {};
   }
-  const websiteMeta = window.WEBSITE_META;
   const palette = {
     link: {
+      header: undefined as undefined | string,
       text: websiteMeta.primary_color,
     },
     primary: {
@@ -69,8 +77,8 @@ const IndexContainer = ({
   lrs,
   store,
   title,
-}) => {
-  const selectedLang = lrs.store.langPrefs[0];
+}: IndexContainerProps): JSX.Element => {
+  const selectedLang = (lrs.store as any).langPrefs[0];
   let messages;
   if (selectedLang.includes('nl')) {
     messages = dutchMessages;
@@ -81,7 +89,7 @@ const IndexContainer = ({
   }
   const themeName = getMetaContent('theme');
   const themeVariables = getThemeVariables();
-  const theme = (themes[themeName] || themes.common)(themeVariables);
+  const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);
 
   return (
     <Provider store={store}>
@@ -100,7 +108,5 @@ const IndexContainer = ({
     </Provider>
   );
 };
-
-IndexContainer.propTypes = propTypes;
 
 export default IndexContainer;
