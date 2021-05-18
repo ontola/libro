@@ -73,7 +73,9 @@ const styleSrc = [
 const workerSrc = [
   "'self'",
 ];
-const mediaSrc = [];
+const mediaSrc = [
+  "'self'",
+];
 
 if (assetsHost) {
   workerSrc.push(assetsHost);
