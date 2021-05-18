@@ -38,8 +38,8 @@ export function enhanceCtx(ctx) {
 
         if (manifestLocation) {
           ctx.manifest = await getBackendManifest(ctx, manifestLocation);
-        } else if (__DEVELOPMENT__) {
-          ctx.manifest = defaultManifest(ctx.request.origin);
+        } else {
+          ctx.manifest = defaultManifest(ctx.request.origin, false);
         }
       } catch (e) {
         if (!__DEVELOPMENT__) {
