@@ -11,7 +11,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Image from '../../../components/Image';
 import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
@@ -82,10 +81,7 @@ const CaseContainer: FC = () => {
   if (image !== undefined) {
     renderedImage = (
       <div className={classes.imageContainer}>
-        <Image
-          className={classes.image}
-          linkedProp={image}
-        />
+        <Property className={classes.image} label={schema.image} />
       </div>
     );
   } else {
