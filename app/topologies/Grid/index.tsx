@@ -1,4 +1,5 @@
 import { Grid as MaterialGrid } from '@material-ui/core';
+import { GridTypeMap } from '@material-ui/core/Grid/Grid';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
@@ -10,7 +11,7 @@ import './Grid.scss';
 
 export const gridTopology = argu.grid;
 
-type GridProps = Record<string, unknown>;
+type GridProps = GridTypeMap['props'] & { className?: string };
 
 class Grid extends TopologyProvider<GridProps> {
   constructor(props: GridProps) {
