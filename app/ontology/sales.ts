@@ -22,14 +22,17 @@ export default {
   Features: sales('Features'),
   HomePage: sales('HomePage'),
   MoreInformationBlock: sales('MoreInformationBlock'),
+  PricingPage: sales('PricingPage'),
   ProcessPage: sales('ProcessPage'),
   ProductPage: sales('ProductPage'),
   Proposition: sales('Proposition'),
   Step: sales('Step'),
+  Tier: sales('Tier'),
 
   /* properties */
   backgroundImage: sales('backgroundImage'),
   backgroundImageMobile: sales('backgroundImageMobile'),
+  bestOffer: sales('bestOffer'),
   blogShowcase: sales('blogShowcase'),
   blogs: sales('blogs'),
   buttonText: sales('buttonText'),
@@ -45,7 +48,14 @@ export default {
   features: sales('features'),
   featuresShowcase: sales('featuresShowcase'),
   flexDirection: sales('flexDirection'),
+  includes: sales('includes'),
+  moreDescription: sales('moreDescription'),
   moreInformationBlock: sales('moreInformationBlock'),
+  morePageLink: sales('morePageLink'),
+  morePageName: sales('morePageName'),
+  moreTitle: sales('moreTitle'),
+  priceInterval: sales('priceInterval'),
+  priceUnit: sales('priceUnit'),
   productTextContent: sales('productTextContent'),
   productTextTitle: sales('productTextTitle'),
   propositions: sales('propositions'),
@@ -58,4 +68,9 @@ export default {
   textColor: sales('textColor'),
   textTitle: sales('textTitle'),
   theme: sales('theme'),
+  tiers: sales('tiers'),
+
+  /* Topologies */
+  // eslint-disable-next-line sort-keys
+  blueBlock: sales('topologies/blueBlock'),
 };

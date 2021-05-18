@@ -19,6 +19,10 @@ import {
 } from '../../../components/SalesWebsite';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  blogs: {
+    marginBottom: '15em',
+    marginTop: '10em',
+  },
   buttonPrimary: {
     backgroundColor: '#B33A00',
     borderRadius: 3,
@@ -28,6 +32,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: 20,
   },
   caseContainer: {
+    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     padding: 20,
   },
   gridStyle: {
@@ -63,6 +68,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: '1fr',
     },
+    backgroundColor: 'white',
     borderRadius: 5,
     boxShadow: '0 0 25px rgba(0,0,0,0.2)',
     display: 'grid',
@@ -104,28 +110,31 @@ const HomePageFull: FC = () => {
         title={title.value}
       >
         <Container>
-          <Showcase>
-            <div className={classes.propositionSelector}>
-              <Property label={sales.showcase} />
-            </div>
+          <Showcase
+            className={classes.propositionSelector}
+            spacing={0}
+          >
+            <Property label={sales.showcase} />
           </Showcase>
         </Container>
       </Header>
-      <div className={classes.caseContainer}>
-        <Container>
-          <Property label={sales.cases} />
-        </Container>
-      </div>
+      <Container className={classes.caseContainer}>
+        <Property noBackdrop label={sales.cases} />
+      </Container>
       <Container>
-        <div className={classes.propositionContainer}>
-          <Grid container direction="row">
-            <Property label={sales.propositions} />
-          </Grid>
-        </div>
-        <Showcase>
+        <Grid
+          container
+          className={classes.propositionContainer}
+          direction="row"
+        >
+          <Property label={sales.propositions} />
+        </Grid>
+        <Showcase className={classes.propositionContainer}>
           <Property label={sales.duoBlock} />
         </Showcase>
-        <Property label={sales.blogs} />
+        <div className={classes.blogs}>
+          <Property label={sales.blogs} />
+        </div>
       </Container>
       <CallToAction
         buttonText={callToActionButtonText.value}

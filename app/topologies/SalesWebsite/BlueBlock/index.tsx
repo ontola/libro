@@ -7,7 +7,7 @@ import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container, { ContainerProps } from '../../Container';
 import { TopologyContent } from '../../Topology';
 
-export const blueBlockTopology = sales.ns('blueBlock');
+export const blueBlockTopology = sales.blueBlock;
 
 const styles = (theme: SalesTheme) => ({
   root: {

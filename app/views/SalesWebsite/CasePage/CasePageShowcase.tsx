@@ -11,7 +11,11 @@ import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+export interface CasePageShowcaseProps {
+  noBackdrop?: boolean;
+}
+
+const useStyles = makeStyles<SalesTheme, CasePageShowcaseProps>((theme) => ({
   arrow: {
     color: '#2D7080',
     fontSize: 40,
@@ -21,7 +25,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   productButton: {
     alignItems: 'flex-start',
-    background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
+    background: (props) => props.noBackdrop ? 'none' : 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     justifyContent: 'center',
     padding: 20,
     textAlign: 'left',
@@ -38,8 +42,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const CasePageShowcase: FC = () => {
-  const classes = useStyles();
+const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
+  const classes = useStyles(props);
   const [name] = useProperty(schema.name);
   const [tagline] = useProperty(sales.tagline);
   const [text] = useProperty(schema.text);

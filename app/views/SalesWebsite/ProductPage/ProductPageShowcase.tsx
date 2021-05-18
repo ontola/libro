@@ -1,5 +1,8 @@
-import { Button, Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import {
+  Button,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -29,6 +32,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textAlign: 'left',
     textTransform: 'none',
   },
+  root: {
+    width: '28em',
+  },
   subTextContainer: {
     [theme.breakpoints.up('xs')]: {
       height: 66,
@@ -45,29 +51,31 @@ const ProductPageShowcase: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);
 
   return (
-    <Button
-      className={classes.productButton}
-      href={subject.value}
-    >
-      <Grid
-        container
-        alignItems="flex-start"
-        direction="column"
+    <Grid item>
+      <Button
+        className={classes.productButton}
+        href={subject.value}
       >
-        <Typography
-          className={classes.title}
-          variant="h3"
+        <Grid
+          container
+          alignItems="flex-start"
+          direction="column"
         >
-          {name.value}
-        </Typography>
-        <div className={classes.subTextContainer}>
-          <Typography variant="body1">
-            {tagline.value}
+          <Typography
+            className={classes.title}
+            variant="h3"
+          >
+            {name.value}
           </Typography>
-        </div>
-        <ReadMoreButton />
-      </Grid>
-    </Button>
+          <div className={classes.subTextContainer}>
+            <Typography variant="body1">
+              {tagline.value}
+            </Typography>
+          </div>
+          <ReadMoreButton />
+        </Grid>
+      </Button>
+    </Grid>
   );
 };
 

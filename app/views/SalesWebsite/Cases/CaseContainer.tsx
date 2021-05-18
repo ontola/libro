@@ -16,6 +16,10 @@ import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
+export interface CaseContainerProps {
+  noBackdrop?: boolean;
+}
+
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   '@keyframes myEffect': {
     '0%': {
@@ -70,7 +74,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const CaseContainer: FC = () => {
+const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
   const classes = useStyles();
   const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
@@ -102,7 +106,7 @@ const CaseContainer: FC = () => {
       {renderedImage}
       <Showcase>
         <div className={classes.propositionSelector}>
-          <Property label={sales.caseShowcase} />
+          <Property childProps={{ noBackdrop }} label={sales.caseShowcase} />
         </div>
       </Showcase>
       <Button
