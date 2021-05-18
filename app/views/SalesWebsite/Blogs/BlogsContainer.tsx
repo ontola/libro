@@ -1,11 +1,14 @@
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
+import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   FC,
-  Property,
+  Resource,
   useProperty,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,6 +26,8 @@ const useStyles = makeStyles<SalesTheme>({
 const BlogsContainer: FC = () => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
+  const [blogShowcase] = useProperty(sales.blogShowcase) as SomeNode[];
+  const blogs = useResourceProperty(blogShowcase, rdfs.member);
 
   return (
     <Grid
@@ -30,15 +35,23 @@ const BlogsContainer: FC = () => {
       alignItems="flex-start"
       direction="column"
     >
-      <Typography
-        className={classes.textStyle}
-        variant="h2"
-      >
-        {name.value}
-      </Typography>
-      <Showcase>
-        <Property label={sales.blogShowcase} />
-      </Showcase>
+      <Grid item>
+        <Typography
+          className={classes.textStyle}
+          variant="h2"
+        >
+          {name.value}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Showcase>
+          {blogs.map((iri) => (
+            <Grid item key={iri.value}>
+              <Resource subject={iri} />
+            </Grid>
+          ))}
+        </Showcase>
+      </Grid>
     </Grid>
   );
 };

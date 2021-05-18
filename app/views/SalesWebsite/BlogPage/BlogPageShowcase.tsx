@@ -43,6 +43,9 @@ const useStyles = makeStyles<SalesTheme>({
     padding: '0 30px',
     textTransform: 'none',
   },
+  root: {
+    maxWidth: '28em',
+  },
   text: {
     textAlign: 'left',
   },
@@ -65,7 +68,7 @@ const BlogPageShowcase: FC = ({ subject }) => {
   const TypeWithClassName = Type as any;
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardActionArea href={subject.value}>
         <CardMedia
           classes={{ root: classes.mediaRoot }}
