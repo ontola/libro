@@ -14,6 +14,7 @@ import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
   FC,
+  Resource,
   useProperty,
   useResourceLinks,
   useResourceProperty,
@@ -222,11 +223,7 @@ const FacetContainer: FC = () => {
         >
           <div>
             <div className={containerClass} />
-            <video autoPlay loop muted className={classes.video}>
-              <source
-                src={video!.value}
-              />
-            </video>
+            <Resource autoPlay loop muted className={classes.video} subject={video} />
           </div>
         </Grid>
       </Grid>

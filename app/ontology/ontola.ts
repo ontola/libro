@@ -44,6 +44,7 @@ export default {
   SearchResult: ontola('SearchResult'),
   Sorting: ontola('Sorting'),
   UnconfirmedUser: ontola('UnconfirmedUser'),
+  VideoSet: ontola('VideoSet'),
   Widget: ontola('Widget'),
 
   /* properties */
@@ -92,8 +93,10 @@ export default {
   ['format/avif']: ontola('format/avif'),
   ['format/gif']: ontola('format/gif'),
   ['format/jpg']: ontola('format/jpg'),
+  ['format/mp4']: ontola('format/mp4'),
   ['format/png']: ontola('format/png'),
   ['format/svg']: ontola('format/svg'),
+  ['format/webm']: ontola('format/webm'),
   ['format/webp']: ontola('format/webp'),
   ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
   groupBy: ontola('groupBy'),
