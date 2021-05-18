@@ -60,7 +60,7 @@ const Toolbar: React.FC = () => {
   const intl = useIntl();
   const [saving, setSaving] = React.useState(false);
 
-  const stripID = (id: string) => id.replace(/^https:\/\/.*\/_libro\/docs\//i, '');
+  const stripID = (iri: string): string => iri.split('_libro/docs/').pop()!;
 
   const showMessage = (msg: string) => lrs.actions.ontola.showSnackbar(msg);
 

@@ -26,7 +26,6 @@ const Editor: React.FC = () => {
       <Grid
         container
         direction="row"
-        style={{ height: '90vh' }}
       >
         <Grid item xs={1}>
           <Skeleton
@@ -46,7 +45,7 @@ const Editor: React.FC = () => {
   return (
     <MonacoEditor
       defaultLanguage="typescript"
-      height="90vh"
+      height="inherit"
       language="typescript"
       line={0}
       options={{

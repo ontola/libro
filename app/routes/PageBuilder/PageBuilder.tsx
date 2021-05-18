@@ -12,7 +12,7 @@ import Editor from './Editor';
 import PageViewer from './PageViewer';
 import Toolbar from './Toolbar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     height: 'calc(100vh - 3.2rem)',
     overflow: 'hidden',
@@ -29,52 +29,70 @@ const useStyles = makeStyles({
     backgroundClip: 'padding-box',
     boxSizing: 'border-box',
     cursor: 'ew-resize',
+    flexShrink: 0,
     opacity: '.5',
-    width: '1rem',
+    width: '.4rem',
     zIndex: 1,
   },
   viewer: {
-    height: 'calc(100vh - 3.2rem - 4rem)',
+    height: 'calc(100vh - 3.2rem)',
     overflow: 'scroll',
   },
-});
+  windowOverlay: {
+    bottom: 0,
+    left: 0,
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    zIndex: theme.zIndex.appBar + 1,
+  },
+}));
 
 const PageBuilder = (): JSX.Element => {
   const classes = useStyles();
   const { showEditor } = React.useContext(builderContext);
 
   return (
-    <React.Fragment>
+    <div className={classes.windowOverlay}>
       <Toolbar />
-      {showEditor ?
-        <Grid
-          container
-          className={classes.container}
-          direction="row"
-        >
-          <SplitPane
-            defaultSize={parseInt(localStorage.getItem(`${storageKey}.splitPos`) ?? '300', 10)}
-            minSize={50}
-            resizerClassName={classes.resizer}
-            split="vertical"
-            onChange={(size: number) => localStorage.setItem(`${storageKey}.splitPos`, size.toString())}
+      {showEditor
+        ? (
+          <Grid
+            container
+            className={classes.container}
+            direction="row"
           >
-            <Paper className={classes.editor}>
-              <ErrorBoundary>
-                <Editor />
-              </ErrorBoundary>
-            </Paper>
-            <Grid
-              container
-              className={classes.viewer}
-              direction="column"
+            <SplitPane
+              defaultSize={parseInt(localStorage.getItem(`${storageKey}.splitPos`) ?? '300', 10)}
+              minSize={50}
+              resizerClassName={classes.resizer}
+              split="vertical"
+              onChange={(size: number) => localStorage.setItem(`${storageKey}.splitPos`, size.toString())}
             >
-              <PageViewer />
-            </Grid>
-          </SplitPane>
-        </Grid> :
-        <PageViewer />}
-    </React.Fragment>
+              <Paper className={classes.editor}>
+                <ErrorBoundary>
+                  <Editor />
+                </ErrorBoundary>
+              </Paper>
+              <Grid
+                container
+                className={classes.viewer}
+                direction="column"
+              >
+                <PageViewer />
+              </Grid>
+            </SplitPane>
+          </Grid>
+        ) : (
+          <Grid
+            container
+            className={classes.viewer}
+            direction="column"
+          >
+            <PageViewer />
+          </Grid>
+        )}
+    </div>
   );
 };
 
