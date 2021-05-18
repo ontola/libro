@@ -1,6 +1,6 @@
 import argu from '../../app/ontology/argu';
 
-export default (origin) => {
+export default (origin, websocket = true) => {
   const t = new URL(origin);
   t.host = `analytics.${t.host}`;
   const matomoHostname = t.toString();
@@ -29,6 +29,7 @@ export default (origin) => {
       styled_headers: null,
       theme: 'default',
       theme_options: '',
+      websocket,
     },
     rdf_type: argu.Manifest.value,
     scope: origin,
