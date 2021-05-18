@@ -9,10 +9,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LoadingCard } from '../../../components/Loading';
 import MapView from '../../../containers/MapView';
-import { listToArr } from '../../../helpers/data';
 import { isResource } from '../../../helpers/types';
+import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
@@ -34,6 +33,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const lrs = useLRS();
   const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
+  const children = useContainerToArr(childrenPlacements);
   const onSelect = React.useCallback((feature) => {
     const id = feature?.getId();
     if (id) {
@@ -48,28 +48,38 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const handleNavigate = React.useCallback((resource) => (
     lrs.actions.ontola.navigate(isNamedNode(resource) ? resource : app.ns('#'))
   ), [lrs]);
-  const children = listToArr(lrs, [], childrenPlacements);
+  const placements = React.useMemo(() => {
+    if (!Array.isArray(children)) {
+      return [];
+    }
+
+    return (
+      [
+        linkedProp,
+        ...children.filter(isNode).filter((child) => child !== linkedProp),
+      ].filter(Boolean)
+    );
+  }, [linkedProp, children]);
 
   if (!isResource(linkedProp)) {
     return null;
   }
 
   if (!Array.isArray(children)) {
-    return <LoadingCard />;
-  }
-
-  if (!linkedProp && children.length === 0) {
-    return null;
+    return (
+      <MapView
+        key="loading-map"
+        large={large}
+        placements={[linkedProp]}
+      />
+    );
   }
 
   return (
     <MapView
       large={large}
       navigate={handleNavigate}
-      placements={[
-        linkedProp,
-        ...children.filter(isNode).filter((child) => child !== linkedProp),
-      ].filter(Boolean)}
+      placements={placements}
       onMapClick={onMapClick}
       onSelect={onSelect}
     />
