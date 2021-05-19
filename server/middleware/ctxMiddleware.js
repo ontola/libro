@@ -1,9 +1,14 @@
+import { URL } from 'url';
+
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
-import { URL } from 'url'
 import uuidv4 from 'uuid/v4';
 import merge from 'deepmerge';
 
-import { jwtEncryptionToken, redisSettingsNS, standaloneLibro } from '../config'
+import {
+  jwtEncryptionToken,
+  redisSettingsNS,
+  standaloneLibro,
+} from '../config'
 import defaultManifest from '../utils/defaultManifest';
 import logging from '../utils/logging'
 import { getBackendManifest } from '../utils/manifest';
@@ -14,6 +19,7 @@ import {
   ALLOW_METHODS,
   ALLOW_ORIGIN,
 } from '../utils/proxies/helpers';
+
 import { client } from './sessionMiddleware'
 
 const BACKEND_TIMEOUT = 3000;
@@ -129,7 +135,9 @@ export function enhanceCtx(ctx) {
       ctx.manifest = defaultManifest(ctx.request.origin);
     }
 
-    if (!ctx.manifest) {
+    if (!ctx.manifest && await ctx.documentRoute()) {
+      ctx.manifest = await ctx.documentManifest();
+    } else if (!ctx.manifest) {
       try {
         const manifestLocation = location
           || ctx.request.headers.manifest
@@ -148,8 +156,6 @@ export function enhanceCtx(ctx) {
         ctx.manifest = defaultManifest(ctx.request.origin);
       }
     }
-
-    ctx.manifest = merge(ctx.manifest, (await ctx.documentManifestOverrides()) ?? {});
 
     return ctx.manifest;
   };
@@ -222,7 +228,7 @@ export function enhanceCtx(ctx) {
         ctx.websiteIRI = ctx.request.headers['website-iri']
       } else {
         const manifest = await ctx.getManifest();
-        ctx.websiteIRI = manifest?.ontola?.websiteIRI ?? manifest?.scope;
+        ctx.websiteIRI = manifest?.ontola?.website_iri ?? manifest?.scope;
       }
     }
 

@@ -76,7 +76,7 @@ export const renderFullPage = async (ctx, data) => {
           <link rel="manifest" href="${manifest.scope}/manifest.json">
           ${prerenderMetaTags(ctx, seed)}
 
-          <meta name="website-iri" content="${manifest.ontola.websiteIRI ?? manifest.scope ?? ''}">
+          <meta name="website-iri" content="${manifest.ontola.website_iri ?? manifest.scope ?? ''}">
           <meta property="og:type" content="website">
           <meta name="mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-capable" content="yes">

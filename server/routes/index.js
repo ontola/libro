@@ -37,8 +37,9 @@ import {
   docMiddleware,
   document,
   documents,
+  offlineDocument,
   saveDocument,
-} from './document';
+} from './document'
 import health from './health';
 import logout from './logout';
 import precacheManifest from './manifests';
@@ -114,6 +115,8 @@ const routes = async function routes(app, port) {
   // Static files
   router.get('/static/*', serveStatic('.', staticCompressionOpts), () => {});
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
+  router.get('/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
+  router.get('/*/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => {});
   if (!standaloneLibro) {
     router.get('/assets/*', backend);

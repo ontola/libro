@@ -32,7 +32,7 @@ const hexJSONDataType = (object) => {
     : rdfx.ns('blankNode').value;
 };
 
-const renderDoc = async (ctx) => {
+export const renderDoc = async (ctx) => {
   try {
     const source = await ctx.documentSource();
     if (!source) {
@@ -141,4 +141,14 @@ export const saveDocument = async (ctx) => {
     logging.error(err);
     ctx.status = 500;
   }
+}
+
+export const offlineDocument = async (ctx, next) => {
+  const source = await ctx.documentSource();
+
+  if (source) {
+    return await renderDoc(ctx);
+  }
+
+  return next();
 }

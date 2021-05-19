@@ -29,6 +29,7 @@ export default (origin, websocket = true) => {
       styled_headers: null,
       theme: 'default',
       theme_options: '',
+      website_iri: origin,
       websocket,
     },
     rdf_type: argu.Manifest.value,
