@@ -46,7 +46,7 @@ import serviceWorker from './service_workers';
 import maps from './maps';
 import robots from './robots';
 
-const ONE_WEEK = 604800000;
+const ONE_YEAR = 31536000000;
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -61,7 +61,7 @@ const staticCompressionOpts = {
   br: true,
   extensions: ['br', 'gzip', 'deflate', 'identity'],
   index: false,
-  maxage: ONE_WEEK,
+  maxage: ONE_YEAR,
 };
 
 const errorMiddleware = getErrorMiddleware();

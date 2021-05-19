@@ -24,6 +24,7 @@ const MenuNavbar = () => {
       <NavbarLinkLink
         icon={icon}
         label="Menu"
+        title="Menu"
         onClick={onClick}
       />
     );
