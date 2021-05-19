@@ -1,9 +1,11 @@
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
+import { URL } from 'url'
 import uuidv4 from 'uuid/v4';
 import merge from 'deepmerge';
 
-import { jwtEncryptionToken, standaloneLibro } from '../config'
+import { jwtEncryptionToken, redisSettingsNS, standaloneLibro } from '../config'
 import defaultManifest from '../utils/defaultManifest';
+import logging from '../utils/logging'
 import { getBackendManifest } from '../utils/manifest';
 import { EXEC_HEADER_NAME } from '../utils/actions';
 import {
@@ -12,8 +14,15 @@ import {
   ALLOW_METHODS,
   ALLOW_ORIGIN,
 } from '../utils/proxies/helpers';
+import { client } from './sessionMiddleware'
 
 const BACKEND_TIMEOUT = 3000;
+
+const stemIri = (iri) => {
+  const url = new URL(iri);
+
+  return `${url.origin}${url.pathname}`;
+};
 
 export function enhanceCtx(ctx) {
   ctx.res.locals = { nonce: uuidv4() };
@@ -26,7 +35,96 @@ export function enhanceCtx(ctx) {
     ctx.response.set(EXEC_HEADER_NAME, action);
   };
 
-  ctx.getManifest = async (location, manifestOverrides = {}) => {
+  /**
+   * Retrieves the document manifest from redis, if any.
+   */
+  ctx.documentManifestOverrides = async () => {
+    if (ctx._documentManifestOverrides !== undefined) {
+      return ctx._documentManifestOverrides;
+    }
+
+    try {
+      const docKey = await ctx.documentRoute();
+
+      const manifestOverride = await client.hget(docKey, 'manifestOverride');
+
+      ctx._documentManifestOverrides = JSON.parse(manifestOverride);
+    } catch (e) {
+      logging.error(e);
+      ctx._documentManifestOverrides = null;
+    }
+
+    return ctx._documentManifestOverrides;
+  };
+
+  /**
+   * Retrieves the document manifest from redis, if any.
+   */
+  ctx.documentManifest = async () => {
+    if (ctx._documentManifest !== undefined) {
+      return ctx._documentManifest;
+    }
+
+    try {
+      const overrides = await ctx.documentManifestOverrides();
+      ctx._documentManifest = merge(defaultManifest(ctx.request.href), overrides ?? {});
+    } catch (e) {
+      logging.error(e);
+      ctx._documentManifest = null;
+    }
+
+    return ctx._documentManifest;
+  };
+
+  /**
+   * Retrieves the source for a document.
+   */
+  ctx.documentSource = async () => {
+    if (ctx._documentSource !== undefined) {
+      return ctx._documentSource;
+    }
+
+    try {
+      const docKey = await ctx.documentRoute();
+      ctx._documentSource = await client.hget(docKey, 'source');
+    } catch (e) {
+      logging.error(e);
+      ctx._documentSource = null;
+    }
+
+    return ctx._documentSource;
+  }
+
+  /**
+   * Resolves a document key if the current route falls within a Libro document.
+   */
+  ctx.documentRoute = async () => {
+    if (ctx._documentRoute !== undefined) {
+      return ctx._documentRoute;
+    }
+
+    try {
+      const startRoute = `${redisSettingsNS}.routes.start.`;
+
+      const startKeys = await client.keys(`${startRoute}*`);
+      const strippedKeys = startKeys.map((key) => key.replace(startRoute, ''));
+      const result = strippedKeys.find((key) => stemIri(ctx.request.href) === key
+        || ctx.request.href.startsWith(`${key}/`));
+
+      if (!result) {
+        ctx._documentRoute = null;
+      }
+
+      ctx._documentRoute = client.get(`${startRoute}${result}`);
+    } catch (e) {
+      logging.error(e);
+      ctx._documentRoute = null;
+    }
+
+    return ctx._documentRoute;
+  };
+
+  ctx.getManifest = async (location) => {
     if (standaloneLibro) {
       ctx.manifest = defaultManifest(ctx.request.origin);
     }
@@ -51,7 +149,7 @@ export function enhanceCtx(ctx) {
       }
     }
 
-    ctx.manifest = merge(ctx.manifest, manifestOverrides);
+    ctx.manifest = merge(ctx.manifest, (await ctx.documentManifestOverrides()) ?? {});
 
     return ctx.manifest;
   };
@@ -120,7 +218,12 @@ export function enhanceCtx(ctx) {
 
   ctx.getWebsiteIRI = async () => {
     if (!ctx.websiteIRI) {
-      ctx.websiteIRI = ctx.request.headers['website-iri'] || (await ctx.getManifest())?.scope;
+      if (ctx.request.headers['website-iri']) {
+        ctx.websiteIRI = ctx.request.headers['website-iri']
+      } else {
+        const manifest = await ctx.getManifest();
+        ctx.websiteIRI = manifest?.ontola?.websiteIRI ?? manifest?.scope;
+      }
     }
 
     return ctx.websiteIRI;

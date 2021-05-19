@@ -7,7 +7,7 @@ import rdf, {
   isNamedNode,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import { OK } from 'http-status-codes';
+import { INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 
 import http from '../../app/ontology/http';
 import ld from '../../app/ontology/ld';
@@ -32,30 +32,12 @@ const hexJSONDataType = (object) => {
     : rdfx.ns('blankNode').value;
 };
 
-const stemIri = (iri) => {
-  const url = new URL(iri);
-
-  return `${url.origin}${url.pathname}`;
-};
-
-const findStartRoute = async (iri) => {
-  const startRoute = `${redisSettingsNS}.routes.start.`;
-
-  const startKeys = await client.keys(`${startRoute}*`);
-  const strippedKeys = startKeys.map((key) => key.replace(startRoute, ''));
-  const result = strippedKeys.find((key) => stemIri(iri) === key || iri.startsWith(`${key}/`));
-
-  if (!result) {
-    return undefined;
-  }
-
-  return client.get(`${startRoute}${result}`);
-};
-
-const renderDoc = async (ctx, key) => {
+const renderDoc = async (ctx) => {
   try {
-    const doc = await client.hgetall(key);
-    const { manifestOverride, source } = doc;
+    const source = await ctx.documentSource();
+    if (!source) {
+      throw new Error('No or invalid document source');
+    }
     const quads = parseToGraph(source, ctx.request.origin).flatMap(([subject, store]) => {
       store.addQuadruples([
         [subject, http.statusCode, rdf.literal(OK), ll.meta],
@@ -74,7 +56,7 @@ const renderDoc = async (ctx, key) => {
       q.graph.value === 'rdf:defaultGraph' ? ld.add.value : q.graph.value,
     ])).join('\n');
 
-    await ctx.getManifest(null, JSON.parse(manifestOverride));
+    await ctx.getManifest();
     ctx.response.body = await renderFullPage(ctx, body);
   } catch (e) {
     logging.error(e);
@@ -84,13 +66,28 @@ const renderDoc = async (ctx, key) => {
 
 export const docMiddleware = async (ctx, next) => {
   try {
-    const docKey = await findStartRoute(ctx.request.href);
+    const docKey = await ctx.documentRoute();
 
     if (!docKey) {
       return next();
     }
 
-    return renderDoc(ctx, docKey);
+    if (new URL(ctx.request.href).pathname.split('/').pop() === 'manifest.json') {
+      try {
+        const manifest = await ctx.documentManifest();
+
+        ctx.res.setHeader('Content-Type', 'application/json');
+        ctx.status = OK;
+        ctx.body = JSON.stringify(manifest);
+      } catch (e) {
+        logging.error(e);
+        ctx.status = INTERNAL_SERVER_ERROR;
+      }
+
+      return;
+    }
+
+    return renderDoc(ctx);
   } catch (e) {
     logging.error(e);
 
