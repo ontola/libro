@@ -1,5 +1,4 @@
 import {
-  Button,
   Grid,
   Typography,
 } from '@material-ui/core';
@@ -11,6 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import Button from '../../../components/Button';
 import { ReadMoreButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
@@ -53,6 +53,7 @@ const ProductPageShowcase: FC = ({ subject }) => {
   return (
     <Grid item>
       <Button
+        plain
         className={classes.productButton}
         href={subject.value}
       >

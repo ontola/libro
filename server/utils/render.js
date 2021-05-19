@@ -86,7 +86,7 @@ export const renderFullPage = async (ctx, data) => {
           <meta name="msapplication-navbutton-color" content="${manifest.theme_color ?? ''}">
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
           <meta name="msapplication-starturl" content="${manifest.start_url ?? ''}">
-          <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
+          <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=5.0, user-scalable=yes">
           <meta content="269911176456825" property="fb:app_id">
           <meta name="theme" content="${manifest.ontola.theme ?? 'common'}">
           <meta name="themeOpts" content="${manifest.ontola.theme_options ?? ''}">

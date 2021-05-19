@@ -78,6 +78,7 @@ const renderDoc = async (ctx, key) => {
     ctx.response.body = await renderFullPage(ctx, body);
   } catch (e) {
     logging.error(e);
+    ctx.response.status = INTERNAL_SERVER_ERROR;
   }
 };
 

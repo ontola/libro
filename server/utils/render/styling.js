@@ -38,12 +38,12 @@ export const icons = (ctx) => ctx
   .manifest
   .icons
   ?.map((icon) => {
-    if (icon.src.includes('favicon')) {
-      return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
-    } else if (icon.src.includes('apple-touch-icon')) {
+    if (icon.src.includes('apple-touch-icon')) {
       return `<link rel="apple-touch-icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
     } else if (icon.src.includes('mstile-310x310.png')) {
       return `<meta name="msapplication-TileImage" content="${icon.src}">`;
+    } else if (icon.src.includes('favicon')) {
+      return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
     }
 
     return null;

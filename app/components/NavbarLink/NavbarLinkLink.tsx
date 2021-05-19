@@ -63,6 +63,7 @@ const NavbarLinkLink = ({
 
   let Component: React.ComponentType<any> | string;
   const buttonProps: Partial<React.ButtonHTMLAttributes<unknown> & NavLinkProps & ButtonProps> = {
+    'aria-label': title,
     className: classes.button,
     title: title,
   };
