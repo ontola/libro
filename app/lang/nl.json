@@ -513,6 +513,18 @@
       "value": "date"
     }
   ],
+  "https://app.argu.co/i18n/footer/policy": [
+    {
+      "type": 0,
+      "value": "Algemene Voorwaarden"
+    }
+  ],
+  "https://app.argu.co/i18n/footer/privacy": [
+    {
+      "type": 0,
+      "value": "Privacy"
+    }
+  ],
   "https://app.argu.co/i18n/forms/actions/cancel": [
     {
       "type": 0,
@@ -693,6 +705,12 @@
     {
       "type": 0,
       "value": "Uitloggen"
+    }
+  ],
+  "https://app.argu.co/i18n/imageAlts/arguLogo": [
+    {
+      "type": 0,
+      "value": "het Argu logo"
     }
   ],
   "https://app.argu.co/i18n/navbar/search": [

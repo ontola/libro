@@ -12,6 +12,7 @@ import * as ontXsd from '@ontologies/xsd';
 import {
   DataObject,
   SerializableDataTypes,
+  seq as linkSeq,
   normalizeType,
   toGraph,
 } from 'link-lib';
@@ -22,6 +23,7 @@ import ontAppSlashless from '../../ontology/appSlashless';
 import ontArgu from '../../ontology/argu';
 import ontDbo from '../../ontology/dbo';
 import ontDexes from '../../ontology/dexes';
+import ontElements from '../../ontology/elements';
 import ontEx from '../../ontology/ex';
 import ontExample from '../../ontology/example';
 import ontFa4 from '../../ontology/fa4';
@@ -88,7 +90,7 @@ const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, 
     ) as T;
 };
 
-const parseToGraph = (source: string): ParsedObject[] => {
+const parseToGraph = (source: string, origin: string = window?.location.origin): ParsedObject[] => {
   // @ts-ignore
   const as = ontAs;
   // @ts-ignore
@@ -118,6 +120,8 @@ const parseToGraph = (source: string): ParsedObject[] => {
   const dbo = ontDbo;
   // @ts-ignore
   const dexes = ontDexes;
+  // @ts-ignore
+  const elements = ontElements;
   // @ts-ignore
   const ex = ontEx;
   // @ts-ignore
@@ -166,12 +170,13 @@ const parseToGraph = (source: string): ParsedObject[] => {
   const wdt = ontWdt;
 
   // @ts-ignore
-  const local = (s: string) => rdf.namedNode(`${window.location.origin}/${s}`);
+  const local = (s: string) => rdf.namedNode(`${origin}/${s}`);
   // @ts-ignore
   const url = (s: string) => rdf.namedNode(s);
   // @ts-ignore
   const date = (s: string) => rdf.literal(new Date(s));
-
+  // @ts-ignore
+  const seq = linkSeq;
   // tslint:disable-next-line:no-eval
   const data = eval(source);
 

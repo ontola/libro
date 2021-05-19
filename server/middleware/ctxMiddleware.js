@@ -1,5 +1,6 @@
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
 import uuidv4 from 'uuid/v4';
+import merge from 'deepmerge';
 
 import { jwtEncryptionToken, standaloneLibro } from '../config'
 import defaultManifest from '../utils/defaultManifest';
@@ -25,9 +26,9 @@ export function enhanceCtx(ctx) {
     ctx.response.set(EXEC_HEADER_NAME, action);
   };
 
-  ctx.getManifest = async (location) => {
+  ctx.getManifest = async (location, manifestOverrides = {}) => {
     if (standaloneLibro) {
-      ctx.manifest = defaultManifest(ctx.request.origin)
+      ctx.manifest = defaultManifest(ctx.request.origin);
     }
 
     if (!ctx.manifest) {
@@ -49,6 +50,8 @@ export function enhanceCtx(ctx) {
         ctx.manifest = defaultManifest(ctx.request.origin);
       }
     }
+
+    ctx.manifest = merge(ctx.manifest, manifestOverrides);
 
     return ctx.manifest;
   };

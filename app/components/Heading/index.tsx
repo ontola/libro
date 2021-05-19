@@ -28,7 +28,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => {
     display: 'inherit',
   };
   style.navbar = {
-    color: theme.palette.primary.contrastText,
+    color: theme.appBar.resolveColor(),
   };
   style.notice = {
     color: theme.palette.grey[600],

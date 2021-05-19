@@ -34,6 +34,7 @@ const ContentFrame = ({
 }: ContentFrameProps): JSX.Element => {
   const footerResources = (themeOptions.get('footerResources')?.split(',') ?? [])
     .map((iri) => rdf.namedNode(iri) as Node);
+  const footerResource = themeOptions.get('footerResource');
   const Header = headers[theme] || headers.common;
 
   return (
@@ -56,7 +57,9 @@ const ContentFrame = ({
             <ScrollMemory />
             {children}
           </div>
-          <Footer resources={footerResources} />
+          <Footer legacy={!footerResource} resources={footerResources}>
+            {footerResource && <Resource subject={rdf.namedNode(footerResource)} />}
+          </Footer>
           <Resource subject={ontola.ns('snackbar/manager')} />
           <Resource subject={ontola.ns('dialog/manager')} />
           <Popup />

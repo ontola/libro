@@ -63,4 +63,9 @@ export default {
   policy: app('policy'),
   privacy: app('privacy'),
   search: app('search'),
+  target: app('target'),
+
+  /* individuals */
+  // eslint-disable-next-line sort-keys
+  ['individuals/searchTarget']: app('individuals/searchTarget'),
 };

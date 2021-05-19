@@ -17,7 +17,7 @@ const EDITOR_UPDATE_FQ = 300;
 export const useParsedSource = (): [
   LinkReduxLRSType,
   Node[],
-    string | undefined,
+  string | undefined,
   Dispatch<SetStateAction<string | undefined>>,
 ] => {
   const [bundle, setBundle] = React.useState(() => generateLRS());

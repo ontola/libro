@@ -1,15 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-const useStoredState = (
+const useStoredState = <T = string>(
   key: string,
-  initialValue: string | undefined,
+  initialValue: T | undefined,
   storage: Storage = localStorage,
-): [string | undefined, Dispatch<SetStateAction<string | undefined>>] => {
-  const [stored, setValue] = React.useState<string | undefined>(storage.getItem(key) ?? initialValue);
+  parseFromString: (x: string | null) => T = (x: unknown) => x as T,
+  parseToString: (x: T) => string = (x: unknown) => x as string,
+): [T | undefined, Dispatch<SetStateAction<T | undefined>>] => {
+  const [stored, setValue] = React.useState<T | undefined>(storage.getItem(key) !== null ? parseFromString(storage.getItem(key)) : initialValue);
 
   React.useEffect(() => {
-    if (stored) {
-      storage.setItem(key, stored);
+    if (stored !== undefined) {
+      storage.setItem(key, parseToString(stored));
     } else {
       storage.removeItem(key);
     }

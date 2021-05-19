@@ -30,9 +30,9 @@ const component = (_: LinkReduxLRSType) => {
   function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: JSX.Element[]): JSX.Element;
   function top(t: Node, children?: JSX.Element[]): JSX.Element;
   function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | JSX.Element[], children?: JSX.Element[]): JSX.Element {
-    const Comp = topologyComponentMap[rdf.id(t)] || componentMap[rdf.id(t)];
+    const [Comp] = topologyComponentMap[rdf.id(t)] ?? componentMap[rdf.id(t)] ?? [];
     const propsIsChildren = Array.isArray(props);
-    const compProps = propsIsChildren ? {} : (props || {});
+    const compProps = propsIsChildren ? {} : (props ?? {});
     const childElems = React.Children.map(
       propsIsChildren
         ? props as JSX.Element[]
@@ -82,7 +82,7 @@ function isLabel(t: PropertyPropTypes | Node | Node[]): t is LabelType {
   return isTerm(t) || Array.isArray(t);
 }
 
-export function withoutLoading(label: NamedNode|NamedNode[]): PropertyPropTypes & PropertyProps {
+export function withoutLoading(label: NamedNode | NamedNode[]): PropertyPropTypes & PropertyProps {
   if (typeof label === 'undefined') {
     throw new TypeError('No label provided');
   }
@@ -92,7 +92,7 @@ export function withoutLoading(label: NamedNode|NamedNode[]): PropertyPropTypes 
     onLoad: () => null,
   });
 }
-export function forceRender(label: NamedNode|NamedNode[]): PropertyPropTypes & PropertyProps {
+export function forceRender(label: NamedNode | NamedNode[]): PropertyPropTypes & PropertyProps {
   if (typeof label === 'undefined') {
     throw new TypeError('No label provided');
   }

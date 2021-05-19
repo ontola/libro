@@ -23,6 +23,7 @@ import configureStore from './state';
 import englishMessages from './translations/en.json';
 import { getViews } from './views';
 import themes from './themes';
+import { componentRegistrations } from './components';
 
 const wrapProviders = ({
   ctx,
@@ -74,7 +75,7 @@ const resourcesToGraph = (resources) => {
       const s = g[1];
       store.addQuads(s.quads);
     }
-    const dataObjects = graphs.reduce((acc, [,, namedBlobTuple]) => [...acc, ...namedBlobTuple], []);
+    const dataObjects = graphs.reduce((acc, [, , namedBlobTuple]) => [...acc, ...namedBlobTuple], []);
 
     return [mainIRI, store, dataObjects];
   }
@@ -108,7 +109,7 @@ const customRender = async (ui, {
       wrapper: wrapProviders({
         ctx,
         location,
-        views: getViews(),
+        views: [...getViews(), ...componentRegistrations()],
       }),
       ...options,
     },

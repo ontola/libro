@@ -13,6 +13,7 @@ import './index.scss';
 export const footerTopology = ontola.ns('footer');
 
 export interface FooterProps {
+  legacy?: boolean;
   resources?: Node[];
 }
 
@@ -34,6 +35,10 @@ class Footer extends Topology<FooterPropsWithTheme> {
   }
 
   public renderContent() {
+    if (!this.props.legacy) {
+      return this.wrap(this.props.children);
+    }
+
     if (!this.props.resources || this.props.resources?.length === 0) {
       return this.wrap(null);
     }

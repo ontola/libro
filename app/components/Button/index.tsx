@@ -1,4 +1,6 @@
+import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
+import { useLRS } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -36,6 +38,7 @@ export enum ButtonVariant {
 }
 
 export interface ButtonProps {
+  action?: NamedNode,
   /** Should be true when the button is toggleable and toggled. */
   active?: boolean;
   /** Additional aria label */
@@ -89,6 +92,7 @@ const defaultProps = {
  */
 const Button: React.FC<ButtonProps> = ({
   active,
+  action,
   ariaLabel,
   centered,
   children,
@@ -99,7 +103,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   loading,
   margins,
-  onClick,
+  onClick: handler,
   small,
   narrow,
   plain,
@@ -109,6 +113,15 @@ const Button: React.FC<ButtonProps> = ({
   href,
   variant,
 }) => {
+  const lrs = useLRS();
+  let onClick: any = handler;
+  if (action) {
+    onClick = (e: Event) => {
+      e.preventDefault();
+
+      return lrs.exec(action);
+    };
+  }
   const btnClass = clsx({
     'Button': true,
     'Button--active': active,

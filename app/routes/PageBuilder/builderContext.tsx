@@ -57,9 +57,18 @@ export const PageBuilderContext: React.FC = ({ children }) => {
   const document = useJSON<{ source: string }>(documents?.[Number.parseInt(documentIndex!)]);
   const [theme, setTheme] = useStoredState('libro.pagebuilder.slectedTheme', 'common');
 
+  const createManifestOverride = () => JSON.stringify({
+    ontola: {
+      theme: theme ?? 'default',
+    },
+  });
+
   const saveDocument = (id: string) => (
     fetch(`/_libro/docs/${id}`, {
-      body: JSON.stringify({ source }),
+      body: JSON.stringify({
+        manifestOverride: createManifestOverride(),
+        source,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -115,7 +124,7 @@ export const PageBuilderContext: React.FC = ({ children }) => {
     if (document !== undefined) {
       setSource(document.source);
     }
-  }, [document, document]);
+  }, [document]);
 
   return (
     <builderContext.Provider value={ctx}>

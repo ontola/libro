@@ -22,6 +22,7 @@ export default {
     redirect: libro('actions/redirect'),
     refresh: libro('actions/refresh'),
     reload: libro('actions/reload'),
+    search: libro('actions/search'),
     snackbar: {
       finished: libro('actions/snackbar/finished'),
       show: libro('actions/snackbar'),

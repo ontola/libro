@@ -238,6 +238,12 @@
   "https://app.argu.co/i18n/expireable/states/expiring/tooltip": {
     "defaultMessage": "Closing on {date}"
   },
+  "https://app.argu.co/i18n/footer/policy": {
+    "defaultMessage": "Terms of service"
+  },
+  "https://app.argu.co/i18n/footer/privacy": {
+    "defaultMessage": "Privacy"
+  },
   "https://app.argu.co/i18n/forms/actions/cancel": {
     "defaultMessage": "cancel"
   },
@@ -306,6 +312,9 @@
   },
   "https://app.argu.co/i18n/forms/signOut/link/label": {
     "defaultMessage": "Log out"
+  },
+  "https://app.argu.co/i18n/imageAlts/arguLogo": {
+    "defaultMessage": "the Argu logo"
   },
   "https://app.argu.co/i18n/navbar/search": {
     "defaultMessage": "Search"

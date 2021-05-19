@@ -2,7 +2,10 @@
  * This document is purely for including all the views into the code.
  * Please properly include each file when access to the code is needed.
  */
-import Action from './Action';
+import { componentRegistrations } from '../components';
+
+import Academy from './Academy';
+import Action from './Action/index';
 import ActionBody from './ActionBody';
 import Activity from './Activity';
 import AppSignOut from './AppSignOut';
@@ -26,6 +29,7 @@ import Error from './Error';
 import ErrorResponse from './ErrorResponse';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
+import Footer from './Footer';
 import FormField from './FormField';
 import FormGroup from './FormGroup';
 import FormOption from './FormOption';
@@ -53,6 +57,7 @@ import Phase from './Phase';
 import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
+import RichText from './RichText';
 import RIVM from './RIVM';
 import SalesWebsite from './SalesWebsite';
 import SearchResult from './SearchResult';
@@ -60,6 +65,7 @@ import SeqComp from './Seq';
 import Shop from './Shop';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
+import SocialButton from './SocialButton';
 import Survey from './Survey';
 import Term from './Term';
 import Thing from './Thing';
@@ -73,6 +79,7 @@ import Widget from './Widget';
 
 export function getViews() {
   return [
+    ...Academy,
     ...ActionBody,
     ...Activity,
     ...AppSignOut,
@@ -99,6 +106,7 @@ export function getViews() {
     ...ErrorResponse,
     ...FilterField,
     ...FilterOption,
+    ...Footer,
     ...FormField,
     ...FormGroup,
     ...FormOption,
@@ -127,12 +135,14 @@ export function getViews() {
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
+    ...RichText,
     ...RIVM,
     ...SearchResult,
     ...SeqComp,
     ...Shop,
     ...Snackbar,
     ...SnackbarManager,
+    ...SocialButton,
     ...Survey,
     ...Timeline,
     ...Token,
@@ -145,5 +155,5 @@ export function getViews() {
 }
 
 export default function register(lrs) {
-  lrs.registerAll(...getViews());
+  lrs.registerAll(...getViews(), ...componentRegistrations());
 }

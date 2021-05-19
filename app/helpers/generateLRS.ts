@@ -15,6 +15,7 @@ import { appMiddleware } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import { searchMiddleware } from '../middleware/searchMiddleware';
 import { appOntology, website } from '../ontology/app';
 import argu from '../ontology/argu';
 import form from '../ontology/form';
@@ -48,6 +49,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
     ontolaMiddleware(history, serviceWorkerCommunicator),
     analyticsMiddleware(),
     appMiddleware(),
+    searchMiddleware(),
     execFilter(),
   ];
   const storeOptions = __CLIENT__
@@ -263,6 +265,49 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
 
     rdf.quad(ontola.MenuItem, rdfx.type, rdfs.Class),
     rdf.quad(ontola.MenuItem, rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('RichText'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('RichText'), rdfs.subClassOf, schema.Thing),
+
+
+    rdf.quad(argu.ns('Element/a'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/a'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/h1'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/h1'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/h2'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/h2'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/h3'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/h3'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/h4'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/h4'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/h5'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/h5'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/h6'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/h6'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/innerHtml'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/innerHtml'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/li'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/li'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/ol'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/ol'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/p'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/p'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(argu.ns('Element/ul'), rdfx.type, rdfs.Class),
+    rdf.quad(argu.ns('Element/ul'), rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(rdf.namedNode('component:Button'), rdfx.type, rdfs.Class),
+    rdf.quad(rdf.namedNode('component:Button'), rdfs.subClassOf, schema.Thing),
 
     rdf.quad(as.Create, rdfx.type, rdfs.Class),
     rdf.quad(as.Create, rdfs.subClassOf, as.Activity),

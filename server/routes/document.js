@@ -55,8 +55,8 @@ const findStartRoute = async (iri) => {
 const renderDoc = async (ctx, key) => {
   try {
     const doc = await client.hgetall(key);
-    const { source } = doc;
-    const quads = parseToGraph(source).flatMap(([subject, store]) => {
+    const { manifestOverride, source } = doc;
+    const quads = parseToGraph(source, ctx.request.origin).flatMap(([subject, store]) => {
       store.addQuadruples([
         [subject, http.statusCode, rdf.literal(OK), ll.meta],
         [rdf.namedNode(ctx.request.href), http.statusCode, rdf.literal(OK), ll.meta],
@@ -74,7 +74,7 @@ const renderDoc = async (ctx, key) => {
       q.graph.value === 'rdf:defaultGraph' ? ld.add.value : q.graph.value,
     ])).join('\n');
 
-    await ctx.getManifest();
+    await ctx.getManifest(null, JSON.parse(manifestOverride));
     ctx.response.body = await renderFullPage(ctx, body);
   } catch (e) {
     logging.error(e);
@@ -128,13 +128,16 @@ export const document = async (ctx) => {
 export const saveDocument = async (ctx) => {
   const key = `${redisSettingsNS}.docs.${ctx.params.id}`;
   let source;
+  let manifestOverride;
   try {
     source = ctx.request.body.source;
+    manifestOverride = ctx.request.body.manifestOverride;
   } catch (err) {
     ctx.status = 400;
   }
   try {
     await client.hset(key, 'source', source);
+    await client.hset(key, 'manifestOverride', manifestOverride);
     ctx.status = 200;
   } catch (err) {
     logging.error(err);

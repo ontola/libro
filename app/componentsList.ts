@@ -1,5 +1,7 @@
 import { createNS } from '@ontologies/core';
 
+import elements from './ontology/elements';
+
 export const component = createNS('component:');
 
 export const components = {
@@ -31,6 +33,20 @@ export const components = {
   DetailDate: component('DetailDate'),
   DetailText: component('Detail/text'),
   DropdownMenu: component('DropdownMenu'),
+  ElementA: elements.A,
+  ElementH1: elements.H1,
+  ElementH2: elements.H2,
+  ElementH3: elements.H3,
+  ElementH4: elements.H4,
+  ElementH5: elements.H5,
+  ElementH6: elements.H6,
+  ElementInnerText: elements.InnerText,
+  ElementLi: elements.Li,
+  ElementNote: elements.Note,
+  ElementOl: elements.Ol,
+  ElementP: elements.P,
+  ElementTip: elements.Tip,
+  ElementUl: elements.Ul,
   Error: component('Error'),
   FieldLabel: component('FieldLabel'),
   FormField: component('FormField'),

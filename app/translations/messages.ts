@@ -220,6 +220,17 @@ export const errorMessages: Messages = defineMessages({
   },
 });
 
+export const footerMessages: Messages = defineMessages({
+  policy: {
+    defaultMessage: 'Terms of service',
+    id: 'https://app.argu.co/i18n/footer/policy',
+  },
+  privacy: {
+    defaultMessage: 'Privacy',
+    id: 'https://app.argu.co/i18n/footer/privacy',
+  },
+});
+
 export const formMessages: Messages = defineMessages({
   cancelLabel: {
     defaultMessage: 'cancel',
@@ -366,6 +377,13 @@ export const homeMessages: Messages = defineMessages({
   votesCount: {
     defaultMessage: 'votes',
     id: 'https://app.argu.co/i18n/arguHome/votesCount',
+  },
+});
+
+export const imageAltMessages: Messages = defineMessages({
+  arguLogo: {
+    defaultMessage: 'the Argu logo',
+    id: 'https://app.argu.co/i18n/imageAlts/arguLogo',
   },
 });
 

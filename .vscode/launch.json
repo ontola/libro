@@ -7,10 +7,18 @@
             "request": "launch",
             "reAttach": true,
             "url": "https://argu.localdev/*",
-            "pathMappings": [{
-                "url": "webpack:///",
-                "path": "${webRoot}"
-            }]
+            "pathMappings": [
+                {
+                    "url": "webpack:///",
+                    "path": "${webRoot}"
+                }
+            ]
+        },
+        {
+            "type": "edge",
+            "request": "attach",
+            "name": "Attach to Edge",
+            "port": 9222
         },
         {
             "name": "Attach Chrome Front",
@@ -21,7 +29,7 @@
             "sourceMaps": true,
             "webRoot": "${workspaceFolder}",
             "sourceMapPathOverrides": {
-                "webpack:///./*":"${workspaceFolder}/*"
+                "webpack:///./*": "${workspaceFolder}/*"
             }
         },
         {
