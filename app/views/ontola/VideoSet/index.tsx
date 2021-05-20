@@ -4,6 +4,7 @@ import {
   useProperty,
 } from 'link-redux';
 import React, { VideoHTMLAttributes } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -24,7 +25,10 @@ const VideoSet: FC<VideoSetProps> = (props) => {
       {mp4 && <source src={mp4.value} type="video/mp4" />}
 
       <p>
-        No video support
+        <FormattedMessage
+          defaultMessage="No video support"
+          id="https://ns.ontola.io/app/videoUnsupported"
+        />
         <a href={mp4?.value ?? webm?.value}>click here to download</a>
       </p>
     </video>

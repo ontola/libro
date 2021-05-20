@@ -1224,6 +1224,12 @@
       "value": "Waarde is naar klembord gekopieerd"
     }
   ],
+  "https://ns.ontola.io/app/videoUnsupported": [
+    {
+      "type": 0,
+      "value": "Geen video-ondersteuning aanwezig"
+    }
+  ],
   "https://team.groenlinks.nl/i18n/engagement/active": [
     {
       "type": 0,

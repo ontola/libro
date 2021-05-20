@@ -1224,6 +1224,12 @@
       "value": "Copied value to clipboard"
     }
   ],
+  "https://ns.ontola.io/app/videoUnsupported": [
+    {
+      "type": 0,
+      "value": "No video support"
+    }
+  ],
   "https://team.groenlinks.nl/i18n/engagement/active": [
     {
       "type": 0,

@@ -506,6 +506,9 @@
     "defaultMessage": "Copied value to clipboard",
     "description": "The (inline) message to indicate the value was copied to their clipboard"
   },
+  "https://ns.ontola.io/app/videoUnsupported": {
+    "defaultMessage": "No video support"
+  },
   "https://team.groenlinks.nl/i18n/engagement/active": {
     "defaultMessage": "💪 actief"
   },

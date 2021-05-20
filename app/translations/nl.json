@@ -503,6 +503,9 @@
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Waarde is naar klembord gekopieerd"
   },
+  "https://ns.ontola.io/app/videoUnsupported": {
+    "defaultMessage": "Geen video-ondersteuning aanwezig"
+  },
   "https://team.groenlinks.nl/i18n/engagement/active": {
     "defaultMessage": "💪 actief"
   },

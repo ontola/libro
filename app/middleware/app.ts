@@ -11,6 +11,7 @@ import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+import HttpStatus from 'http-status-codes';
 
 import app from '../ontology/app';
 import http from '../ontology/http';
@@ -35,8 +36,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
   store.processDelta([
     rdf.quad(app.menu, rdfx.type, app.Menu),
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    rdf.quad(app.menu, http.statusCode, rdf.literal(200), ll.meta),
+    rdf.quad(app.menu, http.statusCode, rdf.literal(HttpStatus.OK), ll.meta),
   ], true);
 
   /**
