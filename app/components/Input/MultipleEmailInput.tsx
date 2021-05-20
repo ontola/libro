@@ -44,6 +44,8 @@ enum EmailError {
 
 type ErrorMessages = (fieldShape: ShapeForm) => Record<EmailError, (current: number) => string>;
 
+const matchMultiple = /\n|\s|,\s*/gm;
+
 const useErrorMessages: ErrorMessages = ({ maxCount, maxLength }) => {
   const intl = useIntl();
 
@@ -121,7 +123,7 @@ export const MultipleEmailInput = ({
   }, [emails]);
 
   const valueFilter = (val: string) => reg.test(val);
-  const multipleValueMapper = (val: string) => val.split(/\s|\n/gm);
+  const multipleValueMapper = (val: string) => val.split(matchMultiple);
   const filterUnique = (list: string[]) => Array.from(new Set(list));
 
   const handleNewValue = (newValues: string[], reason: AutocompleteChangeReason = 'create-option') => {
@@ -144,7 +146,7 @@ export const MultipleEmailInput = ({
 
     const trimmed = val.trim();
 
-    if (val.endsWith(' ')) {
+    if (val.endsWith(' ') || matchMultiple.test(trimmed)) {
       if (reg.test(trimmed)) {
         handleNewValue([...emails, trimmed]);
         setTextFieldValue('');
