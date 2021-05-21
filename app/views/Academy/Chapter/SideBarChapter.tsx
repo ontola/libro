@@ -60,7 +60,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   topLevelTitle: {
     fontSize: '1rem',
-    fontWeight: 600,
+    fontWeight: theme.typography.fontWeightBold,
   },
 }));
 

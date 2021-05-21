@@ -2,6 +2,13 @@ import { MessageDescriptor, defineMessages } from 'react-intl';
 
 type Messages = { [key: string]: MessageDescriptor };
 
+export const academyMessages: Messages = defineMessages({
+  pdfDownload: {
+    defaultMessage: 'Save academy as PDF',
+    id: 'https://app.argu.co/i18n/academy/pdfDownload',
+  },
+});
+
 export const actionMessages: Messages = defineMessages({
   copyFinished: {
     defaultMessage: 'Copied value to clipboard',

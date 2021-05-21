@@ -41,15 +41,19 @@ const Href: FC<HrefProps> = ({
   const clickHandler = action ? actionHandler : onClickToggle;
   const LinkComponent = component ?? Link;
 
-  return (
+  return linkedProp?.value ? (
     <LinkComponent
       isIndex
       features={features}
-      to={linkedProp?.value}
+      to={linkedProp?.value ?? ''}
       onClick={handleClick ?? clickHandler}
     >
       {children}
     </LinkComponent>
+  ) : (
+    <span>
+      {children}
+    </span>
   );
 };
 
@@ -62,8 +66,8 @@ Href.type = [
 Href.property = ontola.href;
 
 Href.topology = [
-  footerTopology,
   navbarTopology,
+  footerTopology,
 ];
 
 Href.mapDataToProps = {

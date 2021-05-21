@@ -141,6 +141,7 @@ const theme = {
       fontSize: '1rem',
     },
     fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontWeightMedium: 600,
   },
   zIndex: {
     appBar: 910,

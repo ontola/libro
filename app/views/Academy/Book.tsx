@@ -8,6 +8,7 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -23,6 +24,7 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import SideBar from '../../topologies/SideBar';
 import { LibroTheme } from '../../themes/themes';
 import { useChapterNavigation } from '../../hooks/Academy/useChapterNavigation';
+import { academyMessages } from '../../translations/messages';
 
 const SIDEBAR_CHILDREN_PADDING = 4;
 const NAME_WRAPPER_PADDING_VERTICAL = 6;
@@ -59,6 +61,27 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     color: theme.palette.primary.main,
     fontSize: '2rem',
   },
+  devider: {
+    borderTop: `1px solid ${theme.palette.divider}`,
+  },
+  downloadIcon: {
+    color: theme.palette.text.secondary,
+    fontSize: '1.2rem !important',
+  },
+  downloadLink: {
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+
+    alignItems: 'center',
+    display: 'flex',
+    fontSize: '1rem',
+    fontWeight: theme.typography.fontWeightMedium,
+    gap: '1rem',
+    justifyContent: 'center',
+    padding: theme.spacing(SIDEBAR_CHILDREN_PADDING),
+    width: '100%',
+  },
   grid: {
     display: 'grid',
     gridTemplateAreas: '"sidebar article" "sidebar button-nav"',
@@ -70,7 +93,6 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     },
   },
   nameWrapper: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
     fontSize: '1.4rem',
     fontWeight: theme.typography.fontWeightBold,
     padding: theme.spacing(SIDEBAR_CHILDREN_PADDING),
@@ -109,6 +131,8 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
   const progressBarOverrideStyles = useProgressBarOverrideStyles();
   const [chapters] = useProperty(argu.chapters) as SomeNode[];
   const [headerImage] = useProperty(schema.image);
+  const [pdfURL] = useProperty(schema.contentUrl);
+
   const classNames = useStyles({ headerImage: headerImage.value });
   const members = useResourceProperty(chapters, rdfs.member);
 
@@ -144,10 +168,11 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
     <React.Fragment>
       <Grid container className={classNames.grid} spacing={0}>
         <Grid item className={classNames.sideBar}>
-          <div className={classNames.nameWrapper}>
-            <Property label={schema.title} />
-          </div>
           <SideBar>
+            <div className={classNames.nameWrapper}>
+              <Property label={schema.title} />
+            </div>
+            <div className={classNames.devider} />
             <ol className={classNames.sideBarList}>
               {chapters && members.map((member) => (
                 <li key={member.value}>
@@ -161,8 +186,21 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
                 </li>
               ))}
             </ol>
-          </SideBar>
+            {pdfURL?.value && (
+              <React.Fragment>
+                <div className={classNames.devider} />
+                <a
+                  download
+                  className={classNames.downloadLink}
+                  href={pdfURL.value}
+                >
+                  <FontAwesome className={classNames.downloadIcon} name="download" />
+                  <FormattedMessage {...academyMessages.pdfDownload} />
+                </a>
+              </React.Fragment>
+            )}
 
+          </SideBar>
         </Grid>
         <Grid item className={classNames.article}>
           {currentChapter && <Resource subject={currentChapter} />}

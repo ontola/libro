@@ -1,4 +1,7 @@
 {
+  "https://app.argu.co/i18n/academy/pdfDownload": {
+    "defaultMessage": "Save academy as PDF"
+  },
   "https://app.argu.co/i18n/actions/labels/save": {
     "defaultMessage": "save"
   },

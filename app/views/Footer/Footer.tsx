@@ -22,7 +22,7 @@ const useStyles = makeStyles<LibroTheme>({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: '3rem',
+    gap: '1.5rem',
     justifyContent: 'space-between',
     margin: 'auto',
     marginBottom: '2rem',

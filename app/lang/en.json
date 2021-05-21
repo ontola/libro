@@ -1,4 +1,10 @@
 {
+  "https://app.argu.co/i18n/academy/pdfDownload": [
+    {
+      "type": 0,
+      "value": "Save academy as PDF"
+    }
+  ],
   "https://app.argu.co/i18n/actions/labels/save": [
     {
       "type": 0,

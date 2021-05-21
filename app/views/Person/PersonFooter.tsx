@@ -9,17 +9,25 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import { footerTopology } from '../../topologies/Footer';
+import { LibroTheme } from '../../themes/themes';
 
-const useStyles = makeStyles({
+const SPACING = 4;
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   person: {
+    '&:last-of-type': {
+      marginBottom: '0px',
+    },
+
     alignItems: 'center',
     display: 'flex',
     gap: '1rem',
+    marginBottom: theme.spacing(SPACING),
   },
   personName: {
-    fontWeight: 600,
+    fontWeight: theme.typography.fontWeightMedium,
   },
-});
+}));
 
 const PersonFooter: FC = () => {
   const classNames = useStyles();
