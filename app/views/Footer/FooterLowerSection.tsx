@@ -70,7 +70,7 @@ const FooterLowerSection: FC = () => {
 };
 
 FooterLowerSection.type = argu.LowerSecion;
-FooterLowerSection.topology = footerTopology;
 
+FooterLowerSection.topology = footerTopology;
 
 export default register(FooterLowerSection);

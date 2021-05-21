@@ -3,13 +3,11 @@ import { register } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { PipedriveForm } from '../../components/PipedriveForm';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 import Card from '../../topologies/Card';
 import { fullResourceTopology } from '../../topologies/FullResource';
-
-const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/JJw99yDkXav2SVTvGiEs7pXNHJTAxP2zGw1UTQ6NK8AmCp643bD97K3WeRzXfVN';
-const PIPEDRIVE_SCRIPT_URL = 'https://webforms.pipedrive.com/f/loader';
 
 interface PersonProps {
   email: string;
@@ -160,7 +158,7 @@ const Person = (props: PersonProps) => {
   );
 };
 
-const socials = [
+export const socials = [
   {
     color: '7289DA',
     icon: 'discord',
@@ -202,20 +200,6 @@ const Social = (props: SocialProps) => {
 
 const ContactPage = () => {
   const classes = useStyles();
-  const pipedriveDivRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const script = document.createElement('script');
-    script.src = PIPEDRIVE_SCRIPT_URL;
-
-    const div = pipedriveDivRef.current;
-
-    div && div.appendChild(script);
-
-    return () => {
-      div && document.body.removeChild(div);
-    };
-  }, []);
 
   return (
     <React.Fragment>
@@ -227,11 +211,7 @@ const ContactPage = () => {
       <div className={classes.container}>
         <div className={classes.left}>
           <Card className={classes.contactPaper}>
-            <div
-              className="pipedriveWebForms"
-              data-pd-webforms={PIPEDRIVE_FORM_URL}
-              ref={pipedriveDivRef}
-            />
+            <PipedriveForm />
           </Card>
         </div>
         <div className={classes.right}>

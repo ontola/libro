@@ -3,6 +3,7 @@ import BlogContainer from './Blogs';
 import BlogPage from './BlogPage';
 import CasePage from './CasePage';
 import Cases from './Cases';
+import ContactPage from './ContactPage';
 import Facet from './Facet';
 import Feature from './Feature';
 import Features from './Features';
@@ -20,6 +21,7 @@ export default [
   ...BlogPage,
   ...CasePage,
   ...Cases,
+  ...ContactPage,
   ...Facet,
   ...Feature,
   ...Features,
