@@ -104,7 +104,7 @@ const routes = async function routes(app, port) {
 
   if (standaloneLibro) {
     router.get('/manifest.json', (ctx) => {
-      ctx.body = defaultManifest(ctx.request.origin);
+      ctx.body = ctx.getManifest();
     })
   }
 

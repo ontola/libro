@@ -132,7 +132,7 @@ export function enhanceCtx(ctx) {
 
   ctx.getManifest = async (location) => {
     if (standaloneLibro) {
-      ctx.manifest = defaultManifest(ctx.request.origin);
+      ctx.manifest = await ctx.documentManifest();
     }
 
     if (!ctx.manifest && await ctx.documentRoute()) {
