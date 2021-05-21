@@ -7,9 +7,10 @@ import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 interface StepProps {
   name: string;
   text: string;
+  showLine?: boolean;
 }
 
-const useStyles = makeStyles<SalesTheme>((theme: SalesTheme) => ({
+const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
   circleSmall: {
     border: '3px solid #2D7080',
     borderRadius: '50%',
@@ -47,6 +48,7 @@ const useStyles = makeStyles<SalesTheme>((theme: SalesTheme) => ({
   line: {
     backgroundColor: '#2D7080',
     flex: 1,
+    visibility: (props) => props.showLine ? 'visible' : 'hidden',
     width: '3px',
     zIndex: 2,
   },
@@ -131,6 +133,10 @@ const Step = (props: StepProps): JSX.Element => {
       </Grid>
     </Grid>
   );
+};
+
+Step.defaultProps = {
+  showLine: true,
 };
 
 export default Step;

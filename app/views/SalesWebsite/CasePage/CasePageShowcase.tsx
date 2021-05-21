@@ -3,11 +3,15 @@ import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
+import { gridTopology } from '../../../topologies/Grid';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
@@ -51,6 +55,8 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
   return (
     <Button
       className={classes.productButton}
+      component={NavLink as React.ElementType}
+      to={retrievePath(props.subject as NamedNode)!}
     >
       <Grid
         container
@@ -80,6 +86,9 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
 
 CasePageShowcase.type = sales.CasePage;
 
-CasePageShowcase.topology = showcaseTopology;
+CasePageShowcase.topology = [
+  showcaseTopology,
+  gridTopology,
+];
 
 export default CasePageShowcase;

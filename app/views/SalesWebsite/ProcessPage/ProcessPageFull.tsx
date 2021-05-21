@@ -27,10 +27,11 @@ import {
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   academyContainer: {
     margin: 20,
+    paddingBottom: '4em',
   },
   button: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: theme.typography.fontWeightMedium,
     textTransform: 'none',
   },
   buttonPrimary: {
@@ -177,7 +178,11 @@ const ProcessPageFull: FC = () => {
           </Typography>
           <Button
             className={classes.button}
-            endIcon={<ArrowRightAltIcon color="primary" style={{ fontSize: 35 }} />}
+            color="primary"
+            endIcon={<ArrowRightAltIcon color="inherit" style={{ fontSize: 35 }} />}
+            href="/academy"
+            target="_blank"
+            variant="contained"
           >
             Bekijk onze academy.
           </Button>

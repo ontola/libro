@@ -50,7 +50,7 @@ export interface HeaderProps {
   buttonText?: string,
   children?: React.ReactChild;
   title: string,
-  subtitle: string,
+  subtitle?: string,
 }
 
 /** Full page with a branded header */
@@ -74,12 +74,14 @@ export const Header = ({
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <Typography className={classes.title} variant="h1">{title}</Typography>
-      <Typography
-        className={classes.subtitle}
-        variant="subtitle1"
-      >
-        {subtitle}
-      </Typography>
+      {subtitle && (
+        <Typography
+          className={classes.subtitle}
+          variant="subtitle1"
+        >
+          {subtitle}
+        </Typography>
+      )}
       {buttonText === undefined ?
         null
         :
