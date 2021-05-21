@@ -224,6 +224,9 @@
   "https://app.argu.co/i18n/errors/request/504/header": {
     "defaultMessage": "Doorgang stilgevallen"
   },
+  "https://app.argu.co/i18n/errors/retryButton/label": {
+    "defaultMessage": "Opnieuw proberen"
+  },
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
     "defaultMessage": "Het is niet meer mogelijk om te reageren"
   },

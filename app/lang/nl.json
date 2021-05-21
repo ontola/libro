@@ -477,6 +477,12 @@
       "value": "Doorgang stilgevallen"
     }
   ],
+  "https://app.argu.co/i18n/errors/retryButton/label": [
+    {
+      "type": 0,
+      "value": "Opnieuw proberen"
+    }
+  ],
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": [
     {
       "type": 0,

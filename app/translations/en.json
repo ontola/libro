@@ -226,6 +226,9 @@
   "https://app.argu.co/i18n/errors/request/504/header": {
     "defaultMessage": "Gateway timeout"
   },
+  "https://app.argu.co/i18n/errors/retryButton/label": {
+    "defaultMessage": "Try again"
+  },
   "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
     "defaultMessage": "Responding is no longer possible"
   },
