@@ -54,6 +54,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const ProductPageFull: FC = () => {
   const classes = useStyles();
+  const [buttonLink] = useProperty(sales.buttonLink);
   const [buttonText] = useProperty(sales.buttonText);
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
@@ -63,7 +64,6 @@ const ProductPageFull: FC = () => {
   const [productText1] = useProperty(sales.productTextContent) as Node[];
   const productTexts = useContainerToArr(productText1);
   const [featureTitle] = useProperty(sales.featureTitle);
-  const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
@@ -72,6 +72,7 @@ const ProductPageFull: FC = () => {
       <HeaderProductPages
         backgroundImageUrl={backgroundImage.value}
         backgroundImageUrlMobile={backgroundImageMobile.value}
+        buttonLink={buttonLink.value}
         buttonText={buttonText.value}
         subtitle={text.value}
         title={title.value}
@@ -117,7 +118,8 @@ const ProductPageFull: FC = () => {
         <Property label={sales.features} />
       </Container>
       <CallToAction
-        buttonText={callToActionButtonText.value}
+        buttonLink={buttonLink.value}
+        buttonText={buttonText.value}
         imageUrl="/static/images/call_to_action_background.svg"
         subtitle={callToActionText.value}
         title={callToActionTitle.value}

@@ -97,6 +97,7 @@ const ProcessPageFull: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
@@ -183,6 +184,7 @@ const ProcessPageFull: FC = () => {
         </div>
       </Container>
       <CallToAction
+        buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
         imageUrl="/static/images/call_to_action_background.svg"
         subtitle={callToActionText.value}

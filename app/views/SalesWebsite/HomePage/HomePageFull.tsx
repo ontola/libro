@@ -95,7 +95,9 @@ const HomePageFull: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [buttonLink] = useProperty(sales.buttonLink);
   const [buttonText] = useProperty(sales.buttonText);
+  const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
@@ -105,6 +107,7 @@ const HomePageFull: FC = () => {
       <Header
         backgroundImageUrl={backgroundImage.value}
         backgroundImageUrlMobile={backgroundImageMobile.value}
+        buttonLink={buttonLink.value}
         buttonText={buttonText.value}
         subtitle={text.value}
         title={title.value}
@@ -137,6 +140,7 @@ const HomePageFull: FC = () => {
         </div>
       </Container>
       <CallToAction
+        buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
         imageUrl="/static/images/call_to_action_background.svg"
         subtitle={callToActionText.value}

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import app from '../../ontology/app';
+import appSlashless from '../../ontology/appSlashless';
 import Container from '../../topologies/Container';
 
 const useStyles = makeStyles({
@@ -23,7 +23,7 @@ export const Propositions = (): JSX.Element => {
         className={classes.propositionContainer}
         direction="row"
       >
-        <Resource subject={app.ns('info#propositions')} />
+        <Resource subject={appSlashless.ns('#propositions')} />
       </Grid>
     </Container>
   );

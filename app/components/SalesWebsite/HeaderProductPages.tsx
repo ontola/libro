@@ -10,7 +10,9 @@ import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import { Property } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import { retrievePath } from '../../helpers/iris';
 import Container from '../../topologies/Container';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
@@ -74,6 +76,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 export interface HeaderProductPagesProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
+  buttonLink: string,
   buttonText: string,
   children: React.ReactChild;
   title: string,
@@ -84,6 +87,7 @@ export interface HeaderProductPagesProps {
 export const HeaderProductPages = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
+  buttonLink,
   buttonText,
   title,
   subtitle,
@@ -137,7 +141,9 @@ export const HeaderProductPages = ({
               <Button
                 className={classes.button}
                 color="secondary"
+                component={NavLink as React.ElementType}
                 endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+                to={retrievePath(buttonLink)}
                 variant="contained"
               >
                 {buttonText}

@@ -32,6 +32,9 @@ const customVariables: ThemeOptions = {
       margin: 10,
       marginBottom: 14,
     },
+    button: {
+      textTransform: 'none',
+    },
     fontFamily: 'Open Sans',
     h1: {
       color: '000',

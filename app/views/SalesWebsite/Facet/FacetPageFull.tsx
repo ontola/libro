@@ -7,8 +7,9 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import Button from '../../../components/Button';
+import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
@@ -26,6 +27,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   facetsWrapper: {
     // COMMENT TD: Hier kan je die verschillende achtergrond kleuren gaan meegeven voor facet container achtergrond.
     backgroundColor: 'transparent',
+  },
+  link: {
+    color: theme.palette.primary.main,
+    textDecoration: 'underline',
   },
   wrapper: {
     // This should be removed if Page no longer sets a margin
@@ -45,6 +50,7 @@ const FacetPageFull: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
@@ -72,15 +78,13 @@ const FacetPageFull: FC = () => {
         </Typography>
         <Typography>
           {moreDescription.value}
-          <Button
-            plain
-            href={morePageLink.value}
-          >
+          <NavLink className={classes.link} to={retrievePath(morePageLink.value)!}>
             {morePageName.value}
-          </Button>
+          </NavLink>
         </Typography>
       </Container>
       <CallToAction
+        buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
         imageUrl="/static/images/call_to_action_background.svg"
         subtitle={callToActionText.value}

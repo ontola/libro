@@ -10,7 +10,9 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
@@ -79,6 +81,7 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
   const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [caseButtonLink] = useProperty(sales.caseButtonLink);
   const [caseButtonText] = useProperty(sales.caseButtonText);
   let renderedImage;
 
@@ -111,7 +114,9 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
       </Showcase>
       <Button
         className={classes.button}
+        component={NavLink as React.ElementType}
         endIcon={<ArrowRightAltIcon color="primary" style={{ fontSize: 35 }} />}
+        to={retrievePath(caseButtonLink.value)}
       >
         {caseButtonText.value}
       </Button>

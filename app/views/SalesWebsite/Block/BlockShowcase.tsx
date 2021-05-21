@@ -6,7 +6,9 @@ import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
@@ -45,7 +47,8 @@ const useStyles = makeStyles<SalesTheme>(() => ({
 }));
 
 const BlockShowcase: FC = () => {
-  const [URL] = useProperty(schema.URL);
+  const [buttonLink] = useProperty(sales.buttonLink);
+  const [buttonText] = useProperty(sales.buttonText);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [color] = useProperty(schema.color);
@@ -77,14 +80,16 @@ const BlockShowcase: FC = () => {
       </Typography>
       <Button
         className={classes.button}
+        component={NavLink as React.ElementType}
         endIcon={(
           <ArrowRightAltIcon
             className={classes.icon}
             style={{ fontSize: 40 }}
           />
         )}
+        to={retrievePath(buttonLink.value)}
       >
-        {URL.value}
+        {buttonText.value}
       </Button>
     </Grid>
   );

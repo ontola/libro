@@ -2,7 +2,9 @@ import { Button, Typography } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import { retrievePath } from '../../helpers/iris';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
@@ -39,6 +41,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 }));
 
 export interface CallToActionProps {
+  buttonLink: string,
   buttonText: string,
   title: string,
   subtitle: string,
@@ -47,6 +50,7 @@ export interface CallToActionProps {
 
 /** Full page with a branded header */
 export const CallToAction = ({
+  buttonLink,
   buttonText,
   title,
   subtitle,
@@ -67,7 +71,9 @@ export const CallToAction = ({
       <Button
         className={classes.button}
         color="secondary"
+        component={NavLink as React.ElementType}
         endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+        to={retrievePath(buttonLink)}
         variant="contained"
       >
         {buttonText}

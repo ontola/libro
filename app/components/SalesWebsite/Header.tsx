@@ -7,11 +7,15 @@ import {
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import { retrievePath } from '../../helpers/iris';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
     fontSize: 18,
     textTransform: 'none',
   },
@@ -42,6 +46,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 export interface HeaderProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
+  buttonLink?: string,
   buttonText?: string,
   children?: React.ReactChild;
   title: string,
@@ -52,6 +57,7 @@ export interface HeaderProps {
 export const Header = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
+  buttonLink,
   buttonText,
   title,
   subtitle,
@@ -80,7 +86,9 @@ export const Header = ({
         <Button
           className={classes.button}
           color="secondary"
+          component={NavLink as React.ElementType}
           endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+          to={retrievePath(buttonLink!)}
           variant="contained"
         >
           {buttonText}

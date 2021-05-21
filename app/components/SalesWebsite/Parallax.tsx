@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button/Button';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Container from '../../topologies/Container';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
@@ -66,6 +67,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 export interface ParallaxProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
+  buttonLink: string,
   buttonText: string,
   children: React.ReactChild;
   title: string,
@@ -76,6 +78,7 @@ export interface ParallaxProps {
 export const Parallax = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
+  buttonLink,
   buttonText,
   children,
   title,
@@ -124,11 +127,13 @@ export const Parallax = ({
                 endIcon: classes.buttonEndIcon,
                 root: classes.button,
               }}
+              component={NavLink as React.ElementType}
               endIcon={(
                 <ArrowRightAltIcon
                   color="primary"
                 />
               )}
+              to={buttonLink}
             >
               {buttonText}
             </Button>

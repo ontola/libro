@@ -28,6 +28,7 @@ const PricingPageFull: FC = () => {
   const classes = useStyles();
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
+  const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
@@ -48,6 +49,7 @@ const PricingPageFull: FC = () => {
         </Grid>
       </Container>
       <CallToAction
+        buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
         imageUrl="/static/images/call_to_action_background.svg"
         subtitle={callToActionText.value}

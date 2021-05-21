@@ -45,12 +45,14 @@ const FeaturesContainer: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [buttonLink] = useProperty(sales.buttonLink);
   const [buttonText] = useProperty(sales.buttonText);
 
   return (
     <Parallax
       backgroundImageUrl={image.value}
       backgroundImageUrlMobile={backgroundImageMobile.value}
+      buttonLink={buttonLink.value}
       buttonText={buttonText.value}
       subtitle={text.value}
       title={name.value}

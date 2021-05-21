@@ -52,6 +52,8 @@ export interface ButtonProps {
   /** Displays button on top right position of relative parent */
   corner?: boolean;
   disabled?: boolean;
+  /** FontAwesome icon string. */
+  endIcon?: React.ReactNode;
   /** Whether the button should fill it's container */
   grow?: boolean;
   /** If the button is actually just a link */
@@ -99,6 +101,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
   corner,
   disabled,
+  endIcon,
   grow,
   icon,
   loading,
@@ -169,6 +172,7 @@ const Button: React.FC<ButtonProps> = ({
         <span className="Button__label">
           {children}
         </span>
+        {endIcon}
       </LinkDuo>
     );
   }
