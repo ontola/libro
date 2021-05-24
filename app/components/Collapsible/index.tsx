@@ -1,22 +1,12 @@
+import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import React, { ReactNode } from 'react';
-import { Collapse } from 'react-collapse';
-
-import './Collapsible.scss';
-
-const REACT_COLLAPSE_TRANSITION_TIME_MS = 200;
+import { Collapse, UnmountClosed } from 'react-collapse';
 
 interface CollapsibleProps {
   /** Mount children if closed. */
   alwaysMountChildren?: boolean;
-  /** @internal */
-  hideChildren: boolean;
-  /**
-   * Linting disabled due to unreleased patch
-   * https://github.com/yannickcr/eslint-plugin-react/issues/1751
-   * @internal
-   */
-  notOpened: () => any;
+  children: ReactNode;
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle?: () => any;
   opened?: boolean;
@@ -24,106 +14,81 @@ interface CollapsibleProps {
   preview?: boolean;
   /** Optional node that functionas as a clickable toggle. */
   trigger?: ReactNode;
-  /** Content that's always visible, but does not work as a clickable toggle. */
-  visibleContent?: ReactNode;
 }
-
-const defaultProps = {
-  alwaysMountChildren: false,
-  opened: false,
-};
 
 const initialStyle = {
   height: '0px',
   overflow: 'hidden',
 };
 
-class Collapsible extends React.PureComponent<CollapsibleProps> {
-  public static defaultProps = defaultProps;
+const useStyles = makeStyles(() => ({
+  preview: {
+    '& .ReactCollapse--collapse': {
+      minHeight: '8em',
+    },
+    '.CardMicroRow &': {
+      '& .ReactCollapse--collapse': {
+        minHeight: '4em',
+      },
+    },
+  },
+  trigger: {
+    cursor: 'pointer',
+  },
+  wrapper: {
+    '& .ReactCollapse--collapse': {
+      transition: 'height 500ms',
+    },
+  },
+}));
 
-  constructor(props: CollapsibleProps) {
-    super(props);
+const Collapsible = ({
+  alwaysMountChildren,
+  children,
+  onClickToggle,
+  preview,
+  opened,
+  trigger,
+}: CollapsibleProps): JSX.Element => {
+  const Component = (preview || alwaysMountChildren) ? Collapse : UnmountClosed;
+  const classes = useStyles();
 
-    this.state = {};
-  }
-
-  public componentDidUpdate() {
-    if (!this.props.opened && !this.props.hideChildren) {
-      if (typeof window !== 'undefined') {
-        if (this.timeout) {
-          window.clearTimeout(this.timeout);
+  const triggerElem = (
+    <a
+      className={classes.trigger}
+      href="/"
+      onClick={(e) => {
+        e.preventDefault();
+        if (onClickToggle) {
+          onClickToggle();
         }
-        this.timeout = window.setTimeout(this.props.notOpened, REACT_COLLAPSE_TRANSITION_TIME_MS);
-      } else {
-        this.props.notOpened();
-      }
-    }
+      }}
+    >
+      {trigger}
+    </a>
+  );
 
-    return null;
-  }
+  const tabIndex = opened ? undefined : -1;
+  const className = clsx({
+    [classes.wrapper]: true,
+    [classes.preview]: preview,
+  });
 
-  public componentWillUnmount() {
-    if (typeof window !== 'undefined') {
-      window.clearTimeout(this.timeout);
-    }
-  }
-
-  public timeout: number | undefined = undefined;
-
-  public render() {
-    const {
-      alwaysMountChildren,
-      children,
-      hideChildren,
-      onClickToggle,
-      preview,
-      opened,
-      trigger,
-      visibleContent,
-    } = this.props;
-
-    const triggerElem = (
-      <a
-        className="Collapsible__trigger"
-        href="/"
-        onClick={(e) => {
-          e.preventDefault();
-          if (onClickToggle) {
-            onClickToggle();
-          }
-        }}
+  return (
+    <div aria-expanded={opened} className={className}>
+      {trigger && (
+        <div>{triggerElem}</div>
+      )}
+      <Component
+        initialStyle={initialStyle}
+        isOpened={!!opened}
       >
-        {trigger}
-      </a>
-    );
-
-    const tabIndex = opened ? undefined : -1;
-    const classes = clsx({
-      'Collapsible': true,
-      'Collapsible--preview': preview,
-    });
-
-    return (
-      <div aria-expanded={opened} className={classes}>
-        {trigger && (
-          <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
-        )}
-        <div className="Collapsible__visible-content">{visibleContent}</div>
-        <Collapse
-          initialStyle={initialStyle}
-          isOpened={!!opened}
-        >
-          <div
-            aria-hidden={tabIndex === -1 ? true : tabIndex}
-            className="Collapsible__invisible-content"
-            hidden={!alwaysMountChildren && hideChildren}
-          >
-            {(alwaysMountChildren || !hideChildren) && children}
-          </div>
-        </Collapse>
-      </div>
-    );
-  }
-}
+        <div aria-hidden={tabIndex === -1 ? true : tabIndex} className="TETS">
+          {children}
+        </div>
+      </Component>
+    </div>
+  );
+};
 
 export default Collapsible;

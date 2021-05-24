@@ -6,6 +6,8 @@ import { handle } from './logging';
 
 export const serializeForStorage = (value: SomeTerm[] ): string => JSON.stringify(value);
 
+export const parseBoolean = (val: string | null): boolean => val === 'true';
+
 export const parseValue = (plain: Record<string, any> | any): SomeTerm => {
   switch (plain.termType) {
   case 'NamedNode':

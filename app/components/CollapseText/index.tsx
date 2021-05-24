@@ -5,14 +5,12 @@ import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
-import { connect } from 'react-redux';
 
-import CollapsibleContainer from '../../containers/CollapsibleContainer';
-import { initializeCollapsible, toggleOne } from '../../state/collapsible/actions';
-import { CollapsibleStateTree } from '../../state/collapsible/reducer';
-import { getCollapsibleOpened } from '../../state/collapsible/selectors';
+import { parseBoolean } from '../../helpers/persistence';
+import useStoredState from '../../hooks/useStoredState';
 import { collapsibleMessages } from '../../translations/messages';
 import Button from '../Button';
+import Collapsible from '../Collapsible';
 import Markdown from '../Markdown';
 
 import './CollapseText.scss';
@@ -21,23 +19,22 @@ interface CollapseTextProps {
   id: string;
   minCharacters: number;
   noSpacing?: boolean;
-  onClickToggle: () => any;
   open?: boolean;
   text: string;
 }
 
-const defaultProps = {
-  minCharacters: 700,
-};
-
 const CollapseText: React.FC<CollapseTextProps> = ({
   id,
-  onClickToggle,
   minCharacters,
   noSpacing,
-  open,
   text,
 }) => {
+  const storeKey = `${id}-collapsible`;
+  const [open, setOpen] = useStoredState(storeKey, false, localStorage, parseBoolean);
+  const toggleCollapsible = React.useCallback(
+    () => setOpen(!open),
+    [setOpen, open],
+  );
   const intl = useIntl();
 
   const classes = clsx({
@@ -48,18 +45,22 @@ const CollapseText: React.FC<CollapseTextProps> = ({
   if (text.length > minCharacters) {
     return (
       <div className={classes}>
-        <CollapsibleContainer
-          alwaysMountChildren
+        <Collapsible
           preview
-          id={id}
+          opened={open}
+          onClickToggle={toggleCollapsible}
         >
-          <Markdown noSpacing={noSpacing} tabbable={open} text={text} />
-        </CollapsibleContainer>
+          <Markdown
+            noSpacing={noSpacing}
+            tabbable={open}
+            text={text}
+          />
+        </Collapsible>
         <Button
           plain
           className="CollapseText__toggle"
           title={intl.formatMessage(collapsibleMessages.expandOrCollapseTitle)}
-          onClick={() => onClickToggle()}
+          onClick={toggleCollapsible}
         >
           {open && (
             <FormattedMessage
@@ -83,17 +84,8 @@ const CollapseText: React.FC<CollapseTextProps> = ({
   return <Markdown noSpacing={noSpacing} text={text} />;
 };
 
-export default connect(
-  (state: CollapsibleStateTree, ownProps: CollapseTextProps) => {
-    const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
+CollapseText.defaultProps = {
+  minCharacters: 700,
+};
 
-    return ({
-      minCharacters,
-      open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
-    });
-  },
-  (dispatch, { id }: any) => ({
-    onClickToggle: () => dispatch(toggleOne(id)),
-    onInitializeCollapsible: (data: any) => dispatch(initializeCollapsible(data)),
-  }),
-)(CollapseText);
+export default CollapseText;
