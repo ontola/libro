@@ -7,12 +7,8 @@ import {
 } from '@material-ui/styles';
 import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
-import { currentLocation } from '../../helpers/paths';
 import app from '../../ontology/app';
-import { getCurrentUserType } from '../../state/app/selectors';
 import { CSSPropertiesMap, LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
 
@@ -73,11 +69,4 @@ class Navbar extends Topology<PropTypes> {
   }
 }
 
-function mapStateToProps(state: any, ownProps: any) {
-  return {
-    actorType: getCurrentUserType(state),
-    redirectUrl: currentLocation(ownProps.location),
-  };
-}
-
-export default withTheme(withRouter(connect(mapStateToProps)(withStyles(styles)(Navbar))));
+export default withTheme(withStyles(styles)(Navbar));

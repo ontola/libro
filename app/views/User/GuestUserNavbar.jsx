@@ -45,7 +45,6 @@ const GuestUserNavbar = ({ location, lrs }) => {
           lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
         }}
       />
-      <Property label={ontola.actorType} />
     </React.Fragment>
   );
 };

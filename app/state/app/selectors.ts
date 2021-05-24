@@ -1,15 +1,8 @@
 import { Node } from '@ontologies/core';
 
-import { HIGHLIGHT_RESOURCE, SET_CURRENT_USER } from '../action-types';
+import { HIGHLIGHT_RESOURCE } from '../action-types';
 
-import { ActorType, AppState } from './reducer';
-
-/**
- * @deprecated
- * Use useCurrentActor instead
- */
-export const getCurrentUserType = (state: Record<string, AppState>): ActorType =>
-  state.app[SET_CURRENT_USER].actorType;
+import { AppState } from './reducer';
 
 export const isHighlighted = (state: Record<string, AppState>, iri: Node): boolean =>
   state.app[HIGHLIGHT_RESOURCE] === iri.value;

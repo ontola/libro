@@ -12,7 +12,6 @@ import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { navbarTopology } from '../../topologies/Navbar';
 
-import ActorType from './properties/actorType';
 import GuestUserNavbar from './GuestUserNavbar';
 import GuestUserParent from './GuestUserParent';
 
@@ -26,7 +25,6 @@ const CurrentActorFooter = () => (
 
 const UserNavbar = ({ lrs }) => (
   <ResourceBoundary>
-    <Property label={ontola.actorType} />
     <Property
       label={ontola.actor}
       onClick={(e) => {
@@ -57,7 +55,6 @@ export default [
     RENDER_CLASS_NAME,
     formFooterTopology
   ),
-  ActorType,
   GuestUserNavbar,
   GuestUserParent,
 ];

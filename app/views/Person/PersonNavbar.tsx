@@ -51,7 +51,6 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
           <Property label={argu.unreadCount} />
         </Link>
       </Resource>
-      <Property label={schema.email} />
     </div>
   );
 };
