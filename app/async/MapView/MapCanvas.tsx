@@ -5,23 +5,18 @@ import { Coordinate } from 'ol/coordinate';
 import 'ol/ol.css';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 
+import { ButtonTheme } from '../../components/Button';
+import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
 import LinkLoader from '../../components/Loading/LinkLoader';
 import OverlayContainer from '../../components/OverlayContainer';
-import withReducer from '../../containers/withReducer';
-import { getMapAccessToken } from '../../state/MapView/actions';
-import reducer, { MapReducerKey } from '../../state/MapView/reducer';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { getAccessToken, getAccessTokenError } from '../../state/MapView/selectors';
 
 import useMap, { UseMapProps } from './useMap';
 import useMapStyles from './useMapStyles';
 import useOverlay from './useOverlay';
 
-interface PropTypes extends UseMapProps {
-  accessTokenError: string;
+interface MapCanvasProps extends UseMapProps {
   large: boolean;
   navigate: (resource: SomeNode) => void;
   overlayPadding: boolean;
@@ -29,9 +24,8 @@ interface PropTypes extends UseMapProps {
   overlayResource: SomeNode;
 }
 
-const MapCanvas = (props: PropTypes) => {
+const MapCanvas = (props: MapCanvasProps): JSX.Element => {
   const {
-    accessTokenError,
     large,
     navigate,
     overlayPadding,
@@ -42,7 +36,9 @@ const MapCanvas = (props: PropTypes) => {
     deselect,
     error,
     map,
+    mapToken,
     mapRef,
+    requestMapToken,
   } = useMap(props);
   const {
     handleOverlayClick,
@@ -63,26 +59,25 @@ const MapCanvas = (props: PropTypes) => {
     [classes.canvas]: true,
     [classes.canvasFullscreen]: large,
   });
-  const errorMessage = (accessTokenError || error) && (
-    <span>
-      <FormattedMessage
-        defaultMessage="Error loading map"
-        id="https://app.argu.co/i18n/errors/map/loadError"
-      />
-    </span>
-  );
 
-  if (!props.accessToken) {
+  if (mapToken.loading) {
     return <LinkLoader />;
   }
+  const currentError = error || mapToken.error;
 
-  if (!mapRef || errorMessage) {
+  if (!mapRef || currentError) {
     return (
       <div className={wrapperClassName} data-testid="map-view">
         <div className={canvasClassName} />
         <div className={classes.indicator}>
           <FontAwesome name="map-o" />
-          {errorMessage}
+          {currentError && (
+            <ErrorButtonWithFeedback
+              caughtError={currentError}
+              reloadLinkedObject={requestMapToken}
+              theme={ButtonTheme.Box}
+            />
+          )}
         </div>
       </div>
     );
@@ -111,15 +106,4 @@ const MapCanvas = (props: PropTypes) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  accessToken: getAccessToken(state),
-  accessTokenError: getAccessTokenError(state),
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  requestAccessToken: () => dispatch(getMapAccessToken()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withReducer(MapReducerKey, reducer)(MapCanvas),
-);
+export default MapCanvas;

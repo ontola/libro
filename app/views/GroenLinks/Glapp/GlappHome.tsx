@@ -8,16 +8,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji/index';
-import { connect } from 'react-redux';
 
-import { getAccessToken } from '../../../state/MapView/selectors';
+import CardError from '../../../components/Error/CardError';
+import useMapAccessToken from '../../../hooks/useMapAccessToken';
 import CardContent from '../../../components/Card/CardContent';
 import GlappMap from '../../../containers/GroenLinks/GlappMap';
-import withReducer from '../../../containers/withReducer';
 import app from '../../../ontology/app';
 import teamGL from '../../../ontology/teamGL';
-import { getMapAccessToken } from '../../../state/MapView/actions';
-import reducer, { MapReducerKey } from '../../../state/MapView/reducer';
 import { allTopologies } from '../../../topologies';
 import Card from '../../../topologies/Card';
 
@@ -54,31 +51,28 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface GlappHomeProps {
-  accessToken: string;
-  requestAccessToken: () => void;
-}
-
-const GlappHome: FC<GlappHomeProps> = ({
-  accessToken,
-  requestAccessToken,
-}) => {
+const GlappHome: FC = () => {
   const [name] = useResourceProperty(app.c_a, schema.givenName);
   const classes = useStyles();
   const theme: any = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const [selectedPostalCode, setSelectedPostalCodeRaw] = React.useState<number | undefined>(undefined);
-  const setSelectedPostalCode = (postalCode?: number) => {
+  const setSelectedPostalCode = React.useCallback((postalCode?: number) => {
     setSelectedPostalCodeRaw(postalCode);
-  };
-  React.useEffect(() => {
-    if (!accessToken) {
-      requestAccessToken();
-    }
-  }, [accessToken]);
+  }, [setSelectedPostalCodeRaw]);
+  const [mapToken, requestMapToken] = useMapAccessToken();
 
-  if (!accessToken) {
+  if (mapToken.loading) {
     return null;
+  }
+
+  if (mapToken.error) {
+    return (
+      <CardError
+        caughtError={mapToken.error}
+        reloadLinkedObject={requestMapToken}
+      />
+    );
   }
 
   return (
@@ -104,22 +98,8 @@ const GlappHome: FC<GlappHomeProps> = ({
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  accessToken: getAccessToken(state),
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  requestAccessToken: () => dispatch(getMapAccessToken()),
-});
-
 GlappHome.type = teamGL.GlappHome;
 
 GlappHome.topology = allTopologies;
-
-GlappHome.hocs = [
-  connect(mapStateToProps, mapDispatchToProps),
-  // @ts-ignore
-  withReducer(MapReducerKey, reducer),
-];
 
 export default register(GlappHome);

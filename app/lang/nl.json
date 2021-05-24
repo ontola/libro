@@ -261,12 +261,6 @@
       "value": "Opnieuw"
     }
   ],
-  "https://app.argu.co/i18n/errors/map/loadError": [
-    {
-      "type": 0,
-      "value": "Fout tijdens het laden van de kaart"
-    }
-  ],
   "https://app.argu.co/i18n/errors/markdown/renderError": [
     {
       "type": 0,

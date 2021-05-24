@@ -118,9 +118,6 @@
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Retry"
   },
-  "https://app.argu.co/i18n/errors/map/loadError": {
-    "defaultMessage": "Error loading map"
-  },
   "https://app.argu.co/i18n/errors/markdown/renderError": {
     "defaultMessage": "An error occurred while formatting the text. The original text in markdown format is as follows:"
   },

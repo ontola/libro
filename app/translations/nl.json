@@ -116,9 +116,6 @@
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Opnieuw"
   },
-  "https://app.argu.co/i18n/errors/map/loadError": {
-    "defaultMessage": "Fout tijdens het laden van de kaart"
-  },
   "https://app.argu.co/i18n/errors/markdown/renderError": {
     "defaultMessage": "Er is een fout opgetreden tijdens het opmaken van de tekst. De brontekst in markdown-formaat is als volgt:"
   },

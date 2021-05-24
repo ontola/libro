@@ -31,6 +31,7 @@ import {
 
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
+import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
 
 export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;
@@ -51,7 +52,7 @@ export interface ViewProps {
 }
 
 interface CreateMapProps {
-  accessToken: string;
+  accessToken: string | undefined;
   layerSources: Array<VectorSource | Cluster> | null;
   mapRef: MutableRefObject<HTMLDivElement | null>;
   tileSource: TileSource | null;
@@ -122,9 +123,7 @@ const createMap = ({
 };
 
 export interface UseMapProps {
-  accessToken: string;
   layers: Layer[];
-  requestAccessToken: () => any;
   onClusterSelect: (features: Feature[], newCenter: Coordinate) => void;
   onMapClick: (newLon: number, newLat: number, newZoom: number) => void;
   onMove: EventHandler<any>;
@@ -136,14 +135,14 @@ export interface UseMapProps {
 
 const useMap = (props: UseMapProps): {
   deselect: (() => void) | null;
-  error: boolean | undefined;
+  error: Error | undefined;
   map: OLMap | null;
   mapRef: React.RefObject<HTMLDivElement>;
+  mapToken: MapAccessToken;
+  requestMapToken: RequestMapAccessToken;
 } => {
   const {
-    accessToken,
     layers,
-    requestAccessToken,
     onClusterSelect,
     onMapClick,
     onMove,
@@ -152,28 +151,29 @@ const useMap = (props: UseMapProps): {
     onZoom,
     view,
   } = props;
+  const [mapToken, requestMapToken] = useMapAccessToken();
   const mapboxTileURL = useMemo(
     () => getMetaContent('mapboxTileURL'),
     [],
   );
   const mapRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!accessToken) {
-      requestAccessToken();
-    }
-  }, [accessToken]);
   const { center, zoom } = view || {};
 
   const [internalCenter, setCenter] = useState<Coordinate | undefined>(undefined);
   const [internalZoom, setZoom] = useState(zoom || DEFAULT_ZOOM);
   const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | null>(null);
   const [tileSource, setTileSource] = useState<TileSource | null>(null);
-  const [error, setError] = useState<boolean | undefined>(undefined);
+  const [error, setError] = useState<Error | undefined>(undefined);
   const [memoizedMap, setMap] = useState<OLMap | null>(null);
 
+  useEffect(() => {
+    if (mapToken.accessToken) {
+      setError(undefined);
+    }
+  }, [mapToken.accessToken]);
   const handleError = useCallback((e) => {
     handle(e);
-    setError(true);
+    setError(e);
 
     return true;
   }, []);
@@ -226,7 +226,7 @@ const useMap = (props: UseMapProps): {
   }, [onSelect]);
 
   useEffect(() => {
-    if (accessToken) {
+    if (mapToken.accessToken) {
       const sources = layers.map((layer) => {
         const vectorSource = new VectorSource();
         let layerSource;
@@ -245,24 +245,27 @@ const useMap = (props: UseMapProps): {
       setLayerSources(sources);
       const source = new XYZ({
         tileSize: [TILE_SIZE, TILE_SIZE],
-        url: `${mapboxTileURL}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
+        url: `${mapboxTileURL}/tiles/{z}/{x}/{y}?access_token=${mapToken.accessToken}`,
       });
       source.addEventListener('tileloadend', handleLoad);
-      source.addEventListener('tileloaderr', handleError);
+      source.addEventListener('tileloaderror', handleError);
+      source.addEventListener('imageloaderror', handleError);
       setTileSource(source);
 
       return () => {
         source.removeEventListener('tileloadend', handleLoad);
-        source.removeEventListener('tileloaderr', handleError);
+        source.removeEventListener('tileloaderror', handleError);
+        source.removeEventListener('imageloaderror', handleError);
       };
     }
 
     return () => null;
-  }, [accessToken]);
+  }, [mapToken.accessToken]);
 
   useEffect(() => {
     const map = createMap({
       ...props,
+      accessToken: mapToken.accessToken,
       layerSources,
       mapRef,
       tileSource,
@@ -274,7 +277,7 @@ const useMap = (props: UseMapProps): {
         map.setTarget(undefined);
       }
     };
-  }, [mapRef.current, accessToken, layerSources, tileSource]);
+  }, [mapRef.current, mapToken.accessToken, layerSources, tileSource]);
 
   useEffect(() => {
     const handleViewChange = (e: MapBrowserEvent) => {
@@ -383,6 +386,8 @@ const useMap = (props: UseMapProps): {
     error,
     map: memoizedMap,
     mapRef,
+    mapToken,
+    requestMapToken,
   };
 };
 

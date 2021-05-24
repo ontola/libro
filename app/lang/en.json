@@ -261,12 +261,6 @@
       "value": "Retry"
     }
   ],
-  "https://app.argu.co/i18n/errors/map/loadError": [
-    {
-      "type": 0,
-      "value": "Error loading map"
-    }
-  ],
   "https://app.argu.co/i18n/errors/markdown/renderError": [
     {
       "type": 0,

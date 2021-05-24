@@ -10,8 +10,6 @@ import {
 import { enableBatching } from 'redux-batched-actions';
 import thunk from 'redux-thunk';
 
-import apiMiddleware from '../middleware/api';
-
 import * as reducers from './reducers';
 
 const configureStore = (
@@ -22,8 +20,6 @@ const configureStore = (
 
   const appliedMiddleware = applyMiddleware(
     thunk,
-    // @ts-ignore
-    apiMiddleware(),
     routerMiddleware(history),
   );
 
