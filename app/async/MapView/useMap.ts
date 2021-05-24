@@ -19,7 +19,7 @@ import TileSource from 'ol/source/Tile';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import { StyleFunction } from 'ol/style/Style';
-import {
+import React, {
   EventHandler,
   MutableRefObject,
   useCallback,
@@ -42,7 +42,7 @@ const DEFAULT_ZOOM = 6.8;
 const TILE_SIZE = 512;
 
 interface Layer {
-  clustered: boolean;
+  clustered?: boolean;
   features: Feature[];
 }
 
@@ -52,11 +52,11 @@ export interface ViewProps {
 }
 
 interface CreateMapProps {
-  accessToken: string | undefined;
-  layerSources: Array<VectorSource | Cluster> | null;
+  accessToken?: string;
+  layerSources?: Array<VectorSource | Cluster>;
   mapRef: MutableRefObject<HTMLDivElement | null>;
-  tileSource: TileSource | null;
-  view: ViewProps;
+  tileSource?: TileSource;
+  view?: ViewProps;
 }
 const getStyle = (styleName: string): StyleFunction => (
   (feature: FeatureLike) => {
@@ -66,7 +66,7 @@ const getStyle = (styleName: string): StyleFunction => (
   }
 );
 
-const updateFeatures = (layerSources: Array<VectorSource | Cluster> | null, layers: Layer[]) => {
+const updateFeatures = (layerSources: Array<VectorSource | Cluster> | undefined, layers: Layer[]) => {
   if (layerSources) {
     layerSources.forEach((source, index) => {
       const layer = layers[index];
@@ -87,12 +87,12 @@ const createMap = ({
   mapRef,
   tileSource,
   view,
-}: CreateMapProps): OLMap | null => {
+}: CreateMapProps): OLMap | undefined => {
   const { current } = mapRef;
   const { center, zoom } = view || {};
 
   if (!current || !accessToken || !layerSources || !tileSource) {
-    return null;
+    return undefined;
   }
 
   const layers = [
@@ -124,19 +124,19 @@ const createMap = ({
 
 export interface UseMapProps {
   layers: Layer[];
-  onClusterSelect: (features: Feature[], newCenter: Coordinate) => void;
-  onMapClick: (newLon: number, newLat: number, newZoom: number) => void;
-  onMove: EventHandler<any>;
-  onSelect: (feature: Feature | null, center: Coordinate | null) => any;
-  onViewChange: (center: Coordinate, zoom: number) => any;
-  onZoom: EventHandler<any>;
-  view: ViewProps;
+  onClusterSelect?: (features: Feature[], newCenter: Coordinate) => void;
+  onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
+  onMove?: EventHandler<any>;
+  onSelect?: (feature: Feature | undefined, center: Coordinate | undefined) => any;
+  onViewChange?: (center: Coordinate, zoom: number) => any;
+  onZoom?: EventHandler<any>;
+  view?: ViewProps;
 }
 
 const useMap = (props: UseMapProps): {
-  deselect: (() => void) | null;
+  deselect: (() => void) | undefined;
   error: Error | undefined;
-  map: OLMap | null;
+  map: OLMap | undefined;
   mapRef: React.RefObject<HTMLDivElement>;
   mapToken: MapAccessToken;
   requestMapToken: RequestMapAccessToken;
@@ -161,10 +161,10 @@ const useMap = (props: UseMapProps): {
 
   const [internalCenter, setCenter] = useState<Coordinate | undefined>(undefined);
   const [internalZoom, setZoom] = useState(zoom || DEFAULT_ZOOM);
-  const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | null>(null);
-  const [tileSource, setTileSource] = useState<TileSource | null>(null);
+  const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | undefined>(undefined);
+  const [tileSource, setTileSource] = useState<TileSource | undefined>(undefined);
   const [error, setError] = useState<Error | undefined>(undefined);
-  const [memoizedMap, setMap] = useState<OLMap | null>(null);
+  const [memoizedMap, setMap] = useState<OLMap | undefined>(undefined);
 
   useEffect(() => {
     if (mapToken.accessToken) {
@@ -221,7 +221,7 @@ const useMap = (props: UseMapProps): {
         onSelect(selected, selectCenter);
       }
     } else if (onSelect) {
-      onSelect(null, null);
+      onSelect(undefined, undefined);
     }
   }, [onSelect]);
 
@@ -259,7 +259,7 @@ const useMap = (props: UseMapProps): {
       };
     }
 
-    return () => null;
+    return () => undefined;
   }, [mapToken.accessToken]);
 
   useEffect(() => {
@@ -295,7 +295,7 @@ const useMap = (props: UseMapProps): {
         }
         setZoom(newZoom);
       }
-      if (newCenter && newZoom) {
+      if (newCenter && newZoom && onViewChange) {
         onViewChange(newCenter, newZoom);
       }
     };
@@ -313,8 +313,10 @@ const useMap = (props: UseMapProps): {
 
   useEffect(() => {
     const handleMapClick = (e: MapBrowserEvent) => {
-      const [lon, lat] = toLonLat(e.coordinate);
-      onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
+      if (onMapClick) {
+        const [lon, lat] = toLonLat(e.coordinate);
+        onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
+      }
 
       return true;
     };
@@ -352,7 +354,7 @@ const useMap = (props: UseMapProps): {
     updateFeatures(layerSources, layers);
   }, [!!layerSources, ...layers]);
 
-  const [deselect, setDeselect] = useState<null | (() => void)>(null);
+  const [deselect, setDeselect] = useState<undefined | (() => void)>(undefined);
   useEffect(() => {
     if (memoizedMap) {
       const select = new Select({
@@ -362,7 +364,7 @@ const useMap = (props: UseMapProps): {
       select.on('select', handleSelect);
       setDeselect(() => () => {
         select.getFeatures().clear();
-        handleSelect(null);
+        handleSelect(undefined);
       });
       memoizedMap.addInteraction(select);
 
@@ -378,7 +380,7 @@ const useMap = (props: UseMapProps): {
       };
     }
 
-    return () => null;
+    return () => undefined;
   }, [handleSelect, memoizedMap]);
 
   return {

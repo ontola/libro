@@ -47,7 +47,7 @@ const GlappMap: React.FC<GlappMapProps> = ({
     postalCodes,
     priorities: postalStats?.priorities,
   });
-  const [overlayPosition, setOverlayPosition] = React.useState<Coordinate | null>(null);
+  const [overlayPosition, setOverlayPosition] = React.useState<Coordinate | undefined>(undefined);
   const [selectedFeatures] = useSelectedPostalCode({
     postalShapes,
     selectedPostalCode,
@@ -90,12 +90,11 @@ const GlappMap: React.FC<GlappMapProps> = ({
     });
   }, [setView]);
 
-  const overlayResource = selectedPostalCode && postalCodeIri(selectedPostalCode.toString());
+  const overlayResource = selectedPostalCode ? postalCodeIri(selectedPostalCode.toString()) : undefined;
 
   return (
     <MapCanvas
       large
-      fullscreenButton={false}
       layers={layers}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}

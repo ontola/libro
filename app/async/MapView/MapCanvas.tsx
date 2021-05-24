@@ -17,11 +17,11 @@ import useMapStyles from './useMapStyles';
 import useOverlay from './useOverlay';
 
 interface MapCanvasProps extends UseMapProps {
-  large: boolean;
-  navigate: (resource: SomeNode) => void;
-  overlayPadding: boolean;
-  overlayPosition: Coordinate;
-  overlayResource: SomeNode;
+  large?: boolean;
+  navigate?: (resource: SomeNode) => void;
+  overlayPadding?: boolean;
+  overlayPosition?: Coordinate;
+  overlayResource?: SomeNode;
 }
 
 const MapCanvas = (props: MapCanvasProps): JSX.Element => {

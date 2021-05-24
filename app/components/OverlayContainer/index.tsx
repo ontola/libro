@@ -6,7 +6,7 @@ import './OverlayContainer.scss';
 
 interface PropTypes {
   clickHandler: MouseEventHandler;
-  overlayRef: HTMLElement;
+  overlayRef: HTMLElement | null;
 }
 
 /**

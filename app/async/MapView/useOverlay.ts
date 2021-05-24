@@ -10,11 +10,11 @@ import {
 } from 'react';
 
 interface PropTypes {
-  map: Map | null;
-  navigate: (resource: SomeNode) => void;
-  overlayPadding: boolean;
-  overlayPosition: Coordinate;
-  overlayResource: SomeNode;
+  map: Map | undefined;
+  navigate?: (resource: SomeNode) => void;
+  overlayPadding?: boolean;
+  overlayPosition?: Coordinate;
+  overlayResource?: SomeNode;
 }
 
 const useOverlay = ({
@@ -25,14 +25,15 @@ const useOverlay = ({
   overlayResource,
 }: PropTypes): {
   handleOverlayClick: (e: any) => false | void;
-  overlayRef: React.MutableRefObject<HTMLDivElement>;
+  overlayRef: React.MutableRefObject<HTMLDivElement | null>;
 } => {
-  const overlayRef = useRef(document.createElement('div'));
+  const overlayRef = useRef(null);
   const overlay = useMemo(() => {
-    if (map) {
+    const element = overlayRef.current;
+    if (map && element) {
       const o = new Overlay({
         autoPan: overlayPadding,
-        element: overlayRef.current,
+        element,
         positioning: OverlayPositioning.TOP_CENTER,
         stopEvent: true,
       });
@@ -51,7 +52,7 @@ const useOverlay = ({
   }, [overlay, overlayPosition]);
 
   const handleOverlayClick = useCallback((e) => (
-    e.target.className !== 'click-ignore' && navigate && navigate(overlayResource)
+    e.target.className !== 'click-ignore' && navigate && overlayResource && navigate(overlayResource)
   ), [overlayResource]);
 
   return {

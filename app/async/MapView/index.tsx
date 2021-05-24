@@ -135,20 +135,20 @@ const MapView: React.FC<PropTypes> = ({
   placements,
 }) => {
   const [placementFeatures, resolvedCenter, loading] = useFeatures(placements);
-  const initialView = (initialLat || initialLon || initialZoom) && {
-    center: (initialLat && initialLon) ? fromLonLat([initialLon, initialLat]) : null,
+  const initialView = (initialLat || initialLon || initialZoom) ? {
+    center: (initialLat && initialLon) ? fromLonLat([initialLon, initialLat]) : undefined,
     zoom: initialZoom,
-  };
+  } : undefined;
   const [view, setView] = React.useState(initialView);
   React.useEffect(() => {
     if (resolvedCenter) {
       setView({
-        center: resolvedCenter?.getGeometry()?.getCoordinates() || null,
+        center: resolvedCenter?.getGeometry()?.getCoordinates() || undefined,
         zoom: resolvedCenter?.getProperties()?.zoomLevel,
       });
     }
   }, [loading, resolvedCenter?.getId()]);
-  const [overlayPosition, setOverlayPosition] = React.useState(null);
+  const [overlayPosition, setOverlayPosition] = React.useState(undefined);
   const handleSelect = React.useCallback((feature, newCenter) => {
     if (onSelect) {
       onSelect(feature, newCenter);
