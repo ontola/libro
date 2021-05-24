@@ -39,6 +39,7 @@ import GroenLinks from './GroenLinks';
 import Group from './Group';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
+import Opinion from './Opinion';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
@@ -73,7 +74,6 @@ import Timeline from './Timeline';
 import Token from './Token';
 import User from './User';
 import Vocabulary from './Vocabulary';
-import Vote from './Vote';
 import VoteEvent from './VoteEvent';
 import Widget from './Widget';
 
@@ -126,6 +126,7 @@ export function getViews() {
     ...Motion,
     ...Notification,
     ...ontola,
+    ...Opinion,
     ...Organization,
     ...Person,
     ...Phase,
@@ -148,7 +149,6 @@ export function getViews() {
     ...Token,
     ...User,
     ...Vocabulary,
-    ...Vote,
     ...VoteEvent,
     ...Widget,
   ];

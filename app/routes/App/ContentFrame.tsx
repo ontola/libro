@@ -15,7 +15,6 @@ import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 import ontola from '../../ontology/ontola';
 import Footer from '../../topologies/Footer';
-import Popup from '../../topologies/Popup';
 // @ts-ignore
 import headers from '../../themes/headers';
 
@@ -62,7 +61,6 @@ const ContentFrame = ({
           </Footer>
           <Resource subject={ontola.ns('snackbar/manager')} />
           <Resource subject={ontola.ns('dialog/manager')} />
-          <Popup />
         </div>
       </HoverHelper>
     </HotKeys>

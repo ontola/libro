@@ -1,6 +1,5 @@
 import EventContainer from './EventContainer';
 import EventPage from './EventFull';
-import EventPopup from './EventPopup';
 import EventCardList from './EventCardList';
 import EventCardRow from './EventCardRow';
 import EventTypeDetailsBar from './properties/eventTypeDetailsBar';
@@ -12,7 +11,6 @@ export default [
   EventCardRow,
   EventContainer,
   EventPage,
-  EventPopup,
   EventTypeDetailsBar,
   ParticipantsCount,
   StartDate,

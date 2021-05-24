@@ -30,7 +30,6 @@ import omniformSupplementBarTopologyComponent, { omniformSupplementBarTopology }
 import { pageTopology, Page as pageTopologyComponent } from './topologies/Page';
 import pageHeaderTopologyComponent, { pageHeaderTopology } from './topologies/PageHeader';
 import parentTopologyComponent, { parentTopology } from './topologies/Parent';
-import popupTopologyComponent, { popupTopology } from './topologies/Popup';
 import radioGroupTopologyComponent, { radioGroupTopology } from './topologies/RadioGroup';
 import blueBlockTopologyComponent, { blueBlockTopology } from './topologies/SalesWebsite/BlueBlock';
 import selectTopologyComponent, { selectTopology } from './topologies/Select';
@@ -78,7 +77,6 @@ const topologyMap: TopologyMap = {
   [rdf.id(pageTopology)]: [pageTopologyComponent, undefined],
   [rdf.id(pageHeaderTopology)]: [pageHeaderTopologyComponent, undefined],
   [rdf.id(parentTopology)]: [parentTopologyComponent, undefined],
-  [rdf.id(popupTopology)]: [popupTopologyComponent, undefined],
   [rdf.id(radioGroupTopology)]: [radioGroupTopologyComponent, undefined],
   [rdf.id(selectTopology)]: [selectTopologyComponent, undefined],
   [rdf.id(tableBodyTopology)]: [tableBodyComponent, undefined],

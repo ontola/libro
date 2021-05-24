@@ -18,11 +18,11 @@ import teamGL from '../../../ontology/teamGL';
 import AttributeList from '../../../topologies/AttributeList';
 import Card from '../../../topologies/Card';
 import ContentDetails from '../../../topologies/ContentDetails';
-import { popupTopology } from '../../../topologies/Popup';
+import { alertDialogTopology } from '../../../topologies/Dialog';
 import { formMessages } from '../../../translations/messages';
 import { useVisitPostalCode } from '../Glapp/helpers';
 
-const PostalCodePopup = ({
+const PostalCodeDialog = ({
   onClose,
   postalDigits,
 }) => {
@@ -63,17 +63,17 @@ const PostalCodePopup = ({
   );
 };
 
-PostalCodePopup.type = teamGL.PostalCode;
+PostalCodeDialog.type = teamGL.PostalCode;
 
-PostalCodePopup.topology = popupTopology;
+PostalCodeDialog.topology = alertDialogTopology;
 
-PostalCodePopup.mapDataToProps = {
+PostalCodeDialog.mapDataToProps = {
   postalDigits: teamGL.postalDigits,
 };
 
-PostalCodePopup.propTypes = {
+PostalCodeDialog.propTypes = {
   onClose: PropTypes.func,
   postalDigits: linkType,
 };
 
-export default register(PostalCodePopup);
+export default register(PostalCodeDialog);

@@ -13,7 +13,7 @@ import OverlayContainer from '../../components/OverlayContainer';
 import withReducer from '../../containers/withReducer';
 import { getMapAccessToken } from '../../state/MapView/actions';
 import reducer, { MapReducerKey } from '../../state/MapView/reducer';
-import { popupTopology } from '../../topologies/Popup';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { getAccessToken, getAccessTokenError } from '../../state/MapView/selectors';
 
 import useMap, { UseMapProps } from './useMap';
@@ -98,7 +98,7 @@ const MapCanvas = (props: PropTypes) => {
         {overlayResource && (
           <Resource
             subject={overlayResource}
-            topology={popupTopology}
+            topology={alertDialogTopology}
             onClose={() => {
               if (deselect) {
                 deselect();

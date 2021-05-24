@@ -32,7 +32,6 @@ import { inlineTopology } from '../../../topologies/Inline';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
-import { popupTopology } from '../../../topologies/Popup';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { radioGroupTopology } from '../../../topologies/RadioGroup';
 import { selectTopology } from '../../../topologies/Select';
@@ -155,7 +154,6 @@ export default [
     NamePredicates,
     [
       containerTopology,
-      popupTopology,
       gridTopology,
     ]
   ),

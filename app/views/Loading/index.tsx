@@ -3,7 +3,6 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import Loading, {
   LoadingButton,
   LoadingCard,
-  LoadingCardFixed,
   LoadingCardFloat,
   LoadingCardRowAppendix,
   LoadingCellRow,
@@ -45,7 +44,6 @@ import { menuTopology } from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
-import { popupTopology } from '../../topologies/Popup';
 import { selectedValueTopology } from '../../topologies/SelectedValue';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
@@ -151,12 +149,6 @@ export default [
       contentDetailsTopology,
       tableCellTopology,
     ],
-  ),
-  LinkedRenderStore.registerRenderer(
-    LoadingCardFixed,
-    ll.LoadingResource,
-    RENDER_CLASS_NAME,
-    popupTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardFloat,

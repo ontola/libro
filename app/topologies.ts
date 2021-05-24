@@ -29,7 +29,6 @@ import { omniformSupplementBarTopology } from './topologies/OmniformSupplementBa
 import { pageTopology } from './topologies/Page';
 import { pageHeaderTopology } from './topologies/PageHeader';
 import { parentTopology } from './topologies/Parent';
-import { popupTopology } from './topologies/Popup';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { blueBlockTopology } from './topologies/SalesWebsite/BlueBlock';
 import { selectTopology } from './topologies/Select';
@@ -82,7 +81,6 @@ export const allTopologies: NamedNode[] = [
   parentTopology,
   pageTopology,
   pageHeaderTopology,
-  popupTopology,
   radioGroupTopology,
   selectTopology,
   selectedValueTopology,

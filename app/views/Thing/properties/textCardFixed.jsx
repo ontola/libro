@@ -7,7 +7,6 @@ import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
 import ontola from '../../../ontology/ontola';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
-import { popupTopology } from '../../../topologies/Popup';
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles(() => ({
@@ -56,7 +55,6 @@ TextCutoff.property = [schema.text, schema.description];
 TextCutoff.topology = [
   cardFixedTopology,
   hoverBoxTopology,
-  popupTopology,
 ];
 
 TextCutoff.mapDataToProps = {

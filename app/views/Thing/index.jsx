@@ -62,7 +62,6 @@ import ThingMenu from './ThingMenu';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
 import ThingParent from './ThingParent';
-import ThingPopup from './ThingPopup';
 import ThingRadioGroup from './ThingRadioGroup';
 import ThingSelect from './ThingSelect';
 import ThingTable from './ThingTable';
@@ -99,7 +98,6 @@ export default [
   ThingTableHeaderRow,
   ThingTableRow,
   ThingParent,
-  ThingPopup,
   ThingInline,
   LinkedRenderStore.registerRenderer(
     connectHighlighting(ThingSection),
