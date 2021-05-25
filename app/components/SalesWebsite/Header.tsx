@@ -23,7 +23,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundColor: theme.palette.background.default,
     backgroundPosition: '50% 20%',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '1375 px',
+    backgroundSize: '110%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

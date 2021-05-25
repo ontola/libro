@@ -2,6 +2,8 @@ import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 import { Overrides } from '@material-ui/core/styles/overrides';
 
+const SIX_PX = 0.1875;
+
 const overrides: Overrides = {
   MuiButton: {
     iconSizeMedium: {
@@ -39,14 +41,12 @@ const typography: TypographyOptions = {
     color: '000',
     // fontSize: 18
     fontSize: '1.125rem',
-    margin: 10,
     marginBottom: 14,
   },
   body2: {
     color: '000',
     // fontSize: 18
     fontSize: '1.125rem',
-    margin: 10,
     marginBottom: 14,
   },
   button: {
@@ -58,7 +58,6 @@ const typography: TypographyOptions = {
     // Fontsize: 50
     fontSize: '3.125rem',
     fontWeight: 'bold',
-    margin: 10,
     marginBottom: 24,
   },
   h2: {
@@ -66,7 +65,6 @@ const typography: TypographyOptions = {
     // Fontsize: 37
     fontSize: '2.31rem',
     fontWeight: 'bold',
-    margin: 10,
     marginBottom: 24,
   },
   h3: {
@@ -75,13 +73,11 @@ const typography: TypographyOptions = {
     // Fontsize: 24
     fontSize: '1.5rem',
     fontWeight: 'bold',
-    margin: 10,
   },
   subtitle1: {
     color: '000',
     // fontSize: 18
     fontSize: '1.125rem',
-    margin: 10,
     marginBottom: 24,
   },
 };
@@ -92,6 +88,7 @@ const customVariables: ThemeOptions = {
   shape: {
     borderRadius: 5,
   },
+  spacing: (factor) => `${SIX_PX * factor}rem`,
   typography,
 };
 

@@ -16,12 +16,22 @@ import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
+const INNER_CONTAINER_GAP = 3;
+const INNER_CONTAINER_PADDING = 2;
+
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   arrow: {
     fontSize: 50,
   },
+  innerContainer: {
+    gap: theme.spacing(INNER_CONTAINER_GAP),
+    padding: theme.spacing(INNER_CONTAINER_PADDING),
+  },
   productButton: {
     [theme.breakpoints.down('sm')]: {
+      '&:hover': {
+        boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+      },
       boxShadow: '0 0 25px rgba(0,0,0,0.2)',
       width: '100%',
     },
@@ -59,6 +69,7 @@ const ProductPageShowcase: FC = ({ subject }) => {
         <Grid
           container
           alignItems="flex-start"
+          className={classes.innerContainer}
           direction="column"
         >
           <Typography

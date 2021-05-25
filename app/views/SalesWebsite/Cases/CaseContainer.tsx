@@ -23,17 +23,6 @@ export interface CaseContainerProps {
 }
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
-  '@keyframes myEffect': {
-    '0%': {
-      transform: 'translateX(-100%)',
-    },
-    '50%': {
-      transform: 'translateX(0)',
-    },
-    '100%': {
-      transform: 'translateX(-100%)',
-    },
-  },
   button: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -41,7 +30,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   image: {
     [theme.breakpoints.down('md')]: {
-      animation: `$myEffect 10s ${theme.transitions.easing.easeInOut} infinite`,
       backgroundSize: 'fill',
       maxWidth: '100%',
     },
