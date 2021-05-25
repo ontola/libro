@@ -51,6 +51,7 @@ stagingTagManual:
 codeQuality:
   stage: test
   script:
+    - yarn run t10s:compile
     - yarn run lint:code
     - yarn run lint:style
     - yarn run t10s:lint
@@ -59,6 +60,7 @@ test:
   stage: test
   script:
     - yarn run test
+    - yarn run t10s:compile
     - yarn run ts-compile-check
 
 autoTagProduction:

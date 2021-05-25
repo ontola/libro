@@ -10,6 +10,7 @@ ARG CI_COMMIT_BRANCH
 ENV CI_COMMIT_BRANCH $CI_COMMIT_BRANCH
 ARG TEST_BUILD
 ENV TEST_BUILD $TEST_BUILD
+RUN yarn run t10s:compile
 RUN yarn run build:server
 RUN yarn run build:bundle
 

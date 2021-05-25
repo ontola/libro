@@ -22,6 +22,7 @@ nginx.key
 v8-compile-cache*
 yarn-error.log
 package-lock.json
+/app/lang/*.json
 
 .yarn/*
 !.yarn/patches
