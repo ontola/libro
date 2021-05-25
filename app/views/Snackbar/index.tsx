@@ -1,7 +1,6 @@
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   ReturnType,
@@ -14,12 +13,27 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import { formMessages } from '../../translations/messages';
 
-const SNACKBAR_TIMEOUT = 2750;
+const AVERAGE_DUTCH_WORDS_PER_MINUTE = 202;
+const MIN_SNACKBAR_TIMEOUT = 2750;
+const MILLISECONDS_IN_SECOND = 1000;
+const SECONDS_IN_MINUTE = 60;
 
 interface SnackbarViewProps {
   close: () => void;
-  text: SomeTerm;
+  text: string;
 }
+
+const calcDuration = (text = '') => {
+  const avgWPS = AVERAGE_DUTCH_WORDS_PER_MINUTE / SECONDS_IN_MINUTE;
+  const wordAmount = text.split(/\b/)
+    .map((x) => x.trim())
+    .filter(Boolean)
+    .length;
+
+  const duration = Math.round(wordAmount / avgWPS) * MILLISECONDS_IN_SECOND;
+
+  return Math.max(MIN_SNACKBAR_TIMEOUT, duration);
+};
 
 const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
   const { formatMessage } = useIntl();
@@ -41,7 +55,7 @@ const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
           <CloseIcon />
         </IconButton>,
       ]}
-      autoHideDuration={SNACKBAR_TIMEOUT}
+      autoHideDuration={calcDuration(text)}
       message={text}
       open={open}
       onClose={handleClose}
