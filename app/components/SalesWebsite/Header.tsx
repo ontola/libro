@@ -4,7 +4,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -17,7 +17,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
     fontSize: 18,
-    textTransform: 'none',
   },
   header: {
     alignItems: 'center',
@@ -89,7 +88,7 @@ export const Header = ({
           className={classes.button}
           color="secondary"
           component={NavLink as React.ElementType}
-          endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+          endIcon={<ChevronRightIcon />}
           to={retrievePath(buttonLink!)}
           variant="contained"
         >

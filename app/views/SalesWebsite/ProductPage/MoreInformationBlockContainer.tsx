@@ -5,7 +5,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import { useProperty } from 'link-redux';
 import * as schema from '@ontologies/schema';
@@ -19,8 +19,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    textTransform: 'none',
   },
   buttonText: {
     textAlign: 'right',
@@ -63,7 +61,7 @@ const MoreInformationBlockContainer = (): JSX.Element => {
       <Button
         className={classes.button}
         endIcon={(
-          <ArrowRightAltIcon
+          <ChevronRightIcon
             className={classes.icon}
             style={{ fontSize: 40 }}
           />
@@ -79,12 +77,7 @@ const MoreInformationBlockContainer = (): JSX.Element => {
       </Typography>
       <Button
         className={classes.button}
-        endIcon={(
-          <ArrowRightAltIcon
-            className={classes.icon}
-            style={{ fontSize: 40 }}
-          />
-        )}
+        endIcon={<ChevronRightIcon className={classes.icon} />}
       >
         {buttonTextTwo.value}
       </Button>

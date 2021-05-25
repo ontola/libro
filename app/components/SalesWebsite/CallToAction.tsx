@@ -1,5 +1,5 @@
 import { Button, Typography } from '@material-ui/core';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +10,6 @@ import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     fontSize: 18,
-    textTransform: 'none',
   },
   header: {
     alignItems: 'center',
@@ -72,7 +71,7 @@ export const CallToAction = ({
         className={classes.button}
         color="secondary"
         component={NavLink as React.ElementType}
-        endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+        endIcon={<ChevronRightIcon />}
         to={retrievePath(buttonLink)}
         variant="contained"
       >

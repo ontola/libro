@@ -7,12 +7,6 @@ import { FormattedMessage } from 'react-intl';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
-  arrow: {
-    color: theme.palette.primary.main,
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginLeft: -20,
-  },
   container: {
     display: 'flex',
   },
@@ -34,9 +28,7 @@ export const ReadMoreButton = (): JSX.Element => {
           defaultMessage="Read more"
           id="https://app.argu.co/i18n/sales/readmore"
         />
-      </Typography>
-      <Typography>
-        <ChevronRight className={classes.arrow} />
+        <ChevronRight />
       </Typography>
     </div>
   );

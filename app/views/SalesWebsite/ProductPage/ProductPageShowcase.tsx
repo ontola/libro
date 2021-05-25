@@ -30,7 +30,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     justifyContent: 'flex-start',
     padding: '1rem',
     textAlign: 'left',
-    textTransform: 'none',
   },
   root: {
     width: '28em',

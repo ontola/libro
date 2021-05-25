@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
@@ -20,10 +20,6 @@ export interface CasePageShowcaseProps {
 }
 
 const useStyles = makeStyles<SalesTheme, CasePageShowcaseProps>((theme) => ({
-  arrow: {
-    color: '#2D7080',
-    fontSize: 40,
-  },
   margin: {
     marginTop: 100,
   },
@@ -33,7 +29,6 @@ const useStyles = makeStyles<SalesTheme, CasePageShowcaseProps>((theme) => ({
     justifyContent: 'center',
     padding: 20,
     textAlign: 'left',
-    textTransform: 'none',
   },
   themeIndicator: {
     color: theme.palette.primary.main,
@@ -76,9 +71,11 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
           {tagline.value}
         </Typography>
         <Typography variant="h6">
-          {text.value}
+          <React.Fragment>
+            {text.value}
+            <ChevronRightIcon />
+          </React.Fragment>
         </Typography>
-        <ArrowRightAltIcon className={classes.arrow} />
       </Grid>
     </Button>
   );

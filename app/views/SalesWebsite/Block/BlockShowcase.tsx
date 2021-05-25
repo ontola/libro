@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
@@ -20,7 +20,6 @@ const useStyles = makeStyles<SalesTheme>(() => ({
     fontWeight: 'bold',
     margin: 30,
     textAlign: 'center',
-    textTransform: 'none',
   },
   container: {
     backgroundColor: (props: Record<string, string>) => props.backgroundColor,
@@ -79,14 +78,15 @@ const BlockShowcase: FC = () => {
         {text.value}
       </Typography>
       <Button
-        className={classes.button}
+        classes={{
+          iconSizeLarge: classes.icon,
+          root: classes.button,
+        }}
         component={NavLink as React.ElementType}
         endIcon={(
-          <ArrowRightAltIcon
-            className={classes.icon}
-            style={{ fontSize: 40 }}
-          />
+          <ChevronRightIcon />
         )}
+        size="large"
         to={retrievePath(buttonLink.value)}
       >
         {buttonText.value}

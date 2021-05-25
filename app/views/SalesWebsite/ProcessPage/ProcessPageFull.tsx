@@ -5,7 +5,7 @@ import {
   useTheme,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -32,7 +32,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     fontSize: 24,
     fontWeight: theme.typography.fontWeightMedium,
-    textTransform: 'none',
   },
   buttonPrimary: {
     backgroundColor: '#B33A00',
@@ -179,12 +178,12 @@ const ProcessPageFull: FC = () => {
           <Button
             className={classes.button}
             color="primary"
-            endIcon={<ArrowRightAltIcon color="inherit" style={{ fontSize: 35 }} />}
+            endIcon={<ChevronRightIcon />}
             href="/academy"
             target="_blank"
             variant="contained"
           >
-            Bekijk onze academy.
+            Bekijk onze academy
           </Button>
         </div>
       </Container>

@@ -5,7 +5,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import { Property } from 'link-redux';
@@ -23,7 +23,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     fontSize: 18,
     justifyContent: 'center',
     marginLeft: 8,
-    textTransform: 'none',
   },
   buttonWrapper: {
     alignItems: 'left',
@@ -142,7 +141,7 @@ export const HeaderProductPages = ({
                 className={classes.button}
                 color="secondary"
                 component={NavLink as React.ElementType}
-                endIcon={<ArrowRightAltIcon style={{ fontSize: 40 }} />}
+                endIcon={<ChevronRightIcon />}
                 to={retrievePath(buttonLink)}
                 variant="contained"
               >

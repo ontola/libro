@@ -5,7 +5,7 @@ import {
   useTheme,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -19,7 +19,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     fontWeight: 'bold',
     justifyContent: 'center',
     margin: 0,
-    textTransform: 'none',
     [theme.breakpoints.up('md')]: {
       justifyContent: 'flex-end',
     },
@@ -129,7 +128,7 @@ export const Parallax = ({
               }}
               component={NavLink as React.ElementType}
               endIcon={(
-                <ArrowRightAltIcon
+                <ChevronRightIcon
                   color="primary"
                 />
               )}

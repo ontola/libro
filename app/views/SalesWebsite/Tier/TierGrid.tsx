@@ -68,9 +68,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   ctaLabel: {
     fontSize: '1.3em',
   },
-  ctaRoot: {
-    textTransform: 'none',
-  },
   infoHeader: {
     minHeight: '21em',
   },
@@ -141,10 +138,7 @@ const TierGrid: FC = () => {
         </CardContent>
         <CardActions className={classes.actions}>
           <Button
-            classes={{
-              label: classes.ctaLabel,
-              root: classes.ctaRoot,
-            }}
+            classes={{ label: classes.ctaLabel }}
             color="secondary"
             endIcon={<ChevronRightIcon />}
             variant="contained"

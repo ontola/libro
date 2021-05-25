@@ -41,7 +41,6 @@ const useStyles = makeStyles<SalesTheme>({
     margin: 10,
     marginTop: 50,
     padding: '0 30px',
-    textTransform: 'none',
   },
   root: {
     maxWidth: '28em',

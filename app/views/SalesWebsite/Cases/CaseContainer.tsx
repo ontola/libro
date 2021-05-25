@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -38,11 +38,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     fontSize: 24,
     fontWeight: 'bold',
     margin: 30,
-    textTransform: 'none',
-  },
-  iconStyle: {
-    color: '#2D7080',
-    fontSize: 60,
   },
   image: {
     [theme.breakpoints.down('md')]: {
@@ -115,7 +110,7 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
       <Button
         className={classes.button}
         component={NavLink as React.ElementType}
-        endIcon={<ArrowRightAltIcon color="primary" style={{ fontSize: 35 }} />}
+        endIcon={<ChevronRightIcon />}
         to={retrievePath(caseButtonLink.value)}
       >
         {caseButtonText.value}
