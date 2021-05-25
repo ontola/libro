@@ -29,6 +29,7 @@ export default (origin, websocket = true) => {
       styled_headers: null,
       theme: 'default',
       theme_options: '',
+      tracking: {},
       website_iri: origin,
       websocket,
     },

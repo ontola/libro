@@ -16,7 +16,6 @@ import ensureAccessTokenMiddleware from '../middleware/ensureAccessTokenMiddlewa
 import backendErrorHandler from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
-import defaultManifest from '../utils/defaultManifest'
 import deviceIdMiddleware from '../utils/deviceId';
 import {
   isBackend,

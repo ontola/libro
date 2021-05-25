@@ -19,7 +19,12 @@ import {
   icons,
   themeBlock,
 } from './render/styling';
-import { googleAnalyticsScript, matomoScript } from './tracking';
+import {
+  googleAnalyticsScript,
+  matomoScript,
+  tagManager,
+  tagManagerBody,
+} from './tracking';
 
 const version = require('../../webpack/version');
 
@@ -75,6 +80,7 @@ export const renderFullPage = async (ctx, data) => {
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
           ${prerenderMetaTags(ctx, seed)}
+          ${manifest.ontola.tracking?.tag_manager ? tagManager(manifest.ontola.tracking?.tag_manager) : ''}
 
           <meta name="website-iri" content="${manifest.ontola.website_iri ?? manifest.scope ?? ''}">
           <meta property="og:type" content="website">
@@ -110,6 +116,7 @@ export const renderFullPage = async (ctx, data) => {
           ${polyfill(bundleVersion, nonceStr)}
         </head>
         <body style="margin: 0;">
+          ${manifest.ontola.tracking?.tag_manager ? tagManagerBody(manifest.ontola.tracking?.tag_manager) : ''}
           ${themeBlock(ctx)}
           ${preloadingBlock(ctx, nonceStr)}
           <script nonce="${nonceStr}">
