@@ -3,17 +3,13 @@ import { ThemeProvider } from '@material-ui/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nl';
 import 'dayjs/locale/en';
-import {
-  LinkReduxLRSType,
-  RenderStoreProvider,
-  useLRS,
-} from 'link-redux';
+import { RenderStoreProvider, useLRS } from 'link-redux';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
-import { getMetaContent } from '../helpers/arguHelpers';
+import { appContext } from '../appContext';
 import AppFrame from '../routes/App';
 import themes from '../themes';
 import englishMessages from '../lang/en.json';
@@ -25,9 +21,7 @@ export interface RouterProps {
 
 export interface IndexContainerProps {
   Router: FunctionComponent<RouterProps>;
-  lrs: LinkReduxLRSType;
   store: Store;
-  title?: string;
 }
 
 export interface UpdateLRSIntlProps {
@@ -74,10 +68,9 @@ const getThemeVariables = () => {
 
 const IndexContainer = ({
   Router,
-  lrs,
   store,
-  title,
 }: IndexContainerProps): JSX.Element => {
+  const { lrs, theme: themeName } = React.useContext(appContext);
   const selectedLang = (lrs.store as any).langPrefs[0];
   let messages;
   if (selectedLang.includes('nl')) {
@@ -87,7 +80,6 @@ const IndexContainer = ({
     messages = englishMessages;
     dayjs.locale('en');
   }
-  const themeName = getMetaContent('theme');
   const themeVariables = getThemeVariables();
   const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);
 
@@ -99,7 +91,7 @@ const IndexContainer = ({
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Router>
-                <AppFrame title={title} />
+                <AppFrame  />
               </Router>
             </ThemeProvider>
           </UpdateLRSIntl>

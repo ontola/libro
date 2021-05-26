@@ -4,7 +4,7 @@ import { Skeleton } from '@material-ui/lab';
 import MonacoEditor from '@monaco-editor/react';
 import React from 'react';
 
-import { builderContext } from './builderContext';
+import { builderContext, editorStateContext } from './builderContext';
 import { useMonacoWithBundle } from './useMonacoWithBundle';
 
 const EDITOR_SKELETON_HEIGHT = 25;
@@ -13,13 +13,17 @@ const useStyles = makeStyles({
   root: {
     height: '100vh',
     transform: 'scale(0.8, 1)',
+    width: '100vw',
   },
 });
 
 const Editor: React.FC = () => {
   const classes = useStyles();
-  const { source, setSource } = React.useContext(builderContext);
+  const { file } = React.useContext(editorStateContext);
+  const { files, updateFile } = React.useContext(builderContext);
   const initialized = useMonacoWithBundle();
+
+  const t = files.find((f) => f.name === file);
 
   if (!initialized) {
     return (
@@ -42,11 +46,17 @@ const Editor: React.FC = () => {
     );
   }
 
+  if (!t) {
+    return (
+      <div>File not found</div>
+    );
+  }
+
   return (
     <MonacoEditor
       defaultLanguage="typescript"
       height="inherit"
-      language="typescript"
+      language={t.language}
       line={0}
       options={{
         formatOnPaste: true,
@@ -57,10 +67,14 @@ const Editor: React.FC = () => {
         },
         wordWrap: 'on',
       }}
-      path="/"
+      path={t.name}
       theme="vs-dark"
-      value={source}
-      onChange={(v) => setSource(v || '')}
+      value={t.value}
+      width="100vw"
+      onChange={(v) => updateFile({
+        ...t,
+        value:  v ?? '',
+      })}
     />
   );
 };

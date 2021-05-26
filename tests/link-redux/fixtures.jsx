@@ -12,6 +12,7 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
+import { AppContextProvider } from '../../app/appContext'
 import { getWebsiteContextFromWebsite } from '../../app/helpers/app';
 import { WebsiteContext } from '../../app/location';
 
@@ -106,19 +107,21 @@ export const loc = async ({
     <Provider store={ctx.store}>
       <WebsiteContext.Provider value={websiteCtxValue}>
         <HelmetProvider context={{}}>
-          <RenderStoreProvider value={ctx.lrs}>
-            <IntlProvider locale="en">
-              <StaticRouter context={{}} location="/current_page">
-                <Resource
-                  forceRender
-                  subject={subject}
-                  topology={topology}
-                >
-                  {children}
-                </Resource>
-              </StaticRouter>
-            </IntlProvider>
-          </RenderStoreProvider>
+          <AppContextProvider lrs={ctx.lrs}>
+            <RenderStoreProvider value={ctx.lrs}>
+              <IntlProvider locale="en">
+                <StaticRouter context={{}} location="/current_page">
+                  <Resource
+                    forceRender
+                    subject={subject}
+                    topology={topology}
+                  >
+                    {children}
+                  </Resource>
+                </StaticRouter>
+              </IntlProvider>
+            </RenderStoreProvider>
+          </AppContextProvider>
         </HelmetProvider>
       </WebsiteContext.Provider>
     </Provider>

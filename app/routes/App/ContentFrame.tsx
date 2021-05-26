@@ -6,31 +6,29 @@ import { HotKeys } from 'react-hotkeys';
 // @ts-ignore
 import ScrollMemory from 'react-router-scroll-memory';
 
+import { appContext } from '../../appContext';
 import { CONTAINER_ELEMENT } from '../../config';
 import Banners from '../../components/Banners';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import SkipNavigation from '../../components/SkipNavigation';
-// @ts-ignore
 import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 import ontola from '../../ontology/ontola';
 import Footer from '../../topologies/Footer';
-// @ts-ignore
 import headers from '../../themes/headers';
 
 export interface ContentFrameProps {
   children: React.ReactNode;
-  theme?: string;
-  themeOptions: URLSearchParams;
   title?: string;
 }
 
 const ContentFrame = ({
   children,
-  theme,
-  themeOptions,
   title,
 }: ContentFrameProps): JSX.Element => {
+  const { theme, themeOpts } = React.useContext(appContext);
+
+  const themeOptions = new URLSearchParams(themeOpts);
   const footerResources = (themeOptions.get('footerResources')?.split(',') ?? [])
     .map((iri) => rdf.namedNode(iri) as Node);
   const footerResource = themeOptions.get('footerResource');

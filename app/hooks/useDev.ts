@@ -1,14 +1,14 @@
 import { LinkDevTools } from '@ontola/link-devtools';
-import { useLRS } from 'link-redux';
+import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React from 'react';
 
-export const useDev = (): LinkDevTools | undefined => {
+export const useDev = (lrsOverride: LinkReduxLRSType | undefined): LinkDevTools | undefined => {
   const lrs = useLRS();
   const [dev, setDev] = React.useState<LinkDevTools>();
 
   React.useEffect(() => {
-    setDev(new LinkDevTools(lrs, undefined));
-  }, [lrs]);
+    setDev(new LinkDevTools(lrsOverride ?? lrs, undefined));
+  }, [lrsOverride, lrs]);
 
   return dev;
 };

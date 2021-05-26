@@ -7,6 +7,7 @@ import {
   Select,
 } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
+import LaunchIcon from '@material-ui/icons/Launch';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLRS } from 'link-redux';
 import React from 'react';
@@ -16,7 +17,11 @@ import { useIntl } from 'react-intl';
 import { LIBRO_THEMES } from '../../themes/LibroThemes';
 import { pageBuilderToolbarMessages } from '../../translations/messages';
 
-import { builderContext } from './builderContext';
+import {
+  builderContext,
+  editorStateContext,
+  serverDocumentsContext,
+} from './builderContext';
 
 const useStyles = makeStyles({
   toolbar: {
@@ -40,22 +45,25 @@ const useOverrideStyles = makeStyles({
   },
 });
 
-const Toolbar: React.FC = () => {
+const Toolbar = (): JSX.Element => {
   const classes = useStyles();
   const overrideClasses = useOverrideStyles();
   const {
     documentIndex,
     resourceIndex,
-    documents,
-    resources,
     setDocumentIndex,
     setResourceIndex,
-    showEditor,
-    setShowEditor,
     setTheme,
-    saveDocument,
     theme,
+  } = React.useContext(editorStateContext);
+  const {
+    resources,
+    source,
   } = React.useContext(builderContext);
+  const {
+    documents,
+    saveDocument,
+  } = React.useContext(serverDocumentsContext);
   const lrs = useLRS();
   const intl = useIntl();
   const [saving, setSaving] = React.useState(false);
@@ -64,35 +72,19 @@ const Toolbar: React.FC = () => {
 
   const showMessage = (msg: string) => lrs.actions.ontola.showSnackbar(msg);
 
-  const handleSave = async (id: string) => {
+  const handleSave = React.useCallback(async (id: string) => {
     setSaving(true);
     try {
-      await saveDocument(id);
+      await saveDocument(id, source ?? '');
       await showMessage(intl.formatMessage(pageBuilderToolbarMessages.savedNotification));
       setSaving(false);
     } catch(_) {
       await showMessage(intl.formatMessage(pageBuilderToolbarMessages.saveFailedNotification));
       setSaving(false);
     }
-  };
+  }, [setSaving, source]);
 
-  const onSave = () => {
-    if (documents && documents.length > 0) {
-      const overwrite = confirm(intl.formatMessage(pageBuilderToolbarMessages.override, { docID: documents?.[documentIndex] }));
-
-      if (!overwrite) {
-        return Promise.resolve();
-      }
-
-      const id = stripID(documents?.[documentIndex]);
-
-      return handleSave(id);
-    }
-
-    return onSaveAs();
-  };
-
-  const onSaveAs = () => {
+  const onSaveAs = React.useCallback(() => {
     const newID = prompt(intl.formatMessage(pageBuilderToolbarMessages.saveAsPrompt));
 
     if (newID === null) {
@@ -107,15 +99,31 @@ const Toolbar: React.FC = () => {
     }
 
     return handleSave(strippedID);
-  };
+  }, [documents, handleSave]);
+
+  const onSave = React.useCallback(() => {
+    if (documents && documents.length > 0) {
+      const overwrite = confirm(intl.formatMessage(pageBuilderToolbarMessages.override, { docID: documents?.[documentIndex] }));
+
+      if (!overwrite) {
+        return Promise.resolve();
+      }
+
+      const id = stripID(documents?.[documentIndex]);
+
+      return handleSave(id);
+    }
+
+    return onSaveAs();
+  }, [onSaveAs]);
 
   return (
     <Paper className={classes.toolbar} elevation={3}>
       <IconButton
         color="primary"
-        onClick={() => setShowEditor(!showEditor)}
+        onClick={() => window.alert('todo')}
       >
-        {showEditor ? <FontAwesome name="eye" /> : <FontAwesome name="eye-slash" />}
+        <LaunchIcon />
       </IconButton>
       <FormControl className={classes.toolbarSelectForm}>
         <InputLabel htmlFor="pagebuilder-documents">
@@ -151,6 +159,13 @@ const Toolbar: React.FC = () => {
           value={resourceIndex}
           onChange={(e) => setResourceIndex(Number(e.target.value))}
         >
+          <MenuItem
+            classes={overrideClasses}
+            key="auto"
+            value="-1"
+          >
+            Auto
+          </MenuItem>
           {resources.map((resource, i) => (
             <MenuItem
               classes={overrideClasses}

@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { Router } from 'react-router';
 
+import { AppContextProvider } from './appContext'
 import { getWebsiteContextFromWebsite } from './helpers/app';
 import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
@@ -43,17 +44,19 @@ const wrapProviders = ({
     <Provider store={configureStore(ctx.history)}>
       <ResponsiveContext.Provider value={viewPort}>
         <WebsiteContext.Provider value={getWebsiteContextFromWebsite('https://example.com/')}>
-          <HelmetProvider context={{}}>
-            <LRSProvider value={ctx?.lrs}>
-              <IntlProvider locale="en" messages={englishMessages}>
-                <ThemeProvider theme={themes.common({})}>
-                  <Router history={ctx.history}>
-                    {children}
-                  </Router>
-                </ThemeProvider>
-              </IntlProvider>
-            </LRSProvider>
-          </HelmetProvider>
+          <AppContextProvider lrs={ctx?.lrs}>
+            <HelmetProvider context={{}}>
+              <LRSProvider value={ctx?.lrs}>
+                <IntlProvider locale="en" messages={englishMessages}>
+                  <ThemeProvider theme={themes.common({})}>
+                    <Router history={ctx.history}>
+                      {children}
+                    </Router>
+                  </ThemeProvider>
+                </IntlProvider>
+              </LRSProvider>
+            </HelmetProvider>
+          </AppContextProvider>
         </WebsiteContext.Provider>
       </ResponsiveContext.Provider>
     </Provider>

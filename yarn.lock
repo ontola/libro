@@ -6082,7 +6082,7 @@ __metadata:
     koa-webpack: ^6.0.0
     koa2-connect: ^1.0.2
     link-lib: 0.0.0-be8bf512
-    link-redux: 0.0.0-0452814a
+    link-redux: 0.0.0-c4431892
     lint-staged: ^10.5.4
     markdown-draft-js: ^2.1.1
     md5.js: ^1.3.5
@@ -6125,7 +6125,6 @@ __metadata:
     react-router: ^5.2.0
     react-router-dom: ^5.2.0
     react-router-scroll-memory: ^2.0.7
-    react-split-pane: ^0.1.92
     react-tiny-virtual-list: ^2.2.0
     react-typeform-embed: ^0.2.1
     redux: ^4.0.5
@@ -14710,9 +14709,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"link-redux@npm:0.0.0-0452814a":
-  version: 0.0.0-0452814a
-  resolution: "link-redux@npm:0.0.0-0452814a"
+"link-redux@npm:0.0.0-c4431892":
+  version: 0.0.0-c4431892
+  resolution: "link-redux@npm:0.0.0-c4431892"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     hoist-non-react-statics: ">=3.x"
@@ -14720,7 +14719,7 @@ fsevents@~2.3.1:
     link-lib: ">=2.0.0"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 896966c3613a6b51bc290b98ff299586bf7b74a5c7c3939baa93f318f8aa3d4d7157fa233dc6c9f9d7a083cac3066589b62d70117b23f317d190a682197b63da
+  checksum: 2b1f315ccf2c2cd760e380cbcf5eb3dcd87ec8f4c0ab37634ef9112fe27365d733ff14cc3619475a3965a0710380304e26a19ac4f50b6a9e6c251c0cc8a98e72
   languageName: node
   linkType: hard
 
@@ -18205,7 +18204,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.4, prop-types@npm:^15.5.6, prop-types@npm:^15.5.7, prop-types@npm:^15.5.8, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.0, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.5.6, prop-types@npm:^15.5.7, prop-types@npm:^15.5.8, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.0, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -18850,29 +18849,6 @@ fsevents@~2.3.1:
   peerDependencies:
     react: ^16.3.0
   checksum: 643a9898953776783515df3510a438f262f6dff059c3f880b7bbc180957cd0f9a0c4d7b3ae72c347d0f7c56bbd16466e850c5d9e213abad024df3b6c3a430564
-  languageName: node
-  linkType: hard
-
-"react-split-pane@npm:^0.1.92":
-  version: 0.1.92
-  resolution: "react-split-pane@npm:0.1.92"
-  dependencies:
-    prop-types: ^15.7.2
-    react-lifecycles-compat: ^3.0.4
-    react-style-proptype: ^3.2.2
-  peerDependencies:
-    react: ^16.0.0-0
-    react-dom: ^16.0.0-0
-  checksum: 31525fc50ed57d923840954308a73d42b073872031a5efc194f113d341e250524ecb2e262c5814aedbc7b55bcadf1121f02542d45e99c55661f64456a6f1691a
-  languageName: node
-  linkType: hard
-
-"react-style-proptype@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "react-style-proptype@npm:3.2.2"
-  dependencies:
-    prop-types: ^15.5.4
-  checksum: fcac4027d106d3805a284270e98b25300c70f834849912b7e0d318c8d41fc3ac97b60658ab83f6dbd61ca5bfd50fab923bfb1876988255745cca5f4c6859a197
   languageName: node
   linkType: hard
 

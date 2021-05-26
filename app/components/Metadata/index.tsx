@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { getMetaContent } from '../../helpers/arguHelpers';
+import { appContext } from '../../appContext';
 import { useStrippedMarkdown } from '../../helpers/markdownHelper';
 import {
   COVER_PREDICATES,
@@ -21,6 +21,7 @@ import {
 const MAX_TEXT_LENGTH = 300;
 
 const Metadata: React.FC = () => {
+  const { title: appName } = React.useContext(appContext);
   const { subject } = useLinkRenderContext();
   const {
     coverPhoto,
@@ -37,7 +38,6 @@ const Metadata: React.FC = () => {
     typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,
     COVER_URL_PREDICATES[0],
   );
-  const appName = getMetaContent('application-name');
   const trimmedText = text?.substring(0, MAX_TEXT_LENGTH);
   const strippedText = useStrippedMarkdown(trimmedText);
   const metaTags = React.useMemo(() => (

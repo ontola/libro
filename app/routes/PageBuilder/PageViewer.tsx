@@ -1,45 +1,49 @@
-import { ThemeProvider } from '@material-ui/styles';
+import { Skeleton } from '@material-ui/lab';
+import rdf, { NamedNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
+import { useHistory } from 'react-router';
 
+import { WebManifest, appContext } from '../../appContext';
 import ErrorBoundary from '../../components/ErrorBoundary';
-import app from '../../ontology/app';
 import { Page } from '../../topologies/Page';
-import ContentFrame from '../App/ContentFrame';
-// @ts-ignore
-import themes from '../../themes';
-import { LIBRO_THEMES } from '../../themes/LibroThemes';
 
-import { builderContext } from './builderContext';
+import { LibroDocument } from './builderContext';
+
+export interface PageViewerProps {
+  doc: LibroDocument;
+  currentResource: string | undefined;
+  manifest: Partial<WebManifest>;
+}
+
+const useCurrentResource = (): NamedNode | undefined => {
+  const { resource } = React.useContext(appContext);
+  const { location } = useHistory();
+  const url = new URL(window.location.origin);
+  url.pathname = location.pathname;
+  url.search = location.search;
+  url.hash = location.hash;
+
+  switch(resource) {
+  case undefined:
+    return undefined;
+  case 'auto':
+    return rdf.namedNode(url.toString());
+  default:
+    return rdf.namedNode(resource);
+  }
+};
 
 const PageViewer = (): JSX.Element => {
-  const {
-    resourceIndex,
-    resources,
-    theme,
-  } = React.useContext(builderContext);
-  const currentResource = resources[Math.min(resources.length - 1, resourceIndex)];
-  const footerResources = [
-    app.ns('menus/footer/argu').value,
-    app.ns('menus/footer/kb').value,
-  ].join(',');
-  const themeOptions = new URLSearchParams();
-  themeOptions.set('footerResources', footerResources);
-  const resolvedTheme = themes[theme ?? ''] ?? themes[LIBRO_THEMES.COMMON];
+  const resource = useCurrentResource();
 
   return (
-    <ErrorBoundary key={currentResource.value}>
-      <ThemeProvider theme={resolvedTheme({})}>
-        <ContentFrame
-          theme={theme!}
-          themeOptions={themeOptions}
-          title={`[PB]: ${currentResource.value}`}
-        >
-          <Page>
-            <Resource subject={currentResource} />
-          </Page>
-        </ContentFrame>
-      </ThemeProvider>
+    <ErrorBoundary key={resource?.value}>
+      <Page>
+        {resource
+          ? <Resource subject={resource} />
+          : <Skeleton />}
+      </Page>
     </ErrorBoundary>
   );
 };

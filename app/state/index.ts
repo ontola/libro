@@ -1,5 +1,5 @@
 import { connectRouter, routerMiddleware } from 'connected-react-router';
-import { MemoryHistory } from 'history';
+import { History } from 'history';
 import {
   Store,
   applyMiddleware,
@@ -13,7 +13,7 @@ import thunk from 'redux-thunk';
 import * as reducers from './reducers';
 
 const configureStore = (
-  history: MemoryHistory,
+  history: History,
   preloadedState?: unknown,
 ): Store => {
   let middleware;

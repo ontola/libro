@@ -5,7 +5,11 @@ import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { createBrowserHistory, createMemoryHistory } from 'history';
+import {
+  History,
+  createBrowserHistory,
+  createMemoryHistory, 
+} from 'history';
 import { MiddlewareFn, createStore } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
@@ -35,13 +39,18 @@ import hexjson from './transformers/hexjson';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
 export interface LRSBundle {
-  history: unknown;
+  history: History;
   lrs: LinkReduxLRSType;
   serviceWorkerCommunicator: ServiceWorkerCommunicator;
 }
 
 export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
-  const history = __CLIENT__ ? createBrowserHistory() : createMemoryHistory();
+  const basename = __CLIENT__ && window.location.pathname.startsWith('/d/builder/viewer')
+    ? '/d/builder/viewer'
+    : '';
+  const history = __CLIENT__
+    ? createBrowserHistory({ basename })
+    : createMemoryHistory();
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
   const middleware: Array<MiddlewareFn<any>> = [

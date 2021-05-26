@@ -1,11 +1,11 @@
 import { ConnectedRouter } from 'connected-react-router';
-import { MemoryHistory } from 'history';
-import { LinkReduxLRSType } from 'link-redux';
+import { History } from 'history';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { hot } from 'react-hot-loader/root';
 import { StaticRouter } from 'react-router';
 
+import { appContext } from './appContext';
 import IndexContainer, { RouterProps } from './containers/IndexContainer';
 import { getWebsiteContextFromWebsite } from './helpers/app';
 import configureStore from './state';
@@ -13,20 +13,15 @@ import register from './views';
 import { WebsiteContext } from './location';
 
 interface AppProps {
-  history: MemoryHistory;
+  history: History;
   location?: string;
-  lrs: LinkReduxLRSType;
-  title?: string;
-  website?: string;
 }
 
 const App = ({
   history,
   location,
-  lrs,
-  website,
-  title,
 }: AppProps) => {
+  const { lrs, website } = React.useContext(appContext);
   const store = configureStore(history);
   register(lrs);
   const websiteCtxValue = getWebsiteContextFromWebsite(website);
@@ -49,9 +44,7 @@ const App = ({
         <HelmetProvider>
           <IndexContainer
             Router={router}
-            lrs={lrs}
             store={store}
-            title={title}
           />
         </HelmetProvider>
       </WebsiteContext.Provider>

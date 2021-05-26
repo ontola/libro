@@ -2,13 +2,12 @@ import './helpers/polyfills';
 import './useFactory';
 
 import enableDevtools from '@ontola/link-devtools';
-import { MemoryHistory } from 'history';
 import React from 'react';
 import { render } from 'react-dom';
 
+import { AppContextProvider } from './appContext';
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
-import { getMetaContent } from './helpers/arguHelpers';
 import generateLRS from './helpers/generateLRS';
 import { handle, log } from './helpers/logging';
 import App from './App';
@@ -37,12 +36,9 @@ import patchRequestInitGenerator from './helpers/monkey';
     }
 
     render(
-      <App
-        history={history as MemoryHistory}
-        lrs={lrs}
-        title={getMetaContent('application-name')}
-        website={getMetaContent('website-iri')}
-      />,
+      <AppContextProvider lrs={lrs}>
+        <App history={history} />
+      </AppContextProvider>,
       document.getElementById(APP_ELEMENT),
     );
   }

@@ -2,15 +2,92 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
-import SplitPane from 'react-split-pane';
+import { useDebouncedCallback } from 'use-debounce';
 
+import { WebManifest } from '../../appContext';
 import ErrorBoundary from '../../components/ErrorBoundary';
-import { storageKey } from '../../config';
+import { handle } from '../../helpers/logging';
 
-import { PageBuilderContext, builderContext } from './builderContext';
+import {
+  PageBuilderContext,
+  builderContext,
+  editorStateContext,
+} from './builderContext';
+import { EditorEvents, EditorUpdateEvent } from './Communicator';
 import Editor from './Editor';
-import PageViewer from './PageViewer';
+import { PageViewerProps } from './PageViewer';
+import { Tabbar } from './Tabbar';
 import Toolbar from './Toolbar';
+
+const EDITOR_UPDATE_FREQ = 300;
+
+interface PopoutEditorProps {
+  onClose: () => void;
+}
+
+const usePopoutViewer = ({ onClose }: PopoutEditorProps) => {
+  const [docSetter, setDocSetter] = React.useState<(doc: PageViewerProps) => void>(() => undefined);
+  const [_, setDialog] = React.useState<Window | undefined>();
+  const [manifest, setManifest] = React.useState<Partial<WebManifest>>({});
+  const { source, resources, files } = React.useContext(builderContext);
+  const { resourceIndex } = React.useContext(editorStateContext);
+  const sendUpdate = React.useCallback(() => {
+    if (docSetter) {
+      docSetter({
+        currentResource: resourceIndex === -1 ? 'auto' : resources[resourceIndex]?.value,
+        doc: {
+          manifestOverride: '{}',
+          source: source ?? '',
+        },
+        manifest,
+      });
+    }
+  }, [source, docSetter, resources, resourceIndex, manifest]);
+
+  const [delayedUpdate] = useDebouncedCallback(sendUpdate, EDITOR_UPDATE_FREQ);
+
+  React.useEffect(() => {
+    try {
+      const manifestFile = files.find((f) => f.name === 'manifest.json')!;
+      const next = JSON.parse(manifestFile.value);
+      setManifest(next);
+    } catch (e) {
+      handle(e);
+    }
+  }, [files]);
+
+  React.useEffect(() => {
+    const dialog = window.open('/d/builder/viewer', '', 'width=800,height=600,left=200,top=200');
+
+    if (!dialog) {
+      throw new Error("Couldn't open dialog");
+    }
+    setDialog(dialog);
+
+    const next = (opts: PageViewerProps) => {
+      const update: EditorUpdateEvent = {
+        type: EditorEvents.EditorUpdate,
+        viewOpts: opts,
+      };
+
+      dialog.postMessage(update, '*');
+    };
+    setDocSetter(() => next);
+
+    return () => {
+      try {
+        dialog.postMessage({ type: EditorEvents.EditorClose }, '*');
+        dialog?.close();
+      } finally {
+        onClose();
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    delayedUpdate();
+  }, [source, docSetter, resources, resourceIndex, manifest]);
+};
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -50,48 +127,29 @@ const useStyles = makeStyles((theme) => ({
 
 const PageBuilder = (): JSX.Element => {
   const classes = useStyles();
-  const { showEditor } = React.useContext(builderContext);
+  const [open, setOpened] = React.useState(true);
+  usePopoutViewer({
+    onClose: () => setOpened(false),
+  });
 
   return (
     <div className={classes.windowOverlay}>
       <Toolbar />
-      {showEditor
-        ? (
-          <Grid
-            container
-            className={classes.container}
-            direction="row"
-          >
-            <SplitPane
-              defaultSize={parseInt(localStorage.getItem(`${storageKey}.splitPos`) ?? '300', 10)}
-              minSize={50}
-              resizerClassName={classes.resizer}
-              split="vertical"
-              onChange={(size: number) => localStorage.setItem(`${storageKey}.splitPos`, size.toString())}
-            >
-              <Paper className={classes.editor}>
-                <ErrorBoundary>
-                  <Editor />
-                </ErrorBoundary>
-              </Paper>
-              <Grid
-                container
-                className={classes.viewer}
-                direction="column"
-              >
-                <PageViewer />
-              </Grid>
-            </SplitPane>
-          </Grid>
-        ) : (
-          <Grid
-            container
-            className={classes.viewer}
-            direction="column"
-          >
-            <PageViewer />
-          </Grid>
-        )}
+      <Tabbar />
+      {!open && (
+        <div>Window closed</div>
+      )}
+      <Grid
+        container
+        className={classes.container}
+        direction="row"
+      >
+        <Paper className={classes.editor}>
+          <ErrorBoundary>
+            <Editor />
+          </ErrorBoundary>
+        </Paper>
+      </Grid>
     </div>
   );
 };

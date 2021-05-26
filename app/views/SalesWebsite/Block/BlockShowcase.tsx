@@ -36,6 +36,7 @@ const useStyles = makeStyles<SalesTheme>(() => ({
     color: (props: Record<string, string>) => props.color,
   },
   subTitle: {
+    flexGrow: 1,
     fontSize: 24,
     maxWidth: 575,
     textAlign: 'center',
