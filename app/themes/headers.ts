@@ -3,6 +3,7 @@ import CommonHeader from './common/header';
 import DexTransferHeader from './dexTransfer/header';
 import DutchGovernmentHeader from './dutchGovernment/header';
 import GroenLinksHeader from './groenLinks/header';
+import SalesHeader from './salesWebsite/header';
 import { LIBRO_THEMES } from './LibroThemes';
 
 export default {
@@ -11,4 +12,5 @@ export default {
   [LIBRO_THEMES.DEXTRANSFER]: DexTransferHeader,
   [LIBRO_THEMES.DUTCHGOVERNMENT]: DutchGovernmentHeader,
   [LIBRO_THEMES.GROENLINKS]: GroenLinksHeader,
+  [LIBRO_THEMES.SALES]: SalesHeader,
 };

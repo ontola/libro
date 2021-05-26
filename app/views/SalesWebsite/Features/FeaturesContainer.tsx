@@ -1,3 +1,4 @@
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -28,14 +29,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
   },
   screenDivider: {
-    display: 'grid',
-    gridGap: 20,
-    gridTemplateColumns: '1fr 1fr',
+    // gap: theme.spacing(4),
     marginBottom: 80,
     marginTop: 80,
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: '1fr',
-    },
   },
 }));
 
@@ -64,10 +60,14 @@ const FeaturesContainer: FC = () => {
           </div>
         </Showcase>
         <Container>
-          <div className={classes.screenDivider}>
-            <Property label={sales.blogs} />
-            <Property label={sales.moreInformationBlock} />
-          </div>
+          <Grid container className={classes.screenDivider}>
+            <Grid item md={6} sm={12}>
+              <Property label={sales.blogs} />
+            </Grid>
+            <Grid item md={6} sm={12}>
+              <Property label={sales.moreInformationBlock} />
+            </Grid>
+          </Grid>
         </Container>
       </div>
     </Parallax>

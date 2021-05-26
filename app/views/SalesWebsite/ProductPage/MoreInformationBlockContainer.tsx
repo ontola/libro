@@ -1,13 +1,11 @@
 import {
-  Button,
   Grid,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
-import { useProperty } from 'link-redux';
+import { Property, useProperty } from 'link-redux';
 import * as schema from '@ontologies/schema';
 import React from 'react';
 
@@ -16,22 +14,13 @@ import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { containerTopology } from '../../../topologies/Container';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
-  button: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  buttonText: {
-    textAlign: 'right',
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'left',
-    },
-  },
   container: {
     [theme.breakpoints.down('sm')]: {
       marginTop: 50,
     },
+    width: 'unset',
   },
-  subtitle: {
+  title: {
     textAlign: 'right',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'left',
@@ -41,10 +30,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const MoreInformationBlockContainer = (): JSX.Element => {
   const classes = useStyles();
-  const [text] = useProperty(schema.text);
   const [title] = useProperty(schema.name);
-  const [buttonText] = useProperty(sales.buttonText);
-  const [buttonTextTwo] = useProperty(sales.buttonTextTwo);
 
   const styles = useTheme();
   const flexDirection = useMediaQuery(styles.breakpoints.down('sm'))
@@ -57,36 +43,8 @@ const MoreInformationBlockContainer = (): JSX.Element => {
       className={classes.container}
       direction="column"
     >
-      <Typography className={classes.buttonText} variant="h2">{title.value}</Typography>
-      <Button
-        className={classes.button}
-        endIcon={(
-          <ChevronRightIcon
-            className={classes.icon}
-            style={{ fontSize: 40 }}
-          />
-        )}
-      >
-        {buttonText.value}
-      </Button>
-      <Typography
-        className={classes.subtitle}
-        variant="body1"
-      >
-        {text.value}
-      </Typography>
-      <Button
-        className={classes.button}
-        endIcon={<ChevronRightIcon className={classes.icon} />}
-      >
-        {buttonTextTwo.value}
-      </Button>
-      <Typography
-        className={classes.subtitle}
-        variant="body1"
-      >
-        {text.value}
-      </Typography>
+      <Typography className={classes.title} variant="h2">{title.value}</Typography>
+      <Property label={sales.sections} limit={Infinity} />
     </Grid>
   );
 };

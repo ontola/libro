@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
+import { SomeTerm } from '@ontologies/core';
 import * as as from '@ontologies/as';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -27,16 +28,10 @@ import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
   bigCircle: {
-    backgroundColor: (props) => props.color,
-    borderRadius: '50%',
-    content: '" "',
     height: 300,
     marginLeft: -110,
     marginTop: 133,
-    opacity: '20%',
-    position: 'absolute',
     width: 300,
-    zIndex: 0,
   },
   button: {
     alignItems: 'center',
@@ -64,6 +59,15 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
     lineHeight: 1.2,
     textAlign: 'left',
   },
+  circleBase: {
+    backgroundColor: (props) => props.color,
+    borderRadius: '50%',
+    content: '" "',
+    opacity: '20%',
+    position: 'absolute',
+    transition: 'background-color 500ms',
+    zIndex: 0,
+  },
   containerRow: {
     flexDirection: 'row',
   },
@@ -81,16 +85,10 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
     padding: 20,
   },
   smallCircle: {
-    backgroundColor: (props) => props.color,
-    borderRadius: '50%',
-    content: '" "',
     height: 180,
     marginLeft: 485,
     marginTop: -50,
-    opacity: '20%',
-    position: 'absolute',
     width: 180,
-    zIndex: 0,
   },
   subTitle: {
     color: '#2D7080',
@@ -129,26 +127,34 @@ const facetProps = {
 };
 
 const FacetContainer: FC = () => {
-  const [color] = useProperty(schema.color);
+  const [color, setColor] = React.useState('#000');
+
   const [flexDirection] = useProperty(sales.flexDirection);
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
-  const [items] = useProperty(as.items);
+  const [items] = useProperty(as.items) as [SomeNode];
+
   const classes = useStyles({
-    color: color.value,
+    color: color,
   });
 
   const containerClass = clsx({
+    [classes.circleBase]: true,
     [classes.bigCircle]: flexDirection.value === 'row',
     [classes.smallCircle]: flexDirection.value === 'row-reverse',
   });
 
-  const members = useResourceProperty(items as SomeNode, rdfs.member);
-  const [currentFacet, setCurrentFacet] = React.useState(members[0]);
+  const members = useResourceProperty(items, rdfs.member) ;
   const facets = useResourceLinks(members as SomeNode[], facetProps);
-  const video = facets
-    .find((facet) => facet.subject === currentFacet)
-    ?.image;
+
+  const [currentFacet, setCurrentFacet] = React.useState(members[0]);
+  const [video, setVideo] = React.useState<SomeTerm>();
+
+  React.useEffect(() => {
+    const facet = facets.find((f) => f.subject === currentFacet);
+    setVideo(facet?.image);
+    setColor(facet?.color?.value ?? '#000');
+  }, [currentFacet]);
 
   return (
     <Grid
@@ -223,7 +229,9 @@ const FacetContainer: FC = () => {
         >
           <div>
             <div className={containerClass} />
-            <Resource autoPlay loop muted className={classes.video} subject={video} />
+            {video && (
+              <Resource autoPlay loop muted className={classes.video} subject={video} />
+            )}
           </div>
         </Grid>
       </Grid>

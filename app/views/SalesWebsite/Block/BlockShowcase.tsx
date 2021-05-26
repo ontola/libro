@@ -13,12 +13,15 @@ import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>(() => ({
+const CONAINER_SPACING = 20;
+
+const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     color: (props: Record<string, string>) => props.color,
     fontSize: 24,
     fontWeight: 'bold',
     margin: 30,
+    marginTop: 'auto',
     textAlign: 'center',
   },
   container: {
@@ -29,7 +32,7 @@ const useStyles = makeStyles<SalesTheme>(() => ({
     // borderTopLeftRadius: 0,
     color: (props: Record<string, string>) => props.color,
     marginTop: 50,
-    padding: 10,
+    padding: theme.spacing(CONAINER_SPACING),
   },
   icon: {
     color: (props: Record<string, string>) => props.color,
@@ -65,12 +68,14 @@ const BlockShowcase: FC = () => {
       direction="column"
       md={6}
     >
-      <Typography
-        className={classes.title}
-        variant="h2"
-      >
-        {name.value}
-      </Typography>
+      {name && (
+        <Typography
+          className={classes.title}
+          variant="h2"
+        >
+          {name.value}
+        </Typography>
+      )}
       <Typography
         className={classes.subTitle}
         variant="body2"

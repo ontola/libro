@@ -386,6 +386,9 @@
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": {
     "defaultMessage": "Vastgezet op {date}"
   },
+  "https://app.argu.co/i18n/sales/contactUs": {
+    "defaultMessage": "Neem contact op"
+  },
   "https://app.argu.co/i18n/sales/readmore": {
     "defaultMessage": "Lees meer"
   },

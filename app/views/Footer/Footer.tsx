@@ -14,7 +14,10 @@ import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
 import { LibroTheme } from '../../themes/themes';
 
-const useStyles = makeStyles<LibroTheme>({
+const DESKTOP_PADDING = 30;
+const MOBILE_PADDING = 10;
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   footer: {
     '& a:hover': {
       textDecoration: 'underline',
@@ -26,10 +29,13 @@ const useStyles = makeStyles<LibroTheme>({
     justifyContent: 'space-between',
     margin: 'auto',
     marginBottom: '2rem',
-    padding: '20px',
+    padding: theme.spacing(DESKTOP_PADDING),
     width: 'min(100%, 1500px)',
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(MOBILE_PADDING),
+    },
   },
-});
+}));
 
 const Footer: FC = () => {
   const classNames = useStyles();

@@ -12,6 +12,7 @@ export default {
   BlogPage: sales('BlogPage'),
   /** Collection of BlogPage.  */
   Blogs: sales('Blogs'),
+  CallToActionButton: sales('CallToActionButton'),
   /** A page describing a case. */
   CasePage: sales('CasePage'),
   /** Collection of CasePage.  */
@@ -24,6 +25,7 @@ export default {
   Features: sales('Features'),
   HomePage: sales('HomePage'),
   MoreInformationBlock: sales('MoreInformationBlock'),
+  MoreInformationBlockSection: sales('MoreInformationBlockSection'),
   PricingPage: sales('PricingPage'),
   ProcessPage: sales('ProcessPage'),
   ProductPage: sales('ProductPage'),
@@ -40,6 +42,8 @@ export default {
   buttonLink: sales('buttonLink'),
   buttonText: sales('buttonText'),
   buttonTextTwo: sales('buttonTextTwo'),
+  callToAction: sales('callToAction'),
+  callToActionBackgroundImage: sales('callToActionBackgroundImage'),
   callToActionText: sales('callToActionText'),
   callToActionTitle: sales('callToActionTitle'),
   caseButtonLink: sales('caseButtonLink'),
@@ -71,6 +75,7 @@ export default {
   productTextTitle: sales('productTextTitle'),
   propositions: sales('propositions'),
   secondaryImage: sales('secondaryImage'),
+  sections: sales('sections'),
   showcase: sales('showcase'),
   stepper: sales('stepper'),
   streetAddress: sales('streetAddress'),

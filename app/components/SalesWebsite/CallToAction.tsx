@@ -1,19 +1,19 @@
-import { Button, Typography } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
-import { retrievePath } from '../../helpers/iris';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+import { CallToActionButton } from './CallToActionButton';
+
+const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => ({
   button: {
     fontSize: 18,
   },
   header: {
     alignItems: 'center',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.primary.main,
+    backgroundImage: ({ imageUrl }) => `url(${imageUrl})`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -55,28 +55,13 @@ export const CallToAction = ({
   subtitle,
   imageUrl,
 }: CallToActionProps): JSX.Element => {
-  const classes = useStyles();
+  const classes = useStyles({ imageUrl });
 
   return (
-    <div
-      className={classes.header}
-      style={{
-        backgroundColor: '#2D7080',
-        backgroundImage: `url(${imageUrl})`,
-      }}
-    >
+    <div className={classes.header}>
       <Typography className={classes.title} variant="h1">{title}</Typography>
       <Typography className={classes.subtitle} variant="subtitle1">{subtitle}</Typography>
-      <Button
-        className={classes.button}
-        color="secondary"
-        component={NavLink as React.ElementType}
-        endIcon={<ChevronRightIcon />}
-        to={retrievePath(buttonLink)}
-        variant="contained"
-      >
-        {buttonText}
-      </Button>
+      <CallToActionButton text={buttonText} url={buttonLink} />
     </div>
   );
 };

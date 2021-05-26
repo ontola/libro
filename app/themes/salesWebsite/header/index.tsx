@@ -2,23 +2,21 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import Navbar from '../../../topologies/Navbar';
-import NavBarContent from '../../../components/NavBarContent';
+import SalesNavBarContent from '../../../components/SalesWebsite/SalesNavBarContent';
 
-const useStyles = makeStyles({
-  content: {
-    backgroundColor: 'white',
-    flexGrow: 1,
+const useAppBarOverrides = makeStyles({
+  wrapper: {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    padding: '10px',
   },
 });
 
 const SalesWebsiteHeader = (): JSX.Element => {
-  const classes = useStyles();
+  const appBarOverrides = useAppBarOverrides();
 
   return (
-    <Navbar>
-      <NavBarContent>
-        <div className={classes.content} />
-      </NavBarContent>
+    <Navbar classes={appBarOverrides}>
+      <SalesNavBarContent />
     </Navbar>
   );
 };

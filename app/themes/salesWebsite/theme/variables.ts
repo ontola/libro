@@ -53,6 +53,7 @@ const typography: TypographyOptions = {
     textTransform: 'none',
   },
   fontFamily: 'Open Sans',
+  fontWeightMedium: 600,
   h1: {
     color: '000',
     // Fontsize: 50

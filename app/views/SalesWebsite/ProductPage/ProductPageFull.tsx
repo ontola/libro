@@ -64,6 +64,7 @@ const ProductPageFull: FC = () => {
   const [productText1] = useProperty(sales.productTextContent) as Node[];
   const productTexts = useContainerToArr(productText1);
   const [featureTitle] = useProperty(sales.featureTitle);
+  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
@@ -120,7 +121,7 @@ const ProductPageFull: FC = () => {
       <CallToAction
         buttonLink={buttonLink.value}
         buttonText={buttonText.value}
-        imageUrl="/static/images/call_to_action_background.svg"
+        imageUrl={callToActionBackgroundImage.value}
         subtitle={callToActionText.value}
         title={callToActionTitle.value}
       />

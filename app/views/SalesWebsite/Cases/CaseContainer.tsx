@@ -14,9 +14,10 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import Container, { containerTopology } from '../../../topologies/Container';
 
 export interface CaseContainerProps {
   noBackdrop?: boolean;
@@ -81,34 +82,36 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
   }
 
   return (
-    <Grid
-      container
-      alignItems="center"
-      direction="column"
-      justify="center"
-    >
-      <Typography variant="h2">{name.value}</Typography>
-      <Typography className={classes.subTitle}>{text.value}</Typography>
-      {renderedImage}
-      <Showcase>
-        <div className={classes.propositionSelector}>
-          <Property childProps={{ noBackdrop }} label={sales.caseShowcase} />
-        </div>
-      </Showcase>
-      <Button
-        className={classes.button}
-        component={NavLink as React.ElementType}
-        endIcon={<ChevronRightIcon />}
-        to={retrievePath(caseButtonLink.value)}
+    <Container>
+      <Grid
+        container
+        alignItems="center"
+        direction="column"
+        justify="center"
       >
-        {caseButtonText.value}
-      </Button>
-    </Grid>
+        <Typography variant="h2">{name.value}</Typography>
+        <Typography className={classes.subTitle}>{text.value}</Typography>
+        {renderedImage}
+        <Showcase>
+          <div className={classes.propositionSelector}>
+            <Property childProps={{ noBackdrop }} label={sales.caseShowcase} />
+          </div>
+        </Showcase>
+        <Button
+          className={classes.button}
+          component={NavLink as React.ElementType}
+          endIcon={<ChevronRightIcon />}
+          to={retrievePath(caseButtonLink.value)}
+        >
+          {caseButtonText.value}
+        </Button>
+      </Grid>
+    </Container>
   );
 };
 
 CaseContainer.type = sales.Cases;
 
-CaseContainer.topology = containerTopology;
+CaseContainer.topology = [fullResourceTopology, containerTopology];
 
 export default CaseContainer;

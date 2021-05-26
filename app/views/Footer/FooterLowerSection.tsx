@@ -17,30 +17,49 @@ import { footerTopology } from '../../topologies/Footer';
 import { LibroTheme } from '../../themes/themes';
 import { footerMessages, imageAltMessages } from '../../translations/messages';
 
+const STACKED_GRID_GAP = 5;
+
 const useStyles = makeStyles<LibroTheme>((theme) => ({
+  gridItem: {
+    [theme.breakpoints.down('xs')]: {
+      margin: 'auto',
+    },
+  },
+  logo: {
+    gridArea: 'logo',
+  },
   lowerSection: {
     borderTop: `3px solid ${theme.palette.primary.main}`,
-    display: 'flex',
+    display: 'grid',
     flexGrow: 1,
     fontSize: '1rem',
-    justifyContent: 'space-between',
+    gridTemplateAreas: '"logo policy privacy socials"',
     minWidth: '100%',
     paddingTop: '2rem',
+    [theme.breakpoints.down('xs')]: {
+      gap: theme.spacing(STACKED_GRID_GAP),
+      gridTemplateAreas: '"policy" "privacy" "logo" "socials"',
+    },
   },
-  lowerSectionMiddle: {
-    alignItems: 'center',
+  lowerSectionMiddleLink: {
     color: theme.palette.text.secondary,
-    display: 'flex',
     flexGrow: 1,
     fontWeight: 600,
-    justifyContent: 'space-between',
     maxWidth: '400px',
+  },
+  policy: {
+    gridArea: 'policy',
+  },
+  privacy: {
+    gridArea: 'privacy',
   },
   socials: {
     color: theme.palette.primary.main,
     display: 'flex',
     fontSize: '2rem',
     gap: '1rem',
+    gridArea: 'socials',
+    justifyContent: 'flex-end',
   },
 }));
 
@@ -55,12 +74,18 @@ const FooterLowerSection: FC = () => {
 
   return (
     <div className={classNames.lowerSection}>
-      <img alt={intl.formatMessage(imageAltMessages.arguLogo)} src={logo.value} />
-      <span className={classNames.lowerSectionMiddle}>
-        <a href={policy.value}><FormattedMessage {...footerMessages.policy} /></a>
-        <a href={privacy.value}><FormattedMessage {...footerMessages.privacy} /></a>
-      </span>
-      <span className={classNames.socials}>
+      <img
+        alt={intl.formatMessage(imageAltMessages.arguLogo)}
+        className={`${classNames.logo} ${classNames.gridItem}`}
+        src={logo.value}
+      />
+      <a className={`${classNames.lowerSectionMiddleLink} ${classNames.policy} ${classNames.gridItem}`} href={policy.value}>
+        <FormattedMessage {...footerMessages.policy} />
+      </a>
+      <a className={`${classNames.lowerSectionMiddleLink} ${classNames.privacy} ${classNames.gridItem}`} href={privacy.value}>
+        <FormattedMessage {...footerMessages.privacy} />
+      </a>
+      <span className={`${classNames.socials} ${classNames.gridItem}`}>
         {socials?.map((social) => (
           <Resource key={social.id} subject={social} />
         ))}

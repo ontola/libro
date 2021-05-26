@@ -4,8 +4,6 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import Button from '@material-ui/core/Button/Button';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -23,6 +21,9 @@ import {
   CallToAction,
   Header,
 } from '../../../components/SalesWebsite';
+import argu from '../../../ontology/argu';
+
+const LOWER_SECTION_BOTTOM_MARGIN = 40;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   academyContainer: {
@@ -62,6 +63,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       margin: -25,
     },
   },
+  lowerSection: {
+    marginBottom: theme.spacing(LOWER_SECTION_BOTTOM_MARGIN),
+  },
   paperContainer: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -97,11 +101,11 @@ const ProcessPageFull: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
   const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
-
   const [textTitle] = useProperty(sales.textTitle);
   const [textBlock] = useProperty(sales.textBlock);
 
@@ -161,36 +165,14 @@ const ProcessPageFull: FC = () => {
         </Grid>
       </Container>
       <Container>
-        <div className={classes.academyContainer}>
-          <Typography
-            className={classes.title}
-            variant="h2"
-          >
-            Onze Academy
-          </Typography>
-          <Typography
-            variant="body1"
-          >
-            Naast onze bewezen werkwijze hebben wij een academy ingericht waarmee
-            wij jou in staat stellen Argu zo optimaal mogelijk in te zetten voor
-            jouw vraagstuk.
-          </Typography>
-          <Button
-            className={classes.button}
-            color="primary"
-            endIcon={<ChevronRightIcon />}
-            href="/academy"
-            target="_blank"
-            variant="contained"
-          >
-            Bekijk onze academy
-          </Button>
+        <div className={classes.lowerSection}>
+          <Property label={argu.lowerSection} />
         </div>
       </Container>
       <CallToAction
         buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
-        imageUrl="/static/images/call_to_action_background.svg"
+        imageUrl={callToActionBackgroundImage.value}
         subtitle={callToActionText.value}
         title={callToActionTitle.value}
       />

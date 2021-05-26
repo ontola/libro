@@ -93,6 +93,7 @@ export default {
   ['format/avif']: ontola('format/avif'),
   ['format/gif']: ontola('format/gif'),
   ['format/jpg']: ontola('format/jpg'),
+  ['format/mov']: ontola('format/mov'),
   ['format/mp4']: ontola('format/mp4'),
   ['format/png']: ontola('format/png'),
   ['format/svg']: ontola('format/svg'),

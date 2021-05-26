@@ -20,7 +20,7 @@ import {
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   blogs: {
-    marginBottom: '15em',
+    marginBottom: '10em',
     marginTop: '10em',
   },
   buttonPrimary: {
@@ -100,6 +100,7 @@ const HomePageFull: FC = () => {
   const [buttonText] = useProperty(sales.buttonText);
   const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
+  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
@@ -122,9 +123,9 @@ const HomePageFull: FC = () => {
           </Showcase>
         </Container>
       </Header>
-      <Container className={classes.caseContainer}>
+      <div className={classes.caseContainer}>
         <Property noBackdrop label={sales.cases} />
-      </Container>
+      </div>
       <Container>
         <Grid
           container
@@ -137,13 +138,13 @@ const HomePageFull: FC = () => {
           <Property label={sales.duoBlock} />
         </Showcase>
         <div className={classes.blogs}>
-          <Property label={sales.blogs} />
+          <Property centerHeading label={sales.blogs} />
         </div>
       </Container>
       <CallToAction
         buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
-        imageUrl="/static/images/call_to_action_background.svg"
+        imageUrl={callToActionBackgroundImage.value}
         subtitle={callToActionText.value}
         title={callToActionTitle.value}
       />

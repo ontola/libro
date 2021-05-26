@@ -50,6 +50,7 @@ const FacetPageFull: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
+  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
   const [callToActionButtonLink] = useProperty(sales.buttonLink);
   const [callToActionButtonText] = useProperty(sales.buttonText);
   const [callToActionText] = useProperty(sales.callToActionText);
@@ -86,7 +87,7 @@ const FacetPageFull: FC = () => {
       <CallToAction
         buttonLink={callToActionButtonLink.value}
         buttonText={callToActionButtonText.value}
-        imageUrl="/static/images/call_to_action_background.svg"
+        imageUrl={callToActionBackgroundImage.value}
         subtitle={callToActionText.value}
         title={callToActionTitle.value}
       />

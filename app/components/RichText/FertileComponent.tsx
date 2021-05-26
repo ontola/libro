@@ -3,7 +3,7 @@ import { normalizeType } from 'link-lib';
 import { isNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import { makeStyles } from '@material-ui/styles';
-import { darken, lighten } from '@material-ui/core/styles';
+import { lighten } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import FontAwesome from 'react-fontawesome';
 
@@ -14,7 +14,6 @@ const ASIDE_BOTTOM_MARGIN = 4;
 const ASIDE_PADDING = 4;
 const ASIDE_LIGHTEN_AMOUNT = 0.8;
 const ASIDE_ICON_PADDING_RIGHT = 2;
-const LINK_COLOR_DARKEN_AMOUNT = .2;
 
 export interface FertileComponentProps {
   children: React.ReactNode,
@@ -31,8 +30,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     '&:hover': {
       textDecoration: 'underline',
     },
-
-    color: darken(theme.palette.secondary.main, LINK_COLOR_DARKEN_AMOUNT),
+    color: theme.palette.primary.main,
   },
 
   aside: {

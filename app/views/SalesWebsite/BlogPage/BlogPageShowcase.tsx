@@ -20,7 +20,7 @@ import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme>({
+const useStyles = makeStyles<SalesTheme>((theme) => ({
   icon: {
     color: '#2D7080',
     fontSize: 60,
@@ -42,9 +42,6 @@ const useStyles = makeStyles<SalesTheme>({
     marginTop: 50,
     padding: '0 30px',
   },
-  root: {
-    maxWidth: '28em',
-  },
   text: {
     textAlign: 'left',
   },
@@ -53,11 +50,11 @@ const useStyles = makeStyles<SalesTheme>({
     borderRadius: '.4em',
     bottom: 0,
     fontWeight: 'bold',
-    left: 0,
+    left: theme.spacing(3),
     padding: '.3em 1em',
     position: 'absolute',
   },
-});
+}));
 
 const BlogPageShowcase: FC = ({ subject }) => {
   const classes = useStyles();
@@ -67,7 +64,7 @@ const BlogPageShowcase: FC = ({ subject }) => {
   const TypeWithClassName = Type as any;
 
   return (
-    <Card className={classes.root}>
+    <Card>
       <CardActionArea href={subject.value}>
         <CardMedia
           classes={{ root: classes.mediaRoot }}

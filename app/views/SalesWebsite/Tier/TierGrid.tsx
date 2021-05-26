@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -9,7 +8,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import * as rdfs from '@ontologies/rdfs';
@@ -22,13 +20,15 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { gridTopology } from '../../../topologies/Grid';
+import { CallToActionButton } from '../../../components/SalesWebsite';
+import { salesMessages } from '../../../translations/messages';
 
-const OUTLINE_SPACING = 2.7;
+const BEST_OFFER_WIDTH = '80%';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   actions: {
@@ -38,25 +38,32 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   bestOffer: {
     ['&:before']: {
       backgroundColor: '#2D7080',
-      borderTopLeftRadius: theme.spacing(1),
-      borderTopRightRadius: theme.spacing(1),
+      borderRadius: theme.shape.borderRadius,
       color: 'white',
       content: '"Meest gekozen"',
-      fontSize: '1.8em',
-      left: theme.spacing(OUTLINE_SPACING),
-      padding: '.1em',
+      fontSize: '1em',
+      left: `calc((100% - ${BEST_OFFER_WIDTH}) / 2)`,
+      padding: '.4em',
       position: 'absolute',
-      right: theme.spacing(OUTLINE_SPACING),
       textAlign: 'center',
-      top: '-.5em',
+      top: '-2.5em',
+      width: BEST_OFFER_WIDTH,
     },
     outline: '2px solid #2D7080',
+  },
+  bestOfferWrapper: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: 'unset',
+    },
+    marginTop: '50px',
   },
   cardRoot: {
     display: 'flex',
     flexDirection: 'column',
     maxWidth: '20em',
-    minHeight: '45em',
+    [theme.breakpoints.up('md')]: {
+      minHeight: '45em',
+    },
   },
   checkMark: {
     color: '#2D7080',
@@ -65,11 +72,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   contentWrapper: {
     flexGrow: 1,
   },
-  ctaLabel: {
-    fontSize: '1.3em',
-  },
   infoHeader: {
-    minHeight: '21em',
+    [theme.breakpoints.up('md')]: {
+      minHeight: '15em',
+    },
   },
   label: {
     fontWeight: theme.typography.fontWeightBold,
@@ -91,11 +97,13 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const TierGrid: FC = () => {
   const classes = useStyles();
+  const intl = useIntl();
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [priceInterval] = useProperty(sales.priceInterval);
   const [priceUnit] = useProperty(sales.priceUnit);
   const [includesList] = useProperty(sales.includes) as SomeNode[];
+  const [buttonLink] = useProperty(sales.buttonLink);
   const includes = useResourceProperty(includesList, rdfs.member);
   const [bestOffer] = useProperty(sales.bestOffer);
 
@@ -114,7 +122,13 @@ const TierGrid: FC = () => {
   );
 
   return (
-    <Grid item className={classes.root}>
+    <Grid
+      item
+      className={clsx({
+        [classes.root]: true,
+        [classes.bestOfferWrapper]: bestOffer,
+      })}
+    >
       <Card
         className={clsx({
           [classes.cardRoot]: true,
@@ -137,17 +151,10 @@ const TierGrid: FC = () => {
           </List>
         </CardContent>
         <CardActions className={classes.actions}>
-          <Button
-            classes={{ label: classes.ctaLabel }}
-            color="secondary"
-            endIcon={<ChevronRightIcon />}
-            variant="contained"
-          >
-            <FormattedMessage
-              defaultMessage="Neem contact op"
-              id="https://app.argu.co/i18n/sales/contactUs"
-            />
-          </Button>
+          <CallToActionButton
+            text={intl.formatMessage(salesMessages.contactUs)}
+            url={buttonLink.value}
+          />
         </CardActions>
       </Card>
     </Grid>

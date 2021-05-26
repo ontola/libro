@@ -15,11 +15,13 @@ import ProductPage from './ProductPage';
 import Proposition from './Propositions';
 import Stepper from './Stepper';
 import Tier from './Tier';
+import CTA from './CTA';
 
 export default [
   ...Block,
   ...BlogContainer,
   ...BlogPage,
+  ...CTA,
   ...CasePage,
   ...Cases,
   ...CasesPage,

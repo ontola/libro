@@ -9,6 +9,8 @@ import NavbarNavigationsMenu from './NavbarNavigationsMenu';
 
 export interface NavBarContentProps {
   children: React.ReactNode;
+  hideSearch?: boolean;
+  hideMenu?: boolean;
 }
 
 const useStyles = makeStyles({
@@ -17,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavBarContent = ({ children }: NavBarContentProps): JSX.Element => {
+const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -27,8 +29,8 @@ const NavBarContent = ({ children }: NavBarContentProps): JSX.Element => {
       <div className="NavBarContent__menus">
         <div className={classes.pusher} />
         <Resource subject={app.c_a} />
-        <Resource subject={app.search} onError={() => null} />
-        <Resource subject={app.menu} />
+        {!hideSearch && <Resource subject={app.search} onError={() => null} />}
+        {!hideMenu && <Resource subject={app.menu} />}
       </div>
     </React.Fragment>
   );

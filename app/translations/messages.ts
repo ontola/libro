@@ -489,6 +489,13 @@ export const phaseMessages: Messages = defineMessages({
   },
 });
 
+export const salesMessages: Messages = defineMessages({
+  contactUs: {
+    defaultMessage: 'Contact us',
+    id: 'https://app.argu.co/i18n/sales/contactUs',
+  },
+});
+
 export const statusMessages: Messages = defineMessages({
   closedTooltip: {
     defaultMessage: 'Closed on {date}',
