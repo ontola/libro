@@ -78,9 +78,9 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
     const x = Math.round(xPercentage * 100);
     const y = Math.round(yPercentage * 100);
     const actionURI = new URL(createCommentAction.value);
-    actionURI.searchParams.set('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPage=${pageNumber}`);
-    actionURI.searchParams.set('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPositionX=${x}`);
-    actionURI.searchParams.set('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPositiony=${y}`);
+    actionURI.searchParams.append('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPage=${pageNumber}`);
+    actionURI.searchParams.append('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPositionX=${x}`);
+    actionURI.searchParams.append('filter[]', `https%3A%2F%2Fargu.co%2Fns%2Fcore%23pdfPositionY=${y}`);
     actionURI.searchParams.sort();
     const actionIRI = rdf.namedNode(actionURI.toString());
 
