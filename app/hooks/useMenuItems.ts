@@ -44,7 +44,7 @@ const useMenuItems = (menuItemsIRI: NamedNode | undefined, redirect?: boolean): 
         setCurrentTab(firstItem);
       }
     }
-  }, [items, firstItem]);
+  }, [items, location, firstItem]);
 
   return {
     currentTab,
