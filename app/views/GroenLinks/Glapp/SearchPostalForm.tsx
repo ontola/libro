@@ -92,6 +92,7 @@ const SearchPostalForm: React.FC<SearchPostalFormProps> = ({
             <button
               className={classes.button}
               key={digits}
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 handlePostalClick(parseInt(digits));

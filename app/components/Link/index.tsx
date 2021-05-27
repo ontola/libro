@@ -107,6 +107,7 @@ const Link: React.FC<PropTypesWithRef> = ({
       <button
         disabled
         title={title}
+        type="button"
       >
         {children}
       </button>

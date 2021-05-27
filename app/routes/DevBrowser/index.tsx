@@ -137,6 +137,7 @@ class DevBrowser extends Component<DevBrowserProps> {
                 backgroundColor: rdf.equals(currentTopology, topology) ? '#d9d9d9' : 'transparent',
                 padding: '0 2px',
               }}
+              type="button"
               value={getTopologyNumber(topology)}
               onClick={this.handleChangeTopology}
             >
