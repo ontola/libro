@@ -226,7 +226,7 @@
     "quotes": ["error", "single", {
       "avoidEscape": true
     }],
-    "react/button-has-type": "warn",
+    "react/button-has-type": "error",
     "react/destructuring-assignment": "off",
     "react/display-name": "off",
     "react/function-component-definition": ["error", {

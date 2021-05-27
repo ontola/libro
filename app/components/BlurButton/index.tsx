@@ -28,6 +28,7 @@ const BlurButton: React.FC<PropTypes> = ({
   ...props
 }) => (
   <button
+    type="button"
     {...props}
     onClick={(e) => onClickAndBlur(e, onClick)}
   >
