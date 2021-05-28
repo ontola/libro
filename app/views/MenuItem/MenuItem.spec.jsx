@@ -23,7 +23,7 @@ describe('MenuItem', () => {
     '@id': menuIRI.value,
     [rdfx.type]: rdfx.Seq,
     [schema.name]: rdf.literal('Maarten van Scharendrecht'),
-    [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus'),
+    [schema.isPartOf]: rdf.namedNode('https://argu.dev/menu_items'),
     [rdfx.ns('_0')]: {
       '@id': app.ns('menus/user#show'),
       [rdfx.type]: ontola.MenuItem,

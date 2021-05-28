@@ -39,13 +39,13 @@ const MenuNavbar = () => {
               hideIcon: true,
               onClose: handleClose,
             }}
-            subject={app.ns('menus/navigations/menus')}
+            subject={app.ns('menus/navigations/menu_items')}
           />
           <Divider />
           <React.Fragment>
             <Resource
               childProps={{ onClose: handleClose }}
-              subject={app.ns('menus/user/menus')}
+              subject={app.ns('menus/user/menu_items')}
             />
             <Divider />
           </React.Fragment>
@@ -55,7 +55,7 @@ const MenuNavbar = () => {
                 hideIcon: true,
                 onClose: handleClose,
               }}
-              subject={app.ns('menus/info/menus')}
+              subject={app.ns('menus/info/menu_items')}
             />
           </div>
         </React.Fragment>
