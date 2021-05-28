@@ -29,7 +29,7 @@ export function absoluteRouterLocation(state: Record<string, Record<string, any>
 
 const paths = {
   confirmation(): string {
-    return app.ns('users/confirmation/new').value;
+    return app.ns('u/confirmation/new').value;
   },
 
   index(): string {
@@ -37,11 +37,11 @@ const paths = {
   },
 
   newPassword(): string {
-    return app.ns('users/password/new').value;
+    return app.ns('u/password/new').value;
   },
 
   newUnlock(): string {
-    return app.ns('users/unlock/new').value;
+    return app.ns('u/unlock/new').value;
   },
 
   /**
@@ -50,7 +50,7 @@ const paths = {
    * @returns {string} The URL.
    */
   signIn(redirectUrl?: string): string {
-    const url = app.ns('u/sign_in').value;
+    const url = app.ns('u/session/new').value;
 
     return redirectUrl ? `${url}?redirect_url=${encodeURIComponent(redirectUrl)}` : url;
   },

@@ -168,7 +168,7 @@ const routes = async function routes(app, port) {
 
   router.use(bodyParser());
   if (!standaloneLibro) {
-    router.get(['/users/auth/*', '/*/users/auth/*'], backend);
+    router.get(['/u/auth/*', '/*/u/auth/*'], backend);
   }
   router.get('/api/maps/accessToken', maps);
 

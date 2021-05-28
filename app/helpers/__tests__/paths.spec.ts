@@ -64,12 +64,12 @@ describe('helpers', () => {
 
     describe('signIn', () => {
       it('returns the correct path', () => {
-        expect(path.signIn()).toEqual('https://app.argu.co/freetown/u/sign_in');
+        expect(path.signIn()).toEqual('https://app.argu.co/freetown/u/session/new');
       });
 
       it('handles redirects', () => {
         expect(path.signIn('http://argu.co/redirect'))
-          .toEqual('https://app.argu.co/freetown/u/sign_in?redirect_url=http%3A%2F%2Fargu.co%2Fredirect');
+          .toEqual('https://app.argu.co/freetown/u/session/new?redirect_url=http%3A%2F%2Fargu.co%2Fredirect');
       });
     });
   });

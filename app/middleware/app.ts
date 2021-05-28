@@ -45,7 +45,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   const signInLink = (redirectUrl?: NamedNode) => {
     const postFix = redirectUrl ? `?redirect_url=${encodeURIComponent(redirectUrl.value.split('#')[0])}` : '';
 
-    return app.ns('u/sign_in' + postFix);
+    return app.ns('u/session/new' + postFix);
   };
 
   (store as any).actions.app.startSignIn = (redirectUrl?: NamedNode) => {
