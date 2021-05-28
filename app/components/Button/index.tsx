@@ -1,7 +1,7 @@
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -106,7 +106,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   loading,
   margins,
-  onClick: handler,
+  onClick,
   small,
   narrow,
   plain,
@@ -117,14 +117,12 @@ const Button: React.FC<ButtonProps> = ({
   variant,
 }) => {
   const lrs = useLRS();
-  let onClick: any = handler;
-  if (action) {
-    onClick = (e: Event) => {
-      e.preventDefault();
+  const handleAction = React.useCallback((e: MouseEvent) => {
+    e.preventDefault();
 
-      return lrs.exec(action);
-    };
-  }
+    return lrs.exec(action!);
+  }, [action]);
+  const handleClick = onClick || (action ? handleAction : undefined);
   const btnClass = clsx({
     'Button': true,
     'Button--active': active,
@@ -148,7 +146,7 @@ const Button: React.FC<ButtonProps> = ({
     'aria-label': ariaLabel,
     'className': btnClass,
     'disabled': disabled || loading,
-    onClick,
+    onClick: handleClick,
     title,
     type,
   };
