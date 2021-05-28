@@ -62,7 +62,6 @@ export interface CollectionContext {
 
 export interface CollectionDataProps {
   collectionDisplayFromData: NamedNode;
-  columns: SomeNode;
   maxColumns: SomeTerm;
   partOf: LaxNode;
   totalItems: SomeTerm;
@@ -71,7 +70,6 @@ export interface CollectionDataProps {
 
 const propMap = {
   collectionDisplayFromData: ontola.collectionDisplay,
-  columns: ontola.columns,
   maxColumns: ontola.maxColumns,
   partOf: as.partOf,
   totalItems: as.totalItems,
@@ -108,7 +106,6 @@ const CollectionProvider = ({
 }: CollectionProviderProps): JSX.Element | null => {
   const {
     collectionDisplayFromData,
-    columns,
     maxColumns,
     partOf,
     totalItems,
@@ -121,6 +118,7 @@ const CollectionProvider = ({
   );
   const [firstPageItems] = useResourceProperty(currentCollectionPages[0], as.totalItems);
 
+  const [columns] = useResourceProperty(originalCollection, ontola.columns) as NamedNode[];
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
   const columnList = useListToArr<NamedNode>(columns);
