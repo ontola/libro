@@ -35,6 +35,7 @@ const sandbox = [
   'allow-forms',
   'allow-modals',
   'allow-popups',
+  'allow-popups-to-escape-sandbox',
   'allow-presentation',
   'allow-same-origin',
   'allow-scripts',
