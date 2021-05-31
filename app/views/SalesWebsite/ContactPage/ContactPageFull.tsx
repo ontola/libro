@@ -5,6 +5,9 @@ import {
   Link,
   Typography,
 } from '@material-ui/core';
+import EmailIcon from '@material-ui/icons/Email';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import PhoneIcon from '@material-ui/icons/Phone';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -24,7 +27,8 @@ import { withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider'
 import { LibroTheme } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
-// import Grid from '../../../topologies/Grid';
+
+const BOTTOM_MARGIN = 35;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   addressLine: {
@@ -39,10 +43,21 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   hidden: {
     display: 'none',
   },
+  icon: {
+    color: theme.palette.primary.dark,
+  },
+  iconLink: {
+    alignItems: 'center',
+    display: 'flex',
+    gap: '0.5rem',
+  },
+  propositionContainer: {
+    marginBottom: theme.spacing(BOTTOM_MARGIN),
+  },
   socials: {
     color: theme.palette.primary.main,
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     fontSize: '2rem',
     gap: '1rem',
   },
@@ -87,7 +102,7 @@ const PricingPageFull: FC = () => {
             </Typography>
             <Grid
               container
-              direction="row"
+              direction="column"
               justify="space-between"
               wrap="nowrap"
             >
@@ -103,9 +118,18 @@ const PricingPageFull: FC = () => {
                   <Typography>
                     <div className={`org ${classes.hidden}`}>Argu</div>
                     <img alt={logoText.value} className={`photo ${classes.hidden}`} src={logo.value} />
-                    <Link className={`tel ${classes.addressLocation}`} href={`tel:${tel.value.replace(/\s/g, '')}`}>{tel.value}</Link>
-                    <Link className={`email ${classes.addressLocation}`} href={`mailto:${email.value}`}>{email.value}</Link>
-                    <Link className={`note ${classes.addressLocation}`} href={discordLink.value}>{discordText.value}</Link>
+                    <span className={classes.iconLink}>
+                      <PhoneIcon className={classes.icon} />
+                      <Link className={`tel ${classes.addressLocation}`} href={`tel:${tel.value.replace(/\s/g, '')}`}>{tel.value}</Link>
+                    </span>
+                    <span className={classes.iconLink}>
+                      <EmailIcon className={classes.icon} />
+                      <Link className={`email ${classes.addressLocation}`} href={`mailto:${email.value}`}>{email.value}</Link>
+                    </span>
+                    <span className={classes.iconLink}>
+                      <QuestionAnswerIcon className={classes.icon} />
+                      <Link className={`note ${classes.addressLocation}`} href={discordLink.value}>{discordText.value}</Link>
+                    </span>
                     <Link className={`url ${classes.hidden}`} href={websiteUrl.value}>{website.value}</Link>
                   </Typography>
                 </address>
@@ -115,7 +139,7 @@ const PricingPageFull: FC = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={3} sm={5} xs={11}>
+          <Grid item md={5} sm={5} xs={11}>
             <Card>
               <CardContent>
                 <PipedriveForm />
@@ -124,7 +148,9 @@ const PricingPageFull: FC = () => {
           </Grid>
         </Grid>
       </Container>
-      <Propositions />
+      <div className={classes.propositionContainer}>
+        <Propositions />
+      </div>
     </div>
   );
 };

@@ -20,6 +20,8 @@ import sales from '../../../ontology/sales';
 import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
+const THEME_CHIP_SPACING = 3;
+
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   icon: {
     color: '#2D7080',
@@ -50,7 +52,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     borderRadius: '.4em',
     bottom: 0,
     fontWeight: 'bold',
-    left: theme.spacing(3),
+    left: theme.spacing(THEME_CHIP_SPACING),
     padding: '.3em 1em',
     position: 'absolute',
   },
