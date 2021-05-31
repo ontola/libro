@@ -21,7 +21,7 @@ const CloseableContainer = ({
     [setOpened, open],
   );
 
-  if (opened) {
+  if (!opened) {
     return null;
   }
 
