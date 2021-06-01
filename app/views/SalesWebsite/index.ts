@@ -1,3 +1,4 @@
+import About from './About';
 import Block from './Block';
 import BlogContainer from './Blogs';
 import BlogPage from './BlogPage';
@@ -18,6 +19,7 @@ import Tier from './Tier';
 import CTA from './CTA';
 
 export default [
+  ...About,
   ...Block,
   ...BlogContainer,
   ...BlogPage,

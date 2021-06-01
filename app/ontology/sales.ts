@@ -7,6 +7,7 @@ export default {
 
   /* classes */
   // eslint-disable-next-line sort-keys
+  AboutPage: sales('AboutPage'),
   Block: sales('Block'),
   /** A page containing a blogpost. */
   BlogPage: sales('BlogPage'),
@@ -31,7 +32,9 @@ export default {
   ProductPage: sales('ProductPage'),
   Proposition: sales('Proposition'),
   Step: sales('Step'),
+  Team: sales('Team'),
   Tier: sales('Tier'),
+  Values: sales('values'),
 
   /* properties */
   backgroundImage: sales('backgroundImage'),
@@ -80,6 +83,7 @@ export default {
   stepper: sales('stepper'),
   streetAddress: sales('streetAddress'),
   tagline: sales('tagline'),
+  teamMembers: sales('teamMembers'),
   tel: sales('tel'),
   tertiaryImage: sales('tertiaryImage'),
   textBlock: sales('textBlock'),
@@ -87,6 +91,7 @@ export default {
   textTitle: sales('textTitle'),
   theme: sales('theme'),
   tiers: sales('tiers'),
+  values: sales('values'),
   website: sales('website'),
   websiteUrl: sales('websiteUrl'),
 

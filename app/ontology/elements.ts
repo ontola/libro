@@ -27,6 +27,7 @@ export default {
 
   /* === Properties === */
   // eslint-disable-next-line sort-keys
+  align: elements('align'),
   bold: elements('bold'),
   children: elements('children'),
   italic: elements('italic'),

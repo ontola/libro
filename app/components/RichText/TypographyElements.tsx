@@ -5,13 +5,18 @@ import { isNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 
+import { LibroTheme } from '../../themes/themes';
+
 export interface TypographyElementProps {
   children?: React.ReactChildren;
+  align?: 'center' | 'left' | 'right' | 'inherit' | 'justify',
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<LibroTheme, TypographyElementProps>({
   body1: {
-    maxWidth: 'clamp(30ch, 100%, 90ch)',
+    marginLeft: ({ align }) => align === 'center' ? 'auto' : '0',
+    marginRight: ({ align }) => align === 'center' ? 'auto' : '0',
+    maxWidth: 'clamp(30ch, 90%, 90ch)',
   },
   h1: {
     fontSize: '2rem',
@@ -24,13 +29,17 @@ const useStyles = makeStyles({
   },
 });
 
-export const createTypographyComponent = (variant: Variant) => ({ children }: TypographyElementProps): JSX.Element => {
-  const classes = useStyles();
+export const createTypographyComponent = (variant: Variant) => ({
+  align,
+  children,
+}: TypographyElementProps): JSX.Element => {
+  const classes = useStyles({ align });
 
   return (
     <Typography
+      align={align ?? 'inherit'}
       classes={classes}
-      gutterBottom={['h1', 'h2', 'h3'].includes(variant)}
+      gutterBottom={['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(variant)}
       paragraph={variant === 'body1'}
       variant={variant}
     >

@@ -6,6 +6,7 @@ import PersonPage from './PersonFull';
 import PersonSelect from './PersonSelect';
 import Image from './properties/image';
 import PersonSection from './PersonSection';
+import PersonShowcase from './PersonShowcase';
 
 export default [
   PersonDetail,
@@ -15,5 +16,6 @@ export default [
   PersonPage,
   PersonSection,
   PersonSelect,
+  PersonShowcase,
   Image,
 ];

@@ -116,6 +116,11 @@ export interface ComponentMap {
   [k: number]: [FC, MapDataToPropsParam] | [FC];
 }
 
+const childTypographyMap = {
+  ...childElementMap,
+  align: value(elements.align),
+};
+
 export const componentMap = {
   [rdf.id(components.ActionButton)]: [CompActionButton],
   [rdf.id(components.AttachmentPreview)]: [CompAttachmentPreview],
@@ -149,17 +154,17 @@ export const componentMap = {
   [rdf.id(components.DetailText)]: [CompDetailText],
   [rdf.id(components.DropdownMenu)]: [CompDropdownMenu],
 
-  [rdf.id(components.ElementP)]: [createTypographyComponent('body1'), childElementMap],
+  [rdf.id(components.ElementP)]: [createTypographyComponent('body1'), childTypographyMap],
   [rdf.id(components.ElementA)]: [createFertileComponent('a'), childLinkMap],
   [rdf.id(components.ElementOl)]: [createFertileComponent('ol'), childElementMap],
   [rdf.id(components.ElementLi)]: [createFertileComponent('li'), childElementMap],
   [rdf.id(components.ElementUl)]: [createFertileComponent('ul'), childElementMap],
-  [rdf.id(components.ElementH1)]: [createTypographyComponent('h1'), childElementMap],
-  [rdf.id(components.ElementH2)]: [createTypographyComponent('h2'), childElementMap],
-  [rdf.id(components.ElementH3)]: [createTypographyComponent('h3'), childElementMap],
-  [rdf.id(components.ElementH4)]: [createTypographyComponent('h4'), childElementMap],
-  [rdf.id(components.ElementH5)]: [createTypographyComponent('h5'), childElementMap],
-  [rdf.id(components.ElementH6)]: [createTypographyComponent('h6'), childElementMap],
+  [rdf.id(components.ElementH1)]: [createTypographyComponent('h1'), childTypographyMap],
+  [rdf.id(components.ElementH2)]: [createTypographyComponent('h2'), childTypographyMap],
+  [rdf.id(components.ElementH3)]: [createTypographyComponent('h3'), childTypographyMap],
+  [rdf.id(components.ElementH4)]: [createTypographyComponent('h4'), childTypographyMap],
+  [rdf.id(components.ElementH5)]: [createTypographyComponent('h5'), childTypographyMap],
+  [rdf.id(components.ElementH6)]: [createTypographyComponent('h6'), childTypographyMap],
   [rdf.id(components.ElementNote)]: [createFertileComponent('aside', FertileComponentVariant.Note), childElementMap],
   [rdf.id(components.ElementTip)]: [createFertileComponent('aside', FertileComponentVariant.Tip), childElementMap],
   [rdf.id(components.ElementInnerText)]: [CompInnerText, childTextMap],

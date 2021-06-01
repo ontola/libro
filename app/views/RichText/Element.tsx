@@ -39,6 +39,10 @@ Element.type = [
   elements.Li,
   elements.H1,
   elements.H2,
+  elements.H3,
+  elements.H4,
+  elements.H5,
+  elements.H6,
   elements.Note,
   elements.Tip,
 ];
