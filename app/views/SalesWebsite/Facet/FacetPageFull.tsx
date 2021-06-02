@@ -14,10 +14,6 @@ import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
-import {
-  CallToAction,
-  Header,
-} from '../../../components/SalesWebsite';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   callToPricing: {
@@ -45,16 +41,6 @@ const FacetPageFull: FC = () => {
   const classes = useStyles({
     backgroundColor: color.value,
   });
-
-  const [backgroundImage] = useProperty(sales.backgroundImage);
-  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
-  const [title] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
-  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
-  const [callToActionButtonLink] = useProperty(sales.buttonLink);
-  const [callToActionButtonText] = useProperty(sales.buttonText);
-  const [callToActionText] = useProperty(sales.callToActionText);
-  const [callToActionTitle] = useProperty(sales.callToActionTitle);
   const [moreTitle] = useProperty(sales.moreTitle);
   const [moreDescription] = useProperty(sales.moreDescription);
   const [morePageName] = useProperty(sales.morePageName);
@@ -62,12 +48,7 @@ const FacetPageFull: FC = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Header
-        backgroundImageUrl={backgroundImage.value}
-        backgroundImageUrlMobile={backgroundImageMobile.value}
-        subtitle={text.value}
-        title={title.value}
-      />
+      <Property label={sales.header} />
       <div className={classes.facetsWrapper}>
         <Container>
           <Property label={sales.facets} />
@@ -84,13 +65,7 @@ const FacetPageFull: FC = () => {
           </NavLink>
         </Typography>
       </Container>
-      <CallToAction
-        buttonLink={callToActionButtonLink.value}
-        buttonText={callToActionButtonText.value}
-        imageUrl={callToActionBackgroundImage.value}
-        subtitle={callToActionText.value}
-        title={callToActionTitle.value}
-      />
+      <Property label={sales.callToActionBlock} />
     </div>
   );
 };

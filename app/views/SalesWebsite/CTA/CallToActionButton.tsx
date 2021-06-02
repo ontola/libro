@@ -11,12 +11,16 @@ import sales from '../../../ontology/sales';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
-const CallToActionButton: FC = () => {
+export interface CallToActionButtonProps {
+  size?: 'small' | 'medium' | 'large',
+}
+
+const CallToActionButton: FC<CallToActionButtonProps> = ({ size }) => {
   const [text] = useProperty(schema.text);
   const [href] = useProperty(ontola.href);
 
   return (
-    <CallToActionButtonComponent size="small" text={text?.value} url={href?.value} />
+    <CallToActionButtonComponent size={size ?? 'small'} text={text?.value} url={href?.value} />
   );
 };
 

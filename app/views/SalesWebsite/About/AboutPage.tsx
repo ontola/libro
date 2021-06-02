@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
-import * as schema from '@ontologies/schema';
 import {
   FC,
+  Property,
   Resource,
   register,
   useProperty,
@@ -11,7 +11,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CallToAction, Header } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { fullResourceTopology } from '../../../topologies/FullResource';
@@ -32,26 +31,12 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const AboutPage: FC = () => {
   const classes = useStyles();
-  const [backgroundImage] = useProperty(sales.backgroundImage);
-  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
-  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
-  const [callToActionButtonLink] = useProperty(sales.buttonLink);
-  const [callToActionButtonText] = useProperty(sales.buttonText);
-  const [callToActionText] = useProperty(sales.callToActionText);
-  const [callToActionTitle] = useProperty(sales.callToActionTitle);
-  const [name] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
   const [sections] = useProperty(sales.sections) as [Node];
   const sectionMembers = useResourceProperty(sections, rdfs.member);
 
   return (
     <React.Fragment>
-      <Header
-        backgroundImageUrl={backgroundImage.value}
-        backgroundImageUrlMobile={backgroundImageMobile.value}
-        subtitle={text.value}
-        title={name.value}
-      />
+      <Property label={sales.header} />
       <div>
         {sectionMembers.map((section) => (
           <div className={classes.section} key={section.value}>
@@ -59,13 +44,7 @@ const AboutPage: FC = () => {
           </div>
         ))}
       </div>
-      <CallToAction
-        buttonLink={callToActionButtonLink.value}
-        buttonText={callToActionButtonText.value}
-        imageUrl={callToActionBackgroundImage.value}
-        subtitle={callToActionText.value}
-        title={callToActionTitle.value}
-      />
+      <Property label={sales.callToActionBlock} />
     </React.Fragment>
   );
 };

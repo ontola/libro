@@ -4,8 +4,6 @@ import React from 'react';
 
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
-import { CallToActionButton } from './CallToActionButton';
-
 const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => ({
   button: {
     fontSize: 18,
@@ -40,8 +38,6 @@ const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => 
 }));
 
 export interface CallToActionProps {
-  buttonLink: string,
-  buttonText: string,
   title: string,
   subtitle: string,
   imageUrl: string,
@@ -49,19 +45,18 @@ export interface CallToActionProps {
 
 /** Full page with a branded header */
 export const CallToAction = ({
-  buttonLink,
-  buttonText,
   title,
   subtitle,
   imageUrl,
-}: CallToActionProps): JSX.Element => {
+  children,
+}: React.PropsWithChildren<CallToActionProps>): JSX.Element => {
   const classes = useStyles({ imageUrl });
 
   return (
     <div className={classes.header}>
       <Typography className={classes.title} variant="h1">{title}</Typography>
       <Typography className={classes.subtitle} variant="subtitle1">{subtitle}</Typography>
-      <CallToActionButton text={buttonText} url={buttonLink} />
+      {children}
     </div>
   );
 };

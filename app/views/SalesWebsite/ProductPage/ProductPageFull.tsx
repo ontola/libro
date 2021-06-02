@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CallToAction, HeaderProductPages } from '../../../components/SalesWebsite';
+import { HeaderProductPages } from '../../../components/SalesWebsite';
 import { Size } from '../../../components/shared/config';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import sales from '../../../ontology/sales';
@@ -64,9 +64,6 @@ const ProductPageFull: FC = () => {
   const [productText1] = useProperty(sales.productTextContent) as Node[];
   const productTexts = useContainerToArr(productText1);
   const [featureTitle] = useProperty(sales.featureTitle);
-  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
-  const [callToActionText] = useProperty(sales.callToActionText);
-  const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
   return (
     <div className={classes.wrapper}>
@@ -118,13 +115,7 @@ const ProductPageFull: FC = () => {
       <Container size={Size.Large}>
         <Property label={sales.features} />
       </Container>
-      <CallToAction
-        buttonLink={buttonLink.value}
-        buttonText={buttonText.value}
-        imageUrl={callToActionBackgroundImage.value}
-        subtitle={callToActionText.value}
-        title={callToActionTitle.value}
-      />
+      <Property label={sales.callToActionBlock} />
     </div>
   );
 };

@@ -17,6 +17,7 @@ import Proposition from './Propositions';
 import Stepper from './Stepper';
 import Tier from './Tier';
 import CTA from './CTA';
+import SalesHeader from './Header';
 
 export default [
   ...About,
@@ -37,5 +38,6 @@ export default [
   ...ProductPage,
   ...Proposition,
   ...Stepper,
+  SalesHeader,
   ...Tier,
 ];

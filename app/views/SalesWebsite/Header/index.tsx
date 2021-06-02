@@ -1,0 +1,36 @@
+import * as schema from '@ontologies/schema';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
+import React from 'react';
+
+import { Header } from '../../../components/SalesWebsite';
+import sales from '../../../ontology/sales';
+import { allTopologies } from '../../../topologies';
+
+const SalesHeader: FC = () => {
+  const [backgroundImage] = useProperty(sales.backgroundImage);
+  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
+  const [title] = useProperty(schema.name);
+  const [text] = useProperty(schema.text);
+  const [buttonLink] = useProperty(sales.buttonLink);
+  const [buttonText] = useProperty(sales.buttonText);
+
+  return (
+    <Header
+      backgroundImageUrl={backgroundImage.value}
+      backgroundImageUrlMobile={backgroundImageMobile.value}
+      buttonLink={buttonLink?.value}
+      buttonText={buttonText?.value}
+      subtitle={text?.value}
+      title={title.value}
+    />
+  );
+};
+
+SalesHeader.type = sales.Header;
+SalesHeader.topology = allTopologies;
+
+export default register(SalesHeader);

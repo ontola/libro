@@ -17,10 +17,6 @@ import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
-import {
-  CallToAction,
-  Header,
-} from '../../../components/SalesWebsite';
 import argu from '../../../ontology/argu';
 
 const LOWER_SECTION_BOTTOM_MARGIN = 40;
@@ -96,27 +92,12 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const ProcessPageFull: FC = () => {
   const classes = useStyles();
   const styles = useTheme();
-
-  const [backgroundImage] = useProperty(sales.backgroundImage);
-  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
-  const [title] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
-  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
-  const [callToActionButtonLink] = useProperty(sales.buttonLink);
-  const [callToActionButtonText] = useProperty(sales.buttonText);
-  const [callToActionText] = useProperty(sales.callToActionText);
-  const [callToActionTitle] = useProperty(sales.callToActionTitle);
   const [textTitle] = useProperty(sales.textTitle);
   const [textBlock] = useProperty(sales.textBlock);
 
   return (
     <div className={classes.wrapper}>
-      <Header
-        backgroundImageUrl={backgroundImage.value}
-        backgroundImageUrlMobile={backgroundImageMobile.value}
-        subtitle={text.value}
-        title={title.value}
-      />
+      <Property label={sales.header} />
       <Container>
         <Grid item md={8} sm={12}>
           <Typography
@@ -169,13 +150,7 @@ const ProcessPageFull: FC = () => {
           <Property label={argu.lowerSection} />
         </div>
       </Container>
-      <CallToAction
-        buttonLink={callToActionButtonLink.value}
-        buttonText={callToActionButtonText.value}
-        imageUrl={callToActionBackgroundImage.value}
-        subtitle={callToActionText.value}
-        title={callToActionTitle.value}
-      />
+      <Property label={sales.callToActionBlock} />
     </div>
   );
 };

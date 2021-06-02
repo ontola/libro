@@ -1,10 +1,8 @@
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,10 +11,6 @@ import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesTh
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import Showcase from '../../../topologies/Showcase';
-import {
-  CallToAction,
-  Header,
-} from '../../../components/SalesWebsite';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   blogs: {
@@ -92,37 +86,18 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const HomePageFull: FC = () => {
   const classes = useStyles();
-  const [backgroundImage] = useProperty(sales.backgroundImage);
-  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
-  const [title] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
-  const [buttonLink] = useProperty(sales.buttonLink);
-  const [buttonText] = useProperty(sales.buttonText);
-  const [callToActionButtonLink] = useProperty(sales.buttonLink);
-  const [callToActionButtonText] = useProperty(sales.buttonText);
-  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
-  const [callToActionText] = useProperty(sales.callToActionText);
-  const [callToActionTitle] = useProperty(sales.callToActionTitle);
 
   return (
     <div className={classes.wrapper}>
-      <Header
-        backgroundImageUrl={backgroundImage.value}
-        backgroundImageUrlMobile={backgroundImageMobile.value}
-        buttonLink={buttonLink.value}
-        buttonText={buttonText.value}
-        subtitle={text.value}
-        title={title.value}
-      >
-        <Container>
-          <Showcase
-            className={classes.propositionSelector}
-            spacing={0}
-          >
-            <Property label={sales.showcase} />
-          </Showcase>
-        </Container>
-      </Header>
+      <Property label={sales.header} />
+      <Container>
+        <Showcase
+          className={classes.propositionSelector}
+          spacing={0}
+        >
+          <Property label={sales.showcase} />
+        </Showcase>
+      </Container>
       <div className={classes.caseContainer}>
         <Property noBackdrop label={sales.cases} />
       </div>
@@ -141,13 +116,7 @@ const HomePageFull: FC = () => {
           <Property centerHeading label={sales.blogs} />
         </div>
       </Container>
-      <CallToAction
-        buttonLink={callToActionButtonLink.value}
-        buttonText={callToActionButtonText.value}
-        imageUrl={callToActionBackgroundImage.value}
-        subtitle={callToActionText.value}
-        title={callToActionTitle.value}
-      />
+      <Property label={sales.callToActionBlock} />
     </div>
   );
 };

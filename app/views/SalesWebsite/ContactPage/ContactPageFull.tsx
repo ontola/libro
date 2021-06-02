@@ -9,7 +9,6 @@ import EmailIcon from '@material-ui/icons/Email';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import PhoneIcon from '@material-ui/icons/Phone';
 import { makeStyles } from '@material-ui/styles';
-import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
@@ -19,7 +18,6 @@ import {
 import React from 'react';
 
 import { PipedriveForm } from '../../../components/PipedriveForm';
-import { Header } from '../../../components/SalesWebsite';
 import { Propositions } from '../../../components/SalesWebsite/Propositions';
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
@@ -65,10 +63,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
 const PricingPageFull: FC = () => {
   const classes = useStyles();
-  const [backgroundImage] = useProperty(sales.backgroundImage);
-  const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
-  const [name] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
   const [streetAddress] = useProperty(sales.streetAddress);
   const [postalCode] = useProperty(sales.postalCode);
   const [locality] = useProperty(sales.locality);
@@ -83,12 +77,7 @@ const PricingPageFull: FC = () => {
 
   return (
     <div>
-      <Header
-        backgroundImageUrl={backgroundImage.value}
-        backgroundImageUrlMobile={backgroundImageMobile.value}
-        subtitle={text.value}
-        title={name.value}
-      />
+      <Property label={sales.header} />
       <Container className={classes.container}>
         <Grid
           container
