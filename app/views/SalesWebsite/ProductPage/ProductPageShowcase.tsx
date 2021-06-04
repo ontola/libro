@@ -48,6 +48,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     [theme.breakpoints.up('xs')]: {
       height: 66,
     },
+    whiteSpace: 'break-spaces',
   },
   title: {
     fontWeight: theme.typography.fontWeightBold,
