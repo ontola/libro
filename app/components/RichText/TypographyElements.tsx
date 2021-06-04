@@ -12,7 +12,7 @@ export interface TypographyElementProps {
   align?: 'center' | 'left' | 'right' | 'inherit' | 'justify',
 }
 
-const useStyles = makeStyles<LibroTheme, TypographyElementProps>({
+const useStyles = makeStyles<LibroTheme, TypographyElementProps>((theme) => ({
   body1: {
     marginLeft: ({ align }) => align === 'center' ? 'auto' : '0',
     marginRight: ({ align }) => align === 'center' ? 'auto' : '0',
@@ -22,12 +22,16 @@ const useStyles = makeStyles<LibroTheme, TypographyElementProps>({
     fontSize: '2rem',
   },
   h2: {
-    fontSize: '1.5rem',
+    fontSize: '1.7rem',
   },
   h3: {
-    fontSize: '1.2rem',
+    fontSize: '1.4rem',
   },
-});
+  h4: {
+    fontSize: '1.2rem',
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+}));
 
 export const createTypographyComponent = (variant: Variant) => ({
   align,

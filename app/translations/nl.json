@@ -71,6 +71,12 @@
   "https://app.argu.co/i18n/badges/continue": {
     "defaultMessage": "Top!"
   },
+  "https://app.argu.co/i18n/blogs/category": {
+    "defaultMessage": "Categorie:"
+  },
+  "https://app.argu.co/i18n/blogs/share": {
+    "defaultMessage": "Deel dit blogbericht"
+  },
   "https://app.argu.co/i18n/budgets/submitted": {
     "defaultMessage": "Je budget is ingediend."
   },

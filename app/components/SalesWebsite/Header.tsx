@@ -11,7 +11,6 @@ export interface HeaderProps {
   backgroundImageUrlMobile: string,
   buttonLink?: string,
   buttonText?: string,
-  children?: React.ReactChild;
   title: string,
   subtitle?: string,
 }
@@ -47,6 +46,7 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
   },
   title: {
     marginTop: '8rem',
+    maxWidth: '16em',
     textAlign: 'center',
   },
 }));
@@ -59,7 +59,7 @@ export const Header = ({
   title,
   subtitle,
   children,
-}: HeaderProps): JSX.Element => {
+}: React.PropsWithChildren<HeaderProps>): JSX.Element => {
   const classes = useStyles({
     backgroundImageUrl,
     backgroundImageUrlMobile,

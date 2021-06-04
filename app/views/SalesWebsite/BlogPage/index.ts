@@ -1,9 +1,9 @@
 import { register } from 'link-redux';
 
-import BlogsFull from './BlogsFull';
+import BlogPageFull from './BlogPageFull';
 import BlogPageShowcase from './BlogPageShowcase';
 
 export default [
   ...register(BlogPageShowcase),
-  BlogsFull,
+  BlogPageFull,
 ];

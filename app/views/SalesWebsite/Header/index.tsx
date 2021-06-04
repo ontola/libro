@@ -10,7 +10,11 @@ import { Header } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 
-const SalesHeader: FC = () => {
+export interface SalesHeaderProps {
+  subComponent: React.ReactNode;
+}
+
+const SalesHeader: FC<SalesHeaderProps> = ({ subComponent }) => {
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.name);
@@ -26,7 +30,9 @@ const SalesHeader: FC = () => {
       buttonText={buttonText?.value}
       subtitle={text?.value}
       title={title.value}
-    />
+    >
+      {subComponent}
+    </Header>
   );
 };
 

@@ -24,6 +24,17 @@ export const badgeMessages: Messages = defineMessages({
   },
 });
 
+export const blogMessages: Messages = defineMessages({
+  category: {
+    defaultMessage: 'Category:',
+    id: 'https://app.argu.co/i18n/blogs/category',
+  },
+  shareBlog: {
+    defaultMessage: 'Share this blog post',
+    id: 'https://app.argu.co/i18n/blogs/share',
+  },
+});
+
 export const budgetMessages: Messages = defineMessages({
   submitted: {
     defaultMessage: 'Your budget is submitted.',

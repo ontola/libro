@@ -9,7 +9,7 @@ import FontAwesome from 'react-fontawesome';
 
 import { LibroTheme } from '../../themes/themes';
 
-const LIST_LEFT_MARGIN = 6;
+const LIST_LEFT_MARGIN = 14;
 const ASIDE_BOTTOM_MARGIN = 4;
 const ASIDE_PADDING = 4;
 const ASIDE_LIGHTEN_AMOUNT = 0.8;
@@ -55,10 +55,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
   list: {
     '& li p': {
-      display: 'inline-block',
+      display: 'block',
     },
 
-    listStylePosition: 'inside',
+    listStylePosition: 'outside',
     marginLeft: theme.spacing(LIST_LEFT_MARGIN),
   },
 

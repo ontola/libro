@@ -12,6 +12,7 @@ import { NavLink } from 'react-router-dom';
 
 import Container from '../../topologies/Container';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import retrievePath from '../../helpers/iris';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
@@ -132,7 +133,7 @@ export const Parallax = ({
                   color="primary"
                 />
               )}
-              to={buttonLink}
+              to={retrievePath(buttonLink)}
             >
               {buttonText}
             </Button>
