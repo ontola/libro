@@ -44,6 +44,7 @@ const Href: FC<HrefProps> = ({
   return linkedProp?.value ? (
     <LinkComponent
       isIndex
+      allowExternal={false}
       features={features}
       to={linkedProp?.value ?? ''}
       onClick={handleClick ?? clickHandler}
