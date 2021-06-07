@@ -30,15 +30,15 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   productButton: {
     [theme.breakpoints.down('sm')]: {
       '&:hover': {
-        boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+        boxShadow: '0 0 25px rgba(0,0,0,0.2) !important',
       },
-      boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+      boxShadow: '0 0 10px rgba(0,0,0,0.2)',
       width: '100%',
     },
     alignItems: 'flex-start',
     display: 'flex',
     justifyContent: 'flex-start',
-    padding: '1rem',
+    padding: '1rem !important',
     textAlign: 'left',
   },
   root: {

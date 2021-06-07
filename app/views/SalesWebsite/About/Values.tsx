@@ -21,6 +21,10 @@ const ITEM_PADDING = 10;
 const ITEM_BOTTOM_PADDING = 20;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  container: {
+    margin: 'auto',
+    width: 'min(100%, 1440px)',
+  },
   item: {
     [theme.breakpoints.down('sm')]: {
       '&:nth-child(odd)': {
@@ -57,7 +61,7 @@ const Values: FC = () => {
   return (
     <React.Fragment>
       <Typography align="center" variant="h2">{heading.value}</Typography>
-      <Grid container>
+      <Grid container className={classes.container}>
         {valueMembers.map((value) => (
           <Grid
             item

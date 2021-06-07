@@ -21,6 +21,8 @@ import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { blogMessages } from '../../../translations/messages';
 
+const CREATOR_IMAGE_SIZE = '4rem';
+
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   content: {
     '& a': {
@@ -38,8 +40,13 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   creator: {
     '& img': {
-      height: 'auto',
-      maxWidth: '50px',
+      height: '100%',
+      objectFit: 'contain',
+      objectPosition: 'center',
+      width: CREATOR_IMAGE_SIZE,
+    },
+    '& picture': {
+      height: CREATOR_IMAGE_SIZE,
     },
     alignItems: 'center',
     display: 'flex',
@@ -57,6 +64,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     float: 'right',
     height: 'min(400px, 30vw)',
     margin: '1rem',
+    objectFit: 'cover',
     width: 'min(400px, 30vw)',
   },
 }));
@@ -82,7 +90,9 @@ const BlogPageFull: FC = ({ subject }) => {
             <div className={classes.headerSubComponent}>
               <span className={classes.creator}>
                 <Resource subject={creatorLink.image} />
-                {creatorLink.name}
+                <span>
+                  {creatorLink.name}
+                </span>
               </span>
               <span>
                 <FormattedMessage {...blogMessages.category} />

@@ -33,6 +33,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       justifyContent: 'left',
     },
   },
+  container: {
+    marginTop: '55px',
+  },
   header: {
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
@@ -115,7 +118,7 @@ export const HeaderProductPages = ({
       className={classes.header}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <Container>
+      <Container className={classes.container}>
         <Grid
           container
           alignItems="center"

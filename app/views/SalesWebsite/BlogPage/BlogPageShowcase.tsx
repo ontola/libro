@@ -23,12 +23,15 @@ import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 const THEME_CHIP_SPACING = 3;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  card: {
+    height: '100%',
+  },
   icon: {
     color: '#2D7080',
     fontSize: 60,
   },
   image: {
-    maxHeight: '15em',
+    height: '250px',
     objectFit: 'cover',
     width: '100%',
   },
@@ -66,7 +69,7 @@ const BlogPageShowcase: FC = ({ subject }) => {
   const TypeWithClassName = Type as any;
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardActionArea href={subject.value}>
         <CardMedia
           classes={{ root: classes.mediaRoot }}
