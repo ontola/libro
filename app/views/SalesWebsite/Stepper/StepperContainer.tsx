@@ -20,8 +20,9 @@ const StepperContainer: FC<StepperContainerProps> = ({ sequenceIndex, count }) =
 
   return (
     <Step
+      first={sequenceIndex === 0}
+      last={sequenceIndex === count - 1}
       name={name.value}
-      showLine={sequenceIndex < count - 1}
       text={text.value}
     />
   );

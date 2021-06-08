@@ -1,8 +1,6 @@
 import {
   Grid,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
@@ -39,7 +37,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: 20,
   },
   container: {
-    marginTop: 100,
+    alignItems: 'stretch',
   },
   gridStyle: {
     marginBottom: 20,
@@ -49,14 +47,15 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   image: {
     padding: 20,
+    width: 'clamp(100px, 30vw, 300px)',
   },
   imageWrapper: {
-    alignItems: 'flex-end',
+    alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: -250,
-    [theme.breakpoints.down('md')]: {
-      margin: -25,
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'row',
     },
   },
   lowerSection: {
@@ -75,9 +74,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: '0 30px',
     width: 250,
   },
-  stepperWrapper: {
-    marginTop: 50,
-  },
   subtitle: {
     textAlign: 'center',
     width: 643,
@@ -91,7 +87,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const ProcessPageFull: FC = () => {
   const classes = useStyles();
-  const styles = useTheme();
   const [textTitle] = useProperty(sales.textTitle);
   const [textBlock] = useProperty(sales.textBlock);
 
@@ -121,27 +116,22 @@ const ProcessPageFull: FC = () => {
           direction="row"
           justify="center"
         >
-          <Grid item className={classes.stepperWrapper} md={8} sm={12}>
+          <Grid item md={8} sm={12}>
             <Property label={sales.stepper} />
           </Grid>
           <Grid item className={classes.imageWrapper} md={4} sm={12}>
-            {useMediaQuery(styles.breakpoints.down('md')) ?
-              null
-              :
-              <div>
-                <Property
-                  className={classes.image}
-                  label={schema.image}
-                />
-                <Property
-                  className={classes.image}
-                  label={sales.secondaryImage}
-                />
-                <Property
-                  className={classes.image}
-                  label={sales.tertiaryImage}
-                />
-              </div>}
+            <Property
+              className={classes.image}
+              label={schema.image}
+            />
+            <Property
+              className={classes.image}
+              label={sales.secondaryImage}
+            />
+            <Property
+              className={classes.image}
+              label={sales.tertiaryImage}
+            />
           </Grid>
         </Grid>
       </Container>

@@ -69,7 +69,7 @@ const BlogPageShowcase: FC = ({ subject }) => {
   const TypeWithClassName = Type as any;
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} variant="outlined">
       <CardActionArea href={subject.value}>
         <CardMedia
           classes={{ root: classes.mediaRoot }}

@@ -27,7 +27,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       marginTop: '-25%',
       padding: '10px',
       position: 'relative',
-      width: 'min(40%, 250px)',
+      width: 'min(45%, 250px)',
     },
 
     '& picture': {
@@ -36,6 +36,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       width: '100%',
     },
     backgroundColor: theme.palette.background.default,
+    borderRadius: theme.shape.borderRadius,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
