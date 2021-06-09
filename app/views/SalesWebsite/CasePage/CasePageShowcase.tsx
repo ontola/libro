@@ -61,8 +61,8 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
   const classes = useStyles(props);
   const buttonOverrideStyles = useButtonOverrideStyles();
   const [name] = useProperty(schema.name);
+  const [theme] = useProperty(sales.theme);
   const [tagline] = useProperty(sales.tagline);
-  const [text] = useProperty(schema.text);
 
   return (
     <Button
@@ -81,16 +81,16 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
           className={classes.themeIndicator}
           variant="h6"
         >
-          {name.value}
+          {theme.value}
         </Typography>
         <Typography
           className={classes.title}
           variant="h6"
         >
-          {tagline.value}
+          {name.value}
         </Typography>
         <Typography variant="body1">
-          {text.value}
+          {tagline.value}
         </Typography>
         <ReadMoreButton className={classes.readMore} />
       </Grid>

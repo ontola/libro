@@ -80,6 +80,9 @@
   "https://app.argu.co/i18n/budgets/submitted": {
     "defaultMessage": "Je budget is ingediend."
   },
+  "https://app.argu.co/i18n/case/learnMore": {
+    "defaultMessage": "Meer weten over dit project?"
+  },
   "https://app.argu.co/i18n/collapsible/collapse": {
     "defaultMessage": "Inklappen"
   },

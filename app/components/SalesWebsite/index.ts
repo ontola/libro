@@ -6,3 +6,4 @@ export * from './Parallax';
 export * from './ReadMoreButton';
 export * from './SalesNavBarContent';
 export * from './ShareBlog';
+export * from './ArticleContent';

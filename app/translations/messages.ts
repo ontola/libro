@@ -42,6 +42,13 @@ export const budgetMessages: Messages = defineMessages({
   },
 });
 
+export const caseMessages: Messages = defineMessages({
+  learnMore: {
+    defaultMessage: 'Want to learn more about this project?',
+    id: 'https://app.argu.co/i18n/case/learnMore',
+  },
+});
+
 export const collapsibleMessages: Messages = defineMessages({
   expandOrCollapseTitle: {
     defaultMessage: 'Expand or collapse menu',
