@@ -74,6 +74,7 @@ const getInitialValues = (
   ];
 
   (fields.concat(conditionalFields)).filter(isNode).forEach((field) => {
+    const defaultValue = lrs.getResourceProperties(field, form.defaultValue);
     const shInProp = lrs.getResourceProperty(field, ontola.shIn);
     const shIn = isNamedNode(shInProp)
       ? lrs.getResourceProperties(object, shInProp)
@@ -88,7 +89,8 @@ const getInitialValues = (
       const valueFromStorage = storageGet(sessionStore, storageKey);
       const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
 
-      let value = valueFromStorage || lrs.getResourceProperties(object, path);
+      const initialValue = defaultValue.length > 0 ? defaultValue : lrs.getResourceProperties(object, path);
+      let value = valueFromStorage || initialValue;
       if (renderedFieldValue(fieldType)) {
         dependentResources.push(...value.filter(isResource));
 

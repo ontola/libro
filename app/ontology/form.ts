@@ -38,6 +38,7 @@ export default {
   ToggleButtonGroup: form('ToggleButtonGroup'),
 
   /* properties */
+  defaultValue: form('defaultValue'),
   fields: form('fields'),
   footerGroup: form('footerGroup'),
   form: form('form'),
