@@ -125,6 +125,7 @@ export default {
   minCount: ontola('minCount'),
   minInclusive: ontola('minInclusive'),
   minLength: ontola('minLength'),
+  mountAction: ontola('mountAction'),
   navigationsMenu: ontola('navigationsMenu'),
   organization: ontola('organization'),
   pages: ontola('pages'),
