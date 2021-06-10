@@ -73,6 +73,7 @@ export default {
   blogPosts: argu('blogPosts'),
   budgetMax: argu('budgetMax'),
   cart: argu('cart'),
+  cartDetail: argu('cartDetail'),
   caseTitle: argu('caseTitle'),
   cases: argu('cases'),
   chapterContent: argu('chapterContent'),
