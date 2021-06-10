@@ -52,12 +52,14 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
     color: '#707070',
     fontWeight: 'bold',
     lineHeight: 1.2,
+    marginBottom: 0,
     textAlign: 'left',
   },
   buttonTextSelected: {
     color: '#000',
     fontWeight: 'bold',
     lineHeight: 1.2,
+    marginBottom: 0,
     textAlign: 'left',
   },
   circleBase: {
@@ -82,6 +84,7 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
     },
   },
   facetContainer: {
+    alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
     fontFamily: 'Open Sans',

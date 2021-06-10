@@ -9,6 +9,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import PhoneIcon from '@material-ui/icons/Phone';
 import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
@@ -27,6 +28,7 @@ import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const BOTTOM_MARGIN = 35;
+const PIPEDRIVE_CARD_TOP_MARGIN = 5;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   addressLine: {
@@ -48,6 +50,28 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignItems: 'center',
     display: 'flex',
     gap: '0.5rem',
+  },
+  memberContainer: {
+    '& img': {
+      backgroundColor: theme.palette.background.default,
+      clipPath: 'circle(50%)',
+      marginLeft: 'calc(var(--container-size) * -1)',
+      padding: '3px',
+      width: 'calc(200% - var(--container-size))',
+    },
+    '& picture': {
+      width: '33%',
+    },
+    '& picture:nth-child(even)': {
+      'zIndex': 1,
+    },
+    '--container-size': '40%',
+    display: 'flex',
+    margin: 'auto',
+    width: 'var(--container-size)',
+  },
+  pipedriveCard: {
+    marginTop: theme.spacing(PIPEDRIVE_CARD_TOP_MARGIN),
   },
   propositionContainer: {
     marginBottom: theme.spacing(BOTTOM_MARGIN),
@@ -128,8 +152,11 @@ const PricingPageFull: FC = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={5} sm={5} xs={11}>
-            <Card>
+          <Grid item sm={5} xs={11}>
+            <div className={classes.memberContainer}>
+              <Property label={schema.members} />
+            </div>
+            <Card className={classes.pipedriveCard}>
               <CardContent>
                 <PipedriveForm />
               </CardContent>
