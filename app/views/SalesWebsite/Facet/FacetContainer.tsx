@@ -1,6 +1,5 @@
 import {
   Collapse,
-  GridDirection,
   Typography,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +25,9 @@ import sales from '../../../ontology/sales';
 import { containerTopology } from '../../../topologies/Container';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
-const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
+const SMALL_SCREEN_TITLE_MARGIN = 15;
+
+const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
   bigCircle: {
     height: 300,
     marginLeft: -110,
@@ -68,11 +69,17 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
     transition: 'background-color 500ms',
     zIndex: 0,
   },
+  collapseText: {
+    marginLeft: '2rem',
+  },
   containerRow: {
     flexDirection: 'row',
   },
   containerRowReverse: {
     flexDirection: 'row-reverse',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'row',
+    },
   },
   facetContainer: {
     display: 'flex',
@@ -103,6 +110,9 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>(() => ({
     fontSize: 24,
     fontWeight: 'bold',
     margin: 0,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(SMALL_SCREEN_TITLE_MARGIN),
+    },
   },
   video: {
     border: 'solid',
@@ -144,6 +154,11 @@ const FacetContainer: FC = () => {
     [classes.smallCircle]: flexDirection.value === 'row-reverse',
   });
 
+  const textContainerClass = clsx({
+    [classes.containerRow]: flexDirection.value === 'row',
+    [classes.containerRowReverse]: flexDirection.value === 'row-reverse',
+  });
+
   const members = useResourceProperty(items, rdfs.member) ;
   const facets = useResourceLinks(members as SomeNode[], facetProps);
 
@@ -166,7 +181,7 @@ const FacetContainer: FC = () => {
       <Typography className={classes.subTitle} variant="subtitle1">{text.value}</Typography>
       <Grid
         container
-        direction={flexDirection.value as GridDirection}
+        className={textContainerClass}
       >
         <Grid
           item
