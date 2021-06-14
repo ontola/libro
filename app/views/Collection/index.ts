@@ -2,7 +2,6 @@ import CollectionDefault from './CollectionDefault';
 import CollectionGrid from './CollectionGrid';
 import CollectionTabPane from './CollectionTabPane';
 import CollectionWithOmniform from './CollectionWithOmniform';
-import CollectionFilterCollection from './properties/collectionFilter';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
 import FilterFields from './properties/filterFields';
@@ -29,7 +28,6 @@ export default [
   CollectionCardAppendix,
   CollectionInline,
   ...CollectionFrame,
-  CollectionFilterCollection,
   CollectionFullPage,
   CollectionGrid,
   CollectionSection,
@@ -38,7 +36,7 @@ export default [
   CollectionDefault,
   CollectionWithOmniform,
   CreateAction,
-  ...FilterFields,
+  FilterFields,
   ...Header,
   ...IsPartOf,
   Name,

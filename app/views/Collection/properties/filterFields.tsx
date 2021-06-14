@@ -14,7 +14,7 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
 
-interface FilterFieldsSearchProps {
+interface FilterFieldsProps {
   linkedProp: SomeTerm;
 }
 
@@ -29,7 +29,7 @@ const trigger = (onClick: MouseEventHandler) => (
   </IconButton>
 );
 
-const FilterFieldsSearch: FC<FilterFieldsSearchProps> = () => {
+const FilterFields: FC<FilterFieldsProps> = () => {
   const filterFields = useProperty(ontola.filterFields);
 
   const menuItems = React.useCallback(({ handleClose }) => filterFields
@@ -50,24 +50,14 @@ const FilterFieldsSearch: FC<FilterFieldsSearchProps> = () => {
   );
 };
 
-FilterFieldsSearch.type = ontola.SearchResult;
-
-FilterFieldsSearch.topology = allTopologies;
-
-FilterFieldsSearch.property = ontola.filterFields;
-
-const FilterFieldsCollection = () => null;
-
-FilterFieldsCollection.type = [
+FilterFields.type = [
+  ontola.SearchResult,
   ontola.Collection,
   as.Collection,
 ];
 
-FilterFieldsCollection.topology = allTopologies;
+FilterFields.topology = allTopologies;
 
-FilterFieldsCollection.property = ontola.filterFields;
+FilterFields.property = ontola.filterFields;
 
-export default [
-  register(FilterFieldsSearch),
-  register(FilterFieldsCollection),
-];
+export default register(FilterFields);
