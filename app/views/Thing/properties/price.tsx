@@ -27,7 +27,7 @@ const Price: FC<PriceProps> = ({
       currency={currency?.value}
       currencyDisplay="narrowSymbol"
       style="currency"
-      value={priceInt}
+      value={priceInt / 100}
     />
   );
 };
