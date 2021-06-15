@@ -1,4 +1,4 @@
-import { SomeTerm } from '@ontologies/core';
+import rdf, { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
@@ -10,19 +10,30 @@ import LDLink from '../../components/LDLink';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 interface ActionDetailProps {
+  actionStatus?: SomeTerm;
   name: SomeTerm;
 }
 
-const ActionDetail = ({ name }: ActionDetailProps): JSX.Element => (
-  <LDLink>
-    <Property
-      label={schema.target}
-      name={name.value}
-    />
-  </LDLink>
-);
+const ActionDetail = ({
+  actionStatus,
+  name,
+}: ActionDetailProps): JSX.Element | null => {
+  if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+    return null;
+  }
+
+  return (
+    <LDLink>
+      <Property
+        label={schema.target}
+        name={name.value}
+      />
+    </LDLink>
+  );
+};
 
 ActionDetail.type = schema.Action;
 
@@ -33,6 +44,7 @@ ActionDetail.topology = [
 ];
 
 ActionDetail.mapDataToProps = {
+  actionStatus: schema.actionStatus,
   name: schema.name,
 };
 
