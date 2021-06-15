@@ -7,7 +7,6 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
-import { FormattedNumber } from 'react-intl';
 
 import { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
@@ -18,6 +17,8 @@ import { Margin } from '../../../themes/themes';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
 
+import { useCartProgressFormatter } from './helpers';
+
 const SHINE_RESET = 2000;
 
 export interface CartProps {
@@ -27,14 +28,6 @@ export interface CartProps {
 }
 
 const useStyles = makeStyles((theme: any) => ({
-  totalPrice: {
-    marginBottom: theme.spacing(Margin.Small),
-  },
-  totalPriceExceeded: {
-    color: theme.palette.error.dark,
-    fontWeight: theme.typography.fontWeightBold,
-    marginBottom: theme.spacing(Margin.Small),
-  },
   wrapper: {
     bottom: 0,
     float: 'right',
@@ -45,7 +38,6 @@ const useStyles = makeStyles((theme: any) => ({
 
 const CartContainer: FC<CartProps> = ({
   budgetMax,
-  priceCurrency,
   totalPrice,
 }) => {
   const styles = useStyles();
@@ -60,9 +52,9 @@ const CartContainer: FC<CartProps> = ({
     return () => window.clearTimeout(id);
   }, [totalPrice.value, setShine]);
 
-  const totalPriceInt = tryParseInt(totalPrice) || 0;
+  const totalPriceInt = tryParseInt(totalPrice) ?? 0;
   const budgetMaxInt = tryParseInt(budgetMax);
-  const budgetExceeded = budgetMaxInt && totalPriceInt > budgetMaxInt;
+  const formatLabel = useCartProgressFormatter();
 
   if (totalPriceInt === 0) {
     return null;
@@ -72,28 +64,10 @@ const CartContainer: FC<CartProps> = ({
     <div className={styles.wrapper}>
       <Card shine={shine}>
         <CardContent endSpacing>
-          <div className={budgetExceeded ? styles.totalPriceExceeded : styles.totalPrice}>
-            <FormattedNumber
-              currency={priceCurrency.value}
-              currencyDisplay="narrowSymbol"
-              style="currency"
-              value={totalPriceInt / 100}
-            />
-            {budgetMaxInt && (
-              <React.Fragment>
-                /
-                <FormattedNumber
-                  currency={priceCurrency.value}
-                  currencyDisplay="narrowSymbol"
-                  style="currency"
-                  value={budgetMaxInt / 100}
-                />
-              </React.Fragment>
-            )}
-          </div>
           {budgetMaxInt && (
             <Progress
               endSpacing
+              formatLabel={formatLabel}
               max={budgetMaxInt}
               min={0}
               value={totalPriceInt}

@@ -16,6 +16,8 @@ import { allTopologiesExcept } from '../../../topologies';
 import { containerTopology } from '../../../topologies/Container';
 import { parentTopology } from '../../../topologies/Parent';
 
+import { useCartProgressFormatter } from './helpers';
+
 interface CartProps {
   budgetMax: Literal;
   totalPrice: Literal;
@@ -32,22 +34,23 @@ const Cart: FC<CartProps> = ({
   budgetMax,
   totalPrice,
 }) => {
-  const styles = useStyles();
+  const classes = useStyles();
   const totalPriceInt = tryParseInt(totalPrice) ?? 0;
   const budgetMaxInt = tryParseInt(budgetMax);
+  const formatLabel = useCartProgressFormatter();
 
   if (totalPriceInt === 0) {
     return null;
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={classes.wrapper}>
       <Collection hideHeader display="card" label={argu.cartDetails} />
       <Container maxWidth="lg">
         {budgetMaxInt && (
           <Progress
             endSpacing
-            progressLabel
+            formatLabel={formatLabel}
             max={budgetMaxInt}
             min={0}
             value={totalPriceInt}

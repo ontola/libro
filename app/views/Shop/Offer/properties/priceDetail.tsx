@@ -21,7 +21,7 @@ const PriceDetail: FC<PriceProps> = ({
   linkedProp,
 }) => {
   const [priceCurrency] = useProperty(schema.priceCurrency);
-  const priceInt = tryParseInt(linkedProp) || 0;
+  const priceInt = tryParseInt(linkedProp) ?? 0;
 
   return (
     <Detail

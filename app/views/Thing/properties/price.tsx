@@ -20,7 +20,7 @@ const Price: FC<PriceProps> = ({
   linkedProp,
 }): JSX.Element => {
   const [currency] = useProperty(schema.priceCurrency);
-  const priceInt = tryParseInt(linkedProp) || 0;
+  const priceInt = tryParseInt(linkedProp) ?? 0;
 
   return (
     <FormattedNumber

@@ -1,7 +1,8 @@
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
 import clsx from 'clsx';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import Heading, { HeadingSize } from '../Heading';
 
@@ -16,36 +17,52 @@ const useStyles = makeStyles(() => ({
   endSpacing: {
     marginBottom: '1em',
   },
+  labelInner: {
+    display: 'inline-block',
+  },
+  labelWrapper: {
+    float: 'right',
+  },
   progress: {
     borderRadius: 10,
     height: 10,
   },
 }));
 
-interface ProgressProps {
+export type LabelFormatter = (value: number, max: number) => ReactNode;
+
+export interface ProgressProps {
   color?: 'primary' | 'secondary';
   detail?: boolean;
   endSpacing?: boolean;
+  formatLabel?: LabelFormatter;
   height?: string;
   max: number;
-  maxLabel?: boolean;
   maxWidth?: string;
   min: number;
-  minLabel?: boolean;
   progressLabel?: boolean;
   value: number;
 }
+
+const progressFormatter = (classes: ClassNameMap) => (value: number, max: number) => (
+  <div className={classes.labelWrapper}>
+    <Heading size={HeadingSize.LG}>
+      <div className={classes.labelInner}>{value}</div>
+      /
+      <div className={classes.labelInner}>{max}</div>
+    </Heading>
+  </div>
+);
 
 const Progress = ({
   color,
   detail,
   endSpacing,
+  formatLabel,
   height,
   max,
-  maxLabel,
   maxWidth,
   min,
-  minLabel,
   progressLabel,
   value,
 }: ProgressProps): JSX.Element => {
@@ -54,6 +71,7 @@ const Progress = ({
     [classes.detail]: detail,
     [classes.endSpacing]: endSpacing,
   });
+  const formatter = progressLabel ? progressFormatter(classes) : formatLabel;
 
   return (
     <div className={className}>
@@ -67,27 +85,7 @@ const Progress = ({
         value={100 * ((Math.min(value, max) - min) / (max - min))}
         variant="determinate"
       />
-      {minLabel && (
-        <div style={{ float: 'left' }}>
-          <Heading size={HeadingSize.LG}>
-            {min}
-          </Heading>
-        </div>
-      )}
-      {(progressLabel || maxLabel) && (
-        <div style={{ float: 'right' }}>
-          <Heading size={HeadingSize.LG}>
-            {max}
-          </Heading>
-        </div>
-      )}
-      {progressLabel && (
-        <div style={{ float: 'right' }}>
-          <Heading size={HeadingSize.LG}>
-            {`${value}/`}
-          </Heading>
-        </div>
-      )}
+      {formatter && formatter(value, max)}
     </div>
   );
 };
