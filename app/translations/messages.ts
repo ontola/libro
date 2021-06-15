@@ -35,13 +35,6 @@ export const blogMessages: Messages = defineMessages({
   },
 });
 
-export const budgetMessages: Messages = defineMessages({
-  submitted: {
-    defaultMessage: 'Your budget is submitted.',
-    id: 'https://app.argu.co/i18n/budgets/submitted',
-  },
-});
-
 export const caseMessages: Messages = defineMessages({
   learnMore: {
     defaultMessage: 'Want to learn more about this project?',

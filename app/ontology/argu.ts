@@ -137,7 +137,6 @@ export default {
   signInFlow: argu('signInFlow'),
   socials: argu('socials'),
   subChapters: argu('subChapters'),
-  submitted: argu('submitted'),
   taggings: argu('taggings'),
   terms: argu('terms'),
   time: argu('time'),

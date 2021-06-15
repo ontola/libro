@@ -4,14 +4,10 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  ReturnType,
   register,
 } from 'link-redux';
 import React from 'react';
-import {
-  FormattedMessage,
-  FormattedNumber,
-} from 'react-intl';
+import { FormattedNumber } from 'react-intl';
 
 import { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
@@ -21,14 +17,12 @@ import argu from '../../../ontology/argu';
 import { Margin } from '../../../themes/themes';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
-import { budgetMessages } from '../../../translations/messages';
 
 const SHINE_RESET = 2000;
 
 export interface CartProps {
   budgetMax: Literal;
   priceCurrency: Literal;
-  submitted: boolean;
   totalPrice: Literal;
 }
 
@@ -52,7 +46,6 @@ const useStyles = makeStyles((theme: any) => ({
 const CartContainer: FC<CartProps> = ({
   budgetMax,
   priceCurrency,
-  submitted,
   totalPrice,
 }) => {
   const styles = useStyles();
@@ -70,18 +63,6 @@ const CartContainer: FC<CartProps> = ({
   const totalPriceInt = tryParseInt(totalPrice) || 0;
   const budgetMaxInt = tryParseInt(budgetMax);
   const budgetExceeded = budgetMaxInt && totalPriceInt > budgetMaxInt;
-
-  if (submitted) {
-    return (
-      <div className={styles.wrapper}>
-        <Card>
-          <CardContent endSpacing>
-            <FormattedMessage {...budgetMessages.submitted} />
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   if (totalPriceInt === 0) {
     return null;
@@ -132,10 +113,6 @@ CartContainer.topology = containerTopology;
 CartContainer.mapDataToProps = {
   budgetMax: argu.budgetMax,
   priceCurrency: schema.priceCurrency,
-  submitted: {
-    label: argu.submitted,
-    returnType: ReturnType.Literal,
-  },
   totalPrice: schema.totalPaymentDue,
 };
 
