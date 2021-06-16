@@ -37,6 +37,9 @@ class API {
     return this.fetchRaw(this.ctx.session.userToken, {
       body,
       headers: {
+        Accept: 'application/hex+x-ndjson',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Cookie: this.ctx.request.headers.cookie,
         'Website-IRI': websiteIRI,
         ...this.proxySafeHeaders(this.ctx.request),
       },
@@ -54,7 +57,7 @@ class API {
         ...this.proxySafeHeaders(this.ctx.request),
       },
       method: 'GET',
-      path: '/link-lib/d/health',
+      path: '/link-lib/cache/status',
     });
   }
 

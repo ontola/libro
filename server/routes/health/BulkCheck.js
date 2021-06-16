@@ -37,9 +37,6 @@ export default class BulkCheck extends Check {
       return new WarningError(`Can't read core ns from bulk (status: ${res?.status})`);
     }
 
-    const debugOut = await (await testCtx.api.bulkStatus()).json();
-    this.debug = this.jsonHtmlPopupButton(debugOut, 'Show health');
-
     const body = await res.text();
 
     return body.match(/]\n/g).length > MIN_DOC_LENGTH;

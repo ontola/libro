@@ -64,7 +64,8 @@ const fetchPrerenderData = async (ctx, includeResources) => {
 
   const resources = getResources(ctx, includeResources)
     .map((iri) => decodeURIComponent(iri))
-    .filter(filterAllowedWriteForbiddenMeta(ctx, write));
+    .filter(filterAllowedWriteForbiddenMeta(ctx, write))
+    .filter((resource, index, array) => array.indexOf(resource) === index);
 
   try {
     const res = await ctx.api.bulk(resources);

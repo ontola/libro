@@ -99,7 +99,7 @@ export function route(requestUrl, full = false) {
   }
 
   if (bulkMatch.test(path)) {
-    serviceName = 'apex-rs';
+    serviceName = 'cache';
     url.port = '3030';
   } else if (dekuMatch.test(path)) {
     serviceName = 'deku';
