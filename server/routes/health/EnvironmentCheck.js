@@ -19,7 +19,6 @@ export default class EnvironmentCheck extends Check {
 
     if (process.env.NODE_ENV !== 'development') {
       [
-        'assetsHost',
         'cacheChannel',
         'bugsnagKey',
         'mapboxKey',
