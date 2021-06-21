@@ -59,6 +59,9 @@
   "https://app.argu.co/i18n/arguHome/votesCount": {
     "defaultMessage": "stemmen geplaatst"
   },
+  "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
+    "defaultMessage": "Filteren"
+  },
   "https://app.argu.co/i18n/as:CollectionPage/as:next/label": {
     "defaultMessage": "volgende"
   },

@@ -86,6 +86,7 @@ export default {
   filterFields: ontola('filterFields'),
   filterKey: ontola('filterKey'),
   filterOptions: ontola('filterOptions'),
+  filterOptionsIn: ontola('filterOptionsIn'),
   filterValue: ontola('filterValue'),
   followMenu: ontola('followMenu'),
   formSteps: ontola('formSteps'),

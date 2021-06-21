@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
 import CollectionCreateActionButton from '../../../components/Collection/CollectionCreateActionButton';
+import CollectionFilterToggle, { CollectionFilterProps } from '../../../components/Collection/CollectionFilterToggle';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { buildRegister } from '../../../helpers/buildRegister';
@@ -18,17 +19,16 @@ import { CollectionTypes } from '../types';
 interface HeaderProps {
   children?: ReactNode;
   hideHeader?: boolean;
-  subject: SomeNode;
   topologyCtx: SomeNode;
 }
 
-export const HeaderFloat = (): JSX.Element => {
+export const HeaderFloat = ({ filterContainerRef }: CollectionFilterProps): JSX.Element => {
   const { hidePagination } = useCollectionOptions();
   const renderPagination = !hidePagination;
 
   return (
     <React.Fragment>
-      {renderPagination && <Property label={ontola.filterFields} />}
+      {renderPagination && <CollectionFilterToggle filterContainerRef={filterContainerRef} />}
       {renderPagination && <Property label={ontola.sortOptions} />}
       <CollectionCreateActionButton />
     </React.Fragment>
@@ -42,15 +42,12 @@ const cardCollectionHeader = ({
     return null;
   }
 
+  const filterRef = React.useRef(null);
+
   return (
-    <CardHeader float={<HeaderFloat />}>
+    <CardHeader float={<HeaderFloat filterContainerRef={filterRef} />}>
       <Property label={as.name} />
-      <div>
-        <Property
-          label={ontola.collectionFilter}
-          limit={Infinity}
-        />
-      </div>
+      <div ref={filterRef} />
     </CardHeader>
   );
 };
@@ -60,11 +57,14 @@ const containerCollectionHeader = ({
   topologyCtx,
 }: HeaderProps): JSX.Element | null => {
   const { collectionDisplay } = useCollectionOptions();
+  const filterRef = React.useRef(null);
 
   let Wrapper = React.Fragment as React.ElementType;
+
   if (collectionDisplay === ontola['collectionDisplay/default'] && topologyCtx !== containerTopology) {
     Wrapper = Container;
   }
+
   if (collectionDisplay === ontola['collectionDisplay/grid'] && topologyCtx !== containerTopology) {
     Wrapper = LargeContainer;
   }
@@ -75,15 +75,12 @@ const containerCollectionHeader = ({
 
   return (
     <Wrapper>
-      <ContainerHeader float={<HeaderFloat />}>
+      <ContainerHeader
+        float={<HeaderFloat filterContainerRef={filterRef} />}
+      >
         <Property label={as.name} />
-        <div>
-          <Property
-            label={ontola.collectionFilter}
-            limit={Infinity}
-          />
-        </div>
       </ContainerHeader>
+      <div ref={filterRef} />
     </Wrapper>
   );
 };

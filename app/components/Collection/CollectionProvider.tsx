@@ -44,6 +44,7 @@ interface CollectionProviderProps extends CollectionProps {
 }
 
 export interface CollectionContext {
+  appliedFilters: SomeTerm[];
   collectionDisplay?: NamedNode;
   columns?: NamedNode[];
   currentCollection?: SomeNode;
@@ -55,6 +56,7 @@ export interface CollectionContext {
   maxColumns?: number;
   omniform?: boolean;
   onItemClick?: () => void;
+  redirectPagination?: boolean;
   setCollectionResource: (resource: NamedNode) => void;
   sortOptions: SortProps[];
   view?: NamedNode;
@@ -133,6 +135,7 @@ const CollectionProvider = ({
   const appliedFilters = currentFilters.filter((filter) => !originalFilters.includes(filter));
 
   const collectionOptions = React.useMemo(() => ({
+    appliedFilters,
     collectionDisplay: resolvedCollectionDisplay,
     columns: resolvedColumns,
     currentCollection,
@@ -144,13 +147,16 @@ const CollectionProvider = ({
     maxColumns: tryParseInt(maxColumns),
     omniform,
     onItemClick,
+    redirectPagination,
     setCollectionResource,
     sortOptions,
     view,
   }), [
+    appliedFilters,
     resolvedCollectionDisplay,
     currentCollection,
     currentCollectionPages,
+    redirectPagination,
     resolvedColumns,
     depth,
     hasInteraction,

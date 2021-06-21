@@ -35,6 +35,17 @@ export const blogMessages: Messages = defineMessages({
   },
 });
 
+export const booleanTranslation: Messages = defineMessages({
+  false: {
+    defaultMessage: 'No',
+    id: 'https://app.argu.co/i18n/xsd:boolean/false',
+  },
+  true: {
+    defaultMessage: 'Yes',
+    id: 'https://app.argu.co/i18n/xsd:boolean/true',
+  },
+});
+
 export const caseMessages: Messages = defineMessages({
   learnMore: {
     defaultMessage: 'Want to learn more about this project?',
@@ -50,6 +61,10 @@ export const collapsibleMessages: Messages = defineMessages({
 });
 
 export const collectionMessages: Messages = defineMessages({
+  filter: {
+    defaultMessage: 'Filter',
+    id: 'https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder',
+  },
   nextLabel: {
     defaultMessage: 'next',
     id: 'https://app.argu.co/i18n/as:CollectionPage/as:next/label',
@@ -526,17 +541,6 @@ export const thingMessages: Messages = defineMessages({
   showProfile: {
     defaultMessage: "Show {name}'s profile",
     id: 'https://app.argu.co/i18n/schema:Thing/showResourceText',
-  },
-});
-
-export const typeTranslation: Messages = defineMessages({
-  false: {
-    defaultMessage: 'No',
-    id: 'https://app.argu.co/i18n/xsd:boolean/false',
-  },
-  true: {
-    defaultMessage: 'Yes',
-    id: 'https://app.argu.co/i18n/xsd:boolean/true',
   },
 });
 

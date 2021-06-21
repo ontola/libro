@@ -9,7 +9,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { allTopologies } from '../../../topologies';
-import { typeTranslation } from '../../../translations/messages';
+import { booleanTranslation } from '../../../translations/messages';
 
 interface BooleanLiteral extends Literal {
   value: 'true' | 'false'
@@ -23,7 +23,7 @@ const BooleanRenderer: FC<BooleanProps> = ({ linkedProp }) => {
   const intl = useIntl();
 
   return (
-    <React.Fragment>{intl.formatMessage(typeTranslation[linkedProp.value])}</React.Fragment>
+    <React.Fragment>{intl.formatMessage(booleanTranslation[linkedProp.value])}</React.Fragment>
   );
 };
 
