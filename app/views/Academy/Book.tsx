@@ -1,3 +1,12 @@
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { makeStyles } from '@material-ui/styles';
+import { NamedNode, SomeTerm } from '@ontologies/core';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -8,28 +17,17 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { SomeTerm } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
-import * as schema from '@ontologies/schema';
-import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
 import FontAwesome from 'react-fontawesome';
-import { SomeNode } from 'link-lib';
+import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
 
+import retrievePath from '../../helpers/iris';
+import { useChapterNavigation } from '../../hooks/Academy/useChapterNavigation';
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import SideBar from '../../topologies/SideBar';
-import { LibroTheme } from '../../themes/themes';
-import { useChapterNavigation } from '../../hooks/Academy/useChapterNavigation';
 import { academyMessages } from '../../translations/messages';
-
-const SIDEBAR_CHILDREN_PADDING = 4;
-const NAME_WRAPPER_PADDING_VERTICAL = 6;
-const BUTTON_NAV_PADDING = 10;
-const BUTTON_NAV_GAP = 4;
 
 export interface BookProps {
   chapter?: SomeTerm;
@@ -39,8 +37,20 @@ interface StyleProps {
   headerImage: string;
 }
 
+const SIDEBAR_CHILDREN_PADDING = 4;
+const NAME_WRAPPER_PADDING_VERTICAL = 6;
+const BUTTON_NAV_PADDING = 10;
+const BUTTON_NAV_GAP = 4;
+const ARTICLE_PADDING = 5;
+
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   article: {
+    margin: 'auto',
+    marginTop: '3.5rem',
+    padding: theme.spacing(ARTICLE_PADDING),
+    width: 'min(100%, 900px)',
+  },
+  articleWrapper: {
     backgroundImage: ({ headerImage }) => `url(${headerImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100%',
@@ -92,7 +102,14 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
       gridTemplateColumns: '1fr',
     },
   },
+  linkActive: {
+    color: theme.palette.primary.main,
+  },
   nameWrapper: {
+    '&:hover': {
+      color: theme.palette.primary.main,
+    },
+
     fontSize: '1.4rem',
     fontWeight: theme.typography.fontWeightBold,
     padding: theme.spacing(SIDEBAR_CHILDREN_PADDING),
@@ -132,7 +149,7 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
   const [chapters] = useProperty(argu.chapters) as SomeNode[];
   const [headerImage] = useProperty(schema.image);
   const [pdfURL] = useProperty(schema.contentUrl);
-
+  const [coverText] = useProperty(schema.text);
   const classNames = useStyles({ headerImage: headerImage.value });
   const members = useResourceProperty(chapters, rdfs.member);
 
@@ -145,6 +162,13 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
     currentChapter,
     navigate,
   } = useChapterNavigation(subject, chapter);
+
+  const nameWrapperClass = clsx({
+    [classNames.nameWrapper]: true,
+    [classNames.linkActive]: !chapter,
+  });
+
+  const pageText = chapter ? currentChapter : coverText;
 
   React.useEffect(() => {
     lrs.actions.search.setTarget(subject);
@@ -169,8 +193,10 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
       <Grid container className={classNames.grid} spacing={0}>
         <Grid item className={classNames.sideBar}>
           <SideBar>
-            <div className={classNames.nameWrapper}>
-              <Property label={schema.title} />
+            <div className={nameWrapperClass}>
+              <NavLink to={retrievePath(subject as NamedNode)!}>
+                <Property label={schema.title} />
+              </NavLink>
             </div>
             <div className={classNames.devider} />
             <ol className={classNames.sideBarList}>
@@ -202,8 +228,10 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
 
           </SideBar>
         </Grid>
-        <Grid item className={classNames.article}>
-          {currentChapter && <Resource subject={currentChapter} />}
+        <Grid item className={classNames.articleWrapper}>
+          <article className={classNames.article}>
+            <Resource subject={pageText} />
+          </article>
         </Grid>
         <Grid item className={classNames.buttonNav}>
           {prevChapter ? (

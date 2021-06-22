@@ -14,8 +14,6 @@ import { sideBarTopology } from '../../../topologies/SideBar';
 import { LibroTheme } from '../../../themes/themes';
 import { pageTopology } from '../../../topologies/Page';
 
-const ARTICLE_PADDING = 5;
-
 const useOverrideStyles = makeStyles<LibroTheme>((theme) => ({
   h1: {
     fontSize: '2.2rem',
@@ -23,26 +21,16 @@ const useOverrideStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
-  article: {
-    margin: 'auto',
-    marginTop: '3.5rem',
-    padding: theme.spacing(ARTICLE_PADDING),
-    width: 'min(100%, 900px)',
-  },
-}));
-
 const Chapter: FC = () => {
   const overrideStyles = useOverrideStyles();
-  const classNames = useStyles();
 
   return (
-    <article className={classNames.article}>
+    <React.Fragment>
       <Typography classes={overrideStyles} variant="h1">
         <Property label={schema.title} />
       </Typography>
       <Property label={argu.ns('chapterContent')} />
-    </article>
+    </React.Fragment>
   );
 };
 

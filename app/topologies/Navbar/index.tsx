@@ -17,6 +17,7 @@ export const navbarTopology = app.ns('topologies/navbar');
 interface PropTypes {
   classes: ClassNameMap;
   theme: any;
+  fullWidth?: boolean;
 }
 
 const styles = (theme: LibroTheme): CSSPropertiesMap => ({
@@ -45,6 +46,9 @@ class Navbar extends Topology<PropTypes> {
       position,
     } = this.props.theme.appBar;
 
+    const ToolbarWrapper = this.props.fullWidth ? 'div' : Container;
+    const toolbarWrapperProps = this.props.fullWidth ? {} : { maxWidth };
+
     return this.wrap((subject) => (
       <React.Fragment>
         <AppBar
@@ -54,14 +58,14 @@ class Navbar extends Topology<PropTypes> {
           position={position}
           resource={subject && subject.value}
         >
-          <Container maxWidth={maxWidth}>
+          <ToolbarWrapper {...toolbarWrapperProps}>
             <Toolbar
               disableGutters
               variant="dense"
             >
               {this.props.children}
             </Toolbar>
-          </Container>
+          </ToolbarWrapper>
         </AppBar>
         {position === 'fixed' && <div style={{ height }} />}
       </React.Fragment>

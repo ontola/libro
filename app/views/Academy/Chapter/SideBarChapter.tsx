@@ -123,6 +123,7 @@ const SideBarChapter: FC<SideBarChapterProps> = ({
 };
 
 SideBarChapter.type = [argu.Chapter];
+
 SideBarChapter.topology = sideBarTopology;
 
 export default register(SideBarChapter);

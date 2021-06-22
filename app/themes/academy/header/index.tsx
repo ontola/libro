@@ -1,10 +1,20 @@
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
+import { Property, Resource } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+import retrievePath from '../../../helpers/iris';
+import { frontendIRI } from '../../../ontology/app';
+import ontola from '../../../ontology/ontola';
+import Navbar from '../../../topologies/Navbar';
+import { LibroTheme } from '../../themes';
 
 import { ChapterSearch } from './ChapterSearch';
 
-const useStyles = makeStyles({
+const HEADER_PADDING = 4;
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   logoWrapper: {
     alignItems: 'center',
     display: 'flex',
@@ -13,14 +23,17 @@ const useStyles = makeStyles({
     width: '230px',
   },
   nav: {
+    '& picture': {
+      display: 'flex',
+    },
     display: 'flex',
     flexWrap: 'wrap',
     gap: '20px',
     justifyContent: 'space-between',
     margin: 'auto',
-    padding: '0.5rem',
     paddingBottom: '0px',
-    width: '90%',
+    paddingTop: '0.5rem',
+    width: '100%',
   },
   searchButton: {
     alignSelf: 'strech',
@@ -34,22 +47,31 @@ const useStyles = makeStyles({
     maxWidth: 'min(100%, 400px)',
     minWidth: '200px',
   },
-});
+  wrapper: {
+    padding: theme.spacing(HEADER_PADDING),
+  },
+}));
 
 const AcademyHeader = (): JSX.Element => {
   const classNames = useStyles();
 
   return (
-    <nav className={classNames.nav}>
-      <span className={classNames.logoWrapper}>
-        <img alt="the argu logo" src="/static/images/academy/argu_logo.svg" />
-        <span>Academy</span>
-      </span>
-      <span className={classNames.searchWrapper}>
-        <ChapterSearch />
-        <Button color="secondary" variant="contained">Zoek</Button>
-      </span>
-    </nav>
+    <Navbar fullWidth classes={({ wrapper: classNames.wrapper })}>
+      <div className={classNames.nav}>
+        <NavLink className={classNames.logoWrapper} to={retrievePath(frontendIRI)!}>
+          <Resource subject={frontendIRI}>
+            <Property label={ontola.navigationsMenu}>
+              <Property label={ontola.menuItems} />
+            </Property>
+          </Resource>
+          <span>Academy</span>
+        </NavLink>
+        <span className={classNames.searchWrapper}>
+          <ChapterSearch />
+          <Button color="secondary" variant="contained">Zoek</Button>
+        </span>
+      </div>
+    </Navbar>
   );
 };
 
