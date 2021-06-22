@@ -14,6 +14,9 @@ import app from '../../../ontology/app';
 import Select from '../../../topologies/Select';
 
 const useStyles = makeStyles({
+  root: {
+    backgroundColor: '#FBFBFB',
+  },
   search: {
     alignSelf: 'strech',
     flexGrow: 1,
@@ -56,6 +59,7 @@ export const ChapterSearch = (): JSX.Element => {
           {...params}
           InputProps={{
             ...params.InputProps,
+            classes: { root: classNames.root },
             type: 'search',
           }}
           label="Type hier jouw zoekopdracht"

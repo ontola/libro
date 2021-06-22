@@ -1,20 +1,26 @@
+import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
   register,
   useProperty,
 } from 'link-redux';
-import * as schema from '@ontologies/schema';
-import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { footerTopology } from '../../topologies/Footer';
 import { LibroTheme } from '../../themes/themes';
+import { footerTopology } from '../../topologies/Footer';
 
 const SPACING = 4;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
+  image: {
+    width: '100%',
+  },
   person: {
+    '& picture': {
+      width: '4.5rem',
+    },
     '&:last-of-type': {
       marginBottom: '0px',
     },
@@ -38,7 +44,7 @@ const PersonFooter: FC = () => {
 
   return (
     <div className={classNames.person}>
-      <Resource subject={image} />
+      <Resource className={classNames.image} subject={image} />
       <ul>
         <li className={classNames.personName}>{name.value}</li>
         <li>

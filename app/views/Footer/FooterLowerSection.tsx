@@ -1,3 +1,7 @@
+import { makeStyles } from '@material-ui/styles';
+import { Node } from '@ontologies/core';
+import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
@@ -5,16 +9,12 @@ import {
   useProperty,
   useResourceProperty,
 } from 'link-redux';
-import { Node } from '@ontologies/core';
-import * as schema from '@ontologies/schema';
-import * as rdfs from '@ontologies/rdfs';
-import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import argu from '../../ontology/argu';
-import { footerTopology } from '../../topologies/Footer';
 import { LibroTheme } from '../../themes/themes';
+import { footerTopology } from '../../topologies/Footer';
 import { footerMessages, imageAltMessages } from '../../translations/messages';
 
 const STACKED_GRID_GAP = 5;
@@ -29,6 +29,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gridArea: 'logo',
   },
   lowerSection: {
+    alignItems: 'center',
     borderTop: `3px solid ${theme.palette.primary.main}`,
     display: 'grid',
     flexGrow: 1,
