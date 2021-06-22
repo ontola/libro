@@ -41,6 +41,10 @@ export const useChapterNavigation = (subject: SomeTerm, currentChapter?: SomeTer
     setNextChapter(chapters[currentIndex + 1]);
   }, [currentChapter]);
 
+  React.useEffect(() => {
+    setProgress(mapToRange(completedChapters?.size ?? 0));
+  }, [completedChapters]);
+
   const completeChapter = (chapter: SomeTerm) => {
     if (!chapter) {
       return;
@@ -48,7 +52,6 @@ export const useChapterNavigation = (subject: SomeTerm, currentChapter?: SomeTer
     const cloned = new Set(completedChapters);
     cloned.add(chapter.value);
     setCompletedChapters(cloned);
-    setProgress(mapToRange(cloned.size));
   };
 
   const navigate = async (chapter: SomeTerm) => {
