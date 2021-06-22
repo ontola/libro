@@ -28,6 +28,19 @@ const ORDER = [
   '/participants/new',
 ];
 
+const useFavoriteActions = (actions: SomeNode[], favorite: boolean) => {
+  const favoriteStatuses = useResourceLinks(
+    actions,
+    { favoriteStatus: ontola.favoriteAction },
+    { returnType: ReturnType.Literal },
+  );
+
+  return favoriteStatuses
+    .filter(({ favoriteStatus }) => !!favoriteStatus === favorite)
+    .map(({ subject }) => subject)
+    .filter(isNode);
+};
+
 const useValidActions = (actions: SomeNode[]) => {
   const actionStatuses = useResourceLinks(actions, { status: schema.actionStatus });
 
@@ -52,6 +65,7 @@ const CollectionCreateActionButton: React.FC = () => {
   const lrs = useLRS();
   const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms }).filter(isNode);
   const validActions = useValidActions(createActions);
+  const renderedActions = useFavoriteActions(validActions, false);
   useDataInvalidation(createActions);
   useDataFetching(createActions);
 
@@ -63,16 +77,12 @@ const CollectionCreateActionButton: React.FC = () => {
       return <Resource subject={freshAction} onLoad={LoadingCardFloat} />;
     }
 
-    if (validActions.length === 0) {
-      return null;
-    }
-
-    if (validActions.length > 1) {
+    if (renderedActions.length > 1) {
       return (
         <Menu trigger={trigger}>
           {() => (
             <ResourceBoundary>
-              {validActions
+              {renderedActions
                 .sort(sort(ORDER))
                 .map((action) => (
                   <Resource key={action?.value} subject={action} />
@@ -82,6 +92,10 @@ const CollectionCreateActionButton: React.FC = () => {
         </Menu>
       );
     }
+  }
+
+  if (renderedActions.length === 0) {
+    return null;
   }
 
   return (
