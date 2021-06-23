@@ -11,6 +11,8 @@ import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 
 import { SalesNavBarDrawer } from './SalesNavBarDrawer';
 
+import '../NavBarContent/NavBarContent.scss';
+
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     display: 'none',
