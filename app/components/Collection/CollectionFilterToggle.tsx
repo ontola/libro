@@ -8,6 +8,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
+import { useSeqToArr } from '../../hooks/useSeqToArr';
 import ontola from '../../ontology/ontola';
 import { collectionMessages } from '../../translations/messages';
 import { FilterComboInput } from '../FilterComboInput';
@@ -33,7 +34,8 @@ const CollectionFilterToggle = ({
   const autoShowFilters = redirectPagination || appliedFilters.length > 0;
 
   const currentFilters = useProperty(ontola.collectionFilter).filter(isNode);
-  const filters = useProperty(ontola.filterFields);
+  const [filterSequence] = useProperty(ontola.filterFields).filter(isNode);
+  const [filters] = useSeqToArr(filterSequence);
   const [showFilters, setShowFilters] = React.useState<{
     show: boolean,
     userAction: boolean,

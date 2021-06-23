@@ -1,6 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import * as as from '@ontologies/as';
-import { SomeTerm } from '@ontologies/core';
+import { SomeTerm, isNode } from '@ontologies/core';
 import {
   FC,
   Resource,
@@ -10,6 +10,7 @@ import {
 import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
@@ -30,7 +31,8 @@ const trigger = (onClick: MouseEventHandler) => (
 );
 
 const FilterFields: FC<FilterFieldsProps> = () => {
-  const filterFields = useProperty(ontola.filterFields);
+  const [filterSequence] = useProperty(ontola.filterFields).filter(isNode);
+  const [filterFields] = useSeqToArr(filterSequence);
 
   const menuItems = React.useCallback(({ handleClose }) => filterFields
     .map((field) => (
