@@ -14,7 +14,9 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 const ConfirmationFull = () => (
   <Container>
     <Card>
-      <Property autoSubmit label={schema.target} />
+      <Property label={ontola.updateAction}>
+        <Property autoSubmit label={schema.target} />
+      </Property>
     </Card>
   </Container>
 );
