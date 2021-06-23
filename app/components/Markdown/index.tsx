@@ -8,7 +8,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
-import { dataExtensions } from '../../../common/data';
+import { hasDataExtension } from '../../../common/data';
 import { entityIsLoaded } from '../../helpers/data';
 import {
   expandPath,
@@ -25,10 +25,10 @@ const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
 const routerLink = (tabIndex: number | undefined) => (link: any) => {
   const extendedLink = expandPath(link.href);
-  const dataLink = dataExtensions.find((ext) => extendedLink?.endsWith(ext));
+  const isDataLink = extendedLink && hasDataExtension(extendedLink);
   const lrs = useLRS();
 
-  if (extendedLink && !dataLink && !isDifferentWebsite(extendedLink)) {
+  if (extendedLink && !isDataLink && !isDifferentWebsite(extendedLink)) {
     if (__CLIENT__ && !entityIsLoaded(lrs, rdf.namedNode(extendedLink))) {
       lrs.queueEntity(rdf.namedNode(extendedLink));
     }

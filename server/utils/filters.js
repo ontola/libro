@@ -1,6 +1,6 @@
 import pathToRegexp from 'path-to-regexp';
 
-import { dataExtensions } from '../../common/data';
+import { hasDataExtension } from '../../common/data';
 import { redisSettingsNS } from '../config';
 import { client } from '../middleware/sessionMiddleware';
 
@@ -102,13 +102,8 @@ export function isBackend(next) {
       return next(ctx, nextRoute);
     }
 
-    const trailer = ctx.request.url.split('/').pop();
-    const extension = trailer?.includes('.') && trailer
-      .split('.')
-      .pop()
-      ?.split('?')
-      ?.shift();
-    if (extension && dataExtensions.includes(extension)) {
+    const hasExtension = hasDataExtension(ctx.request.href);
+    if (hasExtension) {
       logging.debug('[ROUTING] dataextension - isBackend: true');
 
       return next(ctx, nextRoute);
