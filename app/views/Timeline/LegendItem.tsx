@@ -1,6 +1,6 @@
-import TimelineItemBase from '@material-ui/lab/TimelineItem';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
+import TimelineItemBase from '@material-ui/lab/TimelineItem';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import { makeStyles } from '@material-ui/styles';
@@ -8,9 +8,9 @@ import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
+import Heading, { HeadingSize } from '../../components/Heading';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
-import Heading from '../../components/Heading';
 
 const useStyles = makeStyles(() => ({
   content: {
@@ -44,7 +44,7 @@ const LegendItem = () => {
         <TimelineDot className={classes.dot} style={styleDot} />
       </TimelineSeparator>
       <TimelineContent className={classes.content}>
-        <Heading size="5">{name.value}</Heading>
+        <Heading size={HeadingSize.XS}>{name.value}</Heading>
       </TimelineContent>
     </TimelineItemBase>
   );

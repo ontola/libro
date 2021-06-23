@@ -54,7 +54,7 @@ interface PropTypes {
 const DashboardPageFull: FC<PropTypes> = ({ dashboard }) => {
   useDataFetching([dashboard]);
   const [itemSequence] = useResourceProperty(dashboard, ontola.menuItems);
-  const items = useContainerToArr(isNode(itemSequence) ? itemSequence : undefined);
+  const [items] = useContainerToArr(isNode(itemSequence) ? itemSequence : undefined);
   const [firstItem] = useResourceProperty(isNode(itemSequence) ? itemSequence : undefined, rdfx.ns('_0'));
   const [currentTab, setCurrentTab] = useState<SomeNode | undefined>(undefined);
   const [iriTemplate] = useResourceProperty(isNode(currentTab) ? currentTab : undefined, ontola.href);
@@ -92,7 +92,7 @@ const DashboardPageFull: FC<PropTypes> = ({ dashboard }) => {
   const tabBar = (
     <AppBar color="inherit" elevation={0} position="static">
       <TabBar value={currentTab?.value}>
-        {Array.isArray(items) && items.map((item) => (
+        {items.map((item) => (
           isNode(item) && (
             <DasboardTabBar
               key={item.value}

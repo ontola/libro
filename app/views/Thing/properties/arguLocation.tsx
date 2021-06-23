@@ -33,7 +33,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const lrs = useLRS();
   const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
-  const children = useContainerToArr(childrenPlacements);
+  const [children, childrenLoading] = useContainerToArr(childrenPlacements);
   const onSelect = React.useCallback((feature) => {
     const id = feature?.getId();
     if (id) {
@@ -48,24 +48,18 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const handleNavigate = React.useCallback((resource) => (
     lrs.actions.ontola.navigate(isNamedNode(resource) ? resource : app.ns('#'))
   ), [lrs]);
-  const placements = React.useMemo(() => {
-    if (!Array.isArray(children)) {
-      return [];
-    }
-
-    return (
-      [
-        linkedProp,
-        ...children.filter(isNode).filter((child) => child !== linkedProp),
-      ].filter(Boolean)
-    );
-  }, [linkedProp, children]);
+  const placements = React.useMemo(() => (
+    [
+      linkedProp,
+      ...children.filter(isNode).filter((child) => child !== linkedProp),
+    ].filter(Boolean)
+  ), [linkedProp, children]);
 
   if (!isResource(linkedProp)) {
     return null;
   }
 
-  if (!Array.isArray(children)) {
+  if (childrenLoading) {
     return (
       <MapView
         key="loading-map"

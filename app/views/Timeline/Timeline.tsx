@@ -1,6 +1,7 @@
 import TimelineBase from '@material-ui/lab/Timeline';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   Property,
   Resource,
@@ -24,8 +25,8 @@ const useStyles = makeStyles(() => ({
 
 const Timeline = () => {
   const classes = useStyles();
-  const [itemsSeq] = useProperty(argu.timelineItems);
-  const items = useSeqToArr(itemsSeq);
+  const [itemsSeq] = useProperty(argu.timelineItems) as SomeNode[];
+  const [items] = useSeqToArr(itemsSeq);
 
   return (
     <Card>

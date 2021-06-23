@@ -72,7 +72,7 @@ const Triad = ({ subject }) => {
   }
 
   const [stepList] = useResourceProperty(subject, argu.processSteps);
-  const processSteps = useSeqToArr(stepList);
+  const [processSteps] = useSeqToArr(stepList);
   const { color, icon } = useResourceLink(processSteps[slide], stepMap);
   const processStepsData = useResourceLinks(processSteps, stepMap);
 

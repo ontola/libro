@@ -37,7 +37,7 @@ const ProcessStep = ({
 }) => {
   const { formatMessage } = useIntl();
   const [featureList] = useResourceProperty(subject, argu.features);
-  const features = useSeqToArr(featureList);
+  const [features] = useSeqToArr(featureList);
   const featuresData = useResourceLinks(features, featurePropMap);
   useDataInvalidation([...features, featureList, subject]);
 

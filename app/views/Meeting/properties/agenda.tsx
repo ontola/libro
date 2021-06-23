@@ -30,12 +30,12 @@ interface PropTypes {
 
 const Agenda: FC<PropTypes> = ({ linkedProp, subject }) => {
   const lrs = useLRS();
-  const agendaArray = useListToArr<SomeNode>(linkedProp);
+  const [agendaArray, loaded] = useListToArr<SomeNode>(linkedProp);
 
   const ordered: SomeTerm[] = [];
   const unordered: SomeTerm[] = [];
 
-  if (!Array.isArray(agendaArray)) {
+  if (!loaded) {
     return <LinkLoader />;
   }
 

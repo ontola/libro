@@ -7,16 +7,11 @@ import {
 import React from 'react';
 
 import { useCollectionOptions } from '../Collection/CollectionProvider';
-import Spinner from '../Spinner';
 
 const TableCells: React.FC = () => {
   const { columns } = useCollectionOptions();
   const { subject } = useLinkRenderContext();
   const lrs = useLRS();
-
-  if (!Array.isArray(columns)) {
-    return <Spinner loading />;
-  }
 
   return (
     <React.Fragment>

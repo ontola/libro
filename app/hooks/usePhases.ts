@@ -4,7 +4,7 @@ import { useDataFetching, useResourceProperty } from 'link-redux';
 
 import argu from '../ontology/argu';
 
-import { useContainerToArr } from './useContainerToArr';
+import { ResolvedArray, useContainerToArr } from './useContainerToArr';
 
 export const phaseIRI = (project: NamedNode, index: number): NamedNode => {
   const url = new URL(project.value);
@@ -13,18 +13,12 @@ export const phaseIRI = (project: NamedNode, index: number): NamedNode => {
   return rdf.namedNode(url.toString());
 };
 
-export type UsePhases = [SomeNode[], boolean];
-
-const usePhases = (project: SomeNode): UsePhases => {
+const usePhases = (project: SomeNode): ResolvedArray<SomeNode> => {
   useDataFetching(project);
 
   const [phases] = useResourceProperty(project, argu.phases) as NamedNode[];
 
-  const phaseAcc = useContainerToArr<SomeNode>(phases);
-
-  return Array.isArray(phaseAcc)
-    ? [phaseAcc, true]
-    : [[], false];
+  return useContainerToArr<SomeNode>(phases);
 };
 
 export default usePhases;

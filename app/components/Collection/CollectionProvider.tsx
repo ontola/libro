@@ -46,7 +46,7 @@ interface CollectionProviderProps extends CollectionProps {
 export interface CollectionContext {
   appliedFilters: SomeTerm[];
   collectionDisplay?: NamedNode;
-  columns?: NamedNode[];
+  columns: NamedNode[];
   currentCollection?: SomeNode;
   currentCollectionPages?: SomeNode[];
   depth?: number;
@@ -120,11 +120,10 @@ const CollectionProvider = ({
   );
   const [firstPageItems] = useResourceProperty(currentCollectionPages[0], as.totalItems);
 
-  const [columns] = useResourceProperty(originalCollection, ontola.columns) as NamedNode[];
+  const [columnSequence] = useResourceProperty(originalCollection, ontola.columns) as NamedNode[];
+  const [columns] = useListToArr<NamedNode>(columnSequence);
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
-  const columnList = useListToArr<NamedNode>(columns);
-  const resolvedColumns = Array.isArray(columnList) ? columnList : undefined;
   const wrapperProps = React.useMemo(() => ({
     className: `Collection Collection__Depth-${depth}`,
   }), [depth]);
@@ -137,7 +136,7 @@ const CollectionProvider = ({
   const collectionOptions = React.useMemo(() => ({
     appliedFilters,
     collectionDisplay: resolvedCollectionDisplay,
-    columns: resolvedColumns,
+    columns,
     currentCollection,
     currentCollectionPages,
     depth,
@@ -153,11 +152,11 @@ const CollectionProvider = ({
     view,
   }), [
     appliedFilters,
+    columns,
     resolvedCollectionDisplay,
     currentCollection,
     currentCollectionPages,
     redirectPagination,
-    resolvedColumns,
     depth,
     hasInteraction,
     hideHeader,

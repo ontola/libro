@@ -10,7 +10,6 @@ import {
 import React from 'react';
 
 import { useTabbar } from '../../../components/TabbarProvider';
-import { isPromise } from '../../../helpers/types';
 import app from '../../../ontology/app';
 import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
@@ -35,7 +34,7 @@ const MenuTabs: FC<PropertyProps> = () => {
     return null;
   }
 
-  if (isPromise(items) || !items || items.length <= 1 || !currentTab) {
+  if (items.length <= 1 || !currentTab) {
     return null;
   }
 

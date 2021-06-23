@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/styles';
 import {
   NamedNode,
   Node,
-  isNode,
 } from '@ontologies/core';
 import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -20,8 +20,9 @@ import FontAwesome from 'react-fontawesome';
 import { IconButton, Typography } from '@material-ui/core';
 import { useIntl } from 'react-intl';
 
-import { containerToArr, entityIsLoaded } from '../../../helpers/data';
+import { entityIsLoaded } from '../../../helpers/data';
 import useAction from '../../../hooks/useAction';
+import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import { phaseIRI } from '../../../hooks/usePhases';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
@@ -85,9 +86,8 @@ const Phases: FC<PhasesProps> = ({
   const [page] = useResourceProperty(linkedProp, ontola.pages) as Node[];
   const [createAction, createActionStatus] = useAction(linkedProp, ontola.createAction);
   const [itemSequence] = useResourceProperty(page ?? subject, as.items) as Node[];
-  const items = itemSequence ? containerToArr(lrs, [], itemSequence) : [];
-  const itemsIsLoading = !Array.isArray(items);
-  useDataInvalidation([page, linkedProp, ...(itemsIsLoading ? [] : items as Node[])]);
+  const [items, itemsIsLoading] = useContainerToArr<SomeNode>(itemSequence);
+  useDataInvalidation([page, linkedProp, ...items]);
   const [canEdit, setCanEdit] = React.useState(false);
 
   React.useEffect(() => {
@@ -102,13 +102,7 @@ const Phases: FC<PhasesProps> = ({
     }
   }, [createActionStatus]);
 
-  const nodes = React.useMemo(() => (
-    Array.isArray(items)
-      ? items.filter(isNode)
-      : []
-  ), [items]);
-
-  const activeStep = nodes.findIndex((x) => x === (selectedPhase || currentPhase));
+  const activeStep = items.findIndex((x) => x === (selectedPhase || currentPhase));
 
   const createStepOnClick = React.useCallback(
     (_: Node, index: number) => (e: React.MouseEvent) => {
@@ -119,7 +113,7 @@ const Phases: FC<PhasesProps> = ({
     [lrs]);
 
   const handleNavButtonClick = React.useCallback((mod: number) => (
-    createStepOnClick(nodes[activeStep + mod], activeStep + mod)
+    createStepOnClick(items[activeStep + mod], activeStep + mod)
   ), [activeStep]);
 
   const onNewStepClick = React.useCallback((e: React.MouseEvent) => {
@@ -140,11 +134,7 @@ const Phases: FC<PhasesProps> = ({
     return <Resource subject={page} />;
   }
 
-  if (!Array.isArray(items)) {
-    return null;
-  }
-
-  if (nodes.length === 0) {
+  if (items.length === 0) {
     return null;
   }
 
@@ -153,7 +143,7 @@ const Phases: FC<PhasesProps> = ({
       <div className={classes.phaseBar}>
         <Typography classes={{ root: classes.root }} color="primary">
           {intl.formatMessage(phaseMessages.phaseStepperHeader, { number: activeStep + 1 })}
-          <Resource subject={nodes[activeStep]}>
+          <Resource subject={items[activeStep]}>
             <Property label={schema.name} />
           </Resource>
         </Typography>
@@ -161,7 +151,7 @@ const Phases: FC<PhasesProps> = ({
           <IconButton disabled={activeStep === 0} onClick={handleNavButtonClick(-1)}>
             <FontAwesome name="chevron-left" />
           </IconButton>
-          <IconButton disabled={activeStep === nodes.length - 1} onClick={handleNavButtonClick(1)}>
+          <IconButton disabled={activeStep === items.length - 1} onClick={handleNavButtonClick(1)}>
             <FontAwesome name="chevron-right" />
           </IconButton>
         </span>
@@ -170,7 +160,7 @@ const Phases: FC<PhasesProps> = ({
         activeStep={activeStep}
         createStepOnClick={createStepOnClick}
         itemToKey={itemToKey}
-        items={nodes}
+        items={items}
         overrideClasses={stepperOverrideClasses}
         renderStepLabel={renderStepLabel}
         showNewStepButton={canEdit}

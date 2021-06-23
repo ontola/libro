@@ -6,14 +6,15 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
   register,
   useProperty,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactChildren } from 'react';
 
 import Link from '../../components/Link';
 import argu from '../../ontology/argu';
@@ -33,14 +34,18 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const TimelineItem = ({ lastItem }) => {
+interface TimelineItemProps {
+  lastItem: boolean;
+}
+
+const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
   const classes = useStyles();
-  const [legendType] = useProperty(argu.legendType);
+  const [legendType] = useProperty(argu.legendType) as SomeNode[];
   const [url] = useProperty(schema.url);
   const [color] = useResourceProperty(legendType, schema.color);
   const styleDot = color ? { backgroundColor: color.value } : {};
   const nameWrapper = url
-    ? ({ children }) => <Link allowExternal={false} to={url.value}>{children}</Link>
+    ? ({ children }: {children: ReactChildren}) => <Link allowExternal={false} to={url.value}>{children}</Link>
     : React.Fragment;
 
   return (
@@ -64,9 +69,5 @@ const TimelineItem = ({ lastItem }) => {
 TimelineItem.type = argu.TimelineItem;
 
 TimelineItem.topology = allTopologies;
-
-TimelineItem.propTypes = {
-  lastItem: PropTypes.bool,
-};
 
 export default register(TimelineItem);

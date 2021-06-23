@@ -1,7 +1,6 @@
 import rdf, {
   SomeTerm,
   isNamedNode,
-  isNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
@@ -11,11 +10,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  arraysEqual,
-  containerToArr,
-  entityIsLoaded,
-} from '../helpers/data';
+import { arraysEqual } from '../helpers/data';
+
+import { useContainerToArr } from './useContainerToArr';
 
 export interface FieldOptions {
   loading: boolean;
@@ -33,17 +30,10 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
 
   useDataInvalidation([shIn, ...options].filter(isNamedNode));
   useDataFetching([shIn, ...options].filter(isNamedNode));
-  const loaded = isNode(shIn) && entityIsLoaded(lrs, shIn);
+  const [optionsArray, optionsLoading] = useContainerToArr(shIn);
 
   React.useEffect(() => {
-    let optionsArray;
-    if (Array.isArray(shIn)) {
-      optionsArray = shIn;
-    } else if (loaded && shIn) {
-      optionsArray = containerToArr(lrs, [], shIn);
-    }
-
-    if (Array.isArray(optionsArray)) {
+    if (!optionsLoading) {
       setLoading(false);
       if (!arraysEqual(optionsArray, options)) {
         setOptions(optionsArray);
@@ -51,7 +41,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
     } else {
       setLoading(!!shIn);
     }
-  }, [loading, loaded, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
+  }, [loading, optionsLoading, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
 
   return {
     loading,

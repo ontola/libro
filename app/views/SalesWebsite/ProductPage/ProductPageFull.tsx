@@ -62,7 +62,7 @@ const ProductPageFull: FC = () => {
   const [text] = useProperty(schema.text);
   const [productTextTitle] = useProperty(sales.productTextTitle);
   const [productText1] = useProperty(sales.productTextContent) as Node[];
-  const productTexts = useContainerToArr(productText1);
+  const [productTexts] = useContainerToArr(productText1);
   const [featureTitle] = useProperty(sales.featureTitle);
 
   return (
@@ -83,7 +83,7 @@ const ProductPageFull: FC = () => {
             {productTextTitle.value}
           </Typography>
           <div className={classes.textBlockContainer}>
-            {Array.isArray(productTexts) && productTexts
+            {productTexts
               .map((paragraph: SomeTerm, i: number) => (
                 <Typography
                   className={classes.textBlock}

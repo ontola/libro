@@ -1,16 +1,31 @@
-import { SomeTerm, Term } from '@ontologies/core';
+import {
+  SomeTerm,
+  Term,
+  isNode,
+} from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { useDataInvalidation, useLRS } from 'link-redux';
 import React from 'react';
 
 import { seqToArr } from '../helpers/data';
 
-export function useSeqToArr<I extends Term = SomeTerm>(subject: SomeNode): I[] | undefined {
-  const lrs = useLRS();
-  const lastUpdate = useDataInvalidation(subject);
+import { ResolvedArray } from './useContainerToArr';
 
-  return React.useMemo(
-    () => subject ? seqToArr<I>(lrs, [], subject) : undefined,
-    [subject, lastUpdate],
-  );
+export function useSeqToArr<I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I>  {
+  const lrs = useLRS();
+  const lastUpdate = useDataInvalidation(isNode(subject) ? subject : undefined);
+
+  return React.useMemo(() => {
+    if (!subject) {
+      return [[], false];
+    }
+
+    const result = seqToArr<I>(lrs, [], subject);
+
+    if (Array.isArray(result)) {
+      return [result, false];
+    }
+
+    return [[], true];
+  }, [subject, lastUpdate]);
 }
