@@ -9,6 +9,7 @@ import { CallToActionButton } from './CallToActionButton';
 export interface HeaderProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
+  backgroundImageXL: string,
   buttonLink?: string,
   buttonText?: string,
   title: string,
@@ -27,7 +28,7 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     backgroundImage: ({ backgroundImageUrl }) => `url(${backgroundImageUrl})`,
     backgroundPosition: '50% 20%',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '110%',
+    backgroundSize: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -35,6 +36,10 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
 
     [theme.breakpoints.down('xs')]: {
       backgroundImage: ({ backgroundImageUrlMobile }) => `url(${backgroundImageUrlMobile})`,
+    },
+
+    [theme.breakpoints.up('xl')]: {
+      backgroundImage: ({ backgroundImageXL }) => `url(${backgroundImageXL}) !important`,
     },
   },
   subtitle: {
@@ -54,6 +59,7 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
 export const Header = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
+  backgroundImageXL,
   buttonLink,
   buttonText,
   title,
@@ -63,6 +69,7 @@ export const Header = ({
   const classes = useStyles({
     backgroundImageUrl,
     backgroundImageUrlMobile,
+    backgroundImageXL,
   });
 
   return (

@@ -41,6 +41,7 @@ export default {
   /* properties */
   backgroundImage: sales('backgroundImage'),
   backgroundImageMobile: sales('backgroundImageMobile'),
+  backgroundImageXL: sales('backgroundImageXL'),
   bestOffer: sales('bestOffer'),
   blogShowcase: sales('blogShowcase'),
   blogs: sales('blogs'),

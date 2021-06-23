@@ -1,14 +1,13 @@
 import IconButton from '@material-ui/core/IconButton';
+import { Menu } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
-import { Menu } from '@material-ui/icons';
 
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
-import '../NavBarContent/NavBarContent.scss';
 
 import { SalesNavBarDrawer } from './SalesNavBarDrawer';
 
@@ -28,6 +27,14 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
   },
   navBar: {
+    '& a': {
+      marginBottom: '6px',
+    },
+    '& a:first-of-type': {
+      marginBottom: '0px',
+    },
+
+    alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
     height: '43px',

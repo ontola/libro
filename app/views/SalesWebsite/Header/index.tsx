@@ -17,6 +17,7 @@ export interface SalesHeaderProps {
 const SalesHeader: FC<SalesHeaderProps> = ({ subComponent }) => {
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
+  const [backgroundImageXL] = useProperty(sales.backgroundImageXL);
   const [title] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [buttonLink] = useProperty(sales.buttonLink);
@@ -26,6 +27,7 @@ const SalesHeader: FC<SalesHeaderProps> = ({ subComponent }) => {
     <Header
       backgroundImageUrl={backgroundImage.value}
       backgroundImageUrlMobile={backgroundImageMobile.value}
+      backgroundImageXL={backgroundImageXL.value}
       buttonLink={buttonLink?.value}
       buttonText={buttonText?.value}
       subtitle={text?.value}

@@ -1,13 +1,18 @@
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import Navbar from '../../../topologies/Navbar';
 import SalesNavBarContent from '../../../components/SalesWebsite/SalesNavBarContent';
+import Navbar from '../../../topologies/Navbar';
 
 const useAppBarOverrides = makeStyles({
   wrapper: {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    '@supports not (backdrop-filter: blur(3px))': {
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    },
+    backdropFilter: 'blur(3px)',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     padding: '10px',
+    paddingTop: '15px',
   },
 });
 

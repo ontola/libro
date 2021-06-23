@@ -6,6 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -15,10 +16,12 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { showcaseTopology } from '../../../topologies/Showcase';
 
 const THEME_CHIP_SPACING = 3;
 
@@ -70,7 +73,7 @@ const BlogPageShowcase: FC = ({ subject }) => {
 
   return (
     <Card className={classes.card} variant="outlined">
-      <CardActionArea href={subject.value}>
+      <CardActionArea component={NavLink as React.ElementType} to={retrievePath(subject as NamedNode)!}>
         <CardMedia
           classes={{ root: classes.mediaRoot }}
           component="picture"
