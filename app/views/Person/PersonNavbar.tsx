@@ -46,7 +46,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
           </Property>
         </NavbarLinkIcon>
       </NavbarLinkLink>
-      <Resource subject={app.n} topology={navbarTopology}>
+      <Resource subject={app.c_a} topology={navbarTopology}>
         <Link to={`${subject.value}#notifications`}>
           <Property label={argu.unreadCount} />
         </Link>

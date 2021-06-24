@@ -8,7 +8,6 @@ import FilterFields from './properties/filterFields';
 import IsPartOf from './properties/isPartOf';
 import Name from './properties/name';
 import Pagination from './properties/pagination';
-import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
 import SortOptions from './properties/sortOptions';
 import InfinitePagination from './properties/infinitePagination';
@@ -40,7 +39,6 @@ export default [
   ...Header,
   ...IsPartOf,
   Name,
-  ...UnreadCount,
   ...Pages,
   Pagination,
   SortOptions,
