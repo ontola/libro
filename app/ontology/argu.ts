@@ -66,7 +66,6 @@ export default {
 
   /* properties */
   abstain: argu('abstain'),
-  anonymousID: argu('anonymousID'),
   applyLink: argu('applyLink'),
   arguments: argu('arguments'),
   attachments: argu('attachments'),

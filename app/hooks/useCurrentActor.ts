@@ -15,7 +15,6 @@ import ontola from '../ontology/ontola';
 
 export const useCurrentActor = (): LinkedDataObject<{
     actorType: Literal;
-    anonymousID: NamedNode;
     primaryEmail: NamedNode;
 }, TermOpts | undefined, NamedNode | BlankNode | Literal | undefined> => {
   // Might be changed later with a context value
@@ -23,7 +22,6 @@ export const useCurrentActor = (): LinkedDataObject<{
 
   return useResourceLink(actorIRI, {
     actorType: ontola.actorType,
-    anonymousID: argu.anonymousID,
     primaryEmail: argu.primaryEmail,
   });
 };
