@@ -1,6 +1,6 @@
 import * as as from '@ontologies/as';
 import { SomeNode } from 'link-lib';
-import { Property } from 'link-redux';
+import { Property, Resource } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
@@ -26,14 +26,19 @@ interface HeaderProps {
 }
 
 export const HeaderFloat = ({ filterContainerRef }: CollectionFilterProps): JSX.Element => {
-  const { hidePagination } = useCollectionOptions();
+  const {
+    hidePagination,
+    originalCollection,
+  } = useCollectionOptions();
   const renderPagination = !hidePagination;
 
   return (
     <React.Fragment>
       {renderPagination && <CollectionFilterToggle filterContainerRef={filterContainerRef} />}
       {renderPagination && <Property label={ontola.sortOptions} />}
-      <CollectionCreateActionButton />
+      <Resource subject={originalCollection}>
+        <CollectionCreateActionButton />
+      </Resource>
     </React.Fragment>
   );
 };
@@ -59,7 +64,10 @@ const containerCollectionHeader = ({
   hideHeader,
   topologyCtx,
 }: HeaderProps): JSX.Element | null => {
-  const { collectionDisplay } = useCollectionOptions();
+  const {
+    collectionDisplay,
+    originalCollection,
+  } = useCollectionOptions();
   const filterRef = React.useRef(null);
 
   let Wrapper = React.Fragment as React.ElementType;
@@ -82,7 +90,9 @@ const containerCollectionHeader = ({
         float={<HeaderFloat filterContainerRef={filterRef} />}
       >
         <Property label={as.name} />
-        <Property label={ontola.favoriteAction} onLoad={() => null} />
+        <Resource subject={originalCollection}>
+          <Property label={ontola.favoriteAction} onLoad={() => null} />
+        </Resource>
       </ContainerHeader>
       <div ref={filterRef} />
     </Wrapper>

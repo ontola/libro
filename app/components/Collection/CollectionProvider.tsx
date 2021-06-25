@@ -56,6 +56,7 @@ export interface CollectionContext {
   maxColumns?: number;
   omniform?: boolean;
   onItemClick?: () => void;
+  originalCollection: SomeNode;
   redirectPagination?: boolean;
   setCollectionResource: (resource: NamedNode) => void;
   sortOptions: SortProps[];
@@ -127,7 +128,7 @@ const CollectionProvider = ({
   const wrapperProps = React.useMemo(() => ({
     className: `Collection Collection__Depth-${depth}`,
   }), [depth]);
-  const hasInteraction = useHasInteraction(currentCollection);
+  const hasInteraction = useHasInteraction(originalCollection);
   const sortOptions = useSorting(currentCollection);
   const originalFilters = useResourceProperty(originalCollection, ontola.collectionFilter);
   const currentFilters = useResourceProperty(currentCollection, ontola.collectionFilter);
@@ -146,6 +147,7 @@ const CollectionProvider = ({
     maxColumns: tryParseInt(maxColumns),
     omniform,
     onItemClick,
+    originalCollection,
     redirectPagination,
     setCollectionResource,
     sortOptions,
@@ -164,6 +166,7 @@ const CollectionProvider = ({
     maxColumns,
     omniform,
     onItemClick,
+    originalCollection,
     setCollectionResource,
     sortOptions,
     view,
