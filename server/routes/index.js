@@ -83,6 +83,11 @@ const routes = async function routes(app, port) {
 
   app.use(deviceIdMiddleware);
   app.use(compress({
+    br: {
+      params: {
+        [constants.BROTLI_PARAM_QUALITY]: 7
+      }
+    },
     deflate: {
       flush: constants.Z_SYNC_FLUSH,
     },
