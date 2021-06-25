@@ -42,10 +42,10 @@ const filterAllowedWriteForbiddenMeta = (ctx, write) => async (iri) => {
 };
 
 const getResources = (ctx, includes) => {
-  const { scope } = ctx.manifest;
+  const { website_iri } = ctx.manifest.ontola || {};
   const resources = (ctx.manifest.ontola?.preload || []).map(encodeURIComponent);
-  if (ctx.request.url?.length > 1) {
-    const { origin } = new URL(scope);
+  if (ctx.request.url?.length > 1 && website_iri) {
+    const { origin } = new URL(website_iri);
     resources.unshift(encodeURIComponent(origin + ctx.request.url));
   }
   if (includes) {

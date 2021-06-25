@@ -18,8 +18,6 @@ export default (origin, websocket = true) => {
       css_class: 'default',
       header_background: 'primary',
       header_text: 'auto',
-      matomo_hostname: matomoHostname,
-      matomo_site_id: '-1',
       preconnect: [],
       preload: [
         argu.ns('').value.slice(0, -1),
@@ -29,7 +27,10 @@ export default (origin, websocket = true) => {
       styled_headers: null,
       theme: 'default',
       theme_options: '',
-      tracking: {},
+      tracking: {
+        matomo_hostname: matomoHostname,
+        matomo_site_id: '-1',
+      },
       website_iri: origin,
       websocket,
     },

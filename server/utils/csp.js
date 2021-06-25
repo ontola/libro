@@ -56,7 +56,7 @@ const scriptSrc = [
   'https://cdnjs.cloudflare.com',
   (req) => {
     const { manifest } = req.getCtx();
-    const { matomo_hostname: hostname, matomo_port: port } = manifest?.ontola || {};
+    const { matomo_hostname: hostname, matomo_port: port } = manifest?.ontola?.tracking || {};
 
     return [hostname && new URL(`https://${hostname}`).host, port]
       .filter(Boolean)

@@ -58,15 +58,15 @@ export const renderFullPage = async (ctx, data) => {
 
   /* eslint-disable camelcase */
   const matomoCode = matomoScript(
-    manifest.ontola.matomo_hostname,
-    manifest.ontola.matomo_port,
-    manifest.ontola.matomo_site_id,
+    manifest.ontola.tracking?.matomo_hostname,
+    manifest.ontola.tracking?.matomo_port,
+    manifest.ontola.tracking?.matomo_site_id,
     isUser,
     nonceStr
   );
 
   const googleAnalyticsCode = googleAnalyticsScript(
-    manifest.ontola.google_analytics_ua_code,
+    manifest.ontola.tracking?.google_analytics_ua_code,
     nonceStr
   );
   /* eslint-enable camelcase */
