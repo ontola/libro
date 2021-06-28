@@ -40,7 +40,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
 
     '& img': {
-      width: '3.5rem',
+      width: '4.3rem',
       [theme.breakpoints.down('sm')]: {
         marginRight: theme.spacing(LOGO_MARGIN_COMPENSATION),
       },
