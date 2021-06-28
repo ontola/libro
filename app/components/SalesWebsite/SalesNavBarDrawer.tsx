@@ -18,6 +18,13 @@ export interface SalesNavBarDrawerProps {
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   drawerContainer: {
+    '& img': {
+      margin: 'auto',
+      maxWidth: '40%',
+    },
+    '& picture': {
+      display: 'flex',
+    },
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
