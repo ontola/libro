@@ -32,6 +32,7 @@ const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => 
   },
   title: {
     color: 'white',
+    fontSize: '2.1625rem',
     maxWidth: 900,
     textAlign: 'center',
   },

@@ -1,3 +1,6 @@
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import { Node } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -9,24 +12,25 @@ import {
   useResourceLink,
   value,
 } from 'link-redux';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
-import FontAwesome from 'react-fontawesome';
-import { Node } from '@ontologies/core';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
 import { ArticleContent } from '../../../components/SalesWebsite';
+import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { blogMessages, caseMessages } from '../../../translations/messages';
-import ontola from '../../../ontology/ontola';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
+const ARTICLE_PADDING = 4;
 const CONTACT_PERSON_GAP = 6;
 const ICON_GAP = 4;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  article: {
+    padding: theme.spacing(ARTICLE_PADDING),
+  },
   contactDetails: {
     '& > span': {
       alignItems: 'center',
@@ -40,10 +44,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   contactPerson: {
     '& img': {
       maxHeight: '100%',
-      width: 'auto',
+      maxWidth: '100%',
     },
     '& picture': {
-      width: '7rem',
+      width: 'min(100%, 7rem)',
     },
     display: 'flex',
     gap: theme.spacing(CONTACT_PERSON_GAP),
@@ -88,7 +92,7 @@ const CasePageFull: FC = () => {
           </div>
         )}
       />
-      <article>
+      <article className={classes.article}>
         <ArticleContent image={image}>
           <Resource subject={content} />
           <div>

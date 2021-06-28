@@ -10,21 +10,23 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { showcaseTopology } from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { showcaseTopology } from '../../../topologies/Showcase';
 
 const CONAINER_SPACING = 20;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     color: (props: Record<string, string>) => props.color,
-    fontSize: 24,
+    fontSize: '1.4rem',
     fontWeight: 'bold',
-    margin: 30,
     marginTop: 'auto',
     textAlign: 'center',
   },
   container: {
+    [theme.breakpoints.down('sm')]: {
+      padding: '1rem',
+    },
     backgroundColor: (props: Record<string, string>) => props.backgroundColor,
     // borderBottomLeftRadius: 0,
     borderColor: 'grey',
@@ -38,11 +40,18 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     color: (props: Record<string, string>) => props.color,
   },
   subTitle: {
-    fontSize: 24,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.14rem',
+      textAlign: 'start',
+    },
+    fontSize: '1.4rem',
     maxWidth: 575,
     textAlign: 'center',
   },
   title: {
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'start',
+    },
     fontWeight: 'bold',
     textAlign: 'center',
   },

@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
 import { withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
@@ -15,6 +16,9 @@ import Grid from '../../../topologies/Grid';
 const useStyles = makeStyles({
   container: {
     marginBottom: '7em',
+  },
+  lowerSection: {
+    marginTop: '7em',
   },
   tierGrid: {
     justifyContent: 'center',
@@ -31,6 +35,9 @@ const PricingPageFull: FC = () => {
         <Grid className={classes.tierGrid} direction="row">
           <Property label={sales.tiers} />
         </Grid>
+        <div className={classes.lowerSection}>
+          <Property label={argu.lowerSection} />
+        </div>
       </Container>
       <Property label={sales.callToActionBlock} />
     </div>

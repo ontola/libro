@@ -1,15 +1,15 @@
+import { makeStyles } from '@material-ui/styles';
 import {
   FC,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 
 import argu from '../../ontology/argu';
-import { allTopologies } from '../../topologies';
-import ontola from '../../ontology/ontola';
 import elements from '../../ontology/elements';
+import ontola from '../../ontology/ontola';
+import { allTopologies } from '../../topologies';
 
 const useStyles = makeStyles({
   video: {
@@ -24,7 +24,14 @@ const VideoElement: FC = () => {
   const [isGif] = useProperty(argu.ns('isGif'));
 
   return (
-    <video muted autoPlay={!!isGif?.value} className={className.video} controls={!isGif?.value} loop={!!isGif?.value}>
+    <video
+      muted
+      autoPlay={!!isGif?.value}
+      className={className.video}
+      controls={!isGif?.value}
+      loop={!!isGif?.value}
+      playsInline={!!isGif.value}
+    >
       <source src={href.value} />
     </video>
   );

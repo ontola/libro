@@ -1,21 +1,29 @@
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
-import { FC, useProperty } from 'link-redux';
 import * as schema from '@ontologies/schema';
+import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { allTopologies } from '../../../topologies';
-import retrievePath from '../../../helpers/iris';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  link: {
+    '&:hover': {
+      color: theme.palette.primary.main,
+    },
+    alignItems: 'center',
+    display: 'flex',
+    fontSize: '1.6rem',
+    fontWeight: theme.typography.fontWeightMedium,
   },
   subtitle: {
     textAlign: 'right',
@@ -33,19 +41,17 @@ const MoreInformationBlockSection: FC = () => {
 
   return (
     <React.Fragment>
-      <Button
-        className={classes.button}
-        component={NavLink as React.ElementType}
-        endIcon={(
-          <ChevronRightIcon
-            className={classes.icon}
-            style={{ fontSize: 40 }}
-          />
-        )}
-        to={retrievePath(buttonLink.value)}
-      >
-        {buttonText.value}
-      </Button>
+      <span className={classes.link}>
+        <NavLink
+          to={retrievePath(buttonLink.value) ?? ''}
+        >
+          {buttonText.value}
+        </NavLink>
+        <ChevronRightIcon
+          className={classes.icon}
+          style={{ fontSize: 40 }}
+        />
+      </span>
       <Typography
         className={classes.subtitle}
         variant="body1"

@@ -13,6 +13,8 @@ import { SalesNavBarDrawer } from './SalesNavBarDrawer';
 
 import '../NavBarContent/NavBarContent.scss';
 
+const LOGO_MARGIN_COMPENSATION = 4;
+
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
     display: 'none',
@@ -34,6 +36,13 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
     '& a:first-of-type': {
       marginBottom: '0px',
+    },
+
+    '& img': {
+      width: '3.5rem',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: theme.spacing(LOGO_MARGIN_COMPENSATION),
+      },
     },
 
     alignItems: 'center',

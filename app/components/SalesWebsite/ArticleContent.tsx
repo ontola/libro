@@ -20,6 +20,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     '& h2': {
       marginTop: '3rem',
     },
+    '& img': {
+      maxWidth: '100%',
+    },
     '& li::marker': {
       color: theme.palette.primary.main,
     },

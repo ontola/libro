@@ -27,6 +27,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   logo: {
     gridArea: 'logo',
+    width: '6rem',
   },
   lowerSection: {
     alignItems: 'center',

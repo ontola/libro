@@ -50,6 +50,10 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     textAlign: 'center',
   },
   title: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+    },
+    fontSize: '3rem',
     marginTop: '8rem',
     maxWidth: '16em',
     textAlign: 'center',

@@ -1,7 +1,4 @@
-import {
-  Grid,
-  Typography,
-} from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -11,11 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
-import argu from '../../../ontology/argu';
 
 const LOWER_SECTION_BOTTOM_MARGIN = 40;
 
@@ -60,6 +57,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   lowerSection: {
     marginBottom: theme.spacing(LOWER_SECTION_BOTTOM_MARGIN),
+    marginTop: theme.spacing(LOWER_SECTION_BOTTOM_MARGIN),
   },
   paperContainer: {
     alignItems: 'center',

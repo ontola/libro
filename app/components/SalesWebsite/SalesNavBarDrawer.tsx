@@ -36,11 +36,27 @@ export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JS
 
   }, [isSmallScreen]);
 
+  const handleInteraction = (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+
+    onClose();
+  };
+
   return (
     <Drawer anchor={anchor} open={open} onClose={onClose}>
       <Resource forceRender subject={frontendIRI}>
         <Property label={ontola.navigationsMenu}>
-          <div className={classes.drawerContainer}>
+          <div
+            className={classes.drawerContainer}
+            onClick={handleInteraction}
+            onKeyDown={handleInteraction}
+          >
             <Property label={ontola.menuItems} />
             <span>
               <Property label={sales.callToAction} size="small" />

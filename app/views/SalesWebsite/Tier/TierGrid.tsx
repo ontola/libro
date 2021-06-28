@@ -9,12 +9,13 @@ import {
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { makeStyles } from '@material-ui/styles';
-import * as schema from '@ontologies/schema';
 import * as rdfs from '@ontologies/rdfs';
+import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
   FC,
+  Resource,
   register,
   useProperty,
   useResourceProperty,
@@ -22,10 +23,10 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { CallToActionButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { gridTopology } from '../../../topologies/Grid';
-import { CallToActionButton } from '../../../components/SalesWebsite';
 import { salesMessages } from '../../../translations/messages';
 
 const BEST_OFFER_WIDTH = '80%';
@@ -49,7 +50,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       top: '-2.5em',
       width: BEST_OFFER_WIDTH,
     },
-    outline: '2px solid #2D7080',
+    border: '2px solid #2D7080',
   },
   bestOfferWrapper: {
     [theme.breakpoints.up('md')]: {
@@ -93,6 +94,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   root: {
     position: 'relative',
   },
+  tagline: {
+    fontWeight: theme.typography.fontWeightMedium,
+  },
 }));
 
 const TierGrid: FC = () => {
@@ -106,6 +110,7 @@ const TierGrid: FC = () => {
   const [buttonLink] = useProperty(sales.buttonLink);
   const includes = useResourceProperty(includesList, rdfs.member);
   const [bestOffer] = useProperty(sales.bestOffer);
+  const [tagline] = useProperty(sales.tagline);
 
   const pricing = (
     <React.Fragment>
@@ -142,10 +147,13 @@ const TierGrid: FC = () => {
             <Typography variant="body1">{text.value}</Typography>
           </div>
           <List>
+            <ListItem className={classes.tagline}>
+              {tagline && tagline.value}
+            </ListItem>
             {includes.map((include) => (
               <ListItem key={include.value}>
                 <CheckCircleIcon className={classes.checkMark} />
-                {include.value}
+                {include.termType === 'Literal' ? include.value : <Resource subject={include} />}
               </ListItem>
             ))}
           </List>

@@ -45,6 +45,7 @@ export const components = {
   ElementNote: elements.Note,
   ElementOl: elements.Ol,
   ElementP: elements.P,
+  ElementSpan: elements.Span,
   ElementTip: elements.Tip,
   ElementUl: elements.Ul,
   Error: component('Error'),

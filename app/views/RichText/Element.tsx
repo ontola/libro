@@ -1,17 +1,17 @@
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import React from 'react';
 import {
   FC,
   Property,
   register,
   useProperty,
 } from 'link-redux';
+import React from 'react';
 
-import { allTopologies } from '../../topologies';
 import { componentMap } from '../../components';
 import { handle } from '../../helpers/logging';
 import elements from '../../ontology/elements';
+import { allTopologies } from '../../topologies';
 
 const Element: FC = () => {
   const [type] = useProperty(rdfx.type);
@@ -45,6 +45,7 @@ Element.type = [
   elements.H6,
   elements.Note,
   elements.Tip,
+  elements.Span,
 ];
 
 Element.topology = allTopologies;

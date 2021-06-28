@@ -27,7 +27,11 @@ const VideoSet: FC<VideoSetProps> = (props) => {
   }, [webm, mp4, mov]);
 
   return (
-    <video aria-label={ariaLabel?.value} {...props} ref={videoElement}>
+    <video
+      aria-label={ariaLabel?.value}
+      {...props}
+      ref={videoElement}
+    >
       {webm && <source src={webm.value} type="video/webm" />}
       {mp4 && <source src={mp4.value} type="video/mp4" />}
       {mov && <source src={mp4.value} type="video/quicktime" />}

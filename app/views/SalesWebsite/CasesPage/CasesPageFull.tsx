@@ -1,9 +1,9 @@
-import * as schema from '@ontologies/schema';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
-import { makeStyles } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
@@ -21,8 +21,12 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import Grid from '../../../topologies/Grid';
 
 const SECTION_SPACING = 10;
+const GRID_ITEM_SPACING = 4;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  grid: {
+    gap: theme.spacing(GRID_ITEM_SPACING),
+  },
   imageContainer: {
     '& img': {
       width: '100%',
@@ -30,6 +34,11 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundColor: '#F8FBFF',
     marginTop: theme.spacing(SECTION_SPACING),
     padding: '2rem',
+  },
+  item: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: theme.spacing(GRID_ITEM_SPACING),
+    },
   },
 }));
 
@@ -44,11 +53,19 @@ const CasesPageFull: FC = () => {
       <Container>
         <Grid
           container
+          className={classes.grid}
           justify="space-between"
-          spacing={10}
+          spacing={0}
         >
           {items.map((iri) => (
-            <Grid item key={iri.value} md={4} sm={6} xs={12}>
+            <Grid
+              item
+              className={classes.item}
+              key={iri.value}
+              md={4}
+              sm={6}
+              xs={12}
+            >
               <Resource subject={iri} />
             </Grid>
           ))}

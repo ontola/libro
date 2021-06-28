@@ -21,6 +21,7 @@ export default {
   Note: elements('Note'),
   Ol: elements('Ol'),
   P: elements('P'),
+  Span: elements('Span'),
   Tip: elements('Tip'),
   Ul: elements('Ul'),
   Video: elements('Video'),

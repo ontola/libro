@@ -1,13 +1,10 @@
-import {
-  Collapse,
-  Typography,
-} from '@material-ui/core';
+import { Collapse, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { makeStyles } from '@material-ui/styles';
-import { SomeTerm } from '@ontologies/core';
 import * as as from '@ontologies/as';
+import { SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
@@ -22,8 +19,8 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { containerTopology } from '../../../topologies/Container';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { containerTopology } from '../../../topologies/Container';
 
 const SMALL_SCREEN_TITLE_MARGIN = 15;
 
@@ -95,6 +92,9 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
     padding: 20,
   },
   smallCircle: {
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 10,
+    },
     height: 180,
     marginLeft: 485,
     marginTop: -50,
@@ -248,7 +248,14 @@ const FacetContainer: FC = () => {
           <div>
             <div className={containerClass} />
             {video && (
-              <Resource autoPlay loop muted className={classes.video} subject={video} />
+              <Resource
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={classes.video}
+                subject={video}
+              />
             )}
           </div>
         </Grid>

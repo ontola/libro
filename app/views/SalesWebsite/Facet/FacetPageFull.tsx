@@ -17,6 +17,9 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   callToPricing: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '5em',
+    },
     paddingBottom: '7em',
     textAlign: 'center',
   },
@@ -31,7 +34,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   wrapper: {
     // This should be removed if Page no longer sets a margin
     backgroundColor: theme.palette.background.default,
-    marginTop: '-1rem',
   },
 }));
 

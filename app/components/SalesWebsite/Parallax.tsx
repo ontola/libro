@@ -10,13 +10,13 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Container from '../../topologies/Container';
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 import retrievePath from '../../helpers/iris';
+import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import Container from '../../topologies/Container';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   button: {
-    fontSize: '2em',
+    fontSize: '1.6rem',
     fontWeight: 'bold',
     justifyContent: 'center',
     margin: 0,
@@ -26,7 +26,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   buttonEndIcon: {
     '& > *:first-child': {
-      fontSize: '1.5em',
+      fontSize: '3.5rem',
     },
     marginLeft: 0,
   },
@@ -40,14 +40,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundColor: theme.palette.background.default,
     backgroundPosition: '50% 40%',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '1375 px',
+    backgroundSize: '110%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      backgroundAttachment: 'scroll',
-      backgroundPosition: '50% 0%',
-    },
   },
   subtitle: {
     textAlign: 'center',
@@ -77,7 +73,6 @@ export interface ParallaxProps {
 /** Full page with a branded header */
 export const Parallax = ({
   backgroundImageUrl,
-  backgroundImageUrlMobile,
   buttonLink,
   buttonText,
   children,
@@ -87,7 +82,7 @@ export const Parallax = ({
   const classes = useStyles();
   const styles = useTheme();
   const parallax = useMediaQuery(styles.breakpoints.down('sm'))
-    ? backgroundImageUrlMobile : backgroundImageUrl;
+    ? backgroundImageUrl : backgroundImageUrl;
 
   return (
     <div

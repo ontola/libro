@@ -6,8 +6,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import PhoneIcon from '@material-ui/icons/Phone';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -50,6 +50,11 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignItems: 'center',
     display: 'flex',
     gap: '0.5rem',
+  },
+  memberCardContainer: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '5em',
+    },
   },
   memberContainer: {
     '& img': {
@@ -152,7 +157,7 @@ const PricingPageFull: FC = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item sm={5} xs={11}>
+          <Grid item className={classes.memberCardContainer} sm={5} xs={11}>
             <div className={classes.memberContainer}>
               <Property label={schema.members} />
             </div>

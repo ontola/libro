@@ -1,9 +1,6 @@
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import {
-  FC,
-  Property,
-} from 'link-redux';
+import { FC, Property } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
@@ -14,6 +11,9 @@ import Showcase from '../../../topologies/Showcase';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   blogs: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '5em',
+    },
     marginBottom: '10em',
     marginTop: '10em',
   },
@@ -50,7 +50,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     width: 250,
   },
   propositionContainer: {
-    marginBottom: 30,
     marginTop: 45,
   },
   propositionSelector: {
@@ -70,7 +69,6 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     flex: 1,
     gridTemplateColumns: '1fr 1fr 1fr 1fr',
     marginBottom: 100,
-    marginTop: 100,
     overflow: 'hidden',
   },
   subtitle: {

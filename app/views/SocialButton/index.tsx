@@ -16,7 +16,12 @@ const SocialButton: FC = () => {
   const [icon] = useProperty(argu.icon);
 
   return (
-    <a aria-label={ariaLabel?.value} href={href.value}>
+    <a
+      aria-label={ariaLabel?.value}
+      href={href.value}
+      rel="noreferrer noopener"
+      target="_blank"
+    >
       <Image linkedProp={icon} />
     </a>
   );

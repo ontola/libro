@@ -9,7 +9,6 @@ import {
 } from 'link-redux';
 import { ComponentType } from 'react';
 
-import { createTypographyComponent } from './components/RichText/TypographyElements';
 import CompActionButton from './components/ActionButton';
 import CompAttachmentPreview from './components/AttachmentPreview';
 import CompAttributeListItem from './components/AttributeListItem';
@@ -24,75 +23,76 @@ import CompCardCardContent from './components/Card/CardContent';
 import CompCardCardDivider from './components/Card/CardDivider';
 import CompCardCardHeader from './components/Card/CardHeader';
 import CompCardCardLink from './components/Card/CardLink';
-import CompCheckboxesInput from './components/Input/CheckboxesInput';
 import CompCollapseText from './components/CollapseText';
 import CompCollapsible from './components/Collapsible';
 import CompCollection from './components/Collection';
-import CompColumn from './components/Column/index';
-import CompColumns from './components/Columns/index';
+import CompColumn from './components/Column';
+import CompColumns from './components/Columns';
 import CompContainerHeader from './components/Container/ContainerHeader';
-import SelectInputSelectInputField from './containers/SelectInputField';
-import { HeaderFloat as CompHeaderFloat } from './views/Collection/properties/header';
-import CompCountBubble from './components/CountBubble/index';
+import CompCountBubble from './components/CountBubble';
 import CompCoverImage from './components/CoverImage';
 import CompDetail from './components/Detail';
-import CompDetailDate from './components/DetailDate';
 import CompDetailText from './components/Detail/DetailText';
+import CompDetailDate from './components/DetailDate';
 import CompDropdownMenu from './components/DropdownMenu';
-import CompError from './components/Error/index';
+import CompError from './components/Error';
 import CompFieldLabel from './components/FieldLabel';
-import CompFormField from './components/FormField/FormField';
-import CompFormFieldCharCounter from './components/FormField/CharCounter';
-import CompFormFieldFieldHelper from './components/FormField/FieldHelper';
 import CompFormFooterImage from './components/Form/FooterImage';
 import CompFormFooterRight from './components/Form/FooterRight';
 import CompFormFormSection from './components/Form/FormSection';
+import CompFormFieldCharCounter from './components/FormField/CharCounter';
+import CompFormFieldFieldHelper from './components/FormField/FieldHelper';
+import CompFormField from './components/FormField/FormField';
 import CompGridGridHeader from './components/Grid/GridHeader';
 import CompGridGridItem from './components/Grid/GridItem';
 import CompHeaderWithMenu from './components/HeaderWithMenu';
 import CompHeading from './components/Heading';
 import CompImage from './components/Image';
-import { FertileComponentVariant, createFertileComponent } from './components/RichText/FertileComponent';
-import { InnerText as CompInnerText } from './components/RichText/InnerText';
+import CompCheckboxesInput from './components/Input/CheckboxesInput';
 import CompInputFileInput from './components/Input/FileInput';
 import CompInputInput from './components/Input/Input';
 import CompLDLink from './components/LDLink';
 import CompLink from './components/Link';
-import CompLinkDuo from './components/LinkDuo';
 import CompLinkLinkLabel from './components/Link/LinkLabel';
+import CompLinkDuo from './components/LinkDuo';
 import CompLinkedDetailDate from './components/LinkedDetailDate';
 import CompLoading from './components/Loading';
 import CompMarkdown from './components/Markdown';
 import CompMenuItem from './components/MenuItem';
-import CompMenuSectionLabel from './components/MenuSectionLabel/index';
+import CompMenuSectionLabel from './components/MenuSectionLabel';
 import CompMetadata from './components/Metadata';
-import CompNavBarContent from './components/NavBarContent/index';
+import CompNavBarContent from './components/NavBarContent';
 import CompNavbarLinkNavbarLinkCount from './components/NavbarLink/NavbarLinkCount';
 import CompNavbarLinkNavbarLinkIcon from './components/NavbarLink/NavbarLinkIcon';
 import CompNavbarLinkNavbarLinkImage from './components/NavbarLink/NavbarLinkImage';
 import CompNavbarLinkNavbarLinkLabel from './components/NavbarLink/NavbarLinkLabel';
 import CompNavbarLinkNavbarLinkLink from './components/NavbarLink/NavbarLinkLink';
-import CompNetworkStatusIndicator from './components/NetworkStatusIndicator/index';
-import CompOmniform from './components/Omniform/index';
+import CompNetworkStatusIndicator from './components/NetworkStatusIndicator';
+import CompOmniform from './components/Omniform';
 import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
 import CompOverlayContainer from './components/OverlayContainer';
-import CompPageRow from './components/PageRow/index';
+import CompPageRow from './components/PageRow';
 import CompProgress from './components/Progress';
 import CompResourceBoundary from './components/ResourceBoundary';
-import CompScrollContainer from './components/ScrollContainer/index';
+import { FertileComponentVariant, createFertileComponent } from './components/RichText/FertileComponent';
+import { InnerText as CompInnerText } from './components/RichText/InnerText';
+import { createTypographyComponent } from './components/RichText/TypographyElements';
+import CompScrollContainer from './components/ScrollContainer';
 import CompSearchForm from './components/SearchForm';
 import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink';
 import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
-import CompSkipNavigation from './components/SkipNavigation/index';
+import CompSkipNavigation from './components/SkipNavigation';
 import CompSpinner from './components/Spinner';
-import CompUnorderedList from './components/UnorderedList/index';
+import CompUnorderedList from './components/UnorderedList';
 import CompVerticalScroller from './components/VerticalScroller';
-import CompVoteData from './components/VoteData/index';
+import CompVoteData from './components/VoteData';
 import { component, components } from './componentsList';
+import SelectInputSelectInputField from './containers/SelectInputField';
 import argu from './ontology/argu';
-import { allTopologies } from './topologies';
-import ontola from './ontology/ontola';
 import elements from './ontology/elements';
+import ontola from './ontology/ontola';
+import { allTopologies } from './topologies';
+import { HeaderFloat as CompHeaderFloat } from './views/Collection/properties/header';
 
 export { component, components };
 
@@ -165,6 +165,7 @@ export const componentMap = {
   [rdf.id(components.ElementH4)]: [createTypographyComponent('h4'), childTypographyMap],
   [rdf.id(components.ElementH5)]: [createTypographyComponent('h5'), childTypographyMap],
   [rdf.id(components.ElementH6)]: [createTypographyComponent('h6'), childTypographyMap],
+  [rdf.id(components.ElementSpan)]: [createFertileComponent('span'), childElementMap],
   [rdf.id(components.ElementNote)]: [createFertileComponent('aside', FertileComponentVariant.Note), childElementMap],
   [rdf.id(components.ElementTip)]: [createFertileComponent('aside', FertileComponentVariant.Tip), childElementMap],
   [rdf.id(components.ElementInnerText)]: [CompInnerText, childTextMap],
