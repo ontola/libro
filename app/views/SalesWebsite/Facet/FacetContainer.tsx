@@ -118,11 +118,18 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
     },
   },
   video: {
-    border: 'solid',
-    borderColor: '#E7E7E7',
+    '@supports not (backdrop-filter: blur(10px))': {
+      backgroundColor: 'rgb(231, 231, 231)',
+    },
+    aspectRatio: '16 / 10',
+    backdropFilter: 'blur(10px)',
+    backgroundColor: 'rgb(231, 231, 231, 57%)',
     borderRadius: '15px',
     borderWidth: '8px',
+    boxShadow: '0px 3px 12px 0px rgb(0 0 0 / 22%)',
     height: 'auto',
+    objectFit: 'contain',
+    padding: '10px',
     position: 'relative',
     width: '100%',
     zIndex: 2,
@@ -255,6 +262,7 @@ const FacetContainer: FC = () => {
                 playsInline
                 className={classes.video}
                 subject={video}
+                width="100%"
               />
             )}
           </div>

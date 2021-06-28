@@ -32,7 +32,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
   },
   navBar: {
-    '& a': {
+    '& a, & > span': {
       marginBottom: '6px',
     },
     '& a:first-of-type': {
