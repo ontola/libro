@@ -1,16 +1,13 @@
-import rdf, { SomeTerm } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
-  useLRS,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
-import Button, { ButtonTheme } from '../../components/Button';
-import libro from '../../ontology/libro';
+import Link, { LinkTarget } from '../../components/Link';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 
 interface ActionCardMainProps {
@@ -24,11 +21,7 @@ const ActionCardMain: FC<ActionCardMainProps> = ({
   children,
   name,
   subject,
-  target,
 }) => {
-  const lrs = useLRS();
-  const [icon] = useResourceProperty(target, schema.image);
-
   if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
     return null;
   }
@@ -39,16 +32,12 @@ const ActionCardMain: FC<ActionCardMainProps> = ({
 
   return (
     <span>
-      <Button
-        icon={icon.value}
-        theme={ButtonTheme.Transparant}
-        onClick={(e) => {
-          e.preventDefault();
-          lrs.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(subject.value)}`));
-        }}
+      <Link
+        target={LinkTarget.Modal}
+        to={subject.value}
       >
         {name?.value}
-      </Button>
+      </Link>
     </span>
   );
 };
