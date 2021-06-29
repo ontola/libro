@@ -8,12 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import Progress from '../../../components/Progress';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
-import { Margin } from '../../../themes/themes';
+import { LibroTheme, Margin } from '../../../themes/themes';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
 
@@ -27,12 +26,13 @@ export interface CartProps {
   totalPrice: Literal;
 }
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {
     bottom: 0,
     float: 'right',
     marginTop: theme.spacing(Margin.Medium),
     position: 'sticky',
+    zIndex: theme.zIndex.appBar,
   },
 }));
 
@@ -73,7 +73,7 @@ const CartContainer: FC<CartProps> = ({
               value={totalPriceInt}
             />
           )}
-          <Property label={argu.checkoutAction} theme={ButtonTheme.Submit} />
+          <Property label={argu.checkoutAction} />
         </CardContent>
       </Card>
     </div>
