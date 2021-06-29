@@ -10,7 +10,11 @@ const useInputShape = (path: NamedNode): LaxNode => {
   const lrs = useLRS();
   const { formIRI } = React.useContext(FormContext);
 
-  return formIRI ?? lrs.findSubject(
+  if (!formIRI) {
+    return undefined;
+  }
+
+  return lrs.findSubject(
     formIRI,
     [...formFieldsPath, sh.path],
     path,

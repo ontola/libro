@@ -1,14 +1,15 @@
-import rdf, { SomeTerm, isNode } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
-import { useLRS } from 'link-redux';
+import { SomeNode } from 'link-lib';
+import { useResourceProperty } from 'link-redux';
 import React from 'react';
 
 import Dropzone from '../../containers/Dropzone';
-import { listToArr } from '../../helpers/data';
 import { isFileType } from '../../helpers/types';
 import useFormField from '../../hooks/useFormField';
 import useInputShape from '../../hooks/useInputShape';
+import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
 import { FormContext } from '../Form/Form';
 import { InputComponentProps } from '../FormField/InputComponentProps';
@@ -22,13 +23,23 @@ const FileInput: React.FC<InputComponentProps> = ({
   fieldShape,
 }) => {
   const { required } = fieldShape;
-  const lrs = useLRS();
   const {
     fileStore,
     storeFile,
   } = React.useContext(FormContext);
   const fileNameShape = useInputShape(dbo.filename);
   const encodingFormatShape = useInputShape(schema.encodingFormat);
+  const [encodingFormatList] = useResourceProperty(encodingFormatShape, sh.shaclin) as [SomeNode];
+  const [encodingFormatConversion, encodingFormatLoading] = useListToArr(encodingFormatList);
+
+  const [encodingFormatTypes, setEncodingFormatTypes] = React.useState<string>('');
+
+  React.useEffect(() => {
+    if (!encodingFormatLoading) {
+      setEncodingFormatTypes(encodingFormatConversion.map((lit) => lit.value).join(', '));
+    }
+  }, [encodingFormatConversion, encodingFormatLoading]);
+
   const {
     values: encodingFormatValues,
     onChange: encodingFormatOnChange,
@@ -36,6 +47,7 @@ const FileInput: React.FC<InputComponentProps> = ({
     path: schema.encodingFormat,
     subject: encodingFormatShape,
   });
+
   const {
     values: fileNameFormatValues,
     onChange: fileNameFormatOnChange,
@@ -43,6 +55,7 @@ const FileInput: React.FC<InputComponentProps> = ({
     path: dbo.filename,
     subject: fileNameShape,
   });
+
   const inputRef = React.createRef<HTMLInputElement>();
   const handleFileChange = React.useCallback((newFile: File) => {
     if (storeFile) {
@@ -52,6 +65,7 @@ const FileInput: React.FC<InputComponentProps> = ({
       onChange(fileReference);
     }
   }, [storeFile, onChange]);
+
   const openDialog = React.useCallback(() => {
     const { current } = inputRef;
 
@@ -61,14 +75,10 @@ const FileInput: React.FC<InputComponentProps> = ({
 
     current.click();
   }, [inputRef]);
+
   const preview = isFileType(inputValue)
     ? fileStore?.[inputValue.value]?.preview
     : inputValue.value;
-  const encodingFormatList = isNode(encodingFormatShape) && lrs.getResourceProperty(encodingFormatShape, sh.shaclin);
-  const encodingFormatConversion = isNode(encodingFormatList) && listToArr<SomeTerm>(lrs, [], encodingFormatList);
-  const encodingFormatTypes = Array.isArray(encodingFormatConversion) && encodingFormatConversion
-    .map((lit) => lit.value)
-    .join(', ');
 
   return (
     <React.Fragment>
