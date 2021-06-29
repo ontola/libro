@@ -17,6 +17,7 @@ import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
+import FormFooter from '../../topologies/FormFooter';
 
 import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
@@ -94,41 +95,42 @@ const EntryPointCardMain: FC<PropTypes> = (props) => {
     </Button>
   );
 
-  const footerButtons = (loading: boolean) => (
-    <FormFooterRight>
-      {cancelButton}
-      <Button
-        loading={loading}
-        theme={ButtonTheme.Submit}
-        type="submit"
-      >
-        {name?.value}
-      </Button>
-    </FormFooterRight>
+  const footer = (loading: boolean) => (
+    <FormFooter>
+      <Property label={ll.actionBody} />
+      <FormFooterRight>
+        {cancelButton}
+        <Button
+          loading={loading}
+          type="submit"
+        >
+          {name?.value}
+        </Button>
+      </FormFooterRight>
+    </FormFooter>
   );
 
   return (
     <React.Fragment>
-      <CardContent>
+      <CardContent endSpacing>
         <Property label={schema.text} />
+        <EntryPointForm
+          autofocusForm
+          action={action}
+          actionBody={actionBody}
+          autoSubmit={autoSubmit}
+          blacklist={blacklist}
+          footer={footer}
+          formID={formID}
+          httpMethod={httpMethod?.value}
+          object={isNode(object) ? object : undefined}
+          sessionStore={sessionStore}
+          url={url?.value}
+          whitelist={whitelist}
+          onKeyUp={undefined}
+          onSubmit={submitHandler}
+        />
       </CardContent>
-      <EntryPointForm
-        autofocusForm
-        action={action}
-        actionBody={actionBody}
-        autoSubmit={autoSubmit}
-        blacklist={blacklist}
-        contentWrapper={CardContent}
-        footerButtons={footerButtons}
-        formID={formID}
-        httpMethod={httpMethod?.value}
-        object={isNode(object) ? object : undefined}
-        sessionStore={sessionStore}
-        url={url?.value}
-        whitelist={whitelist}
-        onKeyUp={undefined}
-        onSubmit={submitHandler}
-      />
     </React.Fragment>
   );
 };

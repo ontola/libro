@@ -14,11 +14,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../components/Button';
-import FormFooterRight from '../../components/Form/FooterRight';
 import GridHeader from '../../components/Grid/GridHeader';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { footerTopology } from '../../topologies/Footer';
+import FormFooter from '../../topologies/FormFooter';
 import { gridTopology } from '../../topologies/Grid';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -79,8 +79,8 @@ const EntryPointGrid: FC<PropTypes> = (props) => {
     subject: subject!,
   });
   const [object] = useResourceProperty(isNode(action) ? action : undefined, schema.object);
-  const footerButtons = React.useCallback((loading: boolean) => (
-    <FormFooterRight>
+  const footer = React.useCallback((loading: boolean) => (
+    <FormFooter>
       <Button
         loading={loading}
         small={smallButton}
@@ -88,7 +88,7 @@ const EntryPointGrid: FC<PropTypes> = (props) => {
       >
         {name?.value}
       </Button>
-    </FormFooterRight>
+    </FormFooter>
   ), [name, smallButton]);
 
   const className = clsx({
@@ -107,7 +107,7 @@ const EntryPointGrid: FC<PropTypes> = (props) => {
         action={action}
         actionBody={actionBody}
         className={className}
-        footerButtons={footerButtons}
+        footer={footer}
         formID={formID}
         httpMethod={httpMethod?.value}
         object={isNode(object) ? object : undefined}

@@ -10,7 +10,7 @@ import {
 } from 'react-intl';
 
 import app from '../../ontology/app';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../topologies/FormFooter';
 import { formMessages } from '../../translations/messages';
 
 import './Omniform.scss';

@@ -18,7 +18,7 @@ import containerFloatTopologyComponent, { containerFloatTopology } from './topol
 import contentDetailsTopologyComponent, { contentDetailsTopology } from './topologies/ContentDetails';
 import detailsBarTopologyComponent, { detailsBarTopology } from './topologies/DetailsBar';
 import alertDialogTopologyComponent, { alertDialogTopology } from './topologies/Dialog';
-import formFooterTopologyComponent, { formFooterTopology } from './topologies/FormFooter/Footer';
+import formFooterTopologyComponent, { formFooterTopology } from './topologies/FormFooter';
 import fullResourceTopologyComponent, { fullResourceTopology } from './topologies/FullResource';
 import gridTopologyComponent, { gridTopology } from './topologies/Grid';
 import hoverBoxTopologyComponent from './topologies/HoverBox';

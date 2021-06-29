@@ -13,6 +13,8 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
+import CardContent from '../../components/Card/CardContent';
+import { LoadingGridContent } from '../../components/Loading';
 import ll from '../../ontology/ll';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
@@ -23,7 +25,7 @@ interface PropTypes {
   action: SomeNode;
   actionBody: SomeNode;
   autofocusForm: boolean;
-  footerButtons: (submitting: boolean) => React.ReactNode;
+  footer: (submitting: boolean) => React.ReactNode;
   formInstance: FormApi;
   httpMethod: Literal;
   modal?: boolean;
@@ -43,7 +45,7 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
     action,
     actionBody,
     autofocusForm,
-    footerButtons,
+    footer,
     formInstance,
     httpMethod,
     modal,
@@ -73,7 +75,7 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
       action={action}
       actionBody={actionBody}
       autofocusForm={autofocusForm}
-      footerButtons={footerButtons}
+      footer={footer}
       formID={formID}
       formInstance={formInstance}
       httpMethod={httpMethod?.value}
@@ -83,6 +85,7 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
       url={url?.value}
       whitelist={whitelist}
       onKeyUp={onKeyUp}
+      onLoad={() => <CardContent><LoadingGridContent /></CardContent>}
       onSubmit={submitHandler}
     />
   );

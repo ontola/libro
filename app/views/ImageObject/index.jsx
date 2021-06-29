@@ -8,7 +8,7 @@ import { NavbarLinkImageWrapper } from '../../components/NavbarLink';
 import ontola from '../../ontology/ontola';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { menuTopology } from '../../topologies/Menu';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../topologies/FormFooter';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
 import { selectedValueTopology } from '../../topologies/SelectedValue';

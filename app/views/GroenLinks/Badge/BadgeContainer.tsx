@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../../components/Button';
+import Button from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import FormFooterRight from '../../../components/Form/FooterRight';
 import Heading from '../../../components/Heading';
@@ -18,7 +18,7 @@ import teamGL from '../../../ontology/teamGL';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
 import { alertDialogTopology } from '../../../topologies/Dialog';
-import FormFooter from '../../../topologies/FormFooter/Footer';
+import FormFooter from '../../../topologies/FormFooter';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { badgeMessages } from '../../../translations/messages';
 
@@ -52,10 +52,7 @@ const BadgeContainer: FC<BadgeContainerProps> = ({
       </CardContent>
       <FormFooter>
         <FormFooterRight>
-          <Button
-            theme={ButtonTheme.Submit}
-            onClick={() => lrs.actions.ontola.hideDialog()}
-          >
+          <Button onClick={() => lrs.actions.ontola.hideDialog()}>
             {formatMessage(badgeMessages.continue)}
           </Button>
         </FormFooterRight>

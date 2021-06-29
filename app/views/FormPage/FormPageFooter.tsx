@@ -6,7 +6,7 @@ import React from 'react';
 
 import { FormContext } from '../../components/Form/Form';
 import form from '../../ontology/form';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../topologies/FormFooter';
 
 const FormPageFooter = () => {
   const formContext = React.useContext(FormContext);

@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 
 import argu from '../../ontology/argu';
+import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
 import {
@@ -22,6 +23,7 @@ import {
   getOmniformAction,
   omniformSetAction,
 } from '../../state/omniform';
+import FormFooter from '../../topologies/FormFooter';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import Button, { ButtonTheme } from '../Button';
 import { FormFooterRight } from '../Form';
@@ -123,8 +125,9 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
     }
     const object = lrs.getResourceProperty(action, schema.object);
 
-    const footerButtons = (loading: boolean): JSX.Element => (
-      <React.Fragment>
+    const footer = (loading: boolean): JSX.Element => (
+      <FormFooter borderTop>
+        <Property label={ll.actionBody} />
         {types}
         <FormFooterRight>
           {closeForm && (
@@ -137,7 +140,6 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
           )}
           <Button
             loading={loading}
-            theme={ButtonTheme.Submit}
             type="submit"
           >
             <FormattedMessage
@@ -146,7 +148,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
             />
           </Button>
         </FormFooterRight>
-      </React.Fragment>
+      </FormFooter>
     );
 
     return (
@@ -154,7 +156,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
         <Property
           forceRender
           autofocusForm={autofocusForm}
-          footerButtons={footerButtons}
+          footer={footer}
           formInstance={formInstance}
           key={action.value}
           label={schema.target}

@@ -4,8 +4,12 @@ import React from 'react';
 
 const useStyle = makeStyles({
   footerImageStyle: {
+    alignSelf: 'center',
     backgroundImage: (props: FormFooterImageProps) => `url(${props.linkedProp.value})`,
-    marginLeft: '5px',
+    backgroundSize: 'cover',
+    borderRadius: '999px',
+    height: '1.3em',
+    width: '1.3em',
   },
 });
 

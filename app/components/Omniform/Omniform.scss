@@ -15,6 +15,7 @@
   cursor: text;
   display: flex;
   width: 100%;
+  padding-left: 1rem;
 
   &:hover {
     background-color: color('white');
@@ -23,11 +24,7 @@
   &-text {
     color: color('grey', 'xx-light-foreground-small');
     line-height: 2.4rem;
-    padding-left: unit('large');
-
-    .Form__footer-image + & {
-      padding-left: .1rem;
-    }
+    padding-left: .3rem;
   }
 }
 

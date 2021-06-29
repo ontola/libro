@@ -15,35 +15,3 @@
     height: 1px;
   }
 }
-
-.Card {
-  .Form__footer {
-    background-color: color('grey', 'xx-light');
-    border-bottom-left-radius: $border-radius-base;
-    border-bottom-right-radius: $border-radius-base;
-    border-top: $grey-border;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    // For animating the Omniform preview on hover
-    transition: background-color .2s;
-
-    &-image {
-      align-self: center;
-      background-size: cover;
-      border-radius: 999px;
-      height: 1.3em;
-      width: 1.3em;
-    }
-
-    &--right {
-      display: flex;
-      flex-grow: 1;
-      justify-content: flex-end;
-
-      & > :last-child {
-        border-bottom-right-radius: $border-radius-base;
-      }
-    }
-  }
-}

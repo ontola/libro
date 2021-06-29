@@ -3,7 +3,7 @@ import React from 'react';
 
 import form from '../../ontology/form';
 import { allTopologiesExcept } from '../../topologies';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../topologies/FormFooter';
 
 import FormGroupProvider from './FormGroupProvider';
 

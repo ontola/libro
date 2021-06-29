@@ -10,7 +10,7 @@ import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardListTopology } from '../../../topologies/Card/CardList';
-import { formFooterTopology } from '../../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../../topologies/FormFooter';
 import { pageTopology } from '../../../topologies/Page';
 import { selectedValueTopology } from '../../../topologies/SelectedValue';
 

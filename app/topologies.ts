@@ -17,7 +17,7 @@ import { contentDetailsTopology } from './topologies/ContentDetails';
 import { detailsBarTopology } from './topologies/DetailsBar';
 import { alertDialogTopology } from './topologies/Dialog';
 import { footerTopology } from './topologies/Footer';
-import { formFooterTopology } from './topologies/FormFooter/Footer';
+import { formFooterTopology } from './topologies/FormFooter';
 import { fullResourceTopology } from './topologies/FullResource';
 import { gridTopology } from './topologies/Grid';
 import { hoverBoxTopology } from './topologies/HoverBox';

@@ -10,13 +10,11 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
-import CardContent from '../../components/Card/CardContent';
 import Form from '../../components/Form/Form';
 import { LoadingGridContent } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
-import FormFooter from '../../topologies/FormFooter/Footer';
 
 import useSubmissionErrors from './useSubmissionErrors';
 import { SubmitHandler } from './useSubmitHandler';
@@ -32,13 +30,13 @@ interface PropTypes {
   autofocusForm?: boolean;
   blacklist?: number[];
   className?: string;
-  contentWrapper?: React.ReactNode;
-  footerButtons: (submitting: boolean) => React.ReactNode;
+  footer: (submitting: boolean) => React.ReactNode;
   formID: string;
   formInstance?: FormApi;
   httpMethod: string;
   object?: SomeNode;
   onKeyUp?: EventHandler<SyntheticEvent<unknown>>;
+  onLoad?: () => React.ReactNode;
   onSubmit: SubmitHandler;
   sessionStore?: Storage;
   theme?: string;
@@ -53,13 +51,13 @@ const EntryPointForm: React.FC<PropTypes> = ({
   autoSubmit,
   blacklist,
   className,
-  contentWrapper,
-  footerButtons,
+  footer,
   formID,
   formInstance,
   httpMethod,
   object,
   onKeyUp,
+  onLoad,
   onSubmit,
   sessionStore,
   theme,
@@ -83,31 +81,26 @@ const EntryPointForm: React.FC<PropTypes> = ({
   const renderBody = React.useCallback((submitting) => (
     <React.Fragment>
       <Property
-        contentWrapper={contentWrapper}
         label={ll.actionBody}
       />
       {errorResponse && (
-        <CardContent>
-          <RenderStoreProvider value={lrs}>
-            <Resource subject={errorResponse} />
-          </RenderStoreProvider>
-        </CardContent>
+        <RenderStoreProvider value={lrs}>
+          <Resource subject={errorResponse} />
+        </RenderStoreProvider>
       )}
-      <FormFooter>
-        <Property label={ll.actionBody} />
-        {footerButtons ? footerButtons(submitting) : null}
-      </FormFooter>
+      {footer ? footer(submitting) : null}
     </React.Fragment>
-  ), [contentWrapper, footerButtons, errorResponse]);
+  ), [footer, errorResponse]);
 
   if (loading) {
-    return (
-      <CardContent>
-        {isNamedNode(loading) && !entityIsLoaded(lrs, loading)
-          ? <Resource subject={loading} onLoad={LoadingGridContent} />
-          : <LoadingGridContent />}
-      </CardContent>
-    );
+    if (isNamedNode(loading) && !entityIsLoaded(lrs, loading)) {
+      return <Resource subject={loading} onLoad={onLoad ?? LoadingGridContent} />;
+    }
+    if (onLoad) {
+      return <React.Fragment>{onLoad()}</React.Fragment>;
+    }
+
+    return <LoadingGridContent />;
   }
 
   return (

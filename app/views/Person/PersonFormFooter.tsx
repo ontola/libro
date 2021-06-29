@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../topologies/FormFooter';
 
 interface PersonFooterProps {
   name: string;

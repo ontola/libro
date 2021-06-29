@@ -9,7 +9,7 @@ import Button, { ButtonTheme } from '../../components/Button';
 import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { values } from '../../helpers/ssr';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { formFooterTopology } from '../../topologies/FormFooter';
 
 interface RDFSClassFormFooterProps {
   current?: boolean;

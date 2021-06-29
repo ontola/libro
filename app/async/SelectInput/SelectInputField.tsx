@@ -13,6 +13,7 @@ import {
   isTerm,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   LinkReduxLRSType,
   Property,
@@ -57,6 +58,16 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   popper: {
     width: 'fit-content !important',
     zIndex: theme.zIndex.drawer + 1,
+  },
+  wrapper: {
+    '& input': {
+      cursor: 'pointer',
+    },
+    '.Field--variant-preview &:hover': {
+      boxShadow: 'unset',
+      filter: 'brightness(.96)',
+    },
+    cursor: 'pointer',
   },
 }));
 
@@ -217,10 +228,15 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   }
 
   const virtualized = !grouped && options.length > VIRTUALIZATION_THRESHOLD;
+  const className = clsx({
+    [classes.wrapper]: true,
+    Field__input: true,
+    'Field__input--select': true,
+  });
 
   return (
     <React.Fragment>
-      <div className="Field__input Field__input--select">
+      <div className={className}>
         <Autocomplete
           disableListWrap
           openOnFocus
