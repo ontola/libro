@@ -27,6 +27,7 @@ const AccountHelpersCardAppendix = ({
         isActive={isActive}
         subject={app.ns('menus/session')}
         onClick={onClick}
+        onLoad={() => null}
       />
     </CardAppendix>
   );
