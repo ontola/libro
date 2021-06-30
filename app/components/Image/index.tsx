@@ -8,7 +8,7 @@ export interface ImageBaseProps {
   alt?: string,
   ariaLabel?: string,
   className?: string,
-  linkedProp: SomeTerm,
+  linkedProp?: SomeTerm,
   spin?: boolean;
   style?: React.CSSProperties,
 }
@@ -31,7 +31,7 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
     linkedProp,
   } = overrideProps;
 
-  if (isFontAwesomeIRI(linkedProp.value)) {
+  if (linkedProp && isFontAwesomeIRI(linkedProp.value)) {
     return (
       <span className={className}>
         <FontAwesome
