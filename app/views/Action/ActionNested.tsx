@@ -31,6 +31,7 @@ const ActionNested: FC<ActionProps> = ({
   object,
   onCancel,
   onDone,
+  responseCallback,
   sessionStore,
   topology,
 }) => {
@@ -65,6 +66,7 @@ const ActionNested: FC<ActionProps> = ({
           blacklist={PROPS_BLACKLIST}
           cancelPath={object && retrievePath(object.value)}
           label={schema.target}
+          responseCallback={responseCallback}
           sessionStore={sessionStore}
           onCancel={onCancel || closeModal}
           onDone={onDoneHandler}

@@ -1,16 +1,15 @@
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
   useLRS,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { withRouter } from 'react-router';
 
-import Button from '../../../components/Button';
+import Button, { ButtonTheme } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import FormFooterRight from '../../../components/Form/FooterRight';
 import Heading from '../../../components/Heading';
@@ -23,7 +22,12 @@ import FormFooter from '../../../topologies/FormFooter/Footer';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { badgeMessages } from '../../../translations/messages';
 
-const BadgeContainer = ({
+interface BadgeContainerProps {
+  image: NamedNode;
+  name: SomeTerm;
+}
+
+const BadgeContainer: FC<BadgeContainerProps> = ({
   image,
   name,
   subject,
@@ -49,7 +53,7 @@ const BadgeContainer = ({
       <FormFooter>
         <FormFooterRight>
           <Button
-            theme="submit"
+            theme={ButtonTheme.Submit}
             onClick={() => lrs.actions.ontola.hideDialog()}
           >
             {formatMessage(badgeMessages.continue)}
@@ -62,8 +66,6 @@ const BadgeContainer = ({
 
 BadgeContainer.type = teamGL.Badge;
 
-BadgeContainer.hocs = [withRouter];
-
 BadgeContainer.topology = [
   alertDialogTopology,
   fullResourceTopology,
@@ -73,12 +75,6 @@ BadgeContainer.topology = [
 BadgeContainer.mapDataToProps = {
   image: schema.image,
   name: schema.name,
-};
-
-BadgeContainer.propTypes = {
-  image: linkType,
-  name: linkType,
-  subject: subjectType,
 };
 
 export default register(BadgeContainer);

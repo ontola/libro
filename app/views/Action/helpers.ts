@@ -51,6 +51,7 @@ export interface ActionProps {
   onDone?: (iri: string) => void;
   sessionStore?: Storage;
   onCancel?: () => void;
+  responseCallback?: (response: Response) => void;
   target?: SomeTerm;
   topology?: NamedNode;
 }

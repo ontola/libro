@@ -1,5 +1,6 @@
 import * as schema from '@ontologies/schema';
 import { OK } from 'http-status-codes';
+import { SomeNode } from 'link-lib';
 import {
   Property,
   register,
@@ -15,7 +16,7 @@ import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-export const usePartialResourceCheck = (subject) => {
+export const usePartialResourceCheck = (subject: SomeNode): boolean => {
   const lrs = useLRS();
   const partal = lrs.getStatus(subject).status !== OK;
 
@@ -36,14 +37,14 @@ const PostalCodeFull = () => (
         <CardContent noSpacing>
           <Property label={schema.name} />
           <p>
-            In deze fase van de campagne zijn we in heel Nederland brieven aan het bezorgen.
-            Kijk hieronder welke straten de meeste potentie hebben voor ons
-            en geef het aan als je een straat hebt gedaan!
+            In onze campagne gaan we in heel Nederland langs de deuren.
+            Kijk hieronder welke straten de meeste potentie hebben voor ons,
+            kies een adres en sla de uitkomst van je gesprek op!
           </p>
           <AttributeList fullLabel>
-            <AttributeListItem label={teamGL.totalFlyers} />
-            <AttributeListItem label={teamGL.flyerVolunteers} />
-            <AttributeListItem label={teamGL.activeFlyered} />
+            <AttributeListItem label={teamGL.doors} />
+            <AttributeListItem label={teamGL.volunteers} />
+            <AttributeListItem label={teamGL.active} />
           </AttributeList>
         </CardContent>
       </CardMain>

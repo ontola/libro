@@ -6,11 +6,9 @@ import {
   useLRS,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
-import { useHistory } from 'react-router';
 
 import TableCells from '../../../components/TableCells';
 import { entityIsLoaded } from '../../../helpers/data';
-import { retrievePath } from '../../../helpers/iris';
 import { useCurrentActor } from '../../../hooks/useCurrentActor';
 import ontola from '../../../ontology/ontola';
 import teamGL from '../../../ontology/teamGL';
@@ -24,7 +22,6 @@ interface AddressTableProps {
 
 const AddressTable: FC<AddressTableProps> = (props) => {
   const lrs = useLRS();
-  const history = useHistory();
   const { actorType } = useCurrentActor();
 
   const onClick = (e: MouseEvent) => {
@@ -36,7 +33,7 @@ const AddressTable: FC<AddressTableProps> = (props) => {
       if (__CLIENT__ && !entityIsLoaded(lrs, props.createAction)) {
         lrs.queueEntity(props.createAction);
       }
-      history.push(retrievePath(props.subject.value)!);
+      lrs.actions.ontola.showDialog(props.subject);
     }
   };
 

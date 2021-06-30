@@ -18,6 +18,7 @@ interface PropTypes {
   omniform: boolean;
   onLoad: () => void;
   renderPartOf: boolean;
+  responseCallback?: (response: Response) => void;
   theme: ButtonTheme;
 }
 
@@ -27,12 +28,14 @@ const CreateAction: FC<PropTypes> = ({
   omniform,
   onLoad,
   renderPartOf,
+  responseCallback,
   theme,
 }) => (
   <Resource
     isPartOf={isPartOf}
     omniform={omniform}
     renderPartOf={renderPartOf}
+    responseCallback={responseCallback}
     subject={linkedProp}
     theme={theme}
     onLoad={onLoad}

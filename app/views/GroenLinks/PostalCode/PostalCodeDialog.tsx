@@ -1,11 +1,11 @@
 import IconButton from '@material-ui/core/IconButton';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
-  linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
@@ -22,7 +22,13 @@ import { alertDialogTopology } from '../../../topologies/Dialog';
 import { formMessages } from '../../../translations/messages';
 import { useVisitPostalCode } from '../Glapp/helpers';
 
-const PostalCodeDialog = ({
+interface PostalCodeDialogProps {
+  onClose: () => void;
+  postalDigits: SomeTerm;
+}
+
+
+const PostalCodeDialog: FC<PostalCodeDialogProps> = ({
   onClose,
   postalDigits,
 }) => {
@@ -53,9 +59,9 @@ const PostalCodeDialog = ({
         </ContentDetails>
         <Property endSpacing label={teamGL.meanPriority} />
         <AttributeList fullLabel>
-          <AttributeListItem label={teamGL.totalFlyers} />
-          <AttributeListItem label={teamGL.flyerVolunteers} />
-          <AttributeListItem label={teamGL.activeFlyered} />
+          <AttributeListItem label={teamGL.doors} />
+          <AttributeListItem label={teamGL.volunteers} />
+          <AttributeListItem label={teamGL.active} />
         </AttributeList>
         <Button centered onClick={() => visitPostalCode(postalDigits.value)}>Aan de slag!</Button>
       </CardContent>
@@ -69,11 +75,6 @@ PostalCodeDialog.topology = alertDialogTopology;
 
 PostalCodeDialog.mapDataToProps = {
   postalDigits: teamGL.postalDigits,
-};
-
-PostalCodeDialog.propTypes = {
-  onClose: PropTypes.func,
-  postalDigits: linkType,
 };
 
 export default register(PostalCodeDialog);

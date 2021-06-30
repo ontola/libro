@@ -1,16 +1,18 @@
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
   useDataFetching,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
-import Heading from '../../../components/Heading';
+import Heading, { HeadingSize } from '../../../components/Heading';
 import Image from '../../../components/Image';
 import teamGL from '../../../ontology/teamGL';
 import { gridTopology } from '../../../topologies/Grid';
@@ -26,7 +28,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const EarnedBadgeGrid = ({
+interface EarnedBadgeGridProps {
+  badge: SomeNode;
+  dateCreated: SomeTerm;
+}
+
+const EarnedBadgeGrid: FC<EarnedBadgeGridProps> = ({
   badge,
   dateCreated,
 }) => {
@@ -45,7 +52,7 @@ const EarnedBadgeGrid = ({
       }}
     >
       <Property label={teamGL.badge}>
-        <Heading className={matches ? classes.headerSmall : classes.header} size="2">{name?.value}</Heading>
+        <Heading className={matches ? classes.headerSmall : classes.header} size={HeadingSize.LG}>{name?.value}</Heading>
         <Image
           linkedProp={image}
           style={{
@@ -70,11 +77,6 @@ EarnedBadgeGrid.topology = [
 EarnedBadgeGrid.mapDataToProps = {
   badge: teamGL.badge,
   dateCreated: schema.dateCreated,
-};
-
-EarnedBadgeGrid.propTypes = {
-  badge: linkType,
-  dateCreated: linkType,
 };
 
 export default register(EarnedBadgeGrid);
