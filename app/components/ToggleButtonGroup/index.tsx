@@ -7,18 +7,27 @@ import { FormattedMessage } from 'react-intl';
 
 import { isResource } from '../../helpers/types';
 import useFieldOptions from '../../hooks/useFieldOptions';
+import { LibroTheme } from '../../themes/themes';
 import { inlineTopology } from '../../topologies/Inline';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   button: {
     flexGrow: 1,
     padding: '.4em .8em',
     textTransform: 'initial',
   },
   buttonGroup: {
+    '& .Mui-selected': {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+    },
+    '& .MuiToggleButton-root:hover': {
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.primary.contrastText,
+    },
     width: '100%',
   },
 }));
