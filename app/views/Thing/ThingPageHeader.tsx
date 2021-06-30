@@ -1,8 +1,8 @@
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,7 +18,7 @@ import {
 } from '../../topologies/PageHeader';
 import { defaultMenus } from '../common';
 
-const ThingPageHeader = ({ subject }) => (
+const ThingPageHeader: FC = ({ subject }) => (
   <div about={subject?.value} className="ThingPageHeader">
     <CardMain>
       <CardContent>
@@ -30,7 +30,7 @@ const ThingPageHeader = ({ subject }) => (
             <ContentDetails>
               <Property label={argu.grantedGroups} />
             </ContentDetails>
-            <Property label={schema.description} />
+            <Property label={[schema.description, schema.text]} />
           </PageHeaderText>
         </PageHeaderImageAndTextWrapper>
       </CardContent>
@@ -41,9 +41,5 @@ const ThingPageHeader = ({ subject }) => (
 ThingPageHeader.type = schema.Thing;
 
 ThingPageHeader.topology = pageHeaderTopology;
-
-ThingPageHeader.propTypes = {
-  subject: subjectType,
-};
 
 export default register(ThingPageHeader);

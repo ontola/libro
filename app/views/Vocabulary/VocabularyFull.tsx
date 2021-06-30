@@ -1,41 +1,44 @@
-import * as rdfs from '@ontologies/rdfs';
-import * as schema from '@ontologies/schema';
+import { SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
+  ReturnType,
   register,
+  useResourceLink,
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import wdt from '../../ontology/wdt';
-import CardMain from '../../topologies/Card/CardMain';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
+import ontola from '../../ontology/ontola';
 import { fullResourceTopology } from '../../topologies/FullResource';
-import { defaultMenus } from '../common';
+import PageHeader from '../../topologies/PageHeader';
 
-const VocabularyFull: FC = () => (
-  <React.Fragment>
-    <Container>
-      <CardMain>
-        <DetailsBar right={defaultMenus}>
-          <Property label={schema.creator} />
-          <LinkedDetailDate />
-        </DetailsBar>
-        <CardContent noSpacing>
-          <Property label={[schema.name, rdfs.label]} />
-          <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
-          <Property label={[schema.text, schema.description, dbo.abstract]} />
-        </CardContent>
-      </CardMain>
-    </Container>
-    <Property label={argu.terms} />
-  </React.Fragment>
-);
+export interface VocabularyFullProps {
+  coverPhoto: SomeTerm;
+}
+
+const coverPhotoMap = {
+  coverPhotoUrl: ontola.imgUrl1500x2000,
+  positionY: ontola.imagePositionY,
+};
+
+const coverPhotoOpts = { returnType: ReturnType.Value };
+
+const VocabularyFull: FC<VocabularyFullProps> = ({ coverPhoto }) => {
+  const { coverPhotoUrl, positionY } = useResourceLink(coverPhoto as SomeNode, coverPhotoMap, coverPhotoOpts);
+
+  return (
+    <React.Fragment>
+      <PageHeader background={coverPhotoUrl} positionY={positionY} />
+      <Property label={argu.terms} />
+    </React.Fragment>
+  );
+};
+
+VocabularyFull.mapDataToProps = {
+  coverPhoto: ontola.coverPhoto,
+};
 
 VocabularyFull.type = argu.Vocabulary;
 
