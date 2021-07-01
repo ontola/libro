@@ -27,7 +27,7 @@ const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => 
     fontSize: 22,
     margin: 'auto',
     marginBottom: '3rem',
-    maxWidth: '40rem',
+    maxWidth: '30rem',
     textAlign: 'center',
   },
   title: {

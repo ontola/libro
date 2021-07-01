@@ -22,8 +22,15 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     color: theme.palette.secondary.contrastText,
     fontSize: 18,
   },
+  gradient: {
+    background: `linear-gradient(0deg, ${theme.palette.background.default}, 10%, ${theme.palette.background.default}, transparent);`,
+    height: '100px',
+    marginTop: 80,
+    width: '100%',
+  },
   header: {
     alignItems: 'center',
+    backgroundAttachment: 'fixed',
     backgroundColor: theme.palette.background.default,
     backgroundImage: ({ backgroundImageUrl }) => `url(${backgroundImageUrl})`,
     backgroundPosition: '50% 20%',
@@ -32,7 +39,7 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingBottom: 100,
+    marginBottom: 20,
 
     [theme.breakpoints.down('xs')]: {
       backgroundImage: ({ backgroundImageUrlMobile }) => `url(${backgroundImageUrlMobile})`,
@@ -91,6 +98,7 @@ export const Header = ({
         <CallToActionButton text={buttonText} url={buttonLink!} />
       )}
       {children}
+      <div className={classes.gradient} />
     </div>
   );
 };
