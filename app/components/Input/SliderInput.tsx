@@ -19,6 +19,9 @@ const StyledSlider = withStyles({
     '&:focus, &:hover, &$active': {
       boxShadow: 'inherit',
     },
+    '&[aria-valuenow="NaN"]': {
+      display: 'none',
+    },
     'backgroundColor': '#fff',
     'border': '2px solid currentColor',
     'height': 24,
