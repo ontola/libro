@@ -1,4 +1,4 @@
-import { QuadPosition } from '@ontologies/core';
+import { NamedNode, QuadPosition } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { Context } from 'koa';
@@ -8,6 +8,8 @@ import ontola from '../ontology/ontola';
 
 import { stripMarkdown } from './markdownHelper';
 
+const raw = (list: NamedNode[]): string[] => list.map((n) => n.value);
+
 export const COVER_PREDICATES = [ontola.coverPhoto];
 export const COVER_URL_PREDICATES = [ontola.imgUrl1500x2000];
 export const AVATAR_URL_PREDICATES = [ontola.imgUrl256x256];
@@ -15,12 +17,14 @@ export const IMAGE_PREDICATES = [schema.image];
 export const NAME_PREDICATES = [schema.name, rdfs.label];
 export const TEXT_PREDICATES = [dbo.abstract, schema.description, schema.text];
 
-const COVER_PREDICATES_RAW = COVER_PREDICATES.map((n) => n.value);
-const COVER_URL_PREDICATES_RAW = COVER_URL_PREDICATES.map((n) => n.value);
-const AVATAR_URL_PREDICATES_RAW = AVATAR_URL_PREDICATES.map((n) => n.value);
-const IMAGE_PREDICATES_RAW = IMAGE_PREDICATES.map((n) => n.value);
-const NAME_PREDICATES_RAW = NAME_PREDICATES.map((n) => n.value);
-const TEXT_PREDICATES_RAW = TEXT_PREDICATES.map((n) => n.value);
+const COVER_PREDICATES_RAW = raw(COVER_PREDICATES);
+const COVER_URL_PREDICATES_RAW = raw(COVER_URL_PREDICATES);
+const AVATAR_URL_PREDICATES_RAW = raw(AVATAR_URL_PREDICATES);
+const IMAGE_PREDICATES_RAW = raw(IMAGE_PREDICATES);
+const NAME_PREDICATES_RAW = raw(NAME_PREDICATES);
+const TEXT_PREDICATES_RAW = raw(TEXT_PREDICATES);
+
+const APP_ICON_SIZE_PRIORITY = ['256x256', '192x192', '180x180', '152x152', '128x128', '64x64', '32x32', '16x16'];
 
 interface TagProps {
   children?: string;
@@ -35,6 +39,7 @@ interface TagProps {
 }
 
 interface MetaData {
+  appIcon?: string;
   appName?: string;
   name?: string;
   url: string;
@@ -43,7 +48,14 @@ interface MetaData {
   imageURL?: string;
 }
 
+interface Icon {
+  src: string;
+  sizes: string;
+  type: string;
+}
+
 export const getMetaTags = ({
+  appIcon,
   appName,
   coverURL,
   imageURL,
@@ -78,14 +90,16 @@ export const getMetaTags = ({
     type: 'meta',
   }];
 
-  if (coverURL || imageURL) {
+  const img = coverURL ?? imageURL ?? appIcon;
+
+  if (img) {
     tags.push({
-      content: coverURL ?? imageURL,
+      content: img,
       id: 'og:image',
       property: 'og:image',
       type: 'meta',
     }, {
-      content: coverURL ?? imageURL,
+      content: img,
       name: 'twitter:image',
       type: 'meta',
     });
@@ -110,6 +124,18 @@ export const getMetaTags = ({
   }
 
   return tags;
+};
+
+const findLargestIcon = (icons: Icon[]): string | undefined => {
+  for (const size of APP_ICON_SIZE_PRIORITY) {
+    const iconSrc = icons.find((icon) => icon.sizes === size)?.src;
+
+    if (iconSrc) {
+      return iconSrc;
+    }
+  }
+
+  return undefined;
 };
 
 const prerenderMetaTag = (props: TagProps) => {
@@ -162,10 +188,11 @@ export const prerenderMetaTags = (ctx: Context, data: string): string => {
   const image = findValue(subjectQuads, IMAGE_PREDICATES_RAW);
   const imageQuads = quads.filter((q) => q[QuadPosition.subject] == image);
   const imageURL = findValue(imageQuads, AVATAR_URL_PREDICATES_RAW);
-
+  const appIcon = findLargestIcon(manifest.icons ?? []);
   const strippedText = stripMarkdown(text)?.replace(/"/g, '&quot;');
 
   const metaTags = getMetaTags({
+    appIcon,
     appName: manifest.short_name,
     coverURL,
     imageURL,
