@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     'paddingRight': '5vw',
     'position': 'absolute',
     'top': '5vw',
-    'zIndex': 1000,
+    'zIndex': 900,
   },
   wrapperSmall: {
     '& > .Card': {
@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
     'position': 'absolute',
     'right': '1em',
     'top': '1em',
-    'zIndex': 1000,
+    'zIndex': 900,
   },
 }));
 
