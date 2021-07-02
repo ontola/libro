@@ -420,6 +420,13 @@ export const imageAltMessages: Messages = defineMessages({
   },
 });
 
+export const mailchimpFormMessages: Messages = defineMessages({
+  mailAddress: {
+    defaultMessage: 'Email address',
+    id: 'https://app.argu.co/i18n/mailchimpForm/mailAddress',
+  },
+});
+
 export const motionMessages: Messages = defineMessages({
   motionsCount: {
     defaultMessage: '{count} ideas',

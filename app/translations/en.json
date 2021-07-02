@@ -328,6 +328,9 @@
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "the Argu logo"
   },
+  "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
+    "defaultMessage": "Email address"
+  },
   "https://app.argu.co/i18n/navbar/search": {
     "defaultMessage": "Search"
   },

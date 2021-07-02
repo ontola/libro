@@ -27,6 +27,7 @@ export default {
   Features: sales('Features'),
   Header: sales('Header'),
   HomePage: sales('HomePage'),
+  MailchimpForm: sales('MailchimpForm'),
   MoreInformationBlock: sales('MoreInformationBlock'),
   MoreInformationBlockSection: sales('MoreInformationBlockSection'),
   PricingPage: sales('PricingPage'),

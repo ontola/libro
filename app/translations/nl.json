@@ -326,6 +326,9 @@
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "het Argu logo"
   },
+  "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
+    "defaultMessage": "Email adres"
+  },
   "https://app.argu.co/i18n/navbar/search": {
     "defaultMessage": "Zoeken"
   },
