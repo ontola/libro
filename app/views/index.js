@@ -9,7 +9,6 @@ import Action from './Action/index';
 import ActionBody from './ActionBody';
 import Activity from './Activity';
 import AppSignOut from './AppSignOut';
-import ArguHome from './ArguHome';
 import Argument from './Argument/index';
 import Banner from './Banner/Banner';
 import Collection from './Collection';
@@ -83,7 +82,6 @@ export function getViews() {
     ...ActionBody,
     ...Activity,
     ...AppSignOut,
-    ...ArguHome,
     ...Term,
     ...Thing,
     ...Action,

@@ -11,54 +11,6 @@
   "https://app.argu.co/i18n/argu:lastActivityAt/label": {
     "defaultMessage": "Laatste activiteit: {date}"
   },
-  "https://app.argu.co/i18n/arguHome/acceptedDecision": {
-    "defaultMessage": "Aangenomen"
-  },
-  "https://app.argu.co/i18n/arguHome/casesBody": {
-    "defaultMessage": "Van draagvlakmeting tot ideegeneratie: Argu is flexibel inzetbaar voor diverse vormen van online inspraak en interactieve beleidsvorming."
-  },
-  "https://app.argu.co/i18n/arguHome/casesHeader": {
-    "defaultMessage": "Voorbeelden e-participatie"
-  },
-  "https://app.argu.co/i18n/arguHome/customersBody": {
-    "defaultMessage": "We hebben onder andere ervaring met vele gemeenten, semi-overheden, verenigingen en bedrijven."
-  },
-  "https://app.argu.co/i18n/arguHome/customersHeader": {
-    "defaultMessage": "Een paar van onze klanten"
-  },
-  "https://app.argu.co/i18n/arguHome/featuresBody": {
-    "defaultMessage": "Wij hosten Argu en blijven het ontwikkelen, zodat je altijd over de nieuwste mogelijkheden beschikt."
-  },
-  "https://app.argu.co/i18n/arguHome/featuresHeader": {
-    "defaultMessage": "Functionaliteiten"
-  },
-  "https://app.argu.co/i18n/arguHome/motionExampleTitle": {
-    "defaultMessage": "Idee"
-  },
-  "https://app.argu.co/i18n/arguHome/questionExampleTitle": {
-    "defaultMessage": "Hoe lossen we probleem Y op?"
-  },
-  "https://app.argu.co/i18n/arguHome/reactionsCount": {
-    "defaultMessage": "reacties en argumenten"
-  },
-  "https://app.argu.co/i18n/arguHome/requestDemo": {
-    "defaultMessage": "Vraag een demo aan"
-  },
-  "https://app.argu.co/i18n/arguHome/surveyExampleTitle": {
-    "defaultMessage": "Hoe tevreden bent u met X?"
-  },
-  "https://app.argu.co/i18n/arguHome/triadAgain": {
-    "defaultMessage": "Opnieuw"
-  },
-  "https://app.argu.co/i18n/arguHome/triadHeader": {
-    "defaultMessage": "Betrokken bij de gehele beleidscyclus"
-  },
-  "https://app.argu.co/i18n/arguHome/triadNext": {
-    "defaultMessage": "Volgende"
-  },
-  "https://app.argu.co/i18n/arguHome/votesCount": {
-    "defaultMessage": "stemmen geplaatst"
-  },
   "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
     "defaultMessage": "Filteren"
   },

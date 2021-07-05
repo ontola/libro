@@ -11,54 +11,6 @@
   "https://app.argu.co/i18n/argu:lastActivityAt/label": {
     "defaultMessage": "last activity: {date}"
   },
-  "https://app.argu.co/i18n/arguHome/acceptedDecision": {
-    "defaultMessage": "Accepted"
-  },
-  "https://app.argu.co/i18n/arguHome/casesBody": {
-    "defaultMessage": "From support level measurement to idea generation: Argu can be used in various civic engagement projects."
-  },
-  "https://app.argu.co/i18n/arguHome/casesHeader": {
-    "defaultMessage": "Examples of online civic engagement"
-  },
-  "https://app.argu.co/i18n/arguHome/customersBody": {
-    "defaultMessage": "We have experience with many municipalities, semi-governments, associations and corporations."
-  },
-  "https://app.argu.co/i18n/arguHome/customersHeader": {
-    "defaultMessage": "Some of our customers"
-  },
-  "https://app.argu.co/i18n/arguHome/featuresBody": {
-    "defaultMessage": "We host Argu and will continue to develop it, so you can always use the latest features."
-  },
-  "https://app.argu.co/i18n/arguHome/featuresHeader": {
-    "defaultMessage": "Features"
-  },
-  "https://app.argu.co/i18n/arguHome/motionExampleTitle": {
-    "defaultMessage": "Idea"
-  },
-  "https://app.argu.co/i18n/arguHome/questionExampleTitle": {
-    "defaultMessage": "How do we solve problem Y?"
-  },
-  "https://app.argu.co/i18n/arguHome/reactionsCount": {
-    "defaultMessage": "comments and arguments"
-  },
-  "https://app.argu.co/i18n/arguHome/requestDemo": {
-    "defaultMessage": "Request a demo"
-  },
-  "https://app.argu.co/i18n/arguHome/surveyExampleTitle": {
-    "defaultMessage": "How satisfied are you with X?"
-  },
-  "https://app.argu.co/i18n/arguHome/triadAgain": {
-    "defaultMessage": "Again"
-  },
-  "https://app.argu.co/i18n/arguHome/triadHeader": {
-    "defaultMessage": "Engaged throughout your entire decision making process"
-  },
-  "https://app.argu.co/i18n/arguHome/triadNext": {
-    "defaultMessage": "Next"
-  },
-  "https://app.argu.co/i18n/arguHome/votesCount": {
-    "defaultMessage": "votes"
-  },
   "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
     "defaultMessage": "Filter"
   },
