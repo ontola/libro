@@ -69,7 +69,11 @@ const fetchPrerenderData = async (ctx, includeResources) => {
 
   try {
     const res = await ctx.api.bulk(resources);
-    const text = await res.text();
+    let text = await res.text();
+    if (res.status === HttpStatus.NOT_FOUND) {
+      text += JSON.stringify(statusCodeHex(ctx.request.href, HttpStatus.NOT_FOUND));
+      text += '\n';
+    }
 
     return forbidden.data().toString() + text;
   } catch (e) {
