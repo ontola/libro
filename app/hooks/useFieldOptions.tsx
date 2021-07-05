@@ -41,7 +41,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
     } else {
       setLoading(!!shIn);
     }
-  }, [loading, optionsLoading, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
+  }, [loading, optionsLoading, options, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
 
   return {
     loading,
