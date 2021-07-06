@@ -77,7 +77,7 @@ const CasesPageFull: FC = () => {
         </Typography>
         <Property label={schema.image} />
       </div>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="cases-page-full-cta" />
     </React.Fragment>
   );
 };

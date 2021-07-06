@@ -95,7 +95,7 @@ const BlogPageFull: FC = ({ subject }) => {
           </ArticleContent>
         </article>
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="blog-page-full-cta" />
     </React.Fragment>
   );
 };

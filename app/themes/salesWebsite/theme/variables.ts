@@ -52,7 +52,7 @@ const typography: TypographyOptions = {
   button: {
     textTransform: 'none',
   },
-  fontFamily: 'Open Sans',
+  fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
   fontWeightMedium: 600,
   h1: {
     color: '000',

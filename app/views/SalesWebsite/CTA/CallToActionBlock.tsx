@@ -10,7 +10,11 @@ import { CallToAction } from '../../../components/SalesWebsite/CallToAction';
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 
-const CallToActionBlock: FC = () => {
+export interface CallToActionBlockProps {
+  trackingId?: string;
+}
+
+const CallToActionBlock: FC<CallToActionBlockProps> = ({ trackingId }) => {
   const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
   const [callToActionText] = useProperty(sales.callToActionText);
   const [callToActionTitle] = useProperty(sales.callToActionTitle);
@@ -21,7 +25,7 @@ const CallToActionBlock: FC = () => {
       subtitle={callToActionText.value}
       title={callToActionTitle.value}
     >
-      <Property label={sales.callToAction} size="large" />
+      <Property label={sales.callToAction} size="large" trackingId={trackingId} />
     </CallToAction>
   );
 };

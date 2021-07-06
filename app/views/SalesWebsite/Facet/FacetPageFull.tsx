@@ -62,12 +62,16 @@ const FacetPageFull: FC = () => {
         </Typography>
         <Typography>
           {moreDescription.value}
-          <NavLink className={classes.link} to={retrievePath(morePageLink.value)!}>
+          <NavLink
+            className={classes.link}
+            id="facet-page-full-price-link"
+            to={retrievePath(morePageLink.value)!}
+          >
             {morePageName.value}
           </NavLink>
         </Typography>
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="facet-page-full-cta" />
     </div>
   );
 };

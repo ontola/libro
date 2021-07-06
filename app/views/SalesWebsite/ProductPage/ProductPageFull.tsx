@@ -115,7 +115,7 @@ const ProductPageFull: FC = () => {
       <Container size={Size.Large}>
         <Property label={sales.features} />
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="product-page-full-cta" />
     </div>
   );
 };

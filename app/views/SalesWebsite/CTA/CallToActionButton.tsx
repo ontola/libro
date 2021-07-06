@@ -1,26 +1,32 @@
+import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import * as schema from '@ontologies/schema';
 
 import { CallToActionButton as CallToActionButtonComponent } from '../../../components/SalesWebsite/CallToActionButton';
-import sales from '../../../ontology/sales';
 import ontola from '../../../ontology/ontola';
+import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 
 export interface CallToActionButtonProps {
-  size?: 'small' | 'medium' | 'large',
+  size?: 'small' | 'medium' | 'large';
+  trackingId?: string;
 }
 
-const CallToActionButton: FC<CallToActionButtonProps> = ({ size }) => {
+const CallToActionButton: FC<CallToActionButtonProps> = ({ size, trackingId }) => {
   const [text] = useProperty(schema.text);
   const [href] = useProperty(ontola.href);
 
   return (
-    <CallToActionButtonComponent size={size ?? 'small'} text={text?.value} url={href?.value} />
+    <CallToActionButtonComponent
+      size={size ?? 'small'}
+      text={text?.value}
+      trackingId={trackingId}
+      url={href?.value}
+    />
   );
 };
 

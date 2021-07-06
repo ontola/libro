@@ -138,7 +138,7 @@ const ProcessPageFull: FC = () => {
           <Property label={argu.lowerSection} />
         </div>
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="process-page-full-cta" />
     </div>
   );
 };

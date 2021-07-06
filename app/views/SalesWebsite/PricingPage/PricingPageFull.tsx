@@ -39,7 +39,7 @@ const PricingPageFull: FC = () => {
           <Property label={argu.lowerSection} />
         </div>
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="pricing-page-full-cta" />
     </div>
   );
 };

@@ -114,7 +114,7 @@ const HomePageFull: FC = () => {
           <Property centerHeading label={sales.blogs} />
         </div>
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="home-page-full-cta" />
     </div>
   );
 };

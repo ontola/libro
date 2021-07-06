@@ -142,7 +142,7 @@ const CasePageFull: FC = () => {
           </div>
         </ArticleContent>
       </article>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="case-page-full-cta" />
     </React.Fragment>
   );
 };

@@ -65,7 +65,7 @@ const BlogsFull: FC = () => {
           <Property label={sales.showcase} />
         </Showcase>
       </Container>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="blogs-full-cta" />
     </React.Fragment>
   );
 };

@@ -44,7 +44,7 @@ const AboutPage: FC = () => {
           </div>
         ))}
       </div>
-      <Property label={sales.callToActionBlock} />
+      <Property label={sales.callToActionBlock} trackingId="about-page-cta" />
     </React.Fragment>
   );
 };
