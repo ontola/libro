@@ -7,6 +7,7 @@ import * as xsd from '@ontologies/xsd';
 
 import { InputValue } from '../hooks/useFormField';
 import argu from '../ontology/argu';
+import { Severity } from '../views/Snackbar';
 
 import { JSONLDObject } from './forms';
 
@@ -47,3 +48,6 @@ export const isString = (value: unknown): value is string => typeof value === 's
 export const isLiteral = (obj: unknown): obj is Literal => (
   ['Literal'].includes((obj as Record<string, unknown>)?.termType as string)
 );
+
+export const isSeverity = (value: unknown): value is Severity =>
+  typeof value === 'string' && Object.values(Severity).includes(value as Severity);

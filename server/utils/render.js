@@ -2,8 +2,8 @@ import HttpStatus from 'http-status-codes';
 
 import { prerenderMetaTags } from '../../app/helpers/metaData';
 import { bundles } from '../../bundleConfig';
-import { standaloneLibro } from '../config'
 import * as constants from '../config';
+import { standaloneLibro } from '../config';
 
 import logging from './logging';
 import manifests from './manifest';
@@ -96,7 +96,7 @@ export const renderFullPage = async (ctx, data) => {
           <meta content="269911176456825" property="fb:app_id">
           <meta name="theme" content="${manifest.ontola.theme ?? 'common'}">
           <meta name="themeOpts" content="${manifest.ontola.theme_options ?? ''}">
-          
+
           <link rel="preconnect" href="https://storage.googleapis.com" />
           ${manifest.ontola.preconnect?.map((origin) => `<link rel="preconnect" href="${origin}" />`)?.join('\n') ?? ''}
 
@@ -106,6 +106,7 @@ export const renderFullPage = async (ctx, data) => {
           ${constants.bugsnagKey ? '<script async src="https://d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
           <meta name="mapboxTileURL" content="${constants.mapboxTileURL}">
+          <meta name="maxUploadFileSize" content="${constants.maxUploadFileSizeMb}">
 
           ${icons(ctx) ?? ''}
           <meta name="msapplication-TileColor" content="${manifest.theme_color ?? ''}">

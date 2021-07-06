@@ -287,6 +287,15 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Klik of sleep een bestand om te selecteren"
   },
+  "https://app.argu.co/i18n/forms/fileInput/invalidFileFormat": {
+    "defaultMessage": "Bestandstype wordt niet ondersteund."
+  },
+  "https://app.argu.co/i18n/forms/fileInput/maxFileSizeMessage": {
+    "defaultMessage": "Bestand kan niet groter zijn dan {fileSizeLimit}MB."
+  },
+  "https://app.argu.co/i18n/forms/fileInput/multipleFileError": {
+    "defaultMessage": "Het is niet mogelijk meer dan één bestand tegelijk te kiezen."
+  },
   "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
     "defaultMessage": "Email is ongeldig."
   },

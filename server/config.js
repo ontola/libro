@@ -17,6 +17,7 @@ export const logLevel = process.env.LOG_LEVEL || 'info';
 export const mapboxTileAPIBase = process.env.MAPBOX_TILE_API_BASE || 'https://api.mapbox.com/styles/v1';
 export const mapboxTileStyle = process.env.MAPBOX_TILE_STYLE || 'mapbox/streets-v11';
 export const mapboxTileURL = `${mapboxTileAPIBase}/${mapboxTileStyle}`;
+export const maxUploadFileSizeMb = process.env.MAX_UPLOAD_FILE_SIZE_MB ?? '100';
 export const portDevelopment = process.env.PORT_DEVELOPMENT || '3001';
 export const portProduction = process.env.PORT_PRODUCTION || '8080';
 export const port = process.env.PORT || (__DEVELOPMENT__ ? portDevelopment : portProduction);

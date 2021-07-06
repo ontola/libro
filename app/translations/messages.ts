@@ -289,6 +289,10 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'Email is invalid.',
     id: 'https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage',
   },
+  invalidFileFormat: {
+    defaultMessage: 'Unsupported file type.',
+    id: 'https://app.argu.co/i18n/forms/fileInput/invalidFileFormat',
+  },
   invalidLabel: {
     defaultMessage: 'unknown',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidLabel',
@@ -305,9 +309,17 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'Message is too long ({length}/{maxLength}).',
     id: 'https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage',
   },
+  maxFileSizeMessage: {
+    defaultMessage: 'File exceeds file size limit of {fileSizeLimit}MB.',
+    id: 'https://app.argu.co/i18n/forms/fileInput/maxFileSizeMessage',
+  },
   minDateMessage: {
     defaultMessage: 'Date should not be before minimal date',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/minDateMessage',
+  },
+  multipleFileError: {
+    defaultMessage: 'It is not possible to add more than one file at a time.',
+    id: 'https://app.argu.co/i18n/forms/fileInput/multipleFileError',
   },
   noMatchingItems: {
     defaultMessage: 'No matching items',

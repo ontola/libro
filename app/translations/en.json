@@ -289,6 +289,15 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Drag & Drop your file here or click to select a file"
   },
+  "https://app.argu.co/i18n/forms/fileInput/invalidFileFormat": {
+    "defaultMessage": "Unsupported file type."
+  },
+  "https://app.argu.co/i18n/forms/fileInput/maxFileSizeMessage": {
+    "defaultMessage": "File exceeds file size limit of {fileSizeLimit}MB."
+  },
+  "https://app.argu.co/i18n/forms/fileInput/multipleFileError": {
+    "defaultMessage": "It is not possible to add more than one file at a time."
+  },
   "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
     "defaultMessage": "Email is invalid."
   },

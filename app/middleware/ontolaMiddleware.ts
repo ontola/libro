@@ -21,11 +21,13 @@ import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
 import hexjson from '../helpers/transformers/hexjson';
+import { isSeverity } from '../helpers/types';
 import app from '../ontology/app';
 import ld from '../ontology/ld';
 import libro from '../ontology/libro';
 import ontola from '../ontology/ontola';
 import { actionMessages } from '../translations/messages';
+import { Severity } from '../views/Snackbar';
 
 import { redirectPage, reloadPage } from './reloading';
 
@@ -37,7 +39,7 @@ export const ontolaWebsocketsPrefix = ontola.ns('ws/').value;
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
     MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
-  (store as any).actions.ontola = {};
+  store.actions.ontola = {};
 
   const currentPath = (): string => {
     const l = history.location;
@@ -74,7 +76,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ], true);
 
-  const queueSnackbar = (text: string) => {
+  const queueSnackbar = (text: string, severity?: Severity) => {
     const s = rdf.blankNode();
 
     const queue = store.getResourceProperty<Node>(
@@ -82,7 +84,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       ontola.ns('snackbar/queue'),
     )!;
 
-    return [
+    const quad = [
       rdf.quad(
         s,
         rdfx.type,
@@ -97,6 +99,17 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       ),
       ...seqPush(store.store, queue, s),
     ];
+
+    if (severity) {
+      quad.push(rdf.quad(
+        s,
+        ontola.ns('snackbar/severity'),
+        rdf.literal(severity),
+        ld.add,
+      ));
+    }
+
+    return quad;
   };
 
   const shiftSnackbar = () => {
@@ -108,8 +121,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return seqShift(store.store, queue);
   };
 
-  (store as any).actions.ontola.showSnackbar = (message: Literal | string) =>
-    store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
+  store.actions.ontola.showSnackbar = (message: Literal | string, severity?: Severity) => {
+    const action = new URL(libro.actions.snackbar.show.value);
+    action.searchParams.set('text', message.toString());
+
+    if (severity) {
+      action.searchParams.set('severity', severity);
+    }
+
+    return store.exec(rdf.namedNode(action.toString()));
+  };
 
   /**
    * Ontola dialog setup
@@ -150,17 +171,17 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ];
 
-  (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
+  store.actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
     const resourceValue = encodeURIComponent(resource.value);
     const openerValue = opener ? encodeURIComponent(opener.value) : '';
 
     return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
   };
 
-  (store as any).actions.ontola.hideDialog = () =>
+  store.actions.ontola.hideDialog = () =>
     store.exec(libro.actions.dialog.close);
 
-  (store as any).actions.ontola.navigate = (resource: NamedNode, reload = false) => {
+  store.actions.ontola.navigate = (resource: NamedNode, reload = false) => {
     let query = `location=${encodeURIComponent(resource.value)}`;
     if (reload) {
       query += '&reload=true';
@@ -169,13 +190,13 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
   };
 
-  (store as any).actions.ontola.openWindow = (url: string) => {
+  store.actions.ontola.openWindow = (url: string) => {
     const query = `url=${encodeURIComponent(url)}`;
 
     return store.exec(rdf.namedNode(`${libro.actions.window.open.value}?${query}`));
   };
 
-  (store as any).actions.ontola.playAudio = (resource: NamedNode) =>
+  store.actions.ontola.playAudio = (resource: NamedNode) =>
     store.exec(rdf.namedNode(`${libro.actions.playAudio.value}?resource=${encodeURIComponent(resource.value)}`));
 
   /**
@@ -242,7 +263,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         throw new Error("Argument 'value' was missing.");
       }
 
-      (store as any).actions.ontola.showSnackbar(
+      store.actions.ontola.showSnackbar(
         (store as any).intl.formatMessage(actionMessages.copyFinished),
       );
 
@@ -335,11 +356,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     if (iri.value.startsWith(libro.actions.snackbar.show.value)) {
-      const value = new URL(iri.value).searchParams.get('text');
+      const url = new URL(iri.value);
+      const value = url.searchParams.get('text');
+      const severityParam = url.searchParams.get('severity');
+      const severity = isSeverity(severityParam) ? severityParam : undefined;
+
       if (!value) {
         throw new Error("Argument 'value' was missing.");
       }
-      store.processDelta(queueSnackbar(value), true);
+
+      store.processDelta(queueSnackbar(value, severity), true);
 
       return Promise.resolve();
     }
