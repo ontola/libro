@@ -3,23 +3,18 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 import '../../components/shared/init.scss';
 import PageError from '../../components/Error/PageError';
-import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
 import routes from '../index';
 
 import './index.scss';
 import ContentFrame from './ContentFrame';
 
-export interface AppProps extends RouteComponentProps {
-  title?: string;
-}
-
 export interface AppState {
   caughtError?: Error;
 }
 
-class App extends React.PureComponent<AppProps, AppState> {
-  constructor(props: AppProps) {
+class App extends React.PureComponent<RouteComponentProps, AppState> {
+  constructor(props: RouteComponentProps) {
     super(props);
 
     this.retry = this.retry.bind(this);
@@ -57,19 +52,12 @@ class App extends React.PureComponent<AppProps, AppState> {
       );
     }
 
-    const theme = getMetaContent('theme');
-    const themeOptions = new URLSearchParams(getMetaContent('themeOpts'));
-
     return (
-      <ContentFrame
-        theme={theme}
-        themeOptions={themeOptions}
-        title={this.props.title}
-      >
+      <ContentFrame>
         {routes}
       </ContentFrame>
     );
   }
 }
 
-export default withRouter<AppProps, ComponentType<AppProps>>(App);
+export default withRouter<RouteComponentProps, ComponentType<RouteComponentProps>>(App);

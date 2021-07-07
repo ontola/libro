@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { getMetaContent } from '../../helpers/arguHelpers';
+import { appContext } from '../../appContext';
 import libro from '../../ontology/libro';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
@@ -21,7 +21,7 @@ interface DialogManagerProps {
 
 const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
   const lrs = useLRS();
-  const theme = getMetaContent('theme');
+  const { theme } = React.useContext(appContext);
 
   const close = (item: SomeNode, done: boolean) => (
     () => lrs.exec(
