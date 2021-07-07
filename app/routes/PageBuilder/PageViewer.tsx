@@ -30,11 +30,7 @@ const PageViewer = (): JSX.Element => {
   return (
     <ErrorBoundary key={currentResource.value}>
       <ThemeProvider theme={resolvedTheme({})}>
-        <ContentFrame
-          theme={theme!}
-          themeOptions={themeOptions}
-          title={`[PB]: ${currentResource.value}`}
-        >
+        <ContentFrame title={`[PB]: ${currentResource.value}`}>
           <Page>
             <Resource subject={currentResource} />
           </Page>

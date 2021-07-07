@@ -40,7 +40,10 @@ const OrganizationPage: FC<OrganizationPageProps> = ({
       <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
         <Heading size={HeadingSize.LG}>
-          <button onClick={handleClick}>
+          <button
+            type="button"
+            onClick={handleClick}
+          >
             {name?.value}
           </button>
         </Heading>
