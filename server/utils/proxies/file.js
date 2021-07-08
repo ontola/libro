@@ -3,7 +3,11 @@ import proxy from 'koa-http2-proxy';
 import * as constants from '../../config';
 import { isDownloadRequest } from '../http';
 
-import { setProxyReqHeaders, setProxyResHeaders } from './helpers';
+import {
+  serviceUrl,
+  setProxyReqHeaders,
+  setProxyResHeaders,
+} from './helpers';
 
 export default proxy({
   logLevel: constants.logLevel,
@@ -16,6 +20,6 @@ export default proxy({
       proxyRes.headers['Content-Disposition'] = 'attachment';
     }
   },
-  target: constants.backendApiUrl,
+  target: serviceUrl(constants.defaultBackendSVCName),
   xfwd: true,
 });

@@ -115,18 +115,31 @@ const voteCompareMatch = /^\/compare\/votes/;
 
 const defaultPort = constants.defaultServicePort ? constants.defaultServicePort : undefined;
 
+export function serviceUrl(serviceName, url = new URL('https://example.com'), port = defaultPort, full = true) {
+  url.port = port;
+  url.protocol = constants.defaultServiceProto;
+  url.host = `${serviceName}${constants.clusterURLBase}`;
+
+  if (full) {
+    return url.toString();
+  }
+
+  return url.origin;
+}
+
 export function route(requestUrl, full = false) {
   const url = new URL(requestUrl, 'https://example.com');
   const path = url.pathname;
+  let port;
   let serviceName;
 
   if (defaultPort) {
-    url.port = defaultPort;
+    port = defaultPort;
   }
 
   if (bulkMatch.test(path)) {
     serviceName = 'cache';
-    url.port = '3030';
+    port = '3030';
   } else if (dekuMatch.test(path)) {
     serviceName = 'deku';
   } else if (emailMatch.test(path)) {
@@ -141,14 +154,7 @@ export function route(requestUrl, full = false) {
     serviceName = constants.defaultBackendSVCName;
   }
 
-  url.protocol = constants.defaultServiceProto;
-  url.host = `${serviceName}${constants.clusterURLBase}`;
-
-  if (full) {
-    return url.toString();
-  }
-
-  return url.origin;
+  return serviceUrl(serviceName, url, port, full)
 }
 
 export const statusCodeHex = (iriHJ, status) => ([

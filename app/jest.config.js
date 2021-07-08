@@ -13,7 +13,6 @@ module.exports = {
     __DEVELOPMENT__: false,
     __PRODUCTION__: false,
     __TEST__: true,
-    'process.env.ARGU_API_URL': '',
     'ts-jest': {
       isolatedModules: true,
     },

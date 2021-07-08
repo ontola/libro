@@ -5,7 +5,6 @@ if (__CLIENT__) {
 export * from '../app/config';
 
 export const assetsHost = process.env.ASSETS_HOST || '';
-export const backendApiUrl = process.env.ARGU_API_URL || process.env.BACKEND_API_URL || 'https://argu.localdev';
 export const bugsnagKey = process.env.BUGSNAG_KEY;
 export const cacheDirectory = process.env.CACHE_DIRECTORY;
 export const clientId = process.env.ARGU_APP_ID || process.env.LIBRO_CLIENT_ID;

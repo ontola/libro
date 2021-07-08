@@ -69,7 +69,6 @@ const common = {
       __TEST__: process.env.NODE_ENV === 'test',
       __VERSION__: JSON.stringify(version),
       'process.env': {
-        ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
     }),

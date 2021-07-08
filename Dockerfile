@@ -23,8 +23,6 @@ COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 COPY --from=builder /usr/src/app/static /usr/src/app/static
 
 ENV NODE_ENV 'production'
-ARG ARGU_API_URL
-ENV ARGU_API_URL $ARGU_API_URL
 
 EXPOSE 8080
 CMD ["node", "./dist/private/server.js"]

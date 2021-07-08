@@ -12,7 +12,6 @@ module.exports = {
     __DEVELOPMENT__: false,
     __PRODUCTION__: false,
     __TEST__: true,
-    'process.env.ARGU_API_URL': '',
   },
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',

@@ -5,6 +5,7 @@ import sessionMiddleware from '../../middleware/sessionMiddleware';
 
 import {
   route,
+  serviceUrl,
   setProxyReqHeaders,
   setProxyResHeaders,
 } from './helpers';
@@ -24,7 +25,7 @@ export default (app) => {
       await sessMiddleware(ctx, () => {});
     },
     router: (req) => route(req.url),
-    target: constants.backendApiUrl,
+    target: serviceUrl(constants.defaultBackendSVCName),
     ws: true,
     xfwd: true,
   });

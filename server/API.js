@@ -5,20 +5,20 @@ import * as constants from '../app/config';
 import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, refreshTokenRequest } from './api/tokens';
 import {
-  backendApiUrl,
   clientId,
   clientSecret,
+  defaultBackendSVCName,
   oAuthToken,
 } from './config';
 import logging from './utils/logging';
-import { route } from './utils/proxies/helpers';
+import { route, serviceUrl } from './utils/proxies/helpers';
 
 /**
  * Class for communicating with the Argu API & SPI.
  */
 class API {
   constructor(ctx) {
-    this.base = backendApiUrl;
+    this.base = serviceUrl(defaultBackendSVCName);
     this.ctx = ctx;
     this.serviceToken = oAuthToken;
   }
@@ -166,7 +166,7 @@ class API {
 
   fetchRaw(authToken, { path, ...opts }) {
     const { headers, ...rest } = opts;
-    const routed = route(new URL(path, this.base).toString(), true);
+    const routed = route(path, true);
     logging.debug(`[API] Request '${path}', routed: ${routed}`);
 
     return fetch(
