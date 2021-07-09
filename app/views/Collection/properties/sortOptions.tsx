@@ -1,16 +1,16 @@
-import IconButton from '@material-ui/core/IconButton';
 import rdf, { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Resource,
   register,
 } from 'link-redux';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
-import { retrievePath } from '../../../helpers/iris';
+import { Trigger, TriggerButton } from '../../../components/DropdownMenu';
 import MenuItem from '../../../components/MenuItem';
+import { retrievePath } from '../../../helpers/iris';
 import { SortProps, useSorting } from '../../../hooks/useSorting';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -27,15 +27,10 @@ interface MenuItemsProps {
   handleClose: () => void;
 }
 
-const trigger = (onClick: MouseEventHandler) => (
-  <IconButton
-    centerRipple
-    color="default"
-    size="small"
-    onClick={onClick}
-  >
+const trigger: Trigger = (props) => (
+  <TriggerButton {...props}>
     <FontAwesome name="sort" />
-  </IconButton>
+  </TriggerButton>
 );
 
 const SortOption = ({

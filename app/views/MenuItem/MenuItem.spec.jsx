@@ -1,17 +1,13 @@
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent, waitFor } from '@testing-library/dom';
 import { Resource } from 'link-redux';
 import React from 'react';
 
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
-import {
-  cleanup,
-  render,
-} from '../../test-utils';
-import button from '../../themes/common/theme/components/button';
+import { cleanup, render } from '../../test-utils';
 import AppMenu from '../../topologies/AppMenu';
 
 describe('MenuItem', () => {
@@ -55,58 +51,93 @@ describe('MenuItem', () => {
 
   describe('within appMenu', () => {
     const renderMenu = () => render((
-      <AppMenu
-        trigger={(onClick) => (
-          <button
-            type="button"
-            onClick={onClick}
-          >
-            Menu Trigger
-          </button>
-        )}
-      >
-        {({ handleClose, ref }) => (
-          <Resource
-            childProps={{
-              hideIcon: true,
-              onClose: handleClose,
-              ref,
-            }}
-            subject={menuIRI}
-          />
-        )}
-      </AppMenu>
+      <React.Fragment>
+        <div data-test="outside">
+          Outside
+        </div>
+        <AppMenu
+          trigger={({ onClick, anchorRef }) => (
+            <button
+              ref={anchorRef}
+              type="button"
+              onClick={onClick}
+            >
+              Menu Trigger
+            </button>
+          )}
+        >
+          {({ handleClose }) => (
+            <Resource
+              childProps={{
+                handleClose,
+                hideIcon: true,
+              }}
+              subject={menuIRI}
+            />
+          )}
+        </AppMenu>
+      </React.Fragment>
     ), { resources });
 
     it('opens the menu on click', async () => {
       const { getByText } = await renderMenu();
 
       const trigger = getByText('Menu Trigger');
+
       fireEvent.click(trigger);
 
-      expect(getByText('Gebruiker weergeven')).toBeVisible();
+      waitFor(() => expect(getByText('Gebruiker weergeven')).toBeVisible());
     });
 
     it('closes the menu on click outside', async () => {
-      const { getByText } = await renderMenu();
+      const screen = await renderMenu();
 
-      const trigger = getByText('Menu Trigger');
+      const trigger = screen.getByText('Menu Trigger');
+
       fireEvent.click(trigger);
 
-      fireEvent.click(document.querySelector('div[role="presentation"] div'));
-
-      expect(getByText('Gebruiker weergeven')).not.toBeVisible();
+      waitFor(() => {
+        fireEvent.click(document.querySelector('div[data-test="outside"]'));
+        expect(screen.getByText('Gebruiker weergeven')).not.toBeVisible();
+      });
     });
 
     it('closes the menu on menu item click', async () => {
-      const { getByText } = await renderMenu();
+      const { getByText, findByText } = await renderMenu();
 
       const trigger = getByText('Menu Trigger');
       fireEvent.click(trigger);
 
-      fireEvent.click(getByText('Gebruiker weergeven'));
+      await waitFor(() => {
+        findByText('Gebruiker weergeven')
+          .then((menuItem) => {
+            fireEvent.click(menuItem);
+          });
+      });
 
-      expect(getByText('Gebruiker weergeven')).not.toBeVisible();
+      waitFor(() => expect(getByText('Gebruiker weergeven')).not.toBeVisible());
+    });
+
+    it('is navigatable by keyboard', async () => {
+      const { getByText } = await renderMenu();
+
+      const trigger = getByText('Menu Trigger');
+      trigger.focus();
+
+      fireEvent.keyDown(document.activeElement, {
+        code: 'Enter',
+        key: 'Enter',
+      });
+
+      waitFor(() => {
+        fireEvent.keyDown(document.activeElement, {
+          code: 'ArrowDown',
+          key: 'ArrowDown',
+        });
+
+        expect(getByText('Profiel bewerken').hasFocus()).toBe(true);
+      });
+
     });
   });
 });

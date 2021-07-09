@@ -125,6 +125,8 @@ const Link: React.FC<PropTypesWithRef> = ({
           href={to}
           id={other.id}
           ref={innerRef}
+          role={other.role}
+          tabIndex={other.tabIndex}
           onClick={onClick}
         >
           {children}

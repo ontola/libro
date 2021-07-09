@@ -1,4 +1,3 @@
-import IconButton from '@material-ui/core/IconButton';
 import { isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -12,12 +11,13 @@ import {
   useProperty,
   useResourceLinks,
 } from 'link-redux';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { entityIsLoaded, sort } from '../../helpers/data';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
+import { Trigger, TriggerButton } from '../DropdownMenu';
 import { LoadingCardFloat } from '../Loading';
 import ResourceBoundary from '../ResourceBoundary';
 
@@ -50,15 +50,10 @@ const useValidActions = (actions: SomeNode[]) => {
     .filter(isNode);
 };
 
-const trigger = (onClick: MouseEventHandler) => (
-  <IconButton
-    centerRipple
-    color="default"
-    size="small"
-    onClick={onClick}
-  >
+const trigger: Trigger = (props) => (
+  <TriggerButton {...props}>
     <FontAwesome name="plus" />
-  </IconButton>
+  </TriggerButton>
 );
 
 const CollectionCreateActionButton: React.FC = () => {
@@ -85,20 +80,19 @@ const CollectionCreateActionButton: React.FC = () => {
 
     if (renderedActions.length > 1) {
       return (
-        <Menu trigger={trigger}>
-          {() => (
-            <ResourceBoundary>
-              {renderedActions
+        <ResourceBoundary>
+          <Menu trigger={trigger}>
+            {() => (
+              renderedActions
                 .sort(sort(ORDER))
                 .map((action) => (
                   <Resource
                     key={action?.value}
                     subject={action}
                   />
-                ))}
-            </ResourceBoundary>
-          )}
-        </Menu>
+                )))}
+          </Menu>
+        </ResourceBoundary>
       );
     }
   }

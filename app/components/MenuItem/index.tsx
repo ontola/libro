@@ -46,7 +46,7 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
   const component = !isButton
     ? React.forwardRef<any, HTMLAttributes<any> & Omit<NavLinkProps, 'to'>>((props, nestedRef) => {
       // eslint-disable-next-line  @typescript-eslint/no-unused-vars,react/prop-types
-      const { tabIndex, ...otherProps } = props;
+      const { ...otherProps } = props;
 
       return (
         <li

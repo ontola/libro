@@ -7,6 +7,7 @@ import {
 } from 'link-redux';
 import React, { ForwardedRef } from 'react';
 
+import { TriggerButtonProps } from '../../components/DropdownMenu/TriggerButton';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import argu from '../../ontology/argu';
@@ -25,25 +26,32 @@ const MenuItemNavbar = () => {
   const [menuItems] = useProperty(ontola.menuItems);
   const [name] = useProperty(schema.name);
 
-  const menuItemLabel = React.useCallback((onClick) => {
-    const icon = (image && isFontAwesomeIRI(image.value))
-      ? normalizeFontAwesomeIRI(image)
-      : undefined;
+  const icon = (image && isFontAwesomeIRI(image.value))
+    ? normalizeFontAwesomeIRI(image)
+    : undefined;
 
-    return (
+  const menuItemTrigger = React.useCallback(
+    ({
+      onClick,
+      anchorRef,
+      id,
+      open,
+    }: TriggerButtonProps) => (
       <NavbarLinkLink
+        aria-controls={id}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
         icon={icon}
         image={icon ? undefined : image}
         label={name?.value}
-        to={href?.value}
+        ref={anchorRef}
         onClick={onClick}
       />
-    );
-  }, [image, name, href]);
+    ), [image, name, href]);
 
   if (menuItems) {
     return (
-      <Menu trigger={menuItemLabel}>
+      <Menu trigger={menuItemTrigger}>
         {({ handleClose, ref }: MenuChildProps) => (
           <Resource
             childProps={{
@@ -57,7 +65,14 @@ const MenuItemNavbar = () => {
     );
   }
 
-  return menuItemLabel(undefined);
+  return (
+    <NavbarLinkLink
+      icon={icon}
+      image={icon ? undefined : image}
+      label={name?.value}
+      to={href?.value}
+    />
+  );
 };
 
 MenuItemNavbar.type = [

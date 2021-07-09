@@ -2,7 +2,10 @@ import { withLRS } from 'link-redux';
 import { LinkedRenderStoreContext } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import DropdownMenu, { RenderProp } from '../../components/DropdownMenu';
+import DropdownMenu, {
+  RenderProp,
+  Trigger,
+} from '../../components/DropdownMenu';
 import { isFunction } from '../../helpers/types';
 import app from '../../ontology/app';
 import Topology from '../Topology';
@@ -11,7 +14,7 @@ export const appMenuTopology = app.ns('topologies/appMenu');
 
 export interface AppMenuProps {
   children: React.ReactNode | RenderProp;
-  trigger: () => void;
+  trigger: Trigger;
 }
 
 class AppMenu extends Topology<

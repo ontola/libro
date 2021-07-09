@@ -1,4 +1,3 @@
-import IconButton from '@material-ui/core/IconButton';
 import * as as from '@ontologies/as';
 import { SomeTerm, isNode } from '@ontologies/core';
 import {
@@ -7,9 +6,10 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { Trigger, TriggerButton } from '../../../components/DropdownMenu';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -19,15 +19,10 @@ interface FilterFieldsProps {
   linkedProp: SomeTerm;
 }
 
-const trigger = (onClick: MouseEventHandler) => (
-  <IconButton
-    centerRipple
-    color="default"
-    size="small"
-    onClick={onClick}
-  >
+const trigger: Trigger = (props) => (
+  <TriggerButton {...props}>
     <FontAwesome name="filter" />
-  </IconButton>
+  </TriggerButton>
 );
 
 const FilterFields: FC<FilterFieldsProps> = () => {

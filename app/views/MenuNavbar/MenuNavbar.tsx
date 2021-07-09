@@ -2,11 +2,13 @@ import Divider from '@material-ui/core/Divider';
 import MenuClose from '@material-ui/icons/Close';
 import MenuOpen from '@material-ui/icons/Menu';
 import {
+  FC,
   Resource,
   register,
 } from 'link-redux';
 import React from 'react';
 
+import { Trigger } from '../../components/DropdownMenu';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import app from '../../ontology/app';
 import AppMenu from '../../topologies/AppMenu';
@@ -14,16 +16,25 @@ import { navbarTopology } from '../../topologies/Navbar';
 
 import useStyles from './MenuNavbarStyles';
 
-const MenuNavbar = () => {
+const MenuNavbar: FC = () => {
   const classes = useStyles();
 
-  const trigger = (onClick, open) => {
+  const trigger: Trigger = ({
+    onClick,
+    anchorRef,
+    id,
+    open,
+  }) => {
     const icon = open ? <MenuClose /> : <MenuOpen />;
 
     return (
       <NavbarLinkLink
+        aria-controls={id}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
         icon={icon}
         label="Menu"
+        ref={anchorRef}
         title="Menu"
         onClick={onClick}
       />

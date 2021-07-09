@@ -20,7 +20,6 @@ export interface NavbarLinkLinkProps {
   label?: string | JSX.Element;
   onClick?: React.MouseEventHandler;
   spin?: boolean,
-  ref?: React.Ref<HTMLButtonElement>,
   title?: string,
   to?: string;
 }
@@ -31,17 +30,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NavbarLinkLink = ({
+const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(({
   children,
   icon,
   image,
   label,
   onClick,
-  ref,
   spin,
   title,
   to,
-}: NavbarLinkLinkProps): JSX.Element => {
+}: NavbarLinkLinkProps, ref): JSX.Element => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
   const matches = useMediaQuery(theme.breakpoints.up(theme.appBar.iconBreakPoint));
@@ -78,6 +76,7 @@ const NavbarLinkLink = ({
   if (!to) {
     Component = 'button';
     buttonProps.onClick = onClick;
+    buttonProps.ref = ref;
   } else if (isDifferentWebsite(to)) {
     Component = ExternalLink;
     buttonProps.href = to;
@@ -104,12 +103,13 @@ const NavbarLinkLink = ({
       {...buttonProps}
       color="inherit"
       component={Component as React.ComponentType<any>}
+      ref={ref}
       startIcon={!hideLabel && iconCom}
       onClick={onClick}
     >
       {child}
     </Button>
   );
-};
+});
 
 export default NavbarLinkLink;

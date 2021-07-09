@@ -12,7 +12,7 @@ import { menuTopology } from '../../topologies/Menu';
 const ActionDropdownContent: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);
 
-  return(
+  return (
     <MenuItem
       expandOpen={null}
       subject={subject}

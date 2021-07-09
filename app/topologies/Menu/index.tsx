@@ -1,13 +1,13 @@
 import React from 'react';
 
-import DropdownMenu from '../../components/DropdownMenu';
+import DropdownMenu, { Trigger } from '../../components/DropdownMenu';
 import argu from '../../ontology/argu';
 import Topology, { TopologyContent } from '../Topology';
 
 export const menuTopology = argu.ns('topologies/menu');
 
 interface PropTypes {
-  trigger: (...args: any[]) => any;
+  trigger: Trigger;
 }
 
 class Menu extends Topology<PropTypes> {
