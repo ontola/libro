@@ -31,7 +31,7 @@ async function authenticationMiddleware(ctx, next) {
     ctx.setAccessToken(ctx.session.userToken, ctx.session.refreshToken);
 
     if (isExpired(ctx)) {
-      const websiteIRI = await ctx.getWebsiteIRI();
+      const websiteIRI = ctx.getFromAccessTokenExpired('iss');
       ctx.headResponseResult = null;
 
       if (websiteIRI) {

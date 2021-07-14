@@ -213,6 +213,18 @@ export function enhanceCtx(ctx) {
     }
   };
 
+  ctx.getFromAccessTokenExpired = (key) => {
+    if (!ctx.session.userToken) {
+      return undefined;
+    }
+
+    return jwt.verify(
+      ctx.session.userToken,
+      jwtEncryptionToken,
+      { ignoreExpiration: true }
+    )[key];
+  };
+
   ctx.getFromAccessTokenRaw = (key) => {
     if (!ctx.session.userToken) {
       return undefined;
