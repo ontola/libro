@@ -33,7 +33,6 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     backgroundAttachment: 'fixed',
     backgroundColor: theme.palette.background.default,
     backgroundImage: ({ backgroundImageUrl }) => `url(${backgroundImageUrl})`,
-    backgroundPosition: '50% 20%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100%',
     display: 'flex',

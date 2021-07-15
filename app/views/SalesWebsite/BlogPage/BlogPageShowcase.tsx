@@ -28,6 +28,7 @@ const THEME_CHIP_SPACING = 3;
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   card: {
     height: '100%',
+    maxWidth: '30rem',
   },
   icon: {
     color: '#2D7080',

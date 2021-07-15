@@ -460,6 +460,10 @@ export const salesMessages: Messages = defineMessages({
     defaultMessage: 'Contact us',
     id: 'https://app.argu.co/i18n/sales/contactUs',
   },
+  showAll: {
+    defaultMessage: 'Show all',
+    id: 'https://app.argu.co/i18n/sales/showAll',
+  },
 });
 
 export const statusMessages: Messages = defineMessages({

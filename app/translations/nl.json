@@ -356,6 +356,9 @@
   "https://app.argu.co/i18n/sales/readmore": {
     "defaultMessage": "Lees meer"
   },
+  "https://app.argu.co/i18n/sales/showAll": {
+    "defaultMessage": "Toon alles"
+  },
   "https://app.argu.co/i18n/schema:Person/postedByText": {
     "defaultMessage": "Geplaatst door {name}"
   },

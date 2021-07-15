@@ -1,7 +1,7 @@
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
-import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
@@ -9,11 +9,11 @@ import {
   Property,
   Resource,
   register,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
+import { ArticleThemeSwitcher } from '../../../components/SalesWebsite/ArticleThemeSwitcher';
+import { useSalesArticles } from '../../../hooks/useSalesArticles';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
@@ -22,6 +22,7 @@ import Grid from '../../../topologies/Grid';
 
 const SECTION_SPACING = 10;
 const GRID_ITEM_SPACING = 4;
+const THEME_SWITCHER_BOTTOM_MARGIN = 20;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   grid: {
@@ -40,36 +41,60 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
       marginTop: theme.spacing(GRID_ITEM_SPACING),
     },
   },
+  themeSwitcher: {
+    marginBottom: theme.spacing(THEME_SWITCHER_BOTTOM_MARGIN),
+  },
 }));
 
-const CasesPageFull: FC = () => {
+const CasesPageFull: FC = ({ subject }) => {
   const classes = useStyles();
-  const [itemsList] = useProperty(as.items) as Node[];
-  const items = useResourceProperty(itemsList, rdfs.member);
+
+  const {
+    articles,
+    filter,
+    setFilter,
+    themes,
+    visible,
+  } = useSalesArticles(subject, [as.items, rdfs.member]);
 
   return (
     <React.Fragment>
       <Property label={sales.header} />
       <Container>
-        <Grid
-          container
-          className={classes.grid}
-          justify="space-between"
-          spacing={0}
+        <div className={classes.themeSwitcher}>
+          <ArticleThemeSwitcher
+            currentTheme={filter}
+            themes={themes}
+            onThemeSwitch={setFilter}
+          />
+        </div>
+        <Fade
+          in={visible}
+          timeout={{
+            enter: 200,
+            exit: 0,
+          }}
         >
-          {items.map((iri) => (
-            <Grid
-              item
-              className={classes.item}
-              key={iri.value}
-              md={4}
-              sm={6}
-              xs={12}
-            >
-              <Resource subject={iri} />
-            </Grid>
-          ))}
-        </Grid>
+          <Grid
+            container
+            className={classes.grid}
+            justify="space-between"
+            spacing={0}
+          >
+            {articles.map((iri) => (
+              <Grid
+                item
+                className={classes.item}
+                key={iri.value}
+                md={4}
+                sm={6}
+                xs={12}
+              >
+                <Resource subject={iri} />
+              </Grid>
+            ))}
+          </Grid>
+        </Fade>
       </Container>
       <div className={classes.imageContainer}>
         <Typography align="center" variant="h2">
