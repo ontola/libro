@@ -64,6 +64,7 @@ const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
     borderRadius: '50%',
     content: '" "',
     opacity: '20%',
+    pointerEvents: 'none',
     position: 'absolute',
     transition: 'background-color 500ms',
     zIndex: 0,
