@@ -23,6 +23,7 @@ export default {
   ConvertActivity: argu('ConvertActivity'),
   CopyAction: argu('CopyAction'),
   CouponBatch: argu('CouponBatch'),
+  CustomAction: argu('CustomAction'),
   EmailToken: argu('EmailToken'),
   Footer: argu('Footer'),
   ForwardActivity: argu('ForwardActivity'),

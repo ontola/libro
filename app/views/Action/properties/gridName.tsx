@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import Heading, { HeadingSize } from '../../../components/Heading';
+import argu from '../../../ontology/argu';
 import { gridTopology } from '../../../topologies/Grid';
 
 const GridActionName: FC<PropertyProps> = ({ linkedProp }) => (
@@ -15,7 +16,7 @@ const GridActionName: FC<PropertyProps> = ({ linkedProp }) => (
   </Heading>
 );
 
-GridActionName.type = schema.Action;
+GridActionName.type = [schema.Action, argu.CustomAction];
 
 GridActionName.topology = gridTopology;
 
