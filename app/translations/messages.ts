@@ -7,6 +7,10 @@ export const academyMessages: Messages = defineMessages({
     defaultMessage: 'Save academy as PDF',
     id: 'https://app.argu.co/i18n/academy/pdfDownload',
   },
+  searchIn: {
+    defaultMessage: 'Search in {title}',
+    id: 'https://app.argu.co/i18n/academy/searchIn',
+  },
 });
 
 export const actionMessages: Messages = defineMessages({

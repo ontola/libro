@@ -1,19 +1,33 @@
+import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
+import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   Resource,
   useDig,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import { SearchObject, useChapterSearch } from '../../../hooks/Academy/useChapterSearch';
 import app from '../../../ontology/app';
 import Select from '../../../topologies/Select';
+import { academyMessages } from '../../../translations/messages';
+import { LibroTheme } from '../../themes';
 
-const useStyles = makeStyles({
+const SHADOW_ELEVATION = 2;
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  listbox: {
+    backgroundColor: theme.palette.background.default,
+    boxShadow: theme.shadows[SHADOW_ELEVATION],
+  },
   root: {
     backgroundColor: '#FBFBFB',
   },
@@ -21,14 +35,19 @@ const useStyles = makeStyles({
     alignSelf: 'strech',
     flexGrow: 1,
   },
-});
+}));
 
 export const ChapterSearch = (): JSX.Element => {
   const lrs = useLRS();
+  const intl = useIntl();
   const classNames = useStyles();
+
   const [target] = useDig([app.target], app['individuals/searchTarget']);
+  const [title] = useResourceProperty(target?.[0] as SomeNode, schema.title);
 
   const searchObject = useChapterSearch(target?.[0]);
+
+  const [inputValue, setInputValue] = React.useState('');
 
   const filterOptions = createFilterOptions({
     stringify: (option: { key: string, text: string }) => option.text,
@@ -40,19 +59,25 @@ export const ChapterSearch = (): JSX.Element => {
     }
 
     lrs.actions.ontola.navigate(rdf.namedNode(value.key));
+    setInputValue('');
+  };
+
+  const handleInputChange = (_: React.ChangeEvent<Record<string, unknown>>, value: string) => {
+    setInputValue(value);
   };
 
   return (
     <Autocomplete
       blurOnSelect
       clearOnBlur
-      debug
       disableClearable
       freeSolo
       PaperComponent={(({ children }) => (<Select>{children}</Select>))}
       className={classNames.search}
+      classes={{ listbox: classNames.listbox }}
       filterOptions={filterOptions}
       getOptionLabel={(option) => option.key ?? ''}
+      open={!!inputValue}
       options={searchObject ?? []}
       renderInput={(params) => (
         <TextField
@@ -60,17 +85,28 @@ export const ChapterSearch = (): JSX.Element => {
           InputProps={{
             ...params.InputProps,
             classes: { root: classNames.root },
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="primary" />
+              </InputAdornment>
+            ),
             type: 'search',
           }}
-          label="Type hier jouw zoekopdracht"
           margin="dense"
+          placeholder={intl.formatMessage(academyMessages.searchIn, { title: title?.value })}
           variant="outlined"
         />
       )}
-      renderOption={(option) => (
-        <Resource subject={rdf.namedNode(option.key)} />
+      renderOption={(option, state) => (
+        <Resource
+          input={state.inputValue}
+          subject={rdf.namedNode(option.key)}
+          text={option.text}
+        />
       )}
+      value=""
       onChange={handleChange}
+      onInputChange={handleInputChange}
     />
   );
 };

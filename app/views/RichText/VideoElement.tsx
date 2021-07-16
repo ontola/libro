@@ -30,7 +30,7 @@ const VideoElement: FC = () => {
       className={className.video}
       controls={!isGif?.value}
       loop={!!isGif?.value}
-      playsInline={!!isGif.value}
+      playsInline={!!isGif?.value}
     >
       <source src={href.value} />
     </video>

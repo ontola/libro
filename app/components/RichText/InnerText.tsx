@@ -5,12 +5,14 @@ import React from 'react';
 export interface InnerTextProps {
   text: string,
   bold?: boolean,
+  color?: string,
   italic?: boolean,
   underline?: boolean,
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<undefined, Partial<InnerTextProps>>({
   bold: {
+    color: ({ color }) => color ?? 'inherit',
     fontWeight: 700,
   },
   italic: {
@@ -24,10 +26,11 @@ const useStyles = makeStyles({
 export const InnerText = ({
   text,
   bold,
+  color,
   italic,
   underline,
 }: InnerTextProps): JSX.Element => {
-  const classes = useStyles();
+  const classes = useStyles({ color });
   const className = clsx({
     [classes.bold]: bold,
     [classes.italic]: italic,

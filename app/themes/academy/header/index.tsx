@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
@@ -68,7 +67,6 @@ const AcademyHeader = (): JSX.Element => {
         </NavLink>
         <span className={classNames.searchWrapper}>
           <ChapterSearch />
-          <Button color="secondary" variant="contained">Zoek</Button>
         </span>
       </div>
     </Navbar>

@@ -98,6 +98,7 @@ export { component, components };
 
 const childTextMap = {
   bold: value(elements.bold),
+  color: value(elements.color),
   italic: value(elements.italic),
   text: value(schema.text),
   underline: value(elements.underline),
@@ -105,11 +106,17 @@ const childTextMap = {
 
 const childElementMap = {
   children: elements.children,
+  color: value(elements.color),
 };
 
 const childLinkMap = {
   ...childElementMap,
   href: value(ontola.href),
+};
+
+const childLiMap = {
+  ...childElementMap,
+  listVariant: value(elements.variant),
 };
 
 export interface ComponentMap {
@@ -157,7 +164,7 @@ export const componentMap = {
   [rdf.id(components.ElementP)]: [createTypographyComponent('body1'), childTypographyMap],
   [rdf.id(components.ElementA)]: [createFertileComponent('a'), childLinkMap],
   [rdf.id(components.ElementOl)]: [createFertileComponent('ol'), childElementMap],
-  [rdf.id(components.ElementLi)]: [createFertileComponent('li'), childElementMap],
+  [rdf.id(components.ElementLi)]: [createFertileComponent('li'), childLiMap],
   [rdf.id(components.ElementUl)]: [createFertileComponent('ul'), childElementMap],
   [rdf.id(components.ElementH1)]: [createTypographyComponent('h1'), childTypographyMap],
   [rdf.id(components.ElementH2)]: [createTypographyComponent('h2'), childTypographyMap],

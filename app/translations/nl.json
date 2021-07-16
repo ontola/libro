@@ -2,6 +2,9 @@
   "https://app.argu.co/i18n/academy/pdfDownload": {
     "defaultMessage": "Academy opslaan als pdf"
   },
+  "https://app.argu.co/i18n/academy/searchIn": {
+    "defaultMessage": "Zoeken in {title}"
+  },
   "https://app.argu.co/i18n/actions/labels/save": {
     "defaultMessage": "opslaan"
   },

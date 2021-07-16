@@ -36,7 +36,6 @@ const VideoSet: FC<VideoSetProps> = (props) => {
       {mp4 && <source src={mp4.value} type="video/mp4" />}
       {mov && <source src={mp4.value} type="video/quicktime" />}
 
-
       <p>
         <FormattedMessage
           defaultMessage="No video support"

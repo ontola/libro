@@ -31,6 +31,9 @@ export default {
   align: elements('align'),
   bold: elements('bold'),
   children: elements('children'),
+  color: elements('color'),
+  float: elements('float'),
   italic: elements('italic'),
   underline: elements('underline'),
+  variant: elements('variant'),
 };
