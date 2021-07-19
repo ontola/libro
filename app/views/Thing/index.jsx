@@ -36,7 +36,6 @@ import Menus from './properties/menus';
 import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
 import Omniform from './properties/omniform';
-import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
 import FavoriteAction from './properties/favoriteAction';
 import Predicate from './properties/predicate';
@@ -135,7 +134,6 @@ export default [
   MotionsCount,
   ...Name,
   ...Omniform,
-  Organization,
   PinnedAt,
   Predicate,
   Price,
