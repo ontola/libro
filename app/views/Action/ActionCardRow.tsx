@@ -11,7 +11,6 @@ import React from 'react';
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import { SignInFormLink } from '../../components/SignInForm';
-import { retrievePath } from '../../helpers/iris';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
@@ -24,7 +23,6 @@ const ActionCardRow: FC<ActionProps> = ({
   sessionStore,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [object] = useProperty(schema.object);
   const onDoneHandler = useDoneHandler(onDone);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
@@ -40,7 +38,6 @@ const ActionCardRow: FC<ActionProps> = ({
   return (
     <Property
       header
-      cancelPath={object && retrievePath(object.value)}
       label={schema.target}
       sessionStore={sessionStore}
       topology={cardMainTopology}

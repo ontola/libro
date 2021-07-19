@@ -1,210 +1,228 @@
 import {
-  NamedNode,
   SomeTerm,
   isNamedNode,
+  isNode,
 } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
+  LaxNode,
   LinkReduxLRSType,
+  ToJSOutputTypes,
+  literal,
+  term,
+  terms,
   useDataFetching,
   useLRS,
+  useResourceLinks,
 } from 'link-redux';
+import { LinkedDataObject, TermOpts } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import { containerToArr, entityIsLoaded } from '../helpers/data';
-import { tryParseInt } from '../helpers/numbers';
+import {
+  arraysEqual,
+  containerToArr,
+} from '../helpers/data';
 import { isPromise } from '../helpers/types';
 
-interface ShShape {
-  hasValue: SomeNode | undefined;
-  maxCount: SomeNode | undefined;
-  minCount: SomeNode | undefined;
-  path: SomeNode | undefined;
-  shIn: SomeNode[];
-  targetNode: SomeNode | undefined;
+import useShapeValues from './useShapeValues';
+
+const shapePropsMap = {
+  hasValue: term(sh.hasValue),
+  maxCount: literal(sh.maxCount),
+  minCount: literal(sh.minCount),
+  path: term(sh.path),
+  shAnd: terms(sh.and),
+  shIf: terms(sh.property),
+  shIn: terms(sh.shaclin),
+  shOr: terms(sh.or),
+  targetNode: term(sh.targetNode),
+  unless: terms(sh.not),
+};
+
+type RawNodeShape = LinkedDataObject<typeof shapePropsMap, TermOpts>;
+
+export interface NodeShape extends RawNodeShape {
+  shInValues: SomeTerm[];
 }
+export type ValuesFor = (subject: SomeNode) => SomeTerm[] | undefined;
 
-const conditionPath = <T extends SomeTerm>(lrs: LinkReduxLRSType, condition: ShShape): T[] => {
-  if (condition.path) {
-    const arr = containerToArr(lrs, [], condition.path);
+const hasMaxCount = (maxCount: ToJSOutputTypes | undefined, values: SomeTerm[]) => (
+  maxCount === undefined || values.length <= maxCount
+);
 
-    if (!isPromise(arr)) {
-      return arr as T[];
-    }
-  }
+const hasMinCount = (minCount: ToJSOutputTypes | undefined, values: SomeTerm[]) => (
+  minCount === undefined || values.length >= minCount
+);
 
-  return [];
-};
+const hasValue = (value: SomeTerm | undefined, values: SomeTerm[]) => (
+  value === undefined || values.includes(value)
+);
 
-const digDependencies = (lrs: LinkReduxLRSType, acc: SomeNode[], subject: SomeNode, path: SomeNode[]) => {
-  acc.push(subject);
+const hasValueIn = (shIn: SomeTerm[], values: SomeTerm[]) => (
+  values.some((value) => (
+    shIn.includes(value)
+  ))
+);
 
-  if (path.length > 1 && entityIsLoaded(lrs, subject)) {
-    const remaining = path.slice();
-    const pred = remaining.shift()!;
-    const values = lrs.getResourceProperties<SomeNode>(subject, pred);
-    values.forEach((val) => digDependencies(lrs, acc, val, remaining));
-  }
+const resolveCondition = (
+  shapeProps: NodeShape[],
+  valuesFor: ValuesFor,
+  shape: SomeNode,
+): boolean => {
+  const props = shapeProps.find((p) => p.subject === shape);
+  const values = isNode(shape) ? valuesFor(shape) : undefined;
 
-  return acc;
-};
-
-const getDependentResources = (lrs: LinkReduxLRSType, conditions: ShShape[], target: SomeNode): SomeNode[] => {
-  const resources: SomeNode[] = [];
-
-  conditions.forEach((condition) => {
-    if (condition.shIn) {
-      resources.push(...condition.shIn.filter(isNamedNode));
-    }
-
-    if (condition.targetNode) {
-      resources.push(condition.targetNode);
-    }
-
-    if (condition.path) {
-      resources.push(...digDependencies(lrs, [], target, conditionPath(lrs, condition)));
-    }
-  });
-
-  return resources;
-};
-
-const hasMaxCount = (_: LinkReduxLRSType, maxCount: SomeTerm, values: SomeTerm[]) =>
-  values.length <= tryParseInt(maxCount)!;
-
-const hasMinCount = (_: LinkReduxLRSType, minCount: SomeTerm, values: SomeTerm[]) =>
-  values.length >= tryParseInt(minCount)!;
-
-const hasValue = (lrs: LinkReduxLRSType, value: SomeTerm, values: SomeTerm[]) =>
-  values.map((v) => lrs.store.canon(v)).includes(lrs.store.canon(value));
-
-const hasValueIn = (lrs: LinkReduxLRSType, shIn: SomeTerm[], values: SomeTerm[]) => {
-  const inValues = shIn.flatMap((value) => (
-    isNamedNode(value) ? containerToArr(lrs, [], value) as SomeTerm[] : value
-  ));
-
-  return values.some((value) => (
-    inValues.map((v) => lrs.store.canon(v)).includes(lrs.store.canon(value))
-  ));
-};
-
-const resolveCondition = (lrs: LinkReduxLRSType, condition: ShShape, target: SomeNode): boolean => {
-  const path = conditionPath(lrs, condition);
-  const values = lrs.dig(condition.targetNode || target, path as NamedNode[]) as SomeTerm[];
-
-  if (condition.hasValue && !hasValue(lrs, condition.hasValue, values)) {
+  if (!props || !values) {
     return false;
   }
 
-  if (condition.shIn.length > 0 && !hasValueIn(lrs, condition.shIn, values)) {
+  if (!hasValue(props.hasValue, values)) {
     return false;
   }
 
-  if (condition.maxCount && !hasMaxCount(lrs, condition.maxCount, values)) {
+  if (props.shIn.length > 0 && !hasValueIn(props.shInValues, values)) {
     return false;
   }
 
-  if (condition.minCount && !hasMinCount(lrs, condition.minCount, values)) {
+  if (!hasMaxCount(props.maxCount, values)) {
+    return false;
+  }
+
+  if (!hasMinCount(props.minCount, values)) {
     return false;
   }
 
   return true;
 };
 
-const getNodeProperties = (lrs: LinkReduxLRSType, nodes: SomeNode[]): ShShape[] => (
-  nodes.map((node) => ({
-    hasValue: lrs.getResourceProperty(node, sh.hasValue),
-    maxCount: lrs.getResourceProperty(node, sh.maxCount),
-    minCount: lrs.getResourceProperty(node, sh.minCount),
-    path: lrs.getResourceProperty(node, sh.path),
-    shIn: lrs.getResourceProperties(node, sh.shaclin),
-    targetNode: lrs.getResourceProperty(node, sh.targetNode),
-  }))
-);
+const validateShape = (shapeProps: NodeShape[], valuesFor: ValuesFor, shape: SomeNode) => {
+  const props = shapeProps.find((p) => p.subject === shape);
 
-const validateNestedShape = (
-  lrs: LinkReduxLRSType,
-  node: SomeNode,
-  target: SomeNode,
-  dependentResources: SomeNode[],
-) => {
-  const {
-    dependentResources: currentDependentResources,
-    pass,
-    // eslint-disable-next-line no-use-before-define
-  } = validateShape(lrs, node, target);
-  dependentResources.push(...currentDependentResources);
+  if (!props) {
+    return false;
+  }
 
-  return pass;
+  if (props.shOr.length > 0) {
+    const passedOrNodes = props.shOr.filter(isNode).filter((node) => (
+      validateShape(shapeProps, valuesFor, node)),
+    );
+
+    if (passedOrNodes.length === 0) {
+      return false;
+    }
+  }
+
+  if (props.shAnd.length > 0) {
+    const failedAndNodes = props.shAnd.filter(isNode).filter((node) => (
+      !validateShape(shapeProps, valuesFor, node)
+    ));
+
+    if (failedAndNodes.length > 0) {
+      return false;
+    }
+  }
+
+  if (props.shIf.length > 0) {
+    const ifFailed = !props.shIf.filter(isNode).every((ifShape) => (
+      resolveCondition(shapeProps, valuesFor, ifShape)),
+    );
+
+    if (ifFailed) {
+      return false;
+    }
+  }
+
+  if (props.unless.length > 0) {
+    const unlessFailed = props.unless.filter(isNode).some((unlessShape) => (
+      resolveCondition(shapeProps, valuesFor, unlessShape)),
+    );
+
+    if (unlessFailed) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
-const validateShape = (lrs: LinkReduxLRSType, shape: SomeNode, targetFromProp: SomeNode) => {
-  const targetNode = lrs.getResourceProperty<SomeNode>(shape, sh.targetNode);
-  const target = targetNode || targetFromProp;
+const normalizeProps = (lrs: LinkReduxLRSType, props: RawNodeShape): NodeShape => {
+  const hasValueProp = props.hasValue ? lrs.store.canon(props.hasValue) : undefined;
+  const shInValues = props.shIn.flatMap((value) => {
+    const acc = isNamedNode(value) ? containerToArr<SomeTerm>(lrs, [], value) : value;
 
-  const andNodes = lrs.getResourceProperties<SomeNode>(shape, sh.and);
-  const orNodes = lrs.getResourceProperties<SomeNode>(shape, sh.or);
+    if (isPromise(acc)) {
+      return [];
+    }
 
-  const ifNodes = lrs.getResourceProperties<SomeNode>(shape, sh.property);
-  const unlessNodes = lrs.getResourceProperties<SomeNode>(shape, sh.not);
-  const ifProps = getNodeProperties(lrs, ifNodes);
-  const unlessProps = getNodeProperties(lrs, unlessNodes);
-
-  const dependentResources = getDependentResources(lrs, ifProps.concat(unlessProps), target);
-
-  let pass = true;
-  const passedOrNodes = orNodes
-    .filter((node) => validateNestedShape(lrs, node, target, dependentResources));
-
-  if (orNodes.length > 0 && passedOrNodes.length === 0) {
-    pass = false;
-  }
-
-  const failedAndNodes = andNodes
-    .filter((node) => !validateNestedShape(lrs, node, target, dependentResources));
-
-  if (failedAndNodes.length > 0) {
-    pass = false;
-  }
-
-  if (pass && !ifProps.every((condition) => resolveCondition(lrs, condition, target))) {
-    pass = false;
-  }
-
-  if (pass && unlessProps.some((condition) => resolveCondition(lrs, condition, target))) {
-    pass = false;
-  }
+    return acc;
+  }).map((v) => lrs.store.canon(v));
 
   return {
-    dependentResources,
-    pass,
+    ...props,
+    hasValue: hasValueProp,
+    shInValues,
   };
 };
 
-const useShapeValidation = (shape: SomeNode, target: SomeNode | undefined): boolean => {
-  const lrs = useLRS();
-  const [dependentResources, setDependentResources] = React.useState<SomeNode[]>([]);
-  const [pass, setPass] = React.useState(false);
-  const [timestamp, setTimestamp] = React.useState<number | null>(null);
+const useShapeDependencies = (normalizedProps: NodeShape[]) => {
+  const [dependencies, setDependencies] = React.useState<SomeNode[]>([]);
+  useDataFetching(dependencies);
+
   React.useEffect(() => {
-    if (target) {
-      const {
-        dependentResources: currentDependentResources,
-        pass: currentPass,
-      } = validateShape(lrs, shape, target);
-      setDependentResources(currentDependentResources);
-      setPass(currentPass);
+    const newDependencies = new Set();
+
+    for (const props of normalizedProps) {
+      for (const item of props.shIn) {
+        newDependencies.add(item);
+      }
+
+      newDependencies.add(props.targetNode);
     }
-  }, [shape, target, timestamp]);
 
-  const currentTimestamp = useDataFetching(dependentResources.filter(isNamedNode));
+    setDependencies(Array.from(newDependencies).filter(isNode));
+  }, [normalizedProps]);
+};
 
-  if (currentTimestamp !== timestamp) {
-    setTimestamp(currentTimestamp);
-  }
+const useShapeProps = (shape: SomeNode): NodeShape[] => {
+  const lrs = useLRS();
+  const [shapes, setShapes] = React.useState<SomeNode[]>([shape]);
+  const shapeProps = useResourceLinks(shapes, shapePropsMap);
+  useDataFetching(shapes);
+  const [normalizedProps, setNormalizedProps] = React.useState<NodeShape[]>([]);
+  React.useEffect(() => {
+    setNormalizedProps(shapeProps.map((props) => normalizeProps(lrs, props)));
+  }, [shapeProps]);
+  useShapeDependencies(normalizedProps);
 
-  return pass;
+  React.useEffect(() => {
+    const newShapesSet = new Set();
+
+    shapeProps.forEach((currentProps) => {
+      newShapesSet.add(currentProps.subject);
+      currentProps.shAnd.forEach((node) => newShapesSet.add(node));
+      currentProps.shOr.forEach((node) => newShapesSet.add(node));
+      currentProps.shIf.forEach((node) => newShapesSet.add(node));
+      currentProps.unless.forEach((node) => newShapesSet.add(node));
+    });
+
+    const newShapes = Array.from(newShapesSet).filter(isNode);
+
+    if (!arraysEqual(shapes, newShapes)) {
+      setShapes(newShapes);
+    }
+  }, [shapeProps]);
+
+  return normalizedProps;
+};
+
+const useShapeValidation = (shape: SomeNode, targetFromProp: LaxNode): boolean => {
+  const shapeProps = useShapeProps(shape);
+  const valuesFor = useShapeValues(targetFromProp, shapeProps);
+
+  return React.useMemo(() => (
+    validateShape(shapeProps, valuesFor, shape)
+  ), [shapeProps, valuesFor]);
 };
 
 export default useShapeValidation;
