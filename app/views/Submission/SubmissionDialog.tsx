@@ -1,8 +1,12 @@
-import { NamedNode, isNamedNode } from '@ontologies/core';
+import {
+  NamedNode,
+  isNamedNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
+  Resource,
   register,
   useDataFetching,
   useProperty,
@@ -48,19 +52,23 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
     );
   }
 
-  if (!submitActionStatus || !isNamedNode(submitAction) || !externalIRI) {
+  if (!submitActionStatus || !isNamedNode(submitAction)) {
     return null;
   }
 
-  return (
-    <Property label={schema.isPartOf}>
-      <Property
-        label={argu.externalIRI}
-        submitAction={submitAction}
-        onClose={onDone}
-      />
-    </Property>
-  );
+  if (externalIRI) {
+    return (
+      <Property label={schema.isPartOf}>
+        <Property
+          label={argu.externalIRI}
+          submitAction={submitAction}
+          onClose={onDone}
+        />
+      </Property>
+    );
+  }
+
+  return <Resource subject={submitAction} />;
 };
 
 SubmissionDialog.type = argu.Submission;
