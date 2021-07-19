@@ -1,5 +1,7 @@
 import DayJSUtils from '@date-io/dayjs';
 import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import rdf from '@ontologies/core';
+import * as xsd from '@ontologies/xsd';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -44,7 +46,7 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
         okLabel={intl.formatMessage(formMessages.okLabel)}
         todayLabel={intl.formatMessage(formMessages.todayLabel)}
         value={value}
-        onChange={(e) => onChange(e === null ? null : e?.format())}
+        onChange={(e) => onChange(e === null ? null : rdf.literal(e.format(), xsd.dateTime))}
       />
     </MuiPickersUtilsProvider>
   );

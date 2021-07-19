@@ -5,8 +5,6 @@ import rdf, {
   Quad,
   SomeTerm,
   Term,
-  isBlankNode,
-  isLiteral,
   isNamedNode,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
@@ -115,8 +113,6 @@ function serializableValue(v: any, fileStore: FileStore): any | any[] | File | s
     return v.map((i) => serializableValue(i, fileStore));
   } else if (isFileType(v)) {
     return fileStore[v.value];
-  } else if (isLiteral(v) || isBlankNode(v)) {
-    return v.value;
   }
 
   return v;
