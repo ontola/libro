@@ -67,6 +67,7 @@ import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import SocialButton from './SocialButton';
 import Submission from './Submission';
+import SubmissionDataTableCell from './SubmissionData';
 import Survey from './Survey';
 import Term from './Term';
 import Thing from './Thing';
@@ -144,6 +145,7 @@ export function getViews() {
     ...SnackbarManager,
     ...SocialButton,
     ...Submission,
+    ...SubmissionDataTableCell,
     ...Survey,
     ...Timeline,
     ...Token,
