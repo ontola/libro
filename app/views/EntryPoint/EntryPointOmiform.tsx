@@ -56,12 +56,12 @@ const EntryPointOmniform: FC<PropTypes> = ({
 
   const formID = `${atob(parentIRI)}.omniform`;
   const submitHandler = useSubmitHandler({
+    entryPoint: subject!,
     formID,
     modal,
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject: subject!,
   });
   const [object] = useResourceProperty(action, schema.object);
 

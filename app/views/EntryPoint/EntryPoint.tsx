@@ -55,8 +55,8 @@ const EntryPoint: FC<EntryPointProps> = ({
   const formURL = new URL(subject.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
+    entryPoint: subject,
     formID,
-    subject,
   });
   const label = `${name.value} ${countInParentheses(count)}`;
 

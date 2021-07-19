@@ -59,12 +59,12 @@ const EntryPointCardMain: FC<PropTypes> = ({
   const formURL = new URL(subject!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
+    entryPoint: subject!,
     formID,
     modal,
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject: subject!,
   });
   const onCancelClick = React.useCallback((e) => {
     e.preventDefault();

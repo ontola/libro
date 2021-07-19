@@ -3,7 +3,10 @@ import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import HttpStatus from 'http-status-codes';
 import { SomeNode, anyRDFValue } from 'link-lib';
-import { useLRS, useLink } from 'link-redux';
+import {
+  useLRS,
+  useResourceLink,
+} from 'link-redux';
 import React from 'react';
 
 import {
@@ -15,12 +18,12 @@ import { isDifferentWebsite } from '../../helpers/iris';
 import { InputValue } from '../../hooks/useFormField';
 
 interface PropTypes {
+  entryPoint: SomeNode;
   formID: string;
   modal?: boolean;
   onDone?: (response: Response) => void;
   onStatusForbidden?: () => Promise<void>;
   responseCallback?: (response: Response) => void;
-  subject: SomeNode;
 }
 
 export interface FormValues {
@@ -31,10 +34,10 @@ export type SubmitHandler = (formData: FormValues, formApi?: FormApi<FormValues>
   Promise<void>;
 
 const useSubmitHandler = ({
+  entryPoint,
   formID,
   modal,
   responseCallback,
-  subject,
   onDone,
   onStatusForbidden,
 }: PropTypes): SubmitHandler => {
@@ -43,7 +46,7 @@ const useSubmitHandler = ({
     action,
     httpMethod,
     url,
-  } = useLink({
+  } = useResourceLink(entryPoint, {
     action: schema.isPartOf,
     httpMethod: schema.httpMethod,
     url: schema.url,
@@ -100,7 +103,7 @@ const useSubmitHandler = ({
           return onStatusForbidden();
         }
 
-        return lrs.actions.app.startSignIn(subject).then(() => Promise.reject(e));
+        return lrs.actions.app.startSignIn(entryPoint).then(() => Promise.reject(e));
       }
 
       if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
@@ -119,10 +122,10 @@ const useSubmitHandler = ({
     });
   }, [
     action,
+    entryPoint,
     httpMethod,
     modal,
     responseCallback,
-    subject,
     url,
     onDone,
     onStatusForbidden,

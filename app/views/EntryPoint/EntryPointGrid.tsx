@@ -66,12 +66,12 @@ const EntryPointGrid: FC<PropTypes> = ({
   const formURL = new URL(subject!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
+    entryPoint: subject!,
     formID,
     modal,
     onDone,
     onStatusForbidden,
     responseCallback,
-    subject: subject!,
   });
   const [object] = useResourceProperty(isNode(action) ? action : undefined, schema.object);
   const footer = React.useCallback((loading: boolean) => (
