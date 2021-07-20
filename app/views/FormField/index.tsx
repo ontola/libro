@@ -4,6 +4,8 @@ import CheckboxFormField from './CheckboxFormField';
 import DateFormField from './DateFormField';
 import DelayedFormField from './DelayedFormField';
 import FileFormField from './FileFormField';
+import FormFieldContainer from './FormFieldContainer';
+import FormFieldFull from './FormFieldFull';
 import LocationFormField from './LocationFormField';
 import MoneyField from './MoneyInputField';
 import MultipleEmailFormField from './MultipleEmailFormField';
@@ -23,6 +25,8 @@ export default [
   DateFormField,
   DelayedFormField,
   FileFormField,
+  FormFieldContainer,
+  FormFieldFull,
   LocationFormField,
   MoneyField,
   MultipleEmailFormField,

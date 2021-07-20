@@ -8,11 +8,10 @@ import {
 import React from 'react';
 
 import { FormContext } from '../../components/Form/Form';
-import FormField from '../../components/FormField/FormField';
+import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
 
 const getInputType = (theme: string | undefined, type: SomeTerm) => {
   if (type === form.EmailInput) {
@@ -64,6 +63,6 @@ TextFormField.type = [
   form.MarkdownInput,
 ];
 
-TextFormField.topology = allTopologies;
+TextFormField.topology = formFieldTopologies;
 
 export default register(TextFormField);

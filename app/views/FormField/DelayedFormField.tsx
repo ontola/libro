@@ -7,11 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import FormField from '../../components/FormField/FormField';
+import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
 
 const getInputType = (type: SomeTerm) => {
   if (type === form.ColorInput) {
@@ -56,6 +55,6 @@ DelayedFormField.type = [
   form.NumberInput,
 ];
 
-DelayedFormField.topology = allTopologies;
+DelayedFormField.topology = formFieldTopologies;
 
 export default register(DelayedFormField);

@@ -11,8 +11,8 @@ import {
 import React from 'react';
 
 import { FormContext } from '../../components/Form/Form';
+import { formFieldTopologies } from '../../components/FormField/FormField';
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
 import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
 const ResourceField = () => {
@@ -62,6 +62,6 @@ const ResourceField = () => {
 
 ResourceField.type = form.ResourceField;
 
-ResourceField.topology = allTopologies;
+ResourceField.topology = formFieldTopologies;
 
 export default register(ResourceField);

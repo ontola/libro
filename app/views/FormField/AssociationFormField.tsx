@@ -13,7 +13,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { FormContext } from '../../components/Form/Form';
-import FormField from '../../components/FormField/FormField';
+import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import AssociationInput from '../../components/Input/AssociationInput';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../helpers/diggers';
 import { SubmitDataProcessor } from '../../helpers/errorHandling';
@@ -23,7 +23,7 @@ import { ClonedLRS } from '../../hooks/useFormLRS';
 import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
-import { allTopologies } from '../../topologies';
+
 
 const useItemFactory = () => {
   const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
@@ -79,6 +79,6 @@ const AssociationFormField: FC = (props) => {
 
 AssociationFormField.type = form.AssociationInput;
 
-AssociationFormField.topology = allTopologies;
+AssociationFormField.topology = formFieldTopologies;
 
 export default register(AssociationFormField);

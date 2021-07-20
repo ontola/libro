@@ -6,12 +6,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import FormField from '../../components/FormField/FormField';
+import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import DatePicker from '../../containers/DatePicker';
 import DateTimePicker from '../../containers/DateTimePicker';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
 
 const DateFormField: FC = (props) => {
   const fieldProps = useFormField(props);
@@ -35,6 +34,6 @@ DateFormField.type = [
   form.DateTimeInput,
 ];
 
-DateFormField.topology = allTopologies;
+DateFormField.topology = formFieldTopologies;
 
 export default register(DateFormField);

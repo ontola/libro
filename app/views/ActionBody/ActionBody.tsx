@@ -5,7 +5,9 @@ import {
 import React from 'react';
 
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
+import { allTopologiesExcept } from '../../topologies';
+import { fullResourceTopology } from '../../topologies/FullResource';
+import { pageTopology } from '../../topologies/Page';
 
 const ActionBody = () => (
   <Property label={form.pages} />
@@ -13,6 +15,6 @@ const ActionBody = () => (
 
 ActionBody.type = form.Form;
 
-ActionBody.topology = allTopologies;
+ActionBody.topology = allTopologiesExcept(fullResourceTopology, pageTopology);
 
 export default register(ActionBody);

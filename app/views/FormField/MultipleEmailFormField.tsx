@@ -1,11 +1,11 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import FormField from '../../components/FormField/FormField';
+import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import { MultipleEmailInput } from '../../components/Input/MultipleEmailInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
+
 
 const MultipleEmailFormField: FC = (props) => {
   const fieldProps = useFormField({
@@ -29,6 +29,6 @@ const MultipleEmailFormField: FC = (props) => {
 
 MultipleEmailFormField.type = form.MultipleEmailInput;
 
-MultipleEmailFormField.topology = allTopologies;
+MultipleEmailFormField.topology = formFieldTopologies;
 
 export default register(MultipleEmailFormField);

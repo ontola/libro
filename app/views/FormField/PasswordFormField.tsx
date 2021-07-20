@@ -1,13 +1,12 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import FormField from '../../components/FormField/FormField';
+import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import { InputType } from '../../components/Input/Input';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
 
 const PasswordInput = (fieldProps: InputComponentProps) => (
   <InputElement
@@ -37,6 +36,6 @@ const PasswordFormField: FC = (props) => {
 
 PasswordFormField.type = form.PasswordInput;
 
-PasswordFormField.topology = allTopologies;
+PasswordFormField.topology = formFieldTopologies;
 
 export default register(PasswordFormField);

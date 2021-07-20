@@ -5,6 +5,9 @@ import {
   OnInputChange,
   PermittedFormField,
 } from '../../hooks/useFormField';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { formFooterTopology } from '../../topologies/FormFooter';
+import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldHelper from './FormFieldHelper';
@@ -13,6 +16,8 @@ import FormInputs from './FormInputs';
 
 import './DateTime.scss';
 import './FormField.scss';
+
+export const formFieldTopologies = [cardMainTopology, formFooterTopology, omniformFieldsTopology];
 
 export interface FormFieldProps extends Partial<PermittedFormField> {
   combinedComponent?: boolean;
