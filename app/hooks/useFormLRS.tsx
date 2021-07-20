@@ -15,7 +15,7 @@ export interface ClonedLRS extends LinkReduxLRSType {
 }
 
 const cloneLRS = (old: LinkReduxLRSType) =>  {
-  const { lrs: next } = generateLRS();
+  const { lrs: next } = generateLRS([], { middleware: false });
 
   register(next);
 
@@ -25,6 +25,7 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
     (next.store as any).langPrefs = (old.store as any).langPrefs;
     (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
     next.schema.addQuads((old.schema as any).store.quads);
+    next.actions = old.actions;
 
     const nextDispatch = next.dispatch;
 

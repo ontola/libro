@@ -40,18 +40,26 @@ export interface LRSBundle {
   serviceWorkerCommunicator: ServiceWorkerCommunicator;
 }
 
-export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
-  const history = __CLIENT__ ? createBrowserHistory() : createMemoryHistory();
+export interface GenerateLRSOpts {
+  middleware?: boolean;
+}
+
+const defaultOpts = {
+  middleware: __CLIENT__,
+};
+
+export default function generateLRS(initialDelta: Quad[] = [], options: GenerateLRSOpts = defaultOpts): LRSBundle {
+  const history = options.middleware ? createBrowserHistory() : createMemoryHistory();
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
-  const middleware: Array<MiddlewareFn<any>> = [
+  const middleware: Array<MiddlewareFn<any>> = options.middleware ? [
     logging(),
     ontolaMiddleware(history, serviceWorkerCommunicator),
     analyticsMiddleware(),
     appMiddleware(),
     searchMiddleware(),
     execFilter(),
-  ];
+  ] : [];
   const storeOptions = __CLIENT__
     ? { report: handle }
     : {
@@ -94,7 +102,7 @@ export default function generateLRS(initialDelta: Quad[] = []): LRSBundle {
 
   const websocketPath = getMetaContent('websocket-path');
 
-  if (__CLIENT__ && websocketPath && !localStorage.getItem('_apex_disable_ws')) {
+  if (__CLIENT__ && websocketPath && !localStorage.getItem('_apex_disable_ws') && options.middleware) {
     initializeCable(lrs, websocketPath).then(() => {
       subscribeDeltaChannel(lrs, 'UserChannel');
       subscribeDeltaChannel(lrs, 'RootChannel');
