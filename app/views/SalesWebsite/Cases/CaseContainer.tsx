@@ -14,10 +14,10 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import Showcase from '../../../topologies/Showcase';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import Container, { containerTopology } from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import Showcase from '../../../topologies/Showcase';
 
 export interface CaseContainerProps {
   noBackdrop?: boolean;
@@ -40,6 +40,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     },
   },
   imageContainer: {
+    filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, .1))',
     marginBottom: 85,
   },
   propositionSelector: {
@@ -88,7 +89,12 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
         {renderedImage}
         <Showcase>
           <div className={classes.propositionSelector}>
-            <Property childProps={{ noBackdrop }} label={sales.caseShowcase} />
+            <Grid
+              container
+              spacing={4}
+            >
+              <Property childProps={{ noBackdrop }} label={sales.caseShowcase} />
+            </Grid>
           </div>
         </Showcase>
         <Button

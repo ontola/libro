@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Node, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -9,9 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { HeaderProductPages } from '../../../components/SalesWebsite';
+import { ArticleContent, HeaderProductPages } from '../../../components/SalesWebsite';
 import { Size } from '../../../components/shared/config';
-import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
@@ -19,6 +17,11 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  articleContent: {
+    margin: 'unset',
+    maxWidth: '100%',
+    width: '100%',
+  },
   caseContainer: {
     padding: 20,
     paddingTop: 60,
@@ -31,11 +34,11 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     textAlign: 'center',
   },
   textBlockContainer: {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     marginBottom: 50,
+    padding: '6rem',
+    [theme.breakpoints.down('sm')]: {
+      padding: '1rem',
+    },
   },
   title: {
     marginTop: '9rem',
@@ -60,9 +63,6 @@ const ProductPageFull: FC = () => {
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.description);
   const [text] = useProperty(schema.text);
-  const [productTextTitle] = useProperty(sales.productTextTitle);
-  const [productText1] = useProperty(sales.productTextContent) as Node[];
-  const [productTexts] = useContainerToArr(productText1);
   const [featureTitle] = useProperty(sales.featureTitle);
 
   return (
@@ -72,28 +72,13 @@ const ProductPageFull: FC = () => {
         backgroundImageUrlMobile={backgroundImageMobile.value}
         buttonLink={buttonLink.value}
         buttonText={buttonText.value}
-        subtitle={text.value}
+        subtitle={text}
         title={title.value}
       >
-        <Container>
-          <Typography
-            className={classes.title}
-            variant="h2"
-          >
-            {productTextTitle.value}
-          </Typography>
-          <div className={classes.textBlockContainer}>
-            {productTexts
-              .map((paragraph: SomeTerm, i: number) => (
-                <Typography
-                  className={classes.textBlock}
-                  key={i}
-                  variant="body1"
-                >
-                  {paragraph.value}
-                </Typography>
-              ))}
-          </div>
+        <Container className={classes.textBlockContainer}>
+          <ArticleContent classes={{ content: classes.articleContent }}>
+            <Property label={sales.productText} />
+          </ArticleContent>
         </Container>
       </HeaderProductPages>
       <BlueBlock size={Size.Large}>

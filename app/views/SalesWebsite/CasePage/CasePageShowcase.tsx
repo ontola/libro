@@ -8,12 +8,12 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { ReadMoreButton } from '../../../components/SalesWebsite';
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { gridTopology } from '../../../topologies/Grid';
 import { showcaseTopology } from '../../../topologies/Showcase';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
-import { ReadMoreButton } from '../../../components/SalesWebsite';
 
 export interface CasePageShowcaseProps {
   noBackdrop?: boolean;
@@ -36,11 +36,17 @@ const useStyles = makeStyles<SalesTheme, CasePageShowcaseProps>((theme) => ({
     marginTop: 100,
   },
   productButton: {
+    '&:hover $readMore': {
+      textDecoration: 'underline',
+    },
     alignItems: 'flex-start',
     background: (props) => props.noBackdrop ? 'none' : 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     justifyContent: 'center',
     padding: 20,
     textAlign: 'left',
+    [theme.breakpoints.down('sm')]: {
+      background: '#f8fbff !important',
+    },
   },
   readMore: {
     fontSize: '1rem',
@@ -65,36 +71,42 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
   const [tagline] = useProperty(sales.tagline);
 
   return (
-    <Button
-      className={classes.productButton}
-      classes={buttonOverrideStyles}
-      component={NavLink as React.ElementType}
-      to={retrievePath(props.subject as NamedNode)!}
+    <Grid
+      item
+      md={4}
+      sm={12}
     >
-      <Grid
-        container
-        className={classes.container}
-        direction="column"
-        justify="flex-start"
+      <Button
+        className={classes.productButton}
+        classes={buttonOverrideStyles}
+        component={NavLink as React.ElementType}
+        to={retrievePath(props.subject as NamedNode)!}
       >
-        <Typography
-          className={classes.themeIndicator}
-          variant="h6"
+        <Grid
+          container
+          className={classes.container}
+          direction="column"
+          justify="flex-start"
         >
-          {theme.value}
-        </Typography>
-        <Typography
-          className={classes.title}
-          variant="h6"
-        >
-          {name.value}
-        </Typography>
-        <Typography variant="body1">
-          {tagline.value}
-        </Typography>
-        <ReadMoreButton className={classes.readMore} />
-      </Grid>
-    </Button>
+          <Typography
+            className={classes.themeIndicator}
+            variant="h6"
+          >
+            {theme.value}
+          </Typography>
+          <Typography
+            className={classes.title}
+            variant="h6"
+          >
+            {name.value}
+          </Typography>
+          <Typography variant="body1">
+            {tagline.value}
+          </Typography>
+          <ReadMoreButton className={classes.readMore} />
+        </Grid>
+      </Button>
+    </Grid>
   );
 };
 

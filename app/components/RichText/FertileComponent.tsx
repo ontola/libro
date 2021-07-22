@@ -1,13 +1,14 @@
-import React from 'react';
-import { normalizeType } from 'link-lib';
-import { isNode } from '@ontologies/core';
-import { Resource } from 'link-redux';
-import { makeStyles } from '@material-ui/styles';
 import { lighten } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { isNode } from '@ontologies/core';
 import clsx from 'clsx';
+import { normalizeType } from 'link-lib';
+import { Resource } from 'link-redux';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { LibroTheme } from '../../themes/themes';
+import Link from '../Link';
 
 const LIST_LEFT_MARGIN = 14;
 const ASIDE_BOTTOM_MARGIN = 4;
@@ -102,13 +103,15 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
 
   const componentAttributes = Elem === 'a' ?
     {
-      href,
-      rel: 'noopener noreferrer',
+      allowExternal: false,
+      to: href,
     } : {};
+
+  const Comp = Elem === 'a' ? Link : Elem;
 
   return (
     // @ts-ignore
-    <Elem
+    <Comp
       className={className}
       {...componentAttributes}
     >
@@ -116,6 +119,6 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
       <WrapperEl>
         {isNode(children) ? normalizeType(children).map((child) => <Resource key={child.value} subject={child} />) : children}
       </WrapperEl>
-    </Elem>
+    </Comp>
   );
 };

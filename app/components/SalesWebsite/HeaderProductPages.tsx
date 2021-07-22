@@ -7,16 +7,30 @@ import {
 } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { Property } from 'link-redux';
+import { Property, Resource } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { retrievePath } from '../../helpers/iris';
-import Container from '../../topologies/Container';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import Container from '../../topologies/Container';
+
+import { ArticleContent } from './ArticleContent';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
+  articleContent: {
+    margin: 'unset',
+    maxWidth: '100%',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      '& p': {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+  },
   button: {
     alignItems: 'center',
     display: 'flex',
@@ -51,14 +65,12 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     padding: 20,
   },
   imageContainer: {
+    filter: 'drop-shadow(0px 8px 13px rgba(0, 0, 0, .4))',
     flex: 1,
   },
   imageWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.down('md')]: {
-      margin: -25,
-    },
   },
   subtitle: {
     textAlign: 'center',
@@ -82,7 +94,7 @@ export interface HeaderProductPagesProps {
   buttonText: string,
   children: React.ReactChild;
   title: string,
-  subtitle: string,
+  subtitle: SomeTerm,
 }
 
 /** Full page with a branded header */
@@ -137,7 +149,9 @@ export const HeaderProductPages = ({
               className={classes.subtitle}
               variant="subtitle1"
             >
-              {subtitle}
+              <ArticleContent classes={{ content: classes.articleContent }}>
+                <Resource subject={subtitle} />
+              </ArticleContent>
             </Typography>
             <div className={classes.buttonWrapper}>
               <Button

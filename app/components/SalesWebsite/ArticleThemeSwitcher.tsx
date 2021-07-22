@@ -23,7 +23,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     backgroundColor: '#F8FBFF',
     borderRadius: theme.shape.borderRadius,
     fontWeight: theme.typography.fontWeightBold,
-    padding: '0.8rem',
+    padding: '.8rem',
     transition: 'color 100ms, background-color 100ms',
   },
   themeButtonActive: {
@@ -32,6 +32,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   themeContainer: {
     display: 'flex',
+    flexWrap: 'wrap',
     gap: '1rem',
     justifyContent: 'center',
   },

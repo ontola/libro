@@ -23,9 +23,9 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     fontSize: 18,
   },
   gradient: {
-    background: `linear-gradient(0deg, ${theme.palette.background.default}, 10%, ${theme.palette.background.default}, transparent);`,
-    height: '100px',
-    marginTop: 80,
+    background: `linear-gradient(0deg, ${theme.palette.background.default}, 10%, ${theme.palette.background.default}, rgba(255, 255, 255, 0));`,
+    height: '50px',
+    position: 'relative',
     width: '100%',
   },
   header: {
@@ -38,15 +38,18 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: 20,
 
     [theme.breakpoints.down('xs')]: {
+      backgroundAttachment: 'unset',
       backgroundImage: ({ backgroundImageUrlMobile }) => `url(${backgroundImageUrlMobile})`,
     },
 
     [theme.breakpoints.up('xl')]: {
       backgroundImage: ({ backgroundImageXL }) => `url(${backgroundImageXL}) !important`,
     },
+  },
+  spacer: {
+    margin: 50,
   },
   subtitle: {
     maxWidth: '40rem',
@@ -85,14 +88,17 @@ export const Header = ({
   return (
     <div className={classes.header}>
       <Typography className={classes.title} variant="h1">{title}</Typography>
-      {subtitle && (
-        <Typography
-          className={classes.subtitle}
-          variant="subtitle1"
-        >
-          {subtitle}
-        </Typography>
-      )}
+      {subtitle ?
+        (
+          <Typography
+            className={classes.subtitle}
+            variant="subtitle1"
+          >
+            {subtitle}
+          </Typography>
+        ) : (
+          <div className={classes.spacer} />
+        )}
       {buttonText && (
         <CallToActionButton text={buttonText} url={buttonLink!} />
       )}

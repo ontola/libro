@@ -34,6 +34,12 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     alignSelf: 'flex-end',
     display: 'flex',
   },
+  gradient: {
+    background: `linear-gradient(180deg, ${theme.palette.background.default}, 10%, ${theme.palette.background.default}, rgba(255, 255, 255, 0));`,
+    height: '50px',
+    position: 'relative',
+    width: '100%',
+  },
   header: {
     alignItems: 'center',
     backgroundAttachment: 'fixed',
@@ -89,6 +95,7 @@ export const Parallax = ({
       className={classes.header}
       style={{ backgroundImage: `url(${parallax})` }}
     >
+      <div className={classes.gradient} />
       <Container>
         <Grid
           container

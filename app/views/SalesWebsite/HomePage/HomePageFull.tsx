@@ -88,7 +88,7 @@ const HomePageFull: FC = () => {
   return (
     <div className={classes.wrapper}>
       <Property label={sales.header} />
-      <Container>
+      <Container className={classes.propositionContainer}>
         <Showcase
           className={classes.propositionSelector}
           spacing={0}

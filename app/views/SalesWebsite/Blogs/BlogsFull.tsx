@@ -28,7 +28,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
     width: '100%',
   },
-  bottomGutter: {
+  container: {
+    backgroundColor: theme.palette.background.default,
     marginBottom: '5rem',
   },
   propositionSelector: {
@@ -67,7 +68,7 @@ const BlogsFull: FC = ({ subject }) => {
   return (
     <React.Fragment>
       <Property label={sales.header} />
-      <Container className={classes.bottomGutter}>
+      <Container className={classes.container}>
         <div className={classes.themeSwitcher}>
           <ArticleThemeSwitcher
             currentTheme={filter}
@@ -94,7 +95,7 @@ const BlogsFull: FC = ({ subject }) => {
       <Typography align="center" variant="h2">
         <Property label={schema.text} />
       </Typography>
-      <Container className={classes.bottomGutter}>
+      <Container className={classes.container}>
         <Showcase className={classes.propositionSelector} spacing={0}>
           <Property label={sales.showcase} />
         </Showcase>

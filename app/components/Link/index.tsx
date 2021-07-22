@@ -20,9 +20,9 @@ import { isFunction } from '../../helpers/types';
 import app from '../../ontology/app';
 
 import ExternalLink from './ExternalLink';
-import themeStyles from './ThemeStyles';
 // tslint:disable ordered-imports
 import featureStyles from './FeatureStyles';
+import themeStyles from './ThemeStyles';
 
 export enum LinkTarget {
   Blank = '_blank',
@@ -107,6 +107,7 @@ const Link: React.FC<PropTypesWithRef> = ({
       <button
         disabled
         title={title}
+        type="button"
       >
         {children}
       </button>
@@ -114,6 +115,7 @@ const Link: React.FC<PropTypesWithRef> = ({
   }
 
   let path;
+
   if (isDifferentWebsite(to)) {
     if (!allowExternal) {
       return (

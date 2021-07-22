@@ -23,7 +23,10 @@ import { blogMessages } from '../../../translations/messages';
 
 const CREATOR_IMAGE_SIZE = '4rem';
 
-const useStyles = makeStyles<SalesTheme>({
+const useStyles = makeStyles<SalesTheme>((theme) => ({
+  container: {
+    backgroundColor: theme.palette.background.default,
+  },
   creator: {
     '& img': {
       height: '100%',
@@ -45,7 +48,7 @@ const useStyles = makeStyles<SalesTheme>({
     justifyContent: 'space-around',
     width: 'min(70rem, 100%)',
   },
-});
+}));
 
 const BlogPageFull: FC = ({ subject }) => {
   const classes = useStyles();
@@ -87,7 +90,7 @@ const BlogPageFull: FC = ({ subject }) => {
           </div>
         )}
       />
-      <Container>
+      <Container className={classes.container}>
         <article>
           <ArticleContent image={image}>
             <Resource subject={content} />

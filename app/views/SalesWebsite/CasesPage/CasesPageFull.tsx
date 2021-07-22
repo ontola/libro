@@ -21,12 +21,12 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import Grid from '../../../topologies/Grid';
 
 const SECTION_SPACING = 10;
-const GRID_ITEM_SPACING = 4;
+const GRID_ITEM_SPACING = 10;
 const THEME_SWITCHER_BOTTOM_MARGIN = 20;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
-  grid: {
-    gap: theme.spacing(GRID_ITEM_SPACING),
+  container: {
+    backgroundColor: theme.palette.background.default,
   },
   imageContainer: {
     '& img': {
@@ -60,7 +60,7 @@ const CasesPageFull: FC = ({ subject }) => {
   return (
     <React.Fragment>
       <Property label={sales.header} />
-      <Container>
+      <Container className={classes.container}>
         <div className={classes.themeSwitcher}>
           <ArticleThemeSwitcher
             currentTheme={filter}
@@ -77,21 +77,11 @@ const CasesPageFull: FC = ({ subject }) => {
         >
           <Grid
             container
-            className={classes.grid}
-            justify="space-between"
-            spacing={0}
+            spacing={GRID_ITEM_SPACING}
+            wrap="wrap"
           >
             {articles.map((iri) => (
-              <Grid
-                item
-                className={classes.item}
-                key={iri.value}
-                md={4}
-                sm={6}
-                xs={12}
-              >
-                <Resource subject={iri} />
-              </Grid>
+              <Resource key={iri.value} subject={iri} />
             ))}
           </Grid>
         </Fade>
