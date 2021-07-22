@@ -146,7 +146,7 @@ const theme = {
   zIndex: {
     appBar: 910,
     drawer: 920,
-    modal: 930,
+    modal: 920,
   },
 };
 
