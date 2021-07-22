@@ -6,7 +6,7 @@ import { componentRegistrations } from '../components';
 
 import Academy from './Academy';
 import Action from './Action/index';
-import ActionBody from './ActionBody';
+import ActionBody from './Form';
 import Activity from './Activity';
 import AppSignOut from './AppSignOut';
 import Argument from './Argument/index';
@@ -18,6 +18,7 @@ import Comment from './Comment';
 import Condition from './Condition';
 import Confirmation from './Confirmation';
 import ContactPage from './ContactPage';
+import CustomForm from './CustomForm';
 import DataCube from './DataCube';
 import DataType from './DataType';
 import Dexes from './Dexes';
@@ -96,6 +97,7 @@ export function getViews() {
     ...Condition,
     ...Confirmation,
     ...ContactPage,
+    ...CustomForm,
     ...DataCube,
     ...DataType,
     ...Dexes,

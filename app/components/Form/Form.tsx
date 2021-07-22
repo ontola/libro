@@ -18,22 +18,22 @@ import { SubmissionErrors } from '../FormField';
 import Input, { InputType } from '../Input/Input';
 
 interface FormProps {
-  action: string;
-  autofocusForm: boolean;
-  autoSubmit: boolean;
+  action?: string;
+  autofocusForm?: boolean;
+  autoSubmit?: boolean;
   blacklist?: number[];
   className?: string;
-  form: any;
-  formID: string;
-  formIRI: SomeNode;
-  initialValues: any;
-  method: string;
+  form?: any;
+  formID?: string;
+  formIRI?: SomeNode;
+  initialValues?: any;
+  method?: string;
   object?: SomeNode;
   onKeyUp?: EventHandler<any>;
-  onSubmit: SubmitHandler;
+  onSubmit?: SubmitHandler;
   sessionStore?: Storage;
   submissionErrors?: SubmissionErrors;
-  subscription: any;
+  subscription?: any;
   theme?: string;
   validateOnBlur?: boolean;
   whitelist?: number[];
@@ -113,6 +113,10 @@ const Form: React.FC<FormProps> = (props) => {
   const [storeFile, fileStore] = useFileStore();
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
   const submitHandler = React.useCallback((values?: FormValues, formApi?: FormApi<FormValues>): Promise<any> => {
+    if (!onSubmit) {
+      return Promise.resolve();
+    }
+
     const formData = formDataFromValues(values, formApi, fileStore);
 
     return onSubmit(formData, formApi, () => onSubmit(formData, formApi)).catch(error);
@@ -153,8 +157,8 @@ const Form: React.FC<FormProps> = (props) => {
     whitelist,
   ]);
 
-  const lowerMethod = method.toLowerCase();
-  const methodInput = !['get', 'post'].includes(lowerMethod) && (
+  const lowerMethod = method?.toLowerCase();
+  const methodInput = lowerMethod && !['get', 'post'].includes(lowerMethod) && (
     <Input
       name="_method"
       type={InputType.Hidden}
