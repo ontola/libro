@@ -1,8 +1,10 @@
 import MaterialMenu from '@material-ui/core/Menu/Menu';
+import { useResourceProperty } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { isFunction } from '../../helpers/types';
+import ontola from '../../ontology/ontola';
 
 export interface Test2 extends SubjectProp {
   handleClose: () => void;
@@ -36,6 +38,7 @@ const DropdownMenu = ({
   trigger,
 }: DropdownMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [dialogResource] = useResourceProperty(ontola.ns('dialog/manager'), ontola.ns('dialog/resource'));
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -44,6 +47,10 @@ const DropdownMenu = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  React.useEffect(() => {
+    handleClose();
+  }, [dialogResource]);
 
   return (
     <React.Fragment>
