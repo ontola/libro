@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core/styles';
 import * as schema from '@ontologies/schema';
 import { ACCEPTED } from 'http-status-codes';
 import {
@@ -11,19 +12,30 @@ import {
 import React from 'react';
 
 import CoverImage from '../../../components/CoverImage';
+import LDLink from '../../../components/LDLink';
 import { LoadingCoverPhoto } from '../../../components/Loading';
+import { tryParseInt } from '../../../helpers/numbers';
 import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { tryParseInt } from '../../../helpers/numbers';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { pageTopology } from '../../../topologies/Page';
 
-const registerCoverPhoto = (prop, topology) => {
+const useStyles = makeStyles({
+  coverImageLink: {
+    '&:hover': {
+      filter: 'brightness(0.9)',
+    },
+    transition: 'filter 100ms ease',
+  },
+});
+
+const registerCoverPhoto = (prop, topology, linked = false) => {
   const CoverPhotoOrLoading = ({
     linkedProp,
   }) => {
     const lrs = useLRS();
+    const classes = useStyles();
     useDataInvalidation(linkedProp);
     const [imagePositionY] = useResourceProperty(linkedProp, ontola.imagePositionY);
     const [url] = useResourceProperty(linkedProp, prop);
@@ -41,11 +53,16 @@ const registerCoverPhoto = (prop, topology) => {
       return null;
     }
 
+    const Wrapper = linked ? LDLink : React.Fragment;
+    const wrapperProps = linked ? { className: classes.coverImageLink } : {};
+
     return (
-      <CoverImage
-        positionY={tryParseInt(imagePositionY)}
-        url={url.value}
-      />
+      <Wrapper {...wrapperProps}>
+        <CoverImage
+          positionY={tryParseInt(imagePositionY)}
+          url={url.value}
+        />
+      </Wrapper>
     );
   };
 
@@ -68,5 +85,5 @@ export default [
     cardTopology,
     cardFixedTopology,
     cardMainTopology,
-  ]),
+  ], true),
 ];
