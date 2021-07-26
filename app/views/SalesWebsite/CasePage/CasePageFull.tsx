@@ -30,9 +30,6 @@ const ICON_GAP = 4;
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   article: {
     padding: theme.spacing(ARTICLE_PADDING),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '-1.5rem',
-    },
   },
   contactDetails: {
     '& > span': {

@@ -1,9 +1,8 @@
 import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
-import retrievePath from '../../helpers/iris';
+import Link from '../Link';
 
 export interface CallToActionButtonProps {
   text: string;
@@ -20,12 +19,13 @@ export const CallToActionButton = ({
 }: CallToActionButtonProps): JSX.Element => (
   <Button
     disableElevation
+    allowExternal={false}
     color="secondary"
-    component={NavLink as React.ElementType}
+    component={Link as React.ElementType}
     endIcon={<ChevronRightIcon />}
     id={trackingId}
     size={size}
-    to={retrievePath(url)}
+    to={url}
     variant="contained"
   >
     {text}

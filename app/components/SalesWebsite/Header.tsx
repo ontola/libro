@@ -50,6 +50,9 @@ const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
   },
   spacer: {
     margin: 50,
+    [theme.breakpoints.down('sm')]: {
+      margin: 30,
+    },
   },
   subtitle: {
     maxWidth: '40rem',

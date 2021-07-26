@@ -45,6 +45,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: '1rem',
     justifyContent: 'space-around',
     width: 'min(70rem, 100%)',
   },

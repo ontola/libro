@@ -34,6 +34,9 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     '& li::marker': {
       color: theme.palette.primary.main,
     },
+    '& p': {
+      maxWidth: 'min(100%, 75ch)',
+    },
     margin: 'auto',
     marginBottom: '5rem',
     maxWidth: 'min(100%, 90ch)',
@@ -44,13 +47,19 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     height: 'min(400px, 30vw)',
     margin: '1rem',
     objectFit: 'cover',
+    shapeOutside: 'circle(50%)',
     width: 'min(400px, 30vw)',
     [theme.breakpoints.down('sm')]: {
+      borderRadius: theme.shape.borderRadius,
       clipPath: 'unset',
       float: 'unset',
+      height: 200,
       margin: 'auto',
       marginBottom: '1.5rem',
       width: '100%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: 150,
     },
   },
   imageWrapper: {

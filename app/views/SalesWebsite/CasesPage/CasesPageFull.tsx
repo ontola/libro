@@ -1,4 +1,3 @@
-import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
@@ -12,8 +11,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ArticleThemeSwitcher } from '../../../components/SalesWebsite/ArticleThemeSwitcher';
-import { useSalesArticles } from '../../../hooks/useSalesArticles';
+import { FilterableArticleCollection } from '../../../components/SalesWebsite/FilterableArticleCollection';
 import sales from '../../../ontology/sales';
 import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
@@ -49,42 +47,25 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const CasesPageFull: FC = ({ subject }) => {
   const classes = useStyles();
 
-  const {
-    articles,
-    filter,
-    setFilter,
-    themes,
-    visible,
-  } = useSalesArticles(subject, [as.items, rdfs.member]);
-
   return (
     <React.Fragment>
       <Property label={sales.header} />
       <Container className={classes.container}>
-        <div className={classes.themeSwitcher}>
-          <ArticleThemeSwitcher
-            currentTheme={filter}
-            themes={themes}
-            onThemeSwitch={setFilter}
-          />
-        </div>
-        <Fade
-          in={visible}
-          timeout={{
-            enter: 200,
-            exit: 0,
-          }}
-        >
-          <Grid
-            container
-            spacing={GRID_ITEM_SPACING}
-            wrap="wrap"
-          >
-            {articles.map((iri) => (
-              <Resource key={iri.value} subject={iri} />
-            ))}
-          </Grid>
-        </Fade>
+        <FilterableArticleCollection
+          articlePropertyPath={[as.items, rdfs.member]}
+          renderArticles={(articles) => (
+            <Grid
+              container
+              spacing={GRID_ITEM_SPACING}
+              wrap="wrap"
+            >
+              {articles.map((article) => (
+                <Resource key={article.value} subject={article} />
+              ))}
+            </Grid>
+          )}
+          subject={subject}
+        />
       </Container>
       <div className={classes.imageContainer}>
         <Typography align="center" variant="h2">

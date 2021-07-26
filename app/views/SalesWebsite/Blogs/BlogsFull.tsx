@@ -1,4 +1,3 @@
-import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import * as rdfs from '@ontologies/rdfs';
@@ -11,15 +10,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ArticleThemeSwitcher } from '../../../components/SalesWebsite/ArticleThemeSwitcher';
-import { useSalesArticles } from '../../../hooks/useSalesArticles';
+import { FilterableArticleCollection } from '../../../components/SalesWebsite/FilterableArticleCollection';
 import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import Showcase from '../../../topologies/Showcase';
-
-const THEME_SWICHER_BOTTOM_MARGIN = 20;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   blogGrid: {
@@ -50,47 +46,28 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
     gridTemplateColumns: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
   },
-  themeSwitcher: {
-    marginBottom: theme.spacing(THEME_SWICHER_BOTTOM_MARGIN),
-  },
+
 }));
 
 const BlogsFull: FC = ({ subject }) => {
   const classes = useStyles();
-  const {
-    articles,
-    filter,
-    setFilter,
-    themes,
-    visible,
-  } = useSalesArticles(subject, [sales.blogs, rdfs.member]);
 
   return (
     <React.Fragment>
       <Property label={sales.header} />
       <Container className={classes.container}>
-        <div className={classes.themeSwitcher}>
-          <ArticleThemeSwitcher
-            currentTheme={filter}
-            themes={themes}
-            onThemeSwitch={setFilter}
-          />
-        </div>
-        <Showcase>
-          <Fade
-            in={visible}
-            timeout={{
-              enter: 200,
-              exit: 0,
-            }}
-          >
+        <FilterableArticleCollection
+          articlePropertyPath={[sales.blogs, rdfs.member]}
+          fadeWrapper={Showcase}
+          renderArticles={(articles) => (
             <div className={classes.blogGrid}>
-              {articles.map((blog) => (
-                <Resource key={blog.value} subject={blog} />
+              {articles.map((article) => (
+                <Resource key={article.value} subject={article} />
               ))}
             </div>
-          </Fade>
-        </Showcase>
+          )}
+          subject={subject}
+        />
       </Container>
       <Typography align="center" variant="h2">
         <Property label={schema.text} />
