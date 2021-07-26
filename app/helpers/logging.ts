@@ -59,11 +59,13 @@ function getClient() {
 
 const client = getClient();
 
-// Prevent memory overflows
-globalThis.setInterval(() => {
-  globalThis.logging.errors = [];
-  globalThis.logging.logs = [];
-}, LOGGING_INTERVAL);
+if (!__TEST__) {
+  // Prevent memory overflows
+  globalThis.setInterval(() => {
+    globalThis.logging.errors = [];
+    globalThis.logging.logs = [];
+  }, LOGGING_INTERVAL);
+}
 
 export function error(...msg: any[]): void {
   globalThis.logging.errors.push(msg);

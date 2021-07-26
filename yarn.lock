@@ -4430,6 +4430,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cheerio@npm:*":
+  version: 0.22.30
+  resolution: "@types/cheerio@npm:0.22.30"
+  dependencies:
+    "@types/node": "*"
+  checksum: eec3d674275dabe12329749a9bbed6646202bd56919c171c898f483e2dc997fb32a9d0c9e9f5c274b0e231ad624e0e0da4ba68d37ebe4fe4a251df6b51dd018e
+  languageName: node
+  linkType: hard
+
 "@types/color-name@npm:^1.1.1":
   version: 1.1.1
   resolution: "@types/color-name@npm:1.1.1"
@@ -4472,6 +4481,16 @@ __metadata:
     "@types/react": "*"
     immutable: ~3.7.4
   checksum: 038c24df07765b92c8d3c2d517fa1c5ae798ff2f04144e3f4ced68c95c61487d793b6d1e852aa5b5bc4432f403e6da99cbf4e4555b9104fee832cffc12c6b8bd
+  languageName: node
+  linkType: hard
+
+"@types/enzyme@npm:^3.10.9":
+  version: 3.10.9
+  resolution: "@types/enzyme@npm:3.10.9"
+  dependencies:
+    "@types/cheerio": "*"
+    "@types/react": "*"
+  checksum: 4f9a40c257ebfded94dbb5d83131ebe740dbb02d7457c184ba6ec889f3230d05298b4182e4b670becd04c2acbce64a8dff6f9a8482507b77d7d7367c39136d66
   languageName: node
   linkType: hard
 
@@ -6007,6 +6026,7 @@ __metadata:
     "@testing-library/react": ^11.2.6
     "@types/actioncable": ^5.2.3
     "@types/draft-js": ^0.10.44
+    "@types/enzyme": ^3.10.9
     "@types/ioredis": ^4.22.3
     "@types/jest": ^26.0.22
     "@types/koa": ^2.11.6

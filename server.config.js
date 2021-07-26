@@ -11,7 +11,7 @@ const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
 const config = {
-  devtool: process.env.NODE_ENV === 'production' ? 'cheap-source-map' : false,
+  devtool: 'eval-source-map',
 
   entry: path.resolve('./server.js'),
 
