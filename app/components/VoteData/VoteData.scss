@@ -66,10 +66,22 @@ $votebar-parts: (
 
 @each $variant, $color in $votebar-parts {
   .VoteData__votebar-part--#{$variant} {
-    background-color: color($color, 'x-light');
+    background-color: color($color);
 
     &:hover {
-      background-color: color($color);
+      background-color: color($color, 'dark');
+    }
+  }
+}
+
+.VoteData__votebar-hover {
+  @each $variant, $color in $votebar-parts {
+    .VoteData__votebar-part--#{$variant} {
+      background-color: color($color, 'x-light');
+
+      &:hover {
+        background-color: color($color);
+      }
     }
   }
 }
