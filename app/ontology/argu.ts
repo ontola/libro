@@ -124,6 +124,7 @@ export default {
   privacy: argu('privacy'),
   proArguments: argu('proArguments'),
   questions: argu('questions'),
+  rawResource: argu('rawResource'),
   selectedValue: argu('selectedValue'),
   signInFlow: argu('signInFlow'),
   socials: argu('socials'),

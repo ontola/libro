@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/styles';
-import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -72,7 +71,7 @@ interface PropTypes {
   className?: string;
   display?: 'inherit';
   size?: HeadingSize;
-  type?: SomeTerm;
+  type?: string;
   variant?: HeadingVariant;
 }
 

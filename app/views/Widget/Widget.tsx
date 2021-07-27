@@ -1,7 +1,9 @@
+import { Literal } from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
-  linkType,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -15,13 +17,18 @@ import FullResource from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 import { handleErrorStatuses } from '../../components/Error';
 
-const Widget = ({ topology, widgetSize }) => {
+interface WidgetProps {
+  topology: SomeNode;
+  widgetSize: Literal;
+}
+
+const Widget: FC<WidgetProps> = ({ topology, widgetSize }) => {
   const size = tryParseInt(widgetSize);
   const childProps = React.useMemo(() => ({
     onError: handleErrorStatuses([HttpStatus.FORBIDDEN]),
-  }));
+  }), []);
 
-  let Wrapper;
+  let Wrapper: React.ElementType;
   let wrapperOpts = {};
   switch (topology) {
   case argu.grid:
@@ -56,11 +63,4 @@ Widget.mapDataToProps = {
   widgetSize: ontola.widgetSize,
 };
 
-Widget.propTypes = {
-  topology: linkType,
-  widgetSize: linkType,
-};
-
-export default [
-  register(Widget),
-];
+export default register(Widget);
