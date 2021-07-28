@@ -81,9 +81,9 @@ const registerCoverPhoto = (prop, topology, linked = false) => {
 
 export default [
   registerCoverPhoto(ontola.imgUrl1500x2000, [pageTopology]),
+  registerCoverPhoto(ontola.imgUrl568x400, [cardFixedTopology]),
   registerCoverPhoto(ontola.imgUrl568x400, [
     cardTopology,
-    cardFixedTopology,
     cardMainTopology,
   ], true),
 ];
