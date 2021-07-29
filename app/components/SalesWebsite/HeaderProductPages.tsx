@@ -1,23 +1,20 @@
 import {
-  Button,
   Grid,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
-import { retrievePath } from '../../helpers/iris';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 import Container from '../../topologies/Container';
 
 import { ArticleContent } from './ArticleContent';
+import { CallToActionButton } from './CallToActionButton';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   articleContent: {
@@ -125,6 +122,8 @@ export const HeaderProductPages = ({
   const image = useMediaQuery(styles.breakpoints.down('sm'))
     ? null : imageView;
 
+  const trackingId = `${title?.replace(/[^a-zA-Z]+/g, '-')}-header-button`;
+
   return (
     <div
       className={classes.header}
@@ -154,16 +153,11 @@ export const HeaderProductPages = ({
               </ArticleContent>
             </Typography>
             <div className={classes.buttonWrapper}>
-              <Button
-                className={classes.button}
-                color="secondary"
-                component={NavLink as React.ElementType}
-                endIcon={<ChevronRightIcon />}
-                to={retrievePath(buttonLink)}
-                variant="contained"
-              >
-                {buttonText}
-              </Button>
+              <CallToActionButton
+                text={buttonText}
+                trackingId={trackingId}
+                url={buttonLink}
+              />
             </div>
           </Grid>
           <Grid item className={classes.imageContainer} md={5} sm={12}>

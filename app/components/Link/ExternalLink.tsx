@@ -5,6 +5,7 @@ interface PropTypes {
   href?: string;
   ref?: any;
   onClick?: MouseEventHandler;
+  id?: string;
 }
 
 const ExternalLink: React.FC<PropTypes> = ({ children, ...otherProps }) => (

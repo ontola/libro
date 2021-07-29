@@ -50,6 +50,7 @@ export interface LinkPropTypes {
   className?: string;
   disabled?: boolean;
   features?: LinkFeature[];
+  id?: string;
   isActive?: IsActiveCheck;
   isIndex?: boolean;
   onClick?: MouseEventHandler<Element>;
@@ -122,6 +123,7 @@ const Link: React.FC<PropTypesWithRef> = ({
         <ExternalLink
           className={componentClassName}
           href={to}
+          id={other.id}
           ref={innerRef}
           onClick={onClick}
         >
