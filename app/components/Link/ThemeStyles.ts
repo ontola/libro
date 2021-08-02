@@ -5,14 +5,12 @@ import { semanticColors } from '../shared/config';
 
 export const HOVER_COEFFICIENT = 0.3;
 
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 export default makeStyles((theme) => {
   const style = {
     default: {
       '&:hover .Heading': {
         color: darken(theme.palette.link?.header || theme.palette.common.black, HOVER_COEFFICIENT),
       },
-      'alignItems': 'baseline',
       'display': 'inline-flex',
       'whiteSpace': 'pre-wrap',
     },
@@ -28,4 +26,3 @@ export default makeStyles((theme) => {
 
   return style;
 });
-/* eslint-enable @typescript-eslint/no-magic-numbers */
