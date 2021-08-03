@@ -50,17 +50,19 @@ const generateStyle = ({
     };
   }
 
-  theme.appBar.resolveColor = () => {
-    const { appBar: { background, color }, palette } = theme;
+  if(theme.appBar) {
+    theme.appBar.resolveColor = () => {
+      const { appBar: { background, color }, palette } = theme;
 
-    if (color === 'auto' && background) {
-      return (palette as unknown as { [background: string]: PaletteColor })[background].contrastText;
-    } else if (color) {
-      return (palette as unknown as { [color: string]: PaletteColor })[color].main;
-    }
+      if (color === 'auto' && background) {
+        return (palette as unknown as { [background: string]: PaletteColor })[background].contrastText;
+      } else if (color) {
+        return (palette as unknown as { [color: string]: PaletteColor })[color].main;
+      }
 
-    return undefined;
-  };
+      return undefined;
+    };
+  }
 
   return theme;
 };
