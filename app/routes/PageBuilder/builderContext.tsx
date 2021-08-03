@@ -55,7 +55,7 @@ export const PageBuilderContext: React.FC = ({ children }) => {
   const [resourceIndex, setResourceIndex] = useStoredState('libro.pagebuilder.resourceIndex', '0');
   const [showEditor, setShowEditor] = useStoredState('libro.pagebuilder.showEditor', 'true');
   const document = useJSON<{ source: string }>(documents?.[Number.parseInt(documentIndex!)]);
-  const [theme, setTheme] = useStoredState('libro.pagebuilder.slectedTheme', 'common');
+  const [theme, setTheme] = useStoredState('libro.pagebuilder.selectedTheme', 'common');
 
   const createManifestOverride = () => JSON.stringify({
     ontola: {
@@ -111,11 +111,6 @@ export const PageBuilderContext: React.FC = ({ children }) => {
     resources,
     source,
     setContext,
-    setSource,
-    setDocumentIndex,
-    setResourceIndex,
-    setShowEditor,
-    setTheme,
     showEditor,
     theme,
   ]);
