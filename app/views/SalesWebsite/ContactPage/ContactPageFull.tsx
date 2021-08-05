@@ -127,28 +127,44 @@ const PricingPageFull: FC = () => {
               <Grid item>
                 <address className="vcard">
                   <Typography className="adr">
-                    <span className={`street-address ${classes.addressLine}`}>{streetAddress.value}</span>
+                    <span className={`street-address ${classes.addressLine}`}>
+                      {streetAddress.value}
+                    </span>
                     <span className={classes.addressLine}>
-                      <span className="postal-code">{postalCode.value}</span>
-                      <span className="locality">{locality.value}</span>
+                      <span className="postal-code">
+                        {postalCode.value}
+                      </span>
+                      <span className="locality">
+                        {locality.value}
+                      </span>
                     </span>
                   </Typography>
                   <Typography>
-                    <div className={`org ${classes.hidden}`}>Argu</div>
+                    <div className={`org ${classes.hidden}`}>
+                      Argu
+                    </div>
                     <img alt={logoText.value} className={`photo ${classes.hidden}`} src={logo.value} />
                     <span className={classes.iconLink}>
                       <PhoneIcon className={classes.icon} />
-                      <Link className={`tel ${classes.addressLocation}`} href={`tel:${tel.value.replace(/\s/g, '')}`}>{tel.value}</Link>
+                      <Link className={`tel ${classes.addressLocation}`} href={`tel:${tel.value.replace(/\s/g, '')}`}>
+                        {tel.value}
+                      </Link>
                     </span>
                     <span className={classes.iconLink}>
                       <EmailIcon className={classes.icon} />
-                      <Link className={`email ${classes.addressLocation}`} href={`mailto:${email.value}`}>{email.value}</Link>
+                      <Link className={`email ${classes.addressLocation}`} href={`mailto:${email.value}`}>
+                        {email.value}
+                      </Link>
                     </span>
                     <span className={classes.iconLink}>
                       <QuestionAnswerIcon className={classes.icon} />
-                      <Link className={`note ${classes.addressLocation}`} href={discordLink.value}>{discordText.value}</Link>
+                      <Link className={`note ${classes.addressLocation}`} href={discordLink.value}>
+                        {discordText.value}
+                      </Link>
                     </span>
-                    <Link className={`url ${classes.hidden}`} href={websiteUrl.value}>{website.value}</Link>
+                    <Link className={`url ${classes.hidden}`} href={websiteUrl.value}>
+                      {website.value}
+                    </Link>
                   </Typography>
                 </address>
               </Grid>

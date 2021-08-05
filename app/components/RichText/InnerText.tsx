@@ -37,5 +37,9 @@ export const InnerText = ({
     [classes.underline]: underline,
   });
 
-  return <span className={className}>{text}</span>;
+  return (
+    <span className={className}>
+      {text}
+    </span>
+  );
 };

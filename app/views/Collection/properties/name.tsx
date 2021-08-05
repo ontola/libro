@@ -26,7 +26,11 @@ const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
   const Wrapper = React.useCallback(
     ({ children }) => {
       if (typeof href === 'undefined') {
-        return (<div>{children}</div>);
+        return (
+          <div>
+            {children}
+          </div>
+        );
       }
 
       return (

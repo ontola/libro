@@ -37,8 +37,12 @@ const Feature: React.FC<FeatureProps> = ({ desc, title }) => {
 
   return (
     <ul className={classes.feature}>
-      <p className={classes.featureTitle}>{title}</p>
-      <p className={classes.featureDesc}>{desc}</p>
+      <p className={classes.featureTitle}>
+        {title}
+      </p>
+      <p className={classes.featureDesc}>
+        {desc}
+      </p>
     </ul>
   );
 };

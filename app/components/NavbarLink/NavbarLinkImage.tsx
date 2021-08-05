@@ -42,7 +42,9 @@ export const NavbarLinkImageWrapper: React.FC<NavbarLinkImageProps> = ({ childre
   const classes = useStyles();
 
   return (
-    <div className={classes.wrapper}>{children}</div>
+    <div className={classes.wrapper}>
+      {children}
+    </div>
   );
 };
 

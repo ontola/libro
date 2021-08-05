@@ -24,7 +24,11 @@ const MenuItemLabelCard: FC<MenuItemLabelCardProps> = ({
   linkedProp,
 }) => {
   if (!image) {
-    return <div>{(label ?? linkedProp).value}</div>;
+    return (
+      <div>
+        {(label ?? linkedProp).value}
+      </div>
+    );
   }
 
   return (

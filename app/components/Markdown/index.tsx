@@ -55,9 +55,17 @@ const routerLink = (tabIndex: number | undefined) => (link: any) => {
   );
 };
 
-const stylizedPlaintextLink = (link: any) => <u>{link.value}</u>;
+const stylizedPlaintextLink = (link: any) => (
+  <u>
+    {link.value}
+  </u>
+);
 
-const codePre = (link: any) => <code className="Markdown__inline-code">{link.value}</code>;
+const codePre = (link: any) => (
+  <code className="Markdown__inline-code">
+    {link.value}
+  </code>
+);
 
 interface PropTypes {
   highlightedText?: string;
@@ -136,7 +144,9 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
               id="https://app.argu.co/i18n/errors/markdown/renderError"
             />
           </Heading>
-          <div>{this.sourceText(highlightedText, text)}</div>
+          <div>
+            {this.sourceText(highlightedText, text)}
+          </div>
         </div>
       );
     }

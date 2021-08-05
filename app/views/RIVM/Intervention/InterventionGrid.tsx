@@ -33,8 +33,12 @@ const InterventionGrid: FC<InterventionGridProps> = ({ renderPartOf }) => (
         <Property label={[schema.text, schema.description, dbo.abstract]} />
         <AttributeList>
           <tr>
-            <th>Praktische ervaring aandrager</th>
-            <th>Beoordeling</th>
+            <th>
+              Praktische ervaring aandrager
+            </th>
+            <th>
+              Beoordeling
+            </th>
           </tr>
           <AttributeListItem
             label={rivm.securityImprovedScore}

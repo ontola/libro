@@ -18,7 +18,9 @@ const ForumTabPane = ({ name }) => (
   <Container size="large">
     <GridItem size={3}>
       <Container>
-        <Heading>{name?.value}</Heading>
+        <Heading>
+          {name?.value}
+        </Heading>
         <Property label={schema.text} />
       </Container>
     </GridItem>

@@ -44,7 +44,9 @@ const MediaObjectAttachment: FC<PropTypes> = ({
           title={name?.value}
         >
           <FontAwesome className="Attachment__icon" name="file" />
-          <div className="Attachment__text" data-test="Attachment-title">{name?.value}</div>
+          <div className="Attachment__text" data-test="Attachment-title">
+            {name?.value}
+          </div>
         </LDLink>
         <a
           download

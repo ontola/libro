@@ -78,7 +78,9 @@ const Collapsible = ({
   return (
     <div aria-expanded={opened} className={className}>
       {trigger && (
-        <div>{triggerElem}</div>
+        <div>
+          {triggerElem}
+        </div>
       )}
       <Component
         initialStyle={initialStyle}

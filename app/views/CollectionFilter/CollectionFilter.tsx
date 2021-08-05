@@ -41,7 +41,11 @@ const Value = ({ prop }: { prop: SomeTerm }) => {
     );
   }
 
-  return <React.Fragment>{prop.value}</React.Fragment>;
+  return (
+    <React.Fragment>
+      {prop.value}
+    </React.Fragment>
+  );
 };
 
 interface CollectionFilterProps {

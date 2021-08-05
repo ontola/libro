@@ -72,7 +72,11 @@ export const ChapterSearch = (): JSX.Element => {
       clearOnBlur
       disableClearable
       freeSolo
-      PaperComponent={(({ children }) => (<Select>{children}</Select>))}
+      PaperComponent={(({ children }) => (
+        <Select>
+          {children}
+        </Select>
+      ))}
       className={classNames.search}
       classes={{ listbox: classNames.listbox }}
       filterOptions={filterOptions}

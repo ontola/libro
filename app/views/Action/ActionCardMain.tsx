@@ -27,7 +27,11 @@ const ActionCardMain: FC<ActionCardMainProps> = ({
   }
 
   if (children) {
-    return <React.Fragment>{children}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {children}
+      </React.Fragment>
+    );
   }
 
   return (

@@ -205,7 +205,9 @@ const ContactPage = () => {
     <React.Fragment>
       <div className={classes.header}>
         <div className={classes.headerContainer}>
-          <h1>Neem contact op</h1>
+          <h1>
+            Neem contact op
+          </h1>
         </div>
       </div>
       <div className={classes.container}>
@@ -231,7 +233,9 @@ const ContactPage = () => {
                   </a>
                 </b>
               </div>
-              <b>Volg ons op:</b>
+              <b>
+                Volg ons op:
+              </b>
               {socials.map((socialprops) => (
                 <Social key={socialprops.link} {...socialprops} />
               ))}

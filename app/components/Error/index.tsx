@@ -29,7 +29,9 @@ export const handleErrorStatuses = (handledStatuses: number[]) => (errorProps: E
 };
 
 const Error = (): JSX.Element => (
-  <p>An unknown error occurred, please try again later.</p>
+  <p>
+    An unknown error occurred, please try again later.
+  </p>
 );
 
 export default Error;

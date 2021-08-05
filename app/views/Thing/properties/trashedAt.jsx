@@ -29,7 +29,9 @@ const TrashedAt = ({ linkedProp, trashActivity }) => {
           }}
         />
         <Resource subject={trashActivity}>
-          <div><Property label={schema.text} topology={inlineTopology} /></div>
+          <div>
+            <Property label={schema.text} topology={inlineTopology} />
+          </div>
         </Resource>
       </CardContent>
     </Card>

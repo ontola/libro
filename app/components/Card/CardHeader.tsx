@@ -16,7 +16,9 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   float,
 }) => (
   <div className="CardHeader">
-    <div className="CardHeader--header">{children}</div>
+    <div className="CardHeader--header">
+      {children}
+    </div>
     <CardFloat>
       {float}
     </CardFloat>

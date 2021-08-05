@@ -69,16 +69,22 @@ const InterventionFull: FC<InterventionFullProps> = ({
         </CardContent>
         <CardDivider />
         <CardContent noSpacing>
-          <Heading>Doelen &amp; doelgroepen</Heading>
+          <Heading>
+            Doelen &amp; doelgroepen
+          </Heading>
           <AttributeList>
             <AttributeListItem label={rivm.targetAudience} />
             <AttributeListItem label={rivm.interventionEffects} />
           </AttributeList>
-          <p><Property label={rivm.interventionGoal} /></p>
+          <p>
+            <Property label={rivm.interventionGoal} />
+          </p>
         </CardContent>
         <CardDivider />
         <CardContent noSpacing>
-          <Heading>Invoering</Heading>
+          <Heading>
+            Invoering
+          </Heading>
           <AttributeList>
             <AttributeListItem label={rivm.continuous} />
             <AttributeListItem label={rivm.independent} />
@@ -86,11 +92,15 @@ const InterventionFull: FC<InterventionFullProps> = ({
             <AttributeListItem label={rivm.managementInvolvement} />
             <AttributeListItem label={rivm.trainingRequired} />
           </AttributeList>
-          <p><Property label={rivm.additionalIntroductionInformation} /></p>
+          <p>
+            <Property label={rivm.additionalIntroductionInformation} />
+          </p>
         </CardContent>
         <CardDivider />
         <CardContent noSpacing>
-          <Heading>Kosten</Heading>
+          <Heading>
+            Kosten
+          </Heading>
           <AttributeList>
             <AttributeListItem
               label={rivm.oneOffCostsScore}
@@ -104,18 +114,24 @@ const InterventionFull: FC<InterventionFullProps> = ({
               label={rivm.natureOfCosts}
             />
           </AttributeList>
-          <p><Property label={rivm.costExplanation} /></p>
+          <p>
+            <Property label={rivm.costExplanation} />
+          </p>
         </CardContent>
         <CardDivider />
         <CardContent noSpacing>
-          <Heading>Effectiviteit</Heading>
+          <Heading>
+            Effectiviteit
+          </Heading>
           <AttributeList>
             <AttributeListItem
               label={rivm.securityImprovedScore}
               labelFrom={rivm.securityImproved}
             />
           </AttributeList>
-          <p><Property label={rivm.securityImprovementReason} /></p>
+          <p>
+            <Property label={rivm.securityImprovementReason} />
+          </p>
         </CardContent>
         <CardRow>
           <Property label={argu.attachments} onLoad={() => null} />

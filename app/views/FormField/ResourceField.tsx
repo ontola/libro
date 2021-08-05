@@ -53,7 +53,9 @@ const ResourceField: FC<PropTypes> = ({
     <React.Fragment>
       <Property label={[rdfs.label, schema.name, sh.name]} size="3" />
       <Property label={[schema.text, sh.description]} />
-      <div><Property label={schema.url} /></div>
+      <div>
+        <Property label={schema.url} />
+      </div>
     </React.Fragment>
   );
 };

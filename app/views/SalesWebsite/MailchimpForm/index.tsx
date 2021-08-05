@@ -87,7 +87,9 @@ const MailchimpForm: FC = () => {
         target="_blank"
       >
         <label htmlFor="mce-EMAIL">
-          <Typography className={classes.heading} variant="h3">{name.value}</Typography>
+          <Typography className={classes.heading} variant="h3">
+            {name.value}
+          </Typography>
         </label>
         <div className={classes.inputWrapper}>
           <TextField

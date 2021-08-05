@@ -142,7 +142,11 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     pages.push(singlePageButton(firstPage));
 
     if (spanFrom > firstPage + 1) {
-      pages.push(<span>...</span>);
+      pages.push(
+        <span>
+          ...
+        </span>,
+      );
     }
 
     for (let i = spanFrom; i <= spanTo; i++) {
@@ -150,7 +154,11 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     }
 
     if (spanTo < lastPage - 1) {
-      pages.push(<span>...</span>);
+      pages.push(
+        <span>
+          ...
+        </span>,
+      );
     }
 
     pages.push(singlePageButton(lastPage));

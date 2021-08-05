@@ -120,10 +120,18 @@ const DetailDate: React.FC<PropTypes> = (props) => {
         return <RelativeDate date={mostImportant} title={hoverText} />;
       }
 
-      return <React.Fragment>{intl.formatTime(new Date(mostImportant.value), DATE_FORMAT)}</React.Fragment>;
+      return (
+        <React.Fragment>
+          {intl.formatTime(new Date(mostImportant.value), DATE_FORMAT)}
+        </React.Fragment>
+      );
     }
 
-    return <React.Fragment>{mostImportant.value}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {mostImportant.value}
+      </React.Fragment>
+    );
   }, [relative, mostImportant, hoverText]);
 
   return (

@@ -55,7 +55,9 @@ const TopologyWrapper = ({
       <Container>
         <Card>
           <CardContent>
-            <Heading size={HeadingSize.XL}>Detail</Heading>
+            <Heading size={HeadingSize.XL}>
+              Detail
+            </Heading>
             <DetailsBar>
               <LRC />
             </DetailsBar>
@@ -68,7 +70,9 @@ const TopologyWrapper = ({
       <Container>
         <Card>
           <CardContent>
-            <Heading>Card</Heading>
+            <Heading>
+              Card
+            </Heading>
           </CardContent>
           <LRC />
         </Card>
@@ -79,7 +83,9 @@ const TopologyWrapper = ({
       <Container>
         <CardMain>
           <CardContent>
-            <Heading size={HeadingSize.XL}>CardMain</Heading>
+            <Heading size={HeadingSize.XL}>
+              CardMain
+            </Heading>
           </CardContent>
           <LRC />
         </CardMain>
@@ -90,7 +96,9 @@ const TopologyWrapper = ({
       <Container>
         <CardFixed>
           <CardContent>
-            <Heading size={HeadingSize.MD}>CardFixed</Heading>
+            <Heading size={HeadingSize.MD}>
+              CardFixed
+            </Heading>
           </CardContent>
           <LRC />
         </CardFixed>
@@ -101,11 +109,15 @@ const TopologyWrapper = ({
       <Container>
         <CardMain>
           <CardContent>
-            <Heading size={HeadingSize.XL}>Card with Row</Heading>
+            <Heading size={HeadingSize.XL}>
+              Card with Row
+            </Heading>
           </CardContent>
           <CardRow>
             <CardContent>
-              <Heading size={HeadingSize.MD}>CardRow</Heading>
+              <Heading size={HeadingSize.MD}>
+                CardRow
+              </Heading>
             </CardContent>
             <LRC />
           </CardRow>

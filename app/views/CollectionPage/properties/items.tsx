@@ -104,7 +104,11 @@ const styleWrapper = (props: ItemProps, itemListElem: JSX.Element | JSX.Element[
     );
   }
 
-  return <React.Fragment>{itemListElem}</React.Fragment>;
+  return (
+    <React.Fragment>
+      {itemListElem}
+    </React.Fragment>
+  );
 };
 
 const Items: FC<ItemProps> = (props) => {

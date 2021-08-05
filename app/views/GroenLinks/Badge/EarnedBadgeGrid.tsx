@@ -52,7 +52,9 @@ const EarnedBadgeGrid: FC<EarnedBadgeGridProps> = ({
       }}
     >
       <Property label={teamGL.badge}>
-        <Heading className={matches ? classes.headerSmall : classes.header} size={HeadingSize.LG}>{name?.value}</Heading>
+        <Heading className={matches ? classes.headerSmall : classes.header} size={HeadingSize.LG}>
+          {name?.value}
+        </Heading>
         <Image
           linkedProp={image}
           style={{

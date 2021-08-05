@@ -79,7 +79,9 @@ const EntryPoint: FC<EntryPointProps> = (props) => {
       onClick={handleOnClick}
       {...rest}
     >
-      <span>{label}</span>
+      <span>
+        {label}
+      </span>
     </ButtonWithFeedback>
   );
 };

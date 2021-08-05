@@ -84,10 +84,14 @@ const GlappHome: FC = () => {
       <div className={matches ? classes.wrapperFull : classes.wrapperSmall}>
         <Card>
           <CardContent>
-            <h2>{emoji(`Hoi ${name?.value || 'daar'}! 👋`)}</h2>
+            <h2>
+              {emoji(`Hoi ${name?.value || 'daar'}! 👋`)}
+            </h2>
           </CardContent>
           <CardContent endSpacing>
-            <div>Welkom bij onze campagne! Vul hier de postcode in waar jij aan de slag gaat.</div>
+            <div>
+              Welkom bij onze campagne! Vul hier de postcode in waar jij aan de slag gaat.
+            </div>
             <SearchPostalForm
               setSelectedPostalCode={setSelectedPostalCode}
             />

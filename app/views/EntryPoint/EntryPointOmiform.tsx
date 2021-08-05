@@ -85,7 +85,11 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
       url={url?.value}
       whitelist={whitelist}
       onKeyUp={onKeyUp}
-      onLoad={() => <CardContent><LoadingGridContent /></CardContent>}
+      onLoad={() => (
+        <CardContent>
+          <LoadingGridContent />
+        </CardContent>
+      )}
       onSubmit={submitHandler}
     />
   );

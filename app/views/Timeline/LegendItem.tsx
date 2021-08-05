@@ -44,7 +44,9 @@ const LegendItem = () => {
         <TimelineDot className={classes.dot} style={styleDot} />
       </TimelineSeparator>
       <TimelineContent className={classes.content}>
-        <Heading size={HeadingSize.XS}>{name.value}</Heading>
+        <Heading size={HeadingSize.XS}>
+          {name.value}
+        </Heading>
       </TimelineContent>
     </TimelineItemBase>
   );

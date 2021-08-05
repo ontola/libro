@@ -87,7 +87,9 @@ const BlogPageShowcase: FC = ({ subject }) => {
           </Resource>
         </CardMedia>
         <CardContent>
-          <Typography className={classes.text} variant="h3">{name.value}</Typography>
+          <Typography className={classes.text} variant="h3">
+            {name.value}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

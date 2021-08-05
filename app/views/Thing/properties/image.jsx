@@ -51,7 +51,11 @@ const ThingImageProp = ({
     && Object.keys(linkedProp).length === 0
     && linkedProp.constructor === Object
   ) {
-    return <div>image</div>;
+    return (
+      <div>
+        image
+      </div>
+    );
   } else if (linkedProp.termType === 'NamedNode' && isFontAwesomeIRI(linkedProp.value)) {
     return <FontAwesome name={normalizeFontAwesomeIRI(linkedProp)} />;
   }

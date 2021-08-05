@@ -247,7 +247,11 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
                 <Property label={schema.title} />
               </Resource>
             </Button>
-          ) : <span>{' '}</span>}
+          ) : (
+            <span>
+              {' '}
+            </span>
+          )}
           {nextChapter ? (
             <Button
               className={classNames.button}
@@ -261,7 +265,11 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
                 <Property label={schema.title} />
               </Resource>
             </Button>
-          ) : <span>{' '}</span>}
+          ) : (
+            <span>
+              {' '}
+            </span>
+          )}
           <span className={classNames.progressBarWrapper}>
             <span>
               {`${Math.round(progress)}%`}

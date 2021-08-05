@@ -43,7 +43,9 @@ const MoreInformationBlockContainer = (): JSX.Element => {
       className={classes.container}
       direction="column"
     >
-      <Typography className={classes.title} variant="h2">{title.value}</Typography>
+      <Typography className={classes.title} variant="h2">
+        {title.value}
+      </Typography>
       <Property label={sales.sections} limit={Infinity} />
     </Grid>
   );

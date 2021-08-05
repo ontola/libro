@@ -42,7 +42,9 @@ const Team: FC = () => {
 
   return (
     <div className={classes.container}>
-      <Typography align="center" variant="h2">{heading.value}</Typography>
+      <Typography align="center" variant="h2">
+        {heading.value}
+      </Typography>
       <Showcase className={classes.showcase}>
         {teamMembersMembers.map((member) => (
           <Resource key={member.value} subject={member} />

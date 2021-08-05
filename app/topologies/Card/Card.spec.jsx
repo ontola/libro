@@ -13,13 +13,21 @@ import Card from '.';
 
 describe('Card component', () => {
   it('Card should render', () => {
-    const tree = mount(<Card>Content</Card>);
+    const tree = mount(
+      <Card>
+        Content
+      </Card>
+    );
     expect(tree.find(Card)).toExist();
     expect(tree.find('.Card')).toHaveText('Content');
   });
 
   it('CardActions should render', () => {
-    const tree = shallow(<CardActions>Content</CardActions>);
+    const tree = shallow(
+      <CardActions>
+        Content
+      </CardActions>
+    );
     expect(tree.find('.CardActions')).toExist();
     tree.setProps({ noSpacing: true });
     expect(tree.find('.CardActions')).toHaveClassName('CardActions--no-spacing');
@@ -27,7 +35,11 @@ describe('Card component', () => {
 
   it('CardButton should render', () => {
     const spy = jest.fn();
-    const tree = mount(<CardButton action={spy} type="yes">Click here</CardButton>);
+    const tree = mount(
+      <CardButton action={spy} type="yes">
+        Click here
+      </CardButton>
+    );
     expect(tree.find('button.Button')).toExist();
     expect(tree.find('button.Button')).toHaveText('Click here');
     expect(tree.find('button.Button')).toHaveClassName('Button--has-icon');
@@ -40,7 +52,9 @@ describe('Card component', () => {
   it('CardContent should render', () => {
     const tree = mount(
       <ThemeProvider theme={themes.common({})}>
-        <CardContent noSpacing>Content</CardContent>
+        <CardContent noSpacing>
+          Content
+        </CardContent>
       </ThemeProvider>
     );
     expect(tree.find('CardContent')).toExist();
@@ -49,7 +63,11 @@ describe('Card component', () => {
   });
 
   it('CardRow should render', () => {
-    const tree = mount(<CardRow showArrow>Content</CardRow>);
+    const tree = mount(
+      <CardRow showArrow>
+        Content
+      </CardRow>
+    );
     expect(tree.find('.CardRow')).toExist();
     expect(tree.find('.CardRow')).toHaveText('Content');
     expect(tree.find('.CardRow')).toHaveClassName('CardRow--show-arrow');

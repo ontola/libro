@@ -23,7 +23,9 @@ const BooleanRenderer: FC<BooleanProps> = ({ linkedProp }) => {
   const intl = useIntl();
 
   return (
-    <React.Fragment>{intl.formatMessage(booleanTranslation[linkedProp.value])}</React.Fragment>
+    <React.Fragment>
+      {intl.formatMessage(booleanTranslation[linkedProp.value])}
+    </React.Fragment>
   );
 };
 

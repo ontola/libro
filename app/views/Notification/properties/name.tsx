@@ -15,7 +15,9 @@ import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
-  <Heading size={HeadingSize.MD}>{linkedProp.value}</Heading>
+  <Heading size={HeadingSize.MD}>
+    {linkedProp.value}
+  </Heading>
 );
 
 Creator.type = argu.Notification;

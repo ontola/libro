@@ -46,11 +46,17 @@ const PersonFooter: FC = () => {
     <div className={classNames.person}>
       <Resource className={classNames.image} subject={image} />
       <ul>
-        <li className={classNames.personName}>{name.value}</li>
-        <li>
-          <a href={`mailto:${email.value}`}>{email.value}</a>
+        <li className={classNames.personName}>
+          {name.value}
         </li>
-        <li>{telephone.value}</li>
+        <li>
+          <a href={`mailto:${email.value}`}>
+            {email.value}
+          </a>
+        </li>
+        <li>
+          {telephone.value}
+        </li>
       </ul>
     </div>
   );

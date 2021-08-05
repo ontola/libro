@@ -142,9 +142,13 @@ const TierGrid: FC = () => {
       >
         <CardContent className={classes.contentWrapper}>
           <div className={classes.infoHeader}>
-            <Typography className={classes.label} variant="h5">{name.value}</Typography>
+            <Typography className={classes.label} variant="h5">
+              {name.value}
+            </Typography>
             {pricing}
-            <Typography variant="body1">{text.value}</Typography>
+            <Typography variant="body1">
+              {text.value}
+            </Typography>
           </div>
           <List>
             <ListItem className={classes.tagline}>

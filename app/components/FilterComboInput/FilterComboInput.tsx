@@ -197,7 +197,9 @@ export const FilterComboInput = ({
     return (
       <span className={classes.option}>
         <FontAwesome name={state.selected ? 'check-square-o' : 'square-o'} />
-        <span>{text}</span>
+        <span>
+          {text}
+        </span>
       </span>
     );
   };

@@ -93,7 +93,11 @@ const CreateSession: FC<CreateSessionProps> = ({
 
   return (
     <Resource subject={currentSubject}>
-      {reason && <CardContent endSpacing>{reason}</CardContent>}
+      {reason && (
+        <CardContent endSpacing>
+          {reason}
+        </CardContent>
+      )}
       <ActionComponent
         appendix={appendix}
         key={currentSubject.value}

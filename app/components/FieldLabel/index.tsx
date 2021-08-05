@@ -18,7 +18,11 @@ const FieldLabel: React.FC<PropTypes> = ({
     htmlFor={htmlFor}
   >
     {label}
-    {required && <span className="Field__label-required">*</span>}
+    {required && (
+      <span className="Field__label-required">
+        *
+      </span>
+    )}
   </label>
 );
 

@@ -60,7 +60,9 @@ const Values: FC = () => {
 
   return (
     <React.Fragment>
-      <Typography align="center" variant="h2">{heading.value}</Typography>
+      <Typography align="center" variant="h2">
+        {heading.value}
+      </Typography>
       <Grid container className={classes.container}>
         {valueMembers.map((value) => (
           <Grid

@@ -92,26 +92,36 @@ const PersonShowCase: FC = () => {
     <div className={classes.container}>
       <div className={classes.start}>
         <Property label={schema.image} />
-        <span className={classes.name}>{name.value}</span>
-        <span className={classes.jobTitle}>{jobTitle.value}</span>
+        <span className={classes.name}>
+          {name.value}
+        </span>
+        <span className={classes.jobTitle}>
+          {jobTitle.value}
+        </span>
       </div>
       <div className={classes.end}>
         {telephone && (
           <span className={classes.iconLink}>
             <PhoneIcon className={classes.icon} />
-            <a href={`tel:${telephone.value}`} rel="noreferrer" target="_blank">{telephone.value}</a>
+            <a href={`tel:${telephone.value}`} rel="noreferrer" target="_blank">
+              {telephone.value}
+            </a>
           </span>
         )}
         {email && (
           <span className={classes.iconLink}>
             <EmailIcon className={classes.icon} />
-            <a href={`mailto:${email.value}`} rel="noreferrer" target="_blank">{email.value}</a>
+            <a href={`mailto:${email.value}`} rel="noreferrer" target="_blank">
+              {email.value}
+            </a>
           </span>
         )}
         {linkedIn && (
           <span className={classes.iconLink}>
             <FontAwesome className={classes.icon} name="linkedin" />
-            <a className={classes.linkedIn} href={linkedIn.value} rel="noreferrer" target="_blank">LinkedIn</a>
+            <a className={classes.linkedIn} href={linkedIn.value} rel="noreferrer" target="_blank">
+              LinkedIn
+            </a>
           </span>
         )}
       </div>

@@ -21,7 +21,13 @@ const PDFViewer = React.lazy(
 );
 
 const PDFViewerLoader = (props: PDFViewerProps): JSX.Element => (
-  <Suspense fallback={<CardContent><LoadingGridContent /></CardContent>}>
+  <Suspense
+    fallback={(
+      <CardContent>
+        <LoadingGridContent />
+      </CardContent>
+    )}
+  >
     <PDFViewer {...props} />
   </Suspense>
 );

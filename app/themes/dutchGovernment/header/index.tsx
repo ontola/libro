@@ -12,7 +12,11 @@ const DutchGovernmentHeader = ({ themeOptions }: DutchGovernmentHeader): JSX.Ele
   const breadcrumbParent = themeOptions.get('breadcrumbParent');
   const breadcrumbParentUrl = themeOptions.get('breadcrumbParentUrl');
   const primaryLine = themeOptions.get('primaryLine') || 'Rijksoverheid';
-  const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line: string) => <div key={line}>{line}</div>);
+  const secondaryLine = themeOptions.get('secondaryLine')?.split('\n')?.map((line: string) => (
+    <div key={line}>
+      {line}
+    </div>
+  ));
   const [logo, setLogo] = React.useState<string | undefined>();
   const styles = useStyles();
 
@@ -33,8 +37,12 @@ const DutchGovernmentHeader = ({ themeOptions }: DutchGovernmentHeader): JSX.Ele
               width={44}
             />
             <span className={styles.wordmark}>
-              <span>{primaryLine}</span>
-              <span className={styles.wordmarkSecondary}>{secondaryLine}</span>
+              <span>
+                {primaryLine}
+              </span>
+              <span className={styles.wordmarkSecondary}>
+                {secondaryLine}
+              </span>
             </span>
           </div>
         </header>
@@ -42,9 +50,13 @@ const DutchGovernmentHeader = ({ themeOptions }: DutchGovernmentHeader): JSX.Ele
           <div className={styles.navBarTitlebar}>
             <div className="NavBarContent">
               {breadcrumbParentUrl ? (
-                <a href={breadcrumbParentUrl}>{breadcrumbParent}</a>
+                <a href={breadcrumbParentUrl}>
+                  {breadcrumbParent}
+                </a>
               ) : (
-                <span>{breadcrumbParent}</span>
+                <span>
+                  {breadcrumbParent}
+                </span>
               )}
             </div>
           </div>

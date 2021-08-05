@@ -51,7 +51,11 @@ const CreateActionButton: FC<CreateActionButtonProps> = ({
   target,
 }) => {
   if (children) {
-    return <React.Fragment>{children}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {children}
+      </React.Fragment>
+    );
   }
 
   return (

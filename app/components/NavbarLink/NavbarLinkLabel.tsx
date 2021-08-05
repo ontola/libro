@@ -6,7 +6,9 @@ export interface NavbarLinkLabelProps {
 
 const NavbarLinkLabel = ({ children }: NavbarLinkLabelProps): JSX.Element => (
   <div className="NavbarLink__label">
-    <span className="NavbarLink__truncated-label">{children}</span>
+    <span className="NavbarLink__truncated-label">
+      {children}
+    </span>
   </div>
 );
 

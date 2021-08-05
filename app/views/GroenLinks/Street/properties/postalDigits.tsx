@@ -11,7 +11,11 @@ import { allTopologies } from '../../../../topologies';
 import { postalCodeIri } from '../../Glapp/helpers';
 
 const PostalDigits: FC<PropertyProps> = ({ linkedProp }) => (
-  <span><Link to={postalCodeIri(linkedProp.value).value}>{linkedProp.value}</Link></span>
+  <span>
+    <Link to={postalCodeIri(linkedProp.value).value}>
+      {linkedProp.value}
+    </Link>
+  </span>
 );
 
 PostalDigits.type = teamGL.Street;

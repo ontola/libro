@@ -17,4 +17,8 @@ if (__DEVELOPMENT__) {
   subRoutes.splice(-1, 0, <Route key="builder" path="/d/builder" component={PageBuilder} />);
 }
 
-export default <Switch>{subRoutes}</Switch>;
+export default (
+  <Switch>
+    {subRoutes}
+  </Switch>
+);

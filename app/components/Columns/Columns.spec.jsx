@@ -2,7 +2,14 @@ import React from 'react';
 
 import Columns from '.';
 
-const exampleChildren = [<div key={0}>Joe</div>, <div key={1}>Joe</div>];
+const exampleChildren = [
+  <div key={0}>
+    Joe
+  </div>,
+  <div key={1}>
+    Joe
+  </div>
+];
 
 const propTypes = {
   children: {},
@@ -10,7 +17,11 @@ const propTypes = {
 
 argUnit(Columns, () => {
   describe('with node child', () => {
-    setProp('children', () => <p>test</p>);
+    setProp('children', () => (
+      <p>
+        test
+      </p>
+    ));
 
     it('renders', () => {
       expect(subject).toMatchSnapshot();

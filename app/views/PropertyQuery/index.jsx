@@ -21,7 +21,11 @@ const PropertyQuery = ({
   const query = properties.reduce(
     (child, label) => {
       if (child) {
-        return <Property label={label}>{child}</Property>;
+        return (
+          <Property label={label}>
+            {child}
+          </Property>
+        );
       }
 
       return <Property label={label} />;

@@ -6,7 +6,11 @@ import React from 'react';
 import { allTopologies } from '../../../topologies';
 
 export default LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <p>{linkedProp.value}</p>,
+  ({ linkedProp }) => (
+    <p>
+      {linkedProp.value}
+    </p>
+  ),
   [
     schema.Thing,
     sh.Shape,

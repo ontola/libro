@@ -101,7 +101,11 @@ const EntryPointForm: React.FC<PropTypes> = ({
     }
 
     if (onLoad) {
-      return <React.Fragment>{onLoad()}</React.Fragment>;
+      return (
+        <React.Fragment>
+          {onLoad()}
+        </React.Fragment>
+      );
     }
 
     return <LoadingGridContent />;

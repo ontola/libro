@@ -53,7 +53,11 @@ const ContentUrl: FC<PropTypes> = ({
         data-test="MediaObject-viewer-image"
         linkedProp={imageLink}
       />
-      {filename && <p className="MediaObjectPage__infobar--image--filename">{filename.value}</p>}
+      {filename && (
+        <p className="MediaObjectPage__infobar--image--filename">
+          {filename.value}
+        </p>
+      )}
     </a>
   );
 };

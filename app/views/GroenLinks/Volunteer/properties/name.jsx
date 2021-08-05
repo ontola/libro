@@ -16,7 +16,9 @@ const propTypes = {
 
 const Name = ({ linkedProp }) => (
   <LDLink>
-    <Heading size="3">{linkedProp.value}</Heading>
+    <Heading size="3">
+      {linkedProp.value}
+    </Heading>
   </LDLink>
 );
 

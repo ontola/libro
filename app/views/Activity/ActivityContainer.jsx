@@ -18,7 +18,9 @@ const ActivityContainer = ({ text }) => (
       {text && (
         <CardRow>
           <CardContent>
-            <p>{text.value}</p>
+            <p>
+              {text.value}
+            </p>
           </CardContent>
         </CardRow>
       )}

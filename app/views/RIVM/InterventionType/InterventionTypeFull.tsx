@@ -60,8 +60,12 @@ const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) =
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
           <AttributeList>
             <tr>
-              <th>Praktische ervaring aandragers</th>
-              <th>Gemiddelde beoordeling</th>
+              <th>
+                Praktische ervaring aandragers
+              </th>
+              <th>
+                Gemiddelde beoordeling
+              </th>
             </tr>
             <AttributeListItem label={rivm.securityImprovedScore} />
             <AttributeListItem label={rivm.oneOffCostsScore} />

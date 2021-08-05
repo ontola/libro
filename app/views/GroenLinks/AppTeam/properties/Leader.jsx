@@ -18,7 +18,9 @@ import { tableRowTopology } from '../../../../topologies/TableRow';
 
 const Leader = ({ linkedProp }) => (
   <React.Fragment>
-    <Heading>Aanvoerder</Heading>
+    <Heading>
+      Aanvoerder
+    </Heading>
     <Card>
       <CardContent>
         <Resource subject={linkedProp}>

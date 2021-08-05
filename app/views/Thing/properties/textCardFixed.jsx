@@ -42,7 +42,9 @@ const TextCutoff = ({ coverPhoto, text }) => {
 
   return (
     <div className={classes.root}>
-      <p>{strippedText}</p>
+      <p>
+        {strippedText}
+      </p>
       {strippedText.length > STRING_CUTOFF && <div className={classes.footer} />}
     </div>
   );

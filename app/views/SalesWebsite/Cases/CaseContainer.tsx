@@ -84,8 +84,12 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
         direction="column"
         justify="center"
       >
-        <Typography variant="h2">{name.value}</Typography>
-        <Typography className={classes.subTitle}>{text.value}</Typography>
+        <Typography variant="h2">
+          {name.value}
+        </Typography>
+        <Typography className={classes.subTitle}>
+          {text.value}
+        </Typography>
         {renderedImage}
         <Showcase>
           <div className={classes.propositionSelector}>

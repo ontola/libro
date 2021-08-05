@@ -41,7 +41,10 @@ const DepartmentFull = ({ postalRanges, renderPartOf }) => (
             <LinkedDetailDate />
           </ContentDetails>
           <div>
-            <span>Postcodes: </span>
+            <span>
+              Postcodes:
+              {' '}
+            </span>
             {postalRanges.join(', ')}
           </div>
         </CardContent>

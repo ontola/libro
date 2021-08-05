@@ -47,7 +47,11 @@ const SignInFlow: FC<SignInFlowProps> = ({
                 defaultMessage="Please confirm your vote by clicking the link we've sent to {email}"
                 id="https://app.argu.co/i18n/forms/session/emailConfirmationReminder"
                 values={{
-                  email: <b>{primaryEmail?.value}</b>,
+                  email: (
+                    <b>
+                      {primaryEmail?.value}
+                    </b>
+                  ),
                 }}
               />
             </p>

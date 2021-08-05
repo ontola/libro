@@ -64,9 +64,21 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
           {' '}
           {headerDescription ? <FormattedMessage {...headerDescription} /> : (err && err.name)}
         </Heading>
-        {bodyDescriptor ? <p><FormattedMessage {...bodyDescriptor} /></p> : null}
-        {err && <p>{err.message}</p>}
-        {__DEVELOPMENT__ && err && <pre>{err.stack}</pre>}
+        {bodyDescriptor ? (
+          <p>
+            <FormattedMessage {...bodyDescriptor} />
+          </p>
+        ) : null}
+        {err && (
+          <p>
+            {err.message}
+          </p>
+        )}
+        {__DEVELOPMENT__ && err && (
+          <pre>
+            {err.stack}
+          </pre>
+        )}
         {mainAction}
       </CardContent>
     </Card>

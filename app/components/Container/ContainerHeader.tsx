@@ -42,7 +42,9 @@ const ContainerHeader = ({
 
   return (
     <div className={classNames.containerHeader}>
-      <div className={classNames.header}>{children}</div>
+      <div className={classNames.header}>
+        {children}
+      </div>
       <ContainerFloat>
         {float}
       </ContainerFloat>

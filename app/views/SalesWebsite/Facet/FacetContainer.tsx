@@ -188,8 +188,12 @@ const FacetContainer: FC = () => {
       className={classes.wrapper}
       direction="column"
     >
-      <Typography className={classes.title} variant="h2">{name.value}</Typography>
-      <Typography className={classes.subTitle} variant="subtitle1">{text.value}</Typography>
+      <Typography className={classes.title} variant="h2">
+        {name.value}
+      </Typography>
+      <Typography className={classes.subTitle} variant="subtitle1">
+        {text.value}
+      </Typography>
       <Grid
         container
         className={textContainerClass}
@@ -203,7 +207,7 @@ const FacetContainer: FC = () => {
           {facets.map((facet) => (
             <div key={facet.subject!.value}>
               <div className={classes.facetContainer}>
-                {facet.subject !== currentFacet ?
+                {facet.subject !== currentFacet ? (
                   <button
                     className={classes.button}
                     key={facet.subject!.value}
@@ -220,23 +224,25 @@ const FacetContainer: FC = () => {
                       {facet.name!.value}
                     </Typography>
                   </button>
-                  :
-                  <button
-                    className={classes.button}
-                    key={facet.subject!.value}
-                    type="button"
-                    onClick={() => setCurrentFacet(facet.subject!)}
-                  >
-                    <KeyboardArrowDownIcon
-                      style={{
-                        color: '#B33A00',
-                        fontSize: 30,
-                      }}
-                    />
-                    <Typography className={classes.buttonTextSelected} onClick={() => setCurrentFacet(facet.subject!)}>
-                      {facet.name!.value}
-                    </Typography>
-                  </button>}
+                )
+                  : (
+                    <button
+                      className={classes.button}
+                      key={facet.subject!.value}
+                      type="button"
+                      onClick={() => setCurrentFacet(facet.subject!)}
+                    >
+                      <KeyboardArrowDownIcon
+                        style={{
+                          color: '#B33A00',
+                          fontSize: 30,
+                        }}
+                      />
+                      <Typography className={classes.buttonTextSelected} onClick={() => setCurrentFacet(facet.subject!)}>
+                        {facet.name!.value}
+                      </Typography>
+                    </button>
+                  )}
               </div>
               <Collapse in={facet.subject === currentFacet}>
                 <Typography className={classes.collapseText} variant="body1">

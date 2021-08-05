@@ -41,7 +41,9 @@ const VideoSet: FC<VideoSetProps> = (props) => {
           defaultMessage="No video support"
           id="https://ns.ontola.io/app/videoUnsupported"
         />
-        <a href={mp4?.value ?? webm?.value}>click here to download</a>
+        <a href={mp4?.value ?? webm?.value}>
+          click here to download
+        </a>
       </p>
     </video>
   );

@@ -45,7 +45,11 @@ const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
   const [color] = useResourceProperty(legendType, schema.color);
   const styleDot = color ? { backgroundColor: color.value } : {};
   const nameWrapper = url
-    ? ({ children }: {children: ReactChildren}) => <Link allowExternal={false} to={url.value}>{children}</Link>
+    ? ({ children }: {children: ReactChildren}) => (
+      <Link allowExternal={false} to={url.value}>
+        {children}
+      </Link>
+    )
     : React.Fragment;
 
   return (

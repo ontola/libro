@@ -29,8 +29,16 @@ const DataSetTabPane: FC<DataSetTabPaneProps> = ({
 }) => (
   <Container size={Size.Large}>
     <Resource subject={subject} />
-    {nextPage && previous && <Button onClick={previousPage}>previous</Button>}
-    {previousPage && next && <Button onClick={nextPage}>next</Button>}
+    {nextPage && previous && (
+      <Button onClick={previousPage}>
+        previous
+      </Button>
+    )}
+    {previousPage && next && (
+      <Button onClick={nextPage}>
+        next
+      </Button>
+    )}
   </Container>
 );
 

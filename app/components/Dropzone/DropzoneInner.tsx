@@ -54,7 +54,9 @@ const DropzoneInner = ({
     return children(
       <div className={classes.documentPreviewWrapper}>
         <Image className={classes.documentPreviewImage} linkedProp={fileImage} />
-        <span className={classes.documentPreviewFileName}>{fileName}</span>
+        <span className={classes.documentPreviewFileName}>
+          {fileName}
+        </span>
       </div>,
     );
   }

@@ -36,7 +36,9 @@ const propTypesCollection = {
 };
 
 const TextStripped = ({ linkedProp }) => (
-  <span>{useStrippedMarkdown(linkedProp.value)}</span>
+  <span>
+    {useStrippedMarkdown(linkedProp.value)}
+  </span>
 );
 
 TextStripped.propTypes = propTypes;

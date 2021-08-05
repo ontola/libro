@@ -51,10 +51,14 @@ const InviteFull: FC<InviteFullProps> = ({
         </DetailsBar>
         <CardContent endSpacing>
           <p>
-            <strong>{assigner?.value}</strong>
+            <strong>
+              {assigner?.value}
+            </strong>
             {' wil'}
             {'het bestand '}
-            <strong>{fileName?.value}</strong>
+            <strong>
+              {fileName?.value}
+            </strong>
             {' met je delen.'}
           </p>
           <Property label={dexes.offer}>

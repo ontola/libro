@@ -36,7 +36,11 @@ const ResourceTable: FC<PropertyProps> = () => {
   const subjects = nameMap.map((map) => map.subject?.value).join(', ');
   const names = nameMap.map((map) => map.name).join(', ');
 
-  return <div title={subjects}>{names}</div>;
+  return (
+    <div title={subjects}>
+      {names}
+    </div>
+  );
 };
 
 ResourceTable.type = ontola.Widget;

@@ -110,7 +110,9 @@ const PDFViewer = ({
       <p>
         De PDF kan niet worden geladen.
       </p>
-      <a download href={url}>Download het bestand.</a>
+      <a download href={url}>
+        Download het bestand.
+      </a>
       {/* If the PDF does not render, show the plaintext */}
       <Property label={schema.text} />
     </div>
@@ -182,7 +184,9 @@ const PDFViewer = ({
               >
                 <FontAwesome name="arrow-left" />
               </IconButton>
-              <span>{`${pageNumber} / ${numPages}`}</span>
+              <span>
+                {`${pageNumber} / ${numPages}`}
+              </span>
               <IconButton
                 disabled={(pageNumber === (numPages))}
                 size="small"

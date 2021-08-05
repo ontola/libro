@@ -80,7 +80,11 @@ const CreateActionButtonContainer: FC<CreateActionButtonContainerProps> = ({
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
 
   if (children) {
-    return <React.Fragment>{children}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {children}
+      </React.Fragment>
+    );
   }
 
   return (

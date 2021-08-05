@@ -47,9 +47,13 @@ export interface ProgressProps {
 const progressFormatter = (classes: ClassNameMap) => (value: number, max: number) => (
   <div className={classes.labelWrapper}>
     <Heading size={HeadingSize.LG}>
-      <div className={classes.labelInner}>{value}</div>
+      <div className={classes.labelInner}>
+        {value}
+      </div>
       /
-      <div className={classes.labelInner}>{max}</div>
+      <div className={classes.labelInner}>
+        {max}
+      </div>
     </Heading>
   </div>
 );

@@ -62,7 +62,9 @@ const PostalCodeDialog: FC<PostalCodeDialogProps> = ({
           <AttributeListItem label={teamGL.volunteers} />
           <AttributeListItem label={teamGL.active} />
         </AttributeList>
-        <Button centered onClick={() => visitPostalCode(postalDigits.value)}>Aan de slag!</Button>
+        <Button centered onClick={() => visitPostalCode(postalDigits.value)}>
+          Aan de slag!
+        </Button>
       </CardContent>
     </Card>
   );

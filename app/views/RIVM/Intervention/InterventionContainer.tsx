@@ -34,8 +34,12 @@ const InterventionContainer: FC<InterventionContainerProps> = ({ highlighted, su
       <Property label={[schema.text, schema.description, dbo.abstract]} />
       <AttributeList>
         <tr>
-          <th>Praktische ervaring aandrager</th>
-          <th>Beoordeling</th>
+          <th>
+            Praktische ervaring aandrager
+          </th>
+          <th>
+            Beoordeling
+          </th>
         </tr>
         <AttributeListItem
           label={rivm.securityImprovedScore}
@@ -55,7 +59,9 @@ const InterventionContainer: FC<InterventionContainerProps> = ({ highlighted, su
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
     <ActionsBar small>
-      <LDLink>Lees meer</LDLink>
+      <LDLink>
+        Lees meer
+      </LDLink>
     </ActionsBar>
   </Card>
 );

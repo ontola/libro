@@ -63,7 +63,9 @@ const AcademyHeader = (): JSX.Element => {
               <Property label={ontola.menuItems} />
             </Property>
           </Resource>
-          <span>Academy</span>
+          <span>
+            Academy
+          </span>
         </NavLink>
         <span className={classNames.searchWrapper}>
           <ChapterSearch />

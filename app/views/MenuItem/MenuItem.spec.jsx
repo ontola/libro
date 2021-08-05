@@ -57,7 +57,9 @@ describe('MenuItem', () => {
     const renderMenu = () => render((
       <AppMenu
         trigger={(onClick) => (
-          <button onClick={onClick}>Menu Trigger</button>
+          <button onClick={onClick}>
+            Menu Trigger
+          </button>
         )}
       >
         {({ handleClose, ref }) => (

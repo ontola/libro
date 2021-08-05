@@ -46,7 +46,9 @@ const Columns = ({
   ));
 
   return (
-    <div className={className}>{renderColumns}</div>
+    <div className={className}>
+      {renderColumns}
+    </div>
   );
 };
 

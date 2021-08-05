@@ -25,8 +25,12 @@ const InterventionTypeGrid: FC = () => (
         <Property label={[schema.text, schema.description, dbo.abstract]} />
         <AttributeList>
           <tr>
-            <th>Praktische ervaring aandragers</th>
-            <th>Gemiddelde beoordeling</th>
+            <th>
+              Praktische ervaring aandragers
+            </th>
+            <th>
+              Gemiddelde beoordeling
+            </th>
           </tr>
           <AttributeListItem label={rivm.securityImprovedScore} />
           <AttributeListItem label={rivm.oneOffCostsScore} />

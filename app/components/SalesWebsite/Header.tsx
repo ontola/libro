@@ -90,7 +90,9 @@ export const Header = ({
 
   return (
     <div className={classes.header}>
-      <Typography className={classes.title} variant="h1">{title}</Typography>
+      <Typography className={classes.title} variant="h1">
+        {title}
+      </Typography>
       {subtitle ?
         (
           <Typography

@@ -17,7 +17,9 @@ const AgreementFull = () => (
   <Container>
     <CardMain>
       <CardContent noSpacing>
-        <Heading>DataDeal</Heading>
+        <Heading>
+          DataDeal
+        </Heading>
         <AttributeList>
           <Property label={dexes.assigner}>
             <AttributeListItem label={foaf.name} propertyLabel="Deler" />
@@ -34,7 +36,9 @@ const AgreementFull = () => (
       </CardContent>
       <CardDivider />
       <CardContent>
-        <Heading>Condities</Heading>
+        <Heading>
+          Condities
+        </Heading>
         <Property label={dexes.offer}>
           {/* <AttributeListItem label={dexes.prohibitions} propertyLabel="Condities" /> */}
           <Property label={dexes.prohibitions} renderWhenEmpty={false} />

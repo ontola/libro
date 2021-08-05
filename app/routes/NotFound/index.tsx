@@ -10,7 +10,9 @@ import Container from '../../topologies/Container';
 const NotFound = (): JSX.Element => (
   <Container size={Size.Small}>
     <Helmet title="404 Not Found" />
-    <Heading>404 Niet gevonden</Heading>
+    <Heading>
+      404 Niet gevonden
+    </Heading>
     <Card>
       <CardContent>
         De pagina die je zocht is helaas niet gevonden...

@@ -12,7 +12,9 @@ import { allTopologies } from '../../../../topologies';
 import { inlineTopology } from '../../../../topologies/Inline';
 
 const NatureOfCost: FC<PropertyProps> = ({ linkedProp }) => (
-  <div><Resource subject={linkedProp} topology={inlineTopology} /></div>
+  <div>
+    <Resource subject={linkedProp} topology={inlineTopology} />
+  </div>
 );
 
 NatureOfCost.type = schema.Thing;

@@ -37,7 +37,11 @@ const InlineAction: FC<InlineActionTableRowProps> = ({
   }
 
   if (rdf.equals(actionStatus, schema.CompletedActionStatus)) {
-    return error ? <span>{error.value}</span> : null;
+    return error ? (
+      <span>
+        {error.value}
+      </span>
+    ) : null;
   }
 
   const handleClick = React.useCallback(

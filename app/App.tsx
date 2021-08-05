@@ -34,14 +34,22 @@ const App = ({
   let router;
 
   if (__CLIENT__) {
-    router = ({ children }: RouterProps) => <ConnectedRouter history={history}>{children}</ConnectedRouter>;
+    router = ({ children }: RouterProps) => (
+      <ConnectedRouter history={history}>
+        {children}
+      </ConnectedRouter>
+    );
   } else {
     const { websiteOrigin } = websiteCtxValue;
     const bugNormalized = location?.replace(`${websiteOrigin}//`, `${websiteOrigin}/`);
     const iri = bugNormalized ? new URL(bugNormalized, websiteOrigin) : null;
     const routerLocation = iri ? iri.pathname + iri.search + iri.hash : undefined;
 
-    router = ({ children }: RouterProps) => <StaticRouter location={routerLocation}>{children}</StaticRouter>;
+    router = ({ children }: RouterProps) => (
+      <StaticRouter location={routerLocation}>
+        {children}
+      </StaticRouter>
+    );
   }
 
   return (

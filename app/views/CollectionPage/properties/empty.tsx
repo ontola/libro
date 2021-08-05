@@ -56,19 +56,37 @@ const Empty: FC<EmptyProps> = ({
   );
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/card'])) {
-    return <CardContent endSpacing>{message}</CardContent>;
+    return (
+      <CardContent endSpacing>
+        {message}
+      </CardContent>
+    );
   }
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
-    return <GridItem>{message}</GridItem>;
+    return (
+      <GridItem>
+        {message}
+      </GridItem>
+    );
   }
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/default']) && topology !== containerTopology) {
-    return <Container>{message}</Container>;
+    return (
+      <Container>
+        {message}
+      </Container>
+    );
   }
 
   if (isTableDisplay(collectionDisplay)) {
-    return <TableRow><TableCell>{message}</TableCell></TableRow>;
+    return (
+      <TableRow>
+        <TableCell>
+          {message}
+        </TableCell>
+      </TableRow>
+    );
   }
 
   return message;

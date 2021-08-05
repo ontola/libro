@@ -41,7 +41,11 @@ const MoneyInput: React.FC<InputComponentProps> = ({
     <FormControl fullWidth>
       <Input
         name={name}
-        startAdornment={<InputAdornment position="start">{symbol}</InputAdornment>}
+        startAdornment={(
+          <InputAdornment position="start">
+            {symbol}
+          </InputAdornment>
+        )}
         type="number"
         value={value}
         onChange={handleChange}

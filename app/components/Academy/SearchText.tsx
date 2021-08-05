@@ -43,9 +43,15 @@ export const SearchText = ({ text, input }: SearchTextProps): JSX.Element => {
 
   return (
     <div>
-      <span>{prefix}</span>
-      <span className={classes.input}>{input}</span>
-      <span>{`${suffix}...`}</span>
+      <span>
+        {prefix}
+      </span>
+      <span className={classes.input}>
+        {input}
+      </span>
+      <span>
+        {`${suffix}...`}
+      </span>
     </div>
   );
 };

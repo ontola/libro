@@ -18,7 +18,11 @@ const GridHeader: React.FC<PropTypes> = ({
   header,
 }) => (
   <div className="GridHeader">
-    {header && <div className="GridHeader--header">{header}</div>}
+    {header && (
+      <div className="GridHeader--header">
+        {header}
+      </div>
+    )}
     <ContainerFloat>
       {children}
     </ContainerFloat>
