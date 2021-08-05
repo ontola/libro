@@ -18,6 +18,7 @@ import { containerHeaderTopology } from './topologies/Container/ContainerHeader'
 import { contentDetailsTopology } from './topologies/ContentDetails';
 import { detailsBarTopology } from './topologies/DetailsBar';
 import { alertDialogTopology } from './topologies/Dialog';
+import { flowTopology } from './topologies/Flow';
 import { footerTopology } from './topologies/Footer';
 import { formFooterTopology } from './topologies/FormFooter';
 import { fullResourceTopology } from './topologies/FullResource';
@@ -73,6 +74,7 @@ export const allTopologies: NamedNode[] = [
   detailsBarTopology,
   alertDialogTopology,
   menuTopology,
+  flowTopology,
   formFooterTopology,
   footerTopology,
   fullResourceTopology,

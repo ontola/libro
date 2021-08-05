@@ -13,9 +13,9 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const Condition = () => {
-  const [shape] = useProperty(sh.node) as NamedNode[];
+  const shapes = useProperty(sh.node) as NamedNode[];
   const { object } = React.useContext(FormContext);
-  const pass = useShapeValidation(shape, object);
+  const [pass] = useShapeValidation(shapes, object);
 
   if (pass) {
     return <Property label={ontola.pass} />;

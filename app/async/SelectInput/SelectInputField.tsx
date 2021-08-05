@@ -28,10 +28,12 @@ import { useIntl } from 'react-intl';
 import { useDebouncedCallback } from 'use-debounce';
 
 import CollectionCreateActionButton from '../../components/Collection/CollectionCreateActionButton';
+import { FormContext, FormTheme } from '../../components/Form/Form';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
+import { SHADOW_LIGHT } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
 import form from '../../ontology/form';
@@ -52,8 +54,14 @@ const DEBOUNCE_TIMEOUT = 500;
 const VIRTUALIZATION_THRESHOLD = 10;
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
+  flow: {
+    boxShadow: SHADOW_LIGHT,
+  },
   input: {
     flexWrap: 'nowrap',
+  },
+  inputBaseFlow: {
+    height: '3rem',
   },
   popper: {
     width: 'fit-content !important',
@@ -124,6 +132,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   values,
 }) => {
   const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
+  const { theme } = React.useContext(FormContext);
 
   const { formatMessage } = useIntl();
   const lrs = useLRS();
@@ -189,10 +198,15 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   }, [multiple, onChange]);
 
   const renderInput = React.useCallback((params: AutocompleteRenderInputParams) => {
+    const inputBaseClassName = clsx({
+      [classes.inputBaseFlow]: theme === FormTheme.Flow,
+    });
+
     const inputProps = {
       ...params,
       InputProps: {
         ...params.InputProps,
+        classes: { root: inputBaseClassName },
         endAdornment: (
           <div className="MuiAutocomplete-endAdornment">
             {(params.InputProps.endAdornment as any)?.props?.children}
@@ -241,6 +255,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
 
   const virtualized = !grouped && options.length > VIRTUALIZATION_THRESHOLD;
   const className = clsx({
+    [classes.flow]: theme === FormTheme.Flow,
     [classes.wrapper]: true,
     Field__input: true,
     'Field__input--select': true,

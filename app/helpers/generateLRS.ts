@@ -265,6 +265,8 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
     rdf.quad(form.SliderInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.TextAreaInput, rdfx.type, rdfs.Class),
     rdf.quad(form.TextAreaInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.ToggleButtonGroup, rdfx.type, rdfs.Class),
+    rdf.quad(form.ToggleButtonGroup, rdfs.subClassOf, form.Field),
     rdf.quad(form.MultipleEmailInput, rdfx.type, rdfs.Class),
     rdf.quad(form.MultipleEmailInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.TextInput, rdfx.type, rdfs.Class),

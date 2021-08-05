@@ -9,7 +9,7 @@ import { ShapeForm } from '../../hooks/useShapeProps';
 import FormFieldAddButton from './FormFieldAddButton';
 import FormInput from './FormInput';
 
-import { FormFieldError, InputMeta } from './index';
+import { FormFieldError, InputMeta } from './';
 
 export interface FormInputsProps {
   addFormValue?: () => any;

@@ -19,6 +19,7 @@ import Input, { InputType } from '../Input/Input';
 
 export enum FormTheme {
   Default = 'default',
+  Flow = 'flow',
   Preview = 'preview',
 }
 

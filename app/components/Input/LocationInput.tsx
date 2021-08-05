@@ -1,5 +1,7 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf, { isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   ReturnType,
   useResourceLink,
@@ -8,16 +10,16 @@ import {
 import React from 'react';
 
 import MapView, { Placement } from '../../containers/MapView';
+import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
 import useFormField, { InputValue } from '../../hooks/useFormField';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
-import { FormContext } from '../Form/Form';
+import { LibroTheme } from '../../themes/themes';
+import { FormContext, FormTheme } from '../Form/Form';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
-
-import './LocationInput.scss';
 
 const DEFAULT_ZOOM = 6.8;
 
@@ -32,6 +34,24 @@ interface InitialView {
   lon: number;
   zoom: number;
 }
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  locationFlow: {
+    [theme.breakpoints.up('md')]: {
+      width: 'min(80vw, 600px)',
+    },
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: SHADOW_LIGHT,
+    height: '16rem',
+    overflow: 'hidden',
+    width: '90vw',
+  },
+  locationInput: {
+    flex: 1,
+    marginBottom: '1rem',
+    position: 'relative',
+  },
+}));
 
 const usePlacements = (lat: InputValue, lon: InputValue, zoomLevel: InputValue): [Placement[], InitialView] => {
   const { object, parentObject } = React.useContext(FormContext);
@@ -64,6 +84,13 @@ const LocationInput: React.FC<InputComponentProps> = ({
   inputValue,
   onChange,
 }) => {
+  const { theme } = React.useContext(FormContext);
+  const classes = useStyles();
+  const className = clsx({
+    [classes.locationInput]: true,
+    [classes.locationFlow]: theme === FormTheme.Flow,
+  });
+
   const { name: latName, values: latValues, onChange: latOnChange } = useFormField({
     path: schema.latitude,
   });
@@ -98,7 +125,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   };
 
   return (
-    <div className="LocationInput">
+    <div className={className}>
       <HiddenRequiredInput
         name={latName}
         value={lat?.value}

@@ -35,6 +35,7 @@ import { containerFloatTopology } from '../../topologies/Container/ContainerFloa
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
+import { flowTopology } from '../../topologies/Flow';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
@@ -83,6 +84,7 @@ export default [
       alertDialogTopology,
       containerTopology,
       cardListTopology,
+      flowTopology,
     ],
   ),
   LinkedRenderStore.registerRenderer(

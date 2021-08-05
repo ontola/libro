@@ -209,6 +209,36 @@
   "https://app.argu.co/i18n/expireable/states/expiring/tooltip": {
     "defaultMessage": "sluit op {date}"
   },
+  "https://app.argu.co/i18n/flow/enterButtonLabel": {
+    "defaultMessage": "Enter"
+  },
+  "https://app.argu.co/i18n/flow/nextButtonLabel": {
+    "defaultMessage": "Volgende"
+  },
+  "https://app.argu.co/i18n/flow/previousAriaLabel": {
+    "defaultMessage": "Vorige"
+  },
+  "https://app.argu.co/i18n/flow/submitButtonLabel": {
+    "defaultMessage": "Voltooien"
+  },
+  "https://app.argu.co/i18n/flow/submitButtonLabelInvalid": {
+    "defaultMessage": "Ga terug"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpBodyText": {
+    "defaultMessage": "Einde van de enquête. Klik op voltooien om de antwoorden op te slaan."
+  },
+  "https://app.argu.co/i18n/flow/wrapUpBodyTextInvalid": {
+    "defaultMessage": "Je kan de enquête niet voltooien voordat alle verplichte velden zijn ingevuld."
+  },
+  "https://app.argu.co/i18n/flow/wrapUpButtonLabel": {
+    "defaultMessage": "Afronden"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpTitle": {
+    "defaultMessage": "Klaar! 🎉"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpTitleInvalid": {
+    "defaultMessage": "Bijna klaar!"
+  },
   "https://app.argu.co/i18n/footer/policy": {
     "defaultMessage": "Algemene voorwaarden"
   },

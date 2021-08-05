@@ -211,6 +211,36 @@
   "https://app.argu.co/i18n/expireable/states/expiring/tooltip": {
     "defaultMessage": "Closing on {date}"
   },
+  "https://app.argu.co/i18n/flow/enterButtonLabel": {
+    "defaultMessage": "Enter"
+  },
+  "https://app.argu.co/i18n/flow/nextButtonLabel": {
+    "defaultMessage": "Next"
+  },
+  "https://app.argu.co/i18n/flow/previousAriaLabel": {
+    "defaultMessage": "Previous"
+  },
+  "https://app.argu.co/i18n/flow/submitButtonLabel": {
+    "defaultMessage": "Submit"
+  },
+  "https://app.argu.co/i18n/flow/submitButtonLabelInvalid": {
+    "defaultMessage": "Go back"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpBodyText": {
+    "defaultMessage": "This is the end of the survey. Click on submit to save your awnsers."
+  },
+  "https://app.argu.co/i18n/flow/wrapUpBodyTextInvalid": {
+    "defaultMessage": "The survey cannot be completed before all required questions are answerd."
+  },
+  "https://app.argu.co/i18n/flow/wrapUpButtonLabel": {
+    "defaultMessage": "Wrap up"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpTitle": {
+    "defaultMessage": "Done! 🎉"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpTitleInvalid": {
+    "defaultMessage": "Almost there!"
+  },
   "https://app.argu.co/i18n/footer/policy": {
     "defaultMessage": "Terms of service"
   },

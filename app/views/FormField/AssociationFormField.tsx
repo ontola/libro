@@ -24,7 +24,6 @@ import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 
-
 const useItemFactory = () => {
   const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
   const [path] = useProperty(sh.path) as NamedNode[];

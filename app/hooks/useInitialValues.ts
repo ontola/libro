@@ -2,6 +2,7 @@ import * as as from '@ontologies/as';
 import {
   BlankNode,
   NamedNode,
+  SomeTerm,
   Term,
   isNamedNode,
   isNode,
@@ -54,6 +55,18 @@ const renderedFieldValue = (fieldType?: NamedNode) => (
   ].includes(fieldType)
 );
 
+export const inputValueFromStorage = (
+  sessionStore: Storage | undefined,
+  path: NamedNode,
+  object: SomeNode | undefined,
+  formID: string,
+  nested: boolean,
+): SomeTerm[] | undefined => {
+  const storageKey = getStorageKey(formID, nested ? object : undefined, path);
+
+  return storageGet(sessionStore, storageKey);
+};
+
 const getInitialValues = (
   lrs: LinkReduxLRSType,
   sessionStore: Storage | undefined,
@@ -87,8 +100,7 @@ const getInitialValues = (
 
     if (path && object) {
       const fieldName = calculateFormFieldName(path);
-      const storageKey = getStorageKey(formContext, nested ? object : undefined, path);
-      const valueFromStorage = storageGet(sessionStore, storageKey);
+      const valueFromStorage = inputValueFromStorage(sessionStore, path, object, formContext, nested);
       const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
 
       const initialValue = defaultValue.length > 0 ? defaultValue : lrs.getResourceProperties(object, path);

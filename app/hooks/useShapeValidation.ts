@@ -96,7 +96,11 @@ const resolveCondition = (
   return true;
 };
 
-const validateShape = (shapeProps: NodeShape[], valuesFor: ValuesFor, shape: SomeNode) => {
+const validateShape = (shapeProps: NodeShape[], valuesFor: ValuesFor, shape: LaxNode) => {
+  if (!shape) {
+    return false;
+  }
+
   const props = shapeProps.find((p) => p.subject === shape);
 
   if (!props) {
@@ -184,11 +188,11 @@ const useShapeDependencies = (normalizedProps: NodeShape[]) => {
   }, [normalizedProps]);
 };
 
-const useShapeProps = (shape: SomeNode): NodeShape[] => {
+const useShapeProps = (shapes: LaxNode[]): NodeShape[] => {
   const lrs = useLRS();
-  const [shapes, setShapes] = React.useState<SomeNode[]>([shape]);
-  const shapeProps = useResourceLinks(shapes, shapePropsMap);
-  useDataFetching(shapes);
+  const [nestedShapes, setNestedShapes] = React.useState<LaxNode[]>(shapes);
+  const shapeProps = useResourceLinks(nestedShapes.filter(isNode), shapePropsMap);
+  useDataFetching(nestedShapes.filter(isNode));
   const [normalizedProps, setNormalizedProps] = React.useState<NodeShape[]>([]);
   React.useEffect(() => {
     setNormalizedProps(shapeProps.map((props) => normalizeProps(lrs, props)));
@@ -208,20 +212,20 @@ const useShapeProps = (shape: SomeNode): NodeShape[] => {
 
     const newShapes = Array.from(newShapesSet).filter(isNode);
 
-    if (!arraysEqual(shapes, newShapes)) {
-      setShapes(newShapes);
+    if (!arraysEqual(nestedShapes, newShapes)) {
+      setNestedShapes(newShapes);
     }
   }, [shapeProps]);
 
   return normalizedProps;
 };
 
-const useShapeValidation = (shape: SomeNode, targetFromProp: LaxNode): boolean => {
-  const shapeProps = useShapeProps(shape);
+const useShapeValidation = (shapes: LaxNode[], targetFromProp: LaxNode): boolean[] => {
+  const shapeProps = useShapeProps(shapes);
   const valuesFor = useShapeValues(targetFromProp, shapeProps);
 
   return React.useMemo(() => (
-    validateShape(shapeProps, valuesFor, shape)
+    shapes.map((shape) => validateShape(shapeProps, valuesFor, shape))
   ), [shapeProps, valuesFor]);
 };
 

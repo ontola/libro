@@ -166,6 +166,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
   } = props;
 
   const lrs = useLRS();
+
   const {
     autofocusForm,
     blacklist,
@@ -177,6 +178,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     theme,
     whitelist,
   } = React.useContext(FormContext);
+
   const fieldProps = useLink(mapFieldProps) as MapFieldPropsShape;
 
   if (path) {
@@ -185,7 +187,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
 
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
   const blacklisted = blacklist?.includes(rdf.id(fieldProps.path));
-  const fieldName = calculateFormFieldName(formSection, fieldProps.path);
+  const fieldName = calculateFormFieldName(formSection, fieldProps.path ?? 'undefined');
 
   if (blacklisted || !whitelisted) {
     return {
@@ -198,6 +200,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
 
   const fieldShape = useFieldShape(props);
   const storeKey = getStorageKey(formID || '', formSection ? object : undefined, fieldProps.path);
+
   const validate = combineValidators([
     isNumber(fieldShape.maxCount) ? validators.maxCount(fieldShape.maxCount) : undefined,
     isNumber(fieldShape.maxLength) ? validators.maxLength(fieldShape.maxLength) : undefined,
@@ -205,12 +208,14 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     isNumber(fieldShape.minLength) ? validators.minLength(fieldShape.minLength) : undefined,
     fieldShape.required ? validators.required : undefined,
   ]);
+
   const setDefaultValue = React.useCallback(
     storage
       ? (val) => storageSet(sessionStore, storeKey, val)
       : () => undefined,
     [storeKey],
   );
+
   const saveToLRS = React.useCallback((nextValue) => {
     const delta = object && fieldProps.path && changeDelta(object, fieldProps.path, nextValue);
 
@@ -218,12 +223,15 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
       lrs.processDelta(delta, !delay);
     }
   }, [object, fieldProps.path, delay]);
+
   const saveToLocalStorage = React.useCallback((nextValue: InputValue[]) => {
     if (storeKey) {
       setDefaultValue(nextValue.map((val) => isJSONLDObject(val) ? val['@id'] : val));
     }
   }, [storeKey, setDefaultValue]);
+
   const [memoizedMeta, setMemoizedMeta] = React.useState({});
+
   const { input, meta } = useField(fieldName, {
     allowNull: true,
     format: (i) => i,
@@ -231,7 +239,9 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     validate,
     validateFields: [],
   });
+
   const originalOnChange = input.onChange;
+
   const onChange = React.useCallback((nextValue) => {
     if (meta.touched || valueChanged(nextValue, input.value)) {
       saveToLRS(nextValue);
@@ -240,12 +250,15 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
 
     originalOnChange(nextValue);
   }, [storeKey, meta.touched, input.value]);
+
   React.useEffect(() => {
     if (input.value) {
       saveToLRS(input.value);
     }
   }, []);
+
   input.onChange = onChange;
+
   React.useEffect(() => {
     let err;
 
@@ -264,7 +277,9 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
       addFieldName(input.name);
     }
   }, [input?.name]);
+
   const addFormValue = useAddFormValue(input.value, input.onChange, newItem);
+
   React.useEffect(() => {
     const empty = !input.value || input.value.length === 0;
     const shouldAdd = !alwaysVisible && isNumber(fieldShape.minCount) && fieldShape.minCount > 0;
@@ -273,6 +288,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
       addFormValue();
     }
   }, [input.value?.length, fieldShape.minCount, alwaysVisible]);
+
   const values = useInputValues(
     input,
     alwaysVisible,
@@ -288,9 +304,11 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     pristine,
     invalid,
   } = meta;
+
   const metaError = pristine ? undefined : error;
   const submissionError = dirtySinceLastSubmit ? undefined : submissionErrors?.[input.name];
   const inputErrors = submissionError || metaError;
+
   const className = clsx({
     'Field': true,
     [`Field--variant-${theme}`]: theme,

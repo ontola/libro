@@ -4,7 +4,7 @@ import React, { EventHandler } from 'react';
 import { InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 
-import { FormFieldError, InputMeta } from './index';
+import { FormFieldError, InputMeta } from './';
 
 export interface InputComponentProps {
   autofocus: boolean;

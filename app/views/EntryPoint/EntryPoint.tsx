@@ -21,6 +21,7 @@ import { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { flowTopology } from '../../topologies/Flow';
 import { footerTopology } from '../../topologies/Footer';
 import { gridTopology } from '../../topologies/Grid';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
@@ -83,6 +84,7 @@ EntryPoint.topology = allTopologiesExcept(
   contentDetailsTopology,
   detailsBarTopology,
   footerTopology,
+  flowTopology,
   gridTopology,
   omniformFieldsTopology,
   pageTopology,

@@ -19,6 +19,7 @@ import containerHeaderTopologyComponent, { containerHeaderTopology } from './top
 import contentDetailsTopologyComponent, { contentDetailsTopology } from './topologies/ContentDetails';
 import detailsBarTopologyComponent, { detailsBarTopology } from './topologies/DetailsBar';
 import alertDialogTopologyComponent, { alertDialogTopology } from './topologies/Dialog';
+import flowTopologyComponent, { flowTopology } from './topologies/Flow';
 import formFooterTopologyComponent, { formFooterTopology } from './topologies/FormFooter';
 import fullResourceTopologyComponent, { fullResourceTopology } from './topologies/FullResource';
 import gridTopologyComponent, { gridTopology } from './topologies/Grid';
@@ -69,6 +70,7 @@ const topologyMap: TopologyMap = {
   [rdf.id(detailsBarTopology)]: [detailsBarTopologyComponent, undefined],
   [rdf.id(alertDialogTopology)]: [alertDialogTopologyComponent, undefined],
   [rdf.id(menuTopology)]: [formFooterTopologyComponent, undefined],
+  [rdf.id(flowTopology)]: [flowTopologyComponent, undefined],
   [rdf.id(formFooterTopology)]: [fullResourceTopologyComponent, undefined],
   [rdf.id(fullResourceTopology)]: [gridTopologyComponent, undefined],
   [rdf.id(gridTopology)]: [hoverBoxTopologyComponent, undefined],

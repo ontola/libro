@@ -1,7 +1,4 @@
-import {
-  NamedNode,
-  isNamedNode,
-} from '@ontologies/core';
+import { NamedNode, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -20,6 +17,7 @@ import useAction from '../../hooks/useAction';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { alertDialogTopology } from '../../topologies/Dialog';
+import Flow from '../../topologies/Flow';
 import { surveyMessages } from '../../translations/messages';
 
 const style = { padding: '0.5rem 0' };
@@ -44,6 +42,7 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
       </div>
     );
   }
+
   if (submitActionStatus === ontola.ExpiredActionStatus) {
     return (
       <Button disabled>
@@ -68,7 +67,11 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
     );
   }
 
-  return <Resource subject={submitAction} />;
+  return (
+    <Flow>
+      <Resource subject={submitAction} />
+    </Flow>
+  );
 };
 
 SubmissionDialog.type = argu.Submission;

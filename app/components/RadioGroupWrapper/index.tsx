@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import RadioGroup from '../../topologies/RadioGroup';
 import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
+import { FormContext } from '../Form/Form';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import { LoadingRow } from '../Loading';
 
@@ -14,6 +15,7 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
   name,
   onChange,
 }) => {
+  const { theme } = React.useContext(FormContext);
   const {
     shIn,
   } = fieldShape;
@@ -41,6 +43,7 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
         name={name}
         options={options}
         required={fieldShape.required}
+        theme={theme}
         value={inputValue}
         onChange={onChange}
       />
