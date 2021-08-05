@@ -42,6 +42,7 @@ const requireNewToken = (token: MapAccessToken | undefined) => {
   if (!token?.expiresAt) {
     return true;
   }
+
   if (token.loading || token.error) {
     return false;
   }

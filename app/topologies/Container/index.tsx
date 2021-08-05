@@ -42,6 +42,7 @@ class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
     if (this.props.size === Size.Large) {
       return 'xl';
     }
+
     if (this.props.size === Size.Small) {
       return 'md';
     }

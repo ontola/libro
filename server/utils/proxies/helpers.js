@@ -31,13 +31,17 @@ export function setProxyReqHeaders(proxyReq, ctx) {
   if (typeof ctx.session !== 'undefined' && typeof ctx.session.userToken !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${ctx.session.userToken}`);
   }
+
   if (typeof ctx.deviceId !== 'undefined') {
     proxyReq.setHeader('X-Device-Id', ctx.deviceId);
   }
+
   proxyReq.setHeader('X-Argu-Back', 'true');
+
   if (ctx.request.get('Upgrade') !== 'websocket') {
     proxyReq.setHeader('Connection', 'keep-alive');
   }
+
   proxyReq.removeHeader('cookie');
 }
 
@@ -45,6 +49,7 @@ const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
 
 export function newAuthorizationBulk(ctx, backendRes) {
   const auth = backendRes.headers[NEW_AUTHORIZATION_HEADER];
+
   if (auth) {
     const refreshToken = backendRes.headers[NEW_REFRESH_TOKEN_HEADER];
     ctx.setAccessToken(auth, refreshToken);
@@ -53,7 +58,9 @@ export function newAuthorizationBulk(ctx, backendRes) {
       if (hasAction(backendRes, 'https://ns.ontola.io/libro/actions/redirect')) {
         return setActionParam(backendRes, 'https://ns.ontola.io/libro/actions/redirect', 'reload', 'true');
       }
+
       const locationHeader = backendRes.headers[LOCATION_HEADER];
+
       if (locationHeader && locationHeader.length > 0) {
         return `https://ns.ontola.io/libro/actions/redirect?location=${encodeURIComponent(locationHeader)}&reload=true`;
       }
@@ -70,6 +77,7 @@ export function setProxyResHeaders(proxyRes, ctx) {
   delete proxyRes.headers.vary;
   proxyRes.headers.Vary = VARY_HEADER;
   const redirect = newAuthorizationBulk(ctx, proxyRes);
+
   if (redirect) {
     proxyRes.headers[EXEC_HEADER_NAME] = redirect;
   }

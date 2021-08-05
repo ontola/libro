@@ -9,9 +9,9 @@ import rdf, {
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
+import HttpStatus from 'http-status-codes';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import HttpStatus from 'http-status-codes';
 
 import app from '../ontology/app';
 import http from '../ontology/http';
@@ -88,6 +88,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
       return store.processDelta(delta, true);
     }
+
     default:
     }
 

@@ -24,7 +24,6 @@ export const deferredHeadStyles = (bundleVersion) => {
     ? ''
     : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.assetsHost}${bundleManifest['main.css']}" />`;
 
-
   return `
     <noscript id="deferred-styles">
         ${bundleCSS}

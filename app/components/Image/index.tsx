@@ -43,6 +43,7 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
       </span>
     );
   }
+
   if (typeof override !== 'undefined') {
     return override(overrideProps as T);
   }

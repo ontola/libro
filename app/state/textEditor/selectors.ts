@@ -32,6 +32,7 @@ export const getMarkdownTextFromDraft = (state: any, id: any) => {
 
 export const getMarkdownTextPlainSlice = (stateSlice: any, id: any) => {
   const content = stateSlice[`${id}_plain`];
+
   if (content === undefined) {
     return getMarkdownTextFromDraft(stateSlice, id);
   }
@@ -43,6 +44,7 @@ export const getSliceDraftContent = (stateSlice: any, id: any) => stateSlice.get
 
 export const getMarkdownTextPlain = (state: any, id: any) => {
   let content = state.textEditor[`${id}_plain`];
+
   if (content === undefined) {
     content = getMarkdownTextFromDraft(state, id);
   }

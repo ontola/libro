@@ -17,6 +17,7 @@ import Input, { InputType } from './Input';
 function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>) {
   const newValue = values?.slice()?.filter((term) => term.value) || [];
   const parsedValues = parseForStorage(e.target.value);
+
   if (typeof parsedValues === 'undefined') {
     return;
   }
@@ -27,10 +28,12 @@ function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>)
     newValue.push(parsedValue);
   } else {
     const index = values.map((v) => v.value).indexOf(parsedValue.value);
+
     if (index !== -1) {
       newValue.splice(index, 1);
     }
   }
+
   onChange(newValue);
 }
 

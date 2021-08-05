@@ -7,6 +7,7 @@ const matomoScript = (
 ) => {
   if (matomoHostname && matomoSiteId) {
     let matomoHost = matomoHostname;
+
     if (matomoPort) {
       matomoHost = `${matomoHostname}:${matomoPort}`;
     }
@@ -61,10 +62,9 @@ const tagManagerBody = (id) => `
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${id}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`;
 
-
 export {
   googleAnalyticsScript,
   matomoScript,
   tagManager,
-  tagManagerBody,
+  tagManagerBody 
 };

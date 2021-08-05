@@ -49,6 +49,7 @@ export const useChapterNavigation = (subject: SomeTerm, currentChapter?: SomeTer
     if (!chapter) {
       return;
     }
+
     const cloned = new Set(completedChapters);
     cloned.add(chapter.value);
     setCompletedChapters(cloned);

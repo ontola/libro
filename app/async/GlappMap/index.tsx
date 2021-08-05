@@ -68,13 +68,16 @@ const GlappMap: React.FC<GlappMapProps> = ({
   }, [lrs, setSelectedPostalCode, setOverlayPosition]);
   const handleSelect = React.useCallback((feature, newCenter) => {
     const { postalDigits } = feature?.getProperties() || {};
+
     if (postalDigits) {
       setSelectedPostalCode(postalDigits);
     } else {
       const iri = feature?.getId() ? rdf.namedNode(feature.getId()) : null;
+
       if (iri) {
         lrs.actions.ontola.showDialog(iri);
       }
+
       setOverlayPosition(newCenter);
       setView({
         center: newCenter,

@@ -7,7 +7,10 @@ import { Form as FinalForm } from 'react-final-form';
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
-import useFileStore, { FileStore, StoreFile } from '../../hooks/useFileStore';
+import useFileStore, {
+  FileStore,
+  StoreFile,
+} from '../../hooks/useFileStore';
 import { InputValue } from '../../hooks/useFormField';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
@@ -63,6 +66,7 @@ export const FormContext = React.createContext<Partial<FormContext>>({});
 
 const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>, fileStore?: FileStore) => {
   let formData = {};
+
   if (formApi && values && fileStore) {
     const registeredValues = formApi
       .getRegisteredFields()

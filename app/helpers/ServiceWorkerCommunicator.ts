@@ -48,6 +48,7 @@ class ServiceWorkerCommunicator {
     if (!value && this.currentController) {
       throw new TypeError("Can't unset serviceworker");
     }
+
     if (this.currentController) {
       this.currentController.removeEventListener('controllerchange', this.onControllerChange);
       this.currentController.removeEventListener('statechange', this.onControllerChange);

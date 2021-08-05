@@ -35,6 +35,7 @@ export const isDifferentOrigin = (originIRI: string | any): boolean => {
   if (isBlankNode(href) || !href) {
     return false;
   }
+
   const origin = isNamedNode(href) ? href.value : href;
 
   return !origin.startsWith(frontendOrigin + '/');
@@ -58,6 +59,7 @@ export const isDifferentWebsite = (iri: string | NamedNode | URL): boolean => {
   }
 
   let url: string | NamedNode | URL = iri;
+
   if (typeof url !== 'string') {
     if (url instanceof URL) {
       url = url.toString();
@@ -76,9 +78,11 @@ export const isDifferentWebsite = (iri: string | NamedNode | URL): boolean => {
  */
 export const retrievePath = (iri: NamedNode | string): string | undefined => {
   const iriString = typeof iri === 'string' ? iri : iri.value;
+
   if (isLocalAnchor(iriString)) {
     return iriString;
   }
+
   // TODO: https://github.com/linkeddata/rdflib.js/issues/265
   const bugNormalized = iriString.replace(`${frontendOrigin}//`, `${frontendOrigin}/`);
   const url = iriString && new URL(bugNormalized, frontendOrigin);

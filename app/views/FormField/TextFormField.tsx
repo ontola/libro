@@ -18,9 +18,11 @@ const getInputType = (theme: string | undefined, type: SomeTerm) => {
   if (type === form.EmailInput) {
     return 'email';
   }
+
   if (type === form.TextAreaInput) {
     return 'textarea';
   }
+
   if (type === form.MarkdownInput) {
     return theme === 'preview' ? 'textarea' : 'markdown';
   }

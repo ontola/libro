@@ -48,6 +48,7 @@ const configureStore = (
   );
 
   (store as any).asyncReducers = {};
+
   (store as any).injectReducer = (key: string, reducer: unknown) => {
     if ((store as any).asyncReducers[key] !== reducer) {
       (store as any).asyncReducers[key] = reducer;

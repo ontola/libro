@@ -2,7 +2,10 @@ import rdf from '@ontologies/core';
 import { term } from '@rdfdev/iri';
 import { History, Location } from 'history';
 import { LinkReduxLRSType, withLRS } from 'link-redux';
-import React, { ChangeEvent, Component } from 'react';
+import React, {
+  ChangeEvent,
+  Component,
+} from 'react';
 import { Helmet } from 'react-helmet-async';
 import { withRouter } from 'react-router-dom';
 
@@ -11,6 +14,7 @@ import argu from '../../ontology/argu';
 import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';
+
 import './DevBrowser.scss';
 
 interface DevBrowserProps {
@@ -58,11 +62,13 @@ class DevBrowser extends Component<DevBrowserProps> {
 
   setParam(param: string, value?: string) {
     const params = new URLSearchParams(this.props.location.search);
+
     if (value) {
       params.set(param, value);
     } else {
       params.delete(param);
     }
+
     this.props.history.push(`?${params.toString()}`);
   }
 
@@ -137,6 +143,7 @@ class DevBrowser extends Component<DevBrowserProps> {
                 backgroundColor: rdf.equals(currentTopology, topology) ? '#d9d9d9' : 'transparent',
                 padding: '0 2px',
               }}
+              type="button"
               value={getTopologyNumber(topology)}
               onClick={this.handleChangeTopology}
             >

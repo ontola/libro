@@ -18,6 +18,7 @@ export function hasAction(req, wanted) {
 export function setActionParam(req, action, param, value) {
   const actions = getActions(req);
   const toUpdate = actions.findIndex((a) => a.startsWith(action));
+
   if (toUpdate >= 0) {
     const url = new URL(actions[toUpdate]);
     url.searchParams.set(param, value.trim().replace(/ /g, '+'));

@@ -53,6 +53,7 @@ const NavbarLinkLink = ({
       </div>
     );
   }
+
   const hideLabel = image || (icon && !matches);
 
   const iconCom = typeof icon !== 'string' ? icon : (
@@ -67,6 +68,7 @@ const NavbarLinkLink = ({
     className: classes.button,
     title: title,
   };
+
   if (!to) {
     Component = 'button';
     buttonProps.onClick = onClick;

@@ -17,6 +17,7 @@ const getInputType = (type: SomeTerm) => {
   if (type === form.ColorInput) {
     return 'color';
   }
+
   if (type === form.NumberInput) {
     return 'number';
   }

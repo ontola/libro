@@ -1,9 +1,6 @@
 import rdf, { SomeTerm } from '@ontologies/core';
 import equal from 'fast-deep-equal';
-import {
-  useLRS,
-  useLinkRenderContext,
-} from 'link-redux';
+import { useLRS, useLinkRenderContext } from 'link-redux';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
@@ -63,6 +60,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
         if (rdf.equals(q === queryNormalized)) {
           return;
         }
+
         const newPage = iriTemplate.replace('q', q || []);
 
         if (newPage) {

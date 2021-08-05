@@ -15,7 +15,6 @@ import {
 } from '../../test-utils';
 import Container from '../../topologies/Container';
 
-
 describe('Notification', () => {
   afterEach(fetch.resetMocks);
   afterAll(cleanup);

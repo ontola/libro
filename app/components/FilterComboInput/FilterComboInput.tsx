@@ -142,6 +142,7 @@ export const FilterComboInput = ({
             });
           }
         }
+
         shInList.push(shIn);
       } else {
         for (const value of getFilterValues(lrs, filter)) {

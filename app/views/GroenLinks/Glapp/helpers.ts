@@ -23,6 +23,7 @@ export const useVisitPostalCode = (): {
     if (!__CLIENT__) {
       return [[], () => null];
     }
+
     const rawFromStorage = localStorage.getItem('recentPostalDigits');
     const current = rawFromStorage ? JSON.parse(rawFromStorage) : [];
 

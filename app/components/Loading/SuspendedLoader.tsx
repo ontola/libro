@@ -18,7 +18,6 @@ class SuspendedLoader extends React.Component {
   private resolve: ((value: void | PromiseLike<void>) => void) | undefined;
   private promise: Promise<void> | undefined;
 
-
   // @ts-ignore
   // eslint-disable-next-line react/require-render-return
   render() {

@@ -63,6 +63,7 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
   if (mapToken.loading) {
     return <LinkLoader />;
   }
+
   const currentError = error || mapToken.error;
 
   if (!mapRef || currentError) {

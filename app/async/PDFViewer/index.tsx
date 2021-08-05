@@ -66,6 +66,7 @@ const PDFViewer = ({
     if (pageNumber === 1) {
       return;
     }
+
     onPageNumberChange(pageNumber - 1);
   }, [pageNumber, onPageNumberChange]);
 
@@ -73,6 +74,7 @@ const PDFViewer = ({
     if (numPages === pageNumber) {
       return;
     }
+
     onPageNumberChange(pageNumber + 1);
   }, [pageNumber, onPageNumberChange]);
 
@@ -86,11 +88,13 @@ const PDFViewer = ({
     if (docRef !== null) {
       const docRatio = docRef.clientWidth / docRef.clientHeight;
       const newWidth = window.innerHeight * docRatio;
+
       if (newWidth < maxWidth) {
         drawer.setWidth(newWidth);
       } else {
         drawer.setWidth(maxWidth);
       }
+
       setTimeout(
         () => docRef.scrollIntoView({
           behavior: 'smooth',

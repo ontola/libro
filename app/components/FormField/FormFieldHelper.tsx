@@ -25,6 +25,7 @@ const FormFieldHelper: React.FC<PropTypes> = ({
 }) => {
   const { theme } = React.useContext(FormContext);
   const renderCharCounter = theme !== 'preview';
+
   if (theme === 'preview' && !error) {
     return null;
   }

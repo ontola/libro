@@ -58,6 +58,7 @@ const drawFontAwesomeIcon = (
 
   let renderText;
   let renderFont;
+
   if (count > 1) {
     renderText = count.toString();
     renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;
@@ -65,6 +66,7 @@ const drawFontAwesomeIcon = (
     renderText = text;
     renderFont = 'normal 18px FontAwesome';
   }
+
   /* eslint-disable no-param-reassign */
   canvasCtx.fillStyle = mapIcon.text;
   canvasCtx.font = renderFont;

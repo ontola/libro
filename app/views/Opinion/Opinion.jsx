@@ -27,11 +27,11 @@ class Opinion extends Component {
     primaryVote: linkType,
   };
 
-
   render() {
     const { option, primaryVote } = this.props;
 
     let classes;
+
     switch (rdf.id(option)) {
     case rdf.id(argu.yes):
       classes = 'fa-thumbs-up Opinion--icon-pro';
@@ -43,6 +43,7 @@ class Opinion extends Component {
       classes = 'fa-pause Opinion--icon-neutral';
       break;
     }
+
     if (primaryVote.value === 'false') {
       classes += ' Opinion--icon-expired';
     }

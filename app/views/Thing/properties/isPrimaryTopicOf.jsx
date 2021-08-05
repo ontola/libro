@@ -16,6 +16,7 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
   if (!linkedProp) {
     return null;
   }
+
   const target = isDifferentWebsite(linkedProp) ? '_blank' : undefined;
 
   return (

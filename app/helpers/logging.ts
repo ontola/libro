@@ -31,11 +31,13 @@ function getClient() {
       return void (0);
     },
   } as unknown as Client;
+
   try {
     const raw = typeof window !== 'undefined' && window
       .document
       .querySelector<HTMLMetaElement>('meta[name=bugsnagConfig]')
       ?.content;
+
     if (raw) {
       const config = JSON.parse(decodeURIComponent(raw));
 
@@ -54,6 +56,7 @@ function getClient() {
     return mockReporter;
   }
 }
+
 const client = getClient();
 
 // Prevent memory overflows
@@ -64,6 +67,7 @@ globalThis.setInterval(() => {
 
 export function error(...msg: any[]): void {
   globalThis.logging.errors.push(msg);
+
   if (!__PRODUCTION__) {
     // eslint-disable-next-line no-console
     console.error(...msg);
@@ -77,6 +81,7 @@ export function handle(exception: Error): void {
 
 export function log(...msg: any[]): void {
   globalThis.logging.logs.push(msg);
+
   if (!__PRODUCTION__) {
     // eslint-disable-next-line no-console
     console.log(...msg);

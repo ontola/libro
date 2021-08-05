@@ -11,7 +11,7 @@ import { FormContext } from '../Form/Form';
 import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import Input, {
-  InputAutocomplete ,
+  InputAutocomplete,
   PropTypes as InputProps,
   InputType,
 } from '../Input/Input';
@@ -80,11 +80,13 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     name,
     'onChange': (e: React.ChangeEvent<HTMLInputElement>) => {
       let val;
+
       if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
         val = type === 'checkbox' ? e.target.checked : e.target.value;
       } else {
         val = e === null ? '' : e;
       }
+
       onChange(val);
     },
     required,
@@ -94,6 +96,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
   const minRows = maxLength && maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
 
   let element;
+
   switch (type) {
   case 'textarea':
     element = Textarea;
@@ -106,11 +109,14 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     sharedProps.id = storeKey;
     sharedProps.rows = minRows;
     break;
+
   case 'checkbox': {
     const currentValue = inputValue;
     sharedProps.checked = currentValue.value === 'true';
     break;
-  } default:
+  }
+
+  default:
     element = 'input';
   }
 

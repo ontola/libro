@@ -38,9 +38,11 @@ const polyfillSrc = `https://cdn.polyfill.io/v3/polyfill.min.js?features=${requi
 
 export const getUserData = (ctx) => {
   const user = ctx.getFromAccessToken('user');
+
   if (!user) {
     return [null, false];
   }
+
   const { language, type } = user;
 
   return [language, type === 'user'];

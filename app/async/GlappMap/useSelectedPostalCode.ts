@@ -52,6 +52,7 @@ const useSelectedPostalCode = ({
       });
       const features = postalShapes[selectedPostalCode];
       const initialExtend = features[0]?.getGeometry()?.getExtent();
+
       if (initialExtend) {
         const [minX, minY, maxX] = features.reduce<Extent>((acc, next) => {
           const ext = next?.getGeometry()?.getExtent();
@@ -67,6 +68,7 @@ const useSelectedPostalCode = ({
           zoom: Math.max(view?.zoom || 0, FOCUS_ZOOM),
         });
       }
+
       setSelectedFeatures(cloned);
     } else {
       setSelectedFeatures([]);

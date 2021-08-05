@@ -17,6 +17,7 @@ const Element: FC = () => {
   const [type] = useProperty(rdfx.type);
 
   const [El] = componentMap[rdf.id(type)];
+
   if (!El) {
     handle(new Error(`Element for ${type.value} is ${El}`));
 

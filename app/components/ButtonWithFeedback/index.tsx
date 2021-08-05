@@ -48,6 +48,7 @@ const ButtonWithFeedback: React.FC<ButtonWithFeedbackProps> = (props) => {
   } else if (feedback) {
     feedbackProps.icon = feedbackIcon;
   }
+
   const buttonProps = {
     ...props,
     ...feedbackProps,

@@ -70,6 +70,7 @@ const ToggleButtonGroup: React.FC<InputComponentProps> = ({
         value={inputValue?.value}
         onChange={(_, v) => {
           const option = options.find((o) => o.value === v);
+
           if (option) {
             onChange(option);
           }

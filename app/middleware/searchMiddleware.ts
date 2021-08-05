@@ -4,14 +4,13 @@ import rdf, {
   Quadruple,
 } from '@ontologies/core';
 import { createActionPair } from '@rdfdev/actions';
+import HttpStatus from 'http-status-codes';
 import {
   MiddlewareActionHandler,
   MiddlewareFn,
   MiddlewareWithBoundLRS,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import HttpStatus from 'http-status-codes';
-
 
 import app from '../ontology/app';
 import http from '../ontology/http';
@@ -44,6 +43,7 @@ export const searchMiddleware = (): MiddlewareFn<React.ComponentType<any>> => (s
 
       return store.processDelta(delta, true);
     }
+
     default:
     }
 

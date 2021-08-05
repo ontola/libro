@@ -3,10 +3,7 @@ import fetch from 'isomorphic-fetch';
 import * as constants from '../app/config';
 
 import processResponse from './api/internal/statusHandler';
-import {
-  guestTokenRequest,
-  refreshTokenRequest,
-} from './api/tokens';
+import { guestTokenRequest, refreshTokenRequest } from './api/tokens';
 import {
   backendApiUrl,
   clientId,
@@ -30,6 +27,7 @@ class API {
     const websiteIRI = await this.ctx.getWebsiteIRI();
 
     const body = new URLSearchParams();
+
     for (const resource of resources) {
       body.append('resource[]', resource);
     }

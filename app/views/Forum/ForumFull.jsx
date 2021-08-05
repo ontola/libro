@@ -12,8 +12,8 @@ import React from 'react';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
-import Grid from '../../topologies/Grid';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import Grid from '../../topologies/Grid';
 import PageHeader from '../../topologies/PageHeader';
 
 const coverPhotoMap = {
@@ -58,6 +58,5 @@ ForumFull.topology = fullResourceTopology;
 ForumFull.linkOpts = {
   forceRender: true,
 };
-
 
 export default register(ForumFull);

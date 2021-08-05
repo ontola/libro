@@ -66,6 +66,7 @@ const Toolbar: React.FC = () => {
 
   const handleSave = async (id: string) => {
     setSaving(true);
+
     try {
       await saveDocument(id);
       await showMessage(intl.formatMessage(pageBuilderToolbarMessages.savedNotification));
@@ -98,6 +99,7 @@ const Toolbar: React.FC = () => {
     if (newID === null) {
       return Promise.reject();
     }
+
     const strippedID = stripID(newID);
     const duplicate = documents?.map(stripID).some((docID) => docID === strippedID);
     const save = !duplicate || confirm(intl.formatMessage(pageBuilderToolbarMessages.override, { docID: documents?.[documentIndex] }));

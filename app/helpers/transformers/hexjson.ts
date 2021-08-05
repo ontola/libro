@@ -23,6 +23,7 @@ enum HexPosition {
 }
 
 let hasReadableStreamConstructor = false;
+
 try {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   new ReadableStream({ start() {} });
@@ -71,7 +72,6 @@ export default {
       h[HexPosition.Graph] ? namedNode(h[HexPosition.Graph]) : defaultGraph(),
     );
 
-
     const delta: Quad[] = [];
     let parse;
 
@@ -93,6 +93,7 @@ export default {
         });
     } else {
       let body;
+
       if (res instanceof Response) {
         body = res.text();
       } else if (typeof XMLHttpRequest !== 'undefined'

@@ -35,6 +35,7 @@ const InlineAction: FC<InlineActionTableRowProps> = ({
   if (rdf.equals(actionStatus, ontola.DisabledActionStatus)) {
     return null;
   }
+
   if (rdf.equals(actionStatus, schema.CompletedActionStatus)) {
     return error ? <span>{error.value}</span> : null;
   }

@@ -145,6 +145,7 @@ const Link: React.FC<PropTypesWithRef> = ({
     : (e: MouseEvent): (void | undefined) => {
       e.preventDefault();
       lrs.actions.ontola.showDialog(rdf.namedNode(to));
+
       if (isFunction(onClick)) {
         onClick(e);
       }

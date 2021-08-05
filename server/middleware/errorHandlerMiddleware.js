@@ -23,6 +23,7 @@ export default async function backendErrorHandler(ctx, next) {
     if (!(err instanceof errors.ArguError)) {
       throw err;
     }
+
     ctx.bugsnag.notify(err, {
       request: ctx.request,
       severity: 'error',
@@ -37,6 +38,7 @@ export default async function backendErrorHandler(ctx, next) {
 
       return;
     }
+
     console.warn(err);
 
     if (__DEVELOPMENT__) {
@@ -45,6 +47,7 @@ export default async function backendErrorHandler(ctx, next) {
     }
 
     let error;
+
     switch (err.status) {
     case errors.BadGatewayError.status:
     case errors.ServiceUnavailableError.status:
@@ -56,6 +59,7 @@ export default async function backendErrorHandler(ctx, next) {
     default:
       error = new errors.InternalServerErrorError();
     }
+
     ctx.response.status = error.status;
   }
 }

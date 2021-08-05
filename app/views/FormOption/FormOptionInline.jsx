@@ -25,5 +25,4 @@ FormOptionInline.topology = [
   tableCellTopology,
 ];
 
-
 export default register(FormOptionInline);

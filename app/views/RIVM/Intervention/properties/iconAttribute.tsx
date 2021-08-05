@@ -23,6 +23,7 @@ const IconAttribute: FC<PropertyProps> = ({
   useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
 
   const [name] = useResourceProperty(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
+
   if (!name) {
     return null;
   }

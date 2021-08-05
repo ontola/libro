@@ -90,9 +90,11 @@ const useSubmitHandler = ({
       if (!e.response) {
         throw e;
       }
+
       if (e.response.status === HTTP_RETRY_WITH && retrySubmit) {
         return handleHTTPRetry(lrs, e, () => retrySubmit());
       }
+
       if (e.response.status === HttpStatus.UNAUTHORIZED) {
         if (onStatusForbidden) {
           return onStatusForbidden();
@@ -100,15 +102,18 @@ const useSubmitHandler = ({
 
         return lrs.actions.app.startSignIn(subject).then(() => Promise.reject(e));
       }
+
       if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
         throw e;
       }
 
       return lrs.api.feedResponse(e.response).then((statements: Quad[]) => {
         const name = anyRDFValue(statements, schema.text);
+
         if (name) {
           throw new Error(name.value);
         }
+
         throw e;
       });
     });

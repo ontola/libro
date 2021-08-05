@@ -41,6 +41,7 @@ interface ShapeStyle {
 }
 
 const shapeStyle: ShapeStyle = {};
+
 for (let i = 0; i <= SHADE_COUNT; i++) {
   /* eslint-disable @typescript-eslint/no-magic-numbers */
   const fillColor = `hsla(120, 64%, ${(65 - (5 * i)).toFixed()}%, ${(0.2 + 0.06 * i).toFixed(2)})`;
@@ -111,9 +112,11 @@ const usePostalShapes = ({
         });
 
         const { postalDigits } = f.getProperties();
+
         if (!postalMapping[postalDigits]) {
           postalMapping[postalDigits] = [];
         }
+
         postalMapping[postalDigits].push(f);
       });
 

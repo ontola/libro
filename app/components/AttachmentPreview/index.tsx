@@ -47,6 +47,7 @@ const AttachmentPreview = ({
     if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf) && isNamedNode(isPartOf)) {
       lrs.queueEntity(isPartOf);
     }
+
     if (__CLIENT__ && attachments && !entityIsLoaded(lrs, attachments) && isNamedNode(attachments)) {
       lrs.queueEntity(attachments);
     }
@@ -69,6 +70,7 @@ const AttachmentPreview = ({
   if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsIri)) {
     lrs.queueEntity(attachmentsIri);
   }
+
   if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsPageIri)) {
     lrs.queueEntity(attachmentsPageIri);
   }

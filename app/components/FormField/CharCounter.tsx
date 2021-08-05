@@ -20,6 +20,7 @@ const CharCounter: React.FC<PropTypes> = ({
   value,
 }) => {
   let currentLength;
+
   if (isLiteral(value)) {
     currentLength = value.value.length;
   } else if (isString(value)) {

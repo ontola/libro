@@ -2,8 +2,8 @@ import fs from 'fs';
 
 import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
 
-import processResponse from '../api/internal/statusHandler';
 import { isSuccess } from '../../app/helpers/arguHelpers';
+import processResponse from '../api/internal/statusHandler';
 
 export const requestBackendManifest = async (api, manifestLocation) => (
   // TODO: Replace with bulk API
@@ -46,6 +46,7 @@ function getManifest(build) {
   const manifest = {};
 
   let fileNames = {};
+
   if (__DEVELOPMENT__ || __TEST__) {
     [
       ['main.css', 'main.bundle.css'],
@@ -66,6 +67,7 @@ function getManifest(build) {
     if (manifestTest.test(fileName)) {
       manifest['manifest.json'] = fileNames[fileName];
     }
+
     manifest[fileName] = fileNames[fileName];
   });
 

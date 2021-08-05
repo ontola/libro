@@ -12,6 +12,7 @@ const isExpired = (ctx) => {
     if (e instanceof TokenExpiredError) {
       return true;
     }
+
     throw e;
   }
 };

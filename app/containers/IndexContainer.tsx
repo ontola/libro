@@ -1,23 +1,27 @@
+import 'dayjs/locale/nl';
+import 'dayjs/locale/en';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import dayjs from 'dayjs';
-import 'dayjs/locale/nl';
-import 'dayjs/locale/en';
 import {
   LinkReduxLRSType,
   RenderStoreProvider,
   useLRS,
 } from 'link-redux';
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+} from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
-import AppFrame from '../routes/App';
-import themes from '../themes';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
+import AppFrame from '../routes/App';
+import themes from '../themes';
 
 export interface RouterProps {
   children?: ReactNode;
@@ -44,9 +48,11 @@ const UpdateLRSIntl = ({ children }: UpdateLRSIntlProps) => {
 
 const getThemeVariables = () => {
   const websiteMeta = __CLIENT__ ? window.WEBSITE_META : undefined;
+
   if (typeof websiteMeta === 'undefined' || Object.keys(websiteMeta).length === 0) {
     return {};
   }
+
   const palette = {
     link: {
       header: undefined as undefined | string,
@@ -59,6 +65,7 @@ const getThemeVariables = () => {
       main: websiteMeta.secondary_color,
     },
   };
+
   if (websiteMeta.styled_headers) {
     palette.link.header = websiteMeta.primary_color;
   }
@@ -80,6 +87,7 @@ const IndexContainer = ({
 }: IndexContainerProps): JSX.Element => {
   const selectedLang = (lrs.store as any).langPrefs[0];
   let messages;
+
   if (selectedLang.includes('nl')) {
     messages = dutchMessages;
     dayjs.locale('nl');
@@ -87,6 +95,7 @@ const IndexContainer = ({
     messages = englishMessages;
     dayjs.locale('en');
   }
+
   const themeName = getMetaContent('theme');
   const themeVariables = getThemeVariables();
   const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);

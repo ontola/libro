@@ -37,15 +37,19 @@ const Collection: React.FC<CollectionComponentProps> = ({
   const iriTemplate = useIRITemplate(isNamedNode(baseCollection) ? baseCollection : undefined);
   const collection = React.useMemo(() => {
     const assignedOpts: Params = {};
+
     if (display) {
       assignedOpts.display = display;
     }
+
     if (page) {
       assignedOpts.page = page.toString();
     }
+
     if (pageSize) {
       assignedOpts.page_size = pageSize.toString();
     }
+
     if (type) {
       assignedOpts.type = type;
     }

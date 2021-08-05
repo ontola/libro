@@ -55,9 +55,11 @@ class TextEditor extends Component<PropTypes> {
 
   public debounce() {
     clearTimeout(this.timer);
+
     if (!this) {
       throw new Error('No object defined');
     }
+
     this.timer = setTimeout(
       () => this.props.onChange({ target: { value: this.props.getMarkdownValue() } }),
       UPDATE_DELAY,

@@ -1,9 +1,9 @@
 import * as as from '@ontologies/as';
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
-import {
-  FC,
-  register,
-} from 'link-redux';
+import rdf, {
+  NamedNode,
+  SomeTerm,
+} from '@ontologies/core';
+import { FC, register } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -67,11 +67,13 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
 
       return currentPageUrl.href;
     };
+
     const previousPage = () => {
       currentPageUrl.searchParams.set(pageProp, (currentPageNr - 1).toString());
 
       return currentPageUrl.href;
     };
+
     if (typeof lastPage === 'undefined' || firstPage > lastPage) {
       throw new Error('First page is higher than last page or last is undefined');
     }
@@ -138,6 +140,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     const spanTo = Math.min(currentPageNr + span, lastPage - 1);
 
     pages.push(singlePageButton(firstPage));
+
     if (spanFrom > firstPage + 1) {
       pages.push(<span>...</span>);
     }
@@ -149,6 +152,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     if (spanTo < lastPage - 1) {
       pages.push(<span>...</span>);
     }
+
     pages.push(singlePageButton(lastPage));
 
     pages.push(paginationButton({

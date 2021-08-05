@@ -76,6 +76,7 @@ class Footer extends Topology<FooterPropsWithTheme> {
     if (this.props.resources?.length === 1) {
       return 12;
     }
+
     if (this.props.resources?.length === 2) {
       return 6;
     }

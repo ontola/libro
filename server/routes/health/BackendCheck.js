@@ -10,6 +10,7 @@ export default class BackendCheck extends Check {
 
   async runTest() {
     const api = new API({ request: { headers: {} } });
+
     try {
       const tenants = (await api.tenants());
 

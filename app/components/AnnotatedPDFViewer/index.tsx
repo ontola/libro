@@ -96,6 +96,7 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
         if (!commentMode) {
           lrs.actions.ontola.showSnackbar(intl.formatMessage(pdfMessages.commentClickToAdd));
         }
+
         setCommentMode(!commentMode);
       }}
     >

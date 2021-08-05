@@ -91,6 +91,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
     lonOnChange([rdf.literal(newLon)]);
     latOnChange([rdf.literal(newLat)]);
     const newZoom = zoomLevel?.value || initialView.zoom || DEFAULT_ZOOM;
+
     if (newZoom) {
       zoomLevelOnChange([rdf.literal(newZoom)]);
     }

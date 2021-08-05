@@ -32,17 +32,21 @@ const getIcon = (trend, value) => {
 
     return 'angle-down';
   }
+
   const delta = trend / value;
 
   if (delta < -largeDelta) {
     return 'angle-double-down';
   }
+
   if (delta < -smallDelta) {
     return 'angle-down';
   }
+
   if (delta > largeDelta) {
     return 'angle-double-up';
   }
+
   if (delta > smallDelta) {
     return 'angle-up';
   }
@@ -54,6 +58,7 @@ const TrendIndicator = ({ property }) => {
   const value = useProperty(property, { returnType: ReturnType.Literal });
   const trend = useProperty(mapping[property], { returnType: ReturnType.Literal });
   const icon = getIcon(trend, value);
+
   if (!icon) {
     return null;
   }

@@ -19,6 +19,7 @@ export const useMultipleFetching = (
 
           return setError(new TypeError('TODO: blankNodeWarn'));
         }
+
         lrs.queueEntity(s);
       }
     }

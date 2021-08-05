@@ -23,6 +23,7 @@ const StreetTable: FC<StreetTableProps> = ({
   const { actorType } = useCurrentActor();
   const onClick = React.useCallback((e) => {
     e.preventDefault();
+
     if (actorType?.value === 'GuestUser') {
       lrs.actions.app.startSignIn(subject);
     } else {

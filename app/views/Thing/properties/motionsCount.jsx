@@ -38,5 +38,4 @@ MotionsCount.propTypes = {
   linkedProp: linkedPropType,
 };
 
-
 export default register(MotionsCount);

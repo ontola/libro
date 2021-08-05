@@ -1,9 +1,6 @@
 import { SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import {
-  LinkReduxLRSType,
-  useLRS,
-} from 'link-redux';
+import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React from 'react';
 import parser from 'uri-template';
 
@@ -44,6 +41,7 @@ const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputVa
     } else if (searchTemplate) {
       const compareValue = inputValue && normalizedLower(inputValue);
       const searchResultOpts = {} as any;
+
       if (compareValue?.length > 0) {
         const filter = shIn ? new URL(shIn.value).searchParams.getAll('filter[]') : null;
         searchResultOpts.match = 'partial';
@@ -52,6 +50,7 @@ const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputVa
         searchResultOpts.fragment = 'members';
         searchResultOpts['filter%5B%5D'] = filter;
       }
+
       const searchResult = iriFromTemplate(searchTemplate.value, searchResultOpts);
       setCurrentShIn(searchResult);
     }

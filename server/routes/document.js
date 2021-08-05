@@ -35,9 +35,11 @@ const hexJSONDataType = (object) => {
 export const renderDoc = async (ctx) => {
   try {
     const source = await ctx.documentSource();
+
     if (!source) {
       throw new Error('No or invalid document source');
     }
+
     const quads = parseToGraph(source, ctx.request.origin).flatMap(([subject, store]) => {
       store.addQuadruples([
         [subject, http.statusCode, rdf.literal(OK), ll.meta],
@@ -111,6 +113,7 @@ export const documents = async (ctx) => {
 export const document = async (ctx) => {
   try {
     const key = `${redisSettingsNS}.docs.${ctx.params.id}`;
+
     if (await client.exists(key)) {
       ctx.res.setHeader('Content-Type', 'application/json');
       ctx.body = await client.hgetall(key);
@@ -127,12 +130,14 @@ export const saveDocument = async (ctx) => {
   const key = `${redisSettingsNS}.docs.${ctx.params.id}`;
   let source;
   let manifestOverride;
+
   try {
     source = ctx.request.body.source;
     manifestOverride = ctx.request.body.manifestOverride;
   } catch (err) {
     ctx.status = 400;
   }
+
   try {
     await client.hset(key, 'source', source);
     await client.hset(key, 'manifestOverride', manifestOverride);

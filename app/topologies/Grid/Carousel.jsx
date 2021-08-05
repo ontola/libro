@@ -4,7 +4,7 @@ import React from 'react';
 
 import Button from '../../components/Button';
 
-import { gridTopology } from './index';
+import { gridTopology } from './';
 
 const MIN_PIXELS = 5;
 const REFRESH_RATE_MS = 66;
@@ -76,6 +76,7 @@ class Carousel extends TopologyProvider {
     for (let key = 0; key < items.length; key++) {
       const item = items[key];
       const offsetLeftFromRight = item.offsetLeft + item.offsetWidth;
+
       if (offsetLeftFromRight > targetOffset) {
         this.carouselRef.scroll({
           behavior: 'smooth',
@@ -90,6 +91,7 @@ class Carousel extends TopologyProvider {
     if (this.timeout) {
       window.clearTimeout(this.timeout);
     }
+
     this.timeout = window.setTimeout(this.checkDimensions, REFRESH_RATE_MS);
   }
 

@@ -70,6 +70,7 @@ const updateFeatures = (layerSources: Array<VectorSource | Cluster> | undefined,
   if (layerSources) {
     layerSources.forEach((source, index) => {
       const layer = layers[index];
+
       if (layer.clustered) {
         (source as Cluster).getSource().clear(true);
         (source as Cluster).getSource().addFeatures(layer.features.slice() || []);
@@ -192,6 +193,7 @@ const useMap = (props: UseMapProps): {
         features.map((f: Feature<Point>) => f?.getGeometry()?.getCoordinates()),
       );
       const clusterCenter = getCenter([left, top, right, bottom]);
+
       if (left === right && top === bottom) {
         if (onClusterSelect) {
           onClusterSelect(features, clusterCenter);
@@ -230,6 +232,7 @@ const useMap = (props: UseMapProps): {
       const sources = layers.map((layer) => {
         const vectorSource = new VectorSource();
         let layerSource;
+
         if (layer.clustered) {
           layerSource = new Cluster({
             distance: CLUSTER_DISTANCE,
@@ -282,19 +285,25 @@ const useMap = (props: UseMapProps): {
   useEffect(() => {
     const handleViewChange = (e: MapBrowserEvent) => {
       const newCenter = e.map.getView().getCenter();
+
       if (newCenter !== internalCenter) {
         if (onMove) {
           onMove(newCenter);
         }
+
         setCenter(newCenter);
       }
+
       const newZoom = e.map.getView().getZoom();
+
       if (newZoom && newZoom !== internalZoom) {
         if (onZoom) {
           onZoom(newZoom);
         }
+
         setZoom(newZoom);
       }
+
       if (newCenter && newZoom && onViewChange) {
         onViewChange(newCenter, newZoom);
       }
@@ -338,6 +347,7 @@ const useMap = (props: UseMapProps): {
         if (center) {
           memoizedMap.getView().setCenter(center);
         }
+
         if (zoom) {
           memoizedMap.getView().setZoom(zoom);
         }

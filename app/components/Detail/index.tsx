@@ -63,6 +63,7 @@ const Detail: React.FC<DetailProps> = ({
   const history = useHistory();
   const handleExternalClick = React.useCallback((e) => {
     e.preventDefault();
+
     if (url) {
       history.push(url);
     }

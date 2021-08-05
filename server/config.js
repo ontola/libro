@@ -70,10 +70,12 @@ export const sessionSecret = process.env.SESSION_SECRET;
 if (!oAuthToken) {
   // eslint-disable-next-line no-console
   console.error('NO OAUTH TOKEN');
+
   if (__PRODUCTION__) {
     process.exit(1);
   }
 }
+
 if (!sessionSecret && !__TEST__) {
   // eslint-disable-next-line no-console
   console.log('NO SESSION SECRET');

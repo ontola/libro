@@ -1,4 +1,7 @@
-import rdf, { Literal, NamedNode } from '@ontologies/core';
+import rdf, {
+  Literal,
+  NamedNode,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
@@ -52,6 +55,7 @@ const ActionInline: FC<InlineCreateActionProps> = ({
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
+
   const useOmniform = omniform && OMNIFORM_FILTER.find(filterFind(subject));
 
   if (useOmniform) {

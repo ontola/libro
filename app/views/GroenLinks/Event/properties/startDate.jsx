@@ -32,6 +32,7 @@ const dateString = (intl, date1, date2) => {
   if (!date2) {
     return intl.formatTime(date1, FORMAT);
   }
+
   if (isSameDay(date1, date2)) {
     return `${intl.formatTime(date1, FORMAT)} - ${intl.formatTime(date2)}`;
   }

@@ -61,6 +61,7 @@ export function isWebsocket(next) {
 
 function isDifferentOrigin(ctx) {
   const fetchMode = ctx.request.get('sec-fetch-mode');
+
   if (fetchMode !== 'cors' || !ctx.request.host) {
     return false;
   }
@@ -68,6 +69,7 @@ function isDifferentOrigin(ctx) {
   try {
     const referer = ctx.request.get('referer');
     const refererHost = referer ? new URL(referer).host : undefined;
+
     if (refererHost && refererHost !== ctx.request.host) {
       logging.debug('[ROUTING] DIFFERENT ORIGIN - isBackend: true', referer, ctx.request.host);
 
@@ -89,6 +91,7 @@ export function isBackend(next) {
     }
 
     const accept = ctx.request.get('Accept');
+
     if (accept && (
       accept.includes('text/n3')
       || accept.includes('application/n-triples')
@@ -103,6 +106,7 @@ export function isBackend(next) {
     }
 
     const hasExtension = hasDataExtension(ctx.request.href);
+
     if (hasExtension) {
       logging.debug('[ROUTING] dataextension - isBackend: true');
 

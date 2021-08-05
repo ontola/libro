@@ -149,7 +149,12 @@
     "no-inline-comments": "error",
     "no-invalid-this": "error",
     "no-magic-numbers": "off",
-    "no-multiple-empty-lines": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
     "no-plusplus": ["error", {
       "allowForLoopAfterthoughts": true
     }],
@@ -200,6 +205,16 @@
         "blankLine": "always",
         "next": "export",
         "prev": "*"
+      },
+      {
+        "blankLine": "always",
+        "next": "multiline-block-like",
+        "prev": "*"
+      },
+      {
+        "blankLine": "always",
+        "next": "*",
+        "prev": "multiline-block-like"
       },
       {
         "blankLine": "any",

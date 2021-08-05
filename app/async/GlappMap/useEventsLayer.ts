@@ -27,6 +27,7 @@ const useEventsLayer = (eventsData?: Events): EventsLayer => {
 
       for (let digits = MIN_POSTAL_DIGITS; digits <= MAX_POSTAL_DIGITS; digits++) {
         const iri = postalCodeIri(digits.toString()).value;
+
         if (eventsData[iri]) {
           const {
             image,

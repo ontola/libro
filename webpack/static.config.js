@@ -18,6 +18,7 @@ const common = require('./common.config');
 const version = require('./version');
 
 let bugsnagPlugin;
+
 if (process.env.BUGSNAG_KEY && process.env.CI_COMMIT_BRANCH === 'master') {
   bugsnagPlugin = new BugsnagSourceMapUploaderPlugin({
     apiKey: process.env.BUGSNAG_KEY,
@@ -68,6 +69,7 @@ const babelEnvOpts = {
 
 function createConfig(options) {
   let babelLoader = ['babel-loader'];
+
   if (babelEnvOpts[options.bundle]) {
     babelLoader = [{
       loader: 'babel-loader',

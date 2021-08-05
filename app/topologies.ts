@@ -35,15 +35,15 @@ import { selectTopology } from './topologies/Select';
 import { selectedValueTopology } from './topologies/SelectedValue';
 import { showcaseTopology } from './topologies/Showcase';
 import { sideBarTopology } from './topologies/SideBar';
+import { tabBarTopology } from './topologies/TabBar';
+import { tableTopology } from './topologies/Table';
 import { tableBodyTopology } from './topologies/TableBody';
 import { tableCellTopology } from './topologies/TableCell';
-import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
-import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
 import { tableFooterCellTopology } from './topologies/TableFooterCell';
 import { tableFooterRowTopology } from './topologies/TableFooterRow';
+import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
+import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
 import { tableRowTopology } from './topologies/TableRow';
-import { tableTopology } from './topologies/Table';
-import { tabBarTopology } from './topologies/TabBar';
 import { tabPaneTopology } from './topologies/TabPane';
 import { voteBubbleTopology } from './topologies/VoteBubble';
 
@@ -103,6 +103,7 @@ export function allTopologiesExcept(...topologies: NamedNode[]): NamedNode[] {
   const filtered = allTopologies.slice();
   topologies.forEach((t) => {
     const i = filtered.findIndex((f) => rdf.equals(f, t));
+
     if (i !== -1) {
       filtered.splice(i, 1);
     }

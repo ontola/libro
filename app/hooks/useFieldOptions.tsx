@@ -35,6 +35,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
   React.useEffect(() => {
     if (!optionsLoading) {
       setLoading(false);
+
       if (!arraysEqual(optionsArray, options)) {
         setOptions(optionsArray);
       }

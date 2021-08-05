@@ -23,11 +23,13 @@ const useMenuItems = (menuItemsIRI: NamedNode | undefined, redirect?: boolean): 
 
   const handleChange = React.useCallback((e: Event, url: string) => {
     e.preventDefault();
+
     if (redirect && url) {
       const fragment = new URL(url).hash;
       const newPath = `${location.pathname}${fragment}`;
       history.replace(newPath);
     }
+
     setCurrentTab(rdf.namedNode(url));
   }, [menuItemsIRI, history, setCurrentTab, redirect]);
 
@@ -37,6 +39,7 @@ const useMenuItems = (menuItemsIRI: NamedNode | undefined, redirect?: boolean): 
 
   React.useEffect(() => {
     const current = items.find((s) => new URL(s.value).hash === location.hash);
+
     if (current) {
       setCurrentTab(current);
     } else if (firstItem) {

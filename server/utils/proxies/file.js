@@ -10,6 +10,7 @@ export default proxy({
   onProxyReq: setProxyReqHeaders,
   onProxyRes: (proxyRes, ctx) => {
     setProxyResHeaders(proxyRes, ctx);
+
     if (isDownloadRequest(ctx.req.url)) {
       // eslint-disable-next-line no-param-reassign
       proxyRes.headers['Content-Disposition'] = 'attachment';

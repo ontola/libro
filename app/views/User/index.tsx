@@ -3,7 +3,6 @@ import GuestUserNavbar from './GuestUserNavbar';
 import GuestUserParent from './GuestUserParent';
 import UserNavbar from './UserNavbar';
 
-
 export default [
   UserNavbar,
   CurrentActorFooter,

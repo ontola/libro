@@ -60,6 +60,7 @@ const SearchPostalForm: React.FC<SearchPostalFormProps> = ({
         className={classes.form}
         onSubmit={(e) => {
           e.preventDefault();
+
           if (postalCode && postalCode > MIN_POSTAL_DIGITS && postalCode < MAX_POSTAL_DIGITS) {
             ref.current?.blur();
             handlePostalClick(postalCode);
@@ -92,6 +93,7 @@ const SearchPostalForm: React.FC<SearchPostalFormProps> = ({
             <button
               className={classes.button}
               key={digits}
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 handlePostalClick(parseInt(digits));

@@ -104,6 +104,7 @@ export const getMetaTags = ({
       type: 'meta',
     });
   }
+
   if (text) {
     tags.push({
       content: text,

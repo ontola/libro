@@ -30,6 +30,7 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
     const nextDispatch = next.dispatch;
 
     (next as ClonedLRS).originalLRS = old;
+
     next.dispatch = (iri, ...args) => {
       if (iri.value.startsWith(ontolaActionPrefix)) {
         return old.dispatch(iri, ...args);

@@ -59,6 +59,7 @@ const Collapsible = ({
       href="/"
       onClick={(e) => {
         e.preventDefault();
+
         if (onClickToggle) {
           onClickToggle();
         }

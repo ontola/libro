@@ -1,6 +1,9 @@
 import rdf from '@ontologies/core';
 import { useLRS } from 'link-redux';
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, {
+  ReactElement,
+  SyntheticEvent,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 
@@ -22,6 +25,7 @@ const SignInFormLink: React.FC<SignInFormLinkProps> = ({
   const location = useLocation();
   const { actorType } = useCurrentActor();
   const redirectURL = currentLocation(location).value;
+
   if (actorType?.value !== 'GuestUser') {
     return null;
   }

@@ -32,6 +32,7 @@ const MenuItemCardAppendix: FC<MenuItemCardAppendixProps> = ({
   }), [isActive, onClick]);
   const [menuItemSequence] = useProperty(ontola.menuItems) as NamedNode[];
   const [menuItems] = useSeqToArr(menuItemSequence);
+
   if (menuItems.length == 0) {
     return null;
   }

@@ -12,6 +12,7 @@ const deviceIdMiddleware = async (ctx, next) => {
   }
 
   let deviceId = deviceIdFromCookie(ctx);
+
   if (!deviceId) {
     deviceId = generateDeviceId();
     ctx.cookies.set('deviceId', deviceId, {
@@ -20,6 +21,7 @@ const deviceIdMiddleware = async (ctx, next) => {
       secure: true,
     });
   }
+
   ctx.deviceId = deviceId;
 
   return next();

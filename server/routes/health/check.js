@@ -27,6 +27,7 @@ export default class Check {
   async run() {
     try {
       const output = await this.runTest();
+
       if (output instanceof Error) {
         return this.fail(output);
       }

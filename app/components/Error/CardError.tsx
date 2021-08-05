@@ -1,19 +1,19 @@
 import * as schema from '@ontologies/schema';
-import {
-  ReturnType,
-  useLink,
-} from 'link-redux';
+import { ReturnType, useLink } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonTheme } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
-import Heading, { HeadingSize, HeadingVariant } from '../../components/Heading';
+import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
+import Heading, {
+  HeadingSize,
+  HeadingVariant,
+} from '../../components/Heading';
 import { SignInFormLink } from '../../components/SignInForm';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import Card from '../../topologies/Card';
-import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
 
 import { bodyDescriptorForStatus, headerDescriptorForStatus } from './errorMessages';
 import { ErrorComponentProps, shouldShowSignIn } from './helpers';
@@ -49,6 +49,7 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
       />
     </ErrorButtonWithFeedback>
   );
+
   if (shouldShowSignIn(actorType?.value, linkRequestStatus)) {
     mainAction = (
       <SignInFormLink Component={Button} />

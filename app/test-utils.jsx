@@ -1,10 +1,7 @@
 import { ThemeProvider } from '@material-ui/styles';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import {
-  RDFStore,
-  toGraph,
-} from 'link-lib';
+import { RDFStore, toGraph } from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,16 +11,16 @@ import { Provider } from 'react-redux';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { Router } from 'react-router';
 
+import { componentRegistrations } from './components';
 import { getWebsiteContextFromWebsite } from './helpers/app';
 import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
 import { isFunction } from './helpers/types';
 import { WebsiteContext } from './location';
 import configureStore from './state';
+import themes from './themes';
 import englishMessages from './translations/en.json';
 import { getViews } from './views';
-import themes from './themes';
-import { componentRegistrations } from './components';
 
 const wrapProviders = ({
   ctx,
@@ -34,6 +31,7 @@ const wrapProviders = ({
   if (Array.isArray(views)) {
     ctx.lrs.registerAll(...views);
   }
+
   const subjPath = ctx?.subject?.value && retrievePath(ctx.subject?.value);
   ctx.history.push(location || subjPath || '/');
 
@@ -71,10 +69,12 @@ const resourcesToGraph = (resources) => {
     const graphs = resources.map((r) => toGraph(r));
     const mainIRI = graphs[0][0];
     const store = new RDFStore().getInternalStore();
+
     for (const g of graphs) {
       const s = g[1];
       store.addQuads(s.quads);
     }
+
     const dataObjects = graphs.reduce((acc, [, , namedBlobTuple]) => [...acc, ...namedBlobTuple], []);
 
     return [mainIRI, store, dataObjects];
@@ -100,6 +100,7 @@ const customRender = async (ui, {
       ...options,
     });
   }
+
   const [iri, graph] = resourcesToGraph(resources);
   const ctx = await generateCtx(graph, iri);
 

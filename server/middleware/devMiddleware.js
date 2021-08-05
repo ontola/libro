@@ -11,6 +11,7 @@ export default function(app) {
     console.error('DEV MIDDLEWARE RUN IN PRODUCTION');
     process.exit(1);
   }
+
   console.log('🚧 Development extensions enabled');
 
   const compiler = webpack(webpackConfig);

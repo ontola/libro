@@ -24,6 +24,7 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({
     if (e) {
       e.preventDefault();
     }
+
     setOpen(true);
   };
 

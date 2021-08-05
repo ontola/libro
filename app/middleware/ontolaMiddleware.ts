@@ -162,6 +162,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   (store as any).actions.ontola.navigate = (resource: NamedNode, reload = false) => {
     let query = `location=${encodeURIComponent(resource.value)}`;
+
     if (reload) {
       query += '&reload=true';
     }
@@ -181,6 +182,15 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   /**
    * Miscellaneous
    */
+
+  const closeOldDialogs = () => {
+    const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
+    const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
+
+    if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
+      store.exec(libro.actions.dialog.close);
+    }
+  };
 
   history.listen((location, action) => {
     if (['POP', 'PUSH'].includes(action)) {
@@ -222,16 +232,19 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       reloadPage(store, true);
 
       return Promise.resolve();
-    case rdf.id(libro.actions.navigation.push):
-    case rdf.id(libro.actions.navigation.pop): {
-      const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
-      const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
-      if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
-        store.exec(libro.actions.dialog.close);
-      }
-
+    
+    case rdf.id(libro.actions.navigation.push): {
+      closeOldDialogs();
+      
       return next(iri, opts);
     }
+
+    case rdf.id(libro.actions.navigation.pop): {
+      closeOldDialogs();
+      
+      return next(iri, opts);
+    }
+
     default:
     }
 
@@ -262,6 +275,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
           } catch (e) {
             handle(e);
           }
+
           if (location) {
             redirectPage(store, location);
           } else {
@@ -320,9 +334,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       }
 
       history.push(currentPath());
+
       if (!resource) {
         throw new Error("Argument 'value' was missing.");
       }
+
       store.processDelta(showDialog(resource, opener), true);
 
       return Promise.resolve();
@@ -336,9 +352,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.snackbar.show.value)) {
       const value = new URL(iri.value).searchParams.get('text');
+
       if (!value) {
         throw new Error("Argument 'value' was missing.");
       }
+
       store.processDelta(queueSnackbar(value), true);
 
       return Promise.resolve();
@@ -346,9 +364,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.window.open.value)) {
       const url = new URL(iri.value).searchParams.get('url');
+
       if (!url) {
         throw new Error("Argument 'url' was missing.");
       }
+
       window.open(url);
 
       return Promise.resolve();
@@ -356,9 +376,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.playAudio.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
+
       if (!resource) {
         throw new Error("Argument 'resource' was missing.");
       }
+
       const audio = new Audio(resource);
 
       return audio.play();

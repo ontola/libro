@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 
 import ontola from '../../ontology/ontola';
 
-import components from './index';
+import components from './';
 
 const resource = rdf.blankNode('g70120412320900');
 
@@ -84,6 +84,7 @@ describeView('Seq', components, resources, resource, () => {
       const results = (await subject).find('Seq > ErrorBoundary > ForwardRef > Resource');
 
       expect(results).toHaveLength(seq.length);
+
       for (let i = 0; i < children; i++) {
         expect(results.at(i)).toHaveProp('subject', seq[i]);
       }

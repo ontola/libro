@@ -19,9 +19,11 @@ const execFilter = () => (): MiddlewareWithBoundLRS => {
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
     const origin = new URL(iri.value).origin;
+
     if (!origin || origin === 'null') {
       throw new Error(`IRI has no origin (was ${iri.value})`);
     }
+
     if (executableSites.includes(rdf.id(rdf.namedNode(origin)))) {
       return next(iri, opts);
     }

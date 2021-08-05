@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { handleErrorStatuses } from '../../components/Error';
 import GridItem from '../../components/Grid/GridItem';
 import { tryParseInt } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
@@ -15,7 +16,6 @@ import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
 import FullResource from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
-import { handleErrorStatuses } from '../../components/Error';
 
 interface WidgetProps {
   topology: SomeNode;
@@ -30,6 +30,7 @@ const Widget: FC<WidgetProps> = ({ topology, widgetSize }) => {
 
   let Wrapper: React.ElementType;
   let wrapperOpts = {};
+
   switch (topology) {
   case argu.grid:
     Wrapper = GridItem;

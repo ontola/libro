@@ -1,4 +1,7 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  SomeTerm,
+} from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 
 import { calculateFormFieldName } from './forms';
@@ -14,11 +17,13 @@ export const parseValue = (plain: Record<string, any> | any): SomeTerm => {
     return rdf.namedNode(plain.value);
   case 'BlankNode':
     return rdf.blankNode(plain.value);
+
   case 'Literal': {
     const datatype = plain.datatype ? rdf.namedNode(plain.datatype.value) : undefined;
 
     return rdf.literal(plain.value, plain.language || datatype);
   }
+
   default:
     return plain.value ? rdf.literal(plain.value) : rdf.literal(plain);
   }
@@ -31,6 +36,7 @@ export const parseForStorage = (valueFromStorage: string | null): SomeTerm[] | u
 
   try {
     const plain = JSON.parse(valueFromStorage);
+
     if (Array.isArray(plain)) {
       return plain.map(parseValue);
     }

@@ -29,6 +29,7 @@ const Notification: FC<NotificationProps> = ({
   const lrs = useLRS();
 
   let content = <Property label={schema.name} />;
+
   if (target) {
     content = (
       <Property label={schema.target} onClick={() => readAction && lrs.exec(readAction)}>

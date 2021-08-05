@@ -23,6 +23,7 @@ export default class HeadRequestCheck extends Check {
       },
       url: '/argu',
     });
+
     if (res.status >= HttpStatus.BAD_REQUEST) {
       return new Error(`Unexpected status '${res.status}' for 'HEAD /argu'.`);
     }

@@ -74,6 +74,7 @@ const DetailDate: React.FC<PropTypes> = (props) => {
   const format = React.useCallback((prop) => {
     const p = prop.split(':').pop();
     const rawDate = (props as any)[p];
+
     if (!rawDate) {
       return '';
     }

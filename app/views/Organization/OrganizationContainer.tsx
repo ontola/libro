@@ -10,12 +10,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
-import CardContent from '../../components/Card/CardContent';
 import { containerTopology } from '../../topologies/Container';
 
 interface OrganizationPageProps {
@@ -29,6 +29,7 @@ const OrganizationPage: FC<OrganizationPageProps> = ({
 }) => {
   const lrs = useLRS();
   const [name] = useProperty(schema.name);
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     lrs.actions.ontola.openWindow(subject.value);

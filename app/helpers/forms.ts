@@ -22,9 +22,11 @@ export function calculateFormFieldName(...segments: Array<string | number | Term
       if (typeof segment === 'undefined') {
         return '';
       }
+
       if (typeof segment === 'number' || typeof segment === 'string') {
         return segment;
       }
+
       if (isJSONLDObject(segment)) {
         return btoa((segment as JSONLDObject)['@id'].value);
       }

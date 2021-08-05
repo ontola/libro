@@ -16,9 +16,11 @@ const SignUpActionsBar = ({ actionStatus }) => {
   if (actionStatus === schema.CompletedActionStatus) {
     return <div className="Button">Je hebt je aangemeld voor deze actie!</div>;
   }
+
   if (actionStatus === ontola.ExpiredActionStatus) {
     return <div className="Button">Deze actie zit al vol.</div>;
   }
+
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }

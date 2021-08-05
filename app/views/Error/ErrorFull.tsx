@@ -5,12 +5,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { ErrorComponentProps } from '../../components/Error/helpers';
 import ll from '../../ontology/ll';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import { ErrorComponentProps } from '../../components/Error/helpers';
-
 
 const ErrorFull: FC<ErrorComponentProps> = (props) => (
   <Container>

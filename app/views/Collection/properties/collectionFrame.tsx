@@ -16,11 +16,14 @@ import { useCollectionOptions } from '../../../components/Collection/CollectionP
 import HeaderWithMenu from '../../../components/HeaderWithMenu';
 import ontola from '../../../ontology/ontola';
 import { LibroTheme } from '../../../themes/themes';
-import Container, { LargeContainer, containerTopology } from '../../../topologies/Container';
+import { allTopologiesExcept } from '../../../topologies';
+import Container, {
+  LargeContainer,
+  containerTopology,
+} from '../../../topologies/Container';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { gridTopology } from '../../../topologies/Grid';
 import { pageTopology } from '../../../topologies/Page';
-import { allTopologiesExcept } from '../../../topologies';
 import { sideBarTopology } from '../../../topologies/SideBar';
 import { formMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
@@ -57,6 +60,7 @@ const DefaultCollectionFrame: FC<CollectionFrameProps> = () => {
     <CollectionFrame Wrapper={Wrapper} hideHeader={hideHeader} />
   );
 };
+
 DefaultCollectionFrame.type = CollectionTypes;
 DefaultCollectionFrame.topology = allTopologiesExcept(
   alertDialogTopology,
@@ -74,6 +78,7 @@ const WrappedCollectionFrame: FC<CollectionFrameProps> = () => {
     <CollectionFrame Wrapper={React.Fragment} hideHeader={hideHeader} />
   );
 };
+
 WrappedCollectionFrame.type = CollectionTypes;
 WrappedCollectionFrame.topology = [containerTopology, gridTopology, sideBarTopology];
 WrappedCollectionFrame.property = ontola.collectionFrame;
@@ -105,6 +110,7 @@ const DialogCollectionFrame: FC<CollectionFrameProps> = ({
     </Container>
   );
 };
+
 DialogCollectionFrame.type = CollectionTypes;
 DialogCollectionFrame.topology = alertDialogTopology;
 DialogCollectionFrame.property = ontola.collectionFrame;

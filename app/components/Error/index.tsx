@@ -8,6 +8,7 @@ import React from 'react';
 export const handleErrorStatuses = (handledStatuses: number[]) => (errorProps: ErrorProps): JSX.Element | null => {
   const lrs = useLRS();
   const status = errorProps.linkRequestStatus.status;
+
   if (status && handledStatuses.indexOf(status) >= 0) {
     return null;
   }

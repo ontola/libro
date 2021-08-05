@@ -28,6 +28,7 @@ export function countInParentheses(count: number | Literal): string {
   if (!count) {
     return '';
   }
+
   const val = typeof count === 'number' ? count : Number.parseInt(count.value, 10);
 
   return val > 0 ? `(${val})` : '';
@@ -37,6 +38,7 @@ export function byteToSize(byte: number): string {
   if (byte === 0) {
     return ZERO_BYTE;
   }
+
   const i = parseInt(Math.floor(Math.log(byte) / Math.log(BYTE_SIZE_TO_KBYTE)).toString(), 8);
 
   return `${Math.round(byte / (BYTE_SIZE_TO_KBYTE ** i))} ${SIZES[i]}`;
@@ -44,6 +46,7 @@ export function byteToSize(byte: number): string {
 
 export function tryParseFloat(linkedProp: unknown): number | undefined {
   const value = isTerm(linkedProp) ? linkedProp.value : linkedProp;
+
   if (!linkedProp || Number.isNaN(Number(value))) {
     return undefined;
   }
@@ -53,6 +56,7 @@ export function tryParseFloat(linkedProp: unknown): number | undefined {
 
 export function tryParseInt(linkedProp: unknown): number | undefined {
   const value = isTerm(linkedProp) ? linkedProp.value : linkedProp;
+
   if (!linkedProp || Number.isNaN(Number(value))) {
     return undefined;
   }

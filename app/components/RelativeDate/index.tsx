@@ -15,9 +15,11 @@ const RelativeDate = ({
   title,
 }: RelativeDateProps): JSX.Element | null => {
   const intl = useIntl();
+
   if (!date) {
     return null;
   }
+
   const dateObj = new Date(date.value);
   const renderTitle = title || intl.formatTime(dateObj, DATE_FORMAT);
 

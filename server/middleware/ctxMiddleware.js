@@ -33,6 +33,7 @@ const stemIri = (iri) => {
 export function enhanceCtx(ctx) {
   ctx.res.locals = { nonce: uuidv4() };
   ctx.req.getCtx = () => ctx;
+
   if (typeof __VERSION__ !== 'undefined') {
     ctx.response.set('X-FE-Version', __VERSION__);
   }
@@ -187,6 +188,7 @@ export function enhanceCtx(ctx) {
       if (!refreshToken) {
         throw new Error('refreshToken is missing while accessToken is present');
       }
+
       ctx.session.userToken = token;
       ctx.session.refreshToken = refreshToken;
     }
@@ -218,6 +220,7 @@ export function enhanceCtx(ctx) {
       if (e instanceof TokenExpiredError) {
         return undefined;
       }
+
       throw e;
     }
   };

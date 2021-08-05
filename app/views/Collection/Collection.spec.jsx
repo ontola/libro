@@ -1,7 +1,7 @@
 import * as as from '@ontologies/as';
-import * as rdfx from '@ontologies/rdf';
 import rdf from '@ontologies/core';
 import * as dcterms from '@ontologies/dcterms';
+import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
@@ -12,7 +12,6 @@ import example from '../../ontology/example';
 import ontola from '../../ontology/ontola';
 import { cleanup, render } from '../../test-utils';
 import { Page } from '../../topologies/Page';
-
 
 describe('Collection', () => {
   afterAll(cleanup);

@@ -1,4 +1,7 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  SomeTerm,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
@@ -14,10 +17,7 @@ import { useField } from 'react-final-form';
 import { FormContext } from '../components/Form/Form';
 import { FormFieldError, InputMeta } from '../components/FormField';
 import { arraysEqual } from '../helpers/data';
-import {
-  JSONLDObject,
-  calculateFormFieldName,
-} from '../helpers/forms';
+import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import { isJSONLDObject, isNumber } from '../helpers/types';
 import validators, { combineValidators } from '../helpers/validators';
@@ -178,12 +178,15 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     whitelist,
   } = React.useContext(FormContext);
   const fieldProps = useLink(mapFieldProps) as MapFieldPropsShape;
+
   if (path) {
     fieldProps.path = path;
   }
+
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
   const blacklisted = blacklist?.includes(rdf.id(fieldProps.path));
   const fieldName = calculateFormFieldName(formSection, fieldProps.path);
+
   if (blacklisted || !whitelisted) {
     return {
       name: fieldName,
@@ -192,6 +195,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
       whitelisted: false,
     };
   }
+
   const fieldShape = useFieldShape(props);
   const storeKey = getStorageKey(formID || '', formSection ? object : undefined, fieldProps.path);
   const validate = combineValidators([
@@ -209,6 +213,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
   );
   const saveToLRS = React.useCallback((nextValue) => {
     const delta = object && fieldProps.path && changeDelta(object, fieldProps.path, nextValue);
+
     if (delta) {
       lrs.processDelta(delta, !delay);
     }
@@ -232,6 +237,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
       saveToLRS(nextValue);
       saveToLocalStorage(nextValue);
     }
+
     originalOnChange(nextValue);
   }, [storeKey, meta.touched, input.value]);
   React.useEffect(() => {
@@ -242,9 +248,11 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
   input.onChange = onChange;
   React.useEffect(() => {
     let err;
+
     if (meta.error) {
       err = Array.isArray(meta.error) ? meta.error : [meta.error];
     }
+
     setMemoizedMeta({
       ...meta,
       error: err,

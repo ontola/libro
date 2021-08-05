@@ -28,6 +28,7 @@ interface ShShape {
 const conditionPath = <T extends SomeTerm>(lrs: LinkReduxLRSType, condition: ShShape): T[] => {
   if (condition.path) {
     const arr = containerToArr(lrs, [], condition.path);
+
     if (!isPromise(arr)) {
       return arr as T[];
     }
@@ -56,9 +57,11 @@ const getDependentResources = (lrs: LinkReduxLRSType, conditions: ShShape[], tar
     if (condition.shIn) {
       resources.push(...condition.shIn.filter(isNamedNode));
     }
+
     if (condition.targetNode) {
       resources.push(condition.targetNode);
     }
+
     if (condition.path) {
       resources.push(...digDependencies(lrs, [], target, conditionPath(lrs, condition)));
     }
@@ -89,15 +92,19 @@ const hasValueIn = (lrs: LinkReduxLRSType, shIn: SomeTerm[], values: SomeTerm[])
 const resolveCondition = (lrs: LinkReduxLRSType, condition: ShShape, target: SomeNode): boolean => {
   const path = conditionPath(lrs, condition);
   const values = lrs.dig(condition.targetNode || target, path as NamedNode[]) as SomeTerm[];
+
   if (condition.hasValue && !hasValue(lrs, condition.hasValue, values)) {
     return false;
   }
+
   if (condition.shIn.length > 0 && !hasValueIn(lrs, condition.shIn, values)) {
     return false;
   }
+
   if (condition.maxCount && !hasMaxCount(lrs, condition.maxCount, values)) {
     return false;
   }
+
   if (condition.minCount && !hasMinCount(lrs, condition.minCount, values)) {
     return false;
   }
@@ -149,17 +156,22 @@ const validateShape = (lrs: LinkReduxLRSType, shape: SomeNode, targetFromProp: S
   let pass = true;
   const passedOrNodes = orNodes
     .filter((node) => validateNestedShape(lrs, node, target, dependentResources));
+
   if (orNodes.length > 0 && passedOrNodes.length === 0) {
     pass = false;
   }
+
   const failedAndNodes = andNodes
     .filter((node) => !validateNestedShape(lrs, node, target, dependentResources));
+
   if (failedAndNodes.length > 0) {
     pass = false;
   }
+
   if (pass && !ifProps.every((condition) => resolveCondition(lrs, condition, target))) {
     pass = false;
   }
+
   if (pass && unlessProps.some((condition) => resolveCondition(lrs, condition, target))) {
     pass = false;
   }
@@ -187,6 +199,7 @@ const useShapeValidation = (shape: SomeNode, target: SomeNode | undefined): bool
   }, [shape, target, timestamp]);
 
   const currentTimestamp = useDataFetching(dependentResources.filter(isNamedNode));
+
   if (currentTimestamp !== timestamp) {
     setTimestamp(currentTimestamp);
   }

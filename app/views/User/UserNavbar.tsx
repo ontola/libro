@@ -29,7 +29,6 @@ const UserNavbar: FC<UserNavbarProps> = ({
     }
   }, [mountAction]);
 
-
   return (
     <ResourceBoundary>
       <Property
@@ -38,6 +37,7 @@ const UserNavbar: FC<UserNavbarProps> = ({
           if (e) {
             e.preventDefault();
           }
+
           lrs.exec(app.ns('actions/menu/toggle'));
         }}
       />

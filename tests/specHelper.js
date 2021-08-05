@@ -1,5 +1,8 @@
 import { ThemeProvider } from '@material-ui/styles';
-import LinkedRenderStore, { list, seq } from 'link-lib';
+import LinkedRenderStore, {
+  list,
+  seq,
+} from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import { IntlProvider, injectIntl } from 'react-intl';
 import { Provider } from 'react-redux';
@@ -8,8 +11,9 @@ import { StaticRouter } from 'react-router';
 import argu from '../app/ontology/argu';
 import themes from '../app/themes';
 
-import { generateStore } from './link-redux/utilities';
 import * as ctx from './link-redux/fixtures';
+import { generateStore } from './link-redux/utilities';
+
 import './link-matchers';
 
 const { mount, shallow } = require('enzyme');
@@ -47,16 +51,21 @@ const define = ({
 
 function normalizeProps(arr, ...params) {
   let props = {};
+
   if (arr instanceof Object && arr.constructor === Object) {
     props = { ...arr };
-  } if (typeof arr === 'string') {
+  }
+
+  if (typeof arr === 'string') {
     props[arr] = undefined;
   }
 
   let rest = Array.isArray(arr) ? arr : [];
+
   if (params[params.length - 1]) {
     rest = rest.concat(params[params.length - 1]);
   }
+
   rest.forEach((r) => { props[r] = undefined; });
 
   return props;
@@ -143,18 +152,23 @@ function argUnit(comp, func, opts = {}) {
     const method = (opts.mount === true || opts.intl) ? mount : shallow;
     let element = React.createElement(opts.intl === 'inject' ? injectIntl(comp) : comp, p);
     const lrs = new LinkedRenderStore();
+
     if (opts.link || opts.redux) {
       element = React.createElement(RenderStoreProvider, { value: lrs }, element);
     }
+
     if (opts.redux || opts.intl) {
       element = React.createElement(Provider, { store: generateStore() }, element);
     }
+
     if (opts.intl) {
       element = React.createElement(IntlProvider, { locale: 'en' }, element);
     }
+
     if (opts.themeProvider) {
       element = React.createElement(ThemeProvider, { theme: themes.common({}) }, element);
     }
+
     if (opts.router || opts.intl) {
       element = React.createElement(StaticRouter, {}, element);
     }
@@ -253,9 +267,9 @@ export {
   defineMarker,
   describeView,
   list,
-  seq,
   marker,
   normalizeProps,
+  seq,
   setProp,
-  within,
+  within 
 };

@@ -9,6 +9,7 @@ describe('specHelper', () => {
 
       it('declares the variables', () => {
         let caught = false;
+
         try {
           expect(val).not.toBeDefined();
           expect(prop).not.toBeDefined();
@@ -16,6 +17,7 @@ describe('specHelper', () => {
         } catch (e) {
           caught = true;
         }
+
         expect(caught).toBeFalsy();
       });
     });
@@ -29,6 +31,7 @@ describe('specHelper', () => {
 
       it('declares the variables', () => {
         let caught = false;
+
         try {
           expect(arr).toEqual(['a', 'b']);
           expect(prop).not.toBeDefined();
@@ -36,6 +39,7 @@ describe('specHelper', () => {
         } catch (e) {
           caught = true;
         }
+
         expect(caught).toBeFalsy();
       });
     });

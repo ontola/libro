@@ -17,6 +17,7 @@ class FixedPlainFactory extends PlainFactory {
       return this.namedNode(obj.slice(1, -1));
     } else if (obj.startsWith('"')) {
       let languageOrId;
+
       if (obj.includes('@')) {
         languageOrId = obj.split('@').pop();
       } else if (obj.includes('^^')) {

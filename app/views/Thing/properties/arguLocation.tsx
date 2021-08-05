@@ -1,4 +1,7 @@
-import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import rdf, {
+  isNamedNode,
+  isNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -36,10 +39,12 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const [children, childrenLoading] = useContainerToArr(childrenPlacements);
   const onSelect = React.useCallback((feature) => {
     const id = feature?.getId();
+
     if (id) {
       const partOf = lrs.getResourceProperty(
         isResource(id) ? id : rdf.namedNode(id), schema.isPartOf,
       );
+
       if (partOf) {
         lrs.actions.ontola.showDialog(partOf);
       }

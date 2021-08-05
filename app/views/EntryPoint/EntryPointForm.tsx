@@ -8,7 +8,10 @@ import {
   useLRS,
   useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler, SyntheticEvent } from 'react';
+import React, {
+  EventHandler,
+  SyntheticEvent,
+} from 'react';
 
 import Form from '../../components/Form/Form';
 import { LoadingGridContent } from '../../components/Loading';
@@ -96,6 +99,7 @@ const EntryPointForm: React.FC<PropTypes> = ({
     if (isNamedNode(loading) && !entityIsLoaded(lrs, loading)) {
       return <Resource subject={loading} onLoad={onLoad ?? LoadingGridContent} />;
     }
+
     if (onLoad) {
       return <React.Fragment>{onLoad()}</React.Fragment>;
     }

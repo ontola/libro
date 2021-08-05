@@ -90,6 +90,7 @@ const CoverImageSlider: React.FC<PropTypes> = ({
     subject: imagePositionYShape,
   });
   const imagePositionY = tryParseInt(values?.[0]);
+
   const onImagePositionYChange = (_: any, newValue: number | number[]) => {
     const val = Array.isArray(newValue) ? newValue[0] : newValue;
 

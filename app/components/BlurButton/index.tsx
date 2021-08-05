@@ -9,6 +9,7 @@ const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandle
     // Only blur when the event is a click, not for using the Enter button.
     // React fires a clickEvent when the user uses Enter, but the coordinates are zero.
   }
+
   if (e.nativeEvent.x !== 0) {
     e.currentTarget.blur();
   }

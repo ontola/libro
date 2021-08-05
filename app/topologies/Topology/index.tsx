@@ -26,6 +26,7 @@ export const renderErrorComp = (self: React.Component<Record<string, unknown>, T
     reset,
   }) => {
     const lrs = useLRS();
+
     try {
       const childProps = useCalculateChildProps(
         props,

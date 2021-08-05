@@ -1,4 +1,7 @@
-import rdf, { isNamedNode, isTerm } from '@ontologies/core';
+import rdf, {
+  isNamedNode,
+  isTerm,
+} from '@ontologies/core';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -42,12 +45,15 @@ const FormInput: React.FC<FormInputProps> = ({
     removable,
     required,
   } = fieldShape || {};
+
   if (isMarkedForRemove(value)) {
     return null;
   }
+
   const removeItem = React.useCallback(() => {
     const newValue = values?.slice() || [];
     const curentValue = newValue[index];
+
     if (isJSONLDObject(curentValue) && isNamedNode(retrieveIdFromValue(curentValue))) {
       curentValue[destroyFieldName] = rdf.literal(true);
     } else {

@@ -14,7 +14,6 @@ import teamGL from '../../../../ontology/teamGL';
 import { contentDetailsTopology } from '../../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../../topologies/DetailsBar';
 
-
 const EventTypeDetailsBar = ({ image, linkedProp }) => {
   useDataFetching([linkedProp]);
   const [name] = useResourceProperty(linkedProp, schema.name);

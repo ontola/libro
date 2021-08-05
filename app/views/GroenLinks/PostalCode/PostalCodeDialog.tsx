@@ -27,7 +27,6 @@ interface PostalCodeDialogProps {
   postalDigits: SomeTerm;
 }
 
-
 const PostalCodeDialog: FC<PostalCodeDialogProps> = ({
   onClose,
   postalDigits,

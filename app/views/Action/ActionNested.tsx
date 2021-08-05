@@ -51,6 +51,7 @@ const ActionNested: FC<ActionProps> = ({
       </Container>
     );
   }
+
   const Appendix = appendix;
   const closeModal = topology === alertDialogTopology
     && (() => lrs.actions.ontola.hideDialog());

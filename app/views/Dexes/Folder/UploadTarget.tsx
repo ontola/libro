@@ -57,11 +57,13 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
     const handler = (e: ClipboardEvent) => {
       if (e.clipboardData) {
         const items = e.clipboardData.files;
+
         for (const item of items) {
           onDrop(item);
         }
       }
     };
+
     document.addEventListener('paste', handler);
 
     return () => {

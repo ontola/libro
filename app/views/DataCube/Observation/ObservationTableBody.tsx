@@ -29,6 +29,7 @@ const ObservationTableBody: FC<ObservationTableBodyProps> = ({
     <TableRow>
       {measures.map((_, i) => {
         const value = properties[i];
+
         if (!value) {
           return null;
         }

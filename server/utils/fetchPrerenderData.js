@@ -1,5 +1,5 @@
-import Stream from 'stream';
 import { URL } from 'url';
+import Stream from 'stream';
 
 import HttpStatus from 'http-status-codes';
 
@@ -9,6 +9,7 @@ import { statusCodeHex } from './proxies/helpers';
 const createOutputStream = () => {
   let data = Buffer.alloc(0);
   const stream = new Stream.Writable();
+
   // eslint-disable-next-line no-underscore-dangle
   stream._write = (chunk, encoding, next) => {
     data = Buffer.concat([data, chunk]);
@@ -44,10 +45,12 @@ const filterAllowedWriteForbiddenMeta = (ctx, write) => async (iri) => {
 const getResources = (ctx, includes) => {
   const { website_iri } = ctx.manifest.ontola || {};
   const resources = (ctx.manifest.ontola?.preload || []).map(encodeURIComponent);
+
   if (ctx.request.url?.length > 1 && website_iri) {
     const { origin } = new URL(website_iri);
     resources.unshift(encodeURIComponent(origin + ctx.request.url));
   }
+
   if (includes) {
     resources.push(...includes.split(',').map(encodeURIComponent));
   }
@@ -57,6 +60,7 @@ const getResources = (ctx, includes) => {
 
 const fetchPrerenderData = async (ctx, includeResources) => {
   const forbidden = createOutputStream();
+
   const write = (line) => {
     forbidden.stream.write(JSON.stringify(line));
     forbidden.stream.write('\n');
@@ -70,6 +74,7 @@ const fetchPrerenderData = async (ctx, includeResources) => {
   try {
     const res = await ctx.api.bulk(resources);
     let text = await res.text();
+
     if (res.status === HttpStatus.NOT_FOUND) {
       text += JSON.stringify(statusCodeHex(ctx.request.href, HttpStatus.NOT_FOUND));
       text += '\n';

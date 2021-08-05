@@ -14,6 +14,7 @@ const FormFieldDescription: React.FC<PropTypes> = ({
   preferPlaceholder,
 }) => {
   let text;
+
   if (preferPlaceholder) {
     text = helperText;
   } else {

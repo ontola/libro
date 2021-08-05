@@ -86,6 +86,7 @@ const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
   React.useEffect(() => {
     const features: Array<Feature<Point>> = [];
     const dependencies: SomeNode[] = [];
+
     const addFeature = (rawFeature: SomeNode | Placement, index: number) => {
       const feature = !loading && featureFromPlacement(lrs, rawFeature, theme);
 
@@ -98,6 +99,7 @@ const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
       if (isNamedNode(rawFeature)) {
         dependencies.push(rawFeature);
       }
+
       if (feature) {
         features.push(feature);
       }
@@ -106,6 +108,7 @@ const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
     if (placements) {
       placements.forEach(addFeature);
     }
+
     setDependencies(dependencies);
     setMemoizedFeatures(features);
 
@@ -153,6 +156,7 @@ const MapView: React.FC<PropTypes> = ({
     if (onSelect) {
       onSelect(feature, newCenter);
     }
+
     setOverlayPosition(newCenter);
   }, [onSelect]);
   const layers = React.useMemo(() => (
@@ -167,6 +171,7 @@ const MapView: React.FC<PropTypes> = ({
       zoom: newZoom,
     });
   }, [setView]);
+
   if (loading || !placementFeatures) {
     return <LoadingCard />;
   }

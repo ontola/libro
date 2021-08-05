@@ -45,9 +45,11 @@ expect.extend({
 
   toRenderView(tree, view) {
     const displayName = view?.displayName || view?.name;
+
     if (typeof displayName === 'undefined') {
       throw Error('No displayName nor name for component given');
     }
+
     const elem = tree.find(displayName);
 
     const { pass } = toExist(elem);

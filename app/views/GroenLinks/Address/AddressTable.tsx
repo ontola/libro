@@ -30,9 +30,11 @@ const AddressTable: FC<AddressTableProps> = (props) => {
       lrs.actions.app.startSignIn(props.subject);
     } else {
       e.preventDefault();
+
       if (__CLIENT__ && !entityIsLoaded(lrs, props.createAction)) {
         lrs.queueEntity(props.createAction);
       }
+
       lrs.actions.ontola.showDialog(props.subject);
     }
   };

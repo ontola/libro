@@ -73,6 +73,7 @@ const CollectionCreateActionButton: React.FC = () => {
 
   if (createActions.length > 1) {
     const freshAction = createActions.find((action) => !entityIsLoaded(lrs, action));
+
     if (freshAction) {
       return <Resource subject={freshAction} onLoad={LoadingCardFloat} />;
     }

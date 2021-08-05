@@ -55,6 +55,7 @@ function bestType(type: LazyNNArgument): NamedNode | null {
       if (!best) {
         best = normalizedType;
       }
+
       break;
     default:
       best = normalizedType;
@@ -130,11 +131,13 @@ function listToArr<I extends Term = SomeTerm>(
   if (Array.isArray(rest)) {
     return rest;
   }
+
   if (!rest || rdf.equals(rest, rdfx.nil)) {
     return acc;
   }
 
   let first;
+
   if (rest.termType === 'BlankNode') {
     const firstStatement = lrs.store.find(rest, rdfx.first, null, null);
     first = firstStatement && firstStatement.object as I;
@@ -145,18 +148,24 @@ function listToArr<I extends Term = SomeTerm>(
       return lrs.getEntity(rest);
     }
   }
+
   if (rdf.equals(first, rdfx.nil)) {
     return acc;
   }
+
   if (first) {
     acc.push(first);
   }
+
   const nextRest = lrs.store.find(rest, rdfx.rest, null, null);
+
   if (nextRest) {
     const nextObj = nextRest.object;
+
     if (nextObj.termType === 'Literal' || (nextObj as any).termType === 'Collection') {
       throw new Error(`Rest value must be a resource, was ${nextObj.termType}`);
     }
+
     listToArr(lrs, acc, nextObj);
   }
 
@@ -175,6 +184,7 @@ function seqToArr<I extends Term = SomeTerm>(
   if (Array.isArray(rest)) {
     return rest;
   }
+
   if (!rest || rdf.equals(rest, rdfx.nil)) {
     return acc;
   }
@@ -210,10 +220,13 @@ function containerToArr<I extends Term = SomeTerm>(
   }
 
   const pages = lrs.getResourceProperty<NamedNode>(rest, ontola.pages);
+
   if (pages) {
     return containerToArr(lrs, acc, pages);
   }
+
   const items = lrs.getResourceProperty<NamedNode>(rest, as.items);
+
   if (items) {
     return seqToArr<I>(lrs, acc, items);
   }

@@ -48,6 +48,7 @@ const MenuItemDropdownContentComp = ({
 
   const handleClick = React.useCallback((e) => {
     e.preventDefault();
+
     if (open !== null) {
       setOpen(!open);
     }
@@ -56,12 +57,14 @@ const MenuItemDropdownContentComp = ({
     if (e !== undefined) {
       e.preventDefault();
     }
+
     lrs
       .exec(action!)
       .catch((error) => {
         if (!error.response) {
           throw error;
         }
+
         if (error.response.status === HttpStatus.UNAUTHORIZED) {
           lrs
             .actions

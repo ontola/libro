@@ -83,6 +83,7 @@ const getInitialValues = (
 
     const path = lrs.getResourceProperty<NamedNode>(field, sh.path);
     const fieldType = lrs.getResourceProperty<NamedNode>(field, rdfx.type);
+
     if (path && object) {
       const fieldName = calculateFormFieldName(path);
       const storageKey = getStorageKey(formContext, nested ? object : undefined, path);
@@ -91,6 +92,7 @@ const getInitialValues = (
 
       const initialValue = defaultValue.length > 0 ? defaultValue : lrs.getResourceProperties(object, path);
       let value = valueFromStorage || initialValue;
+
       if (renderedFieldValue(fieldType)) {
         dependentResources.push(...value.filter(isResource));
 
@@ -157,16 +159,19 @@ const useInitialValues = (
     }
 
     const currentValues = {} as { [index: string]: InputValue[]; };
+
     const addValue = (key: string, value: InputValue[]) => {
       if (!Object.keys(currentValues).includes(key)) {
         currentValues[key] = value;
       }
     };
+
     const dependencies = getInitialValues(lrs, sessionStore, addValue, actionBody, object, formID, false);
 
     const currentLoading = dependencies.filter(isNamedNode).find((resource) => (
       !entityIsLoaded(lrs, resource)
     ));
+
     if (loading !== currentLoading) {
       setInitialValues(currentValues);
       setLoading(currentLoading);
@@ -175,6 +180,7 @@ const useInitialValues = (
     return dependencies;
   }, [actionBody, object, formID, timestamp]);
   const currentTimestamp = useDataFetching(dependentResources.filter(isNamedNode));
+
   if (currentTimestamp !== timestamp) {
     setTimestamp(currentTimestamp);
   }

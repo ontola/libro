@@ -32,6 +32,7 @@ import patchRequestInitGenerator from './helpers/monkey';
 
   function mount() {
     log('Mounting app');
+
     if (typeof window !== 'undefined') {
       window.clearTimeout(timeout);
     }
@@ -85,6 +86,7 @@ import patchRequestInitGenerator from './helpers/monkey';
   window.setTimeout(() => {
     ['preloader', 'navbar-preview'].forEach((id) => {
       const elem = document.getElementById(id);
+
       if (elem) {
         elem.parentElement?.removeChild(elem);
       }

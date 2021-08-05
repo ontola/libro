@@ -32,6 +32,7 @@ const App = ({
   const websiteCtxValue = getWebsiteContextFromWebsite(website);
 
   let router;
+
   if (__CLIENT__) {
     router = ({ children }: RouterProps) => <ConnectedRouter history={history}>{children}</ConnectedRouter>;
   } else {

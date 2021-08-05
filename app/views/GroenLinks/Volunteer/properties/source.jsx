@@ -1,7 +1,4 @@
-import {
-  linkedPropType,
-  register,
-} from 'link-redux';
+import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
@@ -16,11 +13,13 @@ const Source = ({ linkedProp }) => {
 
     return <Detail text={text} />;
   }
+
   if (linkedProp === app.ns('enums/volunteers/source#website')) {
     const text = emoji('💻 Aangemeld via groenlinks.nl');
 
     return <Detail text={text} />;
   }
+
   if (linkedProp === app.ns('enums/volunteers/source#moved')) {
     const text = emoji('🏠 Verhuisd naar deze afdeling');
 

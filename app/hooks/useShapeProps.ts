@@ -82,6 +82,7 @@ const useFieldShape = (props: UseFormFieldProps): ResolvedShapeForm => {
     shapeFromField[prop] = shapeProps[prop];
 
     const predicate = shapeProps[`${prop}Prop`];
+
     if (isNamedNode(predicate)) {
       propsFromObjectMap[prop] = predicate;
     }

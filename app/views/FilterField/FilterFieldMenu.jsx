@@ -30,10 +30,12 @@ const FilterFieldMenuComp = ({
 }) => {
   const lrs = useLRS();
   const [open, setOpen] = React.useState(false);
+
   const handleClick = (e) => {
     e.preventDefault();
     setOpen(!open);
   };
+
   const currentFilter = useResourceProperty(partOf, ontola.collectionFilter)
     .filter(isNode)
     .find((filter) => lrs.getResourceProperty(filter, ontola.filterKey) === filterKey);

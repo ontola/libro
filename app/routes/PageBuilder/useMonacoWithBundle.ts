@@ -53,6 +53,7 @@ export const useMonacoWithBundle = (): boolean => {
           monaco.Uri.parse(`ts:filename/${name}.d.ts`),
         );
       }
+
       for (const [name, declaration] of Object.entries(context.localOntologies)) {
         monaco.languages.typescript.javascriptDefaults.addExtraLib(
           declaration,

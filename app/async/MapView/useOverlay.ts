@@ -30,6 +30,7 @@ const useOverlay = ({
   const overlayRef = useRef(document.createElement('div'));
   const overlay = useMemo(() => {
     const element = overlayRef.current;
+
     if (map && element) {
       const o = new Overlay({
         autoPan: overlayPadding,

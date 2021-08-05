@@ -16,10 +16,12 @@ function lintModuleVariablesNewline(node, context, moduleType) {
   if (node.specifiers.length < minProperties) {
     return null;
   }
+
   const sourceCode = context.getSourceCode();
   const moduleTypeNameForMessage = moduleType === IMPORT ? 'imported' : 'exported';
 
   let moduleVariables = null;
+
   if (node.specifiers) {
     // for import
     moduleVariables = node.specifiers;
@@ -40,6 +42,7 @@ function lintModuleVariablesNewline(node, context, moduleType) {
 
   for (let i = 1; i < moduleVariables.length; i++) {
     const firstTokenOfCurrentProperty = sourceCode.getFirstToken(moduleVariables[i]);
+
     if (moduleVariables[i].loc.start.line === moduleVariables[i - 1].loc.start.line) {
 
       const nodeSource = context.getSourceCode();
@@ -73,10 +76,12 @@ function lintModuleVariablesNewline(node, context, moduleType) {
       } else {
         const comma = nodeSource.getTokenBefore(firstTokenOfCurrentProperty);
         const rangeAfterComma = [comma.range[1], firstTokenOfCurrentProperty.range[0]];
+
         // don't fix if comments between the comma and the next property.
         if (sourceCode.text.slice(rangeAfterComma[0], rangeAfterComma[1]).trim()) {
           return null;
         }
+
         report((fixer) => fixer.replaceTextRange(rangeAfterComma, '\n'));
       }
     }
@@ -103,12 +108,12 @@ const exportDeclarationNewline = {
     },
   }),
   meta: {
+    fixable: true,
     schema: [
       schema
     ],
   },
 };
-
 
 const importDeclarationNewline = {
   create: (context) => ({

@@ -21,8 +21,10 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
   const [iriTemplateOpts] = useResourceProperty(resource, ontola.iriTemplateOpts);
   const currentIriOpts = useMemo(() => {
     const opts: { [k: string]: string[] } = {};
+
     if (iriTemplateOpts) {
       const parsedIriOpts = new URLSearchParams(iriTemplateOpts.value);
+
       for (const key of parsedIriOpts.keys()) {
         opts[encodeURIComponent(key)] = parsedIriOpts.getAll(key);
       }
@@ -37,6 +39,7 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
     }
 
     const sanitizedOpts: Params = {};
+
     for (const key of Object.keys(newOpts)) {
       const value: Param = newOpts[key];
 

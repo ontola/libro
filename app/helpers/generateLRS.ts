@@ -20,11 +20,11 @@ import { appOntology, website } from '../ontology/app';
 import argu from '../ontology/argu';
 import form from '../ontology/form';
 import link from '../ontology/link';
+import ll from '../ontology/ll';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
 import opengov from '../ontology/opengov';
 import teamGL from '../ontology/teamGL';
-import ll from '../ontology/ll';
 
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
@@ -113,6 +113,7 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
     if (THING_TYPES.includes(rdf.id(q.object))) {
       return false;
     }
+
     lrs.schema.addQuads([rdf.quad(q.object, rdfs.subClassOf, schema.Thing)]);
 
     return false;
@@ -276,7 +277,6 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
 
     rdf.quad(argu.ns('RichText'), rdfx.type, rdfs.Class),
     rdf.quad(argu.ns('RichText'), rdfs.subClassOf, schema.Thing),
-
 
     rdf.quad(argu.ns('Element/a'), rdfx.type, rdfs.Class),
     rdf.quad(argu.ns('Element/a'), rdfs.subClassOf, schema.Thing),

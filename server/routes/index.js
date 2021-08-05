@@ -1,14 +1,14 @@
-/* eslint no-console: 0 */
 import { constants } from 'zlib';
 
 import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
 import compress from 'koa-compress';
 import CSRF from 'koa-csrf';
-import serveStatic from 'koa-static';
 import logger from 'koa-logger';
+import serveStatic from 'koa-static';
+/* eslint no-console: 0 */
 
-import { standaloneLibro } from '../config'
+import { standaloneLibro } from '../config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import ctxMiddleware from '../middleware/ctxMiddleware';
@@ -38,13 +38,13 @@ import {
   documents,
   offlineDocument,
   saveDocument,
-} from './document'
+} from './document';
 import health from './health';
 import logout from './logout';
 import precacheManifest from './manifests';
-import serviceWorker from './service_workers';
 import maps from './maps';
 import robots from './robots';
+import serviceWorker from './service_workers';
 
 const ONE_YEAR = 31536000000;
 
@@ -53,6 +53,7 @@ export function listen(app, port) {
     if (err) {
       console.log('Error occurred while listening', err);
     }
+
     console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}.`);
   });
 }
@@ -121,7 +122,8 @@ const routes = async function routes(app, port) {
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/*/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
-  router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => {});
+  router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => { });
+
   if (!standaloneLibro) {
     router.get('/assets/*', backend);
     router.get('/packs/*', backend);
@@ -167,9 +169,11 @@ const routes = async function routes(app, port) {
   }
 
   router.use(bodyParser());
+
   if (!standaloneLibro) {
     router.get(['/u/auth/*', '/*/u/auth/*'], backend);
   }
+
   router.get('/api/maps/accessToken', maps);
 
   if (!standaloneLibro) {

@@ -1,4 +1,7 @@
-import rdf, { Node, isNamedNode } from '@ontologies/core';
+import rdf, {
+  Node,
+  isNamedNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
@@ -123,6 +126,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
     if (!isNamedNode(action)) {
       return null;
     }
+
     const object = lrs.getResourceProperty(action, schema.object);
 
     const footer = (loading: boolean): JSX.Element => (

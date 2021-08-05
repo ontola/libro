@@ -70,10 +70,12 @@ const isSerializablePrimitive = (obj: any): obj is Exclude<SerializableDataTypes
 
   return isDataValue;
 };
+
 const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, path: string): T => {
   if (Array.isArray(obj)) {
     return obj.map((e, i) => nameIdempotently(e, `${path}.${i}`)) as T;
   }
+
   if (isSerializablePrimitive(obj)) {
     return obj;
   }

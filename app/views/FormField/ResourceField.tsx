@@ -32,6 +32,7 @@ const ResourceField: FC<PropTypes> = ({
   });
 
   const whitelisted = !whitelist || whitelist.includes(rdf.id(path));
+
   if (!whitelisted) {
     return null;
   }

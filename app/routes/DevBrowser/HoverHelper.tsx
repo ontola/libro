@@ -1,5 +1,8 @@
 import rdf from '@ontologies/core';
-import React, { Component, MouseEvent } from 'react';
+import React, {
+  Component,
+  MouseEvent,
+} from 'react';
 import { HotKeys } from 'react-hotkeys';
 
 import { expandPath } from '../../helpers/iris';
@@ -32,6 +35,7 @@ class HoverHelper extends Component<HoverHelperProps, HoverHelperState> {
 
       const resourceLink = currentElement.getAttribute('resource')
         ?? expandPath(currentElement.getAttribute('href') ?? undefined);
+
       if (resourceLink) {
         // @ts-ignore
         const trips = dev.getLRS().tryEntity(rdf.namedNode(resourceLink));
@@ -39,10 +43,12 @@ class HoverHelper extends Component<HoverHelperProps, HoverHelperState> {
         console.log(dev.toObject(trips)); // eslint-disable-line no-console
         break;
       }
+
       if (currentElement.tagName === 'BODY') {
         console.log('Nothing found!'); // eslint-disable-line no-console
         break;
       }
+
       currentElement = currentElement.parentElement;
     }
   }

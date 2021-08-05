@@ -7,8 +7,8 @@ import {
   TEMPORARY_REDIRECT,
 } from 'http-status-codes';
 
-import { assetsHost, standaloneLibro } from '../config'
-import defaultManifest from '../utils/defaultManifest'
+import { assetsHost, standaloneLibro } from '../config';
+import defaultManifest from '../utils/defaultManifest';
 import fetchPrerenderData from '../utils/fetchPrerenderData';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
@@ -38,6 +38,7 @@ const handler = (sendResponse) => async (ctx) => {
 
     if (isRedirect(headResponse.status)) {
       const location = headResponse.headers.get('Location');
+
       if (!location) {
         throw new Error('Trying to redirect with missing Location header.');
       }
@@ -49,6 +50,7 @@ const handler = (sendResponse) => async (ctx) => {
     }
 
     const manifestData = await ctx.getManifest();
+
     if (manifestData) {
       const responseData = await fetchPrerenderData(ctx, headResponse.headers.get('Include-Resources'));
       ctx.response.status = OK;
@@ -65,10 +67,13 @@ const handler = (sendResponse) => async (ctx) => {
     if (typeof e === 'undefined') {
       // Timeout finished first
       ctx.response.status = SERVICE_UNAVAILABLE;
-    } if (e.message === 'NO_TENANT') {
+    }
+
+    if (e.message === 'NO_TENANT') {
       ctx.response.status = NOT_FOUND;
     } else {
       logging.error(e, ctx.bugsnag ? 'Notifying' : 'Bugsnag client not present');
+
       if (ctx.bugsnag) {
         ctx.bugsnag.notify(e);
       }
@@ -97,6 +102,7 @@ export default function application(port) {
     if (isHTMLHeader(ctx.request.headers)) {
       ctx.set('Link', PRELOAD_HEADERS);
     }
+
     ctx.set('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
 
     return handleRender(ctx, port, domain, data);

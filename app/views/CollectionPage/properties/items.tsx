@@ -1,5 +1,8 @@
 import * as as from '@ontologies/as';
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  SomeTerm,
+} from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   FC,
@@ -8,7 +11,10 @@ import {
   ReturnType,
   register,
 } from 'link-redux';
-import React, { CSSProperties, ElementType } from 'react';
+import React, {
+  CSSProperties,
+  ElementType,
+} from 'react';
 
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import GridItem from '../../../components/Grid/GridItem';
@@ -17,9 +23,9 @@ import { tryParseInt } from '../../../helpers/numbers';
 import useViewByIRI from '../../../hooks/useViewByIRI';
 import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
+import { allTopologies } from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
-import { allTopologies } from '../../../topologies';
 
 export interface ItemProps {
   items: SomeNode[];
@@ -57,6 +63,7 @@ const ItemList = ({
         borderTop: true,
       };
     }
+
     if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
       wrapper = GridItem;
       wrapperOpts = {

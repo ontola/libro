@@ -46,9 +46,11 @@ export function toArr(obj) {
   if (typeof obj === 'undefined') {
     return [];
   }
+
   if (Object.prototype.hasOwnProperty.call(obj, 'quads')) {
     return obj.quads;
   }
+
   const statements = [];
   Object.keys(obj).forEach((s) => {
     const resource = obj[s];
@@ -58,6 +60,7 @@ export function toArr(obj) {
     Object.keys(resource).forEach((p) => {
       const object = resource[p];
       const predicate = rdf.namedNode(p.slice(1, -1));
+
       if (Array.isArray(object)) {
         object.forEach((iObject) => statements.push(rdf.quad(subject, predicate, iObject)));
       } else {
@@ -97,9 +100,11 @@ export const loc = async ({
   }
 
   const ctx = await generateCtx(resources, subject);
+
   if (Array.isArray(components)) {
     ctx.lrs.registerAll(...components);
   }
+
   const websiteCtxValue = getWebsiteContextFromWebsite('https://example.com/');
 
   return (

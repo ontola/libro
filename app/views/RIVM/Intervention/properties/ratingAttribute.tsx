@@ -11,9 +11,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { tryParseFloat } from '../../../../helpers/numbers';
 import rivm from '../../../../ontology/rivm';
 import { attributeListTopology } from '../../../../topologies/AttributeList';
-import { tryParseFloat } from '../../../../helpers/numbers';
 
 import './ratingAttribute.scss';
 
@@ -26,6 +26,7 @@ export interface RatingAttributeProps extends PropertyProps {
 
 const renderIcon = (value: SomeTerm, index: number, src: string) => {
   const float = tryParseFloat(value) || 0;
+
   if (float >= index) {
     return (
       <div className="Rating--image-wrapper" style={{ width: `${100 * (float - index)}%` }}>

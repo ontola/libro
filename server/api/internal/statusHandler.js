@@ -24,12 +24,15 @@ export default async function processResponse(response) {
   }
 
   const ErrClass = getErrorClass(response.status);
+
   if (typeof ErrClass === 'undefined') {
     throw new Error(`Unhandled server status code '${response.status}'`);
   }
+
   const devMsg = getDevMessage(response.status);
   const err = new ErrClass(devMsg);
   err.response = response;
+
   if (devMsg) {
     err.internal = true;
   }
