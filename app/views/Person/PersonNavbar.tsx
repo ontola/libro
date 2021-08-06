@@ -39,14 +39,20 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
 
   return (
     <div className={classes.wrapper}>
-      <NavbarLinkLink image={image} to={subject.value}>
+      <NavbarLinkLink
+        image={image}
+        to={subject.value}
+      >
         <NavbarLinkIcon>
           <Property label={schema.image}>
             <Property label={[schema.thumbnail, ontola.imgUrl64x64]} />
           </Property>
         </NavbarLinkIcon>
       </NavbarLinkLink>
-      <Resource subject={app.c_a} topology={navbarTopology}>
+      <Resource
+        subject={app.c_a}
+        topology={navbarTopology}
+      >
         <Link to={`${subject.value}#notifications`}>
           <Property label={argu.unreadCount} />
         </Link>

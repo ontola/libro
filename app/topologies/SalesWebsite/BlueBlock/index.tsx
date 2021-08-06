@@ -30,7 +30,10 @@ class BlueBlock<P extends BlueBlockProps = BlueBlockProps> extends Container<P> 
   public renderContent(): TopologyContent {
     return this.wrap((
       <div className={this.props.classes.root}>
-        <MaterialContainer maxWidth={this.maxWidth()} {...this.props} />
+        <MaterialContainer
+          maxWidth={this.maxWidth()}
+          {...this.props}
+        />
       </div>
     ));
   }

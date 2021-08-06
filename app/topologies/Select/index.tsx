@@ -30,7 +30,10 @@ class Select<P extends Props = Record<string, unknown>> extends Topology<P> {
     } = this.props;
 
     return this.wrap((
-      <div ref={innerRef} role="listbox">
+      <div
+        ref={innerRef}
+        role="listbox"
+      >
         <ul {...props}>
           {children}
         </ul>

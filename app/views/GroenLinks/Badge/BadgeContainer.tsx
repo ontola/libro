@@ -37,7 +37,11 @@ const BadgeContainer: FC<BadgeContainerProps> = ({
 
   return (
     <Card about={subject?.value}>
-      <CardContent centered noSpacing style={{ maxWidth: '25em' }}>
+      <CardContent
+        centered
+        noSpacing
+        style={{ maxWidth: '25em' }}
+      >
         <Heading>
           {name?.value}
         </Heading>

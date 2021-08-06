@@ -55,7 +55,10 @@ const DataSetContainer: FC<DataSetContainerProps> = ({ structure }) => {
 
   return (
     <ScrollContainer>
-      <HeaderWithMenu noMargin menu={<Property label={schema.downloadUrl} />}>
+      <HeaderWithMenu
+        noMargin
+        menu={<Property label={schema.downloadUrl} />}
+      >
         <Property label={schema.name} />
       </HeaderWithMenu>
       <Card>

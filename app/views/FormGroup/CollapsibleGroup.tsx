@@ -36,13 +36,19 @@ const CollapsibleGroup = () => {
   });
 
   return (
-    <fieldset className={className} onInvalid={handleInvalid}>
+    <fieldset
+      className={className}
+      onInvalid={handleInvalid}
+    >
       <ButtonBase
         className={classes.labelButton}
         onClick={handleClick}
       >
         <legend className={classes.legend}>
-          <Property label={schema.name} topology={inlineTopology} />
+          <Property
+            label={schema.name}
+            topology={inlineTopology}
+          />
         </legend>
         <FormGroupErrorCount className={classes.error} />
         <div className={classes.caret}>
@@ -51,7 +57,10 @@ const CollapsibleGroup = () => {
             : <FontAwesome name="caret-right" />}
         </div>
       </ButtonBase>
-      <Collapse in={open} timeout={0}>
+      <Collapse
+        in={open}
+        timeout={0}
+      >
         <Property label={schema.text} />
         <Property
           label={form.fields}

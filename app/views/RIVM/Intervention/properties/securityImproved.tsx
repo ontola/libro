@@ -27,7 +27,10 @@ const SecurityImproved: FC<PropertyProps> = ({ linkedProp }) => {
       </span>
       <span style={{ textTransform: 'lowercase' }}>
         <strong>
-          <Resource subject={linkedProp} topology={inlineTopology} />
+          <Resource
+            subject={linkedProp}
+            topology={inlineTopology}
+          />
         </strong>
       </span>
       <span>

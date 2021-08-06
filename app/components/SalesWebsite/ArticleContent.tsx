@@ -87,7 +87,10 @@ export const ArticleContent = ({
     <React.Fragment>
       {image && (
         <span className={defaultClasses.imageWrapper}>
-          <Resource className={defaultClasses.image} subject={image} />
+          <Resource
+            className={defaultClasses.image}
+            subject={image}
+          />
         </span>
       )}
       <div className={contentClasses}>

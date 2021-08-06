@@ -50,10 +50,20 @@ const FilterFieldMenuComp = ({
         ref={innerRef}
         subject={subject}
       >
-        <Property label={ontola.filterKey} topology={inlineTopology} />
+        <Property
+          label={ontola.filterKey}
+          topology={inlineTopology}
+        />
       </MenuItem>
-      <Collapse unmountOnExit in={open} timeout="auto">
-        <List disablePadding component="div">
+      <Collapse
+        unmountOnExit
+        in={open}
+        timeout="auto"
+      >
+        <List
+          disablePadding
+          component="div"
+        >
           {options.map((option) => (
             <Resource
               currentFilters={currentFilters || []}
@@ -70,7 +80,12 @@ const FilterFieldMenuComp = ({
 };
 
 const FilterFieldMenu = React.forwardRef(
-  (props, ref) => <FilterFieldMenuComp innerRef={ref} {...props} />
+  (props, ref) => (
+    <FilterFieldMenuComp
+      innerRef={ref}
+      {...props}
+    />
+  )
 );
 
 FilterFieldMenu.type = ontola.FilterField;

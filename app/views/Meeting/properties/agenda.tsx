@@ -62,10 +62,20 @@ const Agenda: FC<PropTypes> = ({ linkedProp, subject }) => {
   return (
     <React.Fragment>
       <React.Fragment>
-        {orderedCompact.map((p) => <Resource key={p.value} subject={p} />)}
+        {orderedCompact.map((p) => (
+          <Resource
+            key={p.value}
+            subject={p}
+          />
+        ))}
       </React.Fragment>
       <React.Fragment>
-        {unorderedCompact.map((p) => <Resource key={p.value} subject={p} />)}
+        {unorderedCompact.map((p) => (
+          <Resource
+            key={p.value}
+            subject={p}
+          />
+        ))}
       </React.Fragment>
     </React.Fragment>
   );

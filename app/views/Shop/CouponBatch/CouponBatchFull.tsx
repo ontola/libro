@@ -31,15 +31,27 @@ const CouponBatchFull: FC<CouponBatchFullProps> = ({
         <Heading size={HeadingSize.LG}>
           <Resource subject={argu.coupons} />
         </Heading>
-        <Grid container spacing={2}>
-          <Property label={argu.coupons} limit={Infinity} />
+        <Grid
+          container
+          spacing={2}
+        >
+          <Property
+            label={argu.coupons}
+            limit={Infinity}
+          />
         </Grid>
         <CardDivider margin />
         <Heading size={HeadingSize.LG}>
           <Resource subject={argu.usedCoupons} />
         </Heading>
-        <Grid container spacing={2}>
-          <Property label={argu.usedCoupons} limit={Infinity} />
+        <Grid
+          container
+          spacing={2}
+        >
+          <Property
+            label={argu.usedCoupons}
+            limit={Infinity}
+          />
         </Grid>
       </CardContent>
     </CardMain>

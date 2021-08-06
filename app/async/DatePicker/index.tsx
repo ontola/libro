@@ -20,7 +20,12 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
     <MuiPickersUtilsProvider
       utils={DayJSUtils}
     >
-      {fieldShape.required && <HiddenRequiredInput name={id} value={value} />}
+      {fieldShape.required && (
+        <HiddenRequiredInput
+          name={id}
+          value={value}
+        />
+      )}
       <DatePicker
         autoOk
         showTodayButton

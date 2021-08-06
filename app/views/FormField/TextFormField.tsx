@@ -39,7 +39,10 @@ const TextFormField: FC = (props) => {
   const { theme } = React.useContext(FormContext);
   const [type] = useProperty(rdfx.type);
   const TextInput = React.useCallback((inputProps) => (
-    <InputElement {...inputProps} type={getInputType(theme, type)} />
+    <InputElement
+      {...inputProps}
+      type={getInputType(theme, type)}
+    />
   ), [type]);
 
   if (!fieldProps.whitelisted) {

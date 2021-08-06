@@ -20,7 +20,10 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
   const target = isDifferentWebsite(linkedProp) ? '_blank' : undefined;
 
   return (
-    <a href={linkedProp.value} target={target}>
+    <a
+      href={linkedProp.value}
+      target={target}
+    >
       <FormattedMessage
         defaultMessage="External information"
         id="https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel"

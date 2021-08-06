@@ -95,7 +95,10 @@ const CreateActionButtonContainer: FC<CreateActionButtonContainerProps> = ({
       target={normalizeTarget(target)}
       title={error?.value || name?.value}
     >
-      <FontAwesome className={classNames.icon} name={icon} />
+      <FontAwesome
+        className={classNames.icon}
+        name={icon}
+      />
       <span className={classNames.text}>
         {name?.value}
       </span>

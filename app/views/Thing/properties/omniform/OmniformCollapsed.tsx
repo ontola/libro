@@ -99,7 +99,10 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   const shouldShow = !(!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs));
 
   return (
-    <Collapse mountOnEnter in={shouldShow}>
+    <Collapse
+      mountOnEnter
+      in={shouldShow}
+    >
       <CardRow borderTop>
         <OmniformPreview
           primaryAction={items[0]}

@@ -90,7 +90,11 @@ const DashboardPageFull: FC<PropTypes> = ({ dashboard }) => {
   }
 
   const tabBar = (
-    <AppBar color="inherit" elevation={0} position="static">
+    <AppBar
+      color="inherit"
+      elevation={0}
+      position="static"
+    >
       <TabBar value={currentTab?.value}>
         {items.map((item) => (
           isNode(item) && (

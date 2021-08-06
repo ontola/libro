@@ -73,20 +73,32 @@ const SalesNavBarContent = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <Resource forceRender subject={frontendIRI}>
+      <Resource
+        forceRender
+        subject={frontendIRI}
+      >
         <Property label={ontola.navigationsMenu}>
           <div className={classes.navBar}>
             <Property label={ontola.menuItems} />
             <span className={classes.cta}>
-              <Property label={sales.callToAction} size="small" />
+              <Property
+                label={sales.callToAction}
+                size="small"
+              />
             </span>
           </div>
-          <IconButton className={classes.button} onClick={handleDrawerButtonClick}>
+          <IconButton
+            className={classes.button}
+            onClick={handleDrawerButtonClick}
+          >
             <Menu />
           </IconButton>
         </Property>
       </Resource>
-      <SalesNavBarDrawer open={drawerOpen} onClose={handleDrawerClose} />
+      <SalesNavBarDrawer
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+      />
     </React.Fragment>
   );
 };

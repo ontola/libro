@@ -29,7 +29,12 @@ const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): 
       <div className="NavBarContent__menus">
         <div className={classes.pusher} />
         <Resource subject={app.c_a} />
-        {!hideSearch && <Resource subject={app.search} onError={() => null} />}
+        {!hideSearch && (
+          <Resource
+            subject={app.search}
+            onError={() => null}
+          />
+        )}
         {!hideMenu && <Resource subject={app.menu} />}
       </div>
     </React.Fragment>

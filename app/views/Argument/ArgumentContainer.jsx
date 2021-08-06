@@ -40,7 +40,10 @@ class ArgumentContainer extends React.PureComponent {
     const { highlighted, subject } = this.props;
 
     return (
-      <Card about={subject.value} shine={highlighted}>
+      <Card
+        about={subject.value}
+        shine={highlighted}
+      >
         <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
@@ -52,7 +55,11 @@ class ArgumentContainer extends React.PureComponent {
         <CardAppendix>
           <Property label={argu.voteableVoteEvent} />
           <Property label={argu.topComment} />
-          <Property clickToOpen forceRender label={app.omniform} />
+          <Property
+            clickToOpen
+            forceRender
+            label={app.omniform}
+          />
         </CardAppendix>
       </Card>
     );

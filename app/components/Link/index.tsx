@@ -168,4 +168,9 @@ const Link: React.FC<PropTypesWithRef> = ({
   );
 };
 
-export default React.forwardRef((props: LinkPropTypes, ref) => <Link innerRef={ref} {...props} />);
+export default React.forwardRef((props: LinkPropTypes, ref) => (
+  <Link
+    innerRef={ref}
+    {...props}
+  />
+));

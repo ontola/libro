@@ -56,7 +56,10 @@ const HomePagePage = () => {
       <DexTransferLogo />
       <div className={classes.root}>
         <div className={classes.formContainer}>
-          <Property label={dexes.transferAction} topology={fullResourceTopology} />
+          <Property
+            label={dexes.transferAction}
+            topology={fullResourceTopology}
+          />
         </div>
         <div className={classes.featureList}>
           <Feature

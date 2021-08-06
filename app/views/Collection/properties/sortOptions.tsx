@@ -74,7 +74,13 @@ const SortOptions: FC<SortOptionsProps> = () => {
   const menuItems = React.useCallback(({ handleClose }: MenuItemsProps) => (
     sortOptions
       .filter((option) => option.direction && option.url)
-      .map((option) => <SortOption {...option} handleClose={handleClose} key={option.url} />)
+      .map((option) => (
+        <SortOption
+          {...option}
+          handleClose={handleClose}
+          key={option.url}
+        />
+      ))
   ), [sortOptions]);
 
   return (

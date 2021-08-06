@@ -142,9 +142,20 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
       className={className}
       {...componentAttributes}
     >
-      {variant === FertileComponentVariant.Tip && <FontAwesome className={classes.asideIcon} name="lightbulb-o" size="2x" />}
+      {variant === FertileComponentVariant.Tip && (
+        <FontAwesome
+          className={classes.asideIcon}
+          name="lightbulb-o"
+          size="2x"
+        />
+      )}
       <WrapperEl>
-        {isNode(children) ? normalizeType(children).map((child) => <Resource key={child.value} subject={child} />) : children}
+        {isNode(children) ? normalizeType(children).map((child) => (
+          <Resource
+            key={child.value}
+            subject={child}
+          />
+        )) : children}
       </WrapperEl>
     </Comp>
   );

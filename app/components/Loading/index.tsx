@@ -35,7 +35,12 @@ export const LoadingTabbar = ({
   subject,
 }: SubjectProp): JSX.Element => (
   <Tab
-    icon={<FontAwesome spin name="spinner" />}
+    icon={(
+      <FontAwesome
+        spin
+        name="spinner"
+      />
+    )}
     key={subject.value}
   />
 );
@@ -58,7 +63,10 @@ export interface LoadingCardFixedProps {
 export const LoadingCardFixed = ({ fill }: LoadingCardFixedProps): JSX.Element => (
   <CardFixed fill={fill}>
     <CardContent>
-      <div className="Loading__Header Loading__background" style={{ minWidth: '18em' }} />
+      <div
+        className="Loading__Header Loading__background"
+        style={{ minWidth: '18em' }}
+      />
       <LoadingParagraph />
       <LoadingParagraph />
       <div className="Loading__Paragraph--shorter Loading__background" />
@@ -120,7 +128,10 @@ export const LoadingRow = (): JSX.Element => (
 );
 
 export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => (
-  <div className="Loading__Select" style={style}>
+  <div
+    className="Loading__Select"
+    style={style}
+  >
     <LoadingParagraph />
   </div>
 );

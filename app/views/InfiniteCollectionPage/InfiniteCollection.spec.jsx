@@ -78,7 +78,10 @@ describe('Collection', () => {
     } = await render(
       ({ iri }) => (
         <Page>
-          <Resource forceRender subject={iri} />
+          <Resource
+            forceRender
+            subject={iri}
+          />
         </Page>
       ),
       { resources }

@@ -56,8 +56,15 @@ export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JS
   };
 
   return (
-    <Drawer anchor={anchor} open={open} onClose={onClose}>
-      <Resource forceRender subject={frontendIRI}>
+    <Drawer
+      anchor={anchor}
+      open={open}
+      onClose={onClose}
+    >
+      <Resource
+        forceRender
+        subject={frontendIRI}
+      >
         <Property label={ontola.navigationsMenu}>
           <div
             className={classes.drawerContainer}
@@ -66,7 +73,10 @@ export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JS
           >
             <Property label={ontola.menuItems} />
             <span>
-              <Property label={sales.callToAction} size="small" />
+              <Property
+                label={sales.callToAction}
+                size="small"
+              />
             </span>
           </div>
         </Property>

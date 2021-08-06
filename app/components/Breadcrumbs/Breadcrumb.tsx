@@ -23,7 +23,10 @@ const Breadcrumb: React.FC<PropTypes> = ({
   const classes = breadcrumbStyles();
 
   return (
-    <LDLink className={classes.default} title={title}>
+    <LDLink
+      className={classes.default}
+      title={title}
+    >
       {image}
       <div className="Breadcrumb__text">
         {label}

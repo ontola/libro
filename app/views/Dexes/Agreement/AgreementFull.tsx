@@ -22,15 +22,30 @@ const AgreementFull = () => (
         </Heading>
         <AttributeList>
           <Property label={dexes.assigner}>
-            <AttributeListItem label={foaf.name} propertyLabel="Deler" />
+            <AttributeListItem
+              label={foaf.name}
+              propertyLabel="Deler"
+            />
           </Property>
           <Property label={dexes.assignee}>
-            <AttributeListItem label={foaf.name} propertyLabel="Ontvanger" />
+            <AttributeListItem
+              label={foaf.name}
+              propertyLabel="Ontvanger"
+            />
           </Property>
-          <AttributeListItem label={dexes.dateSigned} propertyLabel="Deal gesloten op" />
-          <AttributeListItem label={dexes.file} propertyLabel="Bestand" />
+          <AttributeListItem
+            label={dexes.dateSigned}
+            propertyLabel="Deal gesloten op"
+          />
+          <AttributeListItem
+            label={dexes.file}
+            propertyLabel="Bestand"
+          />
           <Property label={dexes.file}>
-            <AttributeListItem label={schema.encodingFormat} propertyLabel="Formaat" />
+            <AttributeListItem
+              label={schema.encodingFormat}
+              propertyLabel="Formaat"
+            />
           </Property>
         </AttributeList>
       </CardContent>
@@ -41,9 +56,18 @@ const AgreementFull = () => (
         </Heading>
         <Property label={dexes.offer}>
           {/* <AttributeListItem label={dexes.prohibitions} propertyLabel="Condities" /> */}
-          <Property label={dexes.prohibitions} renderWhenEmpty={false} />
-          <Property label={dexes.permissions} renderWhenEmpty={false} />
-          <Property label={dexes.obligations} renderWhenEmpty={false} />
+          <Property
+            label={dexes.prohibitions}
+            renderWhenEmpty={false}
+          />
+          <Property
+            label={dexes.permissions}
+            renderWhenEmpty={false}
+          />
+          <Property
+            label={dexes.obligations}
+            renderWhenEmpty={false}
+          />
         </Property>
       </CardContent>
     </CardMain>

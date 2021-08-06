@@ -97,7 +97,10 @@ const HomePageFull: FC = () => {
         </Showcase>
       </Container>
       <div className={classes.caseContainer}>
-        <Property noBackdrop label={sales.cases} />
+        <Property
+          noBackdrop
+          label={sales.cases}
+        />
       </div>
       <Container>
         <Grid
@@ -111,10 +114,16 @@ const HomePageFull: FC = () => {
           <Property label={sales.duoBlock} />
         </Showcase>
         <div className={classes.blogs}>
-          <Property centerHeading label={sales.blogs} />
+          <Property
+            centerHeading
+            label={sales.blogs}
+          />
         </div>
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="home-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="home-page-full-cta"
+      />
     </div>
   );
 };

@@ -57,7 +57,10 @@ const DefaultCollectionFrame: FC<CollectionFrameProps> = () => {
   const Wrapper = (LARGE_CONTAINER_DISPLAYS.includes(rdf.id(collectionDisplay))) ? LargeContainer : Container;
 
   return (
-    <CollectionFrame Wrapper={Wrapper} hideHeader={hideHeader} />
+    <CollectionFrame
+      Wrapper={Wrapper}
+      hideHeader={hideHeader}
+    />
   );
 };
 
@@ -75,7 +78,10 @@ const WrappedCollectionFrame: FC<CollectionFrameProps> = () => {
   const { hideHeader } = useCollectionOptions();
 
   return (
-    <CollectionFrame Wrapper={React.Fragment} hideHeader={hideHeader} />
+    <CollectionFrame
+      Wrapper={React.Fragment}
+      hideHeader={hideHeader}
+    />
   );
 };
 
@@ -104,9 +110,15 @@ const DialogCollectionFrame: FC<CollectionFrameProps> = ({
       <HeaderWithMenu
         menu={closeButton}
       >
-        <Property label={as.name} wrapper={React.Fragment} />
+        <Property
+          label={as.name}
+          wrapper={React.Fragment}
+        />
       </HeaderWithMenu>
-      <CollectionFrame hideHeader Wrapper={React.Fragment} />
+      <CollectionFrame
+        hideHeader
+        Wrapper={React.Fragment}
+      />
     </Container>
   );
 };

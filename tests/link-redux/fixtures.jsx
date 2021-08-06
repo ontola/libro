@@ -113,7 +113,10 @@ export const loc = async ({
         <HelmetProvider context={{}}>
           <RenderStoreProvider value={ctx.lrs}>
             <IntlProvider locale="en">
-              <StaticRouter context={{}} location="/current_page">
+              <StaticRouter
+                context={{}}
+                location="/current_page"
+              >
                 <Resource
                   forceRender
                   subject={subject}

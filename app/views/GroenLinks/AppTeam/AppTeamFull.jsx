@@ -35,7 +35,10 @@ const AppTeamFull = ({ renderPartOf, status }) => (
       {status === app.ns('enums/app_teams/status#pending') && <Property label={ontola.startedAction} />}
     </CardMain>
     <Property label={teamGL.leader} />
-    <Property renderWhenEmpty label={org.hasMembership} />
+    <Property
+      renderWhenEmpty
+      label={org.hasMembership}
+    />
   </Container>
 );
 

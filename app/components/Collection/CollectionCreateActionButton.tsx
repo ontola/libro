@@ -75,7 +75,12 @@ const CollectionCreateActionButton: React.FC = () => {
     const freshAction = createActions.find((action) => !entityIsLoaded(lrs, action));
 
     if (freshAction) {
-      return <Resource subject={freshAction} onLoad={LoadingCardFloat} />;
+      return (
+        <Resource
+          subject={freshAction}
+          onLoad={LoadingCardFloat}
+        />
+      );
     }
 
     if (renderedActions.length > 1) {
@@ -86,7 +91,10 @@ const CollectionCreateActionButton: React.FC = () => {
               {renderedActions
                 .sort(sort(ORDER))
                 .map((action) => (
-                  <Resource key={action?.value} subject={action} />
+                  <Resource
+                    key={action?.value}
+                    subject={action}
+                  />
                 ))}
             </ResourceBoundary>
           )}

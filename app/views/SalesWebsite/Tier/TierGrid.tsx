@@ -114,7 +114,10 @@ const TierGrid: FC = () => {
 
   const pricing = (
     <React.Fragment>
-      <Typography className={classes.priceUnit} variant="h5">
+      <Typography
+        className={classes.priceUnit}
+        variant="h5"
+      >
         {priceUnit.value}
       </Typography>
       {priceInterval && (
@@ -142,7 +145,10 @@ const TierGrid: FC = () => {
       >
         <CardContent className={classes.contentWrapper}>
           <div className={classes.infoHeader}>
-            <Typography className={classes.label} variant="h5">
+            <Typography
+              className={classes.label}
+              variant="h5"
+            >
               {name.value}
             </Typography>
             {pricing}

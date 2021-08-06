@@ -46,7 +46,10 @@ const Footer: FC = () => {
   return (
     <footer className={classNames.footer}>
       {menuItems?.map((item) => (
-        <Resource key={item.value} subject={item} />
+        <Resource
+          key={item.value}
+          subject={item}
+        />
       ))}
       <Resource subject={lowerSection} />
     </footer>

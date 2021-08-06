@@ -30,7 +30,10 @@ const VocabularyFull: FC<VocabularyFullProps> = ({ coverPhoto }) => {
 
   return (
     <React.Fragment>
-      <PageHeader background={coverPhotoUrl} positionY={positionY} />
+      <PageHeader
+        background={coverPhotoUrl}
+        positionY={positionY}
+      />
       <Property label={argu.terms} />
     </React.Fragment>
   );

@@ -60,11 +60,22 @@ const FeaturesContainer: FC = () => {
           </div>
         </Showcase>
         <Container>
-          <Grid container className={classes.screenDivider}>
-            <Grid item md={6} sm={12}>
+          <Grid
+            container
+            className={classes.screenDivider}
+          >
+            <Grid
+              item
+              md={6}
+              sm={12}
+            >
               <Property label={sales.blogs} />
             </Grid>
-            <Grid item md={6} sm={12}>
+            <Grid
+              item
+              md={6}
+              sm={12}
+            >
               <Property label={sales.moreInformationBlock} />
             </Grid>
           </Grid>

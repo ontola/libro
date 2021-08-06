@@ -45,7 +45,10 @@ describe('MediaObject', () => {
     } = await render(
       ({ iri }) => (
         <Page>
-          <Resource forceRender subject={iri} />
+          <Resource
+            forceRender
+            subject={iri}
+          />
         </Page>
       ),
       { resources }

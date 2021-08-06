@@ -173,7 +173,10 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
 
     return (
       <Wrapper>
-        <div className="pagination-wrapper" data-testid="paginationWrapper">
+        <div
+          className="pagination-wrapper"
+          data-testid="paginationWrapper"
+        >
           {pages}
         </div>
       </Wrapper>
@@ -196,7 +199,10 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
 };
 
 export const CardAppendixContent: React.FC = ({ children }) => (
-  <CardRow backdrop borderTop>
+  <CardRow
+    backdrop
+    borderTop
+  >
     <CardContent>
       {children}
     </CardContent>

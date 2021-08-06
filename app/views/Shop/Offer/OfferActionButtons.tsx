@@ -9,7 +9,10 @@ import ActionsBar from '../../../topologies/ActionsBar';
 const OfferActionButtons: React.FC = () => (
   <ActionsBar>
     <Property label={argu.cartDetail}>
-      <Property label={ontola.createAction} theme={ButtonTheme.Default} />
+      <Property
+        label={ontola.createAction}
+        theme={ButtonTheme.Default}
+      />
       <Property label={ontola.destroyAction} />
     </Property>
   </ActionsBar>

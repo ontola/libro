@@ -40,11 +40,26 @@ const EventFull = () => (
       </CardMain>
     </Container>
     <Container>
-      <Property renderWhenEmpty label={teamGL.potentialParticipants}>
-        <Property renderWhenEmpty singlePage collectionDisplay={ontola.ns('collectionDisplay/card')} label={ontola.pages} />
+      <Property
+        renderWhenEmpty
+        label={teamGL.potentialParticipants}
+      >
+        <Property
+          renderWhenEmpty
+          singlePage
+          collectionDisplay={ontola.ns('collectionDisplay/card')}
+          label={ontola.pages}
+        />
       </Property>
-      <Property renderWhenEmpty label={teamGL.participants}>
-        <Property singlePage collectionDisplay={ontola.ns('collectionDisplay/card')} label={ontola.pages} />
+      <Property
+        renderWhenEmpty
+        label={teamGL.participants}
+      >
+        <Property
+          singlePage
+          collectionDisplay={ontola.ns('collectionDisplay/card')}
+          label={ontola.pages}
+        />
       </Property>
     </Container>
   </React.Fragment>

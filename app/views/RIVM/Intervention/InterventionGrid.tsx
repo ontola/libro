@@ -56,11 +56,17 @@ const InterventionGrid: FC<InterventionGridProps> = ({ renderPartOf }) => (
       </CardContent>
     </LDLink>
     <DetailsBar borderBottom={false}>
-      <Property hideName label={schema.creator} />
+      <Property
+        hideName
+        label={schema.creator}
+      />
       {renderPartOf && <Property label={schema.isPartOf} />}
       <LinkedDetailDate />
       <Property label={argu.pinnedAt} />
-      <Property short label={argu.expiresAt} />
+      <Property
+        short
+        label={argu.expiresAt}
+      />
       <Property label={argu.followsCount} />
       <Property label={argu.motionsCount} />
     </DetailsBar>

@@ -32,7 +32,10 @@ const GroupFull = () => (
       </CardMain>
     </Container>
     <Container>
-      <Property renderWhenEmpty label={ontola.memberships} />
+      <Property
+        renderWhenEmpty
+        label={ontola.memberships}
+      />
     </Container>
   </React.Fragment>
 );

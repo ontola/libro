@@ -62,22 +62,34 @@ const BlogsFull: FC = ({ subject }) => {
           renderArticles={(articles) => (
             <div className={classes.blogGrid}>
               {articles.map((article) => (
-                <Resource key={article.value} subject={article} />
+                <Resource
+                  key={article.value}
+                  subject={article}
+                />
               ))}
             </div>
           )}
           subject={subject}
         />
       </Container>
-      <Typography align="center" variant="h2">
+      <Typography
+        align="center"
+        variant="h2"
+      >
         <Property label={schema.text} />
       </Typography>
       <Container className={classes.container}>
-        <Showcase className={classes.propositionSelector} spacing={0}>
+        <Showcase
+          className={classes.propositionSelector}
+          spacing={0}
+        >
           <Property label={sales.showcase} />
         </Showcase>
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="blogs-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="blogs-full-cta"
+      />
     </React.Fragment>
   );
 };

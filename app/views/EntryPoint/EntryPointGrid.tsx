@@ -99,7 +99,10 @@ const EntryPointGrid: FC<PropTypes> = (props) => {
     <React.Fragment>
       <Property label={schema.isPartOf}>
         <GridHeader header={<Property label={schema.name} />}>
-          <Property label={ontola.updateAction} onLoad={() => null} />
+          <Property
+            label={ontola.updateAction}
+            onLoad={() => null}
+          />
         </GridHeader>
         <Property label={schema.text} />
       </Property>

@@ -73,21 +73,36 @@ const BlogPageShowcase: FC = ({ subject }) => {
   const TypeWithClassName = Type as any;
 
   return (
-    <Card className={classes.card} variant="outlined">
-      <CardActionArea component={NavLink as React.ElementType} to={retrievePath(subject as NamedNode)!}>
+    <Card
+      className={classes.card}
+      variant="outlined"
+    >
+      <CardActionArea
+        component={NavLink as React.ElementType}
+        to={retrievePath(subject as NamedNode)!}
+      >
         <CardMedia
           classes={{ root: classes.mediaRoot }}
           component="picture"
         >
           <Resource subject={image}>
-            <TypeWithClassName className={classes.image} element={React.Fragment} />
-            <Typography className={classes.themeChip} variant="body1">
+            <TypeWithClassName
+              className={classes.image}
+              element={React.Fragment}
+            />
+            <Typography
+              className={classes.themeChip}
+              variant="body1"
+            >
               {theme.value}
             </Typography>
           </Resource>
         </CardMedia>
         <CardContent>
-          <Typography className={classes.text} variant="h3">
+          <Typography
+            className={classes.text}
+            variant="h3"
+          >
             {name.value}
           </Typography>
         </CardContent>

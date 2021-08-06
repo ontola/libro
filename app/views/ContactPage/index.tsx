@@ -138,8 +138,14 @@ const Person = (props: PersonProps) => {
   const classes = useStyles();
 
   return (
-    <a className={classes.person} href={`mailto:${props.email}`}>
-      <img alt="" src={props.image} />
+    <a
+      className={classes.person}
+      href={`mailto:${props.email}`}
+    >
+      <img
+        alt=""
+        src={props.image}
+      />
       <div className={classes.personProps}>
         <div className={classes.personName}>
           {props.name}
@@ -147,10 +153,16 @@ const Person = (props: PersonProps) => {
         <div className={classes.personTask}>
           {props.task}
         </div>
-        <a className={classes.personLink} href={`mailto:${props.email}`}>
+        <a
+          className={classes.personLink}
+          href={`mailto:${props.email}`}
+        >
           {props.email}
         </a>
-        <a className={classes.personLink} href={`tel:${props.phone}`}>
+        <a
+          className={classes.personLink}
+          href={`tel:${props.phone}`}
+        >
           {props.phone}
         </a>
       </div>
@@ -220,7 +232,10 @@ const ContactPage = () => {
           <Card>
             <div className={classes.cardContent}>
               {persons.map((contactprops) => (
-                <Person key={contactprops.name} {...contactprops} />
+                <Person
+                  key={contactprops.name}
+                  {...contactprops}
+                />
               ))}
               <div>
                 <b>
@@ -237,7 +252,10 @@ const ContactPage = () => {
                 Volg ons op:
               </b>
               {socials.map((socialprops) => (
-                <Social key={socialprops.link} {...socialprops} />
+                <Social
+                  key={socialprops.link}
+                  {...socialprops}
+                />
               ))}
             </div>
           </Card>

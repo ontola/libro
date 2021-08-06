@@ -24,7 +24,10 @@ const DetailText: React.FC<DetailTextProps> = ({
   }
 
   return (
-    <span className={detailClass} data-test="Detail-text">
+    <span
+      className={detailClass}
+      data-test="Detail-text"
+    >
       {children}
     </span>
   );

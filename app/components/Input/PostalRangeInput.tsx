@@ -53,9 +53,15 @@ const PostalRangeInput = (props: InputComponentProps): JSX.Element => {
 
   return (
     <div style={style}>
-      <PostalDigitsInput rangeIndex={0} {...compProps} />
+      <PostalDigitsInput
+        rangeIndex={0}
+        {...compProps}
+      />
       -
-      <PostalDigitsInput rangeIndex={1} {...compProps} />
+      <PostalDigitsInput
+        rangeIndex={1}
+        {...compProps}
+      />
     </div>
   );
 };

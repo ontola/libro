@@ -62,7 +62,10 @@ describe('Thing', () => {
   const renderAs = (Topology) => render(
     ({ iri }) => (
       <Topology>
-        <Resource forceRender subject={iri} />
+        <Resource
+          forceRender
+          subject={iri}
+        />
       </Topology>
     ),
     { resources }

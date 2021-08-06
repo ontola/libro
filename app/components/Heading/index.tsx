@@ -98,7 +98,11 @@ const Heading: React.FC<PropTypes> = ({
   });
 
   return (
-    <Element className={headingClass} role="heading" typeof={type}>
+    <Element
+      className={headingClass}
+      role="heading"
+      typeof={type}
+    >
       {children}
     </Element>
   );

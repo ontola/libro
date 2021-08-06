@@ -31,7 +31,10 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
   const children = !image
     ? label?.value
     : (
-      <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
+      <MediaQuery
+        query={mediaQueries.smallAndAbove}
+        values={values}
+      >
         {label?.value}
       </MediaQuery>
     );

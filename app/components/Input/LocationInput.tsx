@@ -99,9 +99,18 @@ const LocationInput: React.FC<InputComponentProps> = ({
 
   return (
     <div className="LocationInput">
-      <HiddenRequiredInput name={latName} value={lat?.value} />
-      <HiddenRequiredInput name={lonName} value={lon?.value} />
-      <HiddenRequiredInput name={zoomLevelName} value={zoomLevel?.value} />
+      <HiddenRequiredInput
+        name={latName}
+        value={lat?.value}
+      />
+      <HiddenRequiredInput
+        name={lonName}
+        value={lon?.value}
+      />
+      <HiddenRequiredInput
+        name={zoomLevelName}
+        value={zoomLevel?.value}
+      />
       <MapView
         initialLat={initialView.lat}
         initialLon={initialView.lon}

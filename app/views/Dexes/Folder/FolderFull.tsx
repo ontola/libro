@@ -40,7 +40,10 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
         c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
           p(schema.name),
         ]),
-        <UploadTarget key="UploadTarget" uploadAction={uploadAction}>
+        <UploadTarget
+          key="UploadTarget"
+          uploadAction={uploadAction}
+        >
           {p(dexes.entries, {
             hideHeader: true,
             renderWhenEmpty: true,

@@ -73,7 +73,10 @@ const FormInput: React.FC<FormInputProps> = ({
   ), [inputErrors, index]);
 
   return (
-    <div className="Field__wrapper" key={[name, index].join('.')}>
+    <div
+      className="Field__wrapper"
+      key={[name, index].join('.')}
+    >
       <InputComponent
         autofocus={autofocus && index === 0}
         description={description}

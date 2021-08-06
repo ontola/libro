@@ -68,7 +68,10 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
 
   if (!mapRef || currentError) {
     return (
-      <div className={wrapperClassName} data-testid="map-view">
+      <div
+        className={wrapperClassName}
+        data-testid="map-view"
+      >
         <div className={canvasClassName} />
         <div className={classes.indicator}>
           <FontAwesome name="map-o" />
@@ -85,8 +88,14 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
   }
 
   return (
-    <div className={wrapperClassName} data-testid="map-view">
-      <div className={canvasClassName} ref={mapRef} />
+    <div
+      className={wrapperClassName}
+      data-testid="map-view"
+    >
+      <div
+        className={canvasClassName}
+        ref={mapRef}
+      />
       <OverlayContainer
         clickHandler={handleOverlayClick}
         overlayRef={overlayRef.current}

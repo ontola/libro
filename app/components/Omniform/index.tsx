@@ -106,7 +106,10 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
 
   const types = React.useMemo(() => (
     Array.from(actions).map((iri) => (
-      <Resource key={iri!.value} subject={iri}>
+      <Resource
+        key={iri!.value}
+        subject={iri}
+      >
         <Property
           current={rdf.equals(iri, action)}
           label={schema.result}
@@ -139,7 +142,10 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
               theme={ButtonTheme.Transparant}
               onClick={closeForm}
             >
-              <FormattedMessage defaultMessage="cancel" id="https://app.argu.co/i18n/forms/actions/cancel" />
+              <FormattedMessage
+                defaultMessage="cancel"
+                id="https://app.argu.co/i18n/forms/actions/cancel"
+              />
             </Button>
           )}
           <Button

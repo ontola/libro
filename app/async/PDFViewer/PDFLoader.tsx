@@ -3,7 +3,10 @@ import FontAwesome from 'react-fontawesome';
 
 const PDFLoader = (): JSX.Element => (
   <div className="PDFViewer__loading">
-    <FontAwesome spin name="spinner" />
+    <FontAwesome
+      spin
+      name="spinner"
+    />
   </div>
 );
 

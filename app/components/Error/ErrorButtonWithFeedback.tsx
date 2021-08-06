@@ -28,7 +28,12 @@ const ErrorButtonWithFeedback = (props: ErrorComponentProps & ButtonProps): JSX.
       onClick={reload}
       {...props}
     >
-      {children ?? <FormattedMessage defaultMessage="Retry" id="https://app.argu.co/i18n/errors/inlineButton/label" />}
+      {children ?? (
+        <FormattedMessage
+          defaultMessage="Retry"
+          id="https://app.argu.co/i18n/errors/inlineButton/label"
+        />
+      )}
     </Button>
   );
 };

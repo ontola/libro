@@ -10,7 +10,10 @@ afterEach(cleanup);
 describe('Dropzone', () => {
   it('Displays an invitation message', async () => {
     const { getByText } = await render((
-      <Form formID="test" onSubmit={() => undefined}>
+      <Form
+        formID="test"
+        onSubmit={() => undefined}
+      >
         {() => (
           <Field
             name="testfield"

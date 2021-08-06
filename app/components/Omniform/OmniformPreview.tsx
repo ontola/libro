@@ -38,7 +38,10 @@ const OmniformPreview = ({
       type="button"
       onClick={onClick}
     >
-      <Resource subject={app.c_a} topology={formFooterTopology} />
+      <Resource
+        subject={app.c_a}
+        topology={formFooterTopology}
+      />
       <span className="Omniform__preview-text">
         <FormattedMessage
           defaultMessage="Share a response..."

@@ -35,7 +35,10 @@ const Chapter: FC = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Typography classes={{ h1: classes.h1 }} variant="h1">
+      <Typography
+        classes={{ h1: classes.h1 }}
+        variant="h1"
+      >
         <Property label={schema.title} />
       </Typography>
       <Property label={argu.ns('chapterContent')} />

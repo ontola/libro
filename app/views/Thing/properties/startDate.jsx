@@ -12,7 +12,10 @@ const propTypes = {
 };
 
 const StartDate = ({ linkedProp, relative }) => (
-  <DetailDate relative={relative} startDate={linkedProp} />
+  <DetailDate
+    relative={relative}
+    startDate={linkedProp}
+  />
 );
 
 StartDate.type = schema.Thing;

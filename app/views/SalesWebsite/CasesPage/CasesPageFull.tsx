@@ -60,7 +60,10 @@ const CasesPageFull: FC = ({ subject }) => {
               wrap="wrap"
             >
               {articles.map((article) => (
-                <Resource key={article.value} subject={article} />
+                <Resource
+                  key={article.value}
+                  subject={article}
+                />
               ))}
             </Grid>
           )}
@@ -68,12 +71,18 @@ const CasesPageFull: FC = ({ subject }) => {
         />
       </Container>
       <div className={classes.imageContainer}>
-        <Typography align="center" variant="h2">
+        <Typography
+          align="center"
+          variant="h2"
+        >
           <Property label={schema.text} />
         </Typography>
         <Property label={schema.image} />
       </div>
-      <Property label={sales.callToActionBlock} trackingId="cases-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="cases-page-full-cta"
+      />
     </React.Fragment>
   );
 };

@@ -45,7 +45,11 @@ const Cart: FC<CartProps> = ({
 
   return (
     <div className={classes.wrapper}>
-      <Collection hideHeader display="card" label={argu.cartDetails} />
+      <Collection
+        hideHeader
+        display="card"
+        label={argu.cartDetails}
+      />
       <Container maxWidth="lg">
         {budgetMaxInt && (
           <Progress

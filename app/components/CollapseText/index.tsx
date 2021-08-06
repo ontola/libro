@@ -81,7 +81,12 @@ const CollapseText: React.FC<CollapseTextProps> = ({
     );
   }
 
-  return <Markdown noSpacing={noSpacing} text={text} />;
+  return (
+    <Markdown
+      noSpacing={noSpacing}
+      text={text}
+    />
+  );
 };
 
 CollapseText.defaultProps = {

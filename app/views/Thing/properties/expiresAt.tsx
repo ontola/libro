@@ -52,7 +52,13 @@ const ExpiresAt: FC<PropTypes> = ({ linkedProp, short }) => {
           defaultMessage="Due {relativeDate}"
           id="https://app.argu.co/i18n/expireable/states/expiring/label"
           values={{
-            relativeDate: <FormattedRelativeTime numeric="auto" unit={unit} value={value} />,
+            relativeDate: (
+              <FormattedRelativeTime
+                numeric="auto"
+                unit={unit}
+                value={value}
+              />
+            ),
           }}
         />
       )}

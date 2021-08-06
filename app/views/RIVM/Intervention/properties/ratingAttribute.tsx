@@ -29,8 +29,14 @@ const renderIcon = (value: SomeTerm, index: number, src: string) => {
 
   if (float >= index) {
     return (
-      <div className="Rating--image-wrapper" style={{ width: `${100 * (float - index)}%` }}>
-        <img alt="" src={`${src}.png`} />
+      <div
+        className="Rating--image-wrapper"
+        style={{ width: `${100 * (float - index)}%` }}
+      >
+        <img
+          alt=""
+          src={`${src}.png`}
+        />
       </div>
     );
   }

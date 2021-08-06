@@ -18,7 +18,11 @@ const CollectionInline: FC = () => (
       <Property label={as.name} />
       {' '}
     </label>
-    <Property forceRender insideCollection label={ontola.pages} />
+    <Property
+      forceRender
+      insideCollection
+      label={ontola.pages}
+    />
   </p>
 );
 

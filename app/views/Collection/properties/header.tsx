@@ -91,7 +91,10 @@ const containerCollectionHeader = ({
       >
         <Property label={as.name} />
         <Resource subject={originalCollection}>
-          <Property label={ontola.favoriteAction} onLoad={() => null} />
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={() => null}
+          />
         </Resource>
       </ContainerHeader>
       <div ref={filterRef} />

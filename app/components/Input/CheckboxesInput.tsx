@@ -57,7 +57,12 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
   }
 
   if (options.length === 0) {
-    return <FormattedMessage defaultMessage="No items yet" id="https://app.argu.co/i18n/collection/empty/message" />;
+    return (
+      <FormattedMessage
+        defaultMessage="No items yet"
+        id="https://app.argu.co/i18n/collection/empty/message"
+      />
+    );
   }
 
   const items = options.map((item) => {
@@ -66,7 +71,10 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
     );
 
     return (
-      <div className="Field__input Field__input--checkbox" key={`checkbox-${item.value}`}>
+      <div
+        className="Field__input Field__input--checkbox"
+        key={`checkbox-${item.value}`}
+      >
         <Input
           checked={values && values.map((v) => v.value).indexOf(item.value) !== -1}
           id={item.value}
@@ -85,9 +93,17 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
 
   return (
     <Select>
-      {required && <HiddenRequiredInput name={name} value={values?.[0]?.value} />}
+      {required && (
+        <HiddenRequiredInput
+          name={name}
+          value={values?.[0]?.value}
+        />
+      )}
       {items}
-      <Resource subject={shIn} onLoad={() => null}>
+      <Resource
+        subject={shIn}
+        onLoad={() => null}
+      >
         <CollectionCreateActionButton />
       </Resource>
     </Select>

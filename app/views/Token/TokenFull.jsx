@@ -20,7 +20,10 @@ const TokenFull = () => (
         <Property label={[schema.text, schema.description, dbo.abstract]} />
       </CardContent>
       <ActionsBar>
-        <Property label={ontola.favoriteAction} onLoad={() => null} />
+        <Property
+          label={ontola.favoriteAction}
+          onLoad={() => null}
+        />
       </ActionsBar>
     </CardMain>
   </Container>

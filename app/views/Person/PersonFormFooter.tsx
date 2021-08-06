@@ -17,7 +17,10 @@ interface PersonFooterProps {
 const PersonFooter: FC<PersonFooterProps> = ({
   name,
 }) => (
-  <Property ariaLabel={name} label={schema.image} />
+  <Property
+    ariaLabel={name}
+    label={schema.image}
+  />
 );
 
 PersonFooter.type = [schema.Person, argu.Page];

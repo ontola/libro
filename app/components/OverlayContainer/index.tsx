@@ -31,7 +31,10 @@ class OverlayContainer extends React.PureComponent<PropTypes> {
     return ReactDOM.createPortal(
       (
         <div className="OverlayContainer">
-          <div className="click-ignore" onMouseUp={convertToClick}>
+          <div
+            className="click-ignore"
+            onMouseUp={convertToClick}
+          >
             {this.props.children}
           </div>
         </div>

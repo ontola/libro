@@ -97,7 +97,12 @@ const EntryPointForm: React.FC<PropTypes> = ({
 
   if (loading) {
     if (isNamedNode(loading) && !entityIsLoaded(lrs, loading)) {
-      return <Resource subject={loading} onLoad={onLoad ?? LoadingGridContent} />;
+      return (
+        <Resource
+          subject={loading}
+          onLoad={onLoad ?? LoadingGridContent}
+        />
+      );
     }
 
     if (onLoad) {

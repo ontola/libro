@@ -67,7 +67,10 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
   if (image !== undefined) {
     renderedImage = (
       <div className={classes.imageContainer}>
-        <Property className={classes.image} label={schema.image} />
+        <Property
+          className={classes.image}
+          label={schema.image}
+        />
       </div>
     );
   } else {
@@ -97,7 +100,10 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
               container
               spacing={4}
             >
-              <Property childProps={{ noBackdrop }} label={sales.caseShowcase} />
+              <Property
+                childProps={{ noBackdrop }}
+                label={sales.caseShowcase}
+              />
             </Grid>
           </div>
         </Showcase>

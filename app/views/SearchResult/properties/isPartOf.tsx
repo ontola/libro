@@ -28,7 +28,10 @@ const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {
         defaultMessage="Search in:"
         id="https://app.argu.co/i18n/search/header/prefix"
       />
-      <Resource subject={linkedProp} topology={inlineTopology} />
+      <Resource
+        subject={linkedProp}
+        topology={inlineTopology}
+      />
     </React.Fragment>
   );
 };

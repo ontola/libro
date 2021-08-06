@@ -11,7 +11,10 @@ const ApplyLink = ({ linkedProp }) => {
   }
 
   return (
-    <input readOnly value={linkedProp.value} />
+    <input
+      readOnly
+      value={linkedProp.value}
+    />
   );
 };
 

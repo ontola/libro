@@ -20,7 +20,10 @@ interface ActionGridProps {
 const ActionGrid: FC<ActionGridProps> = ({ name, subject }) => (
   <div>
     <GridHeader header={<Property label={schema.name} />}>
-      <Property label={ontola.updateAction} onLoad={() => null} />
+      <Property
+        label={ontola.updateAction}
+        onLoad={() => null}
+      />
     </GridHeader>
     <Property label={schema.text} />
     <Button

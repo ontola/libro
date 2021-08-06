@@ -63,7 +63,12 @@ const ToggleButtonGroup: React.FC<InputComponentProps> = ({
 
   return (
     <React.Fragment>
-      {required && <HiddenRequiredInput name={name} value={inputValue?.value} />}
+      {required && (
+        <HiddenRequiredInput
+          name={name}
+          value={inputValue?.value}
+        />
+      )}
       <MaterialToggleButtonGroup
         exclusive
         className={classes.buttonGroup}
@@ -84,7 +89,12 @@ const ToggleButtonGroup: React.FC<InputComponentProps> = ({
             value={option.value}
           >
             {isResource(option)
-              ? <Resource subject={option} topology={inlineTopology} />
+              ? (
+                <Resource
+                  subject={option}
+                  topology={inlineTopology}
+                />
+              )
               : option.value}
           </ToggleButton>
         ))}

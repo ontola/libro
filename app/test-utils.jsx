@@ -43,7 +43,10 @@ const wrapProviders = ({
         <WebsiteContext.Provider value={getWebsiteContextFromWebsite('https://example.com/')}>
           <HelmetProvider context={{}}>
             <LRSProvider value={ctx?.lrs}>
-              <IntlProvider locale="en" messages={englishMessages}>
+              <IntlProvider
+                locale="en"
+                messages={englishMessages}
+              >
                 <ThemeProvider theme={themes.common({})}>
                   <Router history={ctx.history}>
                     {children}

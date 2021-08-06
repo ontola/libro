@@ -30,7 +30,10 @@ const MotionContainer: FC<MotionContainerProps> = ({
   highlighted,
   subject,
 }) => (
-  <Card about={subject?.value} shine={highlighted}>
+  <Card
+    about={subject?.value}
+    shine={highlighted}
+  >
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
@@ -41,9 +44,15 @@ const MotionContainer: FC<MotionContainerProps> = ({
     </CardRow>
     <Property label={argu.voteableVoteEvent} />
     <CardAppendix>
-      <Property forceRender label={argu.arguments} />
+      <Property
+        forceRender
+        label={argu.arguments}
+      />
       <Property label={argu.topComment} />
-      <Property forceRender label={app.omniform} />
+      <Property
+        forceRender
+        label={app.omniform}
+      />
     </CardAppendix>
   </Card>
 );

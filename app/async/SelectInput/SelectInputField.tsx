@@ -108,7 +108,10 @@ const sortByGroup = (lrs: LinkReduxLRSType) => (a: SomeTerm, b: SomeTerm) => {
 
 const SelectList = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
   ({ children, ...otherProps }, ref) => (
-    <Select {...otherProps} innerRef={ref}>
+    <Select
+      {...otherProps}
+      innerRef={ref}
+    >
       {children}
     </Select>
   ),
@@ -136,7 +139,10 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   ), [options]);
 
   const createButton = React.useMemo(() => fieldShape.shIn && (
-    <Resource subject={fieldShape.shIn} onLoad={() => null}>
+    <Resource
+      subject={fieldShape.shIn}
+      onLoad={() => null}
+    >
       <CollectionCreateActionButton />
     </Resource>
   ), [fieldShape.shIn]);
@@ -199,9 +205,15 @@ const SelectInputField: React.FC<InputComponentProps> = ({
     if (isNamedNode(valueProps.value)) {
       inputProps.InputProps.startAdornment = (
         <SelectedValue>
-          <InputAdornment disablePointerEvents position="start">
+          <InputAdornment
+            disablePointerEvents
+            position="start"
+          >
             <Resource subject={valueProps.value}>
-              <Property label={schema.image} topology={selectTopology} />
+              <Property
+                label={schema.image}
+                topology={selectTopology}
+              />
             </Resource>
           </InputAdornment>
         </SelectedValue>

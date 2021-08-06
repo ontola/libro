@@ -39,7 +39,10 @@ const InterventionFull: FC<InterventionFullProps> = ({
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
@@ -54,17 +57,38 @@ const InterventionFull: FC<InterventionFullProps> = ({
           <Property label={[schema.name, rdfs.label]} />
           <Property label={schema.text} />
           <AttributeList>
-            <AttributeListItem label={schema.isPartOf} propertyLabel="Interventietype" />
-            <AttributeListItem label={schema.name} propertyLabel="Interventie" />
-            <AttributeListItem label={rivm.organizationName} propertyLabel="Bedrijf" />
+            <AttributeListItem
+              label={schema.isPartOf}
+              propertyLabel="Interventietype"
+            />
+            <AttributeListItem
+              label={schema.name}
+              propertyLabel="Interventie"
+            />
+            <AttributeListItem
+              label={rivm.organizationName}
+              propertyLabel="Bedrijf"
+            />
             <Property label={schema.image}>
-              <AttributeListItem label={ontola.imgUrl568x400} style={{ maxHeight: '10em' }} />
+              <AttributeListItem
+                label={ontola.imgUrl568x400}
+                style={{ maxHeight: '10em' }}
+              />
             </Property>
             <AttributeListItem label={rivm.businessSectionEmployees} />
             <AttributeListItem label={schema.industry} />
-            <AttributeListItem label={schema.creator} propertyLabel="Contactpersoon" />
-            <AttributeListItem label={argu.communicateAction} propertyLabel="Contact" />
-            <AttributeListItem label={schema.datePublished} propertyLabel="Datum online" />
+            <AttributeListItem
+              label={schema.creator}
+              propertyLabel="Contactpersoon"
+            />
+            <AttributeListItem
+              label={argu.communicateAction}
+              propertyLabel="Contact"
+            />
+            <AttributeListItem
+              label={schema.datePublished}
+              propertyLabel="Datum online"
+            />
           </AttributeList>
         </CardContent>
         <CardDivider />
@@ -134,14 +158,26 @@ const InterventionFull: FC<InterventionFullProps> = ({
           </p>
         </CardContent>
         <CardRow>
-          <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={meeting.attachment} onLoad={() => null} />
+          <Property
+            label={argu.attachments}
+            onLoad={() => null}
+          />
+          <Property
+            label={meeting.attachment}
+            onLoad={() => null}
+          />
         </CardRow>
         <ActionsBar>
-          <Property label={ontola.favoriteAction} onLoad={() => null} />
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={() => null}
+          />
         </ActionsBar>
         <CardAppendix>
-          <Property forceRender label={app.omniform} />
+          <Property
+            forceRender
+            label={app.omniform}
+          />
         </CardAppendix>
       </CardMain>
     </Container>

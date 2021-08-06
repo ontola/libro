@@ -188,10 +188,16 @@ const FacetContainer: FC = () => {
       className={classes.wrapper}
       direction="column"
     >
-      <Typography className={classes.title} variant="h2">
+      <Typography
+        className={classes.title}
+        variant="h2"
+      >
         {name.value}
       </Typography>
-      <Typography className={classes.subTitle} variant="subtitle1">
+      <Typography
+        className={classes.subTitle}
+        variant="subtitle1"
+      >
         {text.value}
       </Typography>
       <Grid
@@ -220,7 +226,10 @@ const FacetContainer: FC = () => {
                         fontSize: 30,
                       }}
                     />
-                    <Typography className={classes.buttonText} onClick={() => setCurrentFacet(facet.subject!)}>
+                    <Typography
+                      className={classes.buttonText}
+                      onClick={() => setCurrentFacet(facet.subject!)}
+                    >
                       {facet.name!.value}
                     </Typography>
                   </button>
@@ -238,14 +247,20 @@ const FacetContainer: FC = () => {
                           fontSize: 30,
                         }}
                       />
-                      <Typography className={classes.buttonTextSelected} onClick={() => setCurrentFacet(facet.subject!)}>
+                      <Typography
+                        className={classes.buttonTextSelected}
+                        onClick={() => setCurrentFacet(facet.subject!)}
+                      >
                         {facet.name!.value}
                       </Typography>
                     </button>
                   )}
               </div>
               <Collapse in={facet.subject === currentFacet}>
-                <Typography className={classes.collapseText} variant="body1">
+                <Typography
+                  className={classes.collapseText}
+                  variant="body1"
+                >
                   {facet.text!.value}
                 </Typography>
               </Collapse>

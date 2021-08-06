@@ -136,8 +136,15 @@ export const HeaderProductPages = ({
           direction="row"
           justify="center"
         >
-          <Grid item md={1} />
-          <Grid item md={6} sm={12}>
+          <Grid
+            item
+            md={1}
+          />
+          <Grid
+            item
+            md={6}
+            sm={12}
+          >
             <Typography
               className={classes.title}
               variant="h2"
@@ -160,7 +167,12 @@ export const HeaderProductPages = ({
               />
             </div>
           </Grid>
-          <Grid item className={classes.imageContainer} md={5} sm={12}>
+          <Grid
+            item
+            className={classes.imageContainer}
+            md={5}
+            sm={12}
+          >
             {image}
           </Grid>
           {children}

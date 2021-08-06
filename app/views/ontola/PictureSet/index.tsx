@@ -29,13 +29,48 @@ const PictureSet: FC<PictureSetProps> = ({ className, element: Element }) => {
 
   return (
     <Element>
-      {svg && <source srcSet={svg.value} type="image/svg+xml" />}
-      {avif && <source srcSet={avif.value} type="image/avif" />}
-      {webp && <source srcSet={webp.value} type="image/webp" />}
-      {apng && <source srcSet={apng.value} type="image/apng" />}
-      {gif && <source srcSet={gif.value} type="image/gif" />}
-      {jpg && <source srcSet={jpg.value} type="image/jpg" />}
-      {png && <source srcSet={png.value} type="image/png" />}
+      {svg && (
+        <source
+          srcSet={svg.value}
+          type="image/svg+xml"
+        />
+      )}
+      {avif && (
+        <source
+          srcSet={avif.value}
+          type="image/avif"
+        />
+      )}
+      {webp && (
+        <source
+          srcSet={webp.value}
+          type="image/webp"
+        />
+      )}
+      {apng && (
+        <source
+          srcSet={apng.value}
+          type="image/apng"
+        />
+      )}
+      {gif && (
+        <source
+          srcSet={gif.value}
+          type="image/gif"
+        />
+      )}
+      {jpg && (
+        <source
+          srcSet={jpg.value}
+          type="image/jpg"
+        />
+      )}
+      {png && (
+        <source
+          srcSet={png.value}
+          type="image/png"
+        />
+      )}
 
       <Image
         alt={alt?.value}

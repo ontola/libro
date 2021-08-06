@@ -35,7 +35,10 @@ const SortableHeader = ({
   }, [sortOptions, setCollectionResource]);
 
   return (
-    <button type="button" onClick={clickHandler}>
+    <button
+      type="button"
+      onClick={clickHandler}
+    >
       {name.value}
       {' '}
       {current && <FontAwesome name={`sort-${current.direction}`} />}
@@ -48,7 +51,12 @@ const ThingTableHeaderRow: FC<ThingTableHeaderRowProps> = ({
   sortOptions,
 }) => {
   const inner = name && sortOptions?.length > 0
-    ? <SortableHeader name={name} sortOptions={sortOptions} />
+    ? (
+      <SortableHeader
+        name={name}
+        sortOptions={sortOptions}
+      />
+    )
     : name?.value;
 
   return (

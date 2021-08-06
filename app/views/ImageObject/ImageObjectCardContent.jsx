@@ -5,7 +5,13 @@ import React from 'react';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { footerTopology } from '../../topologies/Footer';
 
-const ImageObjectCardContent = ({ contentUrl }) => <img alt="" data-test="ImageObject-image" src={contentUrl?.value} />;
+const ImageObjectCardContent = ({ contentUrl }) => (
+  <img
+    alt=""
+    data-test="ImageObject-image"
+    src={contentUrl?.value}
+  />
+);
 
 ImageObjectCardContent.type = [
   schema.ImageObject,

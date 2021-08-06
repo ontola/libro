@@ -40,7 +40,10 @@ const ResourceField: FC<PropTypes> = ({
   if (object && path) {
     return (
       <React.Fragment>
-        <Property label={[rdfs.label, schema.name, sh.name]} size="3" />
+        <Property
+          label={[rdfs.label, schema.name, sh.name]}
+          size="3"
+        />
         <Resource subject={object}>
           <Property label={path} />
         </Resource>
@@ -51,7 +54,10 @@ const ResourceField: FC<PropTypes> = ({
 
   return (
     <React.Fragment>
-      <Property label={[rdfs.label, schema.name, sh.name]} size="3" />
+      <Property
+        label={[rdfs.label, schema.name, sh.name]}
+        size="3"
+      />
       <Property label={[schema.text, sh.description]} />
       <div>
         <Property label={schema.url} />

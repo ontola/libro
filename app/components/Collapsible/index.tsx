@@ -76,7 +76,10 @@ const Collapsible = ({
   });
 
   return (
-    <div aria-expanded={opened} className={className}>
+    <div
+      aria-expanded={opened}
+      className={className}
+    >
       {trigger && (
         <div>
           {triggerElem}
@@ -86,7 +89,10 @@ const Collapsible = ({
         initialStyle={initialStyle}
         isOpened={!!opened}
       >
-        <div aria-hidden={tabIndex === -1 ? true : tabIndex} className="TETS">
+        <div
+          aria-hidden={tabIndex === -1 ? true : tabIndex}
+          className="TETS"
+        >
           {children}
         </div>
       </Component>

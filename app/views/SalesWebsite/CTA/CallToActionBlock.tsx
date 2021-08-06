@@ -25,7 +25,11 @@ const CallToActionBlock: FC<CallToActionBlockProps> = ({ trackingId }) => {
       subtitle={callToActionText.value}
       title={callToActionTitle.value}
     >
-      <Property label={sales.callToAction} size="large" trackingId={trackingId} />
+      <Property
+        label={sales.callToAction}
+        size="large"
+        trackingId={trackingId}
+      />
     </CallToAction>
   );
 };

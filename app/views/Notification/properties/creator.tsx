@@ -17,7 +17,10 @@ import { navbarTopology } from '../../../topologies/Navbar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
-  <Resource subject={linkedProp} topology={detailsBarTopology}>
+  <Resource
+    subject={linkedProp}
+    topology={detailsBarTopology}
+  >
     <LDDetail
       smallMargin
       text={undefined}

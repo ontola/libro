@@ -102,7 +102,10 @@ const IndexContainer = ({
 
   return (
     <Provider store={store}>
-      <IntlProvider locale={selectedLang} messages={messages}>
+      <IntlProvider
+        locale={selectedLang}
+        messages={messages}
+      >
         <RenderStoreProvider value={lrs}>
           <UpdateLRSIntl>
             <ThemeProvider theme={theme}>

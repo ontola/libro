@@ -44,7 +44,10 @@ const PersonFooter: FC = () => {
 
   return (
     <div className={classNames.person}>
-      <Resource className={classNames.image} subject={image} />
+      <Resource
+        className={classNames.image}
+        subject={image}
+      />
       <ul>
         <li className={classNames.personName}>
           {name.value}

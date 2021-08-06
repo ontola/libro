@@ -96,11 +96,17 @@ const BlogPageFull: FC = ({ subject }) => {
         <article>
           <ArticleContent image={image}>
             <Resource subject={content} />
-            <ShareBlog title={title.value} url={subject.value} />
+            <ShareBlog
+              title={title.value}
+              url={subject.value}
+            />
           </ArticleContent>
         </article>
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="blog-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="blog-page-full-cta"
+      />
     </React.Fragment>
   );
 };

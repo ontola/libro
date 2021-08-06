@@ -36,7 +36,10 @@ describe('Card component', () => {
   it('CardButton should render', () => {
     const spy = jest.fn();
     const tree = mount(
-      <CardButton action={spy} type="yes">
+      <CardButton
+        action={spy}
+        type="yes"
+      >
         Click here
       </CardButton>
     );

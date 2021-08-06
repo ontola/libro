@@ -39,7 +39,10 @@ export const renderErrorComp = (self: React.Component<Record<string, unknown>, T
       handle(e);
 
       return (
-        <button type="button" onClick={reset}>
+        <button
+          type="button"
+          onClick={reset}
+        >
           Error
         </button>
       );

@@ -82,7 +82,12 @@ const FileInput: React.FC<InputComponentProps> = ({
 
   return (
     <React.Fragment>
-      {required && <HiddenRequiredInput name={name} value={inputValue?.value} />}
+      {required && (
+        <HiddenRequiredInput
+          name={name}
+          value={inputValue?.value}
+        />
+      )}
       <Dropzone
         encodingFormat={encodingFormatValues?.[0]?.value}
         encodingFormatTypes={encodingFormatTypes || ''}

@@ -33,7 +33,10 @@ const VirtualizedSelect = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
     const height = Math.min(MIN_ITEM_COUNT, itemCount) * ITEM_HEIGHT;
 
     return (
-      <Select {...otherProps} innerRef={ref}>
+      <Select
+        {...otherProps}
+        innerRef={ref}
+      >
         <VirtualList
           height={height}
           itemCount={itemCount}

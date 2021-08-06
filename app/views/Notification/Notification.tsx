@@ -32,18 +32,27 @@ const Notification: FC<NotificationProps> = ({
 
   if (target) {
     content = (
-      <Property label={schema.target} onClick={() => readAction && lrs.exec(readAction)}>
+      <Property
+        label={schema.target}
+        onClick={() => readAction && lrs.exec(readAction)}
+      >
         <Property label={schema.creator} />
         <div style={style}>
           <Property label={schema.name} />
-          <Property label={schema.dateCreated} style={{ display: 'block' }} />
+          <Property
+            label={schema.dateCreated}
+            style={{ display: 'block' }}
+          />
         </div>
       </Property>
     );
   }
 
   return (
-    <div data-test="Notification-notification" style={{ position: 'relative' }}>
+    <div
+      data-test="Notification-notification"
+      style={{ position: 'relative' }}
+    >
       <Card>
         <Property label={argu.unread} />
         <CardContent>

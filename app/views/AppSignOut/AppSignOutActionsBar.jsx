@@ -29,7 +29,10 @@ class AppSignOutActionsBar extends React.PureComponent {
     } = this.props;
 
     return (
-      <SignOutFormLink Component={Button} redirectURL={url}>
+      <SignOutFormLink
+        Component={Button}
+        redirectURL={url}
+      >
         {name && name.value}
       </SignOutFormLink>
     );

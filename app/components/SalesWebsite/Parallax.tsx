@@ -103,7 +103,12 @@ export const Parallax = ({
           direction="row"
           justify="center"
         >
-          <Grid item direction="column" md={7} sm={12}>
+          <Grid
+            item
+            direction="column"
+            md={7}
+            sm={12}
+          >
             <Typography
               className={classes.title}
               variant="h2"

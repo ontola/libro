@@ -69,9 +69,15 @@ export const ImageAttachmentPreview = ({
       type="button"
       onClick={onPreviewClick}
     >
-      <Image className={classes.attachmentPreviewImage} linkedProp={thumbnailURL} />
+      <Image
+        className={classes.attachmentPreviewImage}
+        linkedProp={thumbnailURL}
+      />
       {label && (
-        <span className={classes.attachmentPreviewTitle} title={label}>
+        <span
+          className={classes.attachmentPreviewTitle}
+          title={label}
+        >
           {label}
         </span>
       )}

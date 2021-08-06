@@ -53,7 +53,10 @@ const SurveyFull: FC<PropTypes> = ({
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
       <CardMain data-test="Thing-thing">
         <DetailsBar
           right={(
@@ -74,7 +77,10 @@ const SurveyFull: FC<PropTypes> = ({
           <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
         </DetailsBar>
-        <CardContent endSpacing noSpacing>
+        <CardContent
+          endSpacing
+          noSpacing
+        >
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <ActionsBar>

@@ -22,7 +22,13 @@ import React from 'react';
 
 export const image = (props: ImageProps): JSX.Element | undefined => {
   if (props.image) {
-    return <img alt={props.image.title} className={props.image.className} src={props.image.url} />;
+    return (
+      <img
+        alt={props.image.title}
+        className={props.image.className}
+        src={props.image.url}
+      />
+    );
   } else if (props.fa) {
     return <span className={['fa', props.fa].join(' ')} />;
   }

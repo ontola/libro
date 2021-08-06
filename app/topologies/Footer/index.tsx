@@ -50,11 +50,24 @@ class Footer extends Topology<FooterPropsWithTheme> {
     const color = resolveColor();
 
     return this.wrap((
-      <Box bgcolor={`${background}.main`} className={this.getClassName()} color={color}>
+      <Box
+        bgcolor={`${background}.main`}
+        className={this.getClassName()}
+        color={color}
+      >
         <div className="Footer__container">
-          <Grid container spacing={6}>
+          <Grid
+            container
+            spacing={6}
+          >
             {this.props.resources?.map((iri) => (
-              <Grid item key={iri.value} lg={this.lgSize()} md={this.mdSize()} xs={12}>
+              <Grid
+                item
+                key={iri.value}
+                lg={this.lgSize()}
+                md={this.mdSize()}
+                xs={12}
+              >
                 <Resource subject={iri} />
               </Grid>
             ))}

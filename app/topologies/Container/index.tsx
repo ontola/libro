@@ -34,7 +34,10 @@ class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
 
   public renderContent(): TopologyContent {
     return this.wrap((
-      <MaterialContainer maxWidth={this.maxWidth()} {...this.props} />
+      <MaterialContainer
+        maxWidth={this.maxWidth()}
+        {...this.props}
+      />
     ));
   }
 

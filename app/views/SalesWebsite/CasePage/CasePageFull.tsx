@@ -96,7 +96,10 @@ const CasePageFull: FC = () => {
         <ArticleContent image={image}>
           <Resource subject={content} />
           <div>
-            <Typography classes={{ h2: classes.h2 }} variant="h2">
+            <Typography
+              classes={{ h2: classes.h2 }}
+              variant="h2"
+            >
               <FormattedMessage {...caseMessages.learnMore} />
             </Typography>
             <div className={classes.contactPerson}>
@@ -106,7 +109,10 @@ const CasePageFull: FC = () => {
                   {contactPerson.name}
                 </span>
                 <span>
-                  <FontAwesome className={classes.icon} name="phone" />
+                  <FontAwesome
+                    className={classes.icon}
+                    name="phone"
+                  />
                   <a
                     className={classes.noLine}
                     href={`tel:${contactPerson.telephone}`}
@@ -117,7 +123,10 @@ const CasePageFull: FC = () => {
                   </a>
                 </span>
                 <span>
-                  <FontAwesome className={classes.icon} name="envelope" />
+                  <FontAwesome
+                    className={classes.icon}
+                    name="envelope"
+                  />
                   <a
                     className={classes.noLine}
                     href={`mailto:${contactPerson.email}`}
@@ -128,7 +137,10 @@ const CasePageFull: FC = () => {
                   </a>
                 </span>
                 <span>
-                  <FontAwesome className={classes.icon} name="linkedin" />
+                  <FontAwesome
+                    className={classes.icon}
+                    name="linkedin"
+                  />
                   <a
                     href={`${contactPerson.linkedIn}`}
                     rel="noreferrer noopener"
@@ -142,7 +154,10 @@ const CasePageFull: FC = () => {
           </div>
         </ArticleContent>
       </article>
-      <Property label={sales.callToActionBlock} trackingId="case-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="case-page-full-cta"
+      />
     </React.Fragment>
   );
 };

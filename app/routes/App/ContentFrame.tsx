@@ -48,7 +48,10 @@ const ContentFrame = ({
           titleTemplate={title ? `%s - ${title}` : '%s'}
         />
         <SkipNavigation />
-        <div className={CONTAINER_ELEMENT} id={CONTAINER_ELEMENT}>
+        <div
+          className={CONTAINER_ELEMENT}
+          id={CONTAINER_ELEMENT}
+        >
           <Header themeOptions={themeOptions} />
           <Banners />
           <NetworkStatusIndicator />
@@ -56,7 +59,10 @@ const ContentFrame = ({
             <ScrollMemory />
             {children}
           </div>
-          <Footer legacy={!footerResource} resources={footerResources}>
+          <Footer
+            legacy={!footerResource}
+            resources={footerResources}
+          >
             {footerResource && <Resource subject={rdf.namedNode(footerResource)} />}
           </Footer>
           <Resource subject={ontola.ns('snackbar/manager')} />

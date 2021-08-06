@@ -60,7 +60,10 @@ const CollectionFilterToggle = ({
   return (
     <React.Fragment>
       <Portal container={filterContainerRef.current}>
-        <Collapse in={showFilters.show} timeout={FILTER_TRANSITION_LENGTH}>
+        <Collapse
+          in={showFilters.show}
+          timeout={FILTER_TRANSITION_LENGTH}
+        >
           <FilterComboInput
             autoFocus={showFilters.userAction}
             currentFilters={currentFilters}

@@ -44,11 +44,19 @@ const ImageElement: FC = () => {
   });
 
   if (href) {
-    return <Image className={imageClasses} linkedProp={href} />;
+    return (
+      <Image
+        className={imageClasses}
+        linkedProp={href}
+      />
+    );
   }
 
   return (
-    <Property className={imageClasses} label={schema.image} />
+    <Property
+      className={imageClasses}
+      label={schema.image}
+    />
   );
 };
 

@@ -14,7 +14,10 @@ export function withWebsiteIRI(Component: React.ComponentType<WithWebsiteIRI>) {
     const location = React.useContext(WebsiteContext);
 
     return (
-      <Component {...props} websiteIRI={location?.websiteIRI} />
+      <Component
+        {...props}
+        websiteIRI={location?.websiteIRI}
+      />
     );
   };
 }
@@ -28,7 +31,10 @@ export function withWebsitePathname(Component: React.ComponentType<WithWebsitePa
     const location = React.useContext(WebsiteContext);
 
     return (
-      <Component {...props} websitePathname={location?.websitePathname} />
+      <Component
+        {...props}
+        websitePathname={location?.websitePathname}
+      />
     );
   };
 }
@@ -42,7 +48,10 @@ export function withWebsiteCtx<P>(Component: React.ComponentType<WithWebsiteCtx 
     const location = React.useContext(WebsiteContext);
 
     return (
-      <Component {...props} websiteCtx={location} />
+      <Component
+        {...props}
+        websiteCtx={location}
+      />
     );
   };
 }

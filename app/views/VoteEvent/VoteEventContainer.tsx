@@ -18,7 +18,10 @@ const VoteEventContainer: FC = () => (
     <ActionsBar>
       <Property label={ontola.favoriteAction} />
     </ActionsBar>
-    <Property forceRender label={argu.signInFlow} />
+    <Property
+      forceRender
+      label={argu.signInFlow}
+    />
     <VoteData>
       <Property label={argu.votesProCount} />
       <Property label={argu.votesNeutralCount} />

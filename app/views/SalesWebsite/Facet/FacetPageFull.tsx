@@ -71,7 +71,10 @@ const FacetPageFull: FC = () => {
           </NavLink>
         </Typography>
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="facet-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="facet-page-full-cta"
+      />
     </div>
   );
 };

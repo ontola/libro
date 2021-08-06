@@ -27,15 +27,24 @@ const Editor: React.FC = () => {
         container
         direction="row"
       >
-        <Grid item xs={1}>
+        <Grid
+          item
+          xs={1}
+        >
           <Skeleton
             animation="wave"
             classes={classes}
           />
         </Grid>
-        <Grid item xs={10}>
+        <Grid
+          item
+          xs={10}
+        >
           {Array(EDITOR_SKELETON_HEIGHT).fill(undefined).map((_, i) => (
-            <Skeleton animation="wave" key={i} />
+            <Skeleton
+              animation="wave"
+              key={i}
+            />
           ))}
         </Grid>
       </Grid>

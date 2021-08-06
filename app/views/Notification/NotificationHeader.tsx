@@ -6,7 +6,10 @@ import argu from '../../ontology/argu';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const NotificationHeader = () => (
-  <Property data-test="Notification-url" label={schema.url} />
+  <Property
+    data-test="Notification-url"
+    label={schema.url}
+  />
 );
 
 NotificationHeader.type = argu.Notification;

@@ -33,7 +33,10 @@ const DelayedFormField: FC = (props) => {
 
   const [type] = useProperty(rdfx.type);
   const DelayedInput = React.useCallback((inputProps) => (
-    <InputElement {...inputProps} type={getInputType(type)} />
+    <InputElement
+      {...inputProps}
+      type={getInputType(type)}
+    />
   ), [type]);
 
   if (!fieldProps.whitelisted) {

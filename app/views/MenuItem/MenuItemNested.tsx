@@ -24,10 +24,16 @@ const MenuItemNested: FC = ({
     <TabbarProvider menu={subject}>
       <Container>
         <CardMain>
-          <Property forceRender label={app.menuTabs} />
+          <Property
+            forceRender
+            label={app.menuTabs}
+          />
         </CardMain>
       </Container>
-      <Property forceRender label={app.currentTab} />
+      <Property
+        forceRender
+        label={app.currentTab}
+      />
     </TabbarProvider>
   );
 };

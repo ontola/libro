@@ -41,7 +41,10 @@ const LegendItem = () => {
     <TimelineItemBase className={classes.item}>
       <TimelineOppositeContent className={classes.oppositeContent} />
       <TimelineSeparator>
-        <TimelineDot className={classes.dot} style={styleDot} />
+        <TimelineDot
+          className={classes.dot}
+          style={styleDot}
+        />
       </TimelineSeparator>
       <TimelineContent className={classes.content}>
         <Heading size={HeadingSize.XS}>

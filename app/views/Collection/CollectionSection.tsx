@@ -39,10 +39,25 @@ const CollectionSection: FC<CollectionSectionProps> = ({
 
   return (
     <CardContent>
-      <CardList direction={direction} wrap={wrap}>
-        {pagesShouldRender && <Property forceRender insideCollection label={ontola.pages} />}
-        <Property label={as.totalItems} to={to} />
-        <Property omniform label={ontola.createAction} />
+      <CardList
+        direction={direction}
+        wrap={wrap}
+      >
+        {pagesShouldRender && (
+          <Property
+            forceRender
+            insideCollection
+            label={ontola.pages}
+          />
+        )}
+        <Property
+          label={as.totalItems}
+          to={to}
+        />
+        <Property
+          omniform
+          label={ontola.createAction}
+        />
       </CardList>
     </CardContent>
   );

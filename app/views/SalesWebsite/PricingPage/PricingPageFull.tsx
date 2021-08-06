@@ -33,14 +33,20 @@ const PricingPageFull: FC = () => {
     <div>
       <Property label={sales.header} />
       <Container className={classes.container}>
-        <Grid className={classes.tierGrid} direction="row">
+        <Grid
+          className={classes.tierGrid}
+          direction="row"
+        >
           <Property label={sales.tiers} />
         </Grid>
         <div className={classes.lowerSection}>
           <Property label={argu.lowerSection} />
         </div>
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="pricing-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="pricing-page-full-cta"
+      />
     </div>
   );
 };

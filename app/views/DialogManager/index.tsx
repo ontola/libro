@@ -44,7 +44,10 @@ const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
       onClose={close(resource, false)}
     >
       <DialogTopology>
-        <Resource subject={resource} onDone={close(resource, true)} />
+        <Resource
+          subject={resource}
+          onDone={close(resource, true)}
+        />
       </DialogTopology>
     </Dialog>
   );

@@ -14,9 +14,15 @@ import { pageTopology } from '../../topologies/Page';
 const ThingPage = (props) => (
   <React.Fragment>
     <Metadata />
-    <Property label={ontola.coverPhoto} onLoad={() => null} />
+    <Property
+      label={ontola.coverPhoto}
+      onLoad={() => null}
+    />
     <FullResource>
-      <Resource renderPartOf {...props} />
+      <Resource
+        renderPartOf
+        {...props}
+      />
     </FullResource>
   </React.Fragment>
 );

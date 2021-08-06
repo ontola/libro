@@ -23,8 +23,15 @@ const CollectionGrid: FC = () => (
         <Property label={as.name} />
       </CardContent>
       <CardContent>
-        <CardList overflow direction={CardListDirection.Column}>
-          <Property forceRender insideCollection label={ontola.pages} />
+        <CardList
+          overflow
+          direction={CardListDirection.Column}
+        >
+          <Property
+            forceRender
+            insideCollection
+            label={ontola.pages}
+          />
         </CardList>
       </CardContent>
     </LDLink>

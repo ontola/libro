@@ -50,7 +50,10 @@ const ProjectFull: FC<ProjectFullProps> = ({
       <Container>
         {renderPartOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
-        <Property label={ontola.publishAction} onLoad={() => null} />
+        <Property
+          label={ontola.publishAction}
+          onLoad={() => null}
+        />
         <CardMain>
           <DetailsBar
             right={(
@@ -77,12 +80,25 @@ const ProjectFull: FC<ProjectFullProps> = ({
             <Property label={[schema.text, schema.description, dbo.abstract]} />
           </CardContent>
           <CardRow>
-            <Property label={argu.attachments} onLoad={() => null} />
-            <Property label={meeting.attachment} onLoad={() => null} />
+            <Property
+              label={argu.attachments}
+              onLoad={() => null}
+            />
+            <Property
+              label={meeting.attachment}
+              onLoad={() => null}
+            />
           </CardRow>
-          <Property label={argu.voteableVoteEvent} onLoad={() => null} />
+          <Property
+            label={argu.voteableVoteEvent}
+            onLoad={() => null}
+          />
           <CardRow backdrop>
-            <Property forceRender label={argu.phases} selectedPhase={renderPhase} />
+            <Property
+              forceRender
+              label={argu.phases}
+              selectedPhase={renderPhase}
+            />
             <CardDivider />
             {renderPhase && <Resource subject={renderPhase} />}
           </CardRow>
@@ -90,8 +106,14 @@ const ProjectFull: FC<ProjectFullProps> = ({
       </Container>
       {renderPhase && (
         <Resource subject={renderPhase}>
-          <Container disableGutters size={Size.Large}>
-            <Grid container spacing={6}>
+          <Container
+            disableGutters
+            size={Size.Large}
+          >
+            <Grid
+              container
+              spacing={6}
+            >
               <Property label={ontola.widgets} />
             </Grid>
           </Container>

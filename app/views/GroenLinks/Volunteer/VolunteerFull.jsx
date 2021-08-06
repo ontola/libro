@@ -32,7 +32,10 @@ const VolunteerFull = ({ renderPartOf }) => (
         <ContentDetails>
           <Property label={teamGL.department} />
           <Property label={teamGL.engagement} />
-          <Property forceRender label={teamGL.glappUsedAt} />
+          <Property
+            forceRender
+            label={teamGL.glappUsedAt}
+          />
         </ContentDetails>
         <div className="Volunteer--contact-options">
           <Property label={teamGL.telephone} />
@@ -41,10 +44,19 @@ const VolunteerFull = ({ renderPartOf }) => (
         <Property label={schema.text} />
       </CardContent>
     </CardMain>
-    <Property renderWhenEmpty label={org.hasMembership} />
-    <Property renderWhenEmpty label={teamGL.events} />
+    <Property
+      renderWhenEmpty
+      label={org.hasMembership}
+    />
+    <Property
+      renderWhenEmpty
+      label={teamGL.events}
+    />
     <Property label={teamGL.user}>
-      <Property renderWhenEmpty label={teamGL.departmentMemberships} />
+      <Property
+        renderWhenEmpty
+        label={teamGL.departmentMemberships}
+      />
     </Property>
   </Container>
 );

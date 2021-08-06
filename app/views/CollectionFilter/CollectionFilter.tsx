@@ -23,7 +23,12 @@ const Value = ({ prop }: { prop: SomeTerm }) => {
   const lrs = useLRS();
 
   if (isResource(prop)) {
-    return <Resource subject={prop} topology={inlineTopology} />;
+    return (
+      <Resource
+        subject={prop}
+        topology={inlineTopology}
+      />
+    );
   }
 
   const LiteralRenderer = lrs.getComponentForProperty(

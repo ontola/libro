@@ -114,7 +114,12 @@ const PricingPageFull: FC = () => {
           justify="space-around"
           wrap="wrap"
         >
-          <Grid item md={3} sm={5} xs={11}>
+          <Grid
+            item
+            md={3}
+            sm={5}
+            xs={11}
+          >
             <Typography variant="h2">
               Contactgegevens
             </Typography>
@@ -143,37 +148,61 @@ const PricingPageFull: FC = () => {
                     <div className={`org ${classes.hidden}`}>
                       Argu
                     </div>
-                    <img alt={logoText.value} className={`photo ${classes.hidden}`} src={logo.value} />
+                    <img
+                      alt={logoText.value}
+                      className={`photo ${classes.hidden}`}
+                      src={logo.value}
+                    />
                     <span className={classes.iconLink}>
                       <PhoneIcon className={classes.icon} />
-                      <Link className={`tel ${classes.addressLocation}`} href={`tel:${tel.value.replace(/\s/g, '')}`}>
+                      <Link
+                        className={`tel ${classes.addressLocation}`}
+                        href={`tel:${tel.value.replace(/\s/g, '')}`}
+                      >
                         {tel.value}
                       </Link>
                     </span>
                     <span className={classes.iconLink}>
                       <EmailIcon className={classes.icon} />
-                      <Link className={`email ${classes.addressLocation}`} href={`mailto:${email.value}`}>
+                      <Link
+                        className={`email ${classes.addressLocation}`}
+                        href={`mailto:${email.value}`}
+                      >
                         {email.value}
                       </Link>
                     </span>
                     <span className={classes.iconLink}>
                       <QuestionAnswerIcon className={classes.icon} />
-                      <Link className={`note ${classes.addressLocation}`} href={discordLink.value}>
+                      <Link
+                        className={`note ${classes.addressLocation}`}
+                        href={discordLink.value}
+                      >
                         {discordText.value}
                       </Link>
                     </span>
-                    <Link className={`url ${classes.hidden}`} href={websiteUrl.value}>
+                    <Link
+                      className={`url ${classes.hidden}`}
+                      href={websiteUrl.value}
+                    >
                       {website.value}
                     </Link>
                   </Typography>
                 </address>
               </Grid>
-              <Grid item classes={{ root: classes.socials }}>
+              <Grid
+                item
+                classes={{ root: classes.socials }}
+              >
                 <Property label={argu.socials} />
               </Grid>
             </Grid>
           </Grid>
-          <Grid item className={classes.memberCardContainer} sm={5} xs={11}>
+          <Grid
+            item
+            className={classes.memberCardContainer}
+            sm={5}
+            xs={11}
+          >
             <div className={classes.memberContainer}>
               <Property label={schema.members} />
             </div>

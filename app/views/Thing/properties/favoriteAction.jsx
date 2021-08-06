@@ -29,7 +29,12 @@ const sortBind = (props) => props
   .favoriteActions
   .sort(sort(order))
   .map((iri) => (
-    <Resource {...props} isPartOf={props.subject} key={iri} subject={iri} />
+    <Resource
+      {...props}
+      isPartOf={props.subject}
+      key={iri}
+      subject={iri}
+    />
   ));
 
 const FavoriteAction = (props) => (

@@ -46,11 +46,17 @@ const StreetFull = () => {
               <Resource subject={teamGL.postalDigits} />
               {': '}
             </span>
-            <Property label={teamGL.postalDigits} limit={Infinity} />
+            <Property
+              label={teamGL.postalDigits}
+              limit={Infinity}
+            />
           </p>
         </CardContent>
       </CardMain>
-      <Collection display="table" label={teamGL.pendingAddresses} />
+      <Collection
+        display="table"
+        label={teamGL.pendingAddresses}
+      />
     </Container>
   );
 };

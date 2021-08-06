@@ -68,7 +68,12 @@ const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
 };
 
 const FilterOptionMenu = React.forwardRef<FC, FilterOptionMenuCompProps>(
-  (props, ref) => <FilterOptionMenuComp innerRef={ref} {...props} />,
+  (props, ref) => (
+    <FilterOptionMenuComp
+      innerRef={ref}
+      {...props}
+    />
+  ),
 ) as unknown as FC;
 
 FilterOptionMenu.type = ontola.FilterOption;

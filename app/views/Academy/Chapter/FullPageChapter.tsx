@@ -17,7 +17,10 @@ const FullPageChapter: FC = ({ subject }) => {
   return (
     <React.Fragment>
       <Metadata />
-      <Resource chapter={subject} subject={book} />
+      <Resource
+        chapter={subject}
+        subject={book}
+      />
     </React.Fragment>
   );
 };

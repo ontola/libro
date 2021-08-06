@@ -96,7 +96,10 @@ describe('Notification', () => {
     const renderInContainer = (resources) => render(
       ({ iri }) => (
         <Container>
-          <Resource forceRender subject={iri} />
+          <Resource
+            forceRender
+            subject={iri}
+          />
         </Container>
       ),
       { resources }

@@ -39,7 +39,10 @@ const Pages: FC<PagesProps> = ({
   }
 
   const obs = pages.map((iri) => (
-    <Suspense fallback={<LoadingGridContent />} key={`${iri.value}-loader`}>
+    <Suspense
+      fallback={<LoadingGridContent />}
+      key={`${iri.value}-loader`}
+    >
       <Resource
         insideCollection={insideCollection}
         key={`pages-${iri.value}`}

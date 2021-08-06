@@ -26,7 +26,10 @@ const DexesOfferFull: FC<DexesOfferFullProps> = ({ renderPartOf }) => (
   <Container>
     {renderPartOf && <Property label={schema.isPartOf} />}
     <Property label={argu.trashedAt} />
-    <Property label={ontola.publishAction} onLoad={() => null} />
+    <Property
+      label={ontola.publishAction}
+      onLoad={() => null}
+    />
     <CardMain>
       <DetailsBar right={defaultMenus}>
         <Property label={schema.creator} />

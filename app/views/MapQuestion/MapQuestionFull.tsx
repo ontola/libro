@@ -33,7 +33,10 @@ const MapQuestionFull: FC<PropTypes> = ({ renderPartOf }) => (
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={schema.creator} />
@@ -51,11 +54,20 @@ const MapQuestionFull: FC<PropTypes> = ({ renderPartOf }) => (
           <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
         <CardRow>
-          <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={meeting.attachment} onLoad={() => null} />
+          <Property
+            label={argu.attachments}
+            onLoad={() => null}
+          />
+          <Property
+            label={meeting.attachment}
+            onLoad={() => null}
+          />
         </CardRow>
         <CardAppendix>
-          <Property forceRender label={app.omniform} />
+          <Property
+            forceRender
+            label={app.omniform}
+          />
         </CardAppendix>
       </CardMain>
       <Collection
@@ -64,7 +76,10 @@ const MapQuestionFull: FC<PropTypes> = ({ renderPartOf }) => (
         onLoad={() => null}
       />
     </Container>
-    <Property large label={schema.location} />
+    <Property
+      large
+      label={schema.location}
+    />
     <Container>
       <Property label={schema.comment} />
     </Container>

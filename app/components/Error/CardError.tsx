@@ -42,7 +42,10 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
   const bodyDescriptor = bodyDescriptorForStatus(linkRequestStatus);
 
   let mainAction = (
-    <ErrorButtonWithFeedback theme={ButtonTheme.Box} {...props}>
+    <ErrorButtonWithFeedback
+      theme={ButtonTheme.Box}
+      {...props}
+    >
       <FormattedMessage
         defaultMessage="Try again"
         id="https://app.argu.co/i18n/errors/retryButton/label"
@@ -59,7 +62,10 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
   return (
     <Card>
       <CardContent endSpacing>
-        <Heading size={HeadingSize.LG} variant={HeadingVariant.Alert}>
+        <Heading
+          size={HeadingSize.LG}
+          variant={HeadingVariant.Alert}
+        >
           <FontAwesome name="exclamation-triangle" />
           {' '}
           {headerDescription ? <FormattedMessage {...headerDescription} /> : (err && err.name)}

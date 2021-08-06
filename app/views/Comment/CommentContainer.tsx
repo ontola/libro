@@ -43,7 +43,10 @@ const CommentContainer: FC<CommentContainerProps> = ({
 
   return (
     <React.Fragment>
-      <Card shine={highlighted} onClick={onClick}>
+      <Card
+        shine={highlighted}
+        onClick={onClick}
+      >
         <DetailsBar
           right={(
             <Property label={ontola.actionsMenu} />
@@ -61,13 +64,26 @@ const CommentContainer: FC<CommentContainerProps> = ({
           <Property label={schema.text} />
         </CardContent>
         <ActionsBar small>
-          <Property label={ontola.favoriteAction} onLoad={() => null} />
-          <Property label={schema.comment} onLoad={() => null}>
-            <Property omniform label={ontola.createAction} />
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={() => null}
+          />
+          <Property
+            label={schema.comment}
+            onLoad={() => null}
+          >
+            <Property
+              omniform
+              label={ontola.createAction}
+            />
           </Property>
         </ActionsBar>
         <CardAppendix>
-          <Property forceRender clickToOpen={false} label={app.omniform} />
+          <Property
+            forceRender
+            clickToOpen={false}
+            label={app.omniform}
+          />
         </CardAppendix>
       </Card>
       <Property

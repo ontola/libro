@@ -24,7 +24,12 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const Text = ({ linkedProp }) => <Markdown data-test="Thing-text" text={linkedProp.value} />;
+const Text = ({ linkedProp }) => (
+  <Markdown
+    data-test="Thing-text"
+    text={linkedProp.value}
+  />
+);
 
 Text.propTypes = propTypes;
 

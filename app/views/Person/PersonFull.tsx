@@ -51,7 +51,10 @@ const PersonFull: FC<PersonFullProps> = ({
   const classes = useStyles();
 
   return (
-    <TabbarProvider redirect menu={profileMenu}>
+    <TabbarProvider
+      redirect
+      menu={profileMenu}
+    >
       <Property label={ontola.coverPhoto} />
       <Container>
         <CardMain>
@@ -64,7 +67,11 @@ const PersonFull: FC<PersonFullProps> = ({
               <Property label={schema.image}>
                 <Property label={schema.thumbnail}>
                   {([src]: SomeTerm[]) => (
-                    <Grid item md={1} xs={2}>
+                    <Grid
+                      item
+                      md={1}
+                      xs={2}
+                    >
                       <div className={classes.wrapper}>
                         <div
                           className={classes.image}
@@ -75,27 +82,43 @@ const PersonFull: FC<PersonFullProps> = ({
                   )}
                 </Property>
               </Property>
-              <Grid item md={11} xs={10}>
+              <Grid
+                item
+                md={11}
+                xs={10}
+              >
                 <Property label={[schema.name, rdfs.label, foaf.name]} />
                 <Hidden smDown>
                   <ContentDetails>
-                    <Property label={org.organization} limit={Infinity} />
+                    <Property
+                      label={org.organization}
+                      limit={Infinity}
+                    />
                   </ContentDetails>
                 </Hidden>
               </Grid>
             </Grid>
             <Hidden mdUp>
               <ContentDetails>
-                <Property label={org.organization} limit={Infinity} />
+                <Property
+                  label={org.organization}
+                  limit={Infinity}
+                />
               </ContentDetails>
             </Hidden>
           </CardContent>
           <CardContent>
             <Property label={schema.description} />
           </CardContent>
-          <Property forceRender label={app.menuTabs} />
+          <Property
+            forceRender
+            label={app.menuTabs}
+          />
         </CardMain>
-        <Property forceRender label={app.currentTab} />
+        <Property
+          forceRender
+          label={app.currentTab}
+        />
       </Container>
     </TabbarProvider>
   );

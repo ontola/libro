@@ -26,7 +26,10 @@ class TableFooterCell extends TopologyProvider<Props> {
 
   public render() {
     return this.wrap((
-      <td className="TableFooterCell" colSpan={this.props.colSpan}>
+      <td
+        className="TableFooterCell"
+        colSpan={this.props.colSpan}
+      >
         {this.props.children}
       </td>
     ));

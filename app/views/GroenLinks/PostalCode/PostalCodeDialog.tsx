@@ -51,18 +51,30 @@ const PostalCodeDialog: FC<PostalCodeDialogProps> = ({
         <HeaderWithMenu
           menu={closeButton}
         >
-          <Property label={schema.name} wrapper={React.Fragment} />
+          <Property
+            label={schema.name}
+            wrapper={React.Fragment}
+          />
         </HeaderWithMenu>
         <ContentDetails>
-          <Property endSpacing label={teamGL.department} />
+          <Property
+            endSpacing
+            label={teamGL.department}
+          />
         </ContentDetails>
-        <Property endSpacing label={teamGL.meanPriority} />
+        <Property
+          endSpacing
+          label={teamGL.meanPriority}
+        />
         <AttributeList fullLabel>
           <AttributeListItem label={teamGL.doors} />
           <AttributeListItem label={teamGL.volunteers} />
           <AttributeListItem label={teamGL.active} />
         </AttributeList>
-        <Button centered onClick={() => visitPostalCode(postalDigits.value)}>
+        <Button
+          centered
+          onClick={() => visitPostalCode(postalDigits.value)}
+        >
           Aan de slag!
         </Button>
       </CardContent>

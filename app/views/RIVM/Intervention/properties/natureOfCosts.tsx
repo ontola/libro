@@ -13,7 +13,10 @@ import { inlineTopology } from '../../../../topologies/Inline';
 
 const NatureOfCost: FC<PropertyProps> = ({ linkedProp }) => (
   <div>
-    <Resource subject={linkedProp} topology={inlineTopology} />
+    <Resource
+      subject={linkedProp}
+      topology={inlineTopology}
+    />
   </div>
 );
 

@@ -49,7 +49,10 @@ class DetailsBar extends TopologyProvider<DetailsBarProps> {
     });
 
     return this.wrap((
-      <div className={classes} data-test="DetailsBar">
+      <div
+        className={classes}
+        data-test="DetailsBar"
+      >
         <IconWrapper>
           {this.props.children}
         </IconWrapper>

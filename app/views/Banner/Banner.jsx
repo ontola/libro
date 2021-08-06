@@ -50,8 +50,15 @@ const Banner = ({ dismissedAt }) => {
             <div style={divStyle}>
               <Property label={schema.text} />
             </div>
-            <Property label={ontola.dismissAction} onLoad={() => null}>
-              <Property smallButton label={schema.target} topology={gridTopology} />
+            <Property
+              label={ontola.dismissAction}
+              onLoad={() => null}
+            >
+              <Property
+                smallButton
+                label={schema.target}
+                topology={gridTopology}
+              />
             </Property>
           </CardContent>
         </Container>

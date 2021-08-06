@@ -46,7 +46,10 @@ const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
   const styleDot = color ? { backgroundColor: color.value } : {};
   const nameWrapper = url
     ? ({ children }: {children: ReactChildren}) => (
-      <Link allowExternal={false} to={url.value}>
+      <Link
+        allowExternal={false}
+        to={url.value}
+      >
         {children}
       </Link>
     )
@@ -56,13 +59,22 @@ const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
     <TimelineItemBase>
       <TimelineOppositeContent className={classes.oppositeContent} />
       <TimelineSeparator>
-        <TimelineDot className={classes.dot} style={styleDot} />
+        <TimelineDot
+          className={classes.dot}
+          style={styleDot}
+        />
         {lastItem || <TimelineConnector />}
       </TimelineSeparator>
       <TimelineContent className={classes.content}>
-        <Property label={schema.name} wrapper={nameWrapper} />
+        <Property
+          label={schema.name}
+          wrapper={nameWrapper}
+        />
         <div>
-          <Property label={schema.startDate} relative={false} />
+          <Property
+            label={schema.startDate}
+            relative={false}
+          />
         </div>
         <Property label={schema.text} />
       </TimelineContent>

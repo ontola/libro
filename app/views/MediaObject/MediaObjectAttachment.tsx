@@ -43,8 +43,14 @@ const MediaObjectAttachment: FC<PropTypes> = ({
           className="Attachment__primary"
           title={name?.value}
         >
-          <FontAwesome className="Attachment__icon" name="file" />
-          <div className="Attachment__text" data-test="Attachment-title">
+          <FontAwesome
+            className="Attachment__icon"
+            name="file"
+          />
+          <div
+            className="Attachment__text"
+            data-test="Attachment-title"
+          >
             {name?.value}
           </div>
         </LDLink>
@@ -57,13 +63,19 @@ const MediaObjectAttachment: FC<PropTypes> = ({
           target="_blank"
           title="Downloaden"
         >
-          <FontAwesome className="Attachment__icon" name="download" />
+          <FontAwesome
+            className="Attachment__icon"
+            name="download"
+          />
         </a>
       </div>
       {' '}
       {totalItems && totalItems > 0 && (
         <span>
-          <FontAwesome className="Attachment__icon" name="comment" />
+          <FontAwesome
+            className="Attachment__icon"
+            name="comment"
+          />
           {totalItems}
         </span>
       )}

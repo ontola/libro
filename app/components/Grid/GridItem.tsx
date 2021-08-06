@@ -41,7 +41,14 @@ const GridItem = ({
   const xs = columnWidth(XS_BASE, size, maxColumns);
 
   return (
-    <MaterialGrid item lg={lg} md={md} sm={sm} xs={xs} {...otherProps}>
+    <MaterialGrid
+      item
+      lg={lg}
+      md={md}
+      sm={sm}
+      xs={xs}
+      {...otherProps}
+    >
       <Suspense fallback={Fallback ? <Fallback /> : <LinkLoader />}>
         {children}
       </Suspense>

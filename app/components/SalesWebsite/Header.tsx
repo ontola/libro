@@ -90,7 +90,10 @@ export const Header = ({
 
   return (
     <div className={classes.header}>
-      <Typography className={classes.title} variant="h1">
+      <Typography
+        className={classes.title}
+        variant="h1"
+      >
         {title}
       </Typography>
       {subtitle ?
@@ -105,7 +108,10 @@ export const Header = ({
           <div className={classes.spacer} />
         )}
       {buttonText && (
-        <CallToActionButton text={buttonText} url={buttonLink!} />
+        <CallToActionButton
+          text={buttonText}
+          url={buttonLink!}
+        />
       )}
       {children}
       <div className={classes.gradient} />

@@ -55,9 +55,15 @@ const AcademyHeader = (): JSX.Element => {
   const classNames = useStyles();
 
   return (
-    <Navbar fullWidth classes={({ wrapper: classNames.wrapper })}>
+    <Navbar
+      fullWidth
+      classes={({ wrapper: classNames.wrapper })}
+    >
       <div className={classNames.nav}>
-        <NavLink className={classNames.logoWrapper} to={retrievePath(frontendIRI)!}>
+        <NavLink
+          className={classNames.logoWrapper}
+          to={retrievePath(frontendIRI)!}
+        >
           <Resource subject={frontendIRI}>
             <Property label={ontola.navigationsMenu}>
               <Property label={ontola.menuItems} />

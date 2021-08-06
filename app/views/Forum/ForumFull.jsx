@@ -29,9 +29,17 @@ const ForumFull = ({ coverPhoto, hideHeader }) => {
   return (
     <React.Fragment>
       {(hideHeader?.value !== 'true')
-      && <PageHeader background={coverPhotoUrl} positionY={positionY} />}
+      && (
+        <PageHeader
+          background={coverPhotoUrl}
+          positionY={positionY}
+        />
+      )}
       <Container size="large">
-        <Grid container spacing={6}>
+        <Grid
+          container
+          spacing={6}
+        >
           <Property label={ontola.widgets} />
         </Grid>
       </Container>

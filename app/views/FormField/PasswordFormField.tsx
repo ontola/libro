@@ -9,7 +9,12 @@ import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 
-const PasswordInput = (fieldProps: InputComponentProps) => <InputElement {...fieldProps} type={InputType.Password} />;
+const PasswordInput = (fieldProps: InputComponentProps) => (
+  <InputElement
+    {...fieldProps}
+    type={InputType.Password}
+  />
+);
 
 const PasswordFormField: FC = (props) => {
   const fieldProps = useFormField({

@@ -95,8 +95,15 @@ const MenuItemDropdownContentComp = ({
         >
           {name?.value}
         </MenuItem>
-        <Collapse unmountOnExit in={open === null ? undefined : open} timeout="auto">
-          <List disablePadding component="div">
+        <Collapse
+          unmountOnExit
+          in={open === null ? undefined : open}
+          timeout="auto"
+        >
+          <List
+            disablePadding
+            component="div"
+          >
             <Property
               childProps={childProps}
               label={ontola.menuItems}

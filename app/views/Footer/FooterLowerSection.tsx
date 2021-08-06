@@ -81,15 +81,24 @@ const FooterLowerSection: FC = () => {
         className={`${classNames.logo} ${classNames.gridItem}`}
         src={logo.value}
       />
-      <a className={`${classNames.lowerSectionMiddleLink} ${classNames.policy} ${classNames.gridItem}`} href={policy.value}>
+      <a
+        className={`${classNames.lowerSectionMiddleLink} ${classNames.policy} ${classNames.gridItem}`}
+        href={policy.value}
+      >
         <FormattedMessage {...footerMessages.policy} />
       </a>
-      <a className={`${classNames.lowerSectionMiddleLink} ${classNames.privacy} ${classNames.gridItem}`} href={privacy.value}>
+      <a
+        className={`${classNames.lowerSectionMiddleLink} ${classNames.privacy} ${classNames.gridItem}`}
+        href={privacy.value}
+      >
         <FormattedMessage {...footerMessages.privacy} />
       </a>
       <span className={`${classNames.socials} ${classNames.gridItem}`}>
         {socials?.map((social) => (
-          <Resource key={social.id} subject={social} />
+          <Resource
+            key={social.id}
+            subject={social}
+          />
         ))}
       </span>
     </div>

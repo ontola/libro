@@ -28,7 +28,10 @@ const ThingRadioGroup = ({
   }
 
   return (
-    <ResourceBoundary element="span" wrapperProps={wrapperProps}>
+    <ResourceBoundary
+      element="span"
+      wrapperProps={wrapperProps}
+    >
       <Property label={labels} />
     </ResourceBoundary>
   );

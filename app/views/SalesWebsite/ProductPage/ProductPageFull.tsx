@@ -88,7 +88,10 @@ const ProductPageFull: FC = () => {
         >
           {featureTitle?.value}
         </Typography>
-        <Grid container direction="row">
+        <Grid
+          container
+          direction="row"
+        >
           <Property label={sales.propositions} />
         </Grid>
       </BlueBlock>
@@ -100,7 +103,10 @@ const ProductPageFull: FC = () => {
       <Container size={Size.Large}>
         <Property label={sales.features} />
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="product-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="product-page-full-cta"
+      />
     </div>
   );
 };

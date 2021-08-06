@@ -190,8 +190,15 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
 
   return (
     <React.Fragment>
-      <Grid container className={classNames.grid} spacing={0}>
-        <Grid item className={classNames.sideBar}>
+      <Grid
+        container
+        className={classNames.grid}
+        spacing={0}
+      >
+        <Grid
+          item
+          className={classNames.sideBar}
+        >
           <SideBar>
             <div className={nameWrapperClass}>
               <NavLink to={retrievePath(subject as NamedNode)!}>
@@ -220,7 +227,10 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
                   className={classNames.downloadLink}
                   href={pdfURL.value}
                 >
-                  <FontAwesome className={classNames.downloadIcon} name="download" />
+                  <FontAwesome
+                    className={classNames.downloadIcon}
+                    name="download"
+                  />
                   <FormattedMessage {...academyMessages.pdfDownload} />
                 </a>
               </React.Fragment>
@@ -228,18 +238,28 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
 
           </SideBar>
         </Grid>
-        <Grid item className={classNames.articleWrapper}>
+        <Grid
+          item
+          className={classNames.articleWrapper}
+        >
           <article className={classNames.article}>
             <Resource subject={pageText} />
           </article>
         </Grid>
-        <Grid item className={classNames.buttonNav}>
+        <Grid
+          item
+          className={classNames.buttonNav}
+        >
           {prevChapter ? (
             <Button
               className={classNames.button}
               size="large"
               startIcon={(
-                <FontAwesome className={classNames.buttonNavIcon} name="arrow-circle-left" size="2x" />
+                <FontAwesome
+                  className={classNames.buttonNavIcon}
+                  name="arrow-circle-left"
+                  size="2x"
+                />
               )}
               onClick={onPrevClick}
             >
@@ -256,7 +276,10 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
             <Button
               className={classNames.button}
               endIcon={(
-                <FontAwesome className={classNames.buttonNavIcon} name="arrow-circle-right" />
+                <FontAwesome
+                  className={classNames.buttonNavIcon}
+                  name="arrow-circle-right"
+                />
               )}
               size="large"
               onClick={onNextClick}

@@ -26,7 +26,10 @@ const OfferPage: FC<OfferPageProps> = (props) => {
 
   return (
     <FullResource>
-      <Resource renderPartOf {...props} />
+      <Resource
+        renderPartOf
+        {...props}
+      />
     </FullResource>
   );
 };

@@ -42,7 +42,10 @@ const InviteFull: FC<InviteFullProps> = ({
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={schema.creator} />
@@ -62,9 +65,18 @@ const InviteFull: FC<InviteFullProps> = ({
             {' met je delen.'}
           </p>
           <Property label={dexes.offer}>
-            <Property label={dexes.prohibitions} renderWhenEmpty={false} />
-            <Property label={dexes.permissions} renderWhenEmpty={false} />
-            <Property label={dexes.obligations} renderWhenEmpty={false} />
+            <Property
+              label={dexes.prohibitions}
+              renderWhenEmpty={false}
+            />
+            <Property
+              label={dexes.permissions}
+              renderWhenEmpty={false}
+            />
+            <Property
+              label={dexes.obligations}
+              renderWhenEmpty={false}
+            />
           </Property>
         </CardContent>
         <ActionsBar>

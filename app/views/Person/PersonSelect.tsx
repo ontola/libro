@@ -65,7 +65,10 @@ const PersonSelect: FC<PersonSelectProps> = ({
 
   return (
     <ResourceBoundary wrapperProps={wrapperProps || defaultWrapperProps()}>
-      <InputAdornment disablePointerEvents position="start">
+      <InputAdornment
+        disablePointerEvents
+        position="start"
+      >
         <Property label={schema.image} />
       </InputAdornment>
       <Property label={labels} />

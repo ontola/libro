@@ -55,7 +55,10 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
 };
 
 export const CardAppendixContent: React.FC = ({ children }) => (
-  <CardRow backdrop borderTop>
+  <CardRow
+    backdrop
+    borderTop
+  >
     {children}
   </CardRow>
 );

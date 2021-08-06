@@ -61,7 +61,10 @@ const CardContent: React.FC<PropTypes> = ({
   });
 
   return (
-    <div className={classes} style={style}>
+    <div
+      className={classes}
+      style={style}
+    >
       {children}
     </div>
   );

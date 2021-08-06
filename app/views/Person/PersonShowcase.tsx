@@ -103,7 +103,11 @@ const PersonShowCase: FC = () => {
         {telephone && (
           <span className={classes.iconLink}>
             <PhoneIcon className={classes.icon} />
-            <a href={`tel:${telephone.value}`} rel="noreferrer" target="_blank">
+            <a
+              href={`tel:${telephone.value}`}
+              rel="noreferrer"
+              target="_blank"
+            >
               {telephone.value}
             </a>
           </span>
@@ -111,15 +115,27 @@ const PersonShowCase: FC = () => {
         {email && (
           <span className={classes.iconLink}>
             <EmailIcon className={classes.icon} />
-            <a href={`mailto:${email.value}`} rel="noreferrer" target="_blank">
+            <a
+              href={`mailto:${email.value}`}
+              rel="noreferrer"
+              target="_blank"
+            >
               {email.value}
             </a>
           </span>
         )}
         {linkedIn && (
           <span className={classes.iconLink}>
-            <FontAwesome className={classes.icon} name="linkedin" />
-            <a className={classes.linkedIn} href={linkedIn.value} rel="noreferrer" target="_blank">
+            <FontAwesome
+              className={classes.icon}
+              name="linkedin"
+            />
+            <a
+              className={classes.linkedIn}
+              href={linkedIn.value}
+              rel="noreferrer"
+              target="_blank"
+            >
               LinkedIn
             </a>
           </span>

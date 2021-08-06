@@ -19,7 +19,10 @@ import {
 import { defaultMenus } from '../common';
 
 const ThingPageHeader: FC = ({ subject }) => (
-  <div about={subject?.value} className="ThingPageHeader">
+  <div
+    about={subject?.value}
+    className="ThingPageHeader"
+  >
     <CardMain>
       <CardContent>
         <PageHeaderImageAndTextWrapper>

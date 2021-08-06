@@ -49,7 +49,10 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
       const { tabIndex, ...otherProps } = props;
 
       return (
-        <li ref={nestedRef} {...otherProps} />
+        <li
+          ref={nestedRef}
+          {...otherProps}
+        />
       );
     })
     : React.forwardRef<React.FC, Omit<NavLinkProps, 'target'>>((props, nestedRef) => (
@@ -82,6 +85,10 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
   );
 };
 
-export default React.forwardRef<any, PropsWithChildren<UrlMenuItemProps | SubjectMenuItemProps>>((props, ref) =>
-  <MenuItem innerRef={ref} {...props} />,
+export default React.forwardRef<any, PropsWithChildren<UrlMenuItemProps | SubjectMenuItemProps>>((props, ref) => (
+  <MenuItem
+    innerRef={ref}
+    {...props}
+  />
+),
 );

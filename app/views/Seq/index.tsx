@@ -56,7 +56,10 @@ export const Seq: FC<SeqProps> = ({
 
   const elements = React.useMemo(() => (
     primary.map((s, i) => (
-      <ItemWrapper key={s.toString()} {...itemWrapperOpts}>
+      <ItemWrapper
+        key={s.toString()}
+        {...itemWrapperOpts}
+      >
         <ErrorBoundary data-debug={s.toString()}>
           <Resource
             {...memoizedProps}

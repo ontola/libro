@@ -13,7 +13,10 @@ const DateTimePickerLoader = (props: InputComponentProps): JSX.Element => {
   if (!__CLIENT__) {
     return (
       <div className="Field__input Field__input--text">
-        <Input element="input" name={props.name} />
+        <Input
+          element="input"
+          name={props.name}
+        />
       </div>
     );
   }

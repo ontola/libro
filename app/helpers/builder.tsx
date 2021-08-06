@@ -152,7 +152,11 @@ export const property = (lrs?: LinkReduxLRSType) => (
   const propertyProps = getPropertyProps(lrs, label);
 
   return (
-    <Property key={normalizeType(propertyProps.label).join(',')} {...propertyProps} {...childProps}>
+    <Property
+      key={normalizeType(propertyProps.label).join(',')}
+      {...propertyProps}
+      {...childProps}
+    >
       {childrenNormalized}
     </Property>
   );
@@ -175,7 +179,12 @@ export const properties = (lrs?: LinkReduxLRSType) => (
 
   const childProps = getPropertyProps(lrs, p);
 
-  return <Property key={normalizeType(childProps.label).join(',') + i} {...childProps} />;
+  return (
+    <Property
+      key={normalizeType(childProps.label).join(',') + i}
+      {...childProps}
+    />
+  );
 }));
 
 export const resource = (_?: LinkReduxLRSType) => (props: Node | ResourcePropTypes, children: JSX.Element[]): React.ReactElement => React.createElement(

@@ -19,7 +19,10 @@ const Attatchments: FC<AttatchmentsProps> = ({
   linkedProp,
   children,
 }) => (
-  <Resource wrap subject={linkedProp}>
+  <Resource
+    wrap
+    subject={linkedProp}
+  >
     {children}
   </Resource>
 );

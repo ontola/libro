@@ -15,7 +15,12 @@ const ErrorResponse: FC = ({ subject }) => {
 
   return (
     <div>
-      {generalErrors.map((error) => <FieldHelper error={{ error: error.value }} key={error.value} />)}
+      {generalErrors.map((error) => (
+        <FieldHelper
+          error={{ error: error.value }}
+          key={error.value}
+        />
+      ))}
     </div>
   );
 };

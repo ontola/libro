@@ -41,7 +41,10 @@ const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) =
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
@@ -55,9 +58,15 @@ const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) =
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
-          <Property label={rivm.exampleOf} topology={inlineTopology} />
+          <Property
+            label={rivm.exampleOf}
+            topology={inlineTopology}
+          />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
-          <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
+          <Property
+            label={foaf.isPrimaryTopicOf}
+            onLoad={() => null}
+          />
           <AttributeList>
             <tr>
               <th>
@@ -73,19 +82,35 @@ const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) =
           </AttributeList>
         </CardContent>
         <CardRow>
-          <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={meeting.attachment} onLoad={() => null} />
+          <Property
+            label={argu.attachments}
+            onLoad={() => null}
+          />
+          <Property
+            label={meeting.attachment}
+            onLoad={() => null}
+          />
         </CardRow>
         <ActionsBar>
-          <Property label={ontola.favoriteAction} onLoad={() => null} />
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={() => null}
+          />
         </ActionsBar>
         <CardAppendix>
-          <Property forceRender label={app.omniform} />
+          <Property
+            forceRender
+            label={app.omniform}
+          />
         </CardAppendix>
       </CardMain>
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={rivm.interventions} />
+      <Property
+        forceRender
+        renderWhenEmpty
+        label={rivm.interventions}
+      />
       <Property label={ontola.createAction}>
         {(createActions: NamedNode[]) => {
           const newInterventionAction = createActions.find((a) => a.value.endsWith('/interventies/new'));
@@ -99,7 +124,11 @@ const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) =
       </Property>
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={schema.comment} />
+      <Property
+        forceRender
+        renderWhenEmpty
+        label={schema.comment}
+      />
     </Container>
   </React.Fragment>
 );

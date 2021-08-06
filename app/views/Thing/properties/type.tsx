@@ -25,7 +25,10 @@ const TypeDetail: FC<TypeDetailProps> = ({ type }) => {
   }
 
   return (
-    <Resource subject={best} onError={() => null} />
+    <Resource
+      subject={best}
+      onError={() => null}
+    />
   );
 };
 

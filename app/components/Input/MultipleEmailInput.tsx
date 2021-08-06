@@ -208,7 +208,12 @@ export const MultipleEmailInput = ({
         onChange={handleChange}
         onInputChange={handleTextFieldChange}
       />
-      {fieldShape?.required && <HiddenRequiredInput name={name} value={emails[0]} />}
+      {fieldShape?.required && (
+        <HiddenRequiredInput
+          name={name}
+          value={emails[0]}
+        />
+      )}
       {hasError ? renderErrorMessage() : null}
     </React.Fragment>
   );

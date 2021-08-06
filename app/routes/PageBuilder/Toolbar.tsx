@@ -112,7 +112,10 @@ const Toolbar: React.FC = () => {
   };
 
   return (
-    <Paper className={classes.toolbar} elevation={3}>
+    <Paper
+      className={classes.toolbar}
+      elevation={3}
+    >
       <IconButton
         color="primary"
         onClick={() => setShowEditor(!showEditor)}

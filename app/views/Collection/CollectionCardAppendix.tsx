@@ -25,7 +25,11 @@ const CollectionCardAppendix: FC<CollectionCardAppendixProps> = ({ totalItems })
 
   return (
     <ResourceBoundary>
-      <Property forceRender insideCollection label={ontola.pages} />
+      <Property
+        forceRender
+        insideCollection
+        label={ontola.pages}
+      />
     </ResourceBoundary>
   );
 };

@@ -55,7 +55,10 @@ const MenuItemFooterLabel = ({
       label={ontola.href}
     >
       <Property label={schema.image} />
-      <Property label={schema.name} nested={nested} />
+      <Property
+        label={schema.name}
+        nested={nested}
+      />
     </Property>
   );
 };
@@ -71,8 +74,16 @@ const MenuItemFooter: FC<MenuItemFooterProps> = (props) => {
   return (
     <div className={classNames.item}>
       <ResourceBoundary>
-        <MenuItemFooterLabel {...props} id={id} />
-        {menuItems && <Resource childProps={{ nested: true }} subject={menuItems} />}
+        <MenuItemFooterLabel
+          {...props}
+          id={id}
+        />
+        {menuItems && (
+          <Resource
+            childProps={{ nested: true }}
+            subject={menuItems}
+          />
+        )}
       </ResourceBoundary>
     </div>
   );

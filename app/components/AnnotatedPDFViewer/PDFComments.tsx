@@ -16,7 +16,10 @@ const PDFComments = ({
   return (
     <p>
       {filtered.map((commentProps) => (
-        <PDFComment key={commentProps.subject.value} {...commentProps} />
+        <PDFComment
+          key={commentProps.subject.value}
+          {...commentProps}
+        />
       ))}
     </p>
   );

@@ -37,7 +37,10 @@ const MeasureFull: FC<MeasureFullProps> = ({
     <Container>
       {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
@@ -51,8 +54,14 @@ const MeasureFull: FC<MeasureFullProps> = ({
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <AttributeList>
-            <AttributeListItem label={rivm.phases} propertyLabel="Fases" />
-            <AttributeListItem label={rivm.categories} propertyLabel="Categorieën" />
+            <AttributeListItem
+              label={rivm.phases}
+              propertyLabel="Fases"
+            />
+            <AttributeListItem
+              label={rivm.categories}
+              propertyLabel="Categorieën"
+            />
             <AttributeListItem label={rivm.secondOpinionBy} />
             <AttributeListItem label={rivm.measureOwner} />
             <AttributeListItem label={rivm.contactInfo} />
@@ -61,13 +70,22 @@ const MeasureFull: FC<MeasureFullProps> = ({
           </AttributeList>
         </CardContent>
         <CardRow>
-          <Property label={argu.attachments} onLoad={() => null} />
+          <Property
+            label={argu.attachments}
+            onLoad={() => null}
+          />
         </CardRow>
         <ActionsBar>
-          <Property label={ontola.favoriteAction} onLoad={() => null} />
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={() => null}
+          />
         </ActionsBar>
         <CardAppendix>
-          <Property forceRender label={app.omniform} />
+          <Property
+            forceRender
+            label={app.omniform}
+          />
         </CardAppendix>
       </CardMain>
     </Container>

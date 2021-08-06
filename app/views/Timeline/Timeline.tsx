@@ -31,14 +31,24 @@ const Timeline = () => {
   return (
     <Card>
       <CardContent>
-        <Property label={schema.name} wrapper={React.Fragment} />
+        <Property
+          label={schema.name}
+          wrapper={React.Fragment}
+        />
         <TimelineBase>
-          <Property label={argu.legend} limit={Infinity} />
+          <Property
+            label={argu.legend}
+            limit={Infinity}
+          />
         </TimelineBase>
         <div className={classes.timelineWrapper}>
           <TimelineBase>
             {items.map((item, index) => (
-              <Resource key={item.value} lastItem={index === items.length - 1} subject={item} />
+              <Resource
+                key={item.value}
+                lastItem={index === items.length - 1}
+                subject={item}
+              />
             ))}
           </TimelineBase>
         </div>

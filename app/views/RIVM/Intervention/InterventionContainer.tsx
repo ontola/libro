@@ -28,7 +28,10 @@ interface InterventionContainerProps {
 }
 
 const InterventionContainer: FC<InterventionContainerProps> = ({ highlighted, subject }) => (
-  <Card about={subject?.value} shine={highlighted}>
+  <Card
+    about={subject?.value}
+    shine={highlighted}
+  >
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />

@@ -36,7 +36,11 @@ const ThingDetailsBar: FC<ThingDetailsBarProps> = ({
   const features = (featuresFromProps || []).concat([LinkFeature.Centered]);
 
   return (
-    <LDLink data-test="Thing-parent" features={features} theme={theme}>
+    <LDLink
+      data-test="Thing-parent"
+      features={features}
+      theme={theme}
+    >
       <Detail text={label} />
     </LDLink>
   );

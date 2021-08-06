@@ -44,7 +44,10 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
         value={inputValue}
         onChange={onChange}
       />
-      <Resource subject={shIn} onLoad={() => null}>
+      <Resource
+        subject={shIn}
+        onLoad={() => null}
+      >
         <CollectionCreateActionButton />
       </Resource>
     </React.Fragment>

@@ -43,7 +43,10 @@ const registerCoverPhoto = (prop, topology, linked = false) => {
 
     if (status.status === ACCEPTED || lrs.shouldLoadResource(linkedProp)) {
       return (
-        <Resource forceRender subject={linkedProp}>
+        <Resource
+          forceRender
+          subject={linkedProp}
+        >
           <LoadingCoverPhoto />
         </Resource>
       );

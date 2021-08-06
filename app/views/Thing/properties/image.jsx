@@ -46,7 +46,12 @@ const ThingImageProp = ({
   if (!linkedProp) {
     return null;
   } else if (lrs.api.statusMap[linkedProp.id]?.status === NOT_ACCEPTABLE) {
-    return <Image ariaLabel={ariaLabel} linkedProp={linkedProp} />;
+    return (
+      <Image
+        ariaLabel={ariaLabel}
+        linkedProp={linkedProp}
+      />
+    );
   } else if (linkedProp
     && Object.keys(linkedProp).length === 0
     && linkedProp.constructor === Object

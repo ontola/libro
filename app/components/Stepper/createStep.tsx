@@ -32,7 +32,10 @@ export const createStep = ({
   icon,
   onClick,
 }: StepProps): JSX.Element => (
-  <Step classes={stepOverrideClasses} key={key}>
+  <Step
+    classes={stepOverrideClasses}
+    key={key}
+  >
     <StepButton
       disableTouchRipple
       onClick={onClick}

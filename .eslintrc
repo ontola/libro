@@ -252,7 +252,7 @@
     "react/jsx-indent-props": ["error", 2],
     "react/jsx-max-props-per-line": ["error",
       {
-        "when": "multiline"
+        "when": "always"
       }
     ],
     "react/jsx-no-constructed-context-values": "error",

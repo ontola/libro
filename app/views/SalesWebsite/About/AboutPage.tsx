@@ -39,12 +39,18 @@ const AboutPage: FC = () => {
       <Property label={sales.header} />
       <div>
         {sectionMembers.map((section) => (
-          <div className={classes.section} key={section.value}>
+          <div
+            className={classes.section}
+            key={section.value}
+          >
             <Resource subject={section} />
           </div>
         ))}
       </div>
-      <Property label={sales.callToActionBlock} trackingId="about-page-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="about-page-cta"
+      />
     </React.Fragment>
   );
 };

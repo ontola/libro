@@ -53,7 +53,10 @@ const DropzoneInner = ({
 
     return children(
       <div className={classes.documentPreviewWrapper}>
-        <Image className={classes.documentPreviewImage} linkedProp={fileImage} />
+        <Image
+          className={classes.documentPreviewImage}
+          linkedProp={fileImage}
+        />
         <span className={classes.documentPreviewFileName}>
           {fileName}
         </span>
@@ -83,7 +86,10 @@ const DropzoneInner = ({
   if (preview) {
     return children(
       <div>
-        <img alt={fileName} src={preview} />
+        <img
+          alt={fileName}
+          src={preview}
+        />
       </div>,
     );
   }

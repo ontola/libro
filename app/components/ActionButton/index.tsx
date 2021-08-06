@@ -29,7 +29,12 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   const className = rdf.equals(topology, defaultTopology) ? 'card-list' : 'card-float';
 
   return (
-    <Button plain className={`Button--${className}`} href={href} onClick={onClick}>
+    <Button
+      plain
+      className={`Button--${className}`}
+      href={href}
+      onClick={onClick}
+    >
       {label}
     </Button>
   );

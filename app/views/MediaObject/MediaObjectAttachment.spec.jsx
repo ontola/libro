@@ -46,7 +46,10 @@ describe('MediaObject', () => {
     } = await render(
       ({ iri }) => (
         <Card>
-          <Resource forceRender subject={iri} />
+          <Resource
+            forceRender
+            subject={iri}
+          />
         </Card>
       ),
       { resources }

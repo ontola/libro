@@ -18,7 +18,12 @@ const EntryPointDetail = ({
 }: EntryPointDetailProps): JSX.Element => {
   const icon = image && image.value.startsWith('fa-') ? image.value.slice('fa-'.length) : image.value;
 
-  return <Detail icon={icon} text={name} />;
+  return (
+    <Detail
+      icon={icon}
+      text={name}
+    />
+  );
 };
 
 EntryPointDetail.type = schema.EntryPoint;

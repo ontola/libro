@@ -32,7 +32,10 @@ class ForumContainer extends React.PureComponent {
     const { subject, highlighted } = this.props;
 
     return (
-      <Card about={subject.value} shine={highlighted}>
+      <Card
+        about={subject.value}
+        shine={highlighted}
+      >
         <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
@@ -40,7 +43,10 @@ class ForumContainer extends React.PureComponent {
         </CardContent>
         <CardRow backdrop>
           <CardContent>
-            <Property direction="column" label={argu.discussions} />
+            <Property
+              direction="column"
+              label={argu.discussions}
+            />
           </CardContent>
         </CardRow>
       </Card>

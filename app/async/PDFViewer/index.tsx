@@ -110,7 +110,10 @@ const PDFViewer = ({
       <p>
         De PDF kan niet worden geladen.
       </p>
-      <a download href={url}>
+      <a
+        download
+        href={url}
+      >
         Download het bestand.
       </a>
       {/* If the PDF does not render, show the plaintext */}
@@ -135,7 +138,10 @@ const PDFViewer = ({
       keyMap={keyMap}
       ref={() => pdfWrapper}
     >
-      <div className="PDFViewer" id="PDFViewer">
+      <div
+        className="PDFViewer"
+        id="PDFViewer"
+      >
         <div className="PDFViewer__scroller">
           {/* This component catches focus on Opening and deals with keys */}
           <div

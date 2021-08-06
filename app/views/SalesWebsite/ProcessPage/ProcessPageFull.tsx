@@ -92,7 +92,11 @@ const ProcessPageFull: FC = () => {
     <div className={classes.wrapper}>
       <Property label={sales.header} />
       <Container>
-        <Grid item md={8} sm={12}>
+        <Grid
+          item
+          md={8}
+          sm={12}
+        >
           <Typography
             className={classes.title}
             variant="h2"
@@ -114,10 +118,19 @@ const ProcessPageFull: FC = () => {
           direction="row"
           justify="center"
         >
-          <Grid item md={8} sm={12}>
+          <Grid
+            item
+            md={8}
+            sm={12}
+          >
             <Property label={sales.stepper} />
           </Grid>
-          <Grid item className={classes.imageWrapper} md={4} sm={12}>
+          <Grid
+            item
+            className={classes.imageWrapper}
+            md={4}
+            sm={12}
+          >
             <Property
               className={classes.image}
               label={schema.image}
@@ -138,7 +151,10 @@ const ProcessPageFull: FC = () => {
           <Property label={argu.lowerSection} />
         </div>
       </Container>
-      <Property label={sales.callToActionBlock} trackingId="process-page-full-cta" />
+      <Property
+        label={sales.callToActionBlock}
+        trackingId="process-page-full-cta"
+      />
     </div>
   );
 };

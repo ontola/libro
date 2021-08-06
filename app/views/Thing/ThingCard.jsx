@@ -26,7 +26,10 @@ const ThingCard = () => (
       />
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
-      <Property label={meeting.attachment} limit={Infinity} />
+      <Property
+        label={meeting.attachment}
+        limit={Infinity}
+      />
     </CardContent>
   </CardRow>
 );

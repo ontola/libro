@@ -195,7 +195,10 @@ const CollectionProvider = ({
 
   return (
     <CollectionContext.Provider value={collectionOptions}>
-      <ResourceBoundary subject={currentCollection} wrapperProps={wrapperProps}>
+      <ResourceBoundary
+        subject={currentCollection}
+        wrapperProps={wrapperProps}
+      >
         <Resource subject={currentCollection}>
           {renderPartOf && <Property label={schema.isPartOf} />}
           <Property

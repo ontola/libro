@@ -36,7 +36,11 @@ const AttributeListItem: React.FC<AttributeListItemProps & any> = ({
           : <Resource subject={label} />}
       </th>
       <td>
-        <Property label={label} limit={Infinity} {...otherProps} />
+        <Property
+          label={label}
+          limit={Infinity}
+          {...otherProps}
+        />
       </td>
     </tr>
   );

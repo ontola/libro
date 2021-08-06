@@ -27,9 +27,15 @@ const ThingGrid: FC = () => (
       </CardContent>
     </LDLink>
     <DetailsBar borderBottom={false}>
-      <Property hideName label={schema.creator} />
+      <Property
+        hideName
+        label={schema.creator}
+      />
       <Property label={argu.pinnedAt} />
-      <Property short label={argu.expiresAt} />
+      <Property
+        short
+        label={argu.expiresAt}
+      />
       <Property label={argu.followsCount} />
       <Property label={argu.motionsCount} />
     </DetailsBar>

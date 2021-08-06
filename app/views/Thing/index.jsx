@@ -73,7 +73,10 @@ const ThingHoverBoxHidden = () => (
 );
 
 const ThingSection = ({ highlighted }) => (
-  <HoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
+  <HoverBox
+    hiddenChildren={<ThingHoverBoxHidden />}
+    shine={highlighted}
+  >
     <Property label={schema.name} />
   </HoverBox>
 );

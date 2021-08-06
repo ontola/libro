@@ -35,7 +35,10 @@ const FormSection: React.FC<PropTypes> = ({
 
   return (
     <FormContext.Provider value={sectionContext}>
-      <fieldset className="Field__section" property={path.value}>
+      <fieldset
+        className="Field__section"
+        property={path.value}
+      >
         {children}
       </fieldset>
     </FormContext.Provider>

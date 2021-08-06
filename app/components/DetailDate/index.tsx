@@ -117,7 +117,12 @@ const DetailDate: React.FC<PropTypes> = (props) => {
 
     if (isDateOrDateTime(mostImportant)) {
       if (relative) {
-        return <RelativeDate date={mostImportant} title={hoverText} />;
+        return (
+          <RelativeDate
+            date={mostImportant}
+            title={hoverText}
+          />
+        );
       }
 
       return (

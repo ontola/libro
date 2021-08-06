@@ -9,7 +9,10 @@ export interface MenuSectionLabelProps {
 }
 
 const MenuSectionLabel = ({ linkedProp, name }: MenuSectionLabelProps): JSX.Element => (
-  <div className="MenuSectionLabel" data-test="MenuSection-MenuSectionLabel">
+  <div
+    className="MenuSectionLabel"
+    data-test="MenuSection-MenuSectionLabel"
+  >
     <div className="MenuSectionLabel__bar" />
     <div className="MenuSectionLabel__text">
       {name || linkedProp.value}

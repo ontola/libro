@@ -30,7 +30,12 @@ const OrganizationPage: FC<OrganizationPageProps> = ({
   hideHeader,
 }) => {
   if (homepage) {
-    return <Resource subject={homepage} onError={HomepageError} />;
+    return (
+      <Resource
+        subject={homepage}
+        onError={HomepageError}
+      />
+    );
   }
 
   return (

@@ -46,7 +46,10 @@ const CollectionFrame = ({
   const body = React.useMemo(() => (
     <React.Fragment>
       {currentCollectionPages?.map((collectionPage) => (
-        <Suspense fallback={<LoadingCardFixed />} key={collectionPage.value}>
+        <Suspense
+          fallback={<LoadingCardFixed />}
+          key={collectionPage.value}
+        >
           <Resource subject={collectionPage}>
             <Property
               forceRender
@@ -64,11 +67,18 @@ const CollectionFrame = ({
     return (
       <Wrapper>
         <Property label={ontola.query} />
-        <Property forceRender hideHeader={hideHeader} label={ontola.header} />
+        <Property
+          forceRender
+          hideHeader={hideHeader}
+          label={ontola.header}
+        />
         <Grid container>
           {body}
         </Grid>
-        <Property forceRender label={app.pagination} />
+        <Property
+          forceRender
+          label={app.pagination}
+        />
       </Wrapper>
     );
   case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
@@ -76,7 +86,11 @@ const CollectionFrame = ({
     return (
       <Wrapper>
         <Property label={ontola.query} />
-        <Property forceRender hideHeader={hideHeader} label={ontola.header} />
+        <Property
+          forceRender
+          hideHeader={hideHeader}
+          label={ontola.header}
+        />
         <Card>
           <Table>
             <TableHead>
@@ -90,7 +104,10 @@ const CollectionFrame = ({
             <TableFooter>
               <TableFooterRow>
                 <TableFooterCell colSpan={columns?.length}>
-                  <Property forceRender label={app.pagination} />
+                  <Property
+                    forceRender
+                    label={app.pagination}
+                  />
                 </TableFooterCell>
               </TableFooterRow>
             </TableFooter>
@@ -102,11 +119,18 @@ const CollectionFrame = ({
     return (
       <Wrapper>
         <Property label={ontola.query} />
-        <Property forceRender hideHeader={hideHeader} label={ontola.header} />
+        <Property
+          forceRender
+          hideHeader={hideHeader}
+          label={ontola.header}
+        />
         <Card>
           {body}
           <CardAppendix>
-            <Property forceRender label={app.pagination} />
+            <Property
+              forceRender
+              label={app.pagination}
+            />
           </CardAppendix>
         </Card>
       </Wrapper>
@@ -115,10 +139,17 @@ const CollectionFrame = ({
     return (
       <Wrapper>
         <Property label={ontola.query} />
-        <Property forceRender hideHeader={hideHeader} label={ontola.header} />
+        <Property
+          forceRender
+          hideHeader={hideHeader}
+          label={ontola.header}
+        />
         {body}
         <div className={styles.paginationWrapper}>
-          <Property forceRender label={app.pagination} />
+          <Property
+            forceRender
+            label={app.pagination}
+          />
         </div>
       </Wrapper>
     );

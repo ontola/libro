@@ -23,7 +23,10 @@ import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
 
 const ImageObject = ({ ariaLabel }) => (
-  <Property ariaLabel={ariaLabel} label={[schema.thumbnail, ontola.imgUrl64x64]} />
+  <Property
+    ariaLabel={ariaLabel}
+    label={[schema.thumbnail, ontola.imgUrl64x64]}
+  />
 );
 
 ImageObject.type = [

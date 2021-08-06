@@ -14,7 +14,10 @@ const propTypes = {
 
 const Email = ({ linkedProp }) => (
   <div className="Volunteer--contact-option">
-    <a href={`mailto:${linkedProp.value}`} target="_top">
+    <a
+      href={`mailto:${linkedProp.value}`}
+      target="_top"
+    >
       {emoji(`📩 ${linkedProp.value}`)}
     </a>
   </div>

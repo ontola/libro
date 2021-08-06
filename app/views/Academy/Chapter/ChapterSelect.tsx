@@ -37,7 +37,10 @@ const ChapterSelect: FC<ChapterSelectProps> = ({ text, input }) => {
         <Property label={schema.title} />
       </span>
       {text && input && (
-        <SearchText input={input} text={text} />
+        <SearchText
+          input={input}
+          text={text}
+        />
       )}
     </div>
   );

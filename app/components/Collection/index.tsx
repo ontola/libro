@@ -62,7 +62,12 @@ const Collection: React.FC<CollectionComponentProps> = ({
   }
 
   if (__CLIENT__ && !entityIsLoaded(lrs, baseCollection)) {
-    return <Resource subject={baseCollection} onLoad={onLoad} />;
+    return (
+      <Resource
+        subject={baseCollection}
+        onLoad={onLoad}
+      />
+    );
   }
 
   if (!collection) {
@@ -70,7 +75,10 @@ const Collection: React.FC<CollectionComponentProps> = ({
   }
 
   return (
-    <Resource subject={collection} {...otherProps} />
+    <Resource
+      subject={collection}
+      {...otherProps}
+    />
   );
 };
 

@@ -13,7 +13,10 @@ const ActivityDetailsBar = () => (
     right={(
       <React.Fragment>
         <Property label={schema.dateCreated} />
-        <Property label={as.object} onLoad={SuspendedLoader}>
+        <Property
+          label={as.object}
+          onLoad={SuspendedLoader}
+        >
           {defaultMenus}
         </Property>
       </React.Fragment>

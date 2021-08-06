@@ -136,7 +136,10 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
     if (this.state.hasError) {
       return (
         <div>
-          <Heading size={HeadingSize.LG} variant={HeadingVariant.Alert}>
+          <Heading
+            size={HeadingSize.LG}
+            variant={HeadingVariant.Alert}
+          >
             <FontAwesome name="exclamation-triangle" />
             {' '}
             <FormattedMessage

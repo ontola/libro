@@ -92,9 +92,16 @@ const SideBarChapter: FC<SideBarChapterProps> = ({
 
   return (
     <div>
-      <a className={titleClasses} href={subject.value} onClick={handleClick}>
+      <a
+        className={titleClasses}
+        href={subject.value}
+        onClick={handleClick}
+      >
         {icon && (
-          <FontAwesome className={classNames.icon} name={icon.value} />
+          <FontAwesome
+            className={classNames.icon}
+            name={icon.value}
+          />
         )}
         <span>
           {title.value}

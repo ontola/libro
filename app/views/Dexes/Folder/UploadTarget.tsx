@@ -91,9 +91,17 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
           {...getRootProps()}
         >
           <Spinner loading={uploading} />
-          {isDragActive && <DropzoneOverlay isDragActive overlay />}
+          {isDragActive && (
+            <DropzoneOverlay
+              isDragActive
+              overlay
+            />
+          )}
           {children}
-          <input {...getInputProps()} type="hidden" />
+          <input
+            {...getInputProps()}
+            type="hidden"
+          />
         </div>
       )}
     </Dropzone>

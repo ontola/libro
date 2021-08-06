@@ -24,7 +24,10 @@ const ForumTabPane = ({ name }) => (
         <Property label={schema.text} />
       </Container>
     </GridItem>
-    <Grid container spacing={6}>
+    <Grid
+      container
+      spacing={6}
+    >
       <Property label={ontola.widgets} />
     </Grid>
   </Container>

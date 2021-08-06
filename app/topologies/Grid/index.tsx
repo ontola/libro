@@ -25,7 +25,11 @@ class Grid extends TopologyProvider<GridProps> {
 
     return this.wrap((
       <Suspense fallback={<LoadingFullResource />}>
-        <MaterialGrid container spacing={6} {...otherProps}>
+        <MaterialGrid
+          container
+          spacing={6}
+          {...otherProps}
+        >
           {children}
         </MaterialGrid>
       </Suspense>

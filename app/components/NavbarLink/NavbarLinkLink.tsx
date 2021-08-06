@@ -57,8 +57,14 @@ const NavbarLinkLink = ({
   const hideLabel = image || (icon && !matches);
 
   const iconCom = typeof icon !== 'string' ? icon : (
-    <Icon color="inherit" fontSize="small">
-      <FontAwesome name={icon} spin={spin} />
+    <Icon
+      color="inherit"
+      fontSize="small"
+    >
+      <FontAwesome
+        name={icon}
+        spin={spin}
+      />
     </Icon>
   );
 

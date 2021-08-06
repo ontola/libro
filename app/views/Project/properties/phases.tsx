@@ -141,17 +141,26 @@ const Phases: FC<PhasesProps> = ({
   return (
     <div className={classes.phaseStepperContainer}>
       <div className={classes.phaseBar}>
-        <Typography classes={{ root: classes.root }} color="primary">
+        <Typography
+          classes={{ root: classes.root }}
+          color="primary"
+        >
           {intl.formatMessage(phaseMessages.phaseStepperHeader, { number: activeStep + 1 })}
           <Resource subject={items[activeStep]}>
             <Property label={schema.name} />
           </Resource>
         </Typography>
         <span>
-          <IconButton disabled={activeStep === 0} onClick={handleNavButtonClick(-1)}>
+          <IconButton
+            disabled={activeStep === 0}
+            onClick={handleNavButtonClick(-1)}
+          >
             <FontAwesome name="chevron-left" />
           </IconButton>
-          <IconButton disabled={activeStep === items.length - 1} onClick={handleNavButtonClick(1)}>
+          <IconButton
+            disabled={activeStep === items.length - 1}
+            onClick={handleNavButtonClick(1)}
+          >
             <FontAwesome name="chevron-right" />
           </IconButton>
         </span>

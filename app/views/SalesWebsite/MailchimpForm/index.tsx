@@ -76,7 +76,10 @@ const MailchimpForm: FC = () => {
   const hiddenFieldName = composeHiddenFieldName(action.value);
 
   return (
-    <div className={classes.wrapper} id="mc_embed_signup">
+    <div
+      className={classes.wrapper}
+      id="mc_embed_signup"
+    >
       <form
         noValidate
         action={action.value}
@@ -87,7 +90,10 @@ const MailchimpForm: FC = () => {
         target="_blank"
       >
         <label htmlFor="mce-EMAIL">
-          <Typography className={classes.heading} variant="h3">
+          <Typography
+            className={classes.heading}
+            variant="h3"
+          >
             {name.value}
           </Typography>
         </label>
@@ -106,7 +112,10 @@ const MailchimpForm: FC = () => {
             type="email"
             variant="outlined"
           />
-          <div aria-hidden="true" className={classes.hiddenInput}>
+          <div
+            aria-hidden="true"
+            className={classes.hiddenInput}
+          >
             <input
               name={hiddenFieldName}
               tabIndex={-1}

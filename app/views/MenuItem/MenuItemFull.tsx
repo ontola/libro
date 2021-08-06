@@ -31,7 +31,10 @@ const MenuItemFull: FC<MenuItemFullProps> = ({
   }
 
   return (
-    <TabbarProvider redirect menu={subject}>
+    <TabbarProvider
+      redirect
+      menu={subject}
+    >
       <Container>
         <CardMain>
           {isPartOf
@@ -41,10 +44,16 @@ const MenuItemFull: FC<MenuItemFullProps> = ({
                 <Property label={schema.name} />
               </CardContent>
             )}
-          <Property forceRender label={app.menuTabs} />
+          <Property
+            forceRender
+            label={app.menuTabs}
+          />
         </CardMain>
       </Container>
-      <Property forceRender label={app.currentTab} />
+      <Property
+        forceRender
+        label={app.currentTab}
+      />
     </TabbarProvider>
   );
 };

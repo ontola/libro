@@ -15,7 +15,10 @@ const ConfirmationFull = () => (
   <Container>
     <Card>
       <Property label={ontola.updateAction}>
-        <Property autoSubmit label={schema.target} />
+        <Property
+          autoSubmit
+          label={schema.target}
+        />
       </Property>
     </Card>
   </Container>

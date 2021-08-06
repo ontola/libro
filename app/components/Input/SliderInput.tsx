@@ -76,7 +76,10 @@ const SliderInput: React.FC<InputComponentProps> = ({
         valueLabelDisplay="auto"
         onChange={handleChange}
       />
-      <HiddenRequiredInput name={name} value={inputValue?.value} />
+      <HiddenRequiredInput
+        name={name}
+        value={inputValue?.value}
+      />
     </React.Fragment>
   );
 };

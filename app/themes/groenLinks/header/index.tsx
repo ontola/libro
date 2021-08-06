@@ -37,7 +37,10 @@ const GroenLinksHeader = (): JSX.Element => {
           className={matches ? classes.logo : classes.logoSmall}
           to="/"
         >
-          <img alt="" src={matches ? logo : logoSmall} />
+          <img
+            alt=""
+            src={matches ? logo : logoSmall}
+          />
         </Link>
       </NavBarContent>
     </Navbar>
