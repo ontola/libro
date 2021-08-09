@@ -6150,7 +6150,6 @@ __metadata:
     redux-actions: ^2.6.5
     redux-batched-actions: ^0.4.1
     redux-thunk: ^2.3.0
-    remove-markdown: ^0.3.0
     request: ^2.88.0
     reselect: ^3.0.1
     resolve-url-loader: ^3.1.1
@@ -19446,13 +19445,6 @@ fsevents@~2.3.1:
   bin:
     remarkable: ./bin/remarkable.js
   checksum: 7ffa0e624db369ab30383b840433c1207f84ebcbcb96bbc30a45eef827999fd547b63de94bf594c7fc80904a9364f7156676946accc3f96d38672587c3c84269
-  languageName: node
-  linkType: hard
-
-"remove-markdown@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "remove-markdown@npm:0.3.0"
-  checksum: 225e0c83a06bccb8741ae28162a652b49abdf3b8ee0524fbbc44e3fc323cd61864e674afc430081c835971bfb3e54bd84553381088f5448c0368398b1a86abe7
   languageName: node
   linkType: hard
 

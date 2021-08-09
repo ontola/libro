@@ -252,7 +252,6 @@
     "redux-actions": "^2.6.5",
     "redux-batched-actions": "^0.4.1",
     "redux-thunk": "^2.3.0",
-    "remove-markdown": "^0.3.0",
     "reselect": "^3.0.1",
     "retire": "^2.0.2",
     "sass": "^1.32.8",
