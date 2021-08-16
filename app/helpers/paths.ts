@@ -7,7 +7,7 @@ import appSlashless from '../ontology/appSlashless';
 
 import { WebsiteCtx } from './app';
 
-export function currentLocation(
+export function CurrentLocationControl(
   location: Location<any>,
   fragment = true,
   basePath = frontendPathname,

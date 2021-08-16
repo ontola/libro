@@ -33,6 +33,8 @@ import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
 
+import CurrentLocationControl from './CurrentLocationControl';
+
 export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;
 const CLUSTER_PADDING = 0.5;
@@ -82,6 +84,10 @@ const updateFeatures = (layerSources: Array<VectorSource | Cluster> | undefined,
   }
 };
 
+const controls = defaultControls({
+  rotate: false,
+}).extend([new CurrentLocationControl( 'Show Current Location' )]);
+
 const createMap = ({
   accessToken,
   layerSources,
@@ -109,9 +115,7 @@ const createMap = ({
   ];
 
   const map = new OLMap({
-    controls: defaultControls({
-      rotate: false,
-    }),
+    controls,
     layers,
     target: current,
     view: new View({

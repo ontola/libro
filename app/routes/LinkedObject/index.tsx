@@ -5,7 +5,7 @@ import React from 'react';
 
 import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
-import { currentLocation } from '../../helpers/paths';
+import { CurrentLocationControl } from '../../helpers/paths';
 import { WithWebsiteCtx, withWebsiteCtx } from '../../location';
 import { Page } from '../../topologies/Page';
 
@@ -87,8 +87,8 @@ class LinkedObject extends React.Component<LinkedObjectProps, LinkedObjectState>
         }
       }
 
-      invalidateIRI = currentLocation(routedLocation, true, websitePathname, websiteCtx);
-      resourceIRI = currentLocation(routedLocation, false, websitePathname, websiteCtx);
+      invalidateIRI = CurrentLocationControl(routedLocation, true, websitePathname, websiteCtx);
+      resourceIRI = CurrentLocationControl(routedLocation, false, websitePathname, websiteCtx);
     }
 
     return (

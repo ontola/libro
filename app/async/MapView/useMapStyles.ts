@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles((theme: any) => ({
+import { LibroTheme } from '../../themes/themes';
+
+export default makeStyles<LibroTheme>((theme) => ({
   canvas: {
     '& .ol-compass': {
       display: 'inline-block',
@@ -25,7 +27,7 @@ export default makeStyles((theme: any) => ({
         'marginRight': '0.1em',
         'width': '3em',
       },
-      '&.ol-full-screen': {
+      '&.current-location': {
         left: 'auto',
         right: 2,
       },

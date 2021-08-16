@@ -1,13 +1,13 @@
 import { createNS } from '@ontologies/core';
 import { Location } from 'history';
 
-import path, { currentLocation } from '../paths';
+import path, { CurrentLocationControl } from '../paths';
 
-function getCurrentLocation(websiteIRI: string, pathname = '', search = '', hash = '') {
+function getCurrentLocationControl(websiteIRI: string, pathname = '', search = '', hash = '') {
   const basePath = new URL(websiteIRI).pathname;
   const ns = { appSlashless: { ns: createNS(websiteIRI) } };
 
-  return currentLocation(
+  return CurrentLocationControl(
     {
       hash,
       pathname,
@@ -21,17 +21,17 @@ function getCurrentLocation(websiteIRI: string, pathname = '', search = '', hash
 
 describe('helpers', () => {
   describe('paths', () => {
-    describe('currentLocation', () => {
+    describe('CurrentLocationControl', () => {
       describe('root site', () => {
         const websiteIRI = 'https://demogemeente.nl';
 
         it('handles root resource', () => {
-          expect(getCurrentLocation(websiteIRI))
+          expect(getCurrentLocationControl(websiteIRI))
             .toEqual('https://demogemeente.nl');
         });
 
         it('handles child resource', () => {
-          expect(getCurrentLocation(websiteIRI, '/resource/5'))
+          expect(getCurrentLocationControl(websiteIRI, '/resource/5'))
             .toEqual('https://demogemeente.nl/resource/5');
         });
       });
@@ -40,17 +40,17 @@ describe('helpers', () => {
         const websiteIRI = 'https://app.argu.co/utrecht';
 
         it('handles root resource', () => {
-          expect(getCurrentLocation(websiteIRI))
+          expect(getCurrentLocationControl(websiteIRI))
             .toEqual('https://app.argu.co/utrecht');
         });
 
         it('handles child resource', () => {
-          expect(getCurrentLocation(websiteIRI, '/resource/5'))
+          expect(getCurrentLocationControl(websiteIRI, '/resource/5'))
             .toEqual('https://app.argu.co/utrecht/resource/5');
         });
 
         it('handles child resource with search', () => {
-          expect(getCurrentLocation(websiteIRI, '/n', '?type=infinite'))
+          expect(getCurrentLocationControl(websiteIRI, '/n', '?type=infinite'))
             .toEqual('https://app.argu.co/utrecht/n?type=infinite');
         });
       });
