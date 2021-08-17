@@ -114,7 +114,7 @@ const createMap = ({
     )),
   ];
 
-  const map = new OLMap({
+  return new OLMap({
     controls,
     layers,
     target: current,
@@ -123,8 +123,6 @@ const createMap = ({
       zoom: zoom || DEFAULT_ZOOM,
     }),
   });
-
-  return map;
 };
 
 export interface UseMapProps {
