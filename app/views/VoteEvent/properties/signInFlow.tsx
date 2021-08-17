@@ -14,7 +14,7 @@ import { useLocation } from 'react-router';
 
 import CardContent from '../../../components/Card/CardContent';
 import CloseableContainer from '../../../containers/CloseableContainer';
-import path, { CurrentLocationControl } from '../../../helpers/paths';
+import path, { currentLocationControl } from '../../../helpers/paths';
 import { useCurrentActor } from '../../../hooks/useCurrentActor';
 import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
@@ -70,7 +70,7 @@ const SignInFlow: FC<SignInFlowProps> = ({
             id="https://app.argu.co/i18n/voteFlow/confirmMessage"
           />
         )}
-        subject={rdf.namedNode(path.signIn(CurrentLocationControl(location).value))}
+        subject={rdf.namedNode(path.signIn(currentLocationControl(location).value))}
       />
     </CardRow>
   );

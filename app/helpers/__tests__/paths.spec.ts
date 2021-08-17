@@ -1,13 +1,13 @@
 import { createNS } from '@ontologies/core';
 import { Location } from 'history';
 
-import path, { CurrentLocationControl } from '../paths';
+import path, { currentLocationControl } from '../paths';
 
 function getCurrentLocationControl(websiteIRI: string, pathname = '', search = '', hash = '') {
   const basePath = new URL(websiteIRI).pathname;
   const ns = { appSlashless: { ns: createNS(websiteIRI) } };
 
-  return CurrentLocationControl(
+  return currentLocationControl(
     {
       hash,
       pathname,

@@ -2,7 +2,7 @@ import Tabs from '@material-ui/core/Tabs';
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 
-import { CurrentLocationControl } from '../../helpers/paths';
+import { currentLocationControl } from '../../helpers/paths';
 import argu from '../../ontology/argu';
 import TopologyProvider from '../Topology';
 
@@ -35,7 +35,7 @@ class TabBar extends TopologyProvider<Props> {
       <Tabs
         resource={subject?.value}
         scrollButtons="on"
-        value={value || CurrentLocationControl(location).value}
+        value={value || currentLocationControl(location).value}
         variant="scrollable"
       >
         {children}

@@ -7,7 +7,7 @@ import React, {
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 
-import path, { CurrentLocationControl } from '../../helpers/paths';
+import path, { currentLocationControl } from '../../helpers/paths';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import Link from '../Link';
 
@@ -24,7 +24,7 @@ const SignInFormLink: React.FC<SignInFormLinkProps> = ({
   const lrs = useLRS();
   const location = useLocation();
   const { actorType } = useCurrentActor();
-  const redirectURL = CurrentLocationControl(location).value;
+  const redirectURL = currentLocationControl(location).value;
 
   if (actorType?.value !== 'GuestUser') {
     return null;
