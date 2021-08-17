@@ -100,11 +100,20 @@ class CurrentLocationControl extends Control {
   }
 
   protected setLoadingIcon(): void {
-    ReactDOM.render(<CircularProgress />, this.button);
+    ReactDOM.render(
+      <CircularProgress
+        style={{ verticalAlign: 'middle' }}
+      />,
+      this.button);
   }
 
   protected setNormalIcon(): void {
-    ReactDOM.render(<MyLocationIcon fontSize="small" />, this.button);
+    ReactDOM.render(
+      <MyLocationIcon
+        fontSize="small"
+        style={{ verticalAlign: 'middle' }}
+      />,
+      this.button);
   }
 
   protected handleClick(event: MouseEvent): void {
