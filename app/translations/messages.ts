@@ -421,6 +421,13 @@ export const personMessages: Messages = defineMessages({
   },
 });
 
+export const mapMessages: Messages = defineMessages({
+  currentLocationTooltip: {
+    defaultMessage: 'Move to current location',
+    id: 'https://app.argu.co/i18n/map/currentLocationTooltip',
+  },
+});
+
 export const pdfMessages: Messages = defineMessages({
   commentClickToAdd: {
     defaultMessage: 'Click where you want to add your comment',

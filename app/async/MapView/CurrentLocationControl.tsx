@@ -28,8 +28,9 @@ class CurrentLocationControl extends Control {
 
     const button = document.createElement('button');
     button.setAttribute('type', 'button');
+    button.title = tipLabel;
     this.button = button;
-    this.setNormalIcon(tipLabel);
+    this.setNormalIcon();
     button.addEventListener(
       EventType.CLICK,
       this.handleClick.bind(this),
@@ -99,12 +100,10 @@ class CurrentLocationControl extends Control {
   }
 
   protected setLoadingIcon(): void {
-    this.button.title = 'Loading location...';
     ReactDOM.render(<CircularProgress />, this.button);
   }
 
-  protected setNormalIcon(tipLabel?: string): void {
-    this.button.title = tipLabel || 'Show current location';
+  protected setNormalIcon(): void {
     ReactDOM.render(<MyLocationIcon fontSize="small" />, this.button);
   }
 

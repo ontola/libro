@@ -28,10 +28,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useIntl } from 'react-intl';
 
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
+import { mapMessages } from '../../translations/messages';
 
 import CurrentLocationControl from './CurrentLocationControl';
 
@@ -55,6 +57,7 @@ export interface ViewProps {
 
 interface CreateMapProps {
   accessToken?: string;
+  currentLocationTooltip: string;
   layerSources?: Array<VectorSource | Cluster>;
   mapRef: MutableRefObject<HTMLDivElement | null>;
   tileSource?: TileSource;
@@ -84,12 +87,9 @@ const updateFeatures = (layerSources: Array<VectorSource | Cluster> | undefined,
   }
 };
 
-const controls = defaultControls({
-  rotate: false,
-}).extend([new CurrentLocationControl( 'Show Current Location' )]);
-
 const createMap = ({
   accessToken,
+  currentLocationTooltip,
   layerSources,
   mapRef,
   tileSource,
@@ -113,6 +113,10 @@ const createMap = ({
       })
     )),
   ];
+
+  const controls = defaultControls({
+    rotate: false,
+  }).extend([new CurrentLocationControl(currentLocationTooltip)]);
 
   return new OLMap({
     controls,
@@ -154,6 +158,7 @@ const useMap = (props: UseMapProps): {
     onZoom,
     view,
   } = props;
+  const intl = useIntl();
   const [mapToken, requestMapToken] = useMapAccessToken();
   const mapboxTileURL = useMemo(
     () => getMetaContent('mapboxTileURL'),
@@ -271,6 +276,7 @@ const useMap = (props: UseMapProps): {
     const map = createMap({
       ...props,
       accessToken: mapToken.accessToken,
+      currentLocationTooltip: intl.formatMessage(mapMessages.currentLocationTooltip),
       layerSources,
       mapRef,
       tileSource,
