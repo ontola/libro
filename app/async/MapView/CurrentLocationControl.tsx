@@ -12,12 +12,10 @@ import ReactDOM from 'react-dom';
 
 class CurrentLocationControl extends Control {
     private static geolocation?: Geolocation;
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    private static defaultZoom = 13;
-    private readonly positionLayer:  VectorLayer;
+    private readonly positionLayer: VectorLayer;
     private readonly button: HTMLButtonElement;
 
-    constructor( tipLabel : string) {
+    constructor(tipLabel: string) {
       super({
         element: document.createElement('div'),
       });
@@ -45,7 +43,7 @@ class CurrentLocationControl extends Control {
       this.panToCurrentLocation = this.panToCurrentLocation.bind(this);
     }
 
-    public start() {
+    public start(): void {
       const map = this.getMap();
 
       this.setLoadingIcon();
@@ -73,7 +71,7 @@ class CurrentLocationControl extends Control {
       }
     }
 
-    public stop() {
+    public stop(): void {
       this.getMap()?.removeLayer(this.positionLayer!);
 
       if (CurrentLocationControl.geolocation) {
@@ -85,31 +83,32 @@ class CurrentLocationControl extends Control {
       }
     }
 
-    public panToCurrentLocation() {
+    public panToCurrentLocation(): void {
       const coordinate = CurrentLocationControl.geolocation?.getPosition();
+      const defaultZoom = 13;
 
       if (coordinate) {
         const view = this.getMap()?.getView();
-        const zoom = view?.getZoom() || CurrentLocationControl.defaultZoom;
+        const zoom = view?.getZoom() || defaultZoom;
         view?.animate({
           center: coordinate,
           duration: 300,
-          zoom: Math.max(zoom, CurrentLocationControl.defaultZoom),
+          zoom: Math.max(zoom, defaultZoom),
         });
       }
     }
 
-    protected setLoadingIcon() {
+    protected setLoadingIcon(): void {
       this.button.title = 'Loading location...';
-      ReactDOM.render(<CircularProgress fontSize="small" />, this.button);
+      ReactDOM.render(<CircularProgress />, this.button);
     }
 
-    protected setNormalIcon(tipLabel?: string) {
+    protected setNormalIcon(tipLabel?: string): void {
       this.button.title = tipLabel || 'Show current location';
       ReactDOM.render(<MyLocationIcon fontSize="small" />, this.button);
     }
 
-    protected handleClick(event: MouseEvent) {
+    protected handleClick(event: MouseEvent): void {
       event.preventDefault();
 
       if (CurrentLocationControl.geolocation) {
