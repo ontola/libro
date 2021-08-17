@@ -11,112 +11,112 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class CurrentLocationControl extends Control {
-    private static geolocation?: Geolocation;
-    private readonly positionLayer: VectorLayer;
-    private readonly button: HTMLButtonElement;
+  private static geolocation?: Geolocation;
+  private readonly positionLayer: VectorLayer;
+  private readonly button: HTMLButtonElement;
 
-    constructor(tipLabel: string) {
-      super({
-        element: document.createElement('div'),
+  constructor(tipLabel: string) {
+    super({
+      element: document.createElement('div'),
+    });
+
+    this.positionLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [],
+      }),
+    });
+
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    this.button = button;
+    this.setNormalIcon(tipLabel);
+    button.addEventListener(
+      EventType.CLICK,
+      this.handleClick.bind(this),
+      false,
+    );
+
+    this.element.className = clsx('current-location', CLASS_UNSELECTABLE, CLASS_CONTROL);
+    this.element.appendChild(button);
+
+    this.getMap = this.getMap.bind(this);
+    this.panToCurrentLocation = this.panToCurrentLocation.bind(this);
+  }
+
+  public start(): void {
+    const map = this.getMap();
+
+    this.setLoadingIcon();
+
+    if (!map) {
+      return;
+    }
+
+    map.addLayer(this.positionLayer);
+
+    if (!CurrentLocationControl.geolocation) {
+      CurrentLocationControl.geolocation = new Geolocation({
+        projection: map.getView().getProjection(),
+        trackingOptions: {
+          enableHighAccuracy: true,
+        },
       });
-
-      this.positionLayer = new VectorLayer({
-        source: new VectorSource({
-          features: [],
-        }),
+      CurrentLocationControl.geolocation.setTracking(true);
+      CurrentLocationControl.geolocation.once('change', () => {
+        this.setNormalIcon();
+        this.panToCurrentLocation();
       });
-
-      const button = document.createElement('button');
-      button.setAttribute('type', 'button');
-      this.button = button;
-      this.setNormalIcon(tipLabel);
-      button.addEventListener(
-        EventType.CLICK,
-        this.handleClick.bind(this),
-        false,
-      );
-
-      this.element.className = clsx('current-location', CLASS_UNSELECTABLE, CLASS_CONTROL);
-      this.element.appendChild(button);
-
-      this.getMap = this.getMap.bind(this);
-      this.panToCurrentLocation = this.panToCurrentLocation.bind(this);
+    } else {
+      this.panToCurrentLocation();
     }
+  }
 
-    public start(): void {
-      const map = this.getMap();
+  public stop(): void {
+    this.getMap()?.removeLayer(this.positionLayer!);
 
-      this.setLoadingIcon();
+    if (CurrentLocationControl.geolocation) {
 
-      if (!map) {
-        return;
-      }
-
-      map.addLayer(this.positionLayer);
-
-      if (!CurrentLocationControl.geolocation) {
-        CurrentLocationControl.geolocation = new Geolocation({
-          projection: map.getView().getProjection(),
-          trackingOptions: {
-            enableHighAccuracy: true,
-          },
-        });
-        CurrentLocationControl.geolocation.setTracking(true);
-        CurrentLocationControl.geolocation.once('change', () => {
-          this.setNormalIcon();
-          this.panToCurrentLocation();
-        });
-      } else {
-        this.panToCurrentLocation();
+      if (!CurrentLocationControl.geolocation.getListeners('change:position')?.length) {
+        CurrentLocationControl.geolocation.setTracking(false);
+        CurrentLocationControl.geolocation = undefined;
       }
     }
+  }
 
-    public stop(): void {
-      this.getMap()?.removeLayer(this.positionLayer!);
+  public panToCurrentLocation(): void {
+    const coordinate = CurrentLocationControl.geolocation?.getPosition();
+    const defaultZoom = 13;
 
-      if (CurrentLocationControl.geolocation) {
-
-        if (!CurrentLocationControl.geolocation.getListeners('change:position')?.length) {
-          CurrentLocationControl.geolocation.setTracking(false);
-          CurrentLocationControl.geolocation = undefined;
-        }
-      }
+    if (coordinate) {
+      const view = this.getMap()?.getView();
+      const zoom = view?.getZoom() || defaultZoom;
+      view?.animate({
+        center: coordinate,
+        duration: 300,
+        zoom: Math.max(zoom, defaultZoom),
+      });
     }
+  }
 
-    public panToCurrentLocation(): void {
-      const coordinate = CurrentLocationControl.geolocation?.getPosition();
-      const defaultZoom = 13;
+  protected setLoadingIcon(): void {
+    this.button.title = 'Loading location...';
+    ReactDOM.render(<CircularProgress />, this.button);
+  }
 
-      if (coordinate) {
-        const view = this.getMap()?.getView();
-        const zoom = view?.getZoom() || defaultZoom;
-        view?.animate({
-          center: coordinate,
-          duration: 300,
-          zoom: Math.max(zoom, defaultZoom),
-        });
-      }
+  protected setNormalIcon(tipLabel?: string): void {
+    this.button.title = tipLabel || 'Show current location';
+    ReactDOM.render(<MyLocationIcon fontSize="small" />, this.button);
+  }
+
+  protected handleClick(event: MouseEvent): void {
+    event.preventDefault();
+
+    if (CurrentLocationControl.geolocation) {
+      this.panToCurrentLocation();
+    } else {
+      this.start();
     }
-
-    protected setLoadingIcon(): void {
-      this.button.title = 'Loading location...';
-      ReactDOM.render(<CircularProgress />, this.button);
-    }
-
-    protected setNormalIcon(tipLabel?: string): void {
-      this.button.title = tipLabel || 'Show current location';
-      ReactDOM.render(<MyLocationIcon fontSize="small" />, this.button);
-    }
-
-    protected handleClick(event: MouseEvent): void {
-      event.preventDefault();
-
-      if (CurrentLocationControl.geolocation) {
-        this.panToCurrentLocation();
-      } else {
-        this.start();
-      }
-    }
+  }
 }
 
 export default CurrentLocationControl;
