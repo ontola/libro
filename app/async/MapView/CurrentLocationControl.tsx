@@ -1,41 +1,19 @@
 import MyLocationIcon from '@material-ui/icons/MyLocation';
-// import CircularProgress from '@material-ui/icons/CircularProgress'; <- niet die
 import CircularProgress from '@material-ui/core/CircularProgress';
 import clsx from 'clsx';
-import { Feature, Geolocation } from 'ol';
+import { Geolocation } from 'ol';
 import { Control } from 'ol/control';
 import { CLASS_CONTROL, CLASS_UNSELECTABLE } from 'ol/css';
 import EventType from 'ol/events/EventType';
-import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
-import {
-  Circle,
-  Fill,
-  Stroke,
-  Style,
-} from 'ol/style';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const locationStyle = () => new Style({
-  image: new Circle({
-    fill: new Fill({
-      color: '#3399CC',
-    }),
-    radius: 6,
-    stroke: new Stroke({
-      color: '#FFF',
-      width: 2,
-    }),
-  }),
-});
 
 class CurrentLocationControl extends Control {
     private static geolocation?: Geolocation;
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     private static defaultZoom = 13;
-    private readonly positionFeature: Feature;
     private readonly positionLayer:  VectorLayer;
     private readonly button: HTMLButtonElement;
 
@@ -44,16 +22,9 @@ class CurrentLocationControl extends Control {
         element: document.createElement('div'),
       });
 
-      this.positionFeature = new Feature();
-      this.positionFeature.setProperties({
-        hoverStyle: locationStyle,
-        style: locationStyle,
-      });
-      this.positionFeature.setStyle(locationStyle);
-
       this.positionLayer = new VectorLayer({
         source: new VectorSource({
-          features: [this.positionFeature],
+          features: [],
         }),
       });
 
@@ -72,7 +43,6 @@ class CurrentLocationControl extends Control {
 
       this.getMap = this.getMap.bind(this);
       this.panToCurrentLocation = this.panToCurrentLocation.bind(this);
-      this.handleChangePosition = this.handleChangePosition.bind(this);
     }
 
     public start() {
@@ -99,18 +69,14 @@ class CurrentLocationControl extends Control {
           this.panToCurrentLocation();
         });
       } else {
-        this.handleChangePosition();
         this.panToCurrentLocation();
       }
-
-      CurrentLocationControl.geolocation.on('change:position', this.handleChangePosition);
     }
 
     public stop() {
       this.getMap()?.removeLayer(this.positionLayer!);
 
       if (CurrentLocationControl.geolocation) {
-        CurrentLocationControl.geolocation.un('change:position', this.handleChangePosition);
 
         if (!CurrentLocationControl.geolocation.getListeners('change:position')?.length) {
           CurrentLocationControl.geolocation.setTracking(false);
@@ -151,11 +117,6 @@ class CurrentLocationControl extends Control {
       } else {
         this.start();
       }
-    }
-
-    protected handleChangePosition() {
-      const coordinate = CurrentLocationControl.geolocation?.getPosition();
-      this.positionFeature.setGeometry(coordinate ? new Point(coordinate) : undefined);
     }
 }
 
