@@ -26,6 +26,7 @@ import CompCardCardLink from './components/Card/CardLink';
 import CompCollapseText from './components/CollapseText';
 import CompCollapsible from './components/Collapsible';
 import CompCollection from './components/Collection';
+import CompCollectionProvider from './components/Collection/CollectionProvider';
 import CompColumn from './components/Column';
 import CompColumns from './components/Columns';
 import CompContainerHeader from './components/Container/ContainerHeader';
@@ -152,6 +153,7 @@ export const componentMap = {
   [rdf.id(components.CollapseText)]: [CompCollapseText],
   [rdf.id(components.Collapsible)]: [CompCollapsible],
   [rdf.id(components.Collection)]: [CompCollection],
+  [rdf.id(components.CollectionProvider)]: [CompCollectionProvider],
   [rdf.id(components.Column)]: [CompColumn],
   [rdf.id(components.Columns)]: [CompColumns],
   [rdf.id(components.ContainerHeader)]: [CompContainerHeader],

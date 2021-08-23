@@ -1,4 +1,4 @@
-import { NamedNode } from '@ontologies/core';
+import { NamedNode, isNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -29,6 +29,7 @@ interface FolderFullProps {
 const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
   const { c, p } = useViewBuilderToolkit();
   const lrs = useLRS();
+  const [entries] = useProperty(dexes.entries).filter(isNode);
   const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms });
   useDataFetching(createActions as SomeNode[]);
   const [uploadAction] = lrs.findSubject(subject!, [ontola.createAction, rdfx.type], ontola['Create::MediaObject']) as NamedNode[];
@@ -37,21 +38,22 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
     c(components.ResourceBoundary, [
       c(containerTopology, [
         renderPartOf && p(schema.isPartOf),
-        c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
-          p(schema.name),
-        ]),
-        <UploadTarget
-          key="UploadTarget"
-          uploadAction={uploadAction}
-        >
-          {p(dexes.entries, {
-            hideHeader: true,
-            renderWhenEmpty: true,
-          })}
-        </UploadTarget>,
-        // c(containerTopology, [
-        // p(ontola.favoriteAction),
-        // ]),
+        entries && (
+          c(components.CollectionProvider, { subject: entries }, [
+            c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
+              p(schema.name),
+            ]),
+            <UploadTarget
+              key="UploadTarget"
+              uploadAction={uploadAction}
+            >
+              {p(dexes.entries, {
+                hideHeader: true,
+                renderWhenEmpty: true,
+              })}
+            </UploadTarget>,
+          ])
+        ),
       ]),
     ])
   );

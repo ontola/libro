@@ -10,10 +10,10 @@ import {
   LaxNode,
   Property,
   Resource,
-  useLink,
+  useResourceLink,
   useResourceProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
 import { tryParseInt } from '../../helpers/numbers';
@@ -40,6 +40,7 @@ export interface CollectionProps {
 }
 
 interface CollectionProviderProps extends CollectionProps {
+  children?: ReactNode;
   omniform?: boolean;
 }
 
@@ -95,6 +96,7 @@ export const useHasInteraction = (collectionResource: SomeNode): boolean => {
 };
 
 const CollectionProvider = ({
+  children,
   clickToOpen,
   collectionDisplay,
   depth,
@@ -113,7 +115,7 @@ const CollectionProvider = ({
     partOf,
     totalItems,
     view,
-  } = useLink(propMap) as CollectionDataProps;
+  } = useResourceLink(subject, propMap) as CollectionDataProps;
   const originalCollection = partOf || subject;
   const [currentCollection, currentCollectionPages, setCollectionResource] = useCurrentCollectionResource(
     !!redirectPagination,
@@ -191,6 +193,14 @@ const CollectionProvider = ({
     if (!hasInteraction) {
       return <div data-test="invalid-status" />;
     }
+  }
+
+  if (children) {
+    return (
+      <CollectionContext.Provider value={collectionOptions}>
+        {children}
+      </CollectionContext.Provider>
+    );
   }
 
   return (
