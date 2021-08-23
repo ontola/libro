@@ -163,6 +163,7 @@ const Link: React.FC<PropTypesWithRef> = ({
       innerRef={innerRef}
       isActive={isActive ? isActive(to) : isActiveDefault(to)}
       target={target}
+      title={title}
       to={path ?? ''}
       onClick={clickHandler}
     >
