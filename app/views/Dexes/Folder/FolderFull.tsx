@@ -7,6 +7,7 @@ import {
   useDataFetching,
   useFindSubject,
   useGlobalIds,
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -32,26 +33,28 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf }) => {
     [ontola.createAction, rdfx.type],
     ontola['Create::MediaObject'],
   );
+  const [entries] = useIds(dexes.entries);
 
   return (
     c(components.ResourceBoundary, [
       c(containerTopology, [
         renderPartOf && p(schema.isPartOf),
-        c(containerHeaderTopology, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
-          p(schema.name),
-        ]),
-        <UploadTarget
-          key="UploadTarget"
-          uploadAction={uploadAction}
-        >
-          {p(dexes.entries, {
-            hideHeader: true,
-            renderWhenEmpty: true,
-          })}
-        </UploadTarget>,
-        // c(containerTopology, [
-        // p(ontola.favoriteAction),
-        // ]),
+        entries && (
+          c(components.CollectionProvider, { subject: entries }, [
+            c(containerHeaderTopology, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
+              p(schema.name),
+            ]),
+            <UploadTarget
+              key="UploadTarget"
+              uploadAction={uploadAction}
+            >
+              {p(dexes.entries, {
+                hideHeader: true,
+                renderWhenEmpty: true,
+              })}
+            </UploadTarget>,
+          ])
+        ),
       ]),
     ])
   );

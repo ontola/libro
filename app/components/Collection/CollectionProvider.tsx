@@ -14,8 +14,9 @@ import {
   useGlobalIds,
   useIds,
   useLink,
+  useLinkRenderContext,
 } from 'link-redux';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
 import { tryParseInt } from '../../helpers/numbers';
@@ -38,10 +39,10 @@ export interface CollectionProps {
   redirectPagination?: boolean;
   renderPartOf?: boolean;
   renderWhenEmpty?: boolean;
-  subject: SomeNode;
 }
 
 interface CollectionProviderProps extends CollectionProps {
+  children?: ReactNode;
   omniform?: boolean;
 }
 
@@ -97,6 +98,7 @@ export const useHasInteraction = (collectionResource: SomeNode): boolean => {
 };
 
 const CollectionProvider = ({
+  children,
   clickToOpen,
   collectionDisplay,
   depth,
@@ -107,8 +109,8 @@ const CollectionProvider = ({
   redirectPagination,
   renderWhenEmpty,
   renderPartOf,
-  subject,
 }: CollectionProviderProps): JSX.Element | null => {
+  const { subject } = useLinkRenderContext();
   const {
     collectionDisplayFromData,
     maxColumns,
@@ -193,6 +195,14 @@ const CollectionProvider = ({
     if (!hasInteraction) {
       return <div data-test="invalid-status" />;
     }
+  }
+
+  if (children) {
+    return (
+      <CollectionContext.Provider value={collectionOptions}>
+        {children}
+      </CollectionContext.Provider>
+    );
   }
 
   return (

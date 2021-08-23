@@ -22,6 +22,7 @@ export const components = {
   CollapseText: component('CollapseText'),
   Collapsible: component('Collapsible'),
   Collection: component('Collection'),
+  CollectionProvider: component('CollectionProvider'),
   Column: component('Column'),
   Columns: component('Columns'),
   CountBubble: component('CountBubble'),
