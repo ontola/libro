@@ -7,6 +7,7 @@ import MenuItemPage from './MenuItemFull';
 import MenuItemHeader from './MenuItemNavbar';
 import MenuItemNested from './MenuItemNested';
 import MenuItemTab from './MenuItemTab';
+import MenuItemTableCell from './MenuItemTableCell';
 import CurrentTab from './properties/currentTab';
 import Href from './properties/href';
 import IsPartOfCardMain from './properties/isPartOfCardMain';
@@ -35,5 +36,6 @@ export default [
   MenuItemTab,
   MenuItemDropdownContent,
   MenuItemsComp,
+  MenuItemTableCell,
   MenuTabs,
 ];
