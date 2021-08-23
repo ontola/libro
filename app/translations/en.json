@@ -481,30 +481,6 @@
   "https://app.argu.co/i18n/xsd:boolean/true": {
     "defaultMessage": "Yes"
   },
-  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/desc": {
-    "defaultMessage": "DexTransfer is powered by the DexPod - a free, open source server that you can host yourself."
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/title": {
-    "defaultMessage": "Decentralized"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/monetize/desc": {
-    "defaultMessage": "Set a price for your data. If you want, we can help people find your data by sharing it in the Dexes Marketplace"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/monetize/title": {
-    "defaultMessage": "Make money"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/secure/desc": {
-    "defaultMessage": "Fully encrypted, requires verified e-mail addresses."
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/secure/title": {
-    "defaultMessage": "Secure"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/signed/desc": {
-    "defaultMessage": "When you share something on DexTransfer,"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/signed/title": {
-    "defaultMessage": "Signed licenses"
-  },
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Copied value to clipboard",
     "description": "The (inline) message to indicate the value was copied to their clipboard"

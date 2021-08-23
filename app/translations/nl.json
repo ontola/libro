@@ -503,30 +503,6 @@
   "https://app.argu.co/i18n/xsd:boolean/true": {
     "defaultMessage": "Ja"
   },
-  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/desc": {
-    "defaultMessage": "DexTransfer gebruikt de DexPod - een gratis, open source server welke je zelf kunt hosten."
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/decentralized/title": {
-    "defaultMessage": "Gedecentraliseerd"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/monetize/desc": {
-    "defaultMessage": "Geef een prijs aan jouw data. Kies ervoor om jouw data vindbaar te maken door het eenvoudig in de Dexes Marketplace te delen"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/monetize/title": {
-    "defaultMessage": "Verdien geld"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/secure/desc": {
-    "defaultMessage": "Volledig versleuteld, vereist gevalideerde e-mail adressen."
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/secure/title": {
-    "defaultMessage": "Veilig"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/signed/desc": {
-    "defaultMessage": "Wanneer je iets deelt op DexTransfer,"
-  },
-  "https://dextransfer.eu/i18n/dexTransferHome/signed/title": {
-    "defaultMessage": "Ondertekende licentie"
-  },
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Waarde is naar klembord gekopieerd"
   },
