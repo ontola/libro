@@ -8,6 +8,8 @@ export default {
   /* classes */
   // eslint-disable-next-line sort-keys
   Agreement: dexes('Agreement'),
+  Dataset: dexes('Dataset'),
+  Distribution: dexes('Distribution'),
   Folder: dexes('Folder'),
   HomePage: dexes('HomePage'),
   Invite: dexes('Invite'),

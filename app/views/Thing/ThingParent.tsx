@@ -12,6 +12,8 @@ import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { parentProps } from '../../ontology/app';
 import { parentTopology } from '../../topologies/Parent';
 
+import { namePredicates } from './properties/name';
+
 interface ThingParentProps {
   name: SomeTerm;
 }
@@ -26,7 +28,7 @@ const ThingParent: FC<ThingParentProps> = ({ name }) => {
       <Property label={parentProps} />
       <Breadcrumb
         data-test="Thing-parent"
-        label={<Property label={[schema.name, as.name]} />}
+        label={<Property label={namePredicates} />}
         title={name.value}
       />
     </React.Fragment>
@@ -38,7 +40,7 @@ ThingParent.type = schema.Thing;
 ThingParent.topology = parentTopology;
 
 ThingParent.mapDataToProps = {
-  name: [schema.name, as.name],
+  name: namePredicates,
 };
 
 export default register(ThingParent);
