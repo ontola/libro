@@ -11,6 +11,7 @@ import React from 'react';
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';
 import { allTopologiesExcept } from '../../../topologies';
+import { ChapterContent } from '../../../topologies/ChapterContent';
 import { pageTopology } from '../../../topologies/Page';
 import { sideBarTopology } from '../../../topologies/SideBar';
 
@@ -41,7 +42,9 @@ const Chapter: FC = () => {
       >
         <Property label={schema.title} />
       </Typography>
-      <Property label={argu.ns('chapterContent')} />
+      <ChapterContent>
+        <Property label={argu.ns('chapterContent')} />
+      </ChapterContent>
     </div>
   );
 };

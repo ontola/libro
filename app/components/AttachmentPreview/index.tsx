@@ -4,10 +4,7 @@ import rdf, {
   isNamedNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import {
-  useLRS,
-  useResourceProperty,
-} from 'link-redux';
+import { useLRS, useResourceProperty } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 import parser from 'uri-template';
 

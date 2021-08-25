@@ -9,6 +9,7 @@ export default {
   // eslint-disable-next-line sort-keys
   A: elements('A'),
   Document: elements('Document'),
+  Grid: elements('Grid'),
   H1: elements('H1'),
   H2: elements('H2'),
   H3: elements('H3'),

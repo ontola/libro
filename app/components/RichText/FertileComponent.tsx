@@ -35,6 +35,14 @@ export enum ListVariant {
 
 const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme) => ({
   a: {
+    '& img': {
+      borderRadius: theme.shape.borderRadius,
+      padding: '.4rem',
+      transition: 'background-color 100ms',
+    },
+    '& img:hover': {
+      backgroundColor: 'rgba(212, 212, 212, 20%)',
+    },
     '&:hover': {
       color: theme.palette.primary.dark,
     },
@@ -43,11 +51,14 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
   },
 
   aside: {
+    '& p': {
+      maxWidth: 'unset',
+    },
     backgroundColor: ({ color }) => lighten(color ?? theme.palette.secondary.main, ASIDE_LIGHTEN_AMOUNT),
-    fontSize: '0.9rem',
+    fontSize: '1rem',
     marginBottom: theme.spacing(ASIDE_BOTTOM_MARGIN),
     padding: theme.spacing(ASIDE_PADDING),
-    width: 'clamp(30ch, 100%, 90ch)',
+    width: 'clamp(30ch, 100%, 100ch)',
   },
 
   asideIcon: {

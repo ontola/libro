@@ -88,7 +88,6 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     fontSize: '1rem',
     fontWeight: theme.typography.fontWeightMedium,
     gap: '1rem',
-    justifyContent: 'center',
     padding: theme.spacing(SIDEBAR_CHILDREN_PADDING),
     width: '100%',
   },
@@ -226,6 +225,7 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
                   download
                   className={classNames.downloadLink}
                   href={pdfURL.value}
+                  id="academy-download-link"
                 >
                   <FontAwesome
                     className={classNames.downloadIcon}

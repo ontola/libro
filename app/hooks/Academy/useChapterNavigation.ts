@@ -16,9 +16,10 @@ type ChapterNavigationResult = {
   navigate: (chapter: SomeTerm) => void,
 };
 
-export const useChapterNavigation = (subject: SomeTerm, currentChapter?: SomeTerm): ChapterNavigationResult => {
-  const createRangeMap = (x1: number, y1: number, x2: number, y2: number) => (value: number) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+const createRangeMap = (x1: number, y1: number, x2: number, y2: number) =>
+  (value: number) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
+export const useChapterNavigation = (subject: SomeTerm, currentChapter?: SomeTerm): ChapterNavigationResult => {
   const lrs = useLRS();
   const flattenChapters = createFlattenFunction(lrs);
   const chapters = React.useMemo(() => flattenChapters(subject), [subject]);
@@ -42,7 +43,7 @@ export const useChapterNavigation = (subject: SomeTerm, currentChapter?: SomeTer
   }, [currentChapter]);
 
   React.useEffect(() => {
-    setProgress(mapToRange(completedChapters?.size ?? 0));
+    setProgress(Math.min(mapToRange(completedChapters?.size ?? 0), 100));
   }, [completedChapters]);
 
   const completeChapter = (chapter: SomeTerm) => {

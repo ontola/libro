@@ -1,17 +1,21 @@
 import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { lighten, makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import React from 'react';
 
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import Link from '../Link';
 
 interface StepProps {
   name: string;
   text: string;
   first?: boolean;
   last?: boolean;
+  href?: string;
 }
 
 const TEXT_GRID_GAP = 5;
+const HOVER_LIGHTEN_AMOUNT = 0.95;
 
 const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
   circleSmall: {
@@ -32,6 +36,14 @@ const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
     gridTemplateRows: '1fr var(--circle-size) 1fr',
     [theme.breakpoints.down('sm')]: {
       '--circle-size': '50px',
+    },
+  },
+  containerGridLink: {
+    '&:hover $textGrid': {
+      backgroundColor: lighten(theme.palette.secondary.main, HOVER_LIGHTEN_AMOUNT),
+    },
+    '&:hover $title': {
+      textDecoration: 'underline',
     },
   },
   indent: {
@@ -75,6 +87,7 @@ const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
     height: '100%',
     padding: '1rem',
     paddingLeft: 0,
+    transition: 'background-color 100ms',
   },
   textWrapper: {
     gridArea: 'box',
@@ -82,44 +95,62 @@ const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
     paddingLeft: 0,
   },
   title: {
+    fontSize: '1.1667rem',
     fontWeight: 'bold',
     lineHeight: 0,
+    marginBottom: '14px',
     paddingTop: 12,
   },
 }));
 
 const Step = (props: StepProps): JSX.Element => {
+  const { href } = props;
+  const hasHref = href !== undefined;
+
   const classes = useStyles(props);
 
+  const containerGridClassName = clsx({
+    [classes.containerGrid]: true,
+    [classes.containerGridLink]: hasHref,
+  });
+
+  const TextWrapper = hasHref ? Link : React.Fragment;
+  const textWrapperProps = hasHref ? {
+    allowExternal: false,
+    to: href!,
+  } : {} as never;
+
   return (
-    <Grid
-      container
-      className={classes.containerGrid}
-      direction="row"
-    >
-      <div className={`${classes.line} ${classes.lineTop}`} />
-      <div className={classes.circleSmall} />
-      <div className={`${classes.line} ${classes.lineBottom}`} />
-      <div className={classes.textWrapper}>
-        <div className={classes.textGrid}>
-          <div className={classes.indent} />
-          <div className={classes.textContainer}>
-            <Typography
-              className={classes.title}
-              variant="body1"
-            >
-              {props.name}
-            </Typography>
-            <Typography
-              className={classes.subtitle}
-              variant="body1"
-            >
-              {props.text}
-            </Typography>
+    <TextWrapper {...textWrapperProps}>
+      <Grid
+        container
+        className={containerGridClassName}
+        direction="row"
+      >
+        <div className={`${classes.line} ${classes.lineTop}`} />
+        <div className={classes.circleSmall} />
+        <div className={`${classes.line} ${classes.lineBottom}`} />
+        <div className={classes.textWrapper}>
+          <div className={classes.textGrid}>
+            <div className={classes.indent} />
+            <div className={classes.textContainer}>
+              <Typography
+                className={classes.title}
+                variant="body1"
+              >
+                {props.name}
+              </Typography>
+              <Typography
+                className={classes.subtitle}
+                variant="body1"
+              >
+                {props.text}
+              </Typography>
+            </div>
           </div>
         </div>
-      </div>
-    </Grid>
+      </Grid>
+    </TextWrapper>
   );
 };
 
