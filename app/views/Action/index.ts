@@ -1,4 +1,3 @@
-import ActionCardMain from './ActionCardMain';
 import ActionCardRow from './ActionCardRow';
 import ActionContainer from './ActionContainer';
 import ActionContainerFloat from './ActionContainerFloat';
@@ -8,6 +7,7 @@ import ActionDropdownContent from './ActionDropdownContent';
 import ActionFull from './ActionFull';
 import ActionWidget from './ActionGrid';
 import ActionInline from './ActionInline';
+import ActionMain from './ActionMain';
 import ActionNested from './ActionNested';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
@@ -22,7 +22,7 @@ export default [
   ...CreateAction,
   ...CreateSession,
   ...CreateVote,
-  ActionCardMain,
+  ActionMain,
   ActionCardRow,
   ActionContainer,
   ActionContainerFloat,

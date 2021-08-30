@@ -79,8 +79,8 @@ describe('Thing', () => {
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByText(PARENT_NAME)).toBeVisible();
-    expect(queryByTestId('coverImage')).toHaveStyle(`
-      background-image: url(${coverUrl}); 
+    expect(queryByTestId('CoverPhoto')).toHaveStyle(`
+      background-image: url(${boxUrl}); 
       background-position-y: ${imagePositionY}%;
     `);
   });

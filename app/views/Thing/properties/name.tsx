@@ -15,7 +15,10 @@ import {
 import React from 'react';
 
 import ActionButton from '../../../components/ActionButton';
-import Heading, { HeadingSize, HeadingVariant } from '../../../components/Heading';
+import Heading, {
+  HeadingSize,
+  HeadingVariant,
+} from '../../../components/Heading';
 import LDLink from '../../../components/LDLink';
 import { LinkTarget } from '../../../components/Link';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
@@ -34,6 +37,7 @@ import { gridTopology } from '../../../topologies/Grid';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { inlineTopology } from '../../../topologies/Inline';
 import { listTopology } from '../../../topologies/List';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
@@ -144,7 +148,7 @@ export default [
     ),
     schema.Thing,
     namePredicates,
-    cardMainTopology,
+    [cardMainTopology, mainBodyTopology],
   ),
   LinkedRenderStore.registerRenderer(
     ({ wrapper }: WrapperProps) => {

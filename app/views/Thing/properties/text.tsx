@@ -17,6 +17,7 @@ import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 import { listTopology } from '../../../topologies/List';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 
 const textProperties = [
   schema.text,
@@ -38,6 +39,7 @@ Text.topology = [
   fullResourceTopology,
   cardMainTopology,
   gridTopology,
+  mainBodyTopology,
 ];
 
 const TextStripped = ({ linkedProp }: PropertyProps): JSX.Element => (

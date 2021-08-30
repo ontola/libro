@@ -1,5 +1,3 @@
-import * as rdfx from '@ontologies/rdf';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -12,22 +10,21 @@ import {
 import React from 'react';
 import { useLocation } from 'react-router';
 
-import CardContent from '../../components/Card/CardContent';
 import CardDivider from '../../components/Card/CardDivider';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
+import { PageHeader } from '../../components/PageHeader';
 import { Size } from '../../components/shared/config';
+import SubSection from '../../components/SubSection';
 import usePhases from '../../hooks/usePhases';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import wdt from '../../ontology/wdt';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
+import List from '../../topologies/List';
+import MainBody from '../../topologies/MainBody';
 
 interface ProjectFullProps {
   currentPhase: SomeNode;
@@ -57,32 +54,11 @@ const ProjectFull: FC<ProjectFullProps> = ({
           label={ontola.publishAction}
           onLoad={() => null}
         />
-        <CardMain>
-          <DetailsBar
-            right={(
-              <React.Fragment>
-                <Property label={ontola.followMenu} />
-                <Property label={ontola.shareMenu} />
-                <Property label={ontola.actionsMenu} />
-              </React.Fragment>
-            )}
-          >
-            <Property label={schema.creator} />
-            <Property label={rdfx.type} />
-            <LinkedDetailDate />
-            <Property label={argu.pinnedAt} />
-            <Property label={argu.expiresAt} />
-            <Property label={argu.followsCount} />
-            <Property label={argu.motionsCount} />
-            <Property label={schema.location} />
-            <Property label={argu.grantedGroups} />
-          </DetailsBar>
-          <CardContent noSpacing>
-            <Property label={[schema.name, rdfs.label]} />
-            <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
-            <Property label={[schema.text, schema.description, dbo.abstract]} />
-          </CardContent>
-          <CardRow>
+        <PageHeader />
+        <MainBody>
+          <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
+          <List>
             <Property
               label={argu.attachments}
               onLoad={() => null}
@@ -91,36 +67,36 @@ const ProjectFull: FC<ProjectFullProps> = ({
               label={meeting.attachment}
               onLoad={() => null}
             />
-          </CardRow>
+          </List>
           <Property
             label={argu.voteableVoteEvent}
             onLoad={() => null}
           />
-          <CardRow backdrop>
-            <Property
-              forceRender
-              label={argu.phases}
-              selectedPhase={renderPhase}
-            />
-            <CardDivider />
-            {renderPhase && <Resource subject={renderPhase} />}
-          </CardRow>
-        </CardMain>
+          <CardDivider />
+          <Property
+            forceRender
+            label={argu.phases}
+            selectedPhase={renderPhase}
+          />
+          {renderPhase && <Resource subject={renderPhase} />}
+        </MainBody>
       </Container>
       {renderPhase && (
-        <Resource subject={renderPhase}>
+        <SubSection>
           <Container
             disableGutters
             size={Size.Large}
           >
-            <Grid
-              container
-              spacing={6}
-            >
-              <Property label={ontola.widgets} />
-            </Grid>
+            <Resource subject={renderPhase}>
+              <Grid
+                container
+                spacing={6}
+              >
+                <Property label={ontola.widgets} />
+              </Grid>
+            </Resource>
           </Container>
-        </Resource>
+        </SubSection>
       )}
     </React.Fragment>
   );

@@ -2,12 +2,15 @@
  * @jest-environment jsdom
  */
 
+import { ThemeProvider } from '@material-ui/styles';
 import {
   act,
   fireEvent,
   render,
 } from '@testing-library/react';
 import React from 'react';
+
+import themes from '../../themes';
 
 import Button, {
   ButtonProps,
@@ -21,10 +24,12 @@ describe('Button', () => {
   const onClick = jest.fn();
 
   const renderComp = (props: Partial<ButtonProps> = {}) => render((
-    <Button
-      ariaLabel={aria}
-      {...props}
-    />
+    <ThemeProvider theme={themes.common({})}>
+      <Button
+        ariaLabel={aria}
+        {...props}
+      />
+    </ThemeProvider>
   ));
 
   it('should render', () => {
@@ -124,7 +129,9 @@ describe('Button', () => {
     it('should render small', () => {
       const { getByLabelText } = renderComp({ small: true });
 
-      expect(getByLabelText(aria)).toHaveClass('Button--small');
+      expect(getByLabelText(aria)).toHaveStyle({
+        'fontSize': '.85em',
+      });
     });
   });
 
@@ -132,7 +139,9 @@ describe('Button', () => {
     it('should render subtle', () => {
       const { getByLabelText } = renderComp({ theme: ButtonTheme.Subtle });
 
-      expect(getByLabelText(aria)).toHaveClass('Button--subtle');
+      expect(getByLabelText(aria)).toHaveStyle({
+        'color': 'rgb(76, 76, 76)',
+      });
     });
   });
 
@@ -140,7 +149,9 @@ describe('Button', () => {
     it('should render subtle', () => {
       const { getByLabelText } = renderComp({ variant: ButtonVariant.Pro });
 
-      expect(getByLabelText(aria)).toHaveClass('Button--variant-pro');
+      expect(getByLabelText(aria)).toHaveStyle({
+        'color': 'rgb(84, 127, 75)',
+      });
     });
   });
 });

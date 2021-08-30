@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import {
   FC,
   Property,
@@ -5,30 +6,36 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import VoteData from '../../components/VoteData';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import { cardTopology } from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 import ActionsBar from '../../topologies/ActionsBar';
+import { cardTopology } from '../../topologies/Card';
+import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
+import { containerTopology } from '../../topologies/Container';
 
-const VoteEventContainer: FC = () => (
-  <React.Fragment key="VoteEventContainer">
-    <ActionsBar>
-      <Property label={ontola.favoriteAction} />
-    </ActionsBar>
-    <Property
-      forceRender
-      label={argu.signInFlow}
-    />
-    <VoteData>
-      <Property label={argu.votesProCount} />
-      <Property label={argu.votesNeutralCount} />
-      <Property label={argu.votesConCount} />
-    </VoteData>
-  </React.Fragment>
-);
+const useStyles = makeStyles({
+  actionBar: {
+    padding: '.75rem 1.3rem',
+  },
+});
+
+const VoteEventContainer: FC = () => {
+  const classes = useStyles();
+
+  return (
+    <React.Fragment key="VoteEventContainer">
+      <div className={classes.actionBar}>
+        <ActionsBar>
+          <Property label={ontola.favoriteAction} />
+        </ActionsBar>
+        <Property
+          forceRender
+          label={argu.signInFlow}
+        />
+      </div>
+    </React.Fragment>
+  );
+};
 
 VoteEventContainer.type = [argu.VoteEvent];
 

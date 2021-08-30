@@ -238,11 +238,11 @@ function containerToArr<I extends Term = SomeTerm>(
 }
 
 function sort(order: string[]) {
-  return (a: Node, b: Node): number => {
+  return (a: SomeTerm, b: SomeTerm): number => {
     const oA = order.findIndex((o) => a.value.includes(o));
     const oB = order.findIndex((o) => b.value.includes(o));
 
-    if (oA === -1 && oB === -1) { return compare(a, b); }
+    if (oA === -1 && oB === -1) { return compare(a as Node, b as Node); }
     if (oA === -1) { return 1; }
     if (oB === -1) { return -1; }
 

@@ -13,16 +13,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import TabbarProvider from '../../components/TabbarProvider';
-import app from '../../ontology/app';
+import SubSection from '../../components/SubSection';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
 import { LibroTheme } from '../../themes/themes';
-import { CardMain } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import MainBody from '../../topologies/MainBody';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   image: {
@@ -47,76 +45,64 @@ const PersonFull: FC = () => {
   const [settingsMenu] = useGlobalIds(ontola.settingsMenu);
 
   return (
-    <TabbarProvider
-      redirect
-      menu={settingsMenu}
-    >
+    <React.Fragment>
       <Property label={ontola.coverPhoto} />
       <Container>
-        <CardMain>
-          <CardContent>
-            <Grid
-              container
-              alignItems="center"
-              spacing={2}
-            >
-              <Property label={schema.image}>
-                <Property label={schema.thumbnail}>
-                  {([src]: SomeTerm[]) => (
-                    <Grid
-                      item
-                      md={1}
-                      xs={2}
-                    >
-                      <div className={classes.wrapper}>
-                        <div
-                          className={classes.image}
-                          style={{ backgroundImage: `url("${src.value}")` }}
-                        />
-                      </div>
-                    </Grid>
-                  )}
-                </Property>
+        <MainBody>
+          <Grid
+            container
+            alignItems="center"
+            spacing={2}
+          >
+            <Property label={schema.image}>
+              <Property label={schema.thumbnail}>
+                {([src]: SomeTerm[]) => (
+                  <Grid
+                    item
+                    md={1}
+                    xs={2}
+                  >
+                    <div className={classes.wrapper}>
+                      <div
+                        className={classes.image}
+                        style={{ backgroundImage: `url("${src.value}")` }}
+                      />
+                    </div>
+                  </Grid>
+                )}
               </Property>
-              <Grid
-                item
-                md={11}
-                xs={10}
-              >
-                <Property label={[schema.name, rdfs.label, foaf.name]} />
-                <Hidden smDown>
-                  <ContentDetails>
-                    <Property
-                      label={org.organization}
-                      limit={Infinity}
-                    />
-                  </ContentDetails>
-                </Hidden>
-              </Grid>
+            </Property>
+            <Grid
+              item
+              md={11}
+              xs={10}
+            >
+              <Property label={[schema.name, rdfs.label, foaf.name]} />
+              <Hidden smDown>
+                <ContentDetails>
+                  <Property
+                    label={org.organization}
+                    limit={Infinity}
+                  />
+                </ContentDetails>
+              </Hidden>
             </Grid>
-            <Hidden mdUp>
-              <ContentDetails>
-                <Property
-                  label={org.organization}
-                  limit={Infinity}
-                />
-              </ContentDetails>
-            </Hidden>
-          </CardContent>
-          <CardContent>
-            <Property label={schema.description} />
-          </CardContent>
-          <Property
-            forceRender
-            label={app.menuTabs}
-          />
-        </CardMain>
+            {' '}
+
+          </Grid>
+          <Hidden mdUp>
+            <ContentDetails>
+              <Property
+                label={org.organization}
+                limit={Infinity}
+              />
+            </ContentDetails>
+          </Hidden>
+          <Property label={schema.description} />
+        </MainBody>
       </Container>
-      <Property
-        forceRender
-        label={app.currentTab}
-      />
-    </TabbarProvider>
+      <SubSection menu={settingsMenu} />
+    </React.Fragment>
   );
 };
 

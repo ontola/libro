@@ -1,3 +1,4 @@
+import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -6,32 +7,38 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Collection from '../../components/Collection';
 import { PageHeader } from '../../components/PageHeader';
 import SubSection from '../../components/SubSection';
+import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
-import opengov from '../../ontology/opengov';
-import wdt from '../../ontology/wdt';
+import ActionsBar from '../../topologies/ActionsBar';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
-const MotionFull: FC = () => (
+interface BudgetFullProps {
+  renderPartOf: boolean;
+}
+
+const ShopFull: FC<BudgetFullProps> = ({ renderPartOf }): JSX.Element => (
   <React.Fragment>
     <Container>
-      <Property label={argu.trashedAt} />
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property
         label={ontola.publishAction}
         onLoad={() => null}
       />
-      <PageHeader />
-      <MainBody>
-        <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+      <MainBody data-test="Thing-thing">
+        <Property label={argu.trashedAt} />
+        <PageHeader />
         <Property label={[schema.text, schema.description, dbo.abstract]} />
+        <Property label={app.contents} />
+        <Property label={foaf.isPrimaryTopicOf} />
         <List wrap>
           <Property
             label={argu.attachments}
@@ -42,24 +49,25 @@ const MotionFull: FC = () => (
             onLoad={() => null}
           />
         </List>
-        <Collection
-          hideHeader
-          label={argu.blogPosts}
-          pageSize={1}
-          onLoad={() => null}
-        />
+        <ActionsBar>
+          <Property label={ontola.favoriteAction} />
+        </ActionsBar>
         <Property
-          label={argu.voteableVoteEvent}
-          onLoad={() => null}
+          withoutLoading
+          label={schema.location}
         />
       </MainBody>
     </Container>
     <SubSection />
+    <Property label={argu.cart} />
   </React.Fragment>
 );
 
-MotionFull.type = [argu.Motion, opengov.Motion];
+ShopFull.type = argu.Shop;
 
-MotionFull.topology = fullResourceTopology;
+ShopFull.topology = [
+  fullResourceTopology,
+  tabPaneTopology,
+];
 
-export default register(MotionFull);
+export default register(ShopFull);

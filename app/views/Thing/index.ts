@@ -13,6 +13,7 @@ import DateSubmitted from './properties/dateSubmitted';
 import Description from './properties/description';
 import DownloadUrl from './properties/downloadUrl';
 import ExpiresAt from './properties/expiresAt';
+import FavoriteAction from './properties/favoriteAction';
 import FollowsCount from './properties/followsCount';
 import GrantedGroups from './properties/grantedGroups';
 import Image from './properties/image';
@@ -25,13 +26,12 @@ import Name from './properties/name';
 import Omniform from './properties/omniform';
 import Order from './properties/order';
 import PinnedAt from './properties/pinnedAt';
-import FavoriteAction from './properties/favoriteAction';
 import Predicate from './properties/predicate';
 import Price from './properties/price';
 import PublishAction from './properties/publishAction';
 import RedirectUrlTable from './properties/redirectUrlTable';
-import SuperEvent from './properties/superEvent';
 import StartDate from './properties/startDate';
+import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
 import TextCardFixed from './properties/textCardFixed';
 import TopComment from './properties/topComment';
@@ -43,9 +43,10 @@ import ThingCard from './ThingCard';
 import ThingContainer from './ThingContainer';
 import ThingDetailsBar from './ThingDetailsBar';
 import ThingFooter from './ThingFooter';
-import ThingInline from './ThingInline';
 import ThingFullResource from './ThingFull';
 import ThingGrid from './ThingGrid';
+import ThingInline from './ThingInline';
+import ThingMainBody from './ThingMainBody';
 import ThingMenu from './ThingMenu';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
@@ -55,9 +56,9 @@ import ThingSection from './ThingSection';
 import ThingSelect from './ThingSelect';
 import ThingTable from './ThingTable';
 import ThingTableCell from './ThingTableCell';
-import ThingTableRow from './ThingTableRow';
 import ThingTableHeaderRow from './ThingTableHeaderRow';
 import ThingTabPane from './ThingTabPane';
+import ThingTableRow from './ThingTableRow';
 
 export default [
   ThingAlertDialog,
@@ -67,6 +68,7 @@ export default [
   ThingFooter,
   ThingFullResource,
   ThingGrid,
+  ThingMainBody,
   ThingMenu,
   ThingPage,
   ThingPageHeader,

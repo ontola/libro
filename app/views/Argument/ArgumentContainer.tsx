@@ -1,10 +1,11 @@
+import { makeStyles } from '@material-ui/styles';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
 } from 'link-redux';
-import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
@@ -18,34 +19,46 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
-interface ArgumentContainerProps extends SubjectProp {
+export interface ArgumentConainerProps {
   highlighted: boolean;
 }
 
-const ArgumentContainer = ({ highlighted, subject }: ArgumentContainerProps) => (
-  <Card
-    about={subject.value}
-    shine={highlighted}
-  >
-    <Property label={ontola.coverPhoto} />
-    <CardContent noSpacing>
-      <Property label={[schema.name, rdfs.label]} />
-      <Property label={[schema.text, schema.description, dbo.abstract]} />
-    </CardContent>
-    <ActionsBar>
-      <Property label={ontola.favoriteAction} />
-    </ActionsBar>
-    <CardAppendix>
-      <Property label={argu.voteableVoteEvent} />
-      <Property label={argu.topComment} />
-      <Property
-        clickToOpen
-        forceRender
-        label={app.omniform}
-      />
-    </CardAppendix>
-  </Card>
-);
+const useStyles = makeStyles({
+  content: {
+    marginBottom: '1rem',
+  },
+});
+
+const ArgumentContainer: FC<ArgumentConainerProps> = ({ highlighted, subject }): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <Card
+      about={subject.value}
+      shine={highlighted}
+    >
+      <Property label={ontola.coverPhoto} />
+      <div className={classes.content}>
+        <CardContent noSpacing>
+          <Property label={[schema.name, rdfs.label]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
+          <ActionsBar>
+            <Property label={ontola.favoriteAction} />
+          </ActionsBar>
+        </CardContent>
+      </div>
+      <CardAppendix>
+        <Property label={argu.voteableVoteEvent} />
+        <Property label={argu.topComment} />
+        <Property
+          clickToOpen
+          forceRender
+          label={app.omniform}
+        />
+      </CardAppendix>
+    </Card>
+  );
+};
 
 ArgumentContainer.type = [
   argu.Argument,

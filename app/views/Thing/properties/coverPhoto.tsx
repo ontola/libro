@@ -20,6 +20,7 @@ import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 import { pageTopology } from '../../../topologies/Page';
 
 const useStyles = makeStyles({
@@ -89,7 +90,7 @@ const registerCoverPhoto = (
 
 export default [
   registerCoverPhoto(ontola.imgUrl1500x2000, [pageTopology]),
-  registerCoverPhoto(ontola.imgUrl568x400, [cardFixedTopology]),
+  registerCoverPhoto(ontola.imgUrl568x400, [cardFixedTopology, mainBodyTopology]),
   registerCoverPhoto(ontola.imgUrl568x400, [
     cardTopology,
     cardMainTopology,

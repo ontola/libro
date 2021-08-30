@@ -10,7 +10,7 @@ import MenuItemTab from './MenuItemTab';
 import MenuItemTableCell from './MenuItemTableCell';
 import CurrentTab from './properties/currentTab';
 import Href from './properties/href';
-import IsPartOfCardMain from './properties/isPartOfCardMain';
+import IsPartOfMain from './properties/isPartOfMain';
 import LabelCard from './properties/labelCard';
 import LabelFooter from './properties/labelFooter';
 import LabelHeader from './properties/labelHeader';
@@ -20,7 +20,7 @@ import MenuTabs from './properties/menuTabs';
 
 export default [
   CurrentTab,
-  IsPartOfCardMain,
+  IsPartOfMain,
   Href,
   LabelCard,
   LabelFooter,

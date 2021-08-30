@@ -15,6 +15,7 @@ import Container, {
 } from '../../../topologies/Container';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { gridTopology } from '../../../topologies/Grid';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 import { pageTopology } from '../../../topologies/Page';
 import { sideBarTopology } from '../../../topologies/SideBar';
 import { CollectionTypes } from '../types';
@@ -47,6 +48,7 @@ DefaultCollectionFrame.topology = allTopologiesExcept(
   alertDialogTopology,
   containerTopology,
   gridTopology,
+  mainBodyTopology,
   pageTopology,
   sideBarTopology,
 );
@@ -59,7 +61,13 @@ const WrappedCollectionFrame: FC<CollectionFrameProps> = () => (
 );
 
 WrappedCollectionFrame.type = CollectionTypes;
-WrappedCollectionFrame.topology = [alertDialogTopology, containerTopology, gridTopology, sideBarTopology];
+WrappedCollectionFrame.topology = [
+  alertDialogTopology,
+  containerTopology,
+  gridTopology,
+  mainBodyTopology,
+  sideBarTopology,
+];
 WrappedCollectionFrame.property = ontola.collectionFrame;
 
 export default [

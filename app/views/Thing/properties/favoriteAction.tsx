@@ -59,7 +59,7 @@ const FavoriteAction: FC<PropertyProps> = (props) => {
     );
   }, [favoriteActions]);
 
-  return(
+  return (
     <React.Fragment>
       {actions}
     </React.Fragment>

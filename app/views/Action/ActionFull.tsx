@@ -53,24 +53,26 @@ const ActionFull: FC<ActionFullProps> = ({
   }
 
   return (
-    <Container>
+    <React.Fragment>
       <Metadata />
-      {renderPartOf && <Property label={schema.isPartOf} />}
-      <CardMain>
-        <CardContent>
-          <Property label={schema.name} />
-        </CardContent>
-        <Property
-          header
-          cancelPath={object && retrievePath(object.value)}
-          label={schema.target}
-          sessionStore={sessionStore}
-          onCancel={onCancel}
-          onDone={onDoneHandler}
-        />
-        {Appendix && <Appendix />}
-      </CardMain>
-    </Container>
+      <Container>
+        {renderPartOf && <Property label={schema.isPartOf} />}
+        <CardMain>
+          <CardContent>
+            <Property label={schema.name} />
+          </CardContent>
+          <Property
+            header
+            cancelPath={object && retrievePath(object.value)}
+            label={schema.target}
+            sessionStore={sessionStore}
+            onCancel={onCancel}
+            onDone={onDoneHandler}
+          />
+          {Appendix && <Appendix />}
+        </CardMain>
+      </Container>
+    </React.Fragment>
   );
 };
 

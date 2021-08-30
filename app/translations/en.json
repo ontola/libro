@@ -328,6 +328,12 @@
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "the Argu logo"
   },
+  "https://app.argu.co/i18n/landmarkMessages/navigationBar": {
+    "defaultMessage": "Navigation bar"
+  },
+  "https://app.argu.co/i18n/landmarkMessages/subsectionLabel": {
+    "defaultMessage": "Participate"
+  },
   "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
     "defaultMessage": "Email address"
   },

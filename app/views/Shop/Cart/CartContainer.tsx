@@ -13,7 +13,7 @@ import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import { LibroTheme, Margin } from '../../../themes/themes';
 import Card from '../../../topologies/Card';
-import { containerTopology } from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
 import { useCartProgressFormatter } from './helpers';
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {
     bottom: 0,
     float: 'right',
-    marginTop: theme.spacing(Margin.Medium),
+    margin: theme.spacing(Margin.Medium),
     position: 'sticky',
     zIndex: theme.zIndex.appBar,
   },
@@ -75,6 +75,6 @@ const CartContainer = () => {
 
 CartContainer.type = argu.Cart;
 
-CartContainer.topology = containerTopology;
+CartContainer.topology = fullResourceTopology;
 
 export default register(CartContainer);

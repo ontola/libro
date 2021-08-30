@@ -13,6 +13,15 @@ const styles = (theme: LibroTheme): Styles => ({
   default: {
     height: '2rem',
   },
+  layoutOnly: {
+    '& .scrollbox': {
+      padding: 0,
+    },
+    '--vertical-scroller-background': 'unset !important',
+    backgroundColor: 'unset !important',
+    borderBottom: 'unset !important',
+    borderColor: 'unset !important',
+  },
   right: {
     alignSelf: 'flex-end',
     color: theme.palette.grey.xxLightForegroundSmall,

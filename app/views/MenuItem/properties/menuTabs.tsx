@@ -1,6 +1,6 @@
-import * as schema from '@ontologies/schema';
-import AppBar from '@material-ui/core/AppBar';
 import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   FC,
   PropertyProps,
@@ -10,19 +10,31 @@ import {
 import React from 'react';
 
 import { useTabbar } from '../../../components/TabbarProvider';
+import { TabVariant } from '../../../components/Tabs';
 import app from '../../../ontology/app';
 import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 import TabBar from '../../../topologies/TabBar';
 
+export interface MenuTabsProp {
+  variant?: TabVariant;
+}
+
 const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {
+    backgroundColor: theme.palette.background.default,
     color: theme.palette.grey.dark,
     opacity: 'unset',
   },
+  wrapperNoTabs: {
+    height: '2rem',
+  },
+  wrapperSubSection: {
+    marginBottom: '2rem',
+  },
 }));
 
-const MenuTabs: FC<PropertyProps> = () => {
+const MenuTabs: FC<MenuTabsProp & PropertyProps> = ({ variant }) => {
   const {
     currentTab,
     items,
@@ -35,27 +47,31 @@ const MenuTabs: FC<PropertyProps> = () => {
   }
 
   if (items.length <= 1 || !currentTab) {
-    return null;
+    return <div className={classes.wrapperNoTabs} />;
   }
 
+  const className = clsx({
+    [classes.wrapper]: true,
+    [classes.wrapperSubSection]: variant === TabVariant.SubSection,
+  });
+
   return (
-    <AppBar
-      className={classes.wrapper}
-      color="inherit"
-      elevation={0}
-      position="static"
-    >
-      <TabBar value={currentTab?.value}>
+    <div className={className}>
+      <TabBar
+        value={currentTab?.value}
+        variant={variant}
+      >
         {items.map((iri) => (
           <Resource
             key={iri.value}
             subject={iri}
             value={iri.value}
+            variant={variant}
             onClick={handleChange}
           />
         ))}
       </TabBar>
-    </AppBar>
+    </div>
   );
 };
 

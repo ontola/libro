@@ -3,8 +3,6 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import './Loading.scss';
-
 import Card, {
   CardFixed,
   CardMicroRow,
@@ -16,6 +14,8 @@ import TableCell from '../../topologies/TableCell';
 import TableRow from '../../topologies/TableRow';
 import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
 import CardContent from '../Card/CardContent';
+
+import './Loading.scss';
 
 const LoadingInline = (): JSX.Element => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
 
@@ -87,10 +87,10 @@ export const LoadingCellRow = (): JSX.Element => (
 
 export const LoadingPage = (): JSX.Element => (
   <FullResourceTopology>
+    <BreadcrumbsBar>
+      <LoadingParent />
+    </BreadcrumbsBar>
     <Container>
-      <BreadcrumbsBar>
-        <LoadingParent />
-      </BreadcrumbsBar>
       <LoadingCard />
     </Container>
   </FullResourceTopology>

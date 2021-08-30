@@ -377,6 +377,17 @@ export const imageAltMessages: Messages = defineMessages({
   },
 });
 
+export const landmarkMessages: Messages = defineMessages({
+  navigationBar: {
+    defaultMessage: 'Navigation bar',
+    id: 'https://app.argu.co/i18n/landmarkMessages/navigationBar',
+  },
+  subsectionLabel: {
+    defaultMessage: 'Participate',
+    id: 'https://app.argu.co/i18n/landmarkMessages/subsectionLabel',
+  },
+});
+
 export const mailchimpFormMessages: Messages = defineMessages({
   mailAddress: {
     defaultMessage: 'Email address',

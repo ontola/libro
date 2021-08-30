@@ -1,5 +1,7 @@
+import { ChevronRight } from '@material-ui/icons';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   register,
   useStrings,
@@ -12,7 +14,13 @@ import { parentTopology } from '../../topologies/Parent';
 
 import { namePredicates } from './properties/name';
 
-const ThingParent = () => {
+interface ThingParent {
+  first?: boolean;
+}
+
+const ThingParent: FC<ThingParent> = ({
+  first,
+}) => {
   const [name] = useStrings(namePredicates);
 
   if (!name) {
@@ -27,6 +35,7 @@ const ThingParent = () => {
         label={<Property label={namePredicates} />}
         title={name}
       />
+      {!first && <ChevronRight fontSize="small" />}
     </React.Fragment>
   );
 };

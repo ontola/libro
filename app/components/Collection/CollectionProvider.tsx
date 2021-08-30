@@ -197,7 +197,7 @@ const CollectionProvider = ({
       return null;
     }
 
-    if (!hasInteraction) {
+    if (!hasInteraction || hideHeader) {
       return <div data-test="invalid-status" />;
     }
   }

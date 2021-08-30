@@ -10,14 +10,15 @@ import React from 'react';
 
 import Link, { LinkTarget } from '../../components/Link';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
-interface ActionCardMainProps {
+interface ActionMainProps {
   actionStatus?: SomeTerm;
   name?: SomeTerm;
   target?: SomeNode;
 }
 
-const ActionCardMain: FC<ActionCardMainProps> = ({
+const ActionMain: FC<ActionMainProps> = ({
   children,
   subject,
 }) => {
@@ -48,8 +49,11 @@ const ActionCardMain: FC<ActionCardMainProps> = ({
   );
 };
 
-ActionCardMain.type = schema.Action;
+ActionMain.type = schema.Action;
 
-ActionCardMain.topology = cardMainTopology;
+ActionMain.topology = [
+  cardMainTopology,
+  mainBodyTopology,
+];
 
-export default register(ActionCardMain);
+export default register(ActionMain);

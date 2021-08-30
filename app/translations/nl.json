@@ -326,6 +326,12 @@
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "het Argu logo"
   },
+  "https://app.argu.co/i18n/landmarkMessages/navigationBar": {
+    "defaultMessage": "Navigatie balk"
+  },
+  "https://app.argu.co/i18n/landmarkMessages/subsectionLabel": {
+    "defaultMessage": "Denk mee"
+  },
   "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
     "defaultMessage": "Email adres"
   },

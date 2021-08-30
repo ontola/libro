@@ -5,6 +5,7 @@ import CollectionProvider from '../../components/Collection/CollectionProvider';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import { mainBodyTopology } from '../../topologies/MainBody';
 import { sideBarTopology } from '../../topologies/SideBar';
 
 import { CollectionTypes } from './types';
@@ -20,6 +21,7 @@ CollectionDefault.type = CollectionTypes;
 CollectionDefault.topology = [
   cardTopology,
   cardMainTopology,
+  mainBodyTopology,
   fullResourceTopology,
   sideBarTopology,
 ];

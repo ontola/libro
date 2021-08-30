@@ -43,15 +43,15 @@ import { inlineTopology } from '../../topologies/Inline';
 import { listTopology } from '../../topologies/List';
 import { menuTopology } from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
+import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
+import { selectTopology } from '../../topologies/Select';
 import { selectedValueTopology } from '../../topologies/SelectedValue';
+import { tabBarTopology } from '../../topologies/TabBar';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { tabBarTopology } from '../../topologies/TabBar';
-import { selectTopology } from '../../topologies/Select';
 
 export default [
   LinkedRenderStore.registerRenderer(

@@ -1,3 +1,5 @@
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/styles';
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
@@ -5,37 +7,20 @@ import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { LibroTheme } from '../../themes/themes';
 import BlurButton from '../BlurButton';
 import LinkDuo from '../LinkDuo';
 
-import './Button.scss';
+import useStyles, {
+  ButtonTheme,
+  ButtonVariant,
+} from './buttonStyles';
 
-export enum ButtonTheme {
-  AsCard = 'as-card',
-  Box = 'box',
-  CardBig = 'card--big',
-  Default = 'default',
-  Pagination = 'pagination',
-  Submit = 'submit',
-  Subtle = 'subtle',
-  Transparent = 'transparent',
-}
+export { ButtonTheme, ButtonVariant } from './buttonStyles';
 
-export enum ButtonVariant {
-  Success = 'success',
-  Warning = 'warning',
-  Error = 'error',
-  Yes = 'yes',
-  Pro = 'pro',
-  Neutral = 'neutral',
-  Other = 'other',
-  No = 'no',
-  Con = 'con',
-  Upvote = 'upvote',
-  Comment = 'comment',
-  Facebook = 'facebook',
-  Google = 'google',
-}
+const ButtonIdentifierClass = 'Button';
+const ButtonLabelIdentifierClass = 'Button__label';
+const ButtonIconIdentifierClass = 'Button__icon';
 
 export interface ButtonProps {
   action?: NamedNode,
@@ -43,6 +28,8 @@ export interface ButtonProps {
   active?: boolean;
   /** Additional aria label */
   ariaLabel?: string;
+  list?: boolean;
+  cardFloat?: boolean;
   centered?: boolean;
   /** Label of the button */
   children?: React.ReactNode;
@@ -69,6 +56,7 @@ export interface ButtonProps {
   /** Removes all styling. */
   plain?: boolean;
   small?: boolean;
+  stretch?: boolean;
   /** Removes all styling. */
   theme?: ButtonTheme;
   /** Title html tag. */
@@ -96,6 +84,8 @@ const Button: React.FC<ButtonProps> = ({
   active,
   action,
   ariaLabel,
+  cardFloat,
+  list,
   centered,
   children,
   className,
@@ -108,6 +98,7 @@ const Button: React.FC<ButtonProps> = ({
   margins,
   onClick,
   small,
+  stretch,
   narrow,
   plain,
   theme,
@@ -117,6 +108,9 @@ const Button: React.FC<ButtonProps> = ({
   variant,
 }) => {
   const lrs = useLRS();
+  const muiTheme = useTheme<LibroTheme>();
+  const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
+  const classes = useStyles();
   const handleAction = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
 
@@ -124,21 +118,35 @@ const Button: React.FC<ButtonProps> = ({
   }, [action]);
   const handleClick = onClick || (action ? handleAction : undefined);
   const btnClass = clsx({
-    'Button': true,
-    'Button--active': active,
-    'Button--centered': centered,
-    'Button--corner': corner,
-    'Button--grow': grow,
-    'Button--has-children': children,
-    'Button--has-icon': icon,
-    'Button--margins': margins,
-    'Button--narrow': narrow,
-    'Button--plain': plain,
-    'Button--small': small,
-    [`Button--${theme}`]: theme,
-    [`Button--variant-${variant}`]: variant,
+    [ButtonIdentifierClass]: true,
+    [classes.button]: true,
+    [classes.buttonPlain]: plain,
+    [classes.active]: active,
+    [classes.centered]: centered,
+    [classes.corner]: corner,
+    [classes.grow]: grow,
+    [classes.hasChildren]: children,
+    [classes.hasIcon]: icon,
+    [classes.margins]: margins,
+    [classes.narrow]: narrow,
+    [classes.small]: small,
+    [classes.cardList]: list,
+    [classes.cardFloat]: cardFloat,
+    [classes.stretched]: stretch,
+    [classes[theme ?? '']]: theme,
+    [classes[variant ?? '']]: variant,
     [className || '']: className,
   });
+
+  const buttonLabelClass = clsx([
+    ButtonLabelIdentifierClass,
+    classes.label,
+  ]);
+
+  const buttonIconClass = clsx([
+    ButtonIconIdentifierClass,
+    classes.icon,
+  ]);
 
   const currentIcon = loading ? 'spinner' : icon && normalizeFontAwesomeIRI(icon);
 
@@ -161,13 +169,13 @@ const Button: React.FC<ButtonProps> = ({
       >
         {currentIcon && (
           <FontAwesome
-            className="Button__icon"
-            data-testid="Button-icon"
+            className={buttonIconClass}
+            data-test="Button-icon"
             name={currentIcon}
             spin={loading}
           />
         )}
-        <span className="Button__label">
+        <span className={buttonLabelClass}>
           {children}
         </span>
         {endIcon}
@@ -182,14 +190,15 @@ const Button: React.FC<ButtonProps> = ({
     >
       {currentIcon && (
         <FontAwesome
-          className="Button__icon"
+          className={buttonIconClass}
+          data-test="Button-icon"
           data-testid="Button-icon"
           name={currentIcon}
           spin={loading}
         />
       )}
-      {children && (
-        <span className="Button__label">
+      {children && (!icon || !isMobile) && (
+        <span className={buttonLabelClass}>
           {children}
         </span>
       )}

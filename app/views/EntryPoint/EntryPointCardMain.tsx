@@ -5,7 +5,10 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React, { EventHandler, SyntheticEvent } from 'react';
+import React, {
+  EventHandler,
+  SyntheticEvent,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router';
 
@@ -17,6 +20,7 @@ import ll from '../../ontology/ll';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 
@@ -90,6 +94,7 @@ EntryPointCardMain.type = schema.EntryPoint;
 EntryPointCardMain.topology = [
   cardTopology,
   cardMainTopology,
+  mainBodyTopology,
 ];
 
 export default register(EntryPointCardMain);

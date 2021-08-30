@@ -8,46 +8,6 @@ import { semanticColors } from '../shared/config';
 
 import './Heading.scss';
 
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-const useStyles = makeStyles<LibroTheme>((theme) => {
-  const style = {
-    default: {
-      '& b': {
-        color: theme.palette.grey[900],
-      },
-      'color': theme.palette.grey[800],
-      'lineHeight': 1.3,
-      'marginBottom': '.6rem',
-    },
-  } as any;
-  style.alert = {
-    color: theme.palette.error.dark,
-  };
-  style.inherit = {
-    display: 'inherit',
-  };
-  style.navbar = {
-    color: theme.appBar.resolveColor(),
-  };
-  style.notice = {
-    color: theme.palette.grey[600],
-    fontStyle: 'italic',
-    textAlign: 'center',
-  };
-  style.semantic = {
-    color: theme.palette.link?.header,
-  };
-
-  Object.keys(semanticColors).forEach((type) => {
-    style.semantic[`&[typeof='${type}']`] = {
-      color: semanticColors[type],
-    };
-  });
-
-  return style;
-});
-/* eslint-enable @typescript-eslint/no-magic-numbers */
-
 export enum HeadingSize {
   XL = 1,
   LG,
@@ -66,6 +26,44 @@ export enum HeadingVariant {
   Question = 'question',
   Semantic = 'semantic',
 }
+
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  [HeadingVariant.Alert]: {
+    color: theme.palette.error.dark,
+  },
+  [HeadingVariant.Error]: {},
+  [HeadingVariant.Motion]: {},
+  [HeadingVariant.Navbar]: {
+    color: theme.appBar.resolveColor(),
+  },
+  [HeadingVariant.Notice]: {
+    color: theme.palette.grey[600],
+    fontStyle: 'italic',
+    textAlign: 'center',
+  },
+  [HeadingVariant.Question]: {},
+  [HeadingVariant.Semantic]: Object.entries(semanticColors).reduce((acc, [k, v]) => ({
+    ...acc,
+    [`&[typeof='${k}']`]: {
+      color: v,
+    },
+  }), {
+    color: theme.palette.link?.header,
+  }),
+  default: {
+    '& b': {
+      color: theme.palette.grey[900],
+    },
+    'color': theme.palette.grey[800],
+    'lineHeight': 1.3,
+    'marginBottom': '.6rem',
+  },
+  inherit: {
+    display: 'inherit',
+  },
+}));
+/* eslint-enable @typescript-eslint/no-magic-numbers */
 
 interface PropTypes {
   className?: string;
@@ -88,10 +86,10 @@ const Heading: React.FC<PropTypes> = ({
   variant = '',
 }) => {
   const Element = `h${size}` as React.ElementType;
-  const classes = useStyles() as any;
+  const classes = useStyles();
   const headingClass = clsx({
     Heading: true,
-    [className ? className : '']: true,
+    [className ?? '']: true,
     [classes.default]: true,
     [classes.inherit]: display === 'inherit',
     [classes[variant]]: true,

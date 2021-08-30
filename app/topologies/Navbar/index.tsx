@@ -1,21 +1,19 @@
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
-import {
-  withStyles,
-  withTheme,
-} from '@material-ui/styles';
-import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
+import { withStyles, withTheme } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/styles/withStyles/withStyles';
 import React from 'react';
+import { WrappedComponentProps, injectIntl } from 'react-intl';
 
 import app from '../../ontology/app';
 import { CSSPropertiesMap, LibroTheme } from '../../themes/themes';
+import { landmarkMessages } from '../../translations/messages';
 import Topology from '../Topology';
 
 export const navbarTopology = app.ns('topologies/navbar');
 
-interface PropTypes {
-  classes: ClassNameMap;
+interface NavbarProps {
   theme: any;
   fullWidth?: boolean;
 }
@@ -27,8 +25,10 @@ const styles = (theme: LibroTheme): CSSPropertiesMap => ({
   },
 });
 
-class Navbar extends Topology<PropTypes> {
-  constructor(props: PropTypes) {
+type PropType = NavbarProps & WithStyles<typeof styles> & WrappedComponentProps;
+
+class Navbar extends Topology<PropType> {
+  constructor(props: PropType) {
     super(props);
 
     this.topology = navbarTopology;
@@ -58,14 +58,19 @@ class Navbar extends Topology<PropTypes> {
           position={position}
           resource={subject && subject.value}
         >
-          <ToolbarWrapper {...toolbarWrapperProps}>
-            <Toolbar
-              disableGutters
-              variant="dense"
-            >
-              {this.props.children}
-            </Toolbar>
-          </ToolbarWrapper>
+          <nav
+            aria-label={this.props.intl.formatMessage(landmarkMessages.navigationBar)}
+            role="navigation"
+          >
+            <ToolbarWrapper {...toolbarWrapperProps}>
+              <Toolbar
+                disableGutters
+                variant="dense"
+              >
+                {this.props.children}
+              </Toolbar>
+            </ToolbarWrapper>
+          </nav>
         </AppBar>
         {position === 'fixed' && <div style={{ height }} />}
       </React.Fragment>
@@ -73,4 +78,8 @@ class Navbar extends Topology<PropTypes> {
   }
 }
 
-export default withTheme(withStyles(styles)(Navbar));
+export default withTheme(
+  withStyles(styles)(
+    injectIntl(Navbar),
+  ),
+);

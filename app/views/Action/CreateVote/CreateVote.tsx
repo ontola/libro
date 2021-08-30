@@ -23,7 +23,7 @@ import {
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 
-import { ButtonTheme } from '../../../components/Button';
+import { ButtonTheme, ButtonVariant } from '../../../components/Button';
 import { entityIsLoaded } from '../../../helpers/data';
 import {
   HTTP_RETRY_WITH,
@@ -90,9 +90,9 @@ const mapDispatchToProps = (dispatch: (action: Action) => void, ownProps: Create
 });
 
 function countAttribute(option: string) {
-  if (option === 'yes') {
+  if (option === Option.Yes) {
     return argu.votesProCount;
-  } else if (option === 'no') {
+  } else if (option === Option.No) {
     return argu.votesConCount;
   }
 
@@ -116,18 +116,18 @@ function getTitle(variant: string, parentType: SomeNode, expired: boolean, fm: (
     return null;
   }
 
-  if (variant === 'yes') {
+  if (variant === Option.Yes) {
     return fm(voteMessages.proMessage);
-  } else if (variant === 'no') {
+  } else if (variant === Option.No) {
     return fm(voteMessages.conMessage);
-  } else if (variant === 'other') {
+  } else if (variant === Option.Other) {
     return fm(voteMessages.neutralMessage);
   }
 
   return null;
 }
 
-const isOption = (v: string): v is Option => ['yes', 'no', 'other'].includes(v);
+const isOption = (v: string): v is Option => [Option.Yes, Option.No, Option.Other].includes(v as Option);
 
 function getOption(subject: SomeNode): Option {
   const variant = new URL(subject.value).searchParams.get('filter[]')?.split('=')?.pop();
@@ -141,11 +141,11 @@ function getOption(subject: SomeNode): Option {
 
 function getVariant(option: string, parentType: SomeNode) {
   if (rdf.equals(parentType, argu.ProArgument)) {
-    return 'yes';
+    return ButtonVariant.Yes;
   }
 
   if (rdf.equals(parentType, argu.ConArgument)) {
-    return 'no';
+    return ButtonVariant.No;
   }
 
   return option;
@@ -212,7 +212,7 @@ const CreateVote: FC<CreateVoteProps> = ({
       grow={rdf.equals(parentType, argu.VoteEvent)}
       stretch={rdf.equals(parentType, argu.VoteEvent)}
       subject={target}
-      theme={ButtonTheme.Transparent}
+      theme={ButtonTheme.Outlined}
       title={getTitle(option, parentType, expired, formatMessage)}
       variant={getVariant(option, parentType)}
       onClick={handleClick}

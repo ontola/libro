@@ -10,6 +10,7 @@ import React from 'react';
 import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 
 interface AttatchmentsProps {
   linkedProp: SomeNode;
@@ -31,6 +32,9 @@ Attatchments.type = schema.Thing;
 
 Attatchments.property = [argu.attachments, meeting.attachment];
 
-Attatchments.topology = cardRowTopology;
+Attatchments.topology = [
+  cardRowTopology,
+  mainBodyTopology,
+];
 
 export default register(Attatchments);

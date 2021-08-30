@@ -16,7 +16,6 @@ const ForumNameParent: FC<ForumNameParent> = ({ linkedProp }) => (
   <span
     style={{
       color: 'var(--accent-background-color)',
-      fontWeight: 'bold',
     }}
   >
     {linkedProp.value}

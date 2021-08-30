@@ -16,6 +16,7 @@ export interface DetailsBarProps {
   borderBottom: boolean;
   classes: Classes;
   className?: string;
+  layoutOnly?: boolean;
   right?: ReactNode;
   scrollable?: boolean;
   variant?: DetailsBarVariant;
@@ -45,6 +46,7 @@ class DetailsBar extends TopologyProvider<DetailsBarProps> {
       [this.props.classes.borderBottom]: this.props.borderBottom,
       [this.props.classes.shared]: true,
       [this.props.variant ? this.props.classes[this.props.variant] : '']: this.props.variant,
+      [this.props.classes.layoutOnly]: this.props.layoutOnly,
       [this.props.className || '']: this.props.className,
     });
 

@@ -11,8 +11,8 @@ import CardContent from '../../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import LinkedDetailDate from '../../../../components/LinkedDetailDate';
 import argu from '../../../../ontology/argu';
-import teamGL from '../../../../ontology/teamGL';
 import ontola from '../../../../ontology/ontola';
+import teamGL from '../../../../ontology/teamGL';
 import CardMain from '../../../../topologies/Card/CardMain';
 import Container from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
@@ -25,7 +25,7 @@ interface DepartmentFullProps {
 const DepartmentFull = ({ renderPartOf }: DepartmentFullProps) => {
   const postalRanges = useProperty(teamGL.postalRanges, { returnType: ReturnType.AllLiterals });
 
-  return(
+  return (
     <React.Fragment>
       <Container>
         {renderPartOf && <Property label={schema.isPartOf} />}

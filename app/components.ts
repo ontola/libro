@@ -70,6 +70,7 @@ import CompNetworkStatusIndicator from './components/NetworkStatusIndicator';
 import CompOmniform from './components/Omniform';
 import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
 import CompOverlayContainer from './components/OverlayContainer';
+import { PageHeader as CompPageHeader } from './components/PageHeader';
 import CompPageRow from './components/PageRow';
 import CompProgress from './components/Progress';
 import CompResourceBoundary from './components/ResourceBoundary';
@@ -82,6 +83,7 @@ import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink
 import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
 import CompSkipNavigation from './components/SkipNavigation';
 import CompSpinner from './components/Spinner';
+import CompSubSection from './components/SubSection';
 import CompUnorderedList from './components/UnorderedList';
 import CompVerticalScroller from './components/VerticalScroller';
 import CompVoteData from './components/VoteData';
@@ -210,6 +212,7 @@ export const componentMap = {
   [rdf.id(components.Omniform)]: [CompOmniform],
   [rdf.id(components.OmniformOmniformPreview)]: [CompOmniformOmniformPreview],
   [rdf.id(components.OverlayContainer)]: [CompOverlayContainer],
+  [rdf.id(components.PageHeader)]: [CompPageHeader],
   [rdf.id(components.PageRow)]: [CompPageRow],
   [rdf.id(components.Progress)]: [CompProgress],
   [rdf.id(components.ResourceBoundary)]: [CompResourceBoundary],
@@ -220,6 +223,7 @@ export const componentMap = {
   [rdf.id(components.SignOutForm)]: [CompSignOutForm],
   [rdf.id(components.SkipNavigation)]: [CompSkipNavigation],
   [rdf.id(components.Spinner)]: [CompSpinner],
+  [rdf.id(components.SubSection)]: [CompSubSection],
   [rdf.id(components.UnorderedList)]: [CompUnorderedList],
   [rdf.id(components.VerticalScroller)]: [CompVerticalScroller],
   [rdf.id(components.VoteData)]: [CompVoteData],

@@ -4,8 +4,9 @@ import React from 'react';
 
 import app from '../../ontology/app';
 
-import './NavBarContent.scss';
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';
+
+import './NavBarContent.scss';
 
 export interface NavBarContentProps {
   children: React.ReactNode;

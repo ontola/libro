@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import Button, { ButtonTheme, ButtonVariant } from '../../components/Button';
 import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { values } from '../../helpers/ssr';
@@ -27,8 +27,6 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
   const [image] = useProperty(schema.image);
   const [label] = useProperty(rdfs.label);
 
-  const curClass = current ? ' Button--omniform-switcher--current' : '';
-
   const children = !image
     ? label?.value
     : (
@@ -42,10 +40,11 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
 
   return (
     <Button
-      className={`Button--omniform-switcher Button--omniform-switcher-- ${curClass}`}
+      active={current}
       icon={image && normalizeFontAwesomeIRI(image)}
       theme={ButtonTheme.Transparent}
       title={description?.value}
+      variant={ButtonVariant.Omniform}
       onClick={onClick}
     >
       {children}

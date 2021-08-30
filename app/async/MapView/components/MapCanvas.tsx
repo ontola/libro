@@ -1,8 +1,9 @@
+import 'ol/ol.css';
+
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
-import 'ol/ol.css';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 

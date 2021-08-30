@@ -1,4 +1,4 @@
-import {  isNamedNode } from '@ontologies/core';
+import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -8,12 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import TabbarProvider from '../../components/TabbarProvider';
-import app from '../../ontology/app';
-import { CardMain } from '../../topologies/Card';
+import SubSection from '../../components/SubSection';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import MainBody from '../../topologies/MainBody';
 
 import { MenuTypes } from './types';
 
@@ -25,30 +23,18 @@ const MenuItemFull: FC = ({ subject }) => {
   }
 
   return (
-    <TabbarProvider
-      redirect
-      menu={subject}
-    >
+    <React.Fragment>
       <Container>
-        <CardMain>
+        <MainBody>
           {isPartOf
             ? <Property label={schema.isPartOf} />
             : (
-              <CardContent>
-                <Property label={schema.name} />
-              </CardContent>
+              <Property label={schema.name} />
             )}
-          <Property
-            forceRender
-            label={app.menuTabs}
-          />
-        </CardMain>
+        </MainBody>
       </Container>
-      <Property
-        forceRender
-        label={app.currentTab}
-      />
-    </TabbarProvider>
+      <SubSection menu={subject} />
+    </React.Fragment>
   );
 };
 

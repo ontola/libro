@@ -25,6 +25,7 @@ import gridTopologyComponent, { gridTopology } from './topologies/Grid';
 import hoverBoxTopologyComponent from './topologies/HoverBox';
 import { inlineTopology } from './topologies/Inline';
 import listTopologyComponent, { listTopology } from './topologies/List';
+import mainBodyComponent, { mainBodyTopology } from './topologies/MainBody';
 import menuTopologyComponent, { menuTopology } from './topologies/Menu';
 import navbarTopologyComponent, { navbarTopology } from './topologies/Navbar';
 import omniformFieldsTopologyComponent, { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
@@ -68,6 +69,7 @@ const topologyMap: TopologyMap = {
   [rdf.id(contentDetailsTopology)]: [contentDetailsTopologyComponent, undefined],
   [rdf.id(detailsBarTopology)]: [detailsBarTopologyComponent, undefined],
   [rdf.id(alertDialogTopology)]: [alertDialogTopologyComponent, undefined],
+  [rdf.id(mainBodyTopology)]: [mainBodyComponent, undefined],
   [rdf.id(menuTopology)]: [formFooterTopologyComponent, undefined],
   [rdf.id(flowTopology)]: [flowTopologyComponent, undefined],
   [rdf.id(formFooterTopology)]: [fullResourceTopologyComponent, undefined],
