@@ -27,7 +27,7 @@ const CurrentLocationButton = ({
 
     if (coordinates) {
       const view = map?.getView();
-      const zoom = view?.getZoom() || DEFAULT_ZOOM;
+      const zoom = view?.getZoom() ?? DEFAULT_ZOOM;
       view?.animate({
         center: coordinates,
         duration: 300,
