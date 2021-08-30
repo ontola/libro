@@ -8,11 +8,11 @@ import {
 import React from 'react';
 
 import teamGL from '../../../../ontology/teamGL';
-import { cardListTopology } from '../../../../topologies/Card/CardList';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import HoverBox from '../../../../topologies/HoverBox';
+import { listTopology } from '../../../../topologies/List';
 
-const EventCardList: FC = ({
+const EventList: FC = ({
   subject,
 }) => {
   const lrs = useLRS();
@@ -36,8 +36,8 @@ const EventCardList: FC = ({
   );
 };
 
-EventCardList.type = teamGL.Event;
+EventList.type = teamGL.Event;
 
-EventCardList.topology = cardListTopology;
+EventList.topology = listTopology;
 
-export default register(EventCardList);
+export default register(EventList);

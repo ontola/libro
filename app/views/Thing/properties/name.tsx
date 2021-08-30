@@ -23,7 +23,6 @@ import { attributeListTopology } from '../../../topologies/AttributeList';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
-import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../topologies/Container';
@@ -34,6 +33,7 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { inlineTopology } from '../../../topologies/Inline';
+import { listTopology } from '../../../topologies/List';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
@@ -117,7 +117,7 @@ export default [
     [
       actionsBarTopology,
       cardFloatTopology,
-      cardListTopology,
+      listTopology,
       containerFloatTopology,
     ],
   ),

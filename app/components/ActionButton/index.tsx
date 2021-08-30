@@ -3,10 +3,8 @@ import { SomeNode } from 'link-lib';
 import React, { MouseEventHandler } from 'react';
 
 import { countInParentheses } from '../../helpers/numbers';
-import argu from '../../ontology/argu';
+import { listTopology } from '../../topologies/List';
 import Button from '../Button';
-
-const defaultTopology = argu.cardList;
 
 interface ActionButtonProps {
   count: Literal;
@@ -26,13 +24,14 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   const label = `${name.value} ${countInParentheses(count)}`;
   const parsedURL = subject && new URL(subject.value);
   const href = parsedURL && parsedURL.pathname + parsedURL.search;
-  const className = rdf.equals(topology, defaultTopology) ? 'card-list' : 'card-float';
+  const isList = rdf.equals(topology, listTopology);
 
   return (
     <Button
       plain
-      className={`Button--${className}`}
+      cardFloat={!isList}
       href={href}
+      list={isList}
       onClick={onClick}
     >
       {label}

@@ -81,7 +81,6 @@ class Card extends Topology<PropType> {
 export { default as CardAppendix } from './CardAppendix';
 export { default as CardFixed } from './CardFixed';
 export { default as CardFloat } from './CardFloat';
-export { default as CardList } from './CardList';
 export { default as CardMicroRow } from './CardMicroRow';
 export { default as CardRow } from './CardRow';
 export { default as CardMain } from './CardMain';

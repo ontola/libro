@@ -168,23 +168,6 @@
   }
 }
 
-.CardList {
-  display: flex;
-
-  &.CardList--column {
-    flex-direction: column;
-  }
-
-  &--overflow {
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-
-  &--wrap {
-    flex-wrap: wrap;
-  }
-}
-
 .CardMicroRow {
   font-size: .9em;
   padding: .3rem 1.3rem;

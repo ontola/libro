@@ -10,9 +10,9 @@ import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
 import ontola from '../../ontology/ontola';
 import { CardFixed } from '../../topologies/Card';
-import CardList, { CardListDirection } from '../../topologies/Card/CardList';
 import DetailsBar from '../../topologies/DetailsBar';
 import { gridTopology } from '../../topologies/Grid';
+import List, { ListDirection } from '../../topologies/List';
 
 import { CollectionTypes } from './types';
 
@@ -23,16 +23,16 @@ const CollectionGrid: FC = () => (
         <Property label={as.name} />
       </CardContent>
       <CardContent>
-        <CardList
+        <List
           overflow
-          direction={CardListDirection.Column}
+          direction={ListDirection.Column}
         >
           <Property
             forceRender
             insideCollection
             label={ontola.pages}
           />
-        </CardList>
+        </List>
       </CardContent>
     </LDLink>
     <DetailsBar>

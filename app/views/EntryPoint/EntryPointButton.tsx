@@ -4,7 +4,7 @@ import { link } from 'link-redux';
 
 import ActionButton from '../../components/ActionButton';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { cardListTopology } from '../../topologies/Card/CardList';
+import { listTopology } from '../../topologies/List';
 
 export default LinkedRenderStore.registerRenderer(
   link({ name: schema.name })(ActionButton),
@@ -12,6 +12,6 @@ export default LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   [
     actionsBarTopology,
-    cardListTopology,
+    listTopology,
   ],
 );

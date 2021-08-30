@@ -11,14 +11,14 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
-import CardList, { CardListDirection } from '../../topologies/Card/CardList';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
+import List, { ListDirection } from '../../topologies/List';
 
 import { CollectionTypes } from './types';
 
 export interface CollectionSectionProps {
-  direction: CardListDirection,
+  direction: ListDirection,
   wrap?: boolean;
   to: SomeTerm;
 }
@@ -39,7 +39,7 @@ const CollectionSection: FC<CollectionSectionProps> = ({
 
   return (
     <CardContent>
-      <CardList
+      <List
         direction={direction}
         wrap={wrap}
       >
@@ -58,7 +58,7 @@ const CollectionSection: FC<CollectionSectionProps> = ({
           omniform
           label={ontola.createAction}
         />
-      </CardList>
+      </List>
     </CardContent>
   );
 };

@@ -14,7 +14,7 @@ import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
-import CardList from '../../topologies/Card/CardList';
+import List from '../../topologies/List';
 import Container from '../../topologies/Container';
 import { Page } from '../../topologies/Page';
 
@@ -108,11 +108,11 @@ describe('Thing', () => {
     expect(queryByText(PARENT_NAME)).toBeNull();
   });
 
-  it('renders as CardList', async () => {
+  it('renders as List', async () => {
     const {
       queryAllByText,
       queryByText,
-    } = await renderAs(CardList);
+    } = await renderAs(List);
 
     /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
     expect(queryAllByText(RESOURCE_NAME)).toHaveLength(2);

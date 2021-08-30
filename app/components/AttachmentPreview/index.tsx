@@ -18,15 +18,23 @@ import ontola from '../../ontology/ontola';
 import { DocumentAttachmentPreview } from './DocumentAttachmentPreview';
 import { ImageAttachmentPreview } from './ImageAttachmentPreview';
 
-interface AttachmentPreviewProps {
+interface SharedAttachmentProps {
   caption: SomeTerm;
-  contentUrl: SomeTerm;
   filename: SomeTerm;
-  isDocument: boolean;
   isPartOf: SomeNode;
   sequenceIndex: number;
   showPreviewDialog?: boolean;
   thumbnailURL: SomeTerm;
+}
+
+interface DocumentAttachmentProps extends SharedAttachmentProps {
+  isDocument?: false;
+  contentUrl?: undefined;
+}
+
+interface ImageAttachmentProps extends SharedAttachmentProps {
+  isDocument: true;
+  contentUrl: SomeTerm;
 }
 
 const usePreviewHandler = (isPartOf: SomeNode, sequenceIndex: number) => {
@@ -52,28 +60,36 @@ const usePreviewHandler = (isPartOf: SomeNode, sequenceIndex: number) => {
   }, [attachmentsIri, attachmentsPageIri]);
 };
 
-const AttachmentPreview = ({
-  caption,
-  contentUrl,
-  isDocument,
-  filename,
-  isPartOf,
-  sequenceIndex,
-  showPreviewDialog,
-  thumbnailURL,
-}: AttachmentPreviewProps): JSX.Element => {
+const AttachmentPreview = (props: DocumentAttachmentProps | ImageAttachmentProps): JSX.Element => {
+  const {
+    caption,
+    filename,
+    isPartOf,
+    sequenceIndex,
+    showPreviewDialog,
+    thumbnailURL,
+  } = props;
   const handleClick = usePreviewHandler(isPartOf, sequenceIndex);
   const label = caption && caption.value ? caption.value : filename && filename.value;
+  const sharedProps = {
+    label,
+    onPreviewClick: handleClick,
+    showPreviewDialog: !!showPreviewDialog,
+    thumbnailURL,
+  };
 
-  const Preview = isDocument ? DocumentAttachmentPreview : ImageAttachmentPreview;
+  if (props.isDocument) {
+    return (
+      <DocumentAttachmentPreview
+        downloadURL={props.contentUrl?.value}
+        {...sharedProps}
+      />
+    );
+  }
 
   return (
-    <Preview
-      downloadURL={contentUrl?.value}
-      label={label}
-      showPreviewDialog={!!showPreviewDialog}
-      thumbnailURL={thumbnailURL}
-      onPreviewClick={handleClick}
+    <ImageAttachmentPreview
+      {...sharedProps}
     />
   );
 };

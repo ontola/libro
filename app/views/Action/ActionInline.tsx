@@ -18,7 +18,7 @@ import { ButtonTheme } from '../../components/Button';
 import { bestType, filterFind } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { cardListTopology } from '../../topologies/Card/CardList';
+import { listTopology } from '../../topologies/List';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
@@ -82,7 +82,7 @@ ActionInline.type = schema.Action;
 
 ActionInline.topology = [
   actionsBarTopology,
-  cardListTopology,
+  listTopology,
 ];
 
 ActionInline.hocs = [

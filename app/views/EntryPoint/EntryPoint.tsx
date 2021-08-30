@@ -15,7 +15,6 @@ import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
 import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
@@ -25,6 +24,7 @@ import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { footerTopology } from '../../topologies/Footer';
 import { gridTopology } from '../../topologies/Grid';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import { listTopology } from '../../topologies/List';
 import { pageTopology } from '../../topologies/Page';
 
 import useEntryPointFormProps from './useEntryPointFormProps';
@@ -78,7 +78,7 @@ EntryPoint.topology = allTopologiesExcept(
   cardTopology,
   cardMainTopology,
   cardFloatTopology,
-  cardListTopology,
+  listTopology,
   containerTopology,
   containerFloatTopology,
   contentDetailsTopology,

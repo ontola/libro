@@ -2,6 +2,7 @@ import CollectionContainer from './CollectionContainer';
 import CollectionDefault from './CollectionDefault';
 import CollectionDialog from './CollectionDialog';
 import CollectionGrid from './CollectionGrid';
+import CollectionList from './CollectionList';
 import CollectionTabPane from './CollectionTabPane';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
@@ -36,6 +37,7 @@ export default [
   CollectionTabPane,
   CollectionTableCell,
   CollectionDefault,
+  CollectionList,
   CreateAction,
   FilterFields,
   ...Header,

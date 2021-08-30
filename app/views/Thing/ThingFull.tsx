@@ -14,12 +14,11 @@ import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import { listTopology } from '../../topologies/List';
 import { defaultMenus } from '../common';
 
 interface ThingFullProps {
@@ -53,7 +52,10 @@ const ThingFull: FC<ThingFullProps> = ({ renderPartOf }) => {
             p(app.contents),
             p(withoutLoading(foaf.isPrimaryTopicOf)),
           ]),
-          c(cardRowTopology, [
+          c(listTopology, {
+            gutter: true,
+            wrap: true.valueOf,
+          }, [
             p(withoutLoading(argu.attachments)),
             p(meeting.attachment, {
               limit: Infinity,

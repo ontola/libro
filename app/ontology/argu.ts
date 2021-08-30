@@ -176,7 +176,6 @@ export default {
   actionsBar: argu('actionsBar'),
   card: argu('card'),
   cardFixed: argu('cardFixed'),
-  cardList: argu('cardList'),
   cardMain: argu('cardMain'),
   cartDetails: argu('cartDetails'),
   container: argu('container'),

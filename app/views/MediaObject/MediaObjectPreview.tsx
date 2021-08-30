@@ -12,7 +12,7 @@ import React from 'react';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { imageRepresentationUrl, isPDF } from '../../helpers/attachments';
 import dbo from '../../ontology/dbo';
-import { cardListTopology } from '../../topologies/Card/CardList';
+import { listTopology } from '../../topologies/List';
 
 interface PropTypes {
   sequenceIndex: number;
@@ -41,6 +41,8 @@ const MediaObjectPreview: FC<PropTypes> = ({ sequenceIndex }) => {
 
 MediaObjectPreview.type = schema.MediaObject;
 
-MediaObjectPreview.topology = cardListTopology;
+MediaObjectPreview.topology = [
+  listTopology,
+];
 
 export default register(MediaObjectPreview);

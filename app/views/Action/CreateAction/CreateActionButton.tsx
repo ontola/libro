@@ -14,7 +14,6 @@ import libro from '../../../ontology/libro';
 import { allTopologiesExcept } from '../../../topologies';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
-import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../topologies/Container';
@@ -23,6 +22,7 @@ import { containerHeaderTopology } from '../../../topologies/Container/Container
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
+import { listTopology } from '../../../topologies/List';
 import { menuTopology } from '../../../topologies/Menu';
 import { pageTopology } from '../../../topologies/Page';
 import { tableCellTopology } from '../../../topologies/TableCell';
@@ -71,7 +71,7 @@ CreateActionButton.type = schema.CreateAction;
 CreateActionButton.topology = allTopologiesExcept(
   actionsBarTopology,
   alertDialogTopology,
-  cardListTopology,
+  listTopology,
   cardFloatTopology,
   cardMainTopology,
   cardRowTopology,

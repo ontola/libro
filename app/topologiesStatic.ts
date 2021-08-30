@@ -10,7 +10,6 @@ import cardTopologyComponent, { cardTopology } from './topologies/Card';
 import cardAppendixTopologyComponent, { cardAppendixTopology } from './topologies/Card/CardAppendix';
 import cardFixedTopologyComponent, { cardFixedTopology } from './topologies/Card/CardFixed';
 import cardFloatTopologyComponent, { cardFloatTopology } from './topologies/Card/CardFloat';
-import cardListTopologyComponent, { cardListTopology } from './topologies/Card/CardList';
 import cardMainTopologyComponent, { cardMainTopology } from './topologies/Card/CardMain';
 import cardMicroRowTopologyComponent, { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
 import cardRowTopologyComponent, { cardRowTopology } from './topologies/Card/CardRow';
@@ -25,6 +24,7 @@ import fullResourceTopologyComponent, { fullResourceTopology } from './topologie
 import gridTopologyComponent, { gridTopology } from './topologies/Grid';
 import hoverBoxTopologyComponent from './topologies/HoverBox';
 import { inlineTopology } from './topologies/Inline';
+import listTopologyComponent, { listTopology } from './topologies/List';
 import menuTopologyComponent, { menuTopology } from './topologies/Menu';
 import navbarTopologyComponent, { navbarTopology } from './topologies/Navbar';
 import omniformFieldsTopologyComponent, { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
@@ -59,7 +59,6 @@ const topologyMap: TopologyMap = {
   [rdf.id(cardAppendixTopology)]: [cardAppendixTopologyComponent, undefined],
   [rdf.id(cardFixedTopology)]: [cardFixedTopologyComponent, undefined],
   [rdf.id(cardFloatTopology)]: [cardFloatTopologyComponent, undefined],
-  [rdf.id(cardListTopology)]: [cardListTopologyComponent, undefined],
   [rdf.id(cardMainTopology)]: [cardMainTopologyComponent, undefined],
   [rdf.id(cardMicroRowTopology)]: [cardMicroRowTopologyComponent, undefined],
   [rdf.id(cardRowTopology)]: [cardRowTopologyComponent, undefined],
@@ -75,6 +74,7 @@ const topologyMap: TopologyMap = {
   [rdf.id(fullResourceTopology)]: [gridTopologyComponent, undefined],
   [rdf.id(gridTopology)]: [hoverBoxTopologyComponent, undefined],
   [rdf.id(inlineTopology)]: [menuTopologyComponent, undefined],
+  [rdf.id(listTopology)]: [listTopologyComponent, undefined],
   [rdf.id(navbarTopology)]: [navbarTopologyComponent, undefined],
   [rdf.id(omniformFieldsTopology)]: [omniformFieldsTopologyComponent, undefined],
   [rdf.id(omniformSupplementBarTopology)]: [omniformSupplementBarTopologyComponent, undefined],

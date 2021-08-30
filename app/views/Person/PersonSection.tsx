@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
+import { listTopology } from '../../topologies/List';
 
 const PersonSection = () => {
   const [name] = useProperty(schema.name);
@@ -31,7 +31,7 @@ PersonSection.type = [
 ];
 
 PersonSection.topology = [
-  cardListTopology,
+  listTopology,
   cardMicroRowTopology,
 ];
 

@@ -5,9 +5,9 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting } from '../../containers/Highlight';
-import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import HoverBox from '../../topologies/HoverBox';
+import { listTopology } from '../../topologies/List';
 
 interface ThingSectionProps {
   highlighted: boolean;
@@ -31,7 +31,7 @@ export default [
     connectHighlighting(ThingSection),
     schema.Thing,
     RENDER_CLASS_NAME,
-    cardListTopology,
+    listTopology,
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting((props): JSX.Element => (

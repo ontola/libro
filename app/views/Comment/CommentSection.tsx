@@ -11,12 +11,12 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { connectHighlighting } from '../../containers/Highlight';
-import argu from '../../ontology/argu';
-import CardMicroRow, { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { entityIsLoaded } from '../../helpers/data';
+import argu from '../../ontology/argu';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import { cardListTopology } from '../../topologies/Card/CardList';
+import CardMicroRow, { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { listTopology } from '../../topologies/List';
 
 interface CommentSectionProps extends SubjectProp {
   highlighted: boolean;
@@ -51,7 +51,7 @@ CommentSection.type = [
 
 CommentSection.topology = [
   cardAppendixTopology,
-  cardListTopology,
+  listTopology,
   cardMicroRowTopology,
   cardRowTopology,
 ];

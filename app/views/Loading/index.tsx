@@ -26,7 +26,6 @@ import { cardTopology } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
@@ -41,6 +40,7 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
+import { listTopology } from '../../topologies/List';
 import { menuTopology } from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
@@ -82,8 +82,8 @@ export default [
     [
       alertDialogTopology,
       containerTopology,
-      cardListTopology,
       flowTopology,
+      listTopology,
     ],
   ),
   LinkedRenderStore.registerRenderer(
@@ -175,7 +175,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       attributeListTopology,
-      cardListTopology,
+      listTopology,
       cardMainTopology,
       cardMicroRowTopology,
       formFooterTopology,

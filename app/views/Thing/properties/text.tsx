@@ -10,13 +10,13 @@ import CollapseText from '../../../components/CollapseText';
 import Markdown from '../../../components/Markdown';
 import { useStrippedMarkdown } from '../../../helpers/useStrippedMarkdown';
 import { cardTopology } from '../../../topologies/Card';
-import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { cardMicroRowTopology } from '../../../topologies/Card/CardMicroRow';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
+import { listTopology } from '../../../topologies/List';
 
 const textProperties = [
   schema.text,
@@ -50,7 +50,7 @@ TextStripped.type = schema.Thing;
 
 TextStripped.property = textProperties;
 
-TextStripped.topology = cardListTopology;
+TextStripped.topology = listTopology;
 
 interface TextCollapsedProps extends PropertyProps {
   minCharacters: number;

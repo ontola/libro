@@ -9,7 +9,7 @@ import { navbarTopology } from '../../topologies/Navbar';
 
 import ImageObject from './ImageObject';
 import ImageObjectCardMain from './ImageObjectCardMain';
-import ImageObjectCardList from './ImageObjectCardList';
+import ImageObjectList from './ImageObjectList';
 import ImageObjectPageHeader from './ImageObjectPageHeader';
 import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
@@ -30,5 +30,5 @@ export default [
   ...boxImage,
   ...thumbnail,
   ImageObjectCardMain,
-  ImageObjectCardList,
+  ImageObjectList,
 ];

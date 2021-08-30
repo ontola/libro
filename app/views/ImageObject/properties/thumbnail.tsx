@@ -5,12 +5,15 @@ import { register } from 'link-redux';
 import React from 'react';
 
 import FormFooterImage from '../../../components/Form/FooterImage';
-import Image, { ImageBaseProps, ImageProps } from '../../../components/Image';
+import Image, {
+  ImageBaseProps,
+  ImageProps,
+} from '../../../components/Image';
 import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
-import { cardListTopology } from '../../../topologies/Card/CardList';
 import { formFooterTopology } from '../../../topologies/FormFooter';
+import { listTopology } from '../../../topologies/List';
 import { pageTopology } from '../../../topologies/Page';
 import { selectedValueTopology } from '../../../topologies/SelectedValue';
 
@@ -44,7 +47,7 @@ export function registerThumbnail<T extends ImageBaseProps = ImageBaseProps>(
 export default [
   registerThumbnail(
     allTopologiesExcept(
-      cardListTopology,
+      listTopology,
       formFooterTopology,
       pageTopology,
       selectedValueTopology,
