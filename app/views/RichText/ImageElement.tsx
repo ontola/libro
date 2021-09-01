@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
-import { FloatProperty } from 'csstype';
 import {
   FC,
   Property,
@@ -13,25 +12,26 @@ import React from 'react';
 import Image from '../../components/Image';
 import elements from '../../ontology/elements';
 import ontola from '../../ontology/ontola';
+import { LibroTheme } from '../../themes/themes';
 import { allTopologies } from '../../topologies';
 
 interface StyleProps {
   float?: string,
 }
 
-const useStyles = makeStyles<undefined, StyleProps>({
+const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   float: {
-    marginLeft: ({ float }) => float === 'left' ? 'var(--article-image-inset, 10%)' : 'inherit',
-    marginRight: ({ float }) => float === 'right' ? 'var(--article-image-inset, 10%)' : 'inherit',
-    maxWidth: '40% !Important',
-    padding: '10px',
+    [theme.breakpoints.up('sm')]: {
+      float: ({ float }) => float,
+      maxWidth: '50% !Important',
+      padding: '10px',
+    },
   },
   img: {
-    float: ({ float }) => float as FloatProperty ?? 'unset',
     height: 'auto',
     maxWidth: '100%',
   },
-});
+}));
 
 const ImageElement: FC = () => {
   const [float] = useProperty(elements.float);

@@ -97,7 +97,6 @@ const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
   title: {
     fontSize: '1.1667rem',
     fontWeight: 'bold',
-    lineHeight: 0,
     marginBottom: '14px',
     paddingTop: 12,
   },

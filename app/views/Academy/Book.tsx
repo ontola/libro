@@ -42,9 +42,13 @@ const NAME_WRAPPER_PADDING_VERTICAL = 6;
 const BUTTON_NAV_PADDING = 10;
 const BUTTON_NAV_GAP = 4;
 const ARTICLE_PADDING = 5;
+const ARTICEL_PADDING_BIG = 15;
 
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   article: {
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(ARTICEL_PADDING_BIG),
+    },
     margin: 'auto',
     marginTop: '3.5rem',
     padding: theme.spacing(ARTICLE_PADDING),
@@ -57,6 +61,9 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     gridArea: 'article',
   },
   button: {
+    [theme.breakpoints.down('sm')]: {
+      flexGrow: 1,
+    },
     flexShrink: 1,
   },
   buttonNav: {
@@ -95,7 +102,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     display: 'grid',
     gridTemplateAreas: '"sidebar article" "sidebar button-nav"',
     gridTemplateColumns: 'minmax(25ch, auto) minmax(75%, 1fr)',
-    gridTemplateRows: 'minmax(70vh, auto) auto',
+    gridTemplateRows: 'minmax(70vh, auto) 200px',
     [theme.breakpoints.down('md')]: {
       gridTemplateAreas: '"article" "button-nav" "sidebar"',
       gridTemplateColumns: '1fr',

@@ -2,22 +2,21 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import {
-  FC,
-  useProperty,
-} from 'link-redux';
+import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import sales from '../../../ontology/sales';
 import Image from '../../../components/Image';
+import sales from '../../../ontology/sales';
+import { LibroTheme } from '../../../themes/themes';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     backgroundColor: 'white',
     borderColor: '000',
+    borderRadius: theme.shape.borderRadius,
     borderWidth: 1,
-    boxShadow: '0 0 25px rgba(0,0,0,0.2)',
+    boxShadow: '0 0 25px rgba(0,0,0,0.1)',
     display: 'flex',
     marginBottom: 20,
     marginTop: 20,
@@ -42,7 +41,7 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-});
+}));
 
 const Feature: FC = () => {
   const classes = useStyles();

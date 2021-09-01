@@ -20,11 +20,6 @@ import { footerMessages, imageAltMessages } from '../../translations/messages';
 const STACKED_GRID_GAP = 5;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  gridItem: {
-    [theme.breakpoints.down('xs')]: {
-      margin: 'auto',
-    },
-  },
   logo: {
     gridArea: 'logo',
     width: '6rem',
@@ -38,9 +33,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gridTemplateAreas: '"logo policy privacy socials"',
     minWidth: '100%',
     paddingTop: '2rem',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       gap: theme.spacing(STACKED_GRID_GAP),
       gridTemplateAreas: '"policy" "privacy" "logo" "socials"',
+      justifyItems: 'center',
     },
   },
   lowerSectionMiddleLink: {
@@ -78,22 +74,22 @@ const FooterLowerSection: FC = () => {
     <div className={classNames.lowerSection}>
       <img
         alt={intl.formatMessage(imageAltMessages.arguLogo)}
-        className={`${classNames.logo} ${classNames.gridItem}`}
+        className={classNames.logo}
         src={logo.value}
       />
       <a
-        className={`${classNames.lowerSectionMiddleLink} ${classNames.policy} ${classNames.gridItem}`}
+        className={`${classNames.lowerSectionMiddleLink} ${classNames.policy}`}
         href={policy.value}
       >
         <FormattedMessage {...footerMessages.policy} />
       </a>
       <a
-        className={`${classNames.lowerSectionMiddleLink} ${classNames.privacy} ${classNames.gridItem}`}
+        className={`${classNames.lowerSectionMiddleLink} ${classNames.privacy}`}
         href={privacy.value}
       >
         <FormattedMessage {...footerMessages.privacy} />
       </a>
-      <span className={`${classNames.socials} ${classNames.gridItem}`}>
+      <span className={classNames.socials}>
         {socials?.map((social) => (
           <Resource
             key={social.id}

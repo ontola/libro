@@ -16,16 +16,19 @@ const useStyles = makeStyles<LibroTheme, TypographyElementProps>((theme) => ({
   body1: {
     marginLeft: ({ align }) => align === 'center' ? 'auto' : '0',
     marginRight: ({ align }) => align === 'center' ? 'auto' : '0',
-    maxWidth: 'clamp(30ch, 90%, 90ch)',
+    maxWidth: 'clamp(30ch, 100%, 90ch)',
   },
   h1: {
     fontSize: '2rem',
+    marginTop: '3rem',
   },
   h2: {
     fontSize: '1.7rem',
+    marginTop: '3rem',
   },
   h3: {
     fontSize: '1.4rem',
+    marginTop: '3rem',
   },
   h4: {
     fontSize: '1.2rem',

@@ -11,6 +11,7 @@ import { LibroTheme } from '../../themes/themes';
 import Link from '../Link';
 
 const LIST_LEFT_MARGIN = 14;
+const LIST_LEFT_MARGIN_MOBILE = 7;
 const ASIDE_BOTTOM_MARGIN = 4;
 const ASIDE_PADDING = 4;
 const ASIDE_LIGHTEN_AMOUNT = 0.8;
@@ -57,6 +58,7 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
     backgroundColor: ({ color }) => lighten(color ?? theme.palette.secondary.main, ASIDE_LIGHTEN_AMOUNT),
     fontSize: '1rem',
     marginBottom: theme.spacing(ASIDE_BOTTOM_MARGIN),
+    marginTop: '16px',
     padding: theme.spacing(ASIDE_PADDING),
     width: 'clamp(30ch, 100%, 100ch)',
   },
@@ -81,12 +83,14 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
   },
 
   list: {
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(LIST_LEFT_MARGIN_MOBILE),
+    },
     '& li p': {
       display: 'block',
       marginBlock: '5px',
     },
     listStylePosition: 'outside',
-    marginBottom: '16px',
     marginLeft: theme.spacing(LIST_LEFT_MARGIN),
   },
 
