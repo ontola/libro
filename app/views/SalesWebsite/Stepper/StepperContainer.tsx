@@ -3,6 +3,7 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
 import Step from '../../../components/SalesWebsite/Step';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
 import { chapterContentToplogy } from '../../../topologies/ChapterContent';
@@ -17,6 +18,7 @@ const StepperContainer: FC<StepperContainerProps> = ({ sequenceIndex, count }) =
   const [name] = useProperty(schema.name);
   const [text] = useProperty(schema.text);
   const [href] = useProperty(ontola.href);
+  const [trackingId] = useProperty(argu.trackingId);
 
   return (
     <Step
@@ -25,6 +27,7 @@ const StepperContainer: FC<StepperContainerProps> = ({ sequenceIndex, count }) =
       last={sequenceIndex === count - 1}
       name={name.value}
       text={text.value}
+      trackingId={trackingId?.value}
     />
   );
 };

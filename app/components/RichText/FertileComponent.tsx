@@ -22,6 +22,7 @@ export interface FertileComponentProps {
   href?: string,
   listVariant?: ListVariant,
   color?: string,
+  trackingId?: string,
 }
 
 export enum FertileComponentVariant {
@@ -124,6 +125,7 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
   color,
   href,
   listVariant,
+  trackingId,
 }: FertileComponentProps): JSX.Element => {
   const classes = useStyles({ color });
   const isList = ['ol', 'ul'].includes(Elem);
@@ -146,6 +148,7 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
   const componentAttributes = Elem === 'a' ?
     {
       allowExternal: false,
+      id: trackingId,
       to: href,
     } : {};
 

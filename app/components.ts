@@ -112,6 +112,7 @@ const childElementMap = {
 const childLinkMap = {
   ...childElementMap,
   href: value(ontola.href),
+  trackingId: value(argu.trackingId),
 };
 
 const childLiMap = {

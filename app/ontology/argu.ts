@@ -135,6 +135,7 @@ export default {
   timelineItems: argu('timelineItems'),
   took: argu('took'),
   topComment: argu('topComment'),
+  trackingId: argu('trackingId'),
   trashActivity: argu('trashActivity'),
   trashedAt: argu('trashedAt'),
   unread: argu('unread'),

@@ -4,6 +4,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -30,9 +31,15 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
 const ChapterSelect: FC<ChapterSelectProps> = ({ text, input }) => {
   const classes = useStyles();
+  const [title] = useProperty(schema.title);
+
+  const trackingId = `${title.value?.toLowerCase().replace(/[^a-zA-Z]+/g, '-')}-search-result`;
 
   return (
-    <div className={classes.wrapper}>
+    <div
+      className={classes.wrapper}
+      id={trackingId}
+    >
       <span className={classes.title}>
         <Property label={schema.title} />
       </span>

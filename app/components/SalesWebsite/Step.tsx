@@ -12,6 +12,7 @@ interface StepProps {
   first?: boolean;
   last?: boolean;
   href?: string;
+  trackingId?: string;
 }
 
 const TEXT_GRID_GAP = 5;
@@ -103,7 +104,7 @@ const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
 }));
 
 const Step = (props: StepProps): JSX.Element => {
-  const { href } = props;
+  const { href, trackingId } = props;
   const hasHref = href !== undefined;
 
   const classes = useStyles(props);
@@ -116,6 +117,7 @@ const Step = (props: StepProps): JSX.Element => {
   const TextWrapper = hasHref ? Link : React.Fragment;
   const textWrapperProps = hasHref ? {
     allowExternal: false,
+    id: trackingId,
     to: href!,
   } : {} as never;
 
