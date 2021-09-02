@@ -59,7 +59,10 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
   image: {
     borderRadius: '50%',
+    height: '26rem',
+    objectFit: 'cover',
     padding: 20,
+    width: '26rem',
   },
   imageContainer: {
     filter: 'drop-shadow(0px 8px 13px rgba(0, 0, 0, .4))',
