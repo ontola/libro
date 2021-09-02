@@ -58,7 +58,9 @@ const PersonFooter: FC = () => {
           </a>
         </li>
         <li>
-          {telephone.value}
+          <a href={`tel:${telephone.value.replace(/\s|-/g, '')}`}>
+            {telephone.value}
+          </a>
         </li>
       </ul>
     </div>
