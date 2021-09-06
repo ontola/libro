@@ -56,9 +56,13 @@ const scriptSrc = [
   'https://cdnjs.cloudflare.com',
   (req) => {
     const { manifest } = req.getCtx();
-    const { matomo_hostname: hostname, matomo_port: port } = manifest?.ontola?.tracking || {};
+    const { matomo_hostname, matomo_port } = manifest?.ontola?.tracking || {};
 
-    return [hostname && new URL(`https://${hostname}`).host, port]
+    if (!matomo_hostname) {
+      return undefined;
+    }
+
+    return [matomo_hostname && new URL(`https://${matomo_hostname}`).host, matomo_port]
       .filter(Boolean)
       .join(':');
   },
