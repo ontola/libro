@@ -6,8 +6,8 @@ import { HotKeys } from 'react-hotkeys';
 // @ts-ignore
 import ScrollMemory from 'react-router-scroll-memory';
 
-import { CONTAINER_ELEMENT } from '../../config';
 import { appContext } from '../../appContext';
+import { CONTAINER_ELEMENT } from '../../config';
 import Banners from '../../components/Banners';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import SkipNavigation from '../../components/SkipNavigation';

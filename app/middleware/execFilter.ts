@@ -9,7 +9,7 @@ import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 
-export const website = getMetaContent('website-iri') || 'https://example.com';
+export const website = getMetaContent('website-iri') ?? 'https://example.com';
 export const frontendIRI = rdf.namedNode(website!);
 
 const execFilter = () => (): MiddlewareWithBoundLRS => {

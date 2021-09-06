@@ -10,7 +10,7 @@ import { getMetaContent } from '../helpers/arguHelpers';
 import dbo from './dbo';
 import wdt from './wdt';
 
-export const website = getMetaContent('website-iri') || 'https://example.com';
+export const website = getMetaContent('website-iri') ?? 'https://example.com';
 export const frontendIRI = rdf.namedNode(website!);
 export const frontendIRIStr = frontendIRI.value;
 export const frontendPathname = new URL(frontendIRIStr).pathname;

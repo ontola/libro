@@ -15,27 +15,27 @@ const subRoutes = [
 ];
 
 if (__DEVELOPMENT__) {
-  subRoutes.splice(-1, 0,
+  subRoutes.splice(-1, 0, (
     <Route
       component={DevBrowser}
       key="devbrowser"
       path="/d/browser"
-    />,
-  );
-  subRoutes.splice(-1, 0,
+    />
+  ));
+  subRoutes.splice(-1, 0, (
     <Route
       component={Sandbox}
       key="sandbox"
       path="/d/sandbox"
-    />,
-  );
-  subRoutes.splice(-1, 0,
+    />
+  ));
+  subRoutes.splice(-1, 0, (
     <Route
       component={PageBuilder}
       key="builder"
       path="/d/builder"
-    />,
-  );
+    />
+  ));
 }
 
 export default (
