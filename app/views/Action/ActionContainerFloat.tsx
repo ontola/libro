@@ -1,12 +1,12 @@
 import IconButton from '@material-ui/core/IconButton';
-import rdf, { Literal, NamedNode } from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
   useDataInvalidation,
   useLRS,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -22,21 +22,19 @@ import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/
 import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
 
 interface ActionContainerFloatProps {
-  actionStatus?: SomeNode;
-  name?: Literal
   omniform: boolean;
   onClick: CardListOnClick;
-  target?: NamedNode;
 }
 
 const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
-  actionStatus,
-  name,
   omniform,
   onClick,
   subject,
-  target,
 }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [name] = useProperty(schema.name);
+  const [target] = useProperty(schema.target) as NamedNode[];
+
   const lrs = useLRS();
   const history = useHistory();
   const [image] = useResourceProperty(target, schema.image);
@@ -74,13 +72,6 @@ ActionContainerFloat.type = schema.Action;
 ActionContainerFloat.topology = [
   containerFloatTopology,
 ];
-
-ActionContainerFloat.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  name: schema.name,
-  object: schema.object,
-  target: schema.target,
-};
 
 ActionContainerFloat.hocs = [
   connect(null, mapCardListDispatchToProps),

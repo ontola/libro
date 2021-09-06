@@ -1,4 +1,4 @@
-import { Literal, NamedNode } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -7,6 +7,7 @@ import {
   FC,
   register,
   useLRS,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -18,17 +19,15 @@ import { detailsBarTopology } from '../../topologies/DetailsBar';
 
 interface ThingDetailsBarProps {
   features?: LinkFeature[];
-  name: Literal;
   theme: LinkTheme;
-  type: NamedNode;
 }
 
 const ThingDetailsBar: FC<ThingDetailsBarProps> = ({
   features: featuresFromProps,
-  name,
   theme,
-  type,
 }) => {
+  const [name] = useProperty(schema.name);
+  const [type] = useProperty(rdfx.type) as NamedNode[];
   const lrs = useLRS();
   const rawLabels = useResourceProperty(type, rdfs.label);
   const label = name?.value
@@ -49,10 +48,5 @@ const ThingDetailsBar: FC<ThingDetailsBarProps> = ({
 ThingDetailsBar.type = schema.Thing;
 
 ThingDetailsBar.topology = detailsBarTopology;
-
-ThingDetailsBar.mapDataToProps = {
-  name: schema.name,
-  type: rdfx.type,
-};
 
 export default register(ThingDetailsBar);

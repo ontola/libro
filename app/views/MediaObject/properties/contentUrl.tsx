@@ -3,6 +3,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,11 +24,12 @@ interface PropTypes {
 }
 
 const ContentUrl: FC<PropTypes> = ({
-  encodingFormat,
-  filename,
   linkedProp,
   subject,
 }) => {
+  const [encodingFormat] = useProperty([schema.encodingFormat, schema.fileFormat]) as Literal[];
+  const [filename] = useProperty(dbo.filename);
+
   if (isPDF(encodingFormat, linkedProp)) {
     return (
       <AnnotatedPDFViewer
@@ -70,13 +72,5 @@ ContentUrl.type = [
 ContentUrl.property = schema.contentUrl;
 
 ContentUrl.topology = allTopologies;
-
-ContentUrl.mapDataToProps = {
-  encodingFormat: [
-    schema.encodingFormat,
-    schema.fileFormat,
-  ],
-  filename: dbo.filename,
-};
 
 export default register(ContentUrl);

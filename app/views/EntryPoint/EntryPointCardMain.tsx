@@ -1,10 +1,11 @@
-import { Literal, isNode } from '@ontologies/core';
+import { isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
@@ -23,43 +24,37 @@ import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
 
 interface PropTypes {
-  action: SomeNode;
-  actionBody: SomeNode;
   autoSubmit: boolean;
   blacklist?: number[];
   cancelPath: string;
-  httpMethod: Literal;
   modal?: boolean;
-  name: Literal;
   onCancel: EventHandler<SyntheticEvent<unknown>>;
   onDone?: (response: Response) => void;
   onKeyUp: EventHandler<SyntheticEvent<unknown>>;
   onStatusForbidden?: () => Promise<void>;
   responseCallback?: (response: Response) => void;
   sessionStore: Storage;
-  url: SomeNode;
   whitelist?: number[];
 }
 
-const EntryPointCardMain: FC<PropTypes> = (props) => {
-  const {
-    action,
-    actionBody,
-    autoSubmit,
-    blacklist,
-    httpMethod,
-    cancelPath,
-    modal,
-    name,
-    onCancel,
-    onDone,
-    onStatusForbidden,
-    responseCallback,
-    sessionStore,
-    subject,
-    url,
-    whitelist,
-  } = props;
+const EntryPointCardMain: FC<PropTypes> = ({
+  autoSubmit,
+  blacklist,
+  cancelPath,
+  modal,
+  onCancel,
+  onDone,
+  onStatusForbidden,
+  responseCallback,
+  sessionStore,
+  subject,
+  whitelist,
+}) => {
+  const [action] = useProperty(schema.isPartOf) as SomeNode[];
+  const [actionBody] = useProperty(ll.actionBody) as SomeNode[];
+  const [httpMethod] = useProperty(schema.httpMethod);
+  const [name] = useProperty(schema.name);
+  const [url] = useProperty(schema.url);
   const history = useHistory();
   const formURL = new URL(subject!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
@@ -141,15 +136,5 @@ EntryPointCardMain.topology = [
   cardTopology,
   cardMainTopology,
 ];
-
-EntryPointCardMain.mapDataToProps = {
-  action: schema.isPartOf,
-  actionBody: ll.actionBody,
-  errorResponse: ll.errorResponse,
-  httpMethod: schema.httpMethod,
-  image: schema.image,
-  name: schema.name,
-  url: schema.url,
-};
 
 export default register(EntryPointCardMain);

@@ -1,6 +1,10 @@
 import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
+import {
+  linkType,
+  register,
+  useProperty 
+} from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -11,22 +15,26 @@ import Card, { CardRow } from '../../topologies/Card';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 
-const ActivityContainer = ({ text }) => (
-  <Suspense>
-    <Card>
-      <ActivityDetailsBar />
-      {text && (
-        <CardRow>
-          <CardContent>
-            <p>
-              {text.value}
-            </p>
-          </CardContent>
-        </CardRow>
-      )}
-    </Card>
-  </Suspense>
-);
+const ActivityContainer = () => {
+  const [text] = useProperty(schema.text);
+
+  return(
+    <Suspense>
+      <Card>
+        <ActivityDetailsBar />
+        {text && (
+          <CardRow>
+            <CardContent>
+              <p>
+                {text.value}
+              </p>
+            </CardContent>
+          </CardRow>
+        )}
+      </Card>
+    </Suspense>
+  );
+};
 
 ActivityContainer.type = as.Activity;
 
@@ -36,11 +44,6 @@ ActivityContainer.topology = [
 ];
 
 ActivityContainer.hocs = [withRouter];
-
-ActivityContainer.mapDataToProps = {
-  name: schema.name,
-  text: schema.text,
-};
 
 ActivityContainer.propTypes = {
   text: linkType,

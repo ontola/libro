@@ -4,6 +4,7 @@ import {
   Property,
   ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -35,21 +36,21 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
   );
 };
 
-const WrappedFormGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => (
-  <FormGroupProvider sequenceIndex={sequenceIndex}>
-    <FormGroup {...props} />
-  </FormGroupProvider>
-);
+const WrappedFormGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => {
+  const hidden = useProperty(form.hidden, { returnType: ReturnType.Literal }) as boolean;
+
+  return(
+    <FormGroupProvider sequenceIndex={sequenceIndex}>
+      <FormGroup
+        {...props}
+        hidden={hidden}
+      />
+    </FormGroupProvider>
+  );
+};
 
 WrappedFormGroup.type = form.Group;
 
 WrappedFormGroup.topology = allTopologies;
-
-WrappedFormGroup.mapDataToProps = {
-  hidden: {
-    label: form.hidden,
-    returnType: ReturnType.Literal,
-  },
-};
 
 export default register(WrappedFormGroup);

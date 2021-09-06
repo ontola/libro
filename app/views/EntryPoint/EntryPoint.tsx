@@ -5,6 +5,7 @@ import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -42,18 +43,17 @@ interface EntryPointProps {
   variant: ButtonVariant;
 }
 
-const EntryPoint: FC<EntryPointProps> = (props) => {
-  const {
-    count,
-    image,
-    name,
-    onClick,
-    stretch,
-    subject,
-    theme,
-    variant,
-    ...rest
-  } = props;
+const EntryPoint: FC<EntryPointProps> = ({
+  count,
+  onClick,
+  stretch,
+  subject,
+  theme,
+  variant,
+  ...rest
+}) => {
+  const [image] = useProperty(schema.image);
+  const [name] = useProperty(schema.name);
   const formURL = new URL(subject.value);
   const formID = [formURL.origin, formURL.pathname].join('');
   const submitHandler = useSubmitHandler({
@@ -102,13 +102,5 @@ EntryPoint.topology = allTopologiesExcept(
   omniformFieldsTopology,
   pageTopology,
 );
-
-EntryPoint.mapDataToProps = {
-  action: schema.isPartOf,
-  httpMethod: schema.httpMethod,
-  image: schema.image,
-  name: schema.name,
-  url: schema.url,
-};
 
 export default register(EntryPoint);

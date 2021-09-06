@@ -2,9 +2,9 @@ import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  ReturnType,
   register,
   useLRS,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React, { KeyboardEventHandler } from 'react';
@@ -25,12 +25,9 @@ import { actionsAreAllDisabled, useActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
 export interface OmniformProps {
-  expiresAt: SomeTerm;
-  isPartOf: NamedNode;
   linkedProp: SomeTerm;
   onDone: () => void,
   onKeyUp: KeyboardEventHandler,
-  potentialAction: NamedNode[];
 }
 
 const useIsSelfOrParentExpired = (expiresAt: SomeTerm, isPartOf: NamedNode) => {
@@ -50,14 +47,16 @@ const useIsSelfOrParentExpired = (expiresAt: SomeTerm, isPartOf: NamedNode) => {
 };
 
 const OmniformProp: FC<OmniformProps> = ({
-  expiresAt,
-  isPartOf,
   onDone,
   onKeyUp,
-  potentialAction,
   subject,
 }) => {
   const lrs = useLRS();
+
+  const [expiresAt] = useProperty(argu.expiresAt);
+  const [isPartOf] = useProperty(schema.isPartOf) as NamedNode[];
+  const potentialAction = useProperty(schema.potentialAction) as NamedNode[];
+
   const items = useActions(potentialAction);
   const isExpired = useIsSelfOrParentExpired(expiresAt, isPartOf);
   const allDisabled = actionsAreAllDisabled(items, lrs);
@@ -100,14 +99,5 @@ OmniformProp.topology = allTopologiesExcept(
   cardAppendixTopology,
   pageTopology,
 );
-
-OmniformProp.mapDataToProps = {
-  expiresAt: argu.expiresAt,
-  isPartOf: schema.isPartOf,
-  potentialAction: {
-    label: schema.potentialAction,
-    returnType: ReturnType.AllTerms,
-  },
-};
 
 export default register(OmniformProp);

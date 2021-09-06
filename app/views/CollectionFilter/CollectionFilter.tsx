@@ -3,12 +3,11 @@ import rdfFactory, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   Property,
   Resource,
-  ReturnType,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -53,17 +52,11 @@ const Value = ({ prop }: { prop: SomeTerm }) => {
   );
 };
 
-interface CollectionFilterProps {
-  filterKey: SomeTerm;
-  filterValues: SomeTerm[];
-  partOf: NamedNode;
-}
+const CollectionFilter = () => {
+  const [filterKey] = useProperty(ontola.filterKey);
+  const filterValues = useProperty(ontola.filterValue);
+  const [partOf] = useProperty(schema.isPartOf) as NamedNode[];
 
-const CollectionFilter: FC<CollectionFilterProps> = ({
-  filterKey,
-  filterValues,
-  partOf,
-}) => {
   const iriTemplate = useIRITemplate(partOf);
   const { setCollectionResource } = useCollectionOptions();
 
@@ -108,14 +101,5 @@ CollectionFilter.type = [
 ];
 
 CollectionFilter.topology = allTopologies;
-
-CollectionFilter.mapDataToProps = {
-  filterKey: ontola.filterKey,
-  filterValues: {
-    label: ontola.filterValue,
-    returnType: ReturnType.AllTerms,
-  },
-  partOf: schema.isPartOf,
-};
 
 export default register(CollectionFilter);

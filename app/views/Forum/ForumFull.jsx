@@ -5,6 +5,7 @@ import {
   linkType,
   register,
   useDataInvalidation,
+  useProperty,
   useResourceLink,
 } from 'link-redux';
 import React from 'react';
@@ -22,7 +23,10 @@ const coverPhotoMap = {
 };
 const coverPhotoOpts = { returnType: ReturnType.Value };
 
-const ForumFull = ({ coverPhoto, hideHeader }) => {
+const ForumFull = () => {
+  const [coverPhoto] = useProperty(ontola.coverPhoto);
+  const [hideHeader] = useProperty(ontola.hideHeader);
+
   useDataInvalidation(coverPhoto);
   const { coverPhotoUrl, positionY } = useResourceLink(coverPhoto, coverPhotoMap, coverPhotoOpts);
 
@@ -49,22 +53,11 @@ const ForumFull = ({ coverPhoto, hideHeader }) => {
 
 ForumFull.type = [argu.ContainerNode, schema.WebPage];
 
-ForumFull.mapDataToProps = {
-  coverPhoto: ontola.coverPhoto,
-  hideHeader: ontola.hideHeader,
-  name: schema.name,
-  widgets: ontola.widgets,
-};
-
 ForumFull.propTypes = {
   coverPhoto: linkType,
   hideHeader: linkType,
 };
 
 ForumFull.topology = fullResourceTopology;
-
-ForumFull.linkOpts = {
-  forceRender: true,
-};
 
 export default register(ForumFull);

@@ -1,10 +1,11 @@
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   Property,
   Resource,
-  linkType,
-  linkedPropType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -15,8 +16,13 @@ import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
 import { inlineTopology } from '../../../topologies/Inline';
 
-const TrashedAt = ({ linkedProp, trashActivity }) => {
+interface TrashedAtProps {
+  linkedProp: NamedNode;
+}
+
+const TrashedAt: FC<TrashedAtProps> = ({ linkedProp }) => {
   const { formatDate } = useIntl();
+  const [trashActivity] = useProperty(argu.trashActivity);
 
   return (
     <Card warn>
@@ -46,14 +52,5 @@ TrashedAt.type = schema.Thing;
 TrashedAt.property = argu.trashedAt;
 
 TrashedAt.topology = containerTopology;
-
-TrashedAt.mapDataToProps = {
-  trashActivity: argu.trashActivity,
-};
-
-TrashedAt.propTypes = {
-  linkedProp: linkedPropType,
-  trashActivity: linkType,
-};
 
 export default register(TrashedAt);

@@ -8,8 +8,8 @@ import {
   FC,
   Property,
   Resource,
-  ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React, {
   CSSProperties,
@@ -112,11 +112,12 @@ const styleWrapper = (props: ItemProps, itemListElem: JSX.Element | JSX.Element[
 };
 
 const Items: FC<ItemProps> = (props) => {
+  const items = useProperty(as.items) as SomeNode[];
+  const [totalCount] = useProperty(as.totalItems);
+
   const {
-    items,
     linkedProp,
     topology,
-    totalCount,
   } = props;
   const { depth } = useCollectionOptions();
   let children = null;
@@ -134,7 +135,13 @@ const Items: FC<ItemProps> = (props) => {
   if (Array.isArray(items) && items.length === 0) {
     children = null;
   } else if (Array.isArray(items)) {
-    children = <ItemList {...props} />;
+    children = (
+      <ItemList
+        {...props}
+        items={items}
+        totalCount={totalCount}
+      />
+    );
   } else {
     children = (
       <Resource
@@ -152,13 +159,5 @@ Items.type = CollectionViewTypes;
 Items.property = as.items;
 
 Items.topology = allTopologies;
-
-Items.mapDataToProps = {
-  items: {
-    label: as.items,
-    returnType: ReturnType.AllTerms,
-  },
-  totalCount: { label: as.totalItems },
-};
 
 export default register(Items);

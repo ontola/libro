@@ -2,10 +2,10 @@ import Dialog from '@material-ui/core/Dialog';
 import rdf from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
-  FC,
   Resource,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,11 +15,8 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
 
-interface DialogManagerProps {
-  resource: SomeNode;
-}
-
-const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
+const DialogManager = () => {
+  const [resource] = useProperty(ontola.ns('dialog/resource')) as SomeNode[];
   const lrs = useLRS();
   const { theme } = React.useContext(appContext);
 
@@ -56,9 +53,5 @@ const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
 DialogManager.type = ontola.ns('dialog/Manager');
 
 DialogManager.topology = allTopologies;
-
-DialogManager.mapDataToProps = {
-  resource: ontola.ns('dialog/resource'),
-};
 
 export default register(DialogManager);

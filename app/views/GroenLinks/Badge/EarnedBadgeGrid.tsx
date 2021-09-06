@@ -1,13 +1,12 @@
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
-  FC,
   Property,
   register,
   useDataFetching,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -28,15 +27,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface EarnedBadgeGridProps {
-  badge: SomeNode;
-  dateCreated: SomeTerm;
-}
+const EarnedBadgeGrid = () => {
+  const [badge] = useProperty(teamGL.badge) as SomeNode[];
+  const [dateCreated] = useProperty(schema.dateCreated);
 
-const EarnedBadgeGrid: FC<EarnedBadgeGridProps> = ({
-  badge,
-  dateCreated,
-}) => {
   useDataFetching([badge]);
   const [image] = useResourceProperty(badge, schema.image);
   const [name] = useResourceProperty(badge, schema.name);
@@ -78,10 +72,5 @@ EarnedBadgeGrid.type = teamGL.EarnedBadge;
 EarnedBadgeGrid.topology = [
   gridTopology,
 ];
-
-EarnedBadgeGrid.mapDataToProps = {
-  badge: teamGL.badge,
-  dateCreated: schema.dateCreated,
-};
 
 export default register(EarnedBadgeGrid);

@@ -5,6 +5,7 @@ import {
   Property,
   linkType,
   register,
+  useProperty,
 } from 'link-redux';
 import React, { useEffect, useState } from 'react';
 
@@ -35,7 +36,8 @@ const divStyle = {
   paddingLeft: '.5em',
 };
 
-const Banner = ({ dismissedAt }) => {
+const Banner = () => {
+  const [dismissedAt] = useProperty(ontola.dismissedAt);
   const classes = useStyles();
   const [collapsed, setCollapsed] = useState(!dismissedAt);
   useEffect(() => {
@@ -68,13 +70,5 @@ const Banner = ({ dismissedAt }) => {
 };
 
 Banner.type = ontola.Banner;
-
-Banner.mapDataToProps = {
-  dismissedAt: ontola.dismissedAt,
-};
-
-Banner.propTypes = {
-  dismissedAt: linkType,
-};
 
 export default register(Banner);

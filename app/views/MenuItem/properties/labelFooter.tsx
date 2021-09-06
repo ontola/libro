@@ -42,9 +42,4 @@ MenuItemLabelFooter.property = schema.name;
 
 MenuItemLabelFooter.topology = footerTopology;
 
-MenuItemLabelFooter.mapDataToProps = {
-  image: schema.image,
-  name: schema.name,
-};
-
 export default register(MenuItemLabelFooter);

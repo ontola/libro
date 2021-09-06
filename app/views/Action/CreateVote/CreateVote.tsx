@@ -223,8 +223,4 @@ CreateVote.topology = allTopologies;
 
 CreateVote.hocs = [connect(null, mapDispatchToProps)];
 
-CreateVote.mapDataToProps = {
-  isPartOf: schema.isPartOf,
-};
-
 export default register(CreateVote);

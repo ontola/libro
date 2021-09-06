@@ -1,7 +1,10 @@
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import { attributeListTopology } from '../../topologies/AttributeList';
@@ -14,10 +17,6 @@ const RDFPropertyAttributeList = () => (
 );
 
 RDFPropertyAttributeList.type = rdfx.Property;
-
-RDFPropertyAttributeList.mapDataToProps = {
-  type: rdfx.type,
-};
 
 RDFPropertyAttributeList.topology = [attributeListTopology, inlineTopology];
 

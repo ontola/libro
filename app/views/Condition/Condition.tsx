@@ -1,9 +1,9 @@
+import { NamedNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
-import { SomeNode } from 'link-lib';
 import {
-  FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,11 +12,8 @@ import useShapeValidation from '../../hooks/useShapeValidation';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
-interface PropTypes {
-  shape: SomeNode;
-}
-
-const Condition: FC<PropTypes> = ({ shape }) => {
+const Condition = () => {
+  const [shape] = useProperty(sh.node) as NamedNode[];
   const { object } = React.useContext(FormContext);
   const pass = useShapeValidation(shape, object);
 
@@ -30,9 +27,5 @@ const Condition: FC<PropTypes> = ({ shape }) => {
 Condition.type = ontola.Condition;
 
 Condition.topology = allTopologies;
-
-Condition.mapDataToProps = {
-  shape: sh.node,
-};
 
 export default register(Condition);

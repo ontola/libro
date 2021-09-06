@@ -6,6 +6,7 @@ import {
   FC,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -25,12 +26,12 @@ interface PropTypes {
 
 const CreateAction: FC<PropTypes> = ({
   linkedProp,
-  isPartOf,
   omniform,
   theme,
-  totalItems,
 }) => {
   const { omniform: collectionOmniform } = useCollectionOptions();
+  const [isPartOf] = useProperty(schema.isPartOf);
+  const [totalItems] = useProperty(as.totalItems);
 
   return (
     <Resource
@@ -48,10 +49,5 @@ CreateAction.type = as.Collection;
 CreateAction.property = ontola.createAction;
 
 CreateAction.topology = actionsBarTopology;
-
-CreateAction.mapDataToProps = {
-  isPartOf: schema.isPartOf,
-  totalItems: as.totalItems,
-};
 
 export default register(CreateAction);

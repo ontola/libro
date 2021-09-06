@@ -6,8 +6,9 @@ import {
   register,
   subjectType,
   useLRS,
+  useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
@@ -17,17 +18,21 @@ import { allTopologies } from '../../../topologies';
 
 const InfiniteCollectionNext = ({
   linkedProp,
-  partOf,
   subject,
 }) => {
   const lrs = useLRS();
-  const onClick = () => new Promise(() => {
-    lrs.store.addQuads([
-      rdf.quad(partOf.object, ontola.pages, linkedProp),
-      rdf.quad(subject, argu.void, rdf.literal(0)),
-    ]);
-    lrs.broadcast();
-  });
+  const [partOf] = useProperty(as.partOf);
+
+  const onClick = useCallback(
+    () => new Promise(() => {
+      lrs.store.addQuads([
+        rdf.quad(partOf.object, ontola.pages, linkedProp),
+        rdf.quad(subject, argu.void, rdf.literal(0)),
+      ])
+      lrs.broadcast();
+    }),
+    [lrs, partOf, linkedProp, subject],
+  );
 
   return (
     <ButtonWithFeedback
@@ -47,14 +52,6 @@ InfiniteCollectionNext.type = ontola.InfiniteView;
 InfiniteCollectionNext.property = as.next;
 
 InfiniteCollectionNext.topology = allTopologies;
-
-InfiniteCollectionNext.mapDataToProps = {
-  partOf: as.partOf,
-};
-
-InfiniteCollectionNext.linkOpts = {
-  returnType: ReturnType.Statement,
-};
 
 InfiniteCollectionNext.propTypes = {
   linkedProp: linkedPropType,

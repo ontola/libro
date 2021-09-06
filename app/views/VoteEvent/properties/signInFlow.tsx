@@ -1,11 +1,10 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
-  PropertyProps,
   Resource,
   register,
   useDataInvalidation,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -20,18 +19,15 @@ import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
 
-interface SignInFlowProps extends PropertyProps {
-  currentVote?: NamedNode;
-}
-
-const SignInFlow: FC<SignInFlowProps> = ({
-  currentVote,
-}) => {
+const SignInFlow = () => {
   const { actorType, primaryEmail } = useCurrentActor();
   const location = useLocation();
-  const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value || '');
+
+  const [currentVote] = useProperty(argu.currentVote) as NamedNode[];
   useDataInvalidation(currentVote);
   const [currentOption] = useResourceProperty(currentVote, schema.option);
+
+  const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value || '');
 
   if (!showSignInFlow || !currentOption || rdf.equals(currentOption, argu.abstain)) {
     return null;
@@ -81,9 +77,5 @@ SignInFlow.type = argu.VoteEvent;
 SignInFlow.topology = allTopologies;
 
 SignInFlow.property = argu.signInFlow;
-
-SignInFlow.mapDataToProps = {
-  currentVote: argu.currentVote,
-};
 
 export default register(SignInFlow);

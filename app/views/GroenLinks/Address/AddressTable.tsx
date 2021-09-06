@@ -1,9 +1,9 @@
 import { NamedNode } from '@ontologies/core';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
@@ -15,27 +15,23 @@ import teamGL from '../../../ontology/teamGL';
 import { tableTopology } from '../../../topologies/Table';
 import TableRow from '../../../topologies/TableRow';
 
-interface AddressTableProps {
-  createAction: NamedNode;
-  subject: SomeNode;
-}
-
-const AddressTable: FC<AddressTableProps> = (props) => {
+const AddressTable: FC = ({ subject }) => {
   const lrs = useLRS();
+  const [createAction] = useProperty(ontola.createAction) as NamedNode[];
   const { actorType } = useCurrentActor();
 
   const onClick = (e: MouseEvent) => {
     if (actorType?.value === 'GuestUser') {
       e.preventDefault();
-      lrs.actions.app.startSignIn(props.subject);
+      lrs.actions.app.startSignIn(subject);
     } else {
       e.preventDefault();
 
-      if (__CLIENT__ && !entityIsLoaded(lrs, props.createAction)) {
-        lrs.queueEntity(props.createAction);
+      if (__CLIENT__ && !entityIsLoaded(lrs, createAction)) {
+        lrs.queueEntity(createAction);
       }
 
-      lrs.actions.ontola.showDialog(props.subject);
+      lrs.actions.ontola.showDialog(subject);
     }
   };
 
@@ -49,9 +45,5 @@ const AddressTable: FC<AddressTableProps> = (props) => {
 AddressTable.type = teamGL.Address;
 
 AddressTable.topology = tableTopology;
-
-AddressTable.mapDataToProps = {
-  createAction: ontola.createAction,
-};
 
 export default register(AddressTable);

@@ -2,6 +2,7 @@ import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,18 +14,16 @@ import { allTopologies } from '../../../topologies';
 export interface VotePercentageProps {
   label?: NamedNode;
   linkedProp: SomeTerm;
-  votesConCount?: SomeTerm;
-  votesNeutralCount?: SomeTerm;
-  votesProCount?: SomeTerm;
 }
 
 const VotePercentage: FC<VotePercentageProps> = ({
   label,
   linkedProp,
-  votesConCount,
-  votesNeutralCount,
-  votesProCount,
 }) => {
+  const [votesConCount] = useProperty(argu.votesConCount);
+  const [votesNeutralCount] = useProperty(argu.votesNeutralCount);
+  const [votesProCount] = useProperty(argu.votesProCount);
+
   const sideCount = tryParseInt(linkedProp) ?? 0;
   const voteEventCount = (tryParseInt(votesConCount) ?? 0)
     + (tryParseInt(votesNeutralCount) ?? 0)
@@ -50,11 +49,5 @@ VotePercentage.property = [
   argu.votesNeutralCount,
   argu.votesProCount,
 ];
-
-VotePercentage.mapDataToProps = {
-  votesConCount: argu.votesConCount,
-  votesNeutralCount: argu.votesNeutralCount,
-  votesProCount: argu.votesProCount,
-};
 
 export default register(VotePercentage);

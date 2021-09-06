@@ -9,6 +9,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -22,10 +23,6 @@ import Container from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import { LibroTheme } from '../../themes/themes';
 import { fullResourceTopology } from '../../topologies/FullResource';
-
-interface PersonFullProps {
-  profileMenu?: NamedNode;
-}
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   image: {
@@ -45,10 +42,9 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
 }));
 
-const PersonFull: FC<PersonFullProps> = ({
-  profileMenu,
-}) => {
+const PersonFull: FC = () => {
   const classes = useStyles();
+  const [profileMenu] = useProperty(ontola.profileMenu) as NamedNode[];
 
   return (
     <TabbarProvider
@@ -130,9 +126,5 @@ PersonFull.type = [
 ];
 
 PersonFull.topology = fullResourceTopology;
-
-PersonFull.mapDataToProps = {
-  profileMenu: ontola.profileMenu,
-};
 
 export default register(PersonFull);

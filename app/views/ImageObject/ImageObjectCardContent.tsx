@@ -1,17 +1,25 @@
 import * as schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { footerTopology } from '../../topologies/Footer';
 
-const ImageObjectCardContent = ({ contentUrl }) => (
-  <img
-    alt=""
-    data-test="ImageObject-image"
-    src={contentUrl?.value}
-  />
-);
+const ImageObjectCardContent: FC = () => {
+  const [contentUrl] = useProperty(schema.contentUrl);
+
+  return (
+    <img
+      alt=""
+      data-test="ImageObject-image"
+      src={contentUrl?.value}
+    />
+  );
+};
 
 ImageObjectCardContent.type = [
   schema.ImageObject,
@@ -21,13 +29,5 @@ ImageObjectCardContent.topology = [
   cardMainTopology,
   footerTopology,
 ];
-
-ImageObjectCardContent.mapDataToProps = {
-  contentUrl: schema.contentUrl,
-};
-
-ImageObjectCardContent.propTypes = {
-  contentUrl: linkType,
-};
 
 export default register(ImageObjectCardContent);

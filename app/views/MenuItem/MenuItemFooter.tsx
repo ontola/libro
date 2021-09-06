@@ -7,6 +7,7 @@ import {
   Property,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -19,14 +20,14 @@ import { footerTopology } from '../../topologies/Footer';
 const ITEM_SPACING = 3;
 
 interface MenuItemFooterProps {
-  image?: SomeNode;
-  menuItems?: SomeNode;
-  name?: Literal;
   nested?: boolean;
   onClick?: () => void;
 }
 interface MenuItemLabelProps extends MenuItemFooterProps {
   id: string;
+  image?: SomeNode;
+  menuItems?: SomeNode;
+  name?: Literal;
 }
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -64,9 +65,12 @@ const MenuItemFooterLabel = ({
 };
 
 const MenuItemFooter: FC<MenuItemFooterProps> = (props) => {
+  const [image] = useProperty(schema.image) as SomeNode[];
+  const [menuItems] = useProperty(ontola.menuItems) as SomeNode[];
+  const [name] = useProperty(schema.name) as Literal[];
+
   const classNames = useStyles();
   const {
-    menuItems,
     subject,
   } = props;
   const id = `${subject}-menu-items`;
@@ -77,6 +81,9 @@ const MenuItemFooter: FC<MenuItemFooterProps> = (props) => {
         <MenuItemFooterLabel
           {...props}
           id={id}
+          image={image}
+          menuItems={menuItems}
+          name={name}
         />
         {menuItems && (
           <Resource
@@ -96,11 +103,5 @@ MenuItemFooter.type = [
 ];
 
 MenuItemFooter.topology = footerTopology;
-
-MenuItemFooter.mapDataToProps = {
-  image: schema.image,
-  menuItems: ontola.menuItems,
-  name: schema.name,
-};
 
 export default register(MenuItemFooter);

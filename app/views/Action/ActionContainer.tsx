@@ -3,6 +3,7 @@ import {
   FC,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -11,10 +12,10 @@ import { containerTopology } from '../../topologies/Container';
 import { ActionProps, useDoneHandler } from './helpers';
 
 const ActionContainer: FC<ActionProps> = ({
-  actionStatus,
   onDone,
-  target,
 }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [target] = useProperty(schema.target);
   const onDoneHandler = useDoneHandler(onDone);
 
   if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
@@ -38,10 +39,5 @@ ActionContainer.type = schema.Action;
 ActionContainer.topology = [
   containerTopology,
 ];
-
-ActionContainer.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  target: schema.target,
-};
 
 export default register(ActionContainer);

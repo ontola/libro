@@ -5,11 +5,11 @@ import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,
-  ReturnType,
   linkType,
   register,
   subjectType,
   useLRS,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -80,26 +80,26 @@ const FilterFieldMenuComp = ({
 };
 
 const FilterFieldMenu = React.forwardRef(
-  (props, ref) => (
-    <FilterFieldMenuComp
-      innerRef={ref}
-      {...props}
-    />
-  )
+  (props, ref) => {
+    const [filterKey] = useProperty(ontola.filterKey);
+    const options = useProperty(ontola.filterOptions);
+    const [partOf] = useProperty(schema.isPartOf);
+
+    return(
+      <FilterFieldMenuComp
+        innerRef={ref}
+        {...props}
+        filterKey={filterKey}
+        options={options}
+        partOf={partOf}
+      />
+    )
+  }
 );
 
 FilterFieldMenu.type = ontola.FilterField;
 
 FilterFieldMenu.topology = menuTopology;
-
-FilterFieldMenu.mapDataToProps = {
-  filterKey: ontola.filterKey,
-  options: {
-    label: ontola.filterOptions,
-    returnType: ReturnType.AllTerms,
-  },
-  partOf: schema.isPartOf,
-};
 
 FilterFieldMenuComp.propTypes = {
   filterKey: linkType,

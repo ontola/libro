@@ -1,10 +1,12 @@
+import { NamedNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import {
+  FC,
   Property,
   Resource,
   register,
-  subjectType,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,14 +14,14 @@ import { seqToArr } from '../../helpers/data';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
-const PropertyQuery = ({
-  path,
-  targetNode,
-}) => {
+const PropertyQuery: FC = () => {
+  const [path] = useProperty(sh.path) as NamedNode[];
+  const [targetNode] = useProperty(sh.targetNode);
+
   const lrs = useLRS();
   const properties = seqToArr(lrs, [], path).reverse();
   const query = properties.reduce(
-    (child, label) => {
+    (child: JSX.Element | null, label: NamedNode) => {
       if (child) {
         return (
           <Property label={label}>
@@ -29,7 +31,8 @@ const PropertyQuery = ({
       }
 
       return <Property label={label} />;
-    }, null
+    },
+    null,
   );
 
   return (
@@ -42,16 +45,6 @@ const PropertyQuery = ({
 PropertyQuery.type = ontola.PropertyQuery;
 
 PropertyQuery.topology = allTopologies;
-
-PropertyQuery.mapDataToProps = {
-  path: sh.path,
-  targetNode: sh.targetNode,
-};
-
-PropertyQuery.propTypes = {
-  path: subjectType,
-  targetNode: subjectType,
-};
 
 export default [
   register(PropertyQuery),

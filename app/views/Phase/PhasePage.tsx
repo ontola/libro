@@ -4,6 +4,7 @@ import {
   FC,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { Redirect } from 'react-router';
@@ -15,15 +16,9 @@ import usePhases, { phaseIRI } from '../../hooks/usePhases';
 import argu from '../../ontology/argu';
 import { pageTopology } from '../../topologies/Page';
 
-export interface PhasePageProps {
-  isPartOf: NamedNode;
-}
-
-const PhasePage: FC<PhasePageProps> = ({
-  isPartOf,
-  subject,
-}) => {
+const PhasePage: FC = ({ subject }) => {  
   const lrs = useLRS();
+  const [isPartOf] = useProperty(schema.isPartOf) as NamedNode[];
   const [phases, loaded] = usePhases(isPartOf);
 
   if (!loaded || __CLIENT__ && !entityIsLoaded(lrs, isPartOf)) {
@@ -39,9 +34,5 @@ const PhasePage: FC<PhasePageProps> = ({
 PhasePage.type = argu.Phase;
 
 PhasePage.topology = pageTopology;
-
-PhasePage.mapDataToProps = {
-  isPartOf: schema.isPartOf,
-};
 
 export default register(PhasePage);

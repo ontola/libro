@@ -7,8 +7,8 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -23,12 +23,10 @@ import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/
 import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
 
 interface InlineCreateActionProps {
-  actionStatus: NamedNode;
   count: Literal;
   omniform: boolean;
   onClick: CardListOnClick;
   theme: ButtonTheme;
-  type: NamedNode[];
 }
 
 function getVariant(types: NamedNode[]) {
@@ -44,14 +42,15 @@ function getVariant(types: NamedNode[]) {
 }
 
 const ActionInline: FC<InlineCreateActionProps> = ({
-  actionStatus,
   count,
   omniform,
   onClick,
   subject,
   theme,
-  type,
 }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const type = useProperty(rdfx.type) as NamedNode[];
+
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
@@ -84,15 +83,6 @@ ActionInline.topology = [
   actionsBarTopology,
   cardListTopology,
 ];
-
-ActionInline.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  object: schema.object,
-  type: {
-    label: rdfx.type,
-    returnType: ReturnType.AllTerms,
-  },
-};
 
 ActionInline.hocs = [
   connect(null, mapCardListDispatchToProps),

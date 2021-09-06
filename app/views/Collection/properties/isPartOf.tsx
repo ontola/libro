@@ -37,8 +37,4 @@ IsPartOfPage.property = schema.isPartOf;
 
 IsPartOfPage.topology = fullResourceTopology;
 
-IsPartOfPage.mapDataToProps = {
-  collectionDisplay: ontola.collectionDisplay,
-};
-
 export default register(IsPartOfPage);

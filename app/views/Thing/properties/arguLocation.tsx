@@ -9,6 +9,7 @@ import {
   register,
   useDataFetching,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,17 +24,16 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 
 interface ArguLocationProps {
-  childrenPlacements: SomeNode;
   large: boolean;
   linkedProp: SomeNode;
 }
 
 const ArguLocation: FC<ArguLocationProps> = ({
-  childrenPlacements,
   large,
   linkedProp,
 }) => {
   const lrs = useLRS();
+  const [childrenPlacements] = useProperty(argu.childrenPlacements) as SomeNode[];
   const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
   const [children, childrenLoading] = useContainerToArr(childrenPlacements);
@@ -94,9 +94,5 @@ ArguLocation.topology = [
   fullResourceTopology,
   gridTopology,
 ];
-
-ArguLocation.mapDataToProps = {
-  childrenPlacements: argu.childrenPlacements,
-};
 
 export default register(ArguLocation);

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import { SomeTerm, isNode } from '@ontologies/core';
+import { isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
@@ -7,6 +7,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import { TopologyContextType } from 'link-redux/dist-types/types';
@@ -39,34 +40,28 @@ const useStyles = makeStyles({
 });
 
 interface PropTypes {
-  action: SomeNode;
-  actionBody: SomeNode;
-  httpMethod: SomeTerm;
   modal?: boolean;
-  name: SomeTerm;
   onDone?: (response: any) => void;
   onStatusForbidden?: () => Promise<void>;
   responseCallback?: (response: any) => void;
   smallButton: boolean;
   topologyCtx: TopologyContextType;
-  url: SomeTerm;
 }
 
-const EntryPointGrid: FC<PropTypes> = (props) => {
-  const {
-    action,
-    actionBody,
-    httpMethod,
-    modal,
-    name,
-    onDone,
-    onStatusForbidden,
-    responseCallback,
-    smallButton,
-    subject,
-    topologyCtx,
-    url,
-  } = props;
+const EntryPointGrid: FC<PropTypes> = ({
+  modal,
+  onDone,
+  onStatusForbidden,
+  responseCallback,
+  smallButton,
+  subject,
+  topologyCtx,
+}) => {
+  const [action] = useProperty(schema.isPartOf) as SomeNode[];
+  const [actionBody] = useProperty(ll.actionBody) as SomeNode[];
+  const [httpMethod] = useProperty(schema.httpMethod);
+  const [name] = useProperty(schema.name);
+  const [url] = useProperty(schema.url);
   const classes = useStyles();
   const formURL = new URL(subject!.value);
   const formID = [formURL.origin, formURL.pathname].join('');
@@ -128,14 +123,5 @@ EntryPointGrid.topology = [
   footerTopology,
   gridTopology,
 ];
-
-EntryPointGrid.mapDataToProps = {
-  action: schema.isPartOf,
-  actionBody: ll.actionBody,
-  httpMethod: schema.httpMethod,
-  image: schema.image,
-  name: schema.name,
-  url: schema.url,
-};
 
 export default register(EntryPointGrid);

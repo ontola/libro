@@ -125,13 +125,13 @@ const SelectInputField: React.FC<InputComponentProps> = ({
 }) => {
   const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
 
-  const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
   const { formatMessage } = useIntl();
   const lrs = useLRS();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
   const [currentValue, setCurrentValue] = React.useState('');
+  const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
   const { loading, options, searchable } = useAsyncFieldOptions(open, fieldShape.shIn, currentValue);
 
   const sortedOptions = React.useMemo(() => (

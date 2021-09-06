@@ -1,10 +1,11 @@
-import rdf, { SomeTerm } from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -68,22 +69,25 @@ const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
 };
 
 const FilterOptionMenu = React.forwardRef<FC, FilterOptionMenuCompProps>(
-  (props, ref) => (
-    <FilterOptionMenuComp
-      innerRef={ref}
-      {...props}
-    />
-  ),
+  (props, ref) => {
+    const [filterCount] = useProperty(ontola.filterCount);
+    const [filterValue] = useProperty(ontola.filterValue);
+    const [partOf] = useProperty(schema.isPartOf) as NamedNode[];
+
+    return(
+      <FilterOptionMenuComp
+        innerRef={ref}
+        {...props}
+        filterCount={filterCount}
+        filterValue={filterValue}
+        partOf={partOf}
+      />
+    );
+  },
 ) as unknown as FC;
 
 FilterOptionMenu.type = ontola.FilterOption;
 
 FilterOptionMenu.topology = menuTopology;
-
-FilterOptionMenu.mapDataToProps = {
-  filterCount: ontola.filterCount,
-  filterValue: ontola.filterValue,
-  partOf: schema.isPartOf,
-};
 
 export default register(FilterOptionMenu);

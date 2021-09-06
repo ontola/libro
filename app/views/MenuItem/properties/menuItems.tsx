@@ -2,8 +2,8 @@ import { NamedNode } from '@ontologies/core';
 import {
   FC,
   Resource,
-  ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,13 +15,11 @@ import { navbarTopology } from '../../../topologies/Navbar';
 interface MenuItemsProps {
   childProps: any;
   linkedProp: NamedNode;
-  menuItems: NamedNode[];
 }
 
-const MenuItems: FC<MenuItemsProps> = ({
-  childProps,
-  menuItems,
-}) => {
+const MenuItems: FC<MenuItemsProps> = ({ childProps }) => {
+  const menuItems = useProperty(ontola.menuItems);
+
   if (menuItems.length === 0) {
     return null;
   }
@@ -51,12 +49,5 @@ MenuItems.topology = [
   navbarTopology,
   menuTopology,
 ];
-
-MenuItems.mapDataToProps = {
-  menuItems: {
-    label: ontola.menuItems,
-    returnType: ReturnType.AllTerms,
-  },
-};
 
 export default register(MenuItems);

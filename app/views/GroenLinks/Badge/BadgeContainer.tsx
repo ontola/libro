@@ -1,10 +1,10 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -22,18 +22,11 @@ import FormFooter from '../../../topologies/FormFooter';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { badgeMessages } from '../../../translations/messages';
 
-interface BadgeContainerProps {
-  image: NamedNode;
-  name: SomeTerm;
-}
-
-const BadgeContainer: FC<BadgeContainerProps> = ({
-  image,
-  name,
-  subject,
-}) => {
+const BadgeContainer: FC = ({ subject }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
+  const [image] = useProperty(schema.image);
+  const [name] = useProperty(schema.name);
 
   return (
     <Card about={subject?.value}>
@@ -74,10 +67,5 @@ BadgeContainer.topology = [
   fullResourceTopology,
   containerTopology,
 ];
-
-BadgeContainer.mapDataToProps = {
-  image: schema.image,
-  name: schema.name,
-};
 
 export default register(BadgeContainer);

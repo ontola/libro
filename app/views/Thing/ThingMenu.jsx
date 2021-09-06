@@ -18,8 +18,4 @@ ThingMenu.type = schema.Thing;
 
 ThingMenu.topology = menuTopology;
 
-ThingMenu.mapDataToProps = {
-  type: rdfx.type,
-};
-
 export default register(ThingMenu);

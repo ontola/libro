@@ -2,6 +2,7 @@ import * as as from '@ontologies/as';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import React, { ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useProperty } from 'link-redux';
 
 import CardContent from '../../../components/Card/CardContent';
 import Detail from '../../../components/Detail';
@@ -18,27 +19,27 @@ import { pageTopology } from '../../../topologies/Page';
 import { tableCellTopology } from '../../../topologies/TableCell';
 import { CollectionTypes } from '../types';
 
-const mapDataToProps = {
-  first: as.first,
-  last: as.last,
+const useIsSinglePage = () => {
+  const [first] = useProperty(as.first);
+  const [last] = useProperty(as.last);
+  
+  return first === last;
 };
 
 interface CollectionTotalItemsProps {
   children?: ReactNode;
-  first: SomeTerm;
-  last: SomeTerm;
   linkedProp: SomeTerm;
   subject: NamedNode;
   to: NamedNode;
 }
 
-const defaultCollectionTotalItems = ({
-  first,
-  last,
+const DefaultCollectionTotalItems = ({
   linkedProp,
   to,
 }: CollectionTotalItemsProps): JSX.Element | null => {
-  if (tryParseInt(linkedProp) === 0 || first === last) {
+  const isSinglePage = useIsSinglePage();
+
+  if (tryParseInt(linkedProp) === 0 || isSinglePage) {
     return null;
   }
 
@@ -55,14 +56,12 @@ const defaultCollectionTotalItems = ({
   );
 };
 
-defaultCollectionTotalItems.mapDataToProps = mapDataToProps;
-
-const cardAppendixCollectionTotalItems = ({
-  first,
-  last,
+const CardAppendixCollectionTotalItems = ({
   linkedProp,
 }: CollectionTotalItemsProps): JSX.Element | null => {
-  if (linkedProp.value === '0' || first === last) {
+  const isSinglePage = useIsSinglePage();
+
+  if (linkedProp.value === '0' || isSinglePage) {
     return null;
   }
 
@@ -83,15 +82,13 @@ const cardAppendixCollectionTotalItems = ({
   );
 };
 
-cardAppendixCollectionTotalItems.mapDataToProps = mapDataToProps;
-
 const DetailsBarCollectionTotalItems = ({
-  first,
-  last,
   linkedProp,
   subject,
 }: CollectionTotalItemsProps): JSX.Element | null => {
-  if (linkedProp.value === '0' || first === last) {
+  const isSinglePage = useIsSinglePage();
+
+  if (linkedProp.value === '0' || isSinglePage) {
     return null;
   }
 
@@ -109,15 +106,13 @@ const DetailsBarCollectionTotalItems = ({
   );
 };
 
-DetailsBarCollectionTotalItems.mapDataToProps = mapDataToProps;
-
 const registerTotalItems = buildRegister<CollectionTotalItemsProps>({
   property: as.totalItems,
   type: CollectionTypes,
 });
 
 export default [
-  registerTotalItems(defaultCollectionTotalItems, {
+  registerTotalItems(DefaultCollectionTotalItems, {
     topology: allTopologiesExcept(
       cardAppendixTopology,
       detailsBarTopology,
@@ -125,7 +120,7 @@ export default [
       pageTopology,
     ),
   }),
-  registerTotalItems(cardAppendixCollectionTotalItems, {
+  registerTotalItems(CardAppendixCollectionTotalItems, {
     topology: cardAppendixTopology,
   }),
   registerTotalItems(DetailsBarCollectionTotalItems, {

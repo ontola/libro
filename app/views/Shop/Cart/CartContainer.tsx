@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
-import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -20,12 +19,6 @@ import { useCartProgressFormatter } from './helpers';
 
 const SHINE_RESET = 2000;
 
-export interface CartProps {
-  budgetMax: Literal;
-  priceCurrency: Literal;
-  totalPrice: Literal;
-}
-
 const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {
     bottom: 0,
@@ -36,10 +29,10 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
 }));
 
-const CartContainer: FC<CartProps> = ({
-  budgetMax,
-  totalPrice,
-}) => {
+const CartContainer = () => {
+  const [budgetMax] = useProperty(argu.budgetMax);
+  const [totalPrice] = useProperty(schema.totalPaymentDue);
+
   const styles = useStyles();
   const [shine, setShine] = React.useState(false);
   React.useEffect(() => {
@@ -83,11 +76,5 @@ const CartContainer: FC<CartProps> = ({
 CartContainer.type = argu.Cart;
 
 CartContainer.topology = containerTopology;
-
-CartContainer.mapDataToProps = {
-  budgetMax: argu.budgetMax,
-  priceCurrency: schema.priceCurrency,
-  totalPrice: schema.totalPaymentDue,
-};
 
 export default register(CartContainer);

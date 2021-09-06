@@ -4,6 +4,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -20,16 +21,15 @@ export interface CollectionSectionProps {
   direction: CardListDirection,
   wrap?: boolean;
   to: SomeTerm;
-  totalItems: SomeTerm;
 }
 
 const CollectionSection: FC<CollectionSectionProps> = ({
   direction,
   subject,
-  totalItems,
   to,
   wrap,
 }) => {
+  const [totalItems] = useProperty(as.totalItems);
   const pagesShouldRender = totalItems?.value !== '0';
   const hasInteraction = useHasInteraction(subject);
 
@@ -69,10 +69,5 @@ CollectionSection.topology = [
   cardFixedTopology,
   cardRowTopology,
 ];
-
-CollectionSection.mapDataToProps = {
-  collectionType: ontola.collectionType,
-  totalItems: as.totalItems,
-};
 
 export default register(CollectionSection);

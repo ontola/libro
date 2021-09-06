@@ -1,7 +1,6 @@
 import { isNamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -25,14 +24,13 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
 interface InviteFullProps {
-  assigner: SomeNode;
   renderPartOf: boolean;
 }
 
 const InviteFull: FC<InviteFullProps> = ({
-  assigner,
   renderPartOf,
 }) => {
+  const [assigner] = useProperty(dexes.assigner);
   const [offer] = useProperty(dexes.offer);
   const [file] = useResourceProperty(isNamedNode(offer) ? offer : undefined, dexes.file);
   useDataFetching(isNamedNode(file) ? [file] : []);
@@ -90,9 +88,5 @@ const InviteFull: FC<InviteFullProps> = ({
 InviteFull.type = dexes.Invite;
 
 InviteFull.topology = fullResourceTopology;
-
-InviteFull.mapDataToProps = {
-  assigner: dexes.assigner,
-};
 
 export default register(InviteFull);

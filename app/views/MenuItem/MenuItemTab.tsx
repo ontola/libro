@@ -1,11 +1,11 @@
 import Tab from '@material-ui/core/Tab';
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -16,15 +16,15 @@ import { tabBarTopology } from '../../topologies/TabBar';
 import { MenuTypes } from './types';
 
 interface MenuItemTabProps {
-  href?: NamedNode;
   onClick: React.EventHandler<any>;
 }
 
 const MenuItemTab: FC<MenuItemTabProps> = ({
-  href,
   subject,
   onClick,
 }) => {
+  const [href] = useProperty(ontola.href);
+
   const lrs = useLRS();
   const openWindow = React.useCallback((e) => {
     e.preventDefault();
@@ -49,10 +49,5 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
 MenuItemTab.type = MenuTypes;
 
 MenuItemTab.topology = tabBarTopology;
-
-MenuItemTab.mapDataToProps = {
-  href: ontola.href,
-  name: schema.name,
-};
 
 export default register(MenuItemTab);

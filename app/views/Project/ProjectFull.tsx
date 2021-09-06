@@ -7,6 +7,7 @@ import {
   Property,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useLocation } from 'react-router';
@@ -35,12 +36,14 @@ interface ProjectFullProps {
 }
 
 const ProjectFull: FC<ProjectFullProps> = ({
-  currentPhase,
   renderPartOf,
   subject,
 }) => {
   const location = useLocation();
+
+  const [currentPhase] = useProperty(argu.currentPhase);
   const [phases] = usePhases(subject);
+
   const phaseIndex = parseInt(location.hash.replace('#', ''));
   const selectedPhase = phaseIndex ? phases[phaseIndex - 1] : null;
   const renderPhase = selectedPhase ?? currentPhase ?? phases[0];
@@ -126,10 +129,5 @@ const ProjectFull: FC<ProjectFullProps> = ({
 ProjectFull.type = argu.Project;
 
 ProjectFull.topology = fullResourceTopology;
-
-ProjectFull.mapDataToProps = {
-  currentPhase: argu.currentPhase,
-  name: schema.name,
-};
 
 export default register(ProjectFull);

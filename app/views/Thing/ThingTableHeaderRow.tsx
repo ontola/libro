@@ -1,13 +1,16 @@
 import rdf, { SomeTerm } from '@ontologies/core';
-import * as foaf from '@ontologies/foaf';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { useCollectionOptions } from '../../components/Collection/CollectionProvider';
 import { SortProps } from '../../hooks/useSorting';
+import { titleProps } from '../../ontology/app';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
 import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
@@ -46,10 +49,9 @@ const SortableHeader = ({
   );
 };
 
-const ThingTableHeaderRow: FC<ThingTableHeaderRowProps> = ({
-  name,
-  sortOptions,
-}) => {
+const ThingTableHeaderRow: FC<ThingTableHeaderRowProps> = ({ sortOptions }) => {
+  const [name] = useProperty(titleProps);
+
   const inner = name && sortOptions?.length > 0
     ? (
       <SortableHeader
@@ -69,11 +71,5 @@ const ThingTableHeaderRow: FC<ThingTableHeaderRowProps> = ({
 ThingTableHeaderRow.type = schema.Thing;
 
 ThingTableHeaderRow.topology = tableHeaderRowTopology;
-
-ThingTableHeaderRow.mapDataToProps = {
-  name: {
-    label: [schema.name, rdfs.label, foaf.name],
-  },
-};
 
 export default register(ThingTableHeaderRow);

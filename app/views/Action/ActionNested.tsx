@@ -5,6 +5,7 @@ import {
   Property,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -26,15 +27,16 @@ const PROPS_BLACKLIST = [
 ].map((t) => rdf.id(t));
 
 const ActionNested: FC<ActionProps> = ({
-  actionStatus,
   appendix,
-  object,
   onCancel,
   onDone,
   responseCallback,
   sessionStore,
   topology,
 }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [object] = useProperty(schema.object);
+
   const onDoneHandler = useDoneHandler(onDone);
   const lrs = useLRS();
 
@@ -87,10 +89,5 @@ ActionNested.topology = [
   alertDialogTopology,
   tabPaneTopology,
 ];
-
-ActionNested.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  object: schema.object,
-};
 
 export default register(ActionNested);

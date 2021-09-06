@@ -8,6 +8,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
@@ -36,7 +37,6 @@ const PersonSelect: FC<PersonSelectProps> = ({
   className,
   element,
   id,
-  itemClass,
   onClick,
   onMouseDown,
   onMouseMove,
@@ -44,6 +44,8 @@ const PersonSelect: FC<PersonSelectProps> = ({
   style,
   wrapperProps,
 }) => {
+  const [itemClass] = useProperty(rdfx.type) as NamedNode[];
+  
   const defaultWrapperProps = () => ({
     'aria-selected': ariaSelected,
     'className': `SelectItem ${className} SelectPerson`,
@@ -82,9 +84,5 @@ PersonSelect.type = [
 ];
 
 PersonSelect.topology = selectTopology;
-
-PersonSelect.mapDataToProps = {
-  itemClass: rdfx.type,
-};
 
 export default register(PersonSelect);

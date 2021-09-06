@@ -15,8 +15,4 @@ ActionBody.type = form.Form;
 
 ActionBody.topology = allTopologies;
 
-ActionBody.mapDataToProps = {
-  pages: form.pages,
-};
-
 export default register(ActionBody);

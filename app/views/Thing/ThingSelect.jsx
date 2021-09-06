@@ -7,6 +7,7 @@ import {
   register,
   subjectType,
   useLink,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -21,7 +22,6 @@ const ThingSelect = ({
   className,
   element,
   id,
-  itemClass,
   onClick,
   onMouseDown,
   onMouseMove,
@@ -44,6 +44,7 @@ const ThingSelect = ({
 
   const labels = [schema.name, rdfs.label, foaf.name];
 
+  const [itemClass] = useProperty(rdfx.type);
   const [labelProp] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
 
   if (labelProp) {
@@ -62,10 +63,6 @@ const ThingSelect = ({
 ThingSelect.type = schema.Thing;
 
 ThingSelect.topology = selectTopology;
-
-ThingSelect.mapDataToProps = {
-  itemClass: rdfx.type,
-};
 
 ThingSelect.propTypes = {
   'aria-selected': PropTypes.bool,

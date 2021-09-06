@@ -1,13 +1,12 @@
 import * as as from '@ontologies/as';
-import { Literal, NamedNode } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   register,
   useDataFetching,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -20,19 +19,11 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 import './MediaObjectAttachment.scss';
 
-interface PropTypes {
-  comment: NamedNode;
-  /** Link to the file */
-  contentUrl: NamedNode;
-  /** Label that is displayed */
-  name: Literal;
-}
+const MediaObjectAttachment = () => {
+  const [comment] = useProperty(schema.comment) as NamedNode[];
+  const [contentUrl] = useProperty(schema.contentUrl);
+  const [name] = useProperty([schema.name, dbo.filename]);
 
-const MediaObjectAttachment: FC<PropTypes> = ({
-  name,
-  comment,
-  contentUrl,
-}) => {
   useDataFetching(comment);
   const totalItems = tryParseInt(useResourceProperty(comment, as.totalItems));
 
@@ -84,12 +75,6 @@ const MediaObjectAttachment: FC<PropTypes> = ({
 };
 
 MediaObjectAttachment.type = schema.MediaObject;
-
-MediaObjectAttachment.mapDataToProps = {
-  comment: schema.comment,
-  contentUrl: schema.contentUrl,
-  name: [schema.name, dbo.filename],
-};
 
 MediaObjectAttachment.topology = [
   cardRowTopology,

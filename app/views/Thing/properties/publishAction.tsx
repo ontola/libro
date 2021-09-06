@@ -1,18 +1,18 @@
 import * as schema from '@ontologies/schema';
 import {
   Resource,
-  linkedPropType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import ontola from '../../../ontology/ontola';
 import { containerTopology } from '../../../topologies/Container';
 
-const PublishAction = ({
-  datePublished,
-  linkedProp,
-}) => {
+const PublishAction = () => {
+  const [datePublished] = useProperty(schema.datePublished);
+  const [linkedProp] = useProperty(ontola.publishAction);
+
   if (datePublished) {
     return null;
   }
@@ -25,15 +25,5 @@ PublishAction.type = schema.Thing;
 PublishAction.property = ontola.publishAction;
 
 PublishAction.topology = containerTopology;
-
-PublishAction.mapDataToProps = {
-  datePublished: schema.datePublished,
-  linkedProp: ontola.publishAction,
-};
-
-PublishAction.propTypes = {
-  datePublished: linkedPropType,
-  linkedProp: linkedPropType,
-};
 
 export default register(PublishAction);

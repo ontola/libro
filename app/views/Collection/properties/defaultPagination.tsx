@@ -3,7 +3,11 @@ import rdf, {
   NamedNode,
   SomeTerm,
 } from '@ontologies/core';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -19,8 +23,6 @@ import { collectionMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
 
 export interface PaginationProps {
-  first: SomeTerm;
-  last?: SomeTerm;
   linkedProp: SomeTerm;
 }
 
@@ -35,12 +37,10 @@ interface PaginationButtonProps {
 }
 
 const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
-  const DefaultPagination: FC<PaginationProps> = (props) => {
-    const {
-      first,
-      last,
-      subject,
-    } = props;
+  const DefaultPagination: FC<PaginationProps> = ({ subject }) => {
+    const [first] = useProperty(as.first);
+    const [last] = useProperty(as.last);
+
     const {
       currentCollectionPages,
       setCollectionResource,
@@ -188,12 +188,6 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
   DefaultPagination.property = ontola.defaultPagination;
 
   DefaultPagination.topology = topology;
-
-  DefaultPagination.mapDataToProps = {
-    collectionType: ontola.collectionType,
-    first: as.first,
-    last: as.last,
-  };
 
   return DefaultPagination;
 };

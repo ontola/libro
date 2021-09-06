@@ -6,6 +6,7 @@ import {
   Property,
   linkType,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -16,9 +17,9 @@ import ontola from '../../ontology/ontola';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 
 const ThingRadioGroup = ({
-  itemClass,
   wrapperProps,
 }) => {
+  const [itemClass] = useProperty(rdfx.type);
   const labels = [schema.name, rdfs.label, foaf.name];
 
   const [label] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
@@ -40,10 +41,6 @@ const ThingRadioGroup = ({
 ThingRadioGroup.type = schema.Thing;
 
 ThingRadioGroup.topology = radioGroupTopology;
-
-ThingRadioGroup.mapDataToProps = {
-  itemClass: rdfx.type,
-};
 
 ThingRadioGroup.propTypes = {
   itemClass: linkType,

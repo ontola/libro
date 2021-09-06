@@ -1,8 +1,9 @@
-import rdf, { SomeTerm } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,15 +13,10 @@ import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-interface ActionDetailProps {
-  actionStatus?: SomeTerm;
-  name: SomeTerm;
-}
+const ActionDetail = () => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [name] = useProperty(schema.name);
 
-const ActionDetail = ({
-  actionStatus,
-  name,
-}: ActionDetailProps): JSX.Element | null => {
   if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
@@ -42,10 +38,5 @@ ActionDetail.topology = [
   contentDetailsTopology,
   detailsBarTopology,
 ];
-
-ActionDetail.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  name: schema.name,
-};
 
 export default register(ActionDetail);

@@ -1,10 +1,9 @@
-import { SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
-  FC,
   Property,
   ReturnType,
   register,
+  useProperty,
   useResourceLink,
 } from 'link-redux';
 import React from 'react';
@@ -14,10 +13,6 @@ import ontola from '../../ontology/ontola';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import PageHeader from '../../topologies/PageHeader';
 
-export interface VocabularyFullProps {
-  coverPhoto: SomeTerm;
-}
-
 const coverPhotoMap = {
   coverPhotoUrl: ontola.imgUrl1500x2000,
   positionY: ontola.imagePositionY,
@@ -25,7 +20,8 @@ const coverPhotoMap = {
 
 const coverPhotoOpts = { returnType: ReturnType.Value };
 
-const VocabularyFull: FC<VocabularyFullProps> = ({ coverPhoto }) => {
+const VocabularyFull = () => {
+  const [coverPhoto] = useProperty(ontola.coverPhoto);
   const { coverPhotoUrl, positionY } = useResourceLink(coverPhoto as SomeNode, coverPhotoMap, coverPhotoOpts);
 
   return (
@@ -37,10 +33,6 @@ const VocabularyFull: FC<VocabularyFullProps> = ({ coverPhoto }) => {
       <Property label={argu.terms} />
     </React.Fragment>
   );
-};
-
-VocabularyFull.mapDataToProps = {
-  coverPhoto: ontola.coverPhoto,
 };
 
 VocabularyFull.type = argu.Vocabulary;

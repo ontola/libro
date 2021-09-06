@@ -7,11 +7,11 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
-  FC,
   Property,
   Resource,
   register,
   useDataFetching,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React, { useState } from 'react';
@@ -47,11 +47,9 @@ const dateRangeToS = (dateRange: [Date, Date]) => (
   }).join('-')
 );
 
-interface PropTypes {
-  dashboard: SomeNode;
-}
+const DashboardPageFull = () => {
+  const [dashboard] = useProperty(teamGL.dashboard) as SomeNode[];
 
-const DashboardPageFull: FC<PropTypes> = ({ dashboard }) => {
   useDataFetching([dashboard]);
   const [itemSequence] = useResourceProperty(dashboard, ontola.menuItems);
   const [items] = useContainerToArr(isNode(itemSequence) ? itemSequence : undefined);
@@ -156,9 +154,5 @@ const DashboardPageFull: FC<PropTypes> = ({ dashboard }) => {
 DashboardPageFull.type = teamGL.DashboardPage;
 
 DashboardPageFull.topology = fullResourceTopology;
-
-DashboardPageFull.mapDataToProps = {
-  dashboard: teamGL.dashboard,
-};
 
 export default register(DashboardPageFull);

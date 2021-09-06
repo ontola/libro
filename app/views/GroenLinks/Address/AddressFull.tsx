@@ -1,10 +1,10 @@
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -17,14 +17,13 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 
 interface AddressFullProps {
   renderPartOf?: boolean;
-  street: SomeNode;
 }
 
 const AddressFull: FC<AddressFullProps> = ({
   renderPartOf,
-  street,
 }) => {
   const lrs = useLRS();
+  const [street] = useProperty(teamGL.street);
 
   return (
     <React.Fragment>
@@ -48,9 +47,5 @@ AddressFull.topology = [
   alertDialogTopology,
   fullResourceTopology,
 ];
-
-AddressFull.mapDataToProps = {
-  street: teamGL.street,
-};
 
 export default register(AddressFull);

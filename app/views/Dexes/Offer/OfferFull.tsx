@@ -50,8 +50,4 @@ DexesOfferFull.type = dexes.Offer;
 
 DexesOfferFull.topology = fullResourceTopology;
 
-DexesOfferFull.mapDataToProps = {
-  email: schema.email,
-};
-
 export default register(DexesOfferFull);

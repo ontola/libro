@@ -1,14 +1,13 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import {
-  FC,
   Property,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
-import { ResourcePropTypes } from 'link-redux/dist-types/components/Resource';
 import React from 'react';
 
 import { FormContext } from '../../components/Form/Form';
@@ -16,13 +15,8 @@ import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
-interface PropTypes extends ResourcePropTypes {
-  path: NamedNode;
-}
-
-const ResourceField: FC<PropTypes> = ({
-  path,
-}) => {
+const ResourceField = () => {
+  const [path] = useProperty(sh.path);
   const { object, whitelist } = React.useContext(FormContext);
   const { setHasContent } = useFormGroup();
   React.useLayoutEffect(() => {
@@ -69,9 +63,5 @@ const ResourceField: FC<PropTypes> = ({
 ResourceField.type = form.ResourceField;
 
 ResourceField.topology = allTopologies;
-
-ResourceField.mapDataToProps = {
-  path: sh.path,
-};
 
 export default register(ResourceField);

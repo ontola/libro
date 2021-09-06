@@ -1,7 +1,10 @@
-import { Literal, NamedNode } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
@@ -13,19 +16,17 @@ import { formFooterTopology } from '../../topologies/FormFooter';
 
 interface RDFSClassFormFooterProps {
   current?: boolean;
-  description?: Literal;
-  image?: string | NamedNode;
-  label?: Literal;
   onClick?: () => void;
 }
 
 const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
   current,
-  description,
-  image,
-  label,
   onClick,
 }) => {
+  const [description] = useProperty(schema.description);
+  const [image] = useProperty(schema.image);
+  const [label] = useProperty(rdfs.label);
+
   const curClass = current ? ' Button--omniform-switcher--current' : '';
 
   const children = !image
@@ -55,11 +56,5 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
 RDFSClassFormFooter.type = rdfs.Class;
 
 RDFSClassFormFooter.topology = formFooterTopology;
-
-RDFSClassFormFooter.mapDataToProps = {
-  description: schema.description,
-  image: schema.image,
-  label: rdfs.label,
-};
 
 export default register(RDFSClassFormFooter);

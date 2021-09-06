@@ -1,10 +1,9 @@
-import { Literal, NamedNode } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
-  FC,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React, { ForwardedRef } from 'react';
 
@@ -15,25 +14,17 @@ import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 
-interface MenuItemNavbarProps {
-  href?: NamedNode;
-  image?: SomeNode;
-  imageOnly?: boolean;
-  name?: Literal;
-  menuItems?: SomeNode;
-}
-
 interface MenuChildProps {
   handleClose: () => void;
   ref: ForwardedRef<unknown>;
 }
 
-const MenuItemNavbar: FC<MenuItemNavbarProps> = ({
-  href,
-  image,
-  name,
-  menuItems,
-}) => {
+const MenuItemNavbar = () => {
+  const [href] = useProperty(ontola.href);
+  const [image] = useProperty(schema.image) as NamedNode[];
+  const [menuItems] = useProperty(ontola.menuItems);
+  const [name] = useProperty(schema.name);
+
   const menuItemLabel = React.useCallback((onClick) => {
     const icon = (image && isFontAwesomeIRI(image.value))
       ? normalizeFontAwesomeIRI(image)
@@ -76,12 +67,5 @@ MenuItemNavbar.type = [
 ];
 
 MenuItemNavbar.topology = navbarTopology;
-
-MenuItemNavbar.mapDataToProps = {
-  href: ontola.href,
-  image: schema.image,
-  menuItems: ontola.menuItems,
-  name: schema.name,
-};
 
 export default register(MenuItemNavbar);

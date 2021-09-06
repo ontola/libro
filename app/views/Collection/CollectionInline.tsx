@@ -1,7 +1,5 @@
 import * as as from '@ontologies/as';
-import * as rdfx from '@ontologies/rdf';
 import {
-  FC,
   Property,
   register,
 } from 'link-redux';
@@ -12,7 +10,7 @@ import { inlineTopology } from '../../topologies/Inline';
 
 import { CollectionTypes } from './types';
 
-const CollectionInline: FC = () => (
+const CollectionInline = () => (
   <p>
     <label>
       <Property label={as.name} />
@@ -27,10 +25,6 @@ const CollectionInline: FC = () => (
 );
 
 CollectionInline.type = CollectionTypes;
-
-CollectionInline.mapDataToProps = {
-  type: rdfx.type,
-};
 
 CollectionInline.topology = inlineTopology;
 

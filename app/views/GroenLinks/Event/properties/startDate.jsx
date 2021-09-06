@@ -3,6 +3,7 @@ import {
   linkType,
   linkedPropType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
@@ -40,8 +41,9 @@ const dateString = (intl, date1, date2) => {
   return `${intl.formatDate(date1, FORMAT)} - ${intl.formatDate(date2, FORMAT)}`;
 };
 
-const StartDate = ({ linkedProp, endDate }) => {
+const StartDate = ({ linkedProp }) => {
   const intl = useIntl();
+  const [endDate] = useProperty(schema.endDate);
   const date1 = new Date(linkedProp.value);
   const date2 = endDate && new Date(endDate.value);
 
@@ -53,10 +55,6 @@ const StartDate = ({ linkedProp, endDate }) => {
 StartDate.type = teamGL.Event;
 
 StartDate.property = schema.startDate;
-
-StartDate.mapDataToProps = {
-  endDate: schema.endDate,
-};
 
 StartDate.topology = allTopologies;
 

@@ -9,6 +9,7 @@ import {
   Property,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -126,13 +127,26 @@ const MenuItemDropdownContentComp = ({
   );
 };
 
-const MenuItemDropdownContent = React.forwardRef<FC, MenuItemDropdownContentProps> (
-  (props, ref) => (
-    <MenuItemDropdownContentComp
-      innerRef={ref}
-      {...props}
-    />
-  ),
+const MenuItemDropdownContent = React.forwardRef<FC, MenuItemDropdownContentProps>(
+  (props, ref) => {
+    const[action] = useProperty(ontola.action) as NamedNode[];
+    const[href] = useProperty(ontola.href) as SomeNode[];
+    const[image] = useProperty(schema.image) as SomeNode[];
+    const[menuItems] = useProperty(ontola.menuItems) as SomeNode[];
+    const[name] = useProperty(schema.name) as Literal[];
+
+    return(
+      <MenuItemDropdownContentComp
+        innerRef={ref}
+        {...props}
+        action={action}
+        href={href}
+        image={image}
+        menuItems={menuItems}
+        name={name}
+      />
+    );
+  },
 ) as unknown as FC;
 
 MenuItemDropdownContent.type = ontola.MenuItem;
@@ -141,13 +155,5 @@ MenuItemDropdownContent.topology = [
   appMenuTopology,
   menuTopology,
 ];
-
-MenuItemDropdownContent.mapDataToProps = {
-  action: ontola.action,
-  href: ontola.href,
-  image: schema.image,
-  menuItems: ontola.menuItems,
-  name: schema.name,
-};
 
 export default register(MenuItemDropdownContent);

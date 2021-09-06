@@ -5,6 +5,7 @@ import {
   FC,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { Redirect } from 'react-router';
@@ -18,9 +19,11 @@ interface OfferPageProps {
 }
 
 const OfferPage: FC<OfferPageProps> = (props) => {
-  if (isNamedNode(props.partOf)) {
+  const [partOf] = useProperty(schema.isPartOf);
+
+  if (isNamedNode(partOf)) {
     return (
-      <Redirect to={retrievePath(props.partOf)!} />
+      <Redirect to={retrievePath(partOf)!} />
     );
   }
 
@@ -37,9 +40,5 @@ const OfferPage: FC<OfferPageProps> = (props) => {
 OfferPage.type = schema.Offer;
 
 OfferPage.topology = pageTopology;
-
-OfferPage.mapDataToProps = {
-  partOf: schema.isPartOf,
-};
 
 export default register(OfferPage);

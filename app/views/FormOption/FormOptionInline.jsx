@@ -1,4 +1,3 @@
-import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
@@ -14,10 +13,6 @@ const FormOptionInline = () => (
 );
 
 FormOptionInline.type = ontola.FormOption;
-
-FormOptionInline.mapDataToProps = {
-  type: rdfx.type,
-};
 
 FormOptionInline.topology = [
   attributeListTopology,

@@ -2,8 +2,8 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   Resource,
-  ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -37,23 +37,24 @@ const sortBind = (props) => props
     />
   ));
 
-const FavoriteAction = (props) => (
-  <React.Fragment>
-    {sortBind(props)}
-  </React.Fragment>
-);
+const FavoriteAction = (props) => {
+  const [favoriteActions] = useProperty(ontola.favoriteAction);
+  const favoriteActionProps = {
+    ...props,
+    favoriteActions
+  };
+
+  return(
+    <React.Fragment>
+      {sortBind(favoriteActionProps)}
+    </React.Fragment>
+  );
+};
 
 FavoriteAction.type = [schema.Thing, rdfs.Resource];
 
 FavoriteAction.property = ontola.favoriteAction;
 
 FavoriteAction.topology = allTopologies;
-
-FavoriteAction.mapDataToProps = {
-  favoriteActions: {
-    label: ontola.favoriteAction,
-    returnType: ReturnType.AllTerms,
-  },
-};
 
 export default register(FavoriteAction);

@@ -13,6 +13,7 @@ import {
   register,
   useDataInvalidation,
   useLRS,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -34,7 +35,6 @@ import { phaseMessages } from '../../../translations/messages';
 const STEPPER_PADDING = 7;
 
 export interface PhasesProps {
-  currentPhase: Node,
   linkedProp: Node,
   selectedPhase: Node,
   subject: NamedNode,
@@ -74,7 +74,6 @@ const renderStepLabel = (item: Node) => (
 const itemToKey = (item: Node) => item.value;
 
 const Phases: FC<PhasesProps> = ({
-  currentPhase,
   linkedProp,
   selectedPhase,
   subject,
@@ -83,6 +82,7 @@ const Phases: FC<PhasesProps> = ({
   const intl = useIntl();
   const stepperOverrideClasses = useStepperOverrideStyles();
   const classes = useStyles();
+  const [currentPhase] = useProperty(argu.currentPhase);
   const [page] = useResourceProperty(linkedProp, ontola.pages) as Node[];
   const [createAction, createActionStatus] = useAction(linkedProp, ontola.createAction);
   const [itemSequence] = useResourceProperty(page ?? subject, as.items) as Node[];
@@ -184,9 +184,5 @@ Phases.type = argu.Project;
 Phases.topology = allTopologies;
 
 Phases.property = argu.phases;
-
-Phases.mapDataToProps = {
-  currentPhase: argu.currentPhase,
-};
 
 export default register(Phases);

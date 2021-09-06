@@ -1,14 +1,13 @@
 import {
-  Literal,
   NamedNode,
   isNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
@@ -22,12 +21,9 @@ import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
 
 interface PropTypes {
-  action: SomeNode;
-  actionBody: SomeNode;
   autofocusForm: boolean;
   footer: (submitting: boolean) => React.ReactNode;
   formInstance: FormApi;
-  httpMethod: Literal;
   modal?: boolean;
   responseCallback?: (response: unknown) => void;
   onDone?: (response: unknown) => void;
@@ -35,30 +31,29 @@ interface PropTypes {
   onStatusForbidden?: () => Promise<void>;
   parentIRI: string;
   sessionStore: Storage;
-  url: NamedNode;
   /** The ids of the whitelisted properties */
   whitelist: number[];
 }
 
-const EntryPointOmniform: FC<PropTypes> = (props) => {
-  const {
-    action,
-    actionBody,
-    autofocusForm,
-    footer,
-    formInstance,
-    httpMethod,
-    modal,
-    onDone,
-    onKeyUp,
-    onStatusForbidden,
-    parentIRI,
-    responseCallback,
-    sessionStore,
-    subject,
-    url,
-    whitelist,
-  } = props;
+const EntryPointOmniform: FC<PropTypes> = ({
+  autofocusForm,
+  footer,
+  formInstance,
+  modal,
+  onDone,
+  onKeyUp,
+  onStatusForbidden,
+  parentIRI,
+  responseCallback,
+  sessionStore,
+  subject,
+  whitelist,
+}) => {
+  const [action] = useProperty(schema.isPartOf) as NamedNode[];
+  const [actionBody] = useProperty(ll.actionBody) as NamedNode[];
+  const [httpMethod] = useProperty(schema.httpMethod);
+  const [url] = useProperty(schema.url);
+
   const formID = `${atob(parentIRI)}.omniform`;
   const submitHandler = useSubmitHandler({
     formID,
@@ -98,14 +93,5 @@ const EntryPointOmniform: FC<PropTypes> = (props) => {
 EntryPointOmniform.type = schema.EntryPoint;
 
 EntryPointOmniform.topology = omniformFieldsTopology;
-
-EntryPointOmniform.mapDataToProps = {
-  action: schema.isPartOf,
-  actionBody: ll.actionBody,
-  httpMethod: schema.httpMethod,
-  image: schema.image,
-  name: schema.name,
-  url: schema.url,
-};
 
 export default register(EntryPointOmniform);

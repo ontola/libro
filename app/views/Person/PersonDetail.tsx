@@ -1,9 +1,10 @@
-import rdf, { Literal, NamedNode } from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -19,7 +20,6 @@ import { personMessages } from '../../translations/messages';
 
 interface PersonDetailProps {
   hideName: boolean;
-  name: Literal;
   smallMargin?: boolean;
   theme: LinkTheme;
   titleKey: 'showProfile' | 'postedBy';
@@ -28,19 +28,25 @@ interface PersonDetailProps {
 
 const PersonDetail: FC<PersonDetailProps> = ({
   hideName,
-  name,
   smallMargin,
   theme,
   titleKey,
   topology,
 }) => {
   const { formatMessage } = useIntl();
+  const [name] = useProperty([schema.name, foaf.name]);
 
-  const title = formatMessage(personMessages[titleKey || 'showProfile'], { name: name.value });
+  const title = formatMessage(
+    personMessages[titleKey ?? 'showProfile'],
+    { name: name.value },
+  );
 
   return (
     <LDLink
-      features={[LinkFeature.Centered, rdf.equals(topology, tableCellTopology) && LinkFeature.Bold].filter(Boolean)}
+      features={[
+        LinkFeature.Centered,
+        rdf.equals(topology, tableCellTopology) && LinkFeature.Bold,
+      ].filter(Boolean)}
       theme={theme}
     >
       <LDDetail
@@ -59,14 +65,5 @@ PersonDetail.type = [
 ];
 
 PersonDetail.topology = [detailsBarTopology, tableCellTopology];
-
-PersonDetail.mapDataToProps = {
-  name: {
-    label: [
-      schema.name,
-      foaf.name,
-    ],
-  },
-};
 
 export default register(PersonDetail);

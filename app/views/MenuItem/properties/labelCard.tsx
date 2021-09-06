@@ -1,8 +1,9 @@
-import { Literal, NamedNode } from '@ontologies/core';
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,16 +14,16 @@ import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
 
 interface MenuItemLabelCardProps {
-  image?: NamedNode;
   linkedProp: Literal;
   label?: Literal;
 }
 
 const MenuItemLabelCard: FC<MenuItemLabelCardProps> = ({
-  image,
   label,
   linkedProp,
 }) => {
+  const [image] = useProperty(schema.image);
+
   if (!image) {
     return (
       <div>
@@ -48,9 +49,5 @@ MenuItemLabelCard.type = [
 MenuItemLabelCard.property = schema.name;
 
 MenuItemLabelCard.topology = [cardFloatTopology, containerFloatTopology];
-
-MenuItemLabelCard.mapDataToProps = {
-  image: schema.image,
-};
 
 export default register(MenuItemLabelCard);

@@ -66,7 +66,7 @@ export enum InputMode {
   Number = 'number',
   Numeric = 'numeric',
   Search = 'search',
-  Tel = 'tel' ,
+  Tel = 'tel',
   Url = 'url',
 }
 

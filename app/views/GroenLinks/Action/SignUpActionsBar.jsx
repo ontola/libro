@@ -4,6 +4,7 @@ import {
   Property,
   linkType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,7 +13,9 @@ import teamGL from '../../../ontology/teamGL';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 import { invalidStatusIds } from '../../Thing/properties/omniform/helpers';
 
-const SignUpActionsBar = ({ actionStatus }) => {
+const SignUpActionsBar = () => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+
   if (actionStatus === schema.CompletedActionStatus) {
     return (
       <div className="Button">
@@ -45,13 +48,5 @@ const SignUpActionsBar = ({ actionStatus }) => {
 SignUpActionsBar.type = teamGL.SignUpAction;
 
 SignUpActionsBar.topology = actionsBarTopology;
-
-SignUpActionsBar.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-};
-
-SignUpActionsBar.propTypes = {
-  actionStatus: linkType,
-};
 
 export default register(SignUpActionsBar);

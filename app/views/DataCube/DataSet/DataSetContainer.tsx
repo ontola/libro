@@ -2,10 +2,10 @@ import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
-  FC,
   Property,
   Resource,
   register,
+  useProperty,
   useResourceLinks,
   useResourceProperty,
 } from 'link-redux';
@@ -21,10 +21,6 @@ import Table from '../../../topologies/Table';
 import TableBody from '../../../topologies/TableBody';
 import TableHead from '../../../topologies/TableHead';
 import TableRow from '../../../topologies/TableRow';
-
-export interface DataSetContainerProps {
-  structure: SomeNode;
-}
 
 interface Component {
   measure: SomeNode;
@@ -44,7 +40,8 @@ const orderComponents = (components: Component[]) => components
     return 0;
   });
 
-const DataSetContainer: FC<DataSetContainerProps> = ({ structure }) => {
+const DataSetContainer = () => {
+  const [structure] = useProperty(qb.structure) as SomeNode[];
   const componentIRIs = useResourceProperty(structure, qb.component) as NamedNode[];
   const components = useResourceLinks(componentIRIs, {
     measure: qb.measure,
@@ -89,9 +86,5 @@ const DataSetContainer: FC<DataSetContainerProps> = ({ structure }) => {
 DataSetContainer.type = qb.DataSet;
 
 DataSetContainer.topology = [containerTopology];
-
-DataSetContainer.mapDataToProps = {
-  structure: qb.structure,
-};
 
 export default register(DataSetContainer);

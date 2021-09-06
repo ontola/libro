@@ -1,4 +1,4 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import { useLRS } from 'link-redux';
 import React, { SyntheticEvent, useCallback } from 'react';
 import { useHistory } from 'react-router';
@@ -45,13 +45,10 @@ export const useDoneHandler = (onDone?: (iri: string) => void): (response: any) 
 };
 
 export interface ActionProps {
-  actionStatus?: SomeTerm;
   appendix?: React.FC;
-  object?: SomeTerm;
   onDone?: (iri: string) => void;
   sessionStore?: Storage;
   onCancel?: () => void;
   responseCallback?: (response: Response) => void;
-  target?: SomeTerm;
   topology?: NamedNode;
 }

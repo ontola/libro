@@ -1,4 +1,3 @@
-import { Literal } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -6,6 +5,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -25,15 +25,12 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { surveyMessages } from '../../translations/messages';
 
 interface PropTypes {
-  expiresAt: Literal;
   renderPartOf: boolean;
 }
 
-const SurveyFull: FC<PropTypes> = ({
-  expiresAt,
-  renderPartOf,
-}) => {
+const SurveyFull: FC<PropTypes> = ({ renderPartOf }) => {
   const intl = useIntl();
+  const [expiresAt] = useProperty(argu.expiresAt);
 
   const renderSurveyAction = () => {
     const expired = expiresAt && isPastDate(expiresAt);
@@ -95,9 +92,5 @@ const SurveyFull: FC<PropTypes> = ({
 SurveyFull.type = [argu.Survey];
 
 SurveyFull.topology = fullResourceTopology;
-
-SurveyFull.mapDataToProps = {
-  expiresAt: argu.expiresAt,
-};
 
 export default register(SurveyFull);

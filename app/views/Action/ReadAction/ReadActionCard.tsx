@@ -1,9 +1,10 @@
-import { Literal, isNamedNode } from '@ontologies/core';
+import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -11,11 +12,9 @@ import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 
-interface ReadActionCardProps {
-  name?: Literal;
-}
+const ReadActionCard: FC = ({ subject }) => {
+  const [name] = useProperty(schema.name);
 
-const ReadActionCard: FC<ReadActionCardProps> = ({ subject, name }) => {
   const lrs = useLRS();
   const execAction = React.useCallback(
     () => {
@@ -59,9 +58,5 @@ ReadActionCard.topology = [
   cardMainTopology,
   cardTopology,
 ];
-
-ReadActionCard.mapDataToProps = {
-  name: schema.name,
-};
 
 export default register(ReadActionCard);

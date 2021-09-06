@@ -1,8 +1,9 @@
-import rdf, { Literal, SomeTerm } from '@ontologies/core';
+import rdf, { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -26,13 +27,6 @@ import { tableRowTopology } from '../../../topologies/TableRow';
 import { tabPaneTopology } from '../../../topologies/TabPane';
 import { invalidStatusIds } from '../../Thing/properties/omniform/helpers';
 
-interface CreateActionButtonProps {
-  actionStatus: SomeTerm;
-  error: SomeTerm;
-  name: SomeTerm;
-  target: Literal;
-}
-
 export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (
   !!prop && Object.values(LinkTarget as any).includes(prop)
 );
@@ -43,13 +37,12 @@ const normalizeTarget = (targetLiteral: Literal) => {
   return isLinkTarget(target) ? target : undefined;
 };
 
-const CreateActionButton: FC<CreateActionButtonProps> = ({
-  actionStatus,
-  children,
-  error,
-  name,
-  target,
-}) => {
+const CreateActionButton: FC = ({ children }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [error] = useProperty(schema.error);
+  const [name] = useProperty(schema.name);
+  const [target] = useProperty(libro.target) as Literal[];
+
   if (children) {
     return (
       <React.Fragment>
@@ -88,12 +81,5 @@ CreateActionButton.topology = allTopologiesExcept(
   tableCellTopology,
   tableRowTopology,
 );
-
-CreateActionButton.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  error: schema.error,
-  name: schema.name,
-  target: libro.target,
-};
 
 export default register(CreateActionButton);

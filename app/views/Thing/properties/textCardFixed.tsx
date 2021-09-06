@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { linkedPropType, register } from 'link-redux';
+import {
+  register,
+  useProperty, 
+} from 'link-redux';
 import React from 'react';
 
 import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
@@ -32,8 +35,10 @@ const STRING_CUTOFF = 150;
  * Note: It doesn't render inline anchor elements since it should always be wrapped in an outer
  * anchor.
  */
-const TextCutoff = ({ coverPhoto, text }) => {
+const TextCutoff = () => {
   const classes = useStyles();
+  const [coverPhoto] = useProperty(ontola.coverPhoto);
+  const [text] = useProperty([schema.text, schema.description]);
   const strippedText = useStrippedMarkdown(text?.value);
 
   if (!text || coverPhoto) {
@@ -58,15 +63,5 @@ TextCutoff.topology = [
   cardFixedTopology,
   hoverBoxTopology,
 ];
-
-TextCutoff.mapDataToProps = {
-  coverPhoto: ontola.coverPhoto,
-  text: [schema.text, schema.description],
-};
-
-TextCutoff.propTypes = {
-  coverPhoto: linkedPropType,
-  text: linkedPropType,
-};
 
 export default register(TextCutoff);

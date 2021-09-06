@@ -1,10 +1,9 @@
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,11 +17,6 @@ import { parentTopology } from '../../../topologies/Parent';
 
 import { useCartProgressFormatter } from './helpers';
 
-interface CartProps {
-  budgetMax: Literal;
-  totalPrice: Literal;
-}
-
 const useStyles = makeStyles(() => ({
   wrapper: {
     display: 'flex',
@@ -30,10 +24,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Cart: FC<CartProps> = ({
-  budgetMax,
-  totalPrice,
-}) => {
+const Cart = () => {
+  const [budgetMax] = useProperty(argu.budgetMax);
+  const [totalPrice] = useProperty(schema.totalPaymentDue);
   const classes = useStyles();
   const totalPriceInt = tryParseInt(totalPrice) ?? 0;
   const budgetMaxInt = tryParseInt(budgetMax);
@@ -68,10 +61,5 @@ const Cart: FC<CartProps> = ({
 Cart.type = argu.Cart;
 
 Cart.topology = allTopologiesExcept(containerTopology, parentTopology);
-
-Cart.mapDataToProps = {
-  budgetMax: argu.budgetMax,
-  totalPrice: schema.totalPaymentDue,
-};
 
 export default register(Cart);

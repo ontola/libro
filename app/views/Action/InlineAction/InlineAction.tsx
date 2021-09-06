@@ -1,15 +1,11 @@
-import rdf, {
-  Literal,
-  NamedNode,
-  SomeTerm,
-  isNamedNode,
-} from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,19 +14,11 @@ import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
-interface InlineActionTableRowProps {
-  actionStatus?: SomeTerm;
-  error?: Literal;
-  target?: NamedNode;
-}
-
-const InlineAction: FC<InlineActionTableRowProps> = ({
-  actionStatus,
-  error,
-  subject,
-  target,
-}) => {
+const InlineAction : FC = ({ subject }) => {
   const lrs = useLRS();
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [error] = useProperty(schema.error);
+  const [target] = useProperty(schema.target);
 
   if (rdf.equals(actionStatus, ontola.DisabledActionStatus)) {
     return null;
@@ -72,13 +60,6 @@ const InlineAction: FC<InlineActionTableRowProps> = ({
 InlineAction.type = [argu.ConfirmAction, argu.CopyAction, ontola.InlineAction];
 
 InlineAction.topology = allTopologies;
-
-InlineAction.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  error: schema.error,
-  object: schema.object,
-  target: schema.target,
-};
 
 export default register(InlineAction);
 

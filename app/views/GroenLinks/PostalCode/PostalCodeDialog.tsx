@@ -1,10 +1,10 @@
 import IconButton from '@material-ui/core/IconButton';
-import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -24,13 +24,11 @@ import { useVisitPostalCode } from '../Glapp/helpers';
 
 interface PostalCodeDialogProps {
   onClose: () => void;
-  postalDigits: SomeTerm;
 }
 
-const PostalCodeDialog: FC<PostalCodeDialogProps> = ({
-  onClose,
-  postalDigits,
-}) => {
+const PostalCodeDialog: FC<PostalCodeDialogProps> = ({ onClose }) => {
+  const [postalDigits] = useProperty(teamGL.postalDigits);
+
   const { formatMessage } = useIntl();
   const { visitPostalCode } = useVisitPostalCode();
 
@@ -85,9 +83,5 @@ const PostalCodeDialog: FC<PostalCodeDialogProps> = ({
 PostalCodeDialog.type = teamGL.PostalCode;
 
 PostalCodeDialog.topology = alertDialogTopology;
-
-PostalCodeDialog.mapDataToProps = {
-  postalDigits: teamGL.postalDigits,
-};
 
 export default register(PostalCodeDialog);

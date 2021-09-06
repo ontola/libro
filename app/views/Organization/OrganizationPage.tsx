@@ -1,10 +1,9 @@
-import { Literal } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -18,17 +17,11 @@ import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import HomepageError from '../../components/Error/HomepageError';
 
-interface OrganizationPageProps {
-  hideHeader?: Literal;
-  homepage?: Literal;
-  name?: Literal;
-}
+const OrganizationPage = () => {
+  const [hideHeader] = useProperty(ontola.hideHeader);
+  const [homepage] = useProperty(foaf.homepage);
+  const [name] = useProperty(schema.name);
 
-const OrganizationPage: FC<OrganizationPageProps> = ({
-  homepage,
-  name,
-  hideHeader,
-}) => {
   if (homepage) {
     return (
       <Resource
@@ -65,11 +58,5 @@ OrganizationPage.type = [
 ];
 
 OrganizationPage.topology = pageTopology;
-
-OrganizationPage.mapDataToProps = {
-  hideHeader: ontola.hideHeader,
-  homepage: foaf.homepage,
-  name: schema.name,
-};
 
 export default register(OrganizationPage);

@@ -4,6 +4,7 @@ import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -17,11 +18,12 @@ interface ActionCardMainProps {
 }
 
 const ActionCardMain: FC<ActionCardMainProps> = ({
-  actionStatus,
   children,
-  name,
   subject,
 }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [name] = useProperty(schema.name);
+
   if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
     return null;
   }
@@ -49,11 +51,5 @@ const ActionCardMain: FC<ActionCardMainProps> = ({
 ActionCardMain.type = schema.Action;
 
 ActionCardMain.topology = cardMainTopology;
-
-ActionCardMain.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  name: schema.name,
-  target: schema.target,
-};
 
 export default register(ActionCardMain);

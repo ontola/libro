@@ -5,6 +5,7 @@ import * as rdfx from '@ontologies/rdf';
 import {
   FC,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -23,7 +24,6 @@ import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
 
 interface EmptyProps {
-  baseCollection: NamedNode;
   linkedProp: SomeTerm;
   topology: NamedNode;
 }
@@ -34,10 +34,9 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
 }));
 
-const Empty: FC<EmptyProps> = ({
-  baseCollection,
-  topology,
-}) => {
+const Empty: FC<EmptyProps> = ({ topology }) => {
+  const [baseCollection] = useProperty(ontola.baseCollection) as NamedNode[];
+
   const styles = useStyles();
   const { collectionDisplay } = useCollectionOptions();
   const collectionType = useResourceProperty(baseCollection, rdfx.type);
@@ -97,9 +96,5 @@ Empty.type = as.CollectionPage;
 Empty.topology = allTopologies;
 
 Empty.property = app.empty;
-
-Empty.mapDataToProps = {
-  baseCollection: ontola.baseCollection,
-};
 
 export default register(Empty);

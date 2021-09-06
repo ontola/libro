@@ -4,6 +4,7 @@ import {
   FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -24,14 +25,15 @@ interface ActionFullProps extends ActionProps {
 }
 
 const ActionFull: FC<ActionFullProps> = ({
-  actionStatus,
   appendix,
-  object,
   sessionStore,
   onCancel,
   onDone,
   renderPartOf,
 }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [object] = useProperty(schema.object);
+
   const onDoneHandler = useDoneHandler(onDone);
   const Appendix = appendix;
 
@@ -80,10 +82,5 @@ ActionFull.type = [
 ActionFull.topology = [
   fullResourceTopology,
 ];
-
-ActionFull.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  object: schema.object,
-};
 
 export default register(ActionFull);

@@ -1,9 +1,9 @@
 import { NamedNode } from '@ontologies/core';
 import {
-  FC,
   Property,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -14,14 +14,9 @@ import { navbarTopology } from '../../topologies/Navbar';
 
 import { RegisteredTypes } from './types';
 
-interface UserNavbarProps {
-  mountAction?: NamedNode;
-}
-
-const UserNavbar: FC<UserNavbarProps> = ({
-  mountAction,
-}) => {
+const UserNavbar = () => {
   const lrs = useLRS();
+  const [mountAction] = useProperty(ontola.mountAction) as NamedNode[];
 
   React.useEffect(() => {
     if (mountAction) {
@@ -48,9 +43,5 @@ const UserNavbar: FC<UserNavbarProps> = ({
 UserNavbar.type = RegisteredTypes;
 
 UserNavbar.topology = navbarTopology;
-
-UserNavbar.mapDataToProps = {
-  mountAction: ontola.mountAction,
-};
 
 export default register(UserNavbar);

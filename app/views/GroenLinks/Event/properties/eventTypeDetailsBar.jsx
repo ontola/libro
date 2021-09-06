@@ -4,6 +4,7 @@ import {
   linkedPropType,
   register,
   useDataFetching,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -14,7 +15,8 @@ import teamGL from '../../../../ontology/teamGL';
 import { contentDetailsTopology } from '../../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../../topologies/DetailsBar';
 
-const EventTypeDetailsBar = ({ image, linkedProp }) => {
+const EventTypeDetailsBar = ({ linkedProp }) => {
+  const [image] = useProperty(schema.image);
   useDataFetching([linkedProp]);
   const [name] = useResourceProperty(linkedProp, schema.name);
 
@@ -34,10 +36,6 @@ EventTypeDetailsBar.topology = [
 ];
 
 EventTypeDetailsBar.property = teamGL.eventType;
-
-EventTypeDetailsBar.mapDataToProps = {
-  image: schema.image,
-};
 
 EventTypeDetailsBar.propTypes = {
   image: linkType,

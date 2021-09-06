@@ -1,11 +1,10 @@
 import IconButton from '@material-ui/core/IconButton';
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   Property,
   Resource,
   register,
+  useProperty,  
 } from 'link-redux';
 import React from 'react';
 
@@ -16,10 +15,6 @@ import { containerFloatTopology } from '../../topologies/Container/ContainerFloa
 import Menu from '../../topologies/Menu';
 
 import { MenuTypes } from './types';
-
-interface MenuItemDropdownProps {
-  menuItems: NamedNode;
-}
 
 const trigger = (onClick: () => void) => (
   <IconButton
@@ -32,24 +27,20 @@ const trigger = (onClick: () => void) => (
   </IconButton>
 );
 
-const MenuItemDropdown: FC<MenuItemDropdownProps> = ({
-  menuItems,
-}) => (
-  <ResourceBoundary>
-    <Menu
-      trigger={trigger}
-    >
-      <Resource subject={menuItems} />
-    </Menu>
-  </ResourceBoundary>
-);
+const MenuItemDropdown = () => {
+  const [menuItems] = useProperty(ontola.menuItems);
+
+  return(
+    <ResourceBoundary>
+      <Menu trigger={trigger}>
+        <Resource subject={menuItems} />
+      </Menu>
+    </ResourceBoundary>
+  );
+};
 
 MenuItemDropdown.type = MenuTypes;
 
 MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];
-
-MenuItemDropdown.mapDataToProps = {
-  menuItems: ontola.menuItems,
-};
 
 export default register(MenuItemDropdown);

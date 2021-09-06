@@ -1,8 +1,8 @@
 import * as schema from '@ontologies/schema';
-import { SomeTerm } from '@ontologies/core';
 import {
   FC,
   register,
+  useProperty,
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
@@ -12,17 +12,15 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
 interface EntryPointButtonProps {
-  image: SomeTerm;
-  name: SomeTerm;
   onClick: MouseEventHandler;
 }
 
 const EntryPointButton: FC<EntryPointButtonProps> = ({
-  image,
-  name,
   onClick,
   subject,
 }): JSX.Element => {
+  const [image] = useProperty(schema.image);
+  const [name] = useProperty(schema.name);
   const parsedURL = new URL(subject.value);
   const href = parsedURL && parsedURL.pathname + parsedURL.search;
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
@@ -45,10 +43,5 @@ EntryPointButton.topology = [
   cardFloatTopology,
   containerFloatTopology,
 ];
-
-EntryPointButton.mapDataToProps = {
-  image: schema.image,
-  name: schema.name,
-};
 
 export default register(EntryPointButton);

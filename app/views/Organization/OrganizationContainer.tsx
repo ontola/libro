@@ -1,5 +1,4 @@
 import { Literal } from '@ontologies/core';
-import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -24,9 +23,7 @@ interface OrganizationPageProps {
   name?: Literal;
 }
 
-const OrganizationPage: FC<OrganizationPageProps> = ({
-  subject,
-}) => {
+const OrganizationPage: FC<OrganizationPageProps> = ({ subject }) => {
   const lrs = useLRS();
   const [name] = useProperty(schema.name);
 
@@ -60,11 +57,5 @@ OrganizationPage.type = [
 ];
 
 OrganizationPage.topology = containerTopology;
-
-OrganizationPage.mapDataToProps = {
-  hideHeader: ontola.hideHeader,
-  homepage: foaf.homepage,
-  name: schema.name,
-};
 
 export default register(OrganizationPage);

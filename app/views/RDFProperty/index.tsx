@@ -1,12 +1,13 @@
+import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { term } from '@rdfdev/iri';
 import {
+  FC,
   Property,
-  linkType,
   register,
-  subjectType,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -17,29 +18,24 @@ import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
 import RDFPropertyAttributeList from './RDFPropertyAttributeList';
 
-const RDFProperty = ({ name, subject }) => (
-  <span>
-    <Property label={schema.image} />
-    {name ? name.value : term(subject)}
-  </span>
-);
+const RDFProperty: FC = ({ subject }) => {
+  const [name] = useProperty([schema.name, rdfs.label]);
+
+  return(
+    <span>
+      <Property label={schema.image} />
+      {name ? name.value : term(subject as NamedNode)}
+    </span>
+  );
+};
 
 RDFProperty.type = rdfx.Property;
 
 RDFProperty.topology = allTopologiesExcept(
   attributeListTopology,
   tableHeaderRowTopology,
-  pageTopology
+  pageTopology,
 );
-
-RDFProperty.mapDataToProps = {
-  name: { label: [schema.name, rdfs.label] },
-};
-
-RDFProperty.propTypes = {
-  name: linkType,
-  subject: subjectType,
-};
 
 export default [
   register(RDFProperty),

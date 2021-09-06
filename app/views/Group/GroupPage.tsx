@@ -1,4 +1,7 @@
-import { linkType, register } from 'link-redux';
+import {
+  register,
+  useProperty, 
+} from 'link-redux';
 import React from 'react';
 import { Redirect } from 'react-router';
 
@@ -7,20 +10,16 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 
-const GroupPage = ({ settingsMenu }) => (
-  <Redirect to={retrievePath(settingsMenu.value)} />
-);
+const GroupPage = () => {
+  const [settingsMenu] = useProperty(ontola.settingsMenu);
+  
+  return(
+    <Redirect to={retrievePath(settingsMenu.value)!} />
+  );
+};
 
 GroupPage.type = argu.Group;
 
 GroupPage.topology = pageTopology;
-
-GroupPage.mapDataToProps = {
-  settingsMenu: ontola.settingsMenu,
-};
-
-GroupPage.propTypes = {
-  settingsMenu: linkType,
-};
 
 export default register(GroupPage);

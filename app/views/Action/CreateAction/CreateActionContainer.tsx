@@ -1,13 +1,10 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, {
-  Literal,
-  SomeTerm,
-} from '@ontologies/core';
+import rdf, { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -20,14 +17,6 @@ import libro from '../../../ontology/libro';
 import { LibroTheme } from '../../../themes/themes';
 import { containerTopology } from '../../../topologies/Container';
 import { invalidStatusIds } from '../../Thing/properties/omniform/helpers';
-
-interface CreateActionButtonContainerProps {
-  actionStatus: SomeTerm;
-  entryPoint: SomeNode;
-  error: SomeTerm;
-  name: SomeTerm;
-  target: Literal;
-}
 
 const BACKGROUND_GRAY_TINT = 200;
 const BACKGROUND_GRAY_TINT_HOVER = 300;
@@ -67,14 +56,13 @@ const normalizeTarget = (targetLiteral: Literal) => {
   return isLinkTarget(target) ? target : undefined;
 };
 
-const CreateActionButtonContainer: FC<CreateActionButtonContainerProps> = ({
-  actionStatus,
-  children,
-  entryPoint,
-  error,
-  name,
-  target,
-}) => {
+const CreateActionButtonContainer: FC = ({ children }) => {
+  const [actionStatus] = useProperty(schema.actionStatus);
+  const [entryPoint] = useProperty(schema.target) as NamedNode[];
+  const [error] = useProperty(schema.error);
+  const [name] = useProperty(schema.name);
+  const [target] = useProperty(libro.target) as Literal[];
+
   const classNames = useStyles();
   const [image] = useResourceProperty(entryPoint, schema.image);
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
@@ -109,13 +97,5 @@ const CreateActionButtonContainer: FC<CreateActionButtonContainerProps> = ({
 CreateActionButtonContainer.type = schema.CreateAction;
 
 CreateActionButtonContainer.topology = containerTopology;
-
-CreateActionButtonContainer.mapDataToProps = {
-  actionStatus: schema.actionStatus,
-  entryPoint: schema.target,
-  error: schema.error,
-  name: schema.name,
-  target: libro.target,
-};
 
 export default register(CreateActionButtonContainer);

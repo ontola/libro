@@ -5,6 +5,7 @@ import * as schema from '@ontologies/schema';
 import {
   ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -20,7 +21,6 @@ const SECONDS_IN_MINUTE = 60;
 
 interface SnackbarViewProps {
   close: () => void;
-  text: string;
 }
 
 const calcDuration = (text = '') => {
@@ -35,8 +35,9 @@ const calcDuration = (text = '') => {
   return Math.max(MIN_SNACKBAR_TIMEOUT, duration);
 };
 
-const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
+const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
   const { formatMessage } = useIntl();
+  const text = useProperty(schema.text, { returnType: ReturnType.Value });
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => setOpen(false);
@@ -67,12 +68,6 @@ const SnackbarView = ({ close, text }: SnackbarViewProps): JSX.Element => {
 SnackbarView.type = ontola.ns('snackbar/Snackbar');
 
 SnackbarView.topology = allTopologies;
-
-SnackbarView.mapDataToProps = {
-  text: schema.text,
-};
-
-SnackbarView.linkOpts = { returnType: ReturnType.Value };
 
 export default [
   register(SnackbarView),

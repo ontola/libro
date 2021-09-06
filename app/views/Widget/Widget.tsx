@@ -1,10 +1,8 @@
-import { Literal } from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
-import { SomeNode } from 'link-lib';
 import {
-  FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -17,12 +15,10 @@ import Container from '../../topologies/Container';
 import FullResource from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 
-interface WidgetProps {
-  topology: SomeNode;
-  widgetSize: Literal;
-}
+const Widget = () => {
+  const [topology] = useProperty(ontola.topology);
+  const [widgetSize] = useProperty(ontola.widgetSize);
 
-const Widget: FC<WidgetProps> = ({ topology, widgetSize }) => {
   const size = tryParseInt(widgetSize);
   const childProps = React.useMemo(() => ({
     onError: handleErrorStatuses([HttpStatus.FORBIDDEN]),
@@ -58,10 +54,5 @@ const Widget: FC<WidgetProps> = ({ topology, widgetSize }) => {
 Widget.type = ontola.Widget;
 
 Widget.topology = gridTopology;
-
-Widget.mapDataToProps = {
-  topology: ontola.topology,
-  widgetSize: ontola.widgetSize,
-};
 
 export default register(Widget);

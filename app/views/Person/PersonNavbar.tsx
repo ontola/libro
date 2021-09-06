@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   Resource,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -27,14 +28,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface PersonNavbarProps {
-  image: SomeNode;
-}
-
-const PersonNavbar: FC<PersonNavbarProps> = ({
-  image,
-  subject,
-}) => {
+const PersonNavbar: FC = ({ subject }) => {
+  const [image] = useProperty(schema.image) as NamedNode[];
   const classes = useStyles();
 
   return (
@@ -64,9 +59,5 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
 PersonNavbar.type = schema.Person;
 
 PersonNavbar.topology = navbarTopology;
-
-PersonNavbar.mapDataToProps = {
-  image: schema.image,
-};
 
 export default register(PersonNavbar);

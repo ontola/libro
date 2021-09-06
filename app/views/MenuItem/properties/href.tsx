@@ -3,6 +3,7 @@ import {
   FC,
   register,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,7 +14,6 @@ import { footerTopology } from '../../../topologies/Footer';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 interface HrefProps {
-  action?: NamedNode;
   component: React.FunctionComponent<any>;
   features: LinkFeature[];
   handleClick: () => void;
@@ -22,7 +22,6 @@ interface HrefProps {
 }
 
 const Href: FC<HrefProps> = ({
-  action,
   children,
   component,
   features,
@@ -31,6 +30,7 @@ const Href: FC<HrefProps> = ({
   onClickToggle,
 }) => {
   const lrs = useLRS();
+  const [action] = useProperty(ontola.action) as NamedNode[];
   const actionHandler = React.useCallback((e) => {
     if (e) {
       e.preventDefault();
@@ -70,10 +70,5 @@ Href.topology = [
   navbarTopology,
   footerTopology,
 ];
-
-Href.mapDataToProps = {
-  action: ontola.action,
-  href: ontola.href,
-};
 
 export default register(Href);

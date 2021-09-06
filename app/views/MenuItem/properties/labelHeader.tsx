@@ -27,9 +27,4 @@ MenuItemLabelHeader.property = schema.name;
 
 MenuItemLabelHeader.topology = navbarTopology;
 
-MenuItemLabelHeader.mapDataToProps = {
-  image: schema.image,
-  name: schema.name,
-};
-
 export default register(MenuItemLabelHeader);

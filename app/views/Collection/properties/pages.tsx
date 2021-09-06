@@ -2,8 +2,8 @@ import { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Resource,
-  ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -16,17 +16,17 @@ import { LoadingGridContent } from '../../../components/Loading';
 interface PagesProps {
   insideCollection: boolean;
   linkedProp: SomeTerm;
-  pages: SomeTerm[];
   renderWhenEmpty: boolean;
   singlePage: boolean;
 }
 
 const Pages: FC<PagesProps> = ({
   insideCollection,
-  pages,
   renderWhenEmpty,
   singlePage,
 }) => {
+  const pages = useProperty(ontola.pages);
+
   if (singlePage || pages.length === 1) {
     return (
       <Resource
@@ -68,12 +68,5 @@ Pages.type = CollectionTypes;
 Pages.property = ontola.pages;
 
 Pages.topology = allTopologies;
-
-Pages.mapDataToProps = {
-  pages: {
-    label: ontola.pages,
-    returnType: ReturnType.AllTerms,
-  },
-};
 
 export default [register(Pages)];

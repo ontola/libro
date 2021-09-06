@@ -1,5 +1,9 @@
 import { SomeTerm } from '@ontologies/core';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 
 import Detail from '../../../../components/Detail';
@@ -9,11 +13,11 @@ import teamGL from '../../../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
 
 interface ParticipantsCountProps {
-  desiredCount: SomeTerm;
   linkedProp: SomeTerm;
 }
 
-const ParticipantsCount: FC<ParticipantsCountProps> = ({ desiredCount, linkedProp }) => {
+const ParticipantsCount: FC<ParticipantsCountProps> = ({  linkedProp }) => {
+  const [desiredCount] = useProperty(teamGL.desiredCount);
   const desired = tryParseInt(desiredCount) || 0;
   const current = tryParseInt(linkedProp) || 0;
 
@@ -46,9 +50,5 @@ ParticipantsCount.type = [teamGL.Event];
 ParticipantsCount.topology = allTopologies;
 
 ParticipantsCount.property = teamGL.participantsCount;
-
-ParticipantsCount.mapDataToProps = {
-  desiredCount: teamGL.desiredCount,
-};
 
 export default register(ParticipantsCount);

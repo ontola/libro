@@ -1,6 +1,10 @@
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 
 import { allTopologies } from '../../../topologies';
@@ -9,7 +13,6 @@ const YOUTUBE_TEST = /^(https:)?\/\/(www.)?youtube.com\/embed\//;
 
 interface PropTypes {
   autoPlay: boolean;
-  embedUrl: NamedNode;
   linkedProp: NamedNode;
   loop: boolean;
   muted: boolean;
@@ -18,12 +21,13 @@ interface PropTypes {
 
 const VideoContentUrl: FC<PropTypes> = ({
   autoPlay,
-  embedUrl,
   linkedProp,
   loop,
   muted,
   playsInline,
 }) => {
+  const [embedUrl] = useProperty(schema.embedUrl);
+
   if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
     return (
       <div className="MediaObjectPage__infobar--video-container">
@@ -60,9 +64,5 @@ VideoContentUrl.type = schema.VideoObject;
 VideoContentUrl.property = schema.contentUrl;
 
 VideoContentUrl.topology = allTopologies;
-
-VideoContentUrl.mapDataToProps = {
-  embedUrl: schema.embedUrl,
-};
 
 export default register(VideoContentUrl);

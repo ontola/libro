@@ -1,11 +1,10 @@
 import * as as from '@ontologies/as';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import {
-  FC,
   Property,
   Resource,
-  ReturnType,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -16,13 +15,9 @@ import CardRow from '../../../topologies/Card/CardRow';
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
-export interface InfinitePaginationProps {
-  linkedProp: SomeTerm;
-  pages: SomeTerm[];
-}
-
 const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
-  const InfinitePagination: FC<InfinitePaginationProps> = ({ pages }) => {
+  const InfinitePagination = () => {
+    const pages = useProperty(ontola.pages);
     const lastPage = pages && pages[pages.length - 1];
 
     if (!lastPage) {
@@ -43,13 +38,6 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
   InfinitePagination.property = ontola.infinitePagination;
 
   InfinitePagination.topology = topology;
-
-  InfinitePagination.mapDataToProps = {
-    pages: {
-      label: ontola.pages,
-      returnType: ReturnType.AllTerms,
-    },
-  };
 
   return InfinitePagination;
 };

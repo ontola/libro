@@ -1,10 +1,9 @@
 import * as as from '@ontologies/as';
-import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   Property,
   register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,11 +11,9 @@ import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { parentProps } from '../../ontology/app';
 import { parentTopology } from '../../topologies/Parent';
 
-interface ThingParentProps {
-  name: SomeTerm;
-}
+const ThingParent = () => {
+  const [name] = useProperty([schema.name, as.name]);
 
-const ThingParent: FC<ThingParentProps> = ({ name }) => {
   if (!name) {
     return null;
   }
@@ -36,9 +33,5 @@ const ThingParent: FC<ThingParentProps> = ({ name }) => {
 ThingParent.type = schema.Thing;
 
 ThingParent.topology = parentTopology;
-
-ThingParent.mapDataToProps = {
-  name: [schema.name, as.name],
-};
 
 export default register(ThingParent);
