@@ -1,70 +1,93 @@
+const matomoFileNames = {
+  Matomo: 'matomo',
+  PiwikPro: 'ppms',
+}
+
 const matomoScript = (
-  matomoHostname,
-  matomoPort,
-  matomoSiteId,
+  configuration,
   isUser,
-  nonceStr
+  nonceStr,
 ) => {
-  if (matomoHostname && matomoSiteId) {
-    let matomoHost = matomoHostname;
+  const {
+    host,
+    containerId,
+    type,
+  } = configuration;
 
-    if (matomoPort) {
-      matomoHost = `${matomoHostname}:${matomoPort}`;
-    }
+  const trackerName = matomoFileNames[type];
 
-    return (
-      `<script async nonce="${nonceStr}" type="application/javascript">
-          var _paq = window._paq || [];
-          ${isUser ? '' : "_paq.push(['disableCookies']);"}
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://${matomoHost}/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', ${matomoSiteId}]);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>`
-    );
+  if (!host || !trackerName) {
+    return '';
   }
 
-  return '';
+  return (
+    `<script async nonce="${nonceStr}" type="application/javascript">
+        var _paq = window._paq || [];
+        ${isUser ? '' : "_paq.push(['disableCookies']);"}
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://${host}/";
+          _paq.push(['setTrackerUrl', u+'${trackerName}.php']);
+          _paq.push(['setSiteId', ${containerId}]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'${trackerName}.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>`
+  );
 };
 
 const googleAnalyticsScript = (
-  googleAnalyticsUACode,
+  { containerId },
   nonceStr
-) => {
-  if (googleAnalyticsUACode) {
-    return (
-      `<script async src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsUACode}"></script>
-       <script async nonce="${nonceStr}">
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-         gtag('config', ${JSON.stringify(googleAnalyticsUACode)});
-       </script>`
-    );
-  }
+) => (
+  `<script async src="https://www.googletagmanager.com/gtag/js?id=${containerId}"></script>
+   <script async nonce="${nonceStr}">
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', ${JSON.stringify(containerId)});
+   </script>`
+);
 
-  return '';
-};
-
-const tagManager = (id) => `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+const tagManager = ({ id: containerId }, nonceStr) => (
+  `<script nonce="${nonceStr}">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${id}');</script>`;
+})(window,document,'script','dataLayer','${containerId}');</script>`
+);
 
-const tagManagerBody = (id) => `
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${id}"
+const tagManagerBody = ({ containerId }) => `
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${containerId}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`;
 
-export {
-  googleAnalyticsScript,
-  matomoScript,
-  tagManager,
-  tagManagerBody 
-};
+export const trackingCodes = (configurations, isUser, nonceStr) => {
+  if (!configurations) {
+    return ['', ''];
+  }
+
+  let head = '';
+  let body = '';
+
+  for (const configuration of configurations) {
+    switch (configuration.type) {
+    case 'GUA':
+      body += googleAnalyticsScript(configuration, nonceStr);
+      break;
+    case 'GTM':
+      head += tagManager(configuration, nonceStr);
+      head += '\n';
+      body += tagManagerBody(nonceStr);
+      break;
+    case 'PiwikPro':
+    case 'Matomo':
+      body += matomoScript(configuration, isUser, nonceStr);
+      break;
+    }
+
+    body += '\n';
+  }
+
+  return [head, body];
+}

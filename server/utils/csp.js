@@ -56,15 +56,17 @@ const scriptSrc = [
   'https://cdnjs.cloudflare.com',
   (req) => {
     const { manifest } = req.getCtx();
-    const { matomo_hostname, matomo_port } = manifest?.ontola?.tracking || {};
 
-    if (!matomo_hostname) {
+    if (!Array.isArray(manifest?.ontola?.tracking)) {
       return undefined;
     }
 
-    return [matomo_hostname && new URL(`https://${matomo_hostname}`).host, matomo_port]
-      .filter(Boolean)
-      .join(':');
+    return manifest
+      .ontola
+      .tracking
+      .filter(({ type }) => type === 'Matomo' || type === 'PiwikPro')
+      .map(({ host }) => `https://${host}`)
+      .join(' ')
   },
 ];
 

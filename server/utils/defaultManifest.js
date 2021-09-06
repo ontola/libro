@@ -27,10 +27,13 @@ export default (origin, websocket = true) => {
       styled_headers: null,
       theme: 'default',
       theme_options: '',
-      tracking: {
-        matomo_hostname: matomoHostname,
-        matomo_site_id: '-1',
-      },
+      tracking: [
+        {
+          containerId: '-1',
+          host: matomoHostname,
+          type: 'Matomo',
+        },
+      ],
       website_iri: origin,
       websocket,
     },

@@ -18,11 +18,26 @@ export interface AppContextProviderProps {
 }
 
 export interface Tracking {
-  google_analytics_ua_code?: string;
-  matomo_hostname?: string;
-  matomo_port?: number;
-  matomo_site_id?: number;
-  tag_manager?: string;
+  type: string;
+  containerId: string;
+}
+
+export interface GUATracker extends Tracking {
+  type: 'GUA';
+}
+
+export interface GTMTracker extends Tracking {
+  type: 'GTM';
+}
+
+export interface PiwikProTracker extends Tracking {
+  type: 'PiwikPro';
+  host: string | undefined;
+}
+
+export interface MatomoTracker extends Tracking {
+  type: 'Matomo';
+  host: string | undefined;
 }
 
 export interface OntolaManifest {
@@ -30,8 +45,6 @@ export interface OntolaManifest {
   css_class: string,
   header_background: string,
   header_text: string,
-  matomo_hostname: string,
-  matomo_site_id: string,
   preconnect: string[],
   preload: string[],
   primary_color: string,
@@ -39,7 +52,7 @@ export interface OntolaManifest {
   styled_headers: boolean | null,
   theme: string,
   theme_options: string,
-  tracking: Tracking,
+  tracking: Tracking[],
   website_iri: string,
   websocket: string,
 }

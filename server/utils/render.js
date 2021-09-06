@@ -19,12 +19,7 @@ import {
   icons,
   themeBlock,
 } from './render/styling';
-import {
-  googleAnalyticsScript,
-  matomoScript,
-  tagManager,
-  tagManagerBody,
-} from './tracking';
+import { trackingCodes } from './tracking';
 
 const version = require('../../webpack/version');
 
@@ -57,20 +52,14 @@ export const renderFullPage = async (ctx, data) => {
   const [language, isUser] = getUserData(ctx);
 
   /* eslint-disable camelcase */
-  const matomoCode = matomoScript(
-    manifest.ontola.tracking?.matomo_hostname,
-    manifest.ontola.tracking?.matomo_port,
-    manifest.ontola.tracking?.matomo_site_id,
+  const [headTracking, bodyTracking] = trackingCodes(
+    manifest.ontola.tracking,
     isUser,
-    nonceStr
+    nonceStr,
   );
 
-  const googleAnalyticsCode = googleAnalyticsScript(
-    manifest.ontola.tracking?.google_analytics_ua_code,
-    nonceStr
-  );
   /* eslint-enable camelcase */
-  const seed = data?.toString('utf-8') ?? ''
+  const seed = data?.toString('utf-8') ?? '';
 
   return (
     `<!doctype html>
@@ -80,7 +69,7 @@ export const renderFullPage = async (ctx, data) => {
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
           ${prerenderMetaTags(ctx, seed)}
-          ${manifest.ontola.tracking?.tag_manager ? tagManager(manifest.ontola.tracking?.tag_manager) : ''}
+          ${headTracking}
 
           <meta name="website-iri" content="${manifest.ontola.website_iri ?? manifest.scope ?? ''}">
           <meta property="og:type" content="website">
@@ -116,7 +105,6 @@ export const renderFullPage = async (ctx, data) => {
           ${polyfill(bundleVersion, nonceStr)}
         </head>
         <body style="margin: 0;">
-          ${manifest.ontola.tracking?.tag_manager ? tagManagerBody(manifest.ontola.tracking?.tag_manager) : ''}
           ${themeBlock(ctx)}
           ${preloadingBlock(ctx, nonceStr)}
           <script nonce="${nonceStr}">
@@ -150,8 +138,7 @@ export const renderFullPage = async (ctx, data) => {
               try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
               catch(e){window.attachEvent("onload", $buo_f)}
           </script>
-          ${matomoCode}
-          ${googleAnalyticsCode}
+          ${bodyTracking}
         </body>
       </html>`
   );
