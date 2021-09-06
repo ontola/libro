@@ -120,6 +120,11 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
   },
 }));
 
+const elementMap = new Map<string, React.ElementType>([
+  ['a', Link],
+  ['aside', 'div'],
+]);
+
 export const createFertileComponent = (Elem: string, variant?: FertileComponentVariant) => ({
   children,
   color,
@@ -152,7 +157,7 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
       to: href,
     } : {};
 
-  const Comp = Elem === 'a' ? Link : Elem;
+  const Comp = elementMap.get(Elem) ?? Elem;
 
   return (
     // @ts-ignore

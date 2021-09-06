@@ -35,7 +35,7 @@ const AboutPage: FC = () => {
   const sectionMembers = useResourceProperty(sections, rdfs.member);
 
   return (
-    <React.Fragment>
+    <main role="main">
       <Property label={sales.header} />
       <div>
         {sectionMembers.map((section) => (
@@ -51,7 +51,7 @@ const AboutPage: FC = () => {
         label={sales.callToActionBlock}
         trackingId="about-page-cta"
       />
-    </React.Fragment>
+    </main>
   );
 };
 

@@ -23,6 +23,10 @@ import sales from '../../../ontology/sales';
 import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
+export interface BlogPageShowcaseProps {
+  headingLevel?: React.ElementType;
+}
+
 const THEME_CHIP_SPACING = 3;
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
@@ -65,7 +69,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
   },
 }));
 
-const BlogPageShowcase: FC = ({ subject }) => {
+const BlogPageShowcase: FC<BlogPageShowcaseProps> = ({ subject, headingLevel }) => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
   const [image] = useProperty(schema.image) as SomeNode[];
@@ -101,6 +105,7 @@ const BlogPageShowcase: FC = ({ subject }) => {
         <CardContent>
           <Typography
             className={classes.text}
+            component={headingLevel ?? 'h3'}
             variant="h3"
           >
             {name.value}

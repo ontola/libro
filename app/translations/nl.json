@@ -1,6 +1,12 @@
 {
+  "https://app.argu.co/i18n/academy/chapterNavigationAriaLabel": {
+    "defaultMessage": "Hoofdstuk navigatie"
+  },
   "https://app.argu.co/i18n/academy/pdfDownload": {
     "defaultMessage": "Academy opslaan als pdf"
+  },
+  "https://app.argu.co/i18n/academy/progressBarAriaLabel": {
+    "defaultMessage": "Percentage gelezen hoofdstukken."
   },
   "https://app.argu.co/i18n/academy/searchIn": {
     "defaultMessage": "Zoeken in {title}"
@@ -284,6 +290,9 @@
   "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
     "defaultMessage": "Email adres"
   },
+  "https://app.argu.co/i18n/mailchimpForm/subscribe": {
+    "defaultMessage": "Abonneren"
+  },
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Ga naar huidige locatie"
   },
@@ -349,6 +358,9 @@
   },
   "https://app.argu.co/i18n/pdf/previousPage": {
     "defaultMessage": "Vorige pagina (←)"
+  },
+  "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
+    "defaultMessage": "LinkedIn profiel van {name}"
   },
   "https://app.argu.co/i18n/phases/stepper/header": {
     "defaultMessage": "Fase {number}: "

@@ -66,7 +66,7 @@ const BlogPageFull: FC = ({ subject }) => {
   });
 
   return (
-    <React.Fragment>
+    <main role="main">
       <Property
         label={sales.header}
         subComponent={(
@@ -107,7 +107,7 @@ const BlogPageFull: FC = ({ subject }) => {
         label={sales.callToActionBlock}
         trackingId="blog-page-full-cta"
       />
-    </React.Fragment>
+    </main>
   );
 };
 

@@ -1,13 +1,7 @@
-import {
-  Grid,
-  Typography,
-} from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import {
-  FC,
-  useProperty,
-} from 'link-redux';
+import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
 import Button from '../../../components/Button';
@@ -75,6 +69,7 @@ const ProductPageShowcase: FC = ({ subject }) => {
         >
           <Typography
             className={classes.title}
+            component="h2"
             variant="h3"
           >
             {name.value}

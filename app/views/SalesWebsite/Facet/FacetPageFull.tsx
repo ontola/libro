@@ -49,7 +49,10 @@ const FacetPageFull: FC = () => {
   const [morePageLink] = useProperty(sales.morePageLink);
 
   return (
-    <div className={classes.wrapper}>
+    <main
+      className={classes.wrapper}
+      role="main"
+    >
       <Property label={sales.header} />
       <div className={classes.facetsWrapper}>
         <Container>
@@ -75,7 +78,7 @@ const FacetPageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="facet-page-full-cta"
       />
-    </div>
+    </main>
   );
 };
 

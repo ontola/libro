@@ -196,6 +196,7 @@ const FacetContainer: FC = () => {
       </Typography>
       <Typography
         className={classes.subTitle}
+        component="p"
         variant="subtitle1"
       >
         {text.value}

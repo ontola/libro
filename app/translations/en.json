@@ -1,6 +1,12 @@
 {
+  "https://app.argu.co/i18n/academy/chapterNavigationAriaLabel": {
+    "defaultMessage": "Chapter navigation"
+  },
   "https://app.argu.co/i18n/academy/pdfDownload": {
     "defaultMessage": "Save academy as PDF"
+  },
+  "https://app.argu.co/i18n/academy/progressBarAriaLabel": {
+    "defaultMessage": "Percentage of read chapters."
   },
   "https://app.argu.co/i18n/academy/searchIn": {
     "defaultMessage": "Search in {title}"
@@ -286,6 +292,9 @@
   "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
     "defaultMessage": "Email address"
   },
+  "https://app.argu.co/i18n/mailchimpForm/subscribe": {
+    "defaultMessage": "Subscribe"
+  },
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Move to current location"
   },
@@ -351,6 +360,9 @@
   },
   "https://app.argu.co/i18n/pdf/previousPage": {
     "defaultMessage": "Previous page (←)"
+  },
+  "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
+    "defaultMessage": "LinkedIn profile of {name}"
   },
   "https://app.argu.co/i18n/phases/stepper/header": {
     "defaultMessage": "Phase {number}:"

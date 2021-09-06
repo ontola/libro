@@ -57,12 +57,13 @@ export const CallToAction = ({
     <div className={classes.header}>
       <Typography
         className={classes.title}
-        variant="h1"
+        variant="h2"
       >
         {title}
       </Typography>
       <Typography
         className={classes.subtitle}
+        component="p"
         variant="subtitle1"
       >
         {subtitle}

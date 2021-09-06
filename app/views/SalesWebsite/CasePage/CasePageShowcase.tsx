@@ -17,6 +17,7 @@ import { showcaseTopology } from '../../../topologies/Showcase';
 
 export interface CasePageShowcaseProps {
   noBackdrop?: boolean;
+  headingLevel?: React.ElementType;
 }
 
 const CONTAINER_SPACING = 2;
@@ -90,13 +91,15 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
         >
           <Typography
             className={classes.themeIndicator}
+            component="span"
             variant="h6"
           >
             {theme.value}
           </Typography>
           <Typography
             className={classes.title}
-            variant="h6"
+            component={props.headingLevel ?? 'h3'}
+            variant="h3"
           >
             {name.value}
           </Typography>

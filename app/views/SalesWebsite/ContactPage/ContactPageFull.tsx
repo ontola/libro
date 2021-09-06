@@ -105,7 +105,7 @@ const PricingPageFull: FC = () => {
   const [websiteUrl] = useProperty(sales.websiteUrl);
 
   return (
-    <div>
+    <main role="main">
       <Property label={sales.header} />
       <Container className={classes.container}>
         <Grid
@@ -217,7 +217,7 @@ const PricingPageFull: FC = () => {
       <div className={classes.propositionContainer}>
         <Propositions />
       </div>
-    </div>
+    </main>
   );
 };
 

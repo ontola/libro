@@ -56,6 +56,7 @@ const Proposition = (props: PropositionProps): JSX.Element => {
       </div>
       <Typography
         className={classes.title}
+        component="h2"
         variant="h3"
       >
         {props.name}

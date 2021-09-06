@@ -3,9 +3,17 @@ import { MessageDescriptor, defineMessages } from 'react-intl';
 type Messages = { [key: string]: MessageDescriptor };
 
 export const academyMessages: Messages = defineMessages({
+  chapterNavigationAriaLabel: {
+    defaultMessage: 'Chapter navigation',
+    id: 'https://app.argu.co/i18n/academy/chapterNavigationAriaLabel',
+  },
   pdfDownload: {
     defaultMessage: 'Save academy as PDF',
     id: 'https://app.argu.co/i18n/academy/pdfDownload',
+  },
+  progressBarAriaLabel: {
+    defaultMessage: 'Percentage of read chapters.',
+    id: 'https://app.argu.co/i18n/academy/progressBarAriaLabel',
   },
   searchIn: {
     defaultMessage: 'Search in {title}',
@@ -362,6 +370,10 @@ export const mailchimpFormMessages: Messages = defineMessages({
     defaultMessage: 'Email address',
     id: 'https://app.argu.co/i18n/mailchimpForm/mailAddress',
   },
+  subscribe: {
+    defaultMessage: 'Subscribe',
+    id: 'https://app.argu.co/i18n/mailchimpForm/subscribe',
+  },
 });
 
 export const motionMessages: Messages = defineMessages({
@@ -418,6 +430,13 @@ export const personMessages: Messages = defineMessages({
   showProfile: {
     defaultMessage: "Show {name}'s profile",
     id: 'https://app.argu.co/i18n/schema:Person/showProfileText',
+  },
+});
+
+export const personeShowcaseMessages: Messages = defineMessages({
+  ariaLabelLinkedIn: {
+    defaultMessage: 'LinkedIn profile of {name}',
+    id: 'https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn',
   },
 });
 

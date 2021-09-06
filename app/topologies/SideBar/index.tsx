@@ -1,4 +1,5 @@
 import { ClassNameMap, withStyles } from '@material-ui/styles';
+import React from 'react';
 
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
@@ -22,6 +23,17 @@ class SideBar extends Topology<SideBarProps> {
     this.className = props.classes?.wrapper;
     this.elementType = 'div';
     this.topology = sideBarTopology;
+  }
+
+  render() {
+    return (
+      <nav
+        className={this.getClassName()}
+        role="navigation"
+      >
+        {this.wrap(this.props.children)}
+      </nav>
+    );
   }
 }
 

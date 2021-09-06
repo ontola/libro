@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/styles';
-import PhoneIcon from '@material-ui/icons/Phone';
 import EmailIcon from '@material-ui/icons/Email';
+import PhoneIcon from '@material-ui/icons/Phone';
+import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -10,10 +10,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
 import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
 import { showcaseTopology } from '../../topologies/Showcase';
+import { personeShowcaseMessages } from '../../translations/messages';
 
 const CONTAINER_PADDING = 5;
 const ICON_LINK_GAP = 4;
@@ -80,6 +82,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const PersonShowCase: FC = () => {
   const classes = useStyles();
+  const intl = useIntl();
 
   const [name] = useProperty(schema.name);
   const [jobTitle] = useProperty(schema.text);
@@ -131,6 +134,7 @@ const PersonShowCase: FC = () => {
               name="linkedin"
             />
             <a
+              aria-label={intl.formatMessage(personeShowcaseMessages.ariaLabelLinkedIn, { name: name.value })}
               className={classes.linkedIn}
               href={linkedIn.value}
               rel="noreferrer"

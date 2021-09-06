@@ -81,7 +81,7 @@ const CasePageFull: FC = () => {
   });
 
   return (
-    <React.Fragment>
+    <main role="main">
       <Property
         label={sales.header}
         subComponent={(
@@ -158,7 +158,7 @@ const CasePageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="case-page-full-cta"
       />
-    </React.Fragment>
+    </main>
   );
 };
 

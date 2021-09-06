@@ -30,7 +30,7 @@ const PricingPageFull: FC = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <main role="main">
       <Property label={sales.header} />
       <Container className={classes.container}>
         <Grid
@@ -47,7 +47,7 @@ const PricingPageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="pricing-page-full-cta"
       />
-    </div>
+    </main>
   );
 };
 

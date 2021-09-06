@@ -86,7 +86,10 @@ const HomePageFull: FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.wrapper}>
+    <main
+      className={classes.wrapper}
+      role="main"
+    >
       <Property label={sales.header} />
       <Container className={classes.propositionContainer}>
         <Showcase
@@ -124,7 +127,7 @@ const HomePageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="home-page-full-cta"
       />
-    </div>
+    </main>
   );
 };
 

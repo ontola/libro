@@ -73,10 +73,16 @@ export const ChapterSearch = (): JSX.Element => {
       disableClearable
       freeSolo
       PaperComponent={(({ children }) => (
-        <Select>
-          {children}
-        </Select>
+        <div
+          id="academy-search-popup"
+          role="listbox"
+        >
+          <Select>
+            {children}
+          </Select>
+        </div>
       ))}
+      aria-controls="academy-search-popup"
       className={classNames.search}
       classes={{ listbox: classNames.listbox }}
       filterOptions={filterOptions}
@@ -89,6 +95,7 @@ export const ChapterSearch = (): JSX.Element => {
           InputProps={{
             ...params.InputProps,
             classes: { root: classNames.root },
+            role: 'search',
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon color="primary" />

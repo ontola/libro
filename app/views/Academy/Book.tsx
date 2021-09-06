@@ -18,7 +18,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../helpers/iris';
@@ -151,6 +151,7 @@ const useProgressBarOverrideStyles = makeStyles<LibroTheme>((theme) => ({
 
 const Book: FC<BookProps> = ({ subject, chapter }) => {
   const lrs = useLRS();
+  const intl = useIntl();
   const progressBarOverrideStyles = useProgressBarOverrideStyles();
   const [chapters] = useProperty(argu.chapters) as SomeNode[];
   const [headerImage] = useProperty(schema.image);
@@ -249,13 +250,19 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
           item
           className={classNames.articleWrapper}
         >
-          <article className={classNames.article}>
+          <article
+            className={classNames.article}
+            role="main"
+          >
             <Resource subject={pageText} />
           </article>
         </Grid>
         <Grid
           item
+          aria-label={intl.formatMessage(academyMessages.chapterNavigationAriaLabel)}
           className={classNames.buttonNav}
+          component="nav"
+          role="navigation"
         >
           {prevChapter ? (
             <Button
@@ -305,6 +312,7 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
               {`${Math.round(progress)}%`}
             </span>
             <LinearProgress
+              aria-label={intl.formatMessage(academyMessages.progressBarAriaLabel)}
               className={classNames.progressBar}
               classes={progressBarOverrideStyles}
               value={progress}

@@ -89,7 +89,10 @@ const ProcessPageFull: FC = () => {
   const [textBlock] = useProperty(sales.textBlock);
 
   return (
-    <div className={classes.wrapper}>
+    <main
+      className={classes.wrapper}
+      role="main"
+    >
       <Property label={sales.header} />
       <Container>
         <Grid
@@ -155,7 +158,7 @@ const ProcessPageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="process-page-full-cta"
       />
-    </div>
+    </main>
   );
 };
 

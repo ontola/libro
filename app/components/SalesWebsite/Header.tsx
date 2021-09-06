@@ -100,6 +100,7 @@ export const Header = ({
         (
           <Typography
             className={classes.subtitle}
+            component="p"
             variant="subtitle1"
           >
             {subtitle}

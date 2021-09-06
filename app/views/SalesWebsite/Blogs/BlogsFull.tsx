@@ -53,7 +53,7 @@ const BlogsFull: FC = ({ subject }) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <main role="main">
       <Property label={sales.header} />
       <Container className={classes.container}>
         <FilterableArticleCollection
@@ -63,6 +63,7 @@ const BlogsFull: FC = ({ subject }) => {
             <div className={classes.blogGrid}>
               {articles.map((article) => (
                 <Resource
+                  headingLevel="h2"
                   key={article.value}
                   subject={article}
                 />
@@ -90,7 +91,7 @@ const BlogsFull: FC = ({ subject }) => {
         label={sales.callToActionBlock}
         trackingId="blogs-full-cta"
       />
-    </React.Fragment>
+    </main>
   );
 };
 

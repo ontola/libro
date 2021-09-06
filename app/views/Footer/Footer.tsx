@@ -1,3 +1,6 @@
+import { makeStyles } from '@material-ui/styles';
+import { Node } from '@ontologies/core';
+import * as rdfs from '@ontologies/rdfs';
 import {
   FC,
   Resource,
@@ -5,14 +8,11 @@ import {
   useProperty,
   useResourceProperty,
 } from 'link-redux';
-import { makeStyles } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import { allTopologies } from '../../topologies';
 import { LibroTheme } from '../../themes/themes';
+import { allTopologies } from '../../topologies';
 
 const DESKTOP_PADDING = 30;
 const MOBILE_PADDING = 10;
@@ -44,7 +44,10 @@ const Footer: FC = () => {
   const menuItems = useResourceProperty(members as Node, rdfs.member);
 
   return (
-    <footer className={classNames.footer}>
+    <footer
+      className={classNames.footer}
+      role="contentinfo"
+    >
       {menuItems?.map((item) => (
         <Resource
           key={item.value}

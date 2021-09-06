@@ -38,18 +38,22 @@ export const ShareBlog = ({ url, title }: ShareBlogProps): JSX.Element => {
     {
       href: `https://www.facebook.com/dialog/feed?app_id=${fbId}&display=popup&link=${encodedURL}&redirect_uri=${encodedURL}`,
       icon: 'facebook-square',
+      label: 'Facebook',
     },
     {
       href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedURL}&title=${encodedTitle}`,
       icon: 'linkedin-square',
+      label: 'LinkedIn',
     },
     {
       href: `https://twitter.com/intent/tweet?url=${encodedURL}&text=${encodedTitle}%20%40argu_co`,
       icon: 'twitter-square',
+      label: 'Twitter',
     },
     {
       href: `mailto:?subject=${encodedTitle}&body=${encodedURL}`,
       icon: 'envelope',
+      label: 'e-mail',
     },
   ];
 
@@ -61,6 +65,7 @@ export const ShareBlog = ({ url, title }: ShareBlogProps): JSX.Element => {
       <span className={classes.iconContainer}>
         {shareTargets.map((shareTarget) => (
           <a
+            aria-label={shareTarget.label}
             href={shareTarget.href}
             key={shareTarget.icon}
             rel="noreferrer noopener"

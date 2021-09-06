@@ -123,6 +123,7 @@ const MailchimpForm: FC = () => {
             />
           </div>
           <Button
+            aria-label={intl.formatMessage(mailchimpFormMessages.subscribe)}
             color="secondary"
             id="mc-embedded-subscribe"
             name="subscribe"

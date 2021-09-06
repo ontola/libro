@@ -116,6 +116,7 @@ const TierGrid: FC = () => {
     <React.Fragment>
       <Typography
         className={classes.priceUnit}
+        component="span"
         variant="h5"
       >
         {priceUnit.value}
@@ -147,6 +148,7 @@ const TierGrid: FC = () => {
           <div className={classes.infoHeader}>
             <Typography
               className={classes.label}
+              component="h2"
               variant="h5"
             >
               {name.value}

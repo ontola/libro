@@ -48,7 +48,7 @@ const CasesPageFull: FC = ({ subject }) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <main role="main">
       <Property label={sales.header} />
       <Container className={classes.container}>
         <FilterableArticleCollection
@@ -61,6 +61,7 @@ const CasesPageFull: FC = ({ subject }) => {
             >
               {articles.map((article) => (
                 <Resource
+                  headingLevel="h2"
                   key={article.value}
                   subject={article}
                 />
@@ -83,7 +84,7 @@ const CasesPageFull: FC = ({ subject }) => {
         label={sales.callToActionBlock}
         trackingId="cases-page-full-cta"
       />
-    </React.Fragment>
+    </main>
   );
 };
 
