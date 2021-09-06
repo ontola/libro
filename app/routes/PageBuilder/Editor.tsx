@@ -20,6 +20,7 @@ const Editor: React.FC = () => {
   const classes = useStyles();
   const { source, setSource } = React.useContext(builderContext);
   const initialized = useMonacoWithBundle();
+  const [ prefersDark ] = React.useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   if (!initialized) {
     return (
@@ -67,7 +68,7 @@ const Editor: React.FC = () => {
         wordWrap: 'on',
       }}
       path="/"
-      theme="vs-dark"
+      theme={prefersDark ? 'vs-dark' : 'vs-light'}
       value={source}
       onChange={(v) => setSource(v || '')}
     />
