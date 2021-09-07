@@ -1,14 +1,14 @@
 import { useMonaco } from '@monaco-editor/react';
 import React from 'react';
 
-import { error } from '../../helpers/logging';
+import { error } from '../../../helpers/logging';
 
-import { useEditorContextBundle } from './useEditorContextBundle';
+import { useStudioContextBundle } from './useStudioContextBundle';
 
 type Monaco = typeof import('monaco-editor/esm/vs/editor/editor.api');
 
 export const useMonacoWithBundle = (): boolean => {
-  const context = useEditorContextBundle();
+  const context = useStudioContextBundle();
   const [initialized, setInitialized] = React.useState<Monaco[]>([]);
   const monaco = useMonaco();
   const [latest, setLatest] = React.useState(!monaco);

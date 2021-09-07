@@ -383,42 +383,38 @@ export const motionMessages: Messages = defineMessages({
   },
 });
 
-export const pageBuilderToolbarMessages: Messages = defineMessages({
+export const studioToolbarMessages: Messages = defineMessages({
   documentDropdownLabel: {
     defaultMessage: 'Documents',
-    id: 'https://app.argu.co/i18n/pagebuilder/documentDropdownLabel',
+    id: 'https://rdf.studio/i18n/documentDropdownLabel',
   },
   override: {
     defaultMessage: 'Are you sure you want to overwrite:\n{docID}?',
-    id: 'https://app.argu.co/i18n/pagebuilder/override',
+    id: 'https://rdf.studio/i18n/override',
   },
   resourceDropdownLabel: {
     defaultMessage: 'Resource (selected no {current}/{total})',
-    id: 'https://app.argu.co/i18n/pagebuilder/resourceDropdownLabel',
+    id: 'https://rdf.studio/i18n/resourceDropdownLabel',
   },
   saveAsButtonLabel: {
     defaultMessage: 'Save As',
-    id: 'https://app.argu.co/i18n/pagebuilder/saveAsButtonLabel',
+    id: 'https://rdf.studio/i18n/saveAsButtonLabel',
   },
   saveAsPrompt: {
     defaultMessage: 'Save document as:',
-    id: 'https://app.argu.co/i18n/pagebuilder/saveAsPrompt',
+    id: 'https://rdf.studio/i18n/saveAsPrompt',
   },
   saveButtonLabel: {
     defaultMessage: 'Save',
-    id: 'https://app.argu.co/i18n/pagebuilder/saveButtonLabel',
+    id: 'https://rdf.studio/i18n/saveButtonLabel',
   },
   saveFailedNotification: {
     defaultMessage: 'Failed to save document.',
-    id: 'https://app.argu.co/i18n/pagebuilder/saveFailedNotification',
+    id: 'https://rdf.studio/i18n/saveFailedNotification',
   },
   savedNotification: {
     defaultMessage: 'Document saved.',
-    id: 'https://app.argu.co/i18n/pagebuilder/savedNotification',
-  },
-  themeDropdownLabel: {
-    defaultMessage: 'Theme',
-    id: 'https://app.argu.co/i18n/pagebuilder/themeDropdownLabel',
+    id: 'https://rdf.studio/i18n/savedNotification',
   },
 });
 

@@ -1,0 +1,83 @@
+import React from 'react';
+
+import { StudioContext } from '../context/StudioContext';
+import { EditorFile, filesToDoc } from '../LibroDocument';
+
+import { EditorContextBundle } from './useStudioContextBundle';
+import { useGenerateLRSFromSource } from './useGenerateLRSFromSource';
+import { useServerDocumentsContext } from './useServerDocumentsContext';
+
+export const useStudio = (): [StudioContext | undefined] => {
+  const [context, setContext] = React.useState<EditorContextBundle | undefined>(undefined);
+  const [ctx, setCtx] = React.useState<StudioContext | undefined>();
+  const [files, setFiles] = React.useState<EditorFile[]>(() => [
+    {
+      language: 'json',
+      name: 'manifest.json',
+      value: '{}',
+    },
+    {
+      language: 'typescript',
+      name: 'source.ts',
+      value: '[]',
+    },
+  ]);
+
+  const doc = React.useMemo(() => filesToDoc(files), [files]);
+
+  const [_, resources] = useGenerateLRSFromSource(doc);
+  const { document } = useServerDocumentsContext();
+
+  const updateFile = React.useCallback((file: EditorFile) => {
+    const next = files.slice();
+    const existing = next.findIndex((f) => f.name === file.name);
+
+    if (existing === -1) {
+      next.push({ ...file });
+    } else {
+      next[existing] = { ...file };
+    }
+
+    setFiles(next);
+  }, [files]);
+
+  React.useEffect(() => {
+    if (document !== undefined) {
+      if (document.source) {
+        updateFile({
+          language: 'typescript',
+          name: 'source.ts',
+          value: document.source,
+        });
+      }
+
+      if (document.manifestOverride) {
+        updateFile({
+          language: 'json',
+          name: 'manifest.json',
+          value: document.manifestOverride,
+        });
+      }
+    }
+  }, [document]);
+
+  React.useEffect(() => {
+    setCtx({
+      context,
+      files,
+      resources,
+      setContext,
+      setFiles,
+      source: doc.source,
+      updateFile,
+    });
+  }, [
+    context,
+    files,
+    resources,
+    doc,
+    updateFile,
+  ]);
+
+  return [ctx];
+};

@@ -2,6 +2,7 @@ import { LinkReduxLRSType } from 'link-redux';
 import React, { SetStateAction } from 'react';
 
 import { getMetaContent } from './helpers/arguHelpers';
+import { Communicator } from './async/Studio/components/Communicator';
 
 export interface AppContext {
   lrs: LinkReduxLRSType;
@@ -89,6 +90,7 @@ export const AppContextProvider = ({
   return (
     <React.Fragment>
       <appContextEditor.Provider value={setCtx}>
+        {__DEVELOPMENT__ && <Communicator />}
         <appContext.Provider value={ctx}>
           {children}
         </appContext.Provider>

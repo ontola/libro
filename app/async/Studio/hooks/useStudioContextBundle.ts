@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { builderContext } from './builderContext';
+import { studioContext } from '../context/StudioContext';
 
 /**
  * Bundle of TS declarations used by the editor for autocompletion context.
@@ -11,11 +11,11 @@ export interface EditorContextBundle {
   localOntologies: { [k: string]: string };
 }
 
-export const useEditorContextBundle = (): EditorContextBundle | undefined => {
-  const { context, setContext } = React.useContext(builderContext);
+export const useStudioContextBundle = (): EditorContextBundle | undefined => {
+  const { context, setContext } = React.useContext(studioContext);
 
   React.useEffect(() => {
-    fetch('/d/builder/editorContext.bundle.json')
+    fetch('/d/studio/editorContext.bundle.json')
       .then((response) => response.text())
       .then((response) => setContext(JSON.parse(response)));
   }, []);

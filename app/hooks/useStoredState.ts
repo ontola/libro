@@ -7,8 +7,10 @@ const useStoredState = <T = string>(
   parseFromString: (x: string | null) => T = (x: unknown) => x as T,
   parseToString: (x: T) => string = (x: unknown) => x as string,
 ): [T | undefined, Dispatch<SetStateAction<T | undefined>>] => {
-  const resolvedInitialValue = storage.getItem(key) !== null ? parseFromString(storage.getItem(key)) : initialValue;
-  const [stored, setValueRaw] = React.useState<T | undefined>(resolvedInitialValue);
+  const [stored, setValueRaw] = React.useState<T | undefined>(() => storage.getItem(key) !== null
+    ? parseFromString(storage.getItem(key))
+    : initialValue);
+
   const setValue = React.useCallback((value) => {
     if (value !== undefined) {
       storage.setItem(key, parseToString(value));
@@ -17,7 +19,7 @@ const useStoredState = <T = string>(
     }
 
     setValueRaw(value);
-  }, [key, setValueRaw, storage, parseToString]);
+  }, [key, storage]);
 
   return [stored, setValue];
 };

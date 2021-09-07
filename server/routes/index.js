@@ -101,8 +101,8 @@ const routes = async function routes(app, port) {
 
   if (__DEVELOPMENT__) {
     // eslint-disable-next-line no-inline-comments
-    const editorContext = await import(/* webpackChunkName: "dev" */'./pageBuilder');
-    router.get('/d/builder/editorContext.bundle.json', editorContext.default);
+    const editorContext = await import(/* webpackChunkName: "studio" */'./studio');
+    router.get('/d/studio/editorContext.bundle.json', editorContext.default);
   }
 
   router.use(securityHeaders);

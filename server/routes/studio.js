@@ -273,6 +273,8 @@ declare module "@ontologies/core" {
   export declare function isQuad(obj: any): obj is Quad;
   export declare function doc(node: NamedNode): string;
 }
+
+  export declare function seq<T = any>(arr: T[], id?: SomeNode): DataObject;
 `;
 
 const generateLocalOntologyDeclarations = async () => {

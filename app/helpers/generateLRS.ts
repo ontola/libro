@@ -53,7 +53,13 @@ const defaultOpts = {
 };
 
 export default function generateLRS(initialDelta: Quad[] = [], options: GenerateLRSOpts = defaultOpts): LRSBundle {
-  const history = options.middleware ? createBrowserHistory() : createMemoryHistory();
+  const basename = __CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer')
+    ? '/d/studio/viewer'
+    : '';
+  const history = options.middleware
+    ? createBrowserHistory({ basename })
+    : createMemoryHistory();
+
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
   const middleware: Array<MiddlewareFn<any>> = options.middleware ? [

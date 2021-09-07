@@ -12,7 +12,7 @@ import { INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 import http from '../../app/ontology/http';
 import ld from '../../app/ontology/ld';
 import ll from '../../app/ontology/ll';
-import parseToGraph from '../../app/routes/PageBuilder/parseToGraph';
+import parseToGraph from '../../app/async/Studio/parseToGraph';
 import { redisSettingsNS } from '../config';
 import { client } from '../middleware/sessionMiddleware';
 import logging from '../utils/logging';

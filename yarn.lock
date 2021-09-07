@@ -3874,29 +3874,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@monaco-editor/loader@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@monaco-editor/loader@npm:1.0.1"
+"@monaco-editor/loader@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@monaco-editor/loader@npm:1.1.1"
   dependencies:
     state-local: ^1.0.6
   peerDependencies:
     monaco-editor: ">= 0.21.0 < 1"
-  checksum: 7d0b7d52de79c00a57911f2ab088c79f72674f891395ef26869a4a22862166328f5251198777c4d0473826071b75133565d7e013fff21e35f1153b40cad3a71d
+  checksum: 48659a8b8ab4a4a652631078b79a337c0653a4a376f381a7af10c3daf906d9fe364b297a4587ec4116c18e8ef6cfb1670b7ed02ff8acac76488ebf732d73222a
   languageName: node
   linkType: hard
 
-"@monaco-editor/react@npm:^4.0.10":
-  version: 4.1.1
-  resolution: "@monaco-editor/react@npm:4.1.1"
+"@monaco-editor/react@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "@monaco-editor/react@npm:4.2.2"
   dependencies:
-    "@monaco-editor/loader": ^1.0.1
+    "@monaco-editor/loader": ^1.1.1
     prop-types: ^15.7.2
-    state-local: ^1.0.7
   peerDependencies:
-    monaco-editor: ^0.21.2
+    monaco-editor: ">= 0.25.0 < 1"
     react: ^16.8.0 || ^17.0.0
     react-dom: ^16.8.0 || ^17.0.0
-  checksum: 4261c364c981c11953f3eec5e5fc2de8089573e6823020f9310a077b5231e3b225958645a5a5ba30de577a446a506c0ee435afce06ab3357177b73780cf15cc7
+  checksum: 0e7d60c62c805e61205c8a52d254a6b9d1550b4b630f9967b882cf6dfd25a8ab10d6f5b29fb77ee2dd9d233a3600cd360b2041b3f5c6e6e70c39ad5ec8f667df
   languageName: node
   linkType: hard
 
@@ -5983,7 +5982,7 @@ __metadata:
     "@material-ui/lab": ^4.0.0-alpha.56
     "@material-ui/pickers": ^3.2.10
     "@material-ui/styles": ^4.9.10
-    "@monaco-editor/react": ^4.0.10
+    "@monaco-editor/react": ^4.2.2
     "@ontola/link-devtools": ^2.0.2
     "@ontola/memoized-factory": ^2.0.1
     "@ontologies/as": ^2.0.0-rc.1
@@ -6100,14 +6099,14 @@ __metadata:
     koa-webpack: ^6.0.0
     koa2-connect: ^1.0.2
     link-lib: 0.0.0-be8bf512
-    link-redux: 2.1.0
+    link-redux: ^2.1.1
     lint-staged: ^10.5.4
     markdown-draft-js: ^2.1.1
     md5.js: ^1.3.5
     megadraft: ^0.6.14
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^1.4.1
-    monaco-editor: ^0.22.3
+    monaco-editor: ^0.27.0
     n-quads-parser: ^2.1.1
     node-localstorage: ^2.1.6
     npm-run-all: ^4.1.5
@@ -6143,7 +6142,6 @@ __metadata:
     react-router: ^5.2.0
     react-router-dom: ^5.2.0
     react-router-scroll-memory: ^2.0.7
-    react-split-pane: ^0.1.92
     react-tiny-virtual-list: ^2.2.0
     react-typeform-embed: ^0.2.1
     redux: ^4.0.5
@@ -14754,9 +14752,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"link-redux@npm:2.1.0":
-  version: 2.1.0
-  resolution: "link-redux@npm:2.1.0"
+"link-redux@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "link-redux@npm:2.1.1"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     hoist-non-react-statics: ">=3.x"
@@ -14764,7 +14762,7 @@ fsevents@~2.3.1:
     link-lib: ">=2.0.0"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 3b015852edfa1008872f136f7530427370101993c0379fd11973f272a3dddb7c7d9325951348b9fdea059cabc8cdbbd32356eb2f8dee553c4983361f7e690ad7
+  checksum: 8bc43e774e15f54e2e270a687139a3572c1f8572c46c34a05a1468fce66c7522d8418d09866eacd05b21e5eacbf86264b07c9f35239f5dd3ce34e79ad9895fc2
   languageName: node
   linkType: hard
 
@@ -16089,10 +16087,10 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"monaco-editor@npm:^0.22.3":
-  version: 0.22.3
-  resolution: "monaco-editor@npm:0.22.3"
-  checksum: 1f5a65aee9cb2edb3aa8b82448e36d78e26a9aff2b76561b34f2dcd5d0077ff719d187bc6f439557c4059df8631eb73b7ba33ed90f0d6e1e606bc7cd04023909
+"monaco-editor@npm:^0.27.0":
+  version: 0.27.0
+  resolution: "monaco-editor@npm:0.27.0"
+  checksum: 16aa880020470edd6075322367f1ee80edb82e2edbfc3091e20b4f26dea2e1445849a7b01248b8cfef9ee4e0c029b9ac087c37234787c6cc801db03075f0adfb
   languageName: node
   linkType: hard
 
@@ -18270,7 +18268,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.4, prop-types@npm:^15.5.6, prop-types@npm:^15.5.7, prop-types@npm:^15.5.8, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.0, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.5.6, prop-types@npm:^15.5.7, prop-types@npm:^15.5.8, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.0, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -18915,29 +18913,6 @@ fsevents@~2.3.1:
   peerDependencies:
     react: ^16.3.0
   checksum: 643a9898953776783515df3510a438f262f6dff059c3f880b7bbc180957cd0f9a0c4d7b3ae72c347d0f7c56bbd16466e850c5d9e213abad024df3b6c3a430564
-  languageName: node
-  linkType: hard
-
-"react-split-pane@npm:^0.1.92":
-  version: 0.1.92
-  resolution: "react-split-pane@npm:0.1.92"
-  dependencies:
-    prop-types: ^15.7.2
-    react-lifecycles-compat: ^3.0.4
-    react-style-proptype: ^3.2.2
-  peerDependencies:
-    react: ^16.0.0-0
-    react-dom: ^16.0.0-0
-  checksum: 31525fc50ed57d923840954308a73d42b073872031a5efc194f113d341e250524ecb2e262c5814aedbc7b55bcadf1121f02542d45e99c55661f64456a6f1691a
-  languageName: node
-  linkType: hard
-
-"react-style-proptype@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "react-style-proptype@npm:3.2.2"
-  dependencies:
-    prop-types: ^15.5.4
-  checksum: fcac4027d106d3805a284270e98b25300c70f834849912b7e0d318c8d41fc3ac97b60658ab83f6dbd61ca5bfd50fab923bfb1876988255745cca5f4c6859a197
   languageName: node
   linkType: hard
 
@@ -20918,7 +20893,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"state-local@npm:^1.0.6, state-local@npm:^1.0.7":
+"state-local@npm:^1.0.6":
   version: 1.0.7
   resolution: "state-local@npm:1.0.7"
   checksum: e272ccbedabead16ac7dce577bb68fec512e5cf8c9474cecc9f2e3afd759b45ac3bf949deaa53825e987de8b9d585d7fa7c70c092195f8fa963f75f53efd9897

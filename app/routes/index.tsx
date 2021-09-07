@@ -1,9 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
+import RDFStudio from '../containers/Studio';
+import { PopoutViewer } from '../async/Studio/components/PopoutViewer';
+
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
-import PageBuilder from './PageBuilder';
 import Sandbox from './Sandbox';
 
 const subRoutes = [
@@ -31,11 +33,22 @@ if (__DEVELOPMENT__) {
   ));
   subRoutes.splice(-1, 0, (
     <Route
-      component={PageBuilder}
-      key="builder"
-      path="/d/builder"
+      component={RDFStudio}
+      key="studio"
+      path="/d/studio"
     />
   ));
+
+  if (__CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer')) {
+    subRoutes.shift();
+    subRoutes.unshift((
+      <Route
+        component={PopoutViewer}
+        key="popout-viewer"
+        path="*"
+      />
+    ));
+  }
 }
 
 export default (

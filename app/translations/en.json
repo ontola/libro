@@ -307,31 +307,31 @@
   "https://app.argu.co/i18n/navbar/troubleNavigating": {
     "defaultMessage": "Having trouble with navigation? Mail us!"
   },
-  "https://app.argu.co/i18n/pagebuilder/documentDropdownLabel": {
+  "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documents"
   },
-  "https://app.argu.co/i18n/pagebuilder/override": {
+  "https://rdf.studio/i18n/override": {
     "defaultMessage": "Are you sure you want to overwrite: {docID}?"
   },
-  "https://app.argu.co/i18n/pagebuilder/resourceDropdownLabel": {
+  "https://rdf.studio/i18n/resourceDropdownLabel": {
     "defaultMessage": "Resource (selected no {current}/{total})"
   },
-  "https://app.argu.co/i18n/pagebuilder/saveAsButtonLabel": {
+  "https://rdf.studio/i18n/saveAsButtonLabel": {
     "defaultMessage": "Save As"
   },
-  "https://app.argu.co/i18n/pagebuilder/saveAsPrompt": {
+  "https://rdf.studio/i18n/saveAsPrompt": {
     "defaultMessage": "Save document as:"
   },
-  "https://app.argu.co/i18n/pagebuilder/saveButtonLabel": {
+  "https://rdf.studio/i18n/saveButtonLabel": {
     "defaultMessage": "Save"
   },
-  "https://app.argu.co/i18n/pagebuilder/saveFailedNotification": {
+  "https://rdf.studio/i18n/saveFailedNotification": {
     "defaultMessage": "Failed to save document."
   },
-  "https://app.argu.co/i18n/pagebuilder/savedNotification": {
+  "https://rdf.studio/i18n/savedNotification": {
     "defaultMessage": "Document saved."
   },
-  "https://app.argu.co/i18n/pagebuilder/themeDropdownLabel": {
+  "https://rdf.studio/i18n/themeDropdownLabel": {
     "defaultMessage": "Theme"
   },
   "https://app.argu.co/i18n/pages/closed": {

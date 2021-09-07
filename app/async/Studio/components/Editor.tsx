@@ -4,8 +4,9 @@ import { Skeleton } from '@material-ui/lab';
 import MonacoEditor from '@monaco-editor/react';
 import React from 'react';
 
-import { builderContext } from './builderContext';
-import { useMonacoWithBundle } from './useMonacoWithBundle';
+import { studioContext } from '../context/StudioContext';
+import { editorStateContext } from '../context/EditorStateContext';
+import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
 
 const EDITOR_SKELETON_HEIGHT = 25;
 
@@ -13,14 +14,22 @@ const useStyles = makeStyles({
   root: {
     height: '100vh',
     transform: 'scale(0.8, 1)',
+    width: '100vw',
   },
 });
 
-const Editor: React.FC = () => {
+export interface EditorProps {
+  onMount: () => void;
+}
+
+const Editor = ({ onMount }: EditorProps): JSX.Element => {
   const classes = useStyles();
-  const { source, setSource } = React.useContext(builderContext);
+  const { file } = React.useContext(editorStateContext);
+  const { files, updateFile } = React.useContext(studioContext);
   const initialized = useMonacoWithBundle();
   const [ prefersDark ] = React.useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  const t = files.find((f) => f.name === file);
 
   if (!initialized) {
     return (
@@ -52,13 +61,23 @@ const Editor: React.FC = () => {
     );
   }
 
+  if (!t) {
+    return (
+      <div>
+        File not found
+      </div>
+    );
+  }
+
   return (
     <MonacoEditor
-      defaultLanguage="typescript"
+      saveViewState
+      // defaultLanguage="typescript"
       height="inherit"
-      language="typescript"
+      language={t.language}
       line={0}
       options={{
+        codeLens: true,
         formatOnPaste: true,
         formatOnType: true,
         lineNumbersMinChars: 1,
@@ -67,10 +86,15 @@ const Editor: React.FC = () => {
         },
         wordWrap: 'on',
       }}
-      path="/"
+      path={t.name}
       theme={prefersDark ? 'vs-dark' : 'vs-light'}
-      value={source}
-      onChange={(v) => setSource(v || '')}
+      value={t.value}
+      width="100vw"
+      onChange={(v) => updateFile({
+        ...t,
+        value:  v ?? '',
+      })}
+      onMount={onMount}
     />
   );
 };

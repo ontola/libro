@@ -4,8 +4,8 @@ Front-end application for [Argu](https://argu.co).
 ## Usage
 - `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
 - Create a [.env file](https://www.npmjs.com/package/dotenv) by copying `.env.template`.
-- `yarn run start` to start the server with backend connection or `yarn run standalone` for PageBuilder only.
-- Visit [http://localhost:3001/](http://localhost:3001/) or [http://localhost:3001/d/builder](http://localhost:3001/d/builder)
+- `yarn run start` to start the server with backend connection or `yarn run standalone` for RDF Studio only.
+- Visit [http://localhost:3001/](http://localhost:3001/) or [http://localhost:3001/d/studio](http://localhost:3001/d/builder)
 
 ## Contributing
 All tests and linters will be run automatically as a pre-commit hook.
