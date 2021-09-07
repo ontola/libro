@@ -10,6 +10,7 @@ import { entityIsLoaded } from '../../helpers/data';
 import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import { formMessages } from '../../translations/messages';
+import { namePredicates } from '../../views/Thing/properties/name';
 
 const stripDiacritics = (str: string) => (
   typeof str.normalize !== 'undefined'
@@ -52,7 +53,7 @@ export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) 
       ontola['forms/inputs/select/displayProp'],
     );
     const classDisplayProp = itemClassDisplayProp ?? schema.name;
-    const label = lrs.getResourceProperty(item, [classDisplayProp, schema.name]);
+    const label = lrs.getResourceProperty(item, [classDisplayProp, ...namePredicates]);
 
     return label?.value ?? item.value;
   }, [lrs]);
