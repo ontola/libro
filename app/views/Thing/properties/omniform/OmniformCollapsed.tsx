@@ -4,10 +4,10 @@ import * as owl from '@ontologies/owl';
 import * as schema from '@ontologies/schema';
 import {
   FC,
+  ReturnType,
   register,
   useDataFetching,
   useLRS,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -59,12 +59,12 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
     closeForm,
     openForm,
     opened,
+    potentialAction,
+    sameAs,
   } = props;
 
   const lrs = useLRS();
 
-  const potentialAction = useProperty(schema.potentialAction) as NamedNode[];
-  const sameAs = useProperty(owl.sameAs) as NamedNode[];
   useDataFetching(sameAs);
   const items = useActions(potentialAction);
 
@@ -124,6 +124,17 @@ CollapsedOmniformProp.topology = [
   cardMainTopology,
   cardTopology,
 ];
+
+CollapsedOmniformProp.mapDataToProps = {
+  potentialAction: {
+    label: schema.potentialAction,
+    returnType: ReturnType.AllTerms,
+  },
+  sameAs: {
+    label: owl.sameAs,
+    returnType: ReturnType.AllTerms,
+  },
+};
 
 CollapsedOmniformProp.hocs = [
   connect(mapInlineStateToProps, mapInlineDispatchToProps),
