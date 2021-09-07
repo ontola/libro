@@ -17,7 +17,6 @@ import Input, {
 } from '../Input/Input';
 
 const TEXTFIELD_MIN_ROWS = 3;
-const MAX_STR_LEN = 255;
 
 export interface InputPropTypes {
   autoComplete?: InputAutocomplete;
@@ -59,7 +58,6 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     onKeyUp,
   } = React.useContext(FormContext);
   const {
-    maxLength,
     minLength,
     required,
   } = fieldShape;
@@ -93,21 +91,19 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     'value': inputValue?.value,
   };
 
-  const minRows = maxLength && maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
-
   let element;
 
   switch (type) {
   case 'textarea':
     element = Textarea;
     sharedProps.async = true;
-    sharedProps.rows = minRows;
+    sharedProps.rows = TEXTFIELD_MIN_ROWS;
     sharedProps.maxRows = 50;
     break;
   case 'markdown':
     element = TextEditor;
     sharedProps.id = storeKey;
-    sharedProps.rows = minRows;
+    sharedProps.rows = TEXTFIELD_MIN_ROWS;
     break;
 
   case 'checkbox': {
