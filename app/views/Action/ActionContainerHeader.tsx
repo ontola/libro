@@ -1,22 +1,23 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, { Literal, NamedNode } from '@ontologies/core';
+import rdf, { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import LDLink from '../../../components/LDLink';
-import { LinkFeature, LinkTarget } from '../../../components/Link';
-import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
-import libro from '../../../ontology/libro';
-import { LibroTheme } from '../../../themes/themes';
-import { containerTopology } from '../../../topologies/Container';
-import { invalidStatusIds } from '../../Thing/properties/omniform/helpers';
+import LDLink from '../../components/LDLink';
+import { LinkFeature, LinkTarget } from '../../components/Link';
+import useOneClickProps from '../../hooks/useOneClickProps';
+import libro from '../../ontology/libro';
+import { LibroTheme } from '../../themes/themes';
+import { containerHeaderTopology } from '../../topologies/Container/ContainerHeader';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+
+import { ActionProps } from './helpers';
 
 const BACKGROUND_GRAY_TINT = 200;
 const BACKGROUND_GRAY_TINT_HOVER = 300;
@@ -56,16 +57,22 @@ const normalizeTarget = (targetLiteral: Literal) => {
   return isLinkTarget(target) ? target : undefined;
 };
 
-const CreateActionButtonContainer: FC = ({ children }) => {
+const ActionContainerHeader: FC<ActionProps> = ({
+  children,
+  onDone,
+}) => {
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [entryPoint] = useProperty(schema.target) as NamedNode[];
   const [error] = useProperty(schema.error);
   const [name] = useProperty(schema.name);
   const [target] = useProperty(libro.target) as Literal[];
 
+  const {
+    icon,
+    loading,
+    onClick,
+  } = useOneClickProps(onDone);
+
   const classNames = useStyles();
-  const [image] = useResourceProperty(entryPoint, schema.image);
-  const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
 
   if (children) {
     return (
@@ -75,18 +82,26 @@ const CreateActionButtonContainer: FC = ({ children }) => {
     );
   }
 
+  if (!!error || invalidStatusIds.includes(rdf.id(actionStatus))) {
+    return null;
+  }
+
   return (
     <LDLink
       className={classNames.button}
-      disabled={!!error || invalidStatusIds.includes(rdf.id(actionStatus))}
+      disabled={loading}
       features={[LinkFeature.Bold]}
-      target={normalizeTarget(target)}
-      title={error?.value || name?.value}
+      target={normalizeTarget(target as Literal)}
+      title={name?.value}
+      onClick={onClick}
     >
-      <FontAwesome
-        className={classNames.icon}
-        name={icon}
-      />
+      {icon && (
+        <FontAwesome
+          className={classNames.icon}
+          name={icon}
+          spin={loading}
+        />
+      )}
       <span className={classNames.text}>
         {name?.value}
       </span>
@@ -94,8 +109,8 @@ const CreateActionButtonContainer: FC = ({ children }) => {
   );
 };
 
-CreateActionButtonContainer.type = schema.CreateAction;
+ActionContainerHeader.type = schema.Action;
 
-CreateActionButtonContainer.topology = containerTopology;
+ActionContainerHeader.topology = containerHeaderTopology;
 
-export default register(CreateActionButtonContainer);
+export default register(ActionContainerHeader);

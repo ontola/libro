@@ -7,7 +7,6 @@ import CardHeader from '../../../components/Card/CardHeader';
 import CollectionCreateActionButton from '../../../components/Collection/CollectionCreateActionButton';
 import CollectionFilterToggle, { CollectionFilterProps } from '../../../components/Collection/CollectionFilterToggle';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
-import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -16,6 +15,7 @@ import Container, {
   LargeContainer,
   containerTopology,
 } from '../../../topologies/Container';
+import ContainerHeader from '../../../topologies/Container/ContainerHeader';
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 

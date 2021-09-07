@@ -15,6 +15,7 @@ import cardMicroRowTopologyComponent, { cardMicroRowTopology } from './topologie
 import cardRowTopologyComponent, { cardRowTopology } from './topologies/Card/CardRow';
 import containerTopologyComponent, { containerTopology } from './topologies/Container';
 import containerFloatTopologyComponent, { containerFloatTopology } from './topologies/Container/ContainerFloat';
+import containerHeaderTopologyComponent, { containerHeaderTopology } from './topologies/Container/ContainerHeader';
 import contentDetailsTopologyComponent, { contentDetailsTopology } from './topologies/ContentDetails';
 import detailsBarTopologyComponent, { detailsBarTopology } from './topologies/DetailsBar';
 import alertDialogTopologyComponent, { alertDialogTopology } from './topologies/Dialog';
@@ -63,6 +64,7 @@ const topologyMap: TopologyMap = {
   [rdf.id(cardRowTopology)]: [cardRowTopologyComponent, undefined],
   [rdf.id(containerTopology)]: [containerTopologyComponent, undefined],
   [rdf.id(containerFloatTopology)]: [containerFloatTopologyComponent, undefined],
+  [rdf.id(containerHeaderTopology)]: [containerHeaderTopologyComponent, undefined],
   [rdf.id(contentDetailsTopology)]: [contentDetailsTopologyComponent, undefined],
   [rdf.id(detailsBarTopology)]: [detailsBarTopologyComponent, undefined],
   [rdf.id(alertDialogTopology)]: [alertDialogTopologyComponent, undefined],

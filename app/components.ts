@@ -28,7 +28,6 @@ import CompCollapsible from './components/Collapsible';
 import CompCollection from './components/Collection';
 import CompColumn from './components/Column';
 import CompColumns from './components/Columns';
-import CompContainerHeader from './components/Container/ContainerHeader';
 import CompCountBubble from './components/CountBubble';
 import CompCoverImage from './components/CoverImage';
 import CompDetail from './components/Detail';
@@ -154,7 +153,6 @@ export const componentMap = {
   [rdf.id(components.Collection)]: [CompCollection],
   [rdf.id(components.Column)]: [CompColumn],
   [rdf.id(components.Columns)]: [CompColumns],
-  [rdf.id(components.ContainerHeader)]: [CompContainerHeader],
   [rdf.id(components.CountBubble)]: [CompCountBubble],
   [rdf.id(components.CoverImage)]: [CompCoverImage],
   [rdf.id(components.Detail)]: [CompDetail],

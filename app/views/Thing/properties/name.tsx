@@ -28,6 +28,7 @@ import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../topologies/Container';
 import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
+import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
 import { footerTopology } from '../../../topologies/Footer';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
@@ -183,6 +184,7 @@ export default [
     namePredicates,
     [
       containerTopology,
+      containerHeaderTopology,
       gridTopology,
     ],
   ),

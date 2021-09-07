@@ -2,6 +2,7 @@ import ActionCardMain from './ActionCardMain';
 import ActionCardRow from './ActionCardRow';
 import ActionContainer from './ActionContainer';
 import ActionContainerFloat from './ActionContainerFloat';
+import ActionContainerHeader from './ActionContainerHeader';
 import ActionDetail from './ActionDetail';
 import ActionDropdownContent from './ActionDropdownContent';
 import ActionInline from './ActionInline';
@@ -13,7 +14,6 @@ import ActionWidget from './ActionGrid';
 import CreateAction from './CreateAction';
 import CreateSession from './CreateSession';
 import CreateVote from './CreateVote';
-import InlineAction from './InlineAction';
 import ReadAction from './ReadAction';
 import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
@@ -26,6 +26,7 @@ export default [
   ActionCardRow,
   ActionContainer,
   ActionContainerFloat,
+  ActionContainerHeader,
   ActionDetail,
   ActionDropdownContent,
   ActionInline,
@@ -34,7 +35,6 @@ export default [
   ActionTableCell,
   ActionTableRow,
   ActionWidget,
-  ...InlineAction,
   ...ReadAction,
   FollowUpName,
   WidgetName,

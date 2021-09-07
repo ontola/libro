@@ -1,28 +1,45 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  Property,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import LDLink from '../../components/LDLink';
+import { LinkFeature } from '../../components/Link';
+import useOneClickProps from '../../hooks/useOneClickProps';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 const ActionTableCell = () => {
   const [actionStatus] = useProperty(schema.actionStatus);
+  const [name] = useProperty(schema.name);
+  const [error] = useProperty(schema.error);
+  const {
+    icon,
+    loading,
+    onClick,
+  } = useOneClickProps();
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
-    return null;
-  }
+  const invalid = invalidStatusIds.includes(rdf.id(actionStatus));
+  const title = invalid ? error?.value : name?.value;
 
   return (
-    <LDLink>
-      <Property label={schema.target}>
-        <Property label={schema.image} />
-      </Property>
+    <LDLink
+      disabled={invalid || loading}
+      features={[LinkFeature.Bold]}
+      title={title}
+      onClick={onClick}
+    >
+      {icon ? (
+        <FontAwesome
+          name={icon}
+          spin={loading}
+          title={title}
+        />
+      ) : title}
     </LDLink>
   );
 };

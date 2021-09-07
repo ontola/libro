@@ -18,6 +18,7 @@ import { useViewBuilderToolkit } from '../../../helpers/builder';
 import dexes from '../../../ontology/dexes';
 import ontola from '../../../ontology/ontola';
 import { containerTopology } from '../../../topologies/Container';
+import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
 import UploadTarget from './UploadTarget';
@@ -37,7 +38,7 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
     c(components.ResourceBoundary, [
       c(containerTopology, [
         renderPartOf && p(schema.isPartOf),
-        c(components.ContainerHeader, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
+        c(containerHeaderTopology, { float: p(dexes.entries, c(components.HeaderFloat)) }, [
           p(schema.name),
         ]),
         <UploadTarget

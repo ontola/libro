@@ -14,6 +14,7 @@ import { cardRowTopology } from './topologies/Card/CardRow';
 import { chapterContentToplogy } from './topologies/ChapterContent';
 import { containerTopology } from './topologies/Container';
 import { containerFloatTopology } from './topologies/Container/ContainerFloat';
+import { containerHeaderTopology } from './topologies/Container/ContainerHeader';
 import { contentDetailsTopology } from './topologies/ContentDetails';
 import { detailsBarTopology } from './topologies/DetailsBar';
 import { alertDialogTopology } from './topologies/Dialog';
@@ -67,6 +68,7 @@ export const allTopologies: NamedNode[] = [
   chapterContentToplogy,
   containerTopology,
   containerFloatTopology,
+  containerHeaderTopology,
   contentDetailsTopology,
   detailsBarTopology,
   alertDialogTopology,

@@ -17,6 +17,13 @@
 
       .fa {
         color: color('grey', 'xx-light-foreground-small');
+
+      }
+
+      [disabled] {
+        .fa {
+          color: color('grey', 'x-light');
+        }
       }
     }
 

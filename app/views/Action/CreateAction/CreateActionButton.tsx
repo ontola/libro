@@ -16,7 +16,9 @@ import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { containerTopology } from '../../../topologies/Container';
 import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
+import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
@@ -72,7 +74,9 @@ CreateActionButton.topology = allTopologiesExcept(
   cardFloatTopology,
   cardMainTopology,
   cardRowTopology,
+  containerTopology,
   containerFloatTopology,
+  containerHeaderTopology,
   gridTopology,
   menuTopology,
   fullResourceTopology,

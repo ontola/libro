@@ -198,9 +198,6 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
     rdf.quad(ontola['Create::Vote'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Vote'], rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(ontola.InlineAction, rdfx.type, rdfs.Class),
-    rdf.quad(ontola.InlineAction, rdfs.subClassOf, schema.Action),
-
     rdf.quad(schema.UpdateAction, rdfx.type, rdfs.Class),
     rdf.quad(schema.UpdateAction, rdfs.subClassOf, schema.Action),
 

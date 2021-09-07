@@ -27,7 +27,9 @@ export const mapCardListDispatchToProps = (dispatch: (...args: any[]) => void, o
   },
 });
 
-export const useDoneHandler = (onDone?: (iri: string) => void): (response: any) => void => {
+export type OnDoneHandler = (iri: string) => void;
+
+export const useDoneHandler = (onDone?: OnDoneHandler): (response: any) => void => {
   const history = useHistory();
   const lrs = useLRS();
 
