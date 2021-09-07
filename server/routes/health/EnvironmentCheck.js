@@ -34,7 +34,6 @@ export default class EnvironmentCheck extends Check {
       'oAuthToken',
       'redisUrl',
       'sessionSecret',
-      'websocketPath',
     ].forEach((key) => checkPresence(key, constants[key]));
 
     if (failed.length > 0) {

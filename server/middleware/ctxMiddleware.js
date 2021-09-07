@@ -166,7 +166,7 @@ export function enhanceCtx(ctx) {
         if (manifestLocation) {
           ctx.manifest = await getBackendManifest(ctx, manifestLocation);
         } else {
-          ctx.manifest = defaultManifest(ctx.request.origin, false);
+          ctx.manifest = defaultManifest(ctx.request.origin);
         }
       } catch (e) {
         if (!__DEVELOPMENT__) {

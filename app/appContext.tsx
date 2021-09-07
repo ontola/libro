@@ -56,6 +56,7 @@ export interface OntolaManifest {
   tracking: Tracking[],
   website_iri: string,
   websocket: string,
+  websocket_path?: string,
 }
 
 export interface WebManifest {

@@ -23,7 +23,6 @@ export const port = process.env.PORT || (__DEVELOPMENT__ ? portDevelopment : por
 export const serverName = process.env.SERVER_NAME;
 export const sessionCookieName = process.env.SESSION_COOKIE_NAME || 'koa:sess';
 export const standaloneLibro = process.env.STANDALONE === 'true';
-export const websocketPath = process.env.WEBSOCKET_PATH;
 export const cacheChannel = process.env.CACHE_CHANNEL;
 
 export const redisSettingsNS = 'frontend';
