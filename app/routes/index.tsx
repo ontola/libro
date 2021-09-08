@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import RDFStudio from '../containers/Studio';
 import { PopoutViewer } from '../async/Studio/components/PopoutViewer';
+import RDFStudio from '../containers/Studio';
+import ElementsEditor from '../containers/ElementsEditor';
 
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
@@ -22,6 +23,13 @@ if (__DEVELOPMENT__) {
       component={DevBrowser}
       key="devbrowser"
       path="/d/browser"
+    />
+  ));
+  subRoutes.splice(-1, 0, (
+    <Route
+      component={ElementsEditor}
+      key="elements"
+      path="/d/elements"
     />
   ));
   subRoutes.splice(-1, 0, (

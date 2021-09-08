@@ -7,10 +7,19 @@ const Studio = React.lazy(
   () => import(/* webpackChunkName: "Studio" */ '../async/Studio'),
 );
 
-const StudioLoader = (): JSX.Element => (
-  <Suspense>
-    <Studio />
-  </Suspense>
-);
+const StudioLoader = (): JSX.Element => {
+  console.log(Studio);
+
+  return (
+    <div>
+      <h1>
+        test
+      </h1>
+      <Suspense>
+        <Studio />
+      </Suspense>
+    </div>
+  );
+};
 
 export default StudioLoader;

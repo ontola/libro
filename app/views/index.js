@@ -23,6 +23,7 @@ import DataType from './DataType';
 import Dexes from './Dexes';
 import DialogManager from './DialogManager';
 import Document from './Document';
+import Elements from './Elements';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import ErrorResponse from './ErrorResponse';
@@ -57,7 +58,6 @@ import Phase from './Phase';
 import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
-import RichText from './RichText';
 import RIVM from './RIVM';
 import SalesWebsite from './SalesWebsite';
 import SearchResult from './SearchResult';
@@ -99,6 +99,7 @@ export function getViews() {
     ...Dexes,
     ...Document,
     ...DialogManager,
+    ...Elements,
     ...EntryPoint,
     ...Error,
     ...ErrorResponse,
@@ -134,7 +135,6 @@ export function getViews() {
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
-    ...RichText,
     ...RIVM,
     ...SearchResult,
     ...SeqComp,

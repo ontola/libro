@@ -142,6 +142,7 @@ const Toolbar = ({
         </InputLabel>
         <Select
           autoWidth
+          disabled={!documents}
           labelId="studio-documents"
           value={documentIndex}
           onChange={(e) => setDocumentIndex(Number(e.target.value))}

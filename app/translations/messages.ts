@@ -122,6 +122,81 @@ export const dateMessages: Messages = defineMessages({
   },
 });
 
+export const elementsMessages: Messages = defineMessages({
+  boldButton: {
+    defaultMessage: 'Bold',
+    id: 'https://app.argu.co/i18n/elements/editor/boldButton',
+  },
+  codeBlockButton: {
+    defaultMessage: 'Code block',
+    id: 'https://app.argu.co/i18n/elements/editor/codeBlockButton',
+  },
+  heading1Button: {
+    defaultMessage: 'Heading 1',
+    id: 'https://app.argu.co/i18n/elements/editor/heading1Button',
+  },
+  heading2Button: {
+    defaultMessage: 'Heading 2',
+    id: 'https://app.argu.co/i18n/elements/editor/heading2Button',
+  },
+  heading3Button: {
+    defaultMessage: 'Heading 3',
+    id: 'https://app.argu.co/i18n/elements/editor/heading3Button',
+  },
+  imageButton: {
+    defaultMessage: 'Image',
+    id: 'https://app.argu.co/i18n/elements/editor/imageButton',
+  },
+  imageDialogText: {
+    defaultMessage: 'Enter an image URL below',
+    id: 'https://app.argu.co/i18n/elements/editor/imageDialogText',
+  },
+  imageDialogTitle: {
+    defaultMessage: 'Insert image',
+    id: 'https://app.argu.co/i18n/elements/editor/imageDialogTitle',
+  },
+  inputDialogCancelButton: {
+    defaultMessage: 'Cancel',
+    id: 'https://app.argu.co/i18n/elements/editor/inputDialogCancelButton',
+  },
+  inputDialogOKButton: {
+    defaultMessage: 'OK',
+    id: 'https://app.argu.co/i18n/elements/editor/inputDialogOKButton',
+  },
+  italicButton: {
+    defaultMessage: 'Italic',
+    id: 'https://app.argu.co/i18n/elements/editor/italicButton',
+  },
+  linkButton: {
+    defaultMessage: 'Link',
+    id: 'https://app.argu.co/i18n/elements/editor/linkButton',
+  },
+  linkDialogText: {
+    defaultMessage: 'Enter the URL to point to:',
+    id: 'https://app.argu.co/i18n/elements/editor/linkDialogText',
+  },
+  linkDialogTitle: {
+    defaultMessage: 'Insert link',
+    id: 'https://app.argu.co/i18n/elements/editor/linkDialogTitle',
+  },
+  orderedListButton: {
+    defaultMessage: 'Numbered list',
+    id: 'https://app.argu.co/i18n/elements/editor/orderedListButton',
+  },
+  strikethroughButton: {
+    defaultMessage: 'Strikethrough',
+    id: 'https://app.argu.co/i18n/elements/editor/strikethroughButton',
+  },
+  underlineButton: {
+    defaultMessage: 'Underline',
+    id: 'https://app.argu.co/i18n/elements/editor/underlineButton',
+  },
+  unorderedListButton: {
+    defaultMessage: 'Bullet list',
+    id: 'https://app.argu.co/i18n/elements/editor/unorderedListButton',
+  },
+});
+
 export const errorMessages: Messages = defineMessages({
   '400/body': {
     defaultMessage: 'The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource.',
