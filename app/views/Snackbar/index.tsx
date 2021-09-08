@@ -7,7 +7,7 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
@@ -40,7 +40,14 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
   const text = useProperty(schema.text, { returnType: ReturnType.Value });
   const [open, setOpen] = React.useState(true);
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClick = (e: SyntheticEvent<any>) => {
+    e.preventDefault();
+    handleClose();
+  };
 
   return (
     <Snackbar
@@ -54,7 +61,7 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
           href="#"
           key="close"
           title={formatMessage(formMessages.close)}
-          onClick={handleClose}
+          onClick={handleClick}
         >
           <CloseIcon />
         </IconButton>,
