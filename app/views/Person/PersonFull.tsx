@@ -44,12 +44,12 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 
 const PersonFull: FC = () => {
   const classes = useStyles();
-  const [profileMenu] = useProperty(ontola.profileMenu) as NamedNode[];
+  const [settingsMenu] = useProperty(ontola.settingsMenu) as NamedNode[];
 
   return (
     <TabbarProvider
       redirect
-      menu={profileMenu}
+      menu={settingsMenu}
     >
       <Property label={ontola.coverPhoto} />
       <Container>
