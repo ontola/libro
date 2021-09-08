@@ -8,10 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { componentMap } from '../../components';
-import { handle } from '../../helpers/logging';
-import elements from '../../ontology/elements';
-import { allTopologies } from '../../topologies';
+import { componentMap } from '../../../components';
+import { handle } from '../../../helpers/logging';
+import elements from '../../../ontology/elements';
+import { allTopologies } from '../../../topologies';
 
 const Element: FC = () => {
   const [type] = useProperty(rdfx.type);

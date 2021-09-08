@@ -28,6 +28,9 @@ export const isFileType = (v: InputValue): boolean => (
 
 export const isFunction = (value: unknown): value is ((...props: any) => any) => typeof value === 'function';
 
+export const isHTMLInputEvent = (value: unknown): value is React.ChangeEvent<HTMLInputElement> =>
+  !!value && Object.prototype.hasOwnProperty.call(value, 'target');
+
 export const isJSONLDObject = (value: unknown): value is JSONLDObject => (
   Object.prototype.hasOwnProperty.call(value, '@id')
 );

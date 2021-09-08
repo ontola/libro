@@ -3,6 +3,7 @@
  * Please properly include each file when access to the code is needed.
  */
 import { componentRegistrations } from '../components';
+import Elements from '../modules/Elements/views';
 import Flow from '../modules/Flow/views';
 import GroenLinks from '../modules/GroenLinks/views';
 
@@ -59,7 +60,6 @@ import Phase from './Phase';
 import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
-import RichText from './RichText';
 import RIVM from './RIVM';
 import SalesWebsite from './SalesWebsite';
 import SearchResult from './SearchResult';
@@ -104,6 +104,7 @@ export function getViews() {
     ...Dexes,
     ...Document,
     ...DialogManager,
+    ...Elements,
     ...EntryPoint,
     ...Error,
     ...ErrorResponse,
@@ -140,7 +141,6 @@ export function getViews() {
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
-    ...RichText,
     ...RIVM,
     ...SearchResult,
     ...SeqComp,

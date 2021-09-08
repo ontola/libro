@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import elements from '../../ontology/elements';
-import { allTopologies } from '../../topologies';
+import elements from '../../../ontology/elements';
+import { allTopologies } from '../../../topologies';
 
 const Document: FC = () => (
   <Property
@@ -16,6 +16,7 @@ const Document: FC = () => (
 );
 
 Document.type = elements.Document;
+
 Document.topology = allTopologies;
 
 export default register(Document);

@@ -9,11 +9,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Image from '../../components/Image';
-import elements from '../../ontology/elements';
-import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
-import { allTopologies } from '../../topologies';
+import Image from '../../../components/Image';
+import elements from '../../../ontology/elements';
+import ontola from '../../../ontology/ontola';
+import { LibroTheme } from '../../../themes/themes';
+import { allTopologies } from '../../../topologies';
 
 interface StyleProps {
   float?: string,

@@ -78,6 +78,60 @@
   "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
     "defaultMessage": "Visible for everyone"
   },
+  "https://app.argu.co/i18n/elements/editor/boldButton": {
+    "defaultMessage": "Bold"
+  },
+  "https://app.argu.co/i18n/elements/editor/codeBlockButton": {
+    "defaultMessage": "Code block"
+  },
+  "https://app.argu.co/i18n/elements/editor/heading1Button": {
+    "defaultMessage": "Heading 1"
+  },
+  "https://app.argu.co/i18n/elements/editor/heading2Button": {
+    "defaultMessage": "Heading 2"
+  },
+  "https://app.argu.co/i18n/elements/editor/heading3Button": {
+    "defaultMessage": "Heading 3"
+  },
+  "https://app.argu.co/i18n/elements/editor/imageButton": {
+    "defaultMessage": "Image"
+  },
+  "https://app.argu.co/i18n/elements/editor/imageDialogText": {
+    "defaultMessage": "Enter an image URL below"
+  },
+  "https://app.argu.co/i18n/elements/editor/imageDialogTitle": {
+    "defaultMessage": "Insert image"
+  },
+  "https://app.argu.co/i18n/elements/editor/inputDialogCancelButton": {
+    "defaultMessage": "Cancel"
+  },
+  "https://app.argu.co/i18n/elements/editor/inputDialogOKButton": {
+    "defaultMessage": "OK"
+  },
+  "https://app.argu.co/i18n/elements/editor/italicButton": {
+    "defaultMessage": "Italic"
+  },
+  "https://app.argu.co/i18n/elements/editor/linkButton": {
+    "defaultMessage": "Link"
+  },
+  "https://app.argu.co/i18n/elements/editor/linkDialogText": {
+    "defaultMessage": "Enter the URL to point to:"
+  },
+  "https://app.argu.co/i18n/elements/editor/linkDialogTitle": {
+    "defaultMessage": "Insert link"
+  },
+  "https://app.argu.co/i18n/elements/editor/orderedListButton": {
+    "defaultMessage": "Numbered list"
+  },
+  "https://app.argu.co/i18n/elements/editor/strikethroughButton": {
+    "defaultMessage": "Strikethrough"
+  },
+  "https://app.argu.co/i18n/elements/editor/underlineButton": {
+    "defaultMessage": "Underline"
+  },
+  "https://app.argu.co/i18n/elements/editor/unorderedListButton": {
+    "defaultMessage": "Bullet list"
+  },
   "https://app.argu.co/i18n/errors/clickToRetry/label": {
     "defaultMessage": "Click to retry"
   },
