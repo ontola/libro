@@ -26,7 +26,7 @@ const InfiniteCollectionNext = ({
   const onClick = useCallback(
     () => new Promise(() => {
       lrs.store.addQuads([
-        rdf.quad(partOf.object, ontola.pages, linkedProp),
+        rdf.quad(partOf, ontola.pages, linkedProp),
         rdf.quad(subject, argu.void, rdf.literal(0)),
       ])
       lrs.broadcast();
