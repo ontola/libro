@@ -69,7 +69,10 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
 
   return (
     <Flow>
-      <Resource subject={submitAction} />
+      <Resource
+        responseCallback={onDone}
+        subject={submitAction}
+      />
     </Flow>
   );
 };
