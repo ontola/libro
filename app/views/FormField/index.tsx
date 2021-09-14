@@ -6,6 +6,7 @@ import DelayedFormField from './DelayedFormField';
 import FileFormField from './FileFormField';
 import FormFieldContainer from './FormFieldContainer';
 import FormFieldFull from './FormFieldFull';
+import IconFormField from './IconFormField';
 import LocationFormField from './LocationFormField';
 import MoneyField from './MoneyInputField';
 import MultipleEmailFormField from './MultipleEmailFormField';
@@ -27,6 +28,7 @@ export default [
   FileFormField,
   FormFieldContainer,
   FormFieldFull,
+  IconFormField,
   LocationFormField,
   MoneyField,
   MultipleEmailFormField,

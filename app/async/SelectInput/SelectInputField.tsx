@@ -1,11 +1,8 @@
 import {
   InputAdornment,
-  Popper,
   TextField,
 } from '@material-ui/core';
-import { PopperProps } from '@material-ui/core/Popper/Popper';
 import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
-import { makeStyles } from '@material-ui/styles';
 import {
   SomeTerm,
   isNamedNode,
@@ -15,7 +12,6 @@ import {
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
-  LinkReduxLRSType,
   Property,
   Resource,
   ReturnType,
@@ -23,7 +19,7 @@ import {
   useLRS,
   useProperty,
 } from 'link-redux';
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -33,97 +29,25 @@ import { InputComponentProps } from '../../components/FormField/InputComponentPr
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
-import { SHADOW_LIGHT } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
-import Select, { selectTopology } from '../../topologies/Select';
+import { selectTopology } from '../../topologies/Select';
 import SelectedValue from '../../topologies/SelectedValue';
 
-import {
-  emptyMessage,
-  filterOptions,
-  renderOption,
-  useItemToString,
-} from './helpers';
+import FullWidthPopper from './FullWidthPopper';
+import { formatEmptyMessage } from './lib/emptyMessage';
+import { filterOptions } from './lib/filterOptions';
+import { renderOption } from './lib/renderOption';
+import { sortByGroup } from './lib/sortByGroup';
+import { useItemToString } from './lib/useItemToString';
+import SelectList from './SelectList';
+import useSelectStyles from './useSelectStyles';
 import VirtualizedSelect from './VirtualizedSelect';
 
 const DEBOUNCE_TIMEOUT = 500;
 const VIRTUALIZATION_THRESHOLD = 10;
-
-const useStyles = makeStyles((theme: LibroTheme) => ({
-  flow: {
-    boxShadow: SHADOW_LIGHT,
-  },
-  input: {
-    flexWrap: 'nowrap',
-  },
-  inputBaseFlow: {
-    height: '3rem',
-  },
-  popper: {
-    width: 'fit-content !important',
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  wrapper: {
-    '& input': {
-      cursor: 'pointer',
-    },
-    '.Field--variant-preview &:hover': {
-      boxShadow: 'unset',
-      filter: 'brightness(.96)',
-    },
-    cursor: 'pointer',
-  },
-}));
-
-const FullWidthPopper = (props: PopperProps) => {
-  const classes = useStyles();
-
-  return (
-    <Popper
-      {...props}
-      className={classes.popper}
-      placement="bottom-start"
-    />
-  );
-};
-
-const sortByGroup = (lrs: LinkReduxLRSType) => (a: SomeTerm, b: SomeTerm) => {
-  const groupA = isNamedNode(a) ? lrs.getResourceProperty(a, ontola.groupBy)?.value : undefined;
-  const groupB = isNamedNode(b) ? lrs.getResourceProperty(b, ontola.groupBy)?.value : undefined;
-
-  if (!groupA || groupB && groupA < groupB) {
-    return -1;
-  }
-
-  if (!groupB || groupA > groupB) {
-    return 1;
-  }
-
-  if (a.value === groupA) {
-    return -1;
-  }
-
-  if (b.value === groupB) {
-    return 1;
-  }
-
-  return 0;
-};
-
-const SelectList = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
-  ({ children, ...otherProps }, ref) => (
-    <Select
-      {...otherProps}
-      innerRef={ref}
-    >
-      {children}
-    </Select>
-  ),
-);
 
 const SelectInputField: React.FC<InputComponentProps> = ({
   fieldShape,
@@ -136,7 +60,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
 
   const { formatMessage } = useIntl();
   const lrs = useLRS();
-  const classes = useStyles();
+  const classes = useSelectStyles();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
   const [currentValue, setCurrentValue] = React.useState('');
@@ -276,7 +200,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
           groupBy={grouped ? groupBy : undefined}
           id={name}
           loading={loading}
-          noOptionsText={emptyMessage(formatMessage, searchable, currentValue)}
+          noOptionsText={formatEmptyMessage(formatMessage, searchable, currentValue)}
           options={sortedOptions}
           renderInput={renderInput}
           renderOption={renderOption}

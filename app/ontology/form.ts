@@ -21,6 +21,7 @@ export default {
   Form: form('Form'),
   Group: form('Group'),
   HiddenGroup: form('HiddenGroup'),
+  IconInput: form('IconInput'),
   LocationInput: form('LocationInput'),
   MarkdownInput: form('MarkdownInput'),
   MoneyInput: form('MoneyInput'),

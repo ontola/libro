@@ -7,7 +7,7 @@ import {
 
 import { frontendOrigin, frontendPathname } from '../ontology/app';
 
-const FABase = 'http://fontawesome.io/icon/';
+export const FABase = 'http://fontawesome.io/icon/';
 
 export const createCurrentURL = (_window?: Window) => (): string | undefined => {
   if (typeof _window === 'undefined') {
