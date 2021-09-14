@@ -2,11 +2,10 @@ import equal from 'fast-deep-equal';
 import { FormApi } from 'final-form';
 import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
-import { Form as FinalForm } from 'react-final-form';
+import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
-import { isFunction } from '../../helpers/types';
 import useFileStore, {
   FileStore,
   StoreFile,
@@ -15,7 +14,8 @@ import { InputValue } from '../../hooks/useFormField';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { SubmissionErrors } from '../FormField';
-import Input, { InputType } from '../Input/Input';
+
+import FormBody from './FormBody';
 
 export enum FormTheme {
   Default = 'default',
@@ -23,7 +23,7 @@ export enum FormTheme {
   Preview = 'preview',
 }
 
-interface FormProps {
+export interface FormProps {
   action?: string;
   autofocusForm?: boolean;
   autoSubmit?: boolean;
@@ -64,6 +64,7 @@ export interface FormContext {
   sessionStore?: Storage;
   submissionErrors?: SubmissionErrors;
   storeFile?: StoreFile;
+  submitting?: boolean;
   theme?: FormTheme;
   whitelist?: number[];
 }
@@ -95,25 +96,12 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>, 
 
 const Form: React.FC<FormProps> = (props) => {
   const {
-    action,
-    autofocusForm,
     autoSubmit,
-    blacklist,
-    children,
-    className,
     form,
     formID,
-    formIRI,
     initialValues,
-    method,
-    object,
-    onKeyUp,
     onSubmit,
-    sessionStore,
     subscription,
-    submissionErrors,
-    theme,
-    whitelist,
     validateOnBlur,
   } = props;
   const [storeFile, fileStore] = useFileStore();
@@ -133,59 +121,16 @@ const Form: React.FC<FormProps> = (props) => {
       submitHandler();
     }
   }, [autoSubmit, autoSubmitted]);
-  const context = React.useMemo(() => ({
-    autofocusForm,
-    blacklist,
-    fileStore,
-    formID,
-    formIRI,
-    formSection: undefined,
-    object,
-    onKeyUp,
-    parentObject: undefined,
-    sessionStore,
-    storeFile,
-    submissionErrors,
-    theme,
-    whitelist,
-  }), [
-    autofocusForm,
-    blacklist,
-    fileStore,
-    formID,
-    formIRI,
-    object,
-    onKeyUp,
-    sessionStore,
-    storeFile,
-    submissionErrors,
-    theme,
-    whitelist,
-  ]);
 
-  const lowerMethod = method?.toLowerCase();
-  const methodInput = lowerMethod && !['get', 'post'].includes(lowerMethod) && (
-    <Input
-      name="_method"
-      type={InputType.Hidden}
-      value={method}
+  const render = ({ handleSubmit, submitting }: FormRenderProps<FormValues>) => (
+    <FormBody
+      {...props}
+      fileStore={fileStore}
+      handleSubmit={handleSubmit}
+      storeFile={storeFile}
+      submitting={submitting}
     />
   );
-  const formMethod = lowerMethod === 'get' ? 'get' : 'post';
-  const render = React.useCallback(({ handleSubmit, submitting }) => (
-    <FormContext.Provider value={context}>
-      <form
-        action={action}
-        className={className || 'Form'}
-        data-testid={formID}
-        method={formMethod}
-        onSubmit={handleSubmit}
-      >
-        {isFunction(children) && children(submitting)}
-        {methodInput}
-      </form>
-    </FormContext.Provider>
-  ), [action, className, formID, formMethod, children, methodInput, context]);
 
   return (
     <FinalForm

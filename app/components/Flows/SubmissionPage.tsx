@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { flowMessages } from '../../translations/messages';
 import Button, { ButtonTheme } from '../Button';
+import { FormContext } from '../Form/Form';
 
 export interface SubmissionPageProps {
   formInvalid?: boolean;
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
 
 export const SubmissionPage = ({ formInvalid, onBack }: SubmissionPageProps): JSX.Element => {
   const classes = useStyles();
+  const { submitting } = React.useContext(FormContext);
 
   return (
     <div className={classes.wrapper}>
@@ -50,6 +52,7 @@ export const SubmissionPage = ({ formInvalid, onBack }: SubmissionPageProps): JS
         </MUIButton>
       ) : (
         <Button
+          loading={submitting}
           theme={ButtonTheme.Submit}
           type="submit"
         >
