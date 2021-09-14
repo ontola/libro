@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../components/Button';
+import EntryPointForm from '../../components/Form/EntryPointForm';
 import GridHeader from '../../components/Grid/GridHeader';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
@@ -23,7 +24,6 @@ import FormFooter from '../../topologies/FormFooter';
 import { gridTopology } from '../../topologies/Grid';
 import { navbarTopology } from '../../topologies/Navbar';
 
-import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
 
 const useStyles = makeStyles({

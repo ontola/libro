@@ -13,11 +13,11 @@ import {
 import React, { EventHandler, SyntheticEvent } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import EntryPointForm from '../../components/Form/EntryPointForm';
 import { LoadingGridContent } from '../../components/Loading';
 import ll from '../../ontology/ll';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
-import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
 
 interface PropTypes {

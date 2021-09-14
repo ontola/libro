@@ -13,14 +13,14 @@ import React, {
   SyntheticEvent,
 } from 'react';
 
-import Form from '../../components/Form/Form';
-import { LoadingGridContent } from '../../components/Loading';
+import { LoadingGridContent } from '../Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
+import useSubmissionErrors from '../../views/EntryPoint/useSubmissionErrors';
+import { SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 
-import useSubmissionErrors from './useSubmissionErrors';
-import { SubmitHandler } from './useSubmitHandler';
+import Form from './Form';
 
 const subscription = {
   submitting: true,

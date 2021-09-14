@@ -14,13 +14,13 @@ import { useHistory } from 'react-router';
 
 import Button, { ButtonTheme } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
+import EntryPointForm from '../../components/Form/EntryPointForm';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter';
 
-import EntryPointForm from './EntryPointForm';
 import useSubmitHandler from './useSubmitHandler';
 
 interface PropTypes {
