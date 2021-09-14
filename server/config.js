@@ -24,6 +24,7 @@ export const serverName = process.env.SERVER_NAME;
 export const sessionCookieName = process.env.SESSION_COOKIE_NAME || 'koa:sess';
 export const standaloneLibro = process.env.STANDALONE === 'true';
 export const cacheChannel = process.env.CACHE_CHANNEL;
+export const cookieWhitelist = process.env.COOKIE_WHITELIST?.split(',') || [];
 
 export const redisSettingsNS = 'frontend';
 

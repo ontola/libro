@@ -27,6 +27,18 @@ export function isRedirect(status) {
     || status === HttpStatus.PERMANENT_REDIRECT;
 }
 
+function filterCookie(cookie) {
+  return constants.cookieWhitelist.includes(cookie.split('=').shift());
+}
+
+function filterCookies(cookies) {
+  if (!cookies || constants.cookieWhitelist.length === 0) {
+    return '';
+  }
+
+  return cookies.split('; ').filter(filterCookie).join('; ');
+}
+
 export function setProxyReqHeaders(proxyReq, ctx) {
   if (typeof ctx.session !== 'undefined' && typeof ctx.session.userToken !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${ctx.session.userToken}`);
@@ -42,7 +54,13 @@ export function setProxyReqHeaders(proxyReq, ctx) {
     proxyReq.setHeader('Connection', 'keep-alive');
   }
 
-  proxyReq.removeHeader('cookie');
+  const filteredCookies = filterCookies(proxyReq.getHeader('cookie'));
+
+  if (filteredCookies.length === 0) {
+    proxyReq.removeHeader('cookie');
+  } else {
+    proxyReq.setHeader('cookie', filteredCookies);
+  }
 }
 
 const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
