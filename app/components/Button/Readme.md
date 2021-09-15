@@ -10,7 +10,7 @@
 ## Themes
 
     <div>
-      <Button theme="transparant">Transparant theme</Button>
+      <Button theme="transparent">Transparent theme</Button>
       <Button theme="subtle">Subtle</Button>
       <Button theme="box">Box theme</Button>
     </div>

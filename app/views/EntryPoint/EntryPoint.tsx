@@ -60,7 +60,7 @@ const EntryPoint: FC<EntryPointProps> = ({
     <ButtonWithFeedback
       className={classes}
       icon={icon}
-      theme={theme || ButtonTheme.Transparant}
+      theme={theme || ButtonTheme.Transparent}
       variant={variant}
       onClick={handleOnClick}
       {...rest}

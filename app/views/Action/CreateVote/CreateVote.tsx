@@ -20,6 +20,7 @@ import {
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 
+import { ButtonTheme } from '../../../components/Button';
 import { entityIsLoaded } from '../../../helpers/data';
 import {
   HTTP_RETRY_WITH,
@@ -205,7 +206,7 @@ const CreateVote: FC<CreateVoteProps> = ({
       grow={rdf.equals(parentType, argu.VoteEvent)}
       stretch={rdf.equals(parentType, argu.VoteEvent)}
       subject={target}
-      theme="transparant"
+      theme={ButtonTheme.Transparent}
       title={getTitle(option, parentType, expired, formatMessage)}
       variant={getVariant(option, parentType)}
       onClick={handleClick}

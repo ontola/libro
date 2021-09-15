@@ -33,7 +33,7 @@ const MarkdownInstructions = (): JSX.Element => {
       <Button
         small
         icon="info"
-        theme={ButtonTheme.Transparant}
+        theme={ButtonTheme.Transparent}
         onClick={() => setModal(true)}
       >
         <span id="show-markdown-instructions-button">
@@ -50,7 +50,7 @@ const MarkdownInstructions = (): JSX.Element => {
           <Button
             corner
             icon="times"
-            theme={ButtonTheme.Transparant}
+            theme={ButtonTheme.Transparent}
             onClick={() => setModal(false)}
           >
             <FormattedMessage {...formMessages.close} />

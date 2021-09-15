@@ -86,7 +86,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
           <Button
             small
             icon={showPreview ? 'caret-down' : 'caret-right'}
-            theme={ButtonTheme.Transparant}
+            theme={ButtonTheme.Transparent}
             onClick={() => setShowPreview(!showPreview)}
           >
             <FormattedMessage {...formMessages.markdownPreview} />

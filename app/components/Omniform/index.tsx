@@ -139,7 +139,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
         <FormFooterRight>
           {closeForm && (
             <Button
-              theme={ButtonTheme.Transparant}
+              theme={ButtonTheme.Transparent}
               onClick={closeForm}
             >
               <FormattedMessage

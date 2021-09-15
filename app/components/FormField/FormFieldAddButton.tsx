@@ -14,7 +14,7 @@ const FormFieldAddButton: React.FC<PropTypes> = ({
 }) => (
   <div>
     <Button
-      theme={ButtonTheme.Transparant}
+      theme={ButtonTheme.Transparent}
       onClick={addFormValue}
     >
       <FontAwesome name="plus" />

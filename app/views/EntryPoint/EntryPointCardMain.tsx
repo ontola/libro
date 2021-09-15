@@ -47,7 +47,7 @@ const EntryPointCardMain: FC<EntryPointCardMainProps> = ({
   const cancelButton = cancelPath && (
     <Button
       href={cancelPath}
-      theme={ButtonTheme.Transparant}
+      theme={ButtonTheme.Transparent}
       onClick={onCancelClick}
     >
       <FormattedMessage

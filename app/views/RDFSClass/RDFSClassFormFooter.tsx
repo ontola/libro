@@ -44,7 +44,7 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
     <Button
       className={`Button--omniform-switcher Button--omniform-switcher-- ${curClass}`}
       icon={image && normalizeFontAwesomeIRI(image)}
-      theme={ButtonTheme.Transparant}
+      theme={ButtonTheme.Transparent}
       title={description?.value}
       onClick={onClick}
     >

@@ -18,7 +18,7 @@ export enum ButtonTheme {
   Pagination = 'pagination',
   Submit = 'submit',
   Subtle = 'subtle',
-  Transparant = 'transparant',
+  Transparent = 'transparent',
 }
 
 export enum ButtonVariant {
