@@ -168,16 +168,6 @@
   }
 }
 
-.CardHover {
-  background-color: color('white');
-  border-radius: $border-radius-base;
-  box-shadow: $box-shadow;
-}
-
-.CardLink {
-  color: color('blue', 'power');
-}
-
 .CardList {
   display: flex;
 

@@ -18,11 +18,9 @@ import CompBreadcrumbsBreadcrumbsBar from './components/Breadcrumbs/BreadcrumbsB
 import CompButton from './components/Button';
 import CompButtonWithFeedback from './components/ButtonWithFeedback';
 import CompCardCardActions from './components/Card/CardActions';
-import CompCardCardButton from './components/Card/CardButton';
 import CompCardCardContent from './components/Card/CardContent';
 import CompCardCardDivider from './components/Card/CardDivider';
 import CompCardCardHeader from './components/Card/CardHeader';
-import CompCardCardLink from './components/Card/CardLink';
 import CompCollapseText from './components/CollapseText';
 import CompCollapsible from './components/Collapsible';
 import CompCollection from './components/Collection';
@@ -142,11 +140,9 @@ export const componentMap = {
   }],
   [rdf.id(components.ButtonWithFeedback)]: [CompButtonWithFeedback],
   [rdf.id(components.CardCardActions)]: [CompCardCardActions],
-  [rdf.id(components.CardCardButton)]: [CompCardCardButton],
   [rdf.id(components.CardCardContent)]: [CompCardCardContent],
   [rdf.id(components.CardCardDivider)]: [CompCardCardDivider],
   [rdf.id(components.CardCardHeader)]: [CompCardCardHeader],
-  [rdf.id(components.CardCardLink)]: [CompCardCardLink],
   [rdf.id(components.CheckboxesInput)]: [CompCheckboxesInput],
   [rdf.id(components.CollapseText)]: [CompCollapseText],
   [rdf.id(components.Collapsible)]: [CompCollapsible],

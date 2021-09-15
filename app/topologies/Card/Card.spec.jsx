@@ -3,7 +3,6 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import CardActions from '../../components/Card/CardActions';
-import CardButton from '../../components/Card/CardButton';
 import CardContent from '../../components/Card/CardContent';
 import themes from '../../themes';
 
@@ -31,25 +30,6 @@ describe('Card component', () => {
     expect(tree.find('.CardActions')).toExist();
     tree.setProps({ noSpacing: true });
     expect(tree.find('.CardActions')).toHaveClassName('CardActions--no-spacing');
-  });
-
-  it('CardButton should render', () => {
-    const spy = jest.fn();
-    const tree = mount(
-      <CardButton
-        action={spy}
-        type="yes"
-      >
-        Click here
-      </CardButton>
-    );
-    expect(tree.find('button.Button')).toExist();
-    expect(tree.find('button.Button')).toHaveText('Click here');
-    expect(tree.find('button.Button')).toHaveClassName('Button--has-icon');
-    expect(tree.find('.fa')).toHaveClassName('fa-thumbs-up');
-
-    tree.simulate('click');
-    expect(spy).toHaveBeenCalled();
   });
 
   it('CardContent should render', () => {
