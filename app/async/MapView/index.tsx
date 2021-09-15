@@ -7,6 +7,7 @@ import {
   useDataFetching,
   useDataInvalidation,
   useLRS,
+  useLinkRenderContext,
 } from 'link-redux';
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
@@ -18,6 +19,7 @@ import { Placement, PropTypes } from '../../containers/MapView';
 import { entityIsLoaded } from '../../helpers/data';
 import { tryParseFloat } from '../../helpers/numbers';
 import { isResource } from '../../helpers/types';
+import useStoredState from '../../hooks/useStoredState';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 
@@ -46,7 +48,12 @@ const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement) =>
   };
 };
 
-const featureFromPlacement = (lrs: LinkReduxLRSType, placement: SomeNode | Placement, theme: Theme) => {
+const featureFromPlacement = (
+  lrs: LinkReduxLRSType, 
+  placement: SomeNode | Placement, 
+  visitedFeatures: any,
+  theme: Theme,
+) => {
   const {
     image,
     lat,
@@ -60,10 +67,13 @@ const featureFromPlacement = (lrs: LinkReduxLRSType, placement: SomeNode | Place
 
   const f = new Feature(new Point(fromLonLat([lon!, lat!])));
   f.setId(isNode(placement) ? placement.value : placement.id);
+  const visited = visitedFeatures.includes(f.getId());
   const { hoverStyle, style } = getStyles(image.value, theme);
   f.setProperties({
     hoverStyle,
+    image,
     style,
+    visited,
     zoomLevel,
   });
 
@@ -74,7 +84,16 @@ type FeatureSet = [Array<Feature<Point>>, Feature<Point> | null, boolean];
 
 const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
   const lrs = useLRS();
+  const { subject } = useLinkRenderContext();
   const theme = useTheme();
+  
+  const [_, setVisitedFeatures, getVisitedFeatures] = useStoredState(
+    `${subject.value}.visitedFeatures`, 
+    [], 
+    sessionStorage,
+    (x) => x == null ? JSON.parse('null') : JSON.parse(x),
+    JSON.stringify,
+  );
 
   const [loading, setLoading] = React.useState(true);
   const [memoizedFeatures, setMemoizedFeatures] = React.useState<Array<Feature<Point>> | null>(null);
@@ -88,7 +107,7 @@ const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
     const dependencies: SomeNode[] = [];
 
     const addFeature = (rawFeature: SomeNode | Placement, index: number) => {
-      const feature = !loading && featureFromPlacement(lrs, rawFeature, theme);
+      const feature = !loading && featureFromPlacement(lrs, rawFeature, getVisitedFeatures(), theme);
 
       const isCenter = index === 0;
 
@@ -101,6 +120,21 @@ const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
       }
 
       if (feature) {
+        const markAsVisited = () => {
+          setVisitedFeatures(Array.from(new Set([...getVisitedFeatures(), feature.getId()])));
+          const { hoverStyle, style } = getStyles(
+            feature.getProperties().image.value,
+            theme,
+          );
+          const visited = true;
+          feature.setProperties({
+            hoverStyle,
+            style,
+            visited,
+          });
+        };
+
+        feature.setProperties({ markAsVisited });
         features.push(feature);
       }
     };
@@ -155,6 +189,10 @@ const MapView: React.FC<PropTypes> = ({
   const handleSelect = React.useCallback((feature, newCenter) => {
     if (onSelect) {
       onSelect(feature, newCenter);
+    }
+
+    if (feature?.markAsVisited) {
+      feature.markAsVisited();
     }
 
     setOverlayPosition(newCenter);

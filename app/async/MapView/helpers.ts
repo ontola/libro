@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core';
+import { Theme, fade } from '@material-ui/core';
 import fa from 'fontawesome';
 import { Feature } from 'ol';
 import Circle from 'ol/geom/Circle';
@@ -11,8 +11,22 @@ import Style from 'ol/style/Style';
 
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 
-const ANCHOR_Y_BOTTOM = 1;
+interface IconProps {
+  background: {
+    background: string;
+    backgroundHover: string;
+    text: string;
+  }
+  text: {
+    color: string;
+    fontFamily: string | undefined;
+  }
+}
+
+const ANCHOR_Y_CENTER = 0.5;
 const ANCHOR_X_CENTER = 0.5;
+const BACKGROUND_FADE = 0.5;
+const TEXT_FADE = 0.8;
 const CIRCLE_RADIUS = 14;
 const CIRCLE_SIZE = 15;
 const ICON_X = CIRCLE_SIZE;
@@ -26,15 +40,16 @@ const drawFontAwesomeIcon = (
   text: string,
   highlight: boolean,
   count: number,
-  theme: any,
+  iconProps: IconProps,
 ) => {
-  const { mapIcon } = theme.palette;
+  const { background, backgroundHover } = iconProps.background;
+  const { color, fontFamily } = iconProps.text;
 
   const circleBackground = new Fill({
-    color: highlight ? mapIcon.backgroundHover : mapIcon.background,
+    color: highlight ? backgroundHover : background,
   });
   const circleStroke = new Stroke({
-    color: mapIcon.text,
+    color,
     width: 2,
   });
   const circleStyle = new Style({
@@ -61,14 +76,14 @@ const drawFontAwesomeIcon = (
 
   if (count > 1) {
     renderText = count.toString();
-    renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;
+    renderFont = `bold 16px ${fontFamily}`;
   } else {
     renderText = text;
     renderFont = 'normal 18px FontAwesome';
   }
 
   /* eslint-disable no-param-reassign */
-  canvasCtx.fillStyle = mapIcon.text;
+  canvasCtx.fillStyle = color;
   canvasCtx.font = renderFont;
   canvasCtx.textAlign = 'center';
   canvasCtx.textBaseline = 'middle';
@@ -76,17 +91,22 @@ const drawFontAwesomeIcon = (
   canvasCtx.fillText(renderText, ICON_X, ICON_Y);
 };
 
-const generateIconStyle = (image: string, highlight = false, count: number, theme: any) => {
+const generateIconStyle = (
+  image: string,
+  highlight = false,
+  count: number,
+  iconProps: IconProps,
+) => {
   const canvas = document.createElement('canvas');
   const canvasCtx = canvas.getContext('2d');
 
   if (canvasCtx && isFontAwesomeIRI(image)) {
-    drawFontAwesomeIcon(canvasCtx, fa(normalizeFontAwesomeIRI(image)), highlight, count, theme);
+    drawFontAwesomeIcon(canvasCtx, fa(normalizeFontAwesomeIRI(image)), highlight, count, iconProps);
   }
 
   return new Style({
     image: new Icon({
-      anchor: [ANCHOR_X_CENTER, ANCHOR_Y_BOTTOM],
+      anchor: [ANCHOR_X_CENTER, ANCHOR_Y_CENTER],
       img: canvas,
       imgSize: [IMG_SIZE, IMG_SIZE],
     }),
@@ -97,12 +117,56 @@ const featureCount = (feature: Feature) => (
   feature?.get('features')?.length || 0
 );
 
-const getStyle = (image: string, highlight: boolean, theme: any) => (feature: Feature) => {
+const allFeaturesVisited = (feature: Feature) => feature
+  ?.get('features')
+  ?.every((f: { values_: { visited: boolean; }; } ) => f.values_.visited)
+  ?? true;
+
+const getIconProps = (theme: Theme, visited: boolean): IconProps => {
+  const defaultIconProps = {
+    background: {
+      ...theme.palette.mapIcon,
+    },
+    text: {
+      color: '#ffffff',
+      fontFamily: theme.typography.h1.fontFamily,
+    },
+  };
+  const visitedIconProps = {
+    background: {
+      ...defaultIconProps.background,
+      background: fade(defaultIconProps.background.background, BACKGROUND_FADE),
+    },
+    text: {
+      ...defaultIconProps.text,
+      color: fade(defaultIconProps.text.color, TEXT_FADE),
+    },
+  };
+
+  return visited ? visitedIconProps : defaultIconProps;
+};
+
+const getStyle = (
+  image: string,
+  highlight: boolean,
+  theme: Theme,
+) => (feature: Feature) => {
   const count = featureCount(feature);
-  const cacheKey = [image, highlight, count].filter(Boolean).join('-');
+  const featuresVisited = allFeaturesVisited(feature);
+  const cacheKey = [
+    image,
+    highlight,
+    count,
+    featuresVisited ? 'visited' : '',
+  ].filter(Boolean).join('-');
 
   if (!iconCache[cacheKey]) {
-    const icon = generateIconStyle(image, highlight, count, theme);
+    const icon = generateIconStyle(
+      image,
+      highlight,
+      count,
+      getIconProps(theme, featuresVisited),
+    );
 
     iconCache[cacheKey] = icon;
   }
