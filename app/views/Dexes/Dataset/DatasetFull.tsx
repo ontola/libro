@@ -10,6 +10,7 @@ import {
 import React from 'react';
 
 import AttributeListItem from '../../../components/AttributeListItem';
+import Button from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import Heading from '../../../components/Heading';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
@@ -28,6 +29,7 @@ interface DatasetFullProps {
 
 const DatasetFull: FC<DatasetFullProps> = ({
   renderPartOf,
+  subject,
 }) => (
   <React.Fragment>
     <Container>
@@ -42,11 +44,21 @@ const DatasetFull: FC<DatasetFullProps> = ({
           <Property label={dcterms.title} />
           <Property label={dcterms.description} />
         </CardContent>
-        <CardContent noSpacing>
+        <CardContent>
           <AttributeList>
             <AttributeListItem label={dcterms.license} />
             <AttributeListItem label={dcat.theme} />
           </AttributeList>
+          <div>
+            <Button
+              href={`https://dexes.eu/resolve?uri=${encodeURIComponent(subject.value)}`}
+              icon="external-link"
+            >
+              Bekijk op Dexes
+            </Button>
+          </div>
+        </CardContent>
+        <CardContent noSpacing>
           <Heading>
             <Resource subject={dcat.distribution} />
           </Heading>

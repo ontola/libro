@@ -1,5 +1,8 @@
 import * as dcterms from '@ontologies/dcterms';
-import { Property, register } from 'link-redux';
+import {
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../../components/Card/CardContent';
@@ -25,6 +28,7 @@ const DistributionCard = () => (
       label={dcat.accessURL}
       topology={inlineTopology}
     />
+    <Property label={dexes.offer} />
   </CardContent>
 );
 
