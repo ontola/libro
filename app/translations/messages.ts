@@ -305,6 +305,10 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'unknown',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidLabel',
   },
+  markdownPreview: {
+    defaultMessage: 'Preview',
+    id: 'https://app.argu.co/i18n/forms/markdownPreview',
+  },
   maxDateMessage: {
     defaultMessage: 'Date should not be after maximal date',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage',
@@ -328,6 +332,10 @@ export const formMessages: Messages = defineMessages({
   okLabel: {
     defaultMessage: 'ok',
     id: 'https://app.argu.co/i18n/forms/actions/ok',
+  },
+  showMarkdownInstructions: {
+    defaultMessage: 'Text formatting instructions',
+    id: 'https://app.argu.co/i18n/forms/showMarkdownInstructions',
   },
   todayLabel: {
     defaultMessage: 'now',

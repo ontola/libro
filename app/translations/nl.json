@@ -248,6 +248,9 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Klik of sleep een bestand om te selecteren"
   },
+  "https://app.argu.co/i18n/forms/markdownPreview": {
+    "defaultMessage": "Voorbeeldweergave"
+  },
   "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
     "defaultMessage": "Email is ongeldig."
   },
@@ -280,6 +283,9 @@
   },
   "https://app.argu.co/i18n/forms/session/link/label": {
     "defaultMessage": "Log in"
+  },
+  "https://app.argu.co/i18n/forms/showMarkdownInstructions": {
+    "defaultMessage": "Tekstopmaak hulp"
   },
   "https://app.argu.co/i18n/forms/signOut/link/label": {
     "defaultMessage": "Uitloggen"
@@ -328,9 +334,6 @@
   },
   "https://rdf.studio/i18n/savedNotification": {
     "defaultMessage": "Document opgeslagen."
-  },
-  "https://rdf.studio/i18n/themeDropdownLabel": {
-    "defaultMessage": "Theme"
   },
   "https://app.argu.co/i18n/pages/closed": {
     "defaultMessage": "Deze pagina is privé. Alleen leden kunnen de content bekijken. Vraag een lid of een van de managers hoe je toegang kan krijgen tot deze website."

@@ -1,9 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import {
-  register,
-  useProperty, 
-} from 'link-redux';
+import { register, useProperty } from 'link-redux';
 import React from 'react';
 
 import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
@@ -50,7 +47,7 @@ const TextCutoff = () => {
       <p>
         {strippedText}
       </p>
-      {strippedText.length > STRING_CUTOFF && <div className={classes.footer} />}
+      {strippedText && strippedText.length > STRING_CUTOFF && <div className={classes.footer} />}
     </div>
   );
 };

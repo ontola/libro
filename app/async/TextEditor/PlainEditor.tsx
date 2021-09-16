@@ -1,42 +1,26 @@
+import { makeStyles } from '@material-ui/styles';
 import React, {
   EventHandler,
   FC,
-  MouseEventHandler, 
 } from 'react';
 import Textarea from 'react-autosize-textarea';
+import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonTheme } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { FormContext } from '../../components/Form/Form';
 import Markdown from '../../components/Markdown';
+import { LibroTheme } from '../../themes/themes';
+import { formMessages } from '../../translations/messages';
 
 import MarkdownInstructions from './MarkdownInstructions';
-import ToggleButton from './ToggleButton';
 
 const defaultProps = {
   autoFocus: false,
 };
 
-interface PreviewButtonProps {
-  show: any;
-  onClick: MouseEventHandler;
-}
-
-/* eslint react/prop-types: 0 */
-const PreviewButton: React.FC<PreviewButtonProps> = ({ show, onClick }) => (
-  <Button
-    small
-    icon={show ? 'caret-down' : 'caret-right'}
-    theme={ButtonTheme.Transparant}
-    onClick={onClick}
-  >
-    Voorbeeldweergave
-  </Button>
-);
-
 export interface PlainEditorProps {
   autoFocus?: boolean;
-  disableRich: boolean;
   id: string;
   maxLength?: number;
   minLength?: number;
@@ -48,9 +32,25 @@ export interface PlainEditorProps {
   value: string;
 }
 
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  buttonWrapper: {
+    display: 'flex',
+  },
+  preview: {
+    padding: '10px 20px',
+  },
+  wrapper: {
+    '& textarea': {
+      fontFamily: theme.typography.fontFamily,
+      overflow: 'hidden',
+    },
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
+
 const PlainEditor: FC<PlainEditorProps> = ({
   autoFocus,
-  disableRich,
   id,
   maxLength,
   minLength,
@@ -61,17 +61,13 @@ const PlainEditor: FC<PlainEditorProps> = ({
   rows,
   value,
 }) => {
+  const classes = useStyles();
   const [showPreview, setShowPreview] = React.useState(false);
   const { onKeyUp } = React.useContext(FormContext);
 
   return (
     <div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <div className={classes.wrapper}>
         <Textarea
           autoFocus={autoFocus}
           className="Field__input"
@@ -86,19 +82,22 @@ const PlainEditor: FC<PlainEditorProps> = ({
           onFocus={onFocus}
           onKeyUp={onKeyUp}
         />
-        <div style={{ display: 'flex' }}>
-          {!disableRich && <ToggleButton id={id} />}
-          <PreviewButton
-            show={showPreview}
+        <div className={classes.buttonWrapper}>
+          <Button
+            small
+            icon={showPreview ? 'caret-down' : 'caret-right'}
+            theme={ButtonTheme.Transparant}
             onClick={() => setShowPreview(!showPreview)}
-          />
+          >
+            <FormattedMessage {...formMessages.markdownPreview} />
+          </Button>
           <MarkdownInstructions />
         </div>
       </div>
       {showPreview && (
         <div>
           <CardDivider />
-          <div className="MarkdownPreview">
+          <div className={classes.preview}>
             <Markdown text={value} />
           </div>
           <CardDivider />

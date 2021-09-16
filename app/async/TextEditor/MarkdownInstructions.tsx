@@ -1,7 +1,7 @@
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonTheme } from '../../components/Button';
 import Markdown from '../../components/Markdown';
@@ -25,7 +25,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 
 const MarkdownInstructions = (): JSX.Element => {
-  const { formatMessage } = useIntl();
   const classes = useStyles();
   const [showModal, setModal] = useState(false);
 
@@ -37,10 +36,13 @@ const MarkdownInstructions = (): JSX.Element => {
         theme={ButtonTheme.Transparant}
         onClick={() => setModal(true)}
       >
-        Markdown hulp
+        <span id="show-markdown-instructions-button">
+          <FormattedMessage {...formMessages.showMarkdownInstructions} />
+        </span>
       </Button>
       <Modal
-        aria-labelledby="Instructies voor opmaak tonen"
+        aria-describedby="markdown-instructions-modal-content"
+        aria-labelledby="show-markdown-instructions-button"
         open={showModal}
         onClose={() => setModal(false)}
       >
@@ -51,11 +53,13 @@ const MarkdownInstructions = (): JSX.Element => {
             theme={ButtonTheme.Transparant}
             onClick={() => setModal(false)}
           >
-            {formatMessage(formMessages.close)}
+            <FormattedMessage {...formMessages.close} />
           </Button>
-          <Markdown
-            text={instructions}
-          />
+          <div id="markdown-instructions-modal-content">
+            <Markdown
+              text={instructions}
+            />
+          </div>
         </div>
       </Modal>
     </div>

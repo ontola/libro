@@ -40,10 +40,6 @@
     "test": "NODE_ENV=test jest",
     "ts-compile-check": "tsc -p app/tsconfig.json --noEmit"
   },
-  "resolutions": {
-    "draft-js": "^0.11.3",
-    "draft-js/immutable": "3.8.2"
-  },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@bugsnag/js": "^7.5.1",
@@ -146,10 +142,8 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@types/actioncable": "^5.2.3",
-    "@types/draft-js": "^0.10.44",
     "@types/ioredis": "^4.22.3",
     "@types/jest": "^26.0.22",
-    "@types/markdown-draft-js": "^2.2.2",
     "@types/node": "^14.14.31",
     "@types/ol": "^6.4.2",
     "@types/react": "^17.0.3",
@@ -182,7 +176,6 @@
     "core-js": "^3.10.1",
     "cross-env": "^5.2.0",
     "css-loader": "^5.2.0",
-    "draft-js": "^0.11.3",
     "enzyme": "^3.10.0",
     "enzyme-matchers": "^7.0.2",
     "eslint": "^7.32.0",
@@ -215,8 +208,6 @@
     "link-lib": "0.0.0-be8bf512",
     "link-redux": "^2.1.1",
     "lint-staged": "^10.5.4",
-    "markdown-draft-js": "^2.1.1",
-    "megadraft": "^0.6.14",
     "mini-css-extract-plugin": "^1.4.1",
     "monaco-editor": "^0.27.0",
     "n-quads-parser": "^2.1.1",
