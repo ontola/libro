@@ -5,8 +5,8 @@ export const keyMap = {
   FULLSCREEN: 'f',
   // Toggle the glossary
   GLOSS: 'g',
-  NEXT: 'right',
-  PREVIOUS: 'left',
+  NEXT: 'ArrowRight',
+  PREVIOUS: 'ArrowLeft',
   // Set focus to the search bar
   SEARCH: '/',
 };

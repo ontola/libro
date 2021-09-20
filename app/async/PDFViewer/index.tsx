@@ -3,13 +3,13 @@ import * as schema from '@ontologies/schema';
 import { Property, useLRS } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { HotKeys } from 'react-hotkeys';
 import { useIntl } from 'react-intl';
 import {
   Document,
   Page,
   pdfjs,
 } from 'react-pdf';
+import { useKey } from 'rooks';
 
 import { PDFViewerProps } from '../../containers/PDFViewer';
 import { pdfMessages } from '../../translations/messages';
@@ -54,7 +54,6 @@ const PDFViewer = ({
     setWidth: (() => null) as (props: any) => any,
     width: 500,
   };
-  const pdfWrapper = React.createRef<HTMLInputElement>();
 
   const wrappedOnClick = React.useCallback((e) => {
     if (onClick) {
@@ -120,107 +119,98 @@ const PDFViewer = ({
       <Property label={schema.text} />
     </div>
   ), [url]);
+
   const handleDownload = React.useCallback(
     () => lrs.actions.ontola.openWindow(url),
     [lrs, url],
   );
 
-  const keyHandlers = React.useMemo(() => ({
-    FULLSCREEN: setFillWidth,
-    NEXT: handleNextPage,
-    PREVIOUS: handlePreviousPage,
-  }), [setFillWidth, handleNextPage, handlePreviousPage]);
+  useKey([keyMap.FULLSCREEN], setFillWidth);
+  useKey([keyMap.NEXT], handleNextPage);
+  useKey([keyMap.PREVIOUS], handlePreviousPage);
 
   return (
-    <HotKeys
-      allowChanges
-      handlers={keyHandlers}
-      keyMap={keyMap}
-      ref={() => pdfWrapper}
+    <div
+      className="PDFViewer"
+      id="PDFViewer"
     >
-      <div
-        className="PDFViewer"
-        id="PDFViewer"
-      >
-        <div className="PDFViewer__scroller">
-          {/* This component catches focus on Opening and deals with keys */}
-          <div
-            id="pdfWrapper"
-            ref={pdfWrapper}
-            style={{
-              cursor: 'auto',
-              position: 'relative',
-              width: drawer.width,
-            }}
-            tabIndex={-1}
-            onClick={wrappedOnClick}
-            onKeyUp={onKeyUp}
+      <div className="PDFViewer__scroller">
+        {/* This component catches focus on Opening and deals with keys */}
+        <div
+          id="pdfWrapper"
+          style={{
+            cursor: 'auto',
+            position: 'relative',
+            width: drawer.width,
+          }}
+          tabIndex={-1}
+          onClick={wrappedOnClick}
+          onKeyUp={onKeyUp}
+        >
+          <Document
+            error={<PDFErrorComponent />}
+            file={url}
+            inputRef={(ref: any) => { setDocRef(ref); }}
+            loading={<PDFLoader />}
+            onLoadSuccess={onDocumentLoadSuccess}
           >
-            <Document
+            <Page
               error={<PDFErrorComponent />}
-              file={url}
-              inputRef={(ref: any) => { setDocRef(ref); }}
               loading={<PDFLoader />}
-              onLoadSuccess={onDocumentLoadSuccess}
+              pageIndex={pageNumber - 1}
+              width={drawer.width}
+            />
+          </Document>
+          {Overlay && <Overlay />}
+        </div>
+      </div>
+      {showButtons && (
+        <div className="PDFViewer__button-bar">
+          <div
+            className="PDFViewer__button-bar-inner"
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+            }}
+          >
+            <IconButton
+              disabled={pageNumber === 1}
+              size="small"
+              title={intl.formatMessage(pdfMessages.previousPage)}
+              onClick={handlePreviousPage}
             >
-              <Page
-                error={<PDFErrorComponent />}
-                loading={<PDFLoader />}
-                pageIndex={pageNumber - 1}
-                width={drawer.width}
-              />
-            </Document>
-            {Overlay && <Overlay />}
+              <FontAwesome name="arrow-left" />
+            </IconButton>
+            <span>
+              {`${pageNumber} / ${numPages}`}
+            </span>
+            <IconButton
+              disabled={(pageNumber === (numPages))}
+              size="small"
+              title={intl.formatMessage(pdfMessages.nextPage)}
+              onClick={handleNextPage}
+            >
+              <FontAwesome name="arrow-right" />
+            </IconButton>
+            <IconButton
+              size="small"
+              title={intl.formatMessage(pdfMessages.download)}
+              onClick={handleDownload}
+            >
+              <FontAwesome name="download" />
+            </IconButton>
+            <IconButton
+              size="small"
+              title={intl.formatMessage(pdfMessages.fullScreen)}
+              onClick={setFillWidth}
+            >
+              <FontAwesome name="expand" />
+            </IconButton>
+            {AdditionalButtons && <AdditionalButtons />}
           </div>
         </div>
-        {showButtons && (
-          <div className="PDFViewer__button-bar">
-            <div
-              className="PDFViewer__button-bar-inner"
-              style={{
-                alignItems: 'center',
-                display: 'flex',
-              }}
-            >
-              <IconButton
-                disabled={pageNumber === 1}
-                size="small"
-                title={intl.formatMessage(pdfMessages.previousPage)}
-                onClick={handlePreviousPage}
-              >
-                <FontAwesome name="arrow-left" />
-              </IconButton>
-              <span>
-                {`${pageNumber} / ${numPages}`}
-              </span>
-              <IconButton
-                disabled={(pageNumber === (numPages))}
-                size="small"
-                title={intl.formatMessage(pdfMessages.nextPage)}
-                onClick={handleNextPage}
-              >
-                <FontAwesome name="arrow-right" />
-              </IconButton>
-              <IconButton
-                size="small"
-                title={intl.formatMessage(pdfMessages.download)}
-                onClick={handleDownload}
-              >
-                <FontAwesome name="download" />
-              </IconButton>
-              <IconButton
-                size="small"
-                title={intl.formatMessage(pdfMessages.fullScreen)}
-                onClick={setFillWidth}
-              >
-                <FontAwesome name="expand" />
-              </IconButton>
-              {AdditionalButtons && <AdditionalButtons />}
-            </div>
-          </div>
-        )}
-      </div>
-    </HotKeys>
+      )}
+    </div>
   );
 };
 
