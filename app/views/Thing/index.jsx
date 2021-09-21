@@ -24,7 +24,8 @@ import DateCreated from './properties/dateCreated';
 import DateModified from './properties/dateModified';
 import DatePublished from './properties/datePublished';
 import DateSubmitted from './properties/dateSubmitted';
-import description from './properties/description';
+import Description from './properties/description';
+import DownloadUrl from './properties/downloadUrl';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
 import GrantedGroups from './properties/grantedGroups';
@@ -129,7 +130,8 @@ export default [
   DateModified,
   DatePublished,
   DateSubmitted,
-  description,
+  Description,
+  DownloadUrl,
   ExpiresAt,
   FollowsCount,
   ...GrantedGroups,

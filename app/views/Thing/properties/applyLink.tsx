@@ -1,11 +1,14 @@
 import * as schema from '@ontologies/schema';
-import { linkedPropType, register } from 'link-redux';
+import {
+  PropertyProps,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import argu from '../../../ontology/argu';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
-const ApplyLink = ({ linkedProp }) => {
+const ApplyLink = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp) {
     return null;
   }
@@ -26,9 +29,5 @@ ApplyLink.property = [
 ];
 
 ApplyLink.topology = tableRowTopology;
-
-ApplyLink.propTypes = {
-  linkedProp: linkedPropType,
-};
 
 export default register(ApplyLink);
