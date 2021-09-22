@@ -1,4 +1,3 @@
-import * as as from '@ontologies/as';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {

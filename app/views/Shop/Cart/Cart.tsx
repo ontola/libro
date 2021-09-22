@@ -51,7 +51,7 @@ const Cart: FC<CartProps> = ({
         label={argu.cartDetails}
       />
       <Container maxWidth="lg">
-        {budgetMaxInt && (
+        {!!budgetMaxInt && (
           <Progress
             endSpacing
             formatLabel={formatLabel}

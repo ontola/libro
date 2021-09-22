@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core';
+import { createTheme, responsiveFontSizes } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
@@ -14,7 +14,7 @@ export interface SalesTheme extends Theme {
     boxShadow: string;
 }
 
-const salesTheme = responsiveFontSizes(createMuiTheme(themeOpts.variables));
+const salesTheme = responsiveFontSizes(createTheme(themeOpts.variables));
 
 const SalesThemeProvider: React.FC = ({ children }) => (
   <ThemeProvider theme={salesTheme}>
