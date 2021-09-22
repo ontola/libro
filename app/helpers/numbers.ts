@@ -2,8 +2,7 @@ import { Literal, isTerm } from '@ontologies/core';
 
 export const PERCENTAGE = 100;
 
-const SIZES = ['Byte', 'KB', 'MB', 'GB', 'TB'];
-const ZERO_BYTE = '0 Byte';
+const SIZES = ['byte', 'kilobyte', 'megabyte', 'gigabyte', 'terabyte'];
 const BYTE_SIZE_TO_KBYTE = 1024;
 
 /**
@@ -34,14 +33,14 @@ export function countInParentheses(count: number | Literal): string {
   return val > 0 ? `(${val})` : '';
 }
 
-export function byteToSize(byte: number): string {
+export function byteToSize(byte: number): [number, string] {
   if (byte === 0) {
-    return ZERO_BYTE;
+    return [0, 'byte'];
   }
 
   const i = parseInt(Math.floor(Math.log(byte) / Math.log(BYTE_SIZE_TO_KBYTE)).toString(), 8);
 
-  return `${Math.round(byte / (BYTE_SIZE_TO_KBYTE ** i))} ${SIZES[i]}`;
+  return [Math.round(byte / (BYTE_SIZE_TO_KBYTE ** i)), SIZES[i]];
 }
 
 export function tryParseFloat(linkedProp: unknown): number | undefined {
