@@ -1,4 +1,3 @@
-import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
 import {
   Property,
