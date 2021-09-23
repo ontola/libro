@@ -1,8 +1,8 @@
 import {
+  alpha,
   darken,
-  fade,
   lighten,
-} from '@material-ui/core/styles/colorManipulator';
+} from '@material-ui/core/styles';
 
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
@@ -32,12 +32,12 @@ const colors = {
     dark: 'rgb(104, 71, 71)',
     main: colorBaseBrown,
     light: lighten(colorBaseBrown, 0.40),
-    xLight: fade(colorBaseBrown, 0.05),
+    xLight: alpha(colorBaseBrown, 0.05),
   },
   green: {
     main: colorBaseGreen,
     light: lighten(colorBaseGreen, 0.40),
-    xLight: fade(colorBaseGreen, 0.1),
+    xLight: alpha(colorBaseGreen, 0.1),
   },
   greyVoteButton: {
     main: '#707070',
@@ -63,18 +63,18 @@ const colors = {
     dark: darken(colorBaseRed, 0.60),
     main: colorBaseRed,
     light: lighten(colorBaseRed, 0.60),
-    xLight: fade(colorBaseRed, 0.2),
+    xLight: alpha(colorBaseRed, 0.2),
   },
   transparent: {
-    xxDark: fade('rgb(0, 0, 0)', 0.5),
-    xDark: fade('rgb(0, 0, 0)', 0.15),
-    dark: fade('rgb(0, 0, 0)', 0.06),
-    midDark: fade('rgb(0, 0, 0)', 0.03),
-    main: fade('rgb(255, 255, 255)', 0.6),
-    midLight: fade('rgb(255, 255, 255)', 0.3),
-    light: fade('rgb(255, 255, 255)', 0.15),
-    xLight: fade('rgb(255, 255, 255)', 0.05),
-    transparent: fade('rgb(255, 255, 255)', 0),
+    xxDark: alpha('rgb(0, 0, 0)', 0.5),
+    xDark: alpha('rgb(0, 0, 0)', 0.15),
+    dark: alpha('rgb(0, 0, 0)', 0.06),
+    midDark: alpha('rgb(0, 0, 0)', 0.03),
+    main: alpha('rgb(255, 255, 255)', 0.6),
+    midLight: alpha('rgb(255, 255, 255)', 0.3),
+    light: alpha('rgb(255, 255, 255)', 0.15),
+    xLight: alpha('rgb(255, 255, 255)', 0.05),
+    transparent: alpha('rgb(255, 255, 255)', 0),
   },
   white: {
     contrastText: 'rgba(0, 0, 0, 0.87)',
@@ -84,7 +84,7 @@ const colors = {
     dark: 'rgb(104, 93, 82)',
     main: colorBaseOrange,
     light: lighten(colorBaseOrange, 0.40),
-    xLight: fade(colorBaseOrange, 0.05),
+    xLight: alpha(colorBaseOrange, 0.05),
   },
 };
 /* eslint-enable sort-keys, @typescript-eslint/no-magic-numbers */

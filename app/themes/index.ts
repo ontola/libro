@@ -1,5 +1,5 @@
-import { createMuiTheme } from '@material-ui/core';
-import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { createTheme } from '@material-ui/core';
+import { ThemeOptions } from '@material-ui/core/styles/createTheme';
 import { PaletteColor } from '@material-ui/core/styles/createPalette';
 import deepmerge from 'deepmerge';
 
@@ -22,7 +22,7 @@ const generateStyle = ({
   variables,
 }: GenerateStyle) => (variableOverwrites: Record<string, unknown>) => {
   const mergedVariables = deepmerge(variables ?? {}, variableOverwrites);
-  const theme = createMuiTheme(mergedVariables);
+  const theme = createTheme(mergedVariables);
 
   (theme.overrides!).MuiCssBaseline = {
     '@global': {
