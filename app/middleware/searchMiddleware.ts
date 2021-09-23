@@ -1,5 +1,4 @@
 import rdf, {
-  NamedNode,
   Node,
   Quadruple,
 } from '@ontologies/core';
@@ -9,6 +8,7 @@ import {
   MiddlewareActionHandler,
   MiddlewareFn,
   MiddlewareWithBoundLRS,
+  SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
@@ -34,7 +34,7 @@ export const searchMiddleware = (): MiddlewareFn<React.ComponentType<any>> => (s
     target,
   });
 
-  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
+  return (next: MiddlewareActionHandler) => (iri: SomeNode, opts: any): Promise<any> => {
     const { base, params: { target } } = parse(iri);
 
     switch (base) {

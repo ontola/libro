@@ -12,6 +12,7 @@ import {
   MiddlewareActionHandler,
   MiddlewareFn,
   MiddlewareWithBoundLRS,
+  SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
@@ -206,7 +207,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
   });
 
-  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
+  return (next: MiddlewareActionHandler) => (iri: SomeNode, opts: any): Promise<any> => {
     const isWSAction = iri.value.startsWith(ontolaWebsocketsPrefix);
 
     if (!iri.value.startsWith(ontolaActionPrefix) && !isWSAction) {
@@ -232,16 +233,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       reloadPage(store, true);
 
       return Promise.resolve();
-    
+
     case rdf.id(libro.actions.navigation.push): {
       closeOldDialogs();
-      
+
       return next(iri, opts);
     }
 
     case rdf.id(libro.actions.navigation.pop): {
       closeOldDialogs();
-      
+
       return next(iri, opts);
     }
 

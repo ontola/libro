@@ -1,5 +1,5 @@
-import rdf, { NamedNode } from '@ontologies/core';
-import { MiddlewareActionHandler } from 'link-lib';
+import rdf from '@ontologies/core';
+import { MiddlewareActionHandler, SomeNode } from 'link-lib';
 
 import libro from '../ontology/libro';
 
@@ -10,7 +10,7 @@ declare global {
 }
 
 const analyticsMiddleware = () => () =>
-  (next: MiddlewareActionHandler) => (iri: NamedNode, opts: unknown): Promise<any> => {
+  (next: MiddlewareActionHandler) => (iri: SomeNode, opts: unknown): Promise<any> => {
     if (rdf.id(iri) === rdf.id(libro.actions.navigation.push)
       || rdf.id(iri) === rdf.id(libro.actions.navigation.pop)) {
       if (typeof window !== 'undefined' && window._paq) {

@@ -10,7 +10,11 @@ import rdf, {
 import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
 import HttpStatus from 'http-status-codes';
-import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
+import {
+  MiddlewareActionHandler,
+  MiddlewareWithBoundLRS,
+  SomeNode, 
+} from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import app from '../ontology/app';
@@ -79,7 +83,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   /**
    * Handler
    */
-  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
+  return (next: MiddlewareActionHandler) => (iri: SomeNode, opts: any): Promise<any> => {
     const { base, params: { newPage, subject } } = parse(iri);
 
     switch (base) {

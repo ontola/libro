@@ -4083,53 +4083,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rdfdev/actions@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@rdfdev/actions@npm:1.0.3"
+"@rdfdev/actions@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@rdfdev/actions@npm:1.1.1"
   peerDependencies:
     "@ontologies/core": "*"
-  checksum: b12439885465a8c3106e348460ee611c28e53fc66ed2ea7081e0ce029187532ffe37ed87e404acd0ca6510b568a4dbfa867889c020f9434c00be5452d12b14d7
+  checksum: 1a677edfe4027bba1ba3110fdbdb4c6e5842aebba65e5b4f806d72423a1df5e0f73134f434f340ca07864ce4d77b046fe13e22c8eac37203ad60c280299c00ba
   languageName: node
   linkType: hard
 
-"@rdfdev/collections@npm:^1.1.0-alpha.1":
-  version: 1.1.0-alpha.1
-  resolution: "@rdfdev/collections@npm:1.1.0-alpha.1"
+"@rdfdev/collections@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@rdfdev/collections@npm:1.2.0"
   peerDependencies:
     "@ontologies/core": "*"
     "@ontologies/ld": "*"
     "@ontologies/rdf": "*"
     "@ontologies/rdfs": "*"
-  checksum: 13280a03ec746421e6994ce18e823faa19d63b6d0a1c9df479a7c9999b8671a5f281ebaa3e6c510d40c9d2b280ed0e40ca435ff6ae2268cc57e22292a071a026
+  checksum: 2cac0e53a18686d4be7bc913bb85365acbe11260a45be5662ac6c2419c1be56ecc14a26c9183d6236311327bf1a34b27c950e24614e3455ac7e07d09ff63a682
   languageName: node
   linkType: hard
 
-"@rdfdev/delta@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@rdfdev/delta@npm:1.0.0"
+"@rdfdev/delta@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@rdfdev/delta@npm:1.2.0"
   peerDependencies:
     "@ontologies/core": "*"
     "@ontologies/ld": "*"
-  checksum: dcddc4035d2d5b7a29236479daa110fb864b3e0309ca1a377dd400c7bfcae3e0f765b1d55563cb1fe93f5a42d5cf51bab4e80ca6fcaf61c9f47df7796a70ec51
+  checksum: 8c26d5316febf9fc8aa1cd5295acdc1d8b8378955f7ae0ed1e9b362c09369eac743f9bd372e078239e44a8e791dbb976dd471df00c148f828131924180145420
   languageName: node
   linkType: hard
 
-"@rdfdev/iri@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@rdfdev/iri@npm:1.0.0"
+"@rdfdev/iri@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@rdfdev/iri@npm:1.2.0"
   peerDependencies:
     "@ontologies/core": "*"
-  checksum: 1b98557672d2a9913afcb16258d4fb1c4cfcfff0d01779a6e1fd643e337c5ddab83b6200bdc7828650a2f88e79faf6c6887208cd4da5da83b073c66cf2e25e59
+  checksum: 0e8740b7eb536bcd1fba7e1ace4ed405df2400e08002089964ab075816940d7b4185782ccd86a037e4605de49009fc490ad5a6ed0da3649021159d80f03957b6
   languageName: node
   linkType: hard
 
-"@rdfdev/prop-types@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@rdfdev/prop-types@npm:1.0.0"
+"@rdfdev/prop-types@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@rdfdev/prop-types@npm:1.2.0"
   peerDependencies:
     "@ontologies/core": "*"
     prop-types: "*"
-  checksum: bb1d258bd8a9a07e04b3d9c39fb1c191a2eaa8bbb0c2dad561a7531cca9edae004418bf6e820e0b13dcfe3f1f5a3e4b9548c53b35653aae83d021fe103f5e119
+  checksum: 57f0efeae72408eb04c1353175bb627f09c15c39c3612fb25227d12bdc41563284d4eeede178a610e477579fc12b8d93c9766fcd8bdfa5dc4b754dfd250cec46
   languageName: node
   linkType: hard
 
@@ -5992,11 +5992,11 @@ __metadata:
     "@ontologies/schema": ^2.0.0-rc.1
     "@ontologies/shacl": ^2.0.0-rc.1
     "@ontologies/xsd": ^2.0.0-rc.1
-    "@rdfdev/actions": ^1.0.3
-    "@rdfdev/collections": ^1.1.0-alpha.1
-    "@rdfdev/delta": ^1.0.0
-    "@rdfdev/iri": ^1.0.0
-    "@rdfdev/prop-types": ^1.0.0
+    "@rdfdev/actions": ^1.1.1
+    "@rdfdev/collections": ^1.2.0
+    "@rdfdev/delta": ^1.2.0
+    "@rdfdev/iri": ^1.2.0
+    "@rdfdev/prop-types": ^1.2.0
     "@testing-library/dom": ^8.6.0
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.1.0
@@ -6091,8 +6091,8 @@ __metadata:
     koa-static: ^5.0.0
     koa-webpack: ^6.0.0
     koa2-connect: ^1.0.2
-    link-lib: 0.0.0-be8bf512
-    link-redux: ^2.1.1
+    link-lib: ^2.1.1
+    link-redux: ^2.1.2
     lint-staged: ^10.5.4
     md5.js: ^1.3.5
     memoize-one: ^5.0.5
@@ -14649,9 +14649,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"link-lib@npm:0.0.0-be8bf512":
-  version: 0.0.0-be8bf512
-  resolution: "link-lib@npm:0.0.0-be8bf512"
+"link-lib@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "link-lib@npm:2.1.1"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -14661,21 +14661,21 @@ fsevents@~2.3.1:
     "@ontologies/xsd": ">=1.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.0-3
-  checksum: 1a0c8bda8e2e0accba8d167cb0f30c780b6136f9297ef87258590ea1075f9f8f1fb2e9b74456789a807321dc73526a7d8579ff3d97fac62695836769d3ac4fe5
+  checksum: 2212be4628da90ba6716edf0e0eb62fbbf6535cbe60fc31edc9671397510b1d1e0370ed98156c08075011a8ab3f3ee61f1c8a04c9b4e4cbc5bd0652a6ed22f3e
   languageName: node
   linkType: hard
 
-"link-redux@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "link-redux@npm:2.1.1"
+"link-redux@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "link-redux@npm:2.1.2"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     hoist-non-react-statics: ">=3.x"
     http-status-codes: ">= 1.x"
-    link-lib: ">=2.0.0"
+    link-lib: ">=2.1.1"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 8bc43e774e15f54e2e270a687139a3572c1f8572c46c34a05a1468fce66c7522d8418d09866eacd05b21e5eacbf86264b07c9f35239f5dd3ce34e79ad9895fc2
+  checksum: 19a85a130067b1654aee51a3f803411bed52b68aa406752319a9edb20f7f56b09be038099a2ce57f35906aaf30c15e311061a1b1e2080c22485da33f14cc3c44
   languageName: node
   linkType: hard
 

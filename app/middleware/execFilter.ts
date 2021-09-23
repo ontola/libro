@@ -4,8 +4,12 @@
  * Acts as a security filter as well, to prevent cross-site action injections.
  */
 
-import rdf, { NamedNode } from '@ontologies/core';
-import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
+import rdf from '@ontologies/core';
+import {
+  MiddlewareActionHandler,
+  MiddlewareWithBoundLRS,
+  SomeNode,
+} from 'link-lib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 
@@ -17,7 +21,7 @@ const execFilter = () => (): MiddlewareWithBoundLRS => {
     rdf.namedNode(new URL(frontendIRI.value).origin),
   ].map((t) => rdf.id(t));
 
-  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
+  return (next: MiddlewareActionHandler) => (iri: SomeNode, opts: any): Promise<any> => {
     const origin = new URL(iri.value).origin;
 
     if (!origin || origin === 'null') {
