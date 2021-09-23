@@ -7,8 +7,8 @@ import { useDebounce } from 'use-debounce';
 
 import generateLRS from '../../../helpers/generateLRS';
 import register from '../../../views';
-import parseToGraph from '../parseToGraph';
 import { LibroDocument } from '../LibroDocument';
+import parseToGraph from '../parseToGraph';
 
 const EDITOR_UPDATE_FQ = 300;
 

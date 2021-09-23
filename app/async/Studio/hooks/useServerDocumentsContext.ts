@@ -15,11 +15,13 @@ export const useServerDocumentsContext = (): ServerDocumentsContext => {
   const saveDocument = React.useCallback((id: string, files: EditorFile[]) => {
     const source = files.find((f) => f.name === 'source.ts')!.value;
     const manifest = files.find((f) => f.name === 'manifest.json')!.value;
+    const sitemap = files.find((f) => f.name === 'sitemap.txt')!.value;
 
     return (
       fetch(`/_libro/docs/${id}`, {
         body: JSON.stringify({
           manifestOverride: manifest,
+          sitemap,
           source,
         }),
         headers: {

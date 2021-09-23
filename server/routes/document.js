@@ -9,10 +9,10 @@ import rdf, {
 import * as rdfx from '@ontologies/rdf';
 import { INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 
+import parseToGraph from '../../app/async/Studio/parseToGraph';
 import http from '../../app/ontology/http';
 import ld from '../../app/ontology/ld';
 import ll from '../../app/ontology/ll';
-import parseToGraph from '../../app/async/Studio/parseToGraph';
 import { redisSettingsNS } from '../config';
 import { client } from '../middleware/sessionMiddleware';
 import logging from '../utils/logging';
@@ -89,6 +89,21 @@ export const docMiddleware = async (ctx, next) => {
       return;
     }
 
+    if (new URL(ctx.request.href).pathname.split('/').pop() === 'sitemap.txt') {
+      try {
+        const sitemap = await ctx.documentSitemap();
+
+        ctx.res.setHeader('Content-Type', 'text/plain');
+        ctx.status = OK;
+        ctx.body = sitemap;
+      } catch (e) {
+        logging.error(e);
+        ctx.status = INTERNAL_SERVER_ERROR;
+      }
+
+      return;
+    }
+
     return renderDoc(ctx);
   } catch (e) {
     logging.error(e);
@@ -130,10 +145,12 @@ export const saveDocument = async (ctx) => {
   const key = `${redisSettingsNS}.docs.${ctx.params.id}`;
   let source;
   let manifestOverride;
+  let sitemap;
 
   try {
     source = ctx.request.body.source;
     manifestOverride = ctx.request.body.manifestOverride;
+    sitemap = ctx.request.body.sitemap;
   } catch (err) {
     ctx.status = 400;
   }
@@ -141,6 +158,7 @@ export const saveDocument = async (ctx) => {
   try {
     await client.hset(key, 'source', source);
     await client.hset(key, 'manifestOverride', manifestOverride);
+    await client.hset(key, 'sitemap', sitemap);
     ctx.status = 200;
   } catch (err) {
     logging.error(err);

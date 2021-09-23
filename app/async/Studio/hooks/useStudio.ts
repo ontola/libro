@@ -3,9 +3,10 @@ import React from 'react';
 import { StudioContext } from '../context/StudioContext';
 import { EditorFile, filesToDoc } from '../LibroDocument';
 
-import { EditorContextBundle } from './useStudioContextBundle';
 import { useGenerateLRSFromSource } from './useGenerateLRSFromSource';
 import { useServerDocumentsContext } from './useServerDocumentsContext';
+import { useSitemap } from './useSitemap';
+import { EditorContextBundle } from './useStudioContextBundle';
 
 export const useStudio = (): [StudioContext | undefined] => {
   const [context, setContext] = React.useState<EditorContextBundle | undefined>(undefined);
@@ -21,12 +22,18 @@ export const useStudio = (): [StudioContext | undefined] => {
       name: 'source.ts',
       value: '[]',
     },
+    {
+      language: 'plaintext',
+      name: 'sitemap.txt',
+      value: '',
+    },
   ]);
 
   const doc = React.useMemo(() => filesToDoc(files), [files]);
 
   const [_, resources] = useGenerateLRSFromSource(doc);
   const { document } = useServerDocumentsContext();
+  const sitemap = useSitemap(resources);
 
   const updateFile = React.useCallback((file: EditorFile) => {
     const next = files.slice();
@@ -60,6 +67,14 @@ export const useStudio = (): [StudioContext | undefined] => {
       }
     }
   }, [document]);
+
+  React.useEffect(() => {
+    updateFile({
+      language: 'plaintext',
+      name: 'sitemap.txt',
+      value: sitemap,
+    });
+  }, [sitemap]);
 
   React.useEffect(() => {
     setCtx({

@@ -1,18 +1,18 @@
 import { URL } from 'url';
 
+import merge from 'deepmerge';
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
 import uuidv4 from 'uuid/v4';
-import merge from 'deepmerge';
 
 import {
   jwtEncryptionToken,
   redisSettingsNS,
   standaloneLibro,
-} from '../config'
-import defaultManifest from '../utils/defaultManifest';
-import logging from '../utils/logging'
-import { getBackendManifest } from '../utils/manifest';
+} from '../config';
 import { EXEC_HEADER_NAME } from '../utils/actions';
+import defaultManifest from '../utils/defaultManifest';
+import logging from '../utils/logging';
+import { getBackendManifest } from '../utils/manifest';
 import {
   ALLOW_CREDENTIALS,
   ALLOW_HEADERS,
@@ -20,7 +20,7 @@ import {
   ALLOW_ORIGIN,
 } from '../utils/proxies/helpers';
 
-import { client } from './sessionMiddleware'
+import { client } from './sessionMiddleware';
 
 const BACKEND_TIMEOUT = 3000;
 
@@ -130,6 +130,25 @@ export function enhanceCtx(ctx) {
 
     return ctx._documentRoute;
   };
+
+  /**
+   * Retrieves the sitemap for a document.
+   */
+  ctx.documentSitemap = async () => {
+    if (ctx._documentSitemap !== undefined) {
+      return ctx._documentSitemap;
+    }
+
+    try {
+      const docKey = await ctx.documentRoute();
+      ctx._documentSitemap = await client.hget(docKey, 'sitemap');
+    } catch (e) {
+      logging.error(e);
+      ctx._documentSitemap = null;
+    }
+
+    return ctx._documentSitemap;
+  }
 
   ctx.getManifest = async (location) => {
     if (standaloneLibro) {
