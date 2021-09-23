@@ -114,6 +114,7 @@ export default {
   offers: argu('offers'),
   opened: argu('opened'),
   opinion: argu('opinion'),
+  order: argu('order'),
   other: argu('other'),
   parentView: argu('parentView'),
   pdfPage: argu('pdfPage'),
