@@ -16,7 +16,6 @@ import {
   cleanup,
   fireEvent,
   render,
-  waitForElement,
 } from '../../test-utils';
 import Card from '../../topologies/Card';
 
@@ -134,6 +133,7 @@ describe('Omniform', () => {
     const formInstance = createForm({ onSubmit: () => undefined });
 
     const {
+      findByTestId,
       getByTestId,
       getByLabelText,
       getByText,
@@ -150,7 +150,7 @@ describe('Omniform', () => {
       </Card>
     ), { resources });
 
-    await waitForElement(() => getByTestId(btoa('http://schema.org/text')));
+    await findByTestId(btoa('http://schema.org/text'));
     expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: '',
     });

@@ -74,7 +74,7 @@ describe('Collection', () => {
 
   it('renders the members', async () => {
     const {
-      queryByText,
+      findByText,
     } = await render(
       ({ iri }) => (
         <Page>
@@ -87,9 +87,7 @@ describe('Collection', () => {
       { resources }
     );
 
-    await wait();
-
-    expect(queryByText('Member name')).toBeVisible();
-    expect(queryByText('Load more')).toBeVisible();
+    expect(await findByText('Member name')).toBeVisible();
+    expect(await findByText('Load more')).toBeVisible();
   });
 });

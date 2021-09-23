@@ -77,8 +77,8 @@ describe('Collection', () => {
 
   it('renders the members', async () => {
     const {
-      queryByTestId,
-      queryByText,
+      findByTestId,
+      findByText,
     } = await render(
       ({ iri }) => (
         <Page>
@@ -91,9 +91,7 @@ describe('Collection', () => {
       { resources }
     );
 
-    await wait();
-
-    expect(queryByText('Member name')).toBeVisible();
-    expect(queryByTestId('paginationWrapper')).toBeVisible();
+    expect(await findByText('Member name')).toBeVisible();
+    expect(await findByTestId('paginationWrapper')).toBeVisible();
   });
 });

@@ -17,7 +17,6 @@ import {
   cleanup,
   fireEvent,
   render,
-  wait,
 } from '../test-utils';
 
 describe('Actions', () => {
@@ -101,8 +100,9 @@ describe('Actions', () => {
 
   it('renders a form within Page', async () => {
     const {
+      findByTestId,
+      findByText,
       getByTestId,
-      getByText,
     } = await render(({ iri }) => (
       <Page>
         <Resource
@@ -114,17 +114,15 @@ describe('Actions', () => {
 
     const fieldName = (prop) => btoa(prop.value);
 
-    await wait();
     // renders the form
-    const formInstance = getByTestId(entryPointIRI.value);
+    const formInstance = await findByTestId(entryPointIRI.value);
     expect(formInstance).toBeVisible();
 
     // renders the form title
-    const elem = getByText('Edit object');
+    const elem = await findByText('Edit object');
     expect(elem).toBeVisible();
     expect(elem).toHaveClass('Heading');
 
-    await wait();
     // initializes an empty form
     expect(formInstance).toHaveFormValues({
       [fieldName(schema.name)]: '',

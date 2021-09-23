@@ -99,6 +99,7 @@ describe('Form', () => {
       storage.setItem(storeKey, serializeForStorage([rdf.literal('Test value')]));
 
       const {
+        findByTestId,
         getByTestId,
       } = await render(({ iri }) => (
         <Page>
@@ -110,7 +111,7 @@ describe('Form', () => {
         </Page>
       ), { resources });
 
-      await waitForElement(() => getByTestId(btoa('http://schema.org/text')));
+      await findByTestId(btoa('http://schema.org/text'));
 
       expect(getByTestId(action.value)).toHaveFormValues({
         [btoa(schema.text.value)]: 'Test value',
@@ -121,6 +122,7 @@ describe('Form', () => {
       const [store, storage] = mockStorage({});
 
       const {
+        findByTestId,
         getByTestId,
       } = await render(({ iri }) => (
         <Page>
@@ -132,7 +134,7 @@ describe('Form', () => {
         </Page>
       ), { resources });
 
-      await waitForElement(() => getByTestId(btoa('http://schema.org/text')));
+      await findByTestId(btoa('http://schema.org/text'));
 
       expect(getByTestId(formSelector)).toHaveFormValues({
         [fieldName]: '',
