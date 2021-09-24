@@ -44,6 +44,9 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
 
   return (
     <Snackbar
+      TransitionProps={{
+        onExited: close,
+      }}
       action={[
         <IconButton
           aria-label={formatMessage(formMessages.close)}
@@ -57,10 +60,10 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
         </IconButton>,
       ]}
       autoHideDuration={calcDuration(text)}
+      data-testId="current-snackbar"
       message={text}
       open={open}
       onClose={handleClose}
-      onExited={close}
     />
   );
 };

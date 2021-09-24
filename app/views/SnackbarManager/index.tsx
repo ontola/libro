@@ -1,7 +1,9 @@
+import { NamedNode } from '@ontologies/core';
 import { firstTermOfSeq } from '@rdfdev/collections';
 import {
   Resource,
   register,
+  useAction,
   useDataInvalidation,
   useLRS,
   useProperty,
@@ -12,12 +14,13 @@ import libro from '../../ontology/libro';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
-const SnackbarManager = () => {
+export const SnackbarManager = (): JSX.Element | null => {
   const lrs = useLRS();
-  const [queue] = useProperty(ontola.ns('snackbar/queue'))
+  const finishSnackbar = useAction(libro.actions.snackbar.finished);
+  const [queue] = useProperty(ontola.ns('snackbar/queue')) as NamedNode[];
   useDataInvalidation(queue);
-  
-  const element = firstTermOfSeq(lrs, queue);
+
+  const element = firstTermOfSeq(lrs.store, queue);
 
   if (!element) {
     return null;
@@ -25,7 +28,7 @@ const SnackbarManager = () => {
 
   return (
     <Resource
-      close={() => lrs.exec(libro.actions.snackbar.finished)}
+      close={finishSnackbar}
       key={element.value}
       subject={element}
     />

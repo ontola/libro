@@ -12,7 +12,6 @@ import ontola from '../../ontology/ontola';
 import {
   cleanup,
   render,
-  wait,
 } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
