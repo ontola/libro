@@ -3975,12 +3975,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ontologies/as@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/as@npm:2.0.0-rc.1"
+"@ontologies/as@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/as@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: f60ba3606fbc9a63739e66fee11806ce1ec2c95fa1902b1fc5fc20142583bbcd62756a91da7c7028a3af3fafb3d0a3fecc437122720b229361850a69690ca7b3
+    "@ontologies/core": ">1.5.0"
+  checksum: 2ec6ab8ce31eaecfc6333d1c282677c296bd12c82ce0e7c3b54b3ec431beb64bca985dd555545d8f6bd1f450b3586f20db8b2f1ecf8b974fd2e43534f6027909
   languageName: node
   linkType: hard
 
@@ -3995,84 +3995,84 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ontologies/dcterms@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/dcterms@npm:2.0.0-rc.1"
+"@ontologies/dcterms@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/dcterms@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: 8dedf3038e0c23d27d7f8138e1b6b286b90f407db48cc19952a4ca62eb44cf6fd02efe5cac6ffce6c37a9bdcdc4a9852f8b2788faa38a2c7f7e0c49c009bcd4d
+    "@ontologies/core": ">1.5.0"
+  checksum: 98269833698168500836a4b90a68bb8a5c361e3f54584c4263193a643a21b5cd39f4b78d06fa94ab8a12c66edaa38cdd2de862a706dc24d2f305f7093b2df6ef
   languageName: node
   linkType: hard
 
-"@ontologies/foaf@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/foaf@npm:2.0.0-rc.1"
+"@ontologies/foaf@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/foaf@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: be40f170197423822d80fc61250dc89346487570c9ed2f2d2ee96a8d615fb4ad46babbd0b2096350f04e2ff4c63f5a0cc7735397f37c318f78ede2dba8244147
+    "@ontologies/core": ">1.5.0"
+  checksum: e7dde651290aaa51f56671c7a253198c05970a730efa422b4a56420b94f4bc20ec9795129fa9e9f54d23952d9964907fc812a5c9d17c28f8c2c84dc13617d868
   languageName: node
   linkType: hard
 
-"@ontologies/ld@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/ld@npm:2.0.0-rc.1"
+"@ontologies/ld@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/ld@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: b3f33390a86232c02e7010fe345d81e50758169bca86062b973705e5464b95d44cfd18f855be4a012bdf2a3204d3f1f7021cf73ca953271b4f5894ae3f42d0f2
+    "@ontologies/core": ">1.5.0"
+  checksum: b8bbb85f660e9a30187e2d05573dd8bcbd424e27c33f7b7c68310e5b2a5f79dfaf52e145e17011c4b15e64b290afc5320ef71d774c1972004a7dcac320d75cb3
   languageName: node
   linkType: hard
 
-"@ontologies/owl@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/owl@npm:2.0.0-rc.1"
+"@ontologies/owl@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/owl@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: cbf2389ee1ae7e39a8551cf252c98af7798ad989787a20cb97f0ff7652d10e82720648f4193e29de34b60b7b49ac7498138dc90224b2a09e5058f227ef7ad693
+    "@ontologies/core": ">1.5.0"
+  checksum: 76782dd842ee35650d756dda082f99ad282b5c8a25df25200160858a5bceca57454693dd66afab5d9ffd8b19fe40194c823b3e90a7c2cacc2057ca5f6c2fad0a
   languageName: node
   linkType: hard
 
-"@ontologies/rdf@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/rdf@npm:2.0.0-rc.1"
+"@ontologies/rdf@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/rdf@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: 63de909bdfa6cf59270f89cbf622bfc14bf7cb16ce0b1903f6de75e8c8157e0ea7ffd0e677a70655ada50680fad4d426d1e42f5c63b1448f044a2be750478824
+    "@ontologies/core": ">1.5.0"
+  checksum: 862275afc576943133227ef89e025ec15d07c16fadf8121e8947992d91e224a15f77caf510a42ea2859d6e3219ef45a86703e21b050c5459e904124e09f90a80
   languageName: node
   linkType: hard
 
-"@ontologies/rdfs@npm:^2.0.0-rc.2":
-  version: 2.0.0-rc.2
-  resolution: "@ontologies/rdfs@npm:2.0.0-rc.2"
+"@ontologies/rdfs@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/rdfs@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: b1c67ad78011c271af2fcf81e24fe1cf76535df07f1df5380cab10b7a667f9c3d8a1e563e240f7c623d2049de1b88ea2e1a66ac4751f0dcdc08182a8c52b3202
+    "@ontologies/core": ">1.5.0"
+  checksum: 7034f35f0806cb0a41f0ee5bc00f228e85adf39e3061e9c16892da88c20c031988ee76dccf97e72c8d5b69f41bfb7be4a97d5e31cfd0d43ab4be7ae496ece9b2
   languageName: node
   linkType: hard
 
-"@ontologies/schema@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/schema@npm:2.0.0-rc.1"
+"@ontologies/schema@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/schema@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: 211ebcf7c7142ab95081386bea4b82f3ce7c27cecf07d89245af9e2667ed09520290f4dab739c13d615492e9ef20b286f675c9fd5b04706d7e2409c9696120b4
+    "@ontologies/core": ">1.5.0"
+  checksum: 2f02cc1c59fba0a4a08b2ff1edd45c33932ee2946294db4b0a0136180c90c676747b4273b9107f1c646f69aaa1be1ea00b68a9a8cbbfa5884e2e1ef8b191bf24
   languageName: node
   linkType: hard
 
-"@ontologies/shacl@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/shacl@npm:2.0.0-rc.1"
+"@ontologies/shacl@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/shacl@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: 518b4435e62531608afc5c253682cb66b0755e4427a3e8f4edb56c6de066a51895ad2f27891959c12b80d5f3cf90c50ca22a3fd376002a3a0ecaa0c9ee0b6fab
+    "@ontologies/core": ">1.5.0"
+  checksum: a8b9ed93bec2be7d8e492c7deb06b24117ab43178fa3c672762c195aa68a0cfff2b72973e59206109a4dffc29edd09e558d9755aff473a53695df83e8951de83
   languageName: node
   linkType: hard
 
-"@ontologies/xsd@npm:^2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@ontologies/xsd@npm:2.0.0-rc.1"
+"@ontologies/xsd@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/xsd@npm:2.0.0"
   peerDependencies:
-    "@ontologies/core": ">=2.0.0"
-  checksum: 9cbbc627855f72ea559cfdb647fb6b8e352836a69ae3802c9446c23d11c1cb4f9572ae73f2369c548286dc51e84c6c5a5b4ff56e2c3f37fd25073462ee26450d
+    "@ontologies/core": ">1.5.0"
+  checksum: b856d3e768df73b6c73d69e8d52fbedf3ef54df8c435763aeb896601ef8777ef3fcfae75a6e51e5a64994f1d4b9bf22aa9dd6ee0aa08c9d2b0ef9951f2f13f12
   languageName: node
   linkType: hard
 
@@ -5981,17 +5981,17 @@ __metadata:
     "@monaco-editor/react": ^4.2.2
     "@ontola/link-devtools": ^2.0.2
     "@ontola/memoized-factory": ^2.0.1
-    "@ontologies/as": ^2.0.0-rc.1
+    "@ontologies/as": ^2.0.0
     "@ontologies/core": ^2.0.2
-    "@ontologies/dcterms": ^2.0.0-rc.1
-    "@ontologies/foaf": ^2.0.0-rc.1
-    "@ontologies/ld": ^2.0.0-rc.1
-    "@ontologies/owl": ^2.0.0-rc.1
-    "@ontologies/rdf": ^2.0.0-rc.1
-    "@ontologies/rdfs": ^2.0.0-rc.2
-    "@ontologies/schema": ^2.0.0-rc.1
-    "@ontologies/shacl": ^2.0.0-rc.1
-    "@ontologies/xsd": ^2.0.0-rc.1
+    "@ontologies/dcterms": ^2.0.0
+    "@ontologies/foaf": ^2.0.0
+    "@ontologies/ld": ^2.0.0
+    "@ontologies/owl": ^2.0.0
+    "@ontologies/rdf": ^2.0.0
+    "@ontologies/rdfs": ^2.0.0
+    "@ontologies/schema": ^2.0.0
+    "@ontologies/shacl": ^2.0.0
+    "@ontologies/xsd": ^2.0.0
     "@rdfdev/actions": ^1.1.1
     "@rdfdev/collections": ^1.2.0
     "@rdfdev/delta": ^1.2.0
