@@ -20,7 +20,7 @@ import { isFunction } from './helpers/types';
 import { WebsiteContext } from './location';
 import configureStore from './state';
 import themes from './themes';
-import englishMessages from './translations/en.json';
+import englishMessages from './lang/en.json';
 import { getViews } from './views';
 
 const wrapProviders = ({
