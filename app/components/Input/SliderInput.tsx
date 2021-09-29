@@ -52,7 +52,7 @@ const SliderInput: React.FC<InputComponentProps> = ({
     onChange(val);
   }, [onChange]);
 
-  if (!maxInclusive || !minInclusive) {
+  if (maxInclusive === undefined || minInclusive === undefined) {
     return null;
   }
 
