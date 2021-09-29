@@ -75,8 +75,14 @@ const InterventionFull: FC<InterventionFullProps> = ({
                 style={{ maxHeight: '10em' }}
               />
             </Property>
-            <AttributeListItem label={rivm.businessSectionEmployees} />
-            <AttributeListItem label={schema.industry} />
+            <AttributeListItem
+              label={rivm.businessSectionEmployees}
+              propertyLabel="Omvang"
+            />
+            <AttributeListItem
+              label={schema.industry}
+              propertyLabel="Sector"
+            />
             <AttributeListItem
               label={schema.creator}
               propertyLabel="Contactpersoon"
@@ -97,8 +103,14 @@ const InterventionFull: FC<InterventionFullProps> = ({
             Doelen &amp; doelgroepen
           </Heading>
           <AttributeList>
-            <AttributeListItem label={rivm.targetAudience} />
-            <AttributeListItem label={rivm.interventionEffects} />
+            <AttributeListItem
+              label={rivm.targetAudience}
+              propertyLabel="Doelgroep"
+            />
+            <AttributeListItem
+              label={rivm.interventionEffects}
+              propertyLabel="Bedoelde effecten"
+            />
           </AttributeList>
           <p>
             <Property label={rivm.interventionGoal} />
@@ -110,14 +122,32 @@ const InterventionFull: FC<InterventionFullProps> = ({
             Invoering
           </Heading>
           <AttributeList>
-            <AttributeListItem label={rivm.continuous} />
-            <AttributeListItem label={rivm.independent} />
-            <AttributeListItem label={rivm.specificToolsRequired} />
-            <AttributeListItem label={rivm.managementInvolvement} />
-            <AttributeListItem label={rivm.trainingRequired} />
+            <AttributeListItem
+              label={rivm.continuous}
+              propertyLabel="Aard van de interventie"
+            />
+            <AttributeListItem
+              label={rivm.independent}
+              propertyLabel="Zelfstandig of ondersteund door een derde partij"
+            />
+            <AttributeListItem
+              label={rivm.specificToolsRequired}
+              propertyLabel="Gereedschap, materiaal en (reserve) onderdelen"
+            />
+            <AttributeListItem
+              label={rivm.managementInvolvement}
+              propertyLabel="Belang betrokken management"
+            />
+            <AttributeListItem
+              label={rivm.trainingRequired}
+              propertyLabel="Training of opleiding nodig"
+            />
           </AttributeList>
           <p>
-            <Property label={rivm.additionalIntroductionInformation} />
+            <Property
+              label={rivm.additionalIntroductionInformation}
+              propertyLabel="Extra informatie over het invoeren van de interventie"
+            />
           </p>
         </CardContent>
         <CardDivider />
@@ -136,6 +166,7 @@ const InterventionFull: FC<InterventionFullProps> = ({
             />
             <AttributeListItem
               label={rivm.natureOfCosts}
+              propertyLabel="De aard van deze kosten was"
             />
           </AttributeList>
           <p>
