@@ -239,6 +239,8 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
     rdf.quad(form.CheckboxGroup, rdfs.subClassOf, form.Field),
     rdf.quad(form.CheckboxInput, rdfx.type, rdfs.Class),
     rdf.quad(form.CheckboxInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.ColorInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.ColorInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.DateInput, rdfx.type, rdfs.Class),
     rdf.quad(form.DateInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.DateTimeInput, rdfx.type, rdfs.Class),
