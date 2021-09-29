@@ -8,12 +8,14 @@ import { useDataFetching, useLRS } from 'link-redux';
 import React from 'react';
 
 import { containerToArr } from '../helpers/data';
+import { isPromise } from '../helpers/types';
 
 export type ResolvedArray<I> = [array: I[], loading: boolean];
 
 export const useContainerToArr = <I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I>  => {
   const lrs = useLRS();
   const lastUpdate = useDataFetching(isNode(subject) ? subject : []);
+  const [version, setVersion] = React.useState(0);
 
   return React.useMemo(() => {
     if (!subject) {
@@ -26,6 +28,12 @@ export const useContainerToArr = <I extends Term = SomeTerm>(subject?: SomeNode 
       return [result, false];
     }
 
+    if (isPromise(result)) {
+      result.then(() => {
+        setVersion((old) => old + 1);
+      });
+    }
+
     return [[], true];
-  }, [subject, lastUpdate]);
+  }, [subject, lastUpdate, version]);
 };

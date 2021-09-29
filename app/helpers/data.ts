@@ -18,6 +18,7 @@ import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { FileStore } from '../hooks/useFileStore';
+import argu from '../ontology/argu';
 import ontola from '../ontology/ontola';
 
 import { sequenceFilter } from './iris';
@@ -225,6 +226,12 @@ function containerToArr<I extends Term = SomeTerm>(
 
   if (items) {
     return seqToArr<I>(lrs, acc, items);
+  }
+
+  const terms = lrs.getResourceProperty<NamedNode>(rest, argu.terms);
+
+  if (terms) {
+    return containerToArr<I>(lrs, acc, terms);
   }
 
   return acc;
