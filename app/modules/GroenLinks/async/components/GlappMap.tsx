@@ -13,8 +13,8 @@ import {
   PostalStats,
 } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
-import MapCanvas from '../../../../async/MapView/MapCanvas';
-import { FOCUS_ZOOM, ViewProps } from '../../../../async/MapView/useMap';
+import MapCanvas from '../../../../async/MapView/components/MapCanvas';
+import { FOCUS_ZOOM, ViewProps } from '../../../../async/MapView/hooks/useMap';
 import useEventsLayer from '../hooks/useEventsLayer';
 import usePostalShapes, { PostalCodes } from '../hooks/usePostalShapes';
 import useSelectedPostalCode from '../hooks/useSelectedPostalCode';

@@ -78,7 +78,7 @@ const CollectionFilterToggle = ({
         badgeContent=" "
         color="secondary"
         invisible={filterBarState.show || filters.length == 0}
-        overlap="circle"
+        overlap="circular"
         variant="dot"
       >
         <IconButton

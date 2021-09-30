@@ -30,12 +30,11 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getMetaContent } from '../../helpers/dom';
-import { handle } from '../../helpers/logging';
-import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
-import { mapMessages } from '../../translations/messages';
-
-import CurrentLocationControl from './CurrentLocationControl';
+import { getMetaContent } from '../../../helpers/dom';
+import { handle } from '../../../helpers/logging';
+import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../hooks/useMapAccessToken';
+import { mapMessages } from '../../../translations/messages';
+import CurrentLocationControl from '../components/CurrentLocationControl';
 
 export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;

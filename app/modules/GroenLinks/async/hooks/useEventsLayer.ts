@@ -7,7 +7,7 @@ import React from 'react';
 import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../../../components/Input/PostalRangeInput';
 import { Events } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
-import { getStyles } from '../../../../async/MapView/helpers';
+import { getStyles } from '../../../../async/MapView/lib/helpers';
 
 interface EventsLayer {
   clustered: boolean;

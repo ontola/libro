@@ -1,4 +1,5 @@
-import { Theme, fade } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
+import { alpha } from '@material-ui/core/styles';
 import fa from 'fontawesome';
 import { Feature } from 'ol';
 import Circle from 'ol/geom/Circle';
@@ -9,7 +10,7 @@ import Icon from 'ol/style/Icon';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 
-import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
 
 interface IconProps {
   background: {
@@ -135,11 +136,11 @@ const getIconProps = (theme: Theme, visited: boolean): IconProps => {
   const visitedIconProps = {
     background: {
       ...defaultIconProps.background,
-      background: fade(defaultIconProps.background.background, BACKGROUND_FADE),
+      background: alpha(defaultIconProps.background.background, BACKGROUND_FADE),
     },
     text: {
       ...defaultIconProps.text,
-      color: fade(defaultIconProps.text.color, TEXT_FADE),
+      color: alpha(defaultIconProps.text.color, TEXT_FADE),
     },
   };
 

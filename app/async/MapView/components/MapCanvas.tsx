@@ -6,15 +6,14 @@ import 'ol/ol.css';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { ButtonTheme } from '../../components/Button';
-import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
-import LinkLoader from '../../components/Loading/LinkLoader';
-import OverlayContainer from '../../components/OverlayContainer';
-import { alertDialogTopology } from '../../topologies/Dialog';
-
-import useMap, { UseMapProps } from './useMap';
-import useMapStyles from './useMapStyles';
-import useOverlay from './useOverlay';
+import { ButtonTheme } from '../../../components/Button';
+import ErrorButtonWithFeedback from '../../../components/Error/ErrorButtonWithFeedback';
+import LinkLoader from '../../../components/Loading/LinkLoader';
+import OverlayContainer from '../../../components/OverlayContainer';
+import { alertDialogTopology } from '../../../topologies/Dialog';
+import useMap, { UseMapProps } from '../hooks/useMap';
+import useMapStyles from '../hooks/useMapStyles';
+import useOverlay from '../hooks/useOverlay';
 
 interface MapCanvasProps extends UseMapProps {
   large?: boolean;

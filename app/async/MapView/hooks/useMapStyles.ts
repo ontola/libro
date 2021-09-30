@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme } from '../../../themes/themes';
 
 export default makeStyles<LibroTheme>((theme) => ({
   canvas: {

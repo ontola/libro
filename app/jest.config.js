@@ -34,6 +34,6 @@ module.exports = {
   ],
   testURL: 'https://argu.dev/o/1',
   transformIgnorePatterns: [
-    'node_modules/(?!(intl-messageformat|react-intl)/)',
+    'node_modules/(?!(intl-messageformat|react-intl|ol)/)',
   ],
 };
