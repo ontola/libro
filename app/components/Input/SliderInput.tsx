@@ -1,13 +1,21 @@
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/styles';
+import { useProperty } from 'link-redux';
 import React from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
+import ontola from '../../ontology/ontola';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 const StyledSlider = withStyles({
   active: {},
+  markLabel: {
+    '&[data-index="1"]': {
+      transform: 'translateX(-100%)',
+    },
+    transform: 'translateX(0%)',
+  },
   rail: {
     borderRadius: 4,
     height: 8,
@@ -47,6 +55,8 @@ const SliderInput: React.FC<InputComponentProps> = ({
     maxInclusive,
     minInclusive,
   } = fieldShape || {};
+  const [maxInclusiveLabel] = useProperty(ontola.maxInclusiveLabel);
+  const [minInclusiveLabel] = useProperty(ontola.minInclusiveLabel);
   const handleChange = React.useCallback((e: any, val: any) => {
     e.preventDefault();
     onChange(val);
@@ -57,10 +67,10 @@ const SliderInput: React.FC<InputComponentProps> = ({
   }
 
   const defaultMarks = [{
-    label: minInclusive,
+    label: minInclusiveLabel?.value ?? minInclusive,
     value: minInclusive,
   }, {
-    label: maxInclusive,
+    label: maxInclusiveLabel?.value ?? maxInclusive,
     value: maxInclusive,
   }];
 
