@@ -10,7 +10,7 @@ const matomoScript = (
 ) => {
   const {
     host,
-    containerId,
+    container_id,
     type,
   } = configuration;
 
@@ -29,7 +29,7 @@ const matomoScript = (
         (function() {
           var u="https://${host}/";
           _paq.push(['setTrackerUrl', u+'${trackerName}.php']);
-          _paq.push(['setSiteId', ${containerId}]);
+          _paq.push(['setSiteId', ${container_id}]);
           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
           g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'${trackerName}.js'; s.parentNode.insertBefore(g,s);
         })();
@@ -38,28 +38,28 @@ const matomoScript = (
 };
 
 const googleAnalyticsScript = (
-  { containerId },
+  { container_id },
   nonceStr
 ) => (
-  `<script async src="https://www.googletagmanager.com/gtag/js?id=${containerId}"></script>
+  `<script async src="https://www.googletagmanager.com/gtag/js?id=${container_id}"></script>
    <script async nonce="${nonceStr}">
      window.dataLayer = window.dataLayer || [];
      function gtag(){dataLayer.push(arguments);}
      gtag('js', new Date());
-     gtag('config', ${JSON.stringify(containerId)});
+     gtag('config', ${JSON.stringify(container_id)});
    </script>`
 );
 
-const tagManager = ({ id: containerId }, nonceStr) => (
+const tagManager = ({ container_id }, nonceStr) => (
   `<script nonce="${nonceStr}">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${containerId}');</script>`
+})(window,document,'script','dataLayer','${container_id}');</script>`
 );
 
-const tagManagerBody = ({ containerId }) => `
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${containerId}"
+const tagManagerBody = ({ container_id }) => `
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${container_id}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`;
 
 export const trackingCodes = (configurations, isUser, nonceStr) => {

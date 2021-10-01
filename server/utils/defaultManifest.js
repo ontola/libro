@@ -29,7 +29,7 @@ export default (origin, websocket = true) => {
       theme_options: '',
       tracking: [
         {
-          containerId: '-1',
+          container_id: '-1',
           host: matomoHostname,
           type: 'Matomo',
         },
