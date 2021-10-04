@@ -49,19 +49,7 @@ const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement): P
   };
 };
 
-const featureFromPlacement = (
-  lrs: LinkReduxLRSType,
-  placement: SomeNode | Placement,
-  visitedFeatures: any,
-  theme: Theme,
-) => {
-  const {
-    image,
-    lat,
-    lon,
-    zoomLevel,
-  } = featureProps(lrs, placement);
-
+const toFeature = (placement, lat, lon, image, theme, visitedFeatures, zoomLevel) => {
   if (!image || !lat || !lon) {
     return undefined;
   }
@@ -80,6 +68,22 @@ const featureFromPlacement = (
   });
 
   return f;
+};
+
+const featureFromPlacement = (
+  lrs: LinkReduxLRSType,
+  placement: SomeNode | Placement,
+  visitedFeatures: any,
+  theme: Theme,
+) => {
+  const {
+    image,
+    lat,
+    lon,
+    zoomLevel,
+  } = featureProps(lrs, placement);
+
+  return toFeature(placement, lat, lon, image, theme, visitedFeatures, zoomLevel);
 };
 
 type FeatureSet = [Array<Feature<Point>>, Feature<Point> | null, boolean];

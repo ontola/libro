@@ -21,20 +21,30 @@ export const MapView: React.FC<PropTypes> = ({
   placements,
 }) => {
   const [placementFeatures, resolvedCenter, loading] = useFeatures(placements);
-  const initialView = (initialLat || initialLon || initialZoom) ? {
-    center: (initialLat && initialLon) ? fromLonLat([initialLon, initialLat]) : undefined,
+
+  const initialView = (initialLat && initialLon && initialZoom) ? {
+    center: fromLonLat([initialLon, initialLat]),
     zoom: initialZoom,
   } : undefined;
+
   const [view, setView] = React.useState(initialView);
+
   React.useEffect(() => {
     if (resolvedCenter) {
-      setView({
-        center: resolvedCenter?.getGeometry()?.getCoordinates() || undefined,
-        zoom: resolvedCenter?.getProperties()?.zoomLevel,
-      });
+      const center = resolvedCenter.getGeometry()?.getCoordinates() || undefined;
+      const zoom = resolvedCenter?.getProperties()?.zoomLevel;
+
+      if (center) {
+        setView({
+          center,
+          zoom,
+        });
+      }
     }
   }, [loading, resolvedCenter?.getId()]);
+
   const [overlayPosition, setOverlayPosition] = React.useState(undefined);
+
   const handleSelect = React.useCallback((feature, newCenter) => {
     if (onSelect) {
       onSelect(feature, newCenter);
@@ -46,12 +56,14 @@ export const MapView: React.FC<PropTypes> = ({
 
     setOverlayPosition(newCenter);
   }, [onSelect]);
+
   const layers = React.useMemo(() => (
     [{
       clustered: true,
       features: placementFeatures,
     }]
   ), [placementFeatures]);
+
   const handleViewChange = React.useCallback((newCenter, newZoom) => {
     setView({
       center: newCenter,
@@ -59,7 +71,7 @@ export const MapView: React.FC<PropTypes> = ({
     });
   }, [setView]);
 
-  if (loading || !placementFeatures) {
+  if (loading || !placementFeatures || !view) {
     return <LoadingCard />;
   }
 

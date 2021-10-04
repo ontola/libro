@@ -7,21 +7,21 @@ import {
 import { defaults as defaultControls } from 'ol/control';
 import { Coordinate } from 'ol/coordinate';
 import { pointerMove, singleClick } from 'ol/events/condition';
-import { boundingExtent, getCenter } from 'ol/extent';
 import { FeatureLike } from 'ol/Feature';
-import { Point } from 'ol/geom';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
-import { fromLonLat, toLonLat } from 'ol/proj';
+import { toLonLat } from 'ol/proj';
 import Cluster from 'ol/source/Cluster';
 import TileSource from 'ol/source/Tile';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import { StyleFunction } from 'ol/style/Style';
 import React, {
+  Dispatch,
   EventHandler,
   MutableRefObject,
+  SetStateAction,
   useCallback,
   useEffect,
   useMemo,
@@ -36,12 +36,10 @@ import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../
 import { mapMessages } from '../../../translations/messages';
 import CurrentLocationControl from '../components/CurrentLocationControl';
 
+import { useSelectHandler } from './useSelectHandler';
+
 export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;
-const CLUSTER_PADDING = 0.5;
-const DEFAULT_LAT = 52.1344;
-const DEFAULT_LON = 5.1917;
-const DEFAULT_ZOOM = 6.8;
 const TILE_SIZE = 512;
 
 interface Layer {
@@ -50,8 +48,8 @@ interface Layer {
 }
 
 export interface ViewProps {
-  center?: Coordinate;
-  zoom?: number;
+  center: Coordinate;
+  zoom: number;
 }
 
 interface CreateMapProps {
@@ -62,6 +60,7 @@ interface CreateMapProps {
   tileSource?: TileSource;
   view?: ViewProps;
 }
+
 const getStyle = (styleName: string): StyleFunction => (
   (feature: FeatureLike) => {
     const features = feature?.get('features');
@@ -122,11 +121,93 @@ const createMap = ({
     layers,
     target: current,
     view: new View({
-      center: center || fromLonLat([DEFAULT_LON, DEFAULT_LAT]),
-      zoom: zoom || DEFAULT_ZOOM,
+      center,
+      zoom,
     }),
   });
 };
+
+export const centerChanged = (
+  center: Coordinate,
+  zoom: number,
+  view?: View,
+): void => {
+  if (view) {
+    view.animate({
+      center,
+      zoom,
+    });
+  }
+};
+
+export const handleMapClick = (
+  onMapClick:(newLon: number, newLat: number, newZoom: number) => void,
+  internalZoom: number,
+): (e: MapBrowserEvent) => boolean => (e: MapBrowserEvent) => {
+  if (onMapClick) {
+    const [lon, lat] = toLonLat(e.coordinate);
+    onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
+  }
+
+  return true;
+};
+
+const handleViewChange = (
+  internalCenter: Coordinate,
+  setCenter: Dispatch<SetStateAction<Coordinate>>,
+  internalZoom: number,
+  setZoom: Dispatch<SetStateAction<number>>,
+  onMove?: EventHandler<any>,
+  onViewChange?: (center: Coordinate, zoom: number) => any,
+  onZoom?: EventHandler<any>,
+): (e: MapBrowserEvent) => void => (e: MapBrowserEvent) => {
+  const newCenter = e.map.getView().getCenter();
+
+  if (newCenter && newCenter !== internalCenter) {
+    if (onMove) {
+      onMove(newCenter);
+    }
+
+    setCenter(newCenter);
+  }
+
+  const newZoom = e.map.getView().getZoom();
+
+  if (newZoom && newZoom !== internalZoom) {
+    if (onZoom) {
+      onZoom(newZoom);
+    }
+
+    setZoom(newZoom);
+  }
+
+  if (newCenter && newZoom && onViewChange) {
+    onViewChange(newCenter, newZoom);
+  }
+};
+
+export const getSelect = (
+  setDeselect: Dispatch<SetStateAction<undefined | (() => void)>>,
+  handleSelect: (e: any) => void,
+): Select => {
+  const select = new Select({
+    condition: singleClick,
+    style: getStyle('hoverStyle'),
+  });
+  select.on('select', handleSelect);
+  setDeselect(() => () => {
+    select.getFeatures().clear();
+    handleSelect(undefined);
+  });
+
+  return select;
+};
+
+export const getHoverSelect = (): Select =>
+  new Select({
+    condition: pointerMove,
+    style: getStyle('hoverStyle'),
+  });
 
 export interface UseMapProps {
   layers: Layer[];
@@ -136,7 +217,7 @@ export interface UseMapProps {
   onSelect?: (feature: Feature | undefined, center: Coordinate | undefined) => any;
   onViewChange?: (center: Coordinate, zoom: number) => any;
   onZoom?: EventHandler<any>;
-  view?: ViewProps;
+  view: ViewProps;
 }
 
 const useMap = (props: UseMapProps): {
@@ -164,74 +245,37 @@ const useMap = (props: UseMapProps): {
     [],
   );
   const mapRef = useRef<HTMLDivElement>(null);
-  const { center, zoom } = view || {};
+  // center should probably only be used for initialization
+  const { center, zoom } = view;
 
-  const [internalCenter, setCenter] = useState<Coordinate | undefined>(undefined);
-  const [internalZoom, setZoom] = useState(zoom || DEFAULT_ZOOM);
+  const [internalCenter, setCenter] = useState<Coordinate>(center);
+  const [internalZoom, setZoom] = useState<number>(zoom);
   const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | undefined>(undefined);
   const [tileSource, setTileSource] = useState<TileSource | undefined>(undefined);
   const [error, setError] = useState<Error | undefined>(undefined);
   const [memoizedMap, setMap] = useState<OLMap | undefined>(undefined);
+  const [deselect, setDeselect] = useState<undefined | (() => void)>(undefined);
 
   useEffect(() => {
     if (mapToken.accessToken) {
       setError(undefined);
     }
   }, [mapToken.accessToken]);
+
   const handleError = useCallback((e) => {
     handle(e);
     setError(e);
 
     return true;
   }, []);
+
   const handleLoad = useCallback(() => {
     setError(undefined);
 
     return true;
   }, []);
-  const handleSelect = useCallback((e) => {
-    const [feature] = e?.selected || [];
-    const features = feature?.get('features');
-    const selected = features?.[0] || feature;
 
-    if (features?.length > 1) {
-      const [left, top, right, bottom] = boundingExtent(
-        features.map((f: Feature<Point>) => f?.getGeometry()?.getCoordinates()),
-      );
-      const clusterCenter = getCenter([left, top, right, bottom]);
-
-      if (left === right && top === bottom) {
-        if (onClusterSelect) {
-          onClusterSelect(features, clusterCenter);
-        }
-      } else {
-        const eventView = e.mapBrowserEvent.map.getView();
-        // eslint-disable-next-line no-underscore-dangle
-        const [width, height] = eventView.getViewportSize_();
-        const resolution = eventView.getResolutionForExtentInternal(
-          [left, top, right, bottom],
-          [width * CLUSTER_PADDING, height * CLUSTER_PADDING],
-        );
-        const newZoom = eventView.getZoomForResolution(resolution);
-
-        e.mapBrowserEvent.map.getView().animate({
-          center: clusterCenter,
-          zoom: newZoom,
-        });
-      }
-    } else if (selected) {
-      const geometry = selected.getGeometry();
-      const selectCenter = (geometry.getType() === 'Point')
-        ? geometry.getCoordinates()
-        : getCenter(geometry.getExtent());
-
-      if (onSelect) {
-        onSelect(selected, selectCenter);
-      }
-    } else if (onSelect) {
-      onSelect(undefined, undefined);
-    }
-  }, [onSelect]);
+  const handleSelect = useSelectHandler(onClusterSelect, onSelect);
 
   useEffect(() => {
     if (mapToken.accessToken) {
@@ -290,114 +334,52 @@ const useMap = (props: UseMapProps): {
   }, [mapRef.current, mapToken.accessToken, layerSources, tileSource]);
 
   useEffect(() => {
-    const handleViewChange = (e: MapBrowserEvent) => {
-      const newCenter = e.map.getView().getCenter();
+    const viewChangeHandler = handleViewChange(internalCenter, setCenter, internalZoom, setZoom,  onMove, onViewChange, onZoom);
 
-      if (newCenter !== internalCenter) {
-        if (onMove) {
-          onMove(newCenter);
-        }
-
-        setCenter(newCenter);
-      }
-
-      const newZoom = e.map.getView().getZoom();
-
-      if (newZoom && newZoom !== internalZoom) {
-        if (onZoom) {
-          onZoom(newZoom);
-        }
-
-        setZoom(newZoom);
-      }
-
-      if (newCenter && newZoom && onViewChange) {
-        onViewChange(newCenter, newZoom);
-      }
-    };
-
-    if (memoizedMap && handleViewChange) {
-      memoizedMap.addEventListener('moveend', handleViewChange as any);
+    if (memoizedMap && viewChangeHandler) {
+      memoizedMap.addEventListener('moveend', viewChangeHandler as any);
     }
 
     return () => {
-      if (memoizedMap && handleViewChange) {
-        memoizedMap.removeEventListener('moveend', handleViewChange as any);
+      if (memoizedMap && viewChangeHandler) {
+        memoizedMap.removeEventListener('moveend', viewChangeHandler as any);
       }
     };
   }, [!!memoizedMap, internalCenter, internalZoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
 
   useEffect(() => {
-    const handleMapClick = (e: MapBrowserEvent) => {
-      if (onMapClick) {
-        const [lon, lat] = toLonLat(e.coordinate);
-        onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
-      }
-
-      return true;
-    };
-
     if (memoizedMap && onMapClick) {
-      memoizedMap.addEventListener('click', handleMapClick as any);
+      memoizedMap.addEventListener('click', handleMapClick(onMapClick, internalZoom) as any);
     }
 
     return () => {
       if (memoizedMap && onMapClick) {
-        memoizedMap.removeEventListener('click', handleMapClick as any);
+        memoizedMap.removeEventListener('click', handleMapClick(onMapClick, internalZoom) as any);
       }
     };
   }, [!!memoizedMap, onMapClick]);
 
-  useEffect(() => {
-    if (memoizedMap && (center || zoom)) {
-      if (!internalCenter) {
-        if (center) {
-          memoizedMap.getView().setCenter(center);
-        }
-
-        if (zoom) {
-          memoizedMap.getView().setZoom(zoom);
-        }
-      } else {
-        memoizedMap.getView().animate({
-          center,
-          zoom,
-        });
-      }
-    }
-  }, [memoizedMap, center, zoom]);
+  useEffect(() => centerChanged(center, zoom, memoizedMap?.getView()), [memoizedMap, center, zoom]);
 
   useEffect(() => {
     updateFeatures(layerSources, layers);
   }, [!!layerSources, ...layers]);
 
-  const [deselect, setDeselect] = useState<undefined | (() => void)>(undefined);
   useEffect(() => {
-    if (memoizedMap) {
-      const select = new Select({
-        condition: singleClick,
-        style: getStyle('hoverStyle'),
-      });
-      select.on('select', handleSelect);
-      setDeselect(() => () => {
-        select.getFeatures().clear();
-        handleSelect(undefined);
-      });
-      memoizedMap.addInteraction(select);
-
-      const hover = new Select({
-        condition: pointerMove,
-        style: getStyle('hoverStyle'),
-      });
-      memoizedMap.addInteraction(hover);
-
-      return () => {
-        memoizedMap.removeInteraction(select);
-        memoizedMap.removeInteraction(hover);
-      };
+    if (!memoizedMap) {
+      return () => undefined;
     }
 
-    return () => undefined;
+    const select = getSelect(setDeselect, handleSelect);
+    memoizedMap.addInteraction(select);
+
+    const hover = getHoverSelect();
+    memoizedMap.addInteraction(hover);
+
+    return () => {
+      memoizedMap.removeInteraction(select);
+      memoizedMap.removeInteraction(hover);
+    };
   }, [handleSelect, memoizedMap]);
 
   return {
