@@ -1,8 +1,9 @@
 import { fromLonLat } from 'ol/proj';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { LoadingCard } from '../../../components/Loading';
 import { PropTypes } from '../../../containers/MapView';
+import { getMetaContent } from '../../../helpers/arguHelpers';
 import { useFeatures } from '../hooks/useFeatures';
 
 import MapCanvas from './MapCanvas';
@@ -20,6 +21,10 @@ export const MapView: React.FC<PropTypes> = ({
   overlayResource,
   placements,
 }) => {
+  const mapboxTileURL = useMemo(
+    () => getMetaContent('mapboxTileURL'),
+    [],
+  );
   const [placementFeatures, resolvedCenter, loading] = useFeatures(placements);
 
   const initialView = (initialLat && initialLon && initialZoom) ? {
@@ -31,10 +36,10 @@ export const MapView: React.FC<PropTypes> = ({
 
   React.useEffect(() => {
     if (resolvedCenter) {
-      const center = resolvedCenter.getGeometry()?.getCoordinates() || undefined;
-      const zoom = resolvedCenter?.getProperties()?.zoomLevel;
+      const center = resolvedCenter.getGeometry()?.getCoordinates();
+      const zoom = resolvedCenter.getProperties()?.zoomLevel;
 
-      if (center) {
+      if (center && zoom) {
         setView({
           center,
           zoom,
@@ -71,7 +76,7 @@ export const MapView: React.FC<PropTypes> = ({
     });
   }, [setView]);
 
-  if (loading || !placementFeatures || !view) {
+  if (loading || !placementFeatures || !view || !mapboxTileURL) {
     return <LoadingCard />;
   }
 
@@ -80,6 +85,7 @@ export const MapView: React.FC<PropTypes> = ({
       overlayPadding
       large={large}
       layers={layers}
+      mapboxTileURL={mapboxTileURL}
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}

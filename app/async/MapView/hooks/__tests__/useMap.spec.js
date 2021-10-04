@@ -1,6 +1,6 @@
 import { View } from 'ol';
 
-import { centerChanged } from '../useMap';
+import { } from '../useMap';
 
 describe('useMap', () => {
   describe('centerChanged', () => {

@@ -2,7 +2,7 @@ import {
   Feature,
   MapBrowserEvent,
   Map as OLMap,
-  View,
+  View as OLView,
 } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
 import { Coordinate } from 'ol/coordinate';
@@ -24,13 +24,15 @@ import React, {
   SetStateAction,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
 
+<<<<<<< HEAD
 import { getMetaContent } from '../../../helpers/dom';
+=======
+>>>>>>> core#832 refactor
 import { handle } from '../../../helpers/logging';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../hooks/useMapAccessToken';
 import { mapMessages } from '../../../translations/messages';
@@ -120,24 +122,11 @@ const createMap = ({
     controls,
     layers,
     target: current,
-    view: new View({
+    view: new OLView({
       center,
       zoom,
     }),
   });
-};
-
-export const centerChanged = (
-  center: Coordinate,
-  zoom: number,
-  view?: View,
-): void => {
-  if (view) {
-    view.animate({
-      center,
-      zoom,
-    });
-  }
 };
 
 export const handleMapClick = (
@@ -203,14 +192,29 @@ export const getSelect = (
   return select;
 };
 
-export const getHoverSelect = (): Select =>
+const getHoverSelect = (): Select =>
   new Select({
     condition: pointerMove,
     style: getStyle('hoverStyle'),
   });
 
+const toVectorSource = (layer: Layer): VectorSource =>
+  layer.clustered ?
+    new Cluster({
+      distance: CLUSTER_DISTANCE,
+      source: new VectorSource(),
+    }) :
+    new VectorSource();
+
+const toTileSource = (accessToken: string, URL: string): TileSource =>
+  new XYZ({
+    tileSize: [TILE_SIZE, TILE_SIZE],
+    url: `${URL}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
+  });
+
 export interface UseMapProps {
   layers: Layer[];
+  mapboxTileURL: string;
   onClusterSelect?: (features: Feature[], newCenter: Coordinate) => void;
   onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
   onMove?: EventHandler<any>;
@@ -230,6 +234,7 @@ const useMap = (props: UseMapProps): {
 } => {
   const {
     layers,
+    mapboxTileURL,
     onClusterSelect,
     onMapClick,
     onMove,
@@ -240,12 +245,7 @@ const useMap = (props: UseMapProps): {
   } = props;
   const intl = useIntl();
   const [mapToken, requestMapToken] = useMapAccessToken();
-  const mapboxTileURL = useMemo(
-    () => getMetaContent('mapboxTileURL'),
-    [],
-  );
   const mapRef = useRef<HTMLDivElement>(null);
-  // center should probably only be used for initialization
   const { center, zoom } = view;
 
   const [internalCenter, setCenter] = useState<Coordinate>(center);
@@ -279,27 +279,10 @@ const useMap = (props: UseMapProps): {
 
   useEffect(() => {
     if (mapToken.accessToken) {
-      const sources = layers.map((layer) => {
-        const vectorSource = new VectorSource();
-        let layerSource;
-
-        if (layer.clustered) {
-          layerSource = new Cluster({
-            distance: CLUSTER_DISTANCE,
-            source: vectorSource,
-          });
-        } else {
-          layerSource = vectorSource;
-        }
-
-        return layerSource;
-      });
-
+      const sources = layers.map(toVectorSource);
       setLayerSources(sources);
-      const source = new XYZ({
-        tileSize: [TILE_SIZE, TILE_SIZE],
-        url: `${mapboxTileURL}/tiles/{z}/{x}/{y}?access_token=${mapToken.accessToken}`,
-      });
+
+      const source = toTileSource(mapToken.accessToken, mapboxTileURL);
       source.addEventListener('tileloadend', handleLoad);
       source.addEventListener('tileloaderror', handleError);
       source.addEventListener('imageloaderror', handleError);
@@ -358,8 +341,6 @@ const useMap = (props: UseMapProps): {
       }
     };
   }, [!!memoizedMap, onMapClick]);
-
-  useEffect(() => centerChanged(center, zoom, memoizedMap?.getView()), [memoizedMap, center, zoom]);
 
   useEffect(() => {
     updateFeatures(layerSources, layers);

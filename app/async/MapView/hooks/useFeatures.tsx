@@ -49,11 +49,15 @@ const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement): P
   };
 };
 
-const toFeature = (placement, lat, lon, image, theme, visitedFeatures, zoomLevel) => {
-  if (!image || !lat || !lon) {
-    return undefined;
-  }
-
+const toFeature = (
+  placement: SomeNode | Placement,
+  lat: number,
+  lon: number,
+  image: NamedNode,
+  theme: Theme,
+  visitedFeatures: [any],
+  zoomLevel?: number,
+) => {
   const f = new Feature(new Point(fromLonLat([lon, lat])));
 
   f.setId(isNode(placement) ? placement.value : placement.id);
@@ -73,7 +77,7 @@ const toFeature = (placement, lat, lon, image, theme, visitedFeatures, zoomLevel
 const featureFromPlacement = (
   lrs: LinkReduxLRSType,
   placement: SomeNode | Placement,
-  visitedFeatures: any,
+  visitedFeatures: [any],
   theme: Theme,
 ) => {
   const {
@@ -82,6 +86,10 @@ const featureFromPlacement = (
     lon,
     zoomLevel,
   } = featureProps(lrs, placement);
+
+  if (!image || !lat || !lon) {
+    return undefined;
+  }
 
   return toFeature(placement, lat, lon, image, theme, visitedFeatures, zoomLevel);
 };
