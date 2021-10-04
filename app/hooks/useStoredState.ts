@@ -1,17 +1,18 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-const useStoredState = <T = string>(
+const useStoredState = <T = string, I = undefined>(
   key: string,
-  initialValue: T | undefined,
+  initialValue: T | I,
   storage: Storage = localStorage,
-  parseFromString: (x: string | null) => T = (x: unknown) => x as T,
+  parseFromString: (x: string) => T | I = (x: string) => x as unknown as T | I,
   parseToString: (x: T) => string = (x: unknown) => x as string,
-): [T | undefined, Dispatch<SetStateAction<T | undefined>>, () => T | undefined] => {
-  const getValueRaw = React.useCallback(
-    () => (storage.getItem(key) !== null ? parseFromString(storage.getItem(key)) : initialValue),
-    [key, storage, initialValue],
-  );
-  const [stored, setValueRaw] = React.useState<T | undefined>(getValueRaw);
+): [T | I, Dispatch<SetStateAction<T | I>>, () => T | I] => {
+  const getValueRaw = React.useCallback(() => {
+    const val = storage.getItem(key);
+
+    return (val !== null ? parseFromString(val) : initialValue);
+  }, [key, storage, initialValue]);
+  const [stored, setValueRaw] = React.useState<T | I>(getValueRaw);
 
   const setValue = React.useCallback((value) => {
     if (value !== undefined) {

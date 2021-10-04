@@ -56,11 +56,11 @@ const requestToken = (): Promise<ActiveMapAccessToken> =>
   fetch('/api/maps/accessToken')
     .then((res) => res.json());
 
-const serializeJSON = (val: string | null): MapAccessToken => val ? JSON.parse(val) : undefined;
+const serializeJSON = (val: string | undefined): MapAccessToken => val ? JSON.parse(val) : undefined;
 const parseJSON = (val: MapAccessToken | undefined) => JSON.stringify(val);
 
 const useMapAccessToken = (): [MapAccessToken, RequestMapAccessToken] => {
-  const [token, setToken] = useStoredState<MapAccessToken | undefined>(
+  const [token, setToken] = useStoredState<MapAccessToken>(
     MAP_STORE_KEY,
     undefined,
     sessionStorage,
