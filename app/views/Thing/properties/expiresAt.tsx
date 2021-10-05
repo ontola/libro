@@ -11,6 +11,7 @@ import {
 
 import Detail from '../../../components/Detail';
 import isPastDate from '../../../helpers/date';
+import { filterUpdateInterval, useDateUpdateInterval } from '../../../hooks/useDateUpdateInterval';
 import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { statusMessages } from '../../../translations/messages';
@@ -22,6 +23,8 @@ interface PropTypes {
 
 const ExpiresAt: FC<PropTypes> = ({ linkedProp, short }) => {
   const intl = useIntl();
+  const interval = useDateUpdateInterval();
+
   const d = new Date(linkedProp.value);
 
   if (isPastDate(linkedProp)) {
@@ -56,6 +59,7 @@ const ExpiresAt: FC<PropTypes> = ({ linkedProp, short }) => {
               <FormattedRelativeTime
                 numeric="auto"
                 unit={unit}
+                updateIntervalInSeconds={filterUpdateInterval(unit, interval)}
                 value={value}
               />
             ),
