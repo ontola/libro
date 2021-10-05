@@ -141,18 +141,19 @@ export const handleMapClick = (
   return true;
 };
 
-const handleViewChange = (
-  internalCenter: Coordinate,
+type ViewUpdater = (newCenter: Coordinate | undefined, newZoom: number | undefined) => void;
+type ViewChangeHandler = (e: MapBrowserEvent) => void;
+
+export const makeViewUpdater = (
+  center: Coordinate,
+  zoom: number,
   setCenter: Dispatch<SetStateAction<Coordinate>>,
-  internalZoom: number,
   setZoom: Dispatch<SetStateAction<number>>,
   onMove?: EventHandler<any>,
   onViewChange?: (center: Coordinate, zoom: number) => any,
   onZoom?: EventHandler<any>,
-): (e: MapBrowserEvent) => void => (e: MapBrowserEvent) => {
-  const newCenter = e.map.getView().getCenter();
-
-  if (newCenter && newCenter !== internalCenter) {
+): ViewUpdater => (newCenter: Coordinate | undefined, newZoom: number | undefined) => {
+  if (newCenter && newCenter !== center) {
     if (onMove) {
       onMove(newCenter);
     }
@@ -160,9 +161,7 @@ const handleViewChange = (
     setCenter(newCenter);
   }
 
-  const newZoom = e.map.getView().getZoom();
-
-  if (newZoom && newZoom !== internalZoom) {
+  if (newZoom && newZoom !== zoom) {
     if (onZoom) {
       onZoom(newZoom);
     }
@@ -173,6 +172,13 @@ const handleViewChange = (
   if (newCenter && newZoom && onViewChange) {
     onViewChange(newCenter, newZoom);
   }
+};
+
+const createViewChangeHandler = (updateView: ViewUpdater): ViewChangeHandler => (e: MapBrowserEvent) => {
+  const newCenter = e.map.getView().getCenter();
+  const newZoom = e.map.getView().getZoom();
+
+  updateView(newCenter, newZoom);
 };
 
 export const getSelect = (
@@ -246,10 +252,9 @@ const useMap = (props: UseMapProps): {
   const intl = useIntl();
   const [mapToken, requestMapToken] = useMapAccessToken();
   const mapRef = useRef<HTMLDivElement>(null);
-  const { center, zoom } = view;
 
-  const [internalCenter, setCenter] = useState<Coordinate>(center);
-  const [internalZoom, setZoom] = useState<number>(zoom);
+  const [center, setCenter] = useState<Coordinate>(view.center);
+  const [zoom, setZoom] = useState<number>(view.zoom);
   const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | undefined>(undefined);
   const [tileSource, setTileSource] = useState<TileSource | undefined>(undefined);
   const [error, setError] = useState<Error | undefined>(undefined);
@@ -317,7 +322,15 @@ const useMap = (props: UseMapProps): {
   }, [mapRef.current, mapToken.accessToken, layerSources, tileSource]);
 
   useEffect(() => {
-    const viewChangeHandler = handleViewChange(internalCenter, setCenter, internalZoom, setZoom,  onMove, onViewChange, onZoom);
+    const viewChangeHandler = createViewChangeHandler(makeViewUpdater(
+      center,
+      zoom,
+      setCenter,
+      setZoom,
+      onMove,
+      onViewChange,
+      onZoom,
+    ));
 
     if (memoizedMap && viewChangeHandler) {
       memoizedMap.addEventListener('moveend', viewChangeHandler as any);
@@ -328,16 +341,16 @@ const useMap = (props: UseMapProps): {
         memoizedMap.removeEventListener('moveend', viewChangeHandler as any);
       }
     };
-  }, [!!memoizedMap, internalCenter, internalZoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
+  }, [!!memoizedMap, center, zoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
 
   useEffect(() => {
     if (memoizedMap && onMapClick) {
-      memoizedMap.addEventListener('click', handleMapClick(onMapClick, internalZoom) as any);
+      memoizedMap.addEventListener('click', handleMapClick(onMapClick, zoom) as any);
     }
 
     return () => {
       if (memoizedMap && onMapClick) {
-        memoizedMap.removeEventListener('click', handleMapClick(onMapClick, internalZoom) as any);
+        memoizedMap.removeEventListener('click', handleMapClick(onMapClick, zoom) as any);
       }
     };
   }, [!!memoizedMap, onMapClick]);

@@ -94,6 +94,46 @@ const featureFromPlacement = (
   return toFeature(placement, lat, lon, image, theme, visitedFeatures, zoomLevel);
 };
 
+const getMarkAsVisited = (setVisitedFeatures, getVisitedFeatures, feature, theme) => () => {
+  setVisitedFeatures(Array.from(new Set([...getVisitedFeatures(), feature.getId()])));
+  const { hoverStyle, style } = getStyles(
+    feature.getProperties().image.value,
+    theme,
+  );
+  const visited = true;
+  feature.setProperties({
+    hoverStyle,
+    style,
+    visited,
+  });
+};
+
+const addFeature = (
+  dependencies,
+  loading,
+  lrs,
+  theme,
+  getVisitedFeatures,
+  setMemoizedCenter,
+  setVisitedFeatures,
+  features,
+) => (rawFeature: SomeNode | Placement, index: number) => {
+  if (isNamedNode(rawFeature)) {
+    dependencies.push(rawFeature);
+  }
+
+  const feature = !loading && featureFromPlacement(lrs, rawFeature, getVisitedFeatures(), theme);
+
+  if (!feature) return;
+
+  if (index === 0) {
+    setMemoizedCenter(feature);
+  }
+
+  feature.setProperties({ markAsVisited: getMarkAsVisited(setVisitedFeatures, getVisitedFeatures, feature, theme) });
+  features.push(feature);
+};
+
 type FeatureSet = [Array<Feature<Point>>, Feature<Point> | null, boolean];
 
 export const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet => {
@@ -120,41 +160,8 @@ export const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet
     const features: Array<Feature<Point>> = [];
     const dependencies: SomeNode[] = [];
 
-    const addFeature = (rawFeature: SomeNode | Placement, index: number) => {
-      const feature = !loading && featureFromPlacement(lrs, rawFeature, getVisitedFeatures(), theme);
-
-      const isCenter = index === 0;
-
-      if (feature && isCenter) {
-        setMemoizedCenter(feature);
-      }
-
-      if (isNamedNode(rawFeature)) {
-        dependencies.push(rawFeature);
-      }
-
-      if (feature) {
-        const markAsVisited = () => {
-          setVisitedFeatures(Array.from(new Set([...getVisitedFeatures(), feature.getId()])));
-          const { hoverStyle, style } = getStyles(
-            feature.getProperties().image.value,
-            theme,
-          );
-          const visited = true;
-          feature.setProperties({
-            hoverStyle,
-            style,
-            visited,
-          });
-        };
-
-        feature.setProperties({ markAsVisited });
-        features.push(feature);
-      }
-    };
-
     if (placements) {
-      placements.forEach(addFeature);
+      placements.forEach(addFeature(dependencies, loading, lrs, theme, getVisitedFeatures, setMemoizedCenter, setVisitedFeatures, features));
     }
 
     setDependencies(dependencies);
