@@ -20,7 +20,7 @@ import ll from '../../ontology/ll';
 import useSubmissionErrors from '../../views/EntryPoint/useSubmissionErrors';
 import { SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 
-import Form from './Form';
+import Form, { FormTheme } from './Form';
 
 const subscription = {
   submitting: true,
@@ -47,7 +47,7 @@ export interface ProvidedEntryPointProps {
   onKeyUp?: EventHandler<SyntheticEvent<unknown>>;
   onLoad?: () => React.ReactNode;
   sessionStore: Storage;
-  theme?: string;
+  theme?: FormTheme;
   whitelist?: number[];
 }
 

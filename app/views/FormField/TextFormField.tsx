@@ -7,13 +7,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext } from '../../components/Form/Form';
+import { FormContext, FormTheme } from '../../components/Form/Form';
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const getInputType = (theme: string | undefined, type: SomeTerm) => {
+const getInputType = (theme: FormTheme | undefined, type: SomeTerm) => {
   if (type === form.EmailInput) {
     return 'email';
   }
@@ -23,7 +23,7 @@ const getInputType = (theme: string | undefined, type: SomeTerm) => {
   }
 
   if (type === form.MarkdownInput) {
-    return theme === 'preview' ? 'textarea' : 'markdown';
+    return theme === FormTheme.Preview ? 'textarea' : 'markdown';
   }
 
   return 'text';

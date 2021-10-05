@@ -7,6 +7,7 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import EntryPointForm from '../../components/Form/EntryPointForm';
+import { FormTheme } from '../../components/Form/Form';
 import { LoadingGridContent } from '../../components/Loading';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
@@ -27,7 +28,7 @@ const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
     subject!,
     {
       ...otherProps,
-      formID, 
+      formID,
     },
   );
 
@@ -35,7 +36,7 @@ const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
     <EntryPointForm
       {...entryPointFormProps}
       footer={footer}
-      theme="preview"
+      theme={FormTheme.Preview}
       onLoad={() => (
         <CardContent>
           <LoadingGridContent />

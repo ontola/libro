@@ -4,7 +4,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext } from '../../components/Form/Form';
+import { FormContext, FormTheme } from '../../components/Form/Form';
 import form from '../../ontology/form';
 import { formFooterTopology } from '../../topologies/FormFooter';
 
@@ -12,7 +12,7 @@ const FormPageFooter = () => {
   const formContext = React.useContext(FormContext);
   const context = React.useMemo(() => ({
     ...formContext,
-    theme: 'preview',
+    theme: FormTheme.Preview,
   }), [formContext]);
 
   return (

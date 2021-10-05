@@ -17,6 +17,11 @@ import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandl
 import { SubmissionErrors } from '../FormField';
 import Input, { InputType } from '../Input/Input';
 
+export enum FormTheme {
+  Default = 'default',
+  Preview = 'preview',
+}
+
 interface FormProps {
   action?: string;
   autofocusForm?: boolean;
@@ -34,14 +39,14 @@ interface FormProps {
   sessionStore?: Storage;
   submissionErrors?: SubmissionErrors;
   subscription?: any;
-  theme?: string;
+  theme?: FormTheme;
   validateOnBlur?: boolean;
   whitelist?: number[];
 }
 
 const defaultProps = {
   method: 'post',
-  theme: 'default',
+  theme: FormTheme.Default,
   validateOnBlur: false,
 };
 
@@ -58,7 +63,7 @@ export interface FormContext {
   sessionStore?: Storage;
   submissionErrors?: SubmissionErrors;
   storeFile?: StoreFile;
-  theme?: string;
+  theme?: FormTheme;
   whitelist?: number[];
 }
 
