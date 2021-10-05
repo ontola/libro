@@ -1,12 +1,9 @@
-import { isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   register,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -21,51 +18,22 @@ import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter';
 
-import useSubmitHandler from './useSubmitHandler';
+import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 
-interface PropTypes {
-  autoSubmit: boolean;
-  blacklist?: number[];
+interface EntryPointCardMainProps extends EntryPointProps {
   cancelPath: string;
-  modal?: boolean;
   onCancel: EventHandler<SyntheticEvent<unknown>>;
-  onDone?: (response: Response) => void;
-  onKeyUp: EventHandler<SyntheticEvent<unknown>>;
-  onStatusForbidden?: () => Promise<void>;
-  responseCallback?: (response: Response) => void;
-  sessionStore: Storage;
-  whitelist?: number[];
 }
 
-const EntryPointCardMain: FC<PropTypes> = ({
-  autoSubmit,
-  blacklist,
+const EntryPointCardMain: FC<EntryPointCardMainProps> = ({
   cancelPath,
-  modal,
   onCancel,
-  onDone,
-  onStatusForbidden,
-  responseCallback,
-  sessionStore,
   subject,
-  whitelist,
+  ...otherProps
 }) => {
-  const [action] = useProperty(schema.isPartOf) as SomeNode[];
-  const [actionBody] = useProperty(ll.actionBody) as SomeNode[];
-  const [httpMethod] = useProperty(schema.httpMethod);
-  const [name] = useProperty(schema.name);
-  const [url] = useProperty(schema.url);
   const history = useHistory();
-  const formURL = new URL(subject!.value);
-  const formID = [formURL.origin, formURL.pathname].join('');
-  const submitHandler = useSubmitHandler({
-    entryPoint: subject!,
-    formID,
-    modal,
-    onDone,
-    onStatusForbidden,
-    responseCallback,
-  });
+  const entryPointFormProps = useEntryPointFormProps(subject!, otherProps);
+  const [name] = useProperty(schema.name);
   const onCancelClick = React.useCallback((e) => {
     e.preventDefault();
 
@@ -75,7 +43,6 @@ const EntryPointCardMain: FC<PropTypes> = ({
       history.goBack();
     }
   }, [onCancel]);
-  const [object] = useResourceProperty(action, schema.object);
 
   const cancelButton = cancelPath && (
     <Button
@@ -110,20 +77,8 @@ const EntryPointCardMain: FC<PropTypes> = ({
       <CardContent endSpacing>
         <Property label={schema.text} />
         <EntryPointForm
-          autofocusForm
-          action={action}
-          actionBody={actionBody}
-          autoSubmit={autoSubmit}
-          blacklist={blacklist}
+          {...entryPointFormProps}
           footer={footer}
-          formID={formID}
-          httpMethod={httpMethod?.value}
-          object={isNode(object) ? object : undefined}
-          sessionStore={sessionStore}
-          url={url?.value}
-          whitelist={whitelist}
-          onKeyUp={undefined}
-          onSubmit={submitHandler}
         />
       </CardContent>
     </React.Fragment>

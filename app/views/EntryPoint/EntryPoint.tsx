@@ -1,7 +1,6 @@
-import { Literal, SomeTerm } from '@ontologies/core';
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
@@ -9,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ButtonTheme, ButtonVariant } from '../../components/Button';
+import { ButtonTheme } from '../../components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { countInParentheses } from '../../helpers/numbers';
@@ -27,18 +26,11 @@ import { gridTopology } from '../../topologies/Grid';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { pageTopology } from '../../topologies/Page';
 
-import useSubmitHandler from './useSubmitHandler';
+import useEntryPointFormProps from './useEntryPointFormProps';
 
 interface EntryPointProps extends ButtonWithFeedbackProps {
-  action: SomeTerm;
   count: Literal;
-  httpMethod: SomeTerm;
-  image: SomeTerm;
-  name: SomeTerm;
   stretch: boolean;
-  subject: SomeNode;
-  url: SomeTerm;
-  variant: ButtonVariant;
 }
 
 const EntryPoint: FC<EntryPointProps> = ({
@@ -50,14 +42,9 @@ const EntryPoint: FC<EntryPointProps> = ({
   variant,
   ...rest
 }) => {
+  const { onSubmit } = useEntryPointFormProps(subject!, rest);
   const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
-  const formURL = new URL(subject.value);
-  const formID = [formURL.origin, formURL.pathname].join('');
-  const submitHandler = useSubmitHandler({
-    entryPoint: subject,
-    formID,
-  });
   const label = `${name.value} ${countInParentheses(count)}`;
 
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : undefined;
@@ -66,7 +53,7 @@ const EntryPoint: FC<EntryPointProps> = ({
     'Button--stretched': stretch,
   });
 
-  const handleOnClick = onClick || submitHandler;
+  const handleOnClick = onClick || onSubmit;
 
   return (
     <ButtonWithFeedback

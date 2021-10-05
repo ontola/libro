@@ -26,28 +26,34 @@ const subscription = {
   submitting: true,
 };
 
-interface PropTypes {
-  action: SomeNode;
-  actionBody: SomeNode;
-  autoSubmit?: boolean;
-  autofocusForm?: boolean;
+export interface CalculatedEntryPointProps {
+  action?: SomeNode;
+  actionBody?: SomeNode;
+  formID: string;
+  httpMethod?: string;
+  object?: SomeNode;
+  onSubmit?: SubmitHandler;
+  url?: string;
+}
+
+export interface ProvidedEntryPointProps {
+  autoSubmit: boolean;
+  autofocusForm: boolean;
   blacklist?: number[];
   className?: string;
-  footer: (submitting: boolean) => React.ReactNode;
   formID: string;
+  footer?: (submitting: boolean) => React.ReactNode;
   formInstance?: FormApi;
-  httpMethod: string;
-  object?: SomeNode;
   onKeyUp?: EventHandler<SyntheticEvent<unknown>>;
   onLoad?: () => React.ReactNode;
-  onSubmit: SubmitHandler;
-  sessionStore?: Storage;
+  sessionStore: Storage;
   theme?: string;
-  url: string;
   whitelist?: number[];
 }
 
-const EntryPointForm: React.FC<PropTypes> = ({
+export type EntryPointFormProps = CalculatedEntryPointProps & ProvidedEntryPointProps;
+
+const EntryPointForm: React.FC<EntryPointFormProps> = ({
   action,
   actionBody,
   autofocusForm,
@@ -78,6 +84,10 @@ const EntryPointForm: React.FC<PropTypes> = ({
   const [submissionErrors, clearErrors] = useSubmissionErrors(errorResponse);
   const handleSubmit = React.useCallback<SubmitHandler>((formData, formApi, retrySubmit) => {
     clearErrors();
+
+    if (!onSubmit) {
+      throw new Error(`No submit handler provided for ${action?.value}`);
+    }
 
     return onSubmit(formData, formApi, retrySubmit);
   }, [clearErrors]);
@@ -119,8 +129,8 @@ const EntryPointForm: React.FC<PropTypes> = ({
   return (
     <Form
       action={url && new URL(url).pathname}
-      autoSubmit={!!autoSubmit}
-      autofocusForm={!!autofocusForm}
+      autoSubmit={autoSubmit}
+      autofocusForm={autofocusForm}
       blacklist={blacklist}
       className={className}
       form={formInstance}

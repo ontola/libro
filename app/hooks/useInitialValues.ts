@@ -11,6 +11,7 @@ import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
+  LaxNode,
   LinkReduxLRSType,
   useDataFetching,
   useLRS,
@@ -142,7 +143,7 @@ const getInitialValues = (
 
 const useInitialValues = (
   sessionStore: Storage | undefined,
-  actionBody: SomeNode,
+  actionBody: LaxNode,
   object: SomeNode | undefined,
   formID: string,
 ): [boolean | NamedNode | BlankNode | undefined,  Record<string, unknown> | undefined] => {

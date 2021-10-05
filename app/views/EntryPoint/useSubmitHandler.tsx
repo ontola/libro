@@ -17,7 +17,7 @@ import {
 import { isDifferentWebsite } from '../../helpers/iris';
 import { InputValue } from '../../hooks/useFormField';
 
-interface PropTypes {
+export interface SubmitHandlerProps {
   entryPoint: SomeNode;
   formID: string;
   modal?: boolean;
@@ -40,7 +40,7 @@ const useSubmitHandler = ({
   responseCallback,
   onDone,
   onStatusForbidden,
-}: PropTypes): SubmitHandler => {
+}: SubmitHandlerProps): SubmitHandler => {
   const lrs = useLRS<unknown, SubmitDataProcessor>();
   const {
     action,

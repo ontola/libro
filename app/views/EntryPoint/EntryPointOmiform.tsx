@@ -1,91 +1,46 @@
-import {
-  NamedNode,
-  isNode,
-} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { FormApi } from 'final-form';
 import {
   FC,
   register,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
-import React, { EventHandler, SyntheticEvent } from 'react';
+import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import { LoadingGridContent } from '../../components/Loading';
-import ll from '../../ontology/ll';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
-import useSubmitHandler from './useSubmitHandler';
+import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 
-interface PropTypes {
-  autofocusForm: boolean;
-  footer: (submitting: boolean) => React.ReactNode;
-  formInstance: FormApi;
-  modal?: boolean;
-  responseCallback?: (response: unknown) => void;
-  onDone?: (response: unknown) => void;
-  onKeyUp: EventHandler<SyntheticEvent<unknown>>;
-  onStatusForbidden?: () => Promise<void>;
+interface EntryPointOmniformProps extends EntryPointProps {
   parentIRI: string;
-  sessionStore: Storage;
-  /** The ids of the whitelisted properties */
-  whitelist: number[];
 }
 
-const EntryPointOmniform: FC<PropTypes> = ({
-  autofocusForm,
+const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
   footer,
-  formInstance,
-  modal,
-  onDone,
-  onKeyUp,
-  onStatusForbidden,
   parentIRI,
-  responseCallback,
-  sessionStore,
   subject,
-  whitelist,
+  ...otherProps
 }) => {
-  const [action] = useProperty(schema.isPartOf) as NamedNode[];
-  const [actionBody] = useProperty(ll.actionBody) as NamedNode[];
-  const [httpMethod] = useProperty(schema.httpMethod);
-  const [url] = useProperty(schema.url);
-
   const formID = `${atob(parentIRI)}.omniform`;
-  const submitHandler = useSubmitHandler({
-    entryPoint: subject!,
-    formID,
-    modal,
-    onDone,
-    onStatusForbidden,
-    responseCallback,
-  });
-  const [object] = useResourceProperty(action, schema.object);
+  const entryPointFormProps = useEntryPointFormProps(
+    subject!,
+    {
+      ...otherProps,
+      formID, 
+    },
+  );
 
   return (
     <EntryPointForm
-      action={action}
-      actionBody={actionBody}
-      autofocusForm={autofocusForm}
+      {...entryPointFormProps}
       footer={footer}
-      formID={formID}
-      formInstance={formInstance}
-      httpMethod={httpMethod?.value}
-      object={isNode(object) ? object : undefined}
-      sessionStore={sessionStore}
       theme="preview"
-      url={url?.value}
-      whitelist={whitelist}
-      onKeyUp={onKeyUp}
       onLoad={() => (
         <CardContent>
           <LoadingGridContent />
         </CardContent>
       )}
-      onSubmit={submitHandler}
     />
   );
 };
