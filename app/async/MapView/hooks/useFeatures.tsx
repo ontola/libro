@@ -49,19 +49,18 @@ const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement): P
   };
 };
 
-const toFeature = (
-  placement: SomeNode | Placement,
+export const toFeature = (
+  id: string,
   lat: number,
   lon: number,
   image: NamedNode,
   theme: Theme,
-  visitedFeatures: string[],
+  visited: boolean,
   zoomLevel?: number,
-) => {
+): Feature<Point> => {
   const f = new Feature(new Point(fromLonLat([lon, lat])));
 
-  f.setId(isNode(placement) ? placement.value : placement.id);
-  const visited = visitedFeatures.includes(f.getId() as string);
+  f.setId(id);
   const { hoverStyle, style } = getStyles(image.value, theme);
   f.setProperties({
     hoverStyle,
@@ -79,7 +78,7 @@ const featureFromPlacement = (
   placement: SomeNode | Placement,
   visitedFeatures: string[],
   theme: Theme,
-) => {
+): Feature<Point> | undefined => {
   const {
     image,
     lat,
@@ -87,11 +86,13 @@ const featureFromPlacement = (
     zoomLevel,
   } = featureProps(lrs, placement);
 
-  if (!image || !lat || !lon) {
+  const id = isNode(placement) ? placement.value : placement.id;
+
+  if (!id || !image || !lat || !lon) {
     return undefined;
   }
 
-  return toFeature(placement, lat, lon, image, theme, visitedFeatures, zoomLevel);
+  return toFeature(id, lat, lon, image, theme, visitedFeatures.includes(id), zoomLevel);
 };
 
 const getMarkAsVisited = (

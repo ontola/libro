@@ -1,5 +1,3 @@
-import { View } from 'ol';
-
 import { makeViewUpdater } from '../useMap';
 
 describe('useMap', () => {
