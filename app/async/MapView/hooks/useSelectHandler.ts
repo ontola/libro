@@ -9,16 +9,22 @@ import { useCallback } from 'react';
 
 const CLUSTER_PADDING = 0.5;
 
-export const correctZoomForViewport = (eventView: View, [left, top, right, bottom]: Extent): number | undefined => {
+export const getZoomForCluster = (eventView: View, extent: Extent): number | undefined => {
   // eslint-disable-next-line no-underscore-dangle
-  const [width, height] = eventView.getViewportSize_();
+  const [width, height] = (eventView as any).getViewportSize_();
   const resolution = eventView.getResolutionForExtentInternal(
-    [left, top, right, bottom],
+    extent,
     [width * CLUSTER_PADDING, height * CLUSTER_PADDING],
   );
 
   return eventView.getZoomForResolution(resolution);
 };
+
+export const zoomOnCluster = (eventView: View, extent: Extent): void =>
+  eventView.animate({
+    center: getCenter(extent),
+    zoom: getZoomForCluster(eventView, extent),
+  });
 
 export const useSelectHandler = (
   onClusterSelect: ((features: Feature[], center: number[]) => void) | undefined,
@@ -33,22 +39,14 @@ export const useSelectHandler = (
     const [left, top, right, bottom] = boundingExtent(
       features.map((f: Feature<Point>) => f?.getGeometry()?.getCoordinates()),
     );
-    const clusterCenter = getCenter([left, top, right, bottom]);
 
     if (left === right && top === bottom) {
       if (onClusterSelect) {
-        onClusterSelect(features, clusterCenter);
+        onClusterSelect(features, getCenter([left, top, right, bottom]));
       }
+    } else {
+      zoomOnCluster(e.mapBrowserEvent.map.getView(), [left, top, right, bottom]);
     }
-
-    else {
-      const eventView = e.mapBrowserEvent.map.getView();
-      eventView.animate({
-        center: clusterCenter,
-        zoom: correctZoomForViewport(eventView, [left, top, right, bottom]),
-      });
-    }
-
   }
 
   else if (selectedFeature && onSelect) {
