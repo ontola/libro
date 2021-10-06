@@ -4,6 +4,7 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
+import { getMetaContent } from '../../../../helpers/arguHelpers';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import useJSON from '../../../../hooks/useJSON';
 import app from '../../../../ontology/app';
@@ -18,7 +19,11 @@ import { FOCUS_ZOOM, ViewProps } from '../../../../async/MapView/hooks/useMap';
 import useEventsLayer from '../hooks/useEventsLayer';
 import usePostalShapes, { PostalCodes } from '../hooks/usePostalShapes';
 import useSelectedPostalCode from '../hooks/useSelectedPostalCode';
+import { LoadingCard } from '../../../../components/Loading';
 
+const DEFAULT_LAT = 52.1344;
+const DEFAULT_LON = 5.1917;
+const DEFAULT_ZOOM = 6.8;
 const FULL_POSTAL_LEVEL = 8.6;
 
 const GlappMap: React.FC<GlappMapProps> = ({
@@ -33,8 +38,8 @@ const GlappMap: React.FC<GlappMapProps> = ({
   const [lonProp] = useFields(app.c_a, teamGL.centerLon);
   const centerLon = tryParseFloat(lonProp);
   const [view, setView] = React.useState<ViewProps>({
-    center: centerLon && centerLat ? fromLonLat([centerLon, centerLat]) : undefined,
-    zoom,
+    center: fromLonLat([centerLon ?? DEFAULT_LON, centerLat ?? DEFAULT_LAT]),
+    zoom: zoom ?? DEFAULT_ZOOM,
   });
   const showFull = (view?.zoom || 0) > FULL_POSTAL_LEVEL;
   const postalCodes = useJSON<PostalCodes>(`assets/postal_codes${showFull ? '' : '_simplified'}.json`);
@@ -57,6 +62,10 @@ const GlappMap: React.FC<GlappMapProps> = ({
     { features: selectedFeatures },
     eventsLayer,
   ]), [postalShapes, eventsLayer, selectedFeatures]);
+  const mapboxTileURL = React.useMemo(
+    () => getMetaContent('mapboxTileURL'),
+    [],
+  );
   const handleClusterSelect = React.useCallback((features, newCenter) => {
     lrs.actions.ontola.showDialog(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
     setSelectedPostalCode(undefined);
@@ -91,10 +100,15 @@ const GlappMap: React.FC<GlappMapProps> = ({
 
   const overlayResource = selectedPostalCode ? postalCodeIri(selectedPostalCode.toString()) : undefined;
 
+  if (!mapboxTileURL) {
+    return <LoadingCard />;
+  }
+
   return (
     <MapCanvas
       large
       layers={layers}
+      mapboxTileURL={mapboxTileURL}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
       view={view}

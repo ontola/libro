@@ -16,7 +16,7 @@ import {
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import { Placement } from '../../../containers/MapView';
 import { entityIsLoaded } from '../../../helpers/data';
@@ -55,13 +55,13 @@ const toFeature = (
   lon: number,
   image: NamedNode,
   theme: Theme,
-  visitedFeatures: [any],
+  visitedFeatures: string[],
   zoomLevel?: number,
 ) => {
   const f = new Feature(new Point(fromLonLat([lon, lat])));
 
   f.setId(isNode(placement) ? placement.value : placement.id);
-  const visited = visitedFeatures.includes(f.getId());
+  const visited = visitedFeatures.includes(f.getId() as string);
   const { hoverStyle, style } = getStyles(image.value, theme);
   f.setProperties({
     hoverStyle,
@@ -77,7 +77,7 @@ const toFeature = (
 const featureFromPlacement = (
   lrs: LinkReduxLRSType,
   placement: SomeNode | Placement,
-  visitedFeatures: [any],
+  visitedFeatures: string[],
   theme: Theme,
 ) => {
   const {
@@ -94,8 +94,13 @@ const featureFromPlacement = (
   return toFeature(placement, lat, lon, image, theme, visitedFeatures, zoomLevel);
 };
 
-const getMarkAsVisited = (setVisitedFeatures, getVisitedFeatures, feature, theme) => () => {
-  setVisitedFeatures(Array.from(new Set([...getVisitedFeatures(), feature.getId()])));
+const getMarkAsVisited = (
+  setVisitedFeatures: Dispatch<SetStateAction<string[]>>,
+  getVisitedFeatures: () => string[],
+  feature: Feature<Point>,
+  theme: Theme,
+) => () => {
+  setVisitedFeatures(Array.from(new Set([...getVisitedFeatures(), feature.getId() as string])));
   const { hoverStyle, style } = getStyles(
     feature.getProperties().image.value,
     theme,
@@ -109,14 +114,14 @@ const getMarkAsVisited = (setVisitedFeatures, getVisitedFeatures, feature, theme
 };
 
 const addFeature = (
-  dependencies,
-  loading,
-  lrs,
-  theme,
-  getVisitedFeatures,
-  setMemoizedCenter,
-  setVisitedFeatures,
-  features,
+  dependencies: SomeNode[],
+  loading: boolean,
+  lrs: LinkReduxLRSType,
+  theme: Theme,
+  getVisitedFeatures: () => string[],
+  setMemoizedCenter: Dispatch<SetStateAction<Feature<Point> | null>>,
+  setVisitedFeatures: Dispatch<SetStateAction<string[]>>,
+  features: Array<Feature<Point>>,
 ) => (rawFeature: SomeNode | Placement, index: number) => {
   if (isNamedNode(rawFeature)) {
     dependencies.push(rawFeature);
@@ -161,7 +166,16 @@ export const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet
     const dependencies: SomeNode[] = [];
 
     if (placements) {
-      placements.forEach(addFeature(dependencies, loading, lrs, theme, getVisitedFeatures, setMemoizedCenter, setVisitedFeatures, features));
+      placements.forEach(addFeature(
+        dependencies,
+        loading,
+        lrs,
+        theme,
+        getVisitedFeatures,
+        setMemoizedCenter,
+        setVisitedFeatures,
+        features,
+      ));
     }
 
     setDependencies(dependencies);

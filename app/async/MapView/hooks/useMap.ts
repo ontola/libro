@@ -129,7 +129,7 @@ const createMap = ({
   });
 };
 
-export const handleMapClick = (
+const handleMapClick = (
   onMapClick:(newLon: number, newLat: number, newZoom: number) => void,
   internalZoom: number,
 ): (e: MapBrowserEvent) => boolean => (e: MapBrowserEvent) => {
@@ -224,7 +224,7 @@ export interface UseMapProps {
   onClusterSelect?: (features: Feature[], newCenter: Coordinate) => void;
   onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
   onMove?: EventHandler<any>;
-  onSelect?: (feature: Feature | undefined, center: Coordinate | undefined) => any;
+  onSelect?: (feature: Feature, center: Coordinate) => any;
   onViewChange?: (center: Coordinate, zoom: number) => any;
   onZoom?: EventHandler<any>;
   view: ViewProps;

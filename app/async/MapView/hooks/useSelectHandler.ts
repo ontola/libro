@@ -20,12 +20,16 @@ export const correctZoomForViewport = (eventView: View, [left, top, right, botto
   return eventView.getZoomForResolution(resolution);
 };
 
-export const useSelectHandler = (onClusterSelect, onSelect) => useCallback((e) => {
+export const useSelectHandler = (
+  onClusterSelect: ((features: Feature[], center: number[]) => void) | undefined,
+  onSelect: ((feature: Feature, center: number[]) => void) | undefined,
+): (e: any) => void => useCallback((e) => {
   const [feature] = e?.selected || [];
   const features = feature?.get('features');
-  const selected = features?.[0] || feature;
+  const selectedFeature = features?.[0] || feature;
 
   if (features?.length > 1) {
+
     const [left, top, right, bottom] = boundingExtent(
       features.map((f: Feature<Point>) => f?.getGeometry()?.getCoordinates()),
     );
@@ -35,23 +39,24 @@ export const useSelectHandler = (onClusterSelect, onSelect) => useCallback((e) =
       if (onClusterSelect) {
         onClusterSelect(features, clusterCenter);
       }
-    } else {
+    }
+
+    else {
       const eventView = e.mapBrowserEvent.map.getView();
       eventView.animate({
         center: clusterCenter,
         zoom: correctZoomForViewport(eventView, [left, top, right, bottom]),
       });
     }
-  } else if (selected) {
-    const geometry = selected.getGeometry();
+
+  }
+
+  else if (selectedFeature && onSelect) {
+    const geometry = selectedFeature.getGeometry();
     const selectCenter = (geometry.getType() === 'Point')
       ? geometry.getCoordinates()
       : getCenter(geometry.getExtent());
 
-    if (onSelect) {
-      onSelect(selected, selectCenter);
-    }
-  } else if (onSelect) {
-    onSelect(undefined, undefined);
+    onSelect(selectedFeature, selectCenter);
   }
 }, [onSelect]);
