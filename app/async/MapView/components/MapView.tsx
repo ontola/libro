@@ -56,7 +56,7 @@ export const MapView: React.FC<PropTypes> = ({
     }
 
     if (feature?.markAsVisited) {
-      feature.markAsVisited();
+      feature.markAsVisited(feature);
     }
 
     setOverlayPosition(newCenter);

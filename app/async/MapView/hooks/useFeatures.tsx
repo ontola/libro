@@ -95,22 +95,22 @@ const featureFromPlacement = (
   return toFeature(id, lat, lon, image, theme, visitedFeatures.includes(id), zoomLevel);
 };
 
-const getMarkAsVisited = (
+export const getMarkAsVisited = (
   setVisitedFeatures: Dispatch<SetStateAction<string[]>>,
   getVisitedFeatures: () => string[],
-  feature: Feature<Point>,
   theme: Theme,
-) => () => {
+): ((feature: Feature<Point>) => void) => (feature: Feature<Point>) => {
   setVisitedFeatures(Array.from(new Set([...getVisitedFeatures(), feature.getId() as string])));
+
   const { hoverStyle, style } = getStyles(
     feature.getProperties().image.value,
     theme,
   );
-  const visited = true;
+
   feature.setProperties({
     hoverStyle,
     style,
-    visited,
+    visited: true,
   });
 };
 
@@ -136,7 +136,7 @@ const addFeature = (
     setMemoizedCenter(feature);
   }
 
-  feature.setProperties({ markAsVisited: getMarkAsVisited(setVisitedFeatures, getVisitedFeatures, feature, theme) });
+  feature.setProperties({ markAsVisited: getMarkAsVisited(setVisitedFeatures, getVisitedFeatures, theme) });
   features.push(feature);
 };
 
@@ -147,7 +147,7 @@ export const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet
   const { subject } = useLinkRenderContext();
   const theme = useTheme();
 
-  const [_, setVisitedFeatures, getVisitedFeatures] = useStoredState(
+  const [, setVisitedFeatures, getVisitedFeatures] = useStoredState(
     `${subject.value}.visitedFeatures`,
     [],
     sessionStorage,
