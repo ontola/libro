@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useStoredState from '../../../hooks/useStoredState';
+import useStoredState from '../../../../../hooks/useStoredState';
 import { EditorDisplay, EditorStateContext } from '../context/EditorStateContext';
 
 const editorDisplayFromString = (v: string | null): EditorDisplay => {

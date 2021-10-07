@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { EditorEvents, EditorUpdateEvent } from '../EditorUpdateEvent';
-import { PageViewerState } from '../PageViewerState';
+import { EditorEvents, EditorUpdateEvent } from '../../../lib/EditorUpdateEvent';
+import { PageViewerState } from '../../../lib/PageViewerState';
 
 type DocSetterSetter =  React.Dispatch<React.SetStateAction<(doc: PageViewerState) => void>>;
 

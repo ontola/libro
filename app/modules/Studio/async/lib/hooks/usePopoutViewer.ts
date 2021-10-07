@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { WebManifest } from '../../../appContext';
-import { handle } from '../../../helpers/logging';
+import { WebManifest } from '../../../../../appContext';
+import { handle } from '../../../../../helpers/logging';
 import { studioContext } from '../context/StudioContext';
 import { editorStateContext } from '../context/EditorStateContext';
-import { PageViewerState } from '../PageViewerState';
+import { PageViewerState } from '../../../lib/PageViewerState';
 
 import { useDialogHandle } from './useDialogHandle';
 

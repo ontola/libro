@@ -3,9 +3,10 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
-import ErrorBoundary from '../../../components/ErrorBoundary';
-import { usePopoutViewer } from '../hooks/usePopoutViewer';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
+import { usePopoutViewer } from '../lib/hooks/usePopoutViewer';
 
+import { StudioContextProvider } from './StudioContextProvider';
 import { Tabbar } from './Tabbar';
 import Toolbar from './Toolbar';
 import Editor from './Editor';
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Studio = (): JSX.Element => {
+const Studio = (): JSX.Element => {
   const classes = useStyles();
   const [open, setOpened] = React.useState(false);
   const recreateDialog = usePopoutViewer({
@@ -55,25 +56,29 @@ export const Studio = (): JSX.Element => {
   });
 
   return (
-    <div className={classes.windowOverlay}>
-      <Toolbar
-        connected={open}
-        recreateDialog={recreateDialog}
-      />
-      <Tabbar />
-      <Grid
-        container
-        className={classes.container}
-        direction="row"
-      >
-        <Paper className={classes.editor}>
-          <ErrorBoundary>
-            <Editor
-              onMount={recreateDialog}
-            />
-          </ErrorBoundary>
-        </Paper>
-      </Grid>
-    </div>
+    <StudioContextProvider>
+      <div className={classes.windowOverlay}>
+        <Toolbar
+          connected={open}
+          recreateDialog={recreateDialog}
+        />
+        <Tabbar />
+        <Grid
+          container
+          className={classes.container}
+          direction="row"
+        >
+          <Paper className={classes.editor}>
+            <ErrorBoundary>
+              <Editor
+                onMount={recreateDialog}
+              />
+            </ErrorBoundary>
+          </Paper>
+        </Grid>
+      </div>
+    </StudioContextProvider>
   );
 };
+
+export default Studio;

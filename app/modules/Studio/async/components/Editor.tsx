@@ -4,9 +4,9 @@ import { Skeleton } from '@material-ui/lab';
 import MonacoEditor from '@monaco-editor/react';
 import React from 'react';
 
-import { studioContext } from '../context/StudioContext';
-import { editorStateContext } from '../context/EditorStateContext';
-import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
+import { studioContext } from '../lib/context/StudioContext';
+import { editorStateContext } from '../lib/context/EditorStateContext';
+import { useMonacoWithBundle } from '../lib/hooks/useMonacoWithBundle';
 
 const EDITOR_SKELETON_HEIGHT = 25;
 

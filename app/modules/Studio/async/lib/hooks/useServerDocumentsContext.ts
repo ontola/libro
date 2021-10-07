@@ -1,9 +1,10 @@
 import { MULTIPLE_CHOICES } from 'http-status-codes';
 import React from 'react';
 
-import useJSON from '../../../hooks/useJSON';
+import useJSON from '../../../../../hooks/useJSON';
+import { LibroDocument } from '../../../components/Studio';
 import { ServerDocumentsContext } from '../context/ServerDocumentsContext';
-import { EditorFile, LibroDocument } from '../LibroDocument';
+import { EditorFile } from '../LibroDocument';
 
 import { useEditorStateContext } from './useEditorStateContext';
 

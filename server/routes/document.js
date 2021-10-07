@@ -9,7 +9,7 @@ import rdf, {
 import * as rdfx from '@ontologies/rdf';
 import { INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 
-import parseToGraph from '../../app/async/Studio/parseToGraph';
+import parseToGraph from '../../app/modules/Studio/lib/parseToGraph';
 import http from '../../app/ontology/http';
 import ld from '../../app/ontology/ld';
 import ll from '../../app/ontology/ll';

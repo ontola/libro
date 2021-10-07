@@ -1,8 +1,8 @@
 import { Tab, Tabs } from '@material-ui/core';
 import React from 'react';
 
-import { studioContext } from '../context/StudioContext';
-import { editorStateContext } from '../context/EditorStateContext';
+import { studioContext } from '../lib/context/StudioContext';
+import { editorStateContext } from '../lib/context/EditorStateContext';
 
 export const Tabbar = (): JSX.Element => {
   const { files } = React.useContext(studioContext);

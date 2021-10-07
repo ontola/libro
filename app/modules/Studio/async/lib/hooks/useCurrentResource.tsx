@@ -2,7 +2,7 @@ import rdf, { NamedNode } from '@ontologies/core';
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import { appContext } from '../../../appContext';
+import { appContext } from '../../../../../appContext';
 
 export const useCurrentResource = (): NamedNode | undefined => {
   const { resource } = React.useContext(appContext);

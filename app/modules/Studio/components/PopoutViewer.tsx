@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Suspense from '../components/Suspense';
+import Suspense from '../../../components/Suspense';
 
 const PopoutViewer = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: "Studio" */ '../async/Studio/components/PopoutViewer'),
+  () => import(/* webpackChunkName: "Studio" */ '../async/components/PopoutViewer'),
 );
 
 const PopoutViewerLoader = (): JSX.Element => (

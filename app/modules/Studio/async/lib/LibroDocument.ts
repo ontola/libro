@@ -1,7 +1,4 @@
-export interface LibroDocument {
-  manifestOverride: string;
-  source: string;
-}
+import { LibroDocument } from '../../components/Studio';
 
 export interface EditorFile {
   name: string;

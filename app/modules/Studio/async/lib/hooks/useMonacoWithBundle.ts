@@ -1,7 +1,7 @@
 import { useMonaco } from '@monaco-editor/react';
 import React from 'react';
 
-import { error } from '../../../helpers/logging';
+import { error } from '../../../../../helpers/logging';
 
 import { useStudioContextBundle } from './useStudioContextBundle';
 

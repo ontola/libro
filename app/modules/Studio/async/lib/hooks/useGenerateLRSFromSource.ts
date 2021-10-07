@@ -5,10 +5,10 @@ import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
 import { useDebounce } from 'use-debounce';
 
-import generateLRS from '../../../helpers/generateLRS';
-import register from '../../../views';
-import { LibroDocument } from '../LibroDocument';
-import parseToGraph from '../parseToGraph';
+import generateLRS from '../../../../../helpers/generateLRS';
+import register from '../../../../../views';
+import { LibroDocument } from '../../../components/Studio';
+import parseToGraph from '../../../lib/parseToGraph';
 
 const EDITOR_UPDATE_FQ = 300;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { EditorFile, LibroDocument } from '../LibroDocument';
+import { LibroDocument } from '../../../components/Studio';
+import { EditorFile } from '../LibroDocument';
 
 export interface ServerDocumentsContext {
   documents: string[] | undefined;

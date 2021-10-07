@@ -15,10 +15,10 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { studioToolbarMessages } from '../../../translations/messages';
-import { studioContext } from '../context/StudioContext';
-import { editorStateContext } from '../context/EditorStateContext';
-import { serverDocumentsContext } from '../context/ServerDocumentsContext';
+import { studioToolbarMessages } from '../../../../translations/messages';
+import { studioContext } from '../lib/context/StudioContext';
+import { editorStateContext } from '../lib/context/EditorStateContext';
+import { serverDocumentsContext } from '../lib/context/ServerDocumentsContext';
 
 const useStyles = makeStyles({
   toolbar: {

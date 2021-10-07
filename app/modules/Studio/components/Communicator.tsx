@@ -4,11 +4,11 @@ import React from 'react';
 import { appContextEditor } from '../../../appContext';
 import generateLRS from '../../../helpers/generateLRS';
 import register from '../../../views';
-import { EditorEvents, EditorUpdateEvent } from '../EditorUpdateEvent';
-import { PageViewerState } from '../PageViewerState';
-import parseToGraph from '../parseToGraph';
+import parseToGraph from '../lib/parseToGraph';
+import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
+import { PageViewerState } from '../lib/PageViewerState';
 
-export const Communicator = (): null => {
+const Communicator = (): null => {
   const updateCtx = React.useContext(appContextEditor);
 
   const [message, setMessage] = React.useState<PageViewerState | undefined>(undefined);
@@ -57,3 +57,5 @@ export const Communicator = (): null => {
 
   return null;
 };
+
+export default Communicator;
