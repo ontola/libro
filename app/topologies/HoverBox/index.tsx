@@ -13,7 +13,7 @@ import './HoverBox.scss';
 
 export interface HoverBoxProps {
   /** Always visible. Functions as a trigger that responds to hover or focus. */
-  children: JSX.Element,
+  children: JSX.Element | JSX.Element[],
   /** Only show when hovering over the trigger / children */
   hiddenChildren: JSX.Element,
   onClick?: MouseEventHandler,
@@ -97,7 +97,7 @@ class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
 
   // The trigger is always visible and contains the children.
   // When the user hovers over them, the hiddenChildren appear.
-  trigger(children: JSX.Element): JSX.Element {
+  trigger(children: JSX.Element | JSX.Element[]): JSX.Element {
     return (
       <span
         className="HoverBox-trigger"

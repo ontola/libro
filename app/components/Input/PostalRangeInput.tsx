@@ -2,8 +2,10 @@ import rdf from '@ontologies/core';
 import React, { EventHandler } from 'react';
 
 import { InputValue } from '../../hooks/useFormField';
-import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../views/GroenLinks/Glapp/helpers';
 import { InputComponentProps } from '../FormField/InputComponentProps';
+
+export const MAX_POSTAL_DIGITS = 9999;
+export const MIN_POSTAL_DIGITS = 1000;
 
 interface SingleInputProps {
   className?: string;

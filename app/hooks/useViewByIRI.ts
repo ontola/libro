@@ -2,8 +2,8 @@ import rdf, { NamedNode } from '@ontologies/core';
 import React from 'react';
 
 import teamGL from '../ontology/teamGL';
-import GroupMembershipContainerGroup from '../views/GroenLinks/GroupMembership/GroupMembershipContainerGroup';
-import GroupMembershipContainerMember from '../views/GroenLinks/GroupMembership/GroupMembershipContainerMember';
+import GroupMembershipContainerGroup from '../modules/GroenLinks/views/GroupMembership/GroupMembershipContainerGroup';
+import GroupMembershipContainerMember from '../modules/GroenLinks/views/GroupMembership/GroupMembershipContainerMember';
 
 const viewMap = {
   [rdf.id(teamGL.ns('views/user/memberships'))]: GroupMembershipContainerMember[0].component,

@@ -9,6 +9,7 @@ export const tableCellTopology = argu.ns('tableCell');
 
 interface PropTypes {
   colspan?: number;
+  elementProps?: Record<string, unknown>;
 }
 
 class TableCell extends TopologyProvider<PropTypes> {

@@ -59,6 +59,7 @@ export default {
   groups: teamGL('groups'),
   inactiveVolunteersRatio: teamGL('inactiveVolunteersRatio'),
   inactiveVolunteersRatioTrend: teamGL('inactiveVolunteersRatioTrend'),
+  lastName: teamGL('lastVisitedAt'),
   lastVisitedAt: teamGL('lastVisitedAt'),
   leader: teamGL('leader'),
   maxPriority: teamGL('maxPriority'),

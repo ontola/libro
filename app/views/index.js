@@ -4,6 +4,7 @@
  */
 import { componentRegistrations } from '../components';
 import Flow from '../modules/Flow/views';
+import GroenLinks from '../modules/GroenLinks/views';
 
 import Academy from './Academy';
 import Action from './Action/index';
@@ -36,7 +37,6 @@ import FormGroup from './FormGroup';
 import FormOption from './FormOption';
 import FormPage from './FormPage';
 import Forum from './Forum/index';
-import GroenLinks from './GroenLinks';
 import Group from './Group';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
