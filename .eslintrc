@@ -159,6 +159,9 @@
     "no-plusplus": ["error", {
       "allowForLoopAfterthoughts": true
     }],
+    "no-restricted-imports": ["error", {
+      "patterns": ["*/async", "**/async"]
+    }],
     "no-restricted-syntax": "off",
     "no-shadow": "error",
     "no-undef-init": "error",
@@ -406,6 +409,12 @@
         "seq": true,
         "t": true,
         "within": true
+      }
+    },
+    {
+      "files": ["app/**/async/**/*"],
+      "rules": {
+        "no-restricted-imports": "off"
       }
     }
   ]

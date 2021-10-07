@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
+import PopoutViewer from '../containers/PopoutViewer';
 import RDFStudio from '../containers/Studio';
-import { PopoutViewer } from '../async/Studio/components/PopoutViewer';
 
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';

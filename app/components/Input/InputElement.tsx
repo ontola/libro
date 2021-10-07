@@ -4,8 +4,7 @@ import { SomeNode } from 'link-lib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 
-import { PlainEditorProps } from '../../async/TextEditor/PlainEditor';
-import TextEditor from '../../containers/TextEditor';
+import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';

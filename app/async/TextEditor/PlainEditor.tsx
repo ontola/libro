@@ -1,8 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import React, {
-  EventHandler,
-  FC,
-} from 'react';
+import React, { FC } from 'react';
 import Textarea from 'react-autosize-textarea';
 import { FormattedMessage } from 'react-intl';
 
@@ -10,6 +7,7 @@ import Button, { ButtonTheme } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { FormContext } from '../../components/Form/Form';
 import Markdown from '../../components/Markdown';
+import { PlainEditorProps } from '../../containers/TextEditor';
 import { LibroTheme } from '../../themes/themes';
 import { formMessages } from '../../translations/messages';
 
@@ -18,19 +16,6 @@ import MarkdownInstructions from './MarkdownInstructions';
 const defaultProps = {
   autoFocus: false,
 };
-
-export interface PlainEditorProps {
-  autoFocus?: boolean;
-  id: string;
-  maxLength?: number;
-  minLength?: number;
-  onBlur: EventHandler<any>;
-  onChange?: EventHandler<any>;
-  onFocus: EventHandler<any>;
-  placeholder?: string;
-  rows?: number;
-  value: string;
-}
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   buttonWrapper: {

@@ -4,10 +4,12 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 
 import Viewer from './PageViewer';
 
-export const PopoutViewer = (): JSX.Element => (
+const PopoutViewer = (): JSX.Element => (
   <div>
     <ErrorBoundary>
       <Viewer />
     </ErrorBoundary>
   </div>
 );
+
+export default PopoutViewer;

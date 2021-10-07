@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { EventHandler } from 'react';
 
 import Spinner from '../components/Spinner';
 import Suspense from '../components/Suspense';
+
+export interface PlainEditorProps {
+  autoFocus?: boolean;
+  id: string;
+  maxLength?: number;
+  minLength?: number;
+  onBlur: EventHandler<any>;
+  onChange?: EventHandler<any>;
+  onFocus: EventHandler<any>;
+  placeholder?: string;
+  rows?: number;
+  value: string;
+}
 
 export interface TextEditorProps {
   autoFocus: boolean;
