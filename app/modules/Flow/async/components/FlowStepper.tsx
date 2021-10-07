@@ -8,8 +8,9 @@ import { SomeNode } from 'link-lib';
 import { LaxNode } from 'link-redux';
 import React from 'react';
 
+import { useFlowStyles } from '../hooks/useFlowStyles';
+
 import FlowStep from './FlowStep';
-import useFlowStyles from './useFlowStyles';
 
 export interface FlowStepperProps {
   currentIndex: number;

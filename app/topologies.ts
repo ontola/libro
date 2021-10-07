@@ -1,5 +1,6 @@
 import rdf, { NamedNode } from '@ontologies/core';
 
+import { flowTopology } from './modules/Flow/topologies/Flow';
 import { actionsBarTopology } from './topologies/ActionsBar';
 import { appMenuTopology } from './topologies/AppMenu';
 import { attributeListTopology } from './topologies/AttributeList';
@@ -18,7 +19,6 @@ import { containerHeaderTopology } from './topologies/Container/ContainerHeader'
 import { contentDetailsTopology } from './topologies/ContentDetails';
 import { detailsBarTopology } from './topologies/DetailsBar';
 import { alertDialogTopology } from './topologies/Dialog';
-import { flowTopology } from './topologies/Flow';
 import { footerTopology } from './topologies/Footer';
 import { formFooterTopology } from './topologies/FormFooter';
 import { fullResourceTopology } from './topologies/FullResource';

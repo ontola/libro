@@ -8,11 +8,10 @@ import { SomeNode } from 'link-lib';
 import { useResourceProperty } from 'link-redux';
 import React from 'react';
 
-import { storageGet } from '../../helpers/persistence';
-import useFormField from '../../hooks/useFormField';
-import { FormContext } from '../Form/Form';
-
-import useFlowStyles from './useFlowStyles';
+import { storageGet } from '../../../../helpers/persistence';
+import useFormField from '../../../../hooks/useFormField';
+import { FormContext } from '../../../../components/Form/Form';
+import { useFlowStyles } from '../hooks/useFlowStyles';
 
 interface FlowStepProps extends StepProps {
   handleClick: () => void;
@@ -27,9 +26,7 @@ const FlowStep = ({
   pageCount,
   ...otherProps
 }: FlowStepProps): JSX.Element | null => {
-  const {
-    sessionStore,
-  } = React.useContext(FormContext);
+  const { sessionStore } = React.useContext(FormContext);
   const classes = useFlowStyles({ pageCount });
   const [path] = useResourceProperty(isNode(page) ? page : undefined, sh.path).filter(isNamedNode);
   const formFieldProps = useFormField({

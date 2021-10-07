@@ -17,7 +17,7 @@ import useAction from '../../hooks/useAction';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import Flow from '../../topologies/Flow';
+import Flow from '../../modules/Flow/topologies/Flow';
 import { surveyMessages } from '../../translations/messages';
 
 const style = { padding: '0.5rem 0' };

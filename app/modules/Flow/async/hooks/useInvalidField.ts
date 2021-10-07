@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import { useFormState } from 'react-final-form';
 
-const useInvalidField = (fields: SomeNode[]): LaxNode => {
+export const useInvalidField = (fields: SomeNode[]): LaxNode => {
   const formState = useFormState({
     subscription: {
       errors: true,
@@ -25,5 +25,3 @@ const useInvalidField = (fields: SomeNode[]): LaxNode => {
 
   return invalidFieldIndex ? fields[invalidFieldIndex] : undefined;
 };
-
-export default useInvalidField;

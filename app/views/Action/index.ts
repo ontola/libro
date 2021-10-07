@@ -5,7 +5,6 @@ import ActionContainerFloat from './ActionContainerFloat';
 import ActionContainerHeader from './ActionContainerHeader';
 import ActionDetail from './ActionDetail';
 import ActionDropdownContent from './ActionDropdownContent';
-import ActionFlow from './ActionFlow';
 import ActionFull from './ActionFull';
 import ActionWidget from './ActionGrid';
 import ActionInline from './ActionInline';
@@ -32,7 +31,6 @@ export default [
   ActionDropdownContent,
   ActionInline,
   ActionNested,
-  ActionFlow,
   ActionFull,
   ActionTableCell,
   ActionTableRow,

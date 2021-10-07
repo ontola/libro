@@ -12,7 +12,11 @@ export interface FlowAnimationProps {
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 
-const getDirection = (forward: boolean, trigger: 'in' | 'out', isPhone: boolean): Direction => {
+const getDirection = (
+  forward: boolean,
+  trigger: 'in' | 'out',
+  isPhone: boolean,
+): Direction => {
   const dirEnd = isPhone ? 'right' : 'down';
   const dirStart = isPhone ? 'left' : 'up';
 

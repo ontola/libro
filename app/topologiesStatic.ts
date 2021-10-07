@@ -2,6 +2,7 @@ import rdf from '@ontologies/core';
 import { MapDataToPropsParam } from 'link-redux';
 import { ComponentClass, FunctionComponent } from 'react';
 
+import flowTopologyComponent, { flowTopology } from './modules/Flow/topologies/Flow';
 import actionsBarTopologyComponent, { actionsBarTopology } from './topologies/ActionsBar';
 import appMenuTopologyComponent, { appMenuTopology } from './topologies/AppMenu';
 import attributeListTopologyComponent, { attributeListTopology } from './topologies/AttributeList';
@@ -19,7 +20,6 @@ import containerHeaderTopologyComponent, { containerHeaderTopology } from './top
 import contentDetailsTopologyComponent, { contentDetailsTopology } from './topologies/ContentDetails';
 import detailsBarTopologyComponent, { detailsBarTopology } from './topologies/DetailsBar';
 import alertDialogTopologyComponent, { alertDialogTopology } from './topologies/Dialog';
-import flowTopologyComponent, { flowTopology } from './topologies/Flow';
 import formFooterTopologyComponent, { formFooterTopology } from './topologies/FormFooter';
 import fullResourceTopologyComponent, { fullResourceTopology } from './topologies/FullResource';
 import gridTopologyComponent, { gridTopology } from './topologies/Grid';

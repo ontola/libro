@@ -3,6 +3,7 @@
  * Please properly include each file when access to the code is needed.
  */
 import { componentRegistrations } from '../components';
+import Flow from '../modules/Flow/views';
 
 import Academy from './Academy';
 import Action from './Action/index';
@@ -108,6 +109,7 @@ export function getViews() {
     ...ErrorResponse,
     ...FilterField,
     ...FilterOption,
+    ...Flow,
     ...Footer,
     ...FormField,
     ...FormGroup,

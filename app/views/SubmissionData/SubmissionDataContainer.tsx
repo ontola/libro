@@ -13,7 +13,6 @@ import AttributeList from '../../topologies/AttributeList';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { flowTopology } from '../../topologies/Flow';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const SubmissionDataContainer: FC = () => {
@@ -42,7 +41,6 @@ SubmissionDataContainer.topology = [
   alertDialogTopology,
   fullResourceTopology,
   containerTopology,
-  flowTopology,
 ];
 
 export default register(SubmissionDataContainer);

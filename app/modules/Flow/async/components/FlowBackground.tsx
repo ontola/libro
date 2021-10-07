@@ -2,7 +2,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme } from '../../../../themes/themes';
 
 export interface FlowBackgroundProps {
   checkmarks: boolean;

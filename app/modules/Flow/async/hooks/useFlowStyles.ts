@@ -1,11 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
 
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme } from '../../../../themes/themes';
 
 const STEPPER_SCALE_THRESHOLD = 10;
 const STEPPER_SCALE_SMALL = 0.7;
 
-const useFlowStyles = makeStyles<LibroTheme, { pageCount: number }>((theme) => ({
+export const useFlowStyles = makeStyles<LibroTheme, { pageCount: number }>((theme) => ({
   step: {
     '& svg': {
       cursor: 'pointer !important',
@@ -56,5 +56,3 @@ const useFlowStyles = makeStyles<LibroTheme, { pageCount: number }>((theme) => (
     backgroundColor: `${theme.palette.primary.main} !important`,
   },
 }));
-
-export default useFlowStyles;

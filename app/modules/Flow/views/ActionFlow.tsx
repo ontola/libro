@@ -12,16 +12,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Button from '../../components/Button';
-import CardContent from '../../components/Card/CardContent';
-import { SignInFormLink } from '../../components/SignInForm';
-import { retrievePath } from '../../helpers/iris';
-import CardMain from '../../topologies/Card/CardMain';
-import Container from '../../topologies/Container';
-import { flowTopology } from '../../topologies/Flow';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
-
-import { ActionProps, useDoneHandler } from './helpers';
+import Button from '../../../components/Button';
+import CardContent from '../../../components/Card/CardContent';
+import { SignInFormLink } from '../../../components/SignInForm';
+import { retrievePath } from '../../../helpers/iris';
+import CardMain from '../../../topologies/Card/CardMain';
+import Container from '../../../topologies/Container';
+import { invalidStatusIds } from '../../../views/Thing/properties/omniform/helpers';
+import { ActionProps, useDoneHandler } from '../../../views/Action/helpers';
+import { flowTopology } from '../topologies/Flow';
 
 const useStyles = makeStyles({
   controlStrip: {

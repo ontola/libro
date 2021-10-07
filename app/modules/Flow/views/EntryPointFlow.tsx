@@ -6,11 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import EntryPointForm from '../../components/Form/EntryPointForm';
-import { FormTheme } from '../../components/Form/Form';
-import { flowTopology } from '../../topologies/Flow';
-
-import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
+import EntryPointForm from '../../../components/Form/EntryPointForm';
+import { FormTheme } from '../../../components/Form/Form';
+import { flowTopology } from '../topologies/Flow';
+import useEntryPointFormProps, { EntryPointProps } from '../../../views/EntryPoint/useEntryPointFormProps';
 
 const useStyles = makeStyles({
   form: {

@@ -9,13 +9,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext } from '../../../components/Form/Form';
-import { useContainerToArr } from '../../../hooks/useContainerToArr';
-import useShapeValidation from '../../../hooks/useShapeValidation';
-import form from '../../../ontology/form';
-import ontola from '../../../ontology/ontola';
+import { FormContext } from '../../../../components/Form/Form';
+import { useContainerToArr } from '../../../../hooks/useContainerToArr';
+import useShapeValidation from '../../../../hooks/useShapeValidation';
+import form from '../../../../ontology/form';
+import ontola from '../../../../ontology/ontola';
 
-const useFlowFields = (): [SomeNode[], boolean] => {
+export const useFlowFields = (): [SomeNode[], boolean] => {
   const { object } = React.useContext(FormContext);
   const [pageCollection] = useProperty(form.pages) as Node[];
   const [pages] = useContainerToArr<SomeNode>(pageCollection);
@@ -54,5 +54,3 @@ const useFlowFields = (): [SomeNode[], boolean] => {
 
   return [filteredFields, loading];
 };
-
-export default useFlowFields;

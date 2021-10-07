@@ -5,9 +5,9 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { flowMessages } from '../../translations/messages';
-import Button, { ButtonTheme } from '../Button';
-import { FormContext } from '../Form/Form';
+import { flowMessages } from '../../lib/messages';
+import Button, { ButtonTheme } from '../../../../components/Button';
+import { FormContext } from '../../../../components/Form/Form';
 
 export interface SubmissionPageProps {
   formInvalid?: boolean;

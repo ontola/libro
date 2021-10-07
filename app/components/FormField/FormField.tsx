@@ -9,7 +9,7 @@ import {
 } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { flowTopology } from '../../topologies/Flow';
+import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { FormContext, FormTheme } from '../Form/Form';

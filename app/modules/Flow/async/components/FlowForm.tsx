@@ -6,12 +6,11 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ArrowBack, ArrowForward } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/styles';
+import { SomeTerm } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
-  FC,
   Resource,
-  register,
   useDig,
   useResourceProperty,
 } from 'link-redux';
@@ -19,23 +18,22 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { FlowAnimation } from '../../components/Flows/FlowAnimation';
-import { FlowBackground } from '../../components/Flows/FlowBackground';
-import { FlowStepper } from '../../components/Flows/FlowStepper';
-import { SubmissionPage } from '../../components/Flows/SubmissionPage';
-import { SHADOW_LIGHT } from '../../helpers/flow';
-import { calcPercentage } from '../../helpers/numbers';
-import { frontendIRI } from '../../ontology/app';
-import form from '../../ontology/form';
-import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
-import { flowTopology } from '../../topologies/Flow';
-import { flowMessages } from '../../translations/messages';
+import { SHADOW_LIGHT } from '../../../../helpers/flow';
+import { calcPercentage } from '../../../../helpers/numbers';
+import { frontendIRI } from '../../../../ontology/app';
+import form from '../../../../ontology/form';
+import ontola from '../../../../ontology/ontola';
+import { LibroTheme } from '../../../../themes/themes';
+import { flowMessages } from '../../lib/messages';
+import { AUTO_FORWARDED_FIELDS, useAutoForward } from '../hooks/useAutoForward';
+import { useFlowActiveField } from '../hooks/useFlowActiveField';
+import { useFlowFields } from '../hooks/useFlowFields';
+import { useInvalidField } from '../hooks/useInvalidField';
 
-import useAutoForward, { AUTO_FORWARDED_FIELDS } from './lib/useAutoForward';
-import useFlowActiveField from './lib/useFlowActiveField';
-import useFlowFields from './lib/useFlowFields';
-import useInvalidField from './lib/useInvalidField';
+import { SubmissionPage } from './SubmissionPage';
+import { FlowStepper } from './FlowStepper';
+import { FlowBackground } from './FlowBackground';
+import { FlowAnimation } from './FlowAnimation';
 
 export const MANUAlLY_FORWARDED_FIELDS = [
   form.TextAreaInput.value,
@@ -109,7 +107,11 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const FormFlow: FC = () => {
+const forwardByEnter = (type: SomeTerm) => (
+  type && !MANUAlLY_FORWARDED_FIELDS.includes(type.value) && !AUTO_FORWARDED_FIELDS.includes(type.value)
+);
+
+const FlowForm = (): JSX.Element | null => {
   const intl = useIntl();
 
   const classes = useStyles();
@@ -117,33 +119,31 @@ const FormFlow: FC = () => {
   const matchMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const [fields, loading] = useFlowFields();
   const [activeField, activateField, currentIndex] = useFlowActiveField(fields, loading);
+  const invalidField = useInvalidField(fields);
+  const [icon] = useDig([schema.image, ontola.imgUrl256x256], frontendIRI);
+  const [type] = useResourceProperty(activeField, rdf.type);
+
   const activateNextField = React.useCallback(() => {
     activateField(fields[currentIndex + 1]);
   }, [fields, currentIndex, activateField]);
   const activatePreviousField = React.useCallback(() => {
     activateField(fields[currentIndex - 1]);
   }, [fields, currentIndex, activateField]);
-  const invalidField = useInvalidField(fields);
-  useAutoForward(activeField, activateNextField);
-  const [icon] = useDig([schema.image, ontola.imgUrl256x256], frontendIRI);
-  const [type] = useResourceProperty(activeField, rdf.type);
+  const handleOnKeyDown: React.KeyboardEventHandler<HTMLDivElement> = React.useCallback((e) => {
+    if (forwardByEnter(type) && e.key === 'Enter') {
+      e.preventDefault();
+      activateNextField();
+    }
+  }, [activateNextField]);
+  const handleSubmitBack = React.useCallback(() => {
+    activateField(invalidField ?? fields[0]);
+  }, [activateField, invalidField, fields[0]]);
 
-  const forwardByEnter = type && !MANUAlLY_FORWARDED_FIELDS.includes(type.value) && !AUTO_FORWARDED_FIELDS.includes(type.value);
+  useAutoForward(activeField, activateNextField);
 
   if (loading) {
     return null;
   }
-
-  const handleOnKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (forwardByEnter && e.key === 'Enter') {
-      e.preventDefault();
-      activateNextField();
-    }
-  };
-
-  const handleSubmitBack = () => {
-    activateField(invalidField ?? fields[0]);
-  };
 
   return (
     <div className={classes.surveyWrapper}>
@@ -232,7 +232,7 @@ const FormFlow: FC = () => {
           <ArrowBack />
         </IconButton>
         <div className={classes.nextButtonWrapper}>
-          <Fade in={!(currentIndex >= fields.length) && forwardByEnter}>
+          <Fade in={!(currentIndex >= fields.length) && forwardByEnter(type)}>
             <div className={classes.enterWrapper}>
               <FontAwesome
                 name="level-down"
@@ -258,8 +258,4 @@ const FormFlow: FC = () => {
   );
 };
 
-FormFlow.type = form.Form;
-
-FormFlow.topology = flowTopology;
-
-export default register(FormFlow);
+export default FlowForm;
