@@ -1,5 +1,6 @@
 /** @jest-environment jsdom*/
 
+import { Geometry } from 'ol/geom';
 import { toLonLat } from 'ol/proj';
 
 import {
@@ -34,7 +35,7 @@ describe('geometry', () => {
     it('handles A greater than B', () => expect(distance(positiveBig, positiveSmall)).toBe(smallBig));
 
     it('handles floating point precision', () => expect(distance(floatingCoords[0], floatingCoords[1])).toBe(floating));
-  })
+  });
 
   describe('toFeature', () => {
     describe('with circle', () => {
@@ -55,20 +56,21 @@ describe('geometry', () => {
 
       it('has geometry type circle', () => {
         expect(feature.getGeometry().getType()).toBe('Circle');
-      })
+      });
 
       it('has a center', () => {
         const [lon, lat] = toLonLat(feature.getGeometry().getCenter());
         expect(lat).toBe(1.5);
         expect(lon).toBe(1.6);
-      })
+      });
 
       it('has a radius', () => {
         const center = toLonLat(feature.getGeometry().getCenter());
         const edge = toLonLat(feature.getGeometry().getLastCoordinate());
         expect(distance(center, edge)).toBe(0.6);
-      })
-    })
+      });
+    });
+
     describe('with polygon', () => {
       const geometry = {
         points: [
@@ -100,19 +102,32 @@ describe('geometry', () => {
 
       it('has geometry type polygon', () => {
         expect(feature.getGeometry().getType()).toBe('Polygon');
-      })
+      });
 
       it('has length', () => {
         expect(feature.getGeometry().getCoordinates()[0].length).toBe(5);
-      })
+      });
 
       it('is closed', () => {
         const coordinates = feature.getGeometry().getCoordinates()[0];
         expect(coordinates[coordinates.length-1]).toStrictEqual(coordinates[0]);
-      })
+      });
+    });
 
-    })
-  })
+    describe('with other', () => {
+      const geometry = {
+        points: [],
+        type: 'other',
+      };
+
+      it('throws an exception', () => {
+        expect(() => {
+          toFeature(geometry);
+        }).toThrow();
+      });
+    });
+  });
+
   describe('toPoint', () => {
     it('handles correct input', () => {
       expect(toPoint({
@@ -122,6 +137,6 @@ describe('geometry', () => {
         lat: 1.6,
         lon: 1.5,
       });
-    })
-  })
-})
+    });
+  });
+});

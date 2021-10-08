@@ -36,7 +36,7 @@ export const toFeature = (geometry: Geometry): Feature<Circle | Polygon> => {
     return new Feature(new Polygon([geometry.points.map(toOLCoords)]));
 
   default:
-    throw(`Undefined geometry type: ${geometry.type}`);
+    throw new Error(`Undefined geometry type: ${geometry.type}`);
   }
 };
 

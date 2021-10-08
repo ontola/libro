@@ -72,16 +72,9 @@ const drawFontAwesomeIcon = (
   vectorContext.setStyle(circleStyle);
   vectorContext.drawGeometry(circle);
 
-  let renderText;
-  let renderFont;
-
-  if (count > 1) {
-    renderText = count.toString();
-    renderFont = `bold 16px ${fontFamily}`;
-  } else {
-    renderText = text;
-    renderFont = 'normal 18px FontAwesome';
-  }
+  const [renderText, renderFont] = (count > 1)
+    ? [count.toString(), `bold 16px ${fontFamily}`]
+    : [text, 'normal 18px FontAwesome'];
 
   /* eslint-disable no-param-reassign */
   canvasCtx.fillStyle = color;
@@ -118,10 +111,10 @@ const featureCount = (feature: Feature) => (
   feature?.get('features')?.length || 0
 );
 
-const allFeaturesVisited = (feature: Feature) => feature
-  ?.get('features')
-  ?.every((f: { values_: { visited: boolean; }; } ) => f.values_.visited)
-  ?? true;
+export const allFeaturesVisited = (feature: Feature): boolean =>
+  feature.get('features')?.every(
+    (f: { values_: { visited: boolean; }; }) => f.values_.visited,
+  ) ?? true;
 
 const getIconProps = (theme: Theme, visited: boolean): IconProps => {
   const defaultIconProps = {
