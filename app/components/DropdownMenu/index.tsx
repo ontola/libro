@@ -32,6 +32,8 @@ const getNewAriaId = () => `dropdown-${count += 1}`;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   popper: {
+    maxHeight: '90vh',
+    overflowX: 'auto',
     zIndex: theme.zIndex.modal,
   },
 }));
