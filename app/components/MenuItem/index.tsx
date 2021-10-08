@@ -77,7 +77,7 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
           <Image linkedProp={icon} />
         </ListItemIcon>
       )}
-      <ListItemText>
+      <ListItemText primaryTypographyProps={{ color: 'textPrimary' }}>
         {children}
       </ListItemText>
       {expandOpen !== null && (expandOpen ? <ExpandLess /> : <ExpandMore />)}
