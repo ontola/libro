@@ -9,6 +9,7 @@ import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import CollectionRefresh from '../../../components/Collection/CollectionRefresh';
 import { HeaderFloat } from '../../../components/Collection/HeaderFloat';
 import { LoadingHidden } from '../../../components/Loading';
 import { buildRegister } from '../../../helpers/buildRegister';
@@ -37,6 +38,7 @@ const cardCollectionHeader = (): JSX.Element | null => {
   return (
     <CardHeader float={<HeaderFloat filterContainerRef={filterRef} />}>
       <Property label={as.name} />
+      <CollectionRefresh />
       <div ref={filterRef} />
     </CardHeader>
   );
@@ -61,6 +63,7 @@ const containerCollectionHeader = (): JSX.Element | null => {
         invertColors={topology === alertDialogTopology}
       >
         <Property label={as.name} />
+        <CollectionRefresh />
         <Resource subject={originalCollection}>
           <Property
             label={ontola.favoriteAction}

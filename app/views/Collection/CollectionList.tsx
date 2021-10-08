@@ -9,6 +9,7 @@ import {
 import React from 'react';
 
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
+import useCollectionRefresh from '../../components/Collection/useCollectionRefresh';
 import ontola from '../../ontology/ontola';
 import { ListDirection, listTopology } from '../../topologies/List';
 
@@ -24,6 +25,7 @@ const CollectionList: FC<CollectionListProps> = ({
   subject,
   to,
 }) => {
+  useCollectionRefresh(subject);
   const [totalItems] = useProperty(as.totalItems);
   const pagesShouldRender = totalItems?.value !== '0';
   const hasInteraction = useHasInteraction(subject);

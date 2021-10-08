@@ -1,22 +1,26 @@
 import * as as from '@ontologies/as';
 import {
+  FC,
   Property,
   register,
-  useProperty,
+  useNumbers,
 } from 'link-redux';
 import React from 'react';
 
+import useCollectionRefresh from '../../components/Collection/useCollectionRefresh';
 import ResourceBoundary from '../../components/ResourceBoundary';
-import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { CollectionTypes } from './types';
 
-const CollectionCardAppendix = () => {
-  const [totalItems] = useProperty(as.totalItems);
+const CollectionCardAppendix: FC = ({
+  subject,
+}) => {
+  const [totalItems] = useNumbers(as.totalItems);
+  useCollectionRefresh(subject);
 
-  if (tryParseInt(totalItems) === 0) {
+  if (totalItems === 0) {
     return null;
   }
 

@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import useCollectionRefresh from '../../components/Collection/useCollectionRefresh';
 import LDLink from '../../components/LDLink';
 import ontola from '../../ontology/ontola';
 import { CardFixed } from '../../topologies/Card';
@@ -16,30 +17,36 @@ import List, { ListDirection } from '../../topologies/List';
 
 import { CollectionTypes } from './types';
 
-const CollectionGrid: FC = () => (
-  <CardFixed>
-    <LDLink>
-      <CardContent endSpacing>
-        <Property label={as.name} />
-      </CardContent>
-      <CardContent>
-        <List
-          overflow
-          direction={ListDirection.Column}
-        >
-          <Property
-            forceRender
-            insideCollection
-            label={ontola.pages}
-          />
-        </List>
-      </CardContent>
-    </LDLink>
-    <DetailsBar>
-      <Property label={as.totalItems} />
-    </DetailsBar>
-  </CardFixed>
-);
+const CollectionGrid: FC = ({
+  subject,
+}) => {
+  useCollectionRefresh(subject);
+
+  return (
+    <CardFixed>
+      <LDLink>
+        <CardContent endSpacing>
+          <Property label={as.name} />
+        </CardContent>
+        <CardContent>
+          <List
+            overflow
+            direction={ListDirection.Column}
+          >
+            <Property
+              forceRender
+              insideCollection
+              label={ontola.pages}
+            />
+          </List>
+        </CardContent>
+      </LDLink>
+      <DetailsBar>
+        <Property label={as.totalItems} />
+      </DetailsBar>
+    </CardFixed>
+  );
+};
 
 CollectionGrid.type = CollectionTypes;
 

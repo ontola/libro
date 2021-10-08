@@ -20,6 +20,7 @@ import React, {
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
+import LinkLoader from '../../../components/Loading/LinkLoader';
 import { tryParseInt } from '../../../helpers/numbers';
 import useViewByIRI from '../../../hooks/useViewByIRI';
 import app from '../../../ontology/app';
@@ -54,7 +55,7 @@ const ItemList = ({
     view: viewIRI,
   } = useCollectionOptions();
   const view = viewIRI && useViewByIRI(viewIRI);
-  const [itemWrapper, itemWrapperOpts] = React.useMemo(() => {
+  const [ItemWrapper, itemWrapperOpts] = React.useMemo(() => {
     let wrapper: ElementType = React.Fragment;
     let wrapperOpts = {};
 
@@ -85,7 +86,7 @@ const ItemList = ({
             childProps={{ onItemClick }}
             depth={depth}
             itemRenderer={view}
-            itemWrapper={itemWrapper}
+            itemWrapper={ItemWrapper}
             itemWrapperOpts={itemWrapperOpts}
             key={`${subject}:${iri.value}`}
             separator={separator}
@@ -120,10 +121,17 @@ const Items: FC<ItemProps> = (props) => {
     linkedProp,
     topology,
   } = props;
-  const { depth } = useCollectionOptions();
+  const {
+    refreshing,
+    depth,
+  } = useCollectionOptions();
   let children = null;
 
   if (tryParseInt(totalCount) === 0) {
+    if (refreshing) {
+      return <LinkLoader />;
+    }
+
     return (
       <Property
         forceRender

@@ -118,7 +118,7 @@ export const dateMessages: Messages = defineMessages({
   },
   lastActivityAt: {
     defaultMessage: 'last activity: {date}',
-    id: 'https://app.argu.co/i18n/argu:lastActivityAt/label',
+    id: 'https://app.argu.co/i18n/ontola:lastActivityAt/label',
   },
   startDate: {
     defaultMessage: 'start date: {date}',

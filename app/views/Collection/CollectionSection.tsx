@@ -4,12 +4,13 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useNumbers,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
+import useCollectionRefresh from '../../components/Collection/useCollectionRefresh';
 import ontola from '../../ontology/ontola';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
@@ -29,9 +30,10 @@ const CollectionSection: FC<CollectionSectionProps> = ({
   to,
   wrap,
 }) => {
-  const [totalItems] = useProperty(as.totalItems);
-  const pagesShouldRender = totalItems?.value !== '0';
+  const [totalItems] = useNumbers(as.totalItems);
+  const pagesShouldRender = totalItems !== 0;
   const hasInteraction = useHasInteraction(subject);
+  useCollectionRefresh(subject);
 
   if (!pagesShouldRender && !hasInteraction) {
     return null;

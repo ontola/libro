@@ -114,7 +114,6 @@ export default {
   invitee: argu('invitee'),
   isDraft: argu('isDraft'),
   isOpinion: argu('isOpinion'),
-  lastActivityAt: argu('lastActivityAt'),
   legend: argu('legend'),
   legendType: argu('legendType'),
   lowerSection: argu('lowerSection'),

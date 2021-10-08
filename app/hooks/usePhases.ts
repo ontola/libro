@@ -5,6 +5,7 @@ import {
   useGlobalIds,
 } from 'link-redux';
 
+import useCollectionRefresh from '../components/Collection/useCollectionRefresh';
 import argu from '../ontology/argu';
 
 import { ResolvedArray, useContainerToArr } from './useContainerToArr';
@@ -20,6 +21,7 @@ const usePhases = (project: SomeNode): ResolvedArray<SomeNode> => {
   useDataFetching(project);
 
   const [phases] = useGlobalIds(project, argu.phases);
+  useCollectionRefresh(phases);
 
   return useContainerToArr<SomeNode>(phases);
 };

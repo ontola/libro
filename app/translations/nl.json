@@ -14,9 +14,6 @@
   "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": {
     "defaultMessage": "{count} ideeën"
   },
-  "https://app.argu.co/i18n/argu:lastActivityAt/label": {
-    "defaultMessage": "Laatste activiteit: {date}"
-  },
   "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
     "defaultMessage": "Filteren"
   },
@@ -352,6 +349,9 @@
   },
   "https://app.argu.co/i18n/navbar/troubleNavigating": {
     "defaultMessage": "Moeite met navigeren? Mail ons!"
+  },
+  "https://app.argu.co/i18n/ontola:lastActivityAt/label": {
+    "defaultMessage": "Laatste activiteit: {date}"
   },
   "https://app.argu.co/i18n/pages/closed": {
     "defaultMessage": "Deze pagina is privé. Alleen leden kunnen de content bekijken. Vraag een lid of een van de managers hoe je toegang kan krijgen tot deze website."

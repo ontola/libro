@@ -19,6 +19,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import useCollectionRefresh from '../components/Collection/useCollectionRefresh';
 import { entityIsLoaded, resourceHasType } from '../helpers/data';
 import {
   collectionMembers,
@@ -190,15 +191,23 @@ const useInitialValues = (
       setLoading(currentLoading);
     }
 
-    return dependencies;
+    return dependencies.filter(isNamedNode);
   }, [actionBody, object, formID, timestamp]);
-  const currentTimestamp = useDataFetching(dependentResources.filter(isNamedNode));
+
+  const currentTimestamp = useDataFetching(dependentResources);
+  const refreshingCollection = useCollectionRefresh(dependentResources);
+
+  React.useEffect(() => {
+    if (refreshingCollection && !loading) {
+      setLoading(true);
+    }
+  }, [refreshingCollection]);
 
   if (currentTimestamp !== timestamp) {
     setTimestamp(currentTimestamp);
   }
 
-  return [loading, initialValues as Record<string, unknown>];
+  return [loading || refreshingCollection, initialValues as Record<string, unknown>];
 };
 
 export default useInitialValues;

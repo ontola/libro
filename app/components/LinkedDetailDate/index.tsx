@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { useLiterals } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import DetailDate from '../DetailDate';
 
 interface PropTypes {
@@ -18,7 +18,7 @@ const LinkedDetailDate: React.FC<PropTypes> = ({
   const [dateSubmitted] = useLiterals(schema.ns('dateSubmitted'));
   const [duration] = useLiterals(schema.duration);
   const [endDate] = useLiterals(schema.endDate);
-  const [lastActivityAt] = useLiterals(argu.lastActivityAt);
+  const [lastActivityAt] = useLiterals(ontola.lastActivityAt);
   const [startDate] = useLiterals(schema.startDate);
 
   return (

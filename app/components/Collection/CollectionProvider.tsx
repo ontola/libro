@@ -30,6 +30,8 @@ import { useCollectionStyles } from '../../views/Collection';
 import { invalidStatusIds } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
 
+import useCollectionRefresh from './useCollectionRefresh';
+
 export interface CollectionProps {
   clickToOpen?: boolean;
   collectionDisplay?: NamedNode;
@@ -63,6 +65,7 @@ export interface CollectionContext {
   onItemClick?: () => void;
   originalCollection: SomeNode;
   redirectPagination?: boolean;
+  refreshing?: boolean;
   setCollectionResource: (resource: NamedNode) => void;
   sortOptions: SortProps[];
   view?: NamedNode;
@@ -126,6 +129,7 @@ const CollectionProvider = ({
     subject,
   );
   const [firstPageItems] = useFields(currentCollectionPages[0], as.totalItems);
+  const refreshing = useCollectionRefresh(subject);
 
   const [columnSequence] = useIds(originalCollection, ontola.columns);
   const [columns] = useListToArr<NamedNode>(columnSequence);
@@ -161,6 +165,7 @@ const CollectionProvider = ({
     onItemClick,
     originalCollection,
     redirectPagination,
+    refreshing,
     setCollectionResource,
     sortOptions,
     view,
@@ -180,6 +185,7 @@ const CollectionProvider = ({
     omniform,
     onItemClick,
     originalCollection,
+    refreshing,
     setCollectionResource,
     sortOptions,
     view,

@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import RelativeDate from '../../../../../components/RelativeDate';
-import argu from '../../../../../ontology/argu';
+import ontola from '../../../../../ontology/ontola';
 import teamGL from '../../../../../ontology/teamGL';
 import TableCell from '../../../../../topologies/TableCell';
 import { tableRowTopology } from '../../../../../topologies/TableRow';
@@ -29,7 +29,7 @@ LastActivityAtTableRow.type = [
 ];
 
 LastActivityAtTableRow.property = [
-  argu.lastActivityAt,
+  ontola.lastActivityAt,
   teamGL.signedUpAt,
   teamGL.lastVisitedAt,
 ];

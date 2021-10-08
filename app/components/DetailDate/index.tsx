@@ -97,7 +97,7 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     || lastActivityAt;
 
   const hoverText = [
-    format('argu:lastActivityAt'),
+    format('ontola:lastActivityAt'),
     format('schema:startDate'),
     format('schema:endDate'),
     format('schema:dateCreated'),

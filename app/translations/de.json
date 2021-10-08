@@ -14,9 +14,6 @@
   "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": {
     "defaultMessage": "{count} Ideen"
   },
-  "https://app.argu.co/i18n/argu:lastActivityAt/label": {
-    "defaultMessage": "letzte Aktivität: {date}"
-  },
   "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
     "defaultMessage": "Filtern"
   },
@@ -352,6 +349,9 @@
   },
   "https://app.argu.co/i18n/navbar/troubleNavigating": {
     "defaultMessage": "Haben Sie Probleme mit der Navigation? Mailen Sie uns!"
+  },
+  "https://app.argu.co/i18n/ontola:lastActivityAt/label": {
+    "defaultMessage": "letzte Aktivität: {date}"
   },
   "https://app.argu.co/i18n/pages/closed": {
     "defaultMessage": "Diese Seite ist privat. Nur Mitglieder dürfen ihren Inhalt sehen. Fragen Sie ein Mitglied oder die Manager, wie Sie Zugang erhalten können."
