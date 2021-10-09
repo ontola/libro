@@ -6230,8 +6230,8 @@ __metadata:
     koa-static: ^5.0.0
     koa-webpack: ^6.0.0
     koa2-connect: ^1.0.2
-    link-lib: ^2.1.1
-    link-redux: 3.0.0-6
+    link-lib: 3.0.0-3
+    link-redux: 3.0.0-18
     lint-staged: ^10.5.4
     md5.js: ^1.3.5
     memoize-one: ^5.0.5
@@ -14777,9 +14777,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"link-lib@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "link-lib@npm:2.1.1"
+"link-lib@npm:3.0.0-3":
+  version: 3.0.0-3
+  resolution: "link-lib@npm:3.0.0-3"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -14787,24 +14787,25 @@ fsevents@~2.3.1:
     "@ontologies/schema": ">=1.0.0"
     "@ontologies/shacl": ">=1.0.0"
     "@ontologies/xsd": ">=1.0.0"
+    can-ndjson-stream: ^1.0.2
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.0-3
-  checksum: 2212be4628da90ba6716edf0e0eb62fbbf6535cbe60fc31edc9671397510b1d1e0370ed98156c08075011a8ab3f3ee61f1c8a04c9b4e4cbc5bd0652a6ed22f3e
+  checksum: 73bd93b31142701be195fc41e34953221f00f55d0090b4d91453b4ab511018d498c7bbff330f11b01ba99eafdc2bd241dc4620efaa5fc59cbabe8adbbec758b6
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-6":
-  version: 3.0.0-6
-  resolution: "link-redux@npm:3.0.0-6"
+"link-redux@npm:3.0.0-18":
+  version: 3.0.0-18
+  resolution: "link-redux@npm:3.0.0-18"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
     hoist-non-react-statics: ">=3.x"
     http-status-codes: ">= 1.x"
-    link-lib: ">=2.1.1"
+    link-lib: ">=3.0.0-1"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 472404616c69fc3fa37c6ef36ed79f5f70834315e0e8b251970106cdb06c58d72a4a1a17414b042e3c727e711650d3274614ea65880c0cb2226ad6ea01b80ec8
+  checksum: be8fb674a4bfb06d4f6d136f0de4b2cc3f8de6118215f11484dd17d63f4e5b123362c99198e883cd8c0935d4f52c2abfda0361f80f06c4a502cbf38f13c529d6
   languageName: node
   linkType: hard
 
