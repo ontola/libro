@@ -5,12 +5,12 @@ import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete
 import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   Resource,
-  useDig,
+  dig,
+  useFields,
+  useIds,
   useLRS,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -42,10 +42,10 @@ export const ChapterSearch = (): JSX.Element => {
   const intl = useIntl();
   const classNames = useStyles();
 
-  const [target] = useDig([app.target], app['individuals/searchTarget']);
-  const [title] = useResourceProperty(target?.[0] as SomeNode, schema.title);
+  const [target] = useIds(app.target, dig(app['individuals/searchTarget']));
+  const [title] = useFields(target, schema.title);
 
-  const searchObject = useChapterSearch(target?.[0]);
+  const searchObject = useChapterSearch(target);
 
   const [inputValue, setInputValue] = React.useState('');
 

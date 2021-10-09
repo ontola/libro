@@ -11,8 +11,8 @@ import {
   Resource,
   register,
   useDataFetching,
-  useProperty,
-  useResourceProperty,
+  useFields,
+  useIds,
 } from 'link-redux';
 import React, { useState } from 'react';
 
@@ -48,15 +48,15 @@ const dateRangeToS = (dateRange: [Date, Date]) => (
 );
 
 const DashboardPageFull = () => {
-  const [dashboard] = useProperty(teamGL.dashboard) as SomeNode[];
+  const [dashboard] = useIds(teamGL.dashboard);
 
   useDataFetching([dashboard]);
-  const [itemSequence] = useResourceProperty(dashboard, ontola.menuItems);
-  const [items] = useContainerToArr(isNode(itemSequence) ? itemSequence : undefined);
-  const [firstItem] = useResourceProperty(isNode(itemSequence) ? itemSequence : undefined, rdfx.ns('_0'));
+  const [itemSequence] = useIds(dashboard, ontola.menuItems);
+  const [items] = useContainerToArr(itemSequence);
+  const [firstItem] = useFields(itemSequence, rdfx.ns('_0'));
   const [currentTab, setCurrentTab] = useState<SomeNode | undefined>(undefined);
-  const [iriTemplate] = useResourceProperty(isNode(currentTab) ? currentTab : undefined, ontola.href);
-  const currentActorPostalRanges = useResourceProperty(app.c_a, teamGL.postalRanges);
+  const [iriTemplate] = useFields(isNode(currentTab) ? currentTab : undefined, ontola.href);
+  const currentActorPostalRanges = useFields(teamGL.postalRanges, app.c_a);
   const [page, setPage] = useState(1);
   const [postalRanges, setPostalRange] = useState<Literal[]>([]);
   const [dateRange, setDateRange] = useState<[Date, Date]>(() => {

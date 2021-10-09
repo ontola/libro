@@ -3,18 +3,17 @@ import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/styles';
 import { NamedNode, SomeTerm } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   Resource,
+  array,
   register,
+  useFields,
+  useIds,
   useLRS,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -153,12 +152,11 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
   const lrs = useLRS();
   const intl = useIntl();
   const progressBarOverrideStyles = useProgressBarOverrideStyles();
-  const [chapters] = useProperty(argu.chapters) as SomeNode[];
-  const [headerImage] = useProperty(schema.image);
-  const [pdfURL] = useProperty(schema.contentUrl);
-  const [coverText] = useProperty(schema.text);
+  const members = useIds(array(argu.chapters));
+  const [headerImage] = useFields(schema.image);
+  const [pdfURL] = useFields(schema.contentUrl);
+  const [coverText] = useFields(schema.text);
   const classNames = useStyles({ headerImage: headerImage.value });
-  const members = useResourceProperty(chapters, rdfs.member);
 
   const {
     prevChapter,
@@ -214,7 +212,7 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
             </div>
             <div className={classNames.devider} />
             <ol className={classNames.sideBarList}>
-              {chapters && members.map((member) => (
+              {members.map((member) => (
                 <li key={member.value}>
                   <Resource
                     topLevel

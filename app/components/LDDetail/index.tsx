@@ -1,9 +1,9 @@
-import { NamedNode, isNamedNode } from '@ontologies/core';
+import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   useDataFetching,
+  useGlobalIds,
   useLink,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,12 +23,12 @@ const LDDetail = (props: DetailProps): JSX.Element => {
     name,
   } = useLink(mapFieldProps);
   useDataFetching(isNamedNode(image) ? image : []);
-  const [thumbnail] = useResourceProperty(
+  const [thumbnail] = useGlobalIds(
     isNamedNode(image) ? image : undefined,
     schema.thumbnail,
-  ) as NamedNode[];
+  );
 
-  const imageUrl = thumbnail || image;
+  const imageUrl = thumbnail ?? image;
 
   return (
     <Detail

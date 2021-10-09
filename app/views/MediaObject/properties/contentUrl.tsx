@@ -3,6 +3,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useLiterals,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -27,7 +28,7 @@ const ContentUrl: FC<PropTypes> = ({
   linkedProp,
   subject,
 }) => {
-  const [encodingFormat] = useProperty([schema.encodingFormat, schema.fileFormat]) as Literal[];
+  const [encodingFormat] = useLiterals([schema.encodingFormat, schema.fileFormat]);
   const [filename] = useProperty(dbo.filename);
 
   if (isPDF(encodingFormat, linkedProp)) {

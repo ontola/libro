@@ -8,8 +8,10 @@ import {
   FC,
   Property,
   register,
+  useGlobalIds,
+  useIds,
   useLRS,
-  useProperty,
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
@@ -129,11 +131,11 @@ const MenuItemDropdownContentComp = ({
 
 const MenuItemDropdownContent = React.forwardRef<FC, MenuItemDropdownContentProps>(
   (props, ref) => {
-    const[action] = useProperty(ontola.action) as NamedNode[];
-    const[href] = useProperty(ontola.href) as SomeNode[];
-    const[image] = useProperty(schema.image) as SomeNode[];
-    const[menuItems] = useProperty(ontola.menuItems) as SomeNode[];
-    const[name] = useProperty(schema.name) as Literal[];
+    const[action] = useGlobalIds(ontola.action);
+    const[href] = useIds(ontola.href);
+    const[image] = useIds(schema.image);
+    const[menuItems] = useIds(ontola.menuItems);
+    const[name] = useLiterals(schema.name);
 
     return(
       <MenuItemDropdownContentComp

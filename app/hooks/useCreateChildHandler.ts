@@ -2,10 +2,9 @@ import rdf, { isNamedNode, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import {
-  ReturnType,
   useDataFetching,
+  useIds,
   useLRS,
-  useProperty,
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
@@ -18,7 +17,7 @@ export type CreateChildHandler = ((lon: any, lat: any, zoom: any) => void) | und
 
 const useCreateChildHandler = (): CreateChildHandler => {
   const lrs = useLRS();
-  const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms }).filter(isNode);
+  const createActions = useIds(ontola.createAction);
   const actionProps = useResourceLinks(createActions, {
     entryPoint: schema.target,
     status: schema.actionStatus,
@@ -29,7 +28,7 @@ const useCreateChildHandler = (): CreateChildHandler => {
       .filter(isNamedNode)
   ), [actionProps]);
   const entryPointsProps = useResourceLinks(
-    entryPoints || [],
+    entryPoints ?? [],
     {
       action: schema.isPartOf,
       form: ll.actionBody,

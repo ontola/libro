@@ -1,10 +1,11 @@
-import {
-  NamedNode,
-  SomeTerm,
-  isNode,
-} from '@ontologies/core';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { useDig, useLRS } from 'link-redux';
+import {
+  dig,
+  useFields,
+  useIds,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
 
 import sales from '../ontology/sales';
@@ -20,16 +21,16 @@ export interface SalesArticleResult {
 export const useSalesArticles = (subject: SomeNode, path: NamedNode[]): SalesArticleResult => {
   const lrs = useLRS();
 
-  const [items] = useDig(path, subject);
-  const themeList = useDig([sales.theme], items?.filter(isNode));
+  const items = useIds(subject, dig(...path));
+  const themeList = useFields(items, sales.theme);
 
   const [themes, setThemes] = React.useState<SomeTerm[]>([]);
-  const [articles, setArticles] = React.useState<SomeTerm[]>(items?.filter(isNode) ?? []);
+  const [articles, setArticles] = React.useState<SomeTerm[]>(items ?? []);
   const [filter, setFilter] = React.useState<SomeTerm | null>(null);
   const [visible, setVisible] = React.useState(true);
 
   React.useEffect(() => {
-    const uniqueThemes = Array.from(new Set(themeList.map((t) => t[0])));
+    const uniqueThemes = Array.from(new Set(themeList.map((t: SomeTerm[]) => t[0])));
     setThemes(uniqueThemes);
   }, [themeList]);
 
@@ -41,12 +42,12 @@ export const useSalesArticles = (subject: SomeNode, path: NamedNode[]): SalesArt
     }, 0);
 
     if (!filter) {
-      setArticles(items?.filter(isNode) ?? []);
+      setArticles(items ?? []);
 
       return;
     }
 
-    const filteredItems = items.filter(isNode)
+    const filteredItems = items
       .filter((item) => lrs.getResourceProperty(item, sales.theme)?.value === filter?.value);
 
     setArticles(filteredItems);

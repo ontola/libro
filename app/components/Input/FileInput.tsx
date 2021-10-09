@@ -1,8 +1,7 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
-import { SomeNode } from 'link-lib';
-import { useResourceProperty } from 'link-redux';
+import { useIds } from 'link-redux';
 import React from 'react';
 
 import Dropzone from '../../containers/Dropzone';
@@ -29,7 +28,7 @@ const FileInput: React.FC<InputComponentProps> = ({
   } = React.useContext(FormContext);
   const fileNameShape = useInputShape(dbo.filename);
   const encodingFormatShape = useInputShape(schema.encodingFormat);
-  const [encodingFormatList] = useResourceProperty(encodingFormatShape, sh.shaclin) as [SomeNode];
+  const [encodingFormatList] = useIds(encodingFormatShape, sh.shaclin);
   const [encodingFormatConversion, encodingFormatLoading] = useListToArr(encodingFormatList);
 
   const [encodingFormatTypes, setEncodingFormatTypes] = React.useState<string>('');

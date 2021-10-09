@@ -1,21 +1,21 @@
-import * as foaf from '@ontologies/foaf';
-import * as rdfx from '@ontologies/rdf';
-import * as rdfs from '@ontologies/rdfs';
-import * as schema from '@ontologies/schema';
+import * as foaf from '@ontologies/foaf'
+import * as rdfx from '@ontologies/rdf'
+import * as rdfs from '@ontologies/rdfs'
+import * as schema from '@ontologies/schema'
 import {
   linkType,
   register,
   subjectType,
+  useFields,
   useLink,
-  useProperty,
-  useResourceProperty,
-} from 'link-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
+  useProperty
+} from 'link-redux'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import ResourceBoundary from '../../components/ResourceBoundary';
-import ontola from '../../ontology/ontola';
-import { selectTopology } from '../../topologies/Select';
+import ResourceBoundary from '../../components/ResourceBoundary'
+import ontola from '../../ontology/ontola'
+import { selectTopology } from '../../topologies/Select'
 
 const ThingSelect = ({
   'aria-selected': ariaSelected,
@@ -45,7 +45,7 @@ const ThingSelect = ({
   const labels = [schema.name, rdfs.label, foaf.name];
 
   const [itemClass] = useProperty(rdfx.type);
-  const [labelProp] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
+  const [labelProp] = useFields(itemClass, ontola['forms/inputs/select/displayProp']);
 
   if (labelProp) {
     labels.unshift(labelProp);

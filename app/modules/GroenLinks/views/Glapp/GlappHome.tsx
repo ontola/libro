@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useResourceProperty,
+  useFields,
 } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
@@ -53,10 +53,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const GlappHome: FC = () => {
-  const [name] = useResourceProperty(app.c_a, schema.givenName);
   const classes = useStyles();
   const theme: any = useTheme();
+
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const [name] = useFields(schema.givenName, app.c_a);
+
   const [selectedPostalCode, setSelectedPostalCodeRaw] = React.useState<number | undefined>(undefined);
   const setSelectedPostalCode = React.useCallback((postalCode?: number) => {
     setSelectedPostalCodeRaw(postalCode);

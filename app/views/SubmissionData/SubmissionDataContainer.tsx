@@ -1,6 +1,7 @@
 import * as rdfx from '@ontologies/rdf';
 import {
   FC,
+  except,
   register,
   useQuads,
 } from 'link-redux';
@@ -16,7 +17,7 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const SubmissionDataContainer: FC = () => {
-  const properties = useQuads([rdfx.type]);
+  const properties = useQuads(except(rdfx.type));
 
   return (
     <Card>

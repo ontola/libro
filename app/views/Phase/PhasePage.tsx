@@ -1,10 +1,9 @@
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useLRS,
-  useProperty,
+  useGlobalIds,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 import { Redirect } from 'react-router';
@@ -16,9 +15,9 @@ import usePhases, { phaseIRI } from '../../hooks/usePhases';
 import argu from '../../ontology/argu';
 import { pageTopology } from '../../topologies/Page';
 
-const PhasePage: FC = ({ subject }) => {  
+const PhasePage: FC = ({ subject }) => {
   const lrs = useLRS();
-  const [isPartOf] = useProperty(schema.isPartOf) as NamedNode[];
+  const [isPartOf] = useGlobalIds(schema.isPartOf);
   const [phases, loaded] = usePhases(isPartOf);
 
   if (!loaded || __CLIENT__ && !entityIsLoaded(lrs, isPartOf)) {

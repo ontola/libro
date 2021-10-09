@@ -3,8 +3,8 @@ import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   useDataFetching,
+  useGlobalIds,
   useLRS,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { useHistory } from 'react-router';
@@ -42,7 +42,7 @@ export const useCurrentCollectionResource = (redirectPagination: boolean, origin
   CurrentCollectionResource => {
   const lrs = useLRS();
   const history = useHistory();
-  const [collectionResource] = useResourceProperty(originalCollectionResource, app.collectionResource) as NamedNode[];
+  const [collectionResource] = useGlobalIds(originalCollectionResource, app.collectionResource);
   const redirectPage = React.useCallback((newPage: NamedNode) => (
     history.push(retrievePath(newPage?.value) ?? '#')
   ), [history]);
@@ -64,8 +64,8 @@ export const useCurrentCollectionResource = (redirectPagination: boolean, origin
 const useCurrentCollectionAndPage = (currentCollectionResource: SomeNode): [CurrentCollection, CurrentCollectionPage[]] => {
   const lrs = useLRS();
   const isCollection = CollectionTypes.find((type) => resourceHasType(lrs, currentCollectionResource, type));
-  const [partOf] = useResourceProperty(currentCollectionResource, as.partOf) as NamedNode[];
-  const pages = useResourceProperty(currentCollectionResource, ontola.pages) as NamedNode[];
+  const [partOf] = useGlobalIds(currentCollectionResource, as.partOf);
+  const pages = useGlobalIds(currentCollectionResource, ontola.pages);
   const currentCollection = isCollection ? currentCollectionResource : partOf;
   const [collection, setCollection] = React.useState(currentCollection);
 

@@ -12,9 +12,9 @@ import {
   Resource,
   register,
   useDataInvalidation,
+  useIds,
   useLRS,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -83,9 +83,9 @@ const Phases: FC<PhasesProps> = ({
   const stepperOverrideClasses = useStepperOverrideStyles();
   const classes = useStyles();
   const [currentPhase] = useProperty(argu.currentPhase);
-  const [page] = useResourceProperty(linkedProp, ontola.pages) as Node[];
+  const [page] = useIds(linkedProp, ontola.pages);
   const [createAction, createActionStatus] = useAction(linkedProp, ontola.createAction);
-  const [itemSequence] = useResourceProperty(page ?? subject, as.items) as Node[];
+  const [itemSequence] = useIds(page ?? subject, as.items);
   const [items, itemsIsLoading] = useContainerToArr<SomeNode>(itemSequence);
   useDataInvalidation([page, linkedProp, ...items]);
   const [canEdit, setCanEdit] = React.useState(false);

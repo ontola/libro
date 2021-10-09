@@ -1,15 +1,15 @@
 import Button from '@material-ui/core/Button';
-import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   Property,
   literal,
   useDataInvalidation,
+  useFields,
+  useIds,
   useLRS,
-  useProperty,
   useResourceLinks,
-  useResourceProperty,
   value,
 } from 'link-redux';
 import React from 'react';
@@ -43,20 +43,15 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
 }) => {
   const lrs = useLRS();
   const intl = useIntl();
-  const [commentsCollection] = useProperty(schema.comment);
-  const [createCommentAction] = useResourceProperty(
-    isNode(commentsCollection) ? commentsCollection : undefined,
-    ontola.createAction,
-  );
-  const commentCollectionTimestamp = useDataInvalidation(
-    isNode(commentsCollection) ? commentsCollection : undefined,
-  );
+  const [commentsCollection] = useIds(schema.comment);
+  const [createCommentAction] = useFields(commentsCollection, ontola.createAction);
+  const commentCollectionTimestamp = useDataInvalidation(commentsCollection);
   const comments = React.useMemo(() => (
     lrs
       .dig(subject, [schema.comment, ...collectionMembers])
       .filter(isNamedNode)
   ), [lrs, subject, commentCollectionTimestamp]);
-  useDataInvalidation(comments.filter(isNode));
+  useDataInvalidation(comments);
   const commentProps = useResourceLinks(comments, commentPropMap) as CommentProps[];
   const [pageNumber, setPageNumber] = React.useState(1);
   const handleCommentClick = React.useCallback((comment) => {

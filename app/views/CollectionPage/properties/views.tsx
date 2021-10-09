@@ -2,9 +2,8 @@ import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
   FC,
   Resource,
-  ReturnType,
   register,
-  useProperty,
+  useQuads,
 } from 'link-redux';
 import React from 'react';
 
@@ -19,7 +18,7 @@ interface ViewsProps {
 }
 
 const Views: FC<ViewsProps> = ({ label }) => {
-  const prop = useProperty(label, { returnType: ReturnType.AllStatements });
+  const prop = useQuads(label);
 
   if (prop.length === 1) {
     return (

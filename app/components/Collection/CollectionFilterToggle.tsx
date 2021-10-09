@@ -2,8 +2,7 @@ import Badge from '@material-ui/core/Badge';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Portal from '@material-ui/core/Portal';
-import { isNode } from '@ontologies/core';
-import { useLinkRenderContext, useProperty } from 'link-redux';
+import { useIds, useLinkRenderContext } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
@@ -33,8 +32,8 @@ const CollectionFilterToggle = ({
 
   const autoShowFilters = redirectPagination || appliedFilters.length > 0;
 
-  const currentFilters = useProperty(ontola.collectionFilter).filter(isNode);
-  const [filterSequence] = useProperty(ontola.filterFields).filter(isNode);
+  const currentFilters = useIds(ontola.collectionFilter);
+  const [filterSequence] = useIds(ontola.filterFields);
   const [filters] = useSeqToArr(filterSequence);
   const [showFilters, setShowFilters] = React.useState<{
     show: boolean,

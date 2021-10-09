@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, { isNode } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
   ReturnType,
+  dig,
+  useIds,
   useResourceLink,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -55,10 +56,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
 const usePlacements = (lat: InputValue, lon: InputValue, zoomLevel: InputValue): [Placement[], InitialView] => {
   const { object, parentObject } = React.useContext(FormContext);
-  const [parent] = useResourceProperty(parentObject, schema.isPartOf);
-  const [parentLocation] = useResourceProperty(isNode(parent) ? parent : undefined, schema.location);
+  const [parentLocation] = useIds(parentObject, dig(schema.isPartOf, schema.location));
   const initialView = useResourceLink(
-    isNode(parentLocation) ? parentLocation : undefined,
+    parentLocation,
     viewMapping,
     { returnType: ReturnType.Literal },
   ) as InitialView;

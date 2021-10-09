@@ -1,9 +1,8 @@
-import { NamedNode } from '@ontologies/core';
 import {
   FC,
   Property,
   register,
-  useProperty,
+  useGlobalIds, 
 } from 'link-redux';
 import React from 'react';
 
@@ -30,7 +29,7 @@ const MenuItemCardAppendix: FC<MenuItemCardAppendixProps> = ({
     isActive,
     onClick,
   }), [isActive, onClick]);
-  const [menuItemSequence] = useProperty(ontola.menuItems) as NamedNode[];
+  const [menuItemSequence] = useGlobalIds(ontola.menuItems);
   const [menuItems] = useSeqToArr(menuItemSequence);
 
   if (menuItems.length == 0) {

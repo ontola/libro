@@ -7,8 +7,8 @@ import {
   ReturnType,
   useDataFetching,
   useDataInvalidation,
+  useIds,
   useLRS,
-  useProperty,
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
@@ -58,7 +58,7 @@ const trigger: Trigger = (props) => (
 
 const CollectionCreateActionButton: React.FC = () => {
   const lrs = useLRS();
-  const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms }).filter(isNode);
+  const createActions = useIds(ontola.createAction);
   const validActions = useValidActions(createActions);
   const renderedActions = useFavoriteActions(validActions, false);
   useDataInvalidation(createActions);

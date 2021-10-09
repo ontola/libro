@@ -5,8 +5,8 @@ import {
   Property,
   RenderStoreProvider,
   Resource,
+  useIds,
   useLRS,
-  useResourceProperty,
 } from 'link-redux';
 import React, {
   EventHandler,
@@ -80,7 +80,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
     object,
     formID,
   );
-  const [errorResponse] = useResourceProperty(action, ll.errorResponse) as SomeNode[];
+  const [errorResponse] = useIds(action, ll.errorResponse);
   const [submissionErrors, clearErrors] = useSubmissionErrors(errorResponse);
   const handleSubmit = React.useCallback<SubmitHandler>((formData, formApi, retrySubmit) => {
     clearErrors();

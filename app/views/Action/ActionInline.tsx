@@ -8,6 +8,7 @@ import {
   FC,
   Property,
   register,
+  useGlobalIds,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -49,7 +50,7 @@ const ActionInline: FC<InlineCreateActionProps> = ({
   theme,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
-  const type = useProperty(rdfx.type) as NamedNode[];
+  const type = useGlobalIds(rdfx.type);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;

@@ -3,9 +3,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import * as schema from '@ontologies/schema';
 import {
-  ReturnType,
   register,
-  useProperty,
+  useValues,
 } from 'link-redux';
 import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
@@ -37,7 +36,7 @@ const calcDuration = (text = '') => {
 
 const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
   const { formatMessage } = useIntl();
-  const text = useProperty(schema.text, { returnType: ReturnType.Value });
+  const [text] = useValues(schema.text);
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {

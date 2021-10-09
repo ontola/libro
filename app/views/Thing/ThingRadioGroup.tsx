@@ -4,25 +4,29 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  linkType,
   register,
-  useProperty,
-  useResourceProperty,
+  useGlobalIds,
+  useIds,
 } from 'link-redux';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 
+interface ThingRadioGroupProps {
+  itemClass: unknown,
+  style: unknown,
+  wrapperProps: unknown,
+}
+
 const ThingRadioGroup = ({
   wrapperProps,
-}) => {
-  const [itemClass] = useProperty(rdfx.type);
-  const labels = [schema.name, rdfs.label, foaf.name];
+}: ThingRadioGroupProps) => {
+  const [itemClass] = useIds(rdfx.type);
+  const [label] = useGlobalIds(itemClass, ontola['forms/inputs/select/displayProp']);
 
-  const [label] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
+  const labels = [schema.name, rdfs.label, foaf.name];
 
   if (label) {
     labels.unshift(label);
@@ -41,11 +45,5 @@ const ThingRadioGroup = ({
 ThingRadioGroup.type = schema.Thing;
 
 ThingRadioGroup.topology = radioGroupTopology;
-
-ThingRadioGroup.propTypes = {
-  itemClass: linkType,
-  style: PropTypes.shape({}),
-  wrapperProps: PropTypes.shape({}),
-};
 
 export default register(ThingRadioGroup);

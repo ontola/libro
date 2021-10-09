@@ -8,8 +8,8 @@ import {
   FC,
   Property,
   register,
-  useProperty,
-  useResourceProperty,
+  useFields,
+  useGlobalIds,
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
@@ -44,12 +44,12 @@ const PersonSelect: FC<PersonSelectProps> = ({
   style,
   wrapperProps,
 }) => {
-  const [itemClass] = useProperty(rdfx.type) as NamedNode[];
-  
+  const [itemClass] = useGlobalIds(rdfx.type);
+
   const defaultWrapperProps = () => ({
     'aria-selected': ariaSelected,
     'className': `SelectItem ${className} SelectPerson`,
-    'element': element || 'li',
+    'element': element ?? 'li',
     id,
     onClick,
     onMouseDown,
@@ -59,14 +59,14 @@ const PersonSelect: FC<PersonSelectProps> = ({
   });
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const [label] = useResourceProperty(itemClass, ontola['forms/inputs/select/displayProp']);
+  const [label] = useFields(itemClass, ontola['forms/inputs/select/displayProp']);
 
   if (isNamedNode(label)) {
     labels.unshift(label);
   }
 
   return (
-    <ResourceBoundary wrapperProps={wrapperProps || defaultWrapperProps()}>
+    <ResourceBoundary wrapperProps={wrapperProps ?? defaultWrapperProps()}>
       <InputAdornment
         disablePointerEvents
         position="start"

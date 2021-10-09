@@ -1,15 +1,12 @@
-import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   LinkedPropType,
-  ReturnType,
   register,
   useDataFetching,
-  useLRS,
-  useProperty,
+  useFindSubject,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -27,12 +24,14 @@ interface FolderFullProps {
   renderPartOf: LinkedPropType;
 }
 
-const FolderFull: FC<FolderFullProps> = ({ renderPartOf, subject }) => {
+const FolderFull: FC<FolderFullProps> = ({ renderPartOf }) => {
   const { c, p } = useViewBuilderToolkit();
-  const lrs = useLRS();
-  const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms });
-  useDataFetching(createActions as SomeNode[]);
-  const [uploadAction] = lrs.findSubject(subject!, [ontola.createAction, rdfx.type], ontola['Create::MediaObject']) as NamedNode[];
+  const createActions = useGlobalIds(ontola.createAction);
+  useDataFetching(createActions);
+  const [uploadAction] = useFindSubject(
+    [ontola.createAction, rdfx.type],
+    ontola['Create::MediaObject'],
+  );
 
   return (
     c(components.ResourceBoundary, [

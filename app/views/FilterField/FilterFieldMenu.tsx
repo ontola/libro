@@ -1,24 +1,37 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
-import { isNode } from '@ontologies/core';
+import {
+  Node,
+  SomeTerm,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,
-  linkType,
-  register,
-  subjectType,
+  SubjectProp,
+  registerExotic,
+  useFields,
+  useIds,
   useLRS,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 import MenuItem from '../../components/MenuItem';
 import ontola from '../../ontology/ontola';
 import { inlineTopology } from '../../topologies/Inline';
 import { menuTopology } from '../../topologies/Menu';
+
+interface FilterFieldMenuProps extends SubjectProp {
+  handleClose: () => void;
+  innerRef: React.Ref<unknown>;
+}
+
+interface FilterFieldMenuCompProps extends FilterFieldMenuProps {
+  filterKey: SomeTerm;
+  innerRef: React.Ref<unknown>;
+  options: SomeTerm[];
+  partOf: Node;
+}
 
 const FilterFieldMenuComp = ({
   filterKey,
@@ -27,17 +40,16 @@ const FilterFieldMenuComp = ({
   options,
   partOf,
   subject,
-}) => {
+}: FilterFieldMenuCompProps): JSX.Element => {
   const lrs = useLRS();
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = (e) => {
+  const handleClick = (e: MouseEvent<unknown>) => {
     e.preventDefault();
     setOpen(!open);
   };
 
-  const currentFilter = useResourceProperty(partOf, ontola.collectionFilter)
-    .filter(isNode)
+  const currentFilter = useIds(partOf, ontola.collectionFilter)
     .find((filter) => lrs.getResourceProperty(filter, ontola.filterKey) === filterKey);
   const currentFilters = currentFilter
     && lrs.getResourceProperties(currentFilter, ontola.filterValue);
@@ -69,7 +81,7 @@ const FilterFieldMenuComp = ({
               currentFilters={currentFilters || []}
               filterKey={filterKey}
               handleClose={handleClose}
-              key={option}
+              key={option.value}
               subject={option}
             />
           ))}
@@ -80,10 +92,10 @@ const FilterFieldMenuComp = ({
 };
 
 const FilterFieldMenu = React.forwardRef(
-  (props, ref) => {
-    const [filterKey] = useProperty(ontola.filterKey);
-    const options = useProperty(ontola.filterOptions);
-    const [partOf] = useProperty(schema.isPartOf);
+  (props: FilterFieldMenuProps & SubjectProp, ref) => {
+    const [filterKey] = useFields(ontola.filterKey);
+    const options = useFields(ontola.filterOptions);
+    const [partOf] = useIds(schema.isPartOf);
 
     return(
       <FilterFieldMenuComp
@@ -93,21 +105,13 @@ const FilterFieldMenu = React.forwardRef(
         options={options}
         partOf={partOf}
       />
-    )
-  }
+    );
+  },
 );
 
-FilterFieldMenu.type = ontola.FilterField;
-
-FilterFieldMenu.topology = menuTopology;
-
-FilterFieldMenuComp.propTypes = {
-  filterKey: linkType,
-  handleClose: PropTypes.func,
-  innerRef: PropTypes.func,
-  options: PropTypes.arrayOf(linkType),
-  partOf: linkType,
-  subject: subjectType,
-};
-
-export default register(FilterFieldMenu);
+export default registerExotic(
+  FilterFieldMenu,
+  ontola.FilterField,
+  undefined,
+  menuTopology,
+);

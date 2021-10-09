@@ -1,8 +1,5 @@
 import { NamedNode } from '@ontologies/core';
-import {
-  ReturnType,
-  useProperty,
-} from 'link-redux';
+import { useNumbers } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -60,8 +57,8 @@ const getIcon = (trend: number, value: number) => {
 };
 
 const TrendIndicator = ({ property }: TrendIndicatorProps): JSX.Element | null => {
-  const value = useProperty(property, { returnType: ReturnType.Literal });
-  const trend = useProperty(mapping[property.value], { returnType: ReturnType.Literal });
+  const [value] = useNumbers(property);
+  const [trend] = useNumbers(mapping[property.value]);
 
   if (!isNumber(trend) || !isNumber(value)) {
     return null;

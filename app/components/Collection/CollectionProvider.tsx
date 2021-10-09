@@ -10,8 +10,9 @@ import {
   LaxNode,
   Property,
   Resource,
+  useFields,
+  useGlobalIds,
   useLink,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -85,7 +86,7 @@ export const useCollectionOptions = (): CollectionContext => React.useContext(Co
 
 export const useHasInteraction = (collectionResource: SomeNode): boolean => {
   const [_, actionStatus] = useAction(collectionResource, ontola.createAction);
-  const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
+  const [collectionResourceType] = useGlobalIds(collectionResource, rdfx.type);
 
   if (collectionResourceType === ontola.SearchResult) {
     return true;
@@ -114,27 +115,27 @@ const CollectionProvider = ({
     totalItems,
     view,
   } = useLink(propMap) as CollectionDataProps;
-  const originalCollection = partOf || subject;
+  const originalCollection = partOf ?? subject;
   const [currentCollection, currentCollectionPages, setCollectionResource] = useCurrentCollectionResource(
     !!redirectPagination,
     subject,
   );
-  const [firstPageItems] = useResourceProperty(currentCollectionPages[0], as.totalItems);
+  const [firstPageItems] = useFields(currentCollectionPages[0], as.totalItems);
 
-  const [columnSequence] = useResourceProperty(originalCollection, ontola.columns) as NamedNode[];
+  const [columnSequence] = useGlobalIds(originalCollection, ontola.columns);
   const [columns] = useListToArr<NamedNode>(columnSequence);
   const [opened, setOpen] = React.useState(false);
-  const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
+  const resolvedCollectionDisplay = collectionDisplay ?? collectionDisplayFromData;
   const wrapperProps = React.useMemo(() => ({
     className: `Collection Collection__Depth-${depth}`,
   }), [depth]);
   const hasInteraction = useHasInteraction(originalCollection);
   const sortOptions = useSorting(currentCollection);
-  const originalFilters = useResourceProperty(originalCollection, ontola.collectionFilter);
-  const currentFilters = useResourceProperty(currentCollection, ontola.collectionFilter);
+  const originalFilters = useFields(originalCollection, ontola.collectionFilter);
+  const currentFilters = useFields(currentCollection, ontola.collectionFilter);
   const appliedFilters = currentFilters.filter((filter) => !originalFilters.includes(filter));
 
-  const collectionOptions = React.useMemo(() => ({
+  const collectionOptions = React.useMemo<CollectionContext>(() => ({
     appliedFilters,
     collectionDisplay: resolvedCollectionDisplay,
     columns,

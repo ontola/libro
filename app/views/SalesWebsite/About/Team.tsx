@@ -1,14 +1,13 @@
-import { Node } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import {
   FC,
   Resource,
+  array,
   register,
-  useProperty,
-  useResourceProperty,
+  useIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -36,9 +35,8 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const Team: FC = () => {
   const classes = useStyles();
-  const [heading] = useProperty(schema.name);
-  const [teamMembers] = useProperty(sales.teamMembers);
-  const teamMembersMembers = useResourceProperty(teamMembers as Node, rdfs.member);
+  const [heading] = useValues(schema.name);
+  const teamMembersMembers = useIds(array(sales.teamMembers));
 
   return (
     <div className={classes.container}>
@@ -46,7 +44,7 @@ const Team: FC = () => {
         align="center"
         variant="h2"
       >
-        {heading.value}
+        {heading}
       </Typography>
       <Showcase className={classes.showcase}>
         {teamMembersMembers.map((member) => (

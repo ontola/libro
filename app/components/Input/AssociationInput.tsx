@@ -1,5 +1,5 @@
 import { isNamedNode, isNode } from '@ontologies/core';
-import { Property, useResourceProperty } from 'link-redux';
+import { Property, useFields } from 'link-redux';
 import React from 'react';
 
 import { isJSONLDObject } from '../../helpers/types';
@@ -15,7 +15,7 @@ const AssociationInput: React.FC<InputComponentProps> = ({
   path,
 }) => {
   const nestedObject = isJSONLDObject(inputValue) ? inputValue['@id'] : undefined;
-  const [nestedFormIRI] = useResourceProperty(field, form.form);
+  const [nestedFormIRI] = useFields(field, form.form);
 
   if (!nestedObject || !isNode(nestedFormIRI) || !isNamedNode(path)) {
     return null;

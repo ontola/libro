@@ -1,13 +1,13 @@
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   Property,
   register,
   useDataFetching,
+  useFields,
+  useIds,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -28,12 +28,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EarnedBadgeGrid = () => {
-  const [badge] = useProperty(teamGL.badge) as SomeNode[];
+  const [badge] = useIds(teamGL.badge);
   const [dateCreated] = useProperty(schema.dateCreated);
 
   useDataFetching([badge]);
-  const [image] = useResourceProperty(badge, schema.image);
-  const [name] = useResourceProperty(badge, schema.name);
+  const [image] = useFields(badge, schema.image);
+  const [name] = useFields(badge, schema.name);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
   const classes = useStyles();

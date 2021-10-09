@@ -1,9 +1,7 @@
-import rdf from '@ontologies/core';
 import {
-  ReturnType,
-  useLink,
+  dig,
   useLinkRenderContext,
-  useResourceProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -23,27 +21,15 @@ const MAX_TEXT_LENGTH = 300;
 const Metadata: React.FC = () => {
   const { title: appName } = React.useContext(appContext);
   const { subject } = useLinkRenderContext();
-  const {
-    coverPhoto,
-    name,
-    text,
-  } = useLink({
-    coverPhoto: COVER_PREDICATES,
-    name: NAME_PREDICATES,
-    text: TEXT_PREDICATES,
-  },
-  { returnType: ReturnType.Value },
-  );
-  const [coverURL] = useResourceProperty(
-    typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,
-    COVER_URL_PREDICATES[0],
-  );
+  const [coverURL] = useValues(dig(COVER_PREDICATES, COVER_URL_PREDICATES[0]));
+  const [name] = useValues(NAME_PREDICATES);
+  const [text] = useValues(TEXT_PREDICATES);
   const trimmedText = text?.substring(0, MAX_TEXT_LENGTH);
   const strippedText = useStrippedMarkdown(trimmedText);
   const metaTags = React.useMemo(() => (
     getMetaTags({
       appName,
-      coverURL: coverURL?.value,
+      coverURL: coverURL,
       name,
       text: strippedText,
       url: subject.value,

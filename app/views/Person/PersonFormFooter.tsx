@@ -1,9 +1,8 @@
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  ReturnType,
   register,
-  useProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -11,7 +10,7 @@ import argu from '../../ontology/argu';
 import { formFooterTopology } from '../../topologies/FormFooter';
 
 const PersonFooter = () => {
-  const name = useProperty(schema.name, { returnType: ReturnType.Value });
+  const [name] = useValues(schema.name);
 
   return(
     <Property

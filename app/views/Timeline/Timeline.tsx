@@ -1,12 +1,11 @@
 import TimelineBase from '@material-ui/lab/Timeline';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   Property,
   Resource,
   register,
-  useProperty,
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -25,7 +24,7 @@ const useStyles = makeStyles(() => ({
 
 const Timeline = () => {
   const classes = useStyles();
-  const [itemsSeq] = useProperty(argu.timelineItems) as SomeNode[];
+  const [itemsSeq] = useIds(argu.timelineItems);
   const [items] = useSeqToArr(itemsSeq);
 
   return (

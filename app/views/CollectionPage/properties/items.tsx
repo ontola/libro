@@ -9,6 +9,7 @@ import {
   Property,
   Resource,
   register,
+  useIds,
   useProperty,
 } from 'link-redux';
 import React, {
@@ -112,7 +113,7 @@ const styleWrapper = (props: ItemProps, itemListElem: JSX.Element | JSX.Element[
 };
 
 const Items: FC<ItemProps> = (props) => {
-  const items = useProperty(as.items) as SomeNode[];
+  const items = useIds(as.items);
   const [totalCount] = useProperty(as.totalItems);
 
   const {

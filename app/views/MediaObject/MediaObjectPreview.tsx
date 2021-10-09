@@ -1,10 +1,11 @@
-import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
-  useProperty,
+  useFields,
+  useGlobalIds,
+  useIds,
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,11 +19,11 @@ interface PropTypes {
 }
 
 const MediaObjectPreview: FC<PropTypes> = ({ sequenceIndex }) => {
-  const [caption] = useProperty(schema.caption);
-  const [contentUrl] = useProperty(schema.contentUrl) as NamedNode[];
-  const [encodingFormat] = useProperty([schema.encodingFormat, schema.fileFormat]) as Literal[];
-  const [filename] = useProperty(dbo.filename);
-  const [isPartOf] = useProperty(schema.isPartOf) as SomeNode[];
+  const [caption] = useFields(schema.caption);
+  const [contentUrl] = useGlobalIds(schema.contentUrl);
+  const [encodingFormat] = useLiterals([schema.encodingFormat, schema.fileFormat]);
+  const [filename] = useFields(dbo.filename);
+  const [isPartOf] = useIds(schema.isPartOf);
 
   return (
     <AttachmentPreview

@@ -6,13 +6,13 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   register,
+  useFields,
+  useIds,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React, { ReactChildren } from 'react';
 
@@ -40,9 +40,9 @@ interface TimelineItemProps {
 
 const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
   const classes = useStyles();
-  const [legendType] = useProperty(argu.legendType) as SomeNode[];
+  const [legendType] = useIds(argu.legendType);
   const [url] = useProperty(schema.url);
-  const [color] = useResourceProperty(legendType, schema.color);
+  const [color] = useFields(legendType, schema.color);
   const styleDot = color ? { backgroundColor: color.value } : {};
   const nameWrapper = url
     ? ({ children }: {children: ReactChildren}) => (

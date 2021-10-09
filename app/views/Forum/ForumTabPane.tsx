@@ -1,14 +1,14 @@
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  linkType,
   register,
-  useProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
 import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';
+import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
@@ -16,14 +16,14 @@ import Grid from '../../topologies/Grid';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 const ForumTabPane = () => {
-  const [name] = useProperty(schema.name);
+  const [name] = useValues(schema.name);
 
   return (
-    <Container size="large">
+    <Container size={Size.Large}>
       <GridItem size={3}>
         <Container>
           <Heading>
-            {name?.value}
+            {name}
           </Heading>
           <Property label={schema.text} />
         </Container>

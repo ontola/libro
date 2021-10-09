@@ -1,13 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import {
   FC,
   Property,
   Resource,
+  array,
   register,
-  useProperty,
-  useResourceProperty,
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -31,8 +29,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 const AboutPage: FC = () => {
   const classes = useStyles();
-  const [sections] = useProperty(sales.sections) as [Node];
-  const sectionMembers = useResourceProperty(sections, rdfs.member);
+  const sectionMembers = useIds(array(sales.sections));
 
   return (
     <main role="main">

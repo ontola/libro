@@ -1,4 +1,3 @@
-import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -6,9 +5,10 @@ import { getTermBestLang } from 'link-lib';
 import {
   FC,
   register,
+  useFields,
+  useGlobalIds,
   useLRS,
-  useProperty,
-  useResourceProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -26,12 +26,12 @@ const ThingDetailsBar: FC<ThingDetailsBarProps> = ({
   features: featuresFromProps,
   theme,
 }) => {
-  const [name] = useProperty(schema.name);
-  const [type] = useProperty(rdfx.type) as NamedNode[];
+  const [name] = useValues(schema.name);
+  const [type] = useGlobalIds(rdfx.type);
   const lrs = useLRS();
-  const rawLabels = useResourceProperty(type, rdfs.label);
-  const label = name?.value
-    || getTermBestLang(rawLabels, (lrs.store as any).langPrefs)?.value?.toLowerCase();
+  const rawLabels = useFields(type, rdfs.label);
+  const label = name
+    ?? getTermBestLang(rawLabels, (lrs.store as any).langPrefs)?.value?.toLowerCase();
   const features = (featuresFromProps || []).concat([LinkFeature.Centered]);
 
   return (

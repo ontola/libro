@@ -4,7 +4,7 @@ import MenuList from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import { makeStyles } from '@material-ui/styles';
-import { useResourceProperty } from 'link-redux';
+import { useFields } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
@@ -61,7 +61,7 @@ const DropdownMenu = ({
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-  const [dialogResource] = useResourceProperty(ontola.ns('dialog/manager'), ontola.ns('dialog/resource'));
+  const [dialogResource] = useFields(ontola.ns('dialog/manager'), ontola.ns('dialog/resource'));
   const [id, _] = React.useState(getNewAriaId());
 
   const handleClick = () => {

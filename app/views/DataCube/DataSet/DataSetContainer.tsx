@@ -1,13 +1,13 @@
-import { Literal, NamedNode } from '@ontologies/core';
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   Property,
   Resource,
+  dig,
   register,
-  useProperty,
+  useGlobalIds,
   useResourceLinks,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -41,8 +41,7 @@ const orderComponents = (components: Component[]) => components
   });
 
 const DataSetContainer = () => {
-  const [structure] = useProperty(qb.structure) as SomeNode[];
-  const componentIRIs = useResourceProperty(structure, qb.component) as NamedNode[];
+  const componentIRIs = useGlobalIds(dig(qb.structure, qb.component));
   const components = useResourceLinks(componentIRIs, {
     measure: qb.measure,
     order: qb.order,

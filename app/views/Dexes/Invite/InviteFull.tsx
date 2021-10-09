@@ -6,8 +6,8 @@ import {
   Property,
   register,
   useDataFetching,
+  useFields,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -32,9 +32,9 @@ const InviteFull: FC<InviteFullProps> = ({
 }) => {
   const [assigner] = useProperty(dexes.assigner);
   const [offer] = useProperty(dexes.offer);
-  const [file] = useResourceProperty(isNamedNode(offer) ? offer : undefined, dexes.file);
+  const [file] = useFields(dexes.file, isNamedNode(offer) ? offer : undefined);
   useDataFetching(isNamedNode(file) ? [file] : []);
-  const [fileName] = useResourceProperty(isNamedNode(file) ? file : undefined, schema.name);
+  const [fileName] = useFields(schema.name, isNamedNode(file) ? file : undefined);
 
   return (
     <Container>

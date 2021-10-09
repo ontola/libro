@@ -1,10 +1,9 @@
 import rdf, {
-  NamedNode,
   SomeTerm,
   isNamedNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { useLRS, useResourceProperty } from 'link-redux';
+import { useGlobalIds, useLRS } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 import parser from 'uri-template';
 
@@ -37,8 +36,8 @@ const AttachmentPreview = ({
   thumbnailURL,
 }: AttachmentPreviewProps): JSX.Element => {
   const lrs = useLRS();
-  const [attachments] = useResourceProperty(isPartOf, argu.attachments) as NamedNode[];
-  const [attachmentsIriTemplate] = useResourceProperty(attachments, ontola.iriTemplate) as NamedNode[];
+  const [attachments] = useGlobalIds(isPartOf, argu.attachments);
+  const [attachmentsIriTemplate] = useGlobalIds(attachments, ontola.iriTemplate);
 
   React.useEffect(() => {
     if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf) && isNamedNode(isPartOf)) {

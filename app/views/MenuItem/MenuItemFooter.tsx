@@ -7,7 +7,8 @@ import {
   Property,
   Resource,
   register,
-  useProperty,
+  useIds,
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
@@ -65,9 +66,9 @@ const MenuItemFooterLabel = ({
 };
 
 const MenuItemFooter: FC<MenuItemFooterProps> = (props) => {
-  const [image] = useProperty(schema.image) as SomeNode[];
-  const [menuItems] = useProperty(ontola.menuItems) as SomeNode[];
-  const [name] = useProperty(schema.name) as Literal[];
+  const [image] = useIds(schema.image);
+  const [menuItems] = useIds(ontola.menuItems);
+  const [name] = useLiterals(schema.name);
 
   const classNames = useStyles();
   const {

@@ -1,15 +1,17 @@
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  ReturnType,
   linkType,
   register,
   useDataInvalidation,
+  useIds,
+  useNumbers,
   useProperty,
-  useResourceLink,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
+import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
@@ -17,18 +19,13 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
 import PageHeader from '../../topologies/PageHeader';
 
-const coverPhotoMap = {
-  coverPhotoUrl: ontola.imgUrl1500x2000,
-  positionY: ontola.imagePositionY,
-};
-const coverPhotoOpts = { returnType: ReturnType.Value };
-
 const ForumFull = () => {
-  const [coverPhoto] = useProperty(ontola.coverPhoto);
+  const [coverPhoto] = useIds(ontola.coverPhoto);
   const [hideHeader] = useProperty(ontola.hideHeader);
 
   useDataInvalidation(coverPhoto);
-  const { coverPhotoUrl, positionY } = useResourceLink(coverPhoto, coverPhotoMap, coverPhotoOpts);
+  const [coverPhotoUrl] = useValues(coverPhoto, ontola.imgUrl1500x2000);
+  const [positionY] = useNumbers(coverPhoto, ontola.imagePositionY);
 
   return (
     <React.Fragment>
@@ -39,7 +36,7 @@ const ForumFull = () => {
           positionY={positionY}
         />
       )}
-      <Container size="large">
+      <Container size={Size.Large}>
         <Grid
           container
           spacing={6}

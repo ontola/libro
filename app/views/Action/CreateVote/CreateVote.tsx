@@ -7,10 +7,12 @@ import {
   LinkReduxLRSType,
   Resource,
   register,
+  useAction,
   useDataFetching,
+  useFields,
+  useGlobalIds,
+  useIds,
   useLRS,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import {
@@ -97,9 +99,9 @@ function countAttribute(option: string) {
 }
 
 function useCurrentVote(parent: SomeNode) {
-  const [vote] = useResourceProperty(parent, argu.currentVote) as NamedNode[];
+  const [vote] = useGlobalIds(parent, argu.currentVote);
   useDataFetching([parent, vote]);
-  const [currentOption] = useResourceProperty(vote, schema.option) as SomeNode[];
+  const [currentOption] = useIds(vote, schema.option);
 
   return [vote, currentOption];
 }
@@ -160,22 +162,25 @@ const CreateVote: FC<CreateVoteProps> = ({
 }) => {
   const lrs = useLRS<unknown, SubmitDataProcessor>();
   const { formatMessage } = useIntl();
-  const [isPartOf] = useProperty(schema.isPartOf) as SomeNode[];
+
+  const [isPartOf] = useIds(schema.isPartOf);
   const [currentVote, currentOption] = useCurrentVote(isPartOf);
   const option = getOption(subject);
   const active = rdf.equals(currentOption, argu[option]);
-  const [deleteVoteAction] = useResourceProperty(active ? currentVote : undefined, ontola.trashAction) as NamedNode[];
+  const [deleteVoteAction] = useGlobalIds(active ? currentVote : undefined, ontola.trashAction);
   const action = active && entityIsLoaded<LRS>(lrs, deleteVoteAction)
     ? deleteVoteAction
     : subject;
+  const execAction = useAction(action);
   useDataFetching(deleteVoteAction);
-  const [actionStatus] = useResourceProperty(action, schema.actionStatus);
-  const [target] = useResourceProperty(action, schema.target) as SomeNode[];
-  const [parentType] = useResourceProperty(isPartOf, rdfx.type) as SomeNode[];
-  const [count] = useResourceProperty(isPartOf, countAttribute(option));
+
+  const [actionStatus] = useFields(action, schema.actionStatus);
+  const [target] = useIds(action, schema.target);
+  const [parentType] = useIds(isPartOf, rdfx.type);
+  const [count] = useFields(isPartOf, countAttribute(option));
+
   const handleClick: () => Promise<any> = React.useCallback(() => (
-    lrs
-      .exec(action)
+    execAction()
       .then(openOmniform)
       .catch((e) => {
         if (e.response.status === HTTP_RETRY_WITH) {

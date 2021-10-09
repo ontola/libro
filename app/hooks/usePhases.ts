@@ -1,6 +1,9 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { useDataFetching, useResourceProperty } from 'link-redux';
+import {
+  useDataFetching,
+  useGlobalIds,
+} from 'link-redux';
 
 import argu from '../ontology/argu';
 
@@ -16,7 +19,7 @@ export const phaseIRI = (project: NamedNode, index: number): NamedNode => {
 const usePhases = (project: SomeNode): ResolvedArray<SomeNode> => {
   useDataFetching(project);
 
-  const [phases] = useResourceProperty(project, argu.phases) as NamedNode[];
+  const [phases] = useGlobalIds(project, argu.phases);
 
   return useContainerToArr<SomeNode>(phases);
 };

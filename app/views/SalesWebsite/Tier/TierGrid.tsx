@@ -9,16 +9,15 @@ import {
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { makeStyles } from '@material-ui/styles';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Resource,
+  array,
   register,
+  useFields,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -106,9 +105,8 @@ const TierGrid: FC = () => {
   const [text] = useProperty(schema.text);
   const [priceInterval] = useProperty(sales.priceInterval);
   const [priceUnit] = useProperty(sales.priceUnit);
-  const [includesList] = useProperty(sales.includes) as SomeNode[];
+  const includes = useFields(array(sales.includes));
   const [buttonLink] = useProperty(sales.buttonLink);
-  const includes = useResourceProperty(includesList, rdfs.member);
   const [bestOffer] = useProperty(sales.bestOffer);
   const [tagline] = useProperty(sales.tagline);
 

@@ -3,7 +3,7 @@ import { NamedNode } from '@ontologies/core';
 import {
   FC,
   Property,
-  useProperty,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -24,7 +24,7 @@ export default function getCollectionPage(
   topology: NamedNode | NamedNode[],
 ): FC<CollectionPageProps> {
   const CollectionPage: FC<CollectionPageProps> = (props) => {
-    const [collectionDisplayFromData] = useProperty(ontola.collectionDisplay) as NamedNode[];
+    const [collectionDisplayFromData] = useGlobalIds(ontola.collectionDisplay);
 
     if (props.insideCollection) {
       return (

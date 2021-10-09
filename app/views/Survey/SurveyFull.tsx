@@ -1,4 +1,3 @@
-import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -6,7 +5,7 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useGlobalIds, 
 } from 'link-redux';
 import React from 'react';
 
@@ -29,7 +28,7 @@ interface SurveyFullProps {
 const SurveyFull: FC<SurveyFullProps> = ({
   renderPartOf,
 }) => {
-  const [settingsMenu] = useProperty(ontola.settingsMenu) as NamedNode[];
+  const [settingsMenu] = useGlobalIds(ontola.settingsMenu);
 
   return (
     <TabbarProvider

@@ -8,11 +8,11 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Resource,
   Type,
+  useIds,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -72,7 +72,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const BlogPageShowcase: FC<BlogPageShowcaseProps> = ({ subject, headingLevel }) => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
-  const [image] = useProperty(schema.image) as SomeNode[];
+  const [image] = useIds(schema.image);
   const [theme] = useProperty(sales.theme);
   const TypeWithClassName = Type as any;
 

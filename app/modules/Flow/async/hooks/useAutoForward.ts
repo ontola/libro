@@ -1,7 +1,6 @@
-import { isNamedNode } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
 import * as sh from '@ontologies/shacl';
-import { LaxNode, useResourceProperty } from 'link-redux';
+import { LaxNode, useGlobalIds } from 'link-redux';
 import React from 'react';
 
 import useFormField, { InputValue } from '../../../../hooks/useFormField';
@@ -23,8 +22,8 @@ export const useAutoForward = (activeField: LaxNode, activateNextField: () => vo
   const [currentField, setCurrentField] = React.useState<LaxNode>(undefined);
   const [currentValue, setCurrentValue] = React.useState<InputValue[] | undefined>(undefined);
 
-  const [type] = useResourceProperty(activeField, rdf.type);
-  const [path] = useResourceProperty(activeField, sh.path).filter(isNamedNode);
+  const [type] = useGlobalIds(activeField, rdf.type);
+  const [path] = useGlobalIds(activeField, sh.path);
   const formFieldProps = useFormField({ path });
 
   React.useEffect(() => {

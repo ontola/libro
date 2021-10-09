@@ -1,9 +1,8 @@
-import { NamedNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import {
   Property,
   register,
-  useProperty,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,7 +12,7 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const Condition = () => {
-  const shapes = useProperty(sh.node) as NamedNode[];
+  const shapes = useGlobalIds(sh.node);
   const { object } = React.useContext(FormContext);
   const [pass] = useShapeValidation(shapes, object);
 

@@ -5,6 +5,7 @@ import {
   Property,
   Resource,
   register,
+  useGlobalIds,
   useLRS,
   useProperty,
 } from 'link-redux';
@@ -15,7 +16,7 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const PropertyQuery: FC = () => {
-  const [path] = useProperty(sh.path) as NamedNode[];
+  const [path] = useGlobalIds(sh.path);
   const [targetNode] = useProperty(sh.targetNode);
 
   const lrs = useLRS();

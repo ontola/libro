@@ -3,6 +3,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useLiterals,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -43,7 +44,7 @@ const CreateActionButton: FC = ({ children }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [error] = useProperty(schema.error);
   const [name] = useProperty(schema.name);
-  const [target] = useProperty(libro.target) as Literal[];
+  const [target] = useLiterals(libro.target);
 
   if (children) {
     return (
@@ -58,7 +59,7 @@ const CreateActionButton: FC = ({ children }) => {
       disabled={!!error || invalidStatusIds.includes(rdf.id(actionStatus))}
       features={[LinkFeature.Bold]}
       target={normalizeTarget(target)}
-      title={error?.value || name?.value}
+      title={error?.value ?? name?.value}
     >
       {name?.value}
     </LDLink>

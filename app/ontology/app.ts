@@ -1,4 +1,4 @@
-import rdf, { createNS } from '@ontologies/core';
+import rdf, { NamedNode, createNS } from '@ontologies/core';
 import * as dcterms from '@ontologies/dcterms';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
@@ -11,7 +11,7 @@ import dbo from './dbo';
 import wdt from './wdt';
 
 export const website = getMetaContent('website-iri') ?? 'https://example.com';
-export const frontendIRI = rdf.namedNode(website!);
+export const frontendIRI: NamedNode = rdf.namedNode(website!);
 export const frontendIRIStr = frontendIRI.value;
 export const frontendPathname = new URL(frontendIRIStr).pathname;
 export const frontendOrigin = new URL(frontendIRIStr).origin;

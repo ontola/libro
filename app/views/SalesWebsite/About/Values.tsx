@@ -1,5 +1,3 @@
-import { Node } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
@@ -7,9 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import {
   FC,
   Resource,
+  array,
   register,
+  useIds,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -55,8 +54,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 const Values: FC = () => {
   const classes = useStyles();
   const [heading] = useProperty(schema.name);
-  const [values] = useProperty(sales.values);
-  const valueMembers = useResourceProperty(values as Node, rdfs.member);
+  const valueMembers = useIds(array(sales.values));
 
   return (
     <React.Fragment>

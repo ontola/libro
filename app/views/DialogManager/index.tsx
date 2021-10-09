@@ -4,8 +4,8 @@ import { SomeNode } from 'link-lib';
 import {
   Resource,
   register,
+  useIds,
   useLRS,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -16,9 +16,9 @@ import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
 
 const DialogManager = () => {
-  const [resource] = useProperty(ontola.ns('dialog/resource')) as SomeNode[];
   const lrs = useLRS();
   const { theme } = React.useContext(appContext);
+  const [resource] = useIds(ontola.ns('dialog/resource'));
 
   const close = (item: SomeNode, done: boolean) => (
     () => lrs.exec(

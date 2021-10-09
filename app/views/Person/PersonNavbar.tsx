@@ -1,12 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   Resource,
   register,
-  useProperty,
+  useGlobalIds, 
 } from 'link-redux';
 import React from 'react';
 
@@ -29,7 +28,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const PersonNavbar: FC = ({ subject }) => {
-  const [image] = useProperty(schema.image) as NamedNode[];
+  const [image] = useGlobalIds(schema.image);
   const classes = useStyles();
 
   return (

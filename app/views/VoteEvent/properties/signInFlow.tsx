@@ -1,11 +1,11 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Resource,
   register,
   useDataInvalidation,
-  useProperty,
-  useResourceProperty,
+  useFields,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -23,11 +23,11 @@ const SignInFlow = () => {
   const { actorType, primaryEmail } = useCurrentActor();
   const location = useLocation();
 
-  const [currentVote] = useProperty(argu.currentVote) as NamedNode[];
+  const [currentVote] = useGlobalIds(argu.currentVote);
   useDataInvalidation(currentVote);
-  const [currentOption] = useResourceProperty(currentVote, schema.option);
+  const [currentOption] = useFields(currentVote, schema.option);
 
-  const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value || '');
+  const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value ?? '');
 
   if (!showSignInFlow || !currentOption || rdf.equals(currentOption, argu.abstain)) {
     return null;

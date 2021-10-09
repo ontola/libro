@@ -1,5 +1,8 @@
 import { NamedNode, isNamedNode } from '@ontologies/core';
-import { useDataFetching, useResourceProperty } from 'link-redux';
+import {
+  useDataFetching,
+  useGlobalIds,
+} from 'link-redux';
 import React from 'react';
 
 import useMenuItems, { MenuItems } from '../../hooks/useMenuItems';
@@ -21,7 +24,7 @@ const TabbarProvider = ({
   redirect,
 }: TabbarProviderProps): JSX.Element => {
   useDataFetching(isNamedNode(menu) ? menu : []);
-  const [menuItems] = useResourceProperty(menu, ontola.menuItems) as NamedNode[];
+  const [menuItems] = useGlobalIds(menu, ontola.menuItems);
   const {
     currentTab,
     handleChange,

@@ -1,13 +1,13 @@
 import { makeStyles } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
+  array,
   register,
-  useProperty,
-  useResourceProperty,
+  useGlobalIds,
+  useIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -64,18 +64,17 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const FooterLowerSection: FC = () => {
   const classNames = useStyles();
   const intl = useIntl();
-  const [logo] = useProperty(schema.image);
-  const [policy] = useProperty(argu.policy);
-  const [privacy] = useProperty(argu.privacy);
-  const [socialMembers] = useProperty(argu.socials) as Node[];
-  const socials = useResourceProperty(socialMembers, rdfs.member);
+  const [logo] = useValues(schema.image);
+  const [policy] = useGlobalIds(argu.policy);
+  const [privacy] = useGlobalIds(argu.privacy);
+  const socials = useIds(array(argu.socials));
 
   return (
     <div className={classNames.lowerSection}>
       <img
         alt={intl.formatMessage(imageAltMessages.arguLogo)}
         className={classNames.logo}
-        src={logo.value}
+        src={logo}
       />
       <a
         className={`${classNames.lowerSectionMiddleLink} ${classNames.policy}`}
@@ -90,7 +89,7 @@ const FooterLowerSection: FC = () => {
         <FormattedMessage {...footerMessages.privacy} />
       </a>
       <span className={classNames.socials}>
-        {socials?.map((social) => (
+        {socials.map((social) => (
           <Resource
             key={social.id}
             subject={social}

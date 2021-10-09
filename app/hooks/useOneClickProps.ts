@@ -1,11 +1,9 @@
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
-  ReturnType,
   useAction,
-  useProperty,
-  useResourceProperty,
-  useSubject,
+  useFields,
+  useGlobalIds,
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,12 +21,11 @@ export interface OneClickProps {
 const ignoreOnDone = () => null;
 
 const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
-  const [[subject]] = useSubject();
-  const actionHandler = useAction(subject);
+  const actionHandler = useAction();
 
-  const [entryPoint] = useProperty(schema.target) as NamedNode[];
-  const oneClick = useProperty(ontola.oneClick, { returnType: ReturnType.Literal });
-  const [image] = useResourceProperty(entryPoint, schema.image);
+  const [entryPoint] = useGlobalIds(schema.target);
+  const oneClick = useLiterals(ontola.oneClick);
+  const [image] = useFields(schema.image, entryPoint);
 
   const [feedback, setFeedback] = React.useState(false);
   const onDoneHandler = useDoneHandler(onDone ?? ignoreOnDone);
@@ -45,7 +42,7 @@ const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
         setFeedback(false);
       });
     },
-    [subject],
+    [actionHandler],
   );
 
   return React.useMemo<OneClickProps>(() => ({

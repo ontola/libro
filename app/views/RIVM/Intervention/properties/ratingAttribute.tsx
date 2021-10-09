@@ -6,8 +6,8 @@ import {
   PropertyProps,
   register,
   useDataFetching,
-  useProperty,
-  useResourceProperty,
+  useGlobalIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -49,10 +49,10 @@ const RatingAttribute: FC<RatingAttributeProps> = ({
   labelFrom,
   linkedProp,
 }) => {
-  const [labelObj] = useProperty(labelFrom) as NamedNode[];
+  const [labelObj] = useGlobalIds(labelFrom);
   useDataFetching(labelObj);
-  const [schemaName] = useResourceProperty(labelObj, schema.name);
-  const [rdfsLabel] = useResourceProperty(labelObj, rdfs.label);
+  const [schemaName] = useValues(labelObj, schema.name);
+  const [rdfsLabel] = useValues(labelObj, rdfs.label);
 
   const icon = label.value.includes('Costs') ? 'euro' : 'star';
   const src = `/assets/rivm/icons/${icon}`;
@@ -65,7 +65,7 @@ const RatingAttribute: FC<RatingAttributeProps> = ({
           className="Rating"
           key={`${src}-${index}`}
           style={{ backgroundImage: `url(${src}-bgr.png)` }}
-          title={schemaName?.value || rdfsLabel?.value}
+          title={schemaName ?? rdfsLabel}
         >
           {renderIcon(linkedProp, index, src)}
         </div>

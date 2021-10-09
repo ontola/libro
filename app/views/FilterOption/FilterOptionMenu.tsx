@@ -1,11 +1,12 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
   register,
-  useProperty,
+  useGlobalIds,
+  useProperty, 
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -72,7 +73,7 @@ const FilterOptionMenu = React.forwardRef<FC, FilterOptionMenuCompProps>(
   (props, ref) => {
     const [filterCount] = useProperty(ontola.filterCount);
     const [filterValue] = useProperty(ontola.filterValue);
-    const [partOf] = useProperty(schema.isPartOf) as NamedNode[];
+    const [partOf] = useGlobalIds(schema.isPartOf);
 
     return(
       <FilterOptionMenuComp

@@ -3,7 +3,7 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
   LaxNode,
-  useLocator,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -42,7 +42,7 @@ export const useFlowActiveField = (fields: SomeNode[], loading: boolean): FlowAc
 
   const [activeField, setActiveField] = React.useState<LaxNode>(fields[0]);
 
-  const fieldPaths = useLocator(sh.path, fields);
+  const fieldPaths = useGlobalIds(fields, sh.path);
 
   const currentIndex = fields.findIndex((field) => field === activeField);
 

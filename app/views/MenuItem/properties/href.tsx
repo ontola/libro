@@ -2,8 +2,8 @@ import { NamedNode } from '@ontologies/core';
 import {
   FC,
   register,
+  useGlobalIds,
   useLRS,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -30,7 +30,7 @@ const Href: FC<HrefProps> = ({
   onClickToggle,
 }) => {
   const lrs = useLRS();
-  const [action] = useProperty(ontola.action) as NamedNode[];
+  const [action] = useGlobalIds(ontola.action);
   const actionHandler = React.useCallback((e) => {
     if (e) {
       e.preventDefault();

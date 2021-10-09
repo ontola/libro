@@ -38,7 +38,7 @@ const NavbarLinkImage = ({ linkedProp }: NavbarLinkImageProps): JSX.Element => {
   );
 };
 
-export const NavbarLinkImageWrapper: React.FC<NavbarLinkImageProps> = ({ children }) => {
+export const NavbarLinkImageWrapper: React.FC<ImageBaseProps> = ({ children }) => {
   const classes = useStyles();
 
   return (

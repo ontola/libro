@@ -1,4 +1,4 @@
-import { useResourceProperty } from 'link-redux';
+import { useFields } from 'link-redux';
 import { Feature } from 'ol';
 import GeoJSON from 'ol/format/GeoJSON';
 import Point from 'ol/geom/Point';
@@ -72,9 +72,9 @@ const styleForPostalCode = (
 };
 
 const useStyleForPostalCode = (priorities?: Priorities) => {
-  const [maxPriorityProp] = useResourceProperty(app.c_a, teamGL.maxPriority);
+  const [maxPriorityProp] = useFields(teamGL.maxPriority, app.c_a);
   const maxPriority = tryParseFloat(maxPriorityProp);
-  const [minPriorityProp] = useResourceProperty(app.c_a, teamGL.minPriority);
+  const [minPriorityProp] = useFields(teamGL.minPriority, app.c_a);
   const minPriority = tryParseFloat(minPriorityProp);
 
   const getStyle = React.useCallback((feature: Feature) => (

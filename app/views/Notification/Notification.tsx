@@ -1,10 +1,10 @@
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
   register,
+  useGlobalIds,
   useLRS,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
@@ -19,7 +19,7 @@ const style = { width: '100%' };
 
 const Notification = () => {
   const lrs = useLRS();
-  const [readAction] = useProperty(ontola.readAction) as NamedNode[];
+  const [readAction] = useGlobalIds(ontola.readAction);
   const [target] = useProperty(schema.target);
 
   let content = <Property label={schema.name} />;

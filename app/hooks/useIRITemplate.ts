@@ -1,5 +1,5 @@
 import { NamedNode, Node } from '@ontologies/core';
-import { useResourceProperty } from 'link-redux';
+import { useFields } from 'link-redux';
 import { useCallback, useMemo } from 'react';
 
 import { iriFromTemplate } from '../helpers/uriTemplate';
@@ -17,8 +17,9 @@ export interface IRITemplate {
 }
 
 export const useIRITemplate = (resource?: Node): IRITemplate => {
-  const [iriTemplate] = useResourceProperty(resource, ontola.iriTemplate);
-  const [iriTemplateOpts] = useResourceProperty(resource, ontola.iriTemplateOpts);
+  const [iriTemplate] = useFields(resource, ontola.iriTemplate);
+  const [iriTemplateOpts] = useFields(resource, ontola.iriTemplateOpts);
+
   const currentIriOpts = useMemo(() => {
     const opts: { [k: string]: string[] } = {};
 

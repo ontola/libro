@@ -1,8 +1,5 @@
 import rdf from '@ontologies/core';
-import {
-  useLRS,
-  useResourceProperty,
-} from 'link-redux';
+import { useFields, useLRS } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
@@ -29,11 +26,11 @@ const GlappMap: React.FC<GlappMapProps> = ({
   setSelectedPostalCode,
 }) => {
   const lrs = useLRS();
-  const [zoomProp] = useResourceProperty(app.c_a, teamGL.zoom);
+  const [zoomProp] = useFields(teamGL.zoom, app.c_a);
   const zoom = tryParseFloat(zoomProp);
-  const [latProp] = useResourceProperty(app.c_a, teamGL.centerLat);
+  const [latProp] = useFields(teamGL.centerLat, app.c_a);
   const centerLat = tryParseFloat(latProp);
-  const [lonProp] = useResourceProperty(app.c_a, teamGL.centerLon);
+  const [lonProp] = useFields(teamGL.centerLon, app.c_a);
   const centerLon = tryParseFloat(lonProp);
   const [view, setView] = React.useState<ViewProps>({
     center: centerLon && centerLat ? fromLonLat([centerLon, centerLat]) : undefined,

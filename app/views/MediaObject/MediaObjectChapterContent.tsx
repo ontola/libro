@@ -1,8 +1,8 @@
-import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useLiterals,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -17,7 +17,7 @@ const emptyClickHandler = () => null;
 const MediaObjectChapterContent: FC = () => {
   const [caption] = useProperty(schema.caption);
   const [contentUrl] = useProperty(schema.contentUrl);
-  const [encodingFormat] = useProperty(schema.encodingFormat) as Literal[];
+  const [encodingFormat] = useLiterals(schema.encodingFormat);
   const [filename] = useProperty(dbo.filename);
 
   return (

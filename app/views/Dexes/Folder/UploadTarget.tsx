@@ -1,7 +1,7 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { normalizeType } from 'link-lib';
-import { useLRS } from 'link-redux';
+import { SomeNode, normalizeType } from 'link-lib';
+import { useAction } from 'link-redux';
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
@@ -13,7 +13,7 @@ import useFileStore from '../../../hooks/useFileStore';
 
 interface UploadTargetProps {
   children: JSX.Element;
-  uploadAction?: NamedNode;
+  uploadAction?: SomeNode;
 }
 
 /**
@@ -22,9 +22,9 @@ interface UploadTargetProps {
  * In addition, files can be pasted into the document as well.
  */
 const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Element => {
-  const lrs = useLRS();
   const [uploading, setUploading] = React.useState(false);
   const [storeFile] = useFileStore();
+  const uploadHandler = useAction(uploadAction);
 
   const onDrop = (acceptedFiles: File | File[]) => {
     if (!uploadAction) {
@@ -40,7 +40,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
         [schema.contentUrl.toString()]: fileReference,
       }, newStore, false);
 
-      return lrs.execActionByIRI(uploadAction, formData);
+      return uploadHandler(formData);
     });
 
     return Promise.all(actions).then((res) => {

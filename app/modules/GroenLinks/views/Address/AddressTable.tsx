@@ -1,9 +1,8 @@
-import { NamedNode } from '@ontologies/core';
 import {
   FC,
   register,
+  useGlobalIds,
   useLRS,
-  useProperty,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
@@ -17,7 +16,7 @@ import TableRow from '../../../../topologies/TableRow';
 
 const AddressTable: FC = ({ subject }) => {
   const lrs = useLRS();
-  const [createAction] = useProperty(ontola.createAction) as NamedNode[];
+  const [createAction] = useGlobalIds(ontola.createAction);
   const { actorType } = useCurrentActor();
 
   const onClick = (e: MouseEvent) => {

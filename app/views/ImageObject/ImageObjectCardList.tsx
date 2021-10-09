@@ -1,8 +1,8 @@
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useGlobalIds,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -20,9 +20,9 @@ const ImageObjectCardList: FC<ImageObjectCardListProps> = ({ sequenceIndex }) =>
   const [caption] = useProperty(schema.caption);
   const [contentUrl] = useProperty(schema.contentUrl);
   const [filename] = useProperty(dbo.filename);
-  const [isPartOf] = useProperty(schema.isPartOf) as NamedNode[];
+  const [isPartOf] = useGlobalIds(schema.isPartOf);
   const [thumbnailUrl] = useProperty(schema.thumbnail);
-  
+
   return (
     <AttachmentPreview
       caption={caption}

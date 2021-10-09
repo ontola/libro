@@ -4,6 +4,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useLiterals,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -64,7 +65,7 @@ const ActionContainerHeader: FC<ActionProps> = ({
   const [actionStatus] = useProperty(schema.actionStatus);
   const [error] = useProperty(schema.error);
   const [name] = useProperty(schema.name);
-  const [target] = useProperty(libro.target) as Literal[];
+  const [target] = useLiterals(libro.target);
 
   const {
     icon,

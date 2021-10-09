@@ -1,10 +1,9 @@
-import { SomeNode } from 'link-lib';
 import {
   Property,
-  ReturnType,
   register,
-  useProperty,
-  useResourceLink,
+  useIds,
+  useNumbers,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -13,16 +12,10 @@ import ontola from '../../ontology/ontola';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import PageHeader from '../../topologies/PageHeader';
 
-const coverPhotoMap = {
-  coverPhotoUrl: ontola.imgUrl1500x2000,
-  positionY: ontola.imagePositionY,
-};
-
-const coverPhotoOpts = { returnType: ReturnType.Value };
-
 const VocabularyFull = () => {
-  const [coverPhoto] = useProperty(ontola.coverPhoto);
-  const { coverPhotoUrl, positionY } = useResourceLink(coverPhoto as SomeNode, coverPhotoMap, coverPhotoOpts);
+  const [coverPhoto] = useIds(ontola.coverPhoto);
+  const [coverPhotoUrl] = useValues(coverPhoto, ontola.imgUrl1500x2000);
+  const [positionY] = useNumbers(coverPhoto, ontola.imagePositionY);
 
   return (
     <React.Fragment>

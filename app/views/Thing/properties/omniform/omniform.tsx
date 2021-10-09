@@ -3,9 +3,10 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
+  useFields,
+  useGlobalIds,
   useLRS,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React, { KeyboardEventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -31,9 +32,9 @@ export interface OmniformProps {
 }
 
 const useIsSelfOrParentExpired = (expiresAt: SomeTerm, isPartOf: NamedNode) => {
-  const [parentExpiry] = useResourceProperty(isPartOf, argu.expiresAt);
-  const [grandParent] = useResourceProperty(isPartOf, schema.isPartOf) as NamedNode[];
-  const [grandParentExpiry] = useResourceProperty(grandParent, argu.expiresAt);
+  const [parentExpiry] = useFields(isPartOf, argu.expiresAt);
+  const [grandParent] = useGlobalIds(isPartOf, schema.isPartOf);
+  const [grandParentExpiry] = useFields(grandParent, argu.expiresAt);
 
   if (isPastDate(expiresAt)) {
     return true;
@@ -54,8 +55,8 @@ const OmniformProp: FC<OmniformProps> = ({
   const lrs = useLRS();
 
   const [expiresAt] = useProperty(argu.expiresAt);
-  const [isPartOf] = useProperty(schema.isPartOf) as NamedNode[];
-  const potentialAction = useProperty(schema.potentialAction) as NamedNode[];
+  const [isPartOf] = useGlobalIds(schema.isPartOf);
+  const potentialAction = useGlobalIds(schema.potentialAction);
 
   const items = useActions(potentialAction);
   const isExpired = useIsSelfOrParentExpired(expiresAt, isPartOf);

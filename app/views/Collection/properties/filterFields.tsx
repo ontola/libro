@@ -1,10 +1,10 @@
 import * as as from '@ontologies/as';
-import { SomeTerm, isNode } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Resource,
   register,
-  useProperty,
+  useIds, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -26,7 +26,7 @@ const trigger: Trigger = (props) => (
 );
 
 const FilterFields: FC<FilterFieldsProps> = () => {
-  const [filterSequence] = useProperty(ontola.filterFields).filter(isNode);
+  const [filterSequence] = useIds(ontola.filterFields);
   const [filterFields] = useSeqToArr(filterSequence);
 
   const menuItems = React.useCallback(({ handleClose }) => filterFields

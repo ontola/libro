@@ -1,11 +1,10 @@
 import * as as from '@ontologies/as';
-import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   register,
   useDataFetching,
-  useProperty,
-  useResourceProperty,
+  useGlobalIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -20,19 +19,19 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 import './MediaObjectAttachment.scss';
 
 const MediaObjectAttachment = () => {
-  const [comment] = useProperty(schema.comment) as NamedNode[];
-  const [contentUrl] = useProperty(schema.contentUrl);
-  const [name] = useProperty([schema.name, dbo.filename]);
+  const [comment] = useGlobalIds(schema.comment);
+  const [contentUrl] = useValues(schema.contentUrl);
+  const [name] = useValues([schema.name, dbo.filename]);
 
   useDataFetching(comment);
-  const totalItems = tryParseInt(useResourceProperty(comment, as.totalItems));
+  const totalItems = tryParseInt(useValues(comment, as.totalItems));
 
   return (
     <div>
       <div className="Attachment">
         <LDLink
           className="Attachment__primary"
-          title={name?.value}
+          title={name}
         >
           <FontAwesome
             className="Attachment__icon"
@@ -42,14 +41,14 @@ const MediaObjectAttachment = () => {
             className="Attachment__text"
             data-test="Attachment-title"
           >
-            {name?.value}
+            {name}
           </div>
         </LDLink>
         <a
           download
           className="Attachment__inside-button"
           data-test="Attachment-download"
-          href={contentUrl?.value || ''}
+          href={contentUrl ?? ''}
           rel="noopener noreferrer"
           target="_blank"
           title="Downloaden"

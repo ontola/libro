@@ -1,13 +1,14 @@
 import IconButton from '@material-ui/core/IconButton';
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf  from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
   useDataInvalidation,
+  useFields,
+  useGlobalIds,
   useLRS,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -33,11 +34,11 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
-  const [target] = useProperty(schema.target) as NamedNode[];
+  const [target] = useGlobalIds(schema.target);
 
   const lrs = useLRS();
   const history = useHistory();
-  const [image] = useResourceProperty(target, schema.image);
+  const [image] = useFields(schema.image, target);
   useDataInvalidation(target);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {

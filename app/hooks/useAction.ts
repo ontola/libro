@@ -3,13 +3,13 @@ import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   useDataFetching,
-  useResourceProperty,
+  useGlobalIds,
 } from 'link-redux';
 
 const useAction = (resource: SomeNode, predicate: NamedNode): [action: NamedNode, status: NamedNode] => {
-  const [action] = useResourceProperty(resource, predicate) as NamedNode[];
+  const [action] = useGlobalIds(resource, predicate);
   useDataFetching(action);
-  const [actionStatus] = useResourceProperty(action, schema.actionStatus) as NamedNode[];
+  const [actionStatus] = useGlobalIds(schema.actionStatus, action);
 
   return [action, actionStatus];
 };

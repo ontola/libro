@@ -1,8 +1,10 @@
+import { FulfilledRequestStatus } from 'link-lib/dist-types/types';
 import {
+  FC,
   register,
-  subjectType,
+  useAction,
+  useIds,
   useLRS,
-  useResourceProperty,
 } from 'link-redux';
 
 import httph from '../../ontology/httph';
@@ -14,13 +16,14 @@ import { fullResourceTopology } from '../../topologies/FullResource';
  *
  * These generally are resources without body or in error state.
  */
-const DocumentFull = ({ subject }) => {
+const DocumentFull: FC = ({ subject }) => {
   const lrs = useLRS();
-  const { lastResponseHeaders } = lrs.getStatus(subject);
-  const action = useResourceProperty(lastResponseHeaders, httph['exec-action']);
+  const { lastResponseHeaders } = lrs.getStatus(subject) as FulfilledRequestStatus;
+  const [action] = useIds(lastResponseHeaders ?? undefined, httph['exec-action']);
+  const execAction = useAction(action);
 
-  if (action) {
-    lrs.exec(action);
+  if (execAction) {
+    execAction();
   }
 
   return null;
@@ -29,10 +32,6 @@ const DocumentFull = ({ subject }) => {
 DocumentFull.type = link.Document;
 
 DocumentFull.topology = fullResourceTopology;
-
-DocumentFull.propTypes = {
-  subject: subjectType,
-};
 
 export default [
   register(DocumentFull),

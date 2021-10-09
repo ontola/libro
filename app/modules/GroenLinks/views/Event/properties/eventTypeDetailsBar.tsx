@@ -4,8 +4,8 @@ import {
   PropertyProps,
   register,
   useDataFetching,
+  useFields,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,7 +18,7 @@ import { detailsBarTopology } from '../../../../../topologies/DetailsBar';
 const EventTypeDetailsBar = ({ linkedProp }: PropertyProps) => {
   const [image] = useProperty(schema.image);
   useDataFetching([linkedProp].filter(isNamedNode));
-  const [name] = useResourceProperty(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
+  const [name] = useFields(schema.name, isNamedNode(linkedProp) ? linkedProp : undefined);
 
   return (
     <Detail

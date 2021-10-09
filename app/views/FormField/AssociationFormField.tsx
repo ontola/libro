@@ -5,9 +5,8 @@ import {
   FC,
   register,
   useDataFetching,
+  useGlobalIds,
   useLRS,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,16 +25,16 @@ import ontola from '../../ontology/ontola';
 
 const useItemFactory = () => {
   const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
-  const [path] = useProperty(sh.path) as NamedNode[];
+  const [path] = useGlobalIds(sh.path);
   const { object } = React.useContext(FormContext);
   const association = lrs.originalLRS.getResourceProperty(object, path) as NamedNode;
-  const [createAction] = useResourceProperty(association, ontola.createAction) as NamedNode[];
+  const [createAction] = useGlobalIds(association, ontola.createAction);
   const formPaths = lrs.dig(createAction, [schema.target, ll.actionBody, ...formFieldsPath, sh.path]);
   const conditionalFormPaths = lrs.dig(
     createAction,
     [schema.target, ll.actionBody, ...conditionalFormFieldsPath, sh.path],
   );
-  const [blankObject] = useResourceProperty(createAction, schema.object) as NamedNode[];
+  const [blankObject] = useGlobalIds(createAction, schema.object);
   useDataFetching([association, createAction].filter(isNamedNode));
 
   return React.useCallback(() => {

@@ -6231,7 +6231,7 @@ __metadata:
     koa-webpack: ^6.0.0
     koa2-connect: ^1.0.2
     link-lib: 3.0.0-3
-    link-redux: 3.0.0-18
+    link-redux: 3.0.0-19
     lint-staged: ^10.5.4
     md5.js: ^1.3.5
     memoize-one: ^5.0.5
@@ -14794,9 +14794,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-18":
-  version: 3.0.0-18
-  resolution: "link-redux@npm:3.0.0-18"
+"link-redux@npm:3.0.0-19":
+  version: 3.0.0-19
+  resolution: "link-redux@npm:3.0.0-19"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -14805,7 +14805,7 @@ fsevents@~2.3.1:
     link-lib: ">=3.0.0-1"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: be8fb674a4bfb06d4f6d136f0de4b2cc3f8de6118215f11484dd17d63f4e5b123362c99198e883cd8c0935d4f52c2abfda0361f80f06c4a502cbf38f13c529d6
+  checksum: bf5d894515597db51656aba4ffb473df7245ce4df74a08eb0717d0942e46743705080d86113677b62c2e362d8d7b8615fd429fc385929c722a9e8ba09d6c7cab
   languageName: node
   linkType: hard
 

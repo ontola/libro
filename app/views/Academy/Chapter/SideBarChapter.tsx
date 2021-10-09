@@ -1,15 +1,15 @@
 import {
   FC,
   Resource,
+  array,
   register,
+  useIds,
   useProperty,
-  useResourceProperty,
+  useValues,
 } from 'link-redux';
-import { SomeNode } from 'link-lib';
 import React from 'react';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import * as rdfs from '@ontologies/rdfs';
 import FontAwesome from 'react-fontawesome';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
@@ -71,10 +71,9 @@ const SideBarChapter: FC<SideBarChapterProps> = ({
   subject,
   topLevel,
 }) => {
-  const [title] = useProperty(schema.title);
+  const [title] = useValues(schema.title);
   const [icon] = useProperty(argu.icon);
-  const [subChapters] = useProperty(argu.subChapters) as SomeNode[];
-  const members = useResourceProperty(subChapters, rdfs.member);
+  const members = useIds(array(argu.subChapters));
   const classNames = useStyles();
 
   const titleClasses = clsx({
@@ -104,7 +103,7 @@ const SideBarChapter: FC<SideBarChapterProps> = ({
           />
         )}
         <span>
-          {title.value}
+          {title}
         </span>
         {completed && (
           <FontAwesome

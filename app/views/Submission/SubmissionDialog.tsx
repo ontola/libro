@@ -1,23 +1,22 @@
-import { NamedNode, isNamedNode } from '@ontologies/core';
+import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   Resource,
+  dig,
   register,
-  useDataFetching,
-  useProperty,
-  useResourceProperty,
+  useIds,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '../../components/Button';
 import useAction from '../../hooks/useAction';
+import Flow from '../../modules/Flow/topologies/Flow';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import Flow from '../../modules/Flow/topologies/Flow';
 import { surveyMessages } from '../../translations/messages';
 
 const style = { padding: '0.5rem 0' };
@@ -31,9 +30,7 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
   onDone,
 }) => {
   const [submitAction, submitActionStatus] = useAction(subject, ontola.submitAction);
-  const [survey] = useProperty(schema.isPartOf) as NamedNode[];
-  useDataFetching(survey);
-  const [externalIRI] = useResourceProperty(survey, argu.externalIRI);
+  const [externalIRI] = useIds(dig(schema.isPartOf, argu.externalIRI));
 
   if (submitActionStatus === schema.CompletedActionStatus) {
     return (

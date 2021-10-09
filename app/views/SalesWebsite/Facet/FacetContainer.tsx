@@ -4,17 +4,17 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
-import { SomeTerm } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
+import { Node, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Resource,
+  array,
+  useIds,
   useProperty,
   useResourceLinks,
-  useResourceProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -148,12 +148,15 @@ const facetProps = {
 };
 
 const FacetContainer: FC = () => {
-  const [color, setColor] = React.useState('#000');
-
   const [flexDirection] = useProperty(sales.flexDirection);
-  const [name] = useProperty(schema.name);
-  const [text] = useProperty(schema.text);
-  const [items] = useProperty(as.items) as [SomeNode];
+  const [name] = useValues(schema.name);
+  const [text] = useValues(schema.text);
+  const members = useIds(array(as.items));
+  const facets = useResourceLinks(members, facetProps);
+
+  const [color, setColor] = React.useState('#000');
+  const [currentFacet, setCurrentFacet] = React.useState(members[0]);
+  const [video, setVideo] = React.useState<SomeTerm>();
 
   const classes = useStyles({
     color: color,
@@ -169,12 +172,6 @@ const FacetContainer: FC = () => {
     [classes.containerRow]: flexDirection.value === 'row',
     [classes.containerRowReverse]: flexDirection.value === 'row-reverse',
   });
-
-  const members = useResourceProperty(items, rdfs.member) ;
-  const facets = useResourceLinks(members as SomeNode[], facetProps);
-
-  const [currentFacet, setCurrentFacet] = React.useState(members[0]);
-  const [video, setVideo] = React.useState<SomeTerm>();
 
   React.useEffect(() => {
     const facet = facets.find((f) => f.subject === currentFacet);
@@ -192,14 +189,14 @@ const FacetContainer: FC = () => {
         className={classes.title}
         variant="h2"
       >
-        {name.value}
+        {name}
       </Typography>
       <Typography
         className={classes.subTitle}
         component="p"
         variant="subtitle1"
       >
-        {text.value}
+        {text}
       </Typography>
       <Grid
         container
@@ -219,7 +216,7 @@ const FacetContainer: FC = () => {
                     className={classes.button}
                     key={facet.subject!.value}
                     type="button"
-                    onClick={() => setCurrentFacet(facet.subject!)}
+                    onClick={() => setCurrentFacet(facet.subject as Node)}
                   >
                     <ChevronRight
                       style={{
@@ -229,7 +226,7 @@ const FacetContainer: FC = () => {
                     />
                     <Typography
                       className={classes.buttonText}
-                      onClick={() => setCurrentFacet(facet.subject!)}
+                      onClick={() => setCurrentFacet(facet.subject as Node)}
                     >
                       {facet.name!.value}
                     </Typography>
@@ -240,7 +237,7 @@ const FacetContainer: FC = () => {
                       className={classes.button}
                       key={facet.subject!.value}
                       type="button"
-                      onClick={() => setCurrentFacet(facet.subject!)}
+                      onClick={() => setCurrentFacet(facet.subject as Node)}
                     >
                       <KeyboardArrowDownIcon
                         style={{
@@ -250,7 +247,7 @@ const FacetContainer: FC = () => {
                       />
                       <Typography
                         className={classes.buttonTextSelected}
-                        onClick={() => setCurrentFacet(facet.subject!)}
+                        onClick={() => setCurrentFacet(facet.subject as Node)}
                       >
                         {facet.name!.value}
                       </Typography>

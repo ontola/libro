@@ -1,13 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { NamedNode, isLiteral } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { ACCEPTED } from 'http-status-codes';
 import {
+  PropertyProps,
   Resource,
-  linkedPropType,
   register,
   useDataInvalidation,
+  useFields,
   useLRS,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -30,15 +31,23 @@ const useStyles = makeStyles({
   },
 });
 
-const registerCoverPhoto = (prop, topology, linked = false) => {
+const registerCoverPhoto = (
+  prop: NamedNode,
+  topology: NamedNode[],
+  linked = false,
+) => {
   const CoverPhotoOrLoading = ({
     linkedProp,
-  }) => {
+  }: PropertyProps) => {
+    if (isLiteral(linkedProp)) {
+      throw new Error(`coverPhoto was a Literal (${linkedProp.value})`);
+    }
+
     const lrs = useLRS();
     const classes = useStyles();
     useDataInvalidation(linkedProp);
-    const [imagePositionY] = useResourceProperty(linkedProp, ontola.imagePositionY);
-    const [url] = useResourceProperty(linkedProp, prop);
+    const [imagePositionY] = useFields(linkedProp, ontola.imagePositionY);
+    const [url] = useFields(linkedProp, prop);
     const status = lrs.getStatus(linkedProp);
 
     if (status.status === ACCEPTED || lrs.shouldLoadResource(linkedProp)) {
@@ -62,7 +71,7 @@ const registerCoverPhoto = (prop, topology, linked = false) => {
     return (
       <Wrapper {...wrapperProps}>
         <CoverImage
-          positionY={tryParseInt(imagePositionY)}
+          positionY={tryParseInt(imagePositionY)!}
           url={url.value}
         />
       </Wrapper>
@@ -74,10 +83,6 @@ const registerCoverPhoto = (prop, topology, linked = false) => {
   CoverPhotoOrLoading.property = ontola.coverPhoto;
 
   CoverPhotoOrLoading.topology = topology;
-
-  CoverPhotoOrLoading.propTypes = {
-    linkedProp: linkedPropType,
-  };
 
   return register(CoverPhotoOrLoading);
 };

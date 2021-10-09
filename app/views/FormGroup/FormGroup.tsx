@@ -2,9 +2,8 @@ import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
   Property,
-  ReturnType,
   register,
-  useProperty,
+  useBooleans,
 } from 'link-redux';
 import React from 'react';
 
@@ -37,7 +36,7 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
 };
 
 const WrappedFormGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => {
-  const hidden = useProperty(form.hidden, { returnType: ReturnType.Literal }) as boolean;
+  const [hidden] = useBooleans(form.hidden);
 
   return(
     <FormGroupProvider sequenceIndex={sequenceIndex}>

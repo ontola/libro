@@ -6,7 +6,7 @@ import {
   PropertyProps,
   Resource,
   register,
-  useProperty,
+  useGlobalIds, 
 } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
@@ -46,7 +46,7 @@ const sortBind = (props: SortProps) => props
   ));
 
 const FavoriteAction: FC<PropertyProps> = (props) => {
-  const favoriteActions = useProperty(ontola.favoriteAction) as NamedNode[];
+  const favoriteActions = useGlobalIds(ontola.favoriteAction) ;
   const favoriteActionProps = {
     ...props,
     favoriteActions,

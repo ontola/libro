@@ -1,21 +1,20 @@
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import clsx from 'clsx';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
+import clsx from 'clsx';
 import {
   FC,
   Resource,
-  useProperty,
-  useResourceProperty,
+  array,
+  useIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const BLOG_SPACING = 8;
 
@@ -39,9 +38,8 @@ const BlogsContainer: FC<BlogsContainerProps> = ({ centerHeading }) => {
   const headingClasses = clsx({
     [classes.headingCenter]: centerHeading,
   });
-  const [name] = useProperty(schema.name);
-  const [blogShowcase] = useProperty(sales.blogShowcase) as SomeNode[];
-  const blogs = useResourceProperty(blogShowcase, rdfs.member);
+  const [name] = useValues(schema.name);
+  const blogs = useIds(array(sales.blogShowcase));
 
   return (
     <React.Fragment>
@@ -49,7 +47,7 @@ const BlogsContainer: FC<BlogsContainerProps> = ({ centerHeading }) => {
         className={headingClasses}
         variant="h2"
       >
-        {name.value}
+        {name}
       </Typography>
       <Showcase className={classes.showcaseContainer}>
         {blogs.map((iri) => (

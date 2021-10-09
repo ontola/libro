@@ -1,8 +1,9 @@
-import { SomeTerm, isNode } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import {
   LaxNode,
+  useFields,
+  useIds,
   useResourceLinks,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -26,9 +27,9 @@ export interface SortProps  {
 
 export const useSorting = (subject: LaxNode): SortProps[] => {
   const iriTemplate = useIRITemplate(subject);
-  const collectionSorting = useResourceProperty(subject, ontola.collectionSorting);
-  const sortOptions = useResourceProperty(subject, ontola.sortOptions);
-  const currentSortingsRaw = useResourceLinks(collectionSorting.filter(isNode), sortElementProps);
+  const collectionSorting = useIds(subject, ontola.collectionSorting);
+  const sortOptions = useFields(subject, ontola.sortOptions);
+  const currentSortingsRaw = useResourceLinks(collectionSorting, sortElementProps);
   const currentSortings = React.useMemo(() => (
     currentSortingsRaw.map(({ sortKey, sortDirection }) => [sortKey, sortDirection])
   ), [currentSortingsRaw]);

@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles } from '@material-ui/styles';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -9,7 +9,7 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,10 +18,10 @@ import TabbarProvider from '../../components/TabbarProvider';
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
+import { LibroTheme } from '../../themes/themes';
 import { CardMain } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
-import { LibroTheme } from '../../themes/themes';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 
 const PersonFull: FC = () => {
   const classes = useStyles();
-  const [settingsMenu] = useProperty(ontola.settingsMenu) as NamedNode[];
+  const [settingsMenu] = useGlobalIds(ontola.settingsMenu);
 
   return (
     <TabbarProvider

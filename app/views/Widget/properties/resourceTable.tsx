@@ -1,4 +1,4 @@
-import { NamedNode, isNode } from '@ontologies/core';
+import { isNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import {
   FC,
@@ -6,7 +6,7 @@ import {
   literal,
   register,
   useDataInvalidation,
-  useProperty,
+  useGlobalIds,
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
@@ -26,7 +26,7 @@ const TargetPropMap = {
 };
 
 const ResourceTable: FC<PropertyProps> = () => {
-  const [resourceSeq] = useProperty(ontola.widgetResource) as NamedNode[];
+  const [resourceSeq] = useGlobalIds(ontola.widgetResource);
   const [widgetResources] = useSeqToArr(resourceSeq);
   const targetNodesMap = useResourceLinks(widgetResources.filter(isNode), TargetPropMap);
   const targetNodes = targetNodesMap.map((map) => map.target);

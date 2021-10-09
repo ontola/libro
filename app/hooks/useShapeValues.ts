@@ -61,9 +61,9 @@ const useShapeValues = (targetFromProp: LaxNode, shapeProps: NodeShape[]): Value
       const path = conditionPath(lrs, currentProps).filter(isNamedNode);
 
       if (target && path) {
-        const [dugTerms, dugTargets] = lrs.digDeeper(target, path);
+        const [dugQuads, dugTargets] = lrs.digDeeper(target, path);
         dugTargets.forEach((subj) => resolvedTargets.add(subj));
-        newMap[rdfFactory.id(currentProps.subject)] = dugTerms;
+        newMap[rdfFactory.id(currentProps.subject)] = dugQuads.map((q) => q.object);
       }
     });
 

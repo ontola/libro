@@ -11,8 +11,9 @@ import * as rdf from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   Resource,
-  useDig,
-  useResourceProperty,
+  dig,
+  useIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -120,8 +121,8 @@ const FlowForm = (): JSX.Element | null => {
   const [fields, loading] = useFlowFields();
   const [activeField, activateField, currentIndex] = useFlowActiveField(fields, loading);
   const invalidField = useInvalidField(fields);
-  const [icon] = useDig([schema.image, ontola.imgUrl256x256], frontendIRI);
-  const [type] = useResourceProperty(activeField, rdf.type);
+  const [icon] = useValues(frontendIRI, dig(schema.image, ontola.imgUrl256x256));
+  const [type] = useIds(activeField, rdf.type);
 
   const activateNextField = React.useCallback(() => {
     activateField(fields[currentIndex + 1]);
@@ -221,7 +222,7 @@ const FlowForm = (): JSX.Element | null => {
         <img
           alt=""
           className={classes.surveyControlOrganizationLogo}
-          src={icon?.[0].value}
+          src={icon}
         />
         <IconButton
           aria-label={intl.formatMessage(flowMessages.previousAriaLabel)}

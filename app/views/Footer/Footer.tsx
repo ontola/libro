@@ -1,12 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
-import * as rdfs from '@ontologies/rdfs';
 import {
   FC,
   Resource,
+  array,
   register,
+  useIds,
   useProperty,
-  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -39,16 +38,15 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
 const Footer: FC = () => {
   const classNames = useStyles();
-  const [members] = useProperty(argu.columns);
   const [lowerSection] = useProperty(argu.lowerSection);
-  const menuItems = useResourceProperty(members as Node, rdfs.member);
+  const menuItems = useIds(array(argu.columns));
 
   return (
     <footer
       className={classNames.footer}
       role="contentinfo"
     >
-      {menuItems?.map((item) => (
+      {menuItems.map((item) => (
         <Resource
           key={item.value}
           subject={item}

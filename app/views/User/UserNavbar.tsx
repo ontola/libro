@@ -1,9 +1,8 @@
-import { NamedNode } from '@ontologies/core';
 import {
   Property,
   register,
-  useLRS,
-  useProperty,
+  useAction,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,14 +14,13 @@ import { navbarTopology } from '../../topologies/Navbar';
 import { RegisteredTypes } from './types';
 
 const UserNavbar = () => {
-  const lrs = useLRS();
-  const [mountAction] = useProperty(ontola.mountAction) as NamedNode[];
+  const [mountAction] = useGlobalIds(ontola.mountAction);
+  const onMountAction = useAction(mountAction);
+  const toggleMenu = useAction(app.ns('actions/menu/toggle'));
 
   React.useEffect(() => {
-    if (mountAction) {
-      lrs.exec(mountAction);
-    }
-  }, [mountAction]);
+    onMountAction();
+  }, [onMountAction]);
 
   return (
     <ResourceBoundary>
@@ -33,7 +31,7 @@ const UserNavbar = () => {
             e.preventDefault();
           }
 
-          lrs.exec(app.ns('actions/menu/toggle'));
+          toggleMenu();
         }}
       />
     </ResourceBoundary>

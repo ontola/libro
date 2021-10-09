@@ -5,8 +5,8 @@ import * as rdfx from '@ontologies/rdf';
 import {
   FC,
   register,
-  useProperty,
-  useResourceProperty,
+  useFields,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 }));
 
 const Empty: FC<EmptyProps> = ({ topology }) => {
-  const [baseCollection] = useProperty(ontola.baseCollection) as NamedNode[];
+  const [baseCollection] = useGlobalIds(ontola.baseCollection);
 
   const styles = useStyles();
   const { collectionDisplay } = useCollectionOptions();
-  const collectionType = useResourceProperty(baseCollection, rdfx.type);
+  const collectionType = useFields(rdfx.type, baseCollection);
 
   if (collectionType.includes(ontola.SearchResult)) {
     return null;

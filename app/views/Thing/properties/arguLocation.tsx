@@ -8,8 +8,8 @@ import {
   FC,
   register,
   useDataFetching,
+  useIds,
   useLRS,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -33,7 +33,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   linkedProp,
 }) => {
   const lrs = useLRS();
-  const [childrenPlacements] = useProperty(argu.childrenPlacements) as SomeNode[];
+  const [childrenPlacements] = useIds(argu.childrenPlacements);
   const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
   const [children, childrenLoading] = useContainerToArr(childrenPlacements);

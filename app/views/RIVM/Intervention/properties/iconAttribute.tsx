@@ -6,7 +6,7 @@ import {
   register,
   useDataFetching,
   useDataInvalidation,
-  useResourceProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -22,7 +22,7 @@ const IconAttribute: FC<PropertyProps> = ({
   useDataInvalidation(subject);
   useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
 
-  const [name] = useResourceProperty(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
+  const [name] = useValues(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
 
   if (!name) {
     return null;
@@ -34,7 +34,7 @@ const IconAttribute: FC<PropertyProps> = ({
         <img
           alt=""
           src={`/assets/rivm/icons/${linkedProp.value.split('#')[1]}.png`}
-          title={name.value}
+          title={name}
         />
       </span>
     </div>

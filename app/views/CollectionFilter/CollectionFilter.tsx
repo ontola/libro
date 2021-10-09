@@ -1,11 +1,12 @@
 import Chip from '@material-ui/core/Chip';
-import rdfFactory, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdfFactory, { SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,
   register,
+  useGlobalIds,
   useLRS,
   useProperty,
 } from 'link-redux';
@@ -55,7 +56,7 @@ const Value = ({ prop }: { prop: SomeTerm }) => {
 const CollectionFilter = () => {
   const [filterKey] = useProperty(ontola.filterKey);
   const filterValues = useProperty(ontola.filterValue);
-  const [partOf] = useProperty(schema.isPartOf) as NamedNode[];
+  const [partOf] = useGlobalIds(schema.isPartOf);
 
   const iriTemplate = useIRITemplate(partOf);
   const { setCollectionResource } = useCollectionOptions();
