@@ -27,9 +27,8 @@ import fa4 from '../../../ontology/fa4';
 import ontola from '../../../ontology/ontola';
 import { getStyles } from '../lib/helpers';
 
-const imageForPlacement = (placement: SomeNode, lrs: LinkReduxLRSType): NamedNode => (
-  lrs.getResourceProperty(placement, schema.image) || fa4.ns('map-marker')
-);
+const imageForPlacement = (placement: SomeNode, lrs: LinkReduxLRSType): NamedNode =>
+  lrs.getResourceProperty(placement, schema.image) ?? fa4.ns('map-marker');
 
 const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement): Placement => {
   if (!isResource(placement)) {
@@ -114,22 +113,15 @@ export const getMarkAsVisited = (
   });
 };
 
-const addFeature = (
-  dependencies: SomeNode[],
-  loading: boolean,
-  lrs: LinkReduxLRSType,
+export const addFeature = (
+  feature: false | Feature<Point> | undefined,
+  index: number,
   theme: Theme,
   getVisitedFeatures: () => string[],
   setMemoizedCenter: Dispatch<SetStateAction<Feature<Point> | null>>,
   setVisitedFeatures: Dispatch<SetStateAction<string[]>>,
   features: Array<Feature<Point>>,
-) => (rawFeature: SomeNode | Placement, index: number) => {
-  if (isNamedNode(rawFeature)) {
-    dependencies.push(rawFeature);
-  }
-
-  const feature = !loading && featureFromPlacement(lrs, rawFeature, getVisitedFeatures(), theme);
-
+): void => {
   if (!feature) return;
 
   if (index === 0) {
@@ -167,16 +159,21 @@ export const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet
     const dependencies: SomeNode[] = [];
 
     if (placements) {
-      placements.forEach(addFeature(
-        dependencies,
-        loading,
-        lrs,
-        theme,
-        getVisitedFeatures,
-        setMemoizedCenter,
-        setVisitedFeatures,
-        features,
-      ));
+      placements.forEach((rawFeature: SomeNode | Placement, index: number) => {
+        if (isNamedNode(rawFeature)) {
+          dependencies.push(rawFeature);
+        }
+
+        addFeature(
+          !loading && featureFromPlacement(lrs, rawFeature, getVisitedFeatures(), theme),
+          index,
+          theme,
+          getVisitedFeatures,
+          setMemoizedCenter,
+          setVisitedFeatures,
+          features,
+        );
+      });
     }
 
     setDependencies(dependencies);
