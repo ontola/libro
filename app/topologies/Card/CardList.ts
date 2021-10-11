@@ -1,3 +1,5 @@
+import { WithStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
 import argu from '../../ontology/argu';
@@ -7,7 +9,7 @@ export enum CardListDirection {
   Column = 'column',
 }
 
-interface PropTypes {
+export interface CardListProps {
   direction?: CardListDirection;
   overflow?: boolean;
   wrap?: boolean;
@@ -18,25 +20,45 @@ interface PropTypes {
  */
 export const cardListTopology = argu.cardList;
 
+const styles = createStyles({
+  cardList: {
+    display: 'flex',
+  },
+  column: {
+    flexDirection: 'column',
+  },
+  overflow: {
+    overflowX: 'hidden',
+    overflowY: 'scroll',
+  },
+  wrap: {
+    flexWrap: 'wrap',
+  },
+});
+
+type PropType = CardListProps & WithStyles<typeof styles>;
+
 /**
  * Sets the cardList topology
  * @returns {component} Component
  */
-class CardList extends Topology<PropTypes> {
-  constructor(props: PropTypes) {
+class CardList extends Topology<PropType> {
+  constructor(props: PropType) {
     super(props);
 
     this.topology = cardListTopology;
   }
 
   public getClassName(): string {
+    const { classes } = this.props;
+
     return clsx({
-      'CardList': true,
-      'CardList--column': this.props.direction === CardListDirection.Column,
-      'CardList--overflow': this.props.overflow,
-      'CardList--wrap': this.props.wrap,
+      [classes.cardList]: true,
+      [classes.column]: this.props.direction === CardListDirection.Column,
+      [classes.overflow]: this.props.overflow,
+      [classes.wrap]: this.props.wrap,
     });
   }
 }
 
-export default CardList;
+export default withStyles(styles)(CardList);

@@ -1,3 +1,9 @@
+import {
+  WithStyles,
+  createStyles,
+  withStyles,
+} from '@material-ui/styles';
+
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
@@ -6,17 +12,24 @@ import Topology from '../Topology';
  */
 export const cardFloatTopology = argu.ns('cardFloat');
 
+const styles = createStyles({
+  cardFloat: {
+    alignItems: 'center',
+    display: 'flex',
+  },
+});
+
 /**
  * Sets the cardFloat topology
  * @returns {component} Component
  */
-class CardFloat extends Topology {
-  constructor(props: Record<string, unknown>) {
+class CardFloat extends Topology<WithStyles<typeof styles>> {
+  constructor(props: WithStyles<typeof styles>) {
     super(props);
 
-    this.className = 'CardFloat';
+    this.className = this.props.classes.cardFloat;
     this.topology = cardFloatTopology;
   }
 }
 
-export default CardFloat;
+export default withStyles(styles)(CardFloat);

@@ -14,7 +14,7 @@
       margin-top: - unit('medium');
     }
 
-    .Card & {
+    .CID-Card & {
       border-top-left-radius: $border-radius-base;
       border-top-right-radius: $border-radius-base;
       height: 7em;
@@ -23,7 +23,7 @@
       width: 100%;
     }
 
-    .Card--fixed & {
+    .CID-CardFixed & {
       display: flex;
       flex: 1;
       height: auto;
@@ -38,7 +38,7 @@
     transform: scale(1.2);
     width: 100%;
 
-    .Card & {
+    .CID-Card & {
       filter: none;
       opacity: 1;
       transform: none;

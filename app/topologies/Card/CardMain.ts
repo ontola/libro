@@ -1,37 +1,55 @@
+import { WithStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
 
-import './Card.scss';
+import {
+  cardClassIdentifier,
+  cardFixedClassIdentifier,
+  cardFixedStyles,
+  cardStyles,
+} from './sharedCardStyles';
 
 export const cardMainTopology = argu.cardMain;
 
-interface PropTypes {
+export interface CardMainProps {
   fixed?: boolean;
 }
+
+const styles = (theme: LibroTheme) => ({
+  ...cardStyles(theme),
+  ...cardFixedStyles(theme),
+});
+
+type PropType = CardMainProps & WithStyles<typeof styles>;
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class CardMain extends Topology<PropTypes> {
+class CardMain extends Topology<PropType> {
   public static defaultProps = {
     fixed: false,
   };
 
-  constructor(props: PropTypes) {
+  constructor(props: PropType) {
     super(props);
 
     this.topology = cardMainTopology;
   }
 
   public getClassName(): string {
+    const { classes } = this.props;
+
     return clsx({
-      'Card': true,
-      'Card--fixed': this.props.fixed,
+      [cardClassIdentifier]: true,
+      [classes.card]: true,
+      [cardFixedClassIdentifier]: this.props.fixed,
+      [classes.fixed]: this.props.fixed,
     });
   }
 }
 
-export default CardMain;
+export default withStyles(styles)(CardMain);

@@ -3,8 +3,6 @@ import React from 'react';
 import argu from '../../ontology/argu';
 import Topology, { TopologyContent } from '../Topology';
 
-import './Card.scss';
-
 export const cardAppendixTopology = argu.ns('cardAppendix');
 
 /**

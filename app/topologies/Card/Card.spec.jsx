@@ -1,58 +1,65 @@
 import { ThemeProvider } from '@material-ui/styles';
-import React from 'react';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 
 import CardActions from '../../components/Card/CardActions';
-import CardContent from '../../components/Card/CardContent';
+import CardContent, { cardContentClassIdentifier } from '../../components/Card/CardContent';
 import themes from '../../themes';
 
-import CardRow from './CardRow';
+import CardRow, {
+  cardRowBackdropClassIdentifier,
+  cardRowClassIdentifier,
+} from './CardRow';
+import { cardClassIdentifier } from './sharedCardStyles';
 
-import Card from '.';
+import Card from './';
 
 describe('Card component', () => {
   it('Card should render', () => {
     const tree = mount(
-      <Card>
-        Content
-      </Card>
+      <ThemeProvider theme={themes.common({})}>
+        <Card>
+          Content
+        </Card>
+      </ThemeProvider>
     );
-    expect(tree.find(Card)).toExist();
-    expect(tree.find('.Card')).toHaveText('Content');
+    expect(tree.find(`.${cardClassIdentifier}`)).toExist();
+    expect(tree.find(`.${cardClassIdentifier}`)).toHaveText('Content');
   });
 
   it('CardActions should render', () => {
     const tree = shallow(
-      <CardActions>
-        Content
-      </CardActions>
+      <ThemeProvider theme={themes.common({})}>
+        <CardActions>
+          Content
+        </CardActions>
+      </ThemeProvider>
     );
-    expect(tree.find('.CardActions')).toExist();
-    tree.setProps({ noSpacing: true });
-    expect(tree.find('.CardActions')).toHaveClassName('CardActions--no-spacing');
+    expect(tree.find(CardActions)).toExist();
   });
 
   it('CardContent should render', () => {
     const tree = mount(
       <ThemeProvider theme={themes.common({})}>
-        <CardContent noSpacing>
+        <CardContent>
           Content
         </CardContent>
       </ThemeProvider>
     );
-    expect(tree.find('CardContent')).toExist();
-    expect(tree.find('.CardContent')).toHaveText('Content');
-    expect(tree.find('.CardContent')).toHaveClassName('CardContent--no-spacing');
+    expect(tree.find(`.${cardContentClassIdentifier}`)).toExist();
+    expect(tree.find(`.${cardContentClassIdentifier}`)).toHaveText('Content');
   });
 
   it('CardRow should render', () => {
     const tree = mount(
-      <CardRow showArrow>
-        Content
-      </CardRow>
+      <ThemeProvider theme={themes.common({})}>
+        <CardRow backdrop>
+          Content
+        </CardRow>
+      </ThemeProvider>
     );
-    expect(tree.find('.CardRow')).toExist();
-    expect(tree.find('.CardRow')).toHaveText('Content');
-    expect(tree.find('.CardRow')).toHaveClassName('CardRow--show-arrow');
+    expect(tree.find(`.${cardRowClassIdentifier}`)).toExist();
+    expect(tree.find(`.${cardRowClassIdentifier}`)).toHaveText('Content');
+    expect(tree.find(`.${cardRowClassIdentifier}`)).toHaveClassName(cardRowBackdropClassIdentifier);
   });
 });

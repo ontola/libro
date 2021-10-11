@@ -7,16 +7,48 @@ import React from 'react';
 import { LibroTheme } from '../../themes/themes';
 import { HOVER_COEFFICIENT } from '../Link/ThemeStyles';
 
-import '../../topologies/Card/Card.scss';
+export const cardContentClassIdentifier = 'CID-CardContent';
+
+const PADDING_BLOCK = 4;
+const PADDING_INLINE = 6;
+const ENDSPACING_BOTTOM_PADDING = 4;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  default: {
-    '& a:not(.Button), a:not(.AttachmentPreview)': {
+  alignEnd: {
+    alignSelf: 'flex-end',
+  },
+  cardContent: {
+    '& a:not(.Button), & a:not(.AttachmentPreview)': {
       color: theme.palette.link?.text,
     },
     '& a:not(.Button):hover, a:not(.AttachmentPreview):hover': {
       color: darken(theme.palette.link?.text || theme.palette.common.black, HOVER_COEFFICIENT),
     },
+    '& p a': {
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+      fontWeight: 'normal',
+      textDecoration: 'underline',
+    },
+    display: 'flex',
+    flexDirection: 'column',
+    padding: `${theme.spacing(PADDING_BLOCK)} ${theme.spacing(PADDING_INLINE)}`,
+    paddingBottom: 0,
+    position: 'relative',
+    wordBreak: 'break-word',
+  },
+  centered: {
+    '& .Heading': {
+      width: '100%',
+    },
+    textAlign: 'center',
+  },
+  'endSpacing': {
+    paddingBottom: theme.spacing(ENDSPACING_BOTTOM_PADDING),
+  },
+  noStartSpacing: {
+    paddingTop: 0,
   },
 }));
 
@@ -47,23 +79,25 @@ const CardContent: React.FC<PropTypes> = ({
   noSpacing,
   style,
 }) => {
+  const classes = useStyles();
+
   if (typeof children === 'undefined') {
     return <div />;
   }
 
-  const classes = clsx({
-    [useStyles().default]: true,
-    'CardContent': true,
-    'CardContent--align-end': alignEnd,
-    'CardContent--centered': centered,
-    'CardContent--end-spacing': endSpacing,
-    'CardContent--no-spacing': noSpacing,
-    'CardContent--no-start-spacing': noStartSpacing,
+  const className = clsx({
+    [cardContentClassIdentifier]: true,
+    [classes.cardContent]: true,
+    [classes.alignEnd]: alignEnd,
+    [classes.centered]: centered,
+    [classes.endSpacing]: endSpacing,
+    [classes.noSpacing]: noSpacing,
+    [classes.noStartSpacing]: noStartSpacing,
   });
 
   return (
     <div
-      className={classes}
+      className={className}
       style={style}
     >
       {children}

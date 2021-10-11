@@ -1,31 +1,68 @@
+import {
+  WithStyles,
+  createStyles,
+  withStyles,
+} from '@material-ui/core/styles';
+import clsx from 'clsx';
+
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
+
+import {
+  cardClassIdentifier,
+  cardFixedClassIdentifier,
+  cardFixedStyles,
+  cardStyles,
+} from './sharedCardStyles';
 
 export const cardFixedTopology = argu.cardFixed;
 
-interface PropTypes {
+export interface CardFixedProps {
   fill?: boolean;
   fixed?: boolean;
 }
+
+const styles = (theme: LibroTheme) => ({
+  ...cardStyles(theme),
+  ...cardFixedStyles(theme),
+  ...createStyles({
+    fill: {
+      height: '100%',
+      margin: 0,
+      width: '100%',
+    },
+  }),
+});
+
+type PropType = CardFixedProps & WithStyles<typeof styles>;
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class CardFixed extends Topology<PropTypes> {
+class CardFixed extends Topology<PropType> {
   public static defaultProps = {
     fixed: false,
   };
 
-  constructor(props: PropTypes) {
+  constructor(props: PropType) {
     super(props);
 
     this.topology = cardFixedTopology;
   }
 
   public getClassName(): string {
-    return `Card Card--fixed${this.props.fill ? ' Card--fill' : ''}`;
+    const { classes } = this.props;
+
+    return clsx({
+      [cardClassIdentifier]: true,
+      [cardFixedClassIdentifier]: true,
+      [classes.card]: true,
+      [classes.fixed]: true,
+      [classes.fill]: this.props.fill,
+    });
   }
 }
 
-export default CardFixed;
+export default withStyles(styles)(CardFixed);

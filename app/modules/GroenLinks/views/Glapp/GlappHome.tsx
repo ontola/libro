@@ -7,22 +7,23 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
-import emoji from 'react-easy-emoji/index';
+import emoji from 'react-easy-emoji';
 
+import CardContent from '../../../../components/Card/CardContent';
 import CardError from '../../../../components/Error/CardError';
 import useMapAccessToken from '../../../../hooks/useMapAccessToken';
-import CardContent from '../../../../components/Card/CardContent';
-import GlappMap from '../../components/GlappMap';
 import app from '../../../../ontology/app';
 import teamGL from '../../../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
+import { cardClassIdentifier } from '../../../../topologies/Card/sharedCardStyles';
+import GlappMap from '../../components/GlappMap';
 
 import SearchPostalForm from './SearchPostalForm';
 
 const useStyles = makeStyles(() => ({
   wrapperFull: {
-    '& .Card': {
+    [`& .${cardClassIdentifier}`]: {
       boxShadow: '0 2px 5px rgba(0, 0, 0, 0.5)',
     },
     '& p': {
@@ -35,7 +36,7 @@ const useStyles = makeStyles(() => ({
     'zIndex': 900,
   },
   wrapperSmall: {
-    '& > .Card': {
+    [`& > .${cardClassIdentifier}`]: {
       '& p': {
         marginBottom: 0,
       },

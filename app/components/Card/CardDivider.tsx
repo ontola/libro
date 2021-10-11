@@ -1,54 +1,51 @@
-import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { colors } from '../shared/config';
+import { LibroTheme } from '../../themes/themes';
 
-interface PropTypes {
+export interface CardDividerProps {
   lineColor?: string;
   margin?: boolean;
   text?: React.ReactNode;
 }
 
-const defaultProps = {
-  lineColor: colors.grey['x-light'],
-};
-
-const textStyle = {
-  backgroundColor: 'rgb(255,255,255)',
-  color: 'rgb(100,100,100)',
-  fontWeight: 'bold',
-  padding: '0 7px',
-  zIndex: 1,
-};
+const useStyles = makeStyles<LibroTheme, CardDividerProps>((theme) => ({
+  cardDivider: {
+    alignItems: 'center',
+    backgroundColor: ({ lineColor }) => lineColor ?? theme.palette.grey.xLight,
+    display: 'flex',
+    height: '2px',
+    justifyContent: 'center',
+    marginBottom: ({ margin }) => margin ? '1em' : undefined,
+    width: '100%',
+  },
+  text: {
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.grey.dark,
+    fontWeight: theme.typography.fontWeightBold,
+    padding: '0 7px',
+    zIndex: 1,
+  },
+}));
 
 /**
  * A fine grey line with an optional text in its center
  * @returns {component} Component
  */
-const CardDivider: React.FC<PropTypes> = ({
-  lineColor,
-  text,
-  margin,
-}) => {
-  const style = React.useMemo(() => ({
-    backgroundColor: lineColor,
-    marginBottom: (margin ? '1em' : undefined),
-  }), [lineColor, margin]);
+const CardDivider = (props: CardDividerProps): JSX.Element => {
+  const classes = useStyles(props);
 
   return (
     <div
-      className="CardDivider"
-      style={style as any}
+      className={classes.cardDivider}
     >
-      {text && (
-        <span style={textStyle as any}>
-          {text}
+      {props.text && (
+        <span className={classes.text}>
+          {props.text}
         </span>
       )}
     </div>
   );
 };
-
-CardDivider.defaultProps = defaultProps;
 
 export default CardDivider;

@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import React, { ReactNode } from 'react';
 import { Collapse, UnmountClosed } from 'react-collapse';
 
+import { cardMicroRowClassIdentifier } from '../../topologies/Card/CardMicroRow';
+
 interface CollapsibleProps {
   /** Mount children if closed. */
   alwaysMountChildren?: boolean;
@@ -26,7 +28,7 @@ const useStyles = makeStyles(() => ({
     '& .ReactCollapse--collapse': {
       minHeight: '8em',
     },
-    '.CardMicroRow &': {
+    [`.${cardMicroRowClassIdentifier} &`]: {
       '& .ReactCollapse--collapse': {
         minHeight: '4em',
       },
