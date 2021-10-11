@@ -1,3 +1,4 @@
+import * as foaf from '@ontologies/foaf';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -5,7 +6,8 @@ import {
   Property,
   Resource,
   register,
-  useGlobalIds, 
+  useGlobalIds,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
@@ -29,6 +31,7 @@ const useStyles = makeStyles(() => ({
 
 const PersonNavbar: FC = ({ subject }) => {
   const [image] = useGlobalIds(schema.image);
+  const [name] = useStrings(foaf.name);
   const classes = useStyles();
 
   return (
@@ -37,11 +40,13 @@ const PersonNavbar: FC = ({ subject }) => {
         image={image}
         to={subject.value}
       >
-        <NavbarLinkIcon>
-          <Property label={schema.image}>
-            <Property label={[schema.thumbnail, ontola.imgUrl64x64]} />
-          </Property>
-        </NavbarLinkIcon>
+        {image ? (
+          <NavbarLinkIcon>
+            <Resource subject={image}>
+              <Property label={[schema.thumbnail, ontola.imgUrl64x64]} />
+            </Resource>
+          </NavbarLinkIcon>
+        ) : name}
       </NavbarLinkLink>
       <Resource
         subject={app.c_a}
