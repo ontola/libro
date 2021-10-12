@@ -31,9 +31,11 @@ let count = 0;
 const getNewAriaId = () => `dropdown-${count += 1}`;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  popper: {
+  paper: {
     maxHeight: '90vh',
     overflowX: 'auto',
+  },
+  popper: {
     zIndex: theme.zIndex.modal,
   },
 }));
@@ -116,7 +118,7 @@ const DropdownMenu = ({
             <div>
               <Paper
                 className={classes.paper}
-                elevation={4}
+                elevation={8}
               >
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
