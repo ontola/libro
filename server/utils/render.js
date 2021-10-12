@@ -91,7 +91,7 @@ export const renderFullPage = async (ctx, data) => {
 
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
-          ${manifest.ontola.websocket_path !== null ? `<meta name="websocket-path" content="${manifest.ontola.websocket_path}">` : ''}
+          ${manifest.ontola.websocket_path ? `<meta name="websocket-path" content="${manifest.ontola.websocket_path}">` : ''}
           ${constants.bugsnagKey ? '<script async src="https://d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
           <meta name="mapboxTileURL" content="${constants.mapboxTileURL}">
