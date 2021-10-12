@@ -45,6 +45,9 @@ enum EmailError {
 type ErrorMessages = (fieldShape: ShapeForm) => Record<EmailError, (current: number) => string>;
 
 const matchMultiple = /\n|\s|,\s*/gm;
+const multipleValueMapper = (val: string) => val.split(matchMultiple);
+
+const filterUnique = (list: string[]) => Array.from(new Set(list));
 
 const useErrorMessages: ErrorMessages = ({ maxCount, maxLength }) => {
   const intl = useIntl();
@@ -83,10 +86,12 @@ export const MultipleEmailInput = ({
   });
 
   const [debouncedRegTester] = useDebouncedCallback((val: string) => {
-    reg.test(val) && setError({
-      error: EmailError.NO_ERROR,
-      errorData: 0,
-    });
+    if (reg.test(val)) {
+      setError({
+        error: EmailError.NO_ERROR,
+        errorData: 0,
+      });
+    }
   }, REGEX_TEST_DEBOUNCE_TIME);
 
   const overrideClasses = useOverrideStyle();
@@ -122,16 +127,43 @@ export const MultipleEmailInput = ({
     onChange(emails.map((v) => rdf.literal(v)));
   }, [emails]);
 
-  const valueFilter = (val: string) => reg.test(val);
-  const multipleValueMapper = (val: string) => val.split(matchMultiple);
-  const filterUnique = (list: string[]) => Array.from(new Set(list));
-
   const handleNewValue = (newValues: string[], reason: AutocompleteChangeReason = 'create-option') => {
-    const nextEmails = reason === 'create-option'
-      ? filterUnique(newValues.flatMap((v) => valueFilter(v) ? multipleValueMapper(v) : []))
-      : newValues;
+    if (reason !== 'create-option' && reason !== 'blur') {
+      setEmails(newValues);
 
-    setEmails(nextEmails);
+      return;
+    }
+
+    const flattenedValues = filterUnique(newValues.flatMap(multipleValueMapper));
+    const results = flattenedValues.reduce<{ invalid: string[], valid: string[] }>((acc, current) => {
+      const isValid = reg.test(current);
+
+      return {
+        ...acc,
+        ...(isValid ? {
+          valid: [...acc.valid, current],
+        } : {
+          invalid: [...acc.invalid, current],
+        }),
+      };
+    }, {
+      invalid: [],
+      valid: [],
+    });
+
+    setEmails(results.valid);
+
+    // HACK: Autocomplete clears textinput value on change without a way to disable it. Wrapping the setState in a timeout fixes this.
+    setTimeout(() => {
+      setTextFieldValue(results.invalid.join(','));
+
+      if (results.invalid.length > 0) {
+        setError({
+          error: EmailError.INVALID_EMAIL,
+          errorData: 0,
+        });
+      }
+    }, 0);
   };
 
   const handleChange = (e: React.ChangeEvent<unknown>, chips: string[], reason: AutocompleteChangeReason) => {
@@ -146,7 +178,7 @@ export const MultipleEmailInput = ({
 
     const trimmed = val.trim();
 
-    if (val.endsWith(' ') || matchMultiple.test(trimmed)) {
+    if (val.endsWith(' ')) {
       if (reg.test(trimmed)) {
         handleNewValue([...emails, trimmed]);
         setTextFieldValue('');
@@ -165,7 +197,6 @@ export const MultipleEmailInput = ({
     }
 
     setTextFieldValue(trimmed);
-
   };
 
   const renderErrorMessage = () => (
@@ -179,6 +210,7 @@ export const MultipleEmailInput = ({
   return (
     <React.Fragment>
       <Autocomplete
+        autoSelect
         freeSolo
         multiple
         ChipProps={{ color: 'primary' }}
