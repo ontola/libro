@@ -2,7 +2,6 @@ import { Theme, useTheme } from '@material-ui/core';
 import {
   NamedNode,
   isNamedNode,
-  isNode, 
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
@@ -27,71 +26,45 @@ import fa4 from '../../../ontology/fa4';
 import ontola from '../../../ontology/ontola';
 import { getStyles } from '../lib/helpers';
 
-const imageForPlacement = (placement: SomeNode, lrs: LinkReduxLRSType): NamedNode =>
-  lrs.getResourceProperty(placement, schema.image) ?? fa4.ns('map-marker');
+const imageForPlacement = (node: SomeNode, lrs: LinkReduxLRSType): NamedNode =>
+  lrs.getResourceProperty(node, schema.image) ?? fa4.ns('map-marker');
 
-const featureProps = (lrs: LinkReduxLRSType, placement: SomeNode | Placement): Placement => {
-  if (!isResource(placement)) {
-    return placement;
-  }
-
-  const image = imageForPlacement(placement, lrs);
-  const lat = tryParseFloat(lrs.getResourceProperty(placement, schema.latitude));
-  const lon = tryParseFloat(lrs.getResourceProperty(placement, schema.longitude));
-  const zoomLevel = tryParseFloat(lrs.getResourceProperty(placement, ontola.zoomLevel));
-
-  return {
-    image,
-    lat,
-    lon,
-    zoomLevel,
-  };
-};
+const toPlacement = (lrs: LinkReduxLRSType, node: SomeNode): Placement => ({
+  id: node.value,
+  image: imageForPlacement(node, lrs),
+  lat: tryParseFloat(lrs.getResourceProperty(node, schema.latitude)),
+  lon: tryParseFloat(lrs.getResourceProperty(node, schema.longitude)),
+  zoomLevel: tryParseFloat(lrs.getResourceProperty(node, ontola.zoomLevel)),
+});
 
 export const toFeature = (
-  id: string,
-  lat: number,
-  lon: number,
-  image: NamedNode,
-  theme: Theme,
-  visited: boolean,
-  zoomLevel?: number,
-): Feature<Point> => {
-  const f = new Feature(new Point(fromLonLat([lon, lat])));
-
-  f.setId(id);
-  const { hoverStyle, style } = getStyles(image.value, theme);
-  f.setProperties({
-    hoverStyle,
-    image,
-    style,
-    visited,
-    zoomLevel,
-  });
-
-  return f;
-};
-
-const featureFromPlacement = (
-  lrs: LinkReduxLRSType,
-  placement: SomeNode | Placement,
-  visitedFeatures: string[],
-  theme: Theme,
-): Feature<Point> | undefined => {
-  const {
+  {
+    id,
     image,
     lat,
     lon,
     zoomLevel,
-  } = featureProps(lrs, placement);
-
-  const id = isNode(placement) ? placement.value : placement.id;
-
+  }: Placement,
+  theme: Theme,
+  visitedFeatures: string[],
+): Feature<Point> | undefined => {
   if (!id || !image || !lat || !lon) {
     return undefined;
   }
 
-  return toFeature(id, lat, lon, image, theme, visitedFeatures.includes(id), zoomLevel);
+  const { hoverStyle, style } = getStyles(image.value, theme);
+  const feature = new Feature(new Point(fromLonLat([lon, lat])));
+  feature.setId(id);
+
+  feature.setProperties({
+    hoverStyle,
+    image,
+    style,
+    visited: visitedFeatures.includes(id),
+    zoomLevel,
+  });
+
+  return feature;
 };
 
 export const getMarkAsVisited = (
@@ -164,8 +137,10 @@ export const useFeatures = (placements: Array<SomeNode | Placement>): FeatureSet
           dependencies.push(rawFeature);
         }
 
+        const placement = isResource(rawFeature) ? toPlacement(lrs, rawFeature) : rawFeature;
+
         addFeature(
-          !loading && featureFromPlacement(lrs, rawFeature, getVisitedFeatures(), theme),
+          !loading && toFeature(placement, theme, getVisitedFeatures()),
           index,
           theme,
           getVisitedFeatures,

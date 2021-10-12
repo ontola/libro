@@ -113,7 +113,7 @@ const featureCount = (feature: Feature) => (
 
 export const allFeaturesVisited = (feature: Feature): boolean =>
   feature.get('features')?.every(
-    (f: { values_: { visited: boolean; }; }) => f.values_.visited,
+    (f: Feature) => f.getProperties().visited,
   ) ?? true;
 
 const getIconProps = (theme: Theme, visited: boolean): IconProps => {

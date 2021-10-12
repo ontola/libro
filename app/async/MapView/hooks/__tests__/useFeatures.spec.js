@@ -1,11 +1,12 @@
 import { createTheme } from '@material-ui/core/styles';
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
+import { fromLonLat } from 'ol/proj';
 
 import {
   addFeature,
   getMarkAsVisited,
-  toFeature 
+  toFeature,
 } from '../useFeatures';
 
 describe('useFeatures', () => {
@@ -16,11 +17,31 @@ describe('useFeatures', () => {
   const theme = createTheme();
 
   describe('toFeature', () => {
+    const placement = {
+      id:'id5',
+      image,
+      lat: 15,
+      lon: 23.3,
+      zoomLevel: 6.8,
+    };
+
     it('constructs', () => {
-      const feature = toFeature('id5', 15, 23.3, image, theme, true, 6.8);
+      const feature = toFeature(placement, theme, ['a', 'b', placement.id, 'c']);
+
       expect(feature.getId()).toBe('id5');
+      expect(feature.getGeometry().getCoordinates()).toStrictEqual(fromLonLat([23.3, 15]));
       expect(feature.getProperties().image.value).toBe('image3');
-      expect(feature.values_.visited).toBe(true);
+      expect(feature.getProperties().visited).toBe(true);
+      expect(feature.getProperties().zoomLevel).toBe(6.8);
+      expect(typeof feature.getProperties().style).toBe('function');
+      expect(typeof feature.getProperties().hoverStyle).toBe('function');
+    });
+
+    it('handles undefined', () => {
+      placement.lon = undefined;
+      const feature = toFeature(placement, theme, ['a', 'b', placement.id, 'c']);
+
+      expect(feature).toBe(undefined);
     });
   });
 
