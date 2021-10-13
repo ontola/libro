@@ -92,7 +92,7 @@ const Editor = ({ onMount }: EditorProps): JSX.Element => {
       width="100vw"
       onChange={(v) => updateFile({
         ...t,
-        value:  v ?? '',
+        value: v ?? '',
       })}
       onMount={onMount}
     />
