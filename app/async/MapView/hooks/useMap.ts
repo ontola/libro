@@ -127,11 +127,14 @@ type MapClickHandler = (e: MapBrowserEvent) => boolean;
 
 const handleMapClick = (
   onMapClick: MapClickCallback,
-  internalZoom: number,
+  zoom: number,
 ): MapClickHandler => (e: MapBrowserEvent) => {
-  if (onMapClick) {
+  const features = e.map.getFeaturesAtPixel(e.pixel);
+
+  // if there are any features the click is handled by the select handler instead
+  if (features.length === 0) {
     const [lon, lat] = toLonLat(e.coordinate);
-    onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
+    onMapClick(lon, lat, e.map.getView().getZoom() || zoom);
   }
 
   return true;
@@ -339,6 +342,7 @@ const useMap = (props: UseMapProps): {
     };
   }, [!!memoizedMap, center, zoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
 
+  // sets handler for clicking empty map space
   useEffect(() => {
     if (memoizedMap && onMapClick) {
       memoizedMap.on('click', handleMapClick(onMapClick, zoom));
