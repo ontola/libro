@@ -8,6 +8,7 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import AttributeListItem from '../../../components/AttributeListItem';
 import Button from '../../../components/Button';
@@ -22,6 +23,7 @@ import Container from '../../../topologies/Container';
 import DetailsBar from '../../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
+import { messages } from '../messages';
 
 interface DatasetFullProps {
   renderPartOf: boolean;
@@ -54,7 +56,7 @@ const DatasetFull: FC<DatasetFullProps> = ({
               href={`https://dexes.eu/resolve?uri=${encodeURIComponent(subject.value)}`}
               icon="external-link"
             >
-              Bekijk op Dexes
+              <FormattedMessage {...messages.showInDexes} />
             </Button>
           </div>
         </CardContent>

@@ -18,10 +18,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignSelf: 'flex-end',
   },
   cardContent: {
-    '& a:not(.Button), & a:not(.AttachmentPreview)': {
+    '& a:not(.Button):not(.AttachmentPreview)': {
       color: theme.palette.link?.text,
     },
-    '& a:not(.Button):hover, a:not(.AttachmentPreview):hover': {
+    '& a:not(.Button):not(.AttachmentPreview):hover': {
       color: darken(theme.palette.link?.text || theme.palette.common.black, HOVER_COEFFICIENT),
     },
     '& p a': {

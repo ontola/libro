@@ -16,10 +16,10 @@ export default {
   Offer: dexes('Offer'),
 
   /* properties */
-  assignee: dexes('assignee'),
-  assigneeMail: dexes('assigneeMail'),
   assigner: dexes('assigner'),
   attributionOptions: dexes('attributionOptions'),
+  brokerUrl: dexes('brokerUrl'),
+  dataOwner: dexes('dataOwner'),
   dateSigned: dexes('dateSigned'),
   entries: dexes('entries'),
   file: dexes('file'),
