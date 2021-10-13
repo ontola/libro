@@ -129,10 +129,12 @@ const createMap = ({
   });
 };
 
+type MapClickHandler = (e: MapBrowserEvent) => boolean;
+
 const handleMapClick = (
-  onMapClick:(newLon: number, newLat: number, newZoom: number) => void,
+  onMapClick: (newLon: number, newLat: number, newZoom: number) => void,
   internalZoom: number,
-): (e: MapBrowserEvent) => boolean => (e: MapBrowserEvent) => {
+): MapClickHandler => (e: MapBrowserEvent) => {
   if (onMapClick) {
     const [lon, lat] = toLonLat(e.coordinate);
     onMapClick(lon, lat, e.map.getView().getZoom() || internalZoom);
@@ -149,9 +151,9 @@ export const makeViewUpdater = (
   zoom: number,
   setCenter: Dispatch<SetStateAction<Coordinate>>,
   setZoom: Dispatch<SetStateAction<number>>,
-  onMove?: EventHandler<any>,
+  onMove?: (newCenter: Coordinate) => any,
   onViewChange?: (center: Coordinate, zoom: number) => any,
-  onZoom?: EventHandler<any>,
+  onZoom?: (newZoom: number) => any,
 ): ViewUpdater => (newCenter: Coordinate | undefined, newZoom: number | undefined) => {
   if (newCenter && newCenter !== center) {
     if (onMove) {
@@ -333,24 +335,24 @@ const useMap = (props: UseMapProps): {
     ));
 
     if (memoizedMap && viewChangeHandler) {
-      memoizedMap.addEventListener('moveend', viewChangeHandler as any);
+      memoizedMap.on('moveend', viewChangeHandler);
     }
 
     return () => {
       if (memoizedMap && viewChangeHandler) {
-        memoizedMap.removeEventListener('moveend', viewChangeHandler as any);
+        memoizedMap.un('moveend', viewChangeHandler);
       }
     };
   }, [!!memoizedMap, center, zoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
 
   useEffect(() => {
     if (memoizedMap && onMapClick) {
-      memoizedMap.addEventListener('click', handleMapClick(onMapClick, zoom) as any);
+      memoizedMap.on('click', handleMapClick(onMapClick, zoom));
     }
 
     return () => {
       if (memoizedMap && onMapClick) {
-        memoizedMap.removeEventListener('click', handleMapClick(onMapClick, zoom) as any);
+        memoizedMap.un('click', handleMapClick(onMapClick, zoom));
       }
     };
   }, [!!memoizedMap, onMapClick]);
