@@ -87,7 +87,6 @@ const common = {
 
   resolve: {
     alias: {
-      react: path.resolve('node_modules/react'),
       static: path.resolve('./static'),
     },
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],

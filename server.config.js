@@ -40,8 +40,6 @@ const config = {
     'copy-webpack-plugin',
     'html-webpack-plugin',
     'webpack',
-    'webpack-dev-middleware',
-    'webpack-hot-middleware',
     'webpack-merge',
     'webpack-pwa-manifest',
     'workbox-webpack-plugin',

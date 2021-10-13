@@ -1,15 +1,38 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const common = require('./common.config');
 
 module.exports = merge(common, {
   cache: true,
 
+  devServer: {
+    allowedHosts: [
+      '.localdev',
+      '.localtest',
+    ],
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+      webSocketURL: 'auto://0.0.0.0:0/ws',
+    },
+    hot: true,
+    port: 3001,
+    proxy: {
+      '**': {
+        target: 'http://localhost:3080',
+        toProxy: true,
+        xfwd: true,
+      }
+    },
+  },
+
   devtool: 'eval-cheap-source-map',
 
   entry: [
-    'webpack-hot-middleware/client',
     './app/index.tsx',
   ],
 
@@ -64,17 +87,13 @@ module.exports = merge(common, {
   },
 
   plugins: [
+    new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
       __LEGACY__: false,
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
 
   resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
     fallback: {
       path: require.resolve('path-browserify'),
     },

@@ -14,13 +14,4 @@ async function start() {
   listen(app, port);
 }
 
-if (__DEVELOPMENT__) {
-  // eslint-disable-next-line no-inline-comments
-  import(/* webpackChunkName: "devMiddleware" */ './middleware/devMiddleware')
-    .then(({ default: devMiddleware }) => {
-      devMiddleware(app);
-      start();
-    });
-} else {
-  start();
-}
+start();
