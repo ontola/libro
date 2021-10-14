@@ -7,8 +7,6 @@ import { LoadingFullResource } from '../../components/Loading';
 import Suspense from '../../components/Suspense';
 import argu from '../../ontology/argu';
 
-import './Grid.scss';
-
 export const gridTopology = argu.grid;
 
 type GridProps = GridTypeMap['props'] & { className?: string };

@@ -17,13 +17,13 @@ const PersonImageProp = ({ linkedProp }: PropertyProps) => (
 );
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     PersonImageProp,
     [schema.Person],
     [schema.image, dbo.thumbnail, wdt.ns('P18')],
     [detailsBarTopology, voteBubbleTopology],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ linkedProp }: PropertyProps) => (
       <Resource subject={linkedProp} />
     ),

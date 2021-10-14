@@ -38,7 +38,7 @@ export default [
   FilterFields,
   ...Header,
   ...IsPartOf,
-  Name,
+  ...Name,
   ...Pages,
   Pagination,
   SortOptions,
