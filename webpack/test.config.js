@@ -25,7 +25,7 @@ config.module.rules.push({
     /node_modules\/ml-disjoint-set/,
   ],
   test: /\.(m?(t|j)sx?)$/,
-  use: ['babel-loader'],
+  use: ['ts-loader'],
 });
 
 config.module.rules.push({

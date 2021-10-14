@@ -11,7 +11,6 @@ const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 const ManifestPlugin = require('webpack-assets-manifest');
 const { merge } = require('webpack-merge');
 
-const babelrc = require('../babel.config.json');
 const { bundles } = require('../bundleConfig');
 
 const common = require('./common.config');
@@ -27,68 +26,7 @@ if (process.env.BUGSNAG_KEY && process.env.CI_COMMIT_BRANCH === 'master') {
   });
 }
 
-const babelEnvOpts = {
-  legacy: {
-    env: {
-      corejs: 3,
-      modules: false,
-      targets: {
-        browsers: [
-          '> 1%',
-          'last 2 versions',
-          'Firefox ESR',
-          'ie 11',
-        ],
-        ie: '11',
-      },
-      useBuiltIns: 'entry',
-    },
-    plugins: [
-      ['@babel/transform-runtime', {
-        regenerator: true,
-      }],
-    ],
-  },
-  module: {
-    env: {
-      modules: false,
-      targets: {
-        browsers: [
-          'Chrome >= 60',
-          'Safari >= 10.1',
-          'iOS >= 10.3',
-          'Firefox >= 54',
-          'Edge >= 15',
-        ],
-      },
-      useBuiltIns: false,
-    },
-    plugins: [],
-  },
-};
-
 function createConfig(options) {
-  let babelLoader = ['babel-loader'];
-
-  if (babelEnvOpts[options.bundle]) {
-    babelLoader = [{
-      loader: 'babel-loader',
-      options: {
-        ...babelrc,
-        babelrc: false,
-        plugins: [
-          ...babelEnvOpts[options.bundle].plugins,
-          ...babelrc.plugins,
-        ],
-        presets: [
-          '@babel/preset-react',
-          '@babel/preset-typescript',
-          ['@babel/preset-env', babelEnvOpts[options.bundle].env],
-        ],
-      },
-    }];
-  }
-
   return {
     devtool: options.devtool,
 
@@ -135,7 +73,7 @@ function createConfig(options) {
             path.resolve(__dirname, '../node_modules/webidl-conversions'),
           ],
           test: /\.(m?(t|j)sx?)$/,
-          use: babelLoader,
+          use: 'ts-loader',
         },
       ],
     },
