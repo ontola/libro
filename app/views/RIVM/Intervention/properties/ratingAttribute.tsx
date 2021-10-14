@@ -6,7 +6,7 @@ import {
   PropertyProps,
   register,
   useDataFetching,
-  useGlobalIds,
+  useIds,
   useValues,
 } from 'link-redux';
 import React from 'react';
@@ -49,7 +49,7 @@ const RatingAttribute: FC<RatingAttributeProps> = ({
   labelFrom,
   linkedProp,
 }) => {
-  const [labelObj] = useGlobalIds(labelFrom);
+  const [labelObj] = useIds(labelFrom);
   useDataFetching(labelObj);
   const [schemaName] = useValues(labelObj, schema.name);
   const [rdfsLabel] = useValues(labelObj, rdfs.label);

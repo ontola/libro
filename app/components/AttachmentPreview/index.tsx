@@ -3,7 +3,11 @@ import rdf, {
   isNamedNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { useGlobalIds, useLRS } from 'link-redux';
+import {
+  useGlobalIds,
+  useIds,
+  useLRS, 
+} from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 import parser from 'uri-template';
 
@@ -36,7 +40,7 @@ const AttachmentPreview = ({
   thumbnailURL,
 }: AttachmentPreviewProps): JSX.Element => {
   const lrs = useLRS();
-  const [attachments] = useGlobalIds(isPartOf, argu.attachments);
+  const [attachments] = useIds(isPartOf, argu.attachments);
   const [attachmentsIriTemplate] = useGlobalIds(attachments, ontola.iriTemplate);
 
   React.useEffect(() => {

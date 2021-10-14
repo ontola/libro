@@ -2,7 +2,7 @@ import * as sh from '@ontologies/shacl';
 import {
   Property,
   register,
-  useGlobalIds,
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,7 +12,7 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const Condition = () => {
-  const shapes = useGlobalIds(sh.node);
+  const shapes = useIds(sh.node);
   const { object } = React.useContext(FormContext);
   const [pass] = useShapeValidation(shapes, object);
 

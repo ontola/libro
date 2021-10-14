@@ -1,10 +1,12 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
   useFields,
   useGlobalIds,
+  useIds,
   useLRS,
   useProperty,
 } from 'link-redux';
@@ -31,9 +33,9 @@ export interface OmniformProps {
   onKeyUp: KeyboardEventHandler,
 }
 
-const useIsSelfOrParentExpired = (expiresAt: SomeTerm, isPartOf: NamedNode) => {
+const useIsSelfOrParentExpired = (expiresAt: SomeTerm, isPartOf: SomeNode) => {
   const [parentExpiry] = useFields(isPartOf, argu.expiresAt);
-  const [grandParent] = useGlobalIds(isPartOf, schema.isPartOf);
+  const [grandParent] = useIds(isPartOf, schema.isPartOf);
   const [grandParentExpiry] = useFields(grandParent, argu.expiresAt);
 
   if (isPastDate(expiresAt)) {
@@ -55,7 +57,7 @@ const OmniformProp: FC<OmniformProps> = ({
   const lrs = useLRS();
 
   const [expiresAt] = useProperty(argu.expiresAt);
-  const [isPartOf] = useGlobalIds(schema.isPartOf);
+  const [isPartOf] = useIds(schema.isPartOf);
   const potentialAction = useGlobalIds(schema.potentialAction);
 
   const items = useActions(potentialAction);

@@ -6,7 +6,7 @@ import {
   Property,
   Resource,
   register,
-  useGlobalIds,
+  useIds,
   useLRS,
   useProperty,
 } from 'link-redux';
@@ -56,7 +56,7 @@ const Value = ({ prop }: { prop: SomeTerm }) => {
 const CollectionFilter = () => {
   const [filterKey] = useProperty(ontola.filterKey);
   const filterValues = useProperty(ontola.filterValue);
-  const [partOf] = useGlobalIds(schema.isPartOf);
+  const [partOf] = useIds(schema.isPartOf);
 
   const iriTemplate = useIRITemplate(partOf);
   const { setCollectionResource } = useCollectionOptions();

@@ -3,15 +3,15 @@ import * as sh from '@ontologies/shacl';
 import {
   FC,
   PropertyProps,
+  array,
   literal,
   register,
   useDataInvalidation,
-  useGlobalIds,
+  useIds,
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
 
-import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { tableRowTopology } from '../../../topologies/TableRow';
@@ -26,9 +26,8 @@ const TargetPropMap = {
 };
 
 const ResourceTable: FC<PropertyProps> = () => {
-  const [resourceSeq] = useGlobalIds(ontola.widgetResource);
-  const [widgetResources] = useSeqToArr(resourceSeq);
-  const targetNodesMap = useResourceLinks(widgetResources.filter(isNode), TargetPropMap);
+  const widgetResources = useIds(array(ontola.widgetResource));
+  const targetNodesMap = useResourceLinks(widgetResources, TargetPropMap);
   const targetNodes = targetNodesMap.map((map) => map.target);
   useDataInvalidation(targetNodes.filter(isNode));
   const nameSubjects = targetNodesMap.map((map) => map.target ?? map.subject);

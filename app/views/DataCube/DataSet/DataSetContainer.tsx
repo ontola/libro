@@ -6,7 +6,7 @@ import {
   Resource,
   dig,
   register,
-  useGlobalIds,
+  useIds,
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
@@ -41,7 +41,7 @@ const orderComponents = (components: Component[]) => components
   });
 
 const DataSetContainer = () => {
-  const componentIRIs = useGlobalIds(dig(qb.structure, qb.component));
+  const componentIRIs = useIds(dig(qb.structure, qb.component));
   const components = useResourceLinks(componentIRIs, {
     measure: qb.measure,
     order: qb.order,

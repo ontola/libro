@@ -12,6 +12,7 @@ import {
   Resource,
   useFields,
   useGlobalIds,
+  useIds,
   useLink,
 } from 'link-redux';
 import React from 'react';
@@ -122,7 +123,7 @@ const CollectionProvider = ({
   );
   const [firstPageItems] = useFields(currentCollectionPages[0], as.totalItems);
 
-  const [columnSequence] = useGlobalIds(originalCollection, ontola.columns);
+  const [columnSequence] = useIds(originalCollection, ontola.columns);
   const [columns] = useListToArr<NamedNode>(columnSequence);
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay ?? collectionDisplayFromData;

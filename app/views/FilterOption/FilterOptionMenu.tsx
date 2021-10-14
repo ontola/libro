@@ -5,8 +5,8 @@ import {
   FC,
   Property,
   register,
-  useGlobalIds,
-  useProperty, 
+  useIds,
+  useProperty,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -73,7 +73,7 @@ const FilterOptionMenu = React.forwardRef<FC, FilterOptionMenuCompProps>(
   (props, ref) => {
     const [filterCount] = useProperty(ontola.filterCount);
     const [filterValue] = useProperty(ontola.filterValue);
-    const [partOf] = useGlobalIds(schema.isPartOf);
+    const [partOf] = useIds(schema.isPartOf);
 
     return(
       <FilterOptionMenuComp

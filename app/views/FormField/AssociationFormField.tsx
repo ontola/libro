@@ -6,6 +6,7 @@ import {
   register,
   useDataFetching,
   useGlobalIds,
+  useIds,
   useLRS,
 } from 'link-redux';
 import React from 'react';
@@ -34,7 +35,7 @@ const useItemFactory = () => {
     createAction,
     [schema.target, ll.actionBody, ...conditionalFormFieldsPath, sh.path],
   );
-  const [blankObject] = useGlobalIds(createAction, schema.object);
+  const [blankObject] = useIds(createAction, schema.object);
   useDataFetching([association, createAction].filter(isNamedNode));
 
   return React.useCallback(() => {

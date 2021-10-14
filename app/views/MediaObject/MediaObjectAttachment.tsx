@@ -3,7 +3,7 @@ import * as schema from '@ontologies/schema';
 import {
   register,
   useDataFetching,
-  useGlobalIds,
+  useIds,
   useValues,
 } from 'link-redux';
 import React from 'react';
@@ -19,7 +19,7 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 import './MediaObjectAttachment.scss';
 
 const MediaObjectAttachment = () => {
-  const [comment] = useGlobalIds(schema.comment);
+  const [comment] = useIds(schema.comment);
   const [contentUrl] = useValues(schema.contentUrl);
   const [name] = useValues([schema.name, dbo.filename]);
 
