@@ -351,7 +351,7 @@ const useMap = (props: UseMapProps): {
         memoizedMap.un('click', handleMapClick(onMapClick, zoom));
       }
     };
-  }, [!!memoizedMap, onMapClick]);
+  }, [!!memoizedMap, onMapClick?.toString(), zoom]);
 
   useEffect(() => {
     updateFeatures(layerSources, layers);
