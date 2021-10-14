@@ -6,7 +6,9 @@ import rdf, {
 import {
   FC,
   register,
-  useProperty,
+  useIds,
+  useLinkRenderContext,
+  useNumbers,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -36,31 +38,47 @@ interface PaginationButtonProps {
   url?: string;
 }
 
-const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
-  const DefaultPagination: FC<PaginationProps> = ({ subject }) => {
-    const [first] = useProperty(as.first);
-    const [last] = useProperty(as.last);
+const pageProp = 'page';
 
-    const {
-      currentCollectionPages,
-      setCollectionResource,
-    } = useCollectionOptions();
-    const { formatMessage } = useIntl();
+const usePageButtons = (): JSX.Element[] | null => {
+  const { formatMessage } = useIntl();
+  const { subject } = useLinkRenderContext();
+  const {
+    currentCollectionPages,
+    setCollectionResource,
+  } = useCollectionOptions();
 
-    if (!first) {
+  const [first] = useIds(as.first);
+  const [last] = useIds(as.last);
+  const currentOrFirst = currentCollectionPages?.[0] ?? first;
+  const [pageItemCount] = useNumbers(currentOrFirst, as.totalItems);
+
+  return React.useMemo(() => {
+    if (!currentOrFirst) {
       return null;
     }
 
-    const pageProp = 'page';
-    const baseUrl = new URL(first.value);
-    const firstPageParam = baseUrl.searchParams.get(pageProp);
+    const currentPageUrl = new URL(currentOrFirst.value);
+    const currentPageParam = currentPageUrl.searchParams.get(pageProp);
+    const currentPageNr = currentPageParam ? Number.parseInt(currentPageParam, 10) : 1;
+
+    const firstPageParam = first ? new URL(first.value).searchParams.get(pageProp) : undefined;
     const firstPage = firstPageParam ? Number.parseInt(firstPageParam, 10) : 1;
     const lastPageParam = last ? new URL(last.value).searchParams.get(pageProp) : undefined;
     const lastPage = lastPageParam ? Number.parseInt(lastPageParam, 10) : undefined;
-    const currentOrFirst = (currentCollectionPages?.[0] || first).value;
-    const currentPageUrl = new URL(currentOrFirst);
-    const currentPageParam = currentPageUrl.searchParams.get(pageProp);
-    const currentPageNr = currentPageParam ? Number.parseInt(currentPageParam, 10) : 1;
+
+    if (firstPage && lastPage) {
+      if (firstPage > lastPage) {
+        throw new Error('First page is higher than last page or last is undefined');
+      }
+
+      // Don't show the pagination buttons if there's just one page
+      if (firstPage === lastPage) {
+        return null;
+      }
+    } else if (pageItemCount === 0) {
+      return null;
+    }
 
     const nextPage = () => {
       currentPageUrl.searchParams.set(pageProp, (currentPageNr + 1).toString());
@@ -73,15 +91,6 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
 
       return currentPageUrl.href;
     };
-
-    if (typeof lastPage === 'undefined' || firstPage > lastPage) {
-      throw new Error('First page is higher than last page or last is undefined');
-    }
-
-    // Don't show the pagination buttons if there's just one page
-    if (firstPage === lastPage) {
-      return null;
-    }
 
     const paginationButton = ({
       active,
@@ -114,15 +123,15 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     };
 
     const singlePageButton = (page: number) => {
-      baseUrl.searchParams.set(pageProp, page.toString());
-      const isCurrent = currentOrFirst === baseUrl.toString();
+      currentPageUrl.searchParams.set(pageProp, page.toString());
+      const isCurrent = currentOrFirst.value === currentPageUrl.toString();
 
       return paginationButton({
         active: isCurrent,
         disabled: isCurrent,
         key: page.toString(),
         label: page.toString(),
-        url: baseUrl.toString(),
+        url: currentPageUrl.toString(),
       });
     };
 
@@ -135,41 +144,61 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
       url: previousPage(),
     }));
 
-    const span = 3;
-    const spanFrom = Math.max(firstPage + 1, currentPageNr - span);
-    const spanTo = Math.min(currentPageNr + span, lastPage - 1);
+    if (firstPage && lastPage) {
+      pages.push(singlePageButton(firstPage));
 
-    pages.push(singlePageButton(firstPage));
+      const span = 3;
+      const spanFrom = Math.max(firstPage + 1, currentPageNr - span);
+      const spanTo = Math.min(currentPageNr + span, lastPage - 1);
 
-    if (spanFrom > firstPage + 1) {
-      pages.push(
-        <span>
-          ...
-        </span>,
-      );
+      if (spanFrom > firstPage + 1) {
+        pages.push(
+          <span>
+            ...
+          </span>,
+        );
+      }
+
+      for (let i = spanFrom; i <= spanTo; i++) {
+        pages.push(singlePageButton(i));
+      }
+
+      if (spanTo < lastPage - 1) {
+        pages.push(
+          <span>
+            ...
+          </span>,
+        );
+      }
+
+      pages.push(singlePageButton(lastPage));
     }
-
-    for (let i = spanFrom; i <= spanTo; i++) {
-      pages.push(singlePageButton(i));
-    }
-
-    if (spanTo < lastPage - 1) {
-      pages.push(
-        <span>
-          ...
-        </span>,
-      );
-    }
-
-    pages.push(singlePageButton(lastPage));
 
     pages.push(paginationButton({
       ariaLabel: formatMessage(collectionMessages.nextLabel),
-      disabled: currentPageNr === lastPage,
+      disabled: currentPageNr === lastPage || pageItemCount === 0,
       icon: 'arrow-right',
       key: 'next',
       url: nextPage(),
     }));
+
+    return pages;
+  }, [
+    currentOrFirst,
+    first,
+    last,
+    setCollectionResource,
+    subject,
+  ]);
+};
+
+const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
+  const DefaultPagination: FC<PaginationProps> = () => {
+    const pageButtons = usePageButtons();
+
+    if (!pageButtons || pageButtons.length === 0) {
+      return null;
+    }
 
     return (
       <Wrapper>
@@ -177,7 +206,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
           className="pagination-wrapper"
           data-testid="paginationWrapper"
         >
-          {pages}
+          {pageButtons}
         </div>
       </Wrapper>
     );
