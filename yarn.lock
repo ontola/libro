@@ -15230,9 +15230,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-19":
-  version: 3.0.0-19
-  resolution: "link-redux@npm:3.0.0-19"
+"link-redux@npm:3.0.0-24":
+  version: 3.0.0-24
+  resolution: "link-redux@npm:3.0.0-24"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -15241,7 +15241,7 @@ fsevents@~2.3.2:
     link-lib: ">=3.0.0-1"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: bf5d894515597db51656aba4ffb473df7245ce4df74a08eb0717d0942e46743705080d86113677b62c2e362d8d7b8615fd429fc385929c722a9e8ba09d6c7cab
+  checksum: ecfb07bd2eeda9bdc77d8ab579b66ecadeb41e3012b9b6664cd0036dccd56419f31385232b4ee378ce53815cd498e82286e4f78e6d48336f22824935a17befdc
   languageName: node
   linkType: hard
 
@@ -17441,7 +17441,7 @@ fsevents@~2.3.2:
     koa-static: ^5.0.0
     koa2-connect: ^1.0.2
     link-lib: 3.0.0-3
-    link-redux: 3.0.0-19
+    link-redux: 3.0.0-24
     lint-staged: ^10.5.4
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^1.4.1

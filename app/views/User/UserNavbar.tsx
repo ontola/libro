@@ -19,7 +19,9 @@ const UserNavbar = () => {
   const toggleMenu = useAction(app.ns('actions/menu/toggle'));
 
   React.useEffect(() => {
-    onMountAction();
+    if (mountAction) {
+      onMountAction();
+    }
   }, [onMountAction]);
 
   return (
