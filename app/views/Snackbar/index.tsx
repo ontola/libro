@@ -66,7 +66,7 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
         </IconButton>,
       ]}
       autoHideDuration={calcDuration(text)}
-      data-testId="current-snackbar"
+      data-testid="current-snackbar"
       message={text}
       open={open}
       onClose={handleClose}

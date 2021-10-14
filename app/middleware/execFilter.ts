@@ -11,7 +11,7 @@ import {
   SomeNode,
 } from 'link-lib';
 
-import { getMetaContent } from '../helpers/arguHelpers';
+import { getMetaContent } from '../helpers/dom';
 
 export const website = getMetaContent('website-iri') ?? 'https://example.com';
 export const frontendIRI = rdf.namedNode(website!);

@@ -59,11 +59,13 @@ function getClient() {
 
 const client = getClient();
 
-// Prevent memory overflows
-globalThis.setInterval(() => {
-  globalThis.logging.errors = [];
-  globalThis.logging.logs = [];
-}, LOGGING_INTERVAL);
+if (!__TEST__) {
+  // Prevent memory overflows
+  globalThis.setInterval(() => {
+    globalThis.logging.errors = [];
+    globalThis.logging.logs = [];
+  }, LOGGING_INTERVAL);
+}
 
 export function error(...msg: any[]): void {
   globalThis.logging.errors.push(msg);
@@ -82,7 +84,7 @@ export function handle(exception: Error): void {
 export function log(...msg: any[]): void {
   globalThis.logging.logs.push(msg);
 
-  if (!__PRODUCTION__) {
+  if (!__PRODUCTION__ && !__TEST__) {
     // eslint-disable-next-line no-console
     console.log(...msg);
   }

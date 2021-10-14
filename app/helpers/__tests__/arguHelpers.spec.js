@@ -2,14 +2,16 @@ import HttpStatus from 'http-status-codes';
 import React from 'react';
 
 import {
-  authenticityHeader,
   errorMessageForStatus,
   image,
   json,
-  jsonHeader,
-  safeCredentials,
   statusSuccess,
 } from '../arguHelpers';
+import {
+  authenticityHeader,
+  jsonHeader,
+  safeCredentials 
+} from '../dom'
 
 describe('helpers', () => {
   describe('arguHelper', () => {

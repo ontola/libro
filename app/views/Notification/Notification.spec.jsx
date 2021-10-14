@@ -92,7 +92,7 @@ describe('Notification', () => {
     },
   };
 
-  describe('in container', async () => {
+  describe('in container', () => {
     const renderInContainer = (resources) => render(
       ({ iri }) => (
         <Container>

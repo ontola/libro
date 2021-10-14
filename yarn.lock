@@ -5389,6 +5389,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/smoothscroll-polyfill@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@types/smoothscroll-polyfill@npm:0.3.1"
+  checksum: 8edb800a9db4283e288b3cd32d867ac8ecbb29abd1a10be3013ed82df80c781c2d9718aedb488549ced9f60629b23f8a045d49e5f6507711313b9e38353d7470
+  languageName: node
+  linkType: hard
+
 "@types/stack-utils@npm:^1.0.1":
   version: 1.0.1
   resolution: "@types/stack-utils@npm:1.0.1"
@@ -7252,6 +7259,15 @@ __metadata:
   dependencies:
     node-int64: ^0.4.0
   checksum: 302af195672988c21be9590b0b4fcacf9bd5bc116a32cbb5f613b21800fce8ee6aa1c57e76bbfa15a60269fe48885d062383e353fbaa821dbf06e92f72cc8b7d
+  languageName: node
+  linkType: hard
+
+"btoa@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "btoa@npm:1.2.1"
+  bin:
+    btoa: bin/btoa.js
+  checksum: d8f863b356706f64d6f9f4ed30711b72b8e76e36dcd25ed14349829f0450a1a06ee8abb8006b1ff7461650933fd9347f0df095c0bacc9ab46c55e4857ce3db21
   languageName: node
   linkType: hard
 
@@ -17337,6 +17353,7 @@ fsevents@~2.3.2:
     "@types/react-router": ^5.1.13
     "@types/react-router-dom": ^5.1.7
     "@types/redux-actions": ^2.6.1
+    "@types/smoothscroll-polyfill": ^0.3.1
     "@types/typeform__embed": ^0.22.2
     "@types/uuid": ^8.3.0
     "@typescript-eslint/eslint-plugin": ^4.21.0
@@ -17353,6 +17370,7 @@ fsevents@~2.3.2:
     babel-runtime: ^6.26.0
     base64-arraybuffer: ^1.0.1
     brotli-webpack-plugin: ^1.1.0
+    btoa: ^1.2.1
     can-ndjson-stream: ^1.0.2
     clipboard-copy: ^4.0.1
     clsx: ^1.1.1

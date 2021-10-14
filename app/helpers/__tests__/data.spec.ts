@@ -1,4 +1,3 @@
-
 import ex from '../../ontology/ex';
 import {
   allow,

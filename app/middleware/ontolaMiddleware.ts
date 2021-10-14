@@ -17,7 +17,7 @@ import {
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
 
-import { safeCredentials } from '../helpers/arguHelpers';
+import { safeCredentials } from '../helpers/dom';
 import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';

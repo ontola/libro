@@ -92,7 +92,7 @@ describe('Form', () => {
     },
   };
 
-  describe('persistence', async () => {
+  describe('persistence', () => {
     it('retrieves an initial value from session storage', async () => {
       const [_, storage] = mockStorage({});
       const storeKey = getStorageKey(action.value, undefined, schema.text);
