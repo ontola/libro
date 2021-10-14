@@ -29,10 +29,6 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
-<<<<<<< HEAD
-import { getMetaContent } from '../../../helpers/dom';
-=======
->>>>>>> core#832 refactor
 import { handle } from '../../../helpers/logging';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../hooks/useMapAccessToken';
 import { mapMessages } from '../../../translations/messages';

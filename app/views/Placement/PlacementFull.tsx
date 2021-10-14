@@ -15,14 +15,16 @@ interface PlacementAlertDialogProps extends SubjectProp {
 const PlacementAlertDialog = ({
   renderPartOf,
   subject,
-}: PlacementAlertDialogProps): JSX.Element => (
-  <Container>
-    {renderPartOf && <Property label={schema.isPartOf} />}
-    <MapView
-      placements={[subject]}
-    />
-  </Container>
-);
+}: PlacementAlertDialogProps): JSX.Element => {
+  const placements = React.useMemo(() => [subject], [subject]);
+
+  return (
+    <Container>
+      {renderPartOf && <Property label={schema.isPartOf} />}
+      <MapView placements={placements} />
+    </Container>
+  );
+};
 
 PlacementAlertDialog.type = argu.Placement;
 

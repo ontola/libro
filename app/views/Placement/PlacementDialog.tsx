@@ -6,11 +6,13 @@ import MapView from '../../containers/MapView';
 import argu from '../../ontology/argu';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
-const PlacementAlertDialog = ({ subject }: SubjectProp): JSX.Element => (
-  <MapView
-    placements={[subject]}
-  />
-);
+const PlacementAlertDialog = ({ subject }: SubjectProp): JSX.Element => {
+  const placements = React.useMemo(() => [subject], [subject]);
+
+  return (
+    <MapView placements={placements} />
+  );
+};
 
 PlacementAlertDialog.type = argu.Placement;
 

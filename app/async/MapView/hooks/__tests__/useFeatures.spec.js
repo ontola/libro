@@ -36,13 +36,6 @@ describe('useFeatures', () => {
       expect(typeof feature.getProperties().style).toBe('function');
       expect(typeof feature.getProperties().hoverStyle).toBe('function');
     });
-
-    it('handles undefined', () => {
-      placement.lon = undefined;
-      const feature = toFeature(placement, theme, ['a', 'b', placement.id, 'c']);
-
-      expect(feature).toBe(undefined);
-    });
   });
 
   describe('getMarkAsVisited', () => {

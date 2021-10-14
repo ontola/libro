@@ -14,10 +14,10 @@ const MapView = React.lazy(
 );
 
 export interface Placement {
-  id?: string;
-  image?: NamedNode;
-  lat?: number;
-  lon?: number;
+  id: string;
+  image: NamedNode;
+  lat: number;
+  lon: number;
   zoomLevel?: number;
 }
 
@@ -32,7 +32,7 @@ export interface PropTypes {
   onSelect?: (feature: Feature, center: Coordinate) => any;
   onZoom?: (args: any) => any;
   overlayResource?: SomeNode;
-  placements: Array<Placement | SomeNode>;
+  placements: Placement[] | SomeNode[];
 }
 
 const MapViewLoader = (props: PropTypes): JSX.Element => {

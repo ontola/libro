@@ -5,6 +5,7 @@ import { LoadingCard } from '../../../components/Loading';
 import { PropTypes } from '../../../containers/MapView';
 import { getMetaContent } from '../../../helpers/arguHelpers';
 import { useFeatures } from '../hooks/useFeatures';
+import { usePlacementIds } from '../hooks/usePlacementIds';
 
 import MapCanvas from './MapCanvas';
 
@@ -19,13 +20,15 @@ export const MapView: React.FC<PropTypes> = ({
   onSelect,
   onZoom,
   overlayResource,
-  placements,
+  placements: placementIds,
 }) => {
   const mapboxTileURL = useMemo(
     () => getMetaContent('mapboxTileURL'),
     [],
   );
-  const [placementFeatures, resolvedCenter, loading] = useFeatures(placements);
+
+  const [placements, loading] = usePlacementIds(placementIds);
+  const [placementFeatures, resolvedCenter] = useFeatures(placements);
 
   const initialView = (initialLat && initialLon && initialZoom) ? {
     center: fromLonLat([initialLon, initialLat]),
