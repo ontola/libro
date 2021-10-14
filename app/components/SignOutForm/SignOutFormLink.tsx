@@ -1,49 +1,37 @@
 import { Node } from '@ontologies/core';
-import { Location } from 'history';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { ButtonProps } from '../Button';
-import Link, { LinkPropTypes } from '../Link';
+import Button from '../Button';
 
 export interface SignOutFormLinkProps {
-  Component: React.ComponentType<Partial<LinkPropTypes & ButtonProps> & { icon?: string; label?: string }>;
-  children: JSX.Element;
-  label: string;
-  location: Location;
+  children: React.ReactNode;
   redirectURL: Node;
 }
 
 const SignOutFormLink = ({
-  Component,
   children,
-  label,
   redirectURL,
 }: SignOutFormLinkProps): JSX.Element => {
   const lrs = useLRS();
 
   return (
-    <Component
+    <Button
       icon="sign-out"
-      label={label}
       onClick={(e: React.MouseEvent) => {
         e.preventDefault();
         lrs.actions.app.startSignOut(redirectURL);
       }}
     >
-      {children || (
+      {children ?? (
         <FormattedMessage
           defaultMessage="Log out"
           id="https://app.argu.co/i18n/forms/signOut/link/label"
         />
       )}
-    </Component>
+    </Button>
   );
-};
-
-SignOutFormLink.defaultProps = {
-  Component: Link,
 };
 
 export default SignOutFormLink;

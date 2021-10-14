@@ -516,6 +516,10 @@ export const statusMessages: Messages = defineMessages({
 });
 
 export const thingMessages: Messages = defineMessages({
+  showAllLabel: {
+    defaultMessage: 'View all {count} reactions...',
+    id: 'https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel',
+  },
   showProfile: {
     defaultMessage: "Show {name}'s profile",
     id: 'https://app.argu.co/i18n/schema:Thing/showResourceText',

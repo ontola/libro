@@ -1,19 +1,11 @@
 import { EmptyRequestStatus, FulfilledRequestStatus } from 'link-lib';
 import React from 'react';
 
-import Button, {
-  ButtonProps,
-  ButtonTheme,
-  ButtonVariant,
-} from '../Button';
+import Button, { ButtonProps } from '../Button';
 
-export interface ButtonWithFeedbackProps {
-  className?: string;
+export interface ButtonWithFeedbackProps extends ButtonProps {
   feedbackIcon?: string;
-  icon?: string;
   linkRequestStatus?: EmptyRequestStatus | FulfilledRequestStatus;
-  variant: ButtonVariant;
-  theme: ButtonTheme;
   onClick: () => Promise<any>;
 }
 

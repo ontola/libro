@@ -5,7 +5,7 @@ import './MenuSection.scss';
 
 export interface MenuSectionLabelProps {
   linkedProp: Exclude<LinkedPropType, any[]>;
-  name: React.ReactNode;
+  name?: React.ReactNode;
 }
 
 const MenuSectionLabel = ({ linkedProp, name }: MenuSectionLabelProps): JSX.Element => (
@@ -15,7 +15,7 @@ const MenuSectionLabel = ({ linkedProp, name }: MenuSectionLabelProps): JSX.Elem
   >
     <div className="MenuSectionLabel__bar" />
     <div className="MenuSectionLabel__text">
-      {name || linkedProp.value}
+      {name ?? linkedProp.value}
     </div>
     <div className="MenuSectionLabel__bar" />
   </div>
