@@ -4,7 +4,6 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 
 import {
-  addFeature,
   getMarkAsVisited,
   toFeature,
 } from '../useFeatures';
@@ -18,15 +17,18 @@ describe('useFeatures', () => {
 
   describe('toFeature', () => {
     const placement = {
-      id:'id5',
+      id: 'id5',
       image,
       lat: 15,
       lon: 23.3,
       zoomLevel: 6.8,
     };
+    let visitedFeatures = ['a', 'b', placement.id, 'c'];
+    const getVisitedFeatures = () => visitedFeatures;
+    const setVisitedFeatures = (newFeatures) => (visitedFeatures = newFeatures);
 
     it('constructs', () => {
-      const feature = toFeature(placement, theme, ['a', 'b', placement.id, 'c']);
+      const feature = toFeature(placement, theme, getVisitedFeatures, setVisitedFeatures);
 
       expect(feature.getId()).toBe('id5');
       expect(feature.getGeometry().getCoordinates()).toStrictEqual(fromLonLat([23.3, 15]));
@@ -35,6 +37,7 @@ describe('useFeatures', () => {
       expect(feature.getProperties().zoomLevel).toBe(6.8);
       expect(typeof feature.getProperties().style).toBe('function');
       expect(typeof feature.getProperties().hoverStyle).toBe('function');
+      expect(typeof feature.getProperties().markAsVisited).toBe('function');
     });
   });
 
@@ -64,54 +67,6 @@ describe('useFeatures', () => {
       getMarkAsVisited(setVisitedFeatures, getVisitedFeatures, theme)(feature3);
 
       expect(visitedFeatures).toStrictEqual([feature1.getId(), feature3.getId()]);
-    });
-  });
-
-  describe('addFeature', () => {
-    const feature = new Feature(new Point([11, 13]));
-    const getVisitedFeatures = () => [];
-    let center;
-    const setMemoizedCenter = (newCenter) => (center = newCenter);
-    let visitedFeatures;
-    const setVisitedFeatures = (newFeatures) => (visitedFeatures = newFeatures);
-
-    it('adds a Feature', () => {
-      const features = [];
-      addFeature(
-        feature,
-        0,
-        theme,
-        getVisitedFeatures,
-        setMemoizedCenter,
-        setVisitedFeatures,
-        features);
-
-      expect(center.getGeometry().getCoordinates()).toStrictEqual([11, 13]);
-      expect(typeof feature.getProperties().markAsVisited).toBe('function');
-      expect(features).toStrictEqual([feature]);
-    });
-
-    it('does not add undefined', () => {
-      const features = [];
-      addFeature(
-        undefined,
-        0,
-        theme,
-        getVisitedFeatures,
-        setMemoizedCenter,
-        setVisitedFeatures,
-        features);
-
-      addFeature(
-        false,
-        0,
-        theme,
-        getVisitedFeatures,
-        setMemoizedCenter,
-        setVisitedFeatures,
-        features);
-
-      expect(features).toStrictEqual([]);
     });
   });
 });

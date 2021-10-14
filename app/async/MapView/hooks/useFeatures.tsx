@@ -14,7 +14,8 @@ const EMPTY_ARRAY: Array<Feature<Point>> = [];
 export const toFeature = (
   placement: Placement,
   theme: Theme,
-  visitedFeatures: string[],
+  getVisitedFeatures: () => string[],
+  setVisitedFeatures: Dispatch<SetStateAction<string[]>>,
 ): Feature<Point> => {
   const {
     id,
@@ -25,13 +26,14 @@ export const toFeature = (
   } = placement;
   const { hoverStyle, style } = getStyles(image.value, theme);
   const feature = new Feature(new Point(fromLonLat([lon, lat])));
-  feature.setId(id);
 
+  feature.setId(id);
   feature.setProperties({
     hoverStyle,
     image,
+    markAsVisited: getMarkAsVisited(setVisitedFeatures, getVisitedFeatures, theme),
     style,
-    visited: visitedFeatures.includes(id),
+    visited: getVisitedFeatures().includes(id),
     zoomLevel,
   });
 
@@ -57,23 +59,6 @@ export const getMarkAsVisited = (
   });
 };
 
-export const addFeature = (
-  feature: Feature<Point>,
-  index: number,
-  theme: Theme,
-  getVisitedFeatures: () => string[],
-  setMemoizedCenter: Dispatch<SetStateAction<Feature<Point> | null>>,
-  setVisitedFeatures: Dispatch<SetStateAction<string[]>>,
-  features: Array<Feature<Point>>,
-): void => {
-  if (index === 0) {
-    setMemoizedCenter(feature);
-  }
-
-  feature.setProperties({ markAsVisited: getMarkAsVisited(setVisitedFeatures, getVisitedFeatures, theme) });
-  features.push(feature);
-};
-
 type FeatureSet = [features: Array<Feature<Point>>, center: Feature<Point> | null];
 
 export const useFeatures = (placements: Placement[]): FeatureSet => {
@@ -92,20 +77,11 @@ export const useFeatures = (placements: Placement[]): FeatureSet => {
   const [center, setCenter] = React.useState<Feature<Point> | null>(null);
 
   React.useEffect(() => {
-    const newFeatures: Array<Feature<Point>> = [];
+    const newFeatures = placements.map(
+      (placement: Placement) => toFeature(placement, theme, getVisitedFeatures, setVisitedFeatures),
+    );
 
-    placements.forEach((placement: Placement, index: number) => {
-      addFeature(
-        toFeature(placement, theme, getVisitedFeatures()),
-        index,
-        theme,
-        getVisitedFeatures,
-        setCenter,
-        setVisitedFeatures,
-        newFeatures,
-      );
-    });
-
+    setCenter(newFeatures[0]);
     setFeatures(newFeatures);
   }, [placements]);
 
