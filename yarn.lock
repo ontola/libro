@@ -5396,6 +5396,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/smoothscroll-polyfill@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@types/smoothscroll-polyfill@npm:0.3.1"
+  checksum: 8edb800a9db4283e288b3cd32d867ac8ecbb29abd1a10be3013ed82df80c781c2d9718aedb488549ced9f60629b23f8a045d49e5f6507711313b9e38353d7470
+  languageName: node
+  linkType: hard
+
 "@types/stack-utils@npm:^1.0.1":
   version: 1.0.1
   resolution: "@types/stack-utils@npm:1.0.1"
@@ -7277,6 +7284,15 @@ __metadata:
   dependencies:
     node-int64: ^0.4.0
   checksum: 302af195672988c21be9590b0b4fcacf9bd5bc116a32cbb5f613b21800fce8ee6aa1c57e76bbfa15a60269fe48885d062383e353fbaa821dbf06e92f72cc8b7d
+  languageName: node
+  linkType: hard
+
+"btoa@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "btoa@npm:1.2.1"
+  bin:
+    btoa: bin/btoa.js
+  checksum: d8f863b356706f64d6f9f4ed30711b72b8e76e36dcd25ed14349829f0450a1a06ee8abb8006b1ff7461650933fd9347f0df095c0bacc9ab46c55e4857ce3db21
   languageName: node
   linkType: hard
 
@@ -9826,7 +9842,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.8.3":
+"enhanced-resolve@npm:^5.0.0, enhanced-resolve@npm:^5.8.3":
   version: 5.8.3
   resolution: "enhanced-resolve@npm:5.8.3"
   dependencies:
@@ -16113,6 +16129,16 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"micromatch@npm:^4.0.0":
+  version: 4.0.4
+  resolution: "micromatch@npm:4.0.4"
+  dependencies:
+    braces: ^3.0.1
+    picomatch: ^2.2.3
+  checksum: bc522ad93c086aa176f50fea2dc8060a8f7d7a621c811cf9ba02a1912577cc100190508166d721231465f10a575a40ec8a1bffc23bbc2c0108fcbf02e4be04ed
+  languageName: node
+  linkType: hard
+
 "micromatch@npm:^4.0.2":
   version: 4.0.2
   resolution: "micromatch@npm:4.0.2"
@@ -17362,6 +17388,7 @@ fsevents@~2.3.2:
     "@types/react-router": ^5.1.13
     "@types/react-router-dom": ^5.1.7
     "@types/redux-actions": ^2.6.1
+    "@types/smoothscroll-polyfill": ^0.3.1
     "@types/typeform__embed": ^0.22.2
     "@types/uuid": ^8.3.0
     "@typescript-eslint/eslint-plugin": ^4.21.0
@@ -17378,6 +17405,7 @@ fsevents@~2.3.2:
     babel-runtime: ^6.26.0
     base64-arraybuffer: ^1.0.1
     brotli-webpack-plugin: ^1.1.0
+    btoa: ^1.2.1
     can-ndjson-stream: ^1.0.2
     clipboard-copy: ^4.0.1
     clsx: ^1.1.1
@@ -17492,6 +17520,7 @@ fsevents@~2.3.2:
     style-loader: ^1.0.0
     terser-webpack-plugin: ^5.2.4
     ts-jest: ^26.5.4
+    ts-loader: ^9.2.6
     type-zoo: ^3.3.0
     typescript: ^4.2.2
     uri-template: ^1.0.1
@@ -18101,6 +18130,13 @@ fsevents@~2.3.2:
   version: 2.2.2
   resolution: "picomatch@npm:2.2.2"
   checksum: 20fa75e0a58b39d83425b3db68744d5f6f361fd4fd66ec7745d884036d502abba0d553a637703af79939b844164b13e60eea339ccb043d7fbd74c3da2592b864
+  languageName: node
+  linkType: hard
+
+"picomatch@npm:^2.2.3":
+  version: 2.3.0
+  resolution: "picomatch@npm:2.3.0"
+  checksum: 80113a0fb70cfa62730d5aa3fd3d45b76bf3985f8494080ab2de1cc1fa3ba96d77990c7553a81401e16c51c0eb19c27cf5bc94f2196155090f26c8a167968001
   languageName: node
   linkType: hard
 
@@ -22543,6 +22579,21 @@ resolve@^2.0.0-next.3:
   bin:
     ts-jest: cli.js
   checksum: 8e5856b7cb990ff4cbc9577e4ec2a1135da9747e41dbf128e03ffa631dd0fdce402780a87318d28114174faa80ccdd0875b2c312b86c07a4537531c517f79101
+  languageName: node
+  linkType: hard
+
+"ts-loader@npm:^9.2.6":
+  version: 9.2.6
+  resolution: "ts-loader@npm:9.2.6"
+  dependencies:
+    chalk: ^4.1.0
+    enhanced-resolve: ^5.0.0
+    micromatch: ^4.0.0
+    semver: ^7.3.4
+  peerDependencies:
+    typescript: "*"
+    webpack: ^5.0.0
+  checksum: 07ff55a841c925b05d08d082bc014de9aa3a154c49c345ab03bbb9190a303dac6034ab750ce1ebbdb823c33ab0be921e700bc03c03852b64a605952165bbabe3
   languageName: node
   linkType: hard
 
