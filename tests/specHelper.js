@@ -208,7 +208,7 @@ function createContext(opts = {}) {
  * @return {undefined}
  */
 function describeView(desc, components, resources, subject, func) {
-  describe(desc, async () => {
+  describe(desc, () => {
     defineMarker(desc);
     set('c', () => undefined);
     set('ch', () => undefined);
@@ -240,25 +240,6 @@ function setProp(key, block) {
   set(propName(key), block);
 }
 
-function has(prop, value) {
-  return Array.isArray(prop) ? prop.includes(value) : prop === value;
-}
-
-/**
- * Traverse down in the tree.
- * @note Can't be nested due to its use of implicit `subject`
- */
-function within(target, callback) {
-  const targets = Array.isArray(target) ? target : [target];
-
-  const traverse = (prop, tree) => (Object.prototype.hasOwnProperty.call(prop, 'termType')
-    ? tree.findWhere((e) => (e.name() && e.name().startsWith('TP(') && e.instance() && has(e.instance().topology, prop))
-      || (e.name() === 'Resource' && has(e.prop('subject'), prop)))
-    : tree.find(prop));
-
-  return callback(targets.reduce((tree, t) => traverse(t, tree), subject));
-}
-
 export {
   argUnit,
   as,
@@ -271,5 +252,4 @@ export {
   normalizeProps,
   seq,
   setProp,
-  within 
 };

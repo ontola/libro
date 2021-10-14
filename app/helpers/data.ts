@@ -250,11 +250,11 @@ function sort(order: string[]) {
   };
 }
 
-function allow(arr: NamedNode[], whitelist: RegExp[] = []): NamedNode[] {
+function allow(arr: NamedNode[], whitelist: Array<Node | RegExp> = []): NamedNode[] {
   return arr.filter((op) => whitelist.find(filterFind(op)));
 }
 
-function filter(arr: NamedNode[], blacklist: RegExp[] = []): NamedNode[] {
+function filter(arr: NamedNode[], blacklist: Array<Node | RegExp> = []): NamedNode[] {
   return arr.filter((op) => !blacklist.find(filterFind(op)));
 }
 

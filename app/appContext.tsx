@@ -1,8 +1,8 @@
 import { LinkReduxLRSType } from 'link-redux';
 import React, { SetStateAction } from 'react';
 
+import { getMetaContent } from './helpers/dom';
 import Communicator from './modules/Studio/components/Communicator';
-import { getMetaContent } from './helpers/arguHelpers';
 
 export interface AppContext {
   lrs: LinkReduxLRSType;

@@ -30,7 +30,7 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getMetaContent } from '../../helpers/arguHelpers';
+import { getMetaContent } from '../../helpers/dom';
 import { handle } from '../../helpers/logging';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
 import { mapMessages } from '../../translations/messages';

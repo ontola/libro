@@ -19,18 +19,24 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.(scss|css|less)$': 'identity-obj-proxy',
   },
-  preset: 'ts-jest',
   setupFiles: [
-    './useFactory.ts',
+    './useFactory.js',
+    'jest-plugin-context/setup',
+    'jest-plugin-set/setup',
   ],
   setupFilesAfterEnv: [
-    '<rootDir>/../tests/testhelper-node.ts',
+    '<rootDir>/../tests/testhelper.js',
     '@testing-library/jest-dom/extend-expect',
   ],
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-jsdom-fifteen',
   testMatch: [
-    '**/__tests__/**/*.ts?(x)',
-    '**/?(*.)+(spec|test).ts?(x)'
+    '**/__tests__/**/*.js?(x)',
+    '**/?(*.)+(spec|test).js?(x)'
+  ],
+  testPathIgnorePatterns: [
+    'app/__tests__/test-utils.jsx',
+    'app/__tests__/link-redux/fixtures.js',
+    'app/__tests__/link-redux/utilities.js',
   ],
   testURL: 'https://argu.dev/o/1',
   transformIgnorePatterns: [

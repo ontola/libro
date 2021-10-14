@@ -31,7 +31,7 @@ import opengov from '../ontology/opengov';
 import teamGL from '../ontology/teamGL';
 
 import arguDeltaProcessor from './arguDeltaProcessor';
-import { getMetaContent } from './arguHelpers';
+import { getMetaContent } from './dom';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';

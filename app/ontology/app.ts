@@ -5,12 +5,14 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { arrayToSeqQuads } from '@rdfdev/collections';
 
-import { getMetaContent } from '../helpers/arguHelpers';
+import { getMetaContent } from '../helpers/dom';
 
 import dbo from './dbo';
 import wdt from './wdt';
 
-export const website = getMetaContent('website-iri') ?? 'https://example.com';
+export const website = __TEST__
+  ? 'https://app.argu.co/freetown'
+  : getMetaContent('website-iri') ?? 'https://example.com';
 export const frontendIRI: NamedNode = rdf.namedNode(website!);
 export const frontendIRIStr = frontendIRI.value;
 export const frontendPathname = new URL(frontendIRIStr).pathname;

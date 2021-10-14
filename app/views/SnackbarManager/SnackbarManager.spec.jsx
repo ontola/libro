@@ -25,10 +25,9 @@ describe('SnackbarManager', () => {
       [ontola.ns('snackbar/queue')]: seq([]),
     };
 
-    const { queryByTestId, debug } = await render((
+    const { queryByTestId } = await render((
       <Resource subject={iri} />
     ), { resources });
-    debug();
 
     expect(await queryByTestId('current-snackbar')).toBeNull();
   });
