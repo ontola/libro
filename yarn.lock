@@ -10228,6 +10228,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-import-resolver-node@npm:^0.3.6":
+  version: 0.3.6
+  resolution: "eslint-import-resolver-node@npm:0.3.6"
+  dependencies:
+    debug: ^3.2.7
+    resolve: ^1.20.0
+  checksum: 92e394bf0d61ac3bbedda3bf86fc27f662e9e08ce4586572fe0e443f3b784b5068441ae94d0114db82fa6651212d52b3008e36ca8f290a5ccd929af873046071
+  languageName: node
+  linkType: hard
+
 "eslint-import-resolver-webpack@npm:^0.13.1":
   version: 0.13.1
   resolution: "eslint-import-resolver-webpack@npm:0.13.1"
@@ -12413,15 +12423,6 @@ fsevents@~2.3.2:
   version: 0.0.2
   resolution: "humanize-number@npm:0.0.2"
   checksum: 334f89e67241a2c163ee8c98382e958289052ba87c4dd8ebf553e03803964d89dd9609a0027f46c819ce1e31be7b2a49e2c526f6f9cf4df1b8dfb26908176f60
-  languageName: node
-  linkType: hard
-
-"husky@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "husky@npm:6.0.0"
-  bin:
-    husky: lib/bin.js
-  checksum: 61e1f7f53f3c969d361c2a1d4ed8018b9447406ea6cd644a2526d18b76877d135001d8cbd48a1d201fc1614d96995e691ecd2b82a8d8513a6b4a313da1188ccd
   languageName: node
   linkType: hard
 
@@ -17397,6 +17398,7 @@ fsevents@~2.3.2:
     enzyme: ^3.10.0
     enzyme-matchers: ^7.0.2
     eslint: ^7.32.0
+    eslint-import-resolver-node: ^0.3.6
     eslint-import-resolver-webpack: ^0.13.1
     eslint-plugin-import: ^2.22.1
     eslint-plugin-jsx-a11y: ^6.4.1
@@ -17411,7 +17413,6 @@ fsevents@~2.3.2:
     history: ^4.10.1
     html-webpack-plugin: ^5.3.2
     http-status-codes: ^1.3.2
-    husky: ^6.0.0
     identity-obj-proxy: ^3.0.0
     ignore-styles: ^5.0.1
     imports-loader: ^2.0.0
