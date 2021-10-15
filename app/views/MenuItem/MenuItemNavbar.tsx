@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import {
   Resource,
   register,
-  useGlobalIds,
+  useIds,
   useProperty,
 } from 'link-redux';
 import React, { ForwardedRef } from 'react';
@@ -22,7 +22,7 @@ interface MenuChildProps {
 
 const MenuItemNavbar = () => {
   const [href] = useProperty(ontola.href);
-  const [image] = useGlobalIds(schema.image);
+  const [image] = useIds(schema.image);
   const [menuItems] = useProperty(ontola.menuItems);
   const [name] = useProperty(schema.name);
 
