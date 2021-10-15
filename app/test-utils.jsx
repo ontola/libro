@@ -11,8 +11,8 @@ import { Provider } from 'react-redux';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { Router } from 'react-router';
 
+import { AppContextProvider } from './AppContextProvider'
 import { componentRegistrations } from './components';
-import { AppContextProvider } from './appContext'
 import { getWebsiteContextFromWebsite } from './helpers/app';
 import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
