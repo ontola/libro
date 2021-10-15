@@ -48,7 +48,10 @@ export const LoadingTabbar = ({
 export const LoadingCard = (): JSX.Element => (
   <Card>
     <CardContent>
-      <div className="Loading__Header Loading__background" />
+      <div
+        className="Loading__Header Loading__background"
+        data-testid="loading-card"
+      />
       <LoadingParagraph />
       <LoadingParagraph />
       <div className="Loading__Paragraph--shorter Loading__background" />

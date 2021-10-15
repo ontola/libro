@@ -129,6 +129,13 @@ const customRender = async (ui, {
   };
 };
 
+export const hookWrapper = wrapProviders({
+  ctx: {
+    history: createMemoryHistory({ initialEntries: ['/'] }),
+  },
+  location,
+});
+
 // re-export everything
 export * from '@testing-library/react';
 

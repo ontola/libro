@@ -1,17 +1,18 @@
 /** @jest-environment jsdom*/
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { Geometry } from 'ol/geom';
+import { NamedNode } from '@ontologies/core';
 import { toLonLat } from 'ol/proj';
 
+import { GeometryType } from '../../../../containers/MapView';
 import {
   distance,
   toFeature,
-  toPoint 
+  toPoint,
 } from '../geometry';
 
 describe('geometry', () => {
   describe('distance', () => {
-    const origin = [0, 0];
     const positiveSmall = [12, 11];
     const positiveBig = [20, 21];
     const negative = [-30, -31];
@@ -50,23 +51,25 @@ describe('geometry', () => {
             lon: 1,
           },
         ],
-        type: 'Circle',
+        type: GeometryType.Circle,
       };
       const feature = toFeature(geometry);
 
       it('has geometry type circle', () => {
-        expect(feature.getGeometry().getType()).toBe('Circle');
+        expect(feature.getGeometry()!.getType()).toBe('Circle');
       });
 
       it('has a center', () => {
-        const [lon, lat] = toLonLat(feature.getGeometry().getCenter());
+        // @ts-ignore
+        const [lon, lat] = toLonLat(feature.getGeometry()!.getCenter());
         expect(lat).toBe(1.5);
         expect(lon).toBe(1.6);
       });
 
       it('has a radius', () => {
-        const center = toLonLat(feature.getGeometry().getCenter());
-        const edge = toLonLat(feature.getGeometry().getLastCoordinate());
+        // @ts-ignore
+        const center = toLonLat(feature.getGeometry()!.getCenter());
+        const edge = toLonLat(feature.getGeometry()!.getLastCoordinate());
         expect(distance(center, edge)).toBe(0.6);
       });
     });
@@ -95,35 +98,22 @@ describe('geometry', () => {
             lon: -3.4,
           },
         ],
-        type: 'Polygon'
+        type: GeometryType.Polygon,
       };
 
       const feature = toFeature(geometry);
 
       it('has geometry type polygon', () => {
-        expect(feature.getGeometry().getType()).toBe('Polygon');
+        expect(feature.getGeometry()!.getType()).toBe('Polygon');
       });
 
       it('has length', () => {
-        expect(feature.getGeometry().getCoordinates()[0].length).toBe(5);
+        expect(feature.getGeometry()!.getCoordinates()[0].length).toBe(5);
       });
 
       it('is closed', () => {
-        const coordinates = feature.getGeometry().getCoordinates()[0];
+        const coordinates = feature.getGeometry()!.getCoordinates()[0];
         expect(coordinates[coordinates.length-1]).toStrictEqual(coordinates[0]);
-      });
-    });
-
-    describe('with other', () => {
-      const geometry = {
-        points: [],
-        type: 'other',
-      };
-
-      it('throws an exception', () => {
-        expect(() => {
-          toFeature(geometry);
-        }).toThrow();
       });
     });
   });
@@ -131,9 +121,9 @@ describe('geometry', () => {
   describe('toPoint', () => {
     it('handles correct input', () => {
       expect(toPoint({
-        name: '',
-        value: '1.5,1.6'
-      })).toStrictEqual({
+        termType: 'NamedNode',
+        value: '1.5,1.6',
+      } as NamedNode)).toStrictEqual({
         lat: 1.6,
         lon: 1.5,
       });

@@ -1,9 +1,8 @@
 import { fromLonLat } from 'ol/proj';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { LoadingCard } from '../../../components/Loading';
 import { PropTypes } from '../../../containers/MapView';
-import { getMetaContent } from '../../../helpers/arguHelpers';
 import { useFeatures } from '../hooks/useFeatures';
 import { usePlacementIds } from '../hooks/usePlacementIds';
 
@@ -14,6 +13,7 @@ export const MapView: React.FC<PropTypes> = ({
   initialLon,
   initialZoom,
   large,
+  mapboxTileURL,
   navigate,
   onMapClick,
   onMove,
@@ -22,11 +22,6 @@ export const MapView: React.FC<PropTypes> = ({
   overlayResource,
   placements: placementIds,
 }) => {
-  const mapboxTileURL = useMemo(
-    () => getMetaContent('mapboxTileURL'),
-    [],
-  );
-
   const [placements, loading] = usePlacementIds(placementIds);
   const [placementFeatures, resolvedCenter] = useFeatures(placements);
 
@@ -58,8 +53,8 @@ export const MapView: React.FC<PropTypes> = ({
       onSelect(feature, newCenter);
     }
 
-    if (feature?.markAsVisited) {
-      feature.markAsVisited(feature);
+    if (feature?.getProperties()?.markAsVisited) {
+      feature.getProperties().markAsVisited(feature);
     }
 
     setOverlayPosition(newCenter);

@@ -2,16 +2,32 @@ import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import LinkLoader from '../components/Loading/LinkLoader';
 import Suspense from '../components/Suspense';
+import { getMetaContent } from '../helpers/dom';
 import useFontsChecker from '../hooks/useFontsChecker';
 
 const MapView = React.lazy(
   // eslint-disable-next-line no-inline-comments
   () => import(/* webpackChunkName: "MapView" */ '../async/MapView'),
 );
+
+export interface Point {
+  lat: number;
+  lon: number;
+}
+
+export enum GeometryType {
+  Circle,
+  Polygon,
+}
+
+export interface Geometry {
+  type: GeometryType;
+  points: Point[];
+}
 
 export interface Placement {
   id: string;
@@ -26,6 +42,7 @@ export interface PropTypes {
   initialLon?: number;
   initialZoom?: number;
   large?: boolean;
+  mapboxTileURL?: string,
   navigate?: (resource: SomeNode) => void;
   onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
   onMove?: (args: any) => any;
@@ -36,6 +53,11 @@ export interface PropTypes {
 }
 
 const MapViewLoader = (props: PropTypes): JSX.Element => {
+  const mapboxTileURL = useMemo(
+    () => getMetaContent('mapboxTileURL'),
+    [],
+  );
+
   if (!__CLIENT__ || __TEST__) {
     return <LinkLoader />;
   }
@@ -48,7 +70,10 @@ const MapViewLoader = (props: PropTypes): JSX.Element => {
 
   return (
     <Suspense>
-      <MapView {...props} />
+      <MapView
+        mapboxTileURL={mapboxTileURL}
+        {...props}
+      />
     </Suspense>
   );
 };

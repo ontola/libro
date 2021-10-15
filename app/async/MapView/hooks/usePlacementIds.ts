@@ -25,8 +25,8 @@ const imageForPlacement = (node: SomeNode, lrs: LinkReduxLRSType): NamedNode =>
 const toPlacement = (lrs: LinkReduxLRSType, node: SomeNode): Placement => ({
   id: node.value,
   image: imageForPlacement(node, lrs),
-  lat: tryParseFloat(lrs.getResourceProperty(node, schema.latitude)),
-  lon: tryParseFloat(lrs.getResourceProperty(node, schema.longitude)),
+  lat: tryParseFloat(lrs.getResourceProperty(node, schema.latitude))!,
+  lon: tryParseFloat(lrs.getResourceProperty(node, schema.longitude))!,
   zoomLevel: tryParseFloat(lrs.getResourceProperty(node, ontola.zoomLevel)),
 });
 

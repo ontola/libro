@@ -33,7 +33,10 @@ module.exports = {
     '**/?(*.)+(spec|test).ts?(x)'
   ],
   testURL: 'https://argu.dev/o/1',
+  transform: {
+    '^.+\\.m?(j|t)sx?$': 'ts-jest',
+  },
   transformIgnorePatterns: [
-    'node_modules/(?!(intl-messageformat|react-intl|ol)/)',
+    'node_modules/(?!(intl-messageformat|react-intl|ol)/).+\\.js$',
   ],
 };

@@ -26,8 +26,9 @@ interface IconProps {
 
 const ANCHOR_Y_CENTER = 0.5;
 const ANCHOR_X_CENTER = 0.5;
-const BACKGROUND_FADE = 0.5;
-const TEXT_FADE = 0.8;
+
+export const BACKGROUND_FADE = 0.5;
+export const TEXT_FADE = 0.8;
 const CIRCLE_RADIUS = 14;
 const CIRCLE_SIZE = 15;
 const ICON_X = CIRCLE_SIZE;

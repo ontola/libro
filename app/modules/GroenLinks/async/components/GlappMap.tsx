@@ -4,7 +4,7 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import { getMetaContent } from '../../../../helpers/arguHelpers';
+import { getMetaContent } from '../../../../helpers/dom';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import useJSON from '../../../../hooks/useJSON';
 import app from '../../../../ontology/app';

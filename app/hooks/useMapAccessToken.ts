@@ -35,7 +35,7 @@ export interface ActiveMapAccessToken {
 export type MapAccessToken = LoadingMapAccessToken | ErrorMapAccessToken | ActiveMapAccessToken;
 export type RequestMapAccessToken = () => Promise<void>;
 
-const MAP_STORE_KEY = 'map-access-token';
+export const MAP_STORE_KEY = 'map-access-token';
 const TEN_MINUTES = 600000;
 
 const requireNewToken = (token: MapAccessToken | undefined) => {

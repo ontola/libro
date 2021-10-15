@@ -5,9 +5,9 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
-import { offlineFallback } from 'workbox-recipes'
-import { registerRoute, setDefaultHandler } from 'workbox-routing'
-import { CacheFirst, NetworkOnly, StaleWhileRevalidate } from 'workbox-strategies'
+import { offlineFallback } from 'workbox-recipes';
+import { registerRoute, setDefaultHandler } from 'workbox-routing';
+import { CacheFirst, NetworkOnly, StaleWhileRevalidate } from 'workbox-strategies';
 
 const scope = self.registration.scope;
 const basePath = scope.includes('://') ? new URL(scope).pathname : scope;

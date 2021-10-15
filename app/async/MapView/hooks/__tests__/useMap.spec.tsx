@@ -1,3 +1,9 @@
+/** @jest-environment jsdom*/
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
+import { Coordinate } from 'ol/coordinate';
+import { SetStateAction } from 'react';
+
 import { makeViewUpdater } from '../useMap';
 
 describe('useMap', () => {
@@ -5,14 +11,15 @@ describe('useMap', () => {
     let center;
     let zoom;
 
-    const setCenter = (newCenter) => {center = newCenter};
-    const setZoom = (newZoom) => {zoom = newZoom};
+    const setCenter = (value: SetStateAction<Coordinate>): void => { center = value; };
+    const setZoom = (newZoom: SetStateAction<number>): void => {zoom = newZoom; };
 
     const o = {
-      onMove:  (coordinate) => {},
-      onViewChange : (coordinate, z) => {},
-      onZoom : (z) => {},
-    }
+      /* eslint-disable @typescript-eslint/no-empty-function */
+      onMove: () => {},
+      onViewChange: () => {},
+      onZoom: () => {},
+    };
     const moveSpy = jest.spyOn(o, 'onMove');
     const viewSpy = jest.spyOn(o, 'onViewChange');
     const zoomSpy = jest.spyOn(o, 'onZoom');
@@ -40,7 +47,7 @@ describe('useMap', () => {
       expect(zoomSpy).toHaveBeenCalled();
       expect(center).toStrictEqual([7.8, 2.9]);
       expect(zoom).toBe(6.8);
-    })
+    });
 
     it('handles undefined handlers', () => {
       center = [2.6, 3.1];
@@ -65,7 +72,7 @@ describe('useMap', () => {
       expect(zoomSpy).not.toHaveBeenCalled();
       expect(center).toStrictEqual([7.8, 2.9]);
       expect(zoom).toBe(6.8);
-    })
+    });
 
     it('handles undefined new values', () => {
       center = [2.6, 3.1];
@@ -90,6 +97,6 @@ describe('useMap', () => {
       expect(zoomSpy).not.toHaveBeenCalled();
       expect(center).toStrictEqual([2.6, 3.1]);
       expect(zoom).toBe(9.9);
-    })
-  })
-})
+    });
+  });
+});

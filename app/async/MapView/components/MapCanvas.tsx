@@ -93,6 +93,7 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
     >
       <div
         className={canvasClassName}
+        data-testid="map-canvas"
         ref={mapRef}
       />
       <OverlayContainer

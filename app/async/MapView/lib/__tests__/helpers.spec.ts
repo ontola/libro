@@ -1,3 +1,4 @@
+/** @jest-environment jsdom*/
 import { Feature } from 'ol';
 
 import { allFeaturesVisited } from '../helpers';
@@ -13,6 +14,6 @@ describe('helpers', () => {
 
     it('handles', () => {
       expect(allFeaturesVisited(singleton)).toBe(false);
-    })
-  })
-})
+    });
+  });
+});
