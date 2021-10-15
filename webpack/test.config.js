@@ -29,7 +29,7 @@ config.module.rules.push({
 });
 
 config.module.rules.push({
-  loader: 'null-loader',
+  loader: require.resolve('null-loader'),
   test: /\.scss$/,
 });
 

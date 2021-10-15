@@ -2,6 +2,7 @@ const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const webpack = require('webpack');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
@@ -41,7 +42,7 @@ const common = {
       }, {
         test: /\.(svg)$/,
         use: [{
-          loader: 'babel-loader',
+          loader: require.resolve('babel-loader'),
         }],
       },
     ],
@@ -94,6 +95,15 @@ const common = {
       path: require.resolve('path-browserify'),
     },
     modules: ['./node_modules'],
+    plugins: [
+      PnpWebpackPlugin,
+    ],
+  },
+
+  resolveLoader: {
+    plugins: [
+      PnpWebpackPlugin.moduleLoader(module),
+    ],
   },
 };
 

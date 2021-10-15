@@ -48,11 +48,11 @@ function createConfig(options) {
             'css-loader',
             'resolve-url-loader',
             {
-              loader: 'postcss-loader',
+              loader: require.resolve('postcss-loader'),
               options: { sourceMap: true },
             },
             {
-              loader: 'sass-loader',
+              loader: require.resolve('sass-loader'),
               options: { sourceMap: true },
             },
           ],

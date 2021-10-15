@@ -1,6 +1,7 @@
 /* eslint-env node */
 const path = require('path');
 
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
 const webpack = require('webpack');
 const { InjectManifest } = require('workbox-webpack-plugin');
@@ -64,7 +65,7 @@ const config = {
         test: /\.(m?(t|j)sx?)$/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: require.resolve('babel-loader'),
             options: {
               comments: false,
               compact: false,
@@ -122,9 +123,15 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
-    fallback: {
-      pnpapi: false,
-    },
+    plugins: [
+      PnpWebpackPlugin,
+    ],
+  },
+
+  resolveLoader: {
+    plugins: [
+      PnpWebpackPlugin.moduleLoader(module),
+    ],
   },
 
   target: 'node',

@@ -52,21 +52,21 @@ module.exports = merge(common, {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          { loader: 'style-loader' },
+          { loader: require.resolve('style-loader') },
           {
-            loader: 'css-loader',
+            loader: require.resolve('css-loader'),
             options: { sourceMap: true },
           },
           {
-            loader: 'resolve-url-loader',
+            loader: require.resolve('resolve-url-loader'),
             options: { sourceMap: true },
           },
           {
-            loader: 'postcss-loader',
+            loader: require.resolve('postcss-loader'),
             options: { sourceMap: true },
           },
           {
-            loader: 'sass-loader',
+            loader: require.resolve('sass-loader'),
             options: { sourceMap: true },
           },
         ],
