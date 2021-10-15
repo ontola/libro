@@ -12,7 +12,7 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
-import { AppContextProvider } from '../../app/appContext'
+import { AppContextProvider } from '../../app/AppContextProvider'
 import { getWebsiteContextFromWebsite } from '../../app/helpers/app';
 import { WebsiteContext } from '../../app/location';
 

@@ -5,7 +5,7 @@ import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { AppContextProvider } from './appContext';
+import { AppContextProvider } from './AppContextProvider';
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
 import generateLRS from './helpers/generateLRS';
