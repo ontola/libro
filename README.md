@@ -118,9 +118,6 @@ factory system yet, the data needs to be harvested manually for the time being. 
 snapshot-testing compatible JS data can be obtained by running `dev.snapshot()` on the desired LOC
 in the browser console.
 
-### Security
-Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js). Run tests using `npm run secure`.
-
 ### Async
 Components which are to be resolved via webpack async functionality. They shouldn't be loaded
 directly in the code, use their loaders instead, which should be in either components or containers.
