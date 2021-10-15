@@ -54,7 +54,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const usePlacements = (lat: InputValue, lon: InputValue, zoomLevel: InputValue): [Placement[], InitialView] => {
+const usePlacements = (latInput: InputValue, lonInput: InputValue, zoomLevel: InputValue): [Placement[], InitialView] => {
   const { object, parentObject } = React.useContext(FormContext);
   const [parentLocation] = useIds(parentObject, dig(schema.isPartOf, schema.location));
   const initialView = useResourceLink(
@@ -64,18 +64,22 @@ const usePlacements = (lat: InputValue, lon: InputValue, zoomLevel: InputValue):
   ) as InitialView;
 
   const placements = React.useMemo(() => {
-    if (lat?.value && lon?.value) {
+    const lat = tryParseFloat(latInput);
+    const lon = tryParseFloat(lonInput);
+    const id = object?.value;
+
+    if (lat && lon && id) {
       return [{
-        id: object?.value,
+        id,
         image: fa4.ns('map-marker'),
-        lat: tryParseFloat(lat),
-        lon: tryParseFloat(lon),
+        lat,
+        lon,
         zoomLevel: tryParseFloat(zoomLevel),
       }];
     }
 
     return [];
-  }, [lat, lon, zoomLevel, object]);
+  }, [latInput, lonInput, zoomLevel, object]);
 
   return [placements, initialView];
 };

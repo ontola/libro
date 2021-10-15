@@ -81,7 +81,10 @@ export const useFeatures = (placements: Placement[]): FeatureSet => {
       (placement: Placement) => toFeature(placement, theme, getVisitedFeatures, setVisitedFeatures),
     );
 
-    setCenter(newFeatures[0]);
+    if (newFeatures.length > 0) {
+      setCenter(newFeatures[0]);
+    }
+
     setFeatures(newFeatures);
   }, [placements]);
 

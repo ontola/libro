@@ -1,7 +1,6 @@
 import {
   NamedNode,
   Node,
-  isNamedNode,
   isNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
