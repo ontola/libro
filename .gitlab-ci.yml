@@ -61,7 +61,6 @@ test:
   script:
     - yarn run t10s:compile
     - yarn run test
-    - yarn run ts-compile-check
 
 autoTagProduction:
   stage: tag

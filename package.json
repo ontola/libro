@@ -1,26 +1,12 @@
 {
-  "name": "argu-front-end",
-  "description": "Argu front-end application.",
-  "version": "0.10.0",
-  "contributors": [
-    "Joep Meindertsma <joep@argu.co> (https://argu.co)",
-    "Thom van Kalkeren <thom@argu.co>",
-    "Jurrian Tromp <jurrian@argu.co>"
-  ],
-  "engines": {
-    "node": ">=14"
-  },
+  "name": "ontola-libro",
   "license": "All rights reserved. Copyright Argu B.V.",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://git@bitbucket.org/arguweb/aod_demo.git"
-  },
   "moduleRoots": [
     "./app"
   ],
   "scripts": {
-    "build": "rimraf ./dist/* && tsc -p app/tsconfig.json && yarn t10s:extract && yarn run build:bundle && yarn run build:server",
+    "build": "rimraf ./dist/* && yarn t10s:extract && yarn run build:bundle && yarn run build:server",
     "build:analyze": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --progress --config ./webpack/static.config.js --profile --json > stats.json",
     "build:bundle": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --progress --config ./webpack/static.config.js",
     "build:server": "webpack --config server.config.js",
@@ -30,8 +16,7 @@
     "t10s:compile": "formatjs compile-folder --ast app/translations app/lang",
     "t10s:lint": "node --experimental-modules --harmony-top-level-await --experimental-json-modules ./bin/lint-translations.mjs",
     "lint": "yarn lint:code && yarn lint:style && yarn t10s:lint",
-    "lint:code": "yarn lint:code:app && ./node_modules/.bin/eslint --ext .jsx,.js,.ts,.tsx .",
-    "lint:code:app": "tsc -p app/tsconfig.json",
+    "lint:code": "./node_modules/.bin/eslint --ext .jsx,.js,.ts,.tsx .",
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
     "start": "yarn run t10s:compile && NODE_ENV=development concurrently \"yarn run start:wds\" \"yarn run start:server-watch\" \"yarn run start:server-run\"",
     "start:wds": "cross-env NODE_ENV=development webpack serve -c ./webpack/hot.config.js",
@@ -39,9 +24,7 @@
     "start:server-watch": "cross-env NODE_ENV=development webpack watch -c ./server.config.js",
     "standalone": "cross-env STANDALONE=true yarn run start",
     "start:prod": "cross-env NODE_ENV=production node --use-openssl-ca ./dist/private/server.js",
-    "stats:bundle": "cross-env NODE_ENV=production webpack -p --config ./webpack/static.config.js --json > stats.json",
-    "test": "NODE_ENV=test jest",
-    "ts-compile-check": "tsc -p app/tsconfig.json --noEmit"
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -97,7 +80,6 @@
     "koa-session": "^5.12.3",
     "koa-static": "^5.0.0",
     "koa2-connect": "^1.0.2",
-    "md5.js": "^1.3.5",
     "memoize-one": "^5.0.5",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^3.0.0",
@@ -105,7 +87,6 @@
     "react-dropzone": "^10.2.2",
     "react-easy-emoji": "^1.4.0",
     "react-helmet-async": "^1.0.9",
-    "react-outside-click-handler": "^1.3.0",
     "react-router-scroll-memory": "^2.0.7",
     "request": "^2.88.0",
     "resolve-url-loader": "^3.1.1",
@@ -198,7 +179,6 @@
     "html-webpack-plugin": "^5.3.2",
     "husky": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
-    "import-to-array": "^1.0.0",
     "imports-loader": "^2.0.0",
     "interpolate-url": "^0.0.2",
     "jest": "^26.6.3",
@@ -219,7 +199,6 @@
     "n-quads-parser": "^2.1.1",
     "node-localstorage": "^2.1.6",
     "nodemon": "^2.0.13",
-    "npm-run-all": "^4.1.5",
     "null-loader": "^4.0.1",
     "ol": "^6.4.3",
     "optimize-css-assets-webpack-plugin": "^5.0.8",
@@ -232,8 +211,6 @@
     "react-dom": "^17.0.2",
     "react-final-form": "^6.5.0",
     "react-fontawesome": "^1.6.1",
-    "react-height": "^3.0.1",
-    "react-helmet": "^6.1.0",
     "react-intl": "^5.15.7",
     "react-is": "^17.0.2",
     "react-markdown": "^5.0.3",
@@ -249,13 +226,10 @@
     "redux-batched-actions": "^0.4.1",
     "redux-thunk": "^2.3.0",
     "remove-markdown": "^0.3.0",
-    "reselect": "^3.0.1",
-    "retire": "^2.0.2",
     "sass": "^1.32.8",
     "sass-lint": "^1.13.1",
     "sass-loader": "^11.0.1",
     "smoothscroll-polyfill": "^0.4.4",
-    "stream-browserify": "^3.0.0",
     "string-replace-webpack-plugin": "^0.1.3",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^5.2.4",
