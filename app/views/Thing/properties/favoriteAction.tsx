@@ -6,7 +6,7 @@ import {
   PropertyProps,
   Resource,
   register,
-  useGlobalIds, 
+  useGlobalIds,
 } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
@@ -35,6 +35,7 @@ const order = [
 
 const sortBind = (props: SortProps) => props
   .favoriteActions
+  .slice()
   .sort(sort(order))
   .map((iri) => (
     <Resource
@@ -46,15 +47,21 @@ const sortBind = (props: SortProps) => props
   ));
 
 const FavoriteAction: FC<PropertyProps> = (props) => {
-  const favoriteActions = useGlobalIds(ontola.favoriteAction) ;
-  const favoriteActionProps = {
-    ...props,
-    favoriteActions,
-  };
+  const favoriteActions = useGlobalIds(ontola.favoriteAction);
+  const actions = React.useMemo(() => {
+    const favoriteActionProps = {
+      ...props,
+      favoriteActions,
+    };
+
+    return (
+      sortBind(favoriteActionProps)
+    );
+  }, [favoriteActions]);
 
   return(
     <React.Fragment>
-      {sortBind(favoriteActionProps)}
+      {actions}
     </React.Fragment>
   );
 };
