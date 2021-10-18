@@ -22,10 +22,17 @@ module.exports = merge(common, {
     hot: true,
     port: 3001,
     proxy: {
-      '**': {
+      '!**/ws': {
         context: () => true,
+        onProxyReqWs: (proxyReq, req, socket) => {
+          socket.on('error', (err) => {
+            // eslint-disable-next-line no-console
+            console.log('Socket error using onProxyReqWs event', err);
+          });
+        },
         target: 'http://localhost:3080',
         toProxy: true,
+        ws: true,
         xfwd: true,
       },
     },
