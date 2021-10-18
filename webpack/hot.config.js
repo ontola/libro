@@ -23,10 +23,11 @@ module.exports = merge(common, {
     port: 3001,
     proxy: {
       '**': {
+        context: () => true,
         target: 'http://localhost:3080',
         toProxy: true,
         xfwd: true,
-      }
+      },
     },
   },
 
