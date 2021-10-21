@@ -184,7 +184,7 @@
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^16.5.2",
     "link-lib": "3.0.0-3",
-    "link-redux": "3.0.0-24",
+    "link-redux": "3.0.0-25",
     "lint-staged": "^10.5.4",
     "memoize-one": "^5.0.5",
     "mini-css-extract-plugin": "^1.4.1",
