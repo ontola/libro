@@ -56,7 +56,7 @@ const DashboardPageFull = () => {
   const [firstItem] = useFields(itemSequence, rdfx.ns('_0'));
   const [currentTab, setCurrentTab] = useState<SomeNode | undefined>(undefined);
   const [iriTemplate] = useFields(isNode(currentTab) ? currentTab : undefined, ontola.href);
-  const currentActorPostalRanges = useFields(teamGL.postalRanges, app.c_a);
+  const currentActorPostalRanges = useFields(app.c_a, teamGL.postalRanges);
   const [page, setPage] = useState(1);
   const [postalRanges, setPostalRange] = useState<Literal[]>([]);
   const [dateRange, setDateRange] = useState<[Date, Date]>(() => {

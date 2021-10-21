@@ -38,7 +38,7 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
 
   const lrs = useLRS();
   const history = useHistory();
-  const [image] = useFields(schema.image, target);
+  const [image] = useFields(target, schema.image);
   useDataInvalidation(target);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {

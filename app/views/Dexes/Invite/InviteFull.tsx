@@ -32,9 +32,9 @@ const InviteFull: FC<InviteFullProps> = ({
 }) => {
   const [assigner] = useProperty(dexes.assigner);
   const [offer] = useProperty(dexes.offer);
-  const [file] = useFields(dexes.file, isNamedNode(offer) ? offer : undefined);
+  const [file] = useFields(isNamedNode(offer) ? offer : undefined, dexes.file);
   useDataFetching(isNamedNode(file) ? [file] : []);
-  const [fileName] = useFields(schema.name, isNamedNode(file) ? file : undefined);
+  const [fileName] = useFields(isNamedNode(file) ? file : undefined, schema.name);
 
   return (
     <Container>

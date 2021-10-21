@@ -39,7 +39,7 @@ const Empty: FC<EmptyProps> = ({ topology }) => {
 
   const styles = useStyles();
   const { collectionDisplay } = useCollectionOptions();
-  const collectionType = useFields(rdfx.type, baseCollection);
+  const collectionType = useFields(baseCollection, rdfx.type);
 
   if (collectionType.includes(ontola.SearchResult)) {
     return null;

@@ -25,7 +25,7 @@ const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
 
   const [entryPoint] = useGlobalIds(schema.target);
   const oneClick = useLiterals(ontola.oneClick);
-  const [image] = useFields(schema.image, entryPoint);
+  const [image] = useFields(entryPoint, schema.image);
 
   const [feedback, setFeedback] = React.useState(false);
   const onDoneHandler = useDoneHandler(onDone ?? ignoreOnDone);

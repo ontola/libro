@@ -57,7 +57,7 @@ const GlappHome: FC = () => {
   const theme: any = useTheme();
 
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const [name] = useFields(schema.givenName, app.c_a);
+  const [name] = useFields(app.c_a, schema.givenName);
 
   const [selectedPostalCode, setSelectedPostalCodeRaw] = React.useState<number | undefined>(undefined);
   const setSelectedPostalCode = React.useCallback((postalCode?: number) => {

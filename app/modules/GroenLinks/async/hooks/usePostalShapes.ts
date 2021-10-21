@@ -72,9 +72,9 @@ const styleForPostalCode = (
 };
 
 const useStyleForPostalCode = (priorities?: Priorities) => {
-  const [maxPriorityProp] = useFields(teamGL.maxPriority, app.c_a);
+  const [maxPriorityProp] = useFields(app.c_a, teamGL.maxPriority);
   const maxPriority = tryParseFloat(maxPriorityProp);
-  const [minPriorityProp] = useFields(teamGL.minPriority, app.c_a);
+  const [minPriorityProp] = useFields(app.c_a, teamGL.minPriority);
   const minPriority = tryParseFloat(minPriorityProp);
 
   const getStyle = React.useCallback((feature: Feature) => (

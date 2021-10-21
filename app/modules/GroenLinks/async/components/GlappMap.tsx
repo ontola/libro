@@ -26,11 +26,11 @@ const GlappMap: React.FC<GlappMapProps> = ({
   setSelectedPostalCode,
 }) => {
   const lrs = useLRS();
-  const [zoomProp] = useFields(teamGL.zoom, app.c_a);
+  const [zoomProp] = useFields(app.c_a, teamGL.zoom);
   const zoom = tryParseFloat(zoomProp);
-  const [latProp] = useFields(teamGL.centerLat, app.c_a);
+  const [latProp] = useFields(app.c_a, teamGL.centerLat);
   const centerLat = tryParseFloat(latProp);
-  const [lonProp] = useFields(teamGL.centerLon, app.c_a);
+  const [lonProp] = useFields(app.c_a, teamGL.centerLon);
   const centerLon = tryParseFloat(lonProp);
   const [view, setView] = React.useState<ViewProps>({
     center: centerLon && centerLat ? fromLonLat([centerLon, centerLat]) : undefined,

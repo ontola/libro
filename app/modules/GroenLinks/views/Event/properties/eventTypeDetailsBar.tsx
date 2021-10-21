@@ -18,7 +18,7 @@ import { detailsBarTopology } from '../../../../../topologies/DetailsBar';
 const EventTypeDetailsBar = ({ linkedProp }: PropertyProps) => {
   const [image] = useProperty(schema.image);
   useDataFetching([linkedProp].filter(isNamedNode));
-  const [name] = useFields(schema.name, isNamedNode(linkedProp) ? linkedProp : undefined);
+  const [name] = useFields(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
 
   return (
     <Detail
