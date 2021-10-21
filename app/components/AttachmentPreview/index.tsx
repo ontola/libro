@@ -4,14 +4,14 @@ import rdf, {
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
-  useGlobalIds,
+  useDataFetching,
   useIds,
-  useLRS, 
+  useLRS,
+  useStrings,
 } from 'link-redux';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import parser from 'uri-template';
 
-import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 
@@ -29,6 +29,29 @@ interface AttachmentPreviewProps {
   thumbnailURL: SomeTerm;
 }
 
+const usePreviewHandler = (isPartOf: SomeNode, sequenceIndex: number) => {
+  const lrs = useLRS();
+  const [attachments] = useIds(isPartOf, argu.attachments);
+  const [attachmentsIriTemplate] = useStrings(attachments, ontola.iriTemplate);
+  const attachmentsTemplate = attachmentsIriTemplate ? parser.parse(attachmentsIriTemplate) : undefined;
+  const attachmentsIri = attachmentsTemplate ? rdf.namedNode(attachmentsTemplate.expand({
+    display: 'default',
+    page_size: 1,
+  })) : undefined;
+  const attachmentsPageIri = attachmentsTemplate ? rdf.namedNode(attachmentsTemplate.expand({
+    display: 'default',
+    page: (sequenceIndex || 0) + 1,
+    page_size: 1,
+  })) : undefined;
+  useDataFetching([isPartOf, attachments, attachmentsIri, attachmentsPageIri].filter(isNamedNode));
+
+  return React.useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
+    lrs.actions.ontola.showDialog(attachmentsPageIri);
+  }, [attachmentsIri, attachmentsPageIri]);
+};
+
 const AttachmentPreview = ({
   caption,
   contentUrl,
@@ -39,48 +62,7 @@ const AttachmentPreview = ({
   showPreviewDialog,
   thumbnailURL,
 }: AttachmentPreviewProps): JSX.Element => {
-  const lrs = useLRS();
-  const [attachments] = useIds(isPartOf, argu.attachments);
-  const [attachmentsIriTemplate] = useGlobalIds(attachments, ontola.iriTemplate);
-
-  React.useEffect(() => {
-    if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf) && isNamedNode(isPartOf)) {
-      lrs.queueEntity(isPartOf);
-    }
-
-    if (__CLIENT__ && attachments && !entityIsLoaded(lrs, attachments) && isNamedNode(attachments)) {
-      lrs.queueEntity(attachments);
-    }
-  }, [
-    isPartOf && !entityIsLoaded(lrs, isPartOf),
-    attachments && !entityIsLoaded(lrs, attachments),
-  ]);
-
-  const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
-  const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({
-    display: 'default',
-    page_size: 1,
-  }));
-  const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
-    display: 'default',
-    page: (sequenceIndex || 0) + 1,
-    page_size: 1,
-  }));
-
-  if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsIri)) {
-    lrs.queueEntity(attachmentsIri);
-  }
-
-  if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsPageIri)) {
-    lrs.queueEntity(attachmentsPageIri);
-  }
-
-  const handleClick: MouseEventHandler = (e) => {
-    e.preventDefault();
-    lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
-    lrs.actions.ontola.showDialog(attachmentsPageIri);
-  };
-
+  const handleClick = usePreviewHandler(isPartOf, sequenceIndex);
   const label = caption && caption.value ? caption.value : filename && filename.value;
 
   const Preview = isDocument ? DocumentAttachmentPreview : ImageAttachmentPreview;
