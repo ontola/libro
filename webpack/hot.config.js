@@ -53,7 +53,10 @@ module.exports = merge(common, {
         type: 'asset/source',
       },
       {
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          /sw\/index\.js/
+        ],
         test: /\.(m?(t|j)sx?)$/,
         use: ['ts-loader'],
       },
