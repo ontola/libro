@@ -29,7 +29,7 @@ const TopComment = (): JSX.Element => {
         <CardMicroRow>
           <LDLink>
             <FormattedMessage
-              {...thingMessages.showProfile}
+              {...thingMessages.showAllLabel}
               values={{ count }}
             />
           </LDLink>
