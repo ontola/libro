@@ -3,7 +3,6 @@ const path = require('path');
 
 const StringReplacePlugin = require('string-replace-webpack-plugin');
 const webpack = require('webpack');
-const { InjectManifest } = require('workbox-webpack-plugin');
 
 const version = require('./webpack/version');
 
@@ -111,12 +110,6 @@ const config = {
       __TEST__: false,
       __VERSION__: JSON.stringify(version),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
-    }),
-    new InjectManifest({
-      compileSrc: false,
-      exclude: [/^private\//],
-      swDest: './public/sw.js',
-      swSrc: './src/sw/index.js',
     }),
   ],
 

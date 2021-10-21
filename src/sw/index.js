@@ -18,10 +18,7 @@ self.skipWaiting();
 clientsClaim();
 cleanupOutdatedCaches();
 
-const files = self.__WB_MANIFEST;
-files.push(offlineFile);
-
-precacheAndRoute(files);
+precacheAndRoute(self.__WB_MANIFEST);
 
 const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line @typescript-eslint/no-magic-numbers
 

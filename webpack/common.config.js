@@ -80,7 +80,7 @@ const common = {
     }),
     new InjectManifest({
       exclude: [/^private\//],
-      swDest: './public/sw.js',
+      swDest: './sw.js',
       swSrc: './src/sw/index.js',
     }),
   ],

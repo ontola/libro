@@ -41,7 +41,7 @@ export default (origin) => {
     scope: origin,
     serviceworker: {
       scope: origin,
-      src: `${origin}/sw.js?manifestLocation=https%3A%2F%${encodeURIComponent(origin)}%2Fargu%2Fmanifest.json`,
+      src: `${origin}/sw.js`,
     },
     short_name: 'Libro',
     start_url: `${origin}/`,

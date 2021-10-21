@@ -41,10 +41,8 @@ import {
 } from './document';
 import health from './health';
 import logout from './logout';
-import precacheManifest from './manifests';
 import maps from './maps';
 import robots from './robots';
-import serviceWorker from './service_workers';
 
 const ONE_YEAR = 31536000000;
 
@@ -114,7 +112,6 @@ const routes = async function routes(app, port) {
   }
 
   router.get('/d/health', health);
-  router.get('*/sw.js*', serviceWorker);
   router.get('/robots.txt', robots);
 
   // Static files
@@ -122,6 +119,7 @@ const routes = async function routes(app, port) {
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/*/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
+  router.get('/sw.js', serveStatic('./dist/sw.js', staticCompressionOpts), () => {});
   router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => { });
 
   if (!standaloneLibro) {
@@ -149,7 +147,6 @@ const routes = async function routes(app, port) {
     router.all('*', isPlainAPIReq(backend));
   }
 
-  router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
   router.post(['/logout', '/*/logout'], logout);
 
