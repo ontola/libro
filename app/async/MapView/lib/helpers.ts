@@ -108,7 +108,7 @@ const generateIconStyle = (
   });
 };
 
-const featureCount = (feature: Feature) => (
+export const featureCount = (feature: Feature): number => (
   feature?.get('features')?.length || 0
 );
 
@@ -172,12 +172,7 @@ const getStyle = (
 export const getStyles = (image: string, theme: Theme): {
   hoverStyle: (feature: Feature) => Style,
   style: (feature: Feature) => Style,
-} => {
-  const style = getStyle(image, false, theme);
-  const hoverStyle = getStyle(image, true, theme);
-
-  return {
-    hoverStyle,
-    style,
-  };
-};
+} => ({
+  hoverStyle: getStyle(image, true, theme),
+  style: getStyle(image, false, theme),
+});
