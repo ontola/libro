@@ -22,7 +22,7 @@ import { IconButton, Typography } from '@material-ui/core';
 import { useIntl } from 'react-intl';
 
 import { entityIsLoaded } from '../../../helpers/data';
-import useAction from '../../../hooks/useAction';
+import useActionStatus from '../../../hooks/useActionStatus';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import { phaseIRI } from '../../../hooks/usePhases';
 import argu from '../../../ontology/argu';
@@ -84,7 +84,7 @@ const Phases: FC<PhasesProps> = ({
   const classes = useStyles();
   const [currentPhase] = useProperty(argu.currentPhase);
   const [page] = useIds(linkedProp, ontola.pages);
-  const [createAction, createActionStatus] = useAction(linkedProp, ontola.createAction);
+  const [createAction, createActionStatus] = useActionStatus(linkedProp, ontola.createAction);
   const [itemSequence] = useIds(page ?? subject, as.items);
   const [items, itemsIsLoading] = useContainerToArr<SomeNode>(itemSequence);
   useDataInvalidation([page, linkedProp, ...items]);

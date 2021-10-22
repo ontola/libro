@@ -3,7 +3,6 @@ import rdf, {
   Literal,
   isNode,
 } from '@ontologies/core';
-import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -53,7 +52,7 @@ const DashboardPageFull = () => {
   useDataFetching([dashboard]);
   const [itemSequence] = useIds(dashboard, ontola.menuItems);
   const [items] = useContainerToArr(itemSequence);
-  const [firstItem] = useFields(itemSequence, rdfx.ns('_0'));
+  const firstItem = items[0];
   const [currentTab, setCurrentTab] = useState<SomeNode | undefined>(undefined);
   const [iriTemplate] = useFields(isNode(currentTab) ? currentTab : undefined, ontola.href);
   const currentActorPostalRanges = useFields(app.c_a, teamGL.postalRanges);

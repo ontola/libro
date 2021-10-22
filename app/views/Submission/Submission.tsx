@@ -14,7 +14,7 @@ import CardContent from '../../components/Card/CardContent';
 import { FormFooterRight } from '../../components/Form';
 import Heading, { HeadingSize } from '../../components/Heading';
 import LinkLoader from '../../components/Loading/LinkLoader';
-import useAction from '../../hooks/useAction';
+import useActionStatus from '../../hooks/useActionStatus';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
@@ -40,7 +40,7 @@ const Submission: FC = ({
 }) => {
   const lrs = useLRS();
   const styles = useStyles();
-  const [_, submitActionStatus] = useAction(subject, ontola.submitAction);
+  const [_, submitActionStatus] = useActionStatus(subject, ontola.submitAction);
   const openModal = React.useCallback(() => {
     lrs.actions.ontola.showDialog(subject);
   }, [lrs, subject]);

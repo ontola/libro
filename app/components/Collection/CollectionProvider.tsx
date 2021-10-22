@@ -19,7 +19,7 @@ import React from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
 import { tryParseInt } from '../../helpers/numbers';
-import useAction from '../../hooks/useAction';
+import useActionStatus from '../../hooks/useActionStatus';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 import { useListToArr } from '../../hooks/useListToArr';
 import { SortProps, useSorting } from '../../hooks/useSorting';
@@ -86,7 +86,7 @@ const CollectionContext = React.createContext<CollectionContext>({} as Collectio
 export const useCollectionOptions = (): CollectionContext => React.useContext(CollectionContext);
 
 export const useHasInteraction = (collectionResource: SomeNode): boolean => {
-  const [_, actionStatus] = useAction(collectionResource, ontola.createAction);
+  const [_, actionStatus] = useActionStatus(collectionResource, ontola.createAction);
   const [collectionResourceType] = useGlobalIds(collectionResource, rdfx.type);
 
   if (collectionResourceType === ontola.SearchResult) {

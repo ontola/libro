@@ -1,6 +1,10 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
-import { Literal, NamedNode } from '@ontologies/core';
+import {
+  Literal,
+  NamedNode,
+  SomeTerm, 
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import HttpStatus from 'http-status-codes';
 import { SomeNode } from 'link-lib';
@@ -8,6 +12,7 @@ import {
   FC,
   Property,
   register,
+  useFields,
   useGlobalIds,
   useIds,
   useLRS,
@@ -23,7 +28,7 @@ import { menuTopology } from '../../topologies/Menu';
 interface MenuItemDropdownContentProps {
   action?: NamedNode;
   hideIcon?: boolean;
-  href?: SomeNode;
+  href?: SomeTerm;
   image?: SomeNode;
   menuItems?: SomeNode;
   name?: Literal;
@@ -131,11 +136,11 @@ const MenuItemDropdownContentComp = ({
 
 const MenuItemDropdownContent = React.forwardRef<FC, MenuItemDropdownContentProps>(
   (props, ref) => {
-    const[action] = useGlobalIds(ontola.action);
-    const[href] = useIds(ontola.href);
-    const[image] = useIds(schema.image);
-    const[menuItems] = useIds(ontola.menuItems);
-    const[name] = useLiterals(schema.name);
+    const [action] = useGlobalIds(ontola.action);
+    const [href] = useFields(ontola.href);
+    const [image] = useIds(schema.image);
+    const [menuItems] = useIds(ontola.menuItems);
+    const [name] = useLiterals(schema.name);
 
     return(
       <MenuItemDropdownContentComp

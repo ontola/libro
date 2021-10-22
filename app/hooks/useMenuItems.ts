@@ -1,6 +1,4 @@
 import rdf, { NamedNode } from '@ontologies/core';
-import * as rdfx from '@ontologies/rdf';
-import { useGlobalIds } from 'link-redux';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';
 
@@ -18,7 +16,7 @@ const useMenuItems = (menuItemsIRI: NamedNode | undefined, redirect?: boolean): 
   const location = useLocation();
   const history = useHistory();
   const [items] = useContainerToArr<NamedNode>(menuItemsIRI);
-  const [firstItem] = useGlobalIds(menuItemsIRI, rdfx.ns('_0'));
+  const firstItem = items[0];
   const [currentTab, setCurrentTab] = React.useState<NamedNode | null>(null);
 
   const handleChange = React.useCallback((e: Event, url: string) => {

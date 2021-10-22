@@ -13,6 +13,7 @@ import {
   useGlobalIds,
   useIds,
   useLRS,
+  withLRS,
 } from 'link-redux';
 import React from 'react';
 import {
@@ -189,7 +190,7 @@ const CreateVote: FC<CreateVoteProps> = ({
 
         return handle(e);
       })
-  ), [lrs, action, openOmniform]);
+  ), [lrs, execAction, openOmniform]);
 
   if (!target) {
     return null;
@@ -227,6 +228,9 @@ CreateVote.type = [
 
 CreateVote.topology = allTopologies;
 
-CreateVote.hocs = [connect(null, mapDispatchToProps)];
+CreateVote.hocs = [
+  connect(null, mapDispatchToProps),
+  withLRS,
+];
 
 export default register(CreateVote);

@@ -6,12 +6,12 @@ import {
   useGlobalIds,
 } from 'link-redux';
 
-const useAction = (resource: SomeNode, predicate: NamedNode): [action: NamedNode, status: NamedNode] => {
+const useActionStatus = (resource: SomeNode, predicate: NamedNode): [action: NamedNode, status: NamedNode] => {
   const [action] = useGlobalIds(resource, predicate);
   useDataFetching(action);
-  const [actionStatus] = useGlobalIds(schema.actionStatus, action);
+  const [actionStatus] = useGlobalIds(action, schema.actionStatus);
 
   return [action, actionStatus];
 };
 
-export default useAction;
+export default useActionStatus;

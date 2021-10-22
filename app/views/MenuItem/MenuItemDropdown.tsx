@@ -1,11 +1,9 @@
-import * as as from '@ontologies/as';
-import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,
+  array,
   register,
-  useDataFetching,
   useIds,
 } from 'link-redux';
 import React from 'react';
@@ -26,9 +24,7 @@ const trigger: Trigger = (props) => (
 );
 
 const MenuItemDropdown = () => {
-  const [menuItems] = useIds(ontola.menuItems);
-  useDataFetching(menuItems);
-  const items = useIds(menuItems, [ontola.pages, as.items, rdfs.member]);
+  const items = useIds(array(ontola.menuItems));
 
   return(
     <ResourceBoundary>

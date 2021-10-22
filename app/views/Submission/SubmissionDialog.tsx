@@ -12,7 +12,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '../../components/Button';
-import useAction from '../../hooks/useAction';
+import useActionStatus from '../../hooks/useActionStatus';
 import Flow from '../../modules/Flow/topologies/Flow';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
@@ -29,7 +29,7 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
   subject,
   onDone,
 }) => {
-  const [submitAction, submitActionStatus] = useAction(subject, ontola.submitAction);
+  const [submitAction, submitActionStatus] = useActionStatus(subject, ontola.submitAction);
   const [externalIRI] = useIds(dig(schema.isPartOf, argu.externalIRI));
 
   if (submitActionStatus === schema.CompletedActionStatus) {
