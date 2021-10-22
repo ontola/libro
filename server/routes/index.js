@@ -119,7 +119,7 @@ const routes = async function routes(app, port) {
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/*/offline.html', offlineDocument, serveStatic('./dist', staticCompressionOpts), () => {});
-  router.get('/sw.js', serveStatic('./dist/sw.js', staticCompressionOpts), () => {});
+  router.get('/sw.js', serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => { });
 
   if (!standaloneLibro) {
