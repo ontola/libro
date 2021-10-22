@@ -6855,10 +6855,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"attr-accept@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "attr-accept@npm:2.1.0"
-  checksum: a31fdf3b37daed32e8f33a46e17b3a85b156900c9b7e564cf9202a4893bf475aeebda41421c0febce65bac02c528cbe603abc18592af907fc4a7b839a181a5e4
+"attr-accept@npm:^2.2.1":
+  version: 2.2.2
+  resolution: "attr-accept@npm:2.2.2"
+  checksum: e9c5d3580f6cae9c5c25c5c9c8660d344dd8bed25e77df7515c046864fe1aa4bb245e743ad46f55b85443ff53c95e378b3203c3e83f2168a2557e94d0552d458
   languageName: node
   linkType: hard
 
@@ -11302,12 +11302,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-selector@npm:^0.1.12":
-  version: 0.1.12
-  resolution: "file-selector@npm:0.1.12"
+"file-selector@npm:^0.2.2":
+  version: 0.2.4
+  resolution: "file-selector@npm:0.2.4"
   dependencies:
-    tslib: ^1.9.0
-  checksum: b1a8287dabc8c239998ecb319c5b4eae156bdeb23130d3b5b6bed349f296d7798d0e5ef43e83dad3550aa2b1d1fd45ab7c5302fe8a9e26196676089de565f4ac
+    tslib: ^2.0.3
+  checksum: 45258fb1218ba9362e1fd0fdfd25e40b18fd2473adf8a45436245a78310dc76d2fdde95463afe1f4e9e8c0ef178837eb0e5335978c0db348bc1dec425e510429
   languageName: node
   linkType: hard
 
@@ -17793,7 +17793,7 @@ fsevents@~2.3.2:
     react-autosize-textarea: ^7.1.0
     react-collapse: ^5.1.0
     react-dom: ^17.0.2
-    react-dropzone: ^10.2.2
+    react-dropzone: ^11.4.2
     react-easy-emoji: ^1.4.0
     react-final-form: ^6.5.0
     react-fontawesome: ^1.6.1
@@ -19613,16 +19613,16 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:^10.2.2":
-  version: 10.2.2
-  resolution: "react-dropzone@npm:10.2.2"
+"react-dropzone@npm:^11.4.2":
+  version: 11.4.2
+  resolution: "react-dropzone@npm:11.4.2"
   dependencies:
-    attr-accept: ^2.0.0
-    file-selector: ^0.1.12
+    attr-accept: ^2.2.1
+    file-selector: ^0.2.2
     prop-types: ^15.7.2
   peerDependencies:
     react: ">= 16.8"
-  checksum: 25d38168ffcaa2247b3469bd51e32732f8c470a5f0cecd4f1223d12eee016d905333b0391dfa3997908b78a74ea83cf992f4616861fed923c3996917971a7ea2
+  checksum: 0c4cce746df597bf6e720bd8b108476d85b27bc8dbe8bb436064f246f90de5ac81f8cf1367d9efd77768f27363e6c19ce2a41595126db5c41a378b37a83d0dc2
   languageName: node
   linkType: hard
 

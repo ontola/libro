@@ -47,7 +47,6 @@ const Dropzone: React.FC<DropzoneProps> = ({
                 {...getRootProps({
                   className: `Dropzone ${isDragActive ? 'Dropzone__active' : ''}`,
                   onClick: openDialog,
-                  type: 'button',
                 })}
               >
                 {renderedPreview}

@@ -25,9 +25,10 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
   const [uploading, setUploading] = React.useState(false);
   const [storeFile] = useFileStore();
   const uploadHandler = useAction(uploadAction);
+  const inputRef = React.createRef<HTMLInputElement>();
 
-  const onDrop = (acceptedFiles: File | File[]) => {
-    if (!uploadAction) {
+  const onDrop = React.useCallback((acceptedFiles: File | File[]) => {
+    if (!uploadHandler) {
       return [];
     }
 
@@ -51,7 +52,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
       setUploading(false);
       handle(error);
     });
-  };
+  }, [setUploading, uploadHandler, storeFile]);
 
   React.useEffect(() => {
     const handler = (e: ClipboardEvent) => {
@@ -100,6 +101,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
           {children}
           <input
             {...getInputProps()}
+            ref={inputRef}
             type="hidden"
           />
         </div>
