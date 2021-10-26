@@ -15213,9 +15213,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"link-lib@npm:3.0.0-3":
-  version: 3.0.0-3
-  resolution: "link-lib@npm:3.0.0-3"
+"link-lib@npm:3.0.0-4":
+  version: 3.0.0-4
+  resolution: "link-lib@npm:3.0.0-4"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -15225,14 +15225,14 @@ fsevents@~2.3.2:
     "@ontologies/xsd": ">=1.0.0"
     can-ndjson-stream: ^1.0.2
     http-status-codes: ">= 1.x"
-    n-quads-parser: ^2.1.0-3
-  checksum: 73bd93b31142701be195fc41e34953221f00f55d0090b4d91453b4ab511018d498c7bbff330f11b01ba99eafdc2bd241dc4620efaa5fc59cbabe8adbbec758b6
+    n-quads-parser: ^2.1.1
+  checksum: a5d7a4415cb01aa20afc388f8c61badf69aea97f4cc1d512720393b189524282fa9d7884a1ff729bd5c604fb05fddd67f9be0dd3f946a9cc76fb53b76e10931c
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-25":
-  version: 3.0.0-25
-  resolution: "link-redux@npm:3.0.0-25"
+"link-redux@npm:3.0.0-28":
+  version: 3.0.0-28
+  resolution: "link-redux@npm:3.0.0-28"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -15241,7 +15241,7 @@ fsevents@~2.3.2:
     link-lib: ">=3.0.0-1"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 9acaa0abae967e26efed422666a170bfdfd3788ae01c25f77810e16c3355e1e4e4c237afb9b013a779f6797cccb87bf47a24f95d447331b71e99006cd98b5e4b
+  checksum: db6ae54f3a493e5b5f4eb6f276258221348a0824c5bc5798f59bc2d8b4753560b1d9a42b7a2e796eb27115735c43189b7a5c1b4b3e66b58835cc82cb2473cd51
   languageName: node
   linkType: hard
 
@@ -17440,8 +17440,8 @@ fsevents@~2.3.2:
     koa-session: ^5.12.3
     koa-static: ^5.0.0
     koa2-connect: ^1.0.2
-    link-lib: 3.0.0-3
-    link-redux: 3.0.0-25
+    link-lib: 3.0.0-4
+    link-redux: 3.0.0-28
     lint-staged: ^10.5.4
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^1.4.1
