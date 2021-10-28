@@ -168,12 +168,12 @@ const CreateVote: FC<CreateVoteProps> = ({
   const [currentVote, currentOption] = useCurrentVote(isPartOf);
   const option = getOption(subject);
   const active = rdf.equals(currentOption, argu[option]);
-  const [deleteVoteAction] = useGlobalIds(active ? currentVote : undefined, ontola.trashAction);
+  const [deleteVoteAction] = useGlobalIds(currentVote, ontola.trashAction);
   const action = active && entityIsLoaded<LRS>(lrs, deleteVoteAction)
     ? deleteVoteAction
     : subject;
   const execAction = useAction(action);
-  useDataFetching(deleteVoteAction);
+  useDataFetching(active ? deleteVoteAction : undefined);
 
   const [actionStatus] = useFields(action, schema.actionStatus);
   const [target] = useIds(action, schema.target);
