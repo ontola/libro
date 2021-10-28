@@ -1,8 +1,9 @@
 import { SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { LinkReduxLRSType, useLRS } from 'link-redux';
+import { dig, useFields } from 'link-redux';
 import React from 'react';
 import parser from 'uri-template';
+import { useDebouncedCallback } from 'use-debounce';
 
 import normalizedLower from '../helpers/i18n';
 import { iriFromTemplate } from '../helpers/uriTemplate';
@@ -10,36 +11,55 @@ import ontola from '../ontology/ontola';
 
 import useFieldOptions from './useFieldOptions';
 
+const DEBOUNCE_TIMEOUT = 500;
+
 export interface AsyncFieldOptions {
   loading: boolean;
   options: SomeTerm[];
   searchable: boolean;
 }
 
-const iriTemplateFromCollection = (lrs: LinkReduxLRSType, shIn: SomeNode) => {
-  const [template] = lrs.dig(shIn, [ontola.baseCollection, ontola.iriTemplate]);
-  const searchTemplate = template && parser.parse(template.value);
-  const searchable = searchTemplate?.expressions?.some((expr) => (
-    expr.params.map((param) => param.name).includes('q')
-  ));
+const useIriTemplateFromCollection = (shIn: SomeNode | undefined) => {
+  const [template] = useFields(shIn, dig(ontola.baseCollection, ontola.iriTemplate));
+
+  const searchable = React.useMemo(() => {
+    if (!template) {
+      return false;
+    }
+
+    const searchTemplate = template && parser.parse(template.value);
+
+    return searchTemplate?.expressions?.some((expr) => (
+      expr.params.map((param) => param.name).includes('q')
+    ));
+  }, [template]);
 
   return searchable ? template : undefined;
 };
 
-const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputValue: string): AsyncFieldOptions => {
-  const lrs = useLRS();
+const useAsyncFieldOptions = (shIn: SomeNode | undefined, inputValue: string): AsyncFieldOptions => {
   const [currentShIn, setCurrentShIn] = React.useState(shIn);
-  const searchTemplate = React.useMemo(() => shIn && iriTemplateFromCollection(lrs, shIn), [shIn]);
+  const searchTemplate = useIriTemplateFromCollection(shIn);
   const { loading, options } = useFieldOptions(currentShIn);
+  const [searchInputValue, setSearchInputValue] = React.useState(inputValue);
+  const [debouncedSearchInputChange] = useDebouncedCallback(
+    (newValue) => {
+      setSearchInputValue(newValue);
+    },
+    DEBOUNCE_TIMEOUT,
+    { leading: true },
+  );
+  React.useEffect(() => {
+    if (inputValue !== searchInputValue) {
+      debouncedSearchInputChange(inputValue);
+    }
+  }, [inputValue]);
 
   React.useEffect(() => {
-    setCurrentShIn(shIn);
-  }, [open]);
-  React.useEffect(() => {
-    if (inputValue === '') {
+    if (searchInputValue === '') {
       setCurrentShIn(shIn);
     } else if (searchTemplate) {
-      const compareValue = inputValue && normalizedLower(inputValue);
+      const compareValue = searchInputValue && normalizedLower(searchInputValue);
       const searchResultOpts = {} as any;
 
       if (compareValue?.length > 0) {
@@ -54,7 +74,7 @@ const useAsyncFieldOptions = (open: boolean, shIn: SomeNode | undefined, inputVa
       const searchResult = iriFromTemplate(searchTemplate.value, searchResultOpts);
       setCurrentShIn(searchResult);
     }
-  }, [inputValue]);
+  }, [searchInputValue, searchTemplate]);
 
   return {
     loading,

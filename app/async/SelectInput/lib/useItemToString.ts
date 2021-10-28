@@ -19,7 +19,7 @@ export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) 
     }
 
     if (!isResource(item)) {
-      return item.value;
+      return item.value ?? '';
     }
 
     if (!entityIsLoaded(lrs, item)) {
@@ -34,6 +34,6 @@ export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) 
     const classDisplayProp = itemClassDisplayProp ?? schema.name;
     const label = lrs.getResourceProperty(item, [classDisplayProp, ...namePredicates]);
 
-    return label?.value ?? item.value;
+    return label?.value ?? item.value ?? '';
   }, [lrs]);
 };

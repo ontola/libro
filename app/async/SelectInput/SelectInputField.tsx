@@ -14,14 +14,12 @@ import clsx from 'clsx';
 import {
   Property,
   Resource,
-  ReturnType,
+  useBooleans,
   useDataInvalidation,
   useLRS,
-  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useDebouncedCallback } from 'use-debounce';
 
 import CollectionCreateActionButton from '../../components/Collection/CollectionCreateActionButton';
 import { FormContext, FormTheme } from '../../components/Form/Form';
@@ -46,7 +44,6 @@ import SelectList from './SelectList';
 import useSelectStyles from './useSelectStyles';
 import VirtualizedSelect from './VirtualizedSelect';
 
-const DEBOUNCE_TIMEOUT = 500;
 const VIRTUALIZATION_THRESHOLD = 10;
 
 const SelectInputField: React.FC<InputComponentProps> = ({
@@ -63,9 +60,9 @@ const SelectInputField: React.FC<InputComponentProps> = ({
   const classes = useSelectStyles();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
-  const [currentValue, setCurrentValue] = React.useState('');
-  const grouped = useProperty(form.groupedOptions, { returnType: ReturnType.Literal });
-  const { loading, options, searchable } = useAsyncFieldOptions(open, fieldShape.shIn, currentValue);
+  const [inputValue, setInputValue] = React.useState(multiple ? '' : itemToString(values[0]?.value));
+  const [grouped] = useBooleans(form.groupedOptions);
+  const { loading, options, searchable } = useAsyncFieldOptions(fieldShape.shIn, inputValue);
 
   const sortedOptions = React.useMemo(() => (
     grouped ? options.sort(sortByGroup(lrs)) : options
@@ -79,22 +76,16 @@ const SelectInputField: React.FC<InputComponentProps> = ({
       <CollectionCreateActionButton />
     </Resource>
   ), [fieldShape.shIn]);
-
-  const [handleInputValueChange] = useDebouncedCallback(
-    (_, newValue) => {
-      setCurrentValue(newValue);
-    },
-    searchable ? DEBOUNCE_TIMEOUT : 0,
-    { leading: true }
-    ,
-  );
+  const handleInputValueChange = React.useCallback((_, newValue) => {
+    setInputValue(newValue);
+  }, [setInputValue]);
 
   useDataInvalidation(options.filter(isResource));
   const groupBy = React.useCallback((option: SomeTerm) => {
     const group = isNamedNode(option) ? lrs.getResourceProperty(option, ontola.groupBy) : undefined;
     const groupName = isNamedNode(group) ? lrs.getResourceProperty(group, schema.name) : undefined;
 
-    return groupName?.value || '';
+    return groupName?.value ?? '';
   }, []);
 
   const valueProps = React.useMemo(() => {
@@ -106,13 +97,13 @@ const SelectInputField: React.FC<InputComponentProps> = ({
       value: filteredValues,
     } : {
       multiple: false,
-      value: filteredValues[0],
+      value: filteredValues[0] ?? null,
     };
   }, [multiple, values]);
 
   const handleChange = React.useCallback((e, v) => {
     e.preventDefault();
-    setCurrentValue('');
+    setInputValue('');
 
     if (multiple) {
       onChange(v.filter(isSomeTerm));
@@ -166,6 +157,11 @@ const SelectInputField: React.FC<InputComponentProps> = ({
       />
     );
   }, [createButton, multiple, valueProps.value]);
+  React.useEffect(() => {
+    if (open) {
+      handleInputValueChange(null, '');
+    }
+  }, [open]);
 
   const freshValues = values.filter((value) => isNamedNode(value) && !entityIsLoaded(lrs, value));
 
@@ -199,8 +195,9 @@ const SelectInputField: React.FC<InputComponentProps> = ({
           getOptionLabel={itemToString}
           groupBy={grouped ? groupBy : undefined}
           id={name}
+          inputValue={inputValue}
           loading={loading}
-          noOptionsText={formatEmptyMessage(formatMessage, searchable, currentValue)}
+          noOptionsText={formatEmptyMessage(formatMessage, searchable, inputValue)}
           options={sortedOptions}
           renderInput={renderInput}
           renderOption={renderOption}
