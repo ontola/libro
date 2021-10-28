@@ -25,58 +25,59 @@ const CollectionFilterToggle = ({
 }: CollectionFilterProps): JSX.Element | null => {
   const intl = useIntl();
   const { subject } = useLinkRenderContext();
-  const {
-    appliedFilters,
-    redirectPagination,
-  } = useCollectionOptions();
+  const { redirectPagination } = useCollectionOptions();
 
-  const autoShowFilters = redirectPagination || appliedFilters.length > 0;
+  const filters = useIds(ontola.collectionFilter);
+  const [fieldSequence] = useIds(ontola.filterFields);
+  const [filterFields] = useSeqToArr(fieldSequence);
 
-  const currentFilters = useIds(ontola.collectionFilter);
-  const [filterSequence] = useIds(ontola.filterFields);
-  const [filters] = useSeqToArr(filterSequence);
-  const [showFilters, setShowFilters] = React.useState<{
+  const [filterBarState, toggleFilterBar] = React.useState<{
+    focus: boolean,
     show: boolean,
-    userAction: boolean,
   }>({
-    show: !!autoShowFilters,
-    userAction: false,
+    focus: false,
+    show: !!redirectPagination && filters.length > 0,
   });
 
-  const hasUserSetFilters = (autoShowFilters ? currentFilters : appliedFilters).length > 0;
-
   const handleClick = () => {
-    setShowFilters({
-      show: !showFilters.show,
-      userAction: true,
+    toggleFilterBar({
+      focus: true,
+      show: !filterBarState.show,
     });
   };
 
-  if (filters.length == 0) {
+  if (filterFields.length == 0) {
     return null;
   }
 
+  const [showPortal, setShowPortal] = React.useState<boolean>(!!filterContainerRef.current);
+  React.useEffect(() => {
+    setShowPortal(!!filterContainerRef.current);
+  }, [filterContainerRef.current]);
+
   return (
     <React.Fragment>
-      <Portal container={filterContainerRef.current}>
-        <Collapse
-          in={showFilters.show}
-          timeout={FILTER_TRANSITION_LENGTH}
-        >
-          <FilterComboInput
-            autoFocus={showFilters.userAction}
-            currentFilters={currentFilters}
-            filters={filters}
-            partOf={subject}
-            shown={showFilters.show}
-            transitionTime={FILTER_TRANSITION_LENGTH}
-          />
-        </Collapse>
-      </Portal>
+      {showPortal ? (
+        <Portal container={filterContainerRef.current}>
+          <Collapse
+            in={filterBarState.show}
+            timeout={FILTER_TRANSITION_LENGTH}
+          >
+            <FilterComboInput
+              autoFocus={filterBarState.focus}
+              currentFilters={filters}
+              filters={filterFields}
+              partOf={subject}
+              shown={filterBarState.show}
+              transitionTime={FILTER_TRANSITION_LENGTH}
+            />
+          </Collapse>
+        </Portal>
+      ) : null}
       <Badge
         badgeContent=" "
         color="secondary"
-        invisible={showFilters.show || !hasUserSetFilters}
+        invisible={filterBarState.show || filters.length == 0}
         overlap="circle"
         variant="dot"
       >
