@@ -10,7 +10,6 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { ButtonVariant } from '../../../components/Button';
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
@@ -37,10 +36,7 @@ const InfiniteCollectionNext = ({
   );
 
   return (
-    <ButtonWithFeedback
-      variant={ButtonVariant.Neutral}
-      onClick={onClick}
-    >
+    <ButtonWithFeedback onClick={onClick}>
       <FormattedMessage
         defaultMessage="Load more"
         id="https://app.argu.co/i18n/collection/loadMore"
