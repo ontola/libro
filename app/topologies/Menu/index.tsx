@@ -1,6 +1,7 @@
 import React from 'react';
 
-import DropdownMenu, { Trigger } from '../../components/DropdownMenu';
+import DropdownMenu  from '../../components/DropdownMenu/DropdownMenu';
+import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import argu from '../../ontology/argu';
 import Topology, { TopologyContent } from '../Topology';
 

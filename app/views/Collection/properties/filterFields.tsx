@@ -4,12 +4,12 @@ import {
   FC,
   Resource,
   register,
-  useIds, 
+  useIds,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { Trigger, TriggerButton } from '../../../components/DropdownMenu';
+import TriggerButton, { Trigger } from '../../../components/DropdownMenu/TriggerButton';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';

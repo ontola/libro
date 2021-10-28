@@ -12,14 +12,13 @@ import { isFunction } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 
-import { TriggerButtonProps } from './TriggerButton';
+import { Trigger } from './TriggerButton';
 
 export interface Test2 extends SubjectProp {
   handleClose: () => void;
 }
 export type RenderProp = (props: Test2) => JSX.Element;
 
-export type Trigger = (triggerProps: TriggerButtonProps) => JSX.Element;
 export interface DropdownMenuProps {
   children: React.ReactNode | RenderProp;
   className: string;
@@ -138,7 +137,5 @@ const DropdownMenu = ({
     </React.Fragment>
   );
 };
-
-export { TriggerButton } from './TriggerButton';
 
 export default DropdownMenu;

@@ -10,6 +10,7 @@ export default {
   Membership: org('Membership'),
 
   /* properties */
+  hasMember: org('hasMember'),
   hasMembership: org('hasMembership'),
   member: org('member'),
   organization: org('organization'),

@@ -8,7 +8,9 @@ export interface TriggerButtonProps {
   open: boolean;
 }
 
-export const TriggerButton = ({
+export type Trigger = (triggerProps: TriggerButtonProps) => JSX.Element;
+
+const TriggerButton = ({
   onClick,
   anchorRef,
   id,
@@ -28,3 +30,5 @@ export const TriggerButton = ({
     {children}
   </IconButton>
 );
+
+export default TriggerButton;

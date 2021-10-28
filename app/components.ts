@@ -32,7 +32,7 @@ import CompCoverImage from './components/CoverImage';
 import CompDetail from './components/Detail';
 import CompDetailText from './components/Detail/DetailText';
 import CompDetailDate from './components/DetailDate';
-import CompDropdownMenu from './components/DropdownMenu';
+import CompDropdownMenu from './components/DropdownMenu/DropdownMenu';
 import CompError from './components/Error';
 import CompFieldLabel from './components/FieldLabel';
 import CompFormFooterImage from './components/Form/FooterImage';

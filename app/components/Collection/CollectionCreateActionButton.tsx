@@ -17,7 +17,7 @@ import FontAwesome from 'react-fontawesome';
 import { entityIsLoaded, sort } from '../../helpers/data';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
-import { Trigger, TriggerButton } from '../DropdownMenu';
+import TriggerButton, { Trigger } from '../DropdownMenu/TriggerButton';
 import { LoadingCardFloat } from '../Loading';
 import ResourceBoundary from '../ResourceBoundary';
 

@@ -1,24 +1,17 @@
 import * as schema from '@ontologies/schema';
 import {
-  Resource,
   register,
   useIds,
   useProperty,
 } from 'link-redux';
-import React, { ForwardedRef } from 'react';
+import React from 'react';
 
-import { TriggerButtonProps } from '../../components/DropdownMenu/TriggerButton';
+import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
-
-interface MenuChildProps {
-  handleClose: () => void;
-  ref: ForwardedRef<unknown>;
-}
 
 const MenuItemNavbar = () => {
   const [href] = useProperty(ontola.href);
@@ -30,39 +23,8 @@ const MenuItemNavbar = () => {
     ? normalizeFontAwesomeIRI(image)
     : undefined;
 
-  const menuItemTrigger = React.useCallback(
-    ({
-      onClick,
-      anchorRef,
-      id,
-      open,
-    }: TriggerButtonProps) => (
-      <NavbarLinkLink
-        aria-controls={id}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        icon={icon}
-        image={icon ? undefined : image}
-        label={name?.value}
-        ref={anchorRef}
-        onClick={onClick}
-      />
-    ), [image, name, href]);
-
   if (menuItems) {
-    return (
-      <Menu trigger={menuItemTrigger}>
-        {({ handleClose, ref }: MenuChildProps) => (
-          <Resource
-            childProps={{
-              onClose: handleClose,
-              ref,
-            }}
-            subject={menuItems}
-          />
-        )}
-      </Menu>
-    );
+    return <LinkedMenuTrigger />;
   }
 
   return (

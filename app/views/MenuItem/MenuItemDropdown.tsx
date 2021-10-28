@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Trigger, TriggerButton } from '../../components/DropdownMenu';
+import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';

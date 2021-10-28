@@ -8,7 +8,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
-import { Trigger, TriggerButton } from '../../../components/DropdownMenu';
+import TriggerButton, { Trigger } from '../../../components/DropdownMenu/TriggerButton';
 import MenuItem from '../../../components/MenuItem';
 import { retrievePath } from '../../../helpers/iris';
 import { SortProps, useSorting } from '../../../hooks/useSorting';

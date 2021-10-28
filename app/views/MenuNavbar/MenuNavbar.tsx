@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Trigger } from '../../components/DropdownMenu';
+import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import app from '../../ontology/app';
 import AppMenu from '../../topologies/AppMenu';

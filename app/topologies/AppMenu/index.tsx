@@ -1,9 +1,7 @@
 import React from 'react';
 
-import DropdownMenu, {
-  RenderProp,
-  Trigger,
-} from '../../components/DropdownMenu';
+import DropdownMenu, { RenderProp } from '../../components/DropdownMenu/DropdownMenu';
+import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import { isFunction } from '../../helpers/types';
 import app from '../../ontology/app';
 import Topology from '../Topology';
