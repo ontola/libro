@@ -3,6 +3,7 @@ import { SomeNode } from 'link-lib';
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { tryParseInt } from '../../helpers/numbers';
 import Heading from '../Heading';
 import LinkDuo from '../LinkDuo';
 import ResourceBoundary from '../ResourceBoundary';
@@ -47,7 +48,7 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({
           defaultMessage="Show {count} additional replies..."
           id="https://app.argu.co/i18n/collections/showRepliesLabel"
           values={{
-            count: totalItems.value,
+            count: tryParseInt(totalItems),
           }}
         />
       </LinkDuo>
