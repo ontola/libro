@@ -38,7 +38,7 @@ module.exports = merge(common, {
     },
   },
 
-  devtool: 'eval-cheap-source-map',
+  devtool: 'eval-cheap-module-source-map',
 
   entry: [
     './app/index.tsx',
@@ -58,7 +58,13 @@ module.exports = merge(common, {
           /sw\/index\.js/
         ],
         test: /\.(m?(t|j)sx?)$/,
-        use: ['ts-loader'],
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            experimentalWatchApi: true,
+            transpileOnly: true,
+          },
+        }],
       },
       {
         test: /\.(sa|sc|c)ss$/,
