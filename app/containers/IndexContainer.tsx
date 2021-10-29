@@ -16,7 +16,7 @@ import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
-import { appContext } from '../appContext';
+import { WebManifest, appContext } from '../appContext';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
 import AppFrame from '../routes/App';
@@ -29,6 +29,7 @@ export interface RouterProps {
 export interface IndexContainerProps {
   Router: FunctionComponent<RouterProps>;
   store: Store;
+  manifest: WebManifest,
 }
 
 export interface UpdateLRSIntlProps {
@@ -43,8 +44,8 @@ const UpdateLRSIntl = ({ children }: UpdateLRSIntlProps) => {
   return children;
 };
 
-const getThemeVariables = () => {
-  const websiteMeta = __CLIENT__ ? window.WEBSITE_META : undefined;
+const getThemeVariables = (manifest: WebManifest) => {
+  const websiteMeta = manifest.ontola;
 
   if (typeof websiteMeta === 'undefined' || Object.keys(websiteMeta).length === 0) {
     return {};
@@ -79,6 +80,7 @@ const getThemeVariables = () => {
 const IndexContainer = ({
   Router,
   store,
+  manifest,
 }: IndexContainerProps): JSX.Element => {
   const { lrs, theme: themeName } = React.useContext(appContext);
   const selectedLang = (lrs.store as any).langPrefs[0];
@@ -92,7 +94,7 @@ const IndexContainer = ({
     dayjs.locale('en');
   }
 
-  const themeVariables = getThemeVariables();
+  const themeVariables = getThemeVariables(manifest);
   const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);
 
   return (

@@ -5,6 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { WebManifest, appContext } from '../appContext';
+import LinkLoader from '../components/Loading/LinkLoader';
 import generateLRS from '../helpers/generateLRS';
 import { ontolaActionPrefix } from '../middleware/ontolaMiddleware';
 // @ts-ignore
@@ -14,8 +16,12 @@ export interface ClonedLRS extends LinkReduxLRSType {
   originalLRS: LinkReduxLRSType
 }
 
-const cloneLRS = (old: LinkReduxLRSType) =>  {
-  const { lrs: next } = generateLRS([], { middleware: false });
+const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) =>  {
+  const { lrs: next } = await generateLRS(
+    manifest,
+    [],
+    { middleware: false },
+  );
 
   register(next);
 
@@ -46,10 +52,20 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
 export function withFormLRS<P>(WrappedComponent: React.FC<P>): React.FC<P> {
   const WithFormLRS: React.FC<P> = (props: P) => {
     const lrs = useLRS();
-    const formLRS = React.useMemo(() => cloneLRS(lrs), ['forceHotReload']);
+    const { manifest } = React.useContext(appContext);
+
+    const [formLRS, setFormLRS] = React.useState<LinkReduxLRSType | undefined>();
+
+    React.useEffect(() => {
+      cloneLRS(lrs, manifest).then((cloned) => setFormLRS(cloned));
+    }, [lrs]);
+
+    if (!formLRS) {
+      return <LinkLoader />;
+    }
 
     return (
-      <RenderStoreProvider value={(formLRS as LinkReduxLRSType)}>
+      <RenderStoreProvider value={formLRS}>
         <WrappedComponent {...props} />
       </RenderStoreProvider>
     );

@@ -1,7 +1,7 @@
-import argu from '../../app/ontology/argu';
+import argu from '../app/ontology/argu';
 
-export default (origin) => {
-  const t = new URL(origin);
+export const defaultManifest = (websiteIRI) => {
+  const t = new URL(websiteIRI);
   t.host = `analytics.${t.host}`;
   const matomoHostname = t.toString();
 
@@ -34,17 +34,17 @@ export default (origin) => {
           type: 'Matomo',
         },
       ],
-      website_iri: origin,
+      website_iri: websiteIRI,
       websocket_path: null,
     },
     rdf_type: argu.Manifest.value,
-    scope: origin,
+    scope: websiteIRI,
     serviceworker: {
-      scope: origin,
-      src: `${origin}/sw.js`,
+      scope: websiteIRI,
+      src: `${websiteIRI}/sw.js`,
     },
     short_name: 'Libro',
-    start_url: `${origin}/`,
+    start_url: `${websiteIRI}/`,
     theme_color: '#475668',
   })
 }

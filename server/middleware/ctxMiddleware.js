@@ -10,7 +10,7 @@ import {
   standaloneLibro,
 } from '../config';
 import { EXEC_HEADER_NAME } from '../utils/actions';
-import defaultManifest from '../utils/defaultManifest';
+import { defaultManifest } from '../../common/defaultManifest';
 import logging from '../utils/logging';
 import { getBackendManifest } from '../utils/manifest';
 import {

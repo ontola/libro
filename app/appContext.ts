@@ -3,6 +3,7 @@ import React, { SetStateAction } from 'react';
 
 export interface AppContext {
   lrs: LinkReduxLRSType;
+  manifest: WebManifest;
   resource: string | undefined;
   theme: string;
   themeOpts: string;
@@ -13,6 +14,8 @@ export interface AppContext {
 export interface AppContextProviderProps {
   lrs: LinkReduxLRSType;
   children: React.ReactNode;
+  appCtxOverrides?: Partial<AppContext>;
+  manifest: WebManifest;
 }
 
 export interface Tracking {
@@ -52,12 +55,19 @@ export interface OntolaManifest {
   theme_options: string,
   tracking: Tracking[],
   website_iri: string,
-  websocket: string,
-  websocket_path?: string,
+  websocket_path?: string | null,
+}
+
+export interface Icon {
+  src: string;
+  sizes: string;
+  type: string;
 }
 
 export interface WebManifest {
-  ontola: Partial<OntolaManifest>;
+  short_name: string;
+  ontola: OntolaManifest;
+  icons: Icon[];
 }
 
 export const appContext = React.createContext<AppContext>(undefined as any);

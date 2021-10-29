@@ -35,24 +35,30 @@ const Communicator = (): null => {
       return;
     }
 
-    const { currentResource, doc: { source } } = message;
+    const updateContext = async ({ currentResource, doc: { source } }: PageViewerState) => {
+      try {
+        const graphs = parseToGraph(source);
+        const data = graphs.flatMap(([_, rdfIndex]) => (
+          rdfIndex as RDFIndex
+        ).quads);
+        const next = await generateLRS(message.manifest, data);
+        register(next.lrs);
 
-    try {
-      const graphs = parseToGraph(source);
-      const data = graphs.flatMap(([_, rdfIndex]) => (rdfIndex as RDFIndex).quads);
-      const next = generateLRS(data);
-      register(next.lrs);
+        updateCtx((prev) => (
+          {
+            ...prev,
+            lrs: next.lrs,
+            resource: currentResource,
+            theme: message.manifest.ontola?.theme ?? 'common',
+          }
+        ));
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.debug(err);
+      }
+    };
 
-      updateCtx((prev) => ({
-        ...prev,
-        lrs: next.lrs,
-        resource: currentResource,
-        theme: message.manifest.ontola?.theme ?? 'common',
-      }));
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.debug(err);
-    }
+    updateContext(message);
   }, [message, updateCtx]);
 
   return null;

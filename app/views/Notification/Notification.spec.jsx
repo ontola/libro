@@ -9,6 +9,7 @@ import argu from '../../ontology/argu';
 import hydra from '../../ontology/hydra';
 import ontola from '../../ontology/ontola';
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -144,10 +145,13 @@ describe('Notification', () => {
       const notificationText = getByText(NOTIFICATION_TEXT);
       expect(notificationText).toBeVisible();
       expect(getByTitle(MARK_AS_READ_TEXT)).toBeVisible();
-      fireEvent.click(notificationText);
 
-      await waitForElementToBeRemoved(() => getByTitle(MARK_AS_READ_TEXT));
+      act(() => {
+        fireEvent.click(notificationText);
+      })
+
       expect(fetch.mock.calls.length).toEqual(1);
+      await waitForElementToBeRemoved(() => getByTitle(MARK_AS_READ_TEXT));
       expect(queryByTitle(MARK_AS_READ_TEXT)).toBeNull();
     });
   });

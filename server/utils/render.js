@@ -68,10 +68,10 @@ export const renderFullPage = async (ctx, data) => {
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
-          ${prerenderMetaTags(ctx, seed)}
+          ${prerenderMetaTags(ctx, manifest, seed)}
           ${headTracking}
 
-          <meta name="website-iri" content="${manifest.ontola.website_iri ?? manifest.scope ?? ''}">
+          <meta name="website" content="${manifest.ontola.website_iri ?? manifest.scope ?? ''}">
           <meta property="og:type" content="website">
           <meta name="mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-capable" content="yes">

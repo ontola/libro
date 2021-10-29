@@ -12,13 +12,15 @@ import wdt from './wdt';
 
 export const website = __TEST__
   ? 'https://app.argu.co/freetown'
-  : getMetaContent('website-iri') ?? 'https://example.com';
+  : getMetaContent('website') ?? 'https://example.com';
 export const frontendIRI: NamedNode = rdf.namedNode(website!);
 export const frontendIRIStr = frontendIRI.value;
 export const frontendPathname = new URL(frontendIRIStr).pathname;
 export const frontendOrigin = new URL(frontendIRIStr).origin;
 
-const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
+export const trailing = (iri: string): string => iri.endsWith('/') ? iri : `${iri}/`;
+
+const app = createNS(trailing(frontendIRIStr));
 
 const contents = app('contents');
 const parent = app('parent');

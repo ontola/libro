@@ -1,5 +1,6 @@
 import rdf, { createNS } from '@ontologies/core';
 
+import { defaultManifest } from '../../../common/defaultManifest'
 import generateLRS from '../generateLRS';
 
 import { defaultContext } from './utilities';
@@ -16,11 +17,13 @@ const context = (iri, lrs, store, history, serviceWorkerCommunicator) => default
 });
 
 async function chargeLRS(id, obj, store) {
+  const testManifest = defaultManifest('https://app.argu.co/freetown');
+
   const {
     lrs,
     history,
     serviceWorkerCommunicator,
-  } = generateLRS();
+  } = await generateLRS(testManifest);
   await lrs.processDelta(obj, true);
   lrs.store.flush();
 

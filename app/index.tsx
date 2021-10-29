@@ -5,6 +5,9 @@ import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
 import { render } from 'react-dom';
 
+import { defaultManifest } from '../common/defaultManifest';
+
+import { WebManifest } from './appContext';
 import { AppContextProvider } from './AppContextProvider';
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
@@ -13,13 +16,25 @@ import { handle, log } from './helpers/logging';
 import App from './App';
 import patchRequestInitGenerator from './helpers/monkey';
 
-(function boot() {
+const getWebsiteManifest = (): WebManifest => {
+  if (!__CLIENT__
+    || typeof window.WEBSITE_MANIFEST === 'undefined'
+    || Object.keys(window.WEBSITE_MANIFEST).length === 0) {
+    return defaultManifest(window.location.origin);
+  }
+
+  return window.WEBSITE_MANIFEST;
+};
+
+(async function boot() {
   log('Booting');
+
+  const manifest = getWebsiteManifest();
 
   const {
     lrs,
     history,
-  } = generateLRS();
+  } = await generateLRS(manifest);
   patchRequestInitGenerator(lrs);
 
   if (document.documentElement.lang) {
@@ -37,7 +52,10 @@ import patchRequestInitGenerator from './helpers/monkey';
     }
 
     render(
-      <AppContextProvider lrs={lrs}>
+      <AppContextProvider
+        lrs={lrs}
+        manifest={manifest}
+      >
         <App history={history} />
       </AppContextProvider>,
       document.getElementById(APP_ELEMENT),

@@ -8,7 +8,7 @@ import {
 } from 'http-status-codes';
 
 import { assetsHost, standaloneLibro } from '../config';
-import defaultManifest from '../utils/defaultManifest';
+import { defaultManifest } from '../../common/defaultManifest';
 import fetchPrerenderData from '../utils/fetchPrerenderData';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';

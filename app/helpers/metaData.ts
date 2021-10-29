@@ -3,6 +3,7 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { Context } from 'koa';
 
+import { Icon, WebManifest } from '../appContext';
 import dbo from '../ontology/dbo';
 import ontola from '../ontology/ontola';
 
@@ -46,12 +47,6 @@ interface MetaData {
   text?: string;
   coverURL?: string;
   imageURL?: string;
-}
-
-interface Icon {
-  src: string;
-  sizes: string;
-  type: string;
 }
 
 export const getMetaTags = ({
@@ -162,11 +157,8 @@ const findValue = (subjectQuads: string[], predicates: string[]): string | undef
   .find((q) => q[QuadPosition.object])
   ?.[QuadPosition.object];
 
-export const prerenderMetaTags = (ctx: Context, data: string): string => {
-  const {
-    manifest,
-    request: { href },
-  } = ctx;
+export const prerenderMetaTags = (ctx: Context, manifest: WebManifest, data: string): string => {
+  const { request: { href } } = ctx;
 
   const quads = data
     .split('\n')

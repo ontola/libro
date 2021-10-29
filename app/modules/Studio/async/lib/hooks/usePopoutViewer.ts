@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { defaultManifest } from '../../../../../../common/defaultManifest';
 import { WebManifest } from '../../../../../appContext';
 import { handle } from '../../../../../helpers/logging';
 import { studioContext } from '../context/StudioContext';
@@ -21,7 +22,7 @@ export const usePopoutViewer = ({ onClose, onOpen }: PopoutEditorProps): () => v
   const { resourceIndex } = React.useContext(editorStateContext);
 
   const [docSetter, setDocSetter] = React.useState<(doc: PageViewerState) => void>(() => undefined);
-  const [manifest, setManifest] = React.useState<Partial<WebManifest>>({});
+  const [manifest, setManifest] = React.useState<WebManifest>(defaultManifest('https://changeme.localdev'));
 
   const recreateDialog = useDialogHandle(onClose, onOpen, setDocSetter);
 

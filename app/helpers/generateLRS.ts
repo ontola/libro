@@ -13,6 +13,7 @@ import {
 import { MiddlewareFn, createStore } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
+import { WebManifest } from '../appContext';
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
 import { appMiddleware } from '../middleware/app';
@@ -52,14 +53,19 @@ const defaultOpts = {
   middleware: __CLIENT__,
 };
 
-export default function generateLRS(initialDelta: Quad[] = [], options: GenerateLRSOpts = defaultOpts): LRSBundle {
-  const basename = __CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer')
-    ? '/d/studio/viewer'
-    : '';
-  const history = options.middleware
-    ? createBrowserHistory({ basename })
-    : createMemoryHistory();
+const basename = __CLIENT__ && !__TEST__ && window.location.pathname.startsWith('/d/studio/viewer')
+  ? '/d/studio/viewer'
+  : '';
 
+const history = __CLIENT__ && !__TEST__
+  ? createBrowserHistory({ basename })
+  : createMemoryHistory();
+
+export default async function generateLRS(
+  manifest: WebManifest,
+  initialDelta: Quad[] = [],
+  options: GenerateLRSOpts = defaultOpts,
+): Promise<LRSBundle> {
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
   const middleware: Array<MiddlewareFn<any>> = options.middleware ? [
@@ -68,7 +74,7 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
     analyticsMiddleware(),
     appMiddleware(),
     searchMiddleware(),
-    execFilter(),
+    execFilter(manifest.ontola.website_iri),
   ] : [];
   const storeOptions = __CLIENT__
     ? { report: handle }
@@ -430,7 +436,7 @@ export default function generateLRS(initialDelta: Quad[] = [], options: Generate
   lrs.store.addQuads(ontologyData);
 
   if (initialDelta.length > 0) {
-    lrs.processDelta(initialDelta);
+    await lrs.processDelta(initialDelta);
   }
 
   return {

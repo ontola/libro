@@ -4,9 +4,9 @@ import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { StaticRouter } from 'react-router';
 
-import { appContext } from './appContext';
+import { WebManifest, appContext } from './appContext';
 import IndexContainer, { RouterProps } from './containers/IndexContainer';
-import { getWebsiteContextFromWebsite } from './helpers/app';
+import { WebsiteCtx, getWebsiteContextFromWebsite } from './helpers/app';
 import configureStore from './state';
 import register from './views';
 import { WebsiteContext } from './location';
@@ -14,20 +14,27 @@ import { WebsiteContext } from './location';
 interface AppProps {
   history: History;
   location?: string;
+  manifestOverride?: WebManifest,
+  prerender?: boolean,
+  websiteCtxOverride?: WebsiteCtx,
 }
 
 const App = ({
   history,
   location,
+  prerender,
+  manifestOverride,
+  websiteCtxOverride,
 }: AppProps): JSX.Element => {
-  const { lrs, website } = React.useContext(appContext);
+  const { lrs, manifest, website } = React.useContext(appContext);
   const store = configureStore(history);
   register(lrs);
-  const websiteCtxValue = getWebsiteContextFromWebsite(website);
+  const websiteCtxValue = websiteCtxOverride ?? getWebsiteContextFromWebsite(website);
+  const manifestValue = manifestOverride ?? manifest;
 
   let router;
 
-  if (__CLIENT__) {
+  if (__CLIENT__ || prerender !== true) {
     router = ({ children }: RouterProps) => (
       <ConnectedRouter history={history}>
         {children}
@@ -52,6 +59,7 @@ const App = ({
         <HelmetProvider>
           <IndexContainer
             Router={router}
+            manifest={manifestValue}
             store={store}
           />
         </HelmetProvider>

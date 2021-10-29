@@ -3,38 +3,33 @@ import React from 'react';
 import {
   AppContext,
   AppContextProviderProps,
-  OntolaManifest,
   appContext,
   appContextEditor,
 } from './appContext';
 import { getMetaContent } from './helpers/dom';
 import Communicator from './modules/Studio/components/Communicator';
 
-const getWebsiteMeta = (): Partial<OntolaManifest> => {
-  if (!__CLIENT__
-    || typeof window.WEBSITE_META === 'undefined'
-    || Object.keys(window.WEBSITE_META).length === 0) {
-    return {};
-  }
-
-  return window.WEBSITE_META;
-};
+const defaultCtxValue = <T extends AppContext, K extends string & keyof T>(
+  appCtxOverrides: Partial<T> | undefined,
+  key: K,
+  fallback: T[K],
+): T[K] => appCtxOverrides?.[key] ?? (getMetaContent(key) as unknown as T[K]) ?? fallback;
 
 export const AppContextProvider = ({
   children,
   lrs,
+  appCtxOverrides,
+  manifest,
 }: AppContextProviderProps): JSX.Element => {
-  const [ctx, setCtx] = React.useState<AppContext>(() => (
-    {
-      lrs,
-      resource: undefined,
-      theme: getMetaContent('theme') ?? 'common',
-      themeOpts: getMetaContent('themeOpts') ?? '',
-      title: getMetaContent('application-name') ?? 'Libro',
-      website: getMetaContent('website-iri')!,
-      websiteMeta: getWebsiteMeta(),
-    }
-  ));
+  const [ctx, setCtx] = React.useState<AppContext>(() => ({
+    lrs,
+    manifest,
+    resource: undefined,
+    theme: defaultCtxValue(appCtxOverrides, 'theme', 'common'),
+    themeOpts: defaultCtxValue(appCtxOverrides, 'themeOpts', ''),
+    title: defaultCtxValue(appCtxOverrides, 'title', 'Libro') as string,
+    website: defaultCtxValue(appCtxOverrides, 'website', ''),
+  }));
 
   return (
     <React.Fragment>

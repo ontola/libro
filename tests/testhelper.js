@@ -15,7 +15,7 @@ const whatwgURL = require('whatwg-url').URL; // eslint-disable-line import/order
 
 const siteName = global.window.document.createElement('meta');
 siteName.content = 'https://app.argu.co/freetown';
-siteName.name = 'website-iri';
+siteName.name = 'website';
 global.window.document.head.appendChild(siteName);
 // TODO: add removed script tag
 

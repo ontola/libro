@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { OntolaManifest } from '../appContext';
+import { WebManifest } from '../appContext';
 
 /**
  * These are injected through webpack.
@@ -15,6 +15,6 @@ declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION__?: any;
     INITIAL__DATA?: string;
-    WEBSITE_META?: Partial<OntolaManifest>;
+    WEBSITE_MANIFEST?: WebManifest;
   }
 }

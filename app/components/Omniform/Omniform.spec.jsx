@@ -3,6 +3,7 @@ import * as rdfs from '@ontologies/rdfs';
 import * as sh from '@ontologies/shacl';
 import * as schema from '@ontologies/schema';
 import * as xsd from '@ontologies/xsd';
+import { act } from '@testing-library/react'
 import { createForm } from 'final-form';
 import React from 'react';
 
@@ -165,7 +166,10 @@ describe('Omniform', () => {
 
     expect(getByText('prop pro')).toBeVisible();
     expect(getByText('Con')).toBeVisible();
-    fireEvent.click(getByText('Con'));
+
+    act(() => {
+      fireEvent.click(getByText('Con'));
+    });
 
     expect(getByText('prop con')).toBeVisible();
 

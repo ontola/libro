@@ -11,14 +11,9 @@ import {
   SomeNode,
 } from 'link-lib';
 
-import { getMetaContent } from '../helpers/dom';
-
-export const website = getMetaContent('website-iri') ?? 'https://example.com';
-export const frontendIRI = rdf.namedNode(website!);
-
-const execFilter = () => (): MiddlewareWithBoundLRS => {
+const execFilter = (websiteIRI: string) => (): MiddlewareWithBoundLRS => {
   const executableSites = [
-    rdf.namedNode(new URL(frontendIRI.value).origin),
+    rdf.namedNode(new URL(websiteIRI).origin),
   ].map((t) => rdf.id(t));
 
   return (next: MiddlewareActionHandler) => (iri: SomeNode, opts: any): Promise<any> => {

@@ -3,7 +3,7 @@ import { LinkReduxLRSType } from 'link-redux';
 import {
   getAuthenticityToken,
   getLinkContent,
-  getMetaContent, 
+  getMetaContent,
 } from './dom';
 
 function patchRequestInitGenerator(lrs: LinkReduxLRSType): void {
@@ -11,7 +11,7 @@ function patchRequestInitGenerator(lrs: LinkReduxLRSType): void {
         function patchedAuthenticityHeader(options: {[k: string]: string} = {}) {
           return Object.assign({}, options, {
             'Manifest': getLinkContent('manifest'),
-            'Website-Iri': getMetaContent('website-iri'),
+            'Website-Iri': getMetaContent('website'),
             'X-CSRF-Token': getAuthenticityToken(),
             'X-Requested-With': this.xRequestedWith,
           });

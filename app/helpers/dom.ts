@@ -39,7 +39,7 @@ export function jsonHeader(options?: Record<string, string>): Record<string, str
 
 export function websiteIRIHeader(options?: Record<string, string>): Record<string, string> {
   return Object.assign({}, options || {}, {
-    'Website-Iri': getMetaContent('website-iri'),
+    'Website-Iri': getMetaContent('website'),
   });
 }
 

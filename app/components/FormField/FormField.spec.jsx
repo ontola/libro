@@ -4,6 +4,7 @@ import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import * as xsd from '@ontologies/xsd';
 import { fireEvent } from '@testing-library/dom';
+import { act } from '@testing-library/react'
 import { createForm } from 'final-form';
 import { Resource } from 'link-redux';
 import React from 'react';
@@ -108,7 +109,9 @@ describe('FormField', () => {
       [pinned]: false,
     });
 
-    fireEvent.click(getByTestId(pinned));
+    act(() => {
+      fireEvent.click(getByTestId(pinned));
+    });
 
     expect(getByTestId('test')).toHaveFormValues({
       [pinned]: true,

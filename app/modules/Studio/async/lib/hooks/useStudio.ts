@@ -3,7 +3,7 @@ import React from 'react';
 import { StudioContext } from '../context/StudioContext';
 import { EditorFile, filesToDoc } from '../LibroDocument';
 
-import { useGenerateLRSFromSource } from './useGenerateLRSFromSource';
+import { useResourcesFromSource } from './useResourcesFromSource';
 import { useServerDocumentsContext } from './useServerDocumentsContext';
 import { useSitemap } from './useSitemap';
 import { EditorContextBundle } from './useStudioContextBundle';
@@ -31,7 +31,7 @@ export const useStudio = (): [StudioContext | undefined] => {
 
   const doc = React.useMemo(() => filesToDoc(files), [files]);
 
-  const [_, resources] = useGenerateLRSFromSource(doc);
+  const resources = useResourcesFromSource(doc);
   const { document } = useServerDocumentsContext();
   const sitemap = useSitemap(resources);
 

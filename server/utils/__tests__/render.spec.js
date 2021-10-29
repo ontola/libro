@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import uuidv4 from 'uuid/v4';
 
+import { defaultManifest } from '../../../common/defaultManifest'
 import { enhanceCtx } from '../../middleware/ctxMiddleware';
 import { renderFullPage } from '../render';
 
@@ -19,12 +20,7 @@ function generateRenderParams() {
   };
   const ctx = enhanceCtx(new Koa().createContext(req, res));
   ctx.session = {};
-  ctx.manifest = {
-    icons: [],
-    ontola: {},
-    scope: 'https://app.argu.localtest/',
-    serviceworker: {},
-  };
+  ctx.manifest = defaultManifest('https://app.argu.localtest/');
 
   return ctx;
 }
