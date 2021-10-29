@@ -1,7 +1,6 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import FieldHelper from '../../components/FormField/FieldHelper';
 import { useContainerToArr } from '../../hooks/useContainerToArr';
 import ll from '../../ontology/ll';
 import { allTopologies } from '../../topologies';
@@ -16,10 +15,12 @@ const ErrorResponse: FC = ({ subject }) => {
   return (
     <div>
       {generalErrors.map((error) => (
-        <FieldHelper
-          error={{ error: error.value }}
+        <div
+          className="Field__error"
           key={error.value}
-        />
+        >
+          {error.value}
+        </div>
       ))}
     </div>
   );
