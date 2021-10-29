@@ -45,7 +45,7 @@ const useEntryPointFormProps = (entryPoint: SomeNode, props: Partial<EntryPointP
     action,
     actionBody,
     autoSubmit: props.autoSubmit || false,
-    autofocusForm: props.autofocusForm || false,
+    autofocusForm: props.autofocusForm ?? true,
     blacklist: props.blacklist,
     formID,
     formInstance: props.formInstance,
