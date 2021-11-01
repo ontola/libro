@@ -6,10 +6,12 @@ import {
   register,
   useIds,
   useLRS,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import { appContext } from '../../appContext';
+import { DialogSize, isDialogSize } from '../../middleware/ontolaMiddleware';
 import libro from '../../ontology/libro';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
@@ -19,6 +21,7 @@ const DialogManager = () => {
   const lrs = useLRS();
   const { theme } = React.useContext(appContext);
   const [resource] = useIds(ontola.ns('dialog/resource'));
+  const [size] = useStrings(ontola.ns('dialog/size'));
 
   const close = (item: SomeNode, done: boolean) => (
     () => lrs.exec(
@@ -33,11 +36,12 @@ const DialogManager = () => {
 
   return (
     <Dialog
+      fullWidth
       open
       // @ts-ignore
       PaperComponent="div"
       className={theme}
-      maxWidth="md"
+      maxWidth={isDialogSize(size) ? size : DialogSize.Lg}
       onClose={close(resource, false)}
     >
       <DialogTopology>

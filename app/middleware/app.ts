@@ -13,7 +13,7 @@ import HttpStatus from 'http-status-codes';
 import {
   MiddlewareActionHandler,
   MiddlewareWithBoundLRS,
-  SomeNode, 
+  SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
@@ -22,6 +22,8 @@ import http from '../ontology/http';
 import libro from '../ontology/libro';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
+
+import { DialogSize } from './ontolaMiddleware';
 
 interface AppActionMap {
   newPage: Node;
@@ -55,7 +57,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   (store as any).actions.app.startSignIn = (redirectUrl?: NamedNode) => {
     const resourceIRI = signInLink(redirectUrl);
 
-    return (store as any).actions.ontola.showDialog(resourceIRI);
+    return (store as any).actions.ontola.showDialog(resourceIRI, DialogSize.Sm);
   };
 
   /**

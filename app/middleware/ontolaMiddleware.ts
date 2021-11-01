@@ -34,6 +34,15 @@ const onDoneHandlers: { [key: string]: () => Promise<any> } = {};
 
 export const ontolaActionPrefix = libro.ns('actions/').value;
 export const ontolaWebsocketsPrefix = ontola.ns('ws/').value;
+export enum DialogSize {
+  Xs = 'xs',
+  Sm = 'sm',
+  Md = 'md',
+  Lg = 'lg',
+  Xl = 'xl',
+}
+
+export const isDialogSize = (size?: string | null): size is DialogSize => ['xs', 'sm', 'md', 'lg', 'xl', false].includes(size ?? '');
 
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
     MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
@@ -136,11 +145,17 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ];
 
-  const showDialog = (value: string, opener?: string | null) => [
+  const showDialog = (value: string, size?: DialogSize | null, opener?: string | null) => [
     rdf.quad(
       dialogManager,
       ontola.ns('dialog/resource'),
       rdf.namedNode(value),
+      ld.replace,
+    ),
+    rdf.quad(
+      dialogManager,
+      ontola.ns('dialog/size'),
+      rdf.literal(size || DialogSize.Lg),
       ld.replace,
     ),
     rdf.quad(
@@ -151,11 +166,12 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ];
 
-  (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
+  (store as any).actions.ontola.showDialog = (resource: NamedNode, size?: string | null, opener?: NamedNode) => {
     const resourceValue = encodeURIComponent(resource.value);
     const openerValue = opener ? encodeURIComponent(opener.value) : '';
+    const sizeValue = size ? encodeURIComponent(size) : '';
 
-    return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
+    return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}&size=${sizeValue}`));
   };
 
   (store as any).actions.ontola.hideDialog = () =>
@@ -329,6 +345,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     if (iri.value.startsWith(libro.actions.dialog.alert.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
       const opener = new URL(iri.value).searchParams.get('opener');
+      const size = new URL(iri.value).searchParams.get('size');
 
       if (resource && opts && opts.onDone) {
         onDoneHandlers[resource] = opts.onDone;
@@ -340,7 +357,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         throw new Error("Argument 'value' was missing.");
       }
 
-      store.processDelta(showDialog(resource, opener), true);
+      store.processDelta(showDialog(resource, isDialogSize(size) ? size : undefined, opener), true);
 
       return Promise.resolve();
     }
