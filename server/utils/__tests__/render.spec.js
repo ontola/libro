@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import uuidv4 from 'uuid/v4';
 
-import { defaultManifest } from '../../../common/defaultManifest'
+import { defaultManifest } from '../../../common/defaultManifestJS'
 import { enhanceCtx } from '../../middleware/ctxMiddleware';
 import { renderFullPage } from '../render';
 

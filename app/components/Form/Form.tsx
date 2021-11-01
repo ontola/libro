@@ -149,4 +149,6 @@ const Form: React.FC<FormProps> = (props) => {
 
 Form.defaultProps = defaultProps;
 
+export { Form as UnwrappedForm };
+
 export default withFormLRS<FormProps>(Form);

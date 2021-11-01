@@ -3,6 +3,7 @@ import rdf, {
   isNamedNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { FormApi } from 'final-form';
 import {
   Property,
   Resource,
@@ -39,7 +40,7 @@ export interface OmniformProps {
   autofocusForm?: boolean;
   closeForm?: () => void;
   error?: FormFieldError;
-  formInstance?: Record<string, unknown>;
+  formInstance?: FormApi<any, Partial<any>>;
   onCancel?: () => void;
   onDone?: () => void;
   onKeyUp?: KeyboardEventHandler;

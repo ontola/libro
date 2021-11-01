@@ -41,6 +41,12 @@ export interface MatomoTracker extends Tracking {
   host: string | undefined;
 }
 
+export type Tracker =
+  GUATracker |
+  GTMTracker |
+  PiwikProTracker |
+  MatomoTracker;
+
 export interface OntolaManifest {
   allowed_external_sources: string[],
   css_class: string,
@@ -53,7 +59,7 @@ export interface OntolaManifest {
   styled_headers: boolean | null,
   theme: string,
   theme_options: string,
-  tracking: Tracking[],
+  tracking: Tracker[],
   website_iri: string,
   websocket_path?: string | null,
 }
@@ -65,9 +71,23 @@ export interface Icon {
 }
 
 export interface WebManifest {
-  short_name: string;
-  ontola: OntolaManifest;
+  background_color?: string;
+  canonical_iri?: string | null;
+  dir?: string;
+  display?: string;
   icons: Icon[];
+  lang?: string;
+  name?: string;
+  ontola: OntolaManifest;
+  rdf_type?: string;
+  serviceworker?: {
+    scope: string;
+    src: string;
+  };
+  scope: string;
+  short_name: string;
+  start_url?: string;
+  theme_color?: string
 }
 
 export const appContext = React.createContext<AppContext>(undefined as any);

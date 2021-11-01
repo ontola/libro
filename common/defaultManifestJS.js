@@ -1,5 +1,3 @@
-import argu from '../app/ontology/argu';
-
 export const defaultManifest = (websiteIRI) => {
   const t = new URL(websiteIRI);
   t.host = `analytics.${t.host}`;
@@ -20,7 +18,7 @@ export const defaultManifest = (websiteIRI) => {
       header_text: 'auto',
       preconnect: [],
       preload: [
-        argu.ns('').value.slice(0, -1),
+        'https://argu.co/ns/core',
       ],
       primary_color: '#475668',
       secondary_color: '#d96833',
@@ -29,7 +27,7 @@ export const defaultManifest = (websiteIRI) => {
       theme_options: '',
       tracking: [
         {
-          container_id: '-1',
+          containerId: '-1',
           host: matomoHostname,
           type: 'Matomo',
         },
@@ -37,7 +35,7 @@ export const defaultManifest = (websiteIRI) => {
       website_iri: websiteIRI,
       websocket_path: null,
     },
-    rdf_type: argu.Manifest.value,
+    rdf_type: 'https://argu.co/ns/core#Manifest',
     scope: websiteIRI,
     serviceworker: {
       scope: websiteIRI,
@@ -46,5 +44,5 @@ export const defaultManifest = (websiteIRI) => {
     short_name: 'Libro',
     start_url: `${websiteIRI}/`,
     theme_color: '#475668',
-  })
-}
+  });
+};

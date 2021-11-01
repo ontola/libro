@@ -58,7 +58,7 @@ export function withFormLRS<P>(WrappedComponent: React.FC<P>): React.FC<P> {
 
     React.useEffect(() => {
       cloneLRS(lrs, manifest).then((cloned) => setFormLRS(cloned));
-    }, [lrs]);
+    }, [lrs, manifest]);
 
     if (!formLRS) {
       return <LinkLoader />;
