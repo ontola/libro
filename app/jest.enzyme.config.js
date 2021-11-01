@@ -34,7 +34,9 @@ module.exports = {
     '**/?(*.)+(spec|test).js?(x)'
   ],
   testPathIgnorePatterns: [
+    'app/__tests__/test-utils.jsx',
     'app/__tests__/test-utils.tsx',
+    'app/__tests__/test-utils-hooks.tsx',
     'app/__tests__/link-redux/fixtures.js',
     'app/__tests__/link-redux/utilities.js',
   ],

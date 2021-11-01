@@ -5,7 +5,7 @@ import {
   createFilterOptions,
 } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/styles';
-import rdfcore, {
+import {
   Node,
   SomeTerm,
   isLiteral,
@@ -30,6 +30,9 @@ import { LibroTheme } from '../../themes/themes';
 import { booleanTranslation, collectionMessages } from '../../translations/messages';
 import { useCollectionOptions } from '../Collection/CollectionProvider';
 
+import { filteredCollectionIRI } from './lib/filteredCollectionIRI';
+import { FilterValue } from './lib/FilterValue';
+
 export interface FilterComboInputProps {
   autoFocus: boolean;
   filters: SomeTerm[];
@@ -37,11 +40,6 @@ export interface FilterComboInputProps {
   partOf: SomeNode;
   shown: boolean;
   transitionTime: number;
-}
-
-interface FilterValue {
-  key: SomeTerm;
-  value: SomeTerm;
 }
 
 const OPTION_GAP = 3;
@@ -94,13 +92,6 @@ const toLabel = (lrs: LinkReduxLRSType, intl: IntlShape, filterTerm: SomeTerm) =
 };
 
 const getFilterValues = (lrs: LinkReduxLRSType, filter: SomeTerm) => lrs.dig(filter as Node, [ontola.filterOptions, ontola.filterValue]);
-
-const createFilterParam = (lrs: LinkReduxLRSType, filter: FilterValue) => {
-  const filterKey = lrs.getResourceProperty(filter.key as SomeNode, ontola.filterKey);
-  const param = `${encodeURIComponent(filterKey?.value ?? '')}=${encodeURIComponent(filter.value.value)}`;
-
-  return param;
-};
 
 const compareFilters = (lrs: LinkReduxLRSType, intl: IntlShape, a: FilterValue, b: FilterValue) =>
   toLabel(lrs, intl, a.key) === toLabel(lrs, intl, b.key) && toLabel(lrs, intl, a.value) === toLabel(lrs, intl, b.value);
@@ -204,16 +195,11 @@ export const FilterComboInput = ({
     );
   };
 
-  const handleChange = (_: ChangeEvent<unknown>, value: FilterValue[]) => {
-    const params: string[] = [];
+  const handleChange = React.useCallback((_: ChangeEvent<unknown>, value: FilterValue[]) => {
+    const filteredIRI = filteredCollectionIRI(lrs, value, iriTemplate);
 
-    for (const val of value) {
-      params.push(createFilterParam(lrs, val));
-    }
-
-    const url = iriTemplate.set({ 'filter%5B%5D': params })?.value ?? '';
-    setCollectionResource(rdfcore.namedNode(url));
-  };
+    setCollectionResource(filteredIRI);
+  }, [lrs, iriTemplate]);
 
   return (
     <Autocomplete

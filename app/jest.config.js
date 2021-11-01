@@ -32,6 +32,12 @@ module.exports = {
     '**/__tests__/**/*.ts?(x)',
     '**/?(*.)+(spec|test).ts?(x)'
   ],
+  testPathIgnorePatterns: [
+    'app/__tests__/test-utils.jsx',
+    'app/__tests__/test-utils-hooks.ts',
+    'app/__tests__/link-redux/fixtures.js',
+    'app/__tests__/link-redux/utilities.js',
+  ],
   testURL: 'https://argu.dev/o/1',
   transform: {
     '^.+\\.m?(j|t)sx?$': 'ts-jest',
