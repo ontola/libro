@@ -4,19 +4,18 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useDataInvalidation,
+  useDataFetching,
   useFields,
   useGlobalIds,
-  useLRS,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
 
-import { entityIsLoaded, filterFind } from '../../helpers/data';
-import { normalizeFontAwesomeIRI, retrievePath } from '../../helpers/iris';
+import { filterFind } from '../../helpers/data';
+import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { useShowDialog } from '../../hooks/useShowDialog';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -35,25 +34,15 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
   const [target] = useGlobalIds(schema.target);
+  const showDialog = useShowDialog(subject.value);
 
-  const lrs = useLRS();
-  const history = useHistory();
   const [image] = useFields(target, schema.image);
-  useDataInvalidation(target);
+  useDataFetching(target);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 
-  if (__CLIENT__ && target && !entityIsLoaded(lrs, target)) {
-    lrs.queueEntity(target);
-  }
-
-  const icon = (
-    <FontAwesome
-      name={image && normalizeFontAwesomeIRI(image)}
-    />
-  );
   const useOmniform = omniform && OMNIFORM_FILTER.find(filterFind(subject));
 
   return (
@@ -61,9 +50,11 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
       size="small"
       title={name?.value}
       type="button"
-      onClick={useOmniform ? onClick : () => history.push(retrievePath(subject.value)!)}
+      onClick={useOmniform ? onClick : showDialog}
     >
-      {icon}
+      <FontAwesome
+        name={image && normalizeFontAwesomeIRI(image)}
+      />
     </IconButton>
   );
 };
@@ -77,7 +68,5 @@ ActionContainerFloat.topology = [
 ActionContainerFloat.hocs = [
   connect(null, mapCardListDispatchToProps),
 ];
-
-ActionContainerFloat.displayName = 'ActionContainerFloatButton';
 
 export default register(ActionContainerFloat);

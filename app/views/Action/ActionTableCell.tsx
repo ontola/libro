@@ -1,6 +1,7 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
   register,
   useProperty,
 } from 'link-redux';
@@ -10,10 +11,13 @@ import FontAwesome from 'react-fontawesome';
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
 import useOneClickProps from '../../hooks/useOneClickProps';
+import { useShowDialog } from '../../hooks/useShowDialog';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-const ActionTableCell = () => {
+const ActionTableCell: FC = ({
+  subject,
+}) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
   const [error] = useProperty(schema.error);
@@ -22,6 +26,7 @@ const ActionTableCell = () => {
     loading,
     onClick,
   } = useOneClickProps();
+  const showDialog = useShowDialog(subject.value);
 
   const invalid = invalidStatusIds.includes(rdf.id(actionStatus));
   const title = invalid ? error?.value : name?.value;
@@ -31,7 +36,7 @@ const ActionTableCell = () => {
       disabled={invalid || loading}
       features={[LinkFeature.Bold]}
       title={title}
-      onClick={onClick}
+      onClick={onClick ?? showDialog}
     >
       {icon ? (
         <FontAwesome

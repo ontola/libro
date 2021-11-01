@@ -1,11 +1,10 @@
 import * as as from '@ontologies/as';
-import rdf, { Node } from '@ontologies/core';
+import { Node } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   dig,
   register,
-  useAction,
   useIds,
 } from 'link-redux';
 import React from 'react';
@@ -14,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import Detail from '../../../components/Detail';
 import { retrievePath } from '../../../helpers/iris';
 import { isResource } from '../../../helpers/types';
-import libro from '../../../ontology/libro';
+import { useShowDialog } from '../../../hooks/useShowDialog';
 import ontola from '../../../ontology/ontola';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
@@ -26,7 +25,7 @@ interface LocationDetailProps {
 const LocationDetail = ({ linkedProp }: LocationDetailProps): JSX.Element => {
   const [nestedPlacement] = useIds(linkedProp, dig(ontola.pages, as.items, rdfx.ns('_1')));
   const placement = nestedPlacement ?? (isResource(linkedProp) && linkedProp);
-  const showDialog = useAction(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(placement.value)}`));
+  const showDialog = useShowDialog(placement.value);
 
   if (!placement) {
     return (
@@ -47,10 +46,7 @@ const LocationDetail = ({ linkedProp }: LocationDetailProps): JSX.Element => {
         />
       )}
       url={retrievePath(placement.value)}
-      onClick={(e) => {
-        e.preventDefault();
-        showDialog();
-      }}
+      onClick={showDialog}
     />
   );
 };
