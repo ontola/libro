@@ -1,44 +1,26 @@
 import { Quad } from '@ontologies/core';
-import {
-  DataObject,
-  RDFStore,
-  toGraph, 
-} from 'link-lib';
+import { renderHook } from '@testing-library/react-hooks';
+import { DataObject } from 'link-lib';
 import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
-import { ParsedObject } from 'link-lib/dist-types/types';
 import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
 import React from 'react';
 
+import { getWebsiteContextFromWebsite } from './helpers/app';
+import { defaultManifest } from './helpers/defaultManifest';
 import generateLRS from './helpers/generateLRS';
+import { resourcesToGraph } from './test-utils';
 
-export const resourcesToGraph = (resources: DataObject): ParsedObject => {
-  if (Array.isArray(resources)) {
-    const graphs = resources.map((r) => toGraph(r));
-    const mainIRI = graphs[0][0];
-    const store = new RDFStore().getInternalStore();
-
-    for (const g of graphs) {
-      const s = g[1];
-      store.addQuads((s as any).quads);
-    }
-
-    const dataObjects = graphs.reduce((acc, [, , namedBlobTuple]): any => [...acc, ...namedBlobTuple], []);
-
-    return [mainIRI, store, dataObjects];
-  }
-
-  return toGraph(resources);
-};
-
-export interface HookTestBundle {
+export interface HookTestBundle<TProps> {
   lrs: LinkReduxLRSType;
-  wrapper: (props: { children: JSX.Element }) => JSX.Element;
+  wrapper: React.ComponentType<React.PropsWithChildren<TProps>>;
 }
 
-export const createHookWrapper = (data: DataObject): HookTestBundle => {
+export const createHookWrapper = async <TProps extends unknown>(data: DataObject): Promise<HookTestBundle<TProps>> => {
+  const websiteContext = getWebsiteContextFromWebsite('https://example.com/');
+  const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
-  const { lrs } = generateLRS((graph as RDFIndex).quads as Quad[]);
-  const wrapper = ({ children }: { children: JSX.Element }) => (
+  const { lrs } = await generateLRS(manifest, (graph as RDFIndex).quads as Quad[]);
+  const wrapper: React.ComponentType<React.PropsWithChildren<TProps>> = ({ children }) => (
     <RenderStoreProvider value={lrs}>
       {children}
     </RenderStoreProvider>
@@ -48,4 +30,11 @@ export const createHookWrapper = (data: DataObject): HookTestBundle => {
     lrs,
     wrapper,
   };
+};
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const renderLinkedHook = async <TProps, TResult>(callback: (props: TProps) => TResult, resources: DataObject) => {
+  const { wrapper } = await createHookWrapper<TProps>(resources);
+
+  return renderHook(callback, { wrapper });
 };

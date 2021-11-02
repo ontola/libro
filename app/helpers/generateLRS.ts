@@ -116,7 +116,7 @@ export default async function generateLRS(
     link.Document,
   ].map((t) => rdf.id(t));
 
-  const websocketPath = getMetaContent('websocket-path');
+  const websocketPath = !__TEST__ && getMetaContent('websocket-path');
 
   if (__CLIENT__ && websocketPath && !localStorage.getItem('_apex_disable_ws') && options.middleware) {
     initializeCable(lrs, websocketPath).then(() => {

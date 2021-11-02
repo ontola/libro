@@ -1,16 +1,9 @@
-/**
- * @jest-environment jsdom
- */
-
-import rdf, {
-  BlankNode,
-  Literal,
-} from '@ontologies/core';
-import { renderHook } from '@testing-library/react-hooks';
+import rdf from '@ontologies/core';
+import { useLRS } from 'link-redux';
 
 import { useIRITemplate } from '../../../../hooks/useIRITemplate';
 import ontola from '../../../../ontology/ontola';
-import { createHookWrapper } from '../../../../test-utils-hooks';
+import { renderLinkedHook } from '../../../../test-utils-hooks';
 import { filteredCollectionIRI } from '../filteredCollectionIRI';
 import { FilterValue } from '../FilterValue';
 
@@ -22,131 +15,54 @@ describe('filteredCollectionIRI', () => {
     [ontola.iriTemplateOpts.toString()]: '',
   };
 
-  const pinnedIsTrue = {
-    key: {
-      id: 4069,
-      termType: 'BlankNode',
-      value: 'b4',
-    } as BlankNode,
-    value: {
-      datatype: {
-        id: 1681,
-        termType: 'NamedNode',
-        value: 'http://www.w3.org/2001/XMLSchema#boolean',
-      },
-      id: 4101,
-      language: '',
-      termType: 'Literal',
-      uri: 'true',
-      value: 'true',
-    } as Literal,
+  const conceptIsFalse = {
+    key: rdf.blankNode('b133'),
+    value: rdf.literal(false),
   };
 
-  const conceptIsFalse = {
-    key: {
-      id: 11397,
-      termType: 'BlankNode',
-      uri: 'b133',
-      value: 'b133',
-    } as BlankNode,
-    value: {
-      datatype: {
-        id: 1681,
-        termType: 'NamedNode',
-        uri: 'http://www.w3.org/2001/XMLSchema#boolean',
-        value: 'http://www.w3.org/2001/XMLSchema#boolean',
-      },
-      id: 4042,
-      language: '',
-      termType: 'Literal',
-      uri: 'false',
-      value: 'false',
-    } as Literal,
+  const pinnedIsTrue = {
+    key: rdf.blankNode('b4'),
+    value: rdf.literal(true),
   };
 
   const pinnedIsFalse = {
-    key: {
-      id: 11393,
-      termType: 'BlankNode',
-      uri: 'b131',
-      value: 'b131',
-    } as BlankNode,
-    value: {
-      datatype:{
-        id: 1681,
-        termType: 'NamedNode',
-        uri: 'http://www.w3.org/2001/XMLSchema#boolean',
-        value: 'http://www.w3.org/2001/XMLSchema#boolean',
-      },
-      id: 4042,
-      language: '',
-      termType: 'Literal',
-      uri: 'false',
-      value: 'false',
-    } as Literal,
+    key: rdf.blankNode('b131'),
+    value: rdf.literal(false),
   };
 
-  it('returns base iri without filters', () => {
-    const { lrs, wrapper } = createHookWrapper(data);
-    const filters: FilterValue[] = [];
+  const testFunction = async (filters: FilterValue[]) => await renderLinkedHook(() => {
+    const iriTemplate = useIRITemplate(base);
+    const lrs = useLRS();
 
-    const { result } = renderHook(() => {
-      const iriTemplate = useIRITemplate(base);
+    return filteredCollectionIRI(lrs, filters, iriTemplate);
+  }, data);
 
-      return filteredCollectionIRI(lrs, filters, iriTemplate);
-    }, { wrapper });
+  it('returns base iri without filters', async () => {
+    const { result } = await testFunction([]);
 
     expect(result.current).toEqual(rdf.namedNode('https://argu.localdev/argu/nederland/discussions'));
   });
 
-  it('returns base iri plus one filter', () => {
-    const { lrs, wrapper } = createHookWrapper(data);
-    const filters: FilterValue[] = [pinnedIsTrue];
-
-    const { result } = renderHook(() => {
-      const iriTemplate = useIRITemplate(base);
-
-      return filteredCollectionIRI(lrs, filters, iriTemplate);
-    }, { wrapper });
+  it('returns base iri plus one filter', async () => {
+    const { result } = await testFunction([pinnedIsTrue]);
 
     expect(result.current).toEqual(rdf.namedNode('https://argu.localdev/argu/nederland/discussions?filter%5B%5D=%3Dtrue'));
   });
 
-  it('returns base iri plus two filters', () => {
-    const { lrs, wrapper } = createHookWrapper(data);
-    const filters: FilterValue[] = [pinnedIsTrue, conceptIsFalse];
-
-    const { result } = renderHook(() => {
-      const iriTemplate = useIRITemplate(base);
-
-      return filteredCollectionIRI(lrs, filters, iriTemplate);
-    }, { wrapper });
+  it('returns base iri plus two filters', async () => {
+    const { result } = await testFunction([pinnedIsTrue, conceptIsFalse]);
 
     expect(result.current).toEqual(rdf.namedNode('https://argu.localdev/argu/nederland/discussions?filter%5B%5D=%3Dtrue&filter%5B%5D=%3Dfalse'));
   });
 
-  it('returns base iri plus two filters not sorted', () => {
-    const { lrs, wrapper } = createHookWrapper(data);
-    const filters: FilterValue[] = [conceptIsFalse, pinnedIsTrue];
-
-    const { result } = renderHook(() => {
-      const iriTemplate = useIRITemplate(base);
-
-      return filteredCollectionIRI(lrs, filters, iriTemplate);
-    }, { wrapper });
+  it('returns base iri plus two filters not sorted', async () => {
+    const { result } = await testFunction([conceptIsFalse, pinnedIsTrue]);
 
     expect(result.current).toEqual(rdf.namedNode('https://argu.localdev/argu/nederland/discussions?filter%5B%5D=%3Dfalse&filter%5B%5D=%3Dtrue'));
   });
 
-  it('returns base iri plus two filters in the same field', () => {
-    const { lrs, wrapper } = createHookWrapper(data);
-    const filters: FilterValue[] = [pinnedIsTrue, pinnedIsFalse];
-
-    const { result } = renderHook(() => {
-      const iriTemplate = useIRITemplate(base);
-
-      return filteredCollectionIRI(lrs, filters, iriTemplate);
-    }, { wrapper });
+  it('returns base iri plus two filters in the same field', async () => {
+    const { result } = await testFunction([pinnedIsTrue, pinnedIsFalse]);
 
     expect(result.current).toEqual(rdf.namedNode('https://argu.localdev/argu/nederland/discussions?filter%5B%5D=%3Dtrue&filter%5B%5D=%3Dfalse'));
   });

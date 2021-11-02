@@ -108,7 +108,7 @@ const wrapProviders = ({
   return TestWrapper;
 };
 
-const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedObject => {
+export const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedObject => {
   if (Array.isArray(resources)) {
     const graphs = resources.map((r) => toGraph(r) as [SomeNode, RDFIndex, NamedBlobTuple[]]);
     const mainIRI = graphs[0][0];
