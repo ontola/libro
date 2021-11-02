@@ -144,7 +144,6 @@
     "brotli-webpack-plugin": "^1.1.0",
     "btoa": "^1.2.1",
     "can-ndjson-stream": "^1.0.2",
-    "canvas": "^2.8.0",
     "clipboard-copy": "^4.0.1",
     "clsx": "^1.1.1",
     "compression-webpack-plugin": "^7.1.2",
