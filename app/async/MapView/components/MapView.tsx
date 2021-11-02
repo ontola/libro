@@ -8,6 +8,10 @@ import { usePlacementIds } from '../hooks/usePlacementIds';
 
 import MapCanvas from './MapCanvas';
 
+const DEFAULT_LAT = 52.1344;
+const DEFAULT_LON = 5.1917;
+const DEFAULT_ZOOM = 6.8;
+
 export const MapView: React.FC<PropTypes> = ({
   initialLat,
   initialLon,
@@ -74,9 +78,14 @@ export const MapView: React.FC<PropTypes> = ({
     });
   }, [setView]);
 
-  if (loading || !placementFeatures || !view || !mapboxTileURL) {
+  if (loading || !mapboxTileURL) {
     return <LoadingCard />;
   }
+
+  const defaultView = {
+    center: fromLonLat([DEFAULT_LON, DEFAULT_LAT]),
+    zoom: DEFAULT_ZOOM,
+  };
 
   return (
     <MapCanvas
@@ -87,7 +96,7 @@ export const MapView: React.FC<PropTypes> = ({
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
-      view={view}
+      view={view ?? defaultView}
       onMapClick={onMapClick}
       onMove={onMove}
       onSelect={handleSelect}
