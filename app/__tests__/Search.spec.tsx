@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import * as as from '@ontologies/as';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -10,7 +14,7 @@ import argu from '../ontology/argu';
 import example from '../ontology/example';
 import ontola from '../ontology/ontola';
 import { Page } from '../topologies/Page';
-import { cleanup, render } from '../test-utils';
+import { cleanup, renderLinked } from '../test-utils';
 
 describe('Search', () => {
   afterAll(cleanup);
@@ -22,42 +26,42 @@ describe('Search', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: ontola.SearchResult,
-    [ontola.baseCollection]: baseCollection,
-    [ontola.collectionDisplay]: ontola['collectionDisplay/grid'],
-    [ontola.collectionType]: ontola['collectionType/paginated'],
-    [ontola.iriTemplate]: example.ns('test/search{?q,filter%5B%5D*,sort%5B%5D*,page,page_size}{#fragment}').value,
-    [dcterms.identifier]: testIRI,
-    [ontola.query]: 'keyword',
-    [as.totalItems]: 3,
-    [as.name]: '3 results found',
-    [as.first]: firstPage,
-    [as.last]: firstPage,
-    [ontola.pages]: {
+    [rdfx.type.toString()]: ontola.SearchResult,
+    [ontola.baseCollection.toString()]: baseCollection,
+    [ontola.collectionDisplay.toString()]: ontola['collectionDisplay/grid'],
+    [ontola.collectionType.toString()]: ontola['collectionType/paginated'],
+    [ontola.iriTemplate.toString()]: example.ns('test/search{?q,filter%5B%5D*,sort%5B%5D*,page,page_size}{#fragment}').value,
+    [dcterms.identifier.toString()]: testIRI,
+    [ontola.query.toString()]: 'keyword',
+    [as.totalItems.toString()]: 3,
+    [as.name.toString()]: '3 results found',
+    [as.first.toString()]: firstPage,
+    [as.last.toString()]: firstPage,
+    [ontola.pages.toString()]: {
       '@id': firstPage,
-      [rdfx.type]: [
+      [rdfx.type.toString()]: [
         ontola.PaginatedView,
         as.CollectionPage,
       ],
-      [ontola.collectionDisplay]: ontola['collectionDisplay/grid'],
-      [ontola.baseCollection]: baseCollection,
-      [as.partOf]: testIRI.value,
-      [as.totalItems]: 3,
-      [as.items]: seq([
+      [ontola.collectionDisplay.toString()]: ontola['collectionDisplay/grid'],
+      [ontola.baseCollection.toString()]: baseCollection,
+      [as.partOf.toString()]: testIRI.value,
+      [as.totalItems.toString()]: 3,
+      [as.items.toString()]: seq([
         {
           '@id': example.ns('1'),
-          [rdfx.type]: schema.CreativeWork,
-          [schema.name]: 'Item 1',
+          [rdfx.type.toString()]: schema.CreativeWork,
+          [schema.name.toString()]: 'Item 1',
         },
         {
           '@id': example.ns('2'),
-          [rdfx.type]: argu.Question,
-          [schema.name]: 'Item 2',
+          [rdfx.type.toString()]: argu.Question,
+          [schema.name.toString()]: 'Item 2',
         },
         {
           '@id': example.ns('3'),
-          [rdfx.type]: schema.Thing,
-          [schema.name]: 'Item 3',
+          [rdfx.type.toString()]: schema.Thing,
+          [schema.name.toString()]: 'Item 3',
         },
       ], seqIRI),
     },
@@ -68,7 +72,7 @@ describe('Search', () => {
       const {
         getByTestId,
         getByText,
-      } = await render(({ iri }) => (
+      } = await renderLinked(({ iri }) => (
         <Page>
           <Resource
             forceRender

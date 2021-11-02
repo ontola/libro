@@ -29,6 +29,7 @@ describe('helpers', () => {
 
     describe('currentURL', () => {
       it('should return the window location', () => {
+        const window = { location: { href: 'https://argu.dev/o/1' } } as unknown as Window;
         const currentURL = createCurrentURL(window)();
         expect(currentURL).toEqual('https://argu.dev/o/1');
       });

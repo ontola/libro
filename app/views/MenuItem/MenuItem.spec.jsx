@@ -7,7 +7,7 @@ import React from 'react';
 
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
-import { cleanup, render } from '../../test-utils';
+import { cleanup, renderLinked } from '../../test-utils'
 import AppMenu from '../../topologies/AppMenu';
 
 describe('MenuItem', () => {
@@ -50,7 +50,7 @@ describe('MenuItem', () => {
   };
 
   describe('within appMenu', () => {
-    const renderMenu = () => render((
+    const renderMenu = () => renderLinked((
       <React.Fragment>
         <div data-test="outside">
           Outside

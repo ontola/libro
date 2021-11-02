@@ -52,6 +52,9 @@ class CardRow extends Topology<PropType> {
 
     this.topology = cardRowTopology;
   }
+  public getElementProps(): Record<string, unknown> {
+    return { 'data-testid': 'card-row' };
+  }
 
   public getClassName(): string {
     const { classes } = this.props;

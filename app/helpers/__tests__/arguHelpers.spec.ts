@@ -7,21 +7,9 @@ import {
   json,
   statusSuccess,
 } from '../arguHelpers';
-import {
-  authenticityHeader,
-  jsonHeader,
-  safeCredentials 
-} from '../dom'
 
 describe('helpers', () => {
   describe('arguHelper', () => {
-    describe('authenticityHeader', () => {
-      it('should override the requested-with header', () => {
-        const obj = authenticityHeader({ 'X-Requested-With': 'wrong' })['X-Requested-With'];
-        expect(obj).toEqual('XMLHttpRequest');
-      });
-    });
-
     describe('errorMessageForStatus', () => {
       [
         HttpStatus.UNAUTHORIZED,
@@ -96,15 +84,15 @@ describe('helpers', () => {
 
     describe('json', () => {
       it('should not process undefined responses', () => {
-        expect(json()).resolves.toBeUndefined();
+        expect(json(undefined)).resolves.toBeUndefined();
       });
 
       it('should not process 204 responses', () => {
-        expect(json({ status: HttpStatus.NO_CONTENT })).resolves.toBeUndefined();
+        expect(json({ status: HttpStatus.NO_CONTENT } as Response)).resolves.toBeUndefined();
       });
 
       it('should not process 304 responses', () => {
-        expect(json({ status: HttpStatus.NOT_MODIFIED })).resolves.toBeUndefined();
+        expect(json({ status: HttpStatus.NOT_MODIFIED } as Response)).resolves.toBeUndefined();
       });
 
       it('should resolve responses to json', () => {
@@ -112,38 +100,8 @@ describe('helpers', () => {
         expect(json({
           json: jsonPromise,
           status: HttpStatus.OK,
-        })).resolves.toEqual('{}');
+        } as unknown as Response)).resolves.toEqual('{}');
         expect(jsonPromise).toHaveBeenCalled();
-      });
-    });
-
-    describe('jsonHeader', () => {
-      it('should override the accept header', () => {
-        expect(jsonHeader({ Accept: 'wrong' }).Accept).toEqual('application/vnd.api+json');
-      });
-
-      it('should override the accept content type', () => {
-        expect(jsonHeader({ 'Content-Type': 'wrong' })['Content-Type']).toEqual('application/json');
-      });
-    });
-
-    describe('safeCredentials', () => {
-      it('should set credentials', () => {
-        expect(safeCredentials().credentials).toEqual('include');
-      });
-
-      it('should set the mode', () => {
-        expect(safeCredentials().mode).toEqual('same-origin');
-      });
-
-      it('should set the headers', () => {
-        expect(safeCredentials({ headers: {} }).headers).toEqual({
-          Accept: 'application/vnd.api+json',
-          'Content-Type': 'application/json',
-          'Website-Iri': 'https://app.argu.co/freetown',
-          'X-CSRF-Token': undefined,
-          'X-Requested-With': 'XMLHttpRequest',
-        });
       });
     });
 
@@ -155,7 +113,7 @@ describe('helpers', () => {
           HttpStatus.ACCEPTED,
           HttpStatus.NOT_MODIFIED,
         ].forEach((status) => {
-          const response = { status };
+          const response = { status } as Response;
           expect(statusSuccess(response)).resolves.toEqual(response);
         });
       });
@@ -167,7 +125,7 @@ describe('helpers', () => {
           HttpStatus.USE_PROXY,
           HttpStatus.INTERNAL_SERVER_ERROR,
         ].forEach((status) => {
-          const response = { status };
+          const response = { status } as Response;
           expect(statusSuccess(response)).rejects.toEqual(response);
         });
       });

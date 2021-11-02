@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -20,8 +24,7 @@ import ontola from '../../ontology/ontola';
 import {
   cleanup,
   fireEvent,
-  render,
-  waitForElement,
+  renderLinked,
 } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
@@ -31,14 +34,14 @@ const formSelector = action.value;
 const schemaText = calculateFormFieldName(schema.text);
 const arguPassword = calculateFormFieldName(ontola.password);
 
-const mockStorage = (initialValues) => {
+const mockStorage = (initialValues: Record<string, string>): [Record<string, string>, Storage] => {
   const store = initialValues;
   const storage = {
-    getItem: (key) => store[key],
-    setItem: (key, value) => { store[key] = value; },
+    getItem: (key: string): string | null => store[key] ?? null,
+    setItem: (key: string, value: string) => { store[key] = value; },
   };
 
-  return [store, storage];
+  return [store, storage as Storage];
 };
 
 describe('Form', () => {
@@ -46,42 +49,42 @@ describe('Form', () => {
 
   const resources = {
     '@id': action.value,
-    [rdfx.type]: schema.CreateAction,
-    [schema.name]: 'Action',
-    [schema.result]: argu.ConArgument,
-    [schema.object]: {},
-    [schema.target]: {
+    [rdfx.type.toString()]: schema.CreateAction,
+    [schema.name.toString()]: 'Action',
+    [schema.result.toString()]: argu.ConArgument,
+    [schema.object.toString()]: {},
+    [schema.target.toString()]: {
       '@id': entryPoint,
-      [rdfx.type]: schema.EntryPoint,
-      [schema.isPartOf]: action,
-      [ll.actionBody]: {
-        [rdfx.type]: form.Form,
-        [form.pages]: {
-          [rdfx.type]: rdfx.Seq,
-          [rdfx.ns('_0')]: {
-            [rdfx.type]: form.Page,
-            [form.groups]: {
-              [rdfx.type]: rdfx.Seq,
-              [rdfx.ns('_0')]: {
-                [rdfx.type]: form.Group,
-                [form.fields]: {
-                  [rdfx.type]: rdfx.Seq,
-                  [rdfx.ns('_0')]: {
-                    [rdfx.type]: form.TextInput,
-                    [sh.datatype]: xsd.string,
-                    [schema.text]: 'text desc',
-                    [sh.maxCount]: 1,
-                    [sh.maxLength]: 100,
-                    [sh.minCount]: 1,
-                    [sh.minLength]: 4,
-                    [schema.name]: 'text label',
-                    [sh.order]: 0,
-                    [sh.path]: schema.text,
+      [rdfx.type.toString()]: schema.EntryPoint,
+      [schema.isPartOf.toString()]: action,
+      [ll.actionBody.toString()]: {
+        [rdfx.type.toString()]: form.Form,
+        [form.pages.toString()]: {
+          [rdfx.type.toString()]: rdfx.Seq,
+          [rdfx.ns('_0').toString()]: {
+            [rdfx.type.toString()]: form.Page,
+            [form.groups.toString()]: {
+              [rdfx.type.toString()]: rdfx.Seq,
+              [rdfx.ns('_0').toString()]: {
+                [rdfx.type.toString()]: form.Group,
+                [form.fields.toString()]: {
+                  [rdfx.type.toString()]: rdfx.Seq,
+                  [rdfx.ns('_0').toString()]: {
+                    [rdfx.type.toString()]: form.TextInput,
+                    [sh.datatype.toString()]: xsd.string,
+                    [schema.text.toString()]: 'text desc',
+                    [sh.maxCount.toString()]: 1,
+                    [sh.maxLength.toString()]: 100,
+                    [sh.minCount.toString()]: 1,
+                    [sh.minLength.toString()]: 4,
+                    [schema.name.toString()]: 'text label',
+                    [sh.order.toString()]: 0,
+                    [sh.path.toString()]: schema.text,
                   },
-                  [rdfx.ns('_1')]: {
-                    [rdfx.type]: form.PasswordInput,
-                    [sh.datatype]: xsd.string,
-                    [sh.path]: ontola.password,
+                  [rdfx.ns('_1').toString()]: {
+                    [rdfx.type.toString()]: form.PasswordInput,
+                    [sh.datatype.toString()]: xsd.string,
+                    [sh.path.toString()]: ontola.password,
                   },
                 },
               },
@@ -101,7 +104,7 @@ describe('Form', () => {
       const {
         findByTestId,
         getByTestId,
-      } = await render(({ iri }) => (
+      } = await renderLinked(({ iri }) => (
         <Page>
           <Resource
             forceRender
@@ -118,13 +121,13 @@ describe('Form', () => {
       });
     });
 
-    const testPersistence = async (fieldName, value) => {
+    const testPersistence = async (fieldName: string, value: unknown) => {
       const [store, storage] = mockStorage({});
 
       const {
         findByTestId,
         getByTestId,
-      } = await render(({ iri }) => (
+      } = await renderLinked(({ iri }) => (
         <Page>
           <Resource
             forceRender
@@ -152,7 +155,7 @@ describe('Form', () => {
 
     it('stores values', async () => {
       const result = await testPersistence(schemaText, 'test');
-      expect(parseForStorage(result).map((val) => val.value)).toEqual(['test']);
+      expect(parseForStorage(result)!.map((val) => val.value)).toEqual(['test']);
     });
 
     it("doesn't store passwords", async () => {

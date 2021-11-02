@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -5,14 +9,12 @@ import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import app from '../../ontology/app'
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import {
   cleanup,
-  render,
+  renderLinked,
 } from '../../test-utils';
-
-import SnackbarManager from './index';
 
 describe('SnackbarManager', () => {
   afterAll(cleanup);
@@ -21,11 +23,11 @@ describe('SnackbarManager', () => {
     const iri = app.ns('snackbar/manager');
     const resources = {
       '@id': iri.value,
-      [rdfx.type]: ontola.ns('snackbar/Manager'),
-      [ontola.ns('snackbar/queue')]: seq([]),
+      [rdfx.type.toString()]: ontola.ns('snackbar/Manager'),
+      [ontola.ns('snackbar/queue').toString()]: seq([]),
     };
 
-    const { queryByTestId } = await render((
+    const { queryByTestId } = await renderLinked((
       <Resource subject={iri} />
     ), { resources });
 
@@ -36,17 +38,17 @@ describe('SnackbarManager', () => {
     const iri = app.ns('snackbar/manager');
     const resources = {
       '@id': iri.value,
-      [rdfx.type]: ontola.ns('snackbar/Manager'),
-      [ontola.ns('snackbar/queue')]: seq([
+      [rdfx.type.toString()]: ontola.ns('snackbar/Manager'),
+      [ontola.ns('snackbar/queue').toString()]: seq([
         {
           '@id': rdf.blankNode(),
-          [rdfx.type]: ontola.ns('snackbar/Snackbar'),
-          [schema.text]: '',
+          [rdfx.type.toString()]: ontola.ns('snackbar/Snackbar'),
+          [schema.text.toString()]: '',
         },
       ]),
     };
 
-    const { queryByTestId } = await render((
+    const { queryByTestId } = await renderLinked((
       <Resource subject={iri} />
     ), { resources });
 

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -8,7 +12,7 @@ import React from 'react';
 import dbo from '../../ontology/dbo';
 import {
   cleanup,
-  render,
+  renderLinked,
 } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
@@ -24,16 +28,16 @@ describe('MediaObject', () => {
 
   const resources = {
     '@id': resource.value,
-    [rdfx.type]: schema.MediaObject,
-    [schema.encodingFormat]: rdf.literal('image/png'),
-    [dbo.filename]: rdf.literal(FILE_NAME),
-    [schema.contentUrl]: rdf.namedNode(CONTENT_URL),
-    [schema.dateCreated]: rdf.literal(Date.now()),
-    [schema.isPartOf]: {
+    [rdfx.type.toString()]: schema.MediaObject,
+    [schema.encodingFormat.toString()]: rdf.literal('image/png'),
+    [dbo.filename.toString()]: rdf.literal(FILE_NAME),
+    [schema.contentUrl.toString()]: rdf.namedNode(CONTENT_URL),
+    [schema.dateCreated.toString()]: rdf.literal(Date.now()),
+    [schema.isPartOf.toString()]: {
       '@id': parent,
-      [dcterms.identifier]: parent,
-      [rdfx.type]: schema.Thing,
-      [schema.name]: rdf.literal(PARENT_NAME),
+      [dcterms.identifier.toString()]: parent,
+      [rdfx.type.toString()]: schema.Thing,
+      [schema.name.toString()]: rdf.literal(PARENT_NAME),
     },
   };
 
@@ -42,7 +46,7 @@ describe('MediaObject', () => {
       queryByLabelText,
       queryByText,
       queryByTitle,
-    } = await render(
+    } = await renderLinked(
       ({ iri }) => (
         <Page>
           <Resource
@@ -51,7 +55,7 @@ describe('MediaObject', () => {
           />
         </Page>
       ),
-      { resources }
+      { resources },
     );
 
     expect(queryByText(PARENT_NAME)).toBeVisible();

@@ -12,8 +12,8 @@ import React from 'react';
  */
 
  interface ImageProps {
-  fa: string,
-  image: {
+  fa?: string,
+  image?: {
     className: string,
     title: string,
     url: string,
@@ -94,7 +94,7 @@ export function isSuccess(status: number): boolean {
       || status === HttpStatus.NOT_MODIFIED;
 }
 
-export function json(response: Response): Promise<any> {
+export function json(response: Response | undefined): Promise<any> {
   if (typeof response !== 'undefined'
       && response.status !== HttpStatus.NO_CONTENT
       && response.status !== HttpStatus.NOT_MODIFIED) {

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -7,7 +11,7 @@ import React from 'react';
 
 import {
   cleanup,
-  render,
+  renderLinked,
 } from '../../test-utils';
 import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
 import argu from '../../ontology/argu';
@@ -35,40 +39,40 @@ describe('Thing', () => {
 
   const resources = {
     '@id': resource.value,
-    [dcterms.identifier]: resource,
-    [rdfx.type]: schema.Thing,
-    [schema.name]: rdf.literal(RESOURCE_NAME),
-    [schema.text]: rdf.literal(RESOURCE_TEXT),
-    [schema.isPartOf]: {
+    [dcterms.identifier.toString()]: resource,
+    [rdfx.type.toString()]: schema.Thing,
+    [schema.name.toString()]: rdf.literal(RESOURCE_NAME),
+    [schema.text.toString()]: rdf.literal(RESOURCE_TEXT),
+    [schema.isPartOf.toString()]: {
       '@id': parent,
-      [dcterms.identifier]: parent,
-      [rdfx.type]: schema.Thing,
-      [schema.name]: rdf.literal(PARENT_NAME),
+      [dcterms.identifier.toString()]: parent,
+      [rdfx.type.toString()]: schema.Thing,
+      [schema.name.toString()]: rdf.literal(PARENT_NAME),
     },
-    [ontola.coverPhoto]: {
+    [ontola.coverPhoto.toString()]: {
       '@id': coverPhoto,
-      [rdfx.type]: schema.ImageObject,
-      [schema.thumbnail]: rdf.namedNode('http://example.com/image/1.ico'),
-      [schema.url]: rdf.namedNode(contentUrl),
-      [schema.contentUrl]: rdf.namedNode(contentUrl),
-      [argu.url]: rdf.namedNode(contentUrl),
-      [ontola.imgUrl1500x2000]: rdf.namedNode(coverUrl),
-      [ontola.imgUrl568x400]: rdf.namedNode(boxUrl),
-      [schema.dateCreated]: rdf.literal(Date.now()),
-      [ontola.imagePositionY]: rdf.literal(imagePositionY),
+      [rdfx.type.toString()]: schema.ImageObject,
+      [schema.thumbnail.toString()]: rdf.namedNode('http://example.com/image/1.ico'),
+      [schema.url.toString()]: rdf.namedNode(contentUrl),
+      [schema.contentUrl.toString()]: rdf.namedNode(contentUrl),
+      [argu.url.toString()]: rdf.namedNode(contentUrl),
+      [ontola.imgUrl1500x2000.toString()]: rdf.namedNode(coverUrl),
+      [ontola.imgUrl568x400.toString()]: rdf.namedNode(boxUrl),
+      [schema.dateCreated.toString()]: rdf.literal(Date.now()),
+      [ontola.imagePositionY.toString()]: rdf.literal(imagePositionY),
     },
   };
 
-  const renderAs = (Topology) => render(
+  const renderAs = (TopologyComp: React.ComponentType<any>) => renderLinked(
     ({ iri }) => (
-      <Topology>
+      <TopologyComp>
         <Resource
           forceRender
           subject={iri}
         />
-      </Topology>
+      </TopologyComp>
     ),
-    { resources }
+    { resources },
   );
 
   it('renders as Page', async () => {
@@ -94,7 +98,7 @@ describe('Thing', () => {
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByTestId('coverImage')).toHaveStyle(`
-      background-image: url(${boxUrl}); 
+      background-image: url(${boxUrl});
       background-position-y: ${imagePositionY}%;
     `);
   });

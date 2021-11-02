@@ -98,6 +98,7 @@ const CardContent: React.FC<PropTypes> = ({
   return (
     <div
       className={className}
+      data-testid="card-content"
       style={style}
     >
       {children}

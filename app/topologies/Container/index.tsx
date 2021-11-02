@@ -14,7 +14,7 @@ export interface ContainerProps {
   children: NonNullable<React.ReactNode>;
   disableGutters?: boolean;
   fixed?: boolean;
-  size: Size;
+  size?: Size;
 }
 
 /**
@@ -35,6 +35,7 @@ class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
   public renderContent(): TopologyContent {
     return this.wrap((
       <MaterialContainer
+        data-testid="container-root"
         maxWidth={this.maxWidth()}
         {...this.props}
       />

@@ -12,8 +12,8 @@ import {
   act,
   cleanup,
   fireEvent,
-  render,
-} from '../../test-utils';
+  renderLinked,
+} from '../../test-utils'
 import Container from '../../topologies/Container';
 
 describe('Notification', () => {
@@ -94,7 +94,7 @@ describe('Notification', () => {
   };
 
   describe('in container', () => {
-    const renderInContainer = (resources) => render(
+    const renderInContainer = (resources) => renderLinked(
       ({ iri }) => (
         <Container>
           <Resource

@@ -1,11 +1,16 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import * as xsd from '@ontologies/xsd';
-import { fireEvent } from '@testing-library/dom';
-import { act } from '@testing-library/react'
+import { fireEvent, waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import { createForm } from 'final-form';
+import { DataObject } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
@@ -14,21 +19,26 @@ import argu from '../../ontology/argu';
 import example from '../../ontology/example';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
-import { cleanup, render } from '../../test-utils';
+import { cleanup, renderLinked } from '../../test-utils';
 import { CardMain } from '../../topologies/Card';
-import Form from '../Form/Form';
+import { UnwrappedForm as Form } from '../Form/Form';
 
 const field = example.ns('field');
 
-const renderWithTestForm = async ({ initialValues, resources }) => {
+interface RenderWithTestFormOpts {
+  initialValues?: Record<string, unknown>;
+  resources: DataObject;
+}
+
+const renderWithTestForm = async ({ initialValues, resources }: RenderWithTestFormOpts) => {
   const finalForm = createForm({
     initialValues,
-    onSubmit: () => null,
+    onSubmit: () => undefined,
   });
 
   return {
     finalForm,
-    ...await render(({ iri }) => (
+    ...await renderLinked(({ iri }) => (
       <CardMain>
         <Form
           form={finalForm}
@@ -49,27 +59,28 @@ const renderWithTestForm = async ({ initialValues, resources }) => {
 describe('FormField', () => {
   afterEach(cleanup);
 
-  const textField = {
+  const textField: DataObject = {
     '@id': field.value,
-    [rdfx.type]: form.TextInput,
-    [schema.name]: 'Title',
-    [schema.text]: 'Enter the core of your idea here',
-    [sh.datatype]: xsd.string,
-    [sh.maxCount]: 1,
-    [sh.maxLength]: 110,
-    [sh.minCount]: 1,
-    [sh.path]: schema.name,
-    [ontola.helperText]: '',
+    [rdfx.type.toString()]: form.TextInput,
+    [schema.name.toString()]: 'Title',
+    [schema.text.toString()]: 'Enter the core of your idea here',
+    [sh.datatype.toString()]: xsd.string,
+    [sh.maxCount.toString()]: 1,
+    [sh.maxLength.toString()]: 110,
+    [sh.minCount.toString()]: 1,
+    [sh.path.toString()]: schema.name,
+    [ontola.helperText.toString()]: '',
   };
-  const checkboxField = {
+
+  const checkboxField: DataObject = {
     '@id': field.value,
-    [rdfx.type]: form.CheckboxInput,
-    [schema.name]: 'Pinned',
-    [schema.text]: 'Pin item',
-    [sh.datatype]: xsd.xsdboolean,
-    [sh.maxCount]: 1,
-    [sh.path]: argu.pinned,
-    [ontola.helperText]: '',
+    [rdfx.type.toString()]: form.CheckboxInput,
+    [schema.name.toString()]: 'Pinned',
+    [schema.text.toString()]: 'Pin item',
+    [sh.datatype.toString()]: xsd.xsdboolean,
+    [sh.maxCount.toString()]: 1,
+    [sh.path.toString()]: argu.pinned,
+    [ontola.helperText.toString()]: '',
   };
 
   const schemaName = calculateFormFieldName(schema.name);
@@ -113,10 +124,10 @@ describe('FormField', () => {
       fireEvent.click(getByTestId(pinned));
     });
 
-    expect(getByTestId('test')).toHaveFormValues({
+    await waitFor(() => expect(getByTestId('test')).toHaveFormValues({
       [pinned]: true,
-    });
-    expect(finalForm.getFieldState(pinned).value).toEqual([rdf.literal(true)]);
-    expect(finalForm.getFieldState(pinned).invalid).toBeFalsy();
+    }));
+    expect(finalForm.getFieldState(pinned)!.value).toEqual([rdf.literal(true)]);
+    expect(finalForm.getFieldState(pinned)!.invalid).toBeFalsy();
   });
 });

@@ -24,6 +24,7 @@ interface CardProps {
 }
 
 type CardElementProps = {
+  'data-testid': 'card';
   onClick: any;
 };
 
@@ -71,6 +72,7 @@ class Card extends Topology<PropType> {
 
   public getElementProps(): CardElementProps {
     return {
+      'data-testid': 'card',
       onClick: this.props.onClick,
     };
   }

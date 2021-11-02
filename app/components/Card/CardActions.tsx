@@ -5,8 +5,8 @@ import React from 'react';
 import { LibroTheme } from '../../themes/themes';
 
 export interface CardActionsProps {
-  alignRight: boolean;
-  noSpacing: boolean;
+  alignRight?: boolean;
+  noSpacing?: boolean;
 }
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -49,7 +49,10 @@ const CardActions = ({
   });
 
   return (
-    <div className={className}>
+    <div
+      className={className}
+      data-testid="card-actions"
+    >
       {children}
     </div>
   );

@@ -20,7 +20,7 @@ import ll from '../../ontology/ll';
 import {
   cleanup,
   fireEvent,
-  render,
+  renderLinked,
 } from '../../test-utils';
 import Card from '../../topologies/Card';
 
@@ -143,7 +143,7 @@ describe('Omniform', () => {
       getByTestId,
       getByLabelText,
       getByText,
-    } = await render((
+    } = await renderLinked((
       <Card>
         <Omniform
           actions={new Set([
@@ -154,7 +154,7 @@ describe('Omniform', () => {
           parentIRI={btoa(subject.value)}
         />
       </Card>
-    ), { resources } as any);
+    ), { resources });
 
     await findByTestId(btoa('http://schema.org/text'));
     expect(getByTestId(omniformSelector)).toHaveFormValues({
