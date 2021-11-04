@@ -1,9 +1,9 @@
 import pathToRegexp from 'path-to-regexp';
 
-import { hasDataExtension } from '../../common/dataJS';
 import { redisSettingsNS } from '../config';
 import { client } from '../middleware/sessionMiddleware';
 
+import { hasDataExtension } from './dataExtensions';
 import { isDownloadRequest, isHTMLHeader } from './http';
 import logging from './logging';
 

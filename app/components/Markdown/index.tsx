@@ -8,8 +8,8 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
-import { hasDataExtension } from '../../../common/data';
 import { entityIsLoaded } from '../../helpers/data';
+import { hasDataExtension } from '../../helpers/dataExtensions';
 import {
   expandPath,
   isDifferentWebsite,

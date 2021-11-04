@@ -9,7 +9,7 @@ import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { LinkReduxLRSType } from 'link-redux';
 import { Store } from 'redux';
 
-import { defaultManifest } from '../../../common/defaultManifest';
+import { defaultManifest } from '../defaultManifest';
 import generateLRS from '../generateLRS';
 import ServiceWorkerCommunicator from '../ServiceWorkerCommunicator';
 

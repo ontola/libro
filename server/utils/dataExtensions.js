@@ -1,6 +1,10 @@
+/**
+ * Keep in sync with app/helpers/dataExtensions.ts
+ */
+
 export const dataExtensions = ['.json', '.nq', '.nt', '.n3', '.rdf', '.ttl', '.png', '.hndjson', '.csv', '.pdf'];
 
-export const hasDataExtension = (url: string): boolean => {
+export const hasDataExtension = (url) => {
   try {
     const pUrl = new URL(url);
 

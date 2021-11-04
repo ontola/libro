@@ -9,6 +9,6 @@ export const messages: Messages = defineMessages({
   },
   showInDexes: {
     defaultMessage: 'Bekijk op Dexes',
-    id: 'https://dexpods.eu/i18n/showInBroker',
+    id: 'https://dexpods.eu/i18n/showInDexes',
   },
 });

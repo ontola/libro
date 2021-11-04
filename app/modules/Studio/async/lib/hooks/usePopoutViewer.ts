@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { defaultManifest } from '../../../../../../common/defaultManifest';
 import { WebManifest } from '../../../../../appContext';
+import { defaultManifest } from '../../../../../helpers/defaultManifest';
 import { handle } from '../../../../../helpers/logging';
 import { studioContext } from '../context/StudioContext';
 import { editorStateContext } from '../context/EditorStateContext';

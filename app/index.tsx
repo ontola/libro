@@ -5,11 +5,10 @@ import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { defaultManifest } from '../common/defaultManifest';
-
 import { WebManifest } from './appContext';
 import { AppContextProvider } from './AppContextProvider';
 import { APP_ELEMENT } from './config';
+import { defaultManifest } from './helpers/defaultManifest';
 import './helpers/typescript';
 import generateLRS from './helpers/generateLRS';
 import { handle, log } from './helpers/logging';

@@ -1,4 +1,10 @@
-export const defaultManifest = (websiteIRI) => {
+/**
+ * Keep in sync with server/utils/defaultManifest.ts
+ */
+
+import { WebManifest } from '../appContext';
+
+export const defaultManifest = (websiteIRI: string): WebManifest => {
   const t = new URL(websiteIRI);
   t.host = `analytics.${t.host}`;
   const matomoHostname = t.toString();

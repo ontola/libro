@@ -1,7 +1,8 @@
-import { WebManifest } from '../app/appContext';
-import argu from '../app/ontology/argu';
+/**
+ * Keep in sync with app/helpers/defaultManifest.ts
+ */
 
-export const defaultManifest = (websiteIRI: string): WebManifest => {
+export const defaultManifest = (websiteIRI) => {
   const t = new URL(websiteIRI);
   t.host = `analytics.${t.host}`;
   const matomoHostname = t.toString();
@@ -21,7 +22,7 @@ export const defaultManifest = (websiteIRI: string): WebManifest => {
       header_text: 'auto',
       preconnect: [],
       preload: [
-        argu.ns('').value.slice(0, -1),
+        'https://argu.co/ns/core',
       ],
       primary_color: '#475668',
       secondary_color: '#d96833',
@@ -38,7 +39,7 @@ export const defaultManifest = (websiteIRI: string): WebManifest => {
       website_iri: websiteIRI,
       websocket_path: null,
     },
-    rdf_type: argu.Manifest.value,
+    rdf_type: 'https://argu.co/ns/core#Manifest',
     scope: websiteIRI,
     serviceworker: {
       scope: websiteIRI,

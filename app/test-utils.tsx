@@ -28,11 +28,10 @@ import { Provider } from 'react-redux';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { Router } from 'react-router';
 
-import { defaultManifest } from '../common/defaultManifest';
-
 import { AppContextProvider } from './AppContextProvider';
 import { componentRegistrations } from './components';
 import { getWebsiteContextFromWebsite } from './helpers/app';
+import { defaultManifest } from './helpers/defaultManifest';
 import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
 import { isFunction } from './helpers/types';
