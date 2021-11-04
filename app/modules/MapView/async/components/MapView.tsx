@@ -17,10 +17,13 @@ import {
 } from '../../lib/settings';
 import { useFeatures } from '../hooks/useFeatures';
 import { usePlacementIds } from '../hooks/usePlacementIds';
+import { toFeature } from '../lib/geometry';
 
 import MapCanvas from './MapCanvas';
 
 export const MapView: React.FC<MapViewProps> = ({
+  geometry,
+  geometryType,
   initialLat,
   initialLon,
   initialZoom,
@@ -29,6 +32,7 @@ export const MapView: React.FC<MapViewProps> = ({
   onMapClick,
   onMove,
   onSelect,
+  onPolygon,
   onZoom,
   overlayResource,
   placements: placementIds,
@@ -37,12 +41,12 @@ export const MapView: React.FC<MapViewProps> = ({
   const [placements, loading] = usePlacementIds(placementIds);
   const [placementFeatures, resolvedCenter] = useFeatures(placements);
 
-  const initialView: ViewProps | undefined = (initialLat && initialLon && initialZoom) ? {
-    center: fromLonLat([initialLon, initialLat]),
-    zoom: initialZoom,
-  } : undefined;
+  const initialView: ViewProps = {
+    center: fromLonLat([initialLon ?? DEFAULT_LON, initialLat ?? DEFAULT_LAT]),
+    zoom: initialZoom ?? DEFAULT_ZOOM,
+  };
 
-  const [view, setView] = React.useState<ViewProps | undefined>(initialView);
+  const [view, setView] = React.useState<ViewProps>(initialView);
 
   React.useEffect(() => {
     if (resolvedCenter) {
@@ -74,12 +78,20 @@ export const MapView: React.FC<MapViewProps> = ({
     }
   }, [onSelect]);
 
+  const geometryFeatures = geometry && geometry.points.length > 0 ? [toFeature(geometry)] : [];
   const layers = React.useMemo<Layer[]>(() => (
     [{
       clustered: true,
+      customStyle: true,
       features: placementFeatures,
+    },
+    {
+      clustered: false,
+      customStyle: false,
+      features: geometryFeatures,
     }]
-  ), [placementFeatures]);
+  ), [placementFeatures, geometryFeatures]);
+  const polygonLayer = 1;
 
   const handleViewChange = React.useCallback<MapViewChangeCallback>((newCenter, newZoom) => {
     setView({
@@ -92,23 +104,22 @@ export const MapView: React.FC<MapViewProps> = ({
     return <LoadingCard />;
   }
 
-  const defaultView = {
-    center: fromLonLat([DEFAULT_LON, DEFAULT_LAT]),
-    zoom: DEFAULT_ZOOM,
-  };
-
   return (
     <MapCanvas
       overlayPadding
+      geometryType={geometryType}
+      large={large}
       layers={layers}
       mapboxTileURL={mapboxTileURL}
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
+      polygonLayer={polygonLayer}
       variant={variant}
-      view={view ?? defaultView}
+      view={view}
       onMapClick={onMapClick}
       onMove={onMove}
+      onPolygon={onPolygon}
       onSelect={handleSelect}
       onViewChange={handleViewChange}
       onZoom={onZoom}

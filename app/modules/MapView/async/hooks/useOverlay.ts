@@ -3,6 +3,7 @@ import { Map, Overlay } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import OverlayPositioning from 'ol/OverlayPositioning';
 import {
+  MutableRefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -27,7 +28,7 @@ const useOverlay = ({
   overlayResource,
 }: PropTypes): {
   handleOverlayClick: (e: any) => false | void;
-  overlayRef: React.MutableRefObject<HTMLDivElement | null>;
+  overlayRef: MutableRefObject<HTMLDivElement | null>;
 } => {
   const overlayRef = useRef(document.createElement('div'));
   const overlay = useMemo(() => {

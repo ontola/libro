@@ -1,3 +1,4 @@
+import AreaFormField from './AreaFormField';
 import AssociationFormField from './AssociationFormField';
 import CheckboxesFormField from './CheckboxesFormField';
 import CheckboxFormField from './CheckboxFormField';
@@ -22,6 +23,7 @@ import ToggleButtonGroupField from './ToggleButtonGroupField';
 import UrlFormField from './UrlFormField';
 
 export default [
+  AreaFormField,
   AssociationFormField,
   CheckboxesFormField,
   CheckboxFormField,

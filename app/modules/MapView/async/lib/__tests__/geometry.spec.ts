@@ -1,10 +1,9 @@
-/** @jest-environment jsdom*/
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import { NamedNode } from '@ontologies/core';
+import GeometryType from 'ol/geom/GeometryType';
 import { toLonLat } from 'ol/proj';
 
-import { GeometryType } from '../../../components/MapView';
 import {
   distance,
   toFeature,
@@ -51,7 +50,7 @@ describe('geometry', () => {
             lon: 1,
           },
         ],
-        type: GeometryType.Circle,
+        type: GeometryType.CIRCLE,
       };
       const feature = toFeature(geometry);
 
@@ -98,7 +97,7 @@ describe('geometry', () => {
             lon: -3.4,
           },
         ],
-        type: GeometryType.Polygon,
+        type: GeometryType.POLYGON,
       };
 
       const feature = toFeature(geometry);

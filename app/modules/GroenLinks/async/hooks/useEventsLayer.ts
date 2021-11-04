@@ -51,6 +51,7 @@ const useEventsLayer = (eventsData?: Events): Layer => {
 
   return React.useMemo(() => ({
     clustered: true,
+    customStyle: true,
     features: eventsFeatures,
   }), [eventsFeatures]);
 };

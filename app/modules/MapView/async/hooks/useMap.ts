@@ -7,13 +7,16 @@ import { defaults as defaultControls } from 'ol/control';
 import { Coordinate } from 'ol/coordinate';
 import { pointerMove, singleClick } from 'ol/events/condition';
 import { FeatureLike } from 'ol/Feature';
+import { Circle, Polygon } from 'ol/geom';
+import GeometryType from 'ol/geom/GeometryType';
+import { Draw } from 'ol/interaction';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import { toLonLat } from 'ol/proj';
 import Cluster from 'ol/source/Cluster';
 import TileSource from 'ol/source/Tile';
-import VectorSource from 'ol/source/Vector';
+import VectorSource, { VectorSourceEvent } from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import { StyleFunction } from 'ol/style/Style';
 import React, {
@@ -35,6 +38,7 @@ import {
   MapMoveCallback,
   MapViewChangeCallback,
   MapZoomCallback,
+  UserDrawingCallback,
   ViewProps,
 } from '../../components/MapView';
 import { handle } from '../../../../helpers/logging';
@@ -47,6 +51,7 @@ import { useSelectHandler } from './useSelectHandler';
 export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;
 const TILE_SIZE = 512;
+const GEOMETRY_NAME = 'userDrawing';
 
 interface CreateMapProps {
   accessToken?: string;
@@ -60,8 +65,9 @@ interface CreateMapProps {
 const getStyle = (styleName: string): StyleFunction => (
   (feature: FeatureLike) => {
     const features = feature?.get('features');
+    const styleFunction = (features?.[0] || feature).get(styleName);
 
-    return (features?.[0] || feature).get(styleName)(feature);
+    return styleFunction(feature);
   }
 );
 
@@ -100,12 +106,16 @@ const createMap = ({
     new TileLayer({
       source: tileSource,
     }),
-    ...layerSources.map((source) => (
-      new VectorLayer({
+    ...layerSources.map((source) => {
+      const layerOpts = source.getProperties().customStyle ? {
         source,
         style: getStyle('style'),
-      })
-    )),
+      } : {
+        source,
+      };
+
+      return new VectorLayer(layerOpts);
+    }),
   ];
 
   const controls = defaultControls({
@@ -203,13 +213,18 @@ const getHoverSelect = (): Select =>
     style: getStyle('hoverStyle'),
   });
 
-const toVectorSource = (layer: Layer): VectorSource =>
-  layer.clustered ?
+const toVectorSource = (layer: Layer): VectorSource => {
+  const source = layer.clustered ?
     new Cluster({
       distance: CLUSTER_DISTANCE,
       source: new VectorSource(),
     }) :
     new VectorSource();
+
+  source.setProperties({ customStyle: layer.customStyle });
+
+  return source;
+};
 
 const toTileSource = (accessToken: string, URL: string): TileSource =>
   new XYZ({
@@ -217,7 +232,29 @@ const toTileSource = (accessToken: string, URL: string): TileSource =>
     url: `${URL}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
   });
 
+const addFeature = (geometryName: string, onPolygon: UserDrawingCallback) => (e: VectorSourceEvent) => {
+  if (e.feature && e.feature.getGeometryName() === geometryName) {
+    const geometry = e.feature.getGeometry();
+    let coords: Coordinate[];
+
+    switch (geometry?.getType()) {
+    case 'Polygon':
+      coords = (geometry as Polygon).getCoordinates()[0];
+      break;
+    case 'Circle':
+      coords = [(geometry as Circle).getCenter(), (geometry as Circle).getLastCoordinate()];
+      break;
+    default:
+      coords = [];
+      break;
+    }
+
+    onPolygon(coords.map((coord: Coordinate) => toLonLat(coord)));
+  }
+};
+
 export interface UseMapProps {
+  geometryType?: GeometryType;
   layers: Layer[];
   mapboxTileURL: string;
   onClusterSelect?: ClusterSelectCallback;
@@ -226,6 +263,8 @@ export interface UseMapProps {
   onSelect?: FeatureSelectCallback;
   onViewChange?: MapViewChangeCallback;
   onZoom?: MapZoomCallback;
+  onPolygon?: UserDrawingCallback;
+  polygonLayer?: number;
   view: ViewProps;
 }
 
@@ -238,14 +277,17 @@ const useMap = (props: UseMapProps): {
   requestMapToken: RequestMapAccessToken;
 } => {
   const {
+    geometryType,
     layers,
     mapboxTileURL,
     onClusterSelect,
     onMapClick,
     onMove,
+    onPolygon,
     onSelect,
     onViewChange,
     onZoom,
+    polygonLayer,
     view,
   } = props;
   const intl = useIntl();
@@ -356,11 +398,33 @@ const useMap = (props: UseMapProps): {
   }, [!!memoizedMap, onMapClick?.toString(), zoom]);
 
   useEffect(() => {
+    if (geometryType && onPolygon && layerSources && polygonLayer) {
+      const source = layerSources[polygonLayer];
+
+      const draw = new Draw({
+        geometryName: GEOMETRY_NAME,
+        source: source,
+        type: geometryType,
+      });
+
+      memoizedMap?.addInteraction(draw);
+      source.on('addfeature', addFeature(GEOMETRY_NAME, onPolygon));
+
+      return () => {
+        source.un('addfeature', addFeature(GEOMETRY_NAME, onPolygon));
+        memoizedMap?.removeInteraction(draw);
+      };
+    }
+
+    return () => undefined;
+  }, [!!memoizedMap, geometryType]);
+
+  useEffect(() => {
     updateFeatures(layerSources, layers);
   }, [!!layerSources, ...layers]);
 
   useEffect(() => {
-    if (!memoizedMap) {
+    if (!memoizedMap || onPolygon) {
       return () => undefined;
     }
 

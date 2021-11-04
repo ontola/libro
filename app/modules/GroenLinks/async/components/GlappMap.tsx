@@ -61,8 +61,14 @@ const GlappMap: React.FC<GlappMapProps> = ({
   });
   const eventsLayer = useEventsLayer(postalStats?.events);
   const layers = React.useMemo(() => ([
-    { features: Object.values(postalShapes).flat() },
-    { features: selectedFeatures },
+    {
+      customStyle: true,
+      features: Object.values(postalShapes).flat(), 
+    },
+    {
+      customStyle: true,
+      features: selectedFeatures, 
+    },
     eventsLayer,
   ]), [postalShapes, eventsLayer, selectedFeatures]);
   const mapboxTileURL = React.useMemo(

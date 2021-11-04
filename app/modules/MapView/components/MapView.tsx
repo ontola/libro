@@ -2,6 +2,7 @@ import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
+import GeometryType from 'ol/geom/GeometryType';
 import React, { useMemo } from 'react';
 
 import { FormTheme } from '../../../components/Form/FormContext';
@@ -20,11 +21,6 @@ export interface Point {
   lon: number;
 }
 
-export enum GeometryType {
-  Circle,
-  Polygon,
-}
-
 export interface Geometry {
   type: GeometryType;
   points: Point[];
@@ -40,6 +36,7 @@ export interface Placement {
 
 export interface Layer {
   clustered?: boolean;
+  customStyle: boolean;
   features: Feature[];
 }
 
@@ -62,8 +59,11 @@ export type MapMoveCallback = (newCenter: Coordinate) => void;
 export type MapViewChangeCallback = (center: Coordinate, zoom: number) => void;
 export type MapZoomCallback = (newZoom: number) => void;
 export type NavigateCallback = (resource: SomeNode) => void;
+export type UserDrawingCallback = (coords: Coordinate[]) => void;
 
 export interface MapViewProps {
+  geometry?: Geometry;
+  geometryType?: GeometryType;
   initialLat?: number;
   initialLon?: number;
   initialZoom?: number;
@@ -73,6 +73,7 @@ export interface MapViewProps {
   onMapClick?: MapClickCallback;
   onMapViewChange?: MapViewChangeCallback;
   onMove?: MapMoveCallback;
+  onPolygon?: UserDrawingCallback;
   onSelect?: FeatureSelectCallback;
   onZoom?: MapZoomCallback;
   overlayResource?: SomeNode;
