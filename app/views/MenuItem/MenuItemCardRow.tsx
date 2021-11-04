@@ -23,7 +23,7 @@ const MenuItemCardRow: FC<MenuItemCardRowProps> = ({
 }) => {
   const [href] = useProperty(ontola.href);
   const [name] = useProperty(schema.name);
-    
+
   return(
     <li>
       <Link
