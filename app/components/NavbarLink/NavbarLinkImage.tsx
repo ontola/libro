@@ -27,11 +27,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NavbarLinkImage = ({ linkedProp }: NavbarLinkImageProps): JSX.Element => {
+const NavbarLinkImage = ({ ariaLabel, linkedProp }: NavbarLinkImageProps): JSX.Element => {
   const classes = useStyles();
 
   return (
     <div
+      aria-label={ariaLabel}
       className={classes.image}
       style={{ backgroundImage: `url(${linkedProp.value})` }}
     />

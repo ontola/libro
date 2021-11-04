@@ -7,12 +7,11 @@ import dbo from '../../../ontology/dbo';
 import wdt from '../../../ontology/wdt';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { navbarTopology } from '../../../topologies/Navbar';
-import { voteBubbleTopology } from '../../../topologies/VoteBubble';
 
 const PersonImageProp = ({ linkedProp }: PropertyProps) => (
   <Resource
     subject={linkedProp}
-    topology={voteBubbleTopology}
+    topology={detailsBarTopology}
   />
 );
 
@@ -21,7 +20,7 @@ export default [
     PersonImageProp,
     [schema.Person],
     [schema.image, dbo.thumbnail, wdt.ns('P18')],
-    [detailsBarTopology, voteBubbleTopology],
+    detailsBarTopology,
   ),
   ...LinkedRenderStore.registerRenderer(
     ({ linkedProp }: PropertyProps) => (

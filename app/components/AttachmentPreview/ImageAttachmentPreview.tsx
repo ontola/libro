@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { alpha } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
 import React from 'react';
@@ -40,7 +40,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 
   attachmentPreviewTitle: {
-    backgroundColor: fade(theme.palette.common.black, ATTACHMENT_PREVIEW_TITLE_ALPHA),
+    backgroundColor: alpha(theme.palette.common.black, ATTACHMENT_PREVIEW_TITLE_ALPHA),
     bottom: '0',
     color: theme.palette.common.white,
     display: 'none',

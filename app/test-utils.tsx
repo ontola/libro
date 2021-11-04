@@ -52,6 +52,8 @@ interface ChildrenProps {
   children: React.ReactElement;
 }
 
+const allViews = () => [...getViews(), ...componentRegistrations()];
+
 const wrapProviders = ({
   ctx,
   location,
@@ -136,6 +138,7 @@ interface TestRenderOpts {
 
 interface LinkedTestRenderOpts extends TestRenderOpts {
   resources?: any;
+  views?: Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>>
 }
 
 export const renderLinked = async <
@@ -157,7 +160,7 @@ export const renderLinked = async <
   const wrapper = wrapProviders({
     ctx,
     location,
-    views: [...getViews(), ...componentRegistrations()],
+    views: opts.views ?? allViews(),
   });
 
   const result = render(

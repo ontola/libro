@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
+import * as schema from '@ontologies/schema';
+import { useStrings } from 'link-redux';
 import React from 'react';
 
 const useStyle = makeStyles({
   footerImageStyle: {
     alignSelf: 'center',
-    backgroundImage: (props: FormFooterImageProps) => `url(${props.linkedProp.value})`,
     backgroundSize: 'cover',
     borderRadius: '999px',
     height: '1.3em',
@@ -19,12 +20,17 @@ export interface FormFooterImageProps {
 }
 
 const FormFooterImage = ({ ariaLabel, linkedProp }: FormFooterImageProps): JSX.Element => {
-  const classes = useStyle({ linkedProp });
+  const classes = useStyle();
+
+  const [alt] = useStrings([schema.description, schema.caption]);
 
   return (
     <div
       className={`Form__footer-image ${classes.footerImageStyle}`}
-      title={ariaLabel}
+      style={{
+        backgroundImage: `url(${linkedProp.value})`,
+      }}
+      title={ariaLabel ?? alt}
     />
   );
 };

@@ -8,7 +8,7 @@ import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import ImageObject from './ImageObject';
-import ImageObjectCardContent from './ImageObjectCardContent';
+import ImageObjectCardMain from './ImageObjectCardMain';
 import ImageObjectCardList from './ImageObjectCardList';
 import ImageObjectPageHeader from './ImageObjectPageHeader';
 import boxImage from './properties/boxImage';
@@ -29,6 +29,6 @@ export default [
   ),
   ...boxImage,
   ...thumbnail,
-  ImageObjectCardContent,
+  ImageObjectCardMain,
   ImageObjectCardList,
 ];

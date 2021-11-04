@@ -185,7 +185,6 @@ export default {
   inline: argu('inline'),
   tabPane: argu('tabPane'),
   void: argu('void'),
-  voteBubble: argu('voteBubble'),
   voteEvent: argu('voteEvent'),
   widget: argu('widget'),
 };

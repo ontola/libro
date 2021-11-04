@@ -22,6 +22,6 @@ const PersonFooter = () => {
 
 PersonFooter.type = [schema.Person, argu.Page];
 
-PersonFooter.topology = [argu.voteBubble, formFooterTopology];
+PersonFooter.topology = formFooterTopology;
 
 export default register(PersonFooter);

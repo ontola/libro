@@ -18,7 +18,6 @@ import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { parentTopology } from '../../topologies/Parent';
-import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { useTitleForStatus } from '../../components/Error/errorMessages';
 import { ErrorComponentProps } from '../../components/Error/helpers';
 
@@ -66,7 +65,6 @@ ErrorButtonInline.topology = [
   inlineTopology,
   omniformFieldsTopology,
   parentTopology,
-  voteBubbleTopology,
 ];
 
 export default register(ErrorButtonInline);

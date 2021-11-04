@@ -48,7 +48,6 @@ import { parentTopology } from '../../topologies/Parent';
 import { selectedValueTopology } from '../../topologies/SelectedValue';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
-import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { tabBarTopology } from '../../topologies/TabBar';
@@ -183,7 +182,6 @@ export default [
       inlineTopology,
       selectTopology,
       selectedValueTopology,
-      voteBubbleTopology,
     ],
   ),
   LinkedRenderStore.registerRenderer(

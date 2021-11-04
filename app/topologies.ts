@@ -48,7 +48,6 @@ import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
 import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
 import { tableRowTopology } from './topologies/TableRow';
 import { tabPaneTopology } from './topologies/TabPane';
-import { voteBubbleTopology } from './topologies/VoteBubble';
 
 export { default as topologyComponentMap } from './topologiesStatic';
 
@@ -102,7 +101,6 @@ export const allTopologies: NamedNode[] = [
   tableCellTopology,
   tabPaneTopology,
   tabBarTopology,
-  voteBubbleTopology,
 ];
 
 export function allTopologiesExcept(...topologies: NamedNode[]): NamedNode[] {
