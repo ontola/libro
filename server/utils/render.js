@@ -125,7 +125,7 @@ export const renderFullPage = async (ctx, data) => {
           ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.assetsHost}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) ?? ''}
           ${deferredBodyStyles(nonceStr)}
           <script nonce="${nonceStr}" type="application/javascript">
-              window.WEBSITE_META = JSON.parse('${JSON.stringify(manifest.ontola)}')
+              window.WEBSITE_MANIFEST = JSON.parse('${JSON.stringify(manifest)}')
           </script>
           <!-- Tell users their browser is outdated https://browser-update.org/#install -->
           <script nonce="${nonceStr}">
