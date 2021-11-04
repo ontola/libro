@@ -46,7 +46,7 @@ const defaultProps = {
   variant: DetailVariant.Default,
 };
 
-const Detail: React.FC<DetailProps> = ({
+const Detail = ({
   className,
   floatRight,
   icon,
@@ -58,7 +58,7 @@ const Detail: React.FC<DetailProps> = ({
   title,
   url,
   variant,
-}) => {
+}: DetailProps): JSX.Element => {
   const styles = useStyles();
   const history = useHistory();
   const handleExternalClick = React.useCallback((e) => {
@@ -83,7 +83,7 @@ const Detail: React.FC<DetailProps> = ({
   return (
     <Element
       className={detailClass}
-      data-test="Detail"
+      data-testid="Detail"
       href={url}
       target={url && isDifferentWebsite(url) ? '_blank' : undefined}
       title={title}

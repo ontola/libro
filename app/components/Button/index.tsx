@@ -162,7 +162,7 @@ const Button: React.FC<ButtonProps> = ({
         {currentIcon && (
           <FontAwesome
             className="Button__icon"
-            data-test="Button-icon"
+            data-testid="Button-icon"
             name={currentIcon}
             spin={loading}
           />
@@ -183,7 +183,7 @@ const Button: React.FC<ButtonProps> = ({
       {currentIcon && (
         <FontAwesome
           className="Button__icon"
-          data-test="Button-icon"
+          data-testid="Button-icon"
           name={currentIcon}
           spin={loading}
         />
