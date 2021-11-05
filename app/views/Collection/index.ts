@@ -1,7 +1,8 @@
+import CollectionContainer from './CollectionContainer';
 import CollectionDefault from './CollectionDefault';
+import CollectionDialog from './CollectionDialog';
 import CollectionGrid from './CollectionGrid';
 import CollectionTabPane from './CollectionTabPane';
-import CollectionWithOmniform from './CollectionWithOmniform';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
 import FilterFields from './properties/filterFields';
@@ -25,6 +26,8 @@ import './Collection.scss';
 export default [
   ...TotalItems,
   CollectionCardAppendix,
+  CollectionContainer,
+  CollectionDialog,
   CollectionInline,
   ...CollectionFrame,
   CollectionFullPage,
@@ -33,7 +36,6 @@ export default [
   CollectionTabPane,
   CollectionTableCell,
   CollectionDefault,
-  CollectionWithOmniform,
   CreateAction,
   FilterFields,
   ...Header,

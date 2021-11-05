@@ -28,12 +28,10 @@ const useStyles = makeStyles({
 });
 
 export interface CollectionFrameProps {
-  hideHeader?: boolean;
   Wrapper: ElementType,
 }
 
 const CollectionFrame = ({
-  hideHeader,
   Wrapper,
 }: CollectionFrameProps): JSX.Element => {
   const styles = useStyles();
@@ -69,7 +67,6 @@ const CollectionFrame = ({
         <Property label={ontola.query} />
         <Property
           forceRender
-          hideHeader={hideHeader}
           label={ontola.header}
         />
         <Grid container>
@@ -88,7 +85,6 @@ const CollectionFrame = ({
         <Property label={ontola.query} />
         <Property
           forceRender
-          hideHeader={hideHeader}
           label={ontola.header}
         />
         <Card>
@@ -121,7 +117,6 @@ const CollectionFrame = ({
         <Property label={ontola.query} />
         <Property
           forceRender
-          hideHeader={hideHeader}
           label={ontola.header}
         />
         <Card>
@@ -141,7 +136,6 @@ const CollectionFrame = ({
         <Property label={ontola.query} />
         <Property
           forceRender
-          hideHeader={hideHeader}
           label={ontola.header}
         />
         {body}

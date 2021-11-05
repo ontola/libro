@@ -1,5 +1,6 @@
 import { withStyles } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
+import clsx from 'clsx';
 import React from 'react';
 
 import argu from '../../ontology/argu';
@@ -32,6 +33,12 @@ const styles = (theme: LibroTheme) => ({
     flex: 1,
     gap: theme.spacing(HEADER_GAP),
   },
+  invertColors: {
+    '& .Heading, & .MuiIconButton-root': {
+      color: theme.palette.common.white,
+      textShadow: '0 0 2px rgb(0 0 0 / 50%)',
+    },
+  },
 });
 
 /**
@@ -42,6 +49,7 @@ export const containerHeaderTopology = argu.ns('containerHeader');
 export interface ContainerHeaderProps {
   children: React.ReactNode
   classes: ClassNameMap;
+  invertColors: boolean;
 }
 
 /**
@@ -57,8 +65,13 @@ class ContainerHeader extends Topology<ContainerHeaderProps> {
   }
 
   public render() {
+    const classes = clsx({
+      [this.props.classes.containerHeader]: true,
+      [this.props.classes.invertColors]: this.props.invertColors,
+    });
+
     return this.wrap((
-      <div className={this.props.classes.containerHeader}>
+      <div className={classes}>
         <div className={this.props.classes.header}>
           {this.props.children}
         </div>

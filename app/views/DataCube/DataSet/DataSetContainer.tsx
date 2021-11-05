@@ -17,6 +17,7 @@ import { tryParseInt } from '../../../helpers/numbers';
 import qb from '../../../ontology/qb';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
+import { alertDialogTopology } from '../../../topologies/Dialog';
 import Table from '../../../topologies/Table';
 import TableBody from '../../../topologies/TableBody';
 import TableHead from '../../../topologies/TableHead';
@@ -84,6 +85,9 @@ const DataSetContainer = () => {
 
 DataSetContainer.type = qb.DataSet;
 
-DataSetContainer.topology = [containerTopology];
+DataSetContainer.topology = [
+  alertDialogTopology,
+  containerTopology,
+];
 
 export default register(DataSetContainer);

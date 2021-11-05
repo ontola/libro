@@ -33,6 +33,7 @@ export interface CollectionProps {
   clickToOpen?: boolean;
   collectionDisplay?: NamedNode;
   depth?: number;
+  headerButtons?: ReactNode;
   hideHeader?: boolean;
   hidePagination?: boolean;
   onItemClick?: () => void;
@@ -41,7 +42,7 @@ export interface CollectionProps {
   renderWhenEmpty?: boolean;
 }
 
-interface CollectionProviderProps extends CollectionProps {
+export interface CollectionProviderProps extends CollectionProps {
   children?: ReactNode;
   omniform?: boolean;
 }
@@ -54,6 +55,7 @@ export interface CollectionContext {
   currentCollectionPages?: SomeNode[];
   depth?: number;
   hasInteraction?: boolean;
+  headerButtons?: ReactNode;
   hideHeader?: boolean;
   hidePagination?: boolean;
   maxColumns?: number;
@@ -102,6 +104,7 @@ const CollectionProvider = ({
   clickToOpen,
   collectionDisplay,
   depth,
+  headerButtons,
   hideHeader,
   hidePagination,
   omniform,
@@ -146,6 +149,7 @@ const CollectionProvider = ({
     currentCollectionPages,
     depth,
     hasInteraction,
+    headerButtons,
     hideHeader,
     hidePagination,
     maxColumns: tryParseInt(maxColumns),
@@ -165,6 +169,7 @@ const CollectionProvider = ({
     redirectPagination,
     depth,
     hasInteraction,
+    headerButtons,
     hideHeader,
     hidePagination,
     maxColumns,
