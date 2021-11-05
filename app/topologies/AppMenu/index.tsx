@@ -1,5 +1,3 @@
-import { withLRS } from 'link-redux';
-import { LinkedRenderStoreContext } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import DropdownMenu, {
@@ -18,11 +16,11 @@ export interface AppMenuProps {
 }
 
 class AppMenu extends Topology<
-  AppMenuProps & LinkedRenderStoreContext,
+  AppMenuProps,
   Record<string, unknown>,
   () => void
 > {
-  constructor(props: AppMenuProps & LinkedRenderStoreContext) {
+  constructor(props: AppMenuProps) {
     super(props);
 
     this.topology = appMenuTopology;
@@ -59,4 +57,4 @@ class AppMenu extends Topology<
   }
 }
 
-export default withLRS(AppMenu);
+export default AppMenu;
