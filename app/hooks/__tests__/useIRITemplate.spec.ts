@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 
 import ontola from '../../ontology/ontola';

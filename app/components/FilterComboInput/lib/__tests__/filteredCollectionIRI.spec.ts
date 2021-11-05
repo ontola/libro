@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import rdf from '@ontologies/core';
 import { useLRS } from 'link-redux';
 

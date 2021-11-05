@@ -24,6 +24,14 @@ globalThis.logging = {
 };
 
 function getClient() {
+  if (__TEST__) {
+    return {
+      notify(e: Error) {
+        throw e;
+      },
+    } as unknown as Client;
+  }
+
   const mockReporter = {
     notify(e: Error) {
       globalThis.logging.errors.push(e);
