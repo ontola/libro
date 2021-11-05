@@ -22,7 +22,6 @@ import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import {
-  cleanup,
   fireEvent,
   renderLinked,
 } from '../../test-utils';
@@ -45,8 +44,6 @@ const mockStorage = (initialValues: Record<string, string>): [Record<string, str
 };
 
 describe('Form', () => {
-  afterAll(cleanup);
-
   const resources = {
     '@id': action.value,
     [rdfx.type.toString()]: schema.CreateAction,

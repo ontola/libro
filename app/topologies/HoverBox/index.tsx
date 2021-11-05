@@ -101,7 +101,7 @@ class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
     return (
       <span
         className="HoverBox-trigger"
-        data-test="HoverBox-trigger"
+        data-testid="HoverBox-trigger"
         tabIndex={0}
         onBlur={this.handleOnBlur}
         onClick={this.handleOnClick}
@@ -130,7 +130,7 @@ class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
     return this.wrap((
       <div
         className={`HoverBox ${this.props.shine && 'HoverBox--shine'}`}
-        data-test="HoverBox"
+        data-testid="HoverBox"
       >
         {this.trigger(this.props.children)}
         <div className={`HoverBox__hidden-part ${this.classNames()}`}>

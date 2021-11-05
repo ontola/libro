@@ -13,17 +13,12 @@ import React from 'react';
 import app from '../../ontology/app';
 import example from '../../ontology/example';
 import ontola from '../../ontology/ontola';
-import {
-  cleanup,
-  renderLinked,
-} from '../../test-utils';
+import { renderLinked } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
 const ITEMS = 10;
 
 describe('Collection', () => {
-  afterAll(cleanup);
-
   const collectionIRI = example.ns('nederland/q/75/m');
   const memberResource = {
     '@id': example.ns('nederland/m/177'),

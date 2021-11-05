@@ -18,7 +18,6 @@ import example from '../../ontology/example';
 import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import {
-  cleanup,
   fireEvent,
   renderLinked,
 } from '../../test-utils';
@@ -27,8 +26,6 @@ import Card from '../../topologies/Card';
 import Omniform from './index';
 
 describe('Omniform', () => {
-  afterEach(cleanup);
-
   const schemaText = calculateFormFieldName(schema.text);
   const conAction = ex.ns('/cons/new');
   const conEntryPoint = example.ns('cons/new#EntryPoint');

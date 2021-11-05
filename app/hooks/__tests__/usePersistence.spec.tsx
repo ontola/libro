@@ -1,12 +1,9 @@
 import rdf from '@ontologies/core';
-import { cleanup } from '@testing-library/react';
 
 import { serializeForStorage } from '../../helpers/persistence';
 import ex from '../../ontology/ex';
 
 describe('persistence', () => {
-  afterEach(cleanup);
-
   describe('serialization', () => {
     it('serializes named nodes', () => {
       const serialized = serializeForStorage([ex.ns('5')]);

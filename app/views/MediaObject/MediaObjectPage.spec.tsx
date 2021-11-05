@@ -10,15 +10,10 @@ import * as dcterms from '@ontologies/dcterms';
 import React from 'react';
 
 import dbo from '../../ontology/dbo';
-import {
-  cleanup,
-  renderLinked,
-} from '../../test-utils';
+import { renderLinked } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
 describe('MediaObject', () => {
-  afterAll(cleanup);
-
   const resource = rdf.namedNode('http://example.com/media_objects/1');
   const parent = rdf.namedNode('http://example.com/page/1');
 

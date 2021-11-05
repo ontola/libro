@@ -7,7 +7,7 @@ import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const MenuSection = (): JSX.Element => (
-  <div data-test="MenuSection-menu-section">
+  <div data-testid="MenuSection-menu-section">
     <Property label={schema.name} />
     <Property
       forceRender

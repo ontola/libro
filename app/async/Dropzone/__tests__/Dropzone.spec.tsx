@@ -6,10 +6,8 @@ import React from 'react';
 import { Field } from 'react-final-form';
 
 import { UnwrappedForm } from '../../../components/Form/Form';
-import { cleanup, render } from '../../../test-utils';
+import { render } from '../../../test-utils';
 import Dropzone from '../index';
-
-afterEach(cleanup);
 
 describe('Dropzone', () => {
   it('Displays an invitation message', async () => {

@@ -19,7 +19,7 @@ import argu from '../../ontology/argu';
 import example from '../../ontology/example';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
-import { cleanup, renderLinked } from '../../test-utils';
+import { renderLinked } from '../../test-utils';
 import { CardMain } from '../../topologies/Card';
 import { UnwrappedForm as Form } from '../Form/Form';
 
@@ -57,8 +57,6 @@ const renderWithTestForm = async ({ initialValues, resources }: RenderWithTestFo
 };
 
 describe('FormField', () => {
-  afterEach(cleanup);
-
   const textField: DataObject = {
     '@id': field.value,
     [rdfx.type.toString()]: form.TextInput,

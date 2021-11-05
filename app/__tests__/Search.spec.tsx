@@ -14,11 +14,9 @@ import argu from '../ontology/argu';
 import example from '../ontology/example';
 import ontola from '../ontology/ontola';
 import { Page } from '../topologies/Page';
-import { cleanup, renderLinked } from '../test-utils';
+import { renderLinked } from '../test-utils';
 
 describe('Search', () => {
-  afterAll(cleanup);
-
   const testIRI = example.ns('test/search?q=keyword');
   const firstPage = example.ns('test/search?q=keyword&page=1');
   const seqIRI = example.ns('test/search/results');

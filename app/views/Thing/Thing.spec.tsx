@@ -9,10 +9,7 @@ import { Resource } from 'link-redux';
 import * as dcterms from '@ontologies/dcterms';
 import React from 'react';
 
-import {
-  cleanup,
-  renderLinked,
-} from '../../test-utils';
+import { renderLinked } from '../../test-utils';
 import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
@@ -22,8 +19,6 @@ import Container from '../../topologies/Container';
 import { Page } from '../../topologies/Page';
 
 describe('Thing', () => {
-  afterAll(cleanup);
-
   const parent = rdf.namedNode('http://example.com/page/1');
   const resource = rdf.namedNode('http://example.com/thing/1');
 

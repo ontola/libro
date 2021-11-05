@@ -19,14 +19,11 @@ import form from '../ontology/form';
 import ll from '../ontology/ll';
 import { Page } from '../topologies/Page';
 import {
-  cleanup,
   fireEvent,
   renderLinked,
 } from '../test-utils';
 
 describe('Actions', () => {
-  afterAll(cleanup);
-
   const testIRI = ex.ns('test');
   const entryPointIRI = example.ns('test/edit');
   const objectIRI = ex.ns('testObject');

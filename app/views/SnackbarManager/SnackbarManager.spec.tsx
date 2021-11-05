@@ -11,14 +11,9 @@ import React from 'react';
 
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
-import {
-  cleanup,
-  renderLinked,
-} from '../../test-utils';
+import { renderLinked } from '../../test-utils';
 
 describe('SnackbarManager', () => {
-  afterAll(cleanup);
-
   it('renders nothing if queue is empty', async () => {
     const iri = app.ns('snackbar/manager');
     const resources = {

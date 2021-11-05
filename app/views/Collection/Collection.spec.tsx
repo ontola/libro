@@ -14,12 +14,10 @@ import React from 'react';
 import app from '../../ontology/app';
 import example from '../../ontology/example';
 import ontola from '../../ontology/ontola';
-import { cleanup, renderLinked } from '../../test-utils';
+import { renderLinked } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
 describe('Collection', () => {
-  afterAll(cleanup);
-
   const ITEMS = 10;
 
   const collectionWithPages = app.ns('nederland/q/75/m');
