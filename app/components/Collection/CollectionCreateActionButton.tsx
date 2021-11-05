@@ -19,7 +19,6 @@ import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import TriggerButton, { Trigger } from '../DropdownMenu/TriggerButton';
 import { LoadingCardFloat } from '../Loading';
-import ResourceBoundary from '../ResourceBoundary';
 
 import { useCollectionOptions } from './CollectionProvider';
 
@@ -80,19 +79,17 @@ const CollectionCreateActionButton: React.FC = () => {
 
     if (renderedActions.length > 1) {
       return (
-        <ResourceBoundary>
-          <Menu trigger={trigger}>
-            {() => (
-              renderedActions
-                .sort(sort(ORDER))
-                .map((action) => (
-                  <Resource
-                    key={action?.value}
-                    subject={action}
-                  />
-                )))}
-          </Menu>
-        </ResourceBoundary>
+        <Menu trigger={trigger}>
+          {() => (
+            renderedActions
+              .sort(sort(ORDER))
+              .map((action) => (
+                <Resource
+                  key={action?.value}
+                  subject={action}
+                />
+              )))}
+        </Menu>
       );
     }
   }
