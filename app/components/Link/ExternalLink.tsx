@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 
-interface PropTypes {
+export interface ExternalLinkProps {
   className?: string;
   href?: string;
   ref?: any;
@@ -10,15 +10,18 @@ interface PropTypes {
   tabIndex?: number;
 }
 
-const ExternalLink: React.FC<PropTypes> = ({ children, ...otherProps }) => (
-  <a
-    {...otherProps}
-    rel="nofollow noopener noreferrer"
-    target="_blank"
-  >
-    {children}
-  </a>
-
-);
+const ExternalLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<ExternalLinkProps>>(
+  ({ children, ...otherProps },
+    ref,
+  ): JSX.Element => (
+    <a
+      {...otherProps}
+      ref={ref}
+      rel="nofollow noopener noreferrer"
+      target="_blank"
+    >
+      {children}
+    </a>
+  ));
 
 export default ExternalLink;

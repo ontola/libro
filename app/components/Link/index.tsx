@@ -7,6 +7,7 @@ import React, {
   KeyboardEventHandler,
   MouseEvent,
   MouseEventHandler,
+  Ref,
 } from 'react';
 import { match } from 'react-router';
 import { Link as DomLink, NavLink } from 'react-router-dom';
@@ -65,7 +66,7 @@ export interface LinkPropTypes {
 }
 
 interface PropTypesWithRef extends LinkPropTypes {
-  innerRef: any;
+  innerRef: Ref<HTMLAnchorElement>;
 }
 
 const isActiveDefault = (to: string) => {
@@ -77,7 +78,7 @@ const isActiveDefault = (to: string) => {
   );
 };
 
-const Link: React.FC<PropTypesWithRef> = ({
+const Link = ({
   activeClassName,
   allowExternal = true,
   children,
@@ -89,11 +90,11 @@ const Link: React.FC<PropTypesWithRef> = ({
   isIndex = true,
   onClick,
   target,
-  theme = 'default',
+  theme = LinkTheme.Default,
   title,
   to,
   ...other
-}) => {
+}: PropTypesWithRef): JSX.Element => {
   const lrs = useLRS();
   const featureClasses = featureStyles();
   const themeClasses = themeStyles();
@@ -172,7 +173,7 @@ const Link: React.FC<PropTypesWithRef> = ({
   );
 };
 
-export default React.forwardRef((props: LinkPropTypes, ref) => (
+export default React.forwardRef<HTMLAnchorElement, LinkPropTypes>((props, ref) => (
   <Link
     innerRef={ref}
     {...props}

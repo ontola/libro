@@ -55,7 +55,7 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
         />
       );
     })
-    : React.forwardRef<React.FC, Omit<NavLinkProps, 'target'>>((props, nestedRef) => (
+    : React.forwardRef<HTMLAnchorElement, Omit<NavLinkProps, 'target'>>((props, nestedRef) => (
       <Link
         allowExternal={allowExternal}
         ref={nestedRef}
