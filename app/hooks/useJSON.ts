@@ -2,10 +2,10 @@ import React from 'react';
 
 import { handle } from '../helpers/logging';
 
-const useJSON = <T>(path: string | undefined): T | undefined => {
+const useJSON = <T>(path: string | undefined): [data: T | undefined, retry: () => void] => {
   const [json, setJSON] = React.useState<T | undefined>(undefined);
 
-  React.useEffect(() => {
+  const reload = React.useCallback(() => {
     if (path) {
       fetch(path)
         .then((res) => res.json())
@@ -16,7 +16,11 @@ const useJSON = <T>(path: string | undefined): T | undefined => {
     }
   }, [path]);
 
-  return json;
+  React.useEffect(() => {
+    reload();
+  }, [path, reload]);
+
+  return [json, reload];
 };
 
 export default useJSON;

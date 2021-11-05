@@ -45,8 +45,8 @@ const GlappMap: React.FC<GlappMapProps> = ({
     zoom: zoom ?? DEFAULT_ZOOM,
   });
   const showFull = (view?.zoom || 0) > FULL_POSTAL_LEVEL;
-  const postalCodes = useJSON<PostalCodes>(`assets/postal_codes${showFull ? '' : '_simplified'}.json`);
-  const postalStats = useJSON<PostalStats>('postal_stats.json');
+  const [postalCodes] = useJSON<PostalCodes>(`assets/postal_codes${showFull ? '' : '_simplified'}.json`);
+  const [postalStats] = useJSON<PostalStats>('postal_stats.json');
   const postalShapes = usePostalShapes({
     postalCodes,
     priorities: postalStats?.priorities,
