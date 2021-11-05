@@ -1,6 +1,6 @@
 import rdf, {
   BlankNode,
-  Quadruple,
+  Quad,
   SomeTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
@@ -12,8 +12,6 @@ import {
   ResponseAndFallbacks,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-
-import { quadruple } from '../quadruple';
 
 enum HexPosition {
   Subject = 0,
@@ -34,91 +32,119 @@ try {
   // ignore
 }
 
+export class HexJsonParser {
+  private quad = rdf.quad.bind(rdf);
+  private literal = rdf.literal.bind(rdf);
+  private namedNode = rdf.namedNode.bind(rdf);
+  private blankNodeF = rdf.blankNode.bind(rdf);
+  private defaultGraph = rdf.defaultGraph.bind(rdf);
+  private bnMap: { [s: string]: BlankNode } = {};
+
+  public parseString(text: string): Quad[] {
+    this.clearMap();
+
+    const quads = [];
+
+    for (const line of text.split('\n')) {
+      if (line.length > 0) {
+        quads.push(this.hexArrayToQuad(JSON.parse(line)));
+      }
+    }
+
+    return quads;
+  }
+
+  public async parseStream(stream: ReadableStream<Uint8Array>): Promise<Quad[]> {
+    const ndjStream = new NdjsonStream(stream);
+    const reader = ndjStream.getReader();
+
+    const quads = [];
+    let result;
+
+    while (((result = await reader.read()) && !result.done)) {
+      quads.push(this.hexArrayToQuad(result.value));
+    }
+
+    return quads;
+  }
+
+  public hexArrayToQuad(h: string[]): Quad {
+    return this.quad(
+      h[HexPosition.Subject].startsWith('_:') ? this.blankNode(h[HexPosition.Subject]) : this.namedNode(h[HexPosition.Subject]),
+      this.namedNode(h[HexPosition.Predicate]),
+      this.object(h[HexPosition.Value], h[HexPosition.Datatype], h[HexPosition.Language]),
+      h[HexPosition.Graph] ? this.namedNode(h[HexPosition.Graph]) : this.defaultGraph(),
+    );
+  }
+
+  private blankNode(v: string) {
+    if (!this.bnMap[v]) {
+      this.bnMap[v] = this.blankNodeF();
+    }
+
+    return this.bnMap[v];
+  }
+
+  private clearMap() {
+    this.bnMap = {};
+  }
+
+  private object(v: string, dt: string, l: string): SomeTerm {
+    if (l) {
+      return this.literal(v, l);
+    } else if (dt === rdfx.ns('namedNode').value) {
+      return this.namedNode(v);
+    } else if (dt === rdfx.ns('blankNode').value) {
+      return this.blankNode(v);
+    }
+
+    return this.literal(v, this.namedNode(dt));
+  }
+}
+
+const parseResponse = async (parser: HexJsonParser, res: ResponseAndFallbacks): Promise<Quad[]> => {
+  if (res instanceof Response && hasReadableStreamConstructor) {
+    if (res.body === null) {
+      return [];
+    }
+
+    return await parser.parseStream(res.body);
+  }
+
+  let body;
+
+  if (res instanceof Response) {
+    body = res.text();
+  } else if (typeof XMLHttpRequest !== 'undefined'
+    && res instanceof XMLHttpRequest
+    || typeof (res as any).responseText === 'string') {
+    body = Promise.resolve((res as XMLHttpRequest | RDFLibFetcherResponse).responseText);
+  } else {
+    body = Promise.resolve((res as ExtensionResponse).body);
+  }
+
+  const text = await body;
+
+  return parser.parseString(text);
+};
+
 export default {
   acceptValue: 1.0,
   mediaTypes: ['application/hex+x-ndjson'],
 
-  transformer: (store: LinkReduxLRSType) => (res: ResponseAndFallbacks): Promise<Quadruple[]> => {
-    const bnMap: { [s: string]: BlankNode } = {};
-    // Skip the (expensive) proxy object when parsing
-    const quad = quadruple;
-    const literal = rdf.literal.bind(rdf);
-    const namedNode = rdf.namedNode.bind(rdf);
-    const blankNodeF = rdf.blankNode.bind(rdf);
-    const defaultGraph = rdf.defaultGraph.bind(rdf);
+  transformer: (store: LinkReduxLRSType): (_: ResponseAndFallbacks) => Promise<Quad[]> => {
+    const parser = new HexJsonParser();
 
-    const blankNode = (v: string) => {
-      if (!bnMap[v]) {
-        bnMap[v] = blankNodeF();
-      }
-
-      return bnMap[v];
-    };
-
-    const object = (v: string, dt: string, l: string): SomeTerm => {
-      if (l) {
-        return literal(v, l);
-      } else if (dt === rdfx.ns('namedNode').value) {
-        return namedNode(v);
-      } else if (dt === rdfx.ns('blankNode').value) {
-        return blankNode(v);
-      }
-
-      return literal(v, namedNode(dt));
-    };
-
-    const lineToQuad = (h: string[]) => quad(
-      h[HexPosition.Subject].startsWith('_:') ? blankNode(h[HexPosition.Subject]) : namedNode(h[HexPosition.Subject]),
-      namedNode(h[HexPosition.Predicate]),
-      object(h[HexPosition.Value], h[HexPosition.Datatype], h[HexPosition.Language]),
-      h[HexPosition.Graph] ? namedNode(h[HexPosition.Graph]) : defaultGraph(),
-    );
-
-    const delta: Quadruple[] = [];
-    let parse;
-
-    if (res instanceof Response && hasReadableStreamConstructor) {
-      const stream = new NdjsonStream(res.body);
-      const reader = stream.getReader();
-
-      let read: any;
-      parse = reader
-        .read()
-        .then(read = (result: { done: boolean, value: string[] }) => {
-          if (result.done) {
-            return;
-          }
-
-          delta.push(lineToQuad(result.value));
-
-          return reader.read().then(read);
-        });
-    } else {
-      let body;
-
-      if (res instanceof Response) {
-        body = res.text();
-      } else if (typeof XMLHttpRequest !== 'undefined'
-        && res instanceof XMLHttpRequest
-        || typeof (res as any).responseText === 'string') {
-        body = Promise.resolve((res as XMLHttpRequest | RDFLibFetcherResponse).responseText);
-      } else {
-        body = Promise.resolve((res as ExtensionResponse).body);
-      }
-
-      parse = body
-        .then((text) => {
-          for (const line of text.split('\n')) {
-            if (line.length > 0) {
-              delta.push(lineToQuad(JSON.parse(line)));
-            }
-          }
-        });
-    }
-
-    return parse
+    return async (res: ResponseAndFallbacks): Promise<Quad[]> => {
+      const delta: Quad[] = await parseResponse(parser, res);
       // eslint-disable-next-line no-prototype-builtins
-      .then(() => store.queueDelta(delta, res.hasOwnProperty('expedite') ? (res as any).expedite : false))
-      .then(() => []);
+      const isExpedited = res.hasOwnProperty('expedite')
+        ? (res as any).expedite
+        : false;
+
+      await store.queueDelta(delta, isExpedited);
+
+      return [];
+    };
   },
 };
