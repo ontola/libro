@@ -527,6 +527,9 @@
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documents"
   },
+  "https://rdf.studio/i18n/downloadButtonLabel": {
+    "defaultMessage": "Download"
+  },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Are you sure you want to overwrite: {docID}?"
   },

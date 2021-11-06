@@ -13,7 +13,7 @@ module.exports = merge(common, {
     allowedHosts: 'all',
     client: {
       overlay: {
-        errors: true,
+        errors: false,
         warnings: false,
       },
       webSocketURL: 'auto://0.0.0.0:0/ws',

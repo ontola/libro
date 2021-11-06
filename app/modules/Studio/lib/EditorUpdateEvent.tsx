@@ -1,6 +1,7 @@
 import { PageViewerState } from './PageViewerState';
 
 export enum EditorEvents {
+  Loaded,
   EditorUpdate,
   EditorClose,
 }

@@ -24,13 +24,7 @@ const generateStyle = ({
   const mergedVariables = deepmerge(variables ?? {}, variableOverwrites);
   const theme = createTheme(mergedVariables);
 
-  (theme.overrides!).MuiCssBaseline = {
-    '@global': {
-      html: {
-        background: (mergedVariables.palette as any).background.default,
-      },
-    },
-  };
+  (theme.overrides!.MuiCssBaseline!['@global']!.html as any).background = (mergedVariables.palette as any).background.default;
 
   if (components) {
     theme.overrides = components.reduce(

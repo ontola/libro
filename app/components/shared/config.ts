@@ -44,6 +44,10 @@ export const types = [
   'project',
 ];
 
+export const zIndex = {
+  loader: 1200,
+};
+
 const mqBreakpoints = {
   largeLowerBound: '900px',
   microUpperBound: '320px',

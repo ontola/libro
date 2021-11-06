@@ -1,7 +1,7 @@
-import { useMonaco } from '@monaco-editor/react';
+import { loader, useMonaco } from '@monaco-editor/react';
 import React from 'react';
 
-import { error } from '../../../../../helpers/logging';
+import { error } from '../../../../helpers/logging';
 
 import { useStudioContextBundle } from './useStudioContextBundle';
 
@@ -10,6 +10,7 @@ type Monaco = typeof import('monaco-editor/esm/vs/editor/editor.api');
 export const useMonacoWithBundle = (): boolean => {
   const context = useStudioContextBundle();
   const [initialized, setInitialized] = React.useState<Monaco[]>([]);
+  loader.config({ paths: { vs: '/vs' } });
   const monaco = useMonaco();
   const [latest, setLatest] = React.useState(!monaco);
 
@@ -69,6 +70,7 @@ export const useMonacoWithBundle = (): boolean => {
       monaco.languages.typescript.typescriptDefaults.addExtraLib('\
       const local = (s: string) => rdf.namedNode(`${window.location.origin}/${s}`);\
       const url = (s: string) => rdf.namedNode(s);\
+      const lang = (language: string, value: string) => rdf.literal(value, language);\
       const date = (s: string) => rdf.literal(new Date(s));\
     ');
     } catch (e) {

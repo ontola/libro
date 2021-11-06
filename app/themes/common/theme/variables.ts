@@ -4,6 +4,8 @@ import {
   lighten,
 } from '@material-ui/core/styles';
 
+import { overrides } from './overrides';
+
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
  */
@@ -126,6 +128,7 @@ const theme = {
     small: '35rem',
   },
   greyBorder: `solid 1px ${colors.grey.xLight}`,
+  overrides,
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {

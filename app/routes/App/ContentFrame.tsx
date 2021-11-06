@@ -44,8 +44,8 @@ const ContentFrame = ({
   children,
   title,
 }: ContentFrameProps): JSX.Element => {
-  const { theme, themeOpts } = React.useContext(appContext);
   const classes = useStyles();
+  const { theme, themeOpts } = React.useContext(appContext);
 
   const themeOptions = new URLSearchParams(themeOpts);
   const footerResources = (themeOptions.get('footerResources')?.split(',') ?? [])

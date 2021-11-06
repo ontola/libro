@@ -1,42 +1,15 @@
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
-import ErrorBoundary from '../../../../components/ErrorBoundary';
-import { usePopoutViewer } from '../lib/hooks/usePopoutViewer';
+import { ProjectContext, useProjectStateReducer } from '../context/ProjectContext';
 
-import { Tabbar } from './Tabbar';
-import Toolbar from './Toolbar';
-import Editor from './Editor';
+import { NoProjectScreen } from './screens/NoProjectScreen';
+import { ProjectScreen } from './screens/ProjectScreen';
+import { LoadingScreen } from './screens/LoadingScreen';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    height: 'calc(100vh - 3.2rem)',
-    overflow: 'hidden',
-  },
-  editor: {
-    height: '100%',
-    overflow: 'scroll',
-  },
-  resizer: {
-    '&:hover': {
-      opacity: 1,
-    },
-    background: '#000',
-    backgroundClip: 'padding-box',
-    boxSizing: 'border-box',
-    cursor: 'ew-resize',
-    flexShrink: 0,
-    opacity: '.5',
-    width: '.4rem',
-    zIndex: 1,
-  },
-  viewer: {
-    height: 'calc(100vh - 3.2rem)',
-    overflow: 'scroll',
-  },
   windowOverlay: {
+    background: 'white',
     bottom: 0,
     left: 0,
     position: 'fixed',
@@ -46,34 +19,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const screen = (project: ProjectContext): [React.FC<any> | undefined, boolean] => {
+  if (project.iri === undefined) {
+    return [NoProjectScreen, false];
+  } else if (project.loading) {
+    return [undefined, true];
+  }
+
+  return [ProjectScreen, false];
+};
+
 export const StudioFrame = (): JSX.Element => {
   const classes = useStyles();
-  const [open, setOpened] = React.useState(false);
-  const recreateDialog = usePopoutViewer({
-    onClose: () => setOpened(false),
-    onOpen: () => setOpened(true),
-  });
+  const [project, dispatch] = useProjectStateReducer();
 
-  return (
+  const [Screen, loading] = screen(project);
+
+  return  (
     <div className={classes.windowOverlay}>
-      <Toolbar
-        connected={open}
-        recreateDialog={recreateDialog}
+      {Screen && (
+        <Screen
+          dispatch={dispatch}
+          project={project}
+        />
+      )}
+      <LoadingScreen
+        dispatch={dispatch}
+        project={project}
+        show={loading}
       />
-      <Tabbar />
-      <Grid
-        container
-        className={classes.container}
-        direction="row"
-      >
-        <Paper className={classes.editor}>
-          <ErrorBoundary>
-            <Editor
-              onMount={recreateDialog}
-            />
-          </ErrorBoundary>
-        </Paper>
-      </Grid>
     </div>
   );
 };

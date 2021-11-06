@@ -30,7 +30,7 @@ import {
 import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { ParsedObject } from 'link-lib/dist-types/types';
 
-import ontApp from '../../../ontology/app';
+import { createAppNS } from '../../../ontology/app';
 import ontAppSlashless from '../../../ontology/appSlashless';
 import ontArgu from '../../../ontology/argu';
 import ontDbo from '../../../ontology/dbo';
@@ -104,7 +104,7 @@ const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, 
     ) as T;
 };
 
-const parseToGraph = (source: string, origin: string = window?.location.origin): ParsedObject[] => {
+const parseToGraph = (source: string, websiteIRI: string): ParsedObject[] => {
   // @ts-ignore
   const as = ontAs;
   // @ts-ignore
@@ -125,7 +125,7 @@ const parseToGraph = (source: string, origin: string = window?.location.origin):
   const xsd = ontXsd;
 
   // @ts-ignore
-  const app = ontApp;
+  const app = createAppNS(websiteIRI);
   // @ts-ignore
   const appSlashless = ontAppSlashless;
   // @ts-ignore
@@ -184,9 +184,11 @@ const parseToGraph = (source: string, origin: string = window?.location.origin):
   const wdt = ontWdt;
 
   // @ts-ignore
-  const local = (s: string) => rdf.namedNode(`${origin}/${s}`);
+  const local = (s: string) => rdf.namedNode(`${websiteIRI}/${s}`);
   // @ts-ignore
   const url = (s: string) => rdf.namedNode(s);
+  // @ts-ignore
+  const lang = (language: string, value: string) => rdf.literal(value, language);
   // @ts-ignore
   const date = (s: string) => rdf.literal(new Date(s));
   // @ts-ignore
