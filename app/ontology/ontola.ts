@@ -37,6 +37,7 @@ export default {
   GuestUser: ontola('GuestUser'),
   InfiniteView: ontola('InfiniteView'),
   MenuItem: ontola('MenuItem'),
+  Ontology: ontola('Ontology'),
   PaginatedView: ontola('PaginatedView'),
   PictureSet: ontola('PictureSet'),
   PropertyQuery: ontola('PropertyQuery'),

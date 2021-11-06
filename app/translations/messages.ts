@@ -456,9 +456,29 @@ export const studioToolbarMessages: Messages = defineMessages({
     defaultMessage: 'Documents',
     id: 'https://rdf.studio/i18n/documentDropdownLabel',
   },
+  importButtonLabel: {
+    defaultMessage: 'Import data',
+    id: 'https://rdf.studio/i18n/importButtonLabel',
+  },
+  importDialogConfirm: {
+    defaultMessage: 'import',
+    id: 'https://rdf.studio/i18n/importDialog/confirm',
+  },
+  importDialogText: {
+    defaultMessage: 'This will overwrite all existing resources! Paste hextuples to import.',
+    id: 'https://rdf.studio/i18n/importDialog/text',
+  },
+  importDialogTitle: {
+    defaultMessage: 'Import data',
+    id: 'https://rdf.studio/i18n/importDialog/title',
+  },
   override: {
     defaultMessage: 'Are you sure you want to overwrite:\n{docID}?',
     id: 'https://rdf.studio/i18n/override',
+  },
+  prerenderButtonLabel: {
+    defaultMessage: 'Prerender & Save',
+    id: 'https://rdf.studio/i18n/prerenderButtonLabel',
   },
   resourceDropdownLabel: {
     defaultMessage: 'Resource (selected no {current}/{total})',

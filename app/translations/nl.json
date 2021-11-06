@@ -368,6 +368,33 @@
   "https://app.argu.co/i18n/navbar/troubleNavigating": {
     "defaultMessage": "Moeite met navigeren? Mail ons!"
   },
+  "https://rdf.studio/i18n/documentDropdownLabel": {
+    "defaultMessage": "Documenten"
+  },
+  "https://rdf.studio/i18n/downloadButtonLabel": {
+    "defaultMessage": "Downloaden"
+  },
+  "https://rdf.studio/i18n/override": {
+    "defaultMessage": "Weet je zeker dat je het document wilt overschrijven: {docID}?"
+  },
+  "https://rdf.studio/i18n/resourceDropdownLabel": {
+    "defaultMessage": "Resource ({current}/{total} geselecteerd)"
+  },
+  "https://rdf.studio/i18n/saveAsButtonLabel": {
+    "defaultMessage": "Opslaan als"
+  },
+  "https://rdf.studio/i18n/saveAsPrompt": {
+    "defaultMessage": "Document opslaan als:"
+  },
+  "https://rdf.studio/i18n/saveButtonLabel": {
+    "defaultMessage": "Opslaan"
+  },
+  "https://rdf.studio/i18n/saveFailedNotification": {
+    "defaultMessage": "Kon document niet opslaan."
+  },
+  "https://rdf.studio/i18n/savedNotification": {
+    "defaultMessage": "Document opgeslagen."
+  },
   "https://app.argu.co/i18n/pages/closed": {
     "defaultMessage": "Deze pagina is privé. Alleen leden kunnen de content bekijken. Vraag een lid of een van de managers hoe je toegang kan krijgen tot deze website."
   },

@@ -36,7 +36,7 @@ const common = {
         test: /\.jpg$/,
         use: 'file-loader?name=[name].[ext]',
       }, {
-        test: /\.(otf|woff|woff2)$/,
+        test: /\.(otf|ttf|woff|woff2)$/,
         use: 'file-loader?name=[name].[ext]&outputPath=f_assets/fonts/',
       }, {
         test: /\.(svg)$/,
@@ -53,12 +53,18 @@ const common = {
   },
 
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: 'static/preloader.css',
-        to: path.resolve(__dirname, '..', 'dist', 'f_assets'),
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'static/preloader.css',
+          to: path.resolve(__dirname, '..', 'dist', 'f_assets'),
+        },
+        {
+          from: 'node_modules/monaco-editor/min/vs',
+          to: path.resolve(__dirname, '..', 'dist', 'public', 'vs'),
+        },
+      ],
+    }),
     new webpack.ProvidePlugin({
       xmlhttprequest: 'imports-loader?this=>global!exports-loader?global.XMLHttpRequest!global.XMLHttpRequest',
     }),

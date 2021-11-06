@@ -4,6 +4,8 @@ import {
   lighten,
 } from '@material-ui/core/styles';
 
+import { overrides } from './overrides';
+
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
  */
@@ -143,6 +145,7 @@ const theme = {
     smallOnly: `(min-width: ${mqBreakpoints.smallLowerBound}) and (max-width: ${mqBreakpoints.smallUpperBound})`,
     smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound}) and (max-width: ${mqBreakpoints.smallestUpperBound})`,
   },
+  overrides,
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {

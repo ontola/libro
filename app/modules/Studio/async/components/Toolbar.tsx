@@ -1,26 +1,40 @@
 import {
   Button,
-  FormControl,
+  ButtonGroup,
+  ClickAwayListener,
+  Grow,
   IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
+  Popper,
+  Typography,
 } from '@material-ui/core';
 import Badge from '@material-ui/core/Badge';
 import Paper from '@material-ui/core/Paper';
-import LaunchIcon from '@material-ui/icons/Launch';
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import CloseIcon from '@material-ui/icons/Close';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import LaunchIcon from '@material-ui/icons/Launch';
+import SaveIcon from '@material-ui/icons/Save';
 import { useLRS } from 'link-redux';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import { studioToolbarMessages } from '../../../../translations/messages';
-import { studioContext } from '../lib/context/StudioContext';
-import { editorStateContext } from '../lib/context/EditorStateContext';
-import { serverDocumentsContext } from '../lib/context/ServerDocumentsContext';
+import {
+  DialogType,
+  ProjectAction,
+  ProjectContext,
+  ProjectContextProps,
+} from '../context/ProjectContext';
+import { savePrerender, saveProject } from '../lib/saveProject';
 
 const useStyles = makeStyles({
+  popper: {
+    zIndex: 1,
+  },
+  spacer: {
+    flexGrow: 1,
+  },
   toolbar: {
     alignItems: 'center',
     display: 'flex',
@@ -35,90 +49,69 @@ const useStyles = makeStyles({
   },
 });
 
-const useOverrideStyles = makeStyles({
-  root: {
-    maxWidth: 'unset',
-  },
-});
-
-export interface ToolbarProps {
+export interface ToolbarProps extends ProjectContextProps {
   connected: boolean;
   recreateDialog: () => void;
 }
 
 const Toolbar = ({
+  dispatch,
   connected,
+  project,
   recreateDialog,
 }: ToolbarProps): JSX.Element => {
   const classes = useStyles();
-  const overrideClasses = useOverrideStyles();
-  const {
-    documentIndex,
-    resourceIndex,
-    setDocumentIndex,
-    setResourceIndex,
-  } = React.useContext(editorStateContext);
-  const {
-    files,
-    resources,
-  } = React.useContext(studioContext);
-  const {
-    documents,
-    saveDocument,
-  } = React.useContext(serverDocumentsContext);
   const lrs = useLRS();
   const intl = useIntl();
-  const [saving, setSaving] = React.useState(false);
 
-  const stripID = (iri: string): string => iri.split('_libro/docs/').pop()!;
+  const [saving, setSaving] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLDivElement>(null);
 
   const showMessage = (msg: string) => lrs.actions.ontola.showSnackbar(msg);
 
-  const handleSave = React.useCallback(async (id: string) => {
+  const createHandler = (cb: (p: ProjectContext) => Promise<{ iri: string }>) => async () => {
     try {
       setSaving(true);
-      await saveDocument(id, files);
+      const { iri } = await cb(project);
+      dispatch({
+        iri,
+        type: ProjectAction.UpdateProjectIRI,
+      });
       await showMessage(intl.formatMessage(studioToolbarMessages.savedNotification));
       setSaving(false);
     } catch(_) {
       await showMessage(intl.formatMessage(studioToolbarMessages.saveFailedNotification));
       setSaving(false);
     }
-  }, [setSaving, saveDocument, files]);
+  };
 
-  const onSaveAs = React.useCallback(() => {
-    const newID = prompt(intl.formatMessage(studioToolbarMessages.saveAsPrompt));
+  const openImportDialog = React.useCallback(() => {
+    dispatch({
+      dialogType: DialogType.Import,
+      type: ProjectAction.ShowDialog,
+    });
+  }, [setSaving, project]);
 
-    if (newID === null) {
-      return Promise.reject();
+  const handleSave = React.useCallback(() => {
+    createHandler(saveProject)();
+  }, [setSaving, project]);
+
+  const handlePrerender = React.useCallback(() => {
+    createHandler(savePrerender)();
+  }, [setSaving, project]);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
+    if (anchorRef.current?.contains(event.target as HTMLElement)) {
+      return;
     }
 
-    const strippedID = stripID(newID);
-    const duplicate = documents?.map(stripID).some((docID) => docID === strippedID);
-    const save = !duplicate || confirm(intl.formatMessage(studioToolbarMessages.override, { docID: documents?.[documentIndex] }));
-
-    if (!save) {
-      return Promise.reject();
-    }
-
-    return handleSave(strippedID);
-  }, [documents, handleSave]);
-
-  const onSave = React.useCallback(() => {
-    if (documents && documents.length > 0) {
-      const overwrite = confirm(intl.formatMessage(studioToolbarMessages.override, { docID: documents?.[documentIndex] }));
-
-      if (!overwrite) {
-        return Promise.resolve();
-      }
-
-      const id = stripID(documents?.[documentIndex]);
-
-      return handleSave(id);
-    }
-
-    return onSaveAs();
-  }, [onSaveAs]);
+    setOpen(false);
+  };
 
   return (
     <Paper
@@ -136,73 +129,78 @@ const Toolbar = ({
           <LaunchIcon />
         </Badge>
       </IconButton>
-      <FormControl className={classes.toolbarSelectForm}>
-        <InputLabel htmlFor="studio-documents">
-          {intl.formatMessage(studioToolbarMessages.documentDropdownLabel)}
-        </InputLabel>
-        <Select
-          autoWidth
-          labelId="studio-documents"
-          value={documentIndex}
-          onChange={(e) => setDocumentIndex(Number(e.target.value))}
-        >
-          {documents?.map((document, i) => (
-            <MenuItem
-              classes={overrideClasses}
-              key={document}
-              value={i}
-            >
-              {document}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl className={classes.toolbarSelectForm}>
-        <InputLabel htmlFor="studio-resource">
-          {intl.formatMessage(studioToolbarMessages.resourceDropdownLabel, {
-            current: resourceIndex + 1,
-            total: resources.length,
-          })}
-        </InputLabel>
-        <Select
-          autoWidth
-          labelId="studio-resource"
-          value={resourceIndex}
-          onChange={(e) => setResourceIndex(Number(e.target.value))}
-        >
-          <MenuItem
-            classes={overrideClasses}
-            key="auto"
-            value="-1"
-          >
-            Auto
-          </MenuItem>
-          {resources.map((resource, i) => (
-            <MenuItem
-              classes={overrideClasses}
-              key={resource.value}
-              value={i}
-            >
-              {resource.value}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <Typography variant="subtitle1">
+        {project.iri}
+      </Typography>
+      <span className={classes.spacer} />
       <Button
         disabled={saving}
-        startIcon={<FontAwesome name="save" />}
+        startIcon={<CloudUploadIcon />}
         variant="outlined"
-        onClick={onSave}
+        onClick={openImportDialog}
       >
-        {intl.formatMessage(studioToolbarMessages.saveButtonLabel)}
+        {intl.formatMessage(studioToolbarMessages.importButtonLabel)}
       </Button>
-      <Button
-        disabled={saving}
-        startIcon={<FontAwesome name="save" />}
-        variant="outlined"
-        onClick={onSaveAs}
+      <ButtonGroup
+        innerRef={anchorRef}
+        variant="contained"
       >
-        {intl.formatMessage(studioToolbarMessages.saveAsButtonLabel)}
+        <Button
+          disabled={saving}
+          startIcon={<SaveIcon />}
+          variant="outlined"
+          onClick={handleSave}
+        >
+          {intl.formatMessage(studioToolbarMessages.saveButtonLabel)}
+        </Button>
+        <Button
+          color="primary"
+          size="small"
+          onClick={handleToggle}
+        >
+          <ArrowDropDownIcon />
+        </Button>
+      </ButtonGroup>
+      <Popper
+        disablePortal
+        transition
+        anchorEl={anchorRef.current}
+        className={classes.popper}
+        open={open}
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin: placement === 'bottom'
+                ? 'center top'
+                : 'center bottom',
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <Button
+                  disabled={saving}
+                  startIcon={<SaveIcon />}
+                  variant="outlined"
+                  onClick={handlePrerender}
+                >
+                  {intl.formatMessage(studioToolbarMessages.prerenderButtonLabel)}
+                </Button>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+
+      <Button
+        variant="outlined"
+        onClick={() => dispatch({
+          iri: undefined,
+          type: ProjectAction.Load,
+        })}
+      >
+        <CloseIcon />
       </Button>
     </Paper>
   );
