@@ -2,10 +2,12 @@ import { Feature, View } from 'ol';
 import {
   Extent,
   boundingExtent,
-  getCenter, 
+  getCenter,
 } from 'ol/extent';
 import { Point } from 'ol/geom';
 import { useCallback } from 'react';
+
+import { ClusterSelectCallback, FeatureSelectCallback } from '../../../containers/MapView';
 
 const CLUSTER_PADDING = 0.5;
 
@@ -27,8 +29,8 @@ export const zoomOnCluster = (eventView: View, extent: Extent): void =>
   });
 
 export const useSelectHandler = (
-  onClusterSelect: ((features: Feature[], center: number[]) => void) | undefined,
-  onSelect: ((feature: Feature, center: number[]) => void) | undefined,
+  onClusterSelect?: ClusterSelectCallback,
+  onSelect?: FeatureSelectCallback,
 ): (e: any) => void => useCallback((e) => {
   const [feature] = e?.selected || [];
   const features = feature?.get('features');
@@ -56,5 +58,7 @@ export const useSelectHandler = (
       : getCenter(geometry.getExtent());
 
     onSelect(selectedFeature, selectCenter);
+  } else if (onSelect) {
+    onSelect(undefined, undefined);
   }
 }, [onSelect]);

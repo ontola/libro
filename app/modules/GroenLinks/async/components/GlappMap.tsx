@@ -4,6 +4,11 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
+import {
+  ClusterSelectCallback,
+  FeatureSelectCallback,
+  ViewProps, 
+} from '../../../../containers/MapView';
 import { getMetaContent } from '../../../../helpers/dom';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import useJSON from '../../../../hooks/useJSON';
@@ -15,7 +20,7 @@ import {
 } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
 import MapCanvas from '../../../../async/MapView/components/MapCanvas';
-import { FOCUS_ZOOM, ViewProps } from '../../../../async/MapView/hooks/useMap';
+import { FOCUS_ZOOM } from '../../../../async/MapView/hooks/useMap';
 import useEventsLayer from '../hooks/useEventsLayer';
 import usePostalShapes, { PostalCodes } from '../hooks/usePostalShapes';
 import useSelectedPostalCode from '../hooks/useSelectedPostalCode';
@@ -66,12 +71,12 @@ const GlappMap: React.FC<GlappMapProps> = ({
     () => getMetaContent('mapboxTileURL'),
     [],
   );
-  const handleClusterSelect = React.useCallback((features, newCenter) => {
+  const handleClusterSelect = React.useCallback<ClusterSelectCallback>((features, newCenter) => {
     lrs.actions.ontola.showDialog(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
     setSelectedPostalCode(undefined);
     setOverlayPosition(newCenter);
   }, [lrs, setSelectedPostalCode, setOverlayPosition]);
-  const handleSelect = React.useCallback((feature, newCenter) => {
+  const handleSelect = React.useCallback<FeatureSelectCallback>((feature, newCenter) => {
     const { postalDigits } = feature?.getProperties() || {};
 
     if (postalDigits) {
@@ -83,11 +88,14 @@ const GlappMap: React.FC<GlappMapProps> = ({
         lrs.actions.ontola.showDialog(iri);
       }
 
-      setOverlayPosition(newCenter);
-      setView({
-        center: newCenter,
-        zoom: Math.max(view?.zoom || 0, feature ? FOCUS_ZOOM : 0),
-      });
+      if (newCenter) {
+        setOverlayPosition(newCenter);
+        setView({
+          center: newCenter,
+          zoom: Math.max(view?.zoom || 0, feature ? FOCUS_ZOOM : 0),
+        });
+      }
+
       setSelectedPostalCode(undefined);
     }
   }, [setSelectedPostalCode, view.zoom]);

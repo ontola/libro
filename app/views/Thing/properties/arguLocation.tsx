@@ -13,7 +13,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import MapView from '../../../containers/MapView';
+import MapView, { FeatureSelectCallback, NavigateCallback } from '../../../containers/MapView';
 import { isResource } from '../../../helpers/types';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
@@ -37,7 +37,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
   const [children, childrenLoading] = useContainerToArr(childrenPlacements);
-  const onSelect = React.useCallback((feature) => {
+  const onSelect = React.useCallback<FeatureSelectCallback>((feature) => {
     const id = feature?.getId();
 
     if (id) {
@@ -50,7 +50,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
       }
     }
   }, []);
-  const handleNavigate = React.useCallback((resource) => (
+  const handleNavigate = React.useCallback<NavigateCallback>((resource) => (
     lrs.actions.ontola.navigate(isNamedNode(resource) ? resource : app.ns('#'))
   ), [lrs]);
   const placements = React.useMemo(() => (

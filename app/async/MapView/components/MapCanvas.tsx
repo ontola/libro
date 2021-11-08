@@ -10,6 +10,7 @@ import { ButtonTheme } from '../../../components/Button';
 import ErrorButtonWithFeedback from '../../../components/Error/ErrorButtonWithFeedback';
 import LinkLoader from '../../../components/Loading/LinkLoader';
 import OverlayContainer from '../../../components/OverlayContainer';
+import { NavigateCallback } from '../../../containers/MapView';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import useMap, { UseMapProps } from '../hooks/useMap';
 import useMapStyles from '../hooks/useMapStyles';
@@ -17,7 +18,7 @@ import useOverlay from '../hooks/useOverlay';
 
 interface MapCanvasProps extends UseMapProps {
   large?: boolean;
-  navigate?: (resource: SomeNode) => void;
+  navigate?: NavigateCallback;
   overlayPadding?: boolean;
   overlayPosition?: Coordinate;
   overlayResource?: SomeNode;

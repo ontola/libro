@@ -1,8 +1,15 @@
+import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
 import { LoadingCard } from '../../../components/Loading';
-import { PropTypes } from '../../../containers/MapView';
+import {
+  FeatureSelectCallback,
+  Layer,
+  MapViewChangeCallback,
+  PropTypes,
+  ViewProps,
+} from '../../../containers/MapView';
 import { useFeatures } from '../hooks/useFeatures';
 import { usePlacementIds } from '../hooks/usePlacementIds';
 
@@ -29,12 +36,12 @@ export const MapView: React.FC<PropTypes> = ({
   const [placements, loading] = usePlacementIds(placementIds);
   const [placementFeatures, resolvedCenter] = useFeatures(placements);
 
-  const initialView = (initialLat && initialLon && initialZoom) ? {
+  const initialView: ViewProps | undefined = (initialLat && initialLon && initialZoom) ? {
     center: fromLonLat([initialLon, initialLat]),
     zoom: initialZoom,
   } : undefined;
 
-  const [view, setView] = React.useState(initialView);
+  const [view, setView] = React.useState<ViewProps | undefined>(initialView);
 
   React.useEffect(() => {
     if (resolvedCenter) {
@@ -50,9 +57,9 @@ export const MapView: React.FC<PropTypes> = ({
     }
   }, [loading, resolvedCenter?.getId()]);
 
-  const [overlayPosition, setOverlayPosition] = React.useState(undefined);
+  const [overlayPosition, setOverlayPosition] = React.useState<Coordinate | undefined>(undefined);
 
-  const handleSelect = React.useCallback((feature, newCenter) => {
+  const handleSelect = React.useCallback<FeatureSelectCallback>((feature, newCenter) => {
     if (onSelect) {
       onSelect(feature, newCenter);
     }
@@ -61,17 +68,19 @@ export const MapView: React.FC<PropTypes> = ({
       feature.getProperties().markAsVisited(feature);
     }
 
-    setOverlayPosition(newCenter);
+    if (newCenter) {
+      setOverlayPosition(newCenter);
+    }
   }, [onSelect]);
 
-  const layers = React.useMemo(() => (
+  const layers = React.useMemo<Layer[]>(() => (
     [{
       clustered: true,
       features: placementFeatures,
     }]
   ), [placementFeatures]);
 
-  const handleViewChange = React.useCallback((newCenter, newZoom) => {
+  const handleViewChange = React.useCallback<MapViewChangeCallback>((newCenter, newZoom) => {
     setView({
       center: newCenter,
       zoom: newZoom,
