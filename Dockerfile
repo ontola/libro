@@ -18,8 +18,7 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock /usr/src/app/
-# The packages are needed to build shrink-ray-current's native extensions
-RUN apk add python alpine-sdk && yarn install --production --immutable && apk del python alpine-sdk
+RUN yarn install --production --immutable
 COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 COPY --from=builder /usr/src/app/static /usr/src/app/static
 

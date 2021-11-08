@@ -29,7 +29,6 @@ const config = {
     'morgan',
     'request',
     'rimraf',
-    'shrink-ray-current',
     'useragent',
     'uuid',
 
