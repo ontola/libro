@@ -78,7 +78,7 @@ export const MapView: React.FC<MapViewProps> = ({
     }
   }, [onSelect]);
 
-  const geometryFeatures = geometry && geometry.points.length > 0 ? [toFeature(geometry)] : [];
+  const geometryFeatures = geometry?.type && geometry.points.length > 0 ? [toFeature(geometry)] : [];
   const layers = React.useMemo<Layer[]>(() => (
     [{
       clustered: true,

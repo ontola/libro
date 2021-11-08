@@ -44,7 +44,17 @@ const AreaInput: React.FC<InputComponentProps> = ({
   const { name: coordsName, values: coords, onChange: coordsOnChange } = useFormField({
     path: schema.longitude,
   });
-  const [placementType] = placementTypeValues || [];
+  const geometryElement = document.getElementById('geometryType') as HTMLInputElement;
+
+  if (geometryElement) {
+    geometryElement.onchange = () => placementTypeOnChange([rdf.literal(geometryElement.value)]);
+
+    if (!placementTypeValues[0].value) {
+      placementTypeOnChange([rdf.literal(geometryElement.value)]);
+    }
+  }
+
+  const [placementType] = placementTypeValues;
   React.useEffect(() => {
     if (!inputValue?.value && placementType?.value && coords.length > 1) {
       onChange(rdf.literal(true));
@@ -58,12 +68,6 @@ const AreaInput: React.FC<InputComponentProps> = ({
       coordsOnChange(newCoords.map((newCoord) => rdf.literal(newCoord.join(','))));
     }
   };
-
-  const geometryElement = document.getElementById('geometryType') as HTMLInputElement;
-
-  if (geometryElement) {
-    geometryElement.onchange = () => placementTypeOnChange([rdf.literal(geometryElement.value)]);
-  }
 
   return (
     <div className="AreaInput">

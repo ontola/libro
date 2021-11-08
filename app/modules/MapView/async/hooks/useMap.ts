@@ -299,7 +299,7 @@ const useMap = (props: UseMapProps): {
   const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | undefined>(undefined);
   const [tileSource, setTileSource] = useState<TileSource | undefined>(undefined);
   const [error, setError] = useState<Error | undefined>(undefined);
-  const [memoizedMap, setMap] = useState<OLMap | undefined>(undefined);
+  const [map, setMap] = useState<OLMap | undefined>(undefined);
   const [deselect, setDeselect] = useState<undefined | (() => void)>(undefined);
 
   useEffect(() => {
@@ -345,7 +345,7 @@ const useMap = (props: UseMapProps): {
   }, [mapToken.token]);
 
   useEffect(() => {
-    const map = createMap({
+    const newMap = createMap({
       ...props,
       accessToken: mapToken.token,
       currentLocationTooltip: intl.formatMessage(mapMessages.currentLocationTooltip),
@@ -353,11 +353,11 @@ const useMap = (props: UseMapProps): {
       mapRef,
       tileSource,
     });
-    setMap(map);
+    setMap(newMap);
 
     return () => {
-      if (map) {
-        map.setTarget(undefined);
+      if (newMap) {
+        newMap.setTarget(undefined);
       }
     };
   }, [mapRef.current, mapToken.token, layerSources, tileSource]);
@@ -373,29 +373,29 @@ const useMap = (props: UseMapProps): {
       onZoom,
     ));
 
-    if (memoizedMap && viewChangeHandler) {
-      memoizedMap.on('moveend', viewChangeHandler);
+    if (map && viewChangeHandler) {
+      map.on('moveend', viewChangeHandler);
     }
 
     return () => {
-      if (memoizedMap && viewChangeHandler) {
-        memoizedMap.un('moveend', viewChangeHandler);
+      if (map && viewChangeHandler) {
+        map.un('moveend', viewChangeHandler);
       }
     };
-  }, [!!memoizedMap, center, zoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
+  }, [!!map, center, zoom, onMove, onViewChange, onZoom, setCenter, setZoom]);
 
   // sets handler for clicking empty map space
   useEffect(() => {
-    if (memoizedMap && onMapClick) {
-      memoizedMap.on('click', handleMapClick(onMapClick, zoom));
+    if (map && onMapClick) {
+      map.on('click', handleMapClick(onMapClick, zoom));
     }
 
     return () => {
-      if (memoizedMap && onMapClick) {
-        memoizedMap.un('click', handleMapClick(onMapClick, zoom));
+      if (map && onMapClick) {
+        map.un('click', handleMapClick(onMapClick, zoom));
       }
     };
-  }, [!!memoizedMap, onMapClick?.toString(), zoom]);
+  }, [!!map, onMapClick?.toString(), zoom]);
 
   useEffect(() => {
     if (geometryType && onPolygon && layerSources && polygonLayer) {
@@ -407,43 +407,43 @@ const useMap = (props: UseMapProps): {
         type: geometryType,
       });
 
-      memoizedMap?.addInteraction(draw);
+      map?.addInteraction(draw);
       source.on('addfeature', addFeature(GEOMETRY_NAME, onPolygon));
 
       return () => {
         source.un('addfeature', addFeature(GEOMETRY_NAME, onPolygon));
-        memoizedMap?.removeInteraction(draw);
+        map?.removeInteraction(draw);
       };
     }
 
     return () => undefined;
-  }, [!!memoizedMap, geometryType]);
+  }, [!!map, geometryType]);
 
   useEffect(() => {
     updateFeatures(layerSources, layers);
   }, [!!layerSources, ...layers]);
 
   useEffect(() => {
-    if (!memoizedMap || onPolygon) {
+    if (!map || onPolygon) {
       return () => undefined;
     }
 
     const select = getSelect(setDeselect, handleSelect);
-    memoizedMap.addInteraction(select);
+    map.addInteraction(select);
 
     const hover = getHoverSelect();
-    memoizedMap.addInteraction(hover);
+    map.addInteraction(hover);
 
     return () => {
-      memoizedMap.removeInteraction(select);
-      memoizedMap.removeInteraction(hover);
+      map.removeInteraction(select);
+      map.removeInteraction(hover);
     };
-  }, [handleSelect, memoizedMap]);
+  }, [handleSelect, map]);
 
   return {
     deselect,
     error,
-    map: memoizedMap,
+    map,
     mapRef,
     mapToken,
     requestMapToken,
