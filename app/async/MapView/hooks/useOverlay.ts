@@ -9,9 +9,11 @@ import {
   useRef,
 } from 'react';
 
+import { NavigateCallback } from '../../../containers/MapView';
+
 interface PropTypes {
   map: Map | undefined;
-  navigate?: (resource: SomeNode) => void;
+  navigate?: NavigateCallback;
   overlayPadding?: boolean;
   overlayPosition?: Coordinate;
   overlayResource?: SomeNode;

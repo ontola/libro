@@ -1,5 +1,4 @@
 import {
-  Feature,
   MapBrowserEvent,
   Map as OLMap,
   View as OLView,
@@ -19,7 +18,6 @@ import XYZ from 'ol/source/XYZ';
 import { StyleFunction } from 'ol/style/Style';
 import React, {
   Dispatch,
-  EventHandler,
   MutableRefObject,
   SetStateAction,
   useCallback,
@@ -29,6 +27,16 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
+import {
+  ClusterSelectCallback,
+  FeatureSelectCallback,
+  Layer,
+  MapClickCallback,
+  MapMoveCallback,
+  MapViewChangeCallback,
+  MapZoomCallback,
+  ViewProps,
+} from '../../../containers/MapView';
 import { handle } from '../../../helpers/logging';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../hooks/useMapAccessToken';
 import { mapMessages } from '../../../translations/messages';
@@ -39,16 +47,6 @@ import { useSelectHandler } from './useSelectHandler';
 export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;
 const TILE_SIZE = 512;
-
-interface Layer {
-  clustered?: boolean;
-  features: Feature[];
-}
-
-export interface ViewProps {
-  center: Coordinate;
-  zoom: number;
-}
 
 interface CreateMapProps {
   accessToken?: string;
@@ -128,7 +126,7 @@ const createMap = ({
 type MapClickHandler = (e: MapBrowserEvent) => boolean;
 
 const handleMapClick = (
-  onMapClick: (newLon: number, newLat: number, newZoom: number) => void,
+  onMapClick: MapClickCallback,
   internalZoom: number,
 ): MapClickHandler => (e: MapBrowserEvent) => {
   if (onMapClick) {
@@ -147,9 +145,9 @@ export const makeViewUpdater = (
   zoom: number,
   setCenter: Dispatch<SetStateAction<Coordinate>>,
   setZoom: Dispatch<SetStateAction<number>>,
-  onMove?: (newCenter: Coordinate) => any,
+  onMove?: MapMoveCallback,
   onViewChange?: (center: Coordinate, zoom: number) => any,
-  onZoom?: (newZoom: number) => any,
+  onZoom?: MapZoomCallback,
 ): ViewUpdater => (newCenter: Coordinate | undefined, newZoom: number | undefined) => {
   if (newCenter && newCenter !== center) {
     if (onMove) {
@@ -219,12 +217,12 @@ const toTileSource = (accessToken: string, URL: string): TileSource =>
 export interface UseMapProps {
   layers: Layer[];
   mapboxTileURL: string;
-  onClusterSelect?: (features: Feature[], newCenter: Coordinate) => void;
-  onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
-  onMove?: EventHandler<any>;
-  onSelect?: (feature: Feature, center: Coordinate) => any;
-  onViewChange?: (center: Coordinate, zoom: number) => any;
-  onZoom?: EventHandler<any>;
+  onClusterSelect?: ClusterSelectCallback;
+  onMapClick?: MapClickCallback;
+  onMove?: MapMoveCallback;
+  onSelect?: FeatureSelectCallback;
+  onViewChange?: MapViewChangeCallback;
+  onZoom?: MapZoomCallback;
   view: ViewProps;
 }
 

@@ -37,17 +37,36 @@ export interface Placement {
   zoomLevel?: number;
 }
 
+export interface Layer {
+  clustered?: boolean;
+  features: Feature[];
+}
+
+export interface ViewProps {
+  center: Coordinate;
+  zoom: number;
+}
+
+export type ClusterSelectCallback = (features: Feature[], center: Coordinate) => void;
+export type FeatureSelectCallback = (feature?: Feature, center?: Coordinate) => void;
+export type MapClickCallback = (newLon: number, newLat: number, newZoom: number) => void;
+export type MapMoveCallback = (newCenter: Coordinate) => void;
+export type MapViewChangeCallback = (center: Coordinate, zoom: number) => void;
+export type MapZoomCallback = (newZoom: number) => void;
+export type NavigateCallback = (resource: SomeNode) => void;
+
 export interface PropTypes {
   initialLat?: number;
   initialLon?: number;
   initialZoom?: number;
   large?: boolean;
   mapboxTileURL?: string,
-  navigate?: (resource: SomeNode) => void;
-  onMapClick?: (newLon: number, newLat: number, newZoom: number) => void;
-  onMove?: (args: any) => any;
-  onSelect?: (feature: Feature, center: Coordinate) => any;
-  onZoom?: (args: any) => any;
+  navigate?: NavigateCallback;
+  onMapClick?: MapClickCallback;
+  onMapViewChange?: MapViewChangeCallback;
+  onMove?: MapMoveCallback;
+  onSelect?: FeatureSelectCallback;
+  onZoom?: MapZoomCallback;
   overlayResource?: SomeNode;
   placements: Placement[] | SomeNode[];
 }

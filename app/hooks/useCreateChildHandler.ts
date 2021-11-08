@@ -9,13 +9,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { MapClickCallback } from '../containers/MapView';
 import { conditionalFormFieldsPath, formFieldsPath } from '../helpers/diggers';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 
-export type CreateChildHandler = ((lon: any, lat: any, zoom: any) => void) | undefined;
-
-const useCreateChildHandler = (): CreateChildHandler => {
+const useCreateChildHandler = (): MapClickCallback | undefined => {
   const lrs = useLRS();
   const createActions = useIds(ontola.createAction);
   const actionProps = useResourceLinks(createActions, {
