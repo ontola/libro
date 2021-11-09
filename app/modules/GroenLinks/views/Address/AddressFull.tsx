@@ -4,7 +4,6 @@ import {
   Property,
   register,
   useAction,
-  useLRS,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -14,17 +13,23 @@ import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
 import { alertDialogTopology } from '../../../../topologies/Dialog';
 import { fullResourceTopology } from '../../../../topologies/FullResource';
+import { OnDoneHandler } from '../../../../views/Action/helpers';
 
-const AddressFull: FC = () => {
-  const lrs = useLRS();
+interface AddressFullProps {
+  onDone?: OnDoneHandler;
+}
+
+const AddressFull: FC<AddressFullProps> = ({
+  onDone,
+}) => {
   const [street] = useProperty(teamGL.street);
   const goToStreet = useAction(rdf.namedNode(`${libro.actions.redirect}?location=${encodeURIComponent(street.value)}`));
 
   return (
     <Property
       label={ontola.createAction}
-      responseCallback={lrs.actions.ontola.hideDialog}
       onCancel={goToStreet}
+      onDone={onDone}
     />
   );
 };

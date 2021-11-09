@@ -84,29 +84,27 @@ const SearchPostalForm: React.FC<SearchPostalFormProps> = ({
           <SearchIcon />
         </IconButton>
       </form>
-      {recentPostalCodes.length > 0 && (
-        <p>
-          {recentPostalCodes.map<JSX.Element>((digits) => (
-            <button
-              className={classes.button}
-              key={digits}
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePostalClick(parseInt(digits));
-              }}
-            >
-              {digits}
-            </button>
-          )).reduce<JSX.Element[]>((result, item, index) => ([
-            ...result,
-            <React.Fragment key={index}>
-              {result.length > 0 ? ', ' : ''}
-            </React.Fragment>,
-            item,
-          ]), [])}
-        </p>
-      )}
+      <p>
+        {recentPostalCodes.map<JSX.Element>((digits) => (
+          <button
+            className={classes.button}
+            key={digits}
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              handlePostalClick(parseInt(digits));
+            }}
+          >
+            {digits}
+          </button>
+        )).reduce<JSX.Element[]>((result, item, index) => ([
+          ...result,
+          <React.Fragment key={index}>
+            {result.length > 0 ? ', ' : ''}
+          </React.Fragment>,
+          item,
+        ]), [])}
+      </p>
     </React.Fragment>
   );
 };

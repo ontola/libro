@@ -9,21 +9,18 @@ import teamGL from '../../../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
 import { groenlinksMessages } from '../../../lib/messages';
 
+const ACTIVE = 0.2;
+const VERY_ACTIVE = 0.6;
+
 const Engagement = ({ linkedProp }: PropertyProps) => {
   const { formatMessage } = useIntl();
   const engagement = tryParseInt(linkedProp);
 
-  if (!engagement) {
-    return null;
-  }
-
-  const active = 0.2;
-  const veryActive = 0.6;
   let message;
 
-  if (engagement < active) {
+  if (!engagement || engagement < ACTIVE) {
     message = groenlinksMessages.inactive;
-  } else if (engagement < veryActive) {
+  } else if (engagement < VERY_ACTIVE) {
     message = groenlinksMessages.active;
   } else {
     message = groenlinksMessages.veryActive;

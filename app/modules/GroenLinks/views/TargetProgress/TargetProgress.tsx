@@ -1,21 +1,18 @@
 import {
   register,
-  useProperty,
+  useNumbers,
 } from 'link-redux';
 import React from 'react';
 
 import Progress from '../../../../components/Progress';
-import { tryParseInt } from '../../../../helpers/numbers';
 import teamGL from '../../../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
 
 const TargetProgress = () => {
-  const [current] = useProperty(teamGL.current);
-  const [target] = useProperty(teamGL.target);
-  const maxInt = tryParseInt(target);
-  const valueInt = tryParseInt(current);
+  const [current] = useNumbers(teamGL.current);
+  const [target] = useNumbers(teamGL.target);
 
-  if (!maxInt || !valueInt) {
+  if (current === null || target === null) {
     return null;
   }
 
@@ -23,9 +20,9 @@ const TargetProgress = () => {
     <Progress
       progressLabel
       height="15px"
-      max={maxInt}
+      max={target}
       min={0}
-      value={valueInt}
+      value={current}
     />
   );
 };

@@ -7,12 +7,12 @@
   .Button--default,
   .NavBarContent {
     font-family: 'Suisse Webfont';
-    font-weight: 900;
+    font-weight: 900!important;
     text-transform: uppercase;
 
     &.Heading {
       font-family: 'Suisse Webfont';
-      font-weight: 900;
+      font-weight: 900!important;
       text-transform: uppercase;
     }
   }
