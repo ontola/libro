@@ -1,12 +1,14 @@
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import {
   FC,
+  PropertyProps,
   register,
   useFields,
   useGlobalIds,
+  useTopology,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -23,18 +25,14 @@ import Container, { containerTopology } from '../../../topologies/Container';
 import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
 
-interface EmptyProps {
-  linkedProp: SomeTerm;
-  topology: NamedNode;
-}
-
 const useStyles = makeStyles((theme: LibroTheme) => ({
   empty: {
     color: theme.palette.grey.midDark,
   },
 }));
 
-const Empty: FC<EmptyProps> = ({ topology }) => {
+const Empty: FC<PropertyProps> = () => {
+  const topology = useTopology();
   const [baseCollection] = useGlobalIds(ontola.baseCollection);
 
   const styles = useStyles();
