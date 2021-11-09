@@ -34,10 +34,11 @@ export const useVisitPostalCode = (): {
     return [current, add];
   }, []);
 
+  const hash = history.location.hash ?? '#';
   const visitPostalCode = React.useCallback((digits) => {
     addRecentPostalCode(digits);
-    history.push(retrievePath(postalCodeIri(digits)) ?? '#');
-  }, []);
+    history.push(`${retrievePath(postalCodeIri(digits))}${hash}`);
+  }, [hash]);
 
   return {
     recentPostalCodes,

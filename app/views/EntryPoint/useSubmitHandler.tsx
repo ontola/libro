@@ -103,7 +103,7 @@ const useSubmitHandler = ({
           return onStatusForbidden();
         }
 
-        return lrs.actions.app.startSignIn(entryPoint).then(() => Promise.reject(e));
+        return lrs.actions.app.startSignIn(entryPoint);
       }
 
       if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {

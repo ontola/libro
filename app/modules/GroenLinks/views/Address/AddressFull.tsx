@@ -3,7 +3,6 @@ import {
   FC,
   Property,
   register,
-  useLRS,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -14,15 +13,17 @@ import teamGL from '../../../../ontology/teamGL';
 import Container from '../../../../topologies/Container';
 import { alertDialogTopology } from '../../../../topologies/Dialog';
 import { fullResourceTopology } from '../../../../topologies/FullResource';
+import { OnDoneHandler } from '../../../../views/Action/helpers';
 
 interface AddressFullProps {
+  onDone?: OnDoneHandler;
   renderPartOf?: boolean;
 }
 
 const AddressFull: FC<AddressFullProps> = ({
+  onDone,
   renderPartOf,
 }) => {
-  const lrs = useLRS();
   const [street] = useProperty(teamGL.street);
 
   return (
@@ -35,7 +36,7 @@ const AddressFull: FC<AddressFullProps> = ({
       <Property
         cancelPath={retrievePath((street?.value))}
         label={ontola.createAction}
-        responseCallback={lrs.actions.ontola.hideDialog}
+        onDone={onDone}
       />
     </React.Fragment>
   );
