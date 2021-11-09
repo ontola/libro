@@ -96,7 +96,6 @@ const DropdownMenu = ({
         open,
       })}
       <Popper
-        disablePortal
         transition
         anchorEl={anchorRef.current}
         className={classes.popper}
