@@ -11,7 +11,8 @@ import ontola from '../ontology/ontola';
 
 import { useIRITemplate } from './useIRITemplate';
 
-const sortDirections = ['asc', 'desc', null];
+const sortDirectionsAsc = ['asc', 'desc', null];
+const sortDirectionsDesc = ['desc', 'asc', null];
 
 const sortElementProps = {
   sortDirection: ontola.sortDirection,
@@ -35,16 +36,19 @@ export const useSorting = (subject: LaxNode): SortProps[] => {
   ), [currentSortingsRaw]);
 
   return React.useMemo(() => (
-    sortOptions
-      .map((option) => sortDirections.map((direction) => ({
+    sortOptions.map((option) => {
+      const [_, activeDirection] = currentSortings.find(([key]) => option === key) || [];
+      const descActive = activeDirection?.value === 'desc';
+
+      return (descActive ? sortDirectionsDesc : sortDirectionsAsc).map((direction) => ({
         direction,
         item: option,
-        selected: currentSortings.some(([key, dir]) => option === key && dir?.value === direction),
+        selected: activeDirection ? activeDirection?.value === direction : false,
         url: iriTemplate.replace(
           'sort%5B%5D',
           direction ? `${encodeURIComponent(option.value)}=${direction}` : [],
         )?.value,
-      })))
-      .flat(1)
+      }));
+    }).flat(1)
   ), [sortOptions, currentSortings]);
 };
