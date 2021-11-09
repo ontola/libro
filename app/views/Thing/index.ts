@@ -38,6 +38,7 @@ import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
 import Type from './properties/type';
 import VoteEvents from './properties/voteEvents';
+import ThingAlertDialog from './ThingAlertDialog';
 import ThingCard from './ThingCard';
 import ThingContainer from './ThingContainer';
 import ThingDetailsBar from './ThingDetailsBar';
@@ -56,8 +57,10 @@ import ThingTable from './ThingTable';
 import ThingTableCell from './ThingTableCell';
 import ThingTableRow from './ThingTableRow';
 import ThingTableHeaderRow from './ThingTableHeaderRow';
+import ThingTabPane from './ThingTabPane';
 
 export default [
+  ThingAlertDialog,
   ThingCard,
   ThingContainer,
   ThingDetailsBar,
@@ -69,6 +72,7 @@ export default [
   ThingPageHeader,
   ThingRadioGroup,
   ThingSelect,
+  ThingTabPane,
   ThingTable,
   ThingTableCell,
   ThingTableHeaderRow,

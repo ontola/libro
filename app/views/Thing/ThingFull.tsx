@@ -20,7 +20,6 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
-import { tabPaneTopology } from '../../topologies/TabPane';
 import { defaultMenus } from '../common';
 
 interface ThingFullProps {
@@ -89,9 +88,6 @@ const ThingFull: FC<ThingFullProps> = ({ renderPartOf }) => {
 
 ThingFull.type = schema.Thing;
 
-ThingFull.topology = [
-  fullResourceTopology,
-  tabPaneTopology,
-];
+ThingFull.topology = fullResourceTopology;
 
 export default register(ThingFull);

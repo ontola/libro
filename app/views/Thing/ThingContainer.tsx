@@ -19,8 +19,6 @@ import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 interface ThingContainerProps {
   highlighted: boolean;
@@ -48,11 +46,7 @@ const ThingContainer: FC<ThingContainerProps> = ({ highlighted, subject }) => (
 
 ThingContainer.type = schema.Thing;
 
-ThingContainer.topology = [
-  alertDialogTopology,
-  fullResourceTopology,
-  containerTopology,
-];
+ThingContainer.topology = containerTopology;
 
 ThingContainer.hocs = [connectHighlighting];
 
