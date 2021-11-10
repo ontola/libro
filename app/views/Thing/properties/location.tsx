@@ -1,8 +1,10 @@
 import * as as from '@ontologies/as';
-import rdf, { Node } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
+  FC,
+  PropertyProps,
   dig,
   register,
   useAction,
@@ -19,14 +21,16 @@ import ontola from '../../../ontology/ontola';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
-interface LocationDetailProps {
-  linkedProp: Node;
-}
-
-const LocationDetail = ({ linkedProp }: LocationDetailProps): JSX.Element => {
-  const [nestedPlacement] = useIds(linkedProp, dig(ontola.pages, as.items, rdfx.ns('_1')));
-  const placement = nestedPlacement ?? (isResource(linkedProp) && linkedProp);
-  const showDialog = useAction(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(placement.value)}`));
+const LocationDetail: FC<PropertyProps> = ({
+  linkedProp,
+  subject,
+}) => {
+  const [nestedPlacement] = useIds(
+    isResource(linkedProp) ? linkedProp : subject,
+    dig(ontola.pages, as.items, rdfx.ns('_1')),
+  );
+  const placement = nestedPlacement ?? (isResource(linkedProp) ? linkedProp : undefined);
+  const showDialog = useAction(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(placement?.value)}`));
 
   if (!placement) {
     return (
