@@ -46,8 +46,8 @@ export const toFeature = (geometry: Geometry): Feature<Circle | Polygon> => {
   }
 };
 
-export const toPoint = (s: InputValue): Point | undefined => {
-  const [lon, lat] = s.value.split(',').map(tryParseFloat);
+export const toPoint = (s: InputValue[]): Point | undefined => {
+  const [lon, lat] = s.map(tryParseFloat);
 
   return (lon && lat)? {
     lat,

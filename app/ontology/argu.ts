@@ -140,7 +140,6 @@ export default {
   phases: argu('phases'),
   pinned: argu('pinned'),
   pinnedAt: argu('pinnedAt'),
-  placementType: argu('placementType'),
   policy: argu('policy'),
   price: argu('price'),
   primaryEmail: argu('primaryEmail'),

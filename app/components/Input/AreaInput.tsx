@@ -1,5 +1,7 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
+import { useIds } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
 import React from 'react';
 
@@ -7,13 +9,16 @@ import React from 'react';
 import { toPoint } from '../../async/MapView/lib/geometry';
 import MapView, { Geometry, Point } from '../../containers/MapView';
 import useFormField, { InputValue } from '../../hooks/useFormField';
-import argu from '../../ontology/argu';
+import useInputShape from '../../hooks/useInputShape';
+import { useListToArr } from '../../hooks/useListToArr';
+import ontola from '../../ontology/ontola';
 import { FormContext } from '../Form/Form';
 import { InputComponentProps } from '../FormField/InputComponentProps';
+import LinkLoader from '../Loading/LinkLoader';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 
-const usePlacement = (placementType: InputValue, coords: InputValue[]): Geometry => {
+const usePlacement = (placementType: InputValue, coords: InputValue[][]): Geometry => {
   const { object } = React.useContext(FormContext);
 
   return React.useMemo(() => {
@@ -35,64 +40,88 @@ const usePlacement = (placementType: InputValue, coords: InputValue[]): Geometry
 };
 
 const AreaInput: React.FC<InputComponentProps> = ({
+  name,
   inputValue,
   onChange,
 }) => {
-  const { name: placementTypeName, values: placementTypeValues, onChange: placementTypeOnChange } = useFormField({
-    path: argu.placementType,
+  const {
+    name: geometryTypeName, values: geometryTypeValues, onChange: geometryTypeOnChange,
+  } = useFormField({
+    path: ontola.geometryType,
   });
-  const { name: coordsName, values: coords, onChange: coordsOnChange } = useFormField({
+  const { values: longitudes, onChange: longitudesOnChange } = useFormField({
     path: schema.longitude,
   });
-  const geometryElement = document.getElementById('geometryType') as HTMLInputElement;
+  const { values: latitudes, onChange: latitudesOnChange } = useFormField({
+    path: schema.latitude,
+  });
 
-  if (geometryElement) {
-    geometryElement.onchange = () => placementTypeOnChange([rdf.literal(geometryElement.value)]);
+  const [geometryTypesShape] = useInputShape(ontola.geometryType);
+  const [geometryTypesList] = useIds(geometryTypesShape, sh.shaclin);
+  const [geometryTypes, geometryTypesLoading] = useListToArr(geometryTypesList);
+  const [placementType] = geometryTypeValues;
 
-    if (!placementTypeValues[0].value) {
-      placementTypeOnChange([rdf.literal(geometryElement.value)]);
-    }
-  }
-
-  const [placementType] = placementTypeValues;
   React.useEffect(() => {
-    if (!inputValue?.value && placementType?.value && coords.length > 1) {
+    if (!placementType || placementType.value.length === 0) {
+      geometryTypeOnChange([geometryTypes[0]]);
+    }
+  }, [placementType]);
+
+  const coords = React.useMemo(() => (
+    longitudes.length === latitudes.length && longitudes[0].value.length > 0 && latitudes[0].value.length > 0 ?
+      longitudes.map(
+        (longitude, index) => [longitude, latitudes[index]],
+      ) : []
+  ), [longitudes, latitudes]);
+
+  React.useEffect(() => {
+    if (!inputValue?.value && placementType?.value && coords.length > 0) {
       onChange(rdf.literal(true));
     }
-  });
+  }, [inputValue, placementType, coords]);
 
   const geometry = usePlacement(placementType, coords);
 
-  const storeCoordinates = ( newCoords: Coordinate[]) => {
+  const storeCoordinates = React.useCallback( (newCoords: Coordinate[]) => {
     if (newCoords) {
-      coordsOnChange(newCoords.map((newCoord) => rdf.literal(newCoord.join(','))));
+      longitudesOnChange(newCoords.map((newCoord) => rdf.literal(newCoord[0])));
+      latitudesOnChange(newCoords.map((newCoord) => rdf.literal(newCoord[1])));
     }
-  };
+  }, [longitudesOnChange, latitudesOnChange]);
+
+  if (geometryTypesLoading) {
+    return <LinkLoader />;
+  }
 
   return (
     <div className="AreaInput">
       <label htmlFor="type">
         Geometry type &nbsp;
       </label>
-      <select id="geometryType">
-        <option value="Circle">
-          Circle
-        </option>
-        <option value="Polygon">
-          Polygon
-        </option>
+      <select
+        id="geometryType"
+        value={geometryTypeValues[0].value}
+        onChange={(e) => {
+          geometryTypeOnChange([rdf.literal(e.target.value)]);
+        }}
+      >
+        {geometryTypes.map((geometryType) => (
+          <option
+            key={geometryType.value}
+            value={geometryType.value}
+          >
+            {geometryType.value}
+          </option>
+        ))}
       </select>
       <HiddenRequiredInput
-        name={placementTypeName}
+        name={geometryTypeName}
         value={placementType?.value}
       />
-      {coords.map((coord, index) => (
-        <HiddenRequiredInput
-          key={`${coordsName}-${index}`}
-          name={coordsName}
-          value={coord?.value}
-        />
-      ))}
+      <HiddenRequiredInput
+        name={name}
+        value={inputValue?.value}
+      />
       <MapView
         geometry={geometry}
         geometryType={placementType.value}

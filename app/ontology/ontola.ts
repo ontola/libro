@@ -106,6 +106,7 @@ export default {
   ['format/webm']: ontola('format/webm'),
   ['format/webp']: ontola('format/webp'),
   ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
+  geometryType: ontola('geometryType'),
   groupBy: ontola('groupBy'),
   header: ontola('header'),
   helperText: ontola('helperText'),
