@@ -62,7 +62,7 @@ const stylizedPlaintextLink = (link: any) => (
 );
 
 const codePre = (link: any) => (
-  <code className="Markdown__inline-code">
+  <code>
     {link.value}
   </code>
 );
