@@ -23,9 +23,12 @@ interface LocationDetailProps {
 }
 
 const LocationDetail = ({ linkedProp }: LocationDetailProps): JSX.Element => {
-  const [nestedPlacement] = useIds(linkedProp, dig(ontola.pages, as.items, rdfx.ns('_1')));
-  const placement = nestedPlacement ?? (isResource(linkedProp) && linkedProp);
-  const showDialog = useShowDialog(placement.value);
+  const [nestedPlacement] = useIds(
+    isResource(linkedProp) ? linkedProp : undefined,
+    dig(ontola.pages, as.items, rdfx.ns('_1')),
+  );
+  const placement = nestedPlacement ?? (isResource(linkedProp) ? linkedProp : undefined);
+  const showDialog = useShowDialog(placement?.value);
 
   if (!placement) {
     return (
