@@ -1,12 +1,14 @@
+import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { LibroTheme } from '../../themes/themes';
 import { FormContext } from '../Form/Form';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 
-import { FormFieldError, InputMeta } from './index';
+import { FormFieldError, InputMeta } from './';
 
 interface PropTypes {
   errors: FormFieldError[];
@@ -15,9 +17,11 @@ interface PropTypes {
   meta: InputMeta;
 }
 
-const style = {
-  color: '#c81414',
-};
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  error: {
+    color: theme.palette.error.main,
+  },
+}));
 
 const FormFieldTrailer: React.FC<PropTypes> = ({
   errors,
@@ -26,16 +30,16 @@ const FormFieldTrailer: React.FC<PropTypes> = ({
   inputValue,
 }) => {
   const {
-    active,
-    pristine,
+    invalid,
+    touched,
   } = meta;
   const { theme } = React.useContext(FormContext);
+  const classes = useStyles();
 
-  if (errors && errors.length > 0 && !pristine && !active) {
+  if (errors && errors.length > 0 && invalid && touched) {
     return (
       <span
-        className="Field__input--trailing-icon fa fa-exclamation-circle"
-        style={style}
+        className={`Field__input--trailing-icon fa fa-exclamation-circle ${classes.error}`}
         title={errors[0].error}
       />
     );

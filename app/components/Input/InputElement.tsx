@@ -6,7 +6,7 @@ import Textarea from 'react-autosize-textarea';
 
 import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
-import { InputValue } from '../../hooks/useFormField';
+import { FocusRelatedEventHandler, InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
@@ -17,6 +17,11 @@ import Input, {
   PropTypes as InputProps,
   InputType,
 } from '../Input/Input';
+
+interface StyleProps {
+  invalid?: boolean;
+  touched?: boolean;
+}
 
 const TEXTFIELD_MIN_ROWS = 3;
 
@@ -33,7 +38,9 @@ export interface InputPropTypes {
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: (props: any) => void;
+  onFocus: FocusRelatedEventHandler
   path: SomeNode;
   placeholder?: string;
   required?: boolean;
@@ -44,14 +51,18 @@ export interface InputPropTypes {
 
 const FLOW_INPUT_PADDING = 4;
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   flowInput: {
     '& textarea': {
       height: '100px',
     },
     '&:focus-within': {
-      border: `2px solid ${theme.palette.primary.main}`,
+      // border: `2px solid ${theme.palette.primary.main}`,
+      boxShadow: ({ invalid, touched }) =>
+        `0px 0px 0px 2px ${(touched && invalid) ? theme.palette.error.main : theme.palette.primary.main}, ${SHADOW_LIGHT}`,
     },
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
     boxShadow: SHADOW_LIGHT,
     padding: theme.spacing(FLOW_INPUT_PADDING),
   },
@@ -65,7 +76,9 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     inputValue,
     meta,
     name,
+    onBlur,
     onChange,
+    onFocus,
     placeholder,
     storeKey,
     trailer: Trailer,
@@ -81,9 +94,14 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
   } = fieldShape;
   const {
     active,
+    invalid,
+    touched,
   } = meta;
 
-  const classes = useStyles();
+  const classes = useStyles({
+    invalid,
+    touched,
+  });
 
   const className = clsx({
     'Field__input': true,
@@ -97,6 +115,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     'data-testid': name,
     'id': name,
     name,
+    onBlur,
     'onChange': (e: React.ChangeEvent<HTMLInputElement>) => {
       let val;
 
@@ -108,6 +127,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
 
       onChange(val);
     },
+    onFocus,
     required,
     'value': inputValue?.value,
   };

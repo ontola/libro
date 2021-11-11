@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 
 import { isMarkedForRemove } from '../../helpers/forms';
-import { InputValue } from '../../hooks/useFormField';
+import { FocusRelatedEventHandler, InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 
 import FormFieldAddButton from './FormFieldAddButton';
@@ -23,7 +23,9 @@ export interface FormInputsProps {
   label?: string | React.ReactNode;
   meta?: InputMeta;
   name?: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: EventHandler<any>;
+  onFocus: FocusRelatedEventHandler;
   path?: SomeNode;
   placeholder?: string;
   renderHelper?: (args: any) => any;

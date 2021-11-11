@@ -1,54 +1,42 @@
 import Step from '@material-ui/core/Step';
 import { StepProps } from '@material-ui/core/Step/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import { isNode } from '@ontologies/core';
-import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
-import { useGlobalIds } from 'link-redux';
 import React from 'react';
+import { useField } from 'react-final-form';
 
-import { storageGet } from '../../../../helpers/persistence';
-import useFormField from '../../../../hooks/useFormField';
-import { FormContext } from '../../../../components/Form/Form';
-import { useFlowStyles } from '../hooks/useFlowStyles';
+import { useFlowStepStyles } from '../hooks/useFlowStyles';
 
 interface FlowStepProps extends StepProps {
-  handleClick: () => void;
-  page: SomeNode;
+  fieldHash: string;
+  onStepClick: (hash: string) => void;
   pageCount: number;
 }
 
 const FlowStep = ({
-  completed,
-  handleClick,
-  page,
+  fieldHash,
+  onStepClick,
   pageCount,
   ...otherProps
 }: FlowStepProps): JSX.Element | null => {
-  const { sessionStore } = React.useContext(FormContext);
-  const classes = useFlowStyles({ pageCount });
-  const [path] = useGlobalIds(isNode(page) ? page : undefined, sh.path);
-  const formFieldProps = useFormField({
-    path,
-    subject: page,
+  const classes = useFlowStepStyles({ pageCount });
+
+  const fieldState = useField(fieldHash, {
+    subscription: {
+      touched: true,
+      valid: true,
+    },
   });
 
-  if (!formFieldProps.whitelisted) {
-    return null;
-  }
+  const handleClick = React.useCallback(() => {
+    onStepClick(fieldHash);
+  }, [fieldHash]);
 
-  const {
-    meta: { error },
-    storeKey,
-  } = formFieldProps;
-  const valueFromStorage = storageGet(sessionStore, storeKey);
-  const hasValue = !!valueFromStorage;
-  const valid = !completed || (!error || error.length === 0);
+  const { valid, touched } = fieldState.meta;
 
   const stepClassName = clsx({
     [classes.step]: true,
-    [classes.stepBadge]: true,
+    [classes.stepBadge]: touched,
     [classes.stepValid]: valid,
   });
 
@@ -59,8 +47,7 @@ const FlowStep = ({
         completed: stepClassName,
         root: stepClassName,
       }}
-      completed={valid && hasValue}
-      key={page.value}
+      completed={valid && touched}
       onClick={handleClick}
     >
       <StepLabel>

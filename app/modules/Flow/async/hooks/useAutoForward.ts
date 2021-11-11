@@ -1,53 +1,77 @@
-import * as rdf from '@ontologies/rdf';
-import * as sh from '@ontologies/shacl';
-import { LaxNode, useGlobalIds } from 'link-redux';
+import rdf from '@ontologies/core';
+import { SomeNode } from 'link-lib';
+import { LaxIdentifier, LaxNode } from 'link-redux';
 import React from 'react';
+import { useField } from 'react-final-form';
 
-import useFormField, { InputValue } from '../../../../hooks/useFormField';
-import form from '../../../../ontology/form';
+import { InputValue } from '../../../../hooks/useFormField';
 
 const AUTO_FORWARD_TIMEOUT_MS = 1000;
+const NON_FORWARD_FIELD_NAME = 'NON FORWARD FIELD';
 
-export const AUTO_FORWARDED_FIELDS = [
-  form.RadioGroup.value,
-  form.SelectInput.value,
-  form.ToggleButtonGroup.value,
-  form.DateInput.value,
-  form.DateTimeInput.value,
-  form.FileInput,
-];
-
-export const useAutoForward = (activeField: LaxNode, activateNextField: () => void): void => {
-  const [autoforward, setAutoforward] = React.useState(false);
-  const [currentField, setCurrentField] = React.useState<LaxNode>(undefined);
-  const [currentValue, setCurrentValue] = React.useState<InputValue[] | undefined>(undefined);
-
-  const [type] = useGlobalIds(activeField, rdf.type);
-  const [path] = useGlobalIds(activeField, sh.path);
-  const formFieldProps = useFormField({ path });
-
-  React.useEffect(() => {
-    if (!formFieldProps.whitelisted) {
-      activateNextField();
+const findKey = (field: LaxIdentifier, map: Map<string, SomeNode>): string | undefined => {
+  for (const [key, value] of map.entries()) {
+    if (value.value === field?.value) {
+      return key;
     }
-  }, [formFieldProps.whitelisted]);
+  }
 
-  React.useEffect(() => {
-    if (autoforward) {
-      activateNextField();
+  return;
+};
+
+const valueChanged = (a: InputValue[], b: InputValue[]): boolean =>
+  a.some((v, index) => v.value !== b[index].value);
+
+const sanitizeValue = (value: InputValue[]): InputValue[] =>
+  value?.length > 0 ? [value].flat(1) : [rdf.literal('')];
+
+export const useAutoForward = (
+  activeField: LaxNode,
+  hashMap: Map<string, SomeNode>,
+  isAutoForwardField: boolean,
+  activateNextField: () => void,
+): void => {
+
+  const fieldKey = React.useMemo(() => {
+    if (!isAutoForwardField) {
+      return;
     }
-  }, [autoforward]);
+
+    return findKey(activeField, hashMap);
+  }, [activeField, hashMap, isAutoForwardField]);
+
+  const { input, meta } = useField(fieldKey ?? NON_FORWARD_FIELD_NAME, {
+    subscription: {
+      valid: true,
+      value: true,
+    },
+  });
+
+  const { value }: { value: InputValue[] } = input;
+  const { valid }: { valid?: boolean } = meta;
+
+  const [lastValue, setLastValue] = React.useState<[string | undefined, InputValue[]]>([fieldKey ?? '', sanitizeValue(value)]);
 
   React.useEffect(() => {
-    if (activeField !== currentField) {
-      setAutoforward(false);
-      setCurrentField(activeField);
-    } else if (AUTO_FORWARDED_FIELDS.includes(type?.value) && formFieldProps.values !== currentValue) {
+    const flattenedValue = sanitizeValue(value);
+
+    if (!fieldKey) {
+
+      return;
+    }
+
+    if (fieldKey !== lastValue[0]) {
+      setLastValue([fieldKey, flattenedValue]);
+
+      return;
+    }
+
+    if (valid && valueChanged(lastValue[1], flattenedValue)) {
       setTimeout(() => {
-        setAutoforward(true);
+        activateNextField();
       }, AUTO_FORWARD_TIMEOUT_MS);
     }
 
-    setCurrentValue(formFieldProps.values);
-  }, [formFieldProps.values]);
+    setLastValue([fieldKey, flattenedValue]);
+  }, [value]);
 };

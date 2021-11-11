@@ -1,6 +1,7 @@
 import React, { EventHandler } from 'react';
 
 import { isString } from '../../helpers/types';
+import { FocusRelatedEventHandler } from '../../hooks/useFormField';
 
 import './Input.scss';
 
@@ -110,7 +111,9 @@ export interface PropTypes {
   inputMode?: InputMode;
   minLength?: number;
   name: string;
+  onBlur?: FocusRelatedEventHandler;
   onChange?: EventHandler<any>;
+  onFocus?: FocusRelatedEventHandler;
   onKeyUp?: EventHandler<any>;
   placeholder?: string;
   required?: boolean;

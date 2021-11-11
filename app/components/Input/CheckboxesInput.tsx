@@ -85,7 +85,9 @@ function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>)
 
 const CheckboxesInput: React.FC<InputComponentProps> = ({
   name,
+  onBlur,
   onChange,
+  onFocus,
   fieldShape,
   values,
 }) => {
@@ -141,7 +143,9 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
           id={item.value}
           name={name}
           value={JSON.stringify(item)}
+          onBlur={onBlur}
           onChange={(e) => handleChange(e, values, onChange)}
+          onFocus={onFocus}
         />
         <FieldLabel
           htmlFor={item.value}

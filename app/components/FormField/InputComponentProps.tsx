@@ -1,7 +1,7 @@
 import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 
-import { InputValue } from '../../hooks/useFormField';
+import { FocusRelatedEventHandler, InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 
 import { FormFieldError, InputMeta } from './';
@@ -18,7 +18,9 @@ export interface InputComponentProps {
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: EventHandler<any>;
+  onFocus: FocusRelatedEventHandler;
   path: SomeNode;
   placeholder?: string;
   storeKey: string;

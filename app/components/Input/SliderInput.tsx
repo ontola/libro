@@ -1,62 +1,86 @@
 import Slider from '@material-ui/core/Slider';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import { useProperty } from 'link-redux';
 import React from 'react';
 
+import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
+import { LibroTheme } from '../../themes/themes';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
-const StyledSlider = withStyles({
-  active: {},
-  markLabel: {
-    '&[data-index="1"]': {
-      transform: 'translateX(-100%)',
+const SliderSize = 8;
+const ThumpSizeModifier = 3;
+const ThumbSize = SliderSize * ThumpSizeModifier;
+
+const useSliderOverrideStyles = makeStyles<LibroTheme>((theme) => ({
+  mark: {
+    '&:not(&[data-index="0"])': {
+      transform: 'translateY(-4px) translateX(-8px)',
     },
-    transform: 'translateX(0%)',
+    backgroundColor: theme.palette.grey.xLight,
+    borderRadius: '50%',
+    height: `calc(${SliderSize}px * 2)`,
+    transform: 'translateY(-4px)',
+    width: `calc(${SliderSize}px * 2)`,
+  },
+  markLabel: {
+    [theme.breakpoints.down('sm')]: {
+      '&[data-index="1"]': {
+        transform: 'translateX(-100%)',
+      },
+      transform: 'translateX(0%)',
+    },
+    fontWeight: theme.typography.fontWeightBold,
+    marginTop: '.5rem',
   },
   rail: {
-    borderRadius: 4,
-    height: 8,
+    backgroundColor: theme.palette.grey.xLight,
+    borderRadius: theme.shape.borderRadius,
+    height: SliderSize,
+    opacity: 1,
   },
   root: {
-    height: 8,
+    filter: `drop-shadow(${SHADOW_LIGHT})`,
+    height: SliderSize,
+    marginTop: '.5rem',
   },
   thumb: {
-    '&:focus, &:hover, &$active': {
-      boxShadow: 'inherit',
-    },
     '&[aria-valuenow="NaN"]': {
       display: 'none',
     },
-    'backgroundColor': '#fff',
-    'border': '2px solid currentColor',
-    'height': 24,
-    'marginLeft': -12,
-    'marginTop': -8,
-    'width': 24,
+    'height': ThumbSize,
+    'marginLeft': `calc((${ThumbSize}px / 2) * -1)`,
+    'marginTop': `calc((${ThumbSize}px / 2 - ${SliderSize}px / 2) * -1)`,
+    'width': ThumbSize,
   },
-  track: {
-    borderRadius: 4,
-    height: 8,
+  valueLabel: {
+    left: 'calc(-50% + 8px)',
   },
-})(Slider);
+}));
 
 const getAriaValueText = (v: number) => v.toString();
 
 const SliderInput: React.FC<InputComponentProps> = ({
   fieldShape,
   inputValue,
+  onBlur,
   onChange,
+  onFocus,
   name,
 }) => {
+  const overrideClasses = useSliderOverrideStyles();
+
   const {
     maxInclusive,
     minInclusive,
+    required,
   } = fieldShape || {};
+
   const [maxInclusiveLabel] = useProperty(ontola.maxInclusiveLabel);
   const [minInclusiveLabel] = useProperty(ontola.minInclusiveLabel);
+
   const handleChange = React.useCallback((e: any, val: any) => {
     e.preventDefault();
     onChange(val);
@@ -76,20 +100,26 @@ const SliderInput: React.FC<InputComponentProps> = ({
 
   return (
     <React.Fragment>
-      <StyledSlider
+      <Slider
         aria-labelledby="discrete-slider-custom"
+        classes={overrideClasses}
         defaultValue={tryParseInt(inputValue)}
         getAriaValueText={getAriaValueText}
         marks={defaultMarks}
         max={maxInclusive}
         min={minInclusive}
+        track={false}
         valueLabelDisplay="auto"
+        onBlur={onBlur}
         onChange={handleChange}
+        onFocus={onFocus}
       />
-      <HiddenRequiredInput
-        name={name}
-        value={inputValue?.value}
-      />
+      {required && (
+        <HiddenRequiredInput
+          name={name}
+          value={inputValue?.value}
+        />
+      )}
     </React.Fragment>
   );
 };

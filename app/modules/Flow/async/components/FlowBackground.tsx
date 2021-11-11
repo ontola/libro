@@ -1,11 +1,11 @@
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import React from 'react';
+import { FormSpy } from 'react-final-form';
 
 import { LibroTheme } from '../../../../themes/themes';
 
 export interface FlowBackgroundProps {
-  checkmarks: boolean;
   progress: number;
 }
 
@@ -115,7 +115,6 @@ const useStyles = makeStyles<LibroTheme, { progress: number, noMotion: boolean }
 });
 
 export const FlowBackground = ({
-  checkmarks,
   progress,
 }: FlowBackgroundProps): JSX.Element => {
   const noMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
@@ -135,28 +134,39 @@ export const FlowBackground = ({
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
       >
-        {(progress < 100 || !checkmarks) && circles.map((circle) => (
-          <circle
-            className={classes[`float${circle.classIndex}`]}
-            cx={circle.x}
-            cy={circle.y}
-            fill={theme.palette.primary.main}
-            key={circle.y}
-            r={circle.r}
-          />
-        ))}
-        {progress >= 100 && checkmarks && circles.map((c) => (
-          <g
-            key={c.y}
-            transform={`translate(${c.x}, ${c.y}), scale(${c.r * CHECKMARK_SCALE_FACTOR})`}
-          >
-            <path
-              className={classes[`float${c.classIndex}`]}
-              d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
-              fill={theme.palette.primary.main}
-            />
-          </g>
-        ))}
+        <FormSpy subscription={{ valid: true }}>
+          {({ valid }) => {
+            if (progress < 100 || !valid) {
+              return circles.map((circle) => (
+                <circle
+                  className={classes[`float${circle.classIndex}`]}
+                  cx={circle.x}
+                  cy={circle.y}
+                  fill={theme.palette.primary.main}
+                  key={circle.y}
+                  r={circle.r}
+                />
+              ));
+            }
+
+            if (progress >= 100 && valid) {
+              return circles.map((c) => (
+                <g
+                  key={c.y}
+                  transform={`translate(${c.x - c.r}, ${c.y - c.r}), scale(${c.r * CHECKMARK_SCALE_FACTOR})`}
+                >
+                  <path
+                    className={classes[`float${c.classIndex}`]}
+                    d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
+                    fill={theme.palette.primary.main}
+                  />
+                </g>
+              ));
+            }
+
+            return null;
+          }}
+        </FormSpy>
       </svg>
     </div>
   );

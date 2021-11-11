@@ -3,13 +3,14 @@ import clsx from 'clsx';
 import React from 'react';
 
 import {
+  FocusRelatedEventHandler,
   InputValue,
   OnInputChange,
   PermittedFormField,
 } from '../../hooks/useFormField';
+import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { FormContext, FormTheme } from '../Form/Form';
@@ -33,7 +34,9 @@ export interface FormFieldProps extends Partial<PermittedFormField> {
   combinedComponent?: boolean;
   inputComponent: (args: any) => any;
   name: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: OnInputChange;
+  onFocus: FocusRelatedEventHandler;
   renderHelper?: (args: any) => any;
   values: InputValue[];
 }
@@ -74,7 +77,9 @@ const FormField = ({
   inputComponent,
   label,
   meta,
+  onBlur,
   onChange,
+  onFocus,
   path,
   preferPlaceholder,
   renderHelper,
@@ -123,7 +128,9 @@ const FormField = ({
         renderHelper={renderHelper}
         storeKey={storeKey}
         values={values}
+        onBlur={onBlur}
         onChange={onChange}
+        onFocus={onFocus}
       />
     </div>
   );

@@ -139,6 +139,13 @@ const Form: React.FC<FormProps> = (props) => {
       initialValues={initialValues}
       initialValuesEqual={equal}
       key={formID}
+      mutators={{
+        touchFields: (_, state) => {
+          for (const field of Object.values(state.fields)) {
+            field.touched = true;
+          }
+        },
+      }}
       render={render}
       subscription={subscription}
       validateOnBlur={validateOnBlur}

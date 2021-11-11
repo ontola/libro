@@ -225,7 +225,9 @@ const useErrorMessages: ErrorMessages = ({ maxCount, maxLength }) => {
 export const MultipleEmailInput = ({
   autofocus,
   name,
+  onBlur,
   onChange,
+  onFocus,
   placeholder,
   fieldShape,
   values,
@@ -329,7 +331,9 @@ export const MultipleEmailInput = ({
           />
         )}
         value={emails}
+        onBlur={onBlur}
         onChange={handleChange}
+        onFocus={onFocus}
         onInputChange={handleTextFieldChange}
       />
       {fieldShape?.required && (

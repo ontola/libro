@@ -4,7 +4,7 @@ import { SomeNode } from 'link-lib';
 import {
   ReturnType,
   useIds,
-  useResourceLinks, 
+  useResourceLinks,
 } from 'link-redux';
 import React from 'react';
 
@@ -38,18 +38,21 @@ export const useFlowFields = (): [SomeNode[], boolean] => {
     return [fields, loading];
   }
 
-  const normalizedFields = fields.map((field, index) => {
-    const pass = fieldsProps[index].pass;
+  const filteredFields = React.useMemo(() => {
+    const normalizedFields = fields.map((field, index) => {
+      const pass = fieldsProps[index].pass;
 
-    return isNode(pass) ? pass : field;
-  });
-  const filteredFields = normalizedFields.filter((_, index) => {
-    if (!fieldsProps[index].shape) {
-      return true;
-    }
+      return isNode(pass) ? pass : field;
+    });
 
-    return results[index];
-  });
+    return normalizedFields.filter((_, index) => {
+      if (!fieldsProps[index].shape) {
+        return true;
+      }
+
+      return results[index];
+    });
+  }, [fields.length]);
 
   return [filteredFields, loading];
 };

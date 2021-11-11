@@ -87,6 +87,7 @@ const usePlacements = (latInput: InputValue, lonInput: InputValue, zoomLevel: In
 const LocationInput: React.FC<InputComponentProps> = ({
   inputValue,
   onChange,
+  fieldShape,
 }) => {
   const { theme } = React.useContext(FormContext);
   const classes = useStyles();
@@ -107,6 +108,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const [lat] = latValues || [];
   const [lon] = lonValues || [];
   const [zoomLevel] = zoomLevelValues || [];
+
   React.useEffect(() => {
     if (!inputValue?.value && lat?.value && lon?.value) {
       onChange(rdf.literal(true));
@@ -117,6 +119,8 @@ const LocationInput: React.FC<InputComponentProps> = ({
     placements,
     initialView,
   ] = usePlacements(lat, lon, zoomLevel);
+
+  const { required } = fieldShape;
 
   const storeCoordinates = (newLon: string | number, newLat: string | number) => {
     lonOnChange([rdf.literal(newLon)]);
@@ -130,18 +134,22 @@ const LocationInput: React.FC<InputComponentProps> = ({
 
   return (
     <div className={className}>
-      <HiddenRequiredInput
-        name={latName}
-        value={lat?.value}
-      />
-      <HiddenRequiredInput
-        name={lonName}
-        value={lon?.value}
-      />
-      <HiddenRequiredInput
-        name={zoomLevelName}
-        value={zoomLevel?.value}
-      />
+      {required && (
+        <React.Fragment>
+          <HiddenRequiredInput
+            name={latName}
+            value={lat?.value}
+          />
+          <HiddenRequiredInput
+            name={lonName}
+            value={lon?.value}
+          />
+          <HiddenRequiredInput
+            name={zoomLevelName}
+            value={zoomLevel?.value}
+          />
+        </React.Fragment>
+      )}
       <MapView
         initialLat={initialView.lat}
         initialLon={initialView.lon}

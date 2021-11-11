@@ -1,16 +1,17 @@
 import { NamedNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
-import {
-  LaxNode,
-  useGlobalIds,
-} from 'link-redux';
+import { LaxNode, useGlobalIds } from 'link-redux';
 import React from 'react';
 
 import { FormContext } from '../../../../components/Form/Form';
 import { inputValueFromStorage } from '../../../../hooks/useInitialValues';
 
-type FlowActiveField = [activeField: LaxNode, setActiveField: (field: LaxNode) => void, currentIndex: number];
+type FlowActiveField = [
+  activeField: LaxNode,
+  setActiveField: (field: LaxNode) => void,
+  currentIndex: number,
+];
 
 const findInitialIndex = (
   sessionStore: Storage | undefined,

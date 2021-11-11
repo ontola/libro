@@ -1,7 +1,8 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
 import React, { EventHandler } from 'react';
 
-import { InputValue } from '../../hooks/useFormField';
+import { FocusRelatedEventHandler, InputValue } from '../../hooks/useFormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 export const MAX_POSTAL_DIGITS = 9999;
@@ -12,16 +13,26 @@ interface SingleInputProps {
   id: string;
   inputIndex: number;
   inputValue: InputValue;
+  onBlur: FocusRelatedEventHandler;
   onChange: EventHandler<any>;
+  onFocus: FocusRelatedEventHandler;
   rangeIndex: number;
 }
+
+const useStyles = makeStyles({
+  inputWrapper: {
+    marginBottom: '.5em',
+  },
+});
 
 const PostalDigitsInput: React.FC<SingleInputProps> = ({
   id,
   inputIndex,
   inputValue,
   rangeIndex,
+  onBlur,
   onChange,
+  onFocus,
 }) => {
   const splitRange = inputValue.value.split('-');
 
@@ -40,21 +51,23 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
       name={`${id}-${inputIndex}-${rangeIndex}`}
       type="number"
       value={splitRange[rangeIndex]}
+      onBlur={onBlur}
       onChange={handleChange}
+      onFocus={onFocus}
     />
   );
 };
 
-const style = { marginBottom: '0.5em' };
-
 const PostalRangeInput = (props: InputComponentProps): JSX.Element => {
+  const classes = useStyles();
+
   const compProps = {
     index: 0,
     ...props,
   };
 
   return (
-    <div style={style}>
+    <div className={classes.inputWrapper}>
       <PostalDigitsInput
         rangeIndex={0}
         {...compProps}

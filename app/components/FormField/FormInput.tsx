@@ -32,7 +32,9 @@ const FormInput: React.FC<FormInputProps> = ({
   label,
   meta,
   name,
+  onBlur,
   onChange,
+  onFocus,
   path,
   placeholder,
   renderHelper: HelperRenderer,
@@ -93,7 +95,9 @@ const FormInput: React.FC<FormInputProps> = ({
         placeholder={placeholder}
         storeKey={storeKey}
         values={values}
+        onBlur={onBlur}
         onChange={inputOnChange}
+        onFocus={onFocus}
       />
       {removable && (
         <Button
@@ -110,6 +114,7 @@ const FormInput: React.FC<FormInputProps> = ({
           error={errors}
           maxLength={maxLength}
           required={required}
+          touched={meta?.touched}
           value={value}
         />
       )}
