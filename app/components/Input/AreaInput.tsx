@@ -1,3 +1,7 @@
+import Button from '@material-ui/core/Button';
+import MaterialMenuItem from '@material-ui/core/MenuItem';
+import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
+import PanoramaFishEyeIcon from '@material-ui/icons/PanoramaFishEye';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
@@ -12,11 +16,43 @@ import useFormField, { InputValue } from '../../hooks/useFormField';
 import useInputShape from '../../hooks/useInputShape';
 import { useListToArr } from '../../hooks/useListToArr';
 import ontola from '../../ontology/ontola';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import { Trigger } from '../DropdownMenu/TriggerButton';
 import { FormContext } from '../Form/Form';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import LinkLoader from '../Loading/LinkLoader';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
+
+const toIcon = (geometryName: string) => {
+  switch (geometryName) {
+  case 'Circle': return (
+    <PanoramaFishEyeIcon
+      fontSize="small"
+      style={{ verticalAlign: 'middle' }}
+    />
+  );
+  case 'Polygon': return (
+    <ChangeHistoryIcon
+      fontSize="small"
+      style={{ verticalAlign: 'middle' }}
+    />
+  );
+  default: return null;
+  }
+};
+
+const EMPTY_ARRAY: any[] = [];
+
+const trigger: Trigger = (props) => (
+  <Button
+    ref={props.anchorRef}
+    variant="outlined"
+    {...props}
+  >
+    Gebied aangeven
+  </Button>
+);
 
 const usePlacement = (placementType: InputValue, coords: InputValue[][]): Geometry => {
   const { object } = React.useContext(FormContext);
@@ -24,11 +60,11 @@ const usePlacement = (placementType: InputValue, coords: InputValue[][]): Geomet
   return React.useMemo(() => {
     const points: Point[] = [];
 
-    for (const c of coords) {
-      const p = toPoint(c);
+    for (const coord of coords) {
+      const point = toPoint(coord);
 
-      if (p) {
-        points.push(p);
+      if (point) {
+        points.push(point);
       }
     }
 
@@ -93,27 +129,25 @@ const AreaInput: React.FC<InputComponentProps> = ({
     return <LinkLoader />;
   }
 
+  const children = React.useMemo(() => (['Circle', 'Polygon'].map((geometryName, index) => (
+    <MaterialMenuItem
+      key={index}
+      onClick={() => geometryTypeOnChange([rdf.literal(geometryName)])}
+    >
+      {toIcon(geometryName)}
+      {' '}
+      {geometryName}
+    </MaterialMenuItem>
+  ))), []);
+
   return (
     <div className="AreaInput">
-      <label htmlFor="type">
-        Geometry type &nbsp;
-      </label>
-      <select
-        id="geometryType"
-        value={geometryTypeValues[0].value}
-        onChange={(e) => {
-          geometryTypeOnChange([rdf.literal(e.target.value)]);
-        }}
+      <DropdownMenu
+        className="Menu"
+        trigger={trigger}
       >
-        {geometryTypes.map((geometryType) => (
-          <option
-            key={geometryType.value}
-            value={geometryType.value}
-          >
-            {geometryType.value}
-          </option>
-        ))}
-      </select>
+        {children}
+      </DropdownMenu>
       <HiddenRequiredInput
         name={geometryTypeName}
         value={placementType?.value}
@@ -125,7 +159,7 @@ const AreaInput: React.FC<InputComponentProps> = ({
       <MapView
         geometry={geometry}
         geometryType={placementType.value}
-        placements={[]}
+        placements={EMPTY_ARRAY}
         onPolygon={storeCoordinates}
       />
     </div>

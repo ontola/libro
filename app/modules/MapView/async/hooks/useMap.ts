@@ -120,7 +120,9 @@ const createMap = ({
 
   const controls = defaultControls({
     rotate: false,
-  }).extend([new CurrentLocationControl(currentLocationTooltip)]);
+  }).extend([
+    new CurrentLocationControl(currentLocationTooltip),
+  ]);
 
   return new OLMap({
     controls,
