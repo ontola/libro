@@ -45,7 +45,6 @@
     "@ontologies/schema": "^2.0.0-rc.1",
     "@ontologies/shacl": "^2.0.0-rc.1",
     "@ontologies/xsd": "^2.0.0-rc.1",
-    "@testing-library/react-hooks": "^7.0.2",
     "atob": "^2.1.2",
     "deepmerge": "^4.2.2",
     "helmet-csp": "^2.8.0",
