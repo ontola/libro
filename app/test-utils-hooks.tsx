@@ -1,5 +1,5 @@
 import { Quad } from '@ontologies/core';
-import { renderHook } from '@testing-library/react-hooks';
+import { RenderHookOptions, renderHook } from '@testing-library/react-hooks';
 import { DataObject } from 'link-lib';
 import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
@@ -15,7 +15,7 @@ export interface HookTestBundle<TProps> {
   wrapper: React.ComponentType<React.PropsWithChildren<TProps>>;
 }
 
-export const createHookWrapper = async <TProps extends unknown>(data: DataObject): Promise<HookTestBundle<TProps>> => {
+export const createHookWrapper = async <TProps extends unknown>(data: DataObject | DataObject[]): Promise<HookTestBundle<TProps>> => {
   const websiteContext = getWebsiteContextFromWebsite('https://example.com/');
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
@@ -33,8 +33,15 @@ export const createHookWrapper = async <TProps extends unknown>(data: DataObject
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const renderLinkedHook = async <TProps, TResult>(callback: (props: TProps) => TResult, resources: DataObject) => {
+export const renderLinkedHook = async <TProps, TResult>(
+  callback: (props: TProps) => TResult,
+  resources: DataObject | DataObject[],
+  options: RenderHookOptions<React.PropsWithChildren<TProps>> = {},
+) => {
   const { wrapper } = await createHookWrapper<TProps>(resources);
 
-  return renderHook(callback, { wrapper });
+  return renderHook(callback, {
+    ...options,
+    wrapper,
+  });
 };

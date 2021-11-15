@@ -38,14 +38,35 @@
             "name": "Jest Tests",
             "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
             "args": [
+                "jest",
                 "-i"
             ],
-            // "preLaunchTask": "build",
             "internalConsoleOptions": "openOnSessionStart",
             "outFiles": [
                 "${workspaceRoot}/dist/**/*"
             ],
-            "envFile": "${workspaceRoot}/.env"
+            "envFile": "${workspaceRoot}/.env",
+            "env": {
+                "NODE_ENV": "test"
+            }
+        },
+        {
+            "type": "node",
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "jest",
+                "--runInBand",
+                "--watchAll=false"
+            ],
+            "env": {
+                "NODE_ENV": "test"
+            }
         }
     ]
 }

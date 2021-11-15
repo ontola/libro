@@ -1,5 +1,5 @@
-import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
 import { LaxIdentifier, useIds } from 'link-redux';
@@ -13,20 +13,20 @@ interface FieldForwardRules {
   isForwardedByEnter: boolean;
 }
 
-const AUTO_FORWARDED_FIELDS = [
+const AUTO_FORWARDED_FIELDS: string[] = [
   form.RadioGroup.value,
   form.SelectInput.value,
   form.ToggleButtonGroup.value,
-  form.FileInput,
-  form.LocationInput,
+  form.FileInput.value,
+  form.LocationInput.value,
 ];
 
-const MOBILE_ONLY_AUTO_FORWARDED_FIELDS = [
+const MOBILE_ONLY_AUTO_FORWARDED_FIELDS: string[] = [
   form.DateInput.value,
   form.DateTimeInput.value,
 ];
 
-const MANUAlLY_FORWARDED_FIELDS = [
+const MANUALLY_FORWARDED_FIELDS: string[] = [
   form.TextAreaInput.value,
   form.MarkdownInput.value,
 ];
@@ -45,25 +45,30 @@ const testIfForwardedByEnter = (type: Node, isMobile: boolean) => {
     return false;
   }
 
-  return !testIfAutoForwardField(type, isMobile) && !MANUAlLY_FORWARDED_FIELDS.includes(type?.value);
+  return !testIfAutoForwardField(type, isMobile) && !MANUALLY_FORWARDED_FIELDS.includes(type?.value);
 };
 
-export const useFieldForwardRules = (activeField: LaxIdentifier): FieldForwardRules => {
-  const theme = useTheme<LibroTheme>();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+export const useFieldForwardRulesImpl = (activeField: LaxIdentifier, isMobile: boolean): FieldForwardRules => {
 
   const [type] = useIds(activeField, rdf.type);
 
   const [isAutoForwardField, setIsAutoForwardField] = React.useState(false);
-  const [isForwardedByEnter, setIsForwardedByEnter] = React.useState(false);
+  const [isForwardedByEnter, setIsForwardedByEnter] = React.useState(true);
 
   React.useEffect(() => {
-    setIsAutoForwardField(testIfAutoForwardField(type, smDown));
-    setIsForwardedByEnter(testIfForwardedByEnter(type, smDown));
-  }, [type, smDown]);
+    setIsAutoForwardField(testIfAutoForwardField(type, isMobile));
+    setIsForwardedByEnter(testIfForwardedByEnter(type, isMobile));
+  }, [type, isMobile]);
 
   return {
     isAutoForwardField,
     isForwardedByEnter,
   };
+};
+
+export const useFieldForwardRules = (activeField: LaxIdentifier): FieldForwardRules => {
+  const theme = useTheme<LibroTheme>();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return useFieldForwardRulesImpl(activeField, isMobile);
 };

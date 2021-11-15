@@ -23,6 +23,7 @@ v8-compile-cache*
 yarn-error.log
 package-lock.json
 /app/lang/*.json
+/app/tsconfig.tsbuildinfo
 
 .yarn/*
 !.yarn/patches
