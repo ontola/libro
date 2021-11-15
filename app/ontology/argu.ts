@@ -106,6 +106,7 @@ export default {
   legend: argu('legend'),
   legendType: argu('legendType'),
   lowerSection: argu('lowerSection'),
+  maxUsages: argu('maxUsages'),
   motions: argu('motions'),
   motionsCount: argu('motionsCount'),
   nameSingular: argu('nameSingular'),
