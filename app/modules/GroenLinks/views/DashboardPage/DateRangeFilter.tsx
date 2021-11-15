@@ -15,6 +15,8 @@ interface DateRangeFilterProps {
   setDateRange: (range: DateRange) => void;
 }
 
+const emptyFunction = () => undefined;
+
 const dateToLiteral = (date: Date) => {
   const dd = date.getDate().toString().padStart(DATE_SIZE, '0');
   const mm = (date.getMonth() + 1).toString().padStart(DATE_SIZE, '0');
@@ -46,7 +48,9 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
         label={label}
         name="date-range"
         values={values}
+        onBlur={emptyFunction}
         onChange={handleChange}
+        onFocus={emptyFunction}
       />
     </div>
   );

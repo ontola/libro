@@ -16,6 +16,8 @@ interface PostalRangeFilterProps {
   setPostalRange: (newValue: Literal[]) => void;
 }
 
+const emptyFunction = () => undefined;
+
 const newItem = () => rdf.literal('');
 
 const PostalRangeFilter: React.FC<PostalRangeFilterProps> = ({
@@ -39,7 +41,9 @@ const PostalRangeFilter: React.FC<PostalRangeFilterProps> = ({
       label={label}
       name="postal-range"
       values={postalRanges}
+      onBlur={emptyFunction}
       onChange={handleChange}
+      onFocus={emptyFunction}
     />
   );
 };
