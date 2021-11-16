@@ -38,22 +38,20 @@ const CollectionFilterToggle = ({
     focus: false,
     show: !!redirectPagination && filters.length > 0,
   });
-
-  const handleClick = () => {
+  const handleClick = React.useCallback(() => {
     toggleFilterBar({
       focus: true,
       show: !filterBarState.show,
     });
-  };
-
-  if (filterFields.length == 0) {
-    return null;
-  }
-
+  }, [toggleFilterBar, filterBarState.show]);
   const [showPortal, setShowPortal] = React.useState<boolean>(!!filterContainerRef.current);
   React.useEffect(() => {
     setShowPortal(!!filterContainerRef.current);
   }, [filterContainerRef.current]);
+
+  if (filterFields.length == 0) {
+    return null;
+  }
 
   return (
     <React.Fragment>
