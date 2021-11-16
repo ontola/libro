@@ -44,10 +44,10 @@ const CollectionFilterToggle = ({
       show: !filterBarState.show,
     });
   }, [toggleFilterBar, filterBarState.show]);
-  const [showPortal, setShowPortal] = React.useState<boolean>(!!filterContainerRef.current);
+  const [showPortal, setShowPortal] = React.useState<boolean>(!!filterContainerRef?.current);
   React.useEffect(() => {
-    setShowPortal(!!filterContainerRef.current);
-  }, [filterContainerRef.current]);
+    setShowPortal(!!filterContainerRef?.current);
+  }, [filterContainerRef?.current]);
 
   if (filterFields.length == 0) {
     return null;
