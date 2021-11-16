@@ -1,6 +1,6 @@
 import { createNS } from '@ontologies/core';
 
-const dexes = createNS('https://argu.co/ns/dex#');
+const dexes = createNS('https://dexpods.eu/ns/core#');
 
 export default {
   ns: dexes,
