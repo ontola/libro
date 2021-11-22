@@ -29,6 +29,7 @@ export default {
   permissions: dexes('permissions'),
   prohibitions: dexes('prohibitions'),
   recipients: dexes('recipients'),
+  resolve: dexes('resolve'),
   rules: dexes('rules'),
   transferAction: dexes('transferAction'),
 };

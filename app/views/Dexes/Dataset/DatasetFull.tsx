@@ -6,6 +6,7 @@ import {
   Property,
   Resource,
   register,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -26,43 +27,47 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 import { messages } from '../messages';
 
-const DatasetFull: FC = ({
-  subject,
-}) => (
-  <Container>
-    <CardMain>
-      <DetailsBar right={[defaultMenus]}>
-        <Property label={schema.creator} />
-        <Property label={rdfx.type} />
-        <LinkedDetailDate />
-      </DetailsBar>
-      <CardContent>
-        <Property label={dcterms.title} />
-        <Property label={dcterms.description} />
-      </CardContent>
-      <CardContent>
-        <AttributeList>
-          <AttributeListItem label={dcterms.license} />
-          <AttributeListItem label={dcat.theme} />
-        </AttributeList>
-        <div>
-          <Button
-            href={`https://dexes.eu/resolve?uri=${encodeURIComponent(subject.value)}`}
-            icon="external-link"
-          >
-            <FormattedMessage {...messages.showInDexes} />
-          </Button>
-        </div>
-      </CardContent>
-      <CardContent noSpacing>
-        <Heading>
-          <Resource subject={dcat.distribution} />
-        </Heading>
-      </CardContent>
-      <AllWithProperty label={dcat.distribution} />
-    </CardMain>
-  </Container>
-);
+const DatasetFull: FC = () => {
+  const [resolve] = useGlobalIds(dexes.resolve);
+
+  return (
+    <Container>
+      <CardMain>
+        <DetailsBar right={[defaultMenus]}>
+          <Property label={schema.creator} />
+          <Property label={rdfx.type} />
+          <LinkedDetailDate />
+        </DetailsBar>
+        <CardContent>
+          <Property label={dcterms.title} />
+          <Property label={dcterms.description} />
+        </CardContent>
+        <CardContent>
+          <AttributeList>
+            <AttributeListItem label={dcterms.license} />
+            <AttributeListItem label={dcat.theme} />
+          </AttributeList>
+          {resolve && (
+            <div>
+              <Button
+                href={resolve.value}
+                icon="external-link"
+              >
+                <FormattedMessage {...messages.showInDexes} />
+              </Button>
+            </div>
+          )}
+        </CardContent>
+        <CardContent noSpacing>
+          <Heading>
+            <Resource subject={dcat.distribution} />
+          </Heading>
+        </CardContent>
+        <AllWithProperty label={dcat.distribution} />
+      </CardMain>
+    </Container>
+  );
+};
 
 DatasetFull.type = dexes.Dataset;
 
