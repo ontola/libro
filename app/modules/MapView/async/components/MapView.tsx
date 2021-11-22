@@ -22,6 +22,7 @@ import { toFeature } from '../lib/geometry';
 import MapCanvas from './MapCanvas';
 
 export const MapView: React.FC<MapViewProps> = ({
+  boundingArea,
   geometry,
   geometryType,
   initialLat,
@@ -78,20 +79,20 @@ export const MapView: React.FC<MapViewProps> = ({
     }
   }, [onSelect]);
 
-  const geometryFeatures = geometry?.type && geometry.points.length > 0 ? [toFeature(geometry)] : [];
+  boundingArea?.setStyle(undefined);
+  const geometryFeatures = geometry?.type && geometry.points.length > 0 ? [toFeature(geometry)] : boundingArea ? [boundingArea] : [];
   const layers = React.useMemo<Layer[]>(() => (
     [{
-      clustered: true,
-      customStyle: true,
-      features: placementFeatures,
-    },
-    {
       clustered: false,
       customStyle: false,
       features: geometryFeatures,
+    }, {
+      clustered: true,
+      customStyle: true,
+      features: placementFeatures,
     }]
   ), [placementFeatures, geometryFeatures]);
-  const polygonLayer = 1;
+  const polygonLayer = 0;
 
   const handleViewChange = React.useCallback<MapViewChangeCallback>((newCenter, newZoom) => {
     setView({

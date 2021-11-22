@@ -10,15 +10,20 @@ import {
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { Feature, View } from 'ol';
+import GeometryType from 'ol/geom/GeometryType';
+import { toLonLat } from 'ol/proj';
 
+// eslint-disable-next-line no-restricted-imports
+import { toFeature } from '../../modules/MapView/async/lib/geometry';
 import MapView, {
+  Geometry,
   MapVariant,
   Placement,
 } from '../../modules/MapView/components/MapView';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
-import { DEFAULT_ZOOM } from '../../modules/MapView/lib/settings';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { BreakPoints, LibroTheme } from '../../themes/themes';
@@ -62,7 +67,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const usePlacements = (latInput: InputValue, lonInput: InputValue, zoomLevel: InputValue): [Placement[], InitialView] => {
+const usePlacements = (latInput: InputValue, lonInput: InputValue): [Placement[], InitialView] => {
   const { object, parentObject } = React.useContext(formContext);
   const [parentLocation] = useIds(parentObject, dig(schema.isPartOf, schema.location));
   const initialView = useResourceLink(
@@ -82,12 +87,11 @@ const usePlacements = (latInput: InputValue, lonInput: InputValue, zoomLevel: In
         image: fa4.ns('map-marker'),
         lat,
         lon,
-        zoomLevel: tryParseFloat(zoomLevel),
       }];
     }
 
     return [];
-  }, [latInput, lonInput, zoomLevel, object]);
+  }, [latInput, lonInput, object]);
 
   return [placements, initialView];
 };
@@ -114,6 +118,8 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const [lon] = lonValues || [];
   const [zoomLevel] = zoomLevelValues || [];
 
+  const [tempCoord, setTempCoord] = React.useState<{lon: number, lat: number}>();
+
   React.useEffect(() => {
     if (!inputValue?.value && lat?.value && lon?.value) {
       onChange(rdf.literal(true));
@@ -123,17 +129,54 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const [
     placements,
     initialView,
-  ] = usePlacements(lat, lon, zoomLevel);
+  ] = usePlacements(lat, lon);
 
-  const storeCoordinates = (newLon: string | number, newLat: string | number) => {
-    lonOnChange([rdf.literal(newLon)]);
-    latOnChange([rdf.literal(newLat)]);
-    const newZoom = zoomLevel?.value || DEFAULT_ZOOM;
+  const setCoordinates = (newLon: number, newLat: number) => {
+    setTempCoord({
+      lat: newLat,
+      lon: newLon,
+    });
+  };
 
-    if (newZoom) {
-      zoomLevelOnChange([rdf.literal(newZoom)]);
+  const storeCoordinates = (feature: Feature | undefined) => {
+    if (feature?.getGeometry()?.getType() !== GeometryType.POINT) {
+      lonOnChange([rdf.literal(tempCoord!.lon)]);
+      latOnChange([rdf.literal(tempCoord!.lat)]);
     }
   };
+
+  const mockGeometry: Geometry = {
+    points: [{
+      lat: 52.0907,
+      lon: 5.1214,
+    }, {
+      lat: 52.0907,
+      lon: 6.1214,
+    }, {
+      lat: 53.0907,
+      lon: 5.1214,
+    }, {
+      lat: 52.0907,
+      lon: 5.1214,
+    }],
+    type: GeometryType.POLYGON,
+  };
+
+  const boundingArea = toFeature(mockGeometry);
+  const extent = boundingArea.getGeometry()?.getExtent();
+
+  const view = new View();
+
+  if (extent) {
+    view.fit(extent, {
+      padding: [10, 10, 10, 10],
+      size: [844, 256],
+    });
+  }
+
+  const center = view.getCenter();
+  const [initialLon, initialLat] = center ? toLonLat(center) : [null, null];
+  const initialZoom = view.getZoom();
 
   return (
     <div className={className}>
@@ -156,13 +199,23 @@ const LocationInput: React.FC<InputComponentProps> = ({
           />
         </React.Fragment>
       )}
+      <HiddenRequiredInput
+        name={latName}
+        value={lat?.value}
+      />
+      <HiddenRequiredInput
+        name={lonName}
+        value={lon?.value}
+      />
       <MapView
-        initialLat={initialView.lat}
-        initialLon={initialView.lon}
-        initialZoom={initialView.zoom}
+        boundingArea={boundingArea}
+        initialLat={initialLat ?? initialView.lat}
+        initialLon={initialLon ?? initialView.lon}
+        initialZoom={initialZoom ?? initialView.zoom}
         placements={placements}
         variant={theme === FormTheme.Flow ? MapVariant.Flow : MapVariant.Default}
-        onMapClick={storeCoordinates}
+        onMapClick={setCoordinates}
+        onSelect={storeCoordinates}
         onZoom={(newZoom: string | number) => zoomLevelOnChange([rdf.literal(newZoom)])}
       />
     </div>

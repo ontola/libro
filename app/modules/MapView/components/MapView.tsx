@@ -62,6 +62,7 @@ export type NavigateCallback = (resource: SomeNode) => void;
 export type UserDrawingCallback = (coords: Coordinate[]) => void;
 
 export interface MapViewProps {
+  boundingArea?: Feature;
   geometry?: Geometry;
   geometryType?: GeometryType;
   initialLat?: number;

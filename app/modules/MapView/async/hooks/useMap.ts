@@ -59,7 +59,7 @@ interface CreateMapProps {
   layerSources?: Array<VectorSource | Cluster>;
   mapRef: MutableRefObject<HTMLDivElement | null>;
   tileSource?: TileSource;
-  view?: ViewProps;
+  view: ViewProps;
 }
 
 const getStyle = (styleName: string): StyleFunction => (
@@ -96,7 +96,6 @@ const createMap = ({
   view,
 }: CreateMapProps): OLMap | undefined => {
   const { current } = mapRef;
-  const { center, zoom } = view || {};
 
   if (!current || !accessToken || !layerSources || !tileSource) {
     return undefined;
@@ -107,14 +106,10 @@ const createMap = ({
       source: tileSource,
     }),
     ...layerSources.map((source) => {
-      const layerOpts = source.getProperties().customStyle ? {
-        source,
-        style: getStyle('style'),
-      } : {
-        source,
-      };
+      const vl = new VectorLayer({ source });
+      vl.setStyle(source.getProperties().customStyle ? getStyle('style') : undefined);
 
-      return new VectorLayer(layerOpts);
+      return vl;
     }),
   ];
 
@@ -128,10 +123,7 @@ const createMap = ({
     controls,
     layers,
     target: current,
-    view: new OLView({
-      center,
-      zoom,
-    }),
+    view: new OLView(view),
   });
 };
 
@@ -198,7 +190,7 @@ export const getSelect = (
 ): Select => {
   const select = new Select({
     condition: singleClick,
-    style: getStyle('hoverStyle'),
+    //style: getStyle('hoverStyle'),
   });
   select.on('select', handleSelect);
   setDeselect(() => () => {
@@ -212,7 +204,7 @@ export const getSelect = (
 const getHoverSelect = (): Select =>
   new Select({
     condition: pointerMove,
-    style: getStyle('hoverStyle'),
+    //style: getStyle('hoverStyle'),
   });
 
 const toVectorSource = (layer: Layer): VectorSource => {
