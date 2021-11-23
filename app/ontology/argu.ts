@@ -143,6 +143,7 @@ export default {
   terms: argu('terms'),
   time: argu('time'),
   timelineItems: argu('timelineItems'),
+  token: argu('token'),
   took: argu('took'),
   topComment: argu('topComment'),
   trackingId: argu('trackingId'),

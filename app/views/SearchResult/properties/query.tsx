@@ -6,12 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import form from '../../../ontology/form';
 import ontola from '../../../ontology/ontola';
 import SearchForm from '../../../components/SearchForm';
 import { allTopologies } from '../../../topologies';
 
 const Query: FC<PropertyProps> = ({  linkedProp }) => {
-  const [placeholder] = useProperty(ontola.placeholder);
+  const [placeholder] = useProperty(form.placeholder);
 
   return(
     <SearchForm

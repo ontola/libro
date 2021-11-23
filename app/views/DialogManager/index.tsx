@@ -46,6 +46,7 @@ const DialogManager = () => {
     >
       <DialogTopology>
         <Resource
+          forceRender
           subject={resource}
           onDone={close(resource, true)}
         />
