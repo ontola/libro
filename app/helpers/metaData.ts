@@ -3,9 +3,9 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { Context } from 'koa';
 
-import { Icon, WebManifest } from '../appContext';
 import dbo from '../ontology/dbo';
 import ontola from '../ontology/ontola';
+import { Icon, WebManifest } from '../WebManifest';
 
 import { stripMarkdown } from './markdownHelper';
 

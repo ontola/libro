@@ -5,7 +5,6 @@ import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { WebManifest } from './appContext';
 import { AppContextProvider } from './AppContextProvider';
 import { APP_ELEMENT } from './config';
 import { defaultManifest } from './helpers/defaultManifest';
@@ -14,6 +13,7 @@ import generateLRS from './helpers/generateLRS';
 import { handle, log } from './helpers/logging';
 import App from './App';
 import patchRequestInitGenerator from './helpers/monkey';
+import { WebManifest } from './WebManifest';
 
 const getWebsiteManifest = (): WebManifest => {
   if (!__CLIENT__

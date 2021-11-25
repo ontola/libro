@@ -7,7 +7,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { appContext } from '../../appContext';
-import { useStrippedMarkdown } from '../../helpers/markdownHelper';
 import {
   COVER_PREDICATES,
   COVER_URL_PREDICATES,
@@ -15,6 +14,7 @@ import {
   TEXT_PREDICATES,
   getMetaTags,
 } from '../../helpers/metaData';
+import { useStrippedMarkdown } from '../../helpers/useStrippedMarkdown';
 
 const MAX_TEXT_LENGTH = 300;
 

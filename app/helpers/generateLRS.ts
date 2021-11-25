@@ -13,7 +13,6 @@ import {
 import { MiddlewareFn, createStore } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { WebManifest } from '../appContext';
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
 import { appMiddleware } from '../middleware/app';
@@ -30,6 +29,7 @@ import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
 import opengov from '../ontology/opengov';
 import teamGL from '../ontology/teamGL';
+import { WebManifest } from '../WebManifest';
 
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './dom';

@@ -17,12 +17,13 @@ import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
-import { WebManifest, appContext } from '../appContext';
+import { appContext } from '../appContext';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
 import germanMessages from '../lang/de.json';
 import AppFrame from '../routes/App';
 import themes from '../themes';
+import { WebManifest } from '../WebManifest';
 
 export interface RouterProps {
   children?: ReactNode;

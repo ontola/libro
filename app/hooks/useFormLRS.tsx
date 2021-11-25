@@ -5,12 +5,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { WebManifest, appContext } from '../appContext';
+import { appContext } from '../appContext';
 import LinkLoader from '../components/Loading/LinkLoader';
 import generateLRS from '../helpers/generateLRS';
 import { ontolaActionPrefix } from '../middleware/ontolaMiddleware';
 // @ts-ignore
 import register from '../views';
+import { WebManifest } from '../WebManifest';
 
 export interface ClonedLRS extends LinkReduxLRSType {
   originalLRS: LinkReduxLRSType

@@ -4,12 +4,13 @@ import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { StaticRouter } from 'react-router';
 
-import { WebManifest, appContext } from './appContext';
+import { appContext } from './appContext';
 import IndexContainer, { RouterProps } from './containers/IndexContainer';
 import { WebsiteCtx, getWebsiteContextFromWebsite } from './helpers/app';
 import configureStore from './state';
 import register from './views';
 import { WebsiteContext } from './location';
+import { WebManifest } from './WebManifest';
 
 interface AppProps {
   history: History;

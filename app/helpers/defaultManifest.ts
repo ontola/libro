@@ -2,7 +2,7 @@
  * Keep in sync with server/utils/defaultManifest.ts
  */
 
-import { WebManifest } from '../appContext';
+import { WebManifest } from '../WebManifest';
 
 export const defaultManifest = (websiteIRI: string): WebManifest => {
   const t = new URL(websiteIRI);

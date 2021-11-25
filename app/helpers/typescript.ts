@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { WebManifest } from '../appContext';
+import { WebManifest } from '../WebManifest';
 
 /**
  * These are injected through webpack.

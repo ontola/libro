@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { WebManifest } from '../../../../../appContext';
 import { defaultManifest } from '../../../../../helpers/defaultManifest';
 import { handle } from '../../../../../helpers/logging';
+import { WebManifest } from '../../../../../WebManifest';
 import { studioContext } from '../context/StudioContext';
 import { editorStateContext } from '../context/EditorStateContext';
 import { PageViewerState } from '../../../lib/PageViewerState';
