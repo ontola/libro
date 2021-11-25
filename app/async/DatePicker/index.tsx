@@ -10,6 +10,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormFieldContext } from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { SHADOW_LIGHT } from '../../helpers/flow';
@@ -30,8 +31,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 }));
 
 const DatePickerComponent: React.FC<InputComponentProps> = ({
-  fieldShape,
-  id,
   inputValue,
   onChange,
 }) => {
@@ -40,6 +39,10 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
   const theme = useTheme<LibroTheme>();
   const mdUp = useMediaQuery(theme.breakpoints.up('md'));
   const { theme: formTheme } = React.useContext(FormContext);
+  const {
+    fieldShape,
+    name,
+  } = React.useContext(FormFieldContext);
 
   const value = inputValue.value?.length > 0 ? inputValue.value : null;
   const className = clsx({
@@ -52,7 +55,7 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
     >
       {fieldShape.required && (
         <HiddenRequiredInput
-          name={id}
+          name={name}
           value={value}
         />
       )}
@@ -64,7 +67,7 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
           clearLabel={intl.formatMessage(formMessages.clearLabel)}
           clearable={!!inputValue.value}
           format="D MMMM YYYY"
-          id={id}
+          id={name}
           inputVariant="outlined"
           invalidDateMessage={intl.formatMessage(formMessages.invalidDateMessage)}
           invalidLabel={intl.formatMessage(formMessages.invalidLabel)}

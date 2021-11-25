@@ -5,14 +5,13 @@ import React from 'react';
 import { FormContext } from '../Form/Form';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
+import { FormFieldContext } from './FormField';
 
-import { FormFieldError, InputMeta } from './index';
+import { FormFieldError } from './index';
 
 interface PropTypes {
   errors: FormFieldError[];
   inputValue: SomeTerm;
-  maxLength: number;
-  meta: InputMeta;
 }
 
 const style = {
@@ -21,15 +20,17 @@ const style = {
 
 const FormFieldTrailer: React.FC<PropTypes> = ({
   errors,
-  maxLength,
-  meta,
   inputValue,
 }) => {
+  const { theme } = React.useContext(FormContext);
+  const {
+    fieldShape: { maxLength },
+    meta,
+  } = React.useContext(FormFieldContext);
   const {
     active,
     pristine,
   } = meta;
-  const { theme } = React.useContext(FormContext);
 
   if (errors && errors.length > 0 && !pristine && !active) {
     return (
@@ -41,7 +42,7 @@ const FormFieldTrailer: React.FC<PropTypes> = ({
     );
   }
 
-  if (theme === 'preview') {
+  if (theme === 'preview' && maxLength) {
     return (
       <CharCounter
         maxLength={maxLength}

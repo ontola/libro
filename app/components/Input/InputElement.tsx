@@ -1,43 +1,23 @@
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 
 import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
-import { InputValue } from '../../hooks/useFormField';
-import { ShapeForm } from '../../hooks/useShapeProps';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
-import { FormFieldError, InputMeta } from '../FormField';
+import { FormFieldContext } from '../FormField/FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 import Input, {
-  InputAutocomplete,
   PropTypes as InputProps,
   InputType,
 } from '../Input/Input';
 
 const TEXTFIELD_MIN_ROWS = 3;
 
-export interface InputPropTypes {
-  autoComplete?: InputAutocomplete;
-  autofocus: boolean;
-  description?: string;
-  errors?: FormFieldError[];
-  field: SomeNode;
-  fieldShape: ShapeForm;
-  id: string;
-  inputIndex: number;
-  inputValue: InputValue;
-  label?: string | React.ReactNode;
-  meta: InputMeta;
-  name: string;
-  onChange: (props: any) => void;
-  path: SomeNode;
-  placeholder?: string;
-  required?: boolean;
-  storeKey: string;
+export interface InputPropTypes extends InputComponentProps {
   trailer: (props: any) => any;
   type?: InputType;
 }
@@ -57,24 +37,25 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const InputElement = (props: InputPropTypes): JSX.Element => {
-  const {
-    autoComplete,
-    autofocus,
-    fieldShape,
-    inputValue,
-    meta,
-    name,
-    onChange,
-    placeholder,
-    storeKey,
-    trailer: Trailer,
-    type,
-  } = props;
+const InputElement = ({
+  errors,
+  inputValue,
+  onChange,
+  trailer: Trailer,
+  type,
+}: InputPropTypes): JSX.Element => {
   const {
     onKeyUp,
     theme,
   } = React.useContext(FormContext);
+  const {
+    autofocus,
+    fieldShape,
+    meta,
+    name,
+    placeholder,
+    storeKey,
+  } = React.useContext(FormFieldContext);
   const {
     minLength,
     required,
@@ -101,7 +82,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
       let val;
 
       if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
-        val = type === 'checkbox' ? e.target.checked : e.target.value;
+        val = e.target.value;
       } else {
         val = e === null ? '' : e;
       }
@@ -127,12 +108,6 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     sharedProps.rows = TEXTFIELD_MIN_ROWS;
     break;
 
-  case 'checkbox': {
-    const currentValue = inputValue;
-    sharedProps.checked = currentValue.value === 'true';
-    break;
-  }
-
   default:
     element = 'input';
   }
@@ -141,7 +116,6 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     <div className={className}>
       <Input
         {...sharedProps}
-        autoComplete={autoComplete}
         element={element}
         // TODO: [AOD-218] HTML only noscript
         // maxLength={maxLength}
@@ -151,7 +125,12 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
         type={type}
         onKeyUp={onKeyUp}
       />
-      {Trailer && <Trailer {...props} />}
+      {Trailer && (
+        <Trailer
+          errors={errors}
+          inputValue={inputValue}
+        />
+      )}
     </div>
   );
 };

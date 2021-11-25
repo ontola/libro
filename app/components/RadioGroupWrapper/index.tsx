@@ -6,16 +6,19 @@ import useFieldOptions from '../../hooks/useFieldOptions';
 import RadioGroup from '../../topologies/RadioGroup';
 import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
 import { FormContext } from '../Form/Form';
+import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import { LoadingRow } from '../Loading';
 
 const RadioGroupWrapper: React.FC<InputComponentProps> = ({
   inputValue,
-  fieldShape,
-  name,
   onChange,
 }) => {
   const { theme } = React.useContext(FormContext);
+  const {
+    fieldShape,
+    name,
+  } = React.useContext(FormFieldContext);
   const {
     shIn,
   } = fieldShape;

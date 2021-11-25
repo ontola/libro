@@ -292,6 +292,9 @@
   "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
     "defaultMessage": "Message is too long ({length}/{maxLength})."
   },
+  "https://app.argu.co/i18n/forms/newLabel": {
+    "defaultMessage": "Add"
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "response"
   },

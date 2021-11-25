@@ -54,7 +54,7 @@ const SliderInput: React.FC<InputComponentProps> = ({
   const {
     maxInclusive,
     minInclusive,
-  } = fieldShape || {};
+  } = fieldShape;
   const [maxInclusiveLabel] = useProperty(ontola.maxInclusiveLabel);
   const [minInclusiveLabel] = useProperty(ontola.minInclusiveLabel);
   const handleChange = React.useCallback((e: any, val: any) => {

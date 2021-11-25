@@ -325,6 +325,10 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'Date should not be before minimal date',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/minDateMessage',
   },
+  newLabel: {
+    defaultMessage: 'Add',
+    id: 'https://app.argu.co/i18n/forms/newLabel',
+  },
   noMatchingItems: {
     defaultMessage: 'No matching items',
     id: 'https://app.argu.co/i18n/forms/select/noMatchingItems',

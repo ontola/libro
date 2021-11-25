@@ -109,6 +109,7 @@ describe('FormField', () => {
     const pinned = calculateFormFieldName(argu.pinned);
     const {
       getByTestId,
+      getByText,
       finalForm,
     } = await renderWithTestForm({
       resources: checkboxField,
@@ -119,7 +120,7 @@ describe('FormField', () => {
     });
 
     act(() => {
-      fireEvent.click(getByTestId(pinned));
+      fireEvent.click(getByText('Pinned'));
     });
 
     await waitFor(() => expect(getByTestId('test')).toHaveFormValues({

@@ -1,23 +1,16 @@
-import makeStyles from '@material-ui/styles/makeStyles';
-import clsx from 'clsx';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-import {
-  InputValue,
-  OnInputChange,
-  PermittedFormField,
-} from '../../hooks/useFormField';
-import { LibroTheme } from '../../themes/themes';
+import { PermittedFormField } from '../../hooks/useFormField';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { FormContext, FormTheme } from '../Form/Form';
+import ResourceBoundary from '../ResourceBoundary';
 
 import FormFieldDescription from './FormFieldDescription';
-import FormFieldHelper from './FormFieldHelper';
 import FormFieldLabel from './FormFieldLabel';
 import FormInputs from './FormInputs';
+import { InputComponentProps } from './InputComponentProps';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -29,29 +22,19 @@ export const formFieldTopologies = [
   flowTopology,
 ];
 
-export interface FormFieldProps extends Partial<PermittedFormField> {
-  combinedComponent?: boolean;
-  inputComponent: (args: any) => any;
-  name: string;
-  onChange: OnInputChange;
-  renderHelper?: (args: any) => any;
-  values: InputValue[];
+export interface CombinedFormFieldProps extends PermittedFormField {
+  combinedComponent: true;
+  inputComponent: FunctionComponent;
 }
+export interface SingularFormFieldProps extends PermittedFormField {
+  combinedComponent: false | undefined;
+  inputComponent: FunctionComponent<InputComponentProps>;
+}
+export type FormFieldProps = CombinedFormFieldProps | SingularFormFieldProps;
 
-const FLOW_FIELD_LABEL_MARGIN = 8;
+export type FormFieldContext = Omit<FormFieldProps, 'className' | 'combinedComponent' | 'whitelisted' >;
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
-  formFieldTitleFlow: {
-    '& label': {
-      color: theme.palette.text.primary,
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '2rem',
-    },
-    fontSize: '1.5rem',
-    marginBottom: theme.spacing(FLOW_FIELD_LABEL_MARGIN),
-  },
-}));
+export const FormFieldContext = React.createContext<FormFieldContext>(undefined as any);
 
 /**
  * Creates a field for forms.
@@ -60,79 +43,31 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
  *
  * @returns {component} Component
  */
-const FormField = ({
-  addFormValue,
-  inputErrors,
-  autofocus,
-  className,
-  combinedComponent,
-  description,
-  field,
-  fieldShape,
-  helperText,
-  name,
-  inputComponent,
-  label,
-  meta,
-  onChange,
-  path,
-  preferPlaceholder,
-  renderHelper,
-  storeKey,
-  values,
-}: FormFieldProps): JSX.Element => {
-  const classes = useStyles();
-  const { theme } = React.useContext(FormContext);
-
-  const formFieldTitleClassName = clsx({
-    [classes.formFieldTitleFlow]: theme === FormTheme.Flow,
-  });
+const FormField = (props: FormFieldProps): JSX.Element => {
+  const {
+    className,
+    combinedComponent,
+    ...contextProps
+  } = props;
 
   return (
-    <div className={className}>
-      {label && (
-        <span className={formFieldTitleClassName}>
-          <FormFieldLabel
-            label={label}
-            name={name}
-            required={fieldShape?.required}
-          />
-        </span>
-      )}
-      {(description || helperText) && (
-        <FormFieldDescription
-          description={description}
-          helperText={helperText}
-          preferPlaceholder={preferPlaceholder}
-        />
-      )}
-      <FormInputs
-        addFormValue={addFormValue}
-        autofocus={autofocus}
-        combinedComponent={combinedComponent}
-        description={description}
-        field={field}
-        fieldShape={fieldShape}
-        inputComponent={inputComponent}
-        inputErrors={inputErrors}
-        label={label}
-        meta={meta}
-        name={name}
-        path={path}
-        placeholder={preferPlaceholder ? description : undefined}
-        renderHelper={renderHelper}
-        storeKey={storeKey}
-        values={values}
-        onChange={onChange}
-      />
-    </div>
+    <ResourceBoundary
+      subject={contextProps.path}
+      wrapperProps={{ className }}
+    >
+      <FormFieldContext.Provider value={contextProps}>
+        <FormFieldLabel />
+        <FormFieldDescription />
+        {props.combinedComponent ? <props.inputComponent /> : <FormInputs />}
+      </FormFieldContext.Provider>
+    </ResourceBoundary>
   );
 };
 
 FormField.defaultProps = {
   combinedComponent: false,
-  preferPlaceholder: false,
-  renderHelper: FormFieldHelper,
+  inputErrors: [],
+  meta: {},
 };
 
 export default FormField;

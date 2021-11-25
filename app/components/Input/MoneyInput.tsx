@@ -11,15 +11,16 @@ import { useIntl } from 'react-intl';
 
 import { tryParseInt } from '../../helpers/numbers';
 import { FormContext } from '../Form/Form';
+import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 const MoneyInput: React.FC<InputComponentProps> = ({
   inputValue,
   onChange,
-  name,
 }) => {
   const intl = useIntl();
   const { object } = React.useContext(FormContext);
+  const { name } = React.useContext(FormFieldContext);
   const [currency] = useFields(object, schema.currency);
   const [priceCurrency] = useFields(object, schema.priceCurrency);
   const handleChange = React.useCallback((e: any) => {

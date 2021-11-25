@@ -2,7 +2,6 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
-import CheckboxHelper from '../../components/Input/CheckboxHelper';
 import CheckboxInput from '../../components/Input/CheckboxInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
@@ -18,9 +17,9 @@ const CheckboxFormField: FC = (props) => {
     <FormField
       {...fieldProps}
       description={undefined}
+      helperText={(fieldProps.helperText?.length || 0) > 0 ? fieldProps.helperText : fieldProps.description}
       inputComponent={CheckboxInput}
       label={undefined}
-      renderHelper={CheckboxHelper}
     />
   );
 };

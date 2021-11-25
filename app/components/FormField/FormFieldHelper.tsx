@@ -1,36 +1,43 @@
-import { SomeTerm } from '@ontologies/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { isJSONLDObject } from '../../helpers/types';
+import { InputValue } from '../../hooks/useFormField';
 import { FormContext } from '../Form/Form';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
+import { FormFieldContext } from './FormField';
 
 import { FormFieldError } from './index';
 
 interface PropTypes {
-  error: FormFieldError;
-  maxLength: number;
-  required: boolean;
-  value: SomeTerm | string;
+  error?: FormFieldError;
+  value: InputValue;
 }
 
 const FormFieldHelper: React.FC<PropTypes> = ({
   error,
-  maxLength,
-  required,
   value,
 }) => {
   const { theme } = React.useContext(FormContext);
+  const {
+    fieldShape,
+    helperText,
+  } = React.useContext(FormFieldContext);
+  const {
+    maxLength,
+    required,
+  } = fieldShape;
+
   const renderCharCounter = theme !== 'preview';
 
   if (theme === 'preview' && !error) {
     return null;
   }
 
-  const helperText = required && (
+  const requiredHelper = required && (
     <FormattedMessage
       defaultMessage="*Required"
       id="https://app.argu.co/i18n/forms/required/helperText"
@@ -40,8 +47,8 @@ const FormFieldHelper: React.FC<PropTypes> = ({
   return (
     <FieldHelper
       error={error}
-      helperText={helperText}
-      right={renderCharCounter ? (
+      helperText={helperText ?? requiredHelper}
+      right={renderCharCounter && maxLength && !isJSONLDObject(value) ? (
         <CharCounter
           maxLength={maxLength}
           threshold={CHAR_COUNTER_THRESHOLD}

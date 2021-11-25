@@ -2,33 +2,21 @@ import React from 'react';
 
 import Markdown from '../Markdown';
 
-interface PropTypes {
-  description?: string;
-  helperText?: string;
-  preferPlaceholder?: boolean;
-}
+import { FormFieldContext } from './FormField';
 
-const FormFieldDescription: React.FC<PropTypes> = ({
-  description,
-  helperText,
-  preferPlaceholder,
-}) => {
-  let text;
+const FormFieldDescription: React.FC = () => {
+  const { description } = React.useContext(FormFieldContext);
 
-  if (preferPlaceholder) {
-    text = helperText;
-  } else {
-    text = description || helperText;
+  if (!description) {
+    return null;
   }
 
   return (
     <div className="Field__description">
-      {text && (
-        <Markdown
-          noSpacing
-          text={text}
-        />
-      )}
+      <Markdown
+        noSpacing
+        text={description}
+      />
     </div>
   );
 };

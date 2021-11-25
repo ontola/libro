@@ -11,21 +11,24 @@ import useInputShape from '../../hooks/useInputShape';
 import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
 import { FormContext } from '../Form/Form';
+import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 
 const FileInput: React.FC<InputComponentProps> = ({
   inputValue,
-  name,
   onChange,
-  fieldShape,
 }) => {
-  const { required } = fieldShape;
   const {
     fileStore,
     storeFile,
   } = React.useContext(FormContext);
+  const {
+    name,
+    fieldShape,
+  } = React.useContext(FormFieldContext);
+  const { required } = fieldShape;
   const fileNameShape = useInputShape(dbo.filename);
   const encodingFormatShape = useInputShape(schema.encodingFormat);
   const [encodingFormatList] = useIds(encodingFormatShape, sh.shaclin);

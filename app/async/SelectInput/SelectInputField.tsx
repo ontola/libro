@@ -7,7 +7,6 @@ import {
   SomeTerm,
   isNamedNode,
   isSomeTerm,
-  isTerm,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
@@ -23,7 +22,7 @@ import { useIntl } from 'react-intl';
 
 import CollectionCreateActionButton from '../../components/Collection/CollectionCreateActionButton';
 import { FormContext, FormTheme } from '../../components/Form/Form';
-import { InputComponentProps } from '../../components/FormField/InputComponentProps';
+import { FormFieldContext } from '../../components/FormField/FormField';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
@@ -46,14 +45,15 @@ import VirtualizedSelect from './VirtualizedSelect';
 
 const VIRTUALIZATION_THRESHOLD = 10;
 
-const SelectInputField: React.FC<InputComponentProps> = ({
-  fieldShape,
-  name,
-  onChange,
-  values,
-}) => {
-  const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
+const SelectInputField: React.FC = () => {
   const { theme } = React.useContext(FormContext);
+  const {
+    fieldShape,
+    name,
+    onChange,
+    values,
+  } = React.useContext(FormFieldContext);
+  const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
 
   const { formatMessage } = useIntl();
   const lrs = useLRS();
@@ -108,7 +108,7 @@ const SelectInputField: React.FC<InputComponentProps> = ({
     if (multiple) {
       onChange(v.filter(isSomeTerm));
     } else {
-      onChange(isTerm(v) ? [v] : []);
+      onChange(isSomeTerm(v) ? [v] : []);
     }
   }, [multiple, onChange]);
 

@@ -9,6 +9,7 @@ import { isResource } from '../../helpers/types';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { LibroTheme } from '../../themes/themes';
 import { inlineTopology } from '../../topologies/Inline';
+import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
@@ -33,11 +34,13 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 }));
 
 const ToggleButtonGroup: React.FC<InputComponentProps> = ({
-  name,
-  fieldShape,
   inputValue,
   onChange,
 }) => {
+  const {
+    name,
+    fieldShape,
+  } = React.useContext(FormFieldContext);
   const {
     required,
     shIn,

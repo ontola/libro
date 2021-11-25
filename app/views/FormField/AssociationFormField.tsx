@@ -71,7 +71,6 @@ const AssociationFormField: FC = (props) => {
       {...fieldProps}
       className={`Field--association ${fieldProps.className}`}
       inputComponent={AssociationInput}
-      renderHelper={undefined}
     />
   );
 };

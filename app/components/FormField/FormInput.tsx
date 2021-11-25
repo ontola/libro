@@ -14,37 +14,28 @@ import { isJSONLDObject } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
 import Button from '../Button';
 
-import { FormInputsProps } from './FormInputs';
+import { FormFieldContext } from './FormField';
+import FormFieldHelper from './FormFieldHelper';
 
-interface FormInputProps extends FormInputsProps {
+interface FormInputProps {
   index: number;
   value: InputValue;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
-  inputErrors,
-  autofocus,
-  description,
-  field,
-  fieldShape,
   index,
-  inputComponent: InputComponent,
-  label,
-  meta,
-  name,
-  onChange,
-  path,
-  placeholder,
-  renderHelper: HelperRenderer,
-  storeKey,
   value,
-  values,
 }) => {
   const {
-    maxLength,
-    removable,
-    required,
-  } = fieldShape || {};
+    inputErrors,
+    autofocus,
+    fieldShape,
+    inputComponent: InputComponent,
+    name,
+    onChange,
+    values,
+  } = React.useContext(FormFieldContext);
+  const { removable } = fieldShape;
 
   if (isMarkedForRemove(value)) {
     return null;
@@ -69,7 +60,7 @@ const FormInput: React.FC<FormInputProps> = ({
   }, [values, index, onChange]);
 
   const errors = React.useMemo(() => (
-    inputErrors?.filter((err) => err?.index === index)
+    inputErrors.filter((err) => err?.index === index)
   ), [inputErrors, index]);
 
   return (
@@ -78,21 +69,10 @@ const FormInput: React.FC<FormInputProps> = ({
       key={[name, index].join('.')}
     >
       <InputComponent
-        autofocus={autofocus && index === 0}
-        description={description}
+        autofocus={(autofocus && index === 0) ?? false}
         errors={errors}
-        field={field}
-        fieldShape={fieldShape}
-        id={name}
         inputIndex={index}
         inputValue={value}
-        label={label}
-        meta={meta}
-        name={name}
-        path={path}
-        placeholder={placeholder}
-        storeKey={storeKey}
-        values={values}
         onChange={inputOnChange}
       />
       {removable && (
@@ -104,15 +84,10 @@ const FormInput: React.FC<FormInputProps> = ({
           <FontAwesome name="times" />
         </Button>
       )}
-      {HelperRenderer && (
-        <HelperRenderer
-          description={description}
-          error={errors}
-          maxLength={maxLength}
-          required={required}
-          value={value}
-        />
-      )}
+      <FormFieldHelper
+        error={errors?.[0]}
+        value={value}
+      />
     </div>
   );
 };

@@ -17,15 +17,14 @@ const FieldHelper: React.FC<PropTypes> = ({
   right,
 }) => {
   const { theme } = React.useContext(FormContext);
-  const errMsg = Array.isArray(error) ? error[0] : error;
 
-  if (!helperText && !errMsg) {
+  if (!helperText && !error) {
     return null;
   }
 
-  const err = errMsg && (
+  const err = error && (
     <span className="Field__error">
-      {errMsg.error || errMsg}
+      {error.error || error}
     </span>
   );
 

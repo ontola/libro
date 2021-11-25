@@ -58,6 +58,8 @@ export interface UseFormFieldProps {
 }
 
 export interface ForbiddenFormField {
+  field?: SomeNode;
+  fieldShape: Record<string, never>;
   name: string;
   onChange: OnInputChange;
   values: InputValue[];
@@ -65,9 +67,9 @@ export interface ForbiddenFormField {
 }
 
 export interface PermittedFormField {
-  addFormValue: () => any;
-  autofocus: boolean;
-  className: string;
+  addFormValue?: () => any;
+  autofocus?: boolean;
+  className?: string;
   description?: string;
   field?: SomeNode;
   fieldShape: ShapeForm;
@@ -77,11 +79,11 @@ export interface PermittedFormField {
   meta: InputMeta;
   name: string;
   onChange: OnInputChange;
-  path: NamedNode;
-  preferPlaceholder: boolean;
-  storeKey: string;
+  path?: NamedNode;
+  placeholder?: string;
+  storeKey?: string;
   values: InputValue[];
-  whitelisted: true;
+  whitelisted?: true;
 }
 
 interface InputProps {
@@ -191,6 +193,8 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
 
   if (blacklisted || !whitelisted) {
     return {
+      field,
+      fieldShape: {},
       name: fieldName,
       onChange: () => undefined,
       values: [],
@@ -330,11 +334,12 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     meta: memoizedMeta,
     name: input.name,
     onChange: input.onChange,
-    preferPlaceholder: !!preferPlaceholder,
+    placeholder: preferPlaceholder ? fieldProps.description : undefined,
     storeKey,
     values,
     whitelisted,
     ...fieldProps,
+    description: preferPlaceholder ? fieldProps.helperText : fieldProps.description ?? fieldProps.helperText,
   };
 };
 

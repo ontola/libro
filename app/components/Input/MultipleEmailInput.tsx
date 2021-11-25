@@ -9,7 +9,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { ShapeForm } from '../../hooks/useShapeProps';
 import { LibroTheme } from '../../themes/themes';
 import { formMessages } from '../../translations/messages';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { FormFieldContext } from '../FormField/FormField';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 
@@ -222,14 +222,15 @@ const useErrorMessages: ErrorMessages = ({ maxCount, maxLength }) => {
   };
 };
 
-export const MultipleEmailInput = ({
-  autofocus,
-  name,
-  onChange,
-  placeholder,
-  fieldShape,
-  values,
-}: InputComponentProps): JSX.Element => {
+export const MultipleEmailInput = (): JSX.Element => {
+  const {
+    autofocus,
+    name,
+    onChange,
+    placeholder,
+    fieldShape,
+    values,
+  } = React.useContext(FormFieldContext);
   const { pattern } = fieldShape;
   const reg = patternToRegExp(pattern);
 
@@ -332,7 +333,7 @@ export const MultipleEmailInput = ({
         onChange={handleChange}
         onInputChange={handleTextFieldChange}
       />
-      {fieldShape?.required && (
+      {fieldShape.required && (
         <HiddenRequiredInput
           name={name}
           value={emails[0]}

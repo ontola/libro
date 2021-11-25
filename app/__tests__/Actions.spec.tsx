@@ -9,6 +9,7 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import * as xsd from '@ontologies/xsd';
+import { act } from '@testing-library/react';
 import { Resource } from 'link-redux';
 import React from 'react';
 
@@ -82,7 +83,7 @@ describe('Actions', () => {
                     [rdfx.type.toString()]: form.CheckboxInput,
                     [sh.datatype.toString()]: xsd.xsdboolean,
                     [sh.maxCount.toString()]: 1,
-                    [sh.name.toString()]: 'Pin',
+                    [schema.name.toString()]: 'Pin',
                     [sh.description.toString()]: 'Pin to top of collection',
                     [sh.order.toString()]: 2,
                     [sh.path.toString()]: argu.ns('pin'),
@@ -105,6 +106,7 @@ describe('Actions', () => {
       findByTestId,
       findByText,
       getByTestId,
+      getByText,
     } = await renderLinked(({ iri }) => (
       <Page>
         <Resource
@@ -137,10 +139,9 @@ describe('Actions', () => {
       { target: { value: 'text' } },
     );
 
-    fireEvent.change(
-      getByTestId(fieldName(argu.ns('pin'))),
-      { target: { checked: true } },
-    );
+    act(() => {
+      fireEvent.click(getByText('Pin'));
+    });
 
     expect(formInstance).toHaveFormValues({
       [fieldName(schema.name)]: 'text',

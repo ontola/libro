@@ -40,9 +40,10 @@ const FlowStep = ({
 
   const {
     meta: { error },
+    name,
     storeKey,
   } = formFieldProps;
-  const valueFromStorage = storageGet(sessionStore, storeKey);
+  const valueFromStorage = storageGet(sessionStore, storeKey ?? name);
   const hasValue = !!valueFromStorage;
   const valid = !completed || (!error || error.length === 0);
 

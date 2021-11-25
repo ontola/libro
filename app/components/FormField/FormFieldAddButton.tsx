@@ -1,27 +1,30 @@
-import React, { EventHandler } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
+import { formMessages } from '../../translations/messages';
 import Button, { ButtonTheme } from '../Button';
+import { FormContext, FormTheme } from '../Form/Form';
 
-interface PropTypes {
-  addFormValue: EventHandler<any>;
-  label: string | React.ReactNode;
-}
+import { FormFieldContext } from './FormField';
 
-const FormFieldAddButton: React.FC<PropTypes> = ({
-  addFormValue,
-  label,
-}) => (
-  <div>
-    <Button
-      theme={ButtonTheme.Transparent}
-      onClick={addFormValue}
-    >
-      <FontAwesome name="plus" />
-      {' '}
-      {label}
-    </Button>
-  </div>
-);
+const FormFieldAddButton: React.FC = () => {
+  const { theme } = React.useContext(FormContext);
+  const {
+    addFormValue,
+    label,
+  } = React.useContext(FormFieldContext);
+
+  return (
+    <div>
+      <Button
+        icon="plus"
+        theme={ButtonTheme.Transparent}
+        onClick={addFormValue}
+      >
+        {theme === FormTheme.Preview ? label : <FormattedMessage {...formMessages.newLabel} />}
+      </Button>
+    </div>
+  );
+};
 
 export default FormFieldAddButton;

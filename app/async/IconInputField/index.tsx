@@ -6,6 +6,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormFieldContext } from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { FABase, normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -29,12 +30,14 @@ const renderOption = (option: NamedNode) => {
 };
 
 const IconInputField: React.FC<InputComponentProps> = ({
-  fieldShape,
-  name,
   onChange,
   inputValue,
 }) => {
   const { theme } = React.useContext(FormContext);
+  const {
+    fieldShape,
+    name,
+  } = React.useContext(FormFieldContext);
   const classes = useSelectStyles();
   const handleChange = React.useCallback((e, v) => {
     e.preventDefault();

@@ -1,3 +1,4 @@
+import { FormControlLabel } from '@material-ui/core';
 import CheckBox from '@material-ui/core/Checkbox';
 import makeStyles from '@material-ui/styles/makeStyles';
 import clsx from 'clsx';
@@ -5,50 +6,20 @@ import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { SHADOW } from '../../helpers/flow';
 import { parseForStorage } from '../../helpers/persistence';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
 import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
-import FieldLabel from '../FieldLabel';
 import { FormContext, FormTheme } from '../Form/Form';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { FormFieldContext } from '../FormField/FormField';
 import Spinner from '../Spinner';
 
+import { useCheckboxStyles } from './CheckboxInput';
 import HiddenRequiredInput from './HiddenRequiredInput';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  checkBoxWrapper: {
-    '& label': {
-      alignSelf: 'center',
-    },
-    alignItems: 'center',
-    display: 'flex',
-  },
-  flowCheckBox: {
-    '& .MuiIconButton-root': {
-      paddingLeft: '0px',
-    },
-    '& label': {
-      [theme.breakpoints.up('md')]: {
-        fontSize: '1.1rem',
-      },
-      fontSize: '1rem',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '& svg': {
-      [theme.breakpoints.up('md')]: {
-        fontSize: '2rem',
-        marginBottom: '.5rem',
-        marginTop: '.5rem',
-      },
-      color: theme.palette.primary.main,
-      filter: `drop-shadow(${SHADOW})`,
-      fontSize: '1.6rem',
-    },
-  },
   wrapperFlow: {
     [theme.breakpoints.up('md')]: {
       maxHeight: '70vh',
@@ -83,19 +54,21 @@ function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>)
   onChange(newValue);
 }
 
-const CheckboxesInput: React.FC<InputComponentProps> = ({
-  name,
-  onChange,
-  fieldShape,
-  values,
-}) => {
+const CheckboxesInput: React.FC = () => {
   const { theme } = React.useContext(FormContext);
+  const {
+    name,
+    onChange,
+    fieldShape,
+    values,
+  } = React.useContext(FormFieldContext);
+  const checkboxClasses = useCheckboxStyles();
   const classes = useStyles();
   const checkBoxClassName = clsx({
     'Field__input': true,
     'Field__input--checkbox': true,
-    [classes.checkBoxWrapper]: true,
-    [classes.flowCheckBox]: theme === FormTheme.Flow,
+    [checkboxClasses.checkBoxWrapper]: true,
+    [checkboxClasses.flowCheckBox]: theme === FormTheme.Flow,
   });
 
   const wrapperClassName = clsx({
@@ -135,17 +108,19 @@ const CheckboxesInput: React.FC<InputComponentProps> = ({
         className={checkBoxClassName}
         key={`checkbox-${item.value}`}
       >
-        <CheckBox
+        <FormControlLabel
           checked={values?.some((v) => v.value === item.value)}
-          color="primary"
-          id={item.value}
+          control={(
+            <CheckBox
+              color="primary"
+              id={item.value}
+              value={JSON.stringify(item)}
+            />
+          )}
+          label={label}
           name={name}
           value={JSON.stringify(item)}
           onChange={(e) => handleChange(e, values, onChange)}
-        />
-        <FieldLabel
-          htmlFor={item.value}
-          label={label}
         />
       </div>
     );

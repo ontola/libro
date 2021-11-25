@@ -290,6 +290,9 @@
   "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
     "defaultMessage": "Bericht is te lang ({length}/{maxLength})."
   },
+  "https://app.argu.co/i18n/forms/newLabel": {
+    "defaultMessage": "Toevoegen"
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "reactie"
   },

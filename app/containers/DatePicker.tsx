@@ -15,7 +15,7 @@ const DatePickerLoader = (props: InputComponentProps): JSX.Element => {
       <div className="Field__input Field__input--text">
         <Input
           element="input"
-          name={props.name}
+          name="loading-date-picker"
         />
       </div>
     );

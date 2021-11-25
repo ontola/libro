@@ -4,61 +4,6 @@ import { isString } from '../../helpers/types';
 
 import './Input.scss';
 
-export enum InputAutocomplete {
-  Off = 'off',
-  On = 'on',
-  Name = 'name',
-  HonorificPrefix = 'honorific-prefix',
-  GivenName = 'given-name',
-  AdditionalName = 'additional-name',
-  FamilyName = 'family-name',
-  HonorificSuffix = 'honorific-suffix',
-  Nickname = 'nickname',
-  Email = 'email',
-  Username = 'username',
-  NewPassword = 'new-password',
-  CurrentPassword = 'current-password',
-  OrganizationTitle = 'organization-title',
-  Organization = 'organization',
-  AddressLine1 = 'address-line1',
-  AddressLine2 = 'address-line2',
-  AddressLine3 = 'address-line3',
-  AddressLevel1 = 'address-level1',
-  AddressLevel2 = 'address-level2',
-  AddressLevel3 = 'address-level3',
-  AddressLevel4 = 'address-level4',
-  Country = 'country',
-  CountryName = 'country-name',
-  PostalCode = 'postal-code',
-  CcName = 'cc-name',
-  CcGivenName = 'cc-given-name',
-  CcAdditionalName = 'cc-additional-name',
-  CcFamilyName = 'cc-family-name',
-  CcNumber = 'cc-number',
-  CcExp = 'cc-exp',
-  CcExpMonth = 'cc-exp-month',
-  CcExpYear = 'cc-exp-year',
-  CcExpCsc = 'cc-exp-csc',
-  CcExpType = 'cc-exp-type',
-  TransactionCurrency = 'transaction-currency',
-  TransactionAmount = 'transaction-amount',
-  Language = 'language',
-  Bday = 'bday',
-  BdayDay = 'bday-day',
-  BdayMonth = 'bday-month',
-  BdayYear = 'bday-year',
-  Sex = 'sex',
-  Tel = 'tel',
-  TelCountryCode = 'tel-country-code',
-  TelNational = 'tel-national',
-  TelAreaCode = 'tel-area-code',
-  TelLocal = 'tel-local',
-  TelLocalPrefix = 'tel-local-prefix',
-  TelLocalSuffix = 'tel-local-suffix',
-  TelExtension = 'tel-extension',
-  Url = 'url',
-  Photo = 'photo',
-}
 export enum InputMode {
   Decimal = 'decimal',
   Email = 'email',
@@ -98,7 +43,6 @@ export enum InputType {
 }
 
 export interface PropTypes {
-  autoComplete?: InputAutocomplete;
   autoFocus?: boolean;
   capture?: string | boolean;
   checked?: boolean;
