@@ -1,7 +1,6 @@
 import { NamedNode, QuadPosition } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { Context } from 'koa';
 
 import dbo from '../ontology/dbo';
 import ontola from '../ontology/ontola';
@@ -157,9 +156,7 @@ const findValue = (subjectQuads: string[], predicates: string[]): string | undef
   .find((q) => q[QuadPosition.object])
   ?.[QuadPosition.object];
 
-export const prerenderMetaTags = (ctx: Context, manifest: WebManifest, data: string): string => {
-  const { request: { href } } = ctx;
-
+export const prerenderMetaTags = (href: string, manifest: WebManifest, data: string): string => {
   const quads = data
     .split('\n')
     .map((line) => {

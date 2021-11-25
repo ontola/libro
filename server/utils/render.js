@@ -68,7 +68,7 @@ export const renderFullPage = async (ctx, data) => {
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
-          ${prerenderMetaTags(ctx, manifest, seed)}
+          ${prerenderMetaTags(ctx.request.href, manifest, seed)}
           ${headTracking}
 
           <meta name="website" content="${manifest.ontola.website_iri ?? manifest.scope ?? ''}">
