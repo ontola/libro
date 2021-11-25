@@ -8,7 +8,7 @@ import React from 'react';
 
 import CollapseText from '../../../components/CollapseText';
 import Markdown from '../../../components/Markdown';
-import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
+import { useStrippedMarkdown } from '../../../helpers/useStrippedMarkdown';
 import { cardTopology } from '../../../topologies/Card';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';

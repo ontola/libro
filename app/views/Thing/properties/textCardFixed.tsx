@@ -3,7 +3,7 @@ import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
+import { useStrippedMarkdown } from '../../../helpers/useStrippedMarkdown';
 import ontola from '../../../ontology/ontola';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
