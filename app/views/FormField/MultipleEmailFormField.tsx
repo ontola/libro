@@ -9,7 +9,6 @@ import form from '../../ontology/form';
 const MultipleEmailFormField: FC = (props) => {
   const fieldProps = useFormField({
     delay: false,
-    preferPlaceholder: true,
     ...props,
   });
 

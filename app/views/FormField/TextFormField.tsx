@@ -32,7 +32,6 @@ const getInputType = (theme: FormTheme | undefined, type: SomeTerm) => {
 const TextFormField: FC = (props) => {
   const fieldProps = useFormField({
     delay: true,
-    preferPlaceholder: true,
     ...props,
   });
   const { theme } = React.useContext(FormContext);

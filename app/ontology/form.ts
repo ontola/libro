@@ -47,4 +47,5 @@ export default {
   groups: form('groups'),
   hidden: form('hidden'),
   pages: form('pages'),
+  placeholder: form('placeholder'),
 };

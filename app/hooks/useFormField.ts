@@ -21,6 +21,7 @@ import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import { isJSONLDObject, isNumber } from '../helpers/types';
 import validators, { combineValidators } from '../helpers/validators';
+import form from '../ontology/form';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
@@ -34,6 +35,7 @@ const mapFieldProps = {
   helperText: literal(ontola.helperText),
   label: literal(schema.name),
   path: sh.path,
+  placeholder: literal(form.placeholder),
 };
 
 interface MapFieldPropsShape {
@@ -41,6 +43,7 @@ interface MapFieldPropsShape {
   helperText?: string;
   label?: string;
   path: NamedNode;
+  placeholder?: string;
 }
 
 export type InputValue = JSONLDObject | SomeTerm;
@@ -52,7 +55,6 @@ export interface UseFormFieldProps {
   delay?: boolean;
   newItem?: ItemFactory;
   path?: NamedNode;
-  preferPlaceholder?: boolean;
   storage?: boolean;
   subject?: SomeNode;
 }
@@ -163,7 +165,6 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     delay,
     newItem,
     path,
-    preferPlaceholder,
     storage,
   } = props;
 
@@ -334,12 +335,10 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     meta: memoizedMeta,
     name: input.name,
     onChange: input.onChange,
-    placeholder: preferPlaceholder ? fieldProps.description : undefined,
     storeKey,
     values,
     whitelisted,
     ...fieldProps,
-    description: preferPlaceholder ? fieldProps.helperText : fieldProps.description ?? fieldProps.helperText,
   };
 };
 
