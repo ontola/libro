@@ -3,6 +3,7 @@ import * as sh from '@ontologies/shacl';
 import equal from 'fast-deep-equal';
 import { SomeNode } from 'link-lib';
 import {
+  LaxNode,
   ReturnType,
   literal,
   useResourceLink,
@@ -12,8 +13,6 @@ import React, { useState } from 'react';
 import { FormContext } from '../components/Form/Form';
 import { isNumber } from '../helpers/types';
 import ontola from '../ontology/ontola';
-
-import { UseFormFieldProps } from './useFormField';
 
 const shapePropsFromObject = [
   'maxCount',
@@ -71,10 +70,10 @@ const mapShapeProps = {
   shInProp: ontola.shIn,
 };
 
-const useFieldShape = (props: UseFormFieldProps): ResolvedShapeForm => {
+const useFieldShape = (field: LaxNode, alwaysVisible: boolean): ResolvedShapeForm => {
   const { object } = React.useContext(FormContext);
   const [fieldShape, setFieldShape] = useState({});
-  const shapeProps = useResourceLink(props.subject, mapShapeProps) as unknown as ShapeForm;
+  const shapeProps = useResourceLink(field, mapShapeProps) as unknown as ShapeForm;
   const propsFromObjectMap: ShapeFromObjectForm = {};
   const shapeFromField: ResolvedShapeForm = {};
 
@@ -90,7 +89,7 @@ const useFieldShape = (props: UseFormFieldProps): ResolvedShapeForm => {
 
   const empty = Object.keys(propsFromObjectMap).length === 0;
   const shapeFromObject = useResourceLink(
-    empty ? props.subject : object,
+    empty ? field : object,
     empty ? {} : propsFromObjectMap,
     { returnType: ReturnType.Literal },
   );
@@ -101,7 +100,7 @@ const useFieldShape = (props: UseFormFieldProps): ResolvedShapeForm => {
   };
 
   shape.required = shape.minCount ? shape.minCount > 0 : false;
-  shape.removable = ((shape.minCount !== 1 && !props.alwaysVisible)
+  shape.removable = ((shape.minCount !== 1 && !alwaysVisible)
     || (isNumber(shape.maxCount) && shape.maxCount > 1));
 
   if (!equal(fieldShape, shape)) {

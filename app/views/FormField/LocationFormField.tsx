@@ -6,8 +6,10 @@ import LocationInput from '../../components/Input/LocationInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const LocationFormField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const LocationFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

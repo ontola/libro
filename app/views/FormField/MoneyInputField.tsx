@@ -9,10 +9,11 @@ import MoneyInput from '../../components/Input/MoneyInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const MoneyField: FC = (props) => {
-  const fieldProps = useFormField({
+const MoneyField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: true,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {

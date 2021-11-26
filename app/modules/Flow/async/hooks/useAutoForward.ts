@@ -3,7 +3,8 @@ import * as sh from '@ontologies/shacl';
 import { LaxNode, useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import useFormField, { InputValue } from '../../../../hooks/useFormField';
+import { InputValue } from '../../../../hooks/useFormField';
+import { useFormFieldForPath } from '../../../../hooks/useFormFieldForPath';
 import form from '../../../../ontology/form';
 
 const AUTO_FORWARD_TIMEOUT_MS = 1000;
@@ -24,7 +25,7 @@ export const useAutoForward = (activeField: LaxNode, activateNextField: () => vo
 
   const [type] = useGlobalIds(activeField, rdf.type);
   const [path] = useGlobalIds(activeField, sh.path);
-  const formFieldProps = useFormField({ path });
+  const formFieldProps = useFormFieldForPath(path);
 
   React.useEffect(() => {
     if (!formFieldProps.whitelisted) {

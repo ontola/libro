@@ -6,10 +6,11 @@ import SliderInput from '../../components/Input/SliderInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const SliderFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const SliderFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: true,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {

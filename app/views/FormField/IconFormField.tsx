@@ -6,8 +6,10 @@ import IconInputField from '../../containers/IconInputField';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const IconFormField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const IconFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

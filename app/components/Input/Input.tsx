@@ -52,6 +52,8 @@ export interface PropTypes {
   hiddenValue?: string;
   id?: string;
   inputMode?: InputMode;
+  max?: number;
+  min?: number;
   minLength?: number;
   name: string;
   onChange?: EventHandler<any>;

@@ -1,14 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
-import * as sh from '@ontologies/shacl';
-import { useFindSubject } from 'link-redux';
 import React from 'react';
 
 import { imageRepresentationUrl } from '../../helpers/attachments';
-import { formFieldsPath } from '../../helpers/diggers';
+import useInputId from '../../hooks/useInputId';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { FormContext } from '../Form/Form';
 import Image from '../Image';
 
 import DropzoneInnerPositionY from './DropzoneInnerPositionY';
@@ -45,12 +42,7 @@ const DropzoneInner = ({
   isDragActive,
 }: DropzoneInnerProps): JSX.Element => {
   const classes = useStyles();
-  const { formIRI } = React.useContext(FormContext);
-  const imagePositionYShape = useFindSubject(
-    [...formFieldsPath, sh.path],
-    ontola.imagePositionY,
-    formIRI,
-  ).pop();
+  const imagePositionYShape = useInputId(ontola.imagePositionY);
 
   if (preview && !encodingFormat?.startsWith('image/')) {
     const fileImage = imageRepresentationUrl({ encodingFormat: rdf.literal(encodingFormat) });
@@ -70,10 +62,7 @@ const DropzoneInner = ({
 
   if (preview && imagePositionYShape) {
     return (
-      <DropzoneInnerPositionY
-        imagePositionYShape={imagePositionYShape}
-        preview={preview}
-      >
+      <DropzoneInnerPositionY preview={preview}>
         {children}
       </DropzoneInnerPositionY>
     );

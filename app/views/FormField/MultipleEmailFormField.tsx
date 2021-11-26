@@ -6,10 +6,11 @@ import { MultipleEmailInput } from '../../components/Input/MultipleEmailInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const MultipleEmailFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const MultipleEmailFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: false,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {

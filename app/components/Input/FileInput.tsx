@@ -1,13 +1,10 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import * as sh from '@ontologies/shacl';
-import { useIds } from 'link-redux';
 import React from 'react';
 
 import Dropzone from '../../containers/Dropzone';
 import { isFileType } from '../../helpers/types';
-import useFormField from '../../hooks/useFormField';
-import useInputShape from '../../hooks/useInputShape';
+import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
 import { FormContext } from '../Form/Form';
@@ -29,11 +26,12 @@ const FileInput: React.FC<InputComponentProps> = ({
     fieldShape,
   } = React.useContext(FormFieldContext);
   const { required } = fieldShape;
-  const fileNameShape = useInputShape(dbo.filename);
-  const encodingFormatShape = useInputShape(schema.encodingFormat);
-  const [encodingFormatList] = useIds(encodingFormatShape, sh.shaclin);
-  const [encodingFormatConversion, encodingFormatLoading] = useListToArr(encodingFormatList);
-
+  const {
+    fieldShape: encodingFormatShape,
+    values: encodingFormatValues,
+    onChange: encodingFormatOnChange,
+  } = useFormFieldForPath(schema.encodingFormat);
+  const [encodingFormatConversion, encodingFormatLoading] = useListToArr(encodingFormatShape.shInProp);
   const [encodingFormatTypes, setEncodingFormatTypes] = React.useState<string>('');
 
   React.useEffect(() => {
@@ -43,20 +41,9 @@ const FileInput: React.FC<InputComponentProps> = ({
   }, [encodingFormatConversion, encodingFormatLoading]);
 
   const {
-    values: encodingFormatValues,
-    onChange: encodingFormatOnChange,
-  } = useFormField({
-    path: schema.encodingFormat,
-    subject: encodingFormatShape,
-  });
-
-  const {
     values: fileNameFormatValues,
     onChange: fileNameFormatOnChange,
-  } = useFormField({
-    path: dbo.filename,
-    subject: fileNameShape,
-  });
+  } = useFormFieldForPath(dbo.filename);
 
   const inputRef = React.createRef<HTMLInputElement>();
   const handleFileChange = React.useCallback((newFile: File) => {

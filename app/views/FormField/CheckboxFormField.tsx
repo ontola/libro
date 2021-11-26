@@ -6,8 +6,10 @@ import CheckboxInput from '../../components/Input/CheckboxInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const CheckboxFormField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const CheckboxFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

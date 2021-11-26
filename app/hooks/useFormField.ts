@@ -7,9 +7,10 @@ import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
+  LaxNode,
   literal,
   useLRS,
-  useLink,
+  useResourceLink,
 } from 'link-redux';
 import React from 'react';
 import { useField } from 'react-final-form';
@@ -54,9 +55,7 @@ export interface UseFormFieldProps {
   alwaysVisible?: boolean;
   delay?: boolean;
   newItem?: ItemFactory;
-  path?: NamedNode;
   storage?: boolean;
-  subject?: SomeNode;
 }
 
 export interface ForbiddenFormField {
@@ -154,7 +153,7 @@ const defaultProps = {
   storage: true,
 };
 
-const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | ForbiddenFormField => {
+const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): PermittedFormField | ForbiddenFormField => {
   const props = {
     ...defaultProps,
     ...componentProps,
@@ -164,7 +163,6 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     alwaysVisible,
     delay,
     newItem,
-    path,
     storage,
   } = props;
 
@@ -182,12 +180,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     whitelist,
   } = React.useContext(FormContext);
 
-  const fieldProps = useLink(mapFieldProps) as MapFieldPropsShape;
-
-  if (path) {
-    fieldProps.path = path;
-  }
-
+  const fieldProps = useResourceLink(field, mapFieldProps) as MapFieldPropsShape;
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
   const blacklisted = blacklist?.includes(rdf.id(fieldProps.path));
   const fieldName = calculateFormFieldName(formSection, fieldProps.path ?? 'undefined');
@@ -203,7 +196,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     };
   }
 
-  const fieldShape = useFieldShape(props);
+  const fieldShape = useFieldShape(field, alwaysVisible);
   const storeKey = getStorageKey(formID || '', formSection ? object : undefined, fieldProps.path);
 
   const validate = combineValidators([
@@ -329,7 +322,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
     addFormValue,
     autofocus,
     className,
-    field: props.subject,
+    field,
     fieldShape,
     inputErrors,
     meta: memoizedMeta,

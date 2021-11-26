@@ -29,10 +29,11 @@ const getInputType = (theme: FormTheme | undefined, type: SomeTerm) => {
   return 'text';
 };
 
-const TextFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const TextFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: true,
-    ...props,
   });
   const { theme } = React.useContext(FormContext);
   const [type] = useProperty(rdfx.type);

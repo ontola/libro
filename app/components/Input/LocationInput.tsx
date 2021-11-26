@@ -13,7 +13,8 @@ import React from 'react';
 import MapView, { Placement } from '../../containers/MapView';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
-import useFormField, { InputValue } from '../../hooks/useFormField';
+import { InputValue } from '../../hooks/useFormField';
+import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
@@ -95,15 +96,9 @@ const LocationInput: React.FC<InputComponentProps> = ({
     [classes.locationFlow]: theme === FormTheme.Flow,
   });
 
-  const { name: latName, values: latValues, onChange: latOnChange } = useFormField({
-    path: schema.latitude,
-  });
-  const { name: lonName, values: lonValues, onChange: lonOnChange } = useFormField({
-    path: schema.longitude,
-  });
-  const { name: zoomLevelName, values: zoomLevelValues, onChange: zoomLevelOnChange } = useFormField({
-    path: ontola.zoomLevel,
-  });
+  const { name: latName, values: latValues, onChange: latOnChange } = useFormFieldForPath(schema.latitude);
+  const { name: lonName, values: lonValues, onChange: lonOnChange } = useFormFieldForPath(schema.longitude);
+  const { name: zoomLevelName, values: zoomLevelValues, onChange: zoomLevelOnChange } = useFormFieldForPath(ontola.zoomLevel);
   const [lat] = latValues || [];
   const [lon] = lonValues || [];
   const [zoomLevel] = zoomLevelValues || [];

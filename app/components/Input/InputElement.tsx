@@ -57,6 +57,8 @@ const InputElement = ({
     storeKey,
   } = React.useContext(FormFieldContext);
   const {
+    maxInclusive,
+    minInclusive,
     minLength,
     required,
   } = fieldShape;
@@ -117,8 +119,10 @@ const InputElement = ({
       <Input
         {...sharedProps}
         element={element}
+        max={maxInclusive}
         // TODO: [AOD-218] HTML only noscript
         // maxLength={maxLength}
+        min={minInclusive}
         minLength={minLength}
         placeholder={placeholder}
         required={required}

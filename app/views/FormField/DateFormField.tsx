@@ -12,8 +12,10 @@ import DateTimePicker from '../../containers/DateTimePicker';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const DateFormField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const DateFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   const [type] = useProperty(rdfx.type);
 

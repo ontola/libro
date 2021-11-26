@@ -6,10 +6,11 @@ import { FileInput } from '../../components/Input';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const FileFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const FileFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     storage: false,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {

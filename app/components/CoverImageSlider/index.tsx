@@ -1,12 +1,11 @@
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
-import { SomeNode } from 'link-lib';
 import * as PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
-import useFormField from '../../hooks/useFormField';
+import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import ontola from '../../ontology/ontola';
 
 const ThumbComponent = (props: any) => (
@@ -71,13 +70,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface PropTypes {
-  imagePositionYShape: SomeNode;
   onChange: (e: any, value: number | number[]) => void;
   value: number;
 }
 
 const CoverImageSlider: React.FC<PropTypes> = ({
-  imagePositionYShape,
   value,
   onChange,
 }) => {
@@ -85,10 +82,7 @@ const CoverImageSlider: React.FC<PropTypes> = ({
   const {
     values,
     onChange: inputOnChange,
-  } = useFormField({
-    path: ontola.imagePositionY,
-    subject: imagePositionYShape,
-  });
+  } = useFormFieldForPath(ontola.imagePositionY);
   const imagePositionY = tryParseInt(values?.[0]);
 
   const onImagePositionYChange = (_: any, newValue: number | number[]) => {
@@ -101,7 +95,7 @@ const CoverImageSlider: React.FC<PropTypes> = ({
     onChange(null, 100 - (imagePositionY || CENTER_Y));
   }, [imagePositionY]);
 
-  if (!inputOnChange || !values || !imagePositionYShape) {
+  if (!inputOnChange || !values) {
     return null;
   }
 

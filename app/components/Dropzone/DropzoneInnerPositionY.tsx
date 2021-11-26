@@ -1,4 +1,3 @@
-import { SomeNode } from 'link-lib';
 import React, { useState } from 'react';
 
 import CoverImage from '../CoverImage';
@@ -7,13 +6,11 @@ import CoverImageSlider from '../CoverImageSlider';
 interface PropTypes {
   children: (props: any) => any;
   preview: string;
-  imagePositionYShape: SomeNode;
 }
 
 const DropzoneInnerPositionY: React.FC<PropTypes> = ({
   children,
   preview,
-  imagePositionYShape,
 }) => {
   const [positionY, setPositionY] = useState(0);
   const onSliderChange = React.useCallback((_: any, newValue: number | number[]) => {
@@ -33,7 +30,6 @@ const DropzoneInnerPositionY: React.FC<PropTypes> = ({
         </div>,
       )}
       <CoverImageSlider
-        imagePositionYShape={imagePositionYShape}
         value={positionY}
         onChange={onSliderChange}
       />

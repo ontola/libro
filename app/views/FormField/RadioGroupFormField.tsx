@@ -6,8 +6,10 @@ import RadioGroupWrapper from '../../components/RadioGroupWrapper';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const RadioGroupFormField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const RadioGroupFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

@@ -6,8 +6,10 @@ import SelectInputField from '../../containers/SelectInputField';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const SelectFormField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const SelectFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

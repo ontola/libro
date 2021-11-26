@@ -6,8 +6,10 @@ import ToggleButtonGroup from '../../components/ToggleButtonGroup';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const ToggleButtonGroupField: FC = (props) => {
-  const fieldProps = useFormField(props);
+const ToggleButtonGroupField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

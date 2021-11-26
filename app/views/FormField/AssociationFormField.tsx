@@ -53,13 +53,14 @@ const useItemFactory = () => {
   }, [blankObject, formPaths, conditionalFormPaths]);
 };
 
-const AssociationFormField: FC = (props) => {
+const AssociationFormField: FC = ({
+  subject,
+}) => {
   const newItem = useItemFactory();
 
-  const fieldProps = useFormField({
+  const fieldProps = useFormField(subject, {
     alwaysVisible: false,
     newItem,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {

@@ -6,10 +6,11 @@ import PostalRangeInput from '../../components/Input/PostalRangeInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
-const PostalRangeFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const PostalRangeFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: true,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {

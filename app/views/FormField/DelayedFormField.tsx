@@ -24,10 +24,11 @@ const getInputType = (type: SomeTerm) => {
   return 'text';
 };
 
-const DelayedFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const DelayedFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: true,
-    ...props,
   });
 
   const [type] = useProperty(rdfx.type);

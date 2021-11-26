@@ -15,11 +15,12 @@ const PasswordInput = (fieldProps: InputComponentProps) => (
   />
 );
 
-const PasswordFormField: FC = (props) => {
-  const fieldProps = useFormField({
+const PasswordFormField: FC = ({
+  subject,
+}) => {
+  const fieldProps = useFormField(subject, {
     delay: true,
     storage: false,
-    ...props,
   });
 
   if (!fieldProps.whitelisted) {
