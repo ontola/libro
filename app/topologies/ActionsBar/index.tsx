@@ -1,5 +1,5 @@
 import {
-  ClassNameMap,
+  WithStyles,
   createStyles,
   withStyles,
 } from '@material-ui/styles';
@@ -12,13 +12,12 @@ import argu from '../../ontology/argu';
 
 export const actionsBarTopology = argu.actionsBar;
 
-interface PropTypes {
+type PropTypes = WithStyles<typeof styles> & {
   small?: boolean;
-  classes?: ClassNameMap<'small' | 'actionBar'>
-}
+};
 
 const styles = createStyles({
-  actionBar: {
+  actionsBar: {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '1rem',
@@ -50,8 +49,8 @@ class ActionsBar extends TopologyProvider<PropTypes> {
 
   public render() {
     const classes = clsx({
-      [this.props.classes!.actionBar]: true,
-      [this.props.classes!.small]: this.props.small,
+      [this.props.classes.actionsBar]: true,
+      [this.props.classes.small]: this.props.small,
     });
 
     if (this.props.children === undefined) {
