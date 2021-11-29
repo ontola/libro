@@ -34,14 +34,16 @@ const TrashedAt: FC<TrashedAtProps> = ({ linkedProp }) => {
             date: formatDate(linkedProp.value),
           }}
         />
-        <Resource subject={trashActivity}>
-          <div>
-            <Property
-              label={schema.text}
-              topology={inlineTopology}
-            />
-          </div>
-        </Resource>
+        {trashActivity && (
+          <Resource subject={trashActivity}>
+            <div>
+              <Property
+                label={schema.text}
+                topology={inlineTopology}
+              />
+            </div>
+          </Resource>
+        )}
       </CardContent>
     </Card>
   );
