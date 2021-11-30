@@ -19,6 +19,7 @@ import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
+import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
@@ -90,6 +91,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   onChange,
 }) => {
   const { theme } = React.useContext(FormContext);
+  const { fieldShape: { required } } = React.useContext(FormFieldContext);
   const classes = useStyles();
   const className = clsx({
     [classes.locationInput]: true,
@@ -102,6 +104,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const [lat] = latValues || [];
   const [lon] = lonValues || [];
   const [zoomLevel] = zoomLevelValues || [];
+
   React.useEffect(() => {
     if (!inputValue?.value && lat?.value && lon?.value) {
       onChange(rdf.literal(true));
@@ -125,18 +128,22 @@ const LocationInput: React.FC<InputComponentProps> = ({
 
   return (
     <div className={className}>
-      <HiddenRequiredInput
-        name={latName}
-        value={lat?.value}
-      />
-      <HiddenRequiredInput
-        name={lonName}
-        value={lon?.value}
-      />
-      <HiddenRequiredInput
-        name={zoomLevelName}
-        value={zoomLevel?.value}
-      />
+      {required && (
+        <React.Fragment>
+          <HiddenRequiredInput
+            name={latName}
+            value={lat?.value}
+          />
+          <HiddenRequiredInput
+            name={lonName}
+            value={lon?.value}
+          />
+          <HiddenRequiredInput
+            name={zoomLevelName}
+            value={zoomLevel?.value}
+          />
+        </React.Fragment>
+      )}
       <MapView
         initialLat={initialView.lat}
         initialLon={initialView.lon}

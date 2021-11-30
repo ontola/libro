@@ -1,5 +1,5 @@
-import MyLocationIcon from '@material-ui/icons/MyLocation';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import MyLocationIcon from '@material-ui/icons/MyLocation';
 import clsx from 'clsx';
 import { Geolocation, Map } from 'ol';
 import { Control } from 'ol/control';

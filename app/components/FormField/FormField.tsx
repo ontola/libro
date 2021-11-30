@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
 import { PermittedFormField } from '../../hooks/useFormField';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import ResourceBoundary from '../ResourceBoundary';
@@ -68,6 +68,8 @@ FormField.defaultProps = {
   combinedComponent: false,
   inputErrors: [],
   meta: {},
+  onBlur: () => undefined,
+  onFocus: () => undefined,
 };
 
 export default FormField;

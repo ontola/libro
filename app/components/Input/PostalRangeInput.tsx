@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
 import React from 'react';
 
@@ -11,13 +12,23 @@ interface SingleInputProps extends InputComponentProps{
   rangeIndex: number;
 }
 
+const useStyles = makeStyles({
+  inputWrapper: {
+    marginBottom: '.5em',
+  },
+});
+
 const PostalDigitsInput: React.FC<SingleInputProps> = ({
   inputIndex,
   inputValue,
   rangeIndex,
   onChange,
 }) => {
-  const { name } = React.useContext(FormFieldContext);
+  const {
+    name,
+    onBlur,
+    onFocus,
+  } = React.useContext(FormFieldContext);
   const splitRange = inputValue.value.split('-');
 
   const handleChange = (e: any) => {
@@ -35,21 +46,23 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
       name={`${name}-${inputIndex}-${rangeIndex}`}
       type="number"
       value={splitRange[rangeIndex]}
+      onBlur={onBlur}
       onChange={handleChange}
+      onFocus={onFocus}
     />
   );
 };
 
-const style = { marginBottom: '0.5em' };
-
 const PostalRangeInput = (props: InputComponentProps): JSX.Element => {
+  const classes = useStyles();
+
   const compProps = {
     index: 0,
     ...props,
   };
 
   return (
-    <div style={style}>
+    <div className={classes.inputWrapper}>
       <PostalDigitsInput
         rangeIndex={0}
         {...compProps}

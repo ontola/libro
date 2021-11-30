@@ -33,11 +33,13 @@ export const MultipleEmailInput = (): JSX.Element => {
   const intl = useIntl();
   const {
     autofocus,
-    name,
-    inputErrors,
-    onChange,
-    placeholder,
     fieldShape,
+    inputErrors,
+    name,
+    onBlur,
+    onChange,
+    onFocus,
+    placeholder,
     values,
   } = React.useContext(FormFieldContext);
   const overrideClasses = useOverrideStyle();
@@ -115,7 +117,9 @@ export const MultipleEmailInput = (): JSX.Element => {
           )
         )}
         value={emails}
+        onBlur={onBlur}
         onChange={handleChange}
+        onFocus={onFocus}
         onInputChange={handleTextFieldChange}
       />
       {fieldShape.required && (

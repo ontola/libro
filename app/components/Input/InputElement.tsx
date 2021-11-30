@@ -15,6 +15,11 @@ import Input, {
   InputType,
 } from '../Input/Input';
 
+interface StyleProps {
+  invalid?: boolean;
+  touched?: boolean;
+}
+
 const TEXTFIELD_MIN_ROWS = 3;
 
 export interface InputPropTypes extends InputComponentProps {
@@ -24,14 +29,20 @@ export interface InputPropTypes extends InputComponentProps {
 
 const FLOW_INPUT_PADDING = 4;
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   flowInput: {
     '& textarea': {
       height: '100px',
     },
     '&:focus-within': {
-      border: `2px solid ${theme.palette.primary.main}`,
+      boxShadow: ({ invalid, touched }) => {
+        const color = (touched && invalid) ? theme.palette.error.main : theme.palette.primary.main;
+
+        return `0px 0px 0px 2px ${color}, ${SHADOW_LIGHT}`;
+      },
     },
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
     boxShadow: SHADOW_LIGHT,
     padding: theme.spacing(FLOW_INPUT_PADDING),
   },
@@ -53,6 +64,8 @@ const InputElement = ({
     fieldShape,
     meta,
     name,
+    onBlur,
+    onFocus,
     placeholder,
     storeKey,
   } = React.useContext(FormFieldContext);
@@ -64,9 +77,14 @@ const InputElement = ({
   } = fieldShape;
   const {
     active,
+    invalid,
+    touched,
   } = meta;
 
-  const classes = useStyles();
+  const classes = useStyles({
+    invalid,
+    touched,
+  });
 
   const className = clsx({
     'Field__input': true,
@@ -80,6 +98,7 @@ const InputElement = ({
     'data-testid': name,
     'id': name,
     name,
+    onBlur,
     'onChange': (e: React.ChangeEvent<HTMLInputElement>) => {
       let val;
 
@@ -91,6 +110,7 @@ const InputElement = ({
 
       onChange(val);
     },
+    onFocus,
     required,
     'value': inputValue?.value,
   };

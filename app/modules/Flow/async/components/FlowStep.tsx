@@ -2,47 +2,41 @@ import Step from '@material-ui/core/Step';
 import { StepProps } from '@material-ui/core/Step/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import clsx from 'clsx';
-import { SomeNode } from 'link-lib';
 import React from 'react';
+import { useField } from 'react-final-form';
 
-import { storageGet } from '../../../../helpers/persistence';
-import useFormField from '../../../../hooks/useFormField';
-import { FormContext } from '../../../../components/Form/Form';
-import { useFlowStyles } from '../hooks/useFlowStyles';
+import { useFlowStepStyles } from '../hooks/useFlowStyles';
 
 interface FlowStepProps extends StepProps {
-  handleClick: () => void;
-  page: SomeNode;
+  fieldHash: string;
+  onStepClick: (hash: string) => void;
   pageCount: number;
 }
 
 const FlowStep = ({
-  completed,
-  handleClick,
-  page,
+  fieldHash,
+  onStepClick,
   pageCount,
   ...otherProps
 }: FlowStepProps): JSX.Element | null => {
-  const { sessionStore } = React.useContext(FormContext);
-  const classes = useFlowStyles({ pageCount });
-  const formFieldProps = useFormField(page);
+  const classes = useFlowStepStyles({ pageCount });
 
-  if (!formFieldProps.whitelisted) {
-    return null;
-  }
+  const fieldState = useField(fieldHash, {
+    subscription: {
+      touched: true,
+      valid: true,
+    },
+  });
 
-  const {
-    meta: { error },
-    name,
-    storeKey,
-  } = formFieldProps;
-  const valueFromStorage = storageGet(sessionStore, storeKey ?? name);
-  const hasValue = !!valueFromStorage;
-  const valid = !completed || (!error || error.length === 0);
+  const handleClick = React.useCallback(() => {
+    onStepClick(fieldHash);
+  }, [fieldHash]);
+
+  const { valid, touched } = fieldState.meta;
 
   const stepClassName = clsx({
     [classes.step]: true,
-    [classes.stepBadge]: true,
+    [classes.stepBadge]: touched,
     [classes.stepValid]: valid,
   });
 
@@ -53,8 +47,7 @@ const FlowStep = ({
         completed: stepClassName,
         root: stepClassName,
       }}
-      completed={valid && hasValue}
-      key={page.value}
+      completed={valid && touched}
       onClick={handleClick}
     >
       <StepLabel>

@@ -1,10 +1,10 @@
-import rdf from '@ontologies/core';
-import * as schema from '@ontologies/schema';
 import {
   FormControl,
   Input,
   InputAdornment,
 } from '@material-ui/core';
+import rdf from '@ontologies/core';
+import * as schema from '@ontologies/schema';
 import { useFields } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -20,7 +20,11 @@ const MoneyInput: React.FC<InputComponentProps> = ({
 }) => {
   const intl = useIntl();
   const { object } = React.useContext(FormContext);
-  const { name } = React.useContext(FormFieldContext);
+  const {
+    name,
+    onBlur,
+    onFocus,
+  } = React.useContext(FormFieldContext);
   const [currency] = useFields(object, schema.currency);
   const [priceCurrency] = useFields(object, schema.priceCurrency);
   const handleChange = React.useCallback((e: any) => {
@@ -49,7 +53,9 @@ const MoneyInput: React.FC<InputComponentProps> = ({
         )}
         type="number"
         value={value}
+        onBlur={onBlur}
         onChange={handleChange}
+        onFocus={onFocus}
       />
     </FormControl>
   );

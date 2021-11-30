@@ -58,7 +58,9 @@ const CheckboxesInput: React.FC = () => {
   const { theme } = React.useContext(FormContext);
   const {
     name,
+    onBlur,
     onChange,
+    onFocus,
     fieldShape,
     values,
   } = React.useContext(FormFieldContext);
@@ -120,7 +122,9 @@ const CheckboxesInput: React.FC = () => {
           label={label}
           name={name}
           value={JSON.stringify(item)}
+          onBlur={onBlur}
           onChange={(e) => handleChange(e, values, onChange)}
+          onFocus={onFocus}
         />
       </div>
     );

@@ -53,6 +53,7 @@ interface MapFieldPropsShape {
 
 export type InputValue = JSONLDObject | SomeTerm;
 export type OnInputChange = (newValues: InputValue[]) => void;
+export type FocusRelatedEventHandler = (e: React.FocusEvent<HTMLElement>) => void;
 export type ItemFactory = () => InputValue;
 
 export interface UseFormFieldProps {
@@ -83,7 +84,9 @@ export interface PermittedFormField {
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: OnInputChange;
+  onFocus: FocusRelatedEventHandler;
   path?: NamedNode;
   placeholder?: string;
   storeKey?: string;
@@ -253,6 +256,9 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     validateFields: [],
   });
 
+  const memoizedOnBlur = React.useCallback(input.onBlur, []);
+  const memoizedOnFocus = React.useCallback(input.onFocus, []);
+
   const originalOnChange = input.onChange;
 
   const onChange = React.useCallback((nextValue) => {
@@ -314,20 +320,20 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     dirty,
     dirtySinceLastSubmit,
     error,
-    pristine,
     invalid,
+    touched,
   } = meta;
 
-  const metaError = pristine ? undefined : error;
   const submissionError = dirtySinceLastSubmit ? undefined : submissionErrors?.[input.name];
-  const inputErrors = submissionError || metaError;
+  const inputErrors = submissionError || error;
+  const showError = touched && !!inputErrors;
 
   const className = clsx({
     'Field': true,
     [`Field--variant-${theme}`]: theme,
     'Field--active': active,
     'Field--dirty': dirty,
-    'Field--error': !!inputErrors,
+    'Field--error': showError,
     'Field--warning': invalid,
   });
 
@@ -342,7 +348,9 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     inputErrors,
     meta: memoizedMeta,
     name: input.name,
+    onBlur: memoizedOnBlur,
     onChange: input.onChange,
+    onFocus: memoizedOnFocus,
     storeKey,
     values,
     whitelisted,

@@ -1,5 +1,5 @@
 import equal from 'fast-deep-equal';
-import { FormApi } from 'final-form';
+import { FormApi, MutableState } from 'final-form';
 import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 import { Form as FinalForm, FormRenderProps } from 'react-final-form';
@@ -71,6 +71,14 @@ export interface FormContext {
 
 export const FormContext = React.createContext<Partial<FormContext>>({});
 
+const mutators = {
+  touchFields: (_: string, state: MutableState<Record<string, any>, Record<string, any>>) => {
+    for (const field of Object.values(state.fields)) {
+      field.touched = true;
+    }
+  },
+};
+
 const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>, fileStore?: FileStore) => {
   let formData = {};
 
@@ -139,6 +147,7 @@ const Form: React.FC<FormProps> = (props) => {
       initialValues={initialValues}
       initialValuesEqual={equal}
       key={formID}
+      mutators={mutators}
       render={render}
       subscription={subscription}
       validateOnBlur={validateOnBlur}

@@ -42,11 +42,14 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
   const {
     fieldShape,
     name,
+    onBlur,
+    onFocus,
   } = React.useContext(FormFieldContext);
 
+  const showStatic = formTheme === FormTheme.Flow && mdUp;
   const value = inputValue.value?.length > 0 ? inputValue.value : null;
   const className = clsx({
-    [classes.flowDatePicker]: formTheme === FormTheme.Flow && mdUp,
+    [classes.flowDatePicker]: showStatic,
   });
 
   return (
@@ -78,7 +81,10 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
           okLabel={intl.formatMessage(formMessages.okLabel)}
           todayLabel={intl.formatMessage(formMessages.todayLabel)}
           value={value}
+          variant={showStatic ? 'static' : 'dialog'}
+          onBlur={onBlur}
           onChange={(e) => onChange(e === null ? null : rdf.literal(e.format(), xsd.dateTime))}
+          onFocus={onFocus}
         />
       </div>
     </MuiPickersUtilsProvider>

@@ -9,7 +9,7 @@ import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
 import { FormFieldContext } from './FormField';
 
-import { FormFieldError } from './index';
+import { FormFieldError } from './';
 
 interface ErrorHelper {
   error: FormFieldError;
@@ -28,6 +28,7 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
   const {
     fieldShape,
     helperText,
+    meta: { touched },
   } = React.useContext(FormFieldContext);
   const {
     maxLength,
@@ -49,7 +50,7 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
 
   return (
     <FieldHelper
-      error={error}
+      error={touched ? error : undefined}
       helperText={helperText ?? requiredHelper}
       right={renderCharCounter && maxLength && value && !isJSONLDObject(value) ? (
         <CharCounter

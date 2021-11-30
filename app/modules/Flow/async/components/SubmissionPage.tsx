@@ -3,15 +3,15 @@ import Typography from '@material-ui/core/Typography';
 import { ArrowBack } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
-import { flowMessages } from '../../lib/messages';
 import Button, { ButtonTheme } from '../../../../components/Button';
 import { FormContext } from '../../../../components/Form/Form';
+import { flowMessages } from '../../lib/messages';
 
 export interface SubmissionPageProps {
-  formInvalid?: boolean;
-  onBack: () => void;
+  onBack: (key: string) => void;
 }
 
 const useStyles = makeStyles({
@@ -23,41 +23,46 @@ const useStyles = makeStyles({
   },
 });
 
-export const SubmissionPage = ({ formInvalid, onBack }: SubmissionPageProps): JSX.Element => {
+export const SubmissionPage = ({ onBack }: SubmissionPageProps): JSX.Element => {
   const classes = useStyles();
   const { submitting } = React.useContext(FormContext);
+
+  const { errors } = useFormState({
+    subscription: {
+      errors: true,
+    },
+  });
+
+  const isValid = !errors || Object.keys(errors).length === 0;
+
+  const messages = React.useMemo(() => ({
+    wrapUpBody: isValid ? flowMessages.wrapUpBodyText : flowMessages.wrapUpBodyTextInvalid,
+    wrapUpTitle: isValid ? flowMessages.wrapUpTitle : flowMessages.wrapUpTitleInvalid,
+  }), [isValid]);
 
   return (
     <div className={classes.wrapper}>
       <Typography variant="h2">
-        {formInvalid ? (
-          <FormattedMessage {...flowMessages.wrapUpTitleInvalid} />
-        ) : (
-          <FormattedMessage {...flowMessages.wrapUpTitle} />
-        )}
+        <FormattedMessage {...messages.wrapUpTitle} />
       </Typography>
       <Typography variant="body1">
-        {formInvalid ? (
-          <FormattedMessage {...flowMessages.wrapUpBodyTextInvalid} />
-        ) : (
-          <FormattedMessage {...flowMessages.wrapUpBodyText} />
-        )}
+        <FormattedMessage {...messages.wrapUpBody} />
       </Typography>
-      {formInvalid ? (
-        <MUIButton
-          startIcon={<ArrowBack />}
-          onClick={onBack}
-        >
-          <FormattedMessage {...flowMessages.submitButtonLabelInvalid} />
-        </MUIButton>
-      ) : (
+      {isValid ? (
         <Button
           loading={submitting}
-          theme={ButtonTheme.Submit}
+          theme={ButtonTheme.Default}
           type="submit"
         >
           <FormattedMessage {...flowMessages.submitButtonLabel} />
         </Button>
+      ) : (
+        <MUIButton
+          startIcon={<ArrowBack />}
+          onClick={() => errors && onBack(Object.keys(errors)[0])}
+        >
+          <FormattedMessage {...flowMessages.submitButtonLabelInvalid} />
+        </MUIButton>
       )}
     </div>
   );

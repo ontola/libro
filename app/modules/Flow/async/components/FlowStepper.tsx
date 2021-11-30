@@ -8,47 +8,58 @@ import { SomeNode } from 'link-lib';
 import { LaxNode } from 'link-redux';
 import React from 'react';
 
-import { useFlowStyles } from '../hooks/useFlowStyles';
+import { useFlowStepperStyles } from '../hooks/useFlowStyles';
 
 import FlowStep from './FlowStep';
 
 export interface FlowStepperProps {
   currentIndex: number;
-  pages: SomeNode[];
+  hashedFields: Map<string, SomeNode>;
   onStepClick: (field: LaxNode) => void;
 }
 
 export const FlowStepper = ({
   currentIndex,
-  pages,
+  hashedFields,
   onStepClick,
 }: FlowStepperProps): JSX.Element => {
-  const classes = useFlowStyles({ pageCount: pages.length });
+  const hashes = Array.from(hashedFields.keys());
+
+  const styleProps = React.useMemo(() => ({ pageCount: hashes.length }), [hashes.length]);
+  const classes = useFlowStepperStyles(styleProps);
+  const stepperClasses = React.useMemo(() => ({ root: classes.stepperRoot }), [classes.stepperRoot]);
+  const connectorClasses = React.useMemo(() => ({ root: classes.stepConnector }), [classes.stepConnector]);
+
   const submitStepClasses = clsx({
     [classes.submitStep]: true,
-    [classes.submitStepActive]: currentIndex === pages.length,
+    [classes.submitStepActive]: currentIndex === hashes.length,
   });
 
-  const handleClick = (field: LaxNode) => () => onStepClick(field);
+  const handleClick = React.useCallback((hash: string) => {
+    const field = hashedFields.get(hash);
+    onStepClick(field);
+  }, [hashedFields]);
+
+  const onFlagClick = () => onStepClick(undefined);
 
   return (
     <Stepper
       activeStep={currentIndex}
-      classes={{ root: classes.stepperRoot }}
-      connector={<StepConnector classes={{ root: classes.stepConnector }} />}
+      classes={stepperClasses}
+      connector={<StepConnector classes={connectorClasses} />}
       orientation="vertical"
     >
-      {pages.map((page) => (
+      {hashes.map((fieldHash) => (
         <FlowStep
-          handleClick={handleClick(page)}
-          key={page.value}
-          page={page}
-          pageCount={pages.length}
+          fieldHash={fieldHash}
+          key={fieldHash}
+          pageCount={hashes.length}
+          onStepClick={handleClick}
         />
       ))}
       <Step
         classes={{ root: classes.step }}
-        onClick={handleClick(undefined)}
+        onClick={onFlagClick}
       >
         <StepLabel
           StepIconComponent={Flag}
