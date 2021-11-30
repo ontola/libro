@@ -1,0 +1,542 @@
+{
+  "https://app.argu.co/i18n/academy/chapterNavigationAriaLabel": {
+    "defaultMessage": "Kapitel Navigation"
+  },
+  "https://app.argu.co/i18n/academy/pdfDownload": {
+    "defaultMessage": "Akademie als PDF speichern"
+  },
+  "https://app.argu.co/i18n/academy/progressBarAriaLabel": {
+    "defaultMessage": "Prozentsatz der gelesenen Kapitel."
+  },
+  "https://app.argu.co/i18n/academy/searchIn": {
+    "defaultMessage": "Suche in {title}"
+  },
+  "https://app.argu.co/i18n/actions/labels/save": {
+    "defaultMessage": "speichern"
+  },
+  "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": {
+    "defaultMessage": "{count} Ideen"
+  },
+  "https://app.argu.co/i18n/argu:lastActivityAt/label": {
+    "defaultMessage": "letzte Aktivität: {date}"
+  },
+  "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
+    "defaultMessage": "Filtern"
+  },
+  "https://app.argu.co/i18n/as:CollectionPage/as:next/label": {
+    "defaultMessage": "nächste"
+  },
+  "https://app.argu.co/i18n/as:CollectionPage/as:previous/label": {
+    "defaultMessage": "vorherige"
+  },
+  "https://app.argu.co/i18n/auth/newSessionLink": {
+    "defaultMessage": "Anmelden / Registrieren",
+    "description": "Link zur Seite für die Anmeldung oder Registrierung"
+  },
+  "https://app.argu.co/i18n/badges/continue": {
+    "defaultMessage": "Großartig!"
+  },
+  "https://app.argu.co/i18n/blogs/category": {
+    "defaultMessage": "Kategorie:"
+  },
+  "https://app.argu.co/i18n/blogs/share": {
+    "defaultMessage": "Diesen Blogbeitrag teilen"
+  },
+  "https://app.argu.co/i18n/case/learnMore": {
+    "defaultMessage": "Möchten Sie mehr über dieses Projekt erfahren?"
+  },
+  "https://app.argu.co/i18n/collapsible/collapse": {
+    "defaultMessage": "einklappen"
+  },
+  "https://app.argu.co/i18n/collapsible/expand": {
+    "defaultMessage": "Mehr lesen"
+  },
+  "https://app.argu.co/i18n/collapsible/expandOrCollapseMenu": {
+    "defaultMessage": "Menü erweitern oder reduzieren"
+  },
+  "https://app.argu.co/i18n/collection/empty/message": {
+    "defaultMessage": "Noch keine Artikel"
+  },
+  "https://app.argu.co/i18n/collection/loadMore": {
+    "defaultMessage": "Mehr laden"
+  },
+  "https://app.argu.co/i18n/collection/readAll": {
+    "defaultMessage": "Alle {count} anzeigen..."
+  },
+  "https://app.argu.co/i18n/collections/showRepliesLabel": {
+    "defaultMessage": " {count} zusätzliche Antworten anzeigen..."
+  },
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/private/text": {
+    "defaultMessage": "Privat"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/private/title": {
+    "defaultMessage": "Sichtbar für {groupNames}"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/public/text": {
+    "defaultMessage": "Öffentlich"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
+    "defaultMessage": "Sichtbar für alle"
+  },
+  "https://app.argu.co/i18n/errors/clickToRetry/label": {
+    "defaultMessage": "Zum erneuten Versuch klicken"
+  },
+  "https://app.argu.co/i18n/errors/client/offline/header": {
+    "defaultMessage": "Netzwerkverbindung verloren",
+    "description": "Meldung, die dem Benutzer angezeigt wird, wenn die Netzwerkverbindung des Navigators unterbrochen wurde"
+  },
+  "https://app.argu.co/i18n/errors/inlineButton/label": {
+    "defaultMessage": "Erneut versuchen"
+  },
+  "https://app.argu.co/i18n/errors/markdown/renderError": {
+    "defaultMessage": "Bei der Formatierung des Textes ist ein Fehler aufgetreten. Der Originaltext im Markdown-Format lautet wie folgt:"
+  },
+  "https://app.argu.co/i18n/errors/request/200/body": {
+    "defaultMessage": "Die Anfrage kann nicht erfüllt werden, da sie eine fehlerhafte Syntax enthält. Überprüfen Sie Ihre URL-Parameter oder aktualisieren Sie die Seite, die auf diese Ressource verweist."
+  },
+  "https://app.argu.co/i18n/errors/request/200/header": {
+    "defaultMessage": "Fehlerhafte Anfrage (400 Bad Request)"
+  },
+  "https://app.argu.co/i18n/errors/request/401/body": {
+    "defaultMessage": "Sie müssen eingeloggt sein, um diese Ressource zu sehen."
+  },
+  "https://app.argu.co/i18n/errors/request/401/header": {
+    "defaultMessage": "Nicht autorisiert"
+  },
+  "https://app.argu.co/i18n/errors/request/403/body": {
+    "defaultMessage": "Vielleicht ist es nach dem Einloggen sichtbar."
+  },
+  "https://app.argu.co/i18n/errors/request/403/header": {
+    "defaultMessage": "Dieser Artikel ist versteckt"
+  },
+  "https://app.argu.co/i18n/errors/request/404/body": {
+    "defaultMessage": "Vielleicht ist der gesuchte Artikel gelöscht oder hat nie existiert."
+  },
+  "https://app.argu.co/i18n/errors/request/404/header": {
+    "defaultMessage": "Dieses Element wurde nicht gefunden"
+  },
+  "https://app.argu.co/i18n/errors/request/406/body": {
+    "defaultMessage": "Diese Ressource kann im aktuellen Format nicht angezeigt werden."
+  },
+  "https://app.argu.co/i18n/errors/request/406/header": {
+    "defaultMessage": "Nicht akzeptabel"
+  },
+  "https://app.argu.co/i18n/errors/request/408/body": {
+    "defaultMessage": "Die Anfrage hat zu lange gedauert. Aktualisieren Sie die Seite oder versuchen Sie es später noch einmal."
+  },
+  "https://app.argu.co/i18n/errors/request/408/header": {
+    "defaultMessage": "Zeitüberschreitung der Anfrage"
+  },
+  "https://app.argu.co/i18n/errors/request/409/body": {
+    "defaultMessage": "Die Änderung konnte nicht beibehalten werden, da die Ressource bearbeitet wurde, seit sie lokal geöffnet wurde."
+  },
+  "https://app.argu.co/i18n/errors/request/409/header": {
+    "defaultMessage": "Konflikt"
+  },
+  "https://app.argu.co/i18n/errors/request/410/body": {
+    "defaultMessage": "Die Ressource wurde dauerhaft gelöscht."
+  },
+  "https://app.argu.co/i18n/errors/request/410/header": {
+    "defaultMessage": "Nicht mehr vorhanden"
+  },
+  "https://app.argu.co/i18n/errors/request/413/body": {
+    "defaultMessage": "Das hochgeladene Element ist zu groß. Gehen Sie zurück und versuchen Sie es mit einer kleineren Datei."
+  },
+  "https://app.argu.co/i18n/errors/request/413/header": {
+    "defaultMessage": "Die angeforderte Einheit ist zu groß (413 Payload Too Large)"
+  },
+  "https://app.argu.co/i18n/errors/request/422/body": {
+    "defaultMessage": "Das Element, das Sie zu erstellen versuchen, kann nicht verarbeitet werden."
+  },
+  "https://app.argu.co/i18n/errors/request/422/header": {
+    "defaultMessage": "Unverarbeitbare Entität"
+  },
+  "https://app.argu.co/i18n/errors/request/429/body": {
+    "defaultMessage": "Sie stellen zu viele Anfragen, versuchen Sie es in einer halben Minute erneut."
+  },
+  "https://app.argu.co/i18n/errors/request/429/header": {
+    "defaultMessage": "Zu viele Anfragen"
+  },
+  "https://app.argu.co/i18n/errors/request/499/body": {
+    "defaultMessage": "Es gab ein (Netzwerk-)Problem während dieser Anfrage, überprüfen Sie die Internetverbindung, versuchen Sie es bitte erneut oder verwenden Sie einen anderen Browser."
+  },
+  "https://app.argu.co/i18n/errors/request/499/header": {
+    "defaultMessage": "Problem mit dem Browser"
+  },
+  "https://app.argu.co/i18n/errors/request/500/body": {
+    "defaultMessage": "Es ist ein Fehler auf unserer Seite aufgetreten, bitte versuchen Sie es später noch einmal."
+  },
+  "https://app.argu.co/i18n/errors/request/500/header": {
+    "defaultMessage": "Interner Serverfehler"
+  },
+  "https://app.argu.co/i18n/errors/request/501/body": {
+    "defaultMessage": "Diese Funktion ist nicht implementiert, bitte versuchen Sie es später noch einmal."
+  },
+  "https://app.argu.co/i18n/errors/request/501/header": {
+    "defaultMessage": "Nicht implementiert"
+  },
+  "https://app.argu.co/i18n/errors/request/502/body": {
+    "defaultMessage": "Bei dieser Anfrage ist ein Netzwerkproblem aufgetreten. Bitte versuchen Sie es später noch einmal."
+  },
+  "https://app.argu.co/i18n/errors/request/502/header": {
+    "defaultMessage": "Schlechtes Gateway"
+  },
+  "https://app.argu.co/i18n/errors/request/503/body": {
+    "defaultMessage": "Bei dieser Anfrage ist ein Netzwerkproblem aufgetreten. Bitte versuchen Sie es später noch einmal."
+  },
+  "https://app.argu.co/i18n/errors/request/503/header": {
+    "defaultMessage": "Dienst nicht verfügbar"
+  },
+  "https://app.argu.co/i18n/errors/request/504/body": {
+    "defaultMessage": "Während dieser Anfrage gab es ein Netzwerkproblem, bitte versuchen Sie es erneut oder zu einem späteren Zeitpunkt"
+  },
+  "https://app.argu.co/i18n/errors/request/504/header": {
+    "defaultMessage": "Gateway-Zeitüberschreitung"
+  },
+  "https://app.argu.co/i18n/errors/retryButton/label": {
+    "defaultMessage": "Versuchen Sie es erneut"
+  },
+  "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
+    "defaultMessage": "Eine Antwort ist nicht mehr möglich"
+  },
+  "https://app.argu.co/i18n/expireable/states/closed/label": {
+    "defaultMessage": "geschlossen"
+  },
+  "https://app.argu.co/i18n/expireable/states/closed/tooltip": {
+    "defaultMessage": "Geschlossen am {date}"
+  },
+  "https://app.argu.co/i18n/expireable/states/expiring/label": {
+    "defaultMessage": "Fällig {relativeDate}"
+  },
+  "https://app.argu.co/i18n/expireable/states/expiring/tooltip": {
+    "defaultMessage": "Abgeschlossen am {date}"
+  },
+  "https://app.argu.co/i18n/flow/enterButtonLabel": {
+    "defaultMessage": "eingeben"
+  },
+  "https://app.argu.co/i18n/flow/nextButtonLabel": {
+    "defaultMessage": "Nächste"
+  },
+  "https://app.argu.co/i18n/flow/previousAriaLabel": {
+    "defaultMessage": "Vorherige"
+  },
+  "https://app.argu.co/i18n/flow/submitButtonLabel": {
+    "defaultMessage": "Einreichen"
+  },
+  "https://app.argu.co/i18n/flow/submitButtonLabelInvalid": {
+    "defaultMessage": "Zurückgehen"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpBodyText": {
+    "defaultMessage": "Dies ist das Ende der Umfrage. Klicken Sie auf Senden, um Ihre Antworten zu speichern."
+  },
+  "https://app.argu.co/i18n/flow/wrapUpBodyTextInvalid": {
+    "defaultMessage": "Die Umfrage kann erst abgeschlossen werden, wenn Sie alle erforderlichen Fragen beantwortet haben."
+  },
+  "https://app.argu.co/i18n/flow/wrapUpButtonLabel": {
+    "defaultMessage": "Auspacken"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpTitle": {
+    "defaultMessage": "Erledigt! 🎉"
+  },
+  "https://app.argu.co/i18n/flow/wrapUpTitleInvalid": {
+    "defaultMessage": "Fast geschafft!"
+  },
+  "https://app.argu.co/i18n/footer/policy": {
+    "defaultMessage": "Allgemeine Geschäftsbedingungen"
+  },
+  "https://app.argu.co/i18n/footer/privacy": {
+    "defaultMessage": "Datenschutz"
+  },
+  "https://app.argu.co/i18n/forms/actions/cancel": {
+    "defaultMessage": "kündigen"
+  },
+  "https://app.argu.co/i18n/forms/actions/clear": {
+    "defaultMessage": "löschen"
+  },
+  "https://app.argu.co/i18n/forms/actions/close": {
+    "defaultMessage": "Schließen"
+  },
+  "https://app.argu.co/i18n/forms/actions/ok": {
+    "defaultMessage": "ok"
+  },
+  "https://app.argu.co/i18n/forms/actions/showToday": {
+    "defaultMessage": "jetzt"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage": {
+    "defaultMessage": "Ungültiges Datumsformat"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidLabel": {
+    "defaultMessage": "unbekannt"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage": {
+    "defaultMessage": "Das Datum sollte nicht nach dem maximalen Datum liegen"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/minDateMessage": {
+    "defaultMessage": "Datum darf nicht vor dem Mindestdatum liegen"
+  },
+  "https://app.argu.co/i18n/forms/dropzone/hoverText": {
+    "defaultMessage": "Freigabe zur Auswahl dieser Datei"
+  },
+  "https://app.argu.co/i18n/forms/dropzone/passiveText": {
+    "defaultMessage": "Ziehen Sie Ihre Datei hierher oder klicken Sie, um eine Datei auszuwählen"
+  },
+  "https://app.argu.co/i18n/forms/markdownPreview": {
+    "defaultMessage": "Vorschau"
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
+    "defaultMessage": "E-Mail ist ungültig."
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": {
+    "defaultMessage": "Maximale Anzahl von E-Mails erreicht ({count}/{maxCount})."
+  },
+  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
+    "defaultMessage": "Die Nachricht ist zu lang ({length}/{maxLength})."
+  },
+  "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
+    "defaultMessage": "Antwort"
+  },
+  "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
+    "defaultMessage": "Eine Antwort teilen..."
+  },
+  "https://app.argu.co/i18n/forms/radioGroup/noOptions": {
+    "defaultMessage": "Keine Optionen verfügbar"
+  },
+  "https://app.argu.co/i18n/forms/required/helperText": {
+    "defaultMessage": "*Benötigt"
+  },
+  "https://app.argu.co/i18n/forms/select/noMatchingItems": {
+    "defaultMessage": "Keine passenden Artikel"
+  },
+  "https://app.argu.co/i18n/forms/select/typeToSearch": {
+    "defaultMessage": "Tippen Sie, um die Suche zu starten"
+  },
+  "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": {
+    "defaultMessage": "Bitte bestätigen Sie Ihre Stimme, indem Sie auf den Link klicken, den wir an {email} gesendet haben."
+  },
+  "https://app.argu.co/i18n/forms/session/link/label": {
+    "defaultMessage": "Einloggen"
+  },
+  "https://app.argu.co/i18n/forms/showMarkdownInstructions": {
+    "defaultMessage": "Anweisungen zur Textformatierung"
+  },
+  "https://app.argu.co/i18n/forms/signOut/link/label": {
+    "defaultMessage": "Abmelden"
+  },
+  "https://app.argu.co/i18n/imageAlts/arguLogo": {
+    "defaultMessage": "das Argu-Logo"
+  },
+  "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
+    "defaultMessage": "E-Mail Adresse"
+  },
+  "https://app.argu.co/i18n/mailchimpForm/subscribe": {
+    "defaultMessage": "Abonnieren"
+  },
+  "https://app.argu.co/i18n/map/currentLocationTooltip": {
+    "defaultMessage": "Zum aktuellen Standort wechseln"
+  },
+  "https://app.argu.co/i18n/navbar/search": {
+    "defaultMessage": "Suche"
+  },
+  "https://app.argu.co/i18n/navbar/skipToMain": {
+    "defaultMessage": "Navigation überspringen"
+  },
+  "https://app.argu.co/i18n/navbar/troubleNavigating": {
+    "defaultMessage": "Haben Sie Probleme mit der Navigation? Mailen Sie uns!"
+  },
+  "https://app.argu.co/i18n/pages/closed": {
+    "defaultMessage": "Diese Seite ist privat. Nur Mitglieder dürfen ihren Inhalt sehen. Fragen Sie ein Mitglied oder die Manager, wie Sie Zugang erhalten können."
+  },
+  "https://app.argu.co/i18n/pages/noHomepage": {
+    "defaultMessage": "Willkommen bei {name}!"
+  },
+  "https://app.argu.co/i18n/pdf/commentClickToAdd": {
+    "defaultMessage": "Klicken Sie auf die Stelle, an der Sie Ihren Kommentar hinzufügen möchten"
+  },
+  "https://app.argu.co/i18n/pdf/commentMode/disable": {
+    "defaultMessage": "Abbrechen"
+  },
+  "https://app.argu.co/i18n/pdf/commentMode/enable": {
+    "defaultMessage": "Kommentar hinzufügen"
+  },
+  "https://app.argu.co/i18n/pdf/download": {
+    "defaultMessage": "Datei herunterladen (D)"
+  },
+  "https://app.argu.co/i18n/pdf/fullScreen": {
+    "defaultMessage": "Vollbild (F)"
+  },
+  "https://app.argu.co/i18n/pdf/nextPage": {
+    "defaultMessage": "Nächste Seite (→)"
+  },
+  "https://app.argu.co/i18n/pdf/previousPage": {
+    "defaultMessage": "Vorherige Seite (←)"
+  },
+  "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
+    "defaultMessage": "LinkedIn-Profil von {name}"
+  },
+  "https://app.argu.co/i18n/phases/stepper/header": {
+    "defaultMessage": "Phase {number}:"
+  },
+  "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": {
+    "defaultMessage": "Angeheftet am {date}"
+  },
+  "https://app.argu.co/i18n/sales/contactUs": {
+    "defaultMessage": "Kontaktieren Sie uns"
+  },
+  "https://app.argu.co/i18n/sales/readmore": {
+    "defaultMessage": "Mehr lesen"
+  },
+  "https://app.argu.co/i18n/sales/showAll": {
+    "defaultMessage": "Alles anzeigen"
+  },
+  "https://app.argu.co/i18n/schema:Person/postedByText": {
+    "defaultMessage": "Geschrieben von {name}"
+  },
+  "https://app.argu.co/i18n/schema:Person/showProfileText": {
+    "defaultMessage": " {name} Profil anzeigen"
+  },
+  "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": {
+    "defaultMessage": "Alle {count} Reaktionen anzeigen..."
+  },
+  "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": {
+    "defaultMessage": "Externe Informationen"
+  },
+  "https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel": {
+    "defaultMessage": "Standort anzeigen"
+  },
+  "https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel": {
+    "defaultMessage": "Diskutiert in:"
+  },
+  "https://app.argu.co/i18n/schema:Thing/showResourceText": {
+    "defaultMessage": " {name} Profil anzeigen"
+  },
+  "https://app.argu.co/i18n/schema:dateCreated/label": {
+    "defaultMessage": "erstellt am: {date}"
+  },
+  "https://app.argu.co/i18n/schema:dateModified/label": {
+    "defaultMessage": "bearbeitet am: {date}"
+  },
+  "https://app.argu.co/i18n/schema:datePublished/label": {
+    "defaultMessage": "veröffentlicht: {date}"
+  },
+  "https://app.argu.co/i18n/schema:dateSubmitted/label": {
+    "defaultMessage": "eingereicht: {date}"
+  },
+  "https://app.argu.co/i18n/schema:duration/label": {
+    "defaultMessage": "Ersetzt: {date}"
+  },
+  "https://app.argu.co/i18n/schema:endDate/label": {
+    "defaultMessage": "Enddatum: {date}"
+  },
+  "https://app.argu.co/i18n/schema:startDate/label": {
+    "defaultMessage": "Anfangsdatum: {date}"
+  },
+  "https://app.argu.co/i18n/search/button/label": {
+    "defaultMessage": "Suche"
+  },
+  "https://app.argu.co/i18n/search/header/prefix": {
+    "defaultMessage": "Suche in:"
+  },
+  "https://app.argu.co/i18n/survey/button/closed": {
+    "defaultMessage": "Umfrage abgeschlossen"
+  },
+  "https://app.argu.co/i18n/survey/button/continue": {
+    "defaultMessage": "Weiter"
+  },
+  "https://app.argu.co/i18n/survey/button/start": {
+    "defaultMessage": "Umfrage ausfüllen"
+  },
+  "https://app.argu.co/i18n/survey/contribution": {
+    "defaultMessage": "Vielen Dank für Ihre Antwort."
+  },
+  "https://app.argu.co/i18n/teamGL/glappNotUsed": {
+    "defaultMessage": "GLAPP nog niet gebruikt."
+  },
+  "https://app.argu.co/i18n/teamGL/glappUsedAt": {
+    "defaultMessage": "GLAPP wurde erst am {date} eingeführt."
+  },
+  "https://app.argu.co/i18n/teamGL/volunteersCount": {
+    "defaultMessage": "{volunteerCount, number} {volunteerCount, plural, ein {vrijwilliger} andere {vrijwilligers}}"
+  },
+  "https://app.argu.co/i18n/trashable/deletedNotice": {
+    "defaultMessage": "Diese Ressource wurde am {date} gelöscht"
+  },
+  "https://app.argu.co/i18n/voteFlow/confirmMessage": {
+    "defaultMessage": "Bestätigen Sie Ihre Stimme per E-Mail:"
+  },
+  "https://app.argu.co/i18n/votes/con/message": {
+    "defaultMessage": "Klicken Sie, um gegen diese Idee zu stimmen"
+  },
+  "https://app.argu.co/i18n/votes/expireable/states/closed/message": {
+    "defaultMessage": "Abstimmen nicht mehr möglich"
+  },
+  "https://app.argu.co/i18n/votes/neutral/message": {
+    "defaultMessage": "Klicken Sie, um neutral über diese Idee abzustimmen"
+  },
+  "https://app.argu.co/i18n/votes/pro/message": {
+    "defaultMessage": "Klicken Sie, um für diese Idee zu stimmen"
+  },
+  "https://app.argu.co/i18n/xsd:boolean/false": {
+    "defaultMessage": "Nein"
+  },
+  "https://app.argu.co/i18n/xsd:boolean/true": {
+    "defaultMessage": "Ja"
+  },
+  "https://dexpods.eu/i18n/showInBroker": {
+    "defaultMessage": "Ansicht im Broker"
+  },
+  "https://dexpods.eu/i18n/showInDexes": {
+    "defaultMessage": "Blick auf Dexes"
+  },
+  "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
+    "defaultMessage": "Wert in die Zwischenablage kopiert",
+    "description": "Die (Inline-)Meldung, dass der Wert in die Zwischenablage kopiert wurde"
+  },
+  "https://ns.ontola.io/app/videoUnsupported": {
+    "defaultMessage": "Keine Video-Unterstützung"
+  },
+  "https://rdf.studio/i18n/documentDropdownLabel": {
+    "defaultMessage": "Dokumente"
+  },
+  "https://rdf.studio/i18n/override": {
+    "defaultMessage": "Sind Sie sicher, dass Sie überschreiben möchten: {docID}?"
+  },
+  "https://rdf.studio/i18n/resourceDropdownLabel": {
+    "defaultMessage": "Ressource ({current}/{total} ausgewählt)"
+  },
+  "https://rdf.studio/i18n/saveAsButtonLabel": {
+    "defaultMessage": "Speichern unter"
+  },
+  "https://rdf.studio/i18n/saveAsPrompt": {
+    "defaultMessage": "Dokument speichern unter:"
+  },
+  "https://rdf.studio/i18n/saveButtonLabel": {
+    "defaultMessage": "Speichern"
+  },
+  "https://rdf.studio/i18n/saveFailedNotification": {
+    "defaultMessage": "Dokument konnte nicht gespeichert werden."
+  },
+  "https://rdf.studio/i18n/savedNotification": {
+    "defaultMessage": "Dokument gespeichert."
+  },
+  "https://team.groenlinks.nl/i18n/engagement/active": {
+    "defaultMessage": "💪 actief"
+  },
+  "https://team.groenlinks.nl/i18n/engagement/inactive": {
+    "defaultMessage": "💤 inactief"
+  },
+  "https://team.groenlinks.nl/i18n/engagement/veryActive": {
+    "defaultMessage": "🔥 hyperactief"
+  },
+  "https://team.groenlinks.nl/i18n/waiting/long": {
+    "defaultMessage": "😞 Wacht al {diff} dagen"
+  },
+  "https://team.groenlinks.nl/i18n/waiting/short": {
+    "defaultMessage": "🤔 Wacht enkele dagen"
+  },
+  "https://team.groenlinks.nl/i18n/waiting/veryLong": {
+    "defaultMessage": "😱 Wacht al {diff} dagen"
+  },
+  "https://team.groenlinks.nl/i18n/waiting/veryShort": {
+    "defaultMessage": "😀 Net aangemeld"
+  }
+}

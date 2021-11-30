@@ -1,5 +1,6 @@
 import 'dayjs/locale/nl';
 import 'dayjs/locale/en';
+import 'dayjs/locale/de';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
@@ -19,6 +20,7 @@ import { Store } from 'redux';
 import { WebManifest, appContext } from '../appContext';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
+import germanMessages from '../lang/de.json';
 import AppFrame from '../routes/App';
 import themes from '../themes';
 
@@ -86,10 +88,18 @@ const IndexContainer = ({
   const selectedLang = (lrs.store as any).langPrefs[0];
   let messages;
 
-  if (selectedLang.includes('nl')) {
+  switch (selectedLang) {
+  case 'nl':
     messages = dutchMessages;
     dayjs.locale('nl');
-  } else {
+    break;
+
+  case 'de':
+    messages = germanMessages;
+    dayjs.locale('de');
+    break;
+
+  default:
     messages = englishMessages;
     dayjs.locale('en');
   }

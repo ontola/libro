@@ -105,6 +105,7 @@ export default async function generateLRS(
   (lrs as any).broadcast = (_: boolean, __: number) => (lrs as any).broadcast_old(false, 0);
 
   const languages = {
+    de: 'de',
     en: 'en',
     nl: 'nl',
   };
