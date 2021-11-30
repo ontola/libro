@@ -268,6 +268,12 @@
   "https://app.argu.co/i18n/forms/datetimepicker/invalidLabel": {
     "defaultMessage": "unknown"
   },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidValue": {
+    "defaultMessage": "Value is invalid"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidValues": {
+    "defaultMessage": "Contains invalid values"
+  },
   "https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage": {
     "defaultMessage": "Date should not be after maximal date"
   },
@@ -282,15 +288,6 @@
   },
   "https://app.argu.co/i18n/forms/markdownPreview": {
     "defaultMessage": "Preview"
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
-    "defaultMessage": "Email is invalid."
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": {
-    "defaultMessage": "Maximum amount of emails reached ({count}/{maxCount})."
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
-    "defaultMessage": "Message is too long ({length}/{maxLength})."
   },
   "https://app.argu.co/i18n/forms/newLabel": {
     "defaultMessage": "Add"

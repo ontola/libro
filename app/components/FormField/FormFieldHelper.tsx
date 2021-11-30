@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -12,12 +11,16 @@ import { FormFieldContext } from './FormField';
 
 import { FormFieldError } from './index';
 
-interface PropTypes {
+interface ErrorHelper {
+  error: FormFieldError;
+  value?: InputValue;
+}
+interface ValueHelper {
   error?: FormFieldError;
   value: InputValue;
 }
 
-const FormFieldHelper: React.FC<PropTypes> = ({
+const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
   error,
   value,
 }) => {
@@ -48,7 +51,7 @@ const FormFieldHelper: React.FC<PropTypes> = ({
     <FieldHelper
       error={error}
       helperText={helperText ?? requiredHelper}
-      right={renderCharCounter && maxLength && !isJSONLDObject(value) ? (
+      right={renderCharCounter && maxLength && value && !isJSONLDObject(value) ? (
         <CharCounter
           maxLength={maxLength}
           threshold={CHAR_COUNTER_THRESHOLD}

@@ -297,13 +297,17 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'Invalid Date Format',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage',
   },
-  invalidEmailMessage: {
-    defaultMessage: 'Email is invalid.',
-    id: 'https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage',
-  },
   invalidLabel: {
     defaultMessage: 'unknown',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidLabel',
+  },
+  invalidValue: {
+    defaultMessage: 'Value is invalid',
+    id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidValue',
+  },
+  invalidValues: {
+    defaultMessage: 'Contains invalid values',
+    id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidValues',
   },
   markdownPreview: {
     defaultMessage: 'Preview',
@@ -312,14 +316,6 @@ export const formMessages: Messages = defineMessages({
   maxDateMessage: {
     defaultMessage: 'Date should not be after maximal date',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage',
-  },
-  maxEmailCountMessage: {
-    defaultMessage: 'Maximum amount of emails reached ({count}/{maxCount}).',
-    id: 'https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage',
-  },
-  maxEmailLengthMessage: {
-    defaultMessage: 'Message is too long ({length}/{maxLength}).',
-    id: 'https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage',
   },
   minDateMessage: {
     defaultMessage: 'Date should not be before minimal date',

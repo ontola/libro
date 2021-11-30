@@ -43,6 +43,7 @@ const validatorMap = {
   maxLength: (max: number): Validator => valueValidation((value) => value && value.length > max && `Maximaal ${max} tekens, nu ${value.length}`),
   minCount: (min: number): Validator => arrayValidation((values) => values && values.length < min && `Minimaal ${min}`),
   minLength: (min: number): Validator => valueValidation((value) => value && value.length < min && `Minimaal ${min} tekens`),
+  pattern: (pattern: RegExp): Validator => valueValidation((value) => (!value || pattern.test(value)) ? false : 'Waarde is niet toegestaan'),
   required: valueValidation((value) => !value && '*Vereist'),
 };
 

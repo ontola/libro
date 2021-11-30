@@ -266,6 +266,12 @@
   "https://app.argu.co/i18n/forms/datetimepicker/invalidLabel": {
     "defaultMessage": "Ongeldig"
   },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidValue": {
+    "defaultMessage": "Waarde is niet geldig"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidValues": {
+    "defaultMessage": "Bevat ongeldige waardes"
+  },
   "https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage": {
     "defaultMessage": "Datum mag niet na maximum datum zijn"
   },
@@ -280,15 +286,6 @@
   },
   "https://app.argu.co/i18n/forms/markdownPreview": {
     "defaultMessage": "Voorbeeldweergave"
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
-    "defaultMessage": "Email is ongeldig."
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": {
-    "defaultMessage": "Maximaal aantal emails berijkt ({count}/{maxCount})."
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
-    "defaultMessage": "Bericht is te lang ({length}/{maxLength})."
   },
   "https://app.argu.co/i18n/forms/newLabel": {
     "defaultMessage": "Toevoegen"

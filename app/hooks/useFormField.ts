@@ -20,7 +20,11 @@ import { FormFieldError, InputMeta } from '../components/FormField';
 import { arraysEqual } from '../helpers/data';
 import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
-import { isJSONLDObject, isNumber } from '../helpers/types';
+import {
+  isJSONLDObject,
+  isNumber,
+  isString,
+} from '../helpers/types';
 import validators, { combineValidators } from '../helpers/validators';
 import form from '../ontology/form';
 import ll from '../ontology/ll';
@@ -153,6 +157,16 @@ const defaultProps = {
   storage: true,
 };
 
+const stringToRegex = (string: string) =>
+  new RegExp(
+    string
+      .replace('\\A', '^')
+      .replace('\\z', '$')
+      .replace('?x-mi:', '')
+      .replace(/\s/g, ''),
+    'u',
+  );
+
 const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): PermittedFormField | ForbiddenFormField => {
   const props = {
     ...defaultProps,
@@ -204,6 +218,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     isNumber(fieldShape.maxLength) ? validators.maxLength(fieldShape.maxLength) : undefined,
     isNumber(fieldShape.minCount) ? validators.minCount(fieldShape.minCount) : undefined,
     isNumber(fieldShape.minLength) ? validators.minLength(fieldShape.minLength) : undefined,
+    isString(fieldShape.pattern) ? validators.pattern(stringToRegex(fieldShape.pattern)) : undefined,
     fieldShape.required ? validators.required : undefined,
   ]);
 
