@@ -1,10 +1,11 @@
+import { makeStyles } from '@material-ui/core/styles';
 import { SomeTerm, isLiteral } from '@ontologies/core';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { isString } from '../../helpers/types';
-
-import './CharCounter.scss';
+import { LibroTheme } from '../../themes/themes';
 
 export const CHAR_COUNTER_THRESHOLD = 0.8;
 
@@ -13,6 +14,16 @@ interface PropTypes {
   threshold: number;
   value: SomeTerm | string;
 }
+
+const useStyles = makeStyles((theme: LibroTheme) => ({
+  charCounter: {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    color: theme.palette.grey[600],
+  },
+  error: {
+    color: theme.palette.error.dark,
+  },
+}));
 
 const CharCounter: React.FC<PropTypes> = ({
   maxLength,
@@ -37,10 +48,14 @@ const CharCounter: React.FC<PropTypes> = ({
     return null;
   }
 
-  const charError = maxLength && (maxLength < currentLength ? ' CharCounter--error' : '');
+  const classes = useStyles();
+  const className = clsx({
+    [classes.charCounter]: true,
+    [classes.error]: !!maxLength && (maxLength < currentLength),
+  });
 
   return (
-    <span className={`CharCounter${charError}`}>
+    <span className={className}>
       {currentLength}
       /
       {maxLength}
