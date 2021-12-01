@@ -1,29 +1,37 @@
+import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
-
-import './Column.scss';
 
 export interface ColumnProps {
   /** Each child becomes a column. */
   children: JSX.Element,
-  flexBasis?: string,
 }
 
-const defaultProps = {
-  flexBasis: '19em',
-};
+export const GUTTER_SIZE = '0.5rem';
+
+const useStyles = makeStyles({
+  column: {
+    boxSizing: 'border-box',
+    flexBasis: '19em',
+    flexGrow: 1,
+    marginLeft: GUTTER_SIZE,
+    marginRight: GUTTER_SIZE,
+    maxWidth: '100%',
+  },
+});
 
 const Column = ({
   children,
-  flexBasis,
-}: ColumnProps): JSX.Element => (
-  <div
-    className="Column"
-    style={{ flexBasis }}
-  >
-    {children}
-  </div>
-);
+}: ColumnProps): JSX.Element => {
+  const classes = useStyles();
 
-Column.defaultProps = defaultProps;
+  return (
+    <div
+      className={classes.column}
+      data-testid="column"
+    >
+      {children}
+    </div>
+  );
+};
 
 export default Column;

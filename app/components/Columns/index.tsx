@@ -1,44 +1,32 @@
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
-import clsx from 'clsx';
 
-import Column from '../Column';
-import { Size } from '../shared/config';
-
-import './Columns.scss';
+import Column, { GUTTER_SIZE } from '../Column';
 
 interface ColumnsProps {
   /** Each child becomes a column. */
   children: JSX.Element | JSX.Element[];
-  flexBasis?: string;
-  flexGrow?: boolean;
-  gutter?: Size;
-  size?: Size;
 }
 
-const defaultProps = {
-  flexBasis: '19em',
-  flexGrow: true,
-  gutter: 'small',
-};
+const useStyles = makeStyles({
+  columns: {
+    alignItems: 'flex-start',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexWrap: 'wrap',
+    marginLeft: `-${GUTTER_SIZE}`,
+    marginRight: `-${GUTTER_SIZE}`,
+  },
+});
 
 const Columns = ({
   children,
-  flexBasis,
-  flexGrow,
-  gutter,
-  size,
 }: ColumnsProps): JSX.Element => {
-  const className = clsx({
-    Columns,
-    'Columns--flex-grow': flexGrow,
-    [`Columns--gutter-${gutter}`]: gutter,
-    [`Columns--size-${size}`]: size,
-  });
+  const classes = useStyles();
 
   const normChildren = Array.isArray(children) ? children : [children];
   const renderColumns = normChildren.map((child: JSX.Element) => (
     <Column
-      flexBasis={flexBasis}
       key={`col-${child.key}`}
     >
       {child}
@@ -46,12 +34,10 @@ const Columns = ({
   ));
 
   return (
-    <div className={className}>
+    <div className={classes.columns}>
       {renderColumns}
     </div>
   );
 };
-
-Columns.defaultProps = defaultProps;
 
 export default Columns;

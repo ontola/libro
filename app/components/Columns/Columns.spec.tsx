@@ -19,7 +19,7 @@ describe('Columns', () => {
       ));
 
       expect(getByText('only')).toBeVisible();
-      const columns = container.querySelectorAll('.Column');
+      const columns = container.querySelectorAll('div[data-testid="column"]');
       expect(columns[0]).toHaveTextContent('only');
     });
   });
@@ -39,7 +39,7 @@ describe('Columns', () => {
 
       expect(getByText('first')).toBeVisible();
       expect(getByText('second')).toBeVisible();
-      const columns = container.querySelectorAll('.Column');
+      const columns = container.querySelectorAll('div[data-testid="column"]');
       expect(columns[0]).toHaveTextContent('first');
       expect(columns[1]).toHaveTextContent('second');
     });
