@@ -1,7 +1,8 @@
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import MaterialToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { makeStyles } from '@material-ui/styles';
-import { Resource } from 'link-redux';
+import * as schema from '@ontologies/schema';
+import { Property, Resource } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -93,10 +94,12 @@ const ToggleButtonGroup: React.FC<InputComponentProps> = ({
           >
             {isResource(option)
               ? (
-                <Resource
-                  subject={option}
-                  topology={inlineTopology}
-                />
+                <Resource subject={option}>
+                  <Property
+                    label={schema.name}
+                    topology={inlineTopology}
+                  />
+                </Resource>
               )
               : option.value}
           </ToggleButton>
