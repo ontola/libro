@@ -1,18 +1,24 @@
+import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 
 import argu from '../../ontology/argu';
 
-import './ContentDetails.scss';
-
 export const contentDetailsTopology = argu.ns('contentDetails');
 
-class ContentDetails extends TopologyProvider {
-  constructor(props: Record<string, unknown>) {
+const styles = {
+  contentDetails: {
+    marginBottom: '.5em',
+    overflow: 'hidden',
+  },
+};
+
+class ContentDetails extends TopologyProvider<WithStyles<typeof styles>> {
+  constructor(props: WithStyles<typeof styles>) {
     super(props);
 
-    this.className = 'ContentDetails';
+    this.className = props.classes.contentDetails;
     this.topology = contentDetailsTopology;
   }
 }
 
-export default ContentDetails;
+export default withStyles(styles)(ContentDetails);
