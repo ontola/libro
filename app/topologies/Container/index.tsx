@@ -5,8 +5,6 @@ import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import Topology, { TopologyContent } from '../Topology';
 
-import './Container.scss';
-
 export const containerTopology = argu.container;
 
 export interface ContainerProps {

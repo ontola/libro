@@ -1,3 +1,5 @@
+import { WithStyles, withStyles } from '@material-ui/styles';
+
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
@@ -6,22 +8,25 @@ import Topology from '../Topology';
  */
 export const containerFloatTopology = argu.ns('containerFloat');
 
-export interface ContainerFloatProps {
-  children: React.ReactNode
-}
+const styles = {
+  containerFloat : {
+    alignItems: 'center',
+    display: 'flex',
+  },
+};
 
 /**
  * Sets the containerFloat topology
  * @returns {component} Component
  */
-class ContainerFloat extends Topology<ContainerFloatProps> {
+class ContainerFloat extends Topology<WithStyles<typeof styles>> {
 
-  constructor(props: ContainerFloatProps) {
+  constructor(props: WithStyles<typeof styles>) {
     super(props);
 
-    this.className = 'ContainerFloat';
+    this.className = props.classes.containerFloat;
     this.topology = containerFloatTopology;
   }
 }
 
-export default ContainerFloat;
+export default withStyles(styles)(ContainerFloat);
