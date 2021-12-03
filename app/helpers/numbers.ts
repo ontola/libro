@@ -62,3 +62,8 @@ export function tryParseInt(linkedProp: unknown): number | undefined {
 
   return Number.parseInt(`${value}`, 10);
 }
+
+export type MappedRange = (num: number) => number;
+
+export const mapRange = (in_min: number, in_max: number, out_min: number, out_max: number): MappedRange =>
+  (num: number) => (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;

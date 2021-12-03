@@ -19,6 +19,7 @@ const AUTO_FORWARDED_FIELDS: string[] = [
   form.ToggleButtonGroup.value,
   form.FileInput.value,
   form.LocationInput.value,
+  form.SwipeInput.value,
 ];
 
 const MOBILE_ONLY_AUTO_FORWARDED_FIELDS: string[] = [

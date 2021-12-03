@@ -16,6 +16,7 @@ import RadioGroupFormField from './RadioGroupFormField';
 import ResourceField from './ResourceField';
 import SelectFormField from './SelectFormField';
 import SliderFormField from './SliderFormField';
+import SwipeFormField from './SwipeFormField';
 import TextFormField from './TextFormField';
 import ToggleButtonGroupField from './ToggleButtonGroupField';
 
@@ -38,6 +39,7 @@ export default [
   ResourceField,
   SelectFormField,
   SliderFormField,
+  SwipeFormField,
   TextFormField,
   ToggleButtonGroupField,
 ];

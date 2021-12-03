@@ -426,6 +426,25 @@ export const studioToolbarMessages: Messages = defineMessages({
   },
 });
 
+export const swipeInputMessages: Messages = defineMessages({
+  infoButtonLabel: {
+    defaultMessage: 'More info',
+    id: 'https://app.argu.co/i18n/swipeInput/infoButtonLabel',
+  },
+  swipeTutorialText: {
+    defaultMessage: 'Swipe to vote.',
+    id: 'https://app.argu.co/i18n/swipeInput/swipeTutorialText',
+  },
+  voteNoButtonLabel: {
+    defaultMessage: 'Disagree',
+    id: 'https://app.argu.co/i18n/swipeInput/voteNoButtonLabel',
+  },
+  voteYesButtonLabel: {
+    defaultMessage: 'Agree',
+    id: 'https://app.argu.co/i18n/swipeInput/voteYesButtonLabel',
+  },
+});
+
 export const personMessages: Messages = defineMessages({
   postedBy: {
     defaultMessage: 'Posted by {name}',

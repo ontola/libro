@@ -34,6 +34,7 @@ export default {
   ResourceField: form('ResourceField'),
   SelectInput: form('SelectInput'),
   SliderInput: form('SliderInput'),
+  SwipeInput: form('SwipeInput'),
   TextAreaInput: form('TextAreaInput'),
   TextInput: form('TextInput'),
   ToggleButtonGroup: form('ToggleButtonGroup'),

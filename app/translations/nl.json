@@ -470,6 +470,18 @@
   "https://app.argu.co/i18n/survey/contribution": {
     "defaultMessage": "Bedankt voor je reactie."
   },
+  "https://app.argu.co/i18n/swipeInput/infoButtonLabel": {
+    "defaultMessage": "Meer informatie"
+  },
+  "https://app.argu.co/i18n/swipeInput/swipeTutorialText": {
+    "defaultMessage": "Sleep om te stemmen."
+  },
+  "https://app.argu.co/i18n/swipeInput/voteNoButtonLabel": {
+    "defaultMessage": "Oneens"
+  },
+  "https://app.argu.co/i18n/swipeInput/voteYesButtonLabel": {
+    "defaultMessage": "Eens"
+  },
   "https://app.argu.co/i18n/teamGL/glappNotUsed": {
     "defaultMessage": "🚪 GLAPP nog niet gebruikt."
   },

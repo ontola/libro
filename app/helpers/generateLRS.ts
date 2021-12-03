@@ -280,6 +280,8 @@ export default async function generateLRS(
     rdf.quad(form.MultipleEmailInput, rdfs.subClassOf, form.Field),
     rdf.quad(form.TextInput, rdfx.type, rdfs.Class),
     rdf.quad(form.TextInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.SwipeInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.SwipeInput, rdfs.subClassOf, form.Field),
 
     rdf.quad(meeting.Meeting, rdfx.type, rdfs.Class),
     rdf.quad(meeting.Meeting, rdfs.subClassOf, schema.Thing),

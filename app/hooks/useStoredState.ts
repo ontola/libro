@@ -1,4 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+} from 'react';
 
 const useStoredState = <T = string, I = undefined>(
   key: string,
@@ -12,6 +15,7 @@ const useStoredState = <T = string, I = undefined>(
 
     return (val !== null ? parseFromString(val) : initialValue);
   }, [key, storage, initialValue]);
+
   const [stored, setValueRaw] = React.useState<T | I>(getValueRaw);
 
   const setValue = React.useCallback((value) => {

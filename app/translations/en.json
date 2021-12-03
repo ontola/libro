@@ -448,6 +448,18 @@
   "https://app.argu.co/i18n/survey/contribution": {
     "defaultMessage": "Thank you for your response."
   },
+  "https://app.argu.co/i18n/swipeInput/infoButtonLabel": {
+    "defaultMessage": "More info"
+  },
+  "https://app.argu.co/i18n/swipeInput/swipeTutorialText": {
+    "defaultMessage": "Swipe to vote."
+  },
+  "https://app.argu.co/i18n/swipeInput/voteNoButtonLabel": {
+    "defaultMessage": "Disagree"
+  },
+  "https://app.argu.co/i18n/swipeInput/voteYesButtonLabel": {
+    "defaultMessage": "Agree"
+  },
   "https://app.argu.co/i18n/teamGL/glappNotUsed": {
     "defaultMessage": "🚪 GLAPP nog niet gebruikt."
   },
