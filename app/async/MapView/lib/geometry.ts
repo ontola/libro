@@ -27,16 +27,16 @@ const toOLCoords = (p: Point): Coordinate => fromLonLat([p.lon, p.lat]);
 
 export const toFeature = (geometry: Geometry): Feature<Circle | Polygon> => {
   switch (geometry.type) {
-  case GeometryType.Circle:
+    case GeometryType.Circle:
     /* eslint-disable no-case-declarations */
-    const center = toOLCoords(geometry.points[0]);
-    const edge = toOLCoords(geometry.points[1]);
-    const radius = distance(center, edge);
+      const center = toOLCoords(geometry.points[0]);
+      const edge = toOLCoords(geometry.points[1]);
+      const radius = distance(center, edge);
 
-    return new Feature(new Circle(center, radius));
+      return new Feature(new Circle(center, radius));
 
-  case GeometryType.Polygon:
-    return new Feature(new Polygon([geometry.points.map(toOLCoords)]));
+    case GeometryType.Polygon:
+      return new Feature(new Polygon([geometry.points.map(toOLCoords)]));
   }
 };
 

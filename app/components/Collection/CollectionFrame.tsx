@@ -61,94 +61,94 @@ const CollectionFrame = ({
   ), [currentCollectionPages]);
 
   switch (rdf.id(collectionDisplay)) {
-  case rdf.id(ontola.ns('collectionDisplay/grid')):
-    return (
-      <Wrapper>
-        <Property label={ontola.query} />
-        <Property
-          forceRender
-          label={ontola.header}
-        />
-        <Grid container>
-          {body}
-        </Grid>
-        <Property
-          forceRender
-          label={app.pagination}
-        />
-      </Wrapper>
-    );
-  case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
-  case rdf.id(ontola.ns('collectionDisplay/table')):
-    return (
-      <Wrapper>
-        <Property label={ontola.query} />
-        <Property
-          forceRender
-          label={ontola.header}
-        />
-        <Card>
-          <Table>
-            <TableHead>
-              <TableHeaderRow>
-                <TableHeadCells />
-              </TableHeaderRow>
-            </TableHead>
-            <tbody>
-              {body}
-            </tbody>
-            <TableFooter>
-              <TableFooterRow>
-                <TableFooterCell colSpan={columns?.length}>
-                  <Property
-                    forceRender
-                    label={app.pagination}
-                  />
-                </TableFooterCell>
-              </TableFooterRow>
-            </TableFooter>
-          </Table>
-        </Card>
-      </Wrapper>
-    );
-  case rdf.id(ontola.ns('collectionDisplay/card')):
-    return (
-      <Wrapper>
-        <Property label={ontola.query} />
-        <Property
-          forceRender
-          label={ontola.header}
-        />
-        <Card>
-          {body}
-          <CardAppendix>
-            <Property
-              forceRender
-              label={app.pagination}
-            />
-          </CardAppendix>
-        </Card>
-      </Wrapper>
-    );
-  case rdf.id(ontola.ns('collectionDisplay/default')):
-    return (
-      <Wrapper>
-        <Property label={ontola.query} />
-        <Property
-          forceRender
-          label={ontola.header}
-        />
-        {body}
-        <div className={styles.paginationWrapper}>
+    case rdf.id(ontola.ns('collectionDisplay/grid')):
+      return (
+        <Wrapper>
+          <Property label={ontola.query} />
+          <Property
+            forceRender
+            label={ontola.header}
+          />
+          <Grid container>
+            {body}
+          </Grid>
           <Property
             forceRender
             label={app.pagination}
           />
-        </div>
-      </Wrapper>
-    );
-  default:
-    return body;
+        </Wrapper>
+      );
+    case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
+    case rdf.id(ontola.ns('collectionDisplay/table')):
+      return (
+        <Wrapper>
+          <Property label={ontola.query} />
+          <Property
+            forceRender
+            label={ontola.header}
+          />
+          <Card>
+            <Table>
+              <TableHead>
+                <TableHeaderRow>
+                  <TableHeadCells />
+                </TableHeaderRow>
+              </TableHead>
+              <tbody>
+                {body}
+              </tbody>
+              <TableFooter>
+                <TableFooterRow>
+                  <TableFooterCell colSpan={columns?.length}>
+                    <Property
+                      forceRender
+                      label={app.pagination}
+                    />
+                  </TableFooterCell>
+                </TableFooterRow>
+              </TableFooter>
+            </Table>
+          </Card>
+        </Wrapper>
+      );
+    case rdf.id(ontola.ns('collectionDisplay/card')):
+      return (
+        <Wrapper>
+          <Property label={ontola.query} />
+          <Property
+            forceRender
+            label={ontola.header}
+          />
+          <Card>
+            {body}
+            <CardAppendix>
+              <Property
+                forceRender
+                label={app.pagination}
+              />
+            </CardAppendix>
+          </Card>
+        </Wrapper>
+      );
+    case rdf.id(ontola.ns('collectionDisplay/default')):
+      return (
+        <Wrapper>
+          <Property label={ontola.query} />
+          <Property
+            forceRender
+            label={ontola.header}
+          />
+          {body}
+          <div className={styles.paginationWrapper}>
+            <Property
+              forceRender
+              label={app.pagination}
+            />
+          </div>
+        </Wrapper>
+      );
+    default:
+      return body;
   }
 };
 

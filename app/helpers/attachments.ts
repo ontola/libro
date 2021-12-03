@@ -12,12 +12,12 @@ export function downloadUrl(contentUrl: NamedNode): string {
 
 export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Literal }): NamedNode {
   switch (encodingFormat && encodingFormat.value) {
-  case 'application/zip':
-    return fa4.ns('file-archive-o');
-  case 'application/pdf':
-    return fa4.ns('file-text');
-  default:
-    return fa4.ns('file');
+    case 'application/zip':
+      return fa4.ns('file-archive-o');
+    case 'application/pdf':
+      return fa4.ns('file-text');
+    default:
+      return fa4.ns('file');
   }
 }
 

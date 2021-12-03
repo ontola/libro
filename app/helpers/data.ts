@@ -48,17 +48,17 @@ function bestType(type: LazyNNArgument): NamedNode | null {
 
   for (const normalizedType of normalizedTypes) {
     switch (normalizedType.value.split('#').pop()) {
-    case 'Resource':
-    case 'Document':
-    case 'RDFDocument':
-      if (!best) {
-        best = normalizedType;
-      }
+      case 'Resource':
+      case 'Document':
+      case 'RDFDocument':
+        if (!best) {
+          best = normalizedType;
+        }
 
-      break;
-    default:
-      best = normalizedType;
-      break;
+        break;
+      default:
+        best = normalizedType;
+        break;
     }
   }
 

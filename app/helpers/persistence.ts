@@ -13,19 +13,19 @@ export const parseBoolean = (val: string | null): boolean => val === 'true';
 
 export const parseValue = (plain: Record<string, any> | any): SomeTerm => {
   switch (plain.termType) {
-  case 'NamedNode':
-    return rdf.namedNode(plain.value);
-  case 'BlankNode':
-    return rdf.blankNode(plain.value);
+    case 'NamedNode':
+      return rdf.namedNode(plain.value);
+    case 'BlankNode':
+      return rdf.blankNode(plain.value);
 
-  case 'Literal': {
-    const datatype = plain.datatype ? rdf.namedNode(plain.datatype.value) : undefined;
+    case 'Literal': {
+      const datatype = plain.datatype ? rdf.namedNode(plain.datatype.value) : undefined;
 
-    return rdf.literal(plain.value, plain.language || datatype);
-  }
+      return rdf.literal(plain.value, plain.language || datatype);
+    }
 
-  default:
-    return plain.value ? rdf.literal(plain.value) : rdf.literal(plain);
+    default:
+      return plain.value ? rdf.literal(plain.value) : rdf.literal(plain);
   }
 };
 

@@ -18,7 +18,7 @@ const styles = (theme: SalesTheme) => ({
 
 type BlueBlockProps = ContainerProps & Record<string, unknown> & {classes: {
   root: string,
-  }};
+}};
 
 class BlueBlock<P extends BlueBlockProps = BlueBlockProps> extends Container<P> {
   constructor(props: P) {

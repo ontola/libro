@@ -31,7 +31,7 @@ export interface FormValues {
 }
 export type RetrySubmitHandler = () => Promise<void>;
 export type SubmitHandler = (formData: FormValues, formApi?: FormApi<FormValues>, retrySubmit?: RetrySubmitHandler) =>
-  Promise<void>;
+Promise<void>;
 
 const useSubmitHandler = ({
   entryPoint,

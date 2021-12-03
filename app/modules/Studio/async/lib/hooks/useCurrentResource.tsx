@@ -13,11 +13,11 @@ export const useCurrentResource = (): NamedNode | undefined => {
   url.hash = location.hash;
 
   switch (resource) {
-  case undefined:
-    return undefined;
-  case 'auto':
-    return rdf.namedNode(url.toString());
-  default:
-    return rdf.namedNode(resource);
+    case undefined:
+      return undefined;
+    case 'auto':
+      return rdf.namedNode(url.toString());
+    default:
+      return rdf.namedNode(resource);
   }
 };

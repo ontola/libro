@@ -45,15 +45,15 @@ const Opinion = () => {
   let icon;
 
   switch (rdf.id(option)) {
-  case rdf.id(argu.yes):
-    icon = 'fa-thumbs-up';
-    break;
-  case rdf.id(argu.no):
-    icon = 'fa-thumbs-down';
-    break;
-  default:
-    icon = 'fa-pause';
-    break;
+    case rdf.id(argu.yes):
+      icon = 'fa-thumbs-up';
+      break;
+    case rdf.id(argu.no):
+      icon = 'fa-thumbs-down';
+      break;
+    default:
+      icon = 'fa-pause';
+      break;
   }
 
   const className = clsx({

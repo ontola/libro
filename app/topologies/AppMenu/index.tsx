@@ -14,9 +14,9 @@ export interface AppMenuProps {
 }
 
 class AppMenu extends Topology<
-  AppMenuProps,
-  Record<string, unknown>,
-  () => void
+AppMenuProps,
+Record<string, unknown>,
+() => void
 > {
   constructor(props: AppMenuProps) {
     super(props);

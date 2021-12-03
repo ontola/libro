@@ -12,8 +12,8 @@ type ValueValidator = (value: string) => string | false;
 type Validator = (values: ValidatorValues) => ValidationResult | Array<ValidationResult | undefined> | undefined;
 
 interface ValidationResult {
-    error: string;
-    index?: number;
+  error: string;
+  index?: number;
 }
 
 const arrayValidation = (validator: ArrayValidator) => (

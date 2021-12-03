@@ -18,7 +18,7 @@ export type TopologyContent = JSX.Element;
 
 export const renderErrorComp = (self: React.Component<Record<string, unknown>, TopologyState>) => (): JSX.Element => {
   const ErrorRenderer: React.FC<
-    TopologyState & Helpers & { context: typeof self.context, props: typeof self.props }
+  TopologyState & Helpers & { context: typeof self.context, props: typeof self.props }
   > = ({
     context,
     error,

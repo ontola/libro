@@ -19,16 +19,16 @@ const cleanText = (text: string) => text.replace(/\s{2,}/g, ' ').trim();
 
 const addMissingSentenceBoundaries = (text: string, subjectType: SomeTerm) => {
   switch (subjectType.value) {
-  case elements.H1.value:
-  case elements.H2.value:
-  case elements.H3.value:
-  case elements.H4.value:
-  case elements.H5.value:
-  case elements.H6.value:
-  case elements.Li.value:
-    return /(\.|\?|:|”)\s*$/gm.test(text) ? text : `${text}.`;
-  default:
-    return text;
+    case elements.H1.value:
+    case elements.H2.value:
+    case elements.H3.value:
+    case elements.H4.value:
+    case elements.H5.value:
+    case elements.H6.value:
+    case elements.Li.value:
+      return /(\.|\?|:|”)\s*$/gm.test(text) ? text : `${text}.`;
+    default:
+      return text;
   }
 };
 

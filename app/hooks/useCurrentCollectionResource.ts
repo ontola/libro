@@ -39,7 +39,7 @@ type CurrentCollectionResource = [CurrentCollection, CurrentCollectionPage[], Se
  * @param originalCollectionResource The `as.Collection` or an `as.CollectionPage` originally rendered
  */
 export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: SomeNode):
-  CurrentCollectionResource => {
+CurrentCollectionResource => {
   const lrs = useLRS();
   const history = useHistory();
   const [collectionResource] = useIds(originalCollectionResource, app.collectionResource);

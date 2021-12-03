@@ -16,10 +16,10 @@ const Communicator = (): null => {
   React.useEffect(() => {
     const listener = (e: MessageEvent<EditorUpdateEvent>) => {
       switch(e.data.type) {
-      case EditorEvents.EditorUpdate:
-        return setMessage(e.data.viewOpts);
-      case EditorEvents.EditorClose:
-        return window.close();
+        case EditorEvents.EditorUpdate:
+          return setMessage(e.data.viewOpts);
+        case EditorEvents.EditorClose:
+          return window.close();
       }
     };
 

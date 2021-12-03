@@ -45,12 +45,12 @@ const CreateSession: FC<CreateSessionProps> = ({
   const sessionStore = React.useMemo<Partial<Storage>>(() => ({
     getItem: (key) => {
       switch (fieldName(key)) {
-      case emailFieldName:
-        return email;
-      case redirectURLFieldName:
-        return redirectURL;
-      default:
-        return null;
+        case emailFieldName:
+          return email;
+        case redirectURLFieldName:
+          return redirectURL;
+        default:
+          return null;
       }
     },
     setItem: (key, value) => {

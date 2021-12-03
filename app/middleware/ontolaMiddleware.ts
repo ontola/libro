@@ -45,7 +45,7 @@ export enum DialogSize {
 export const isDialogSize = (size?: string | null): size is DialogSize => ['xs', 'sm', 'md', 'lg', 'xl', false].includes(size ?? '');
 
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
-    MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   (store as any).actions.ontola = {};
 
@@ -239,30 +239,30 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     switch (rdf.id(iri)) {
-    case rdf.id(libro.actions.refresh):
-      if (__CLIENT__) {
-        reloadPage(store, false);
+      case rdf.id(libro.actions.refresh):
+        if (__CLIENT__) {
+          reloadPage(store, false);
+        }
+
+        return Promise.resolve();
+      case rdf.id(libro.actions.reload):
+        reloadPage(store, true);
+
+        return Promise.resolve();
+
+      case rdf.id(libro.actions.navigation.push): {
+        closeOldDialogs();
+
+        return next(iri, opts);
       }
 
-      return Promise.resolve();
-    case rdf.id(libro.actions.reload):
-      reloadPage(store, true);
+      case rdf.id(libro.actions.navigation.pop): {
+        closeOldDialogs();
 
-      return Promise.resolve();
+        return next(iri, opts);
+      }
 
-    case rdf.id(libro.actions.navigation.push): {
-      closeOldDialogs();
-
-      return next(iri, opts);
-    }
-
-    case rdf.id(libro.actions.navigation.pop): {
-      closeOldDialogs();
-
-      return next(iri, opts);
-    }
-
-    default:
+      default:
     }
 
     if (iri.value.startsWith(libro.actions.copyToClipboard.value)) {
@@ -290,7 +290,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
           try {
             serviceWorkerCommunicator.clearCache();
           } catch (e) {
-            handle(e);
+            handle(e as Error);
           }
 
           if (location) {

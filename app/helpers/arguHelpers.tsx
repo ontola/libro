@@ -11,14 +11,14 @@ import React from 'react';
  * @returns {ReactElement|undefined} Proper image element.
  */
 
- interface ImageProps {
+interface ImageProps {
   fa?: string,
   image?: {
     className: string,
     title: string,
     url: string,
   },
- }
+}
 
 export const image = (props: ImageProps): JSX.Element | undefined => {
   if (props.image) {

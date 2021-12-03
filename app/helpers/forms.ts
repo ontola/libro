@@ -10,8 +10,8 @@ import ontola from '../ontology/ontola';
 import { isJSONLDObject } from './types';
 
 export interface JSONLDObject {
-    '@id': Node;
-    [key: string]: any;
+  '@id': Node;
+  [key: string]: any;
 }
 
 export const destroyFieldName = btoa(ontola._destroy.value);

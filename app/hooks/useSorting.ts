@@ -19,10 +19,10 @@ const sortElementProps = {
 };
 
 export interface SortProps  {
-    direction: string | null;
-    item: SomeTerm;
-    selected: boolean;
-    url?: string;
+  direction: string | null;
+  item: SomeTerm;
+  selected: boolean;
+  url?: string;
 }
 
 export const useSorting = (subject: LaxNode): SortProps[] => {

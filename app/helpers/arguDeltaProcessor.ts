@@ -73,8 +73,8 @@ function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
 
   supplants
     .reduce<SomeNode[]>((acc, cur) => acc.includes(cur[0])
-      ? acc
-      : acc.concat(cur[0]), [])
+    ? acc
+    : acc.concat(cur[0]), [])
     .forEach((s) => {
       lrs.store.removeResource(s);
     });

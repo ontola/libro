@@ -144,7 +144,7 @@ interface LinkedTestRenderOpts extends TestRenderOpts {
 export const renderLinked = async <
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
-  >(
+>(
   ui: ((props: { iri: Node }) => React.ReactElement) | React.ReactElement,
   opts: LinkedTestRenderOpts & RenderOptions<Q, Container> = {},
 ): Promise<RenderResult<Q, Container>> => {
@@ -182,9 +182,9 @@ const renderWithWrappers = <
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
 >(
-    ui: React.ReactElement,
-    opts: TestRenderOpts & RenderOptions<Q, Container> = {},
-  ): RenderResult<Q, Container> => {
+  ui: React.ReactElement,
+  opts: TestRenderOpts & RenderOptions<Q, Container> = {},
+): RenderResult<Q, Container> => {
   const {
     location,
     ...options

@@ -26,9 +26,9 @@ const useOverlay = ({
   overlayPosition,
   overlayResource,
 }: PropTypes): {
-  handleOverlayClick: (e: any) => false | void;
-  overlayRef: React.MutableRefObject<HTMLDivElement | null>;
-} => {
+    handleOverlayClick: (e: any) => false | void;
+    overlayRef: React.MutableRefObject<HTMLDivElement | null>;
+  } => {
   const overlayRef = useRef(document.createElement('div'));
   const overlay = useMemo(() => {
     const element = overlayRef.current;

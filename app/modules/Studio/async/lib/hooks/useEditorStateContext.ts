@@ -5,16 +5,16 @@ import { EditorDisplay, EditorStateContext } from '../context/EditorStateContext
 
 const editorDisplayFromString = (v: string | null): EditorDisplay => {
   switch (v) {
-  case null:
-    return EditorDisplay.Inline;
-  case '0':
-    return EditorDisplay.Inline;
-  case '1':
-    return EditorDisplay.Popout;
-  case '2':
-    return EditorDisplay.Hidden;
-  default:
-    throw new Error(`Unknown editor state '${v}'}`);
+    case null:
+      return EditorDisplay.Inline;
+    case '0':
+      return EditorDisplay.Inline;
+    case '1':
+      return EditorDisplay.Popout;
+    case '2':
+      return EditorDisplay.Hidden;
+    default:
+      throw new Error(`Unknown editor state '${v}'}`);
   }
 };
 

@@ -38,13 +38,13 @@ export const searchMiddleware = (): MiddlewareFn<React.ComponentType<any>> => (s
     const { base, params: { target } } = parse(iri);
 
     switch (base) {
-    case app.ns('setTarget'): {
-      const delta: Quadruple[] = [[app['individuals/searchTarget'], app.target, target!, ld.replace]];
+      case app.ns('setTarget'): {
+        const delta: Quadruple[] = [[app['individuals/searchTarget'], app.target, target!, ld.replace]];
 
-      return store.processDelta(delta, true);
-    }
+        return store.processDelta(delta, true);
+      }
 
-    default:
+      default:
     }
 
     return next(iri, opts);

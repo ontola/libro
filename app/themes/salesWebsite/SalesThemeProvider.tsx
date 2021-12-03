@@ -6,12 +6,12 @@ import React from 'react';
 import themeOpts from './theme';
 
 export interface PageTheme {
-    headerTextColor: string;
+  headerTextColor: string;
 }
 
 export interface SalesTheme extends Theme {
-    pages: { [k: string]: PageTheme };
-    boxShadow: string;
+  pages: { [k: string]: PageTheme };
+  boxShadow: string;
 }
 
 const salesTheme = responsiveFontSizes(createTheme(themeOpts.variables));

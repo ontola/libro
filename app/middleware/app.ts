@@ -89,13 +89,13 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     const { base, params: { newPage, subject } } = parse(iri);
 
     switch (base) {
-    case app.ns('changePage'): {
-      const delta: Quadruple[] = [[subject!, app.collectionResource, newPage!, ontola.replace]];
+      case app.ns('changePage'): {
+        const delta: Quadruple[] = [[subject!, app.collectionResource, newPage!, ontola.replace]];
 
-      return store.processDelta(delta, true);
-    }
+        return store.processDelta(delta, true);
+      }
 
-    default:
+      default:
     }
 
     return next(iri, opts);
