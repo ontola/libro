@@ -289,5 +289,6 @@
       "eslint --fix"
     ],
     "*.scss": "sass-lint ./app/**/*.scss -q"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
