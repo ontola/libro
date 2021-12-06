@@ -99,8 +99,15 @@ const theme = {
     maxWidth: 'xl',
     position: 'relative',
   },
-  breakpoints: {
+  boxShadow: {
     /* eslint-disable sort-keys */
+    transparent: '0 0 0 rgba(0, 0, 0, 0)',
+    base: '0 0 25px rgba(0, 0, 0, .06)',
+    intense: '0 2px 8px rgba(0, 0, 0, .2)',
+    inside: '0 2px 8px rgba(0, 0, 0, .2) inset',
+    crazy: '0 0 20px 1px rgba(0, 0, 0, .3)',
+  },
+  breakpoints: {
     values: {
       xs: 0,
       sm: 320,

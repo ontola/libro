@@ -3,7 +3,7 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { CSSProperties } from '@material-ui/styles';
 import React from 'react';
 
-import { Size } from '../components/shared/config';
+import { Shadows, Size } from '../components/shared/config';
 
 declare module '@material-ui/core/index' {
   interface Color {
@@ -40,9 +40,12 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     appBar: AppBarThemeOpts;
+    boxShadow: {
+      [K in Shadows]: string
+    };
     containerWidth: {
       [K in Size]: string
-    }
+    };
   }
 }
 

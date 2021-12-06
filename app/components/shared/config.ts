@@ -30,6 +30,14 @@ export enum Size {
   Large = 'large',
 }
 
+export enum Shadows {
+  Transparent = 'transparent',
+  Base = 'base',
+  Intense = 'intense',
+  Inside = 'inside',
+  Crazy = 'crazy',
+}
+
 export const statuses = [
   'pass',
   'fail',
