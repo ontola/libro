@@ -28,7 +28,7 @@ export const AppContextProvider = ({
     theme: defaultCtxValue(appCtxOverrides, 'theme', 'common'),
     themeOpts: defaultCtxValue(appCtxOverrides, 'themeOpts', ''),
     title: defaultCtxValue(appCtxOverrides, 'title', 'Libro') as string,
-    website: defaultCtxValue(appCtxOverrides, 'website', ''),
+    website: defaultCtxValue(appCtxOverrides, 'website', manifest.ontola.website_iri),
   }));
 
   return (
