@@ -132,5 +132,11 @@ So, your Link View / Property isn't showing. Check the following:
 - If there is a component, check its contents by clicking its LinkedObjectContainer in the debugging tools and running `dev.data` in the console.
 - Is the View or the Property being registered correctly? Use LRS.
 
+### Rendering external resources
+If you want to preview data from the web:
+
+- Run this in an apex Rails console:  `Page.argu.update(allowed_external_sources: ['https://myexternaldomain.com'])` 
+- Open the resource in libro using the `/org/resource?` endpoint: `https://argu.localdev/argu/resource?iri=externalresource`
+
 ### Recommended Dev tools
 - Chrome plugins: [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
