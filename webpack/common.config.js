@@ -48,15 +48,15 @@ const common = {
   },
 
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '..', 'dist', 'public'),
+    filename: 'f_assets/[name].bundle.js',
+    path: path.resolve(__dirname, '..', 'dist'),
   },
 
   plugins: [
     new CopyWebpackPlugin([
       {
         from: 'static/preloader.css',
-        to: path.resolve(__dirname, '..', 'dist', 'public'),
+        to: path.resolve(__dirname, '..', 'dist', 'f_assets'),
       },
     ]),
     new webpack.ProvidePlugin({
@@ -74,12 +74,12 @@ const common = {
     }),
     new HtmlWebpackPlugin({
       chunksSortMode: 'none',
-      filename: 'public/offline.html',
+      filename: 'f_assets/offline.html',
       template: 'app/offline.html',
     }),
     new InjectManifest({
       exclude: [/^private\//],
-      swDest: './sw.js',
+      swDest: './f_assets/sw.js',
       swSrc: './src/sw/index.js',
     }),
   ],

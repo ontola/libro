@@ -1,24 +1,34 @@
 image: node:14
 
 cache:
+  key: $CI_PROJECT_ID
   paths:
-    - node_modules/
-    - .yarn
+    - .yarn/cache
 
 default:
   before_script:
     - yarn --immutable
+    - yarn run t10s:compile
 
 build:
   stage: build
+  script:
+    - yarn run build:bundle
+    - yarn run build:metaData
+  artifacts:
+    paths:
+      - dist
+
+bake:
   image: docker:18.09.8
   services:
     - docker:18.09.8-dind
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  dependencies:
+    - build
   script:
-    - docker pull $CI_REGISTRY_IMAGE:latest || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest --build-arg BUGSNAG_KEY=99909219ab5309877185ba0d0dddce33 --build-arg CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH --build-arg RAILS_ENV=production --build-arg NODE_ENV=production .
+    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest --build-arg RAILS_ENV=production --build-arg NODE_ENV=production .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
 
@@ -51,7 +61,6 @@ stagingTagManual:
 codeQuality:
   stage: test
   script:
-    - yarn run t10s:compile
     - yarn run lint:code
     - yarn run lint:style
     - yarn run t10s:lint
@@ -59,7 +68,6 @@ codeQuality:
 test:
   stage: test
   script:
-    - yarn run t10s:compile
     - yarn run test
 
 autoTagProduction:
@@ -108,6 +116,7 @@ stagingDevProxy:
 
 stages:
   - build
+  - bake
   - manualTag
   - devProxy
   - test

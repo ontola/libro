@@ -1,3 +1,5 @@
+const path = require('path');
+
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -8,10 +10,7 @@ module.exports = merge(common, {
   cache: true,
 
   devServer: {
-    allowedHosts: [
-      '.localdev',
-      '.localtest',
-    ],
+    allowedHosts: 'all',
     client: {
       overlay: {
         errors: true,
@@ -21,9 +20,10 @@ module.exports = merge(common, {
     },
     hot: true,
     port: 3001,
-    proxy: {
-      '!**/ws': {
-        context: () => true,
+    proxy: [
+      {
+        context: (filePath) => filePath !== '/ws' && !filePath.startsWith('/static/'),
+        logLevel: 'debug',
         onProxyReqWs: (proxyReq, req, socket) => {
           socket.on('error', (err) => {
             // eslint-disable-next-line no-console
@@ -33,8 +33,11 @@ module.exports = merge(common, {
         target: 'http://localhost:3080',
         toProxy: true,
         ws: true,
-        xfwd: true,
+        xfwd: false,
       },
+    ],
+    static: {
+      directory: path.join(__dirname, '..', 'static'),
     },
   },
 
@@ -99,7 +102,6 @@ module.exports = merge(common, {
 
   output: {
     globalObject: "(typeof self !== 'undefined' ? self : this)",
-    pathinfo: false,
     publicPath: '/',
   },
 

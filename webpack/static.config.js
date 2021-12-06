@@ -106,9 +106,8 @@ function createConfig(options) {
       new webpack.ProvidePlugin({
         fetch: 'isomorphic-fetch',
       }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
       new ManifestPlugin({
-        output: `private/manifest.${options.buildName}.json`,
+        output: `manifest.${options.bundle}.json`,
         publicPath: '/',
       }),
       new CompressionPlugin({
