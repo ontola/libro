@@ -1,6 +1,7 @@
 import rdf, {
   NamedNode,
   SomeTerm,
+  isNamedNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
@@ -18,7 +19,12 @@ import { useField } from 'react-final-form';
 import { FormContext } from '../components/Form/Form';
 import { FormFieldError, InputMeta } from '../components/FormField';
 import { arraysEqual } from '../helpers/data';
-import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
+import {
+  JSONLDObject,
+  calculateFormFieldName,
+  destroyFieldName,
+  retrieveIdFromValue,
+} from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import {
   isJSONLDObject,
@@ -89,6 +95,8 @@ export interface PermittedFormField {
   onFocus: FocusRelatedEventHandler;
   path?: NamedNode;
   placeholder?: string;
+  removeItem: (index: number) => void;
+  sortable?: boolean;
   storeKey?: string;
   values: InputValue[];
   whitelisted?: true;
@@ -315,6 +323,19 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     newItem,
   );
 
+  const removeItem = React.useCallback((index: number) => {
+    const newValue = values.slice();
+    const currentValue = newValue[index];
+
+    if (isJSONLDObject(currentValue) && isNamedNode(retrieveIdFromValue(currentValue))) {
+      currentValue[destroyFieldName] = rdf.literal(true);
+    } else {
+      newValue.splice(index, 1);
+    }
+
+    input.onChange(newValue);
+  }, [values, input.onChange]);
+
   const {
     active,
     dirty,
@@ -351,6 +372,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     onBlur: memoizedOnBlur,
     onChange: input.onChange,
     onFocus: memoizedOnFocus,
+    removeItem,
     storeKey,
     values,
     whitelisted,

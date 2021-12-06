@@ -1,38 +1,46 @@
-import rdf, {
-  isNamedNode,
-  isTerm,
-} from '@ontologies/core';
-import React from 'react';
+import { DraggableSyntheticListeners } from '@dnd-kit/core';
+import rdf, { isTerm } from '@ontologies/core';
+import React, { CSSProperties } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import {
-  destroyFieldName,
-  isMarkedForRemove,
-  retrieveIdFromValue,
-} from '../../helpers/forms';
-import { isJSONLDObject } from '../../helpers/types';
+import { isMarkedForRemove } from '../../helpers/forms';
 import { InputValue } from '../../hooks/useFormField';
 import Button from '../Button';
 
 import { FormFieldContext } from './FormField';
 import FormFieldHelper from './FormFieldHelper';
 
-interface FormInputProps {
+export interface SortableProps {
+  attributes: {
+    role: string;
+    tabIndex: number;
+    'aria-pressed': boolean | undefined;
+    'aria-roledescription': string;
+    'aria-describedby': string;
+  };
+  listeners: DraggableSyntheticListeners;
+  setNodeRef: (node: HTMLElement | null) => void;
+  style: CSSProperties;
+}
+
+export interface FormInputProps {
   index: number;
+  sortableProps?: SortableProps;
   value: InputValue;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
   index,
   value,
+  sortableProps,
 }) => {
   const {
     inputErrors,
     autofocus,
     fieldShape,
     inputComponent: InputComponent,
-    name,
     onChange,
+    removeItem,
     values,
   } = React.useContext(FormFieldContext);
   const { removable } = fieldShape;
@@ -41,18 +49,6 @@ const FormInput: React.FC<FormInputProps> = ({
     return null;
   }
 
-  const removeItem = React.useCallback(() => {
-    const newValue = values?.slice() || [];
-    const curentValue = newValue[index];
-
-    if (isJSONLDObject(curentValue) && isNamedNode(retrieveIdFromValue(curentValue))) {
-      curentValue[destroyFieldName] = rdf.literal(true);
-    } else {
-      newValue.splice(index, 1);
-    }
-
-    onChange(newValue);
-  }, [values, index, onChange]);
   const inputOnChange = React.useCallback((val: InputValue) => {
     const newValue = values?.slice() || [];
     newValue[index] = isTerm(val) ? val : rdf.literal(val ?? '');
@@ -66,7 +62,8 @@ const FormInput: React.FC<FormInputProps> = ({
   return (
     <div
       className="Field__wrapper"
-      key={[name, index].join('.')}
+      ref={sortableProps?.setNodeRef}
+      style={sortableProps?.style}
     >
       <InputComponent
         autofocus={(autofocus && index === 0) ?? false}
@@ -75,15 +72,24 @@ const FormInput: React.FC<FormInputProps> = ({
         inputValue={value}
         onChange={inputOnChange}
       />
-      {removable && (
-        <Button
-          plain
-          className="Field__input__remove-button"
-          onClick={removeItem}
-        >
-          <FontAwesome name="times" />
-        </Button>
-      )}
+      <div className="Field__wrapper-buttons">
+        {removable && (
+          <Button
+            plain
+            onClick={() => removeItem(index)}
+          >
+            <FontAwesome name="times" />
+          </Button>
+        )}
+        {sortableProps && (
+          <div
+            {...sortableProps.listeners}
+            {...sortableProps.attributes}
+          >
+            <FontAwesome name="arrows" />
+          </div>
+        )}
+      </div>
       <FormFieldHelper
         error={errors?.[0]}
         value={value}

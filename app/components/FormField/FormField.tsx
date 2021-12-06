@@ -14,6 +14,7 @@ import { InputComponentProps } from './InputComponentProps';
 
 import './DateTime.scss';
 import './FormField.scss';
+import SortableFormInputs from './SortableFormInputs';
 
 export const formFieldTopologies = [
   cardMainTopology,
@@ -58,7 +59,9 @@ const FormField = (props: FormFieldProps): JSX.Element => {
       <FormFieldContext.Provider value={contextProps}>
         <FormFieldLabel />
         <FormFieldDescription />
-        {props.combinedComponent ? <props.inputComponent /> : <FormInputs />}
+        {props.combinedComponent ? <props.inputComponent /> : (
+          props.sortable ? <SortableFormInputs /> : <FormInputs />
+        )}
       </FormFieldContext.Provider>
     </ResourceBoundary>
   );
@@ -70,6 +73,7 @@ FormField.defaultProps = {
   meta: {},
   onBlur: () => undefined,
   onFocus: () => undefined,
+  removeItem: () => undefined,
 };
 
 export default FormField;

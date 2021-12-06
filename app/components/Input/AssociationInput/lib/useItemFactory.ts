@@ -1,0 +1,56 @@
+import rdf, { NamedNode } from '@ontologies/core';
+import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
+import {
+  dig,
+  useDataFetching,
+  useGlobalIds,
+  useIds,
+  useLRS,
+} from 'link-redux';
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import { conditionalFormFieldsPath, formFieldsPath } from '../../../../helpers/diggers';
+import { SubmitDataProcessor } from '../../../../helpers/errorHandling';
+import { JSONLDObject } from '../../../../helpers/forms';
+import { ItemFactory } from '../../../../hooks/useFormField';
+import { ClonedLRS } from '../../../../hooks/useFormLRS';
+import ll from '../../../../ontology/ll';
+import ontola from '../../../../ontology/ontola';
+import { FormContext } from '../../../Form/Form';
+
+export const useItemFactory = (): ItemFactory => {
+  const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
+  const { object } = React.useContext(FormContext);
+
+  const [path] = useGlobalIds(sh.path);
+  const association = lrs.originalLRS.getResourceProperty(object, path) as NamedNode;
+  useDataFetching(association);
+
+  const formPaths = useIds(
+    association,
+    dig(ontola.createAction, schema.target, ll.actionBody, ...formFieldsPath, sh.path),
+  );
+  const conditionalFormPaths = useIds(
+    association,
+    dig(ontola.createAction, schema.target, ll.actionBody, ...conditionalFormFieldsPath, sh.path),
+  );
+  const [blankObject] = useIds(association, dig(ontola.createAction, schema.object));
+
+  const newItem = React.useCallback(() => {
+    const values: JSONLDObject = { '@id': rdf.blankNode(uuidv4()) };
+
+    if (blankObject) {
+      lrs.store.quadsFor(blankObject).forEach((quad) => {
+        if (formPaths.indexOf(quad.predicate) !== -1 || conditionalFormPaths.indexOf(quad.predicate) !== -1) {
+          values[btoa(quad.predicate.value)] = [quad.object];
+        }
+      });
+    }
+
+    return values;
+  }, [blankObject, formPaths, conditionalFormPaths]);
+
+  return newItem;
+};

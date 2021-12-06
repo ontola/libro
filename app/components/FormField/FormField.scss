@@ -8,13 +8,20 @@
   &__wrapper {
     position: relative;
     display: inline-block;
-  }
-}
 
-.Field--association {
-  .Field__wrapper + .Field__wrapper {
-    border-top: 1px solid color('grey', 'x-light');
-    padding-top: 1em;
+    &-buttons {
+      position: absolute;
+      width: 100%;
+      padding-right: 0.5em;
+      top: 0;
+
+      & button,
+      & [role='button']{
+        color: #707070;
+        float: right;
+        padding: 0.1em;
+      }
+    }
   }
 }
 
@@ -97,17 +104,6 @@
     resize: vertical;
     width: 100%;
   }
-
-  &__remove-button {
-    color: color('grey', 'mid-dark');
-    font-size: font-size('x-large');
-    padding: 0 units('x-small', 'x-small');
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 11;
-  }
-
 }
 
 input {

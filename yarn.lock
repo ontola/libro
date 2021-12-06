@@ -1575,6 +1575,55 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dnd-kit/accessibility@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@dnd-kit/accessibility@npm:3.0.0"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: e7e2ed8b114929350bb922be7204499fb04847d9e78a546d64a0a8b169e3585711745832b336a5b7972bf0fa423ee3a5c8229b52e79702d2778a4c103e37e7ec
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/core@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@dnd-kit/core@npm:4.0.3"
+  dependencies:
+    "@dnd-kit/accessibility": ^3.0.0
+    "@dnd-kit/utilities": ^3.0.1
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 44133c5f43c4b27bbd4f7e423314b1fa39bd7eb6107a0124842467d110e746ea53e224ba0b9b6de35b0c49de1c10c670a5d01ffa33c59ab74c1a5a76a4ff1fcc
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/sortable@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@dnd-kit/sortable@npm:5.1.0"
+  dependencies:
+    "@dnd-kit/utilities": ^3.0.0
+    tslib: ^2.0.0
+  peerDependencies:
+    "@dnd-kit/core": ^4.0.2
+    react: ">=16.8.0"
+  checksum: 2fc527d9426a56cab29a6cbc931a7011c8f8941ac627aaad1e52987a19b90f0832eb33dbc756ab7d2cf988d93e8a6b630d1eb5bbd88d748b04a15e7091de61e9
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/utilities@npm:^3.0.0, @dnd-kit/utilities@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@dnd-kit/utilities@npm:3.0.1"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 67e65c86b98ed6bc97199f9d8278f816bc3ac54e0ee1d66a620ff55b048ed6d186c3b6db3056c54c02f343975f4b3e7be8b10a4ddfc1a3234fbe35d156663fe5
+  languageName: node
+  linkType: hard
+
 "@emotion/hash@npm:^0.8.0":
   version: 0.8.0
   resolution: "@emotion/hash@npm:0.8.0"
@@ -3079,13 +3128,6 @@ __metadata:
   peerDependencies:
     rollup: ^1.20.0||^2.0.0
   checksum: 45da6411e045d1b034242a8144f4a5e8c02ff1b68a2e0857807f5bb4b091c416f2015e075057f0f0dec200e7b35efe6ed4e301b43e365cedea09192f01a6839b
-  languageName: node
-  linkType: hard
-
-"@scarf/scarf@npm:^1.0.5":
-  version: 1.0.6
-  resolution: "@scarf/scarf@npm:1.0.6"
-  checksum: e86e85b0496afe7fab177098f8e41e6dee174c4d7dc1d15dc06ca0aa15876bd1062b7c28e4f54f5220cacd384572458c0031bb05d7e64ad48d7d83565aae711f
   languageName: node
   linkType: hard
 
@@ -8621,13 +8663,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"final-form@npm:^4.20.0":
-  version: 4.20.0
-  resolution: "final-form@npm:4.20.0"
+"final-form@npm:^4.20.4":
+  version: 4.20.4
+  resolution: "final-form@npm:4.20.4"
   dependencies:
     "@babel/runtime": ^7.10.0
-    "@scarf/scarf": ^1.0.5
-  checksum: 1e0a865a070699eebba6ec68763a63f6e29a3930507e423b822c9a2548853eb93f8c3b4aa39c3da4dfd1325997c73cd947f805cf3b3232309a43617d54321e2b
+  checksum: a17af0cdc02a7d928201278565e638f4a57a190ef1a9f3d007ab8268a83107b3438b7a0171068a288d7d9e966d380e0b5a0536ddc90c35db7f481e0ea6b2374d
   languageName: node
   linkType: hard
 
@@ -13556,6 +13597,9 @@ __metadata:
     "@bugsnag/js": ^7.5.1
     "@bugsnag/plugin-koa": ^7.3.5
     "@date-io/dayjs": ^1.3.13
+    "@dnd-kit/core": ^4.0.3
+    "@dnd-kit/sortable": ^5.1.0
+    "@dnd-kit/utilities": ^3.0.1
     "@formatjs/cli": ^4.2.6
     "@formatjs/intl-relativetimeformat": ^8.1.4
     "@formatjs/intl-unified-numberformat": ^3.3.7
@@ -13650,7 +13694,7 @@ __metadata:
     exports-loader: ^2.0.0
     fast-deep-equal: ^2.0.1
     file-loader: ^6.2.0
-    final-form: ^4.20.0
+    final-form: ^4.20.4
     fontawesome: ^4.7.2
     helmet-csp: ^2.8.0
     history: ^4.10.1
@@ -13703,7 +13747,7 @@ __metadata:
     react-dom: ^17.0.2
     react-dropzone: ^11.4.2
     react-easy-emoji: ^1.4.0
-    react-final-form: ^6.5.0
+    react-final-form: ^6.5.7
     react-fontawesome: ^1.6.1
     react-helmet-async: ^1.0.9
     react-intl: ^5.15.7
@@ -15386,17 +15430,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-final-form@npm:^6.5.0":
-  version: 6.5.0
-  resolution: "react-final-form@npm:6.5.0"
+"react-final-form@npm:^6.5.7":
+  version: 6.5.7
+  resolution: "react-final-form@npm:6.5.7"
   dependencies:
-    "@babel/runtime": ^7.10.0
-    "@scarf/scarf": ^1.0.5
-    ts-essentials: ^6.0.5
+    "@babel/runtime": ^7.15.4
   peerDependencies:
-    final-form: ^4.20.0
-    react: ^16.8.0
-  checksum: 81e787f780fa982d293204513c1bcfcd26218d72e033e8356a15d656ff2f8fe9190f3d30dc08d6f970da23af59bd78f71e7a9ca7831f334086dda69b497735d7
+    final-form: 4.20.4
+    react: ^16.8.0 || ^17.0.0
+  checksum: ca2369c0c5d209bae0202a2486870020416870e58b816f1552e4144ac9ab89df7c694657d5fc391989655132a5fdebddf53c97e3318b6f24b064ef96bb830562
   languageName: node
   linkType: hard
 
@@ -18077,15 +18119,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-essentials@npm:^6.0.5":
-  version: 6.0.7
-  resolution: "ts-essentials@npm:6.0.7"
-  peerDependencies:
-    typescript: ">=3.7.0"
-  checksum: 767c686785d0ab498271b8283eba05d969fa5892aa175329ff2f48964067814aa8368911e3457557d92f99ec010df7fd534bf9c91bbd5ab6cb4a7fabd14782f8
-  languageName: node
-  linkType: hard
-
 "ts-jest@npm:^27.0.7":
   version: 27.0.7
   resolution: "ts-jest@npm:27.0.7"
@@ -18148,6 +18181,13 @@ resolve@^2.0.0-next.3:
   version: 1.11.1
   resolution: "tslib@npm:1.11.1"
   checksum: d40eba08de267b2d3c458ddbf51f9010a45b8e752d3bf8c0fed63e266afc9277c6a26e65e51223335b8753f9f106aeb600e704f2a6eae05729160671a97c52e7
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.0.0":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: 5ae2f209c5127bad284974c78916f02c72082615f65889a7ed0c7ca6d5f935c30338a0ee7310e1d9652dabc7b7507fd2905035487446d09d45fc1f19de71cf05
   languageName: node
   linkType: hard
 
