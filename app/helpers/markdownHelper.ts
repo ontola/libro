@@ -4,10 +4,8 @@ export const stripMarkdown = (text: string | undefined): string => {
     return '';
   }
 
-  let output = '';
-
   // Inspired by https://github.com/stiang/remove-markdown/blob/master/index.js
-  output = output
+  return text
     // Header
     .replace(/\n={2,}/g, '\n')
     // Fenced codeblocks
@@ -44,6 +42,4 @@ export const stripMarkdown = (text: string | undefined): string => {
     // Replace two or more newlines with exactly two? Not entirely sure this belongs here...
     .replace(/\n{2,}/g, '\n\n')
     .replace(/[\r\n]/g, ' ');
-
-  return output;
 };

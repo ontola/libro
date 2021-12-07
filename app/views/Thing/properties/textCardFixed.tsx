@@ -1,6 +1,10 @@
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { register, useProperty } from 'link-redux';
+import {
+  register,
+  useProperty,
+  useStrings,
+} from 'link-redux';
 import React from 'react';
 
 import { useStrippedMarkdown } from '../../../helpers/useStrippedMarkdown';
@@ -35,8 +39,8 @@ const STRING_CUTOFF = 150;
 const TextCutoff = () => {
   const classes = useStyles();
   const [coverPhoto] = useProperty(ontola.coverPhoto);
-  const [text] = useProperty([schema.text, schema.description]);
-  const strippedText = useStrippedMarkdown(text?.value);
+  const [text] = useStrings([schema.text, schema.description]);
+  const strippedText = useStrippedMarkdown(text);
 
   if (!text || coverPhoto) {
     return null;
