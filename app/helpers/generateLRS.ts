@@ -160,6 +160,7 @@ export default async function generateLRS(
     rdf.quad(ontola.PaginatedView, rdfs.subClassOf, as.CollectionPage),
 
     rdf.quad(opengov.Motion, rdfx.type, rdfs.Class),
+    rdf.quad(opengov.Motion, rdfs.label, rdf.literal('Antrag', languages.de)),
     rdf.quad(opengov.Motion, rdfs.label, rdf.literal('Motion', languages.en)),
     rdf.quad(opengov.Motion, rdfs.label, rdf.literal('Motie', languages.nl)),
 
@@ -176,6 +177,7 @@ export default async function generateLRS(
 
     rdf.quad(schema.WebPage, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebPage, rdfs.subClassOf, schema.Thing),
+    rdf.quad(schema.WebPage, rdfs.label, rdf.literal('Seite', languages.de)),
     rdf.quad(schema.WebPage, rdfs.label, rdf.literal('Page', languages.en)),
     rdf.quad(schema.WebPage, rdfs.label, rdf.literal('Pagina', languages.nl)),
 
@@ -286,16 +288,20 @@ export default async function generateLRS(
     rdf.quad(meeting.Meeting, rdfx.type, rdfs.Class),
     rdf.quad(meeting.Meeting, rdfs.subClassOf, schema.Thing),
     rdf.quad(meeting.Meeting, rdfs.subClassOf, rdf.namedNode('http://purl.org/NET/c4dm/event.owl#Event')),
+    rdf.quad(meeting.Meeting, rdfs.label, rdf.literal('Sitzung', languages.de)),
     rdf.quad(meeting.Meeting, rdfs.label, rdf.literal('Meeting', languages.en)),
     rdf.quad(meeting.Meeting, rdfs.label, rdf.literal('Vergadering', languages.nl)),
+    rdf.quad(meeting.Meeting, schema.description, rdf.literal('Ein Sitzung ist eine Zusammenkunft, bei der Menschen Dinge diskutieren und Entscheidungen treffen.', languages.de)),
     rdf.quad(meeting.Meeting, schema.description, rdf.literal('A meeting is an event where people discuss things and make decisions.', languages.en)),
     rdf.quad(meeting.Meeting, schema.description, rdf.literal('Een vergadering is een bijeenkomst waar mensen dingen bespreken en belsuiten nemen.', languages.nl)),
     rdf.quad(meeting.Meeting, schema.image, rdf.namedNode('http://fontawesome.io/icon/calendar')),
 
     rdf.quad(meeting.AgendaItem, rdfx.type, rdfs.Class),
+    rdf.quad(meeting.AgendaItem, rdfs.label, rdf.literal('Tagesordnungspunkt', languages.de)),
     rdf.quad(meeting.AgendaItem, rdfs.label, rdf.literal('Agenda Item', languages.en)),
     rdf.quad(meeting.AgendaItem, rdfs.label, rdf.literal('Agendapunt', languages.nl)),
     rdf.quad(meeting.AgendaItem, rdfs.subClassOf, schema.Thing),
+    rdf.quad(meeting.AgendaItem, schema.description, rdf.literal('Ein Tagesordnungspunkt ist ein Thema, das während einer Sitzung diskutiert wird.', languages.de)),
     rdf.quad(meeting.AgendaItem, schema.description, rdf.literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
     rdf.quad(meeting.AgendaItem, schema.description, rdf.literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
     rdf.quad(meeting.AgendaItem, schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
@@ -376,54 +382,57 @@ export default async function generateLRS(
     rdf.quad(schema.name, rdfx.type, rdfx.Property),
 
     rdf.quad(argu.applyLink, rdfx.type, rdfx.Property),
+    rdf.quad(argu.applyLink, rdfs.label, rdf.literal('Link', languages.de)),
     rdf.quad(argu.applyLink, rdfs.label, rdf.literal('Link', languages.en)),
     rdf.quad(argu.applyLink, rdfs.label, rdf.literal('Link', languages.nl)),
 
     rdf.quad(ontola.destroyAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Löschen', languages.de)),
     rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Delete', languages.en)),
     rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Verwijderen', languages.nl)),
 
     rdf.quad(ontola.publishAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.publishAction, rdfs.label, rdf.literal('Veröffentlichen', languages.de)),
     rdf.quad(ontola.publishAction, rdfs.label, rdf.literal('Publish', languages.en)),
     rdf.quad(ontola.publishAction, rdfs.label, rdf.literal('Publiceren', languages.nl)),
 
     rdf.quad(argu.invitee, rdfx.type, rdfx.Property),
+    rdf.quad(argu.invitee, rdfs.label, rdf.literal('Eingeladener', languages.de)),
     rdf.quad(argu.invitee, rdfs.label, rdf.literal('Invitee', languages.en)),
     rdf.quad(argu.invitee, rdfs.label, rdf.literal('Uitgenodigde', languages.nl)),
 
     rdf.quad(ontola.makePrimaryAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Primär machen', languages.de)),
     rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Make primary', languages.en)),
     rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Maak primair', languages.nl)),
 
     rdf.quad(ontola.relevance, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.relevance, rdfs.label, rdf.literal('Relevanz', languages.de)),
     rdf.quad(ontola.relevance, rdfs.label, rdf.literal('Relevance', languages.en)),
     rdf.quad(ontola.relevance, rdfs.label, rdf.literal('Relevantie', languages.nl)),
 
     rdf.quad(argu.opened, rdfx.type, rdfx.Property),
+    rdf.quad(argu.opened, rdfs.label, rdf.literal('Geöffnet', languages.de)),
     rdf.quad(argu.opened, rdfs.label, rdf.literal('Opened', languages.en)),
     rdf.quad(argu.opened, rdfs.label, rdf.literal('Geopend', languages.nl)),
 
     rdf.quad(ontola.redirectUrl, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.redirectUrl, rdfs.label, rdf.literal('Weiterleiten zu', languages.de)),
     rdf.quad(ontola.redirectUrl, rdfs.label, rdf.literal('Redirect to', languages.en)),
     rdf.quad(ontola.redirectUrl, rdfs.label, rdf.literal('Redirect naar', languages.nl)),
 
     rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
-    rdf.quad(
-      ontola.sendConfirmationAction,
-      rdfs.label,
-      rdf.literal('Confirmation link', languages.en),
-    ),
-    rdf.quad(
-      ontola.sendConfirmationAction,
-      rdfs.label,
-      rdf.literal('Bevestigingslink', languages.nl),
-    ),
+    rdf.quad(ontola.sendConfirmationAction, rdfs.label, rdf.literal('Bestätigungslink', languages.de)),
+    rdf.quad(ontola.sendConfirmationAction, rdfs.label, rdf.literal('Confirmation link', languages.en)),
+    rdf.quad(ontola.sendConfirmationAction, rdfs.label, rdf.literal('Bevestigingslink', languages.nl)),
 
     rdf.quad(ontola.updateAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Bearbeiten', languages.de)),
     rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Edit', languages.en)),
     rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Bewerken', languages.nl)),
 
     rdf.quad(argu.usages, rdfx.type, rdfx.Property),
+    rdf.quad(argu.usages, rdfs.label, rdf.literal('Gebraucht', languages.de)),
     rdf.quad(argu.usages, rdfs.label, rdf.literal('Used', languages.en)),
     rdf.quad(argu.usages, rdfs.label, rdf.literal('Gebruikt', languages.nl)),
   ];
