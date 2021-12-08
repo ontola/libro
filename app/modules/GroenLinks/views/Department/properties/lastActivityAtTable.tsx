@@ -25,7 +25,6 @@ const LastActivityAtTableRow: FC<LastActivityAtTableRowProps> = ({
 
 LastActivityAtTableRow.type = [
   teamGL.Department,
-  teamGL.OnlineCampaigner,
   teamGL.Street,
 ];
 

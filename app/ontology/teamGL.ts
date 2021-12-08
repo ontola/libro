@@ -8,7 +8,6 @@ export default {
   /* classes */
   // eslint-disable-next-line sort-keys
   Address: teamGL('Address'),
-  AppTeam: teamGL('AppTeam'),
   Badge: teamGL('Badge'),
   ContactedAction: teamGL('ContactedAction'),
   DashboardPage: teamGL('DashboardPage'),
@@ -20,7 +19,6 @@ export default {
   Group: teamGL('Group'),
   NewVolunteer: teamGL('NewVolunteer'),
   NotAvailableAction: teamGL('NotAvailableAction'),
-  OnlineCampaigner: teamGL('OnlineCampaigner'),
   Participant: teamGL('Participant'),
   PostalCode: teamGL('PostalCode'),
   PotentialParticipant: teamGL('PotentialParticipant'),
@@ -61,7 +59,6 @@ export default {
   inactiveVolunteersRatioTrend: teamGL('inactiveVolunteersRatioTrend'),
   lastName: teamGL('lastVisitedAt'),
   lastVisitedAt: teamGL('lastVisitedAt'),
-  leader: teamGL('leader'),
   maxPriority: teamGL('maxPriority'),
   meanPriority: teamGL('meanPriority'),
   memberships: teamGL('memberships'),
@@ -78,7 +75,6 @@ export default {
   priority: teamGL('priority'),
   remarks: teamGL('remarks'),
   result: teamGL('result'),
-  searchLink: teamGL('searchLink'),
   signedUp: teamGL('signedUp'),
   signedUpAt: teamGL('signedUpAt'),
   source: teamGL('source'),

@@ -21,7 +21,7 @@ const Email = ({ linkedProp }: PropertyProps) => (
 
 export default LinkedRenderStore.registerRenderer(
   Email,
-  [teamGL.Volunteer, teamGL.OnlineCampaigner],
+  teamGL.Volunteer,
   schema.email,
   allTopologiesExcept(tableRowTopology),
 );

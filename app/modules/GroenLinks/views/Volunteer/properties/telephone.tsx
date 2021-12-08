@@ -25,7 +25,7 @@ const Telephone = ({ linkedProp }: PropertyProps) => (
 
 export default LinkedRenderStore.registerRenderer(
   Telephone,
-  [teamGL.Volunteer, teamGL.OnlineCampaigner],
+  teamGL.Volunteer,
   teamGL.telephone,
   allTopologiesExcept(tableRowTopology),
 );
