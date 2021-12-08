@@ -2,7 +2,6 @@ import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { ComponentRegistration } from 'link-lib';
 import {
-  FC,
   MapDataToPropsParam,
   register,
   value,
@@ -14,7 +13,6 @@ import CompAttachmentPreview from './components/AttachmentPreview';
 import CompAttributeListItem from './components/AttributeListItem';
 import CompBlurButton from './components/BlurButton';
 import CompBreadcrumbsBreadcrumb from './components/Breadcrumbs/Breadcrumb';
-import CompBreadcrumbsBreadcrumbsBar from './components/Breadcrumbs/BreadcrumbsBar';
 import CompButton from './components/Button';
 import CompButtonWithFeedback from './components/ButtonWithFeedback';
 import CompCardCardActions from './components/Card/CardActions';
@@ -52,11 +50,10 @@ import CompInputFileInput from './components/Input/FileInput';
 import CompInputInput from './components/Input/Input';
 import CompLDLink from './components/LDLink';
 import CompLink from './components/Link';
-import CompLinkLinkLabel from './components/Link/LinkLabel';
 import CompLinkDuo from './components/LinkDuo';
+import CompLinkLinkLabel from './components/Link/LinkLabel';
 import CompLinkedDetailDate from './components/LinkedDetailDate';
 import CompLoading from './components/Loading';
-import CompMarkdown from './components/Markdown';
 import CompMenuItem from './components/MenuItem';
 import CompMenuSectionLabel from './components/MenuSectionLabel';
 import CompMetadata from './components/Metadata';
@@ -69,7 +66,6 @@ import CompNavbarLinkNavbarLinkLink from './components/NavbarLink/NavbarLinkLink
 import CompNetworkStatusIndicator from './components/NetworkStatusIndicator';
 import CompOmniform from './components/Omniform';
 import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
-import CompOverlayContainer from './components/OverlayContainer';
 import { PageHeader as CompPageHeader } from './components/PageHeader';
 import CompPageRow from './components/PageRow';
 import CompProgress from './components/Progress';
@@ -121,7 +117,7 @@ const childLiMap = {
 };
 
 export interface ComponentMap {
-  [k: number]: [FC, MapDataToPropsParam] | [FC];
+  [k: number]: [React.FC<any>, MapDataToPropsParam] | [React.FC<any>];
 }
 
 const childTypographyMap = {
@@ -129,13 +125,12 @@ const childTypographyMap = {
   align: value(elements.align),
 };
 
-export const componentMap = {
+export const componentMap: ComponentMap = {
   [rdf.id(components.ActionButton)]: [CompActionButton],
   [rdf.id(components.AttachmentPreview)]: [CompAttachmentPreview],
   [rdf.id(components.AttributeListItem)]: [CompAttributeListItem],
   [rdf.id(components.BlurButton)]: [CompBlurButton],
   [rdf.id(components.BreadcrumbsBreadcrumb)]: [CompBreadcrumbsBreadcrumb],
-  [rdf.id(components.BreadcrumbsBreadcrumbsBar)]: [CompBreadcrumbsBreadcrumbsBar],
   [rdf.id(components.Button)]: [CompButton, {
     action: argu.ns('action'),
     children: value(schema.text),
@@ -198,7 +193,6 @@ export const componentMap = {
   [rdf.id(components.LinkLinkLabel)]: [CompLinkLinkLabel],
   [rdf.id(components.LinkedDetailDate)]: [CompLinkedDetailDate],
   [rdf.id(components.Loading)]: [CompLoading],
-  [rdf.id(components.Markdown)]: [CompMarkdown],
   [rdf.id(components.MenuItem)]: [CompMenuItem],
   [rdf.id(components.MenuSectionLabel)]: [CompMenuSectionLabel],
   [rdf.id(components.Metadata)]: [CompMetadata],
@@ -211,7 +205,6 @@ export const componentMap = {
   [rdf.id(components.NetworkStatusIndicator)]: [CompNetworkStatusIndicator],
   [rdf.id(components.Omniform)]: [CompOmniform],
   [rdf.id(components.OmniformOmniformPreview)]: [CompOmniformOmniformPreview],
-  [rdf.id(components.OverlayContainer)]: [CompOverlayContainer],
   [rdf.id(components.PageHeader)]: [CompPageHeader],
   [rdf.id(components.PageRow)]: [CompPageRow],
   [rdf.id(components.Progress)]: [CompProgress],
@@ -231,7 +224,7 @@ export const componentMap = {
 
 export const componentRegistrations = (): Array<Array<ComponentRegistration<ComponentType<any>>>> => (
   Object
-    .entries((componentMap as unknown as ComponentMap))
+    .entries((componentMap))
     .map(([id, [comp, propMap]]) => {
       comp.type = rdf.fromId(id);
       comp.topology = allTopologies;

@@ -4,24 +4,24 @@ import {
   FC,
   Property,
   Resource,
+  array,
   register,
+  useBooleans,
   useGlobalIds,
-  useLRS,
-  useProperty,
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
-import { seqToArr } from '../../helpers/data';
+import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const PropertyQuery: FC = () => {
-  const [path] = useGlobalIds(sh.path);
-  const [targetNode] = useProperty(sh.targetNode);
+  const properties = useGlobalIds(array(sh.path));
+  const [targetNode] = useIds(sh.targetNode);
+  const [forceRender] = useBooleans(ll.forceRender);
 
-  const lrs = useLRS();
-  const properties = seqToArr(lrs, [], path).reverse();
-  const query = properties.reduce(
+  const query = properties.slice().reverse().reduce(
     (child: JSX.Element | null, label: NamedNode) => {
       if (child) {
         return (
@@ -31,7 +31,12 @@ const PropertyQuery: FC = () => {
         );
       }
 
-      return <Property label={label} />;
+      return (
+        <Property
+          forceRender={forceRender}
+          label={label}
+        />
+      );
     },
     null,
   );

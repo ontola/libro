@@ -160,8 +160,10 @@ export default {
   topology: ontola('topology'),
   trashAction: ontola('trashAction'),
   updateAction: ontola('updateAction'),
+  view: ontola('view'),
   widgetResource: ontola('widgetResource'),
   widgetSize: ontola('widgetSize'),
   widgets: ontola('widgets'),
+  wrapper: ontola('wrapper'),
   zoomLevel: ontola('zoomLevel'),
 };

@@ -1,52 +1,22 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  PropertyProps,
+  register,
+} from 'link-redux';
 import React from 'react';
 
-import Collection from '../../../components/Collection';
-import Columns from '../../../components/Columns';
+import ArgumentColumns from '../../../components/Arguments/ArgumentColumns';
 import argu from '../../../ontology/argu';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
-import { ListDirection } from '../../../topologies/List';
+import Container from '../../../topologies/Container';
 import { pageTopology } from '../../../topologies/Page';
+import { tabPaneTopology } from '../../../topologies/TabPane';
 
-export interface ArgumentsProps extends ArgumentColumnsProps{
-  linkedProp: SomeTerm;
-}
-
-interface ArgumentColumnsProps {
-  pageSize: number;
-  subject: NamedNode;
-}
-
-const ArgumentColumns = ({
-  pageSize,
-  subject,
-}: ArgumentColumnsProps): JSX.Element => (
-  <Columns>
-    <Collection
-      renderWhenEmpty
-      direction={ListDirection.Column}
-      key="pro"
-      label={argu.proArguments}
-      pageSize={pageSize}
-      to={subject}
-    />
-    <Collection
-      renderWhenEmpty
-      direction={ListDirection.Column}
-      key="con"
-      label={argu.conArguments}
-      pageSize={pageSize}
-      to={subject}
-    />
-  </Columns>
-);
-
-const Arguments: FC<ArgumentsProps> = (props) =>
-  <ArgumentColumns {...props} />;
+const Arguments: FC<PropertyProps> = () =>
+  <ArgumentColumns />;
 
 Arguments.type = schema.Thing;
 
@@ -54,9 +24,9 @@ Arguments.property = argu.arguments;
 
 Arguments.topology = allTopologiesExcept(cardAppendixTopology, pageTopology);
 
-const ArgumentsCardAppendix: FC<ArgumentsProps> = (props) => (
+const ArgumentsCardAppendix: FC<PropertyProps> = () => (
   <CardRow backdrop>
-    <ArgumentColumns {...props} />
+    <ArgumentColumns />
   </CardRow>
 );
 
@@ -66,7 +36,20 @@ ArgumentsCardAppendix.property = argu.arguments;
 
 ArgumentsCardAppendix.topology = cardAppendixTopology;
 
+const ArgumentsTabPane: FC<PropertyProps> = () => (
+  <Container>
+    <ArgumentColumns />
+  </Container>
+);
+
+ArgumentsTabPane.type = schema.Thing;
+
+ArgumentsTabPane.property = argu.arguments;
+
+ArgumentsTabPane.topology = tabPaneTopology;
+
 export default [
   register(Arguments),
   register(ArgumentsCardAppendix),
+  register(ArgumentsTabPane),
 ];
