@@ -35,7 +35,6 @@ const CloseDialogButton = ({
 
 const CollectionDialog: FC<CollectionDialogProps> = ({ onDone, ...props }) => (
   <CollectionProvider
-    omniform
     renderWhenEmpty
     headerButtons={<CloseDialogButton onDone={onDone} />}
     {...props}

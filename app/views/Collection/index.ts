@@ -1,4 +1,3 @@
-import CollectionContainer from './CollectionContainer';
 import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionDefault from './CollectionDefault';
 import CollectionDialog from './CollectionDialog';
@@ -27,7 +26,6 @@ import './Collection.scss';
 export default [
   ...TotalItems,
   CollectionCardAppendix,
-  CollectionContainer,
   CollectionDialog,
   CollectionInline,
   ...CollectionFrame,
