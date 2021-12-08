@@ -51,7 +51,7 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
   return (
     <FieldHelper
       error={touched ? error : undefined}
-      helperText={helperText ?? requiredHelper}
+      helperText={(helperText?.length || 0) > 0 ? helperText : requiredHelper}
       right={renderCharCounter && maxLength && value && !isJSONLDObject(value) ? (
         <CharCounter
           maxLength={maxLength}
