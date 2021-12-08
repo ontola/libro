@@ -1,4 +1,7 @@
+import * as schema from '@ontologies/schema';
 import {
+  FC,
+  Property,
   Resource,
   register,
 } from 'link-redux';
@@ -11,15 +14,17 @@ import { CollectionViewTypes } from '../CollectionPage/types';
 
 import { CollectionTypes } from './types';
 
-const CollectionFullPage = (props: Record<string, unknown>) => (
+const CollectionFullPage: FC = ({
+  subject,
+}) => (
   <React.Fragment>
     <Metadata />
     <FullResource>
+      <Property label={schema.isPartOf} />
       <Resource
         redirectPagination
-        renderPartOf
         renderWhenEmpty
-        {...props}
+        subject={subject}
       />
     </FullResource>
   </React.Fragment>

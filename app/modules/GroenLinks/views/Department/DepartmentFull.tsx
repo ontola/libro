@@ -18,47 +18,40 @@ import Container from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import { fullResourceTopology } from '../../../../topologies/FullResource';
 
-interface DepartmentFullProps {
-  renderPartOf?: boolean;
-}
-
-const DepartmentFull = ({ renderPartOf }: DepartmentFullProps) => {
+const DepartmentFull = () => {
   const postalRanges = useProperty(teamGL.postalRanges, { returnType: ReturnType.AllLiterals });
 
   return (
-    <React.Fragment>
-      <Container>
-        {renderPartOf && <Property label={schema.isPartOf} />}
-        <Property label={argu.trashedAt} />
-        <CardMain data-test="Thing-thing">
-          <CardContent endSpacing>
-            <HeaderWithMenu
-              menu={<Property label={ontola.actionsMenu} />}
-            >
-              <Property label={schema.name} />
-            </HeaderWithMenu>
-            <ContentDetails>
-              <Property label={teamGL.totalNewVolunteersCount} />
-              <Property label={teamGL.totalVolunteersCount} />
-              <Property label={teamGL.inactiveVolunteersRatio} />
-              <Property label={teamGL.activeVolunteersRatio} />
-              <Property label={teamGL.veryActiveVolunteersRatio} />
-              <Property label={teamGL.totalFutureEventsCount} />
-              <Property label={teamGL.totalGroupsCount} />
-              <LinkedDetailDate />
-            </ContentDetails>
-            <div>
-              <span>
-                Postcodes:
-                {' '}
-              </span>
-              {postalRanges.join(', ')}
-            </div>
-          </CardContent>
-        </CardMain>
-        <Property label={ontola.tabsMenu} />
-      </Container>
-    </React.Fragment>
+    <Container>
+      <Property label={argu.trashedAt} />
+      <CardMain data-test="Thing-thing">
+        <CardContent endSpacing>
+          <HeaderWithMenu
+            menu={<Property label={ontola.actionsMenu} />}
+          >
+            <Property label={schema.name} />
+          </HeaderWithMenu>
+          <ContentDetails>
+            <Property label={teamGL.totalNewVolunteersCount} />
+            <Property label={teamGL.totalVolunteersCount} />
+            <Property label={teamGL.inactiveVolunteersRatio} />
+            <Property label={teamGL.activeVolunteersRatio} />
+            <Property label={teamGL.veryActiveVolunteersRatio} />
+            <Property label={teamGL.totalFutureEventsCount} />
+            <Property label={teamGL.totalGroupsCount} />
+            <LinkedDetailDate />
+          </ContentDetails>
+          <div>
+            <span>
+              Postcodes:
+              {' '}
+            </span>
+            {postalRanges.join(', ')}
+          </div>
+        </CardContent>
+      </CardMain>
+      <Property label={ontola.tabsMenu} />
+    </Container>
   );
 };
 

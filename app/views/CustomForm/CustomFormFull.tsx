@@ -18,16 +18,9 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { defaultMenus } from '../common';
 
-interface CustomFormFullProps {
-  renderPartOf: boolean;
-}
-
-const CustomFormFull: FC<CustomFormFullProps> = ({
-  renderPartOf,
-}) => (
+const CustomFormFull: FC = () => (
   <React.Fragment>
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />

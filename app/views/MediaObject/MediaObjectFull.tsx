@@ -6,21 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { parentProps } from '../../ontology/app';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 import './MediaObjectPage.scss';
 
-interface PropTypes {
-  renderPartOf: boolean;
-}
-
-const MediaObjectFull: FC<PropTypes> = ({
-  renderPartOf,
-}) => (
+const MediaObjectFull: FC = () => (
   <Container>
-    {renderPartOf && <Property label={parentProps} />}
     <Property label={schema.contentUrl} />
   </Container>
 );

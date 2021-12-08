@@ -1,5 +1,4 @@
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -26,14 +25,7 @@ import Grid from '../../topologies/Grid';
 import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 
-interface ProjectFullProps {
-  currentPhase: SomeNode;
-  phases: SomeNode;
-  renderPartOf: boolean;
-}
-
-const ProjectFull: FC<ProjectFullProps> = ({
-  renderPartOf,
+const ProjectFull: FC = ({
   subject,
 }) => {
   const location = useLocation();
@@ -48,7 +40,6 @@ const ProjectFull: FC<ProjectFullProps> = ({
   return (
     <React.Fragment>
       <Container>
-        {renderPartOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
         <Property
           label={ontola.publishAction}

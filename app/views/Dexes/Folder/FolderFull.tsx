@@ -2,7 +2,6 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  LinkedPropType,
   register,
   useDataFetching,
   useFindSubject,
@@ -21,11 +20,7 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 
 import UploadTarget from './UploadTarget';
 
-interface FolderFullProps {
-  renderPartOf: LinkedPropType;
-}
-
-const FolderFull: FC<FolderFullProps> = ({ renderPartOf }) => {
+const FolderFull: FC = () => {
   const { c, p } = useViewBuilderToolkit();
   const createActions = useGlobalIds(ontola.createAction);
   useDataFetching(createActions);
@@ -38,7 +33,6 @@ const FolderFull: FC<FolderFullProps> = ({ renderPartOf }) => {
   return (
     c(components.ResourceBoundary, [
       c(containerTopology, [
-        renderPartOf && p(schema.isPartOf),
         entries && (
           c(components.CollectionProvider, { subject: entries }, [
             c(containerHeaderTopology, { float: p(dexes.entries, c(components.HeaderFloat)) }, [

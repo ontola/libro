@@ -16,7 +16,6 @@ const styles = createStyles((theme: LibroTheme) => ({
   breadcrumbsBar: {
     backgroundColor: theme.palette.grey.xxLight,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    marginBottom: '1rem',
     position: 'relative',
     top: '-1rem',
     width: '100%',

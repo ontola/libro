@@ -11,14 +11,12 @@ import React from 'react';
 import AttributeListItem from '../../../components/AttributeListItem';
 import CardContent from '../../../components/Card/CardContent';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
-import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import ontola from '../../../ontology/ontola';
 import rivm from '../../../ontology/rivm';
 import ActionsBar from '../../../topologies/ActionsBar';
 import AttributeList from '../../../topologies/AttributeList';
-import CardAppendix from '../../../topologies/Card/CardAppendix';
 import CardMain from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';
 import Container from '../../../topologies/Container';
@@ -26,16 +24,9 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
-interface MeasureFullProps {
-  renderPartOf: boolean;
-}
-
-const MeasureFull: FC<MeasureFullProps> = ({
-  renderPartOf,
-}) => (
+const MeasureFull: FC = () => (
   <React.Fragment>
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
@@ -81,12 +72,6 @@ const MeasureFull: FC<MeasureFullProps> = ({
             onLoad={() => null}
           />
         </ActionsBar>
-        <CardAppendix>
-          <Property
-            forceRender
-            label={app.omniform}
-          />
-        </CardAppendix>
       </CardMain>
     </Container>
     <Container>

@@ -25,53 +25,45 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 import { messages } from '../messages';
 
-interface DatasetFullProps {
-  renderPartOf: boolean;
-}
-
-const DatasetFull: FC<DatasetFullProps> = ({
-  renderPartOf,
+const DatasetFull: FC = ({
   subject,
 }) => (
-  <React.Fragment>
-    <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
-      <CardMain>
-        <DetailsBar right={[defaultMenus]}>
-          <Property label={schema.creator} />
-          <Property label={rdfx.type} />
-          <LinkedDetailDate />
-        </DetailsBar>
-        <CardContent>
-          <Property label={dcterms.title} />
-          <Property label={dcterms.description} />
-        </CardContent>
-        <CardContent>
-          <AttributeList>
-            <AttributeListItem label={dcterms.license} />
-            <AttributeListItem label={dcat.theme} />
-          </AttributeList>
-          <div>
-            <Button
-              href={`https://dexes.eu/resolve?uri=${encodeURIComponent(subject.value)}`}
-              icon="external-link"
-            >
-              <FormattedMessage {...messages.showInDexes} />
-            </Button>
-          </div>
-        </CardContent>
-        <CardContent noSpacing>
-          <Heading>
-            <Resource subject={dcat.distribution} />
-          </Heading>
-        </CardContent>
-        <Property
-          label={dcat.distribution}
-          limit={Infinity}
-        />
-      </CardMain>
-    </Container>
-  </React.Fragment>
+  <Container>
+    <CardMain>
+      <DetailsBar right={[defaultMenus]}>
+        <Property label={schema.creator} />
+        <Property label={rdfx.type} />
+        <LinkedDetailDate />
+      </DetailsBar>
+      <CardContent>
+        <Property label={dcterms.title} />
+        <Property label={dcterms.description} />
+      </CardContent>
+      <CardContent>
+        <AttributeList>
+          <AttributeListItem label={dcterms.license} />
+          <AttributeListItem label={dcat.theme} />
+        </AttributeList>
+        <div>
+          <Button
+            href={`https://dexes.eu/resolve?uri=${encodeURIComponent(subject.value)}`}
+            icon="external-link"
+          >
+            <FormattedMessage {...messages.showInDexes} />
+          </Button>
+        </div>
+      </CardContent>
+      <CardContent noSpacing>
+        <Heading>
+          <Resource subject={dcat.distribution} />
+        </Heading>
+      </CardContent>
+      <Property
+        label={dcat.distribution}
+        limit={Infinity}
+      />
+    </CardMain>
+  </Container>
 );
 
 DatasetFull.type = dexes.Dataset;

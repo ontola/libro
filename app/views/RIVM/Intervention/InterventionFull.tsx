@@ -13,14 +13,12 @@ import CardContent from '../../../components/Card/CardContent';
 import CardDivider from '../../../components/Card/CardDivider';
 import Heading from '../../../components/Heading';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
-import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
 import ontola from '../../../ontology/ontola';
 import rivm from '../../../ontology/rivm';
 import ActionsBar from '../../../topologies/ActionsBar';
 import AttributeList from '../../../topologies/AttributeList';
-import CardAppendix from '../../../topologies/Card/CardAppendix';
 import CardMain from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';
 import Container from '../../../topologies/Container';
@@ -28,16 +26,9 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
-interface InterventionFullProps {
-  renderPartOf: boolean;
-}
-
-const InterventionFull: FC<InterventionFullProps> = ({
-  renderPartOf,
-}) => (
+const InterventionFull: FC = () => (
   <React.Fragment>
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
@@ -204,12 +195,6 @@ const InterventionFull: FC<InterventionFullProps> = ({
             onLoad={() => null}
           />
         </ActionsBar>
-        <CardAppendix>
-          <Property
-            forceRender
-            label={app.omniform}
-          />
-        </CardAppendix>
       </CardMain>
     </Container>
     <Container>

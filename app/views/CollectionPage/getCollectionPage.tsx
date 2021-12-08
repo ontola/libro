@@ -16,7 +16,6 @@ interface CollectionPageProps {
   collectionDisplay?: NamedNode;
   insideCollection: boolean;
   redirectPagination: boolean;
-  renderPartOf: boolean;
 }
 
 export default function getCollectionPage(

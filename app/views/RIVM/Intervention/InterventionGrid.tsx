@@ -20,11 +20,7 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import AttributeList from '../../../topologies/AttributeList';
 import { gridTopology } from '../../../topologies/Grid';
 
-interface InterventionGridProps {
-  renderPartOf: boolean;
-}
-
-const InterventionGrid: FC<InterventionGridProps> = ({ renderPartOf }) => (
+const InterventionGrid: FC = () => (
   <CardFixed>
     <LDLink>
       <Property label={ontola.coverPhoto} />
@@ -60,7 +56,6 @@ const InterventionGrid: FC<InterventionGridProps> = ({ renderPartOf }) => (
         hideName
         label={schema.creator}
       />
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <LinkedDetailDate />
       <Property label={argu.pinnedAt} />
       <Property

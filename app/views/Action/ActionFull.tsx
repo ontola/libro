@@ -20,16 +20,11 @@ import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
-interface ActionFullProps extends ActionProps {
-  renderPartOf: boolean;
-}
-
-const ActionFull: FC<ActionFullProps> = ({
+const ActionFull: FC<ActionProps> = ({
   appendix,
   sessionStore,
   onCancel,
   onDone,
-  renderPartOf,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [object] = useProperty(schema.object);
@@ -40,7 +35,6 @@ const ActionFull: FC<ActionFullProps> = ({
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return (
       <Container>
-        {renderPartOf && <Property label={schema.isPartOf} />}
         <CardMain>
           <CardContent endSpacing>
             <Property label={schema.name} />
@@ -56,7 +50,6 @@ const ActionFull: FC<ActionFullProps> = ({
     <React.Fragment>
       <Metadata />
       <Container>
-        {renderPartOf && <Property label={schema.isPartOf} />}
         <CardMain>
           <CardContent>
             <Property label={schema.name} />

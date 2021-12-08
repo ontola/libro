@@ -1,7 +1,5 @@
-import * as schema from '@ontologies/schema';
 import {
   FC,
-  Property,
   Resource,
   register,
 } from 'link-redux';
@@ -14,7 +12,6 @@ import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const DataSetFull: FC = ({ subject }) => (
   <Container size={Size.Large}>
-    <Property label={schema.isPartOf} />
     <Resource subject={subject} />
   </Container>
 );

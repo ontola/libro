@@ -23,13 +23,7 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
-interface InviteFullProps {
-  renderPartOf: boolean;
-}
-
-const InviteFull: FC<InviteFullProps> = ({
-  renderPartOf,
-}) => {
+const InviteFull: FC = () => {
   const [assigner] = useProperty(dexes.assigner);
   const [offer] = useProperty(dexes.offer);
   const [file] = useFields(isNamedNode(offer) ? offer : undefined, dexes.file);
@@ -38,7 +32,6 @@ const InviteFull: FC<InviteFullProps> = ({
 
   return (
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}

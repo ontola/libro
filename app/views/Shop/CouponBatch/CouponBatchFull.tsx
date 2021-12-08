@@ -16,15 +16,8 @@ import { CardMain } from '../../../topologies/Card';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-export interface CouponBatchFullProps {
-  renderPartOf: boolean;
-}
-
-const CouponBatchFull: FC<CouponBatchFullProps> = ({
-  renderPartOf,
-}) => (
+const CouponBatchFull: FC = () => (
   <Container>
-    {renderPartOf && <Property label={schema.isPartOf} />}
     <CardMain>
       <CardContent endSpacing>
         <Property label={schema.name} />

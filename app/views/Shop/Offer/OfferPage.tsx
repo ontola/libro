@@ -1,8 +1,8 @@
 import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   FC,
+  Property,
   Resource,
   register,
   useProperty,
@@ -14,11 +14,9 @@ import { retrievePath } from '../../../helpers/iris';
 import FullResource from '../../../topologies/FullResource';
 import { pageTopology } from '../../../topologies/Page';
 
-interface OfferPageProps {
-  partOf: SomeNode;
-}
-
-const OfferPage: FC<OfferPageProps> = (props) => {
+const OfferPage: FC = ({
+  subject,
+}) => {
   const [partOf] = useProperty(schema.isPartOf);
 
   if (isNamedNode(partOf)) {
@@ -29,10 +27,8 @@ const OfferPage: FC<OfferPageProps> = (props) => {
 
   return (
     <FullResource>
-      <Resource
-        renderPartOf
-        {...props}
-      />
+      <Property label={schema.isPartOf} />
+      <Resource subject={subject} />
     </FullResource>
   );
 };

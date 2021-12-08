@@ -8,7 +8,6 @@ import {
 import React from 'react';
 
 import BreadcrumbsBar from '../../../components/Breadcrumbs/BreadcrumbsBar';
-import ontola from '../../../ontology/ontola';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { CollectionTypes } from '../types';
 
@@ -18,7 +17,10 @@ export interface IsPartOfProps {
 
 const IsPartOfPage: FC<IsPartOfProps> = ({ linkedProp }) => (
   <BreadcrumbsBar>
-    <Resource subject={linkedProp} />
+    <Resource
+      first
+      subject={linkedProp}
+    />
   </BreadcrumbsBar>
 );
 

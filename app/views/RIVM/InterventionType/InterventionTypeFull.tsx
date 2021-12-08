@@ -14,7 +14,6 @@ import AttributeListItem from '../../../components/AttributeListItem';
 import Button from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
-import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import meeting from '../../../ontology/meeting';
@@ -23,7 +22,6 @@ import rivm from '../../../ontology/rivm';
 import wdt from '../../../ontology/wdt';
 import ActionsBar from '../../../topologies/ActionsBar';
 import AttributeList from '../../../topologies/AttributeList';
-import CardAppendix from '../../../topologies/Card/CardAppendix';
 import CardMain from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';
 import Container from '../../../topologies/Container';
@@ -32,14 +30,9 @@ import { inlineTopology } from '../../../topologies/Inline';
 import { defaultMenus } from '../../common';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
-interface InterventionTypeFullProps {
-  renderPartOf?: boolean;
-}
-
-const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) => (
+const InterventionTypeFull: FC = () => (
   <React.Fragment>
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
@@ -97,12 +90,6 @@ const InterventionTypeFull: FC<InterventionTypeFullProps> = ({ renderPartOf }) =
             onLoad={() => null}
           />
         </ActionsBar>
-        <CardAppendix>
-          <Property
-            forceRender
-            label={app.omniform}
-          />
-        </CardAppendix>
       </CardMain>
     </Container>
     <Container>

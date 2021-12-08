@@ -1,7 +1,5 @@
-import * as schema from '@ontologies/schema';
 import {
   FC,
-  Property,
   Type,
   register,
 } from 'link-redux';
@@ -11,15 +9,8 @@ import argu from '../../ontology/argu';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-interface NoificationFullProps {
-  renderPartOf?: boolean;
-}
-
-const NotificationFull: FC<NoificationFullProps> = ({
-  renderPartOf,
-}) => (
+const NotificationFull: FC = () => (
   <Container>
-    {renderPartOf && <Property label={schema.isPartOf} />}
     <Type />
   </Container>
 );

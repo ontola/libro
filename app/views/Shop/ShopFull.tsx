@@ -21,14 +21,9 @@ import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
-interface BudgetFullProps {
-  renderPartOf: boolean;
-}
-
-const ShopFull: FC<BudgetFullProps> = ({ renderPartOf }): JSX.Element => (
+const ShopFull: FC = (): JSX.Element => (
   <React.Fragment>
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property
         label={ontola.publishAction}
         onLoad={() => null}

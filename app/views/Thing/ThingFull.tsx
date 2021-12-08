@@ -17,17 +17,12 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { listTopology } from '../../topologies/List';
 import { mainBodyTopology } from '../../topologies/MainBody';
 
-interface ThingFullProps {
-  renderPartOf: boolean;
-}
-
-const ThingFull: FC<ThingFullProps> = ({ renderPartOf }) => {
+const ThingFull: FC = () => {
   const { p, c } = useViewBuilderToolkit();
 
   return (
     c(components.ResourceBoundary, [
       c(containerTopology, [
-        renderPartOf && p(app.parent),
         p(argu.trashedAt),
         p(withoutLoading(ontola.publishAction)),
         c(mainBodyTopology, { 'data-test': 'Thing-thing' }, [

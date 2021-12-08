@@ -4,7 +4,6 @@ import rdf, {
   SomeTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   LaxNode,
@@ -38,7 +37,6 @@ export interface CollectionProps {
   hidePagination?: boolean;
   onItemClick?: () => void;
   redirectPagination?: boolean;
-  renderPartOf?: boolean;
   renderWhenEmpty?: boolean;
 }
 
@@ -111,7 +109,6 @@ const CollectionProvider = ({
   onItemClick,
   redirectPagination,
   renderWhenEmpty,
-  renderPartOf,
 }: CollectionProviderProps): JSX.Element | null => {
   const { subject } = useLinkRenderContext();
   const {
@@ -217,7 +214,6 @@ const CollectionProvider = ({
         wrapperProps={wrapperProps}
       >
         <Resource subject={currentCollection}>
-          {renderPartOf && <Property label={schema.isPartOf} />}
           <Property
             forceRender
             label={ontola.collectionFrame}

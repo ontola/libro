@@ -16,13 +16,8 @@ import CardMain from '../../../../topologies/Card/CardMain';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import { fullResourceTopology } from '../../../../topologies/FullResource';
 
-interface VolunteerFullProps {
-  renderPartOf: boolean;
-}
-
-const VolunteerFull = ({ renderPartOf }: VolunteerFullProps) => (
+const VolunteerFull = () => (
   <Container>
-    {renderPartOf && <Property label={schema.isPartOf} />}
     <CardMain>
       <CardContent endSpacing>
         <HeaderWithMenu

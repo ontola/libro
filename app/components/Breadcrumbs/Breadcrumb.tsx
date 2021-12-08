@@ -2,7 +2,6 @@ import React from 'react';
 
 import LDLink from '../LDLink';
 
-import './Breadcrumbs.scss';
 import breadcrumbStyles from './BreadcrumbStyles';
 
 interface PropTypes {

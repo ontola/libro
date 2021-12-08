@@ -1,4 +1,3 @@
-import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
@@ -15,15 +14,8 @@ import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { namePredicates } from '../../Thing/properties/name';
 
-interface DexesOfferFullProps {
-  renderPartOf: boolean;
-}
-
-const DexesOfferFull: FC<DexesOfferFullProps> = ({
-  renderPartOf,
-}) => (
+const DexesOfferFull: FC = () => (
   <Container>
-    {renderPartOf && <Property label={schema.isPartOf} />}
     <CardMain>
       <CardContent endSpacing>
         <Property label={namePredicates} />

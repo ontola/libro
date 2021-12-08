@@ -32,7 +32,6 @@ export const usePartialResourceCheck = (subject: SomeNode): boolean => {
 const PostalCodeFull = () => (
   <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
       <CardMain>
         <CardContent noSpacing>
           <Property label={schema.name} />

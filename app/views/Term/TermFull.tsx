@@ -15,16 +15,9 @@ import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import MainBody from '../../topologies/MainBody';
 
-interface TermFullProps {
-  renderPartOf: boolean;
-}
-
-const TermFull: FC<TermFullProps> = ({
-  renderPartOf,
-}) => (
+const TermFull: FC = () => (
   <React.Fragment>
     <Container>
-      {renderPartOf && <Property label={schema.isPartOf} />}
       <MainBody>
         <PageHeader
           detailsBarChildren={(
