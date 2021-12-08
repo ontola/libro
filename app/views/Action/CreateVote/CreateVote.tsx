@@ -180,17 +180,21 @@ const CreateVote: FC<CreateVoteProps> = ({
   const [parentType] = useIds(isPartOf, rdfx.type);
   const [count] = useFields(isPartOf, countAttribute(option));
 
-  const handleClick: () => Promise<any> = React.useCallback(() => (
-    execAction()
-      .then(openOmniform)
-      .catch((e) => {
-        if (e.response.status === HTTP_RETRY_WITH) {
-          return handleHTTPRetry(lrs, e, () => handleClick());
-        }
+  const handleClick: (event: any) => Promise<any> = React.useCallback((event) => {
+    event?.preventDefault();
 
-        return handle(e);
-      })
-  ), [lrs, execAction, openOmniform]);
+    return (
+      execAction()
+        .then(openOmniform)
+        .catch((e) => {
+          if (e.response.status === HTTP_RETRY_WITH) {
+            return handleHTTPRetry(lrs, e, handleClick);
+          }
+
+          return handle(e);
+        })
+    );
+  }, [lrs, execAction, openOmniform]);
 
   if (!target) {
     return null;

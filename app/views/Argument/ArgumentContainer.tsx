@@ -9,11 +9,11 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import CardHeader from '../../components/Card/CardHeader';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
-import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
@@ -40,11 +40,10 @@ const ArgumentContainer: FC<ArgumentConainerProps> = ({ highlighted, subject }):
       <Property label={ontola.coverPhoto} />
       <div className={classes.content}>
         <CardContent noSpacing>
-          <Property label={[schema.name, rdfs.label]} />
+          <CardHeader float={<Property label={ontola.favoriteAction} />}>
+            <Property label={[schema.name, rdfs.label]} />
+          </CardHeader>
           <Property label={[schema.text, schema.description, dbo.abstract]} />
-          <ActionsBar>
-            <Property label={ontola.favoriteAction} />
-          </ActionsBar>
         </CardContent>
       </div>
       <CardAppendix>

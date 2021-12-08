@@ -75,6 +75,9 @@ export default makeStyles<LibroTheme>((theme) => {
           },
           backgroundColor: color,
         },
+        '&$cardFloat': {
+          padding: '0 0.5em',
+        },
         '&$stretched': {
           alignItems: 'center',
           display: 'flex',
