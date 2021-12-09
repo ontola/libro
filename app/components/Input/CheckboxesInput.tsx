@@ -11,7 +11,7 @@ import useFieldOptions from '../../hooks/useFieldOptions';
 import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
-import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
+import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormContext, FormTheme } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
 import Spinner from '../Spinner';
@@ -145,7 +145,7 @@ const CheckboxesInput: React.FC = () => {
         subject={shIn}
         onLoad={() => null}
       >
-        <CollectionCreateActionButton />
+        <CollectionCreateButton />
       </Resource>
     </Select>
   );

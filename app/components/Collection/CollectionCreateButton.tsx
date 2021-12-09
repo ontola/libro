@@ -1,85 +1,92 @@
-import { isNode } from '@ontologies/core';
-import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
-  Property,
   Resource,
-  ReturnType,
   useDataFetching,
   useDataInvalidation,
   useIds,
   useLRS,
-  useResourceLinks,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage } from 'react-intl';
 
 import { entityIsLoaded, sort } from '../../helpers/data';
+import { useShowDialog } from '../../hooks/useShowDialog';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
+import { formMessages } from '../../translations/messages';
+import Button from '../Button';
 import TriggerButton, { Trigger } from '../DropdownMenu/TriggerButton';
-import { LoadingCardFloat } from '../Loading';
 
-import { useCollectionOptions } from './CollectionProvider';
+import { useFavoriteActions } from './lib/useFavoriteActions';
+import { useValidActions } from './lib/useValidActions';
 
 const ORDER = [
   '/participants/add_all',
   '/participants/new',
 ];
 
-const useFavoriteActions = (actions: SomeNode[], favorite: boolean) => {
-  const favoriteStatuses = useResourceLinks(
-    actions,
-    { favoriteStatus: ontola.favoriteAction },
-    { returnType: ReturnType.Literal },
-  );
+export enum TriggerType {
+  Icon = 'icon',
+  Text = 'text',
+}
 
-  return favoriteStatuses
-    .filter(({ favoriteStatus }) => !!favoriteStatus === favorite)
-    .map(({ subject }) => subject)
-    .filter(isNode);
-};
+interface CollectionCreateButtonProps {
+  trigger?: TriggerType;
+}
 
-const useValidActions = (actions: SomeNode[]) => {
-  const actionStatuses = useResourceLinks(actions, { status: schema.actionStatus });
-
-  return actionStatuses
-    .filter(({ status }) => status === schema.PotentialActionStatus)
-    .map(({ subject }) => subject)
-    .filter(isNode);
-};
-
-const trigger: Trigger = (props) => (
+const IconTrigger: Trigger = (props) => (
   <TriggerButton {...props}>
     <FontAwesome name="plus" />
   </TriggerButton>
 );
 
-const CollectionCreateActionButton: React.FC = () => {
+const TextTrigger: Trigger = ({
+  onClick,
+  anchorRef,
+}) => (
+  <Button
+    plain
+    buttonRef={anchorRef}
+    onClick={onClick}
+  >
+    <FormattedMessage {...formMessages.newTrigger} />
+  </Button>
+);
+
+const getTrigger = (type?: TriggerType) => {
+  switch (type) {
+  case TriggerType.Text:
+    return TextTrigger;
+  default:
+    return IconTrigger;
+  }
+};
+
+const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
+  trigger,
+}) => {
   const lrs = useLRS();
   const createActions = useIds(ontola.createAction);
   const validActions = useValidActions(createActions);
   const renderedActions = useFavoriteActions(validActions, false);
   useDataInvalidation(createActions);
   useDataFetching(createActions);
+  const showDialog = useShowDialog(createActions[0]?.value);
 
-  const { omniform } = useCollectionOptions();
+  const TriggerComponent = getTrigger(trigger);
 
   if (createActions.length > 1) {
     const freshAction = createActions.find((action) => !entityIsLoaded(lrs, action));
 
     if (freshAction) {
       return (
-        <Resource
-          subject={freshAction}
-          onLoad={LoadingCardFloat}
-        />
+        <Resource subject={freshAction} />
       );
     }
 
     if (renderedActions.length > 1) {
       return (
-        <Menu trigger={trigger}>
+        <Menu trigger={TriggerComponent}>
           {() => (
             renderedActions
               .sort(sort(ORDER))
@@ -99,12 +106,12 @@ const CollectionCreateActionButton: React.FC = () => {
   }
 
   return (
-    <Property
-      label={ontola.createAction}
-      omniform={omniform}
-      onLoad={LoadingCardFloat}
-    />
+    <TriggerComponent onClick={showDialog} />
   );
 };
 
-export default CollectionCreateActionButton;
+CollectionCreateButton.defaultProps = {
+  trigger: TriggerType.Icon,
+};
+
+export default CollectionCreateButton;

@@ -295,6 +295,9 @@
   "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
     "defaultMessage": "Die Nachricht ist zu lang ({length}/{maxLength})."
   },
+  "https://app.argu.co/i18n/forms/newTrigger": {
+    "defaultMessage": "Neu ..."
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "Antwort"
   },

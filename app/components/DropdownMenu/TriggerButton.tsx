@@ -1,11 +1,11 @@
 import IconButton from '@material-ui/core/IconButton';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 export interface TriggerButtonProps {
-  onClick: () => void;
-  anchorRef: React.RefObject<HTMLButtonElement>;
-  id: string;
-  open: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  anchorRef?: React.RefObject<HTMLButtonElement>;
+  id?: string;
+  open?: boolean;
 }
 
 export type Trigger = (triggerProps: TriggerButtonProps) => JSX.Element;

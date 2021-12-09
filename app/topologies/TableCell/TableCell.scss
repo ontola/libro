@@ -4,11 +4,6 @@
   padding: units('small', 'large');
   text-align: left;
 
-  .Button {
-    margin-left: -#{unit('large')};
-    margin-right: -#{unit('large')};
-  }
-
   .Heading {
     word-break: normal;
   }

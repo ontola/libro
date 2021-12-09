@@ -145,7 +145,6 @@ export default [
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
-      containerFloatTopology,
       detailsBarTopology,
       contentDetailsTopology,
       tableCellTopology,
@@ -155,7 +154,10 @@ export default [
     LoadingCardFloat,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
-    cardFloatTopology,
+    [
+      containerFloatTopology,
+      cardFloatTopology,
+    ],
   ),
   LinkedRenderStore.registerRenderer(
     LoadingButton,

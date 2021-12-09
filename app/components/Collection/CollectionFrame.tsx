@@ -19,6 +19,7 @@ import { LoadingCardFixed } from '../Loading';
 import Suspense from '../Suspense';
 import TableHeadCells from '../TableHeadCells';
 
+import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';
 import { CollectionFrameWrapper } from './CollectionFrameWrapper';
 import { useCollectionOptions } from './CollectionProvider';
 
@@ -100,7 +101,10 @@ const CollectionFrame = ({
             </tbody>
             <TableFooter>
               <TableFooterRow>
-                <TableFooterCell colSpan={columns?.length}>
+                <TableFooterCell colSpan={1}>
+                  <CollectionCreateButton trigger={TriggerType.Text} />
+                </TableFooterCell>
+                <TableFooterCell colSpan={(columns?.length || 1) - 1}>
                   <Property
                     forceRender
                     label={app.pagination}

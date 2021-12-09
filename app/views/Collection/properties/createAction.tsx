@@ -24,7 +24,7 @@ interface PropTypes {
   totalItems: Literal;
 }
 
-const CreateAction: FC<PropTypes> = ({
+const CollectionCreateAction: FC<PropTypes> = ({
   linkedProp,
   omniform,
   theme,
@@ -44,10 +44,10 @@ const CreateAction: FC<PropTypes> = ({
   );
 };
 
-CreateAction.type = as.Collection;
+CollectionCreateAction.type = as.Collection;
 
-CreateAction.property = ontola.createAction;
+CollectionCreateAction.property = ontola.createAction;
 
-CreateAction.topology = actionsBarTopology;
+CollectionCreateAction.topology = actionsBarTopology;
 
-export default register(CreateAction);
+export default register(CollectionCreateAction);

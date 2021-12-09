@@ -329,6 +329,10 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'Add',
     id: 'https://app.argu.co/i18n/forms/newLabel',
   },
+  newTrigger: {
+    defaultMessage: 'New ...',
+    id: 'https://app.argu.co/i18n/forms/newTrigger',
+  },
   noMatchingItems: {
     defaultMessage: 'No matching items',
     id: 'https://app.argu.co/i18n/forms/select/noMatchingItems',

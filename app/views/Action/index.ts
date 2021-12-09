@@ -10,7 +10,6 @@ import ActionInline from './ActionInline';
 import ActionMain from './ActionMain';
 import ActionNested from './ActionNested';
 import ActionTableCell from './ActionTableCell';
-import ActionTableRow from './ActionTableRow';
 import CreateAction from './CreateAction';
 import CreateSession from './CreateSession';
 import CreateVote from './CreateVote';
@@ -33,7 +32,6 @@ export default [
   ActionNested,
   ActionFull,
   ActionTableCell,
-  ActionTableRow,
   ActionWidget,
   ...ReadAction,
   FollowUpName,

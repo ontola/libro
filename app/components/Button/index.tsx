@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/styles';
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, RefObject } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -28,6 +28,7 @@ export interface ButtonProps {
   active?: boolean;
   /** Additional aria label */
   ariaLabel?: string;
+  buttonRef?: RefObject<HTMLButtonElement>;
   list?: boolean;
   cardFloat?: boolean;
   centered?: boolean;
@@ -84,6 +85,7 @@ const Button: React.FC<ButtonProps> = ({
   active,
   action,
   ariaLabel,
+  buttonRef,
   cardFloat,
   list,
   centered,
@@ -185,6 +187,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <BlurButton
+      buttonRef={buttonRef}
       data-test="Button-button"
       {...sharedProps}
     >

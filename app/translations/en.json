@@ -295,6 +295,9 @@
   "https://app.argu.co/i18n/forms/newLabel": {
     "defaultMessage": "Add"
   },
+  "https://app.argu.co/i18n/forms/newTrigger": {
+    "defaultMessage": "New ..."
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "response"
   },

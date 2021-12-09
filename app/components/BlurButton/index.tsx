@@ -1,4 +1,8 @@
-import React, { CSSProperties, MouseEvent } from 'react';
+import React, {
+  CSSProperties,
+  MouseEvent,
+  RefObject,
+} from 'react';
 
 type OnClickHandler = (e: MouseEvent<HTMLButtonElement>) => any;
 
@@ -15,6 +19,7 @@ const preventAfterClickOutline = (e: MouseEvent<HTMLButtonElement>, onClick: OnC
 };
 
 interface PropTypes {
+  buttonRef?: RefObject<HTMLButtonElement>
   className?: string;
   style?: CSSProperties;
   title?: string;
@@ -22,11 +27,13 @@ interface PropTypes {
 }
 
 const BlurButton: React.FC<PropTypes> = ({
+  buttonRef,
   children,
   onClick,
   ...props
 }) => (
   <button
+    ref={buttonRef}
     type="button"
     {...props}
     onClick={(e) => preventAfterClickOutline(e, onClick)}

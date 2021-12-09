@@ -293,6 +293,9 @@
   "https://app.argu.co/i18n/forms/newLabel": {
     "defaultMessage": "Toevoegen"
   },
+  "https://app.argu.co/i18n/forms/newTrigger": {
+    "defaultMessage": "Nieuw ..."
+  },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "reactie"
   },

@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import useFieldOptions from '../../hooks/useFieldOptions';
 import RadioGroup from '../../topologies/RadioGroup';
-import CollectionCreateActionButton from '../Collection/CollectionCreateActionButton';
+import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormContext } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
@@ -54,7 +54,7 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
         subject={shIn}
         onLoad={() => null}
       >
-        <CollectionCreateActionButton />
+        <CollectionCreateButton />
       </Resource>
     </React.Fragment>
   );

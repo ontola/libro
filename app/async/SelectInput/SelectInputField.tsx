@@ -20,7 +20,7 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import CollectionCreateActionButton from '../../components/Collection/CollectionCreateActionButton';
+import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
 import { FormContext, FormTheme } from '../../components/Form/Form';
 import { FormFieldContext } from '../../components/FormField/FormField';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
@@ -73,7 +73,7 @@ const SelectInputField: React.FC = () => {
       subject={fieldShape.shIn}
       onLoad={() => null}
     >
-      <CollectionCreateActionButton />
+      <CollectionCreateButton />
     </Resource>
   ), [fieldShape.shIn]);
   const handleInputValueChange = React.useCallback((_, newValue) => {

@@ -26,6 +26,7 @@ import { listTopology } from '../../../topologies/List';
 import { menuTopology } from '../../../topologies/Menu';
 import { pageTopology } from '../../../topologies/Page';
 import { tableCellTopology } from '../../../topologies/TableCell';
+import { tableFooterCellTopology } from '../../../topologies/TableFooterCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import { tabPaneTopology } from '../../../topologies/TabPane';
 import { invalidStatusIds } from '../../Thing/properties/omniform/helpers';
@@ -84,6 +85,7 @@ CreateActionButton.topology = allTopologiesExcept(
   pageTopology,
   tabPaneTopology,
   tableCellTopology,
+  tableFooterCellTopology,
   tableRowTopology,
 );
 

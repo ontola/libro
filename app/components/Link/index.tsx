@@ -40,6 +40,7 @@ export enum LinkTheme {
 export enum LinkFeature {
   Bold = 'bold',
   Centered = 'centered',
+  Subtle = 'subtle',
 }
 
 export type IsActiveCheck = (to: string) => (locationMatch: match<any> | null, location: Location) => boolean;

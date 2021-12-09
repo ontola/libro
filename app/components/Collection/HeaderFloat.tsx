@@ -1,3 +1,4 @@
+
 import {
   IconButton,
   makeStyles,
@@ -15,7 +16,7 @@ import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { collectionMessages } from '../../translations/messages';
 
-import CollectionCreateActionButton from './CollectionCreateActionButton';
+import CollectionCreateButton from './CollectionCreateButton';
 import CollectionFilterToggle, { CollectionFilterProps } from './CollectionFilterToggle';
 import { useCollectionOptions } from './CollectionProvider';
 
@@ -61,7 +62,7 @@ export const HeaderFloat = ({
             {renderPagination && <CollectionFilterToggle filterContainerRef={filterContainerRef} />}
             {renderPagination && <Property label={ontola.sortOptions} />}
             <Resource subject={originalCollection}>
-              <CollectionCreateActionButton />
+              <CollectionCreateButton />
             </Resource>
             {headerButtons}
           </React.Fragment>
