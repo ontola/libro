@@ -100,27 +100,23 @@ const usePageButtons = (): JSX.Element[] | null => {
       key,
       label,
       url,
-    }: PaginationButtonProps = {}) => {
-      const className = active ? 'Button--active' : undefined;
-
-      return (
-        <Button
-          small
-          ariaLabel={ariaLabel}
-          className={className}
-          disabled={disabled}
-          icon={icon}
-          key={`${key}-${subject.value}-page-switcher-${key}`}
-          theme={ButtonTheme.Pagination}
-          onClick={(e) => {
-            e.preventDefault();
-            setCollectionResource(rdf.namedNode(url));
-          }}
-        >
-          {label}
-        </Button>
-      );
-    };
+    }: PaginationButtonProps = {}) => (
+      <Button
+        small
+        active={active}
+        ariaLabel={ariaLabel}
+        disabled={disabled}
+        icon={icon}
+        key={`${key}-${subject.value}-page-switcher-${key}`}
+        theme={ButtonTheme.Pagination}
+        onClick={(e) => {
+          e.preventDefault();
+          setCollectionResource(rdf.namedNode(url));
+        }}
+      >
+        {label}
+      </Button>
+    );
 
     const singlePageButton = (page: number) => {
       currentPageUrl.searchParams.set(pageProp, page.toString());
@@ -128,7 +124,6 @@ const usePageButtons = (): JSX.Element[] | null => {
 
       return paginationButton({
         active: isCurrent,
-        disabled: isCurrent,
         key: page.toString(),
         label: page.toString(),
         url: currentPageUrl.toString(),
