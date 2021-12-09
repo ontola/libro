@@ -2,13 +2,17 @@
 
 .Table {
   &__wrapper {
-    max-height: 70vh;
     max-width: 100%;
-    overflow-x: auto;
   }
 
   &__table {
     width: 100%;
+
+    tbody {
+      display: block;
+      max-height: 70vh;
+      overflow-x: auto;
+    }
 
     td {
       a {
@@ -25,6 +29,13 @@
           color: color('grey', 'x-light');
         }
       }
+    }
+
+    thead,
+    tr {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
     }
 
     tr {
