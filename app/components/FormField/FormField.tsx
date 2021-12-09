@@ -3,9 +3,11 @@ import React, { FunctionComponent } from 'react';
 import { PermittedFormField } from '../../hooks/useFormField';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { containerTopology } from '../../topologies/Container';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import ResourceBoundary from '../ResourceBoundary';
+import { cardTopology } from '../../topologies/Card';
 
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldLabel from './FormFieldLabel';
@@ -17,6 +19,8 @@ import './FormField.scss';
 
 export const formFieldTopologies = [
   cardMainTopology,
+  cardTopology,
+  containerTopology,
   formFooterTopology,
   omniformFieldsTopology,
   flowTopology,

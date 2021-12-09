@@ -11,9 +11,6 @@
   "https://app.argu.co/i18n/academy/searchIn": {
     "defaultMessage": "Zoeken in {title}"
   },
-  "https://app.argu.co/i18n/actions/labels/save": {
-    "defaultMessage": "opslaan"
-  },
   "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": {
     "defaultMessage": "{count} ideeën"
   },
@@ -197,9 +194,6 @@
   "https://app.argu.co/i18n/errors/retryButton/label": {
     "defaultMessage": "Opnieuw proberen"
   },
-  "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
-    "defaultMessage": "Het is niet meer mogelijk om te reageren"
-  },
   "https://app.argu.co/i18n/expireable/states/closed/label": {
     "defaultMessage": "gesloten"
   },
@@ -298,6 +292,9 @@
   },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "reactie"
+  },
+  "https://app.argu.co/i18n/forms/omniform/header": {
+    "defaultMessage": "Wat vind jij?"
   },
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
     "defaultMessage": "Plaats een {type}..."

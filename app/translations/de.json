@@ -11,9 +11,6 @@
   "https://app.argu.co/i18n/academy/searchIn": {
     "defaultMessage": "Suche in {title}"
   },
-  "https://app.argu.co/i18n/actions/labels/save": {
-    "defaultMessage": "speichern"
-  },
   "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": {
     "defaultMessage": "{count} Ideen"
   },
@@ -199,9 +196,6 @@
   "https://app.argu.co/i18n/errors/retryButton/label": {
     "defaultMessage": "Versuchen Sie es erneut"
   },
-  "https://app.argu.co/i18n/expireable/states/closed/closedMessage": {
-    "defaultMessage": "Eine Antwort ist nicht mehr möglich"
-  },
   "https://app.argu.co/i18n/expireable/states/closed/label": {
     "defaultMessage": "geschlossen"
   },
@@ -300,6 +294,9 @@
   },
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": {
     "defaultMessage": "Antwort"
+  },
+  "https://app.argu.co/i18n/forms/omniform/header": {
+    "defaultMessage": "Was denken Sie?"
   },
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
     "defaultMessage": "Eine Antwort teilen..."

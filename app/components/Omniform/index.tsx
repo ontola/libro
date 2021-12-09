@@ -137,7 +137,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
     const footer = (loading: boolean): JSX.Element => (
       <FormFooter borderTop>
         <Property label={ll.actionBody} />
-        {types}
+        {types.length > 1 ? types : null}
         <FormFooterRight
           loading={loading}
           submitLabel={submitLabel}

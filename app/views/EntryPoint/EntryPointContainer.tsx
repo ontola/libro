@@ -1,28 +1,19 @@
 import * as schema from '@ontologies/schema';
 import {
-  Type,
+  FC,
+  Resource,
   register,
-  useProperty, 
 } from 'link-redux';
-import { PropTypes } from 'link-redux/dist-types/components/Type';
 import React from 'react';
 
-import { containerTopology } from '../../topologies/Container';
 import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 
-const EntryPointContainer = (props: PropTypes) => {
-  const [name] = useProperty(schema.name);
-  const typeProps = {
-    ...props,
-    name,
-  };
-
-  return(
-    <Card>
-      <Type {...typeProps} />
-    </Card>
-  );
-};
+const EntryPointContainer: FC = (props) => (
+  <Card>
+    <Resource {...props} />
+  </Card>
+);
 
 EntryPointContainer.type = schema.EntryPoint;
 

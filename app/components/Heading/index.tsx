@@ -40,7 +40,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   [HeadingVariant.Notice]: {
     color: theme.palette.grey[600],
     fontStyle: 'italic',
-    textAlign: 'center',
   },
   [HeadingVariant.Question]: {},
   [HeadingVariant.Semantic]: Object.entries(semanticColors).reduce((acc, [k, v]) => ({

@@ -341,6 +341,10 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'ok',
     id: 'https://app.argu.co/i18n/forms/actions/ok',
   },
+  omniformHeader: {
+    defaultMessage: 'What do you think?',
+    id: 'https://app.argu.co/i18n/forms/omniform/header',
+  },
   showMarkdownInstructions: {
     defaultMessage: 'Text formatting instructions',
     id: 'https://app.argu.co/i18n/forms/showMarkdownInstructions',

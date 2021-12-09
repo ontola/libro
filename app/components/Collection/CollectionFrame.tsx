@@ -41,6 +41,7 @@ const CollectionFrame = ({
     collectionDisplay,
     currentCollectionPages,
     columns,
+    depth,
   } = useCollectionOptions();
 
   const body = React.useMemo(() => (
@@ -144,6 +145,12 @@ const CollectionFrame = ({
           label={ontola.header}
         />
         {body}
+        {!depth && (
+          <Property
+            forceRender
+            label={app.omniform}
+          />
+        )}
         <div className={styles.paginationWrapper}>
           <Property
             forceRender
