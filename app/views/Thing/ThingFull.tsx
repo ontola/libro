@@ -30,11 +30,6 @@ const ThingFull: FC = () => {
           p(app.thumbnail),
           p(app.contents),
           p(withoutLoading(foaf.isPrimaryTopicOf)),
-          c(components.Collection, {
-            hideHeader: true,
-            pageSize: 1,
-            ...withoutLoading(argu.blogPosts),
-          }),
           c(listTopology, {
             wrap: true,
           }, [
@@ -47,7 +42,7 @@ const ThingFull: FC = () => {
           c(actionsBarTopology, [
             p(withoutLoading(ontola.favoriteAction)),
           ]),
-          p(withoutLoading(meeting.agenda)),
+          p(argu.blogPosts),
         ]),
       ]),
       c(components.SubSection),

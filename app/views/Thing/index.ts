@@ -1,7 +1,9 @@
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
 import Arguments from './properties/arguments';
-import Attachments from './properties/attatchments';
+import Attachments from './properties/attachments';
+import AttachmentsList from './properties/attachmentsList';
+import BlogPosts from './properties/blogPosts';
 import ContentUrl from './properties/contentUrl';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
@@ -86,6 +88,8 @@ export default [
   ...Arguments,
   ArguLocation,
   Attachments,
+  AttachmentsList,
+  BlogPosts,
   ContentUrl,
   ...CoverPhoto,
   CreateAction,

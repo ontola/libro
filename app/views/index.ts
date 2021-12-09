@@ -16,6 +16,7 @@ import Activity from './Activity';
 import AppSignOut from './AppSignOut';
 import Argument from './Argument/index';
 import Banner from './Banner/Banner';
+import BlogPost from './BlogPost';
 import Collection from './Collection';
 import CollectionFilter from './CollectionFilter';
 import CollectionPage from './CollectionPage';
@@ -94,6 +95,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...Action,
     ...Argument,
     ...Banner,
+    ...BlogPost,
     ...Collection,
     ...CollectionPage,
     ...CollectionFilter,

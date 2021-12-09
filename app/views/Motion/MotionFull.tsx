@@ -6,7 +6,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Collection from '../../components/Collection';
 import { PageHeader } from '../../components/PageHeader';
 import SubSection from '../../components/SubSection';
 import argu from '../../ontology/argu';
@@ -42,16 +41,11 @@ const MotionFull: FC = () => (
             onLoad={() => null}
           />
         </List>
-        <Collection
-          hideHeader
-          label={argu.blogPosts}
-          pageSize={1}
-          onLoad={() => null}
-        />
         <Property
           label={argu.voteableVoteEvent}
           onLoad={() => null}
         />
+        <Property label={argu.blogPosts} />
       </MainBody>
     </Container>
     <SubSection />

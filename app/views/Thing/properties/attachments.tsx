@@ -10,13 +10,12 @@ import React from 'react';
 import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
-import { mainBodyTopology } from '../../../topologies/MainBody';
 
 interface AttatchmentsProps {
   linkedProp: SomeNode;
 }
 
-const Attatchments: FC<AttatchmentsProps> = ({
+const Attachments: FC<AttatchmentsProps> = ({
   linkedProp,
   children,
 }) => (
@@ -28,13 +27,12 @@ const Attatchments: FC<AttatchmentsProps> = ({
   </Resource>
 );
 
-Attatchments.type = schema.Thing;
+Attachments.type = schema.Thing;
 
-Attatchments.property = [argu.attachments, meeting.attachment];
+Attachments.property = [argu.attachments, meeting.attachment];
 
-Attatchments.topology = [
+Attachments.topology = [
   cardRowTopology,
-  mainBodyTopology,
 ];
 
-export default register(Attatchments);
+export default register(Attachments);

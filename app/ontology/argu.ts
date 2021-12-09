@@ -9,6 +9,7 @@ export default {
   // eslint-disable-next-line sort-keys
   Argument: argu('Argument'),
   BearerToken: argu('BearerToken'),
+  BlogPost: argu('BlogPost'),
   Book: argu('Book'),
   BudgetShop: argu('BudgetShop'),
   Cart: argu('Cart'),

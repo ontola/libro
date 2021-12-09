@@ -9,7 +9,6 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import Collection from '../../components/Collection';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -57,11 +56,7 @@ const MapQuestionFull: FC = () => (
           />
         </CardRow>
       </CardMain>
-      <Collection
-        label={argu.blogPosts}
-        pageSize={1}
-        onLoad={() => null}
-      />
+      <Property label={argu.blogPosts} />
     </Container>
     <Property
       large
