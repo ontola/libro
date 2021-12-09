@@ -9,7 +9,6 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Button from '../../../../components/Button';
 import CardContent from '../../../../components/Card/CardContent';
 import FormFooterRight from '../../../../components/Form/FooterRight';
 import Heading from '../../../../components/Heading';
@@ -50,11 +49,10 @@ const BadgeContainer: FC = ({ subject }) => {
         <Property label={schema.text} />
       </CardContent>
       <FormFooter>
-        <FormFooterRight>
-          <Button onClick={() => lrs.actions.ontola.hideDialog()}>
-            {formatMessage(badgeMessages.continue)}
-          </Button>
-        </FormFooterRight>
+        <FormFooterRight
+          submitLabel={formatMessage(badgeMessages.continue)}
+          onSubmit={() => lrs.actions.ontola.hideDialog()}
+        />
       </FormFooter>
     </Card>
   );

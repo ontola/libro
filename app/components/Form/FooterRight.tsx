@@ -1,5 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
+import Button, { ButtonTheme } from '../Button';
 
 const useStyles = makeStyles(() => ({
   wrapper: {
@@ -9,12 +12,48 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const FormFooterRight: React.FC = ({ children }) => {
+interface FormFooterRight {
+  loading?: boolean;
+  onCancel?: (e: any) => void;
+  onSubmit?: (e: any) => void;
+  submitLabel?: string;
+}
+
+const FormFooterRight: React.FC<FormFooterRight> = ({
+  children,
+  loading,
+  onCancel,
+  onSubmit,
+  submitLabel,
+}) => {
   const classes = useStyles();
+
+  const cancelButton = onCancel && (
+    <Button
+      theme={ButtonTheme.Transparent}
+      onClick={onCancel}
+    >
+      <FormattedMessage
+        defaultMessage="cancel"
+        id="https://app.argu.co/i18n/forms/actions/cancel"
+      />
+    </Button>
+  );
 
   return (
     <div className={classes.wrapper}>
-      {children}
+      {children ?? (
+        <React.Fragment>
+          {cancelButton}
+          <Button
+            loading={loading}
+            type="submit"
+            onClick={onSubmit}
+          >
+            {submitLabel}
+          </Button>
+        </React.Fragment>
+      )}
     </div>
   );
 };

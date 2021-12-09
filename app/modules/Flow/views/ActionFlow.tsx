@@ -15,7 +15,6 @@ import React from 'react';
 import Button from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import { SignInFormLink } from '../../../components/SignInForm';
-import { retrievePath } from '../../../helpers/iris';
 import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
 import { invalidStatusIds } from '../../../views/Thing/properties/omniform/helpers';
@@ -48,7 +47,6 @@ const ActionFlow: FC<ActionProps> = ({
   const hideDialog = useAction('ontola.hideDialog');
   const classes = useStyles();
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [object] = useProperty(schema.object);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return (
@@ -75,7 +73,6 @@ const ActionFlow: FC<ActionProps> = ({
       </div>
       <Property
         header
-        cancelPath={object ? retrievePath(object.value) : undefined}
         label={schema.target}
         responseCallback={responseCallback}
         sessionStore={sessionStore}

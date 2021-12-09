@@ -13,7 +13,6 @@ import React from 'react';
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import { SignInFormLink } from '../../components/SignInForm';
-import { retrievePath } from '../../helpers/iris';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
@@ -31,7 +30,6 @@ const ActionNested: FC<ActionProps> = ({
 }) => {
   const topology = useTopology();
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [object] = useProperty(schema.object);
 
   const onDoneHandler = useDoneHandler(onDone);
   const lrs = useLRS();
@@ -62,11 +60,10 @@ const ActionNested: FC<ActionProps> = ({
         </CardContent>
         <Property
           header
-          cancelPath={isModal && object ? retrievePath(object.value) : undefined}
           label={schema.target}
           responseCallback={responseCallback}
           sessionStore={sessionStore}
-          onCancel={onCancel || closeModal}
+          onCancel={onCancel ?? closeModal}
           onDone={onDoneHandler}
         />
         {Appendix && <Appendix />}

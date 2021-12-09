@@ -7,9 +7,9 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import { ButtonTheme } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import { FormFooterRight } from '../../components/Form';
 import Heading, { HeadingSize } from '../../components/Heading';
@@ -39,6 +39,7 @@ const Submission: FC = ({
   subject,
 }) => {
   const lrs = useLRS();
+  const intl = useIntl();
   const styles = useStyles();
   const [_, submitActionStatus] = useActionStatus(subject, ontola.submitAction);
   const openModal = React.useCallback(() => {
@@ -58,14 +59,10 @@ const Submission: FC = ({
               <FormattedMessage {...surveyMessages.startButtonText} />
             </Heading>
             <FormFooter>
-              <FormFooterRight>
-                <Button
-                  type="submit"
-                  onClick={openModal}
-                >
-                  <FormattedMessage {...surveyMessages.continueButtonText} />
-                </Button>
-              </FormFooterRight>
+              <FormFooterRight
+                submitLabel={intl.formatMessage(surveyMessages.continueButtonText)}
+                onSubmit={openModal}
+              />
             </FormFooter>
           </CardContent>
         </Card>

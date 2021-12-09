@@ -8,13 +8,14 @@ import {
   Property,
   Resource,
   SubjectType,
+  dig,
   useLRS,
+  useStrings,
   withLRS,
 } from 'link-redux';
 import { LinkedRenderStoreContext } from 'link-redux/dist-types/types';
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 
@@ -29,7 +30,6 @@ import {
 } from '../../state/omniform';
 import FormFooter from '../../topologies/FormFooter';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
-import Button, { ButtonTheme } from '../Button';
 import { FormFooterRight } from '../Form';
 import { FormFieldError } from '../FormField';
 
@@ -104,6 +104,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
     sessionStore,
   } = props;
   const lrs = useLRS();
+  const [submitLabel] = useStrings(action, dig(schema.target, schema.name));
 
   const types = React.useMemo(() => (
     Array.from(actions).map((iri) => (
@@ -137,28 +138,11 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
       <FormFooter borderTop>
         <Property label={ll.actionBody} />
         {types}
-        <FormFooterRight>
-          {closeForm && (
-            <Button
-              theme={ButtonTheme.Transparent}
-              onClick={closeForm}
-            >
-              <FormattedMessage
-                defaultMessage="cancel"
-                id="https://app.argu.co/i18n/forms/actions/cancel"
-              />
-            </Button>
-          )}
-          <Button
-            loading={loading}
-            type="submit"
-          >
-            <FormattedMessage
-              defaultMessage="save"
-              id="https://app.argu.co/i18n/actions/labels/save"
-            />
-          </Button>
-        </FormFooterRight>
+        <FormFooterRight
+          loading={loading}
+          submitLabel={submitLabel}
+          onCancel={closeForm}
+        />
       </FormFooter>
     );
 
@@ -191,6 +175,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
     responseCallback,
     sessionStore,
     PROPS_WHITELIST,
+    submitLabel,
     onCancel,
     onDone,
     onKeyUp,

@@ -12,7 +12,6 @@ import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import Metadata from '../../components/Metadata';
 import { SignInFormLink } from '../../components/SignInForm';
-import { retrievePath } from '../../helpers/iris';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
@@ -27,7 +26,6 @@ const ActionFull: FC<ActionProps> = ({
   onDone,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [object] = useProperty(schema.object);
 
   const onDoneHandler = useDoneHandler(onDone);
   const Appendix = appendix;
@@ -56,7 +54,6 @@ const ActionFull: FC<ActionProps> = ({
           </CardContent>
           <Property
             header
-            cancelPath={object && retrievePath(object.value)}
             label={schema.target}
             sessionStore={sessionStore}
             onCancel={onCancel}
