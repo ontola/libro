@@ -8,6 +8,7 @@ import Loading, {
   LoadingCellRow,
   LoadingDetail,
   LoadingFullResource,
+  LoadingGridContent,
   LoadingMicroRow,
   LoadingNavbarLink,
   LoadingPage,
@@ -41,6 +42,7 @@ import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { listTopology } from '../../topologies/List';
+import { mainBodyTopology } from '../../topologies/MainBody';
 import { menuTopology } from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
@@ -164,6 +166,12 @@ export default [
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     actionsBarTopology,
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingGridContent,
+    ll.LoadingResource,
+    RENDER_CLASS_NAME,
+    mainBodyTopology,
   ),
   LinkedRenderStore.registerRenderer(
     LoadingTabbar,
