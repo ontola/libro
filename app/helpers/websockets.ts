@@ -7,7 +7,7 @@ export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: stri
   const websocketAddress = app.ns(websocketPath).value.replace('https://', 'wss://');
   const ActionCable = await import(
     /* webpackChunkName: "actioncable" */
-    'actioncable'
+    '@rails/actioncable'
   );
   (lrs.api as any).channel = ActionCable.createConsumer(websocketAddress);
 }
