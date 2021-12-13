@@ -12,6 +12,7 @@ export interface PlainEditorProps {
   onChange?: EventHandler<any>;
   onFocus: EventHandler<any>;
   placeholder?: string;
+  required?: boolean;
   rows?: number;
   value: string;
 }
@@ -25,6 +26,7 @@ export interface TextEditorProps {
   onChange: (args: any) => void;
   onFocus: (args: any) => any;
   placeholder: string;
+  required?: boolean;
   rows: number;
   value: string;
 }

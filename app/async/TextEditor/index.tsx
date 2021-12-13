@@ -18,6 +18,7 @@ const TextEditor = ({
   minLength,
   name,
   placeholder,
+  required,
   rows,
   value,
   onBlur,
@@ -34,6 +35,7 @@ const TextEditor = ({
         maxLength={maxLength}
         minLength={minLength}
         placeholder={placeholder}
+        required={required}
         rows={rows}
         value={value}
         onBlur={onBlur}

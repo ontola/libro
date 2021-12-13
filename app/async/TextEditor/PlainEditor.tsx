@@ -43,6 +43,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
   onBlur,
   onFocus,
   placeholder,
+  required,
   rows,
   value,
 }) => {
@@ -60,6 +61,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
           maxLength={maxLength}
           minLength={minLength}
           placeholder={placeholder}
+          required={required}
           rows={rows}
           value={value}
           onBlur={onBlur}
