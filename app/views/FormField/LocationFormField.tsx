@@ -18,7 +18,9 @@ const LocationFormField: FC = ({
   return (
     <FormField
       {...fieldProps}
+      helperText={null}
       inputComponent={LocationInput}
+      label={undefined}
     />
   );
 };

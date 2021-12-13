@@ -2,6 +2,7 @@ import React from 'react';
 
 interface FormGroupContext {
   addFieldName?: (fieldName: string) => void;
+  buttonContainerRef?: React.MutableRefObject<HTMLDivElement>
   fieldNames: string[];
   groupIndex: number;
   hasContent: boolean;
@@ -20,6 +21,7 @@ const FormGroupProvider: React.FC<PropTypes> = ({
   children,
   sequenceIndex,
 }) => {
+  const buttonContainerRef = React.useRef(document.createElement('div'));
   const [fieldNames, setFieldNames] = React.useState<string[]>([]);
   const [hasContent, setHasContent] = React.useState(false);
   const addFieldName = React.useCallback((fieldName: string) => {
@@ -31,12 +33,14 @@ const FormGroupProvider: React.FC<PropTypes> = ({
   }, [fieldNames]);
   const formGroup = React.useMemo(() => ({
     addFieldName,
+    buttonContainerRef,
     fieldNames,
     groupIndex: sequenceIndex,
     hasContent,
     setHasContent,
   }), [
     addFieldName,
+    buttonContainerRef,
     fieldNames,
     hasContent,
     sequenceIndex,

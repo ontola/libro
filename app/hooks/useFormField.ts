@@ -79,7 +79,7 @@ export interface PermittedFormField {
   description?: string;
   field?: SomeNode;
   fieldShape: ShapeForm;
-  helperText?: string;
+  helperText?: string | null;
   inputErrors: FormFieldError[];
   label?: string | React.ReactNode;
   meta: InputMeta;

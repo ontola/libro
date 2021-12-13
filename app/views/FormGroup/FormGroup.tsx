@@ -18,7 +18,10 @@ interface PropTypes {
 }
 
 const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
-  const { hasContent } = useFormGroup();
+  const {
+    buttonContainerRef,
+    hasContent,
+  } = useFormGroup();
   const classes = useStyles();
 
   const className = clsx({
@@ -31,6 +34,7 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
       <Property
         label={form.fields}
       />
+      <div ref={buttonContainerRef} />
     </fieldset>
   );
 };

@@ -37,7 +37,6 @@ export default {
   MakePrimaryAction: argu('MakePrimaryAction'),
   Manifest: argu('Manifest'),
   MapQuestion: argu('MapQuestion'),
-  MediaObject: argu('MediaObject'),
   Menu: argu('Menu'),
   MenuSection: argu('MenuSection'),
   Motion: argu('Motion'),

@@ -47,11 +47,12 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
       id="https://app.argu.co/i18n/forms/required/helperText"
     />
   );
+  const renderHelperText = helperText === null || (helperText?.length || 0) > 0;
 
   return (
     <FieldHelper
       error={touched ? error : undefined}
-      helperText={(helperText?.length || 0) > 0 ? helperText : requiredHelper}
+      helperText={renderHelperText ? helperText : requiredHelper}
       right={renderCharCounter && maxLength && value && !isJSONLDObject(value) ? (
         <CharCounter
           maxLength={maxLength}

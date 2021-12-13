@@ -72,6 +72,7 @@ const AssociationFormField: FC = ({
       {...fieldProps}
       className={`Field--association ${fieldProps.className}`}
       inputComponent={AssociationInput}
+      label={fieldProps.values.length > 0 ? fieldProps.label : undefined}
     />
   );
 };
