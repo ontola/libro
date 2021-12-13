@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import { Property, Resource } from 'link-redux';
-import React, { ElementType } from 'react';
+import React from 'react';
 
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
@@ -19,6 +19,7 @@ import { LoadingCardFixed } from '../Loading';
 import Suspense from '../Suspense';
 import TableHeadCells from '../TableHeadCells';
 
+import { CollectionFrameWrapper } from './CollectionFrameWrapper';
 import { useCollectionOptions } from './CollectionProvider';
 
 const useStyles = makeStyles({
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 export interface CollectionFrameProps {
-  Wrapper: ElementType,
+  Wrapper: React.ElementType,
 }
 
 const CollectionFrame = ({
@@ -63,7 +64,7 @@ const CollectionFrame = ({
   switch (rdf.id(collectionDisplay)) {
   case rdf.id(ontola.ns('collectionDisplay/grid')):
     return (
-      <Wrapper>
+      <CollectionFrameWrapper Wrapper={Wrapper}>
         <Property label={ontola.query} />
         <Property
           forceRender
@@ -76,12 +77,12 @@ const CollectionFrame = ({
           forceRender
           label={app.pagination}
         />
-      </Wrapper>
+      </CollectionFrameWrapper>
     );
   case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
   case rdf.id(ontola.ns('collectionDisplay/table')):
     return (
-      <Wrapper>
+      <CollectionFrameWrapper Wrapper={Wrapper}>
         <Property label={ontola.query} />
         <Property
           forceRender
@@ -109,11 +110,11 @@ const CollectionFrame = ({
             </TableFooter>
           </Table>
         </Card>
-      </Wrapper>
+      </CollectionFrameWrapper>
     );
   case rdf.id(ontola.ns('collectionDisplay/card')):
     return (
-      <Wrapper>
+      <CollectionFrameWrapper Wrapper={Wrapper}>
         <Property label={ontola.query} />
         <Property
           forceRender
@@ -128,11 +129,11 @@ const CollectionFrame = ({
             />
           </CardAppendix>
         </Card>
-      </Wrapper>
+      </CollectionFrameWrapper>
     );
   case rdf.id(ontola.ns('collectionDisplay/default')):
     return (
-      <Wrapper>
+      <CollectionFrameWrapper Wrapper={Wrapper}>
         <Property label={ontola.query} />
         <Property
           forceRender
@@ -145,7 +146,7 @@ const CollectionFrame = ({
             label={app.pagination}
           />
         </div>
-      </Wrapper>
+      </CollectionFrameWrapper>
     );
   default:
     return body;

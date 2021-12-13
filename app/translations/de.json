@@ -29,6 +29,9 @@
   "https://app.argu.co/i18n/as:CollectionPage/as:previous/label": {
     "defaultMessage": "vorherige"
   },
+  "https://app.argu.co/i18n/as:CollectionPage/collectionActionsAriaLabel": {
+    "defaultMessage": "Aktionen zur Sammlung"
+  },
   "https://app.argu.co/i18n/auth/newSessionLink": {
     "defaultMessage": "Anmelden / Registrieren",
     "description": "Link zur Seite für die Anmeldung oder Registrierung"

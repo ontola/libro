@@ -73,6 +73,10 @@ export const collapsibleMessages: Messages = defineMessages({
 });
 
 export const collectionMessages: Messages = defineMessages({
+  collectionActionsAriaLabel: {
+    defaultMessage: 'Collection actions',
+    id: 'https://app.argu.co/i18n/as:CollectionPage/collectionActionsAriaLabel',
+  },
   filter: {
     defaultMessage: 'Filter',
     id: 'https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder',

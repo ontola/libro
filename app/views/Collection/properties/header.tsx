@@ -3,14 +3,13 @@ import { SomeNode } from 'link-lib';
 import {
   Property,
   Resource,
-  useTopology, 
+  useTopology,
 } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
-import CollectionCreateActionButton from '../../../components/Collection/CollectionCreateActionButton';
-import CollectionFilterToggle, { CollectionFilterProps } from '../../../components/Collection/CollectionFilterToggle';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { HeaderFloat } from '../../../components/Collection/HeaderFloat';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -24,28 +23,6 @@ interface HeaderProps {
   children?: ReactNode;
   topologyCtx: SomeNode;
 }
-
-export const HeaderFloat = ({
-  filterContainerRef,
-}: CollectionFilterProps): JSX.Element => {
-  const {
-    headerButtons,
-    hidePagination,
-    originalCollection,
-  } = useCollectionOptions();
-  const renderPagination = !hidePagination;
-
-  return (
-    <React.Fragment>
-      {renderPagination && <CollectionFilterToggle filterContainerRef={filterContainerRef} />}
-      {renderPagination && <Property label={ontola.sortOptions} />}
-      <Resource subject={originalCollection}>
-        <CollectionCreateActionButton />
-      </Resource>
-      {headerButtons}
-    </React.Fragment>
-  );
-};
 
 const cardCollectionHeader = (): JSX.Element | null => {
   const { hideHeader } = useCollectionOptions();

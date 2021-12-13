@@ -25,6 +25,7 @@ import CompCollapseText from './components/CollapseText';
 import CompCollapsible from './components/Collapsible';
 import CompCollection from './components/Collection';
 import CompCollectionProvider from './components/Collection/CollectionProvider';
+import { HeaderFloat as CompHeaderFloat } from './components/Collection/HeaderFloat';
 import CompColumn from './components/Column';
 import CompColumns from './components/Columns';
 import CompCountBubble from './components/CountBubble';
@@ -90,7 +91,6 @@ import argu from './ontology/argu';
 import elements from './ontology/elements';
 import ontola from './ontology/ontola';
 import { allTopologies } from './topologies';
-import { HeaderFloat as CompHeaderFloat } from './views/Collection/properties/header';
 
 export { component, components };
 

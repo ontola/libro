@@ -29,6 +29,9 @@
   "https://app.argu.co/i18n/as:CollectionPage/as:previous/label": {
     "defaultMessage": "vorige"
   },
+  "https://app.argu.co/i18n/as:CollectionPage/collectionActionsAriaLabel": {
+    "defaultMessage": "Collectie acties"
+  },
   "https://app.argu.co/i18n/auth/newSessionLink": {
     "defaultMessage": "Log in / registreer"
   },
