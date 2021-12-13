@@ -1,7 +1,7 @@
 import { SomeNode } from 'link-lib';
 import React, { KeyboardEventHandler } from 'react';
 
-import Omniform from '../../../../components/Omniform';
+import Omniform from './index';
 
 export interface OmniformConnectorProps {
   autofocusForm: boolean;

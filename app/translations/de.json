@@ -299,7 +299,7 @@
     "defaultMessage": "Was denken Sie?"
   },
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
-    "defaultMessage": "Eine Antwort teilen..."
+    "defaultMessage": "Eine {type} teilen..."
   },
   "https://app.argu.co/i18n/forms/radioGroup/noOptions": {
     "defaultMessage": "Keine Optionen verfügbar"

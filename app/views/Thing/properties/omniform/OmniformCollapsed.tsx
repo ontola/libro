@@ -8,12 +8,17 @@ import {
   register,
   useDataFetching,
   useLRS,
+  useTopology, 
 } from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 
+import CollectionCreateButton, { TriggerType } from '../../../../components/Collection/CollectionCreateButton';
+import Heading from '../../../../components/Heading';
+import OmniformConnector from '../../../../components/Omniform/OmniformConnector';
 import OmniformPreview from '../../../../components/Omniform/OmniformPreview';
+import { entityIsLoaded } from '../../../../helpers/data';
 import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';
 import {
@@ -22,19 +27,20 @@ import {
   omniformCloseInline,
   omniformOpenInline,
 } from '../../../../state/omniform';
-import { cardTopology } from '../../../../topologies/Card';
+import Card, { cardTopology } from '../../../../topologies/Card';
 import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import CardRow from '../../../../topologies/Card/CardRow';
+import { containerTopology } from '../../../../topologies/Container';
 
 import { actionsAreAllDisabled, useActions } from './helpers';
-import OmniformConnector from './OmniformConnector';
 
 const KEY_ESCAPE = 27;
 
 export interface CollapsedOmniformProps {
   clickToOpen?: boolean;
   closeForm: () => void;
+  header?: string;
   linkedProp: SomeTerm;
   openForm: () => void;
   opened?: boolean;
@@ -60,14 +66,15 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
     openForm,
     opened,
     potentialAction,
+    header,
     sameAs,
   } = props;
 
   const lrs = useLRS();
+  const topology = useTopology();
 
   useDataFetching(sameAs);
   const items = useActions(potentialAction);
-
   const toggle = React.useCallback(() => {
     if (opened) {
       closeForm();
@@ -82,36 +89,59 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
     }
   }, [closeForm]);
 
+  if (items.length === 0) {
+    return <CollectionCreateButton trigger={TriggerType.Text} />;
+  }
+
+  const hasItems = items.filter((item) => entityIsLoaded(lrs, item)).length > 0;
+  const renderHeader = header && hasItems;
+  const Wrapper = topology === containerTopology ? Card : CardRow;
+  const wrapperOpts = topology === containerTopology ? {} : { borderTop: true };
+
   if (opened) {
     return (
-      <CardRow borderTop>
-        <OmniformConnector
-          autofocusForm
-          items={items}
-          onDone={toggle}
-          onKeyUp={handleKey}
-          {...props}
-        />
-      </CardRow>
+      <React.Fragment>
+        {renderHeader && (
+          <Heading>
+            {header}
+          </Heading>
+        )}
+        <Wrapper {...wrapperOpts}>
+          <OmniformConnector
+            autofocusForm
+            items={items}
+            onDone={toggle}
+            onKeyUp={handleKey}
+            {...props}
+          />
+        </Wrapper>
+      </React.Fragment>
     );
   } else if (!clickToOpen) {
     return null;
   }
 
-  const shouldShow = !(!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs));
+  const shouldShow = !(!clickToOpen || !hasItems || actionsAreAllDisabled(items, lrs));
 
   return (
-    <Collapse
-      mountOnEnter
-      in={shouldShow}
-    >
-      <CardRow borderTop>
-        <OmniformPreview
-          primaryAction={items[0]}
-          onClick={toggle}
-        />
-      </CardRow>
-    </Collapse>
+    <React.Fragment>
+      {renderHeader && (
+        <Heading>
+          {header}
+        </Heading>
+      )}
+      <Collapse
+        mountOnEnter
+        in={shouldShow}
+      >
+        <Wrapper {...wrapperOpts}>
+          <OmniformPreview
+            primaryAction={items[0]}
+            onClick={toggle}
+          />
+        </Wrapper>
+      </Collapse>
+    </React.Fragment>
   );
 };
 
@@ -123,6 +153,7 @@ CollapsedOmniformProp.topology = [
   cardAppendixTopology,
   cardMainTopology,
   cardTopology,
+  containerTopology,
 ];
 
 CollapsedOmniformProp.mapDataToProps = {

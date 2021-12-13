@@ -1,7 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
-import { Property, Resource } from 'link-redux';
+import {
+  Property,
+  Resource,
+  useStrings,
+} from 'link-redux';
 import React from 'react';
 
 import app from '../../ontology/app';
@@ -43,6 +47,7 @@ const CollectionFrame = ({
     columns,
     depth,
   } = useCollectionOptions();
+  const [callToAction] = useStrings(ontola.callToAction);
 
   const body = React.useMemo(() => (
     <React.Fragment>
@@ -145,18 +150,19 @@ const CollectionFrame = ({
           label={ontola.header}
         />
         {body}
-        {!depth && (
-          <Property
-            forceRender
-            label={app.omniform}
-          />
-        )}
         <div className={styles.paginationWrapper}>
           <Property
             forceRender
             label={app.pagination}
           />
         </div>
+        {!depth && (
+          <Property
+            forceRender
+            header={callToAction}
+            label={app.omniform}
+          />
+        )}
       </CollectionFrameWrapper>
     );
   default:

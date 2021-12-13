@@ -1,16 +1,19 @@
 import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import { getTermBestLang } from 'link-lib';
-import { Resource, useLRS } from 'link-redux';
+import {
+  dig,
+  useGlobalIds,
+  useStrings,
+} from 'link-redux';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
 
-import app from '../../ontology/app';
-import { formFooterTopology } from '../../topologies/FormFooter';
+import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { formMessages } from '../../translations/messages';
 
 import './Omniform.scss';
@@ -25,12 +28,10 @@ const OmniformPreview = ({
   primaryAction,
 }: OmniformPreviewProps): JSX.Element => {
   const intl = useIntl();
-  const lrs = useLRS();
 
-  const actionLabel = primaryAction && getTermBestLang(
-    lrs.dig(primaryAction, [schema.result, rdfs.label]),
-    (lrs.store as any).langPrefs,
-  )?.value;
+  const [actionLabel] = useStrings(primaryAction, dig(schema.result, rdfs.label));
+  const [actionIcon] = useGlobalIds(primaryAction, dig(schema.result, schema.image));
+  const icon = actionIcon ? normalizeFontAwesomeIRI(actionIcon) : 'plus';
 
   return (
     <button
@@ -38,13 +39,11 @@ const OmniformPreview = ({
       type="button"
       onClick={onClick}
     >
-      <Resource
-        subject={app.c_a}
-        topology={formFooterTopology}
-      />
       <span className="Omniform__preview-text">
+        <FontAwesome name={icon} />
+        {' '}
         <FormattedMessage
-          defaultMessage="Share a response..."
+          defaultMessage="Share your {type}..."
           id="https://app.argu.co/i18n/forms/omniform/newResponsePreview"
           values={{
             type: (

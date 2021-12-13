@@ -24,7 +24,10 @@
   &-text {
     color: color('grey', 'xx-light-foreground-small');
     line-height: 2.4rem;
-    padding-left: .3rem;
+  }
+
+  & .fa {
+    padding-right: .1em;
   }
 }
 
