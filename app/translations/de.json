@@ -30,8 +30,7 @@
     "defaultMessage": "Aktionen zur Sammlung"
   },
   "https://app.argu.co/i18n/auth/newSessionLink": {
-    "defaultMessage": "Anmelden / Registrieren",
-    "description": "Link zur Seite für die Anmeldung oder Registrierung"
+    "defaultMessage": "Anmelden / Registrieren"
   },
   "https://app.argu.co/i18n/badges/continue": {
     "defaultMessage": "Großartig!"
@@ -82,8 +81,7 @@
     "defaultMessage": "Zum erneuten Versuch klicken"
   },
   "https://app.argu.co/i18n/errors/client/offline/header": {
-    "defaultMessage": "Netzwerkverbindung verloren",
-    "description": "Meldung, die dem Benutzer angezeigt wird, wenn die Netzwerkverbindung des Navigators unterbrochen wurde"
+    "defaultMessage": "Netzwerkverbindung verloren"
   },
   "https://app.argu.co/i18n/errors/inlineButton/label": {
     "defaultMessage": "Erneut versuchen"
@@ -265,6 +263,12 @@
   "https://app.argu.co/i18n/forms/datetimepicker/invalidLabel": {
     "defaultMessage": "unbekannt"
   },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidValue": {
+    "defaultMessage": "Wert ist ungültig"
+  },
+  "https://app.argu.co/i18n/forms/datetimepicker/invalidValues": {
+    "defaultMessage": "Enthält ungültige Werte"
+  },
   "https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage": {
     "defaultMessage": "Das Datum sollte nicht nach dem maximalen Datum liegen"
   },
@@ -280,14 +284,8 @@
   "https://app.argu.co/i18n/forms/markdownPreview": {
     "defaultMessage": "Vorschau"
   },
-  "https://app.argu.co/i18n/forms/multipleemailinput/invalidEmailMessage": {
-    "defaultMessage": "E-Mail ist ungültig."
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailCountMessage": {
-    "defaultMessage": "Maximale Anzahl von E-Mails erreicht ({count}/{maxCount})."
-  },
-  "https://app.argu.co/i18n/forms/multipleemailinput/maxEmailLengthMessage": {
-    "defaultMessage": "Die Nachricht ist zu lang ({length}/{maxLength})."
+  "https://app.argu.co/i18n/forms/newLabel": {
+    "defaultMessage": "Hinzufügen"
   },
   "https://app.argu.co/i18n/forms/newTrigger": {
     "defaultMessage": "Neu ..."
@@ -327,6 +325,12 @@
   },
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "das Argu-Logo"
+  },
+  "https://app.argu.co/i18n/landmarkMessages/navigationBar": {
+    "defaultMessage": "Navigationsleiste"
+  },
+  "https://app.argu.co/i18n/landmarkMessages/subsectionLabel": {
+    "defaultMessage": "Denk mit"
   },
   "https://app.argu.co/i18n/mailchimpForm/mailAddress": {
     "defaultMessage": "E-Mail Adresse"
@@ -451,6 +455,18 @@
   "https://app.argu.co/i18n/survey/contribution": {
     "defaultMessage": "Vielen Dank für Ihre Antwort."
   },
+  "https://app.argu.co/i18n/swipeInput/infoButtonLabel": {
+    "defaultMessage": "Mehr Informationen"
+  },
+  "https://app.argu.co/i18n/swipeInput/swipeTutorialText": {
+    "defaultMessage": "Zum Abstimmen ziehen."
+  },
+  "https://app.argu.co/i18n/swipeInput/voteNoButtonLabel": {
+    "defaultMessage": "Gegen"
+  },
+  "https://app.argu.co/i18n/swipeInput/voteYesButtonLabel": {
+    "defaultMessage": "Vor"
+  },
   "https://app.argu.co/i18n/teamGL/glappNotUsed": {
     "defaultMessage": "GLAPP nog niet gebruikt."
   },
@@ -491,8 +507,7 @@
     "defaultMessage": "Blick auf Dexes"
   },
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
-    "defaultMessage": "Wert in die Zwischenablage kopiert",
-    "description": "Die (Inline-)Meldung, dass der Wert in die Zwischenablage kopiert wurde"
+    "defaultMessage": "Wert in die Zwischenablage kopiert"
   },
   "https://ns.ontola.io/app/videoUnsupported": {
     "defaultMessage": "Keine Video-Unterstützung"
