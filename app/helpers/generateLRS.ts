@@ -171,6 +171,9 @@ export default async function generateLRS(
     rdf.quad(schema.CreateAction, rdfx.type, rdfs.Class),
     rdf.quad(schema.CreateAction, rdfs.subClassOf, schema.Action),
 
+    rdf.quad(schema.VideoObject, rdfx.type, rdfs.Class),
+    rdf.quad(schema.VideoObject, rdfs.subClassOf, schema.MediaObject),
+
     rdf.quad(schema.WebPage, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebPage, rdfs.subClassOf, schema.Thing),
     rdf.quad(schema.WebPage, rdfs.label, rdf.literal('Page', languages.en)),
