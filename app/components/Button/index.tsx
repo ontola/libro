@@ -67,7 +67,6 @@ export interface ButtonProps {
 }
 
 const defaultProps = {
-  active: false,
   corner: false,
   grow: false,
   narrow: false,
@@ -187,6 +186,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <BlurButton
+      aria-pressed={active}
       buttonRef={buttonRef}
       data-test="Button-button"
       {...sharedProps}
