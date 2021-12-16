@@ -1,14 +1,16 @@
 import Collapse from '@material-ui/core/Collapse';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as owl from '@ontologies/owl';
+import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   ReturnType,
   register,
   useDataFetching,
+  useGlobalIds,
   useLRS,
-  useTopology, 
+  useTopology,
 } from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -21,6 +23,7 @@ import OmniformPreview from '../../../../components/Omniform/OmniformPreview';
 import { entityIsLoaded } from '../../../../helpers/data';
 import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';
+import ontola from '../../../../ontology/ontola';
 import {
   UnscopedOmniformState,
   getOmniformOpenState,
@@ -72,6 +75,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
 
   const lrs = useLRS();
   const topology = useTopology();
+  const types = useGlobalIds(rdfx.type);
 
   useDataFetching(sameAs);
   const items = useActions(potentialAction);
@@ -90,7 +94,13 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   }, [closeForm]);
 
   if (items.length === 0) {
-    return <CollectionCreateButton trigger={TriggerType.Text} />;
+    const showFallback = types.includes(ontola.Collection);
+
+    if (showFallback) {
+      return <CollectionCreateButton trigger={TriggerType.Text} />;
+    }
+
+    return null;
   }
 
   const hasItems = items.filter((item) => entityIsLoaded(lrs, item)).length > 0;
