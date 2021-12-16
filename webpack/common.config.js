@@ -79,7 +79,7 @@ const common = {
     }),
     new InjectManifest({
       exclude: [/^private\//],
-      swDest: './f_assets/sw.js',
+      swDest: './sw.js',
       swSrc: './src/sw/index.js',
     }),
   ],
