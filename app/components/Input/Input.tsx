@@ -1,9 +1,8 @@
+import { makeStyles } from '@material-ui/styles';
 import React, { EventHandler } from 'react';
 
 import { isString } from '../../helpers/types';
 import { FocusRelatedEventHandler } from '../../hooks/useFormField';
-
-import './Input.scss';
 
 export enum InputMode {
   Decimal = 'decimal',
@@ -68,6 +67,23 @@ export interface PropTypes {
   value?: boolean | string | number;
 }
 
+const useStyles = makeStyles({
+  input: {
+    '&:focus': {
+      outline: 'none',
+    },
+    WebkitAppearance: 'none',
+    background: 'inherit',
+    backgroundColor: 'transparent',
+    border: 0,
+    boxShadow: 'none',
+    color: 'inherit',
+    font: 'inherit',
+    margin: 0,
+    padding: 0,
+  },
+});
+
 const defaultProps = {
   element: 'input',
 };
@@ -78,6 +94,8 @@ const Input: React.FC<PropTypes> = ({
   value,
   ...props
 }) => {
+  const classes = useStyles();
+
   const Element = element;
 
   const inputRef = React.useRef<HTMLElement>(null);
@@ -89,7 +107,7 @@ const Input: React.FC<PropTypes> = ({
 
   return (
     <Element
-      className={`Input ${className ?? ''}`}
+      className={`${classes.input} ${className ?? ''}`}
       ref={inputRef}
       value={value ?? ''}
       {...props}
