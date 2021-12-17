@@ -15,8 +15,6 @@ export const website = __TEST__
   : getMetaContent('website') ?? 'https://example.com';
 export const frontendIRI: NamedNode = rdf.namedNode(website!);
 export const frontendIRIStr = frontendIRI.value;
-export const frontendPathname = new URL(frontendIRIStr).pathname;
-export const frontendOrigin = new URL(frontendIRIStr).origin;
 
 export const trailing = (iri: string): string => iri.endsWith('/') ? iri : `${iri}/`;
 

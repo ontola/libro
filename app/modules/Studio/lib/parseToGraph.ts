@@ -1,6 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import '../../../useFactory';
+
 import * as ontAs from '@ontologies/as';
-import rdf, { isTerm } from '@ontologies/core';
+import rdf, {
+  Literal,
+  Node,
+  SomeTerm,
+  isBlankNode,
+  isLiteral,
+  isNamedNode,
+  isTerm,
+} from '@ontologies/core';
 import * as ontDcterms from '@ontologies/dcterms';
 import * as ontFoaf from '@ontologies/foaf';
 import * as ontOwl from '@ontologies/owl';
@@ -9,6 +19,7 @@ import * as ontRdfs from '@ontologies/rdfs';
 import * as ontSchema from '@ontologies/schema';
 import * as ontShacl from '@ontologies/shacl';
 import * as ontXsd from '@ontologies/xsd';
+import { OK } from 'http-status-codes';
 import {
   DataObject,
   SerializableDataTypes,
@@ -16,6 +27,7 @@ import {
   normalizeType,
   toGraph,
 } from 'link-lib';
+import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { ParsedObject } from 'link-lib/dist-types/types';
 
 import ontApp from '../../../ontology/app';
@@ -185,6 +197,40 @@ const parseToGraph = (source: string, origin: string = window?.location.origin):
   return normalizeType(data)
     .map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
     .map((t) => toGraph(t));
+};
+
+const hexJSONSubject = (subject: Node): string => (isBlankNode(subject) ? `_:${subject.value}` : subject.value);
+
+const hexJSONValue = (object: SomeTerm): string => (isLiteral(object) ? object.value : hexJSONSubject(object));
+
+const hexJSONDataType = (object: SomeTerm): string => {
+  if (isLiteral(object)) {
+    return object.datatype.value;
+  }
+
+  return isNamedNode(object)
+    ? ontRdfx.ns('namedNode').value
+    : ontRdfx.ns('blankNode').value;
+};
+
+export const sourceToHextuples = (source: string, uri: string, origin: string = window?.location.origin): string => {
+  const quads = parseToGraph(source, origin).flatMap(([subject, store]) => {
+    store.addQuadruples([
+      [subject, ontHttp.statusCode, rdf.literal(OK), ontLl.meta],
+      [rdf.namedNode(uri), ontHttp.statusCode, rdf.literal(OK), ontLl.meta],
+    ]);
+
+    return (store as RDFIndex).quads;
+  });
+
+  return quads.map((q) => JSON.stringify([
+    hexJSONSubject(q.subject),
+    q.predicate.value,
+    hexJSONValue(q.object),
+    hexJSONDataType(q.object),
+    (q.object as Literal).language ?? '',
+    q.graph.value === 'rdf:defaultGraph' ? ontLd.add.value : q.graph.value,
+  ])).join('\n');
 };
 
 export default parseToGraph;

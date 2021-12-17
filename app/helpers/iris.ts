@@ -5,7 +5,7 @@ import {
   isNamedNode,
 } from '@ontologies/core';
 
-import { frontendOrigin, frontendPathname } from '../ontology/app';
+import { frontendOrigin, frontendPathname } from './frontendIRIComponents';
 
 export const FABase = 'http://fontawesome.io/icon/';
 

@@ -2,10 +2,11 @@ import { NamedNode } from '@ontologies/core';
 import { Location } from 'history';
 import { NamespaceMap } from 'link-lib';
 
-import app, { frontendPathname } from '../ontology/app';
+import app from '../ontology/app';
 import appSlashless from '../ontology/appSlashless';
 
 import { WebsiteCtx } from './app';
+import { frontendPathname } from './frontendIRIComponents';
 
 export function currentLocationControl(
   location: Location<any>,

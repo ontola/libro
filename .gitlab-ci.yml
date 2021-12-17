@@ -14,7 +14,7 @@ build:
   stage: build
   script:
     - yarn run build:bundle
-    - yarn run build:metaData
+    - yarn run build:shared
   artifacts:
     paths:
       - dist
