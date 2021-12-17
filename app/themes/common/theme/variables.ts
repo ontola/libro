@@ -18,9 +18,6 @@ const colorBaseOrange = 'rgb(161, 98, 37)';
 /* eslint-disable sort-keys, @typescript-eslint/no-magic-numbers */
 // coefficient = (100 - (percentage * 2)) / 100
 const colors = {
-  black: {
-    main: 'rgb(0, 0, 0)',
-  },
   blue: {
     dark: darken(colorBaseBlue, 0.60),
     main: colorBaseBlue,
@@ -43,7 +40,8 @@ const colors = {
     main: '#707070',
   },
   grey: {
-    dark: darken(colorBaseGrey, 0.99),
+    xDark: '#010101',
+    dark: '#212121',
     midDark: darken(colorBaseGrey, 0.40),
     main: colorBaseGrey,
     midLight: lighten(colorBaseGrey, 0.20),
@@ -78,7 +76,6 @@ const colors = {
   },
   white: {
     contrastText: 'rgba(0, 0, 0, 0.87)',
-    main: 'rgb(255, 255, 255)',
   },
   orange: {
     dark: 'rgb(104, 93, 82)',
@@ -126,7 +123,7 @@ const theme = {
   palette: {
     background: {
       default: '#fbfbfb',
-      paper: colors.white.main,
+      paper: '#ffffff',
     },
     ...colors,
     link: {
@@ -139,7 +136,7 @@ const theme = {
     text: {
       disabled: colors.grey.midDark,
       hint: colors.red.main,
-      primary: colors.grey.dark,
+      primary: colors.grey.xDark,
       secondary: colors.grey.midDark,
     },
   },

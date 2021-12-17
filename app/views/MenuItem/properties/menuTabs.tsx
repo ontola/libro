@@ -23,7 +23,7 @@ export interface MenuTabsProp {
 const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {
     backgroundColor: theme.palette.background.paper,
-    color: theme.palette.grey.dark,
+    color: theme.palette.grey.xDark,
     opacity: 'unset',
   },
   wrapperNoTabs: {

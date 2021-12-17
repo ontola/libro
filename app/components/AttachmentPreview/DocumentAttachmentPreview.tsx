@@ -20,7 +20,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   attachmentPreview: {
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
-    border: `1px solid ${theme.palette.grey['400']}`,
+    border: `1px solid ${theme.palette.grey.light}`,
     borderRadius: theme.shape.borderRadius,
     display: 'flex',
     height: '40px',
@@ -68,8 +68,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
       color: `${theme.palette.primary.main} !important`,
     },
 
-    borderLeft: `1px solid ${theme.palette.grey['400']}`,
-    color: `${theme.palette.grey['600']} !important`,
+    borderLeft: `1px solid ${theme.palette.grey.light}`,
+    color: `${theme.palette.grey.main} !important`,
     cursor: 'pointer',
     fontSize: '20px !important',
     height: '100%',

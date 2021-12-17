@@ -111,7 +111,7 @@ export default makeStyles<LibroTheme>((theme) => {
       '&:hover, &:focus, &:active': {
         backgroundColor: theme.palette.background.paper,
         boxShadow: '0 2px 8px rgba(0, 0, 0, .2)',
-        color: theme.palette.grey.dark,
+        color: theme.palette.grey.xDark,
       },
       backgroundColor: theme.palette.background.paper,
       borderRadius: theme.shape.borderRadius,
@@ -149,7 +149,7 @@ export default makeStyles<LibroTheme>((theme) => {
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
       //@ts-ignore
-      color: theme.palette.white.main,
+      color: theme.palette.common.white,
     },
 
     [ButtonTheme.Subtle]: {
@@ -168,7 +168,7 @@ export default makeStyles<LibroTheme>((theme) => {
         backgroundColor: theme.palette.background.default,
       },
       '&:hover, &:focus': {
-        color: theme.palette.grey.dark,
+        color: theme.palette.grey.xDark,
       },
       color: theme.palette.grey.main,
     },
@@ -195,7 +195,7 @@ export default makeStyles<LibroTheme>((theme) => {
         color: theme.palette.text.primary,
       },
       '&:hover, &:focus': {
-        color: theme.palette.grey.dark,
+        color: theme.palette.grey.xDark,
       },
       '&[disabled]': {
         '& $fa': {
@@ -253,7 +253,7 @@ export default makeStyles<LibroTheme>((theme) => {
 
     cardFloat: {
       '&:active': {
-        color: theme.palette.grey.dark,
+        color: theme.palette.grey.xDark,
       },
       '&:hover': {
         color: theme.palette.grey.midDark,
@@ -264,7 +264,7 @@ export default makeStyles<LibroTheme>((theme) => {
 
     cardList: {
       '&:active': {
-        color: theme.palette.grey.dark,
+        color: theme.palette.grey.xDark,
       },
       '&:hover': {
         color: theme.palette.grey.midDark,

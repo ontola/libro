@@ -21,7 +21,7 @@ const useStyles = makeStyles<LibroTheme, CardDividerProps>((theme) => ({
   },
   text: {
     backgroundColor: theme.palette.background.default,
-    color: theme.palette.grey.dark,
+    color: theme.palette.text.primary,
     fontWeight: theme.typography.fontWeightBold,
     padding: '0 7px',
     zIndex: 1,

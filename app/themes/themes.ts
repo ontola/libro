@@ -7,6 +7,7 @@ import { Shadows, Size } from '../components/shared/config';
 
 declare module '@material-ui/core/index' {
   interface Color {
+    xDark: string;
     dark: string;
     midDark: string;
     main: string;

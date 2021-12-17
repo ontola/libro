@@ -24,7 +24,7 @@ import MainBody from '../../topologies/MainBody';
 const useStyles = makeStyles((theme: LibroTheme) => ({
   image: {
     backgroundSize: 'cover',
-    border: `1px solid ${theme.palette.grey['400']}`,
+    border: `1px solid ${theme.palette.grey.light}`,
     borderRadius: '100%',
     bottom: 0,
     left: 0,
