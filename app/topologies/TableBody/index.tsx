@@ -1,24 +1,35 @@
+import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
+import { PropsWithChildren } from 'react';
 
 import argu from '../../ontology/argu';
-
-import './TableBody.scss';
+import { LibroTheme } from '../../themes/themes';
 
 export const tableBodyTopology = argu.ns('tableBody');
 
-class TableBody extends TopologyProvider {
+const styles = (theme: LibroTheme) => ({
+  tableBody: {
+    '&:nth-child(odd)': {
+      backgroundColor: theme.palette.grey.xLight,
+    },
+  },
+});
+
+type TableBodyProps = PropsWithChildren<WithStyles<typeof styles>>;
+
+class TableBody extends TopologyProvider<TableBodyProps> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor(props: Record<string, unknown>) {
+  constructor(props: TableBodyProps) {
     super(props);
 
-    this.className = 'TableBody';
+    this.className = this.props.classes.tableBody;
     this.elementType = 'tbody';
     this.topology = tableBodyTopology;
   }
 }
 
-export default TableBody;
+export default withStyles(styles)(TableBody);

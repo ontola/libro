@@ -1,7 +1,0 @@
-@import '../../components/shared/config';
-
-.TableBody {
-  &:nth-child(odd) {
-    background-color: color('grey', 'x-light');
-  }
-}
