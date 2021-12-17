@@ -32,6 +32,7 @@ export const MapView: React.FC<PropTypes> = ({
   onZoom,
   overlayResource,
   placements: placementIds,
+  theme,
 }) => {
   const [placements, loading] = usePlacementIds(placementIds);
   const [placementFeatures, resolvedCenter] = useFeatures(placements);
@@ -105,6 +106,7 @@ export const MapView: React.FC<PropTypes> = ({
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
+      theme={theme}
       view={view ?? defaultView}
       onMapClick={onMapClick}
       onMove={onMove}

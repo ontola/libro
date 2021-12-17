@@ -9,6 +9,7 @@ import FontAwesome from 'react-fontawesome';
 
 import { ButtonTheme } from '../../../components/Button';
 import ErrorButtonWithFeedback from '../../../components/Error/ErrorButtonWithFeedback';
+import { FormTheme } from '../../../components/Form/Form';
 import LinkLoader from '../../../components/Loading/LinkLoader';
 import OverlayContainer from '../../../components/OverlayContainer';
 import { NavigateCallback } from '../../../containers/MapView';
@@ -19,6 +20,7 @@ import useOverlay from '../hooks/useOverlay';
 
 interface MapCanvasProps extends UseMapProps {
   large?: boolean;
+  theme?: FormTheme;
   navigate?: NavigateCallback;
   overlayPadding?: boolean;
   overlayPosition?: Coordinate;
@@ -56,9 +58,11 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
     [classes.container]: true,
     [classes.containerFullscreen]: large,
   });
+
   const canvasClassName = clsx({
     [classes.canvas]: true,
     [classes.canvasFullscreen]: large,
+    [classes.flowInput]: props.theme === FormTheme.Flow,
   });
 
   if (mapToken.loading) {

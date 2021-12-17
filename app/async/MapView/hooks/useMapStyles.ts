@@ -64,6 +64,12 @@ export default makeStyles<LibroTheme>((theme) => ({
   containerFullscreen: {
     marginBottom: 0,
   },
+  flowInput: {
+    height: '35rem',
+    [theme.breakpoints.down('sm')]: {
+      height: '40vh',
+    },
+  },
   indicator: {
     '& .fa': {
       fontSize: '2em',

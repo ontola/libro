@@ -43,11 +43,14 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: 'min(80vw, 600px)',
     },
+    [theme.breakpoints.down('sm')]: {
+      maxHeight: '40vh',
+    },
     borderRadius: theme.shape.borderRadius,
     boxShadow: SHADOW_LIGHT,
-    height: '16rem',
+    height: '35rem',
+    maxHeight: '70vh',
     overflow: 'hidden',
-    width: '90vw',
   },
   locationInput: {
     flex: 1,
@@ -149,6 +152,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
         initialLon={initialView.lon}
         initialZoom={initialView.zoom}
         placements={placements}
+        theme={theme}
         onMapClick={storeCoordinates}
         onZoom={(newZoom: string | number) => zoomLevelOnChange([rdf.literal(newZoom)])}
       />
