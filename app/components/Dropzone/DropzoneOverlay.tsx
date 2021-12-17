@@ -1,23 +1,53 @@
+import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
+
+import { LibroTheme } from '../../themes/themes';
 
 interface Props {
   isDragActive: boolean;
   overlay?: boolean;
 }
 
+const useStyles = makeStyles((theme: LibroTheme) => ({
+  icon :{
+    '&.fa': {
+      fontSize: '3rem',
+    },
+  },
+  messages: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  overlay: {
+    backgroundColor: theme.palette.transparent.light85,
+    borderStyle: 'dashed',
+    borderWidth: '1px',
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: theme.zIndexOverlay,
+  },
+}));
+
 const DropzoneOverlay: React.FC<Props> = ({ isDragActive, overlay }) => {
-  const classes = clsx({
-    Dropzone__messages: true,
-    Dropzone__overlay: overlay,
-  });
+  const classes = useStyles();
 
   return (
-    <div className={classes}>
+    <div
+      className={clsx({
+        [classes.messages]: true,
+        [classes.overlay]: overlay,
+      })}
+    >
       <FontAwesome
-        className="Dropzone__icon"
+        className={classes.icon}
         name="cloud-upload"
       />
       {isDragActive

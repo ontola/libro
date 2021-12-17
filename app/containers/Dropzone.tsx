@@ -6,8 +6,6 @@ import React, {
 
 import Suspense from '../components/Suspense';
 
-import './Dropzone.scss';
-
 const Dropzone = React.lazy(
   // eslint-disable-next-line no-inline-comments
   () => import(/* webpackChunkName: "Forms" */ '../async/Dropzone'),
