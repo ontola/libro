@@ -1,15 +1,26 @@
+import { createStyles } from '@material-ui/core';
+import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
 import argu from '../../ontology/argu';
-
-import './TableHeaderCell.scss';
+import { LibroTheme, Margin } from '../../themes/themes';
 
 export const tableHeaderCellTopology = argu.ns('tableHeaderCell');
 
-export interface TableHeaderCellProps {
+const styles = (theme: LibroTheme) => createStyles({
+  tableHeaderCell: {
+    padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Large)}`,
+    textAlign: 'left',
+    wordBreak: 'normal',
+  },
+});
+
+type TableHeaderCellProps = WithStyles<typeof styles> & {
+  children?: ReactNode;
   elementProps?: Record<string, unknown>;
-}
+};
 
 class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {
   public static propTypes = {
@@ -19,10 +30,10 @@ class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {
   constructor(props: TableHeaderCellProps) {
     super(props);
 
-    this.className = 'TableHeaderCell';
+    this.className = this.props.classes.tableHeaderCell;
     this.elementType = 'th';
     this.topology = tableHeaderCellTopology;
   }
 }
 
-export default TableHeaderCell;
+export default withStyles(styles)(TableHeaderCell);
