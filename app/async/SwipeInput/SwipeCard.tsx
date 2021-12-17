@@ -173,13 +173,17 @@ export const SwipeCard = ({
           <Card className={cardClass}>
             <SwipeTutorial cardState={cardState} />
             <CardContent className={clsx(classes.backFaceContent, classes.cardHeight)}>
-              <Typography
-                className={classes.title}
-                variant="h2"
-              >
-                {label}
-              </Typography>
-              <Divider />
+              {label && (
+                <React.Fragment>
+                  <Typography
+                    className={classes.title}
+                    variant="h2"
+                  >
+                    {label}
+                  </Typography>
+                  <Divider />
+                </React.Fragment>
+              )}
               <Typography
                 className={classes.description}
                 variant="body1"
@@ -218,14 +222,16 @@ export const SwipeCard = ({
                 side={side}
               />
             </SwipeCardMedia>
-            <CardContent>
-              <Typography
-                className={classes.title}
-                variant="h2"
-              >
-                {label}
-              </Typography>
-            </CardContent>
+            {label && (
+              <CardContent>
+                <Typography
+                  className={classes.title}
+                  variant="h2"
+                >
+                  {label}
+                </Typography>
+              </CardContent>
+            )}
           </Card>
         </animated.div>
       )}

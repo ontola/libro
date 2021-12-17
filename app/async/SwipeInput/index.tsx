@@ -28,6 +28,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     flexDirection: 'column',
     height: 'min(30rem, 80vh)',
     justifyContent: 'flex-end',
+    margin: 'auto',
     marginTop: 90,
     width: 'min(75vw, 25rem)',
   },

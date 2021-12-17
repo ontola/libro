@@ -73,6 +73,11 @@ export class Animator {
     tension: springTension,
   };
 
+  private static readonly clampedConfig = {
+    ...Animator.config,
+    clamp: true,
+  };
+
   private cardAPI: CardAnimationAPI;
   private iconAPI: IconAnimationAPI;
   private overlayAPI: OverlayAnimationAPI;
@@ -95,12 +100,19 @@ export class Animator {
     this.cardAPI.start({
       to: async (next) => {
         await next([
-          { scale: 1 + cardScaleAmount },
+          {
+            config: Animator.clampedConfig,
+            scale: 1 + cardScaleAmount,
+          },
           {
             opacity: 0,
             rotateY: 180,
           },
-          { scale: 1 }]);
+          {
+            config: Animator.config,
+            scale: 1,
+          },
+        ]);
       },
     });
   }
@@ -125,12 +137,19 @@ export class Animator {
       this.cardAPI.start({
         to: async (next) => {
           await next([
-            { scale: 1 + cardScaleAmount },
+            {
+              config: Animator.clampedConfig,
+              scale: 1 + cardScaleAmount,
+            },
             {
               opacity: 1,
               rotateY: 0,
             },
-            { scale: 1 }]);
+            {
+              config: Animator.config,
+              scale: 1,
+            },
+          ]);
 
           resolve();
         },
@@ -170,12 +189,14 @@ export class Animator {
       config: Animator.config,
       immediate: true,
     });
+
     this.overlayAPI.start({
       backgroundColor: state === CardState.IdleYes ? overlayColorYes : overlayColorNo,
       config: Animator.config,
       immediate: true,
       opacity: 1,
     });
+
     this.iconAPI.start({
       config: Animator.config,
       immediate: true,
@@ -188,10 +209,7 @@ export class Animator {
     const deadZone = xOffset > deadzoneAmount ? 1 : 0;
 
     this.cardAPI.start(down ? {
-      config: {
-        ...Animator.config,
-        clamp: true,
-      },
+      config: Animator.clampedConfig,
       rotateZ: mx * rotateModifier,
       scale: 1 - cardScaleAmount,
       x: mx,
