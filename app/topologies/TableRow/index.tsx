@@ -1,41 +1,50 @@
+import { WithStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
-
-import './TableRow.scss';
 
 export const tableRowTopology = argu.ns('tableRow');
 
-type TableRowElementProps = { onClick: any };
+const styles = (theme: LibroTheme) => ({
+  tableRowClickable : {
+    '&:hover': {
+      background: theme.palette.grey.xxLight,
+      cursor: 'pointer',
+    },
+  },
+});
 
-class TableRow extends Topology {
+type TableRowElementProps = { onClick: any };
+type TableRowProps = WithStyles<typeof styles> & TableRowElementProps;
+
+class TableRow extends Topology<TableRowProps> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
   };
 
-  constructor(props: Record<string, unknown>) {
+  constructor(props: TableRowProps) {
     super(props);
 
-    this.className = 'TableRow';
+    this.className = this.getClassName();
     this.elementType = 'tr';
     this.topology = tableRowTopology;
   }
 
   public getClassName(): string {
     return clsx({
-      'TableRow': true,
-      'TableRow--clickable': !!(this.props as any).onClick,
+      [this.props.classes.tableRowClickable]: !!this.props.onClick,
     });
   }
 
   public getElementProps(): TableRowElementProps {
     return {
-      onClick: (this.props as any).onClick,
+      onClick: this.props.onClick,
     };
   }
 }
 
-export default TableRow;
+export default withStyles(styles)(TableRow);
