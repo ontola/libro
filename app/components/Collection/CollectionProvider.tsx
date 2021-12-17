@@ -4,6 +4,7 @@ import rdf, {
   SomeTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
+import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
   LaxNode,
@@ -25,6 +26,7 @@ import { useListToArr } from '../../hooks/useListToArr';
 import { SortProps, useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
+import { useCollectionStyles } from '../../views/Collection';
 import { invalidStatusIds } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
 
@@ -129,9 +131,14 @@ const CollectionProvider = ({
   const [columns] = useListToArr<NamedNode>(columnSequence);
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay ?? collectionDisplayFromData;
+
+  const classes = useCollectionStyles();
   const wrapperProps = React.useMemo(() => ({
-    className: `Collection Collection__Depth-${depth}`,
+    className: clsx({
+      [classes.collection]: depth,
+    }),
   }), [depth]);
+
   const hasInteraction = useHasInteraction(originalCollection);
   const sortOptions = useSorting(currentCollection);
   const originalFilters = useFields(originalCollection, ontola.collectionFilter);

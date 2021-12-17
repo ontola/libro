@@ -1,9 +1,11 @@
 import { SomeTerm } from '@ontologies/core';
+import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { tryParseInt } from '../../helpers/numbers';
+import { useCollectionStyles } from '../../views/Collection';
 import Heading from '../Heading';
 import LinkDuo from '../LinkDuo';
 import ResourceBoundary from '../ResourceBoundary';
@@ -29,8 +31,11 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({
     setOpen(true);
   };
 
+  const classes = useCollectionStyles();
   const wrapperProps = React.useMemo(() => ({
-    className: `Collection__Depth-${depth}`,
+    className: clsx({
+      [classes.collection]: depth,
+    }),
     size: 5,
   }), [depth]);
 

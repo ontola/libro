@@ -1,8 +1,10 @@
+import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import rdf, {
   NamedNode,
   SomeTerm,
 } from '@ontologies/core';
+import clsx from 'clsx';
 import {
   FC,
   register,
@@ -24,7 +26,10 @@ import { pageTopology } from '../../../topologies/Page';
 import { collectionMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
 
+export const defaultPaginationCID = 'CID-DefaultPagination';
+
 export interface PaginationProps {
+  alignText?: 'left' | 'right';
   linkedProp: SomeTerm;
 }
 
@@ -187,9 +192,19 @@ const usePageButtons = (): JSX.Element[] | null => {
   ]);
 };
 
+const useStyles = makeStyles(() => ({
+  textLeft: {
+    textAlign: 'left',
+  },
+  textRight: {
+    textAlign: 'right',
+  },
+}));
+
 const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {
-  const DefaultPagination: FC<PaginationProps> = () => {
+  const DefaultPagination: FC<PaginationProps> = ({ alignText }) => {
     const pageButtons = usePageButtons();
+    const classes = useStyles();
 
     if (!pageButtons || pageButtons.length === 0) {
       return null;
@@ -198,7 +213,10 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
     return (
       <Wrapper>
         <div
-          className="pagination-wrapper"
+          className={clsx(
+            defaultPaginationCID,
+            alignText==='right' ? classes.textRight : classes.textLeft,
+          )}
           data-testid="paginationWrapper"
         >
           {pageButtons}

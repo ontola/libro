@@ -1,6 +1,5 @@
 import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
-import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -15,11 +14,9 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
-interface PaginationProps {
-  linkedProp: SomeNode;
-}
+import { PaginationProps } from './defaultPagination';
 
-const Pagination: FC<PaginationProps> = () => {
+const Pagination: FC<PaginationProps> = ({ alignText }) => {
   const { hidePagination } = useCollectionOptions();
   const [collectionType] = useProperty(ontola.collectionType);
 
@@ -39,6 +36,7 @@ const Pagination: FC<PaginationProps> = () => {
   return (
     <Property
       forceRender
+      alignText={alignText}
       label={ontola.defaultPagination}
     />
   );
