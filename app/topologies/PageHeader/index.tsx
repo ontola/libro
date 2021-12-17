@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import './PageHeader.scss';
-import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
+import { Size } from '../../themes/themes';
 import Container from '../Container';
 
 export { default as PageHeaderImage } from './PageHeaderImage';

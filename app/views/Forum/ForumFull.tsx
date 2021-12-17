@@ -11,9 +11,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { Size } from '../../themes/themes';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';

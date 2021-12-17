@@ -24,24 +24,6 @@ export const sides = [
   'neutral',
 ];
 
-export enum Size {
-  XSmall = 'xSmall',
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  XLarge = 'xLarge',
-  XXLarge = 'xxLarge',
-  XXXLarge = 'xxxLarge',
-}
-
-export enum Shadows {
-  Transparent = 'transparent',
-  Base = 'base',
-  Intense = 'intense',
-  Inside = 'inside',
-  Crazy = 'crazy',
-}
-
 export const statuses = [
   'pass',
   'fail',

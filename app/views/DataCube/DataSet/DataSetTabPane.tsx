@@ -8,8 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Size } from '../../../components/shared/config';
 import qb from '../../../ontology/qb';
+import { Size } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { tabPaneTopology } from '../../../topologies/TabPane';
 

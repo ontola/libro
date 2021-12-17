@@ -4,8 +4,8 @@
 
 import React from 'react';
 
-import { Size } from '../../components/shared/config';
 import { render } from '../../test-utils';
+import { Size } from '../../themes/themes';
 
 import Container from '.';
 

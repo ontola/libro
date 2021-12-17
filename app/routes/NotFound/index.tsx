@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 import CardContent from '../../components/Card/CardContent';
 import Heading from '../../components/Heading';
-import { Size } from '../../components/shared/config';
+import { Size } from '../../themes/themes';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 

@@ -8,9 +8,9 @@ import React from 'react';
 
 import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';
-import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { Size } from '../../themes/themes';
 import Container from '../../topologies/Container/index';
 import Grid from '../../topologies/Grid';
 import { tabPaneTopology } from '../../topologies/TabPane';

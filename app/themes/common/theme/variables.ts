@@ -71,6 +71,7 @@ const colors = {
     main: alpha('rgb(255, 255, 255)', 0.6),
     midLight: alpha('rgb(255, 255, 255)', 0.3),
     light: alpha('rgb(255, 255, 255)', 0.15),
+    light85: alpha('rgb(255, 255, 255)', 0.85),
     xLight: alpha('rgb(255, 255, 255)', 0.05),
     transparent: alpha('rgb(255, 255, 255)', 0),
   },
@@ -163,6 +164,8 @@ const theme = {
     drawer: 920,
     modal: 920,
   },
+  zIndexHoverBox: 100,
+  zIndexOverlay: 1900,
 };
 
 export type CommonColors = typeof colors;

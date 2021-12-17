@@ -1,8 +1,8 @@
 import { Container as MaterialContainer } from '@material-ui/core';
 import React from 'react';
 
-import { Size } from '../../components/shared/config';
 import argu from '../../ontology/argu';
+import { Size } from '../../themes/themes';
 import Topology, { TopologyContent } from '../Topology';
 
 export const containerTopology = argu.container;

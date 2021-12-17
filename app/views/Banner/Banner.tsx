@@ -10,8 +10,8 @@ import React, { useEffect, useState } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { LoadingHidden } from '../../components/Loading';
-import { Size } from '../../components/shared/config';
 import ontola from '../../ontology/ontola';
+import { Size } from '../../themes/themes';
 import Container from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 
