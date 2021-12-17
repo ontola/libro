@@ -10,6 +10,7 @@ import React from 'react';
 import { useLocation } from 'react-router';
 
 import CardDivider from '../../components/Card/CardDivider';
+import { LoadingHidden } from '../../components/Loading';
 import { PageHeader } from '../../components/PageHeader';
 import { Size } from '../../components/shared/config';
 import SubSection from '../../components/SubSection';
@@ -43,7 +44,7 @@ const ProjectFull: FC = ({
         <Property label={argu.trashedAt} />
         <Property
           label={ontola.publishAction}
-          onLoad={() => null}
+          onLoad={LoadingHidden}
         />
         <PageHeader />
         <MainBody>
@@ -52,16 +53,16 @@ const ProjectFull: FC = ({
           <List>
             <Property
               label={argu.attachments}
-              onLoad={() => null}
+              onLoad={LoadingHidden}
             />
             <Property
               label={meeting.attachment}
-              onLoad={() => null}
+              onLoad={LoadingHidden}
             />
           </List>
           <Property
             label={argu.voteableVoteEvent}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <CardDivider />
           <Property

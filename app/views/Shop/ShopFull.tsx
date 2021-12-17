@@ -7,6 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { LoadingHidden } from '../../components/Loading';
 import { PageHeader } from '../../components/PageHeader';
 import SubSection from '../../components/SubSection';
 import app from '../../ontology/app';
@@ -26,7 +27,7 @@ const ShopFull: FC = (): JSX.Element => (
     <Container>
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <MainBody data-test="Thing-thing">
         <Property label={argu.trashedAt} />
@@ -37,11 +38,11 @@ const ShopFull: FC = (): JSX.Element => (
         <List wrap>
           <Property
             label={argu.attachments}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <Property
             label={meeting.attachment}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </List>
         <ActionsBar>

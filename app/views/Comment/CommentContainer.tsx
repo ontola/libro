@@ -10,7 +10,7 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { handleErrorStatuses } from '../../components/Error';
-import { LoadingOpinion } from '../../components/Loading';
+import { LoadingHidden, LoadingOpinion } from '../../components/Loading';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
@@ -66,11 +66,11 @@ const CommentContainer: FC<CommentContainerProps> = ({
         <ActionsBar small>
           <Property
             label={ontola.favoriteAction}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <Property
             label={schema.comment}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           >
             <Property
               omniform
@@ -91,7 +91,7 @@ const CommentContainer: FC<CommentContainerProps> = ({
         hideHeader
         depth={depth + 1}
         label={schema.comment}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
     </React.Fragment>
   );

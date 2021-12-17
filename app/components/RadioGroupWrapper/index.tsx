@@ -8,7 +8,7 @@ import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormContext } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
-import { LoadingRow } from '../Loading';
+import { LoadingHidden, LoadingRow } from '../Loading';
 
 const RadioGroupWrapper: React.FC<InputComponentProps> = ({
   inputValue,
@@ -52,7 +52,7 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
       />
       <Resource
         subject={shIn}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       >
         <CollectionCreateButton />
       </Resource>

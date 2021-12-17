@@ -10,6 +10,7 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
+import { LoadingHidden } from '../../components/Loading';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
@@ -27,7 +28,7 @@ const MapQuestionFull: FC = () => (
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <CardMain>
         <DetailsBar right={defaultMenus}>
@@ -48,11 +49,11 @@ const MapQuestionFull: FC = () => (
         <CardRow>
           <Property
             label={argu.attachments}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <Property
             label={meeting.attachment}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </CardRow>
       </CardMain>

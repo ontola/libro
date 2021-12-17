@@ -13,6 +13,7 @@ import React from 'react';
 
 import CardContent from '../../../components/Card/CardContent';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import { LoadingHidden } from '../../../components/Loading';
 import argu from '../../../ontology/argu';
 import dexes from '../../../ontology/dexes';
 import ontola from '../../../ontology/ontola';
@@ -35,7 +36,7 @@ const InviteFull: FC = () => {
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <CardMain>
         <DetailsBar right={defaultMenus}>

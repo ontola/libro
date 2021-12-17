@@ -5,6 +5,7 @@ import React from 'react';
 import app from '../../ontology/app';
 import { CardAppendix } from '../../topologies/Card';
 import { IsActiveCheck } from '../Link';
+import { LoadingHidden } from '../Loading';
 
 export interface AccountHelpersCardAppendixProps {
   currentSubject: Node;
@@ -27,7 +28,7 @@ const AccountHelpersCardAppendix = ({
         isActive={isActive}
         subject={app.ns('menus/session')}
         onClick={onClick}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
     </CardAppendix>
   );

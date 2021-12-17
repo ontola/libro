@@ -4,11 +4,12 @@ import * as schema from '@ontologies/schema';
 import {
   Property,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React, { useEffect, useState } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { LoadingHidden } from '../../components/Loading';
 import { Size } from '../../components/shared/config';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
@@ -54,7 +55,7 @@ const Banner = () => {
             </div>
             <Property
               label={ontola.dismissAction}
-              onLoad={() => null}
+              onLoad={LoadingHidden}
             >
               <Property
                 smallButton

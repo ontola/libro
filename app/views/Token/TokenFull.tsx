@@ -4,6 +4,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { LoadingHidden } from '../../components/Loading';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
@@ -22,7 +23,7 @@ const TokenFull = (): JSX.Element => (
       <ActionsBar>
         <Property
           label={ontola.favoriteAction}
-          onLoad={() => null}
+          onLoad={LoadingHidden}
         />
       </ActionsBar>
     </CardMain>

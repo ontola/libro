@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { LoadingHidden } from '../../components/Loading';
 import { PageHeader } from '../../components/PageHeader';
 import SubSection from '../../components/SubSection';
 import argu from '../../ontology/argu';
@@ -25,7 +26,7 @@ const MotionFull: FC = () => (
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <PageHeader />
       <MainBody>
@@ -34,16 +35,16 @@ const MotionFull: FC = () => (
         <List wrap>
           <Property
             label={argu.attachments}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <Property
             label={meeting.attachment}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </List>
         <Property
           label={argu.voteableVoteEvent}
-          onLoad={() => null}
+          onLoad={LoadingHidden}
         />
         <Property label={argu.blogPosts} />
       </MainBody>

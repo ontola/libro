@@ -24,7 +24,7 @@ import CollectionCreateButton from '../../components/Collection/CollectionCreate
 import { FormContext, FormTheme } from '../../components/Form/Form';
 import { FormFieldContext } from '../../components/FormField/FormField';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
-import { LoadingRow } from '../../components/Loading';
+import { LoadingHidden, LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import { isResource } from '../../helpers/types';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
@@ -71,7 +71,7 @@ const SelectInputField: React.FC = () => {
   const createButton = React.useMemo(() => fieldShape.shIn && (
     <Resource
       subject={fieldShape.shIn}
-      onLoad={() => null}
+      onLoad={LoadingHidden}
     >
       <CollectionCreateButton />
     </Resource>

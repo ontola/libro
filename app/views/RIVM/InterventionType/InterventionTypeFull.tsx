@@ -29,6 +29,7 @@ import DetailsBar from '../../../topologies/DetailsBar';
 import { inlineTopology } from '../../../topologies/Inline';
 import { defaultMenus } from '../../common';
 import { fullResourceTopology } from '../../../topologies/FullResource';
+import { LoadingHidden } from '../../../components/Loading';
 
 const InterventionTypeFull: FC = () => (
   <React.Fragment>
@@ -36,7 +37,7 @@ const InterventionTypeFull: FC = () => (
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <CardMain>
         <DetailsBar right={defaultMenus}>
@@ -58,7 +59,7 @@ const InterventionTypeFull: FC = () => (
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property
             label={foaf.isPrimaryTopicOf}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <AttributeList>
             <tr>
@@ -77,17 +78,17 @@ const InterventionTypeFull: FC = () => (
         <CardRow>
           <Property
             label={argu.attachments}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <Property
             label={meeting.attachment}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </CardRow>
         <ActionsBar>
           <Property
             label={ontola.favoriteAction}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </ActionsBar>
       </CardMain>

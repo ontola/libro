@@ -14,6 +14,7 @@ import Select from '../../topologies/Select';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormContext, FormTheme } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
+import { LoadingHidden } from '../Loading';
 import Spinner from '../Spinner';
 
 import { useCheckboxStyles } from './CheckboxInput';
@@ -143,7 +144,7 @@ const CheckboxesInput: React.FC = () => {
       </div>
       <Resource
         subject={shIn}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       >
         <CollectionCreateButton />
       </Resource>

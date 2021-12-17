@@ -11,6 +11,7 @@ import React from 'react';
 import AttributeListItem from '../../../components/AttributeListItem';
 import CardContent from '../../../components/Card/CardContent';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import { LoadingHidden } from '../../../components/Loading';
 import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import ontola from '../../../ontology/ontola';
@@ -30,7 +31,7 @@ const MeasureFull: FC = () => (
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <CardMain>
         <DetailsBar right={defaultMenus}>
@@ -63,13 +64,13 @@ const MeasureFull: FC = () => (
         <CardRow>
           <Property
             label={argu.attachments}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </CardRow>
         <ActionsBar>
           <Property
             label={ontola.favoriteAction}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </ActionsBar>
       </CardMain>

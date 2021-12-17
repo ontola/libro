@@ -21,6 +21,8 @@ const LoadingInline = (): JSX.Element => <div className="Loading__Paragraph Load
 
 const LoadingParagraph = () => <div className="Loading__Paragraph Loading__background" />;
 
+export const LoadingHidden = (): null => null;
+
 export const LoadingNavbarLink = (): JSX.Element => (
   <div className="LoadingNavbarLink">
     <div className="LoadingNavbarLink__content Loading__background Loading__background--inverse" />

@@ -12,6 +12,7 @@ import GridHeader from '../../components/Grid/GridHeader';
 import { gridTopology } from '../../topologies/Grid';
 import Button from '../../components/Button';
 import { footerTopology } from '../../topologies/Footer';
+import { LoadingHidden } from '../../components/Loading';
 
 const ActionGrid: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);
@@ -21,7 +22,7 @@ const ActionGrid: FC = ({ subject }) => {
       <GridHeader header={<Property label={schema.name} />}>
         <Property
           label={ontola.updateAction}
-          onLoad={() => null}
+          onLoad={LoadingHidden}
         />
       </GridHeader>
       <Property label={schema.text} />

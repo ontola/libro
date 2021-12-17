@@ -13,6 +13,7 @@ import CardContent from '../../../components/Card/CardContent';
 import CardDivider from '../../../components/Card/CardDivider';
 import Heading from '../../../components/Heading';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
+import { LoadingHidden } from '../../../components/Loading';
 import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
 import ontola from '../../../ontology/ontola';
@@ -32,7 +33,7 @@ const InterventionFull: FC = () => (
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
-        onLoad={() => null}
+        onLoad={LoadingHidden}
       />
       <CardMain>
         <DetailsBar right={defaultMenus}>
@@ -182,17 +183,17 @@ const InterventionFull: FC = () => (
         <CardRow>
           <Property
             label={argu.attachments}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
           <Property
             label={meeting.attachment}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </CardRow>
         <ActionsBar>
           <Property
             label={ontola.favoriteAction}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </ActionsBar>
       </CardMain>

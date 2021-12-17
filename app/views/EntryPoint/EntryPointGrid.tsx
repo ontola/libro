@@ -14,6 +14,7 @@ import React from 'react';
 import Button from '../../components/Button';
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import GridHeader from '../../components/Grid/GridHeader';
+import { LoadingHidden } from '../../components/Loading';
 import ontola from '../../ontology/ontola';
 import { footerTopology } from '../../topologies/Footer';
 import FormFooter from '../../topologies/FormFooter';
@@ -70,7 +71,7 @@ const EntryPointGrid: FC<PropTypes> = ({
         <GridHeader header={<Property label={schema.name} />}>
           <Property
             label={ontola.updateAction}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </GridHeader>
         <Property label={schema.text} />

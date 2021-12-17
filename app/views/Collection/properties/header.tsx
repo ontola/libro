@@ -10,6 +10,7 @@ import React, { ReactNode } from 'react';
 import CardHeader from '../../../components/Card/CardHeader';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import { HeaderFloat } from '../../../components/Collection/HeaderFloat';
+import { LoadingHidden } from '../../../components/Loading';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -63,7 +64,7 @@ const containerCollectionHeader = (): JSX.Element | null => {
         <Resource subject={originalCollection}>
           <Property
             label={ontola.favoriteAction}
-            onLoad={() => null}
+            onLoad={LoadingHidden}
           />
         </Resource>
       </ContainerHeader>

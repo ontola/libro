@@ -7,6 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { LoadingHidden } from '../../../components/Loading';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { tableRowTopology } from '../../../topologies/TableRow';
@@ -15,11 +16,11 @@ const Order: FC<PropertyProps> = () => (
   <React.Fragment>
     <Property
       label={ontola.moveUpAction}
-      onLoad={() => null}
+      onLoad={LoadingHidden}
     />
     <Property
       label={ontola.moveDownAction}
-      onLoad={() => null}
+      onLoad={LoadingHidden}
     />
   </React.Fragment>
 );
