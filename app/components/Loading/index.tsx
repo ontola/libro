@@ -1,9 +1,12 @@
 import Tab from '@material-ui/core/Tab';
+import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import BreadcrumbsBar from '../../topologies/BreadcrumbsBar';
+import { LibroTheme } from '../../themes/themes';
 import Card, {
   CardFixed,
   CardMicroRow,
@@ -16,23 +19,161 @@ import TableRow from '../../topologies/TableRow';
 import { Breadcrumb } from '../Breadcrumbs';
 import CardContent from '../Card/CardContent';
 
-import './Loading.scss';
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  '@keyframes loadingBackgroundAnimation': {
+    '0%': {
+      backgroundPosition: '-200px 0',
+    },
 
-const LoadingInline = (): JSX.Element => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
+    '100%': {
+      backgroundPosition: '200px 0',
+    },
+  },
+  loadingBackground: {
+    animationDuration: '1s',
+    animationFillMode: 'forwards',
+    animationIterationCount: 'infinite',
+    animationName: '$loadingBackgroundAnimation',
+    animationTimingFunction: 'linear',
+    backgroundImage: `linear-gradient(to right, ${theme.palette.transparent.dark} 8%, ${theme.palette.transparent.midDark} 18%, ${theme.palette.transparent.dark} 33%)`,
+    backgroundSize: 400,
+    borderRadius: theme.shape.borderRadius,
+    color: 'transparent',
+    position: 'relative',
+  },
+  loadingBackgroundInverse: {
+    backgroundImage: `linear-gradient(to right, ${theme.palette.transparent.xLight} 8%, ${theme.palette.transparent.midLight} 18%, ${theme.palette.transparent.light} 33%)`,
+  },
+  loadingButton: {
+    flexGrow: 1,
+    height: '1.5em',
+    margin: '1em',
+  },
+  loadingCardFloat: {
+    borderRadius: '999px !important',
+    height: '2em',
+    width: '2em',
+  },
+  loadingCellRow: {
+    height: '1em',
+  },
+  loadingHeader: {
+    height: '2em',
+    marginBottom: '1em',
+    marginTop: '.5em',
+    width: '80%',
+  },
+  loadingNavbarLink: {
+    alignItems: 'center',
+    display: 'flex',
+    height: '2em',
+  },
+  loadingNavbarLinkBackground: {
+    flexGrow: 1,
+    height: '1em',
+    marginLeft: '2em',
+    marginRight: '2.4em',
+  },
+  loadingParagraph: {
+    height: '1em',
+    marginBottom: '1em',
+  },
+  loadingParagraphDetail: {
+    alignSelf: 'center',
+    height: '1em',
+    margin: 0,
+    marginRight: '1em',
+    width: '5em',
+  },
+  loadingParagraphInline: {
+    display: 'inline-flex',
+    width: '5em',
+  },
+  loadingParagraphMicroRow: {
+    height: '.8em',
+    marginBottom: '.4em',
+    marginTop: '.4em',
+  },
+  loadingParagraphParent: {
+    display: 'inline-block',
+    marginBottom: 0,
+    width: '4rem',
+  },
+  loadingParagraphShorter: {
+    height: '1em',
+    marginBottom: '1em',
+    width: '70%',
+  },
+  loadingSelect: {
+    alignItems: 'center',
+    display: 'flex',
+    height: 42,
+    padding: '.5em',
+    width: '100%',
+  },
+  loadingSelectParagraph: {
+    marginBottom: 0,
+    width: '100%',
+  },
+}));
 
-const LoadingParagraph = () => <div className="Loading__Paragraph Loading__background" />;
+const LoadingInline = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <div
+      className={clsx(
+        classes.loadingParagraph,
+        classes.loadingParagraphInline,
+        classes.loadingBackground,
+      )}
+    />
+  );
+};
+
+const LoadingParagraph = () => {
+  const classes = useStyles();
+
+  return (
+    <div
+      className={clsx(
+        classes.loadingParagraph,
+        classes.loadingBackground,
+      )}
+    />
+  );
+};
 
 export const LoadingHidden = (): null => null;
 
-export const LoadingNavbarLink = (): JSX.Element => (
-  <div className="LoadingNavbarLink">
-    <div className="LoadingNavbarLink__content Loading__background Loading__background--inverse" />
-  </div>
-);
+export const LoadingNavbarLink = (): JSX.Element => {
+  const classes = useStyles();
 
-export const LoadingButton = (): JSX.Element => (
-  <div className="Loading__Button Loading__background" />
-);
+  return (
+    <div className={classes.loadingNavbarLink}>
+      <div
+        className={clsx(
+          classes.loadingBackground,
+          classes.loadingNavbarLinkBackground,
+          classes.loadingBackgroundInverse,
+        )}
+      />
+    </div>
+  );
+};
+
+export const LoadingButton = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <div
+      className={clsx(
+        classes.loadingButton,
+        classes.loadingBackground,
+      )}
+    />
+  );
+};
 
 export const LoadingTabbar = ({
   subject,
@@ -48,45 +189,78 @@ export const LoadingTabbar = ({
   />
 );
 
-export const LoadingCard = (): JSX.Element => (
-  <Card>
-    <CardContent>
-      <div
-        className="Loading__Header Loading__background"
-        data-testid="loading-card"
-      />
-      <LoadingParagraph />
-      <LoadingParagraph />
-      <div className="Loading__Paragraph--shorter Loading__background" />
-    </CardContent>
-  </Card>
-);
+export const LoadingCard = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <Card>
+      <CardContent>
+        <div
+          className={clsx(
+            classes.loadingHeader,
+            classes.loadingBackground,
+          )}
+          data-testid="loading-card"
+        />
+        <LoadingParagraph />
+        <LoadingParagraph />
+        <div
+          className={clsx(
+            classes.loadingParagraphShorter,
+            classes.loadingBackground,
+          )}
+        />
+      </CardContent>
+    </Card>
+  );
+};
 
 export interface LoadingCardFixedProps {
   fill?: boolean;
 }
 
-export const LoadingCardFixed = ({ fill }: LoadingCardFixedProps): JSX.Element => (
-  <CardFixed fill={fill}>
-    <CardContent>
-      <div
-        className="Loading__Header Loading__background"
-        style={{ minWidth: '18em' }}
-      />
-      <LoadingParagraph />
-      <LoadingParagraph />
-      <div className="Loading__Paragraph--shorter Loading__background" />
-    </CardContent>
-  </CardFixed>
-);
+export const LoadingCardFixed = ({ fill }: LoadingCardFixedProps): JSX.Element => {
+  const classes = useStyles();
 
-export const LoadingCellRow = (): JSX.Element => (
-  <TableRow>
-    <TableCell colspan={100}>
-      <div className="Loading__CellRow Loading__background" />
-    </TableCell>
-  </TableRow>
-);
+  return (
+    <CardFixed fill={fill}>
+      <CardContent>
+        <div
+          className={clsx(
+            classes.loadingHeader,
+            classes.loadingBackground,
+          )}
+          style={{ minWidth: '18em' }}
+        />
+        <LoadingParagraph />
+        <LoadingParagraph />
+        <div
+          className={clsx(
+            classes.loadingParagraph,
+            classes.loadingBackground,
+          )}
+        />
+      </CardContent>
+    </CardFixed>
+  );
+};
+
+export const LoadingCellRow = (): JSX.Element => {
+  const classes = useStyles();
+
+  return(
+    <TableRow>
+      <TableCell colspan={100}>
+        <div
+          className={clsx(
+            classes.loadingCellRow,
+            classes.loadingBackground,
+          )}
+        />
+      </TableCell>
+    </TableRow>
+  );
+};
 
 export const LoadingPage = (): JSX.Element => (
   <FullResourceTopology>
@@ -107,23 +281,64 @@ export const LoadingFullResource = (): JSX.Element => (
   </FullResourceTopology>
 );
 
-export const LoadingDetail = (): JSX.Element => (
-  <div className="Loading__Paragraph Loading__Paragraph--detail Loading__background Detail" />
-);
+export const LoadingDetail = (): JSX.Element => {
+  const classes = useStyles();
 
-export const LoadingCardFloat = (): JSX.Element => (
-  <div className="Loading__background Loading__CardFloat" />
-);
+  return (
+    <div
+      className={clsx(
+        classes.loadingParagraph,
+        classes.loadingParagraphDetail,
+        classes.loadingBackground,
+        'Detail',
+      )}
+    />
+  );
+};
 
-export const LoadingOpinion = (): JSX.Element => (
-  <div className="Opinion--icon Loading__background" />
-);
+export const LoadingCardFloat = (): JSX.Element => {
+  const classes = useStyles();
 
-export const LoadingParent = (): JSX.Element => (
-  <Breadcrumb
-    label={<div className="Loading__Paragraph Loading__Paragraph--parent Loading__background" />}
-  />
-);
+  return (
+    <div
+      className={clsx(
+        classes.loadingBackground,
+        classes.loadingCardFloat,
+      )}
+    />
+  );
+};
+
+export const LoadingOpinion = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <div
+      className={clsx(
+        'Opinion--icon',
+        classes.loadingBackground,
+      )}
+    />
+  );
+};
+
+export const LoadingParent = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <Breadcrumb
+      label={(
+        <div
+          className={clsx(
+            classes.loadingParagraph,
+            classes.loadingParagraphParent,
+            classes.loadingBackground,
+          )}
+        />
+      )}
+    />
+  );
+};
 
 export const LoadingRow = (): JSX.Element => (
   <CardRow>
@@ -133,14 +348,24 @@ export const LoadingRow = (): JSX.Element => (
   </CardRow>
 );
 
-export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => (
-  <div
-    className="Loading__Select"
-    style={style}
-  >
-    <LoadingParagraph />
-  </div>
-);
+export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => {
+  const classes = useStyles();
+
+  return (
+    <div
+      className={classes.loadingSelect}
+      style={style}
+    >
+      <div
+        className={clsx(
+          classes.loadingParagraph,
+          classes.loadingSelectParagraph,
+          classes.loadingBackground,
+        )}
+      />
+    </div>
+  );
+};
 
 // Like a LoadingRow, but with a backdrop
 export const LoadingCardRowAppendix = (): JSX.Element => (
@@ -151,17 +376,36 @@ export const LoadingCardRowAppendix = (): JSX.Element => (
   </CardRow>
 );
 
-export const LoadingMicroRow = (): JSX.Element => (
-  <CardMicroRow>
-    <div className="Loading__Paragraph Loading__Paragraph--micro-row Loading__background" />
-  </CardMicroRow>
-);
+export const LoadingMicroRow = (): JSX.Element => {
+  const classes = useStyles();
 
-export const LoadingCoverPhoto = (): JSX.Element => (
-  <div className="CoverImage__wrapper">
-    <div className="CoverImage__child Loading__background" />
-  </div>
-);
+  return (
+    <CardMicroRow>
+      <div
+        className={clsx(
+          classes.loadingParagraph,
+          classes.loadingParagraphMicroRow,
+          classes.loadingBackground,
+        )}
+      />
+    </CardMicroRow>
+  );
+};
+
+export const LoadingCoverPhoto = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <div className="CoverImage__wrapper">
+      <div
+        className={clsx(
+          'CoverImage__child',
+          classes.loadingBackground,
+        )}
+      />
+    </div>
+  );
+};
 
 // Requires a wrapper that sets a widget topology
 export const LoadingGridCard = (): JSX.Element => (
@@ -172,13 +416,22 @@ export const LoadingGridCard = (): JSX.Element => (
   </CardFixed>
 );
 
-export const LoadingGridContent = (): JSX.Element => (
-  <React.Fragment>
-    <div className="Loading__Header Loading__background" />
-    <LoadingParagraph />
-    <LoadingParagraph />
-  </React.Fragment>
-);
+export const LoadingGridContent = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <React.Fragment>
+      <div
+        className={clsx(
+          classes.loadingHeader,
+          classes.loadingBackground,
+        )}
+      />
+      <LoadingParagraph />
+      <LoadingParagraph />
+    </React.Fragment>
+  );
+};
 
 /**
  * Full page loader, same JSX/HTML as the one that shows when the app is loading
