@@ -113,6 +113,7 @@ const CollectionFrame = ({
                 <TableFooterCell colSpan={(columns?.length || 1) - 1}>
                   <Property
                     forceRender
+                    alignText="right"
                     label={app.pagination}
                   />
                 </TableFooterCell>

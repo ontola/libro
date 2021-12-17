@@ -4,9 +4,8 @@ import React from 'react';
 
 import argu from '../../ontology/argu';
 
-import './TableFooterCell.scss';
-
 export const tableFooterCellTopology = argu.ns('tableFooterCell');
+export const tableFooterCellCID = 'CID-TableFooterCell';
 
 interface Props {
   colSpan?: number;
@@ -27,7 +26,7 @@ class TableFooterCell extends TopologyProvider<Props> {
   public render() {
     return this.wrap((
       <td
-        className="TableFooterCell"
+        className={tableFooterCellCID}
         colSpan={this.props.colSpan}
       >
         {this.props.children}
