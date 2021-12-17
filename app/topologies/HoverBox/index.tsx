@@ -1,3 +1,5 @@
+import { createStyles } from '@material-ui/core';
+import { WithStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React, {
@@ -8,10 +10,11 @@ import React, {
 
 import { convertOnClick } from '../../helpers/keyboard';
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 
-import './HoverBox.scss';
+export const hoverBoxTopology = argu.ns('cardHover');
 
-export interface HoverBoxProps {
+export type HoverBoxProps = {
   /** Always visible. Functions as a trigger that responds to hover or focus. */
   children: JSX.Element | JSX.Element[],
   /** Only show when hovering over the trigger / children */
@@ -19,26 +22,78 @@ export interface HoverBoxProps {
   onClick?: MouseEventHandler,
   popout?: boolean;
   shine?: boolean;
-}
+};
+
+type HoverBoxPropsWithStyle = HoverBoxProps & WithStyles<typeof styles>;
 
 interface HoverBoxState {
   isVisible: boolean;
 }
 
-export const hoverBoxTopology = argu.ns('cardHover');
+const styles = (theme: LibroTheme) => createStyles({
+  '@keyframes hb-highlight' :{
+    '0%' :{
+      boxShadow: 'none',
+    },
+
+    '50%' :{
+      animationTimingFunction: 'ease-in',
+      boxShadow: `0 0 1em ${theme.palette.green.light}`,
+    },
+
+    '100%': {
+      animationTimingFunction: 'ease-out',
+      boxShadow: 'none',
+    },
+  },
+  hiddenPart: {
+    display: 'none',
+    pointerEvents: 'none',
+  },
+  hoverBox: {
+    display: 'block',
+    position: 'relative',
+  },
+  popout: {
+    right: 'auto',
+    width: '20em',
+  },
+  shine: {
+    animation: 'hb-highlight 1s 1',
+  },
+  trigger: {
+    '&:focus': {
+      outline: 'none',
+    },
+
+    display: 'block',
+  },
+  visible: {
+    backgroundColor: theme.palette.common.white,
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.boxShadow.intense,
+    display: 'block',
+    left: '-10px',
+    padding: '10px',
+    position: 'absolute',
+    right: '-10px',
+    top: '-10px',
+    zIndex: theme.zIndexHoverBox,
+  },
+});
 
 /**
  * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
  * state, make sure to add functionality for touch users.
  * @returns {component} Component
  */
-class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
+class HoverBox extends TopologyProvider<HoverBoxPropsWithStyle, HoverBoxState> {
   /**
    * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
    * state, make sure to add functionality for touch users.
    * @returns {component} Component
    */
-  constructor(props: HoverBoxProps) {
+  constructor(props: HoverBoxPropsWithStyle) {
     super(props);
 
     this.state = {
@@ -100,7 +155,10 @@ class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
   trigger(children: JSX.Element | JSX.Element[]): JSX.Element {
     return (
       <span
-        className="HoverBox-trigger"
+        className={clsx({
+          [this.props.classes.hoverBox]: true,
+          [this.props.classes.trigger]: true,
+        })}
         data-testid="HoverBox-trigger"
         tabIndex={0}
         onBlur={this.handleOnBlur}
@@ -115,25 +173,23 @@ class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
     );
   }
 
-  classNames(): string {
-    if (this.state.isVisible) {
-      return clsx({
-        'HoverBox__hidden-part--visible': true,
-        'HoverBox__hidden-part--visible--popout': this.props.popout,
-      });
-    }
-
-    return 'HoverBox__hidden-part--hidden';
-  }
-
   render() {
     return this.wrap((
       <div
-        className={`HoverBox ${this.props.shine && 'HoverBox--shine'}`}
+        className={clsx({
+          [this.props.classes.hoverBox]: true,
+          [this.props.classes.shine]: this.props.shine,
+        })}
         data-testid="HoverBox"
       >
         {this.trigger(this.props.children)}
-        <div className={`HoverBox__hidden-part ${this.classNames()}`}>
+        <div
+          className={clsx({
+            [this.props.classes.hiddenPart]: true,
+            [this.props.classes.visible]: this.state.isVisible,
+            [this.props.classes.popout]: this.state.isVisible && this.props.popout,
+          })}
+        >
           {!this.props.popout && this.props.children}
           {this.state.isVisible && this.props.hiddenChildren}
         </div>
@@ -142,4 +198,4 @@ class HoverBox extends TopologyProvider<HoverBoxProps, HoverBoxState> {
   }
 }
 
-export default HoverBox;
+export default withStyles(styles)(HoverBox);
