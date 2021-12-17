@@ -1,8 +1,10 @@
+import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
 import React from 'react';
 
+import { LibroTheme } from '../../themes/themes';
 import { FormContext } from '../Form/Form';
 
-import './FieldHelper.scss';
 import { FormFieldError } from './index';
 
 interface PropTypes {
@@ -11,12 +13,36 @@ interface PropTypes {
   right?: React.ReactNode;
 }
 
+const useStyles = makeStyles((theme: LibroTheme) => ({
+  fieldHelper :{
+    color: theme.palette.grey.main,
+    display: 'flex',
+    fontSize: '.8em',
+    justifyContent: 'space-between',
+    paddingRight: '.8rem',
+  },
+  fieldHelperPreview :{
+    bottom: 0,
+    height: 'initial',
+    padding: '5px 20px 0',
+    position: 'absolute',
+  },
+  fieldHelperRight: {
+    marginLeft: 'auto',
+  },
+}));
+
 const FieldHelper: React.FC<PropTypes> = ({
   helperText,
   error,
   right,
 }) => {
   const { theme } = React.useContext(FormContext);
+  const classes = useStyles();
+  const className = clsx({
+    [classes.fieldHelper]: true,
+    [classes.fieldHelperPreview]: theme === 'preview',
+  });
 
   if (!helperText && !error) {
     return null;
@@ -29,10 +55,10 @@ const FieldHelper: React.FC<PropTypes> = ({
   );
 
   return (
-    <div className={`FieldHelper${theme === 'preview' ? ' FieldHelper--preview' : ''}`}>
+    <div className={className}>
       {err || helperText}
       {right && (
-        <span className="FieldHelper__right">
+        <span className={classes.fieldHelperRight}>
           {right}
         </span>
       )}
