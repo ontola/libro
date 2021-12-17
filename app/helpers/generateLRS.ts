@@ -185,9 +185,6 @@ export default async function generateLRS(
     rdf.quad(argu.CustomForm, rdfx.type, rdfs.Class),
     rdf.quad(argu.CustomForm, rdfs.subClassOf, form.Form),
 
-    rdf.quad(argu.MapQuestion, rdfx.type, rdfs.Class),
-    rdf.quad(argu.MapQuestion, rdfs.subClassOf, schema.Question),
-
     rdf.quad(argu.BudgetShop, rdfx.type, rdfs.Class),
     rdf.quad(argu.BudgetShop, rdfs.subClassOf, argu.Shop),
 

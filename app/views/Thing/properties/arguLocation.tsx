@@ -22,6 +22,7 @@ import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
+import { tabPaneTopology } from '../../../topologies/TabPane';
 
 interface ArguLocationProps {
   large: boolean;
@@ -93,6 +94,7 @@ ArguLocation.topology = [
   containerTopology,
   fullResourceTopology,
   gridTopology,
+  tabPaneTopology,
 ];
 
 export default register(ArguLocation);

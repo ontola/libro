@@ -80,6 +80,7 @@ export const components = {
   NetworkStatusIndicator: component('NetworkStatusIndicator'),
   Omniform: component('Omniform'),
   OmniformOmniformPreview: component('Omniform/OmniformPreview'),
+  OverlayContainer: component('OverlayContainer'),
   PageHeader: component('PageHeader'),
   PageRow: component('PageRow'),
   Progress: component('Progress'),

@@ -48,7 +48,6 @@ import Opinion from './Opinion';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
-import MapQuestion from './MapQuestion';
 import MediaObject from './MediaObject';
 import Meeting from './Meeting/properties/agenda';
 import Menu from './MenuNavbar';
@@ -126,7 +125,6 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...ImageObject,
     ...InfiniteCollectionPage,
     ...Loading,
-    ...MapQuestion,
     ...MediaObject,
     ...Meeting,
     ...Menu,

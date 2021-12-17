@@ -36,7 +36,6 @@ export default {
   LowerSecion: argu('LowerSection'),
   MakePrimaryAction: argu('MakePrimaryAction'),
   Manifest: argu('Manifest'),
-  MapQuestion: argu('MapQuestion'),
   Menu: argu('Menu'),
   MenuSection: argu('MenuSection'),
   Motion: argu('Motion'),
