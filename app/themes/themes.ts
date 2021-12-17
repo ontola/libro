@@ -26,6 +26,14 @@ interface MapIcon {
   text: string,
 }
 
+declare module '@material-ui/core/styles/createTypography' {
+  interface FontStyle {
+    fontSizes: {
+      [K in Size]: string;
+    }
+  }
+}
+
 declare module '@material-ui/core/styles/createPalette' {
   interface LinkOptions {
     header: string;

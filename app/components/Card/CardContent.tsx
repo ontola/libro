@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
+import { headingCID } from '../Heading';
 import { HOVER_COEFFICIENT } from '../Link/ThemeStyles';
 
 export const cardContentClassIdentifier = 'CID-CardContent';
@@ -39,7 +40,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     wordBreak: 'break-word',
   },
   centered: {
-    '& .Heading': {
+    [`& .${headingCID}`]: {
       width: '100%',
     },
     textAlign: 'center',

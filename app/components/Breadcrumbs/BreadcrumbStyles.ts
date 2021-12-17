@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 
 import { LibroTheme } from '../../themes/themes';
+import { headingCID } from '../Heading';
 
 const hoverBorderColor = '#c8c8c8';
 
@@ -12,7 +13,7 @@ export default makeStyles<LibroTheme>((theme) => ({
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
     },
-    '& .Heading': {
+    [`& .${headingCID}`]: {
       fontSize: '1em',
       margin: '0',
       overflow: 'hidden',

@@ -6,8 +6,6 @@ import React from 'react';
 import { LibroTheme } from '../../themes/themes';
 import { semanticColors } from '../shared/config';
 
-import './Heading.scss';
-
 export enum HeadingSize {
   XL = 1,
   LG,
@@ -27,15 +25,47 @@ export enum HeadingVariant {
   Semantic = 'semantic',
 }
 
-/* eslint-disable @typescript-eslint/no-magic-numbers */
+export const headingCID = 'CID-Heading';
+
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   default: {
     '& b': {
-      color: theme.palette.grey[900],
+      color: theme.palette.grey.dark,
     },
-    'color': theme.palette.grey[800],
+    'color': theme.palette.grey.midDark,
     'lineHeight': 1.3,
     'marginBottom': '.6rem',
+  },
+  heading: {
+    '&:is(h1)': {
+      fontSize: theme.typography.fontSizes.xxLarge,
+      fontWeight: 'bold',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '1.5rem',
+      },
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '1.3rem',
+      },
+    },
+    '&:is(h2)': {
+      fontSize: theme.typography.fontSizes.xLarge,
+      fontWeight: 'bold',
+    },
+    '&:is(h3)': {
+      fontSize: theme.typography.fontSizes.large,
+      fontWeight: 'bold',
+    },
+    '&:is(h4)': {
+      fontSize: theme.typography.fontSizes.medium,
+      fontWeight: 'bold',
+      lineHeight: '1.1em',
+    },
+    '&:is(h5, h6)': {
+      fontSize: theme.typography.fontSizes.small,
+    },
+    '.MuiDialog-paper > div > &': {
+      color: theme.palette.common.white,
+    },
   },
   [HeadingVariant.Alert]: {
     color: theme.palette.error.dark,
@@ -46,8 +76,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     color: theme.appBar.resolveColor(),
   },
   [HeadingVariant.Notice]: {
-    color: theme.palette.grey[600],
+    color: theme.palette.grey.main,
     fontStyle: 'italic',
+    textAlign: 'center',
   },
   [HeadingVariant.Question]: {},
   [HeadingVariant.Semantic]: Object.entries(semanticColors).reduce((acc, [k, v]) => ({
@@ -62,7 +93,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     display: 'inherit',
   },
 }));
-/* eslint-enable @typescript-eslint/no-magic-numbers */
 
 interface PropTypes {
   className?: string;
@@ -87,7 +117,8 @@ const Heading: React.FC<PropTypes> = ({
   const Element = `h${size}` as React.ElementType;
   const classes = useStyles();
   const headingClass = clsx({
-    Heading: true,
+    [headingCID]: true,
+    [classes.heading]: true,
     [className ?? '']: true,
     [classes.default]: true,
     [classes.inherit]: display === 'inherit',

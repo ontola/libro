@@ -1,6 +1,7 @@
 import { darken } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { headingCID } from '../Heading';
 import { semanticColors } from '../shared/config';
 
 export const HOVER_COEFFICIENT = 0.3;
@@ -8,7 +9,7 @@ export const HOVER_COEFFICIENT = 0.3;
 export default makeStyles((theme) => {
   const style = {
     default: {
-      '&:hover .Heading': {
+      [`&:hover .${headingCID}`]: {
         color: darken(theme.palette.link?.header || theme.palette.common.black, HOVER_COEFFICIENT),
       },
       'display': 'inline-flex',
@@ -19,7 +20,7 @@ export default makeStyles((theme) => {
   Object
     .keys(semanticColors)
     .forEach((type) => {
-      style.default[`&:hover .Heading[typeof='${type}']`] = {
+      style.default[`&:hover .${headingCID}[typeof='${type}']`] = {
         color: darken(semanticColors[type], HOVER_COEFFICIENT),
       };
     });

@@ -25,9 +25,13 @@ export const sides = [
 ];
 
 export enum Size {
+  XSmall = 'xSmall',
   Small = 'small',
   Medium = 'medium',
   Large = 'large',
+  XLarge = 'xLarge',
+  XXLarge = 'xxLarge',
+  XXXLarge = 'xxxLarge',
 }
 
 export enum Shadows {

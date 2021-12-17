@@ -146,6 +146,16 @@ const theme = {
       fontSize: '1rem',
     },
     fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    /* eslint-disable sort-keys */
+    fontSizes: {
+      xSmall: '.75em',
+      small: '.85em',
+      medium: '1em',
+      large: '1.125em',
+      xLarge: '1.2em',
+      xxLarge: '1.8em',
+      xxxLarge: '2.6em',
+    },
     fontWeightMedium: 600,
   },
   zIndex: {

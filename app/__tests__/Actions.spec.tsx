@@ -104,7 +104,6 @@ describe('Actions', () => {
   it('renders a form within Page', async () => {
     const {
       findByTestId,
-      findByText,
       getByTestId,
       getByText,
     } = await renderLinked(({ iri }) => (
@@ -123,9 +122,9 @@ describe('Actions', () => {
     expect(formInstance).toBeVisible();
 
     // renders the form title
-    const elem = await findByText('Edit object');
+    const elem = await getByText('Edit object');
     expect(elem).toBeVisible();
-    expect(elem).toHaveClass('Heading');
+    expect(elem.classList.value.includes('heading')).toBe(true);
 
     // initializes an empty form
     expect(formInstance).toHaveFormValues({

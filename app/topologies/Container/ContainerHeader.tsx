@@ -3,6 +3,7 @@ import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
 import clsx from 'clsx';
 import React from 'react';
 
+import { headingCID } from '../../components/Heading';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
@@ -20,7 +21,7 @@ const HEADER_GAP = 4;
 
 const styles = (theme: LibroTheme) => ({
   containerHeader: {
-    '& .Heading': {
+    [`& .${headingCID}`]: {
       marginBottom: 0,
     },
     alignItems: 'center',
@@ -34,7 +35,7 @@ const styles = (theme: LibroTheme) => ({
     gap: theme.spacing(HEADER_GAP),
   },
   invertColors: {
-    '& .Heading, & .MuiIconButton-root': {
+    [`& .${headingCID}, & .MuiIconButton-root`]: {
       color: theme.palette.common.white,
       textShadow: '0 0 2px rgb(0 0 0 / 50%)',
     },
