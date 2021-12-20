@@ -8,6 +8,7 @@ import {
 import React from 'react';
 
 import { containerTopology } from '../../topologies/Container';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
@@ -38,6 +39,7 @@ ActionContainer.type = schema.Action;
 
 ActionContainer.topology = [
   containerTopology,
+  mainBodyTopology,
 ];
 
 export default register(ActionContainer);

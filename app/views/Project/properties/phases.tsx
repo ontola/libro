@@ -1,4 +1,3 @@
-import { IconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import { NamedNode, Node } from '@ontologies/core';
@@ -15,11 +14,12 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { useIntl } from 'react-intl';
 
+import LoadingInline from '../../../components/Loading';
+import PhaseBar, { TOP_SPACING } from '../../../components/phases/PhaseBar';
 import { stepperBuilder } from '../../../components/Stepper/Stepper';
 import { entityIsLoaded } from '../../../helpers/data';
+import { NAME_PREDICATES } from '../../../helpers/metaData';
 import useActionStatus from '../../../hooks/useActionStatus';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import { phaseIRI } from '../../../hooks/usePhases';
@@ -27,16 +27,13 @@ import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
-import Container from '../../../topologies/Container';
-import { phaseMessages } from '../../../translations/messages';
+import { containerTopology } from '../../../topologies/Container';
 
 export interface PhasesProps {
   linkedProp: Node,
   selectedPhase: Node,
   subject: NamedNode,
 }
-
-const TOP_SPACING = 6;
 
 const useStepperOverrideStyles = makeStyles(() => ({
   root: {
@@ -46,24 +43,20 @@ const useStepperOverrideStyles = makeStyles(() => ({
 }));
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  phaseBar: {
-    alignItems: 'baseline',
-    display: 'flex',
-    fontWeight: 'bold',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  root: {
-    fontWeight: 'bold',
-  },
   wrapper: {
     marginTop: theme.spacing(TOP_SPACING),
   },
 }));
 
 const renderStepLabel = (item: Node) => (
-  <Resource subject={item}>
-    <Property label={schema.name} />
+  <Resource
+    subject={item}
+    onLoad={LoadingInline}
+  >
+    <Property
+      label={NAME_PREDICATES}
+      topology={containerTopology}
+    />
   </Resource>
 );
 
@@ -75,7 +68,6 @@ const Phases: FC<PhasesProps> = ({
   subject,
 }) => {
   const lrs = useLRS();
-  const intl = useIntl();
   const stepperOverrideClasses = useStepperOverrideStyles();
   const classes = useStyles();
   const [currentPhase] = useProperty(argu.currentPhase);
@@ -98,7 +90,7 @@ const Phases: FC<PhasesProps> = ({
     }
   }, [createActionStatus]);
 
-  const activeStep = items.findIndex((x) => x === (selectedPhase || currentPhase));
+  const activeStepIndex = items.findIndex((x) => x === (selectedPhase || currentPhase));
 
   const createStepOnClick = React.useCallback(
     (_: Node, index: number) => (e: React.MouseEvent) => {
@@ -106,11 +98,7 @@ const Phases: FC<PhasesProps> = ({
       const iri = phaseIRI(subject, index);
       lrs.actions.ontola.navigate(iri);
     },
-    [lrs]);
-
-  const handleNavButtonClick = React.useCallback((mod: number) => (
-    createStepOnClick(items[activeStep + mod], activeStep + mod)
-  ), [activeStep]);
+    [lrs, subject]);
 
   const onNewStepClick = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -136,47 +124,21 @@ const Phases: FC<PhasesProps> = ({
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.phaseBar}>
-        <Typography
-          classes={{ root: classes.root }}
-          color="primary"
-        >
-          {intl.formatMessage(phaseMessages.phaseStepperHeader, { number: activeStep + 1 })}
-          <Resource subject={items[activeStep]}>
-            <Property label={schema.name} />
-          </Resource>
-        </Typography>
-        <span>
-          <Resource subject={items[activeStep]}>
-            <Property label={argu.time} />
-          </Resource>
-          <IconButton
-            disabled={activeStep === 0}
-            onClick={handleNavButtonClick(-1)}
-          >
-            <FontAwesome name="chevron-left" />
-          </IconButton>
-          <IconButton
-            disabled={activeStep === items.length - 1}
-            edge="end"
-            onClick={handleNavButtonClick(1)}
-          >
-            <FontAwesome name="chevron-right" />
-          </IconButton>
-        </span>
-      </div>
-      <Container>
-        <Stepper
-          activeStep={activeStep}
-          createStepOnClick={createStepOnClick}
-          itemToKey={itemToKey}
-          items={items}
-          overrideClasses={stepperOverrideClasses}
-          renderStepLabel={renderStepLabel}
-          showNewStepButton={canEdit}
-          onNewStepClick={onNewStepClick}
-        />
-      </Container>
+      <PhaseBar
+        activeStepIndex={activeStepIndex}
+        createStepOnClick={createStepOnClick}
+        items={items}
+      />
+      <Stepper
+        activeStep={activeStepIndex}
+        createStepOnClick={createStepOnClick}
+        itemToKey={itemToKey}
+        items={items}
+        overrideClasses={stepperOverrideClasses}
+        renderStepLabel={renderStepLabel}
+        showNewStepButton={canEdit}
+        onNewStepClick={onNewStepClick}
+      />
     </div>
   );
 };

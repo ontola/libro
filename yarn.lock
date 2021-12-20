@@ -2919,6 +2919,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ontologies/skos@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@ontologies/skos@npm:2.0.0"
+  peerDependencies:
+    "@ontologies/core": ">1.5.0"
+  checksum: 3e306ad2f068f1de5d53427e018b54672590a2df24daf889d5038cbc2c6c046e98d4deb14f458708911811f04bb66060f8600c4e70dceeabcd54a5304d2abe25
+  languageName: node
+  linkType: hard
+
 "@ontologies/xsd@npm:^2.0.0-rc.1":
   version: 2.0.0-rc.1
   resolution: "@ontologies/xsd@npm:2.0.0-rc.1"
@@ -13657,6 +13666,7 @@ __metadata:
     "@ontologies/rdfs": ^2.0.0-rc.2
     "@ontologies/schema": ^2.0.0-rc.1
     "@ontologies/shacl": ^2.0.0-rc.1
+    "@ontologies/skos": ^2.0.0
     "@ontologies/xsd": ^2.0.0-rc.1
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
     "@rdfdev/actions": ^1.1.1

@@ -34,12 +34,14 @@ interface SubSection {
   children?: React.ReactElement;
   label?: string;
   menu?: NamedNode;
+  redirect?: boolean;
 }
 
 const SubSection = ({
   children,
   label,
   menu: menuFromProp,
+  redirect,
 }: SubSection): JSX.Element => {
   const intl = useIntl();
   const classes = useStyles();
@@ -70,8 +72,8 @@ const SubSection = ({
       role="region"
     >
       <TabbarProvider
-        redirect
         menu={menu}
+        redirect={redirect}
       >
         <Property
           forceRender
@@ -85,6 +87,10 @@ const SubSection = ({
       </TabbarProvider>
     </section>
   );
+};
+
+SubSection.defaultProps = {
+  redirect: true,
 };
 
 export default SubSection;

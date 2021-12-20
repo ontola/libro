@@ -12,12 +12,14 @@ import { LibroTheme } from '../../themes/themes';
 
 import { createStep } from './createStep';
 
+export type CreateStepOnClick<T> = (item: T, index: number) => (e: React.MouseEvent) => void;
+
 export interface StepperProps<T> {
   items: T[];
   itemToKey: (item: T) => string;
   activeStep: number;
   renderStepLabel: (item: T) => JSX.Element;
-  createStepOnClick: (item: T, index: number) => (e: React.MouseEvent) => void;
+  createStepOnClick: CreateStepOnClick<T>;
   showNewStepButton?: boolean;
   onNewStepClick?: (e: React.MouseEvent) => void;
   overrideClasses?: Partial<ClassNameMap<StepperClasskey>>;

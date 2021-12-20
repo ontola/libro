@@ -3,7 +3,7 @@ import {
   FC,
   register,
   useGlobalIds,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 import { Redirect } from 'react-router';
@@ -18,9 +18,9 @@ import { pageTopology } from '../../topologies/Page';
 const PhasePage: FC = ({ subject }) => {
   const lrs = useLRS();
   const [isPartOf] = useGlobalIds(schema.isPartOf);
-  const [phases, loaded] = usePhases(isPartOf);
+  const [phases, loading] = usePhases(isPartOf);
 
-  if (!loaded || __CLIENT__ && !entityIsLoaded(lrs, isPartOf)) {
+  if (loading || (__CLIENT__ && !entityIsLoaded(lrs, isPartOf))) {
     return <LinkLoader />;
   }
 

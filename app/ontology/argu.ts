@@ -131,6 +131,7 @@ export default {
   proArguments: argu('proArguments'),
   questions: argu('questions'),
   rawResource: argu('rawResource'),
+  resource: argu('resource'),
   selectedValue: argu('selectedValue'),
   signInFlow: argu('signInFlow'),
   socials: argu('socials'),

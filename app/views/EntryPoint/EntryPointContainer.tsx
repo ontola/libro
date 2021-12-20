@@ -8,6 +8,7 @@ import React from 'react';
 
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
 const EntryPointContainer: FC = (props) => (
   <Card>
@@ -17,6 +18,9 @@ const EntryPointContainer: FC = (props) => (
 
 EntryPointContainer.type = schema.EntryPoint;
 
-EntryPointContainer.topology = containerTopology;
+EntryPointContainer.topology = [
+  containerTopology,
+  mainBodyTopology,
+];
 
 export default register(EntryPointContainer);

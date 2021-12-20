@@ -1,6 +1,10 @@
+import * as as from '@ontologies/as';
 import { NamedNode, QuadPosition } from '@ontologies/core';
+import * as dcterms from '@ontologies/dcterms';
+import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 
 import dbo from '../ontology/dbo';
 import ontola from '../ontology/ontola';
@@ -14,7 +18,14 @@ export const COVER_PREDICATES = [ontola.coverPhoto];
 export const COVER_URL_PREDICATES = [ontola.imgUrl1500x2000];
 export const AVATAR_URL_PREDICATES = [ontola.imgUrl256x256];
 export const IMAGE_PREDICATES = [schema.image];
-export const NAME_PREDICATES = [schema.name, rdfs.label];
+export const NAME_PREDICATES = [
+  schema.name,
+  as.name,
+  rdfs.label,
+  foaf.name,
+  sh.name,
+  dcterms.title,
+];
 export const TEXT_PREDICATES = [dbo.abstract, schema.description, schema.text];
 
 const COVER_PREDICATES_RAW = raw(COVER_PREDICATES);

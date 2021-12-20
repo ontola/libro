@@ -45,6 +45,7 @@
     "@ontologies/rdfs": "^2.0.0-rc.2",
     "@ontologies/schema": "^2.0.0-rc.1",
     "@ontologies/shacl": "^2.0.0-rc.1",
+    "@ontologies/skos": "^2.0.0",
     "@ontologies/xsd": "^2.0.0-rc.1",
     "@react-spring/web": "^9.3.1",
     "@use-gesture/react": "^10.1.5",

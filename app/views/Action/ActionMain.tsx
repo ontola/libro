@@ -10,7 +10,6 @@ import React from 'react';
 
 import Link, { LinkTarget } from '../../components/Link';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { mainBodyTopology } from '../../topologies/MainBody';
 
 interface ActionMainProps {
   actionStatus?: SomeTerm;
@@ -53,7 +52,6 @@ ActionMain.type = schema.Action;
 
 ActionMain.topology = [
   cardMainTopology,
-  mainBodyTopology,
 ];
 
 export default register(ActionMain);

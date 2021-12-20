@@ -23,6 +23,7 @@ import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { footerTopology } from '../../topologies/Footer';
 import { gridTopology } from '../../topologies/Grid';
+import { mainBodyTopology } from '../../topologies/MainBody';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { listTopology } from '../../topologies/List';
 import { pageTopology } from '../../topologies/Page';
@@ -86,6 +87,7 @@ EntryPoint.topology = allTopologiesExcept(
   footerTopology,
   flowTopology,
   gridTopology,
+  mainBodyTopology,
   omniformFieldsTopology,
   pageTopology,
 );
