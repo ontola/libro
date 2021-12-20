@@ -31,7 +31,7 @@ const FileInput: React.FC<InputComponentProps> = ({
     values: encodingFormatValues,
     onChange: encodingFormatOnChange,
   } = useFormFieldForPath(schema.encodingFormat);
-  const [encodingFormatConversion, encodingFormatLoading] = useListToArr(encodingFormatShape.shInProp);
+  const [encodingFormatConversion, encodingFormatLoading] = useListToArr(encodingFormatShape.shIn);
   const [encodingFormatTypes, setEncodingFormatTypes] = React.useState<string>('');
 
   React.useEffect(() => {

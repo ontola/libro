@@ -33,7 +33,7 @@ import sp from '../ontology/sp';
 import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
 
 import useAddFormValue from './useAddFormValue';
-import useFieldShape, { ShapeForm } from './useShapeProps';
+import useFieldShape, { ResolvedShapeForm } from './useShapeProps';
 
 const mapFieldProps = {
   description: literal(schema.text),
@@ -78,7 +78,7 @@ export interface PermittedFormField {
   className?: string;
   description?: string;
   field?: SomeNode;
-  fieldShape: ShapeForm;
+  fieldShape: ResolvedShapeForm;
   helperText?: string | null;
   inputErrors: FormFieldError[];
   label?: string | React.ReactNode;

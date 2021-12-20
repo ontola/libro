@@ -38,7 +38,7 @@ export interface ShapeFromObjectForm {
   [key: string]: NamedNode;
 }
 
-interface ResolvedShapeForm {
+export interface ResolvedShapeForm {
   maxCount?: number;
   maxInclusive?: number;
   maxLength?: number;
