@@ -5,7 +5,9 @@ import {
 } from '@material-ui/styles';
 import clsx from 'clsx';
 
+import { collapseTextToggleCID } from '../../components/CollapseText';
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
 
 import { shineStyles } from './sharedCardStyles';
@@ -18,7 +20,7 @@ export interface CardMicroRowProps {
   highlighted?: boolean;
 }
 
-const styles = {
+const styles = (theme: LibroTheme) => ({
   ...createStyles({
     cardMicroRow: {
       '& .Link': {
@@ -29,10 +31,13 @@ const styles = {
       },
       fontSize: '.9em',
       padding: '.3rem 1.3rem',
+      [`& .${collapseTextToggleCID}`]: {
+        background: `linear-gradient(to bottom, ${theme.palette.transparent.main} 0%, ${theme.palette.grey.xxLight} 30%, ${theme.palette.grey.xxLight} 100%)`,
+      },
     },
   }),
   ...shineStyles,
-};
+});
 
 type PropType = CardMicroRowProps & WithStyles<typeof styles>;
 

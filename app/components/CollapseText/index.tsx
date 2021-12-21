@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -8,12 +9,47 @@ import {
 
 import { parseBoolean } from '../../helpers/persistence';
 import useStoredState from '../../hooks/useStoredState';
+import { LibroTheme } from '../../themes/themes';
 import { collapsibleMessages } from '../../translations/messages';
-import Button from '../Button';
+import Button, { ButtonLabelIdentifierClass } from '../Button';
 import Collapsible from '../Collapsible';
 import Markdown from '../Markdown';
 
-import './CollapseText.scss';
+export const collapseTextToggleCID = 'CID-CollapseTextToggle';
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  collapseText: {
+    [`& .${collapseTextToggleCID}`]: {
+      '&:hover': {
+        [`& .${ButtonLabelIdentifierClass}`]: {
+          color: theme.palette.grey.midDark,
+        },
+      },
+      background: `linear-gradient(to bottom, ${theme.palette.transparent.main} 0%, ${theme.palette.background.default} 30%, ${theme.palette.background.default} 100%)`,
+      bottom: '1em',
+      lineHeight: '3em',
+      position: 'relative',
+      textAlign: 'right',
+      width: '100%',
+    },
+    [`& .${ButtonLabelIdentifierClass}`]: {
+      color: theme.palette.grey.xxLightForegroundSmall,
+      margin: 0,
+      padding: '.3em 1.2em',
+      position: 'relative',
+      right: 0,
+      transition: '.2s transform',
+    },
+    marginBottom: '-.5em',
+  },
+  collapseTextOpen: {
+    [`& .${collapseTextToggleCID}`]: {
+      '& .fa': {
+        transform: 'rotate(180deg)',
+      },
+    },
+  },
+}));
 
 interface CollapseTextProps {
   id: string;
@@ -37,14 +73,15 @@ const CollapseText: React.FC<CollapseTextProps> = ({
   );
   const intl = useIntl();
 
-  const classes = clsx({
-    'CollapseText': true,
-    'CollapseText--open': open,
+  const classes = useStyles();
+  const className = clsx({
+    [classes.collapseText]: true,
+    [classes.collapseTextOpen]: open,
   });
 
   if (text.length > minCharacters) {
     return (
-      <div className={classes}>
+      <div className={className}>
         <Collapsible
           preview
           opened={open}
@@ -58,7 +95,7 @@ const CollapseText: React.FC<CollapseTextProps> = ({
         </Collapsible>
         <Button
           plain
-          className="CollapseText__toggle"
+          className={collapseTextToggleCID}
           title={intl.formatMessage(collapsibleMessages.expandOrCollapseTitle)}
           onClick={toggleCollapsible}
         >

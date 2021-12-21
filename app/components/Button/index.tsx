@@ -18,8 +18,8 @@ import useStyles, {
 
 export { ButtonTheme, ButtonVariant } from './buttonStyles';
 
+export const ButtonLabelIdentifierClass = 'Button__label';
 const ButtonIdentifierClass = 'Button';
-const ButtonLabelIdentifierClass = 'Button__label';
 const ButtonIconIdentifierClass = 'Button__icon';
 
 export interface ButtonProps {

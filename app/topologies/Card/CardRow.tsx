@@ -2,6 +2,7 @@ import { WithStyles } from '@material-ui/core/styles';
 import { createStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
+import { collapseTextToggleCID } from '../../components/CollapseText';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
@@ -22,6 +23,9 @@ export interface CardRowProps {
 const styles = (theme: LibroTheme) => createStyles({
   backdrop: {
     backgroundColor: theme.palette.grey.xxLight,
+    [`& .${collapseTextToggleCID}`]: {
+      background: `linear-gradient(to bottom, ${theme.palette.transparent.main} 0%, ${theme.palette.grey.xxLight} 30%, ${theme.palette.grey.xxLight} 100%)`,
+    },
   },
   cardRow: {
     '& &': {
@@ -60,10 +64,10 @@ class CardRow extends Topology<PropType> {
     const { classes } = this.props;
 
     return clsx({
-      'CID-CardRow': true,
-      [classes.cardRow]: true,
       [cardRowBackdropClassIdentifier]: this.props.backdrop,
       [classes.backdrop]: this.props.backdrop,
+      [cardRowClassIdentifier]: true,
+      [classes.cardRow]: true,
       [classes.topBorder]: this.props.borderTop,
     });
   }
