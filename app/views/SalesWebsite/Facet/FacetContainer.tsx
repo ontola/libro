@@ -19,12 +19,12 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { containerTopology } from '../../../topologies/Container';
 
 const SMALL_SCREEN_TITLE_MARGIN = 15;
 
-const useStyles = makeStyles<SalesTheme, Record<string, string>>((theme) => ({
+const useStyles = makeStyles<LibroTheme, Record<string, string>>((theme) => ({
   bigCircle: {
     height: 300,
     marginLeft: -110,

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
 export interface ReadMoreButtonProps {
   className?: string
@@ -12,7 +12,7 @@ export interface ReadMoreButtonProps {
 
 const CONTAINER_GAP = 3;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     alignItems: 'center',
     color: theme.palette.primary.main,

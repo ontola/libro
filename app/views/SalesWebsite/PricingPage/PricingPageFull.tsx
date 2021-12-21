@@ -8,12 +8,12 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import Grid from '../../../topologies/Grid';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     backgroundColor: theme.palette.background.default,
     marginBottom: '7em',

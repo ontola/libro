@@ -7,7 +7,7 @@ import React from 'react';
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
 import { SalesNavBarDrawer } from './SalesNavBarDrawer';
 
@@ -15,7 +15,7 @@ import '../NavBarContent/NavBarContent.scss';
 
 const LOGO_MARGIN_COMPENSATION = 4;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
     display: 'none',
     [theme.breakpoints.down('sm')]: {

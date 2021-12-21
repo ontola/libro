@@ -5,7 +5,7 @@ import { SomeNode } from 'link-lib';
 import React from 'react';
 
 import { useSalesArticles } from '../../hooks/useSalesArticles';
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
 import { ArticleThemeSwitcher } from './ArticleThemeSwitcher';
 
@@ -18,7 +18,7 @@ export interface FilterableArticleCollectionProps {
 
 const THEME_SWICHER_BOTTOM_MARGIN = 20;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   themeSwitcher: {
     marginBottom: theme.spacing(THEME_SWICHER_BOTTOM_MARGIN),
   },

@@ -7,7 +7,7 @@ import React from 'react';
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
 const DRAWER_PADDING = 5;
 
@@ -16,7 +16,7 @@ export interface SalesNavBarDrawerProps {
   onClose: () => void;
 }
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   drawerContainer: {
     '& img': {
       margin: 'auto',
@@ -34,7 +34,7 @@ const useStyles = makeStyles<SalesTheme>((theme) => ({
 
 export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JSX.Element => {
   const classes = useStyles();
-  const theme = useTheme<SalesTheme>();
+  const theme = useTheme<LibroTheme>();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const [anchor, setAnchor] = React.useState<'top' | 'bottom'>('top');
 

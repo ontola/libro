@@ -3,7 +3,7 @@ import { lighten, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 import Link from '../Link';
 
 interface StepProps {
@@ -18,7 +18,7 @@ interface StepProps {
 const TEXT_GRID_GAP = 5;
 const HOVER_LIGHTEN_AMOUNT = 0.95;
 
-const useStyles = makeStyles<SalesTheme, StepProps>((theme: SalesTheme) => ({
+const useStyles = makeStyles<LibroTheme, StepProps>((theme: LibroTheme) => ({
   circleSmall: {
     border: '3px solid #2D7080',
     borderRadius: '50%',

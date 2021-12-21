@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 import { salesMessages } from '../../translations/messages';
 
 export interface ArticleThemeSwitcherProps {
@@ -14,7 +14,7 @@ export interface ArticleThemeSwitcherProps {
   onThemeSwitch: (theme: SomeTerm | null) => void;
 }
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   themeButton: {
     '&:hover': {
       backgroundColor: theme.palette.secondary.main,

@@ -13,14 +13,14 @@ import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 import { showcaseTopology } from '../../topologies/Showcase';
 import { personeShowcaseMessages } from '../../translations/messages';
 
 const CONTAINER_PADDING = 5;
 const ICON_LINK_GAP = 4;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     '& img': {
       backgroundColor: '#F8FBFF',

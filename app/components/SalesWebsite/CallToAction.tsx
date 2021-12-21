@@ -2,9 +2,9 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
-const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => ({
+const useStyles = makeStyles<LibroTheme, Partial<CallToActionProps>>((theme) => ({
   button: {
     fontSize: 18,
   },

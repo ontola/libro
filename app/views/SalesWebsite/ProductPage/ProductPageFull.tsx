@@ -11,12 +11,12 @@ import React from 'react';
 import { ArticleContent, HeaderProductPages } from '../../../components/SalesWebsite';
 import { Size } from '../../../components/shared/config';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   articleContent: {
     margin: 'unset',
     maxWidth: '100%',

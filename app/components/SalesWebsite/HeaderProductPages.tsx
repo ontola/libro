@@ -10,13 +10,13 @@ import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 import Container from '../../topologies/Container';
 
 import { ArticleContent } from './ArticleContent';
 import { CallToActionButton } from './CallToActionButton';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   articleContent: {
     margin: 'unset',
     maxWidth: '100%',

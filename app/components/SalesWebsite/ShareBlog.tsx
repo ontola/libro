@@ -3,7 +3,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 import { blogMessages } from '../../translations/messages';
 
 export interface ShareBlogProps {
@@ -11,7 +11,7 @@ export interface ShareBlogProps {
   title: string;
 }
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     alignItems: 'center',
     display: 'flex',

@@ -12,14 +12,14 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 import Showcase from '../../../topologies/Showcase';
 
 const CONTAINER_PADDING = 10;
 const GRID_GAP = 20;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     backgroundColor: '#F8FBFF',
     padding: theme.spacing(CONTAINER_PADDING),

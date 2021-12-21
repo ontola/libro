@@ -11,10 +11,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../helpers/iris';
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 import Container from '../../topologies/Container';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
     fontSize: '1.6rem',
     fontWeight: 'bold',

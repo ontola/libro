@@ -10,11 +10,11 @@ import React from 'react';
 
 import { Parallax } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import Container, { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   propositionSelector: {
     display: 'grid',
     gridGap: 20,

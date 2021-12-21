@@ -13,13 +13,13 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 
 const ITEM_PADDING = 10;
 const ITEM_BOTTOM_PADDING = 20;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
     margin: 'auto',
     width: 'min(100%, 1440px)',

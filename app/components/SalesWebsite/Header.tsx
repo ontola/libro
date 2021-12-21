@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
 import { CallToActionButton } from './CallToActionButton';
 
@@ -16,7 +16,7 @@ export interface HeaderProps {
   subtitle?: string,
 }
 
-const useStyles = makeStyles<SalesTheme, Partial<HeaderProps>>((theme) => ({
+const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   button: {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,

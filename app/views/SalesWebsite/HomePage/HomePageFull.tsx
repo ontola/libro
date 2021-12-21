@@ -4,12 +4,12 @@ import { FC, Property } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import Showcase from '../../../topologies/Showcase';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   blogs: {
     [theme.breakpoints.down('sm')]: {
       marginTop: '5em',

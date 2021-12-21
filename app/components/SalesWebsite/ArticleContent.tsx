@@ -4,14 +4,14 @@ import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../themes/themes';
 
 export interface ArticleContentProps {
   classes?: ClassNameMap<string>;
   image?: SomeTerm;
 }
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   content: {
     '& a': {
       '&:hover': {

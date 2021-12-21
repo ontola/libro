@@ -8,10 +8,10 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
     fontSize: 24,
     fontWeight: 'bold',

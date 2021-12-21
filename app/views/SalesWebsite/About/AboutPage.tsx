@@ -10,12 +10,12 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const SECTION_BOTTOM_MARGIN = 30;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   section: {
     '& h2': {
       fontSize: '2rem',

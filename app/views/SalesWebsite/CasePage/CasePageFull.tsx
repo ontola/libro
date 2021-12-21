@@ -19,7 +19,7 @@ import { FormattedMessage } from 'react-intl';
 import { ArticleContent } from '../../../components/SalesWebsite';
 import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { blogMessages, caseMessages } from '../../../translations/messages';
 
@@ -27,7 +27,7 @@ const ARTICLE_PADDING = 4;
 const CONTACT_PERSON_GAP = 6;
 const ICON_GAP = 4;
 
-const useStyles = makeStyles<SalesTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   article: {
     padding: theme.spacing(ARTICLE_PADDING),
   },

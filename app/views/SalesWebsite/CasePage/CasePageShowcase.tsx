@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 import { ReadMoreButton } from '../../../components/SalesWebsite';
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import { gridTopology } from '../../../topologies/Grid';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
@@ -28,7 +28,7 @@ const useButtonOverrideStyles = makeStyles({
   },
 });
 
-const useStyles = makeStyles<SalesTheme, CasePageShowcaseProps>((theme) => ({
+const useStyles = makeStyles<LibroTheme, CasePageShowcaseProps>((theme) => ({
   container: {
     gap: theme.spacing(CONTAINER_SPACING),
     height: '100%',

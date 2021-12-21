@@ -3,13 +3,13 @@ import { withStyles } from '@material-ui/styles';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
+import { LibroTheme } from '../../../themes/themes';
 import Container, { ContainerProps } from '../../Container';
 import { TopologyContent } from '../../Topology';
 
 export const blueBlockTopology = sales.blueBlock;
 
-const styles = (theme: SalesTheme) => ({
+const styles = (theme: LibroTheme) => ({
   root: {
     background: theme.palette.primary.main,
     padding: 30,
