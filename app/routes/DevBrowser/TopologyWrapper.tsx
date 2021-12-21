@@ -137,13 +137,11 @@ const TopologyWrapper = ({
       <Container>
         <Card>
           <CardContent>
-            <div className="Markdown">
-              <p>
-                {'This is the item: '}
-                <LRC />
-                , and here is some text behind it.
-              </p>
-            </div>
+            <p>
+              {'This is the item: '}
+              <LRC />
+              , and here is some text behind it.
+            </p>
           </CardContent>
         </Card>
       </Container>

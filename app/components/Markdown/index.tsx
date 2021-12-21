@@ -1,3 +1,8 @@
+import {
+  WithStyles,
+  createStyles,
+  withStyles, 
+} from '@material-ui/styles';
 import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
@@ -16,10 +21,115 @@ import {
   retrievePath,
 } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
+import { LibroTheme } from '../../themes/themes';
 import Heading, { HeadingSize, HeadingVariant } from '../Heading';
 import Link from '../Link';
 
-import './Markdown.scss';
+const styles = (theme: LibroTheme) => createStyles({
+  markdown: {
+    '& a': {
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+      textDecoration: 'underline',
+    },
+    '& a,p,h1,h2,h3,h4,span': {
+      wordBreak: 'break-word',
+    },
+    '& blockquote': {
+      '& p': {
+        marginBottom: 0,
+      },
+      '&::after': {
+        backgroundColor: theme.palette.grey.light,
+        bottom: 0,
+        content: '""',
+        display: 'block',
+        height: '100%',
+        left: '-.7em',
+        position: 'absolute',
+        top: 0,
+        width: '.3em',
+      },
+      fontStyle: 'italic',
+      marginBottom: '1em',
+      marginLeft: '.7em',
+      position: 'relative',
+    },
+    // Required to overwrite styling for megaDraft component
+    '& code,.public-DraftStyleDefault-pre': {
+      backgroundColor: theme.palette.grey.xxLight,
+      border: 'solid 1px rgb(230, 230, 230)',
+      fontFamily: 'monospace',
+      fontSize: '.9em',
+      marginBottom: '1em',
+      overflow: 'auto',
+      padding: '.2em .3em',
+      whiteSpace: 'pre',
+    },
+    '& em': {
+      fontStyle: 'italic',
+    },
+    '& h1': {
+      fontSize: '1.3em',
+    },
+    '& h2': {
+      fontSize: '1.2em',
+    },
+    '& h3': {
+      fontSize: '1.1em',
+    },
+    '& h4,h3,h2,h1': {
+      color: theme.palette.grey.midDark,
+      fontWeight: 700,
+      lineHeight: '1em',
+      marginBottom: '.4em',
+    },
+    '& img': {
+      maxWidth: '100%',
+    },
+    // Required to overwrite styling for megaDraft component
+    '& p,.public-DraftStyleDefault-ltr': {
+      marginBottom: '1em',
+    },
+    '& strong': {
+      fontWeight: 'bold',
+    },
+    // eslint-disable-next-line sort-keys
+    '& ol': {
+      listStyleType: 'decimal',
+    },
+    '& ul': {
+      listStyleType: 'disc',
+    },
+    '& ul,ol': {
+      '& li': {
+        // Required to overwrite styling for megaDraft component
+        '& .public-DraftStyleDefault-ltr': {
+          marginBottom: 0,
+        },
+        marginBottom: '.3em',
+        marginLeft: '1.5em',
+      },
+      marginBottom: '.5em',
+    },
+    '&--inline': {
+      '& a,p': {
+        display: 'inline',
+      },
+      display: 'inline',
+    },
+    // Disabled collapsing margins
+    display: 'flex',
+    flexDirection: 'column',
+    wordWrap: 'break-word',
+  },
+  noSpacing: {
+    '& p': {
+      marginBottom: 0,
+    },
+  },
+});
 
 const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
@@ -67,13 +177,13 @@ const codePre = (link: any) => (
   </code>
 );
 
-interface PropTypes {
+type PropTypes = WithStyles<typeof styles> & {
   highlightedText?: string;
   noLinks?: boolean;
   noSpacing?: boolean;
   tabbable?: boolean;
   text: string;
-}
+};
 
 interface MarkdownState {
   hasError: boolean;
@@ -159,16 +269,16 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
       link: noLinks ? stylizedPlaintextLink : routerLink(tabbable ? undefined : -1),
     };
 
-    const classes = clsx({
-      'Markdown': true,
-      'Markdown--no-spacing': noSpacing,
+    const className = clsx({
+      [this.props.classes.markdown]: true,
+      [this.props.classes.noSpacing]: noSpacing,
     });
 
     return (
       <ReactMarkdown
         escapeHtml
         unwrapDisallowed
-        className={classes}
+        className={className}
         renderers={customRenderers}
         source={this.sourceText(highlightedText, text)}
       />
@@ -176,4 +286,4 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
   }
 }
 
-export default Markdown;
+export default withStyles(styles)(Markdown);
