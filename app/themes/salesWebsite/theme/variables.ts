@@ -86,7 +86,20 @@ const typography: TypographyOptions = {
   },
 };
 
+const breakpoints = {
+  /* eslint-disable sort-keys */
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+    xl: 1920,
+  },
+  /* eslint-enable sort-keys */
+};
+
 const customVariables: ThemeOptions = {
+  breakpoints,
   overrides,
   palette,
   shape: {
