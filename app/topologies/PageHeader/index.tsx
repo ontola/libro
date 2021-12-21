@@ -1,3 +1,8 @@
+import {
+  WithStyles,
+  createStyles,
+  withStyles, 
+} from '@material-ui/styles';
 import clsx from 'clsx';
 import {
   TopologyProvider,
@@ -5,9 +10,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import './PageHeader.scss';
 import argu from '../../ontology/argu';
-import { Size } from '../../themes/themes';
+import {
+  LibroTheme,
+  Margin,
+  Size, 
+} from '../../themes/themes';
+import { cardClassIdentifier } from '../Card/sharedCardStyles';
 import Container from '../Container';
 
 export { default as PageHeaderImage } from './PageHeaderImage';
@@ -19,12 +28,54 @@ export const pageHeaderTopology = argu.ns('pageHeader');
 
 const defaultPercentage = 50;
 
-export interface PageHeaderProps {
+const pageHeaderInnerCID = 'CID-PageHeaderInner';
+
+type PageHeaderProps = WithStyles<typeof styles> & {
   // URL to the background image
   background?: string;
   // Number between 0 and 100
   positionY?: number;
-}
+};
+
+const styles = (theme: LibroTheme) => createStyles({
+  pageHeader: {
+    '& .MuiContainer-root': {
+      bottom: 0,
+      height: '100%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: '15em',
+    },
+    [`& .${cardClassIdentifier}`]: {
+      bottom: 0,
+      maxWidth: '35em',
+      position: 'absolute',
+      width: 'calc(100% - 1.5rem)',
+    },
+    background: 'var(--navbar-background)',
+    height: '10em',
+    marginBottom: theme.spacing(Margin.Large),
+    marginTop: `-${theme.spacing(Margin.Medium)}`,
+    position: 'relative',
+  },
+
+  pageHeaderBackground: {
+    [`& .${pageHeaderInnerCID}`]: {
+      backgroundPositionX: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+    },
+    height: '20em',
+    [theme.breakpoints.up('lg')]: {
+      height: '35em',
+    },
+  },
+
+  pageHeaderInner: {
+    backgroundColor: theme.palette.transparent.light7,
+    height: '100%',
+  },
+});
 
 /**
  * Page filler with title and nav items at the top of a page
@@ -35,15 +86,15 @@ class PageHeader extends TopologyProvider<PageHeaderProps> {
   constructor(props: PageHeaderProps) {
     super(props);
 
-    this.className = 'PageHeader';
+    this.className = this.props.classes.pageHeader;
     this.topology = pageHeaderTopology;
   }
 
   render() {
     const style: React.CSSProperties = {};
     const className = clsx({
-      PageHeader,
-      PageHeader__background: this.props.background,
+      [this.props.classes.pageHeader]: true,
+      [this.props.classes.pageHeaderBackground]: this.props.background,
     });
 
     if (this.props.background) {
@@ -55,7 +106,10 @@ class PageHeader extends TopologyProvider<PageHeaderProps> {
     return (
       <div className={className}>
         <div
-          className="PageHeader__inner"
+          className={clsx(
+            pageHeaderInnerCID,
+            this.props.classes.pageHeaderInner,
+          )}
           style={style}
         >
           <Container size={Size.Large}>
@@ -69,4 +123,4 @@ class PageHeader extends TopologyProvider<PageHeaderProps> {
   }
 }
 
-export default PageHeader;
+export default withStyles(styles)(PageHeader);

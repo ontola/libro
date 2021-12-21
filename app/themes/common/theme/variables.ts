@@ -71,6 +71,7 @@ const colors = {
     main: alpha('rgb(255, 255, 255)', 0.6),
     midLight: alpha('rgb(255, 255, 255)', 0.3),
     light: alpha('rgb(255, 255, 255)', 0.15),
+    light7: alpha('rgb(255, 255, 255)', 0.7),
     light85: alpha('rgb(255, 255, 255)', 0.85),
     xLight: alpha('rgb(255, 255, 255)', 0.05),
     transparent: alpha('rgb(255, 255, 255)', 0),

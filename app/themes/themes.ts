@@ -11,6 +11,7 @@ declare module '@material-ui/core/index' {
     main: string;
     midLight: string;
     light: string;
+    light7: string
     light85: string;
     xLight: string;
     xxLight: string;
@@ -75,9 +76,9 @@ export type MaterialStyleMap = { [key: string]: CSSPropertiesMap };
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export enum Margin {
-  'Small' = 2.5,
-  'Medium' = 5,
-  'Large' = 7.5,
+  'Small' = 2.7,
+  'Medium' = 5.4,
+  'Large' = 8.1,
 }
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 

@@ -1,11 +1,23 @@
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const PageHeaderMenuItems: React.FC = ({ children }) => (
-  <div className="PageHeader__image-and-text-wrapper">
-    {children}
-  </div>
-);
+const useStyles = makeStyles({
+  pageHeaderImageAndTextWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+});
+
+const PageHeaderMenuItems: React.FC = ({ children }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.pageHeaderImageAndTextWrapper}>
+      {children}
+    </div>
+  );
+};
 
 PageHeaderMenuItems.propTypes = {
   children: PropTypes.node,
