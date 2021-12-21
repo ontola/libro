@@ -31,7 +31,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginBottom: theme.spacing(BOTTOM_MARGIN),
   },
   title: {
-    fontSize: '1.8rem',
+    fontSize: '1.1rem',
   },
 }));
 
