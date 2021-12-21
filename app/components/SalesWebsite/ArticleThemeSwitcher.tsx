@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 import { salesMessages } from '../../translations/messages';
 
 export interface ArticleThemeSwitcherProps {

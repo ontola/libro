@@ -7,7 +7,7 @@ import React from 'react';
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 
 const DRAWER_PADDING = 5;
 

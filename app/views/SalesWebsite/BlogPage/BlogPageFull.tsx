@@ -16,7 +16,7 @@ import { FormattedDate, FormattedMessage } from 'react-intl';
 
 import { ArticleContent, ShareBlog } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { blogMessages } from '../../../translations/messages';

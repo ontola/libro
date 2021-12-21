@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 
 const useStyles = makeStyles<SalesTheme, Partial<CallToActionProps>>((theme) => ({
   button: {

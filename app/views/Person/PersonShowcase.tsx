@@ -13,7 +13,7 @@ import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 import { showcaseTopology } from '../../topologies/Showcase';
 import { personeShowcaseMessages } from '../../translations/messages';
 

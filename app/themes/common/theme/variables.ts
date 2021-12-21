@@ -124,6 +124,7 @@ const theme = {
     ...colors,
     link: {
       header: colors.grey.midDark,
+      text: colors.blue.main,
     },
     primary: {
       main: colors.blue.main,
@@ -149,5 +150,7 @@ const theme = {
     modal: 920,
   },
 };
+
+export type CommonColors = typeof colors;
 
 export default theme;

@@ -5,12 +5,12 @@ import {
   useTheme,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Property, useProperty } from 'link-redux';
 import * as schema from '@ontologies/schema';
+import { Property, useProperty } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { containerTopology } from '../../../topologies/Container';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({

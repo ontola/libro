@@ -1,6 +1,9 @@
 import { ThemeOptions } from '@material-ui/core/styles/createTheme';
 import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 import { Overrides } from '@material-ui/core/styles/overrides';
+import deepmerge from 'deepmerge';
+
+import variables from '../../common/theme/variables';
 
 const SIX_PX = 0.1875;
 
@@ -93,4 +96,4 @@ const customVariables: ThemeOptions = {
   typography,
 };
 
-export default customVariables;
+export default deepmerge(variables, customVariables);

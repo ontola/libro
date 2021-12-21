@@ -22,7 +22,6 @@ import { PipedriveForm } from '../../../components/PipedriveForm';
 import { Propositions } from '../../../components/SalesWebsite/Propositions';
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
-import { withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 import { LibroTheme } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
@@ -224,7 +223,5 @@ const PricingPageFull: FC = () => {
 PricingPageFull.type = sales.ContactPage;
 
 PricingPageFull.topology = fullResourceTopology;
-
-PricingPageFull.hocs = [withSalesTheme];
 
 export default register(PricingPageFull);

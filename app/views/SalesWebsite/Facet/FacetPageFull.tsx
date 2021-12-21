@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
@@ -85,7 +85,5 @@ const FacetPageFull: FC = () => {
 FacetPageFull.type = sales.FacetPage;
 
 FacetPageFull.topology = fullResourceTopology;
-
-FacetPageFull.hocs = [withSalesTheme];
 
 export default FacetPageFull;

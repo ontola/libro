@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container, { ContainerProps } from '../../Container';
 import { TopologyContent } from '../../Topology';
 

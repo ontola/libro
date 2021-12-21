@@ -1,7 +1,7 @@
-import * as schema from '@ontologies/schema';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
@@ -13,8 +13,8 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { allTopologies } from '../../../topologies';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const ITEM_PADDING = 10;
 const ITEM_BOTTOM_PADDING = 20;

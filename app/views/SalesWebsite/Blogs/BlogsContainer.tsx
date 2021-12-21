@@ -12,7 +12,7 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 

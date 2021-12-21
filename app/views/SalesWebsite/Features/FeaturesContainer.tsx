@@ -10,9 +10,9 @@ import React from 'react';
 
 import { Parallax } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container, { containerTopology } from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({
   propositionSelector: {

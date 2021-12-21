@@ -3,7 +3,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 import { blogMessages } from '../../translations/messages';
 
 export interface ShareBlogProps {

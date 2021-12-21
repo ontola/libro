@@ -11,7 +11,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../helpers/iris';
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 import Container from '../../topologies/Container';
 
 const useStyles = makeStyles<SalesTheme>((theme) => ({

@@ -20,7 +20,7 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
 export interface BlogPageShowcaseProps {

@@ -10,7 +10,7 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
-import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 
@@ -165,7 +165,5 @@ const ProcessPageFull: FC = () => {
 ProcessPageFull.type = sales.ProcessPage;
 
 ProcessPageFull.topology = fullResourceTopology;
-
-ProcessPageFull.hocs = [withSalesTheme];
 
 export default ProcessPageFull;

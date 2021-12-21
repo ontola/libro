@@ -11,7 +11,7 @@ import React from 'react';
 import { ArticleContent, HeaderProductPages } from '../../../components/SalesWebsite';
 import { Size } from '../../../components/shared/config';
 import sales from '../../../ontology/sales';
-import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
@@ -114,7 +114,5 @@ const ProductPageFull: FC = () => {
 ProductPageFull.type = sales.ProductPage;
 
 ProductPageFull.topology = fullResourceTopology;
-
-ProductPageFull.hocs = [withSalesTheme];
 
 export default ProductPageFull;

@@ -1,6 +1,6 @@
-import * as schema from '@ontologies/schema';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
@@ -12,9 +12,9 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { allTopologies } from '../../../topologies';
 import Showcase from '../../../topologies/Showcase';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
 
 const CONTAINER_PADDING = 10;
 const GRID_GAP = 20;

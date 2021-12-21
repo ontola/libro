@@ -19,7 +19,7 @@ import { FormattedMessage } from 'react-intl';
 import { ArticleContent } from '../../../components/SalesWebsite';
 import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { blogMessages, caseMessages } from '../../../translations/messages';
 

@@ -7,7 +7,7 @@ import React from 'react';
 import Button from '../../../components/Button';
 import { ReadMoreButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { showcaseTopology } from '../../../topologies/Showcase';
 
 const INNER_CONTAINER_GAP = 3;

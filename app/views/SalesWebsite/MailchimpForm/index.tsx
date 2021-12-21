@@ -14,7 +14,7 @@ import { useIntl } from 'react-intl';
 
 import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
-import { SalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import { allTopologies } from '../../../topologies';
 import { mailchimpFormMessages } from '../../../translations/messages';
 

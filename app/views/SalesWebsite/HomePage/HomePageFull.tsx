@@ -4,7 +4,7 @@ import { FC, Property } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import Showcase from '../../../topologies/Showcase';
@@ -134,7 +134,5 @@ const HomePageFull: FC = () => {
 HomePageFull.type = sales.HomePage;
 
 HomePageFull.topology = fullResourceTopology;
-
-HomePageFull.hocs = [withSalesTheme];
 
 export default HomePageFull;

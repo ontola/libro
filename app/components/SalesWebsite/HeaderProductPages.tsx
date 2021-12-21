@@ -10,7 +10,7 @@ import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 import Container from '../../topologies/Container';
 
 import { ArticleContent } from './ArticleContent';

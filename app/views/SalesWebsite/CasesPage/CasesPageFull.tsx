@@ -13,7 +13,7 @@ import React from 'react';
 
 import { FilterableArticleCollection } from '../../../components/SalesWebsite/FilterableArticleCollection';
 import sales from '../../../ontology/sales';
-import { SalesTheme, withSalesTheme } from '../../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../../themes/salesWebsite/SalesTheme';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import Grid from '../../../topologies/Grid';
@@ -91,7 +91,5 @@ const CasesPageFull: FC = ({ subject }) => {
 CasesPageFull.type = sales.CasesPage;
 
 CasesPageFull.topology = fullResourceTopology;
-
-CasesPageFull.hocs = [withSalesTheme];
 
 export default register(CasesPageFull);

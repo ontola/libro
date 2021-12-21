@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 
 export interface ArticleContentProps {
   classes?: ClassNameMap<string>;

@@ -1,10 +1,10 @@
 import ChevronRight from '@material-ui/icons/ChevronRight';
-import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { FormattedMessage } from 'react-intl';
 import clsx from 'clsx';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { SalesTheme } from '../../themes/salesWebsite/SalesThemeProvider';
+import { SalesTheme } from '../../themes/salesWebsite/SalesTheme';
 
 export interface ReadMoreButtonProps {
   className?: string
