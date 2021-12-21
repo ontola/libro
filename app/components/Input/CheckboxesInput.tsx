@@ -89,7 +89,7 @@ const CheckboxesInput: React.FC = () => {
   } = useFieldOptions(shIn);
 
   if (loading) {
-    return <Spinner loading />;
+    return <Spinner />;
   }
 
   if (options.length === 0) {

@@ -91,7 +91,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
           style={{ position: 'relative' }}
           {...getRootProps()}
         >
-          <Spinner loading={uploading} />
+          {uploading && <Spinner />}
           {isDragActive && (
             <DropzoneOverlay
               isDragActive

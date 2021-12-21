@@ -14,7 +14,7 @@ export const StudioContextProvider: React.FC = ({ children }) => {
   const [ctx] = useStudio();
 
   if (!ctx) {
-    return <Spinner loading />;
+    return <Spinner />;
   }
 
   return (

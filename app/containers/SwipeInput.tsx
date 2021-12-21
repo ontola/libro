@@ -11,11 +11,11 @@ const SwipeInput = React.lazy(
 
 const SwipeInputLoader = (props: PermittedFormField): JSX.Element => {
   if (!__CLIENT__) {
-    return <Spinner loading />;
+    return <Spinner />;
   }
 
   return (
-    <Suspense fallback={<Spinner loading />}>
+    <Suspense fallback={<Spinner />}>
       <SwipeInput {...props} />
     </Suspense>
   );

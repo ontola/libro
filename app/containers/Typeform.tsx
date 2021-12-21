@@ -15,7 +15,7 @@ const Typeform = React.lazy(
 );
 
 const TypeformLoader = (props: TypeformProps): JSX.Element => (
-  <Suspense fallback={<Spinner loading />}>
+  <Suspense fallback={<Spinner />}>
     <Typeform {...props} />
   </Suspense>
 );

@@ -37,11 +37,11 @@ const TextEditor = React.lazy(
 
 const TextEditorLoader = (props: TextEditorProps): JSX.Element => {
   if (!__CLIENT__) {
-    return <Spinner loading />;
+    return <Spinner />;
   }
 
   return (
-    <Suspense fallback={<Spinner loading />}>
+    <Suspense fallback={<Spinner />}>
       <TextEditor {...props} />
     </Suspense>
   );

@@ -1,20 +1,21 @@
+import { CircularProgress } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import './Spinner.scss';
+import { LibroTheme } from '../../themes/themes';
 
-interface Props {
-  loading: boolean;
-}
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  spinner: {
+    color: theme.palette.pink.main,
+  },
+}));
 
-const Spinner: React.FC<Props> = ({ loading }) => (
-  <div
-    className={`Spinner ${loading ? 'Spinner--loading' : ''}`}
-    data-testid="spinner"
-  />
-);
+const Spinner = (): JSX.Element => {
+  const classes = useStyles();
 
-Spinner.defaultProps = {
-  loading: true,
+  return (
+    <CircularProgress className={classes.spinner} />
+  );
 };
 
 export default Spinner;
