@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
@@ -13,7 +14,26 @@ import React from 'react';
 import rivm from '../../../../ontology/rivm';
 import { allTopologies } from '../../../../topologies';
 
-import './iconAttribute.scss';
+const useStyles = makeStyles({
+  iconAttribute: {
+    display: 'inline-block',
+    lineHeight: '2.5em',
+
+  },
+  imgWrapper: {
+    '& img': {
+      maxHeight: '100%',
+      maxWidth: '100%',
+    },
+    display: 'inline-block',
+    height: '2em',
+    marginRight: '.5em',
+    position: 'relative',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    width: '2em',
+  },
+});
 
 const IconAttribute: FC<PropertyProps> = ({
   linkedProp,
@@ -21,6 +41,7 @@ const IconAttribute: FC<PropertyProps> = ({
 }) => {
   useDataInvalidation(subject);
   useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
+  const classes = useStyles();
 
   const [name] = useValues(isNamedNode(linkedProp) ? linkedProp : undefined, schema.name);
 
@@ -29,8 +50,8 @@ const IconAttribute: FC<PropertyProps> = ({
   }
 
   return (
-    <div className="IconAttribute">
-      <span className="img-wrapper">
+    <div className={classes.iconAttribute}>
+      <span className={classes.imgWrapper}>
         <img
           alt=""
           src={`/assets/rivm/icons/${linkedProp.value.split('#')[1]}.png`}
