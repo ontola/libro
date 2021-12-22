@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -15,8 +16,6 @@ import { tryParseFloat } from '../../../../helpers/numbers';
 import rivm from '../../../../ontology/rivm';
 import { attributeListTopology } from '../../../../topologies/AttributeList';
 
-import './ratingAttribute.scss';
-
 const ICON_COUNT = 5;
 
 export interface RatingAttributeProps extends PropertyProps {
@@ -24,13 +23,30 @@ export interface RatingAttributeProps extends PropertyProps {
   labelFrom: NamedNode;
 }
 
-const renderIcon = (value: SomeTerm, index: number, src: string) => {
+const useStyles = makeStyles({
+  rating: {
+    '& img': {
+      display: 'block',
+      maxHeight: '1em',
+      maxWidth: '1em',
+    },
+    backgroundSize: '1em',
+    display: 'inline-block',
+    height: '1em',
+    width: '1em',
+  },
+  ratingImageWrapper: {
+    overflow: 'hidden',
+  },
+});
+
+const renderIcon = (value: SomeTerm, index: number, src: string, className: string) => {
   const float = tryParseFloat(value) || 0;
 
   if (float >= index) {
     return (
       <div
-        className="Rating--image-wrapper"
+        className={className}
         style={{ width: `${100 * (float - index)}%` }}
       >
         <img
@@ -53,6 +69,7 @@ const RatingAttribute: FC<RatingAttributeProps> = ({
   useDataFetching(labelObj);
   const [schemaName] = useValues(labelObj, schema.name);
   const [rdfsLabel] = useValues(labelObj, rdfs.label);
+  const classes = useStyles();
 
   const icon = label.value.includes('Costs') ? 'euro' : 'star';
   const src = `/assets/rivm/icons/${icon}`;
@@ -62,12 +79,12 @@ const RatingAttribute: FC<RatingAttributeProps> = ({
     <React.Fragment>
       {Array(ICON_COUNT).fill(null, 0, ICON_COUNT).map((_, index) => (
         <div
-          className="Rating"
+          className={classes.rating}
           key={`${src}-${index}`}
           style={{ backgroundImage: `url(${src}-bgr.png)` }}
           title={schemaName ?? rdfsLabel}
         >
-          {renderIcon(linkedProp, index, src)}
+          {renderIcon(linkedProp, index, src, classes.ratingImageWrapper)}
         </div>
       ))}
     </React.Fragment>
