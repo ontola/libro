@@ -1,5 +1,7 @@
+import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   register,
   useDataFetching,
@@ -12,33 +14,88 @@ import FontAwesome from 'react-fontawesome';
 import LDLink from '../../components/LDLink';
 import { tryParseInt } from '../../helpers/numbers';
 import dbo from '../../ontology/dbo';
+import { LibroTheme } from '../../themes/themes';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
-import './MediaObjectAttachment.scss';
+const attachmentIconCID = 'CID-AttachmentIcon';
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  attachment: {
+    border: 'solid 1px rgb(230, 230, 230)',
+    borderRadius: theme.shape.borderRadius,
+    display: 'inline-flex',
+    maxWidth: '20em',
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  attachmentIcon: {
+    color: theme.palette.grey.light,
+    position: 'relative',
+    zIndex: 1,
+  },
+  attachmentInsideButton: {
+    '&:hover': {
+      [`& .${attachmentIconCID}`]: {
+        color: theme.palette.grey.xxLightForegroundSmall,
+      },
+      backgroundColor: theme.palette.grey.xxLight,
+    },
+    alignItems: 'center',
+    borderLeft: 'solid 1px rgb(230, 230, 230)',
+    display: 'flex',
+    flexGrow: 0,
+    flexShrink: 0,
+    height: '1.7em',
+    justifyContent: 'center',
+    marginRight: 'auto',
+    position: 'relative',
+    width: '1.7em',
+    zIndex: 1,
+  },
+  attachmentPrimary: {
+    alignItems: 'center',
+    display: 'flex',
+    flexGrow: 1,
+    flexShrink: 1,
+    overflow: 'hidden',
+    paddingLeft: '.4em',
+    position: 'relative',
+  },
+  attachmentText: {
+    color: theme.palette.grey.midDark,
+    margin: '0 .6em',
+    overflow: 'hidden',
+    position: 'relative',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+}));
 
 const MediaObjectAttachment = () => {
   const [comment] = useIds(schema.comment);
   const [contentUrl] = useValues(schema.contentUrl);
   const [name] = useValues([schema.name, dbo.filename]);
+  const classes = useStyles();
+  const classesAttachmentIcon = clsx(attachmentIconCID, classes.attachmentIcon);
 
   useDataFetching(comment);
   const totalItems = tryParseInt(useValues(comment, as.totalItems));
 
   return (
     <div>
-      <div className="Attachment">
+      <div className={classes.attachment}>
         <LDLink
-          className="Attachment__primary"
+          className={classes.attachmentPrimary}
           title={name}
         >
           <FontAwesome
-            className="Attachment__icon"
+            className={classesAttachmentIcon}
             name="file"
           />
           <div
-            className="Attachment__text"
+            className={classes.attachmentText}
             data-test="Attachment-title"
           >
             {name}
@@ -46,7 +103,7 @@ const MediaObjectAttachment = () => {
         </LDLink>
         <a
           download
-          className="Attachment__inside-button"
+          className={classes.attachmentInsideButton}
           data-test="Attachment-download"
           href={contentUrl ?? ''}
           rel="noopener noreferrer"
@@ -54,7 +111,7 @@ const MediaObjectAttachment = () => {
           title="Downloaden"
         >
           <FontAwesome
-            className="Attachment__icon"
+            className={classesAttachmentIcon}
             name="download"
           />
         </a>
@@ -63,7 +120,7 @@ const MediaObjectAttachment = () => {
       {totalItems && totalItems > 0 && (
         <span>
           <FontAwesome
-            className="Attachment__icon"
+            className={classesAttachmentIcon}
             name="comment"
           />
           {totalItems}
