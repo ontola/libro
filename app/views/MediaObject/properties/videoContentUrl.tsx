@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core/styles';
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
@@ -10,6 +11,26 @@ import React from 'react';
 import { allTopologies } from '../../../topologies';
 
 const YOUTUBE_TEST = /^(https:)?\/\/(www.)?youtube.com\/embed\//;
+
+const useStyles = makeStyles({
+  mediaObjectPageInfoBarVideoContainer: {
+    height: 0,
+    paddingBottom: '56.25%',
+    position: 'relative',
+    width: '100%',
+  },
+  mediaObjectPageInfoBarVideoHtml: {
+    marginTop: '.5em',
+    width: '100%',
+  },
+  mediaObjectPageInfoBarVideoIframe: {
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+  },
+});
 
 interface PropTypes {
   autoPlay: boolean;
@@ -27,14 +48,15 @@ const VideoContentUrl: FC<PropTypes> = ({
   playsInline,
 }) => {
   const [embedUrl] = useProperty(schema.embedUrl);
+  const classes = useStyles();
 
   if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
     return (
-      <div className="MediaObjectPage__infobar--video-container">
+      <div className={classes.mediaObjectPageInfoBarVideoContainer}>
         <iframe
           allowFullScreen
           allow="encrypted-media"
-          className="MediaObjectPage__infobar--video-iframe "
+          className={classes.mediaObjectPageInfoBarVideoIframe}
           data-test="MediaObject-viewer-video-iframe"
           frameBorder="0"
           src={embedUrl.value}
@@ -48,7 +70,7 @@ const VideoContentUrl: FC<PropTypes> = ({
   return (
     <video
       autoPlay={autoPlay}
-      className="MediaObjectPage__infobar--video-html"
+      className={classes.mediaObjectPageInfoBarVideoHtml}
       data-test="MediaObject-viewer-video-html"
       loop={loop}
       muted={muted}

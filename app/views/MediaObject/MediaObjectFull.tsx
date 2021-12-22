@@ -9,8 +9,6 @@ import React from 'react';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-import './MediaObjectPage.scss';
-
 const MediaObjectFull: FC = () => (
   <Container>
     <Property label={schema.contentUrl} />

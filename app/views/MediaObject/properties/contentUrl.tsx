@@ -50,6 +50,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.8em',
     fontWeight: 800,
   },
+  mediaObjectPageInfoBarImage: {
+    '&.fa': {
+      fontSize: '10em',
+    },
+    textAlign: 'center',
+    width: '100%',
+  },
+
+  mediaObjectPageInfoBarImageFilename: {
+    textAlign: 'center',
+  },
   previewHeading: {
     margin: theme.spacing(Margin.Medium, 0),
   },
@@ -138,12 +149,12 @@ export const ContentUrl: FC<PropTypes> = ({
     >
       <Image
         ariaLabel={filename && filename.value}
-        className="MediaObjectPage__infobar--image"
+        className={classes.mediaObjectPageInfoBarImage}
         data-test="MediaObject-viewer-image"
         linkedProp={imageLink}
       />
       {filename && (
-        <p className="MediaObjectPage__infobar--image--filename">
+        <p className={classes.mediaObjectPageInfoBarImageFilename}>
           {filename.value}
         </p>
       )}
