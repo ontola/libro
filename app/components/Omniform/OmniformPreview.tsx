@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -14,9 +15,30 @@ import {
 } from 'react-intl';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { LibroTheme } from '../../themes/themes';
 import { formMessages } from '../../translations/messages';
 
-import './Omniform.scss';
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  omniformPreview: {
+    '& .fa': {
+      paddingRight: '.1em',
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.common.white,
+    },
+    backgroundColor: theme.palette.grey.xxLight,
+    borderBottomLeftRadius: theme.shape.borderRadius,
+    borderBottomRightRadius: theme.shape.borderRadius,
+    cursor: 'text',
+    display: 'flex',
+    paddingLeft: '1rem',
+    width: '100%',
+  },
+  omniformPreviewText: {
+    color: theme.palette.grey.xxLightForegroundSmall,
+    lineHeight: '2.4rem',
+  },
+}));
 
 export interface OmniformPreviewProps {
   onClick: React.MouseEventHandler,
@@ -28,6 +50,7 @@ const OmniformPreview = ({
   primaryAction,
 }: OmniformPreviewProps): JSX.Element => {
   const intl = useIntl();
+  const classes = useStyles();
 
   const [actionLabel] = useStrings(primaryAction, dig(schema.result, rdfs.label));
   const [actionIcon] = useGlobalIds(primaryAction, dig(schema.result, schema.image));
@@ -35,11 +58,11 @@ const OmniformPreview = ({
 
   return (
     <button
-      className="Omniform__preview"
+      className={classes.omniformPreview}
       type="button"
       onClick={onClick}
     >
-      <span className="Omniform__preview-text">
+      <span className={classes.omniformPreviewText}>
         <FontAwesome name={icon} />
         {' '}
         <FormattedMessage

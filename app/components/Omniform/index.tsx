@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf, {
   Node,
   isNamedNode,
@@ -28,12 +29,11 @@ import {
   getOmniformAction,
   omniformSetAction,
 } from '../../state/omniform';
+import { LibroTheme } from '../../themes/themes';
 import FormFooter from '../../topologies/FormFooter';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import { FormFooterRight } from '../Form';
 import { FormFieldError } from '../FormField';
-
-import './Omniform.scss';
 
 export interface OmniformProps {
   actions: Set<Node>;
@@ -72,6 +72,17 @@ const PROPS_WHITELIST = [
   ontola.coverPhoto,
 ].map((t) => rdf.id(t));
 
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  omniformError: {
+    color: theme.palette.red.main,
+    span: {
+      fontSize: '.7em',
+      marginLeft: '.6em',
+      marginRight: '.3em',
+    },
+  },
+}));
+
 const convertFieldContext = (parentIRI: string, actionIRI: Node) => {
   const omniformKey = `${atob(parentIRI)}.omniform`;
   Array(sessionStorage.length)
@@ -105,6 +116,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
   } = props;
   const lrs = useLRS();
   const [submitLabel] = useStrings(action, dig(schema.target, schema.name));
+  const classes = useStyles();
 
   const types = React.useMemo(() => (
     Array.from(actions).map((iri) => (
@@ -193,7 +205,7 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
   return (
     <React.Fragment>
       {error && (
-        <div className="Omniform__error">
+        <div className={classes.omniformError}>
           <FontAwesome name="exclamation-triangle" />
           {error}
         </div>
