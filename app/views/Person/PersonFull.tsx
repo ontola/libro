@@ -45,7 +45,6 @@ const PersonFull: FC = () => {
 
   return (
     <React.Fragment>
-      <Property label={ontola.coverPhoto} />
       <MainBody>
         <Grid
           container
