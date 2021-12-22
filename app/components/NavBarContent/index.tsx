@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React from 'react';
 
@@ -6,15 +7,20 @@ import app from '../../ontology/app';
 
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';
 
-import './NavBarContent.scss';
-
 export interface NavBarContentProps {
   children: React.ReactNode;
   hideSearch?: boolean;
   hideMenu?: boolean;
 }
 
+export const navBarContentMenusCID = 'CID-NavBarContentMenus';
+
 const useStyles = makeStyles({
+  navBarContentMenus: {
+    display: 'flex',
+    flexShrink: 1,
+    height: '100%',
+  },
   pusher: {
     flexGrow: 1,
   },
@@ -27,7 +33,12 @@ const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): 
     <React.Fragment>
       <NavbarNavigationsMenu />
       {children}
-      <div className="NavBarContent__menus">
+      <div
+        className={clsx(
+          navBarContentMenusCID,
+          classes.navBarContentMenus,
+        )}
+      >
         <div className={classes.pusher} />
         <Resource subject={app.c_a} />
         {!hideSearch && (

@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import React from 'react';
@@ -5,6 +6,7 @@ import { Resource } from 'link-redux';
 
 import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
+import { LibroTheme, Margin } from '../../themes/themes';
 import Card, { cardTopology } from '../../topologies/Card';
 import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import CardMain, { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -22,6 +24,29 @@ export interface TopologyWrapperProps {
   topology: NamedNode;
 }
 
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  navBarContentWithStyle: {
+    [theme.breakpoints.up('lg')]: {
+      padding: `0 ${theme.spacing(Margin.Small)}`,
+    },
+
+    WebkitOverflowScrolling: 'touch',
+    WebkitTapHighlightColor: theme.palette.transparent.main,
+    alignItems: 'center',
+    backgroundColor: 'rgb(71, 86, 104)',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    height: '100%',
+    justifyContent: 'space-between',
+    margin: 'auto',
+    maxWidth: theme.containerWidth.large,
+    position: 'relative',
+    transition: '.3s background-color',
+    width: '17rem',
+  },
+}));
+
 /* Wraps a LRC in a suitable container */
 const TopologyWrapper = ({
   pure,
@@ -31,6 +56,8 @@ const TopologyWrapper = ({
   if (!subject) {
     return null;
   }
+
+  const classes = useStyles();
 
   const LRC = () => (
     <Resource
@@ -156,14 +183,7 @@ const TopologyWrapper = ({
     );
   } else if (rdf.equals(topology, navbarTopology)) {
     return (
-      <div
-        className="NavBarContent NavBarContent--white-text"
-        style={{
-          backgroundColor: 'rgb(71, 86, 104)',
-          margin: 'auto',
-          width: '17rem',
-        }}
-      >
+      <div className={classes.navBarContentWithStyle}>
         <LRC />
       </div>
     );

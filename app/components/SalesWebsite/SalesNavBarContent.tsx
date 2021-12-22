@@ -11,8 +11,6 @@ import { LibroTheme } from '../../themes/themes';
 
 import { SalesNavBarDrawer } from './SalesNavBarDrawer';
 
-import '../NavBarContent/NavBarContent.scss';
-
 const LOGO_MARGIN_COMPENSATION = 4;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

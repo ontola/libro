@@ -2,7 +2,11 @@ import { Color } from '@material-ui/core';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 
-import { CSSPropertiesMap, LibroTheme } from '../../themes';
+import {
+  CSSPropertiesMap,
+  LibroTheme,
+  Margin, 
+} from '../../themes';
 
 const LIGHTEN = 0.7;
 
@@ -37,6 +41,24 @@ const useStyles = makeStyles((theme: LibroTheme): CSSPropertiesMap => {
         paddingLeft: '240px',
         paddingRight: 0,
       },
+    },
+    navBarContent: {
+      [theme.breakpoints.up('lg')]: {
+        padding: `0 ${theme.spacing(Margin.Small)}`,
+      },
+
+      WebkitOverflowScrolling: 'touch',
+      WebkitTapHighlightColor: theme.palette.transparent.main,
+      alignItems: 'center',
+      boxSizing: 'border-box',
+      display: 'flex',
+      flexFlow: 'row nowrap',
+      height: '100%',
+      justifyContent: 'space-between',
+      margin: 'auto',
+      maxWidth: theme.containerWidth.large,
+      position: 'relative',
+      transition: '.3s background-color',
     },
     navBarTitlebar: {
       backgroundColor: lighten(backgroundColor, LIGHTEN),

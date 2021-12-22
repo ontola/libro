@@ -1,5 +1,7 @@
 import deepmerge from 'deepmerge';
 
+import { navBarContentMenusCID } from '../../../../components/NavBarContent';
+import { navBarContentItemsCID } from '../../../../components/NavBarContent/NavbarNavigationsMenu';
 import appbar from '../../../common/theme/components/appbar';
 import { LibroTheme, MaterialStyleMap } from '../../../themes';
 
@@ -8,10 +10,10 @@ export default (theme: LibroTheme): MaterialStyleMap => (
     MuiAppBar: {
       root: {
         '& .MuiToolbar-root': {
-          '& > .NavBarContent__items': {
+          [`& > .${navBarContentItemsCID}`]: {
             flexBasis: '100%',
           },
-          '& > .NavBarContent__menus': {
+          [`& > .${navBarContentMenusCID}`]: {
             flexBasis: '100%',
           },
         },

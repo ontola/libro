@@ -48,7 +48,7 @@ const DutchGovernmentHeader = ({ themeOptions }: DutchGovernmentHeader): JSX.Ele
         </header>
         {breadcrumbParent && (
           <div className={styles.navBarTitlebar}>
-            <div className="NavBarContent">
+            <div className={styles.navBarContent}>
               {breadcrumbParentUrl ? (
                 <a href={breadcrumbParentUrl}>
                   {breadcrumbParent}
