@@ -15,8 +15,6 @@ import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';
 
-import './DevBrowser.scss';
-
 interface DevBrowserProps {
   history: History;
   location: Location;

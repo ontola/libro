@@ -2,6 +2,7 @@ import * as as from '@ontologies/as';
 import rdf, { Node } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
+import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import React, { MouseEvent } from 'react';
 import { useKey } from 'rooks';
@@ -44,6 +45,32 @@ const getShort = (value: string): string => {
 
   return trimmedValue;
 };
+
+const focusRed = '#ff0000';
+
+const useStyles = makeStyles({
+  hoverHelperShowBorders: {
+    '& *:not([resource])': {
+      pointerEvents: 'none',
+    },
+    '& [href]': {
+      pointerEvents: 'none',
+    },
+    '& [resource],& [href]': {
+      '&:active': {
+        boxShadow: `0 0 0 4px ${focusRed}`,
+        zIndex: 1,
+      },
+      '&:hover': {
+        boxShadow: `0 0 0 3px ${focusRed}`,
+        zIndex: 1,
+      },
+      boxShadow: `0 0 0 1px ${focusRed}`,
+      pointerEvents: 'all !important',
+      transition: 'box-shadow 50ms ease-in-out',
+    },
+  },
+});
 
 const getElement = (e: MouseEvent): void => {
   e.preventDefault();
@@ -94,6 +121,7 @@ const getElement = (e: MouseEvent): void => {
 
 const HoverHelper = ({ children }: React.PropsWithChildren<unknown>): JSX.Element => {
   const [activated, setActivated] = React.useState(false);
+  const classes = useStyles();
 
   if (!__DEVELOPMENT__) {
     return (
@@ -104,7 +132,7 @@ const HoverHelper = ({ children }: React.PropsWithChildren<unknown>): JSX.Elemen
   }
 
   const className = clsx({
-    'HoverHelper--show-borders': activated,
+    [classes.hoverHelperShowBorders]: activated,
   });
 
   useKey(TRIGGER_KEY, (e) => {
