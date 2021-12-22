@@ -29,31 +29,31 @@ const ShopFull: FC = (): JSX.Element => (
         label={ontola.publishAction}
         onLoad={LoadingHidden}
       />
-      <MainBody data-test="Thing-thing">
-        <Property label={argu.trashedAt} />
-        <PageHeader />
-        <Property label={[schema.text, schema.description, dbo.abstract]} />
-        <Property label={app.contents} />
-        <Property label={foaf.isPrimaryTopicOf} />
-        <List wrap>
-          <Property
-            label={argu.attachments}
-            onLoad={LoadingHidden}
-          />
-          <Property
-            label={meeting.attachment}
-            onLoad={LoadingHidden}
-          />
-        </List>
-        <ActionsBar>
-          <Property label={ontola.favoriteAction} />
-        </ActionsBar>
-        <Property
-          withoutLoading
-          label={schema.location}
-        />
-      </MainBody>
     </Container>
+    <MainBody data-test="Thing-thing">
+      <Property label={argu.trashedAt} />
+      <PageHeader />
+      <Property label={[schema.text, schema.description, dbo.abstract]} />
+      <Property label={app.contents} />
+      <Property label={foaf.isPrimaryTopicOf} />
+      <List wrap>
+        <Property
+          label={argu.attachments}
+          onLoad={LoadingHidden}
+        />
+        <Property
+          label={meeting.attachment}
+          onLoad={LoadingHidden}
+        />
+      </List>
+      <ActionsBar>
+        <Property label={ontola.favoriteAction} />
+      </ActionsBar>
+      <Property
+        withoutLoading
+        label={schema.location}
+      />
+    </MainBody>
     <SubSection />
     <Property label={argu.cart} />
   </React.Fragment>

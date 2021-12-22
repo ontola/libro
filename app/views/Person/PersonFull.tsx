@@ -17,7 +17,6 @@ import SubSection from '../../components/SubSection';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
 import { LibroTheme } from '../../themes/themes';
-import Container from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import MainBody from '../../topologies/MainBody';
@@ -47,60 +46,58 @@ const PersonFull: FC = () => {
   return (
     <React.Fragment>
       <Property label={ontola.coverPhoto} />
-      <Container>
-        <MainBody>
-          <Grid
-            container
-            alignItems="center"
-            spacing={2}
-          >
-            <Property label={schema.image}>
-              <Property label={schema.thumbnail}>
-                {([src]: SomeTerm[]) => (
-                  <Grid
-                    item
-                    md={1}
-                    xs={2}
-                  >
-                    <div className={classes.wrapper}>
-                      <div
-                        className={classes.image}
-                        style={{ backgroundImage: `url("${src.value}")` }}
-                      />
-                    </div>
-                  </Grid>
-                )}
-              </Property>
+      <MainBody>
+        <Grid
+          container
+          alignItems="center"
+          spacing={2}
+        >
+          <Property label={schema.image}>
+            <Property label={schema.thumbnail}>
+              {([src]: SomeTerm[]) => (
+                <Grid
+                  item
+                  md={1}
+                  xs={2}
+                >
+                  <div className={classes.wrapper}>
+                    <div
+                      className={classes.image}
+                      style={{ backgroundImage: `url("${src.value}")` }}
+                    />
+                  </div>
+                </Grid>
+              )}
             </Property>
-            <Grid
-              item
-              md={11}
-              xs={10}
-            >
-              <Property label={[schema.name, rdfs.label, foaf.name]} />
-              <Hidden smDown>
-                <ContentDetails>
-                  <Property
-                    label={org.organization}
-                    limit={Infinity}
-                  />
-                </ContentDetails>
-              </Hidden>
-            </Grid>
-            {' '}
-
+          </Property>
+          <Grid
+            item
+            md={11}
+            xs={10}
+          >
+            <Property label={[schema.name, rdfs.label, foaf.name]} />
+            <Hidden smDown>
+              <ContentDetails>
+                <Property
+                  label={org.organization}
+                  limit={Infinity}
+                />
+              </ContentDetails>
+            </Hidden>
           </Grid>
-          <Hidden mdUp>
-            <ContentDetails>
-              <Property
-                label={org.organization}
-                limit={Infinity}
-              />
-            </ContentDetails>
-          </Hidden>
-          <Property label={schema.description} />
-        </MainBody>
-      </Container>
+          {' '}
+
+        </Grid>
+        <Hidden mdUp>
+          <ContentDetails>
+            <Property
+              label={org.organization}
+              limit={Infinity}
+            />
+          </ContentDetails>
+        </Hidden>
+        <Property label={schema.description} />
+      </MainBody>
       <SubSection menu={settingsMenu} />
     </React.Fragment>
   );

@@ -27,7 +27,7 @@ interface MenuItemTabProps {
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   selectedSubsection: {
-    backgroundColor: '#FBFBFB',
+    backgroundColor: theme.palette.background.default,
     border: '1px solid #E0E0E0',
     borderBottom: 'none',
     borderTopLeftRadius: theme.shape.borderRadius,

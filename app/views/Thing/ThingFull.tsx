@@ -3,10 +3,7 @@ import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 
 import { components } from '../../components';
-import {
-  useViewBuilderToolkit,
-  withoutLoading,
-} from '../../helpers/builder';
+import { useViewBuilderToolkit, withoutLoading } from '../../helpers/builder';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
@@ -25,25 +22,25 @@ const ThingFull: FC = () => {
       c(containerTopology, [
         p(argu.trashedAt),
         p(withoutLoading(ontola.publishAction)),
-        c(mainBodyTopology, { 'data-test': 'Thing-thing' }, [
-          c(components.PageHeader),
-          p(app.thumbnail),
-          p(app.contents),
-          p(withoutLoading(foaf.isPrimaryTopicOf)),
-          c(listTopology, {
-            wrap: true,
-          }, [
-            p(withoutLoading(argu.attachments)),
-            p(meeting.attachment, {
-              limit: Infinity,
-              onLoad: () => null,
-            }),
-          ]),
-          c(actionsBarTopology, [
-            p(withoutLoading(ontola.favoriteAction)),
-          ]),
-          p(argu.blogPosts),
+      ]),
+      c(mainBodyTopology, { 'data-test': 'Thing-thing' }, [
+        c(components.PageHeader),
+        p(app.thumbnail),
+        p(app.contents),
+        p(withoutLoading(foaf.isPrimaryTopicOf)),
+        c(listTopology, {
+          wrap: true,
+        }, [
+          p(withoutLoading(argu.attachments)),
+          p(meeting.attachment, {
+            limit: Infinity,
+            onLoad: () => null,
+          }),
         ]),
+        c(actionsBarTopology, [
+          p(withoutLoading(ontola.favoriteAction)),
+        ]),
+        p(argu.blogPosts),
       ]),
       c(components.SubSection),
     ])

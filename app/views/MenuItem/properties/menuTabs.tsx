@@ -22,7 +22,7 @@ export interface MenuTabsProp {
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.paper,
     color: theme.palette.grey.dark,
     opacity: 'unset',
   },

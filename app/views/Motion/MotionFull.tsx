@@ -28,27 +28,27 @@ const MotionFull: FC = () => (
         label={ontola.publishAction}
         onLoad={LoadingHidden}
       />
+    </Container>
+    <MainBody>
       <PageHeader />
-      <MainBody>
-        <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
-        <Property label={[schema.text, schema.description, dbo.abstract]} />
-        <List wrap>
-          <Property
-            label={argu.attachments}
-            onLoad={LoadingHidden}
-          />
-          <Property
-            label={meeting.attachment}
-            onLoad={LoadingHidden}
-          />
-        </List>
+      <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+      <Property label={[schema.text, schema.description, dbo.abstract]} />
+      <List wrap>
         <Property
-          label={argu.voteableVoteEvent}
+          label={argu.attachments}
           onLoad={LoadingHidden}
         />
-        <Property label={argu.blogPosts} />
-      </MainBody>
-    </Container>
+        <Property
+          label={meeting.attachment}
+          onLoad={LoadingHidden}
+        />
+      </List>
+      <Property
+        label={argu.voteableVoteEvent}
+        onLoad={LoadingHidden}
+      />
+      <Property label={argu.blogPosts} />
+    </MainBody>
     <SubSection />
   </React.Fragment>
 );

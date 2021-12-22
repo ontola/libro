@@ -9,7 +9,6 @@ import {
 import React from 'react';
 
 import SubSection from '../../components/SubSection';
-import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import MainBody from '../../topologies/MainBody';
 
@@ -24,15 +23,13 @@ const MenuItemFull: FC = ({ subject }) => {
 
   return (
     <React.Fragment>
-      <Container>
-        <MainBody>
-          {isPartOf
-            ? <Property label={schema.isPartOf} />
-            : (
-              <Property label={schema.name} />
-            )}
-        </MainBody>
-      </Container>
+      <MainBody>
+        {isPartOf
+          ? <Property label={schema.isPartOf} />
+          : (
+            <Property label={schema.name} />
+          )}
+      </MainBody>
       <SubSection menu={subject} />
     </React.Fragment>
   );

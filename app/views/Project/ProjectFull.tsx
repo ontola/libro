@@ -47,52 +47,52 @@ const ProjectFull: FC = ({
           label={ontola.publishAction}
           onLoad={LoadingHidden}
         />
+      </Container>
+      <MainBody>
         <PageHeader />
-        <MainBody>
-          <Property label={TEXT_PREDICATES} />
-          <List>
-            <Property
-              label={argu.attachments}
-              onLoad={LoadingHidden}
-            />
-          </List>
-          <CardDivider />
+        <Property label={TEXT_PREDICATES} />
+        <List>
           <Property
-            forceRender
-            label={argu.phases}
-            selectedPhase={renderPhase}
+            label={argu.attachments}
+            onLoad={LoadingHidden}
           />
-          <Resource
-            subject={renderPhase}
+        </List>
+        <CardDivider />
+        <Property
+          forceRender
+          label={argu.phases}
+          selectedPhase={renderPhase}
+        />
+        <Resource
+          subject={renderPhase}
+          onLoad={LoadingHidden}
+        >
+          <Property
+            label={argu.resource}
+            onError={LoadingHidden}
             onLoad={LoadingHidden}
           >
             <Property
-              label={argu.resource}
-              onError={LoadingHidden}
+              label={ontola.publishAction}
               onLoad={LoadingHidden}
-            >
+            />
+            {phaseTitle !== phaseResourceTitle && (
               <Property
-                label={ontola.publishAction}
+                label={NAME_PREDICATES}
                 onLoad={LoadingHidden}
               />
-              {phaseTitle !== phaseResourceTitle && (
-                <Property
-                  label={NAME_PREDICATES}
-                  onLoad={LoadingHidden}
-                />
-              )}
-              <Property
-                label={schema.text}
-                onLoad={LoadingHidden}
-              />
-              <Property
-                label={[argu.attachments, meeting.attachment]}
-                limit={Infinity}
-              />
-            </Property>
-          </Resource>
-        </MainBody>
-      </Container>
+            )}
+            <Property
+              label={schema.text}
+              onLoad={LoadingHidden}
+            />
+            <Property
+              label={[argu.attachments, meeting.attachment]}
+              limit={Infinity}
+            />
+          </Property>
+        </Resource>
+      </MainBody>
       {renderPhase && (
         <Resource
           subject={renderPhase}

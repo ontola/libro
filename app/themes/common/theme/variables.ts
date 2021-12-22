@@ -118,7 +118,7 @@ const theme = {
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {
-      default: colors.white.main,
+      default: '#fbfbfb',
       paper: colors.white.main,
     },
     ...colors,
