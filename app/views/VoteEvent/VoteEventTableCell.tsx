@@ -10,7 +10,7 @@ import argu from '../../ontology/argu';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const VoteEventTableCell: FC = () => (
-  <VoteData hover={false}>
+  <VoteData>
     <Property label={argu.votesProCount} />
     <Property label={argu.votesNeutralCount} />
     <Property label={argu.votesConCount} />
