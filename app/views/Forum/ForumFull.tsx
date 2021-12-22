@@ -28,7 +28,7 @@ const ForumFull = () => {
   const [positionY] = useNumbers(coverPhoto, ontola.imagePositionY);
 
   return (
-    <main role="main">
+    <React.Fragment>
       {(hideHeader?.value !== 'true')
       && (
         <PageHeader
@@ -44,7 +44,7 @@ const ForumFull = () => {
           <Property label={ontola.widgets} />
         </Grid>
       </Container>
-    </main>
+    </React.Fragment>
   );
 };
 

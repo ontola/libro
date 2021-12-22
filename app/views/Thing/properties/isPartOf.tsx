@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreadcrumbsBar } from '../../../components/Breadcrumbs';
 import { parentProps } from '../../../ontology/app';
+import BreadcrumbsBar from '../../../topologies/BreadcrumbsBar';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 

@@ -3,9 +3,10 @@ import MenuItemCardRow from './MenuItemCardRow';
 import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemDropdownContent from './MenuItemDropdownContent';
 import MenuItemFooter from './MenuItemFooter';
-import MenuItemPage from './MenuItemFull';
+import MenuItemFull from './MenuItemFull';
 import MenuItemHeader from './MenuItemNavbar';
 import MenuItemNested from './MenuItemNested';
+import MenuItemPage from './MenuItemPage';
 import MenuItemTab from './MenuItemTab';
 import MenuItemTableCell from './MenuItemTableCell';
 import CurrentTab from './properties/currentTab';
@@ -29,6 +30,7 @@ export default [
   MenuItemCardAppendix,
   MenuItemCardRow,
   MenuItemDropdown,
+  MenuItemFull,
   MenuItemPage,
   MenuItemHeader,
   MenuItemFooter,

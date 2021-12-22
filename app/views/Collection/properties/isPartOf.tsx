@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import BreadcrumbsBar from '../../../components/Breadcrumbs/BreadcrumbsBar';
+import BreadcrumbsBar from '../../../topologies/BreadcrumbsBar';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { CollectionTypes } from '../types';
 

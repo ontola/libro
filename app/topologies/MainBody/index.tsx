@@ -13,9 +13,9 @@ class MainBody extends TopologyProvider {
 
   render() {
     return (
-      <main role="main">
+      <React.Fragment>
         {this.wrap(this.props.children)}
-      </main>
+      </React.Fragment>
     );
   }
 }

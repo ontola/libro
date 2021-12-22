@@ -1,13 +1,14 @@
 import MUIContainer from '@material-ui/core/Container';
+import { WithStyles } from '@material-ui/core/styles';
 import { createStyles, withStyles } from '@material-ui/styles';
 import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
-import { parentTopology } from '../../topologies/Parent';
-import Topology from '../../topologies/Topology';
+import { parentTopology } from '../Parent';
+import Topology from '../Topology';
 
-interface PropTypes {
+export interface BreadcrumbsBarProps {
   showArrow?: boolean;
   classes?: Classes;
 }
@@ -19,6 +20,9 @@ const styles = createStyles((theme: LibroTheme) => ({
     position: 'relative',
     top: '-1rem',
     width: '100%',
+    ...(theme.appBar.background === 'white' ? {
+      borderTop: `1px solid ${theme.palette.divider}`,
+    } : {}),
   },
   flex: {
     alignItems: 'center',
@@ -27,6 +31,8 @@ const styles = createStyles((theme: LibroTheme) => ({
     gap: '.3rem',
   },
 }));
+
+type PropTypes = BreadcrumbsBarProps & WithStyles<typeof styles>;
 
 /**
  * Used to divide a card in multiple rows
@@ -37,7 +43,7 @@ class BreadcrumbsBar extends Topology<PropTypes> {
     super(props);
 
     this.topology = parentTopology;
-    this.className = props.classes!.breadcrumbsBar;
+    this.className = props.classes.breadcrumbsBar;
   }
 
   public render() {
@@ -46,7 +52,7 @@ class BreadcrumbsBar extends Topology<PropTypes> {
         <MUIContainer
           maxWidth="lg"
         >
-          <div className={this.props.classes!.flex}>
+          <div className={this.props.classes.flex}>
             {this.props.children}
           </div>
         </MUIContainer>

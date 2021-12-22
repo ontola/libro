@@ -3,19 +3,19 @@
  */
 
 import rdf from '@ontologies/core';
+import * as dcterms from '@ontologies/dcterms';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { Resource } from 'link-redux';
-import * as dcterms from '@ontologies/dcterms';
 import React from 'react';
 
-import { renderLinked } from '../../test-utils';
-import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { renderLinked } from '../../test-utils';
+import BreadcrumbsBar from '../../topologies/BreadcrumbsBar';
 import Card from '../../topologies/Card';
-import List from '../../topologies/List';
 import Container from '../../topologies/Container';
+import List from '../../topologies/List';
 import { Page } from '../../topologies/Page';
 
 describe('Thing', () => {
@@ -80,7 +80,7 @@ describe('Thing', () => {
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByText(PARENT_NAME)).toBeVisible();
     expect(queryByTestId('CoverPhoto')).toHaveStyle(`
-      background-image: url(${boxUrl}); 
+      background-image: url(${boxUrl});
       background-position-y: ${imagePositionY}%;
     `);
   });

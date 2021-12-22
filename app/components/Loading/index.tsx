@@ -3,6 +3,7 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import BreadcrumbsBar from '../../topologies/BreadcrumbsBar';
 import Card, {
   CardFixed,
   CardMicroRow,
@@ -12,7 +13,7 @@ import Container from '../../topologies/Container';
 import FullResourceTopology from '../../topologies/FullResource';
 import TableCell from '../../topologies/TableCell';
 import TableRow from '../../topologies/TableRow';
-import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
+import { Breadcrumb } from '../Breadcrumbs';
 import CardContent from '../Card/CardContent';
 
 import './Loading.scss';
