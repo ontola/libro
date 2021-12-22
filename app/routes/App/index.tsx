@@ -6,7 +6,6 @@ import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
 import routes from '../index';
 
-import './index.scss';
 import ContentFrame from './ContentFrame';
 
 export interface AppState {

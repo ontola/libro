@@ -166,6 +166,7 @@ const theme = {
     modal: 920,
   },
   zIndexHoverBox: 100,
+  zIndexLoader: 1200,
   zIndexOverlay: 1900,
 };
 

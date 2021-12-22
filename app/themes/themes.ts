@@ -60,6 +60,7 @@ declare module '@material-ui/core/styles/createTheme' {
       [K in Size]: string;
     };
     zIndexHoverBox: number;
+    zIndexLoader: number;
     zIndexOverlay: number;
   }
 }
