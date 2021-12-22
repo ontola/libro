@@ -29,6 +29,14 @@ export enum HeadingVariant {
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles<LibroTheme>((theme) => ({
+  default: {
+    '& b': {
+      color: theme.palette.grey[900],
+    },
+    'color': theme.palette.grey[800],
+    'lineHeight': 1.3,
+    'marginBottom': '.6rem',
+  },
   [HeadingVariant.Alert]: {
     color: theme.palette.error.dark,
   },
@@ -50,14 +58,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   }), {
     color: theme.palette.link?.header,
   }),
-  default: {
-    '& b': {
-      color: theme.palette.grey[900],
-    },
-    'color': theme.palette.grey[800],
-    'lineHeight': 1.3,
-    'marginBottom': '.6rem',
-  },
   inherit: {
     display: 'inherit',
   },
