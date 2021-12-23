@@ -31,7 +31,9 @@ export default class BulkCheck extends Check {
 
     const res = await testCtx.api.bulk([
       this.tenant.location,
-    ]);
+    ], {
+      'user-agent': 'libro health-check; BulkCheck',
+    });
 
     if (res?.status !== OK) {
       return new WarningError(`Can't read core ns from bulk (status: ${res?.status})`);

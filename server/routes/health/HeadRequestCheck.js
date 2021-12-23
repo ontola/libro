@@ -20,6 +20,7 @@ export default class HeadRequestCheck extends Check {
       headers: {
         ...this.ctx.request.headers,
         'Content-Type': 'application/hex+x-ndjson',
+        'user-agent': 'libro health-check; HeadRequestCheck',
       },
       url: '/argu',
     });

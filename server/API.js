@@ -23,7 +23,7 @@ class API {
     this.serviceToken = oAuthToken;
   }
 
-  async bulk(resources) {
+  async bulk(resources, headers = {}) {
     const websiteIRI = await this.ctx.getWebsiteIRI();
 
     const body = new URLSearchParams();
@@ -40,6 +40,7 @@ class API {
         Cookie: this.ctx.request.headers.cookie,
         'Website-IRI': websiteIRI,
         ...this.proxySafeHeaders(this.ctx.request),
+        ...headers,
       },
       method: 'POST',
       path: '/link-lib/bulk',
