@@ -1,5 +1,6 @@
 import { CSSProperties } from '@material-ui/styles';
 
+import { scrollBoxCID } from '../../components/VerticalScroller';
 import { LibroTheme } from '../../themes/themes';
 
 interface Styles {
@@ -14,7 +15,7 @@ const styles = (theme: LibroTheme): Styles => ({
     height: '2rem',
   },
   layoutOnly: {
-    '& .scrollbox': {
+    [`& .${scrollBoxCID}`]: {
       padding: 0,
     },
     '--vertical-scroller-background': 'unset !important',
