@@ -1,14 +1,32 @@
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React, { MouseEvent, MouseEventHandler } from 'react';
 import * as ReactDOM from 'react-dom';
 
-import './OverlayContainer.scss';
+import { cardClassIdentifier } from '../../topologies/Card/sharedCardStyles';
 
 interface PropTypes {
   children: React.ReactNode;
   clickHandler: MouseEventHandler;
   overlayRef: HTMLElement | null;
 }
+
+export const coverImageChildCID = 'CID-CoverImageChild';
+
+const useStyles = makeStyles({
+  overlayContainer: {
+    '& div': {
+      maxWidth: '25rem',
+    },
+    [`& .${cardClassIdentifier}`]: {
+      maxHeight: '40vh',
+      overflow: 'auto',
+    },
+    [`& .${coverImageChildCID}`]: {
+      height: 'initial',
+    },
+  },
+});
 
 /**
  * Render content in an openlayers overlay.
@@ -25,6 +43,8 @@ const OverlayContainer = ({
     return null;
   }
 
+  const classes = useStyles();
+
   const convertToClick = React.useCallback((e: MouseEvent<HTMLDivElement>) => {
     e.persist();
     e.preventDefault();
@@ -34,7 +54,7 @@ const OverlayContainer = ({
 
   return ReactDOM.createPortal(
     (
-      <div className="OverlayContainer">
+      <div className={classes.overlayContainer}>
         <div
           className="click-ignore"
           onMouseUp={convertToClick}

@@ -18,6 +18,7 @@ import TableCell from '../../topologies/TableCell';
 import TableRow from '../../topologies/TableRow';
 import { Breadcrumb } from '../Breadcrumbs';
 import CardContent from '../Card/CardContent';
+import { coverImageChildCID } from '../OverlayContainer';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   '@keyframes loadingBackgroundAnimation': {
@@ -399,7 +400,7 @@ export const LoadingCoverPhoto = (): JSX.Element => {
     <div className="CoverImage__wrapper">
       <div
         className={clsx(
-          'CoverImage__child',
+          coverImageChildCID,
           classes.loadingBackground,
         )}
       />
