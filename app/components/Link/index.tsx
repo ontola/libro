@@ -23,6 +23,7 @@ import app from '../../ontology/app';
 import ExternalLink from './ExternalLink';
 // tslint:disable ordered-imports
 import featureStyles from './FeatureStyles';
+import { linkActiveCID } from './LinkLabel';
 import themeStyles from './ThemeStyles';
 
 export enum LinkTarget {
@@ -159,7 +160,7 @@ const Link = ({
   return (
     <LinkComp
       {...other}
-      activeClassName={activeClassName || 'Link__active'}
+      activeClassName={activeClassName || linkActiveCID}
       className={componentClassName}
       exact={isExact}
       innerRef={innerRef}

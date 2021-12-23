@@ -1,11 +1,35 @@
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import './LinkLabel.scss';
+export const linkActiveCID = 'CID-LinkActive';
 
-const LinkLabel: React.FC = ({ children }) => (
-  <span className="LinkLabel">
-    {children}
-  </span>
-);
+const useStyles = makeStyles({
+  linkLabel: {
+    [`.${linkActiveCID} &`]: {
+      '&::after': {
+        backgroundColor: 'var(--accent-background-color)',
+        bottom: '-.3em',
+        color: 'var(--accent-color)',
+        content: '""',
+        height: '.3em',
+        left: 0,
+        position: 'absolute',
+        right: 0,
+      },
+      color: 'var(--accent-background-color)',
+      position: 'relative',
+    },
+  },
+});
+
+const LinkLabel: React.FC = ({ children }) => {
+  const classes = useStyles();
+
+  return (
+    <span className={classes.linkLabel}>
+      {children}
+    </span>
+  );
+};
 
 export default LinkLabel;
