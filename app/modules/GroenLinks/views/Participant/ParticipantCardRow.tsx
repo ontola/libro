@@ -12,29 +12,34 @@ import teamGL from '../../../../ontology/teamGL';
 import ActionsBar from '../../../../topologies/ActionsBar';
 import { cardRowTopology } from '../../../../topologies/Card/CardRow';
 import ContentDetails from '../../../../topologies/ContentDetails';
+import { useContactOptionStyles } from '../Volunteer';
 
-const ParticipantCardRow = () => (
-  <React.Fragment>
-    <CardContent>
-      <HeaderWithMenu
-        menu={<Property label={ontola.actionsMenu} />}
-      >
-        <Property label={schema.name} />
-      </HeaderWithMenu>
-      <ContentDetails>
-        <Property label={teamGL.engagement} />
-        <Property label={teamGL.signedUp} />
-      </ContentDetails>
-      <div className="Volunteer--contact-options">
-        <Property label={teamGL.telephone} />
-        <Property label={schema.email} />
-      </div>
-    </CardContent>
-    <ActionsBar>
-      <Property label={ontola.favoriteAction} />
-    </ActionsBar>
-  </React.Fragment>
-);
+const ParticipantCardRow = () => {
+  const classes = useContactOptionStyles();
+
+  return (
+    <React.Fragment>
+      <CardContent>
+        <HeaderWithMenu
+          menu={<Property label={ontola.actionsMenu} />}
+        >
+          <Property label={schema.name} />
+        </HeaderWithMenu>
+        <ContentDetails>
+          <Property label={teamGL.engagement} />
+          <Property label={teamGL.signedUp} />
+        </ContentDetails>
+        <div className={classes.volunteerContactOptions}>
+          <Property label={teamGL.telephone} />
+          <Property label={schema.email} />
+        </div>
+      </CardContent>
+      <ActionsBar>
+        <Property label={ontola.favoriteAction} />
+      </ActionsBar>
+    </React.Fragment>
+  );
+};
 
 ParticipantCardRow.type = teamGL.Participant;
 

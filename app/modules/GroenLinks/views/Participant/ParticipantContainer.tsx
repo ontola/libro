@@ -14,30 +14,35 @@ import Card from '../../../../topologies/Card';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ActionsBar from '../../../../topologies/ActionsBar';
 import ContentDetails from '../../../../topologies/ContentDetails';
+import { useContactOptionStyles } from '../Volunteer';
 
-const ParticipantContainer = () => (
-  <Card>
-    <CardContent noSpacing>
-      <HeaderWithMenu
-        menu={<Property label={ontola.actionsMenu} />}
-      >
-        <Property label={[schema.name, rdfs.label]} />
-      </HeaderWithMenu>
-      <ContentDetails>
-        <Property label={teamGL.engagement} />
-        <Property label={teamGL.signedUp} />
-      </ContentDetails>
-      <div className="Volunteer--contact-options">
-        <Property label={teamGL.telephone} />
-        <Property label={schema.email} />
-      </div>
-      <Property label={schema.text} />
-    </CardContent>
-    <ActionsBar>
-      <Property label={ontola.favoriteAction} />
-    </ActionsBar>
-  </Card>
-);
+const ParticipantContainer = () => {
+  const classes = useContactOptionStyles();
+
+  return (
+    <Card>
+      <CardContent noSpacing>
+        <HeaderWithMenu
+          menu={<Property label={ontola.actionsMenu} />}
+        >
+          <Property label={[schema.name, rdfs.label]} />
+        </HeaderWithMenu>
+        <ContentDetails>
+          <Property label={teamGL.engagement} />
+          <Property label={teamGL.signedUp} />
+        </ContentDetails>
+        <div className={classes.volunteerContactOptions}>
+          <Property label={teamGL.telephone} />
+          <Property label={schema.email} />
+        </div>
+        <Property label={schema.text} />
+      </CardContent>
+      <ActionsBar>
+        <Property label={ontola.favoriteAction} />
+      </ActionsBar>
+    </Card>
+  );
+};
 
 ParticipantContainer.type = teamGL.Participant;
 

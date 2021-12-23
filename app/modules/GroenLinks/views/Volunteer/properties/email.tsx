@@ -7,17 +7,22 @@ import emoji from 'react-easy-emoji';
 import teamGL from '../../../../../ontology/teamGL';
 import { allTopologiesExcept } from '../../../../../topologies';
 import { tableRowTopology } from '../../../../../topologies/TableRow';
+import { useContactOptionStyles } from '../index';
 
-const Email = ({ linkedProp }: PropertyProps) => (
-  <div className="Volunteer--contact-option">
-    <a
-      href={`mailto:${linkedProp.value}`}
-      target="_top"
-    >
-      {emoji(`📩 ${linkedProp.value}`)}
-    </a>
-  </div>
-);
+const Email = ({ linkedProp }: PropertyProps) => {
+  const classes = useContactOptionStyles();
+
+  return (
+    <div className={classes.volunteerContactOption}>
+      <a
+        href={`mailto:${linkedProp.value}`}
+        target="_top"
+      >
+        {emoji(`📩 ${linkedProp.value}`)}
+      </a>
+    </div>
+  );
+};
 
 export default LinkedRenderStore.registerRenderer(
   Email,

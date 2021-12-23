@@ -1,3 +1,7 @@
+import { makeStyles } from '@material-ui/styles';
+
+import { LibroTheme } from '../../../../themes/themes';
+
 import CreatedAt from './properties/createdAt';
 import Email from './properties/email';
 import Engagement from './properties/engagement';
@@ -10,7 +14,27 @@ import VolunteerPage from './VolunteerFull';
 import Source from './properties/source';
 import Telephone from './properties/telephone';
 
-import './index.scss';
+export const useContactOptionStyles = makeStyles<LibroTheme>((theme) => ({
+  volunteerContactOption: {
+    '& a': {
+      '& + a': {
+        borderLeft: 'solid 1px rgb(230, 230, 230)',
+      },
+      '&:hover': {
+        boxShadow: `inset 0 0 0 999px ${theme.palette.transparent.midDark}`,
+      },
+      display: 'inline-block',
+      padding: '.3em',
+    },
+    border: 'solid 1px rgb(230, 230, 230)',
+    borderRadius: '.5em',
+    display: 'inline-block',
+    margin: '.1em .2em .1em 0',
+  },
+  volunteerContactOptions: {
+    marginBottom: '1em',
+  },
+}));
 
 export default [
   Email,

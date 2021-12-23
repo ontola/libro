@@ -16,48 +16,54 @@ import CardMain from '../../../../topologies/Card/CardMain';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import { fullResourceTopology } from '../../../../topologies/FullResource';
 
-const VolunteerFull = () => (
-  <Container>
-    <CardMain>
-      <CardContent endSpacing>
-        <HeaderWithMenu
-          menu={(
-            <Property label={ontola.actionsMenu} />
-          )}
-        >
-          <Property label={[schema.name, rdfs.label]} />
-        </HeaderWithMenu>
-        <ContentDetails>
-          <Property label={teamGL.department} />
-          <Property label={teamGL.engagement} />
-          <Property
-            forceRender
-            label={teamGL.glappUsedAt}
-          />
-        </ContentDetails>
-        <div className="Volunteer--contact-options">
-          <Property label={teamGL.telephone} />
-          <Property label={schema.email} />
-        </div>
-        <Property label={schema.text} />
-      </CardContent>
-    </CardMain>
-    <Property
-      renderWhenEmpty
-      label={org.hasMembership}
-    />
-    <Property
-      renderWhenEmpty
-      label={teamGL.events}
-    />
-    <Property label={teamGL.user}>
+import { useContactOptionStyles } from './index';
+
+const VolunteerFull = () => {
+  const classes = useContactOptionStyles();
+
+  return (
+    <Container>
+      <CardMain>
+        <CardContent endSpacing>
+          <HeaderWithMenu
+            menu={(
+              <Property label={ontola.actionsMenu} />
+            )}
+          >
+            <Property label={[schema.name, rdfs.label]} />
+          </HeaderWithMenu>
+          <ContentDetails>
+            <Property label={teamGL.department} />
+            <Property label={teamGL.engagement} />
+            <Property
+              forceRender
+              label={teamGL.glappUsedAt}
+            />
+          </ContentDetails>
+          <div className={classes.volunteerContactOptions}>
+            <Property label={teamGL.telephone} />
+            <Property label={schema.email} />
+          </div>
+          <Property label={schema.text} />
+        </CardContent>
+      </CardMain>
       <Property
         renderWhenEmpty
-        label={teamGL.departmentMemberships}
+        label={org.hasMembership}
       />
-    </Property>
-  </Container>
-);
+      <Property
+        renderWhenEmpty
+        label={teamGL.events}
+      />
+      <Property label={teamGL.user}>
+        <Property
+          renderWhenEmpty
+          label={teamGL.departmentMemberships}
+        />
+      </Property>
+    </Container>
+  );
+};
 
 VolunteerFull.type = teamGL.Volunteer;
 

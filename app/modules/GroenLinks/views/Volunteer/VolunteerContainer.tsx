@@ -12,22 +12,28 @@ import { containerTopology } from '../../../../topologies/Container';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
 
-const VolunteerContainer = () => (
-  <Card>
-    <CardContent noSpacing>
-      <Property label={[schema.name, rdfs.label]} />
-      <ContentDetails>
-        <Property label={teamGL.department} />
-        <Property label={teamGL.engagement} />
-      </ContentDetails>
-      <div className="Volunteer--contact-options">
-        <Property label={teamGL.telephone} />
-        <Property label={schema.email} />
-      </div>
-      <Property label={schema.text} />
-    </CardContent>
-  </Card>
-);
+import { useContactOptionStyles } from './index';
+
+const VolunteerContainer = () => {
+  const classes = useContactOptionStyles();
+
+  return (
+    <Card>
+      <CardContent noSpacing>
+        <Property label={[schema.name, rdfs.label]} />
+        <ContentDetails>
+          <Property label={teamGL.department} />
+          <Property label={teamGL.engagement} />
+        </ContentDetails>
+        <div className={classes.volunteerContactOptions}>
+          <Property label={teamGL.telephone} />
+          <Property label={schema.email} />
+        </div>
+        <Property label={schema.text} />
+      </CardContent>
+    </Card>
+  );
+};
 
 VolunteerContainer.type = teamGL.Volunteer;
 

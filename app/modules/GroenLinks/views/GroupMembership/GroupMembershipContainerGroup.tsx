@@ -13,31 +13,36 @@ import teamGL from '../../../../ontology/teamGL';
 import Card from '../../../../topologies/Card';
 import { containerTopology } from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
+import { useContactOptionStyles } from '../Volunteer';
 
-const GroupMembershipContainerGroup = () => (
-  <Card>
-    <CardContent noSpacing>
-      <HeaderWithMenu
-        menu={<Property label={ontola.actionsMenu} />}
-      >
+const GroupMembershipContainerGroup = () => {
+  const classes = useContactOptionStyles();
+
+  return (
+    <Card>
+      <CardContent noSpacing>
+        <HeaderWithMenu
+          menu={<Property label={ontola.actionsMenu} />}
+        >
+          <Property label={org.member}>
+            <Property label={schema.name} />
+          </Property>
+        </HeaderWithMenu>
         <Property label={org.member}>
-          <Property label={schema.name} />
+          <ContentDetails>
+            <Property label={teamGL.department} />
+            <Property label={teamGL.engagement} />
+          </ContentDetails>
+          <div className={classes.volunteerContactOptions}>
+            <Property label={teamGL.telephone} />
+            <Property label={schema.email} />
+          </div>
+          <Property label={schema.text} />
         </Property>
-      </HeaderWithMenu>
-      <Property label={org.member}>
-        <ContentDetails>
-          <Property label={teamGL.department} />
-          <Property label={teamGL.engagement} />
-        </ContentDetails>
-        <div className="Volunteer--contact-options">
-          <Property label={teamGL.telephone} />
-          <Property label={schema.email} />
-        </div>
-        <Property label={schema.text} />
-      </Property>
-    </CardContent>
-  </Card>
-);
+      </CardContent>
+    </Card>
+  );
+};
 
 GroupMembershipContainerGroup.type = org.Membership;
 
