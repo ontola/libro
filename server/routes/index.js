@@ -74,9 +74,7 @@ const routes = async function routes(app, port) {
 
   app.use(backendErrorHandler);
 
-  if (__DEVELOPMENT__) {
-    app.use(logger());
-  }
+  app.use(logger());
 
   app.use(ctxMiddleware);
 

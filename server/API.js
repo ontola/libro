@@ -83,6 +83,7 @@ class API {
       'X-Forwarded-Host': req.headers.host,
       'X-Forwarded-Proto': 'https',
       'X-Forwarded-Ssl': 'on',
+      'X-Forwarded-UA': req.headers?.['user-agent'],
     };
   }
 

@@ -48,6 +48,9 @@ export function setProxyReqHeaders(proxyReq, ctx) {
     proxyReq.setHeader('X-Device-Id', ctx.deviceId);
   }
 
+  if (ctx.request.get('user-agent')) {
+    proxyReq.setHeader('X-Forwarded-UA', ctx.request.get('user-agent'));
+  }
   proxyReq.setHeader('X-Argu-Back', 'true');
 
   if (ctx.request.get('Upgrade') !== 'websocket') {
