@@ -8,6 +8,7 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { loadingButtonCID } from '../../components/Loading';
 import argu from '../../ontology/argu';
 
 export const actionsBarTopology = argu.actionsBar;
@@ -27,7 +28,7 @@ const styles = createStyles({
     '& .Link': {
       color: 'var(--accent-background-color)',
     },
-    '& .Loading__Button': {
+    [`& .${loadingButtonCID}`]: {
       flexGrow: 'unset',
       margin: 0,
       width: '8em',

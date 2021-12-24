@@ -1,3 +1,4 @@
+import { loadingParagraphCID } from '../../../../components/Loading';
 import { LibroTheme, MaterialStyleMap } from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
@@ -20,7 +21,7 @@ export default (theme: LibroTheme): MaterialStyleMap => ({
           width: '100%',
         },
       },
-      '& .Loading__Paragraph': {
+      [`& .${loadingParagraphCID}`]: {
         minWidth: '14em',
       },
     },

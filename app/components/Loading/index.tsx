@@ -18,7 +18,11 @@ import TableCell from '../../topologies/TableCell';
 import TableRow from '../../topologies/TableRow';
 import { Breadcrumb } from '../Breadcrumbs';
 import CardContent from '../Card/CardContent';
+import { useCoverImageStyles } from '../CoverImage';
 import { coverImageChildCID } from '../OverlayContainer';
+
+export const loadingParagraphCID = 'CID-LoadingParagraph';
+export const loadingButtonCID = 'CID-LoadingButton';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   '@keyframes loadingBackgroundAnimation': {
@@ -124,6 +128,7 @@ const LoadingInline = (): JSX.Element => {
   return (
     <div
       className={clsx(
+        loadingParagraphCID,
         classes.loadingParagraph,
         classes.loadingParagraphInline,
         classes.loadingBackground,
@@ -138,6 +143,7 @@ const LoadingParagraph = () => {
   return (
     <div
       className={clsx(
+        loadingParagraphCID,
         classes.loadingParagraph,
         classes.loadingBackground,
       )}
@@ -169,6 +175,7 @@ export const LoadingButton = (): JSX.Element => {
   return (
     <div
       className={clsx(
+        loadingButtonCID,
         classes.loadingButton,
         classes.loadingBackground,
       )}
@@ -288,6 +295,7 @@ export const LoadingDetail = (): JSX.Element => {
   return (
     <div
       className={clsx(
+        loadingParagraphCID,
         classes.loadingParagraph,
         classes.loadingParagraphDetail,
         classes.loadingBackground,
@@ -331,6 +339,7 @@ export const LoadingParent = (): JSX.Element => {
       label={(
         <div
           className={clsx(
+            loadingParagraphCID,
             classes.loadingParagraph,
             classes.loadingParagraphParent,
             classes.loadingBackground,
@@ -359,6 +368,7 @@ export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => {
     >
       <div
         className={clsx(
+          loadingParagraphCID,
           classes.loadingParagraph,
           classes.loadingSelectParagraph,
           classes.loadingBackground,
@@ -384,6 +394,7 @@ export const LoadingMicroRow = (): JSX.Element => {
     <CardMicroRow>
       <div
         className={clsx(
+          loadingParagraphCID,
           classes.loadingParagraph,
           classes.loadingParagraphMicroRow,
           classes.loadingBackground,
@@ -395,9 +406,10 @@ export const LoadingMicroRow = (): JSX.Element => {
 
 export const LoadingCoverPhoto = (): JSX.Element => {
   const classes = useStyles();
+  const coverImageClasses = useCoverImageStyles();
 
   return (
-    <div className="CoverImage__wrapper">
+    <div className={coverImageClasses.coverImageWrapper}>
       <div
         className={clsx(
           coverImageChildCID,

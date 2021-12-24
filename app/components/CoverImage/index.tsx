@@ -9,7 +9,7 @@ interface PropTypes {
   url: string;
 }
 
-const useStyles = makeStyles((theme: LibroTheme) => ({
+export const useCoverImageStyles = makeStyles((theme: LibroTheme) => ({
   coverImageChild: {
     [`.${cardClassIdentifier} &`]: {
       filter: 'none',
@@ -58,7 +58,7 @@ const CoverImage: React.FC<PropTypes> = ({
   url,
   positionY,
 }) => {
-  const classes = useStyles();
+  const classes = useCoverImageStyles();
 
   return (
     <div className={classes.coverImageWrapper}>
