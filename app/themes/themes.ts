@@ -67,6 +67,7 @@ declare module '@material-ui/core/styles/createTheme' {
 }
 
 export interface AppBarThemeOpts extends React.CSSProperties {
+  background: string;
   iconBreakPoint: Breakpoint;
   resolveColor: () => string | undefined;
 }

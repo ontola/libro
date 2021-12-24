@@ -1,7 +1,10 @@
 import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 
 import ContainerFloat from '../../topologies/Container/ContainerFloat';
+
+export const gridHeaderCID = 'CID-GridHeader';
 
 interface PropTypes {
   /** The header floats to the top left */
@@ -28,7 +31,7 @@ const GridHeader: React.FC<PropTypes> = ({
   const classes = useStyles();
 
   return (
-    <div className={classes.gridHeader}>
+    <div className={clsx(gridHeaderCID, classes.gridHeader)}>
       {header && (
         <div className={classes.header}>
           {header}
