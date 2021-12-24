@@ -74,7 +74,17 @@ const routes = async function routes(app, port) {
 
   app.use(backendErrorHandler);
 
-  app.use(logger());
+  if (__DEVELOPMENT__) {
+    app.use(logger());
+  } else {
+    app.use((ctx, next) => {
+      ctx.res.on('finish', () => {
+        console.log(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - UA: ${ctx.request.headers['user-agent']} - FWD: proto=${ctx.request.headers['x-forwarded-proto']} for=${ctx.request.headers['x-forwarded-for']}`)
+      });
+
+      return next();
+    });
+  }
 
   app.use(ctxMiddleware);
 
