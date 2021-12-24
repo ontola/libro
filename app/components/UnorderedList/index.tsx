@@ -1,15 +1,32 @@
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import './UnorderedList.scss';
+import { LibroTheme } from '../../themes/themes';
+import { linkActiveCID } from '../Link/LinkLabel';
 
 export interface UnorderedListProps {
   children: React.ReactNode;
 }
 
-const UnorderedList = ({ children }: UnorderedListProps): JSX.Element => (
-  <ul className="UnorderedList">
-    {children}
-  </ul>
-);
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  unorderedList: {
+    '.Modal > div > div >.Container > &, .Modal > div > &': {
+      color: theme.palette.common.white,
+    },
+    [`& .${linkActiveCID}`]: {
+      fontWeight: 'bold',
+    },
+  },
+}));
+
+const UnorderedList = ({ children }: UnorderedListProps): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <ul className={classes.unorderedList}>
+      {children}
+    </ul>
+  );
+};
 
 export default UnorderedList;
