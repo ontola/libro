@@ -17,16 +17,35 @@ import { CreateStepOnClick } from '../Stepper/Stepper';
 
 export const TOP_SPACING = 6;
 
-const useStyles = makeStyles<LibroTheme>(() => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  actions: {
+    gridArea: 'actions',
+  },
+  buttons: {
+    gridArea: 'buttons',
+    justifySelf: 'end',
+  },
   phaseBar: {
-    alignItems: 'baseline',
-    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateAreas: '"timespan timespan" "title buttons" "actions actions"',
+      gridTemplateColumns: '1fr auto',
+    },
+    alignItems: 'center',
+    display: 'grid',
     fontWeight: 'bold',
-    justifyContent: 'space-between',
+    gap: '.5rem',
+    gridTemplateAreas: '"title actions timespan buttons"',
+    gridTemplateColumns: '1fr auto auto auto',
+    marginBottom: '1rem',
     width: '100%',
   },
   root: {
     fontWeight: 'bold',
+    gridArea: 'title',
+  },
+  timeSpan: {
+    gridArea: 'timespan',
+    justifySelf: 'end',
   },
 }));
 
@@ -61,7 +80,7 @@ const PhaseBar = ({
           {intl.formatMessage(phaseMessages.phaseStepperHeader, { number: activeStepIndex + 1 })}
           <Property label={NAME_PREDICATES} />
         </Typography>
-        <span>
+        <span className={classes.actions}>
           <Property
             label={ontola.updateAction}
             topology={detailsBarTopology}
@@ -72,7 +91,11 @@ const PhaseBar = ({
             topology={detailsBarTopology}
             onLoad={LoadingHidden}
           />
+        </span>
+        <span className={classes.timeSpan}>
           <Property label={argu.time} />
+        </span>
+        <span className={classes.buttons}>
           <IconButton
             disabled={activeStepIndex === 0}
             onClick={handleNavButtonClick(-1)}
