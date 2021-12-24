@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
+import clsx from 'clsx';
 import React from 'react';
 
-import { FormFieldContext } from '../FormField/FormField';
+import { FormFieldContext, fieldInputCID } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 export const MAX_POSTAL_DIGITS = 9999;
@@ -40,7 +41,7 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
 
   return (
     <input
-      className="Field__input Field__input--postalRange"
+      className={clsx(fieldInputCID, 'Field__input', 'Field__input--postalRange')}
       max={MAX_POSTAL_DIGITS}
       min={MIN_POSTAL_DIGITS}
       name={`${name}-${inputIndex}-${rangeIndex}`}

@@ -7,7 +7,7 @@ import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
-import { FormFieldContext } from '../FormField/FormField';
+import { FormFieldContext, fieldInputCID } from '../FormField/FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import Input, {
@@ -90,6 +90,7 @@ const InputElement = ({
     'Field__input': true,
     [`Field__input--${type || 'text'}`]: true,
     'Field__input--active': active,
+    [fieldInputCID]: true,
     [classes.flowInput]: theme === FormTheme.Flow,
   });
 

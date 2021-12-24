@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import React from 'react';
+
+export const fieldLabelCID = 'CID-FieldLabel';
 
 interface PropTypes {
   htmlFor: string;
@@ -14,7 +17,11 @@ const FieldLabel: React.FC<PropTypes> = ({
   required,
 }) => (
   <label
-    className={`Field__label${hidden ? ' AriaHidden' : ''}`}
+    className={clsx({
+      'AriaHidden': hidden,
+      'Field__label': true,
+      [fieldLabelCID]: true,
+    })}
     htmlFor={htmlFor}
   >
     {label}

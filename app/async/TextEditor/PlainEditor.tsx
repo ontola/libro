@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
 import React, { FC } from 'react';
 import Textarea from 'react-autosize-textarea';
 import { FormattedMessage } from 'react-intl';
@@ -6,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import Button, { ButtonTheme } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { FormContext } from '../../components/Form/Form';
+import { fieldInputCID } from '../../components/FormField/FormField';
 import Markdown from '../../components/Markdown';
 import { PlainEditorProps } from '../../containers/TextEditor';
 import { LibroTheme } from '../../themes/themes';
@@ -56,7 +58,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
       <div className={classes.wrapper}>
         <Textarea
           autoFocus={autoFocus}
-          className="Field__input"
+          className={clsx(fieldInputCID, 'Field__input')}
           id={id}
           maxLength={maxLength}
           minLength={minLength}

@@ -6,7 +6,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { FormContext, FormTheme } from '../../components/Form/Form';
-import { FormFieldContext } from '../../components/FormField/FormField';
+import { FormFieldContext, fieldInputCID } from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { FABase, normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -77,11 +77,12 @@ const IconInputField: React.FC<InputComponentProps> = ({
     );
   }, [inputValue]);
 
-  const className = clsx({
-    [classes.wrapper]: true,
-    Field__input: true,
-    'Field__input--select': true,
-  });
+  const className = clsx(
+    [classes.wrapper],
+    'Field__input',
+    'Field__input--select',
+    [fieldInputCID],
+  );
 
   return (
     <React.Fragment>

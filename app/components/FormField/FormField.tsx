@@ -16,6 +16,8 @@ import { InputComponentProps } from './InputComponentProps';
 
 import './FormField.scss';
 
+export const fieldInputCID = 'CID-FieldInput';
+
 export const formFieldTopologies = [
   cardMainTopology,
   cardTopology,

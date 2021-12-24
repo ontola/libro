@@ -13,7 +13,7 @@ import { LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormContext, FormTheme } from '../Form/Form';
-import { FormFieldContext } from '../FormField/FormField';
+import { FormFieldContext, fieldInputCID } from '../FormField/FormField';
 import { LoadingHidden } from '../Loading';
 import Spinner from '../Spinner';
 
@@ -70,6 +70,7 @@ const CheckboxesInput: React.FC = () => {
   const checkBoxClassName = clsx({
     'Field__input': true,
     'Field__input--checkbox': true,
+    [fieldInputCID]: true,
     [checkboxClasses.checkBoxWrapper]: true,
     [checkboxClasses.flowCheckBox]: theme === FormTheme.Flow,
   });
