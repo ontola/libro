@@ -121,6 +121,7 @@ const theme = {
     medium: '50rem',
     small: '35rem',
   },
+  greyBorder: `solid 1px ${colors.grey.xLight}`,
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {

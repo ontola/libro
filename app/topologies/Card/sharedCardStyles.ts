@@ -8,9 +8,6 @@ const CARD_BOTTOM_MARGIN = 5;
 export const cardClassIdentifier = 'CID-Card';
 export const cardFixedClassIdentifier = 'CID-CardFixed';
 
-export const greyBorder = (theme: LibroTheme): string =>
-  `solid 1px ${theme.palette.grey.xLight}`;
-
 export const shineStyles = createStyles({
   '@keyframes shineAnimation': {
     '0%': {
@@ -40,7 +37,7 @@ export const cardStyles = (theme: LibroTheme) => createStyles({
       border: 0,
     },
     backgroundColor: theme.palette.background.paper,
-    border: greyBorder(theme),
+    border: theme.greyBorder,
     borderRadius: theme.shape.borderRadius,
     boxShadow: '0 0 25px rgba(0 0 0 / .06)',
     display: 'flex',

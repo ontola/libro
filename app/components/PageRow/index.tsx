@@ -15,8 +15,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   pageRowWhite: {
     backgroundColor: theme.palette.common.white,
-    borderBottom: 'solid 1px rgb(230, 230, 230)',
-    borderTop: 'solid 1px rgb(230, 230, 230)',
+    borderBottom: theme.greyBorder,
+    borderTop: theme.greyBorder,
   },
 }));
 

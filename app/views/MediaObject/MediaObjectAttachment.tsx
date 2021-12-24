@@ -23,7 +23,7 @@ const attachmentIconCID = 'CID-AttachmentIcon';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   attachment: {
-    border: 'solid 1px rgb(230, 230, 230)',
+    border: theme.greyBorder,
     borderRadius: theme.shape.borderRadius,
     display: 'inline-flex',
     maxWidth: '20em',
@@ -43,7 +43,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
       backgroundColor: theme.palette.grey.xxLight,
     },
     alignItems: 'center',
-    borderLeft: 'solid 1px rgb(230, 230, 230)',
+    borderLeft: theme.greyBorder,
     display: 'flex',
     flexGrow: 0,
     flexShrink: 0,

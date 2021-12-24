@@ -18,7 +18,7 @@ export const useContactOptionStyles = makeStyles<LibroTheme>((theme) => ({
   volunteerContactOption: {
     '& a': {
       '& + a': {
-        borderLeft: 'solid 1px rgb(230, 230, 230)',
+        borderLeft: theme.greyBorder,
       },
       '&:hover': {
         boxShadow: `inset 0 0 0 999px ${theme.palette.transparent.midDark}`,
@@ -26,7 +26,7 @@ export const useContactOptionStyles = makeStyles<LibroTheme>((theme) => ({
       display: 'inline-block',
       padding: '.3em',
     },
-    border: 'solid 1px rgb(230, 230, 230)',
+    border: theme.greyBorder,
     borderRadius: '.5em',
     display: 'inline-block',
     margin: '.1em .2em .1em 0',

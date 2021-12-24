@@ -9,7 +9,7 @@ interface Styles {
 
 const styles = (theme: LibroTheme): Styles => ({
   borderBottom: {
-    borderBottom: 'solid 1px rgb(230, 230, 230)',
+    borderBottom: theme.greyBorder,
   },
   default: {
     height: '2rem',

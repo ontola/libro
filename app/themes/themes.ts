@@ -62,6 +62,7 @@ declare module '@material-ui/core/styles/createTheme' {
     zIndexHoverBox: number;
     zIndexLoader: number;
     zIndexOverlay: number;
+    greyBorder: string;
   }
 }
 

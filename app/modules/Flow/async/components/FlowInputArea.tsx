@@ -33,7 +33,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     paddingLeft: '1rem',
     paddingRight: '1rem',
     position: 'absolute',
-    width: 'clamp(40ch, 35rem, 80%)',
+    width: `clamp(40ch, ${theme.containerWidth.small}, 80%)`,
   },
 }));
 

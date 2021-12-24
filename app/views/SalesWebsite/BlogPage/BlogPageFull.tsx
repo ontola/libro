@@ -48,7 +48,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     flexWrap: 'wrap',
     gap: '1rem',
     justifyContent: 'space-around',
-    width: 'min(70rem, 100%)',
+    width: `min(${theme.containerWidth.large}, 100%)`,
   },
 }));
 

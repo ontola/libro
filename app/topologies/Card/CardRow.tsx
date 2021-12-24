@@ -7,7 +7,7 @@ import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
 
-import { cardClassIdentifier, greyBorder } from './sharedCardStyles';
+import { cardClassIdentifier } from './sharedCardStyles';
 
 export const cardRowClassIdentifier = 'CID-CardRow';
 export const cardRowBackdropClassIdentifier = 'CID-CardRowBackdrop';
@@ -40,7 +40,7 @@ const styles = (theme: LibroTheme) => createStyles({
     [`.${cardClassIdentifier} > &:first-child`]: {
       borderTop: 0,
     },
-    borderTop: greyBorder(theme),
+    borderTop: theme.greyBorder,
   },
 });
 

@@ -59,7 +59,7 @@ const styles = (theme: LibroTheme) => createStyles({
     // Required to overwrite styling for megaDraft component
     '& code,.public-DraftStyleDefault-pre': {
       backgroundColor: theme.palette.grey.xxLight,
-      border: 'solid 1px rgb(230, 230, 230)',
+      border: theme.greyBorder,
       fontFamily: 'monospace',
       fontSize: '.9em',
       marginBottom: '1em',
