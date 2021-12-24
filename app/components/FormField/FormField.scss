@@ -86,11 +86,6 @@
     &:focus {
       outline: none;
     }
-
-    &.Field__input--hidden {
-      border: 0;
-      display: none;
-    }
   }
 
   & textarea {
@@ -136,12 +131,6 @@ input {
   font-weight: bold;
 }
 
-.Field__list {
-  background-color: color('white', 'base');
-  border-radius: $border-radius-base;
-  box-shadow: $box-shadow--intense;
-}
-
 .Field__list-element {
   align-items: center;
   cursor: pointer;
@@ -150,15 +139,9 @@ input {
   padding: 0 2px;
 }
 
-.Field__error,
-.Field__warning {
+.Field__error {
   color: $alert-color;
   display: block;
-}
-
-// Props
-.Field--hidden {
-  display: none;
 }
 
 // Variants
@@ -194,22 +177,6 @@ input {
       }
     }
 
-    &--checkboxes {
-      background: none;
-      padding: 0;
-      border: 0;
-    }
-
-    &--markdown {
-      background: none;
-      border: 0;
-      display: flex;
-      flex: 1;
-      padding: 0;
-      position: relative;
-      width: 100%;
-    }
-
     &.Field__input--select {
       border: unset;
     }
@@ -231,10 +198,6 @@ input {
       color: color('red');
     }
   }
-
-  .Field__messages {
-    padding: 0;
-  }
 }
 
 .Field--variant-preview {
@@ -254,75 +217,11 @@ input {
     &--select {
       padding: 0;
     }
-
-    &.Field__input--markdown {
-      padding: 0;
-      margin: 0;
-    }
   }
 
   .Field--active {
     .Field__input {
       box-shadow: inset 5px 0 0 color('grey');
     }
-  }
-
-  // Disabled until https://gitlab.com/ontola/core/-/issues/291 is fixed
-  // &.Field--error {
-  // .Field__input {
-  // box-shadow: inset 5px 0 0 $alert-color;
-  // }
-  // }
-
-  &.Field--pro {
-    .Field__input {
-      color: color('green');
-
-      &:focus {
-        box-shadow: inset 5px 0 0 color('green');
-      }
-    }
-  }
-
-  &.Field--con {
-    .Field__input {
-      color: color('brown');
-
-      &:focus {
-        box-shadow: inset 5px 0 0 color('brown');
-      }
-    }
-  }
-}
-
-// Custom classes
-.Field--heading {
-  .Field__input {
-    font-size: 1.3em;
-    font-weight: bold;
-  }
-}
-
-.NestedShape {
-  background-color: color('grey', 'xx-light');
-  border: $grey-border;
-  border-radius: 5px;
-  flex-grow: 1;
-  margin: 0 0 1em;
-  padding: 1em;
-  padding-bottom: 0;
-  transition: border-color .2s, background-color .2s;
-  width: auto;
-
-  .Field__input--select,
-  .Field__input--text,
-  .Field__input--textarea {
-    background-color: color('white');
-  }
-}
-
-.Field__input--checkboxes {
-  .Field__input--checkbox {
-    padding-top: 0;
   }
 }
