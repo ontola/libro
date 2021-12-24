@@ -13,7 +13,7 @@ import React, { CSSProperties } from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
-import { selectTopology } from '../../topologies/Select';
+import { selectTopology, useSelectItemStyles } from '../../topologies/Select';
 
 interface ThingSelectProps extends SubjectProp {
   'aria-selected': boolean;
@@ -42,9 +42,11 @@ const ThingSelect = ({
   subject,
   wrapperProps,
 }: ThingSelectProps) => {
+  const classes = useSelectItemStyles();
+
   const defaultWrapperProps = () => ({
     'aria-selected': ariaSelected,
-    className: `SelectItem ${className}`,
+    className: `${classes.selectItem} ${className}`,
     element: element ?? 'li',
     id,
     onClick,

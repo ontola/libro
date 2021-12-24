@@ -16,7 +16,7 @@ import React, { MouseEventHandler } from 'react';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { selectTopology } from '../../topologies/Select';
+import { selectTopology, useSelectItemStyles } from '../../topologies/Select';
 
 interface PersonSelectProps {
   'aria-selected': boolean;
@@ -45,10 +45,11 @@ const PersonSelect: FC<PersonSelectProps> = ({
   wrapperProps,
 }) => {
   const [itemClass] = useGlobalIds(rdfx.type);
+  const classes = useSelectItemStyles();
 
   const defaultWrapperProps = () => ({
     'aria-selected': ariaSelected,
-    'className': `SelectItem ${className} SelectPerson`,
+    'className': `${classes.selectItem} ${className} SelectPerson`,
     'element': element ?? 'li',
     id,
     onClick,
