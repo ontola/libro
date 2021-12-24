@@ -14,9 +14,9 @@ import LDLink from '../../components/LDLink';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../helpers/metaData';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { allTopologies } from '../../topologies';
 import CardFixed from '../../topologies/Card/CardFixed';
 import DetailsBar from '../../topologies/DetailsBar';
+import { gridTopology } from '../../topologies/Grid';
 
 const TermGrid: FC = () => {
   const [name] = useProperty(NAME_PREDICATES);
@@ -47,6 +47,6 @@ const TermGrid: FC = () => {
 
 TermGrid.type = argu.Term;
 
-TermGrid.topology = allTopologies;
+TermGrid.topology = gridTopology;
 
 export default register(TermGrid);
