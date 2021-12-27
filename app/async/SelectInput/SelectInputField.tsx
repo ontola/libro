@@ -22,7 +22,11 @@ import { useIntl } from 'react-intl';
 
 import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
 import { FormContext, FormTheme } from '../../components/Form/Form';
-import { FormFieldContext, fieldInputCID } from '../../components/FormField/FormField';
+import {
+  FormFieldContext,
+  fieldInputCID,
+  fieldInputSelectCID, 
+} from '../../components/FormField/FormField';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { LoadingHidden, LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
@@ -178,8 +182,8 @@ const SelectInputField: React.FC = () => {
     [classes.flow]: theme === FormTheme.Flow,
     [classes.wrapper]: true,
     'Field__input': true,
-    'Field__input--select': true,
     [fieldInputCID]: true,
+    [fieldInputSelectCID]: true,
   });
 
   return (

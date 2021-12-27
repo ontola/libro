@@ -17,7 +17,11 @@ import { useField } from 'react-final-form';
 
 import { FormContext } from '../components/Form/Form';
 import { FormFieldError, InputMeta } from '../components/FormField';
-import { useFormStyles } from '../components/FormField/FormField';
+import {
+  fieldActiveCID,
+  fieldVariantPreviewCID,
+  useFormStyles, 
+} from '../components/FormField/FormField';
 import { arraysEqual } from '../helpers/data';
 import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
@@ -319,24 +323,19 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
 
   const {
     active,
-    dirty,
     dirtySinceLastSubmit,
     error,
-    invalid,
-    touched,
   } = meta;
 
   const submissionError = dirtySinceLastSubmit ? undefined : submissionErrors?.[input.name];
   const inputErrors = submissionError || error;
-  const showError = touched && !!inputErrors;
 
   const className = clsx({
     [classes.field]: true,
-    [`Field--variant-${theme}`]: theme,
-    'Field--active': active,
-    'Field--dirty': dirty,
-    'Field--error': showError,
-    'Field--warning': invalid,
+    [fieldActiveCID]: active,
+    [classes.fieldVariantDefault]: theme === 'default',
+    [fieldVariantPreviewCID]: theme === 'preview',
+    [classes.fieldVariantPreview]: theme === 'preview',
   });
 
   const autofocus = !!(autofocusForm && groupIndex === 0 && fieldNames.indexOf(fieldName) === 0);

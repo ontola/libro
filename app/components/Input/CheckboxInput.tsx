@@ -10,7 +10,11 @@ import React from 'react';
 import { SHADOW } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
-import { FormFieldContext, fieldInputCID } from '../FormField/FormField';
+import {
+  FormFieldContext,
+  fieldInputCID,
+  fieldInputCheckboxCID, 
+} from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 export const useCheckboxStyles = makeStyles<LibroTheme>((theme) => ({
@@ -54,8 +58,8 @@ const CheckboxInput = ({
   const [label] = useStrings(schema.name);
   const checkBoxClassName = clsx({
     'Field__input': true,
-    'Field__input--checkbox': true,
     [fieldInputCID]: true,
+    [fieldInputCheckboxCID]: true,
     [classes.checkBoxWrapper]: true,
     [classes.flowCheckBox]: theme === FormTheme.Flow,
   });

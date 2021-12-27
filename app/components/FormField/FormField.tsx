@@ -3,10 +3,12 @@ import React, { FunctionComponent } from 'react';
 
 import { PermittedFormField } from '../../hooks/useFormField';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
+import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { containerTopology } from '../../topologies/Container';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import { fieldLabelCID } from '../FieldLabel';
 import ResourceBoundary from '../ResourceBoundary';
 import { cardTopology } from '../../topologies/Card';
 
@@ -17,7 +19,11 @@ import { InputComponentProps } from './InputComponentProps';
 
 import './FormField.scss';
 
+export const fieldActiveCID = 'CID-FieldActive';
 export const fieldInputCID = 'CID-FieldInput';
+export const fieldInputCheckboxCID = 'CID-FieldInputCheckbox';
+export const fieldInputSelectCID = 'CID-FieldInputSelect';
+export const fieldVariantPreviewCID = 'CID-FieldVariantPreview';
 
 export const formFieldTopologies = [
   cardMainTopology,
@@ -42,13 +48,80 @@ export type FormFieldContext = Omit<FormFieldProps, 'className' | 'combinedCompo
 
 export const FormFieldContext = React.createContext<FormFieldContext>(undefined as any);
 
-export const useFormStyles = makeStyles({
+export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
   field: {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
   },
-});
+  fieldVariantDefault: {
+    marginBottom: '1em',
+    [`& .${fieldInputCID}`]: {
+      '&:hover': {
+        borderColor: theme.palette.grey.light,
+      },
+      backgroundColor: theme.palette.grey.xxLight,
+      border: theme.greyBorder,
+      borderRadius: '5px',
+      flexGrow: 1,
+      marginLeft: 0,
+      marginRight: 0,
+      marginTop: 0,
+      transition: 'border-color .2s, background-color .2s',
+      width: 'auto',
+      [`&.${fieldInputSelectCID}`]: {
+        border: 'unset',
+      },
+    },
+    [`& .${fieldInputCheckboxCID}`]: {
+      alignItems: 'baseline',
+      backgroundColor: 'inherit',
+      border: 0,
+      padding: 0,
+      [`& .${fieldLabelCID}`]: {
+        color: theme.palette.grey.xDark,
+        fontWeight: 'normal',
+        paddingBottom: 0,
+      },
+    },
+    [`&.${fieldActiveCID}`]: {
+      [`& .${fieldInputCID}`]: {
+        backgroundColor: theme.palette.common.white,
+        borderColor: theme.palette.grey.light,
+        outlineOffset: '2px',
+      },
+    },
+    [`& .${fieldLabelCID}`]: {
+      '&-required': {
+        color: theme.palette.red.main,
+      },
+      margin: 0,
+      paddingBottom: '.3rem',
+    },
+  },
+  fieldVariantPreview: {
+    [`& .${fieldInputCID}`]: {
+      '&:hover': {
+        boxShadow: `inset 5px 0 0 ${theme.palette.grey.light}`,
+      },
+      [`& .${fieldInputSelectCID}`]: {
+        padding: '0',
+      },
+      background: 'none',
+      border: '0',
+      borderRadius: '0',
+      margin: '0',
+      padding: '10px 20px',
+      transition: 'box-shadow .2s',
+      width: '100%',
+    },
+    [`& .${fieldActiveCID}`]: {
+      [`& .${fieldInputCID}`]: {
+        boxShadow: `inset 5px 0 0 ${theme.palette.grey.main}`,
+      },
+    },
+  },
+}));
 
 /**
  * Creates a field for forms.

@@ -41,7 +41,7 @@ const FieldLabel: React.FC<PropTypes> = ({
     >
       {label}
       {required && (
-        <span className="Field__label-required">
+        <span className={`${fieldLabelCID}-required`}>
           *
         </span>
       )}

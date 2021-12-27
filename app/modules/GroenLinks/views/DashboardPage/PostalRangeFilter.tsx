@@ -33,7 +33,7 @@ const PostalRangeFilter: React.FC<PostalRangeFilterProps> = ({
   return (
     <FormField
       addFormValue={addFormValue}
-      className={clsx(classes.field, 'Field--variant-default', 'Field--postalRange')}
+      className={clsx(classes.field, classes.fieldVariantDefault, 'Field--postalRange')}
       fieldShape={{
         removable: true,
       }}

@@ -24,27 +24,11 @@
     box-sizing: border-box;
     width: 100%;
 
-    &--checkbox {
-      label,
-      input {
-        cursor: pointer;
-      }
-
-      & > input {
-        -moz-appearance: checkbox;
-        -webkit-appearance: checkbox;
-        margin-right: .5em;
-        position: relative;
-        top: 1px;
-        width: auto;
-      }
-    }
-
     &--postalRange {
       display: inline-block;
     }
 
-    &--select {
+    CID-FieldInputSelect {
       -moz-appearance: menulist-button;
       -webkit-appearance: menulist-button;
       padding: 0;
@@ -70,6 +54,22 @@
     }
   }
 
+  .CID-FieldInputCheckbox {
+    label,
+    input {
+      cursor: pointer;
+    }
+
+    & > input {
+      -moz-appearance: checkbox;
+      -webkit-appearance: checkbox;
+      margin-right: .5em;
+      position: relative;
+      top: 1px;
+      width: auto;
+    }
+  }
+
   & textarea {
     resize: vertical;
     width: 100%;
@@ -83,88 +83,5 @@
     right: 0;
     top: 0;
     z-index: 11;
-  }
-
-}
-
-// Variants
-.Field--variant-default {
-  margin-bottom: 1em;
-
-  .Field__input {
-    background-color: color('grey', 'xx-light');
-    border: $grey-border;
-    border-radius: 5px;
-    flex-grow: 1;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    transition: border-color .2s, background-color .2s;
-    width: auto;
-
-    &:hover {
-      border-color: color('grey', 'light');
-    }
-
-    &--checkbox {
-      align-items: baseline;
-      background-color: inherit;
-      border: 0;
-      // TODO: check
-      padding: 0;
-
-      .CID-FieldLabel {
-        padding-bottom: 0;
-        font-weight: normal;
-        color: color('grey', 'dark');
-      }
-    }
-
-    &.Field__input--select {
-      border: unset;
-    }
-  }
-
-  &.Field--active {
-    .Field__input {
-      background-color: color('white');
-      border-color: color('grey', 'light');
-      outline-offset: 2px;
-    }
-  }
-
-  .CID-FieldLabel {
-    margin: 0;
-    padding-bottom: .3rem;
-
-    &-required {
-      color: color('red');
-    }
-  }
-}
-
-.Field--variant-preview {
-  .Field__input {
-    background: none;
-    border: 0;
-    border-radius: 0;
-    margin: 0;
-    padding: 10px 20px;
-    transition: box-shadow .2s;
-    width: 100%;
-
-    &:hover {
-      box-shadow: inset 5px 0 0 color('grey', 'light');
-    }
-
-    &--select {
-      padding: 0;
-    }
-  }
-
-  .Field--active {
-    .Field__input {
-      box-shadow: inset 5px 0 0 color('grey');
-    }
   }
 }
