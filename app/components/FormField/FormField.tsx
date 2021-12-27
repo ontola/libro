@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import React, { FunctionComponent } from 'react';
 
 import { PermittedFormField } from '../../hooks/useFormField';
@@ -40,6 +41,14 @@ export type FormFieldProps = CombinedFormFieldProps | SingularFormFieldProps;
 export type FormFieldContext = Omit<FormFieldProps, 'className' | 'combinedComponent' | 'whitelisted' >;
 
 export const FormFieldContext = React.createContext<FormFieldContext>(undefined as any);
+
+export const useFormStyles = makeStyles({
+  field: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+  },
+});
 
 /**
  * Creates a field for forms.

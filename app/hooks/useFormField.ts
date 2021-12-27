@@ -17,6 +17,7 @@ import { useField } from 'react-final-form';
 
 import { FormContext } from '../components/Form/Form';
 import { FormFieldError, InputMeta } from '../components/FormField';
+import { useFormStyles } from '../components/FormField/FormField';
 import { arraysEqual } from '../helpers/data';
 import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
@@ -184,6 +185,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
   } = props;
 
   const lrs = useLRS();
+  const classes = useFormStyles();
 
   const {
     autofocusForm,
@@ -329,7 +331,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
   const showError = touched && !!inputErrors;
 
   const className = clsx({
-    'Field': true,
+    [classes.field]: true,
     [`Field--variant-${theme}`]: theme,
     'Field--active': active,
     'Field--dirty': dirty,

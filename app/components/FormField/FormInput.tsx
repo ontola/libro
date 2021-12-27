@@ -1,7 +1,9 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf, {
   isNamedNode,
   isTerm,
 } from '@ontologies/core';
+import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -17,10 +19,19 @@ import Button from '../Button';
 import { FormFieldContext } from './FormField';
 import FormFieldHelper from './FormFieldHelper';
 
+export const fieldWrapperCID = 'CID-FieldWrapper';
+
 interface FormInputProps {
   index: number;
   value: InputValue;
 }
+
+const useStyles = makeStyles({
+  fieldWrapper: {
+    display: 'inline-block',
+    position: 'relative',
+  },
+});
 
 const FormInput: React.FC<FormInputProps> = ({
   index,
@@ -36,6 +47,7 @@ const FormInput: React.FC<FormInputProps> = ({
     values,
   } = React.useContext(FormFieldContext);
   const { removable } = fieldShape;
+  const classes = useStyles();
 
   if (isMarkedForRemove(value)) {
     return null;
@@ -65,7 +77,7 @@ const FormInput: React.FC<FormInputProps> = ({
 
   return (
     <div
-      className="Field__wrapper"
+      className={clsx(fieldWrapperCID, classes.fieldWrapper)}
       key={[name, index].join('.')}
     >
       <InputComponent
