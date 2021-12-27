@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
+import { useFieldErrorStyles } from '../../views/ErrorResponse';
 import { FormContext } from '../Form/Form';
 
 import { FormFieldError } from './index';
@@ -43,13 +44,14 @@ const FieldHelper: React.FC<PropTypes> = ({
     [classes.fieldHelper]: true,
     [classes.fieldHelperPreview]: theme === 'preview',
   });
+  const errorClassName = useFieldErrorStyles();
 
   if (!helperText && !error) {
     return null;
   }
 
   const err = error && (
-    <span className="Field__error">
+    <span className={errorClassName.fieldError}>
       {error.error || error}
     </span>
   );
