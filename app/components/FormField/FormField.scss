@@ -105,13 +105,6 @@
 
 }
 
-.Field__label {
-  color: color('grey', 'xx-light-foreground-small');
-  display: block;
-  font-size: 1em;
-  font-weight: bold;
-}
-
 .Field__error {
   color: $alert-color;
   display: block;
@@ -143,7 +136,7 @@
       // TODO: check
       padding: 0;
 
-      .Field__label {
+      .CID-FieldLabel {
         padding-bottom: 0;
         font-weight: normal;
         color: color('grey', 'dark');
@@ -163,7 +156,7 @@
     }
   }
 
-  .Field__label {
+  .CID-FieldLabel {
     margin: 0;
     padding-bottom: .3rem;
 
