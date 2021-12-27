@@ -15,6 +15,7 @@ import argu from '../../../ontology/argu';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
 import { inlineTopology } from '../../../topologies/Inline';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 
 interface TrashedAtProps {
   linkedProp: NamedNode;
@@ -53,6 +54,9 @@ TrashedAt.type = schema.Thing;
 
 TrashedAt.property = argu.trashedAt;
 
-TrashedAt.topology = containerTopology;
+TrashedAt.topology = [
+  containerTopology,
+  mainBodyTopology,
+];
 
 export default register(TrashedAt);

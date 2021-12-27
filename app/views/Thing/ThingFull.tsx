@@ -9,7 +9,6 @@ import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { containerTopology } from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { listTopology } from '../../topologies/List';
 import { mainBodyTopology } from '../../topologies/MainBody';
@@ -19,11 +18,9 @@ const ThingFull: FC = () => {
 
   return (
     c(components.ResourceBoundary, [
-      c(containerTopology, [
+      c(mainBodyTopology, { 'data-test': 'Thing-thing' }, [
         p(argu.trashedAt),
         p(withoutLoading(ontola.publishAction)),
-      ]),
-      c(mainBodyTopology, { 'data-test': 'Thing-thing' }, [
         c(components.PageHeader),
         p(app.thumbnail),
         p(app.contents),

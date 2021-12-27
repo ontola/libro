@@ -15,21 +15,18 @@ import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import opengov from '../../ontology/opengov';
 import wdt from '../../ontology/wdt';
-import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 
 const MotionFull: FC = () => (
   <React.Fragment>
-    <Container>
+    <MainBody>
       <Property label={argu.trashedAt} />
       <Property
         label={ontola.publishAction}
         onLoad={LoadingHidden}
       />
-    </Container>
-    <MainBody>
       <PageHeader />
       <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
