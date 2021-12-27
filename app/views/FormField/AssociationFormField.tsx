@@ -1,6 +1,8 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf, { NamedNode, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
+import clsx from 'clsx';
 import {
   FC,
   register,
@@ -14,6 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { FormContext } from '../../components/Form/Form';
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
+import { fieldWrapperCID } from '../../components/FormField/FormInput';
 import AssociationInput from '../../components/Input/AssociationInput';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../helpers/diggers';
 import { SubmitDataProcessor } from '../../helpers/errorHandling';
@@ -23,6 +26,16 @@ import { ClonedLRS } from '../../hooks/useFormLRS';
 import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
+import { LibroTheme } from '../../themes/themes';
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  fieldAssociation: {
+    [`.${fieldWrapperCID} + .${fieldWrapperCID}`]: {
+      borderTop: `1px solid ${theme.palette.grey.xLight}`,
+      paddingTop: '1em',
+    },
+  },
+}));
 
 const useItemFactory = () => {
   const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
@@ -57,6 +70,7 @@ const AssociationFormField: FC = ({
   subject,
 }) => {
   const newItem = useItemFactory();
+  const classes = useStyles();
 
   const fieldProps = useFormField(subject, {
     alwaysVisible: false,
@@ -70,7 +84,7 @@ const AssociationFormField: FC = ({
   return (
     <FormField
       {...fieldProps}
-      className={`Field--association ${fieldProps.className}`}
+      className={clsx(classes.fieldAssociation, fieldProps.className)}
       inputComponent={AssociationInput}
       label={fieldProps.values.length > 0 ? fieldProps.label : undefined}
     />
