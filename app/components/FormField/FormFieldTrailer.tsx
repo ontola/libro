@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -19,6 +20,11 @@ interface PropTypes {
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   error: {
     color: theme.palette.error.main,
+  },
+  fieldInputTrailingIcon: {
+    alignSelf: 'center',
+    fontSize: '1rem',
+    paddingRight: '.1em',
   },
 }));
 
@@ -40,7 +46,7 @@ const FormFieldTrailer: React.FC<PropTypes> = ({
   if (errors && errors.length > 0 && invalid && touched) {
     return (
       <span
-        className={`Field__input--trailing-icon fa fa-exclamation-circle ${classes.error}`}
+        className={clsx(classes.fieldInputTrailingIcon, 'fa', 'fa-exclamation-circle', classes.error)}
         title={errors[0].error}
       />
     );

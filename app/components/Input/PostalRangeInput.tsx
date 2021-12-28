@@ -10,16 +10,21 @@ export const MAX_POSTAL_DIGITS = 9999;
 export const MIN_POSTAL_DIGITS = 1000;
 
 interface SingleInputProps extends InputComponentProps{
+  className: string;
   rangeIndex: number;
 }
 
 const useStyles = makeStyles({
+  fieldInputPostalRage: {
+    display: 'inline-block',
+  },
   inputWrapper: {
     marginBottom: '.5em',
   },
 });
 
 const PostalDigitsInput: React.FC<SingleInputProps> = ({
+  className,
   inputIndex,
   inputValue,
   rangeIndex,
@@ -41,7 +46,7 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
 
   return (
     <input
-      className={clsx(fieldInputCID, 'Field__input', 'Field__input--postalRange')}
+      className={className}
       max={MAX_POSTAL_DIGITS}
       min={MIN_POSTAL_DIGITS}
       name={`${name}-${inputIndex}-${rangeIndex}`}
@@ -58,6 +63,7 @@ const PostalRangeInput = (props: InputComponentProps): JSX.Element => {
   const classes = useStyles();
 
   const compProps = {
+    className: clsx(fieldInputCID, 'Field__input', classes.fieldInputPostalRage),
     index: 0,
     ...props,
   };

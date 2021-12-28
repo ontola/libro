@@ -14,6 +14,7 @@ import {
 } from '../../helpers/forms';
 import { isJSONLDObject } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
+import { LibroTheme } from '../../themes/themes';
 import Button from '../Button';
 
 import { FormFieldContext } from './FormField';
@@ -26,12 +27,21 @@ interface FormInputProps {
   value: InputValue;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  fieldInputRemoveButton: {
+    color: theme.palette.grey.midDark,
+    fontSize: theme.typography.fontSizes.xLarge,
+    padding: '0 0.5rem 0.5rem',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 11,
+  },
   fieldWrapper: {
     display: 'inline-block',
     position: 'relative',
   },
-});
+}));
 
 const FormInput: React.FC<FormInputProps> = ({
   index,
@@ -90,7 +100,7 @@ const FormInput: React.FC<FormInputProps> = ({
       {removable && (
         <Button
           plain
-          className="Field__input__remove-button"
+          className={classes.fieldInputRemoveButton}
           onClick={removeItem}
         >
           <FontAwesome name="times" />

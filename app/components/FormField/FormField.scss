@@ -7,12 +7,6 @@
   margin: 0;
   padding: 10px;
 
-  &--trailing-icon {
-    align-self: center;
-    font-size: 1rem;
-    padding-right: .1em;
-  }
-
   // https://gitlab.com/ontola/core/-/issues/292
   [id='aHR0cDovL3NjaGVtYS5vcmcvbmFtZQ=='] { // sass-lint:disable-line
     font-size: 1.1rem;
@@ -23,10 +17,6 @@
   input {
     box-sizing: border-box;
     width: 100%;
-
-    &--postalRange {
-      display: inline-block;
-    }
 
     CID-FieldInputSelect {
       -moz-appearance: menulist-button;
@@ -73,15 +63,5 @@
   & textarea {
     resize: vertical;
     width: 100%;
-  }
-
-  &__remove-button {
-    color: color('grey', 'mid-dark');
-    font-size: font-size('x-large');
-    padding: 0 units('x-small', 'x-small');
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 11;
   }
 }
