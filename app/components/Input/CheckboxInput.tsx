@@ -13,7 +13,8 @@ import { FormContext, FormTheme } from '../Form/Form';
 import {
   FormFieldContext,
   fieldInputCID,
-  fieldInputCheckboxCID, 
+  fieldInputCheckboxCID,
+  useFormStyles,
 } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
@@ -53,11 +54,12 @@ const CheckboxInput = ({
   inputValue,
 }: InputComponentProps): JSX.Element => {
   const classes = useCheckboxStyles();
+  const formClasses = useFormStyles();
   const { theme } = React.useContext(FormContext);
   const { name, onChange } = React.useContext(FormFieldContext);
   const [label] = useStrings(schema.name);
   const checkBoxClassName = clsx({
-    'Field__input': true,
+    [formClasses.fieldInput]: true,
     [fieldInputCID]: true,
     [fieldInputCheckboxCID]: true,
     [classes.checkBoxWrapper]: true,

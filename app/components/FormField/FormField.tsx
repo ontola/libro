@@ -17,8 +17,6 @@ import FormFieldLabel from './FormFieldLabel';
 import FormInputs from './FormInputs';
 import { InputComponentProps } from './InputComponentProps';
 
-import './FormField.scss';
-
 export const fieldActiveCID = 'CID-FieldActive';
 export const fieldInputCID = 'CID-FieldInput';
 export const fieldInputCheckboxCID = 'CID-FieldInputCheckbox';
@@ -53,6 +51,51 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
+  },
+  fieldInput: {
+    '& textarea': {
+      resize: 'vertical',
+      width: '100%',
+    },
+    '&, input': {
+      '&:focus': { outline: 'none' },
+      boxSizing: 'border-box',
+      [fieldInputSelectCID]: {
+        '& > div': { width: '100%' },
+        '& input': {
+          padding: '0.5rem 1.3rem',
+          width: '100%',
+        },
+        MozAppearance: 'menulist-button',
+        WebkitAppearance: 'menulist-button',
+        minWidth: '3em',
+        padding: 0,
+        ul: { width: '100%' },
+        width: 'auto',
+      },
+      width: '100%',
+    },
+    [`& .${fieldInputCheckboxCID}`]: {
+      '& > input': {
+        MozAppearance: 'checkbox',
+        WebkitAppearance: 'checkbox',
+        marginRight: '.5em',
+        position: 'relative',
+        top: '1px',
+        width: 'auto',
+      },
+      '& label, input': { cursor: 'pointer' },
+    },
+    // https://gitlab.com/ontola/core/-/issues/292
+    "[id='aHR0cDovL3NjaGVtYS5vcmcvbmFtZQ==']": {
+      fontSize: '1.1rem',
+      fontWeight: 'bold',
+    },
+    display: 'flex',
+    fontFamily: '$font-family',
+    fontSize: '1em',
+    margin: '0',
+    padding: '10px',
   },
   fieldVariantDefault: {
     marginBottom: '1em',

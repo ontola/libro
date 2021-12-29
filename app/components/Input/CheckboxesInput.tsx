@@ -16,7 +16,8 @@ import { FormContext, FormTheme } from '../Form/Form';
 import {
   FormFieldContext,
   fieldInputCID,
-  fieldInputCheckboxCID, 
+  fieldInputCheckboxCID,
+  useFormStyles,
 } from '../FormField/FormField';
 import { LoadingHidden } from '../Loading';
 import Spinner from '../Spinner';
@@ -71,8 +72,10 @@ const CheckboxesInput: React.FC = () => {
   } = React.useContext(FormFieldContext);
   const checkboxClasses = useCheckboxStyles();
   const classes = useStyles();
+  const formClasses = useFormStyles();
+
   const checkBoxClassName = clsx({
-    'Field__input': true,
+    [formClasses.fieldInput]: true,
     [fieldInputCID]: true,
     [fieldInputCheckboxCID]: true,
     [checkboxClasses.checkBoxWrapper]: true,

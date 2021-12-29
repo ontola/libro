@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import Button, { ButtonTheme } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { FormContext } from '../../components/Form/Form';
-import { fieldInputCID } from '../../components/FormField/FormField';
+import { fieldInputCID, useFormStyles } from '../../components/FormField/FormField';
 import Markdown from '../../components/Markdown';
 import { PlainEditorProps } from '../../containers/TextEditor';
 import { LibroTheme } from '../../themes/themes';
@@ -50,6 +50,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
   value,
 }) => {
   const classes = useStyles();
+  const formClasses = useFormStyles();
   const [showPreview, setShowPreview] = React.useState(false);
   const { onKeyUp } = React.useContext(FormContext);
 
@@ -58,7 +59,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
       <div className={classes.wrapper}>
         <Textarea
           autoFocus={autoFocus}
-          className={clsx(fieldInputCID, 'Field__input')}
+          className={clsx(fieldInputCID, formClasses.fieldInput)}
           id={id}
           maxLength={maxLength}
           minLength={minLength}

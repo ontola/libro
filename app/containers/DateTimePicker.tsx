@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
-import { fieldInputCID } from '../components/FormField/FormField';
+import { fieldInputCID, useFormStyles } from '../components/FormField/FormField';
 import { InputComponentProps } from '../components/FormField/InputComponentProps';
 import { Input } from '../components/Input';
 import Suspense from '../components/Suspense';
@@ -12,9 +12,11 @@ const DateTimePicker = React.lazy(
 );
 
 const DateTimePickerLoader = (props: InputComponentProps): JSX.Element => {
+  const classes = useFormStyles();
+
   if (!__CLIENT__) {
     return (
-      <div className={clsx(fieldInputCID, 'Field__input', 'Field__input--text')}>
+      <div className={clsx(fieldInputCID, classes.fieldInput, 'Field__input--text')}>
         <Input
           element="input"
           name="loading-date-time-picker"

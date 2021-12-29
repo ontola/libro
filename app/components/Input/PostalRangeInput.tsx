@@ -3,7 +3,11 @@ import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';
 
-import { FormFieldContext, fieldInputCID } from '../FormField/FormField';
+import {
+  FormFieldContext,
+  fieldInputCID,
+  useFormStyles, 
+} from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 export const MAX_POSTAL_DIGITS = 9999;
@@ -61,9 +65,10 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
 
 const PostalRangeInput = (props: InputComponentProps): JSX.Element => {
   const classes = useStyles();
+  const formClasses = useFormStyles();
 
   const compProps = {
-    className: clsx(fieldInputCID, 'Field__input', classes.fieldInputPostalRage),
+    className: clsx(fieldInputCID, formClasses.fieldInput, classes.fieldInputPostalRage),
     index: 0,
     ...props,
   };

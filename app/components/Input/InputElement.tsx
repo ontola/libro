@@ -7,13 +7,15 @@ import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
-import { FormFieldContext, fieldInputCID } from '../FormField/FormField';
+import {
+  FormFieldContext,
+  fieldInputCID,
+  fieldInputCheckboxCID,
+  useFormStyles, 
+} from '../FormField/FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import { InputComponentProps } from '../FormField/InputComponentProps';
-import Input, {
-  PropTypes as InputProps,
-  InputType,
-} from '../Input/Input';
+import Input, { PropTypes as InputProps, InputType } from '../Input/Input';
 
 interface StyleProps {
   invalid?: boolean;
@@ -85,12 +87,13 @@ const InputElement = ({
     invalid,
     touched,
   });
+  const formClasses = useFormStyles();
 
   const className = clsx({
-    'Field__input': true,
-    [`Field__input--${type || 'text'}`]: true,
     'Field__input--active': active,
+    [formClasses.fieldInput]: true,
     [fieldInputCID]: true,
+    [fieldInputCheckboxCID]: type === InputType.Checkbox,
     [classes.flowInput]: theme === FormTheme.Flow,
   });
 

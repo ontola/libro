@@ -9,7 +9,8 @@ import { FormContext, FormTheme } from '../../components/Form/Form';
 import {
   FormFieldContext,
   fieldInputCID,
-  fieldInputSelectCID, 
+  fieldInputSelectCID,
+  useFormStyles,
 } from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
@@ -43,6 +44,7 @@ const IconInputField: React.FC<InputComponentProps> = ({
     name,
   } = React.useContext(FormFieldContext);
   const classes = useSelectStyles();
+  const formClasses = useFormStyles();
   const handleChange = React.useCallback((e, v) => {
     e.preventDefault();
 
@@ -82,10 +84,10 @@ const IconInputField: React.FC<InputComponentProps> = ({
   }, [inputValue]);
 
   const className = clsx(
-    [classes.wrapper],
-    'Field__input',
-    [fieldInputSelectCID],
-    [fieldInputCID],
+    classes.wrapper,
+    formClasses.fieldInput,
+    fieldInputSelectCID,
+    fieldInputCID,
   );
 
   return (

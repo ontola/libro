@@ -25,7 +25,8 @@ import { FormContext, FormTheme } from '../../components/Form/Form';
 import {
   FormFieldContext,
   fieldInputCID,
-  fieldInputSelectCID, 
+  fieldInputSelectCID,
+  useFormStyles,
 } from '../../components/FormField/FormField';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { LoadingHidden, LoadingRow } from '../../components/Loading';
@@ -62,6 +63,7 @@ const SelectInputField: React.FC = () => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
   const classes = useSelectStyles();
+  const formClasses = useFormStyles();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
   const [inputValue, setInputValue] = React.useState(multiple ? '' : itemToString(values[0]?.value));
@@ -181,7 +183,7 @@ const SelectInputField: React.FC = () => {
   const className = clsx({
     [classes.flow]: theme === FormTheme.Flow,
     [classes.wrapper]: true,
-    'Field__input': true,
+    [formClasses.fieldInput]: true,
     [fieldInputCID]: true,
     [fieldInputSelectCID]: true,
   });
