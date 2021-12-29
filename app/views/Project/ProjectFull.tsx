@@ -54,6 +54,7 @@ const ProjectFull: FC = ({
             onLoad={LoadingHidden}
           />
         </List>
+        <Property label={schema.location} />
         <CardDivider />
         <Property
           forceRender

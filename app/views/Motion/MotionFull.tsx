@@ -44,6 +44,10 @@ const MotionFull: FC = () => (
         label={argu.voteableVoteEvent}
         onLoad={LoadingHidden}
       />
+      <Property
+        gutterTop
+        label={schema.location}
+      />
       <Property label={argu.blogPosts} />
     </MainBody>
     <SubSection />
