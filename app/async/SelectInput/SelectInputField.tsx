@@ -207,7 +207,7 @@ const SelectInputField: React.FC = () => {
           noOptionsText={formatEmptyMessage(formatMessage, searchable, inputValue)}
           options={sortedOptions}
           renderInput={renderInput}
-          renderOption={renderOption}
+          renderOption={renderOption(formClasses.fieldListElement)}
           onChange={handleChange}
           onClose={() => {
             setOpen(false);

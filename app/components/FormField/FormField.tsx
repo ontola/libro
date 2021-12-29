@@ -20,6 +20,8 @@ import { InputComponentProps } from './InputComponentProps';
 export const fieldActiveCID = 'CID-FieldActive';
 export const fieldInputCID = 'CID-FieldInput';
 export const fieldInputCheckboxCID = 'CID-FieldInputCheckbox';
+export const fieldInputHiddenCID = 'CID-FieldInputHidden';
+export const fieldInputMarkdownCID = 'CID-FieldInputMarkdown';
 export const fieldInputSelectCID = 'CID-FieldInputSelect';
 export const fieldVariantPreviewCID = 'CID-FieldVariantPreview';
 
@@ -53,24 +55,39 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
     position: 'relative',
   },
   fieldInput: {
+    // https://gitlab.com/ontola/core/-/issues/292
+    "& [id='aHR0cDovL3NjaGVtYS5vcmcvbmFtZQ==']": {
+      fontSize: '1.1rem',
+      fontWeight: 'bold',
+    },
     '& textarea': {
       resize: 'vertical',
       width: '100%',
     },
     '&, input': {
-      '&:focus': { outline: 'none' },
+      '&:focus': {
+        outline: 'none',
+      },
+      [`&.${fieldInputHiddenCID}`]: {
+        border: 0,
+        display: 'none',
+      },
       boxSizing: 'border-box',
-      [fieldInputSelectCID]: {
-        '& > div': { width: '100%' },
+      [`& .${fieldInputSelectCID}`]: {
+        '& > div': {
+          width: '100%',
+        },
         '& input': {
           padding: '0.5rem 1.3rem',
+          width: '100%',
+        },
+        '& ul': {
           width: '100%',
         },
         MozAppearance: 'menulist-button',
         WebkitAppearance: 'menulist-button',
         minWidth: '3em',
         padding: 0,
-        ul: { width: '100%' },
         width: 'auto',
       },
       width: '100%',
@@ -84,18 +101,22 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
         top: '1px',
         width: 'auto',
       },
-      '& label, input': { cursor: 'pointer' },
-    },
-    // https://gitlab.com/ontola/core/-/issues/292
-    "[id='aHR0cDovL3NjaGVtYS5vcmcvbmFtZQ==']": {
-      fontSize: '1.1rem',
-      fontWeight: 'bold',
+      '& label, input': {
+        cursor: 'pointer',
+      },
     },
     display: 'flex',
-    fontFamily: '$font-family',
+    fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     margin: '0',
     padding: '10px',
+  },
+  fieldListElement: {
+    alignItems: 'center',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '0 2px',
   },
   fieldVariantDefault: {
     marginBottom: '1em',
@@ -106,6 +127,15 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
       backgroundColor: theme.palette.grey.xxLight,
       border: theme.greyBorder,
       borderRadius: '5px',
+      [`&.${fieldInputMarkdownCID}`]: {
+        background: 'none',
+        border: 0,
+        display: 'flex',
+        flex: 1,
+        padding: 0,
+        position: 'relative',
+        width: '100%',
+      },
       flexGrow: 1,
       marginLeft: 0,
       marginRight: 0,
@@ -147,7 +177,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
       '&:hover': {
         boxShadow: `inset 5px 0 0 ${theme.palette.grey.light}`,
       },
-      [`& .${fieldInputSelectCID}`]: {
+      [`&.${fieldInputSelectCID}`]: {
         padding: '0',
       },
       background: 'none',

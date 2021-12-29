@@ -11,7 +11,9 @@ import {
   FormFieldContext,
   fieldInputCID,
   fieldInputCheckboxCID,
-  useFormStyles, 
+  fieldInputHiddenCID,
+  fieldInputMarkdownCID,
+  useFormStyles,
 } from '../FormField/FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import { InputComponentProps } from '../FormField/InputComponentProps';
@@ -94,6 +96,8 @@ const InputElement = ({
     [formClasses.fieldInput]: true,
     [fieldInputCID]: true,
     [fieldInputCheckboxCID]: type === InputType.Checkbox,
+    [fieldInputHiddenCID]: type === InputType.Hidden,
+    [fieldInputMarkdownCID]: type === InputType.Markdown,
     [classes.flowInput]: theme === FormTheme.Flow,
   });
 
