@@ -40,6 +40,7 @@ const ThingFull: FC = () => {
         c(actionsBarTopology, [
           p(withoutLoading(ontola.favoriteAction)),
         ]),
+        p(withoutLoading(schema.location)),
         p(argu.blogPosts),
       ]),
       c(components.SubSection),
