@@ -6,13 +6,16 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import WebMonetization from '../../components/WebMonetization';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const MediaObjectFull: FC = () => (
-  <Container>
-    <Property label={schema.contentUrl} />
-  </Container>
+  <WebMonetization>
+    <Container>
+      <Property label={schema.contentUrl} />
+    </Container>
+  </WebMonetization>
 );
 
 MediaObjectFull.type = [

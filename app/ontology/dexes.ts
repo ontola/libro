@@ -26,6 +26,7 @@ export default {
   invites: dexes('invites'),
   obligations: dexes('obligations'),
   offer: dexes('offer'),
+  paymentPointer: dexes('paymentPointer'),
   permissions: dexes('permissions'),
   prohibitions: dexes('prohibitions'),
   recipients: dexes('recipients'),
