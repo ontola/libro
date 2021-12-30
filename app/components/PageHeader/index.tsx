@@ -41,7 +41,7 @@ export const PageHeader = ({ detailsBarChildren }: PageHeaderProps): JSX.Element
   const [coverPhoto] = useProperty(ontola.coverPhoto) as Node[];
   useDataInvalidation(coverPhoto);
   const [imagePositionY] = useResourceProperty(coverPhoto, ontola.imagePositionY);
-  const [url] = useResourceProperty(coverPhoto, ontola.imgUrl568x400);
+  const [url] = useResourceProperty(coverPhoto, ontola.imgUrl1500x2000);
 
   const defaultItems = (
     <React.Fragment>

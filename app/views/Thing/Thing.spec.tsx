@@ -80,7 +80,7 @@ describe('Thing', () => {
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByText(PARENT_NAME)).toBeVisible();
     expect(queryByTestId('CoverPhoto')).toHaveStyle(`
-      background-image: url(${boxUrl});
+      background-image: url(${coverUrl});
       background-position-y: ${imagePositionY}%;
     `);
   });
