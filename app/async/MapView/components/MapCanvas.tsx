@@ -7,7 +7,7 @@ import { Coordinate } from 'ol/coordinate';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { ButtonTheme } from '../../../components/Button';
+import { ButtonVariant } from '../../../components/Button';
 import ErrorButtonWithFeedback from '../../../components/Error/ErrorButtonWithFeedback';
 import LinkLoader from '../../../components/Loading/LinkLoader';
 import OverlayContainer from '../../../components/OverlayContainer';
@@ -88,7 +88,7 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
             <ErrorButtonWithFeedback
               caughtError={currentError}
               reloadLinkedObject={requestMapToken}
-              theme={ButtonTheme.Box}
+              variant={ButtonVariant.Box}
             />
           )}
         </div>

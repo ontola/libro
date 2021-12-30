@@ -11,12 +11,9 @@ import { LibroTheme } from '../../themes/themes';
 import BlurButton from '../BlurButton';
 import LinkDuo from '../LinkDuo';
 
-import useStyles, {
-  ButtonTheme,
-  ButtonVariant,
-} from './buttonStyles';
+import useStyles, { ButtonVariant } from './buttonStyles';
 
-export { ButtonTheme, ButtonVariant } from './buttonStyles';
+export { ButtonVariant } from './buttonStyles';
 
 export const ButtonLabelIdentifierClass = 'Button__label';
 const ButtonIdentifierClass = 'Button';
@@ -36,6 +33,7 @@ export interface ButtonProps {
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling */
   /** and use the 'plain' prop. */
   className?: string;
+  color?: string;
   /** Displays button on top right position of relative parent */
   corner?: boolean;
   disabled?: boolean;
@@ -57,8 +55,6 @@ export interface ButtonProps {
   plain?: boolean;
   small?: boolean;
   stretch?: boolean;
-  /** Removes all styling. */
-  theme?: ButtonTheme;
   /** Title html tag. */
   title?: string;
   type?: string;
@@ -71,8 +67,8 @@ const defaultProps = {
   narrow: false,
   plain: false,
   small: false,
-  theme: ButtonTheme.Default,
   type: 'button',
+  variant: ButtonVariant.Default,
 };
 
 /**
@@ -88,6 +84,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
   centered,
   children,
   className,
+  color,
   corner,
   disabled,
   endIcon,
@@ -100,7 +97,6 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
   stretch,
   narrow,
   plain,
-  theme,
   title,
   type,
   href,
@@ -110,7 +106,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
   const lrs = useLRS();
   const muiTheme = useTheme<LibroTheme>();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
-  const classes = useStyles();
+  const classes = useStyles({ color });
   const handleAction = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
 
@@ -133,7 +129,6 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     [classes.cardList]: list,
     [classes.cardFloat]: cardFloat,
     [classes.stretched]: stretch,
-    [classes[theme ?? '']]: theme,
     [classes[variant ?? '']]: variant,
     [className || '']: className,
   });

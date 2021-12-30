@@ -4,7 +4,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import Button, { ButtonVariant } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import ErrorButtonWithFeedback from '../../components/Error/ErrorButtonWithFeedback';
 import Heading, {
@@ -43,7 +43,7 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
 
   let mainAction = (
     <ErrorButtonWithFeedback
-      theme={ButtonTheme.Box}
+      variant={ButtonVariant.Box}
       {...props}
     >
       <FormattedMessage

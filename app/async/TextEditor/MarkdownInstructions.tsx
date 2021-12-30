@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import Button, { ButtonVariant } from '../../components/Button';
 import Markdown from '../../components/Markdown';
 import { LibroTheme } from '../../themes/themes';
 import { formMessages } from '../../translations/messages';
@@ -33,7 +33,7 @@ const MarkdownInstructions = (): JSX.Element => {
       <Button
         small
         icon="info"
-        theme={ButtonTheme.Transparent}
+        variant={ButtonVariant.Transparent}
         onClick={() => setModal(true)}
       >
         <span id="show-markdown-instructions-button">
@@ -50,7 +50,7 @@ const MarkdownInstructions = (): JSX.Element => {
           <Button
             corner
             icon="times"
-            theme={ButtonTheme.Transparent}
+            variant={ButtonVariant.Transparent}
             onClick={() => setModal(false)}
           >
             <FormattedMessage {...formMessages.close} />

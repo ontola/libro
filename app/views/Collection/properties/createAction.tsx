@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ButtonTheme } from '../../../components/Button';
+import { ButtonVariant } from '../../../components/Button';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
@@ -20,14 +20,14 @@ interface PropTypes {
   isPartOf: SomeNode;
   linkedProp: SomeNode;
   omniform?: boolean;
-  theme: ButtonTheme;
+  variant: ButtonVariant;
   totalItems: Literal;
 }
 
 const CollectionCreateAction: FC<PropTypes> = ({
   linkedProp,
   omniform,
-  theme,
+  variant,
 }) => {
   const { omniform: collectionOmniform } = useCollectionOptions();
   const [isPartOf] = useProperty(schema.isPartOf);
@@ -39,7 +39,7 @@ const CollectionCreateAction: FC<PropTypes> = ({
       isPartOf={isPartOf}
       omniform={omniform || collectionOmniform}
       subject={linkedProp}
-      theme={theme}
+      variant={variant}
     />
   );
 };

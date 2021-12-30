@@ -18,12 +18,6 @@ export const semanticColors = {
   'https://argu.co/ns/rivm#InterventionType': '#164173',
 } as { [index: string]: string; };
 
-export const sides = [
-  'yes',
-  'no',
-  'neutral',
-];
-
 export const statuses = [
   'pass',
   'fail',

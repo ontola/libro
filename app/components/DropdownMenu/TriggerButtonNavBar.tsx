@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
-import Button, { ButtonTheme } from '../Button';
+import Button, { ButtonVariant } from '../Button';
 
 import { TriggerButtonProps } from './TriggerButton';
 
@@ -43,7 +43,7 @@ export const TriggerButtonNavBar = ({
       endIcon={endIcon}
       icon={icon}
       ref={anchorRef}
-      theme={ButtonTheme.Transparent}
+      variant={ButtonVariant.Transparent}
       onClick={onClick}
     >
       {children}

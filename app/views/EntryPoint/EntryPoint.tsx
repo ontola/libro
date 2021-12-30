@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ButtonTheme } from '../../components/Button';
+import { ButtonVariant } from '../../components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { countInParentheses } from '../../helpers/numbers';
@@ -40,7 +40,6 @@ const EntryPoint: FC<EntryPointProps> = ({
   onClick,
   stretch,
   subject,
-  theme,
   variant,
   ...rest
 }) => {
@@ -61,8 +60,7 @@ const EntryPoint: FC<EntryPointProps> = ({
     <ButtonWithFeedback
       className={classes}
       icon={icon}
-      theme={theme || ButtonTheme.Transparent}
-      variant={variant}
+      variant={variant ?? ButtonVariant.Transparent}
       onClick={handleOnClick}
       {...rest}
     >

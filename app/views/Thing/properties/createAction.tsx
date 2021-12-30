@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ButtonTheme } from '../../../components/Button';
+import { ButtonVariant } from '../../../components/Button';
 import link from '../../../ontology/link';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -18,7 +18,7 @@ interface PropTypes {
   omniform: boolean;
   onLoad: () => void;
   responseCallback?: (response: Response) => void;
-  theme: ButtonTheme;
+  variant: ButtonVariant;
 }
 
 const CreateAction: FC<PropTypes> = ({
@@ -26,7 +26,7 @@ const CreateAction: FC<PropTypes> = ({
   omniform,
   onLoad,
   responseCallback,
-  theme,
+  variant,
 }) => {
   const [isPartOf] = useProperty(schema.isPartOf);
 
@@ -36,7 +36,7 @@ const CreateAction: FC<PropTypes> = ({
       omniform={omniform}
       responseCallback={responseCallback}
       subject={linkedProp}
-      theme={theme}
+      variant={variant}
       onLoad={onLoad}
     />
   );

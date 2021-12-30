@@ -37,42 +37,6 @@
       &:first-child {
         border-left: 0;
       }
-
-      &--variant-success {
-        background-color: var(--accent-background-color);
-        font-family: 'Suisse Webfont';
-        font-weight: 900;
-        text-transform: uppercase;
-
-        &:active {
-          // sass-lint:disable no-important
-          background-color: var(--accent-background-color) !important;
-          // sass-lint:enable no-important
-        }
-
-        color: color('white');
-
-        .Button__label,
-        .Button__icon {
-          color: color('white');
-        }
-
-        &:hover,
-        &:focus {
-          .Button__label {
-            box-shadow: none;
-          }
-        }
-      }
-
-      &--variant-error {
-        &:hover,
-        &:focus {
-          .Button__label {
-            box-shadow: none;
-          }
-        }
-      }
     }
   }
 

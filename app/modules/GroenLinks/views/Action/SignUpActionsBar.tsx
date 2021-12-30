@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
@@ -7,12 +8,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { ButtonVariant } from '../../../../components/Button';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
 import { actionsBarTopology } from '../../../../topologies/ActionsBar';
 import { invalidStatusIds } from '../../../../views/Thing/properties/omniform/helpers';
 
 const SignUpActionsBar = () => {
+  const theme = useTheme();
   const [actionStatus] = useProperty(schema.actionStatus);
 
   if (actionStatus === schema.CompletedActionStatus) {
@@ -38,8 +41,9 @@ const SignUpActionsBar = () => {
   return (
     <Property
       modal
+      color={theme.palette.primary.main}
       label={schema.target}
-      variant="success"
+      variant={ButtonVariant.Toggle}
     />
   );
 };

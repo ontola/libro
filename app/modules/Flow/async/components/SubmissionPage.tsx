@@ -6,7 +6,7 @@ import React from 'react';
 import { useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../../../components/Button';
+import Button, { ButtonVariant } from '../../../../components/Button';
 import { FormContext } from '../../../../components/Form/Form';
 import { flowMessages } from '../../lib/messages';
 
@@ -51,8 +51,8 @@ export const SubmissionPage = ({ onBack }: SubmissionPageProps): JSX.Element => 
       {isValid ? (
         <Button
           loading={submitting}
-          theme={ButtonTheme.Default}
           type="submit"
+          variant={ButtonVariant.Default}
         >
           <FormattedMessage {...flowMessages.submitButtonLabel} />
         </Button>

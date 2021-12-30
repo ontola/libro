@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core';
 import rdf, {
   Literal,
   NamedNode,
@@ -14,9 +15,10 @@ import {
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ButtonTheme } from '../../components/Button';
+import { ButtonVariant } from '../../components/Button';
 import { bestType, filterFind } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
+import { LibroTheme } from '../../themes/themes';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { listTopology } from '../../topologies/List';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
@@ -27,28 +29,28 @@ interface InlineCreateActionProps {
   count: Literal;
   omniform: boolean;
   onClick: CardListOnClick;
-  theme: ButtonTheme;
+  variant: ButtonVariant;
 }
 
-function getVariant(types: NamedNode[]) {
+function getColor(theme: LibroTheme, types: NamedNode[]) {
   switch (rdf.id(bestType(types))) {
   case rdf.id(teamGL.ContactedAction):
-    return 'success';
+    return theme.palette.primary.main;
   case rdf.id(teamGL.NotAvailableAction):
   case rdf.id(teamGL.UnsubscribeAction):
-    return 'error';
+    return theme.palette.secondary.main;
   default:
     return undefined;
   }
 }
 
 const ActionInline: FC<InlineCreateActionProps> = ({
-  count,
   omniform,
   onClick,
   subject,
-  theme,
+  variant,
 }) => {
+  const materialTheme = useTheme();
   const [actionStatus] = useProperty(schema.actionStatus);
   const type = useGlobalIds(rdfx.type);
 
@@ -61,19 +63,20 @@ const ActionInline: FC<InlineCreateActionProps> = ({
   if (useOmniform) {
     return (
       <Property
-        count={count}
         label={schema.name}
         onClick={useOmniform ? onClick : null}
       />
     );
   }
 
+  const color = getColor(materialTheme, type);
+
   return (
     <Property
       modal
+      color={color}
       label={schema.target}
-      theme={theme}
-      variant={getVariant(type)}
+      variant={color ? ButtonVariant.Toggle : variant}
     />
   );
 };

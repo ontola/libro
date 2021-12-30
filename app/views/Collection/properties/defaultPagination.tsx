@@ -15,7 +15,7 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../../components/Button';
+import Button, { ButtonVariant } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
@@ -113,7 +113,7 @@ const usePageButtons = (): JSX.Element[] | null => {
         disabled={disabled}
         icon={icon}
         key={`${key}-${subject.value}-page-switcher-${key}`}
-        theme={ButtonTheme.Pagination}
+        variant={ButtonVariant.Pagination}
         onClick={(e) => {
           e.preventDefault();
           setCollectionResource(rdf.namedNode(url));

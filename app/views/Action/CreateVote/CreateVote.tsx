@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core';
 import rdf, { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -23,7 +24,7 @@ import {
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 
-import { ButtonTheme, ButtonVariant } from '../../../components/Button';
+import { ButtonVariant } from '../../../components/Button';
 import { entityIsLoaded } from '../../../helpers/data';
 import {
   HTTP_RETRY_WITH,
@@ -35,6 +36,7 @@ import { handle } from '../../../helpers/logging';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { omniformOpenInline, omniformSetAction } from '../../../state/omniform';
+import { LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 import { voteMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../../Collection/types';
@@ -139,13 +141,22 @@ function getOption(subject: SomeNode): Option {
   return Option.Yes;
 }
 
-function getVariant(option: string, parentType: SomeNode) {
+function getColor(theme: LibroTheme, option: string, parentType: SomeNode) {
   if (rdf.equals(parentType, argu.ProArgument)) {
-    return ButtonVariant.Yes;
+    return theme.palette.green.main;
   }
 
   if (rdf.equals(parentType, argu.ConArgument)) {
-    return ButtonVariant.No;
+    return theme.palette.brown.main;
+  }
+
+  switch (option) {
+  case Option.No:
+    return theme.palette.brown.main;
+  case Option.Other:
+    return theme.palette.grey.main;
+  default:
+    return theme.palette.green.main;
   }
 
   return option;
@@ -161,6 +172,7 @@ const CreateVote: FC<CreateVoteProps> = ({
   openOmniform,
   subject,
 }) => {
+  const theme = useTheme();
   const lrs = useLRS<unknown, SubmitDataProcessor>();
   const { formatMessage } = useIntl();
 
@@ -211,14 +223,14 @@ const CreateVote: FC<CreateVoteProps> = ({
   return (
     <Resource
       active={active}
+      color={getColor(theme, option, parentType)}
       count={count}
       disabled={disabled || expired}
       grow={rdf.equals(parentType, argu.VoteEvent)}
       stretch={rdf.equals(parentType, argu.VoteEvent)}
       subject={target}
-      theme={ButtonTheme.Outlined}
       title={getTitle(option, parentType, expired, formatMessage)}
-      variant={getVariant(option, parentType)}
+      variant={ButtonVariant.Toggle}
       onClick={handleClick}
     />
   );

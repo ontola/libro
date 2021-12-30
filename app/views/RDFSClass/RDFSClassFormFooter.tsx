@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import Button, { ButtonTheme, ButtonVariant } from '../../components/Button';
+import Button, { ButtonVariant } from '../../components/Button';
 import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { values } from '../../helpers/ssr';
@@ -42,7 +42,6 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
     <Button
       active={current}
       icon={image && normalizeFontAwesomeIRI(image)}
-      theme={ButtonTheme.Transparent}
       title={description?.value}
       variant={ButtonVariant.Omniform}
       onClick={onClick}

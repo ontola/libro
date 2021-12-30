@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { formMessages } from '../../translations/messages';
 import { useFormGroup } from '../../views/FormGroup/FormGroupProvider';
-import Button, { ButtonTheme } from '../Button';
+import Button, { ButtonVariant } from '../Button';
 
 import { FormFieldContext } from './FormField';
 
@@ -30,7 +30,7 @@ const FormFieldAddButton: React.FC = () => {
       <Portal container={buttonContainerRef.current}>
         <Button
           icon={image?.value ?? 'plus'}
-          theme={ButtonTheme.Transparent}
+          variant={ButtonVariant.Transparent}
           onClick={addFormValue}
         >
           {label}
@@ -43,7 +43,7 @@ const FormFieldAddButton: React.FC = () => {
     <div>
       <Button
         icon={image?.value || 'plus'}
-        theme={ButtonTheme.Transparent}
+        variant={ButtonVariant.Transparent}
         onClick={addFormValue}
       >
         <FormattedMessage {...formMessages.newLabel} />

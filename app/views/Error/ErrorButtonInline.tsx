@@ -2,7 +2,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import Button, { ButtonVariant } from '../../components/Button';
 import useErrorReload from '../../hooks/useErrorReload';
 import ll from '../../ontology/ll';
 import { attributeListTopology } from '../../topologies/AttributeList';
@@ -37,8 +37,8 @@ const ErrorButtonInline: FC<ErrorComponentProps> = ({
       small
       icon="exclamation-triangle"
       loading={loading}
-      theme={ButtonTheme.Subtle}
       title={titleForStatus}
+      variant={ButtonVariant.Subtle}
       onClick={reload}
     >
       <FormattedMessage

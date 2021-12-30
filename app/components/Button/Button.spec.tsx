@@ -14,7 +14,6 @@ import themes from '../../themes';
 
 import Button, {
   ButtonProps,
-  ButtonTheme,
   ButtonVariant,
 } from './index';
 
@@ -137,20 +136,10 @@ describe('Button', () => {
 
   describe('with subtle', () => {
     it('should render subtle', () => {
-      const { getByLabelText } = renderComp({ theme: ButtonTheme.Subtle });
+      const { getByLabelText } = renderComp({ variant: ButtonVariant.Subtle });
 
       expect(getByLabelText(aria)).toHaveStyle({
         'color': 'rgb(76, 76, 76)',
-      });
-    });
-  });
-
-  describe('with variant', () => {
-    it('should render subtle', () => {
-      const { getByLabelText } = renderComp({ variant: ButtonVariant.Pro });
-
-      expect(getByLabelText(aria)).toHaveStyle({
-        'color': 'rgb(84, 127, 75)',
       });
     });
   });

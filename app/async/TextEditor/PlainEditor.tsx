@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import Textarea from 'react-autosize-textarea';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import Button, { ButtonVariant } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { FormContext } from '../../components/Form/Form';
 import { fieldInputCID, useFormStyles } from '../../components/FormField/FormField';
@@ -76,7 +76,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
           <Button
             small
             icon={showPreview ? 'caret-down' : 'caret-right'}
-            theme={ButtonTheme.Transparent}
+            variant={ButtonVariant.Transparent}
             onClick={() => setShowPreview(!showPreview)}
           >
             <FormattedMessage {...formMessages.markdownPreview} />

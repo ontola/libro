@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonTheme } from '../Button';
+import Button, { ButtonVariant } from '../Button';
 
 const useStyles = makeStyles(() => ({
   wrapper: {
@@ -30,7 +30,7 @@ const FormFooterRight: React.FC<FormFooterRight> = ({
 
   const cancelButton = onCancel && (
     <Button
-      theme={ButtonTheme.Transparent}
+      variant={ButtonVariant.Transparent}
       onClick={onCancel}
     >
       <FormattedMessage

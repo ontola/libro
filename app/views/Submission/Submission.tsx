@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { ButtonTheme } from '../../components/Button';
+import { ButtonVariant } from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import { FormFooterRight } from '../../components/Form';
 import Heading, { HeadingSize } from '../../components/Heading';
@@ -76,8 +76,8 @@ const Submission: FC = ({
       <div className={styles.buttonWrapper}>
         <Property
           label={ontola.claimRewardAction}
-          theme={ButtonTheme.Submit}
           topology={actionsBarTopology}
+          variant={ButtonVariant.Submit}
         />
       </div>
     </Container>
