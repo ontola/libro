@@ -2,6 +2,8 @@ import { makeStyles } from '@material-ui/styles';
 
 import { LibroTheme } from '../../../themes/themes';
 
+const mapQuestionBoxShadow = 3;
+
 export default makeStyles<LibroTheme>((theme) => ({
   canvas: {
     '& .ol-compass': {
@@ -42,6 +44,9 @@ export default makeStyles<LibroTheme>((theme) => ({
       'top': 'unset',
       'zIndex': 10,
     },
+    '& canvas': {
+      borderRadius: theme.shape.borderRadius,
+    },
     'height': '16rem',
     'maxHeight': '70vh',
     'position': 'relative',
@@ -52,8 +57,13 @@ export default makeStyles<LibroTheme>((theme) => ({
       bottom: 0,
       position: 'fixed!important',
     },
+  },
+  canvasLarge: {
     'height': `calc(100vh - ${theme.appBar.height})`,
     'maxHeight': 'unset',
+  },
+  canvasMapQuestion: {
+    boxShadow: theme.shadows[mapQuestionBoxShadow],
   },
   container: {
     backgroundColor: theme.palette.grey.xxLight,
@@ -61,7 +71,7 @@ export default makeStyles<LibroTheme>((theme) => ({
     marginBottom: '1rem',
     position: 'relative',
   },
-  containerFullscreen: {
+  containerLarge: {
     marginBottom: 0,
   },
   flowInput: {

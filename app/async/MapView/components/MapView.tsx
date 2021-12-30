@@ -7,7 +7,7 @@ import {
   FeatureSelectCallback,
   Layer,
   MapViewChangeCallback,
-  PropTypes,
+  MapViewProps,
   ViewProps,
 } from '../../../containers/MapView';
 import { useFeatures } from '../hooks/useFeatures';
@@ -19,11 +19,10 @@ const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
 
-export const MapView: React.FC<PropTypes> = ({
+export const MapView: React.FC<MapViewProps> = ({
   initialLat,
   initialLon,
   initialZoom,
-  large,
   mapboxTileURL,
   navigate,
   onMapClick,
@@ -32,7 +31,7 @@ export const MapView: React.FC<PropTypes> = ({
   onZoom,
   overlayResource,
   placements: placementIds,
-  theme,
+  variant,
 }) => {
   const [placements, loading] = usePlacementIds(placementIds);
   const [placementFeatures, resolvedCenter] = useFeatures(placements);
@@ -100,13 +99,12 @@ export const MapView: React.FC<PropTypes> = ({
   return (
     <MapCanvas
       overlayPadding
-      large={large}
       layers={layers}
       mapboxTileURL={mapboxTileURL}
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
-      theme={theme}
+      variant={variant}
       view={view ?? defaultView}
       onMapClick={onMapClick}
       onMove={onMove}

@@ -17,6 +17,7 @@ import React from 'react';
 
 import MapView, {
   FeatureSelectCallback,
+  MapVariant,
   NavigateCallback,
 } from '../../../containers/MapView';
 import { isResource } from '../../../helpers/types';
@@ -29,12 +30,11 @@ import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 import { mainBodyTopology } from '../../../topologies/MainBody';
-import { tabPaneTopology } from '../../../topologies/TabPane';
 
-interface ArguLocationProps {
-  large: boolean;
+export interface ArguLocationProps {
   linkedProp: SomeNode;
   gutterTop?: boolean
+  variant?: MapVariant
 }
 
 const gutterAmount = 5;
@@ -46,9 +46,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 }));
 
 const ArguLocation: FC<ArguLocationProps> = ({
-  large,
   linkedProp,
   gutterTop,
+  variant = MapVariant.Default,
 }) => {
   const lrs = useLRS();
   const classes = useStyles();
@@ -97,8 +97,8 @@ const ArguLocation: FC<ArguLocationProps> = ({
       <div className={wrapperClass}>
         <MapView
           key="loading-map"
-          large={large}
           placements={[linkedProp]}
+          variant={variant}
         />
       </div>
     );
@@ -107,9 +107,9 @@ const ArguLocation: FC<ArguLocationProps> = ({
   return (
     <div className={wrapperClass}>
       <MapView
-        large={large}
         navigate={handleNavigate}
         placements={placements}
+        variant={variant}
         onMapClick={onMapClick}
         onSelect={onSelect}
       />
@@ -126,7 +126,6 @@ ArguLocation.topology = [
   fullResourceTopology,
   mainBodyTopology,
   gridTopology,
-  tabPaneTopology,
 ];
 
 export default register(ArguLocation);

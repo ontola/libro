@@ -105,6 +105,7 @@ export default {
   legend: argu('legend'),
   legendType: argu('legendType'),
   lowerSection: argu('lowerSection'),
+  mapQuestion: argu('mapQuestion'),
   maxUsages: argu('maxUsages'),
   motions: argu('motions'),
   motionsCount: argu('motionsCount'),

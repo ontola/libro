@@ -10,7 +10,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import MapView, { Placement } from '../../containers/MapView';
+import MapView, {
+  MapVariant,
+  Placement,
+} from '../../containers/MapView';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
 import { InputValue } from '../../hooks/useFormField';
@@ -95,7 +98,9 @@ const LocationInput: React.FC<InputComponentProps> = ({
 }) => {
   const { theme } = React.useContext(FormContext);
   const { fieldShape: { required } } = React.useContext(FormFieldContext);
+
   const classes = useStyles();
+
   const className = clsx({
     [classes.locationInput]: true,
     [classes.locationFlow]: theme === FormTheme.Flow,
@@ -152,7 +157,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
         initialLon={initialView.lon}
         initialZoom={initialView.zoom}
         placements={placements}
-        theme={theme}
+        variant={theme === FormTheme.Flow ? MapVariant.Flow : MapVariant.Default}
         onMapClick={storeCoordinates}
         onZoom={(newZoom: string | number) => zoomLevelOnChange([rdf.literal(newZoom)])}
       />

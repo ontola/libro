@@ -1,5 +1,6 @@
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
+import ArguLocationTabPane from './properties/arguLocationTabPane';
 import Arguments from './properties/arguments';
 import Attachments from './properties/attachments';
 import AttachmentsList from './properties/attachmentsList';
@@ -22,6 +23,7 @@ import Image from './properties/image';
 import IsPartOf from './properties/isPartOf';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import Location from './properties/location';
+import MapQuestionMainBody from './properties/mapQuestionMainBody';
 import Menus from './properties/menus';
 import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
@@ -59,8 +61,8 @@ import ThingSelect from './ThingSelect';
 import ThingTable from './ThingTable';
 import ThingTableCell from './ThingTableCell';
 import ThingTableHeaderRow from './ThingTableHeaderRow';
-import ThingTabPane from './ThingTabPane';
 import ThingTableRow from './ThingTableRow';
+import ThingTabPane from './ThingTabPane';
 
 export default [
   ThingAlertDialog,
@@ -87,6 +89,7 @@ export default [
   ApplyLink,
   ...Arguments,
   ArguLocation,
+  ArguLocationTabPane,
   Attachments,
   AttachmentsList,
   BlogPosts,
@@ -107,6 +110,7 @@ export default [
   IsPartOf,
   Image,
   Location,
+  MapQuestionMainBody,
   Menus,
   MotionsCount,
   ...Name,

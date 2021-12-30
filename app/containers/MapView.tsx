@@ -48,6 +48,13 @@ export interface ViewProps {
   zoom: number;
 }
 
+export enum MapVariant {
+  Default,
+  Flow,
+  Fullscreen,
+  MapQuestion,
+}
+
 export type ClusterSelectCallback = (features: Feature[], center: Coordinate) => void;
 export type FeatureSelectCallback = (feature?: Feature, center?: Coordinate) => void;
 export type MapClickCallback = (newLon: number, newLat: number, newZoom: number) => void;
@@ -56,11 +63,11 @@ export type MapViewChangeCallback = (center: Coordinate, zoom: number) => void;
 export type MapZoomCallback = (newZoom: number) => void;
 export type NavigateCallback = (resource: SomeNode) => void;
 
-export interface PropTypes {
+export interface MapViewProps {
   initialLat?: number;
   initialLon?: number;
   initialZoom?: number;
-  large?: boolean;
+  variant?: MapVariant;
   mapboxTileURL?: string,
   navigate?: NavigateCallback;
   onMapClick?: MapClickCallback;
@@ -73,7 +80,7 @@ export interface PropTypes {
   theme?: FormTheme
 }
 
-const MapViewLoader = (props: PropTypes): JSX.Element => {
+const MapViewLoader = (props: MapViewProps): JSX.Element => {
   const mapboxTileURL = useMemo(
     () => getMetaContent('mapboxTileURL'),
     [],
