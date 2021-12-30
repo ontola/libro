@@ -9,32 +9,31 @@ import FontAwesome from 'react-fontawesome';
 
 import { ButtonTheme } from '../../../components/Button';
 import ErrorButtonWithFeedback from '../../../components/Error/ErrorButtonWithFeedback';
-import { FormTheme } from '../../../components/Form/Form';
 import LinkLoader from '../../../components/Loading/LinkLoader';
 import OverlayContainer from '../../../components/OverlayContainer';
-import { NavigateCallback } from '../../../containers/MapView';
+import { MapVariant, NavigateCallback } from '../../../containers/MapView';
 import { alertDialogTopology } from '../../../topologies/Dialog';
 import useMap, { UseMapProps } from '../hooks/useMap';
 import useMapStyles from '../hooks/useMapStyles';
 import useOverlay from '../hooks/useOverlay';
 
 interface MapCanvasProps extends UseMapProps {
-  large?: boolean;
-  theme?: FormTheme;
   navigate?: NavigateCallback;
   overlayPadding?: boolean;
   overlayPosition?: Coordinate;
   overlayResource?: SomeNode;
+  variant?: MapVariant;
 }
 
 const MapCanvas = (props: MapCanvasProps): JSX.Element => {
   const {
-    large,
+    variant = MapVariant.Default,
     navigate,
     overlayPadding,
     overlayPosition,
     overlayResource,
   } = props;
+
   const {
     deselect,
     error,
@@ -43,6 +42,7 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
     mapRef,
     requestMapToken,
   } = useMap(props);
+
   const {
     handleOverlayClick,
     overlayRef,
@@ -53,16 +53,20 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
     overlayPosition,
     overlayResource,
   });
+
   const classes = useMapStyles();
+
   const wrapperClassName = clsx({
     [classes.container]: true,
-    [classes.containerFullscreen]: large,
+    [classes.containerLarge]: variant === MapVariant.Fullscreen || variant === MapVariant.MapQuestion,
   });
 
   const canvasClassName = clsx({
     [classes.canvas]: true,
-    [classes.canvasFullscreen]: large,
-    [classes.flowInput]: props.theme === FormTheme.Flow,
+    [classes.canvasLarge]: variant === MapVariant.Fullscreen || variant === MapVariant.MapQuestion,
+    [classes.canvasFullscreen]: variant === MapVariant.Fullscreen,
+    [classes.canvasMapQuestion]: variant === MapVariant.MapQuestion,
+    [classes.flowInput]: variant === MapVariant.Flow,
   });
 
   if (mapToken.loading) {

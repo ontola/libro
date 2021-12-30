@@ -4,27 +4,25 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
+import MapCanvas from '../../../../async/MapView/components/MapCanvas';
+import { FOCUS_ZOOM } from '../../../../async/MapView/hooks/useMap';
+import { LoadingCard } from '../../../../components/Loading';
 import {
   ClusterSelectCallback,
   FeatureSelectCallback,
-  ViewProps, 
+  MapVariant,
+  ViewProps,
 } from '../../../../containers/MapView';
 import { getMetaContent } from '../../../../helpers/dom';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import useJSON from '../../../../hooks/useJSON';
 import app from '../../../../ontology/app';
 import teamGL from '../../../../ontology/teamGL';
-import {
-  GlappMapProps,
-  PostalStats,
-} from '../../components/GlappMap';
+import { GlappMapProps, PostalStats } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
-import MapCanvas from '../../../../async/MapView/components/MapCanvas';
-import { FOCUS_ZOOM } from '../../../../async/MapView/hooks/useMap';
 import useEventsLayer from '../hooks/useEventsLayer';
 import usePostalShapes, { PostalCodes } from '../hooks/usePostalShapes';
 import useSelectedPostalCode from '../hooks/useSelectedPostalCode';
-import { LoadingCard } from '../../../../components/Loading';
 
 const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
@@ -114,11 +112,11 @@ const GlappMap: React.FC<GlappMapProps> = ({
 
   return (
     <MapCanvas
-      large
       layers={layers}
       mapboxTileURL={mapboxTileURL}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
+      variant={MapVariant.Fullscreen}
       view={view}
       onClusterSelect={handleClusterSelect}
       onSelect={handleSelect}
