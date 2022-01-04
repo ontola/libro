@@ -12,7 +12,7 @@ class ServiceWorkerCommunicator {
       return {
         clearCache() { return void (0); },
         async dataUpdate(_: MessageEvent) { return void (0); },
-        postMessage(_: any, __?: PostMessageOptions) { return void (0); },
+        postMessage(_: any) { return void (0); },
       } as unknown as ServiceWorkerCommunicator;
     }
 
@@ -118,14 +118,14 @@ class ServiceWorkerCommunicator {
     }
   }
 
-  private postMessage(message: any, transfer?: PostMessageOptions) {
+  private postMessage(message: any, transfer?: Transferable[]) {
     if (!this.controller) {
       handle(new Error('SW Controller not defined'));
 
       return;
     }
 
-    this.controller.postMessage(message, transfer);
+    this.controller.postMessage(message, transfer ?? []);
   }
 }
 

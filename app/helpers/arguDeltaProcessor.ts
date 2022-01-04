@@ -111,7 +111,7 @@ function arguDeltaProcessor(lrs: LinkReduxLRSType): DeltaProcessors {
         try {
           this.processDelta(delta);
         } catch (e) {
-          lrs.report(e);
+          lrs.report(e as Error);
         }
       }
 

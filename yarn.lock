@@ -12766,7 +12766,7 @@ __metadata:
     terser-webpack-plugin: ^5.2.4
     ts-jest: ^27.0.7
     ts-loader: ^9.2.6
-    typescript: ^4.2.2
+    typescript: ^4.5.2
     uri-template: ^1.0.1
     use-debounce: ^2.2.1
     uuid: ^3.3.2
@@ -16942,7 +16942,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typescript@^4.0, typescript@^4.2.2":
+typescript@^4.0:
   version: 4.2.4
   resolution: "typescript@npm:4.2.4"
   bin:
@@ -16952,13 +16952,33 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.0#~builtin<compat/typescript>, typescript@patch:typescript@^4.2.2#~builtin<compat/typescript>":
+"typescript@npm:^4.5.2":
+  version: 4.5.4
+  resolution: "typescript@npm:4.5.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 59f3243f9cd6fe3161e6150ff6bf795fc843b4234a655dbd938a310515e0d61afd1ac942799e7415e4334255e41c2c49b7dd5d9fd38a17acd25a6779ca7e0961
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.0#~builtin<compat/typescript>":
   version: 4.2.4
   resolution: "typescript@patch:typescript@npm%3A4.2.4#~builtin<compat/typescript>::version=4.2.4&hash=493e53"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: bafcad6990f5d8ea9ccff09e440ce42630b2e42a5752dde5455b55c806ae43f8726a03770577d4fc6c2aa624597f796725cc6fe2c173f558a753a2f23a5198a4
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.5.2#~builtin<compat/typescript>":
+  version: 4.5.4
+  resolution: "typescript@patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 2e488dde7d2c4a2fa2e79cf2470600f8ce81bc0563c276b72df8ff412d74456ae532ba824650ae936ce207440c79720ddcfaa25e3cb4477572b8534fa4e34d49
   languageName: node
   linkType: hard
 

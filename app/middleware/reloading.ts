@@ -32,10 +32,10 @@ function unloadPage(lrs: LinkReduxLRSType) {
   }
 }
 
-export function reloadPage(lrs: LinkReduxLRSType, forceGet: boolean): void {
+export function reloadPage(lrs: LinkReduxLRSType): void {
   unloadPage(lrs);
 
-  window.location.reload(forceGet);
+  window.location.reload();
 }
 
 export function redirectPage(lrs: LinkReduxLRSType, location: string): void {
@@ -43,7 +43,7 @@ export function redirectPage(lrs: LinkReduxLRSType, location: string): void {
 
   if (window.location.pathname === new URL(location).pathname) {
     window.location.href = location;
-    window.location.reload(true);
+    window.location.reload();
   } else {
     window.location.href = location;
   }

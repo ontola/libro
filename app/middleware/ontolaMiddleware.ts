@@ -259,12 +259,12 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     switch (rdf.id(iri)) {
     case rdf.id(libro.actions.refresh):
       if (__CLIENT__) {
-        reloadPage(store, false);
+        reloadPage(store);
       }
 
       return Promise.resolve();
     case rdf.id(libro.actions.reload):
-      reloadPage(store, true);
+      reloadPage(store);
 
       return Promise.resolve();
 
@@ -314,7 +314,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
           if (location) {
             redirectPage(store, location);
           } else {
-            reloadPage(store, false);
+            reloadPage(store);
           }
         }, () => {
           handle(new Error('User logout action failed'));

@@ -33,7 +33,6 @@ import Document from './Document';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import ErrorResponse from './ErrorResponse';
-import FilterField from './FilterField';
 import FilterOption from './FilterOption';
 import Footer from './Footer';
 import FormField from './FormField';
@@ -113,7 +112,6 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...EntryPoint,
     ...Error,
     ...ErrorResponse,
-    ...FilterField,
     ...FilterOption,
     ...Flow,
     ...Footer,

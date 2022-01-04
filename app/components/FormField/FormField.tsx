@@ -218,7 +218,7 @@ const FormField = (props: FormFieldProps): JSX.Element => {
       <FormFieldContext.Provider value={contextProps}>
         <FormFieldLabel />
         <FormFieldDescription />
-        {props.combinedComponent ? <props.inputComponent /> : <FormInputs />}
+        {combinedComponent ? <props.inputComponent /> : <FormInputs />}
       </FormFieldContext.Provider>
     </ResourceBoundary>
   );
