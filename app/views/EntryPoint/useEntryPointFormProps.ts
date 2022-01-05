@@ -1,6 +1,7 @@
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import { useIds, useValues } from 'link-redux';
+import React from 'react';
 
 import { EntryPointFormProps, ProvidedEntryPointProps } from '../../components/Form/EntryPointForm';
 import ll from '../../ontology/ll';
@@ -42,6 +43,7 @@ const useEntryPointFormProps = (entryPoint: SomeNode, props: Partial<EntryPointP
   });
 
   return {
+    Wrapper: React.Fragment,
     action,
     actionBody,
     autoSubmit: props.autoSubmit || false,

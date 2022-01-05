@@ -14,10 +14,12 @@ import { omniformFieldsTopology } from '../../topologies/OmniformFields/Omniform
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 
 interface EntryPointOmniformProps extends EntryPointProps {
+  entryPointWrapper: React.ElementType;
   parentIRI: string;
 }
 
 const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
+  entryPointWrapper,
   footer,
   parentIRI,
   subject,
@@ -35,6 +37,7 @@ const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
   return (
     <EntryPointForm
       {...entryPointFormProps}
+      Wrapper={entryPointWrapper}
       footer={footer}
       theme={FormTheme.Preview}
       onLoad={() => (

@@ -5,7 +5,9 @@ import Omniform from './index';
 
 export interface OmniformConnectorProps {
   autofocusForm: boolean;
+  borderTop?: boolean;
   closeForm?: () => void;
+  entryPointWrapper?: React.ElementType;
   items: SomeNode[];
   onDone: () => void;
   onKeyUp: KeyboardEventHandler;
@@ -14,7 +16,9 @@ export interface OmniformConnectorProps {
 
 const OmniformConnector = ({
   autofocusForm,
+  borderTop,
   closeForm,
+  entryPointWrapper,
   items,
   onDone,
   onKeyUp,
@@ -23,7 +27,9 @@ const OmniformConnector = ({
   <Omniform
     actions={new Set(items)}
     autofocusForm={autofocusForm}
+    borderTop={borderTop}
     closeForm={closeForm}
+    entryPointWrapper={entryPointWrapper}
     parentIRI={btoa(subject.value)}
     onDone={onDone}
     onKeyUp={onKeyUp}

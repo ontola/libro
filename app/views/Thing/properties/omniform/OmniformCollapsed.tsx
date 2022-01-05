@@ -105,8 +105,9 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
 
   const hasItems = items.filter((item) => entityIsLoaded(lrs, item)).length > 0;
   const renderHeader = header && hasItems;
-  const Wrapper = topology === containerTopology ? Card : CardRow;
+  const Wrapper = topology === containerTopology ? 'div' : CardRow;
   const wrapperOpts = topology === containerTopology ? {} : { borderTop: true };
+  const entryPointWrapper = topology === containerTopology ? Card : undefined;
 
   if (opened) {
     return (
@@ -119,6 +120,8 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
         <Wrapper {...wrapperOpts}>
           <OmniformConnector
             autofocusForm
+            borderTop={topology !== containerTopology}
+            entryPointWrapper={entryPointWrapper}
             items={items}
             onDone={toggle}
             onKeyUp={handleKey}

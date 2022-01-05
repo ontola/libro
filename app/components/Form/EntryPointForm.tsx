@@ -41,6 +41,7 @@ export interface ProvidedEntryPointProps {
   autofocusForm: boolean;
   blacklist?: number[];
   className?: string;
+  Wrapper: React.ElementType;
   formID: string;
   footer?: (submitting: boolean) => React.ReactNode;
   formInstance?: FormApi;
@@ -60,6 +61,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   autoSubmit,
   blacklist,
   className,
+  Wrapper,
   footer,
   formID,
   formInstance,
@@ -93,14 +95,16 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   }, [clearErrors]);
   const renderBody = React.useCallback((submitting) => (
     <React.Fragment>
-      <Property
-        label={ll.actionBody}
-      />
-      {errorResponse && (
-        <RenderStoreProvider value={lrs}>
-          <Resource subject={errorResponse} />
-        </RenderStoreProvider>
-      )}
+      <Wrapper>
+        <Property
+          label={ll.actionBody}
+        />
+        {errorResponse && (
+          <RenderStoreProvider value={lrs}>
+            <Resource subject={errorResponse} />
+          </RenderStoreProvider>
+        )}
+      </Wrapper>
       {footer ? footer(submitting) : null}
     </React.Fragment>
   ), [footer, errorResponse]);
@@ -152,4 +156,9 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   );
 };
 
+EntryPointForm.defaultProps = {
+  Wrapper: React.Fragment,
+};
+
 export default EntryPointForm;
+
