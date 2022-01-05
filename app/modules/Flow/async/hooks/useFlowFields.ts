@@ -34,10 +34,6 @@ export const useFlowFields = (): [SomeNode[], boolean] => {
   const shapes = fieldsProps.map((fieldProps) => isNode(fieldProps.shape) ? fieldProps.shape : undefined);
   const results = useShapeValidation(shapes, object);
 
-  if (loading) {
-    return [fields, loading];
-  }
-
   const filteredFields = React.useMemo(() => {
     const normalizedFields = fields.map((field, index) => {
       const pass = fieldsProps[index].pass;
@@ -53,6 +49,10 @@ export const useFlowFields = (): [SomeNode[], boolean] => {
       return results[index];
     });
   }, [fields.length]);
+
+  if (loading) {
+    return [fields, loading];
+  }
 
   return [filteredFields, loading];
 };

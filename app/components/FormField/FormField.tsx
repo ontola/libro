@@ -7,7 +7,6 @@ import { PermittedFormField } from '../../hooks/useFormField';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { containerTopology } from '../../topologies/Container';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { fieldLabelCID } from '../FieldLabel';
@@ -30,7 +29,6 @@ export const fieldVariantPreviewCID = 'CID-FieldVariantPreview';
 export const formFieldTopologies = [
   cardMainTopology,
   cardTopology,
-  containerTopology,
   formFooterTopology,
   omniformFieldsTopology,
   flowTopology,
