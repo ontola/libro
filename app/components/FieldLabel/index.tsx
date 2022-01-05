@@ -14,6 +14,15 @@ interface PropTypes {
 }
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
+  // Hides elements for regular users, but should maintain visibility for assistance technology
+  ariaHidden: {
+    height: '1px',
+    left: '-10000px',
+    overflow: 'hidden',
+    position: 'absolute',
+    top: 'auto',
+    width: '1px',
+  },
   fieldLabel: {
     color: theme.palette.grey.xxLightForegroundSmall,
     display: 'block',
@@ -33,7 +42,7 @@ const FieldLabel: React.FC<PropTypes> = ({
   return (
     <label
       className={clsx({
-        'AriaHidden': hidden,
+        [classes.ariaHidden]: hidden,
         [classes.fieldLabel]: true,
         [fieldLabelCID]: true,
       })}
