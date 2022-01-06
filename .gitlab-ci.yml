@@ -28,6 +28,8 @@ bake:
   dependencies:
     - build
   script:
+    - apk add git
+    - git describe --always > ./client_version.txt
     - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest --build-arg RAILS_ENV=production --build-arg NODE_ENV=production .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
