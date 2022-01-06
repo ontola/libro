@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles((theme: Theme) => ({
   caret: {
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
+    padding: '0.3rem 0.5rem',
   },
   description: {
     flex: '1',
@@ -17,7 +18,6 @@ export default makeStyles((theme: Theme) => ({
     'marginRight': '.5em',
   },
   fieldSet: {
-    borderTop: '1px solid #e7e7e7',
     flex: '1',
     paddingTop: '1em',
   },

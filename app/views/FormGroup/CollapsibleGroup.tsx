@@ -44,6 +44,11 @@ const CollapsibleGroup = () => {
         className={classes.labelButton}
         onClick={handleClick}
       >
+        <div className={classes.caret}>
+          {open
+            ? <FontAwesome name="caret-down" />
+            : <FontAwesome name="caret-right" />}
+        </div>
         <legend className={classes.legend}>
           <Property
             label={schema.name}
@@ -51,11 +56,6 @@ const CollapsibleGroup = () => {
           />
         </legend>
         <FormGroupErrorCount className={classes.error} />
-        <div className={classes.caret}>
-          {open
-            ? <FontAwesome name="caret-down" />
-            : <FontAwesome name="caret-right" />}
-        </div>
       </ButtonBase>
       <Collapse
         in={open}

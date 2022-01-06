@@ -1,8 +1,10 @@
+import { makeStyles } from '@material-ui/styles';
 import equal from 'fast-deep-equal';
 import React, { FormEventHandler } from 'react';
 
 import { isFunction } from '../../helpers/types';
 import { FileStore, StoreFile } from '../../hooks/useFileStore';
+import { LibroTheme } from '../../themes/themes';
 import Input, { InputType } from '../Input/Input';
 
 import { FormContext, FormProps } from './Form';
@@ -14,6 +16,23 @@ interface FormBodyProps extends FormProps {
   storeFile?: StoreFile;
   submitting?: boolean;
 }
+
+const useStyles = makeStyles<LibroTheme>((theme) => ({
+  form: {
+    '& fieldset': {
+      '& legend': {
+        color: theme.palette.grey.midDark,
+        fontSize: theme.typography.fontSizes.large,
+        fontWeight: 'bold',
+      },
+    },
+    '& hr': {
+      backgroundColor: theme.palette.grey.xLight,
+      border: 0,
+      height: '1px',
+    },
+  },
+}));
 
 const FormBody = ({
   action,
@@ -67,12 +86,13 @@ const FormBody = ({
       setContext(nextContext);
     }
   });
+  const classes = useStyles();
 
   return (
     <FormContext.Provider value={context}>
       <form
         action={action}
-        className={className ?? 'Form'}
+        className={className ?? classes.form}
         data-testid={formID}
         method={formMethod}
         onSubmit={handleSubmit}
