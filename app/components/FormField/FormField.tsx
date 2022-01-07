@@ -75,7 +75,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
         display: 'none',
       },
       boxSizing: 'border-box',
-      [`& .${fieldInputSelectCID}`]: {
+      [`&.${fieldInputSelectCID}`]: {
         '& > div': {
           width: '100%',
         },

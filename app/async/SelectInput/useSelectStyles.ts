@@ -9,7 +9,9 @@ const useSelectStyles = makeStyles((theme: LibroTheme) => ({
     boxShadow: SHADOW_LIGHT,
   },
   input: {
-    flexWrap: 'nowrap',
+    '& div': {
+      flexWrap: 'nowrap',
+    },
   },
   inputBaseFlow: {
     height: '3rem',
