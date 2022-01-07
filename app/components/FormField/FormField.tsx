@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
+import * as schema from '@ontologies/schema';
 import React, { FunctionComponent } from 'react';
 
+import { calculateFormFieldName } from '../../helpers/forms';
 import { PermittedFormField } from '../../hooks/useFormField';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { LibroTheme } from '../../themes/themes';
@@ -56,7 +58,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
   },
   fieldInput: {
     // https://gitlab.com/ontola/core/-/issues/292
-    "& [id='aHR0cDovL3NjaGVtYS5vcmcvbmFtZQ==']": {
+    [`& [id='${calculateFormFieldName(schema.name)}']`]: {
       fontSize: '1.1rem',
       fontWeight: 'bold',
     },

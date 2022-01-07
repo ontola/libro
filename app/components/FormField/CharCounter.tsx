@@ -17,7 +17,6 @@ interface PropTypes {
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   charCounter: {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     color: theme.palette.grey.main,
   },
   error: {

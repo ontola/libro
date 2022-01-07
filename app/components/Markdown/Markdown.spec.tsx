@@ -11,14 +11,15 @@ import Markdown from '.';
 
 describe('Markdown component', () => {
   it('Markdown should render highlight in uppercase', () => {
-    const  theme = createTheme();
+    const theme = createTheme();
     const { getByText } = render(
       <ThemeProvider theme={theme}>
         <Markdown
           highlightedText="down str"
           text="markdown string"
         />
-      </ThemeProvider>);
+      </ThemeProvider>,
+    );
 
     expect(getByText('DOWN STR')).toBeVisible();
   });

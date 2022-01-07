@@ -17,6 +17,14 @@ type FooterProps = WithStyles<typeof styles> & {
   resources?: Node[];
 };
 
+enum GridWidth {
+  third = 4,
+  half = 6,
+  full = 12,
+}
+
+const TWO_ITEMS = 2;
+
 const styles = (theme: LibroTheme) => ({
   footer: {
     [`& .${gridHeaderCID}`]: {
@@ -54,7 +62,7 @@ class Footer extends Topology<FooterProps> {
       return this.wrap(this.props.children);
     }
 
-    if (!this.props.resources || this.props.resources?.length === 0) {
+    if (!this.props.resources || this.props.resources.length === 0) {
       return this.wrap(null);
     }
 
@@ -67,13 +75,13 @@ class Footer extends Topology<FooterProps> {
             container
             spacing={6}
           >
-            {this.props.resources?.map((iri) => (
+            {this.props.resources.map((iri) => (
               <Grid
                 item
                 key={iri.value}
-                lg={this.lgSize()}
-                md={this.mdSize()}
-                xs={12}
+                lg={Footer.lgSize(this.props.resources!.length)}
+                md={Footer.mdSize(this.props.resources!.length)}
+                xs={GridWidth.full}
               >
                 <Resource subject={iri} />
               </Grid>
@@ -83,25 +91,25 @@ class Footer extends Topology<FooterProps> {
       </Box>
     ));
   }
-  /* eslint-disable @typescript-eslint/no-magic-numbers */
-  private mdSize(): 6|12 {
-    if (this.props.resources?.length === 1) {
-      return 12;
+
+  static mdSize(itemCount: number): GridWidth {
+    if (itemCount === 1) {
+      return GridWidth.full;
     }
 
-    return 6;
+    return GridWidth.half;
   }
 
-  private lgSize(): 4|6|12 {
-    if (this.props.resources?.length === 1) {
-      return 12;
+  static lgSize(itemCount: number): GridWidth {
+    if (itemCount === 1) {
+      return GridWidth.full;
     }
 
-    if (this.props.resources?.length === 2) {
-      return 6;
+    if (itemCount === TWO_ITEMS) {
+      return GridWidth.half;
     }
 
-    return 4;
+    return GridWidth.third;
   }
 }
 

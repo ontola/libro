@@ -159,6 +159,7 @@ const theme = {
       xxLarge: '1.8em',
       xxxLarge: '2.6em',
     },
+    /* eslint-enable sort-keys */
     fontWeightMedium: 600,
   },
   zIndex: {
