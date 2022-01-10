@@ -54,8 +54,10 @@ const useStyles = makeStyles((theme) => ({
     '&.fa': {
       fontSize: '10em',
     },
+    display: 'block',
+    margin: 'auto',
+    maxWidth: '100%',
     textAlign: 'center',
-    width: '100%',
   },
 
   mediaObjectPageInfoBarImageFilename: {
