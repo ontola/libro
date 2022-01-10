@@ -13,10 +13,10 @@ const styles = (theme: LibroTheme) => ({
   tableFooter: {
     '& tr > td': {
       '&:first-child': {
-        borderTopLeftRadius: theme.shape.borderRadius,
+        borderBottomLeftRadius: theme.shape.borderRadius,
       },
       '&:last-child': {
-        borderTopRightRadius: theme.shape.borderRadius,
+        borderBottomRightRadius: theme.shape.borderRadius,
       },
       backgroundColor: theme.palette.grey.xxLight,
       padding: 0,

@@ -22,6 +22,7 @@ const styles = (theme: LibroTheme) => ({
       },
       backgroundColor: theme.palette.grey.xxLight,
     },
+    borderBottom: theme.greyBorder,
     color: theme.palette.grey.midDark,
   },
 });

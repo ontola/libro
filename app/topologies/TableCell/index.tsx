@@ -1,8 +1,12 @@
-import { createStyles } from '@material-ui/core';
-import { WithStyles, withStyles } from '@material-ui/styles';
+import {
+  TableCell,
+  WithStyles,
+  createStyles,
+  withStyles, 
+} from '@material-ui/core';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 import { headingCID } from '../../components/Heading';
 import argu from '../../ontology/argu';
@@ -26,7 +30,7 @@ type PropTypes = WithStyles<typeof styles> & {
   elementProps?: Record<string, unknown>;
 };
 
-class TableCell extends TopologyProvider<PropTypes> {
+class TableCellClass extends TopologyProvider<PropTypes> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
   };
@@ -34,10 +38,18 @@ class TableCell extends TopologyProvider<PropTypes> {
   constructor(props: PropTypes) {
     super(props);
 
-    this.className = this.props.classes.tableCell;
-    this.elementType = 'td';
     this.topology = tableCellTopology;
+  }
+
+  public render() {
+    const { classes, ...filterProps } = this.props;
+
+    return this.wrap((
+      <TableCell
+        className={classes.tableCell}
+        {...filterProps}
+      />));
   }
 }
 
-export default withStyles(styles)(TableCell);
+export default withStyles(styles)(TableCellClass);

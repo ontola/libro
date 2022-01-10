@@ -1,6 +1,8 @@
+import { TableRow } from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
@@ -20,7 +22,7 @@ const styles = (theme: LibroTheme) => ({
 type TableRowElementProps = { onClick: any };
 type TableRowProps = WithStyles<typeof styles> & TableRowElementProps;
 
-class TableRow extends Topology<TableRowProps> {
+class TableRowClass extends Topology<TableRowProps> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
@@ -34,17 +36,23 @@ class TableRow extends Topology<TableRowProps> {
     this.topology = tableRowTopology;
   }
 
-  public getClassName(): string {
-    return clsx({
-      [this.props.classes.tableRowClickable]: !!this.props.onClick,
-    });
-  }
-
   public getElementProps(): TableRowElementProps {
     return {
       onClick: this.props.onClick,
     };
   }
+
+  public render() {
+    const { classes, ...filterProps } = this.props;
+
+    return this.wrap((
+      <TableRow
+        className={clsx({
+          [this.props.classes.tableRowClickable]: !!this.props.onClick,
+        })}
+        {...filterProps}
+      />));
+  }
 }
 
-export default withStyles(styles)(TableRow);
+export default withStyles(styles)(TableRowClass);

@@ -1,7 +1,8 @@
+import { TableBody } from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
@@ -18,7 +19,7 @@ const styles = (theme: LibroTheme) => ({
 
 type TableBodyProps = PropsWithChildren<WithStyles<typeof styles>>;
 
-class TableBody extends TopologyProvider<TableBodyProps> {
+class TableBodyClass extends TopologyProvider<TableBodyProps> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
   };
@@ -26,10 +27,19 @@ class TableBody extends TopologyProvider<TableBodyProps> {
   constructor(props: TableBodyProps) {
     super(props);
 
-    this.className = this.props.classes.tableBody;
-    this.elementType = 'tbody';
     this.topology = tableBodyTopology;
+  }
+
+  public render() {
+    const { classes, ...filterProps } = this.props;
+
+    return this.wrap(
+      <TableBody
+        className={classes.tableBody}
+        {...filterProps}
+      />,
+    );
   }
 }
 
-export default withStyles(styles)(TableBody);
+export default withStyles(styles)(TableBodyClass);

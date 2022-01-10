@@ -1,4 +1,8 @@
-import { createStyles } from '@material-ui/core';
+import {
+  Table,
+  TableContainer,
+  createStyles, 
+} from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -46,7 +50,7 @@ const styles = (theme: LibroTheme) => createStyles({
 
 type TableProps = PropsWithChildren<WithStyles<typeof styles>>;
 
-class Table extends TopologyProvider<TableProps> {
+class TableClass extends TopologyProvider<TableProps> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
   };
@@ -58,13 +62,13 @@ class Table extends TopologyProvider<TableProps> {
 
   public render() {
     return this.wrap((
-      <div className={this.props.classes.tableWrapper}>
-        <table className={this.props.classes.table}>
+      <TableContainer className={this.props.classes.tableWrapper}>
+        <Table className={this.props.classes.table}>
           {this.props.children}
-        </table>
-      </div>
+        </Table>
+      </TableContainer>
     ));
   }
 }
 
-export default withStyles(styles)(Table);
+export default withStyles(styles)(TableClass);
