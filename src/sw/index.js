@@ -1,13 +1,16 @@
 /* eslint-disable */
 
-// import { BroadcastUpdatePlugin } from 'workbox-broadcast-update';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 import { offlineFallback } from 'workbox-recipes';
 import { registerRoute, setDefaultHandler } from 'workbox-routing';
-import { CacheFirst, NetworkOnly, StaleWhileRevalidate } from 'workbox-strategies';
+import {
+  CacheFirst,
+  NetworkOnly,
+  StaleWhileRevalidate 
+} from 'workbox-strategies';
 
 const scope = self.registration.scope;
 const basePath = scope.includes('://') ? new URL(scope).pathname : scope;
@@ -107,16 +110,16 @@ offlineFallback({
 self.addEventListener('message', (event) => {
   if (event.data && event.data.meta === 'ontola-request') {
     switch (event.data.type) {
-      case 'CLEAR_CACHE_REQUEST':
-        caches.keys().then((cacheNames) => {
-          // tslint:disable-next-line:no-console
-          console.log(`clearing cache ${cacheNames}`);
-          cacheNames.forEach((cache) => self.caches.delete(cache));
-        });
-        break;
-      default:
+    case 'CLEAR_CACHE_REQUEST':
+      caches.keys().then((cacheNames) => {
         // tslint:disable-next-line:no-console
-        console.warn('Unknown SW command');
+        console.log(`clearing cache ${cacheNames}`);
+        cacheNames.forEach((cache) => self.caches.delete(cache));
+      });
+      break;
+    default:
+      // tslint:disable-next-line:no-console
+      console.warn('Unknown SW command');
         // TODO: bugsnag
     }
   }
