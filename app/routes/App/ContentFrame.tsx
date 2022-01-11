@@ -26,6 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   appContainer: {
     '& #start-of-content': {
       flex: 1,
+      position: 'relative',
     },
     '& .preloader': {
       backgroundColor: theme.palette.background.default,
