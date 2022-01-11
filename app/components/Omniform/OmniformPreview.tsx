@@ -2,10 +2,11 @@ import { makeStyles } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   dig,
-  useGlobalIds,
   useStrings,
+  useTopology,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -14,19 +15,19 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { LibroTheme } from '../../themes/themes';
+import { containerTopology } from '../../topologies/Container';
 import { formMessages } from '../../translations/messages';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   omniformPreview: {
     '& .fa': {
-      paddingRight: '.1em',
+      paddingRight: '0.5em',
     },
-    '&:hover': {
-      backgroundColor: theme.palette.common.white,
+    '&:hover span': {
+      color: theme.palette.grey.midDark,
     },
-    backgroundColor: theme.palette.grey.xxLight,
+    backgroundColor: theme.palette.common.white,
     borderBottomLeftRadius: theme.shape.borderRadius,
     borderBottomRightRadius: theme.shape.borderRadius,
     cursor: 'text',
@@ -34,9 +35,17 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     paddingLeft: '1rem',
     width: '100%',
   },
+  omniformPreviewContainer: {
+    border: theme.greyBorder,
+    borderRadius: theme.shape.borderRadius,
+  },
   omniformPreviewText: {
     color: theme.palette.grey.xxLightForegroundSmall,
     lineHeight: '2.4rem',
+  },
+  omniformPreviewTextContainer: {
+    fontSize: '17px',
+    fontWeight: 'bold',
   },
 }));
 
@@ -53,17 +62,24 @@ const OmniformPreview = ({
   const classes = useStyles();
 
   const [actionLabel] = useStrings(primaryAction, dig(schema.result, rdfs.label));
-  const [actionIcon] = useGlobalIds(primaryAction, dig(schema.result, schema.image));
-  const icon = actionIcon ? normalizeFontAwesomeIRI(actionIcon) : 'plus';
+  const topology = useTopology();
 
   return (
     <button
-      className={classes.omniformPreview}
+      className={clsx({
+        [classes.omniformPreview]: true,
+        [classes.omniformPreviewContainer]: topology === containerTopology,
+      })}
       type="button"
       onClick={onClick}
     >
-      <span className={classes.omniformPreviewText}>
-        <FontAwesome name={icon} />
+      <span
+        className={clsx({
+          [classes.omniformPreviewText]: true,
+          [classes.omniformPreviewTextContainer]: topology === containerTopology,
+        })}
+      >
+        <FontAwesome name="plus" />
         {' '}
         <FormattedMessage
           defaultMessage="Share your {type}..."
