@@ -1,10 +1,6 @@
 import * as as from '@ontologies/as';
 import { SomeNode } from 'link-lib';
-import {
-  Property,
-  Resource,
-  useTopology,
-} from 'link-redux';
+import { Property, Resource } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
@@ -16,7 +12,6 @@ import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
 import ContainerHeader from '../../../topologies/Container/ContainerHeader';
-import { alertDialogTopology } from '../../../topologies/Dialog';
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
@@ -44,11 +39,11 @@ const cardCollectionHeader = (): JSX.Element | null => {
 
 const containerCollectionHeader = (): JSX.Element | null => {
   const {
+    headerButtons,
     hideHeader,
     originalCollection,
   } = useCollectionOptions();
   const filterRef = React.useRef(null);
-  const topology = useTopology();
 
   if (hideHeader) {
     return null;
@@ -58,8 +53,8 @@ const containerCollectionHeader = (): JSX.Element | null => {
     <React.Fragment>
       <ContainerHeader
         float={<HeaderFloat filterContainerRef={filterRef} />}
-        invertColors={topology === alertDialogTopology}
       >
+        {headerButtons}
         <Property label={as.name} />
         <Resource subject={originalCollection}>
           <Property

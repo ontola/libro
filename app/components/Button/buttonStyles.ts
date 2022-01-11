@@ -23,6 +23,40 @@ interface ColorProps {
 export default makeStyles<LibroTheme>((theme) => ({
   active: {},
 
+  button: {
+    '&:active': {
+      boxShadow: 'inset 0 0 0 999px rgba(0, 0, 0, .06)',
+      outline: 0,
+      transition: '0s box-shadow',
+    },
+    '&:hover': {
+      cursor: 'pointer',
+    },
+    '&:hover, &:focus': {
+      boxShadow: 'inset 0 0 0 999px rgba(0, 0, 0, .03)',
+    },
+    '&:is(a)': {
+      alignItems: 'center',
+    },
+    '&[disabled]': {
+      '&:active, &:hover': {
+        boxShadow: 'none',
+      },
+      cursor: 'not-allowed',
+      opacity: 0.5,
+    },
+    '--button-padding-horizontal': '1.3rem',
+    '--button-padding-vertical': '.5rem',
+    border: 0,
+    display: 'inline-block',
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '1em',
+    margin: 0,
+    padding: 'var(--button-padding-vertical) var(--button-padding-horizontal)',
+    transition: '.1s box-shadow, .1s background-color',
+    whiteSpace: 'nowrap',
+  },
+
   [ButtonVariant.AsCard]: {
     '&:hover, &:focus, &:active': {
       backgroundColor: theme.palette.background.paper,
@@ -146,46 +180,15 @@ export default makeStyles<LibroTheme>((theme) => ({
     color: theme.palette.grey.main,
   },
 
-  button: {
-    '&:active': {
-      boxShadow: 'inset 0 0 0 999px rgba(0, 0, 0, .06)',
-      outline: 0,
-      transition: '0s box-shadow',
-    },
-    '&:hover': {
-      cursor: 'pointer',
-    },
-    '&:hover, &:focus': {
-      boxShadow: 'inset 0 0 0 999px rgba(0, 0, 0, .03)',
-    },
-    '&:is(a)': {
-      alignItems: 'center',
-    },
-    '&[disabled]': {
-      '&:active, &:hover': {
-        boxShadow: 'none',
-      },
-      cursor: 'not-allowed',
-      opacity: 0.5,
-    },
-    border: 0,
-    display: 'inline-block',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: '1em',
-    margin: 0,
-    padding: '.5rem 1.3rem',
-    transition: '.1s box-shadow, .1s background-color',
-    whiteSpace: 'nowrap',
-  },
-
   buttonPlain: {
     '&:hover, &:focus, &:active': {
       boxShadow: 'none',
     },
+    '--button-padding-horizontal': 0,
+    '--button-padding-vertical': 0,
     alignSelf: 'initial',
     background: 'none',
     color: 'inherit',
-    padding: 0,
   },
 
   cardFloat: {
@@ -220,12 +223,21 @@ export default makeStyles<LibroTheme>((theme) => ({
   },
 
   corner: {
+    '--button-padding-horizontal': '.4rem',
+    '--button-padding-vertical': '.4rem',
     lineHeight: '1em',
-    padding: '.4em',
     position: 'absolute',
     right: 0,
     top: 0,
     zIndex: 1,
+  },
+
+  edgeEnd: {
+    marginLeft: 'var(--button-padding-horizontal)',
+  },
+
+  edgeStart: {
+    marginLeft: 'calc(var(--button-padding-horizontal) * -1)',
   },
 
   fa: {},
@@ -256,12 +268,14 @@ export default makeStyles<LibroTheme>((theme) => ({
   },
 
   narrow: {
-    padding: '.5rem .75rem',
+    '--button-padding-horizontal': '.75rem',
+    '--button-padding-vertical': '.5rem',
   },
 
   small: {
+    '--button-padding-horizontal': '.5rem',
+    '--button-padding-vertical': '.3rem',
     fontSize: '.85em',
-    padding: '.3rem .5rem',
   },
 
   snackbar: {
@@ -273,11 +287,12 @@ export default makeStyles<LibroTheme>((theme) => ({
       //@ts-ignore
       background: theme.palette.transparent.xLight,
     },
+    '--button-padding-horizontal': '.75rem',
+    '--button-padding-vertical': '.75rem',
     //@ts-ignore
     color: theme.palette.red.light,
     fontSize: '.8em',
     fontWeight: theme.typography.fontWeightBold,
-    padding: '.75rem',
     textTransform: 'uppercase',
   },
 
@@ -302,13 +317,15 @@ export default makeStyles<LibroTheme>((theme) => ({
       backgroundColor: 'var(--buttonBackground)',
     },
     '&$cardFloat': {
-      padding: '0 0.5em',
+      '--button-padding-horizontal': 0,
+      '--button-padding-vertical': '.5rem',
     },
     '&$stretched': {
+      '--button-padding-horizontal': 0,
+      '--button-padding-vertical': '.75rem',
       alignItems: 'center',
       display: 'flex',
       justifyContent: 'center',
-      padding: '.75rem 0',
       transition: 'box-shadow 200ms',
     },
     '&:active': {

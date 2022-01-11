@@ -83,6 +83,9 @@
   "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
     "defaultMessage": "Sichtbar für alle"
   },
+  "https://app.argu.co/i18n/dialog/back": {
+    "defaultMessage": "Zurückgehen"
+  },
   "https://app.argu.co/i18n/errors/clickToRetry/label": {
     "defaultMessage": "Zum erneuten Versuch klicken"
   },

@@ -134,6 +134,13 @@ export const dateMessages: Messages = defineMessages({
   },
 });
 
+export const dialogMessages: Messages = defineMessages({
+  back: {
+    defaultMessage: 'Go back',
+    id: 'https://app.argu.co/i18n/dialog/back',
+  },
+});
+
 export const errorMessages: Messages = defineMessages({
   '400/body': {
     defaultMessage: 'The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource.',

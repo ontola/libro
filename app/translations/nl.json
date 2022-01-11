@@ -83,6 +83,9 @@
   "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
     "defaultMessage": "Zichtbaar voor iedereen"
   },
+  "https://app.argu.co/i18n/dialog/back": {
+    "defaultMessage": "Ga terug"
+  },
   "https://app.argu.co/i18n/errors/clickToRetry/label": {
     "defaultMessage": "Klik om het opnieuw te proberen."
   },

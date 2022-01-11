@@ -1,4 +1,3 @@
-
 import {
   IconButton,
   makeStyles,
@@ -38,7 +37,6 @@ export const HeaderFloat = ({
   const intl = useIntl();
 
   const {
-    headerButtons,
     hidePagination,
     originalCollection,
   } = useCollectionOptions();
@@ -64,7 +62,6 @@ export const HeaderFloat = ({
             <Resource subject={originalCollection}>
               <CollectionCreateButton />
             </Resource>
-            {headerButtons}
           </React.Fragment>
         )}
         {!showButtons && (

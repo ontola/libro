@@ -11,7 +11,7 @@ import argu from '../../../ontology/argu';
 import { gridTopology } from '../../../topologies/Grid';
 
 const GridActionName: FC<PropertyProps> = ({ linkedProp }) => (
-  <Heading size={HeadingSize.LG}>
+  <Heading size={HeadingSize.MD}>
     {linkedProp.value}
   </Heading>
 );

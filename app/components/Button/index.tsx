@@ -39,6 +39,8 @@ export interface ButtonProps {
   disabled?: boolean;
   /** FontAwesome icon string. */
   endIcon?: React.ReactNode;
+  /** Shifts button left or right so it's content align with other content around it */
+  edge?: 'start' | 'end';
   /** Whether the button should fill it's container */
   grow?: boolean;
   /** If the button is actually just a link */
@@ -87,6 +89,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
   color,
   corner,
   disabled,
+  edge,
   endIcon,
   grow,
   icon,
@@ -130,6 +133,8 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     [classes.cardFloat]: cardFloat,
     [classes.stretched]: stretch,
     [classes[variant ?? '']]: variant,
+    [classes.edgeEnd]: edge === 'end',
+    [classes.edgeStart]: edge === 'start',
     [className || '']: className,
   });
 

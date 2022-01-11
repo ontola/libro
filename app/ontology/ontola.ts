@@ -51,6 +51,7 @@ export default {
   // eslint-disable-next-line sort-keys
   _destroy: ontola('_destroy'),
   action: ontola('action'),
+  actionDialog: ontola('actionDialog'),
   actionsMenu: ontola('actionsMenu'),
   actor: ontola('actor'),
   actorType: ontola('actorType'),
@@ -159,6 +160,7 @@ export default {
   sortOptions: ontola('sortOptions'),
   startedAction: ontola('startedAction'),
   submitAction: ontola('submitAction'),
+  svg: ontola('svg'),
   tabsMenu: ontola('tabsMenu'),
   topology: ontola('topology'),
   trashAction: ontola('trashAction'),

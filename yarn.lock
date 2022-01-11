@@ -1335,6 +1335,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.17.2":
+  version: 7.17.2
+  resolution: "@babel/runtime@npm:7.17.2"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: a48702d271ecc59c09c397856407afa29ff980ab537b3da58eeee1aeaa0f545402d340a1680c9af58aec94dfdcbccfb6abb211991b74686a86d03d3f6956cacd
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.15.4, @babel/template@npm:^7.16.0, @babel/template@npm:^7.3.3":
   version: 7.16.0
   resolution: "@babel/template@npm:7.16.0"
@@ -3062,6 +3071,17 @@ __metadata:
     ejs: ^2.6.1
     magic-string: ^0.25.0
   checksum: da721792036a0e1253911f9b5280e6cb236024d7d2255bde3b6e87587c0ea8f46404224c8c032a27ee11ab3244eda752587fb37ec78c2e64eb53e10557373102
+  languageName: node
+  linkType: hard
+
+"@tanem/svg-injector@npm:^10.1.18":
+  version: 10.1.19
+  resolution: "@tanem/svg-injector@npm:10.1.19"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    content-type: ^1.0.4
+    tslib: ^2.3.1
+  checksum: 41949745bb2759993235a14503c37d42575dd326359f9f7fa6a19fe74628c057a7d35b3638e0848b39ea0e60842837907856cb157859f4fb28d26bab461ba6ab
   languageName: node
   linkType: hard
 
@@ -5890,7 +5910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"content-type@npm:~1.0.4":
+"content-type@npm:^1.0.4, content-type@npm:~1.0.4":
   version: 1.0.4
   resolution: "content-type@npm:1.0.4"
   checksum: 3d93585fda985d1554eca5ebd251994327608d2e200978fdbfba21c0c679914d5faf266d17027de44b34a72c7b0745b18584ecccaa7e1fdfb6a68ac7114f12e0
@@ -12721,6 +12741,7 @@ __metadata:
     react-router: ^5.2.1
     react-router-dom: ^5.2.1
     react-router-scroll-memory: ^2.0.7
+    react-svg: ^14.1.6
     react-tiny-virtual-list: ^2.2.0
     redux: ^4.0.5
     resolve-url-loader: ^3.1.1
@@ -13919,6 +13940,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prop-types@npm:^15.8.1":
+  version: 15.8.1
+  resolution: "prop-types@npm:15.8.1"
+  dependencies:
+    loose-envify: ^1.4.0
+    object-assign: ^4.1.1
+    react-is: ^16.13.1
+  checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
 "protocol-buffers-schema@npm:^3.3.1":
   version: 3.4.0
   resolution: "protocol-buffers-schema@npm:3.4.0"
@@ -14228,7 +14260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.6.0, react-is@npm:^16.7.0, react-is@npm:^16.8.0, react-is@npm:^16.8.1, react-is@npm:^16.8.6":
+"react-is@npm:^16.13.1, react-is@npm:^16.6.0, react-is@npm:^16.7.0, react-is@npm:^16.8.0, react-is@npm:^16.8.1, react-is@npm:^16.8.6":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
@@ -14344,6 +14376,21 @@ __metadata:
   peerDependencies:
     react: ">=15"
   checksum: 7daae084bf64531eb619cc5f4cc40ce5ae0a541b64f71d74ec71a38cbf6130ebdbb7cf38f157303fad5846deec259401f96c4d6c7386466dcc989719e01f9aaa
+  languageName: node
+  linkType: hard
+
+"react-svg@npm:^14.1.6":
+  version: 14.1.13
+  resolution: "react-svg@npm:14.1.13"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@tanem/svg-injector": ^10.1.18
+    "@types/prop-types": ^15.7.4
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ^15.5.4 || ^16.0.0 || ^17.0.0
+    react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0
+  checksum: 92e3e43d50bdc9da70ae560e92cd8042b6f9bf049cc282b472b7bee95b28533cc3ca345d721e869f461c0f626782749eca82240b359f725f41e21a801ea8eba1
   languageName: node
   linkType: hard
 
@@ -16558,6 +16605,13 @@ resolve@^2.0.0-next.3:
   version: 2.2.0
   resolution: "tslib@npm:2.2.0"
   checksum: a48c9639f7496fa701ea8ffe0561070fcb44c104a59632f7f845c0af00825c99b6373575ec59b2b5cdbfd7505875086dbe5dc83312304d8979f22ce571218ca3
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 
