@@ -61,7 +61,7 @@ const common = {
         },
         {
           from: 'node_modules/monaco-editor/min/vs',
-          to: path.resolve(__dirname, '..', 'dist', 'public', 'vs'),
+          to: path.resolve(__dirname, '..', 'dist', 'f_assets', 'vs'),
         },
       ],
     }),
