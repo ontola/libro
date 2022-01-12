@@ -5,6 +5,7 @@ import CountBubble from '../CountBubble';
 
 export interface NavbarLinkCountProps {
   count: number;
+  tooltip: string;
 }
 
 const useStyles = makeStyles(() => ({
@@ -15,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NavbarLinkCount = ({ count }: NavbarLinkCountProps): JSX.Element | null => {
+const NavbarLinkCount = ({ count, tooltip }: NavbarLinkCountProps): JSX.Element | null => {
   const classes = useStyles();
 
   if (!(count > 0)) {
@@ -24,7 +25,10 @@ const NavbarLinkCount = ({ count }: NavbarLinkCountProps): JSX.Element | null =>
 
   return (
     <div className={classes.wrapper}>
-      <CountBubble count={count} />
+      <CountBubble
+        count={count}
+        tooltip={tooltip}
+      />
     </div>
   );
 };

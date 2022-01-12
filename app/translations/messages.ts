@@ -414,6 +414,13 @@ export const motionMessages: Messages = defineMessages({
   },
 });
 
+export const notificationMessages: Messages = defineMessages({
+  tooltip: {
+    defaultMessage: 'Click to read your notifications',
+    id: 'https://app.argu.co/i18n/schema:Thing/argu:unreadCount/tooltip',
+  },
+});
+
 export const studioToolbarMessages: Messages = defineMessages({
   documentDropdownLabel: {
     defaultMessage: 'Documents',

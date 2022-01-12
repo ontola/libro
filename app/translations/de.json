@@ -404,6 +404,9 @@
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": {
     "defaultMessage": "Alle {count} Reaktionen anzeigen..."
   },
+  "https://app.argu.co/i18n/schema:Thing/argu:unreadCount/tooltip": {
+    "defaultMessage": "Klicken Sie hier, um Ihre Benachrichtigungen zu lesen"
+  },
   "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": {
     "defaultMessage": "Externe Informationen"
   },

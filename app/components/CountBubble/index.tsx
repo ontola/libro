@@ -6,6 +6,7 @@ import { LibroTheme } from '../../themes/themes';
 export interface CountBubbleProps {
   /** The number displayed in the bubble */
   count: number,
+  tooltip: string;
 }
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -51,12 +52,14 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 // Small item to indicate the count of something important.
 const CountBubble = ({
   count,
+  tooltip,
 }: CountBubbleProps): JSX.Element => {
   const classes = useStyles();
 
   return (
     <div
       className={classes.countBubble}
+      title={tooltip}
     >
       <div className={classes.number}>
         {count}

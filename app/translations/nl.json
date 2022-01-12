@@ -404,6 +404,9 @@
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": {
     "defaultMessage": "Toon alle {count} reacties..."
   },
+  "https://app.argu.co/i18n/schema:Thing/argu:unreadCount/tooltip": {
+    "defaultMessage": "Klik om jouw meldingen te bekijken"
+  },
   "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": {
     "defaultMessage": "External information"
   },

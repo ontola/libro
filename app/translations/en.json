@@ -406,6 +406,9 @@
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": {
     "defaultMessage": "View all {count} reactions..."
   },
+  "https://app.argu.co/i18n/schema:Thing/argu:unreadCount/tooltip": {
+    "defaultMessage": "Click to read your notifications"
+  },
   "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": {
     "defaultMessage": "External information"
   },
