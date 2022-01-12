@@ -21,7 +21,7 @@ export type RenderProp = (props: Test2) => JSX.Element;
 
 export interface DropdownMenuProps {
   children: React.ReactNode | RenderProp;
-  className: string;
+  className?: string;
   disablePadding?: boolean;
   trigger: Trigger;
 }

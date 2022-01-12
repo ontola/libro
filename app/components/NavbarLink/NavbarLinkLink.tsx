@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
 import { Resource } from 'link-redux';
-import React from 'react';
+import React, { AriaAttributes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { LibroTheme } from '../../themes/themes';
 import ExternalLink from '../Link/ExternalLink';
 
-export interface NavbarLinkLinkProps {
+export interface NavbarLinkLinkProps extends Pick<AriaAttributes, 'aria-controls' | 'aria-expanded' | 'aria-haspopup'> {
   children?: React.ReactNode;
   icon?: string | JSX.Element;
   image?: Node;
@@ -39,6 +39,7 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
   spin,
   title,
   to,
+  ...ariaProps
 }: NavbarLinkLinkProps, ref): JSX.Element => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
@@ -101,6 +102,9 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
   return (
     <Button
       {...buttonProps}
+      aria-controls={ariaProps['aria-controls']}
+      aria-expanded={ariaProps['aria-expanded']}
+      aria-haspopup={ariaProps['aria-haspopup']}
       color="inherit"
       component={Component as React.ComponentType<any>}
       ref={ref}

@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core/styles';
 import * as schema from '@ontologies/schema';
 import {
   Property,
@@ -19,7 +20,16 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
 import PageHeader from '../../topologies/PageHeader';
 
+const useStyles = makeStyles((theme) => ({
+  pageBackground: {
+    backgroundColor: theme.palette.background.default,
+    paddingTop: '2rem',
+    position: 'relative',
+  },
+}));
+
 const ForumFull = () => {
+  const classes = useStyles();
   const [coverPhoto] = useIds(ontola.coverPhoto);
   const [hideHeader] = useProperty(ontola.hideHeader);
 
@@ -36,14 +46,16 @@ const ForumFull = () => {
           positionY={positionY}
         />
       )}
-      <Container size={Size.Large}>
-        <Grid
-          container
-          spacing={6}
-        >
-          <Property label={ontola.widgets} />
-        </Grid>
-      </Container>
+      <div className={classes.pageBackground}>
+        <Container size={Size.Large}>
+          <Grid
+            container
+            spacing={6}
+          >
+            <Property label={ontola.widgets} />
+          </Grid>
+        </Container>
+      </div>
     </React.Fragment>
   );
 };

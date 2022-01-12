@@ -93,10 +93,10 @@ const SIX_PX = 0.1875;
 
 const theme = {
   appBar: {
-    height: '3.2rem',
+    height: '2.5rem',
     iconBreakPoint: 'md',
     maxWidth: 'xl',
-    position: 'relative',
+    position: 'fixed',
   },
   boxShadow: {
     /* eslint-disable sort-keys */

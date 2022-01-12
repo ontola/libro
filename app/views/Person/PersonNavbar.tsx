@@ -12,12 +12,16 @@ import {
 import React from 'react';
 
 import Link from '../../components/Link';
-import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
-import NavbarLinkLink from '../../components/NavbarLink/NavbarLinkLink';
+import { NavbarLinkIcon, NavbarLinkLink } from '../../components/NavbarLink';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
+
+export interface PersonNavbarProps {
+  onClick: () => void;
+  linkRef: React.Ref<HTMLButtonElement>
+}
 
 const useStyles = makeStyles(() => ({
   wrapper: {
@@ -29,7 +33,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PersonNavbar: FC = ({ subject }) => {
+const PersonNavbar: FC<PersonNavbarProps> = ({
+  subject,
+  linkRef,
+  ...navlinkProps
+}) => {
   const [image] = useGlobalIds(schema.image);
   const [name] = useStrings(foaf.name);
   const classes = useStyles();
@@ -38,7 +46,8 @@ const PersonNavbar: FC = ({ subject }) => {
     <div className={classes.wrapper}>
       <NavbarLinkLink
         image={image}
-        to={subject.value}
+        ref={linkRef}
+        {...navlinkProps}
       >
         {image ? (
           <NavbarLinkIcon>

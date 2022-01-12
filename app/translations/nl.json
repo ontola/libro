@@ -341,6 +341,12 @@
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Ga naar huidige locatie"
   },
+  "https://app.argu.co/i18n/navBarMessages/manageOrganisationButton": {
+    "defaultMessage": "Beheer"
+  },
+  "https://app.argu.co/i18n/navBarMessages/moreDropdownButton": {
+    "defaultMessage": "Meer"
+  },
   "https://app.argu.co/i18n/navbar/search": {
     "defaultMessage": "Zoeken"
   },

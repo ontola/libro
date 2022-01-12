@@ -46,7 +46,7 @@ const TextTrigger: Trigger = ({
 }) => (
   <Button
     plain
-    buttonRef={anchorRef}
+    ref={anchorRef}
     onClick={onClick}
   >
     <FormattedMessage {...formMessages.newTrigger} />

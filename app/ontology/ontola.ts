@@ -117,6 +117,7 @@ export default {
   iriTemplate: ontola('iriTemplate'),
   iriTemplateOpts: ontola('iriTemplateOpts'),
   makePrimaryAction: ontola('makePrimaryAction'),
+  manageMenu: ontola('manageMenu'),
   maxColumns: ontola('grid/maxColumns'),
   maxCount: ontola('maxCount'),
   maxInclusive: ontola('maxInclusive'),

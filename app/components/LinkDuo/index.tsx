@@ -6,18 +6,21 @@ import Link, { LinkPropTypes } from '../Link';
 /**
  * Link that also works for external URL's. Don't pass a href attribute.
  */
-const LinkDuo = (props: LinkPropTypes): JSX.Element => {
+const LinkDuo = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<LinkPropTypes>>((
+  props,
+  ref,
+): JSX.Element => {
   const {
     children,
-    to,
     ...rest
   } = props;
 
-  if (isDifferentWebsite(to)) {
+  if (isDifferentWebsite(props.to)) {
     return (
       <a
-        href={to}
+        href={rest.to}
         {...rest}
+        ref={ref}
         rel="nofollow noopener noreferrer"
         target="_blank"
       >
@@ -27,6 +30,6 @@ const LinkDuo = (props: LinkPropTypes): JSX.Element => {
   }
 
   return <Link {...props} />;
-};
+});
 
 export default LinkDuo;

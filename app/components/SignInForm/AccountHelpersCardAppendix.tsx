@@ -26,7 +26,7 @@ const AccountHelpersCardAppendix = ({
       <Resource
         currentSubject={currentSubject}
         isActive={isActive}
-        subject={app.ns('menus/session')}
+        subject={app.ns('menus/sign_in')}
         onClick={onClick}
         onLoad={LoadingHidden}
       />

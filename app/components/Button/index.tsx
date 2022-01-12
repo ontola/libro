@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/styles';
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
-import React, { MouseEvent, RefObject } from 'react';
+import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -28,7 +28,6 @@ export interface ButtonProps {
   active?: boolean;
   /** Additional aria label */
   ariaLabel?: string;
-  buttonRef?: RefObject<HTMLButtonElement>;
   list?: boolean;
   cardFloat?: boolean;
   centered?: boolean;
@@ -80,11 +79,10 @@ const defaultProps = {
  * Used for any action in the app. Handles touch events and blurs after handling the onClick.
  * @returns {component} Component
  */
-const Button: React.FC<ButtonProps> = ({
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({
   active,
   action,
   ariaLabel,
-  buttonRef,
   cardFloat,
   list,
   centered,
@@ -107,7 +105,8 @@ const Button: React.FC<ButtonProps> = ({
   type,
   href,
   variant,
-}) => {
+  ...otherProps
+}, ref) => {
   const lrs = useLRS();
   const muiTheme = useTheme<LibroTheme>();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
@@ -167,6 +166,8 @@ const Button: React.FC<ButtonProps> = ({
         role="button"
         to={href}
         {...sharedProps}
+        {...otherProps}
+        ref={ref as React.Ref<HTMLAnchorElement>}
       >
         {currentIcon && (
           <FontAwesome
@@ -187,9 +188,10 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <BlurButton
       aria-pressed={active}
-      buttonRef={buttonRef}
       data-test="Button-button"
+      ref={ref as React.Ref<HTMLButtonElement>}
       {...sharedProps}
+      {...otherProps}
     >
       {currentIcon && (
         <FontAwesome
@@ -205,10 +207,12 @@ const Button: React.FC<ButtonProps> = ({
           {children}
         </span>
       )}
+      {endIcon}
     </BlurButton>
   );
-};
+});
 
 Button.defaultProps = defaultProps;
+Button.displayName = 'Button';
 
 export default Button;

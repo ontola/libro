@@ -407,6 +407,17 @@ export const mailchimpFormMessages: Messages = defineMessages({
   },
 });
 
+export const navBarMessages: Messages = defineMessages({
+  manageOrganisationButton: {
+    defaultMessage: 'Manage',
+    id: 'https://app.argu.co/i18n/navBarMessages/manageOrganisationButton',
+  },
+  moreDropdownButton: {
+    defaultMessage: 'More',
+    id: 'https://app.argu.co/i18n/navBarMessages/moreDropdownButton',
+  },
+});
+
 export const motionMessages: Messages = defineMessages({
   motionsCount: {
     defaultMessage: '{count} ideas',
