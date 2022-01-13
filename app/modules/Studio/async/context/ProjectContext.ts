@@ -1,5 +1,6 @@
 import React, { Dispatch } from 'react';
 
+import { WebManifest } from '../../../../WebManifest';
 import { serverDataToProject } from '../lib/serverDataToProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
 
@@ -11,14 +12,14 @@ export interface RenderedPage {
 
 export interface ServerData {
   /** Only on write */
-  hextuples: string;
-  manifestOverride: string;
+  hextuples: string[][];
+  manifest: WebManifest;
   /** Only on write */
   pages?: RenderedPage[];
   /**
    * JSON string of {SubResource}
    */
-  resources: string;
+  resources: SubResource[];
   sitemap: string;
 }
 

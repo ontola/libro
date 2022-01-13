@@ -30,13 +30,12 @@ const hexJSONDataType = (object: Term) => {
     : rdfx.ns('blankNode').value;
 };
 
-export const serializeHextuples = (quads: Quad[]): string => quads
-  .map((q) => JSON.stringify([
+export const toHextuples = (quads: Quad[]): string[][] => quads
+  .map((q) => [
     hexJSONSubject(q.subject),
     q.predicate.value,
     hexJSONValue(q.object),
     hexJSONDataType(q.object),
     (q.object as Literal).language ?? '',
     q.graph.value === 'rdf:defaultGraph' ? ld.add.value : q.graph.value,
-  ]))
-  .join('\n');
+  ]);

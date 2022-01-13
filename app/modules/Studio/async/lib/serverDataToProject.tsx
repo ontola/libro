@@ -4,26 +4,19 @@ import {
   ProjectContext,
   ResourceType,
   ServerData,
-  SubResource,
 } from '../context/ProjectContext';
 
-const tryParseResources = (resources: string): SubResource[] => {
-  try {
-    return JSON.parse(resources) || [];
-  } catch {
-    return [];
-  }
-};
+const INDENT = 4;
 
 export const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
   const manifest: Component = {
     children: [],
     name: ComponentName.Manifest,
     type: ResourceType.Manifest,
-    value: data.manifestOverride,
+    value: JSON.stringify(data.manifest, null, INDENT),
   };
   const website: Component = {
-    children: tryParseResources(data.resources),
+    children: data.resources,
     name: ComponentName.Website,
     type: ResourceType.RDF,
     value: '',

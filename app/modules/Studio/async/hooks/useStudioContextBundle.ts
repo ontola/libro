@@ -15,7 +15,7 @@ export const useStudioContextBundle = (): EditorContextBundle | undefined => {
   const { context, setContext } = React.useContext(studioContext);
 
   React.useEffect(() => {
-    fetch('/d/studio/editorContext.bundle.json')
+    fetch('/_studio/editorContext.bundle.json')
       .then((response) => response.text())
       .then((response) => setContext(JSON.parse(response)));
   }, []);
