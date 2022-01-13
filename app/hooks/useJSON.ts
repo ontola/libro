@@ -7,7 +7,7 @@ const useJSON = <T>(path: string | undefined): [data: T | undefined, retry: () =
 
   const reload = React.useCallback(() => {
     if (path) {
-      fetch(path)
+      fetch(path, { headers: { Accept: 'application/json' } })
         .then((res) => res.json())
         .then(setJSON)
         .catch((e) => {

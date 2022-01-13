@@ -8,12 +8,13 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import App from '../../../../App';
-import { AppContext, WebManifest } from '../../../../appContext';
+import { AppContext } from '../../../../appContext';
 import { AppContextProvider } from '../../../../AppContextProvider';
 import { WebsiteCtx } from '../../../../helpers/app';
 import generateLRS from '../../../../helpers/generateLRS';
 import { trailing } from '../../../../ontology/app';
 import { sliceIRI } from '../../../../ontology/appSlashless';
+import { WebManifest } from '../../../../WebManifest';
 import {
   ProjectContext,
   RenderedPage,
@@ -24,14 +25,14 @@ import { parseSource } from '../hooks/useGenerateLRSFromSource';
 import { filterNodes, nodesToSitemap } from '../hooks/useSitemap';
 
 import { projectToSource } from './projectToSource';
-import { serializeHextuples } from './hextupleSerializer';
+import { toHextuples } from './hextupleSerializer';
 
 const projectToServerData = async (project: ProjectContext, prerender: boolean): Promise<ServerData> => {
-  const manifest = project.manifest.value;
-  const resources = JSON.stringify(project.website.children);
+  const manifest = JSON.parse(project.manifest.value);
+  const resources = project.website.children;
   const source = projectToSource(project);
   const [nodes, data] = parseSource(source, project.websiteIRI);
-  const hextuples = serializeHextuples(data);
+  const hextuples = toHextuples(data);
   const sitemap = nodesToSitemap(nodes);
   let pages: RenderedPage[] = [];
 
@@ -42,7 +43,7 @@ const projectToServerData = async (project: ProjectContext, prerender: boolean):
 
   return {
     hextuples,
-    manifestOverride: manifest,
+    manifest,
     pages,
     resources,
     sitemap,
@@ -55,9 +56,10 @@ const projectToBody = async (project: ProjectContext, prerender: boolean): Promi
 export const createProject = async (project: ProjectContext, prerender: boolean): Promise<Response> => {
   const body = await projectToBody(project, prerender);
 
-  return await fetch('/_libro/docs', {
+  return await fetch('/_studio/projects', {
     body,
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'POST',
@@ -70,6 +72,7 @@ export const updateProject = async (project: ProjectContext, prerender: boolean)
   return await fetch(project.iri!, {
     body,
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'PUT',

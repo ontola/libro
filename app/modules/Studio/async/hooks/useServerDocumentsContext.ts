@@ -4,7 +4,7 @@ import useJSON from '../../../../hooks/useJSON';
 import { ServerDocumentsContext } from '../context/ServerDocumentsContext';
 
 export const useServerDocumentsContext = (): ServerDocumentsContext => {
-  const [documents, reload] = useJSON<string[]>('/_libro/docs');
+  const [documents, reload] = useJSON<string[]>('/_studio/projects');
 
   const [ctx, setCtx] = React.useState<ServerDocumentsContext>({
     documents,

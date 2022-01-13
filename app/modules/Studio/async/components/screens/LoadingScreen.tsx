@@ -2,9 +2,11 @@ import { Grow, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
+import { WebManifest } from '../../../../../WebManifest';
 import {
   ProjectAction,
   ProjectContextProps,
+  ResourceType,
   ServerData,
 } from '../../context/ProjectContext';
 
@@ -24,20 +26,26 @@ const useStyles = makeStyles({
   },
 });
 
-const newManifest = `{
-    "ontola": {
-        "primary_color": "#475668",
-        "secondary_color": "#d96833",
-        "theme": "common",
-        "website_iri": "https://changeme.localdev"
-    }
-}`;
+const newManifest = {
+  ontola: {
+    primary_color: '#475668',
+    secondary_color: '#d96833',
+    theme: 'common',
+    website_iri: 'https://changeme.localdev',
+  },
+};
 
 const newDocument: ServerData = {
-  hextuples: '',
-  manifestOverride: newManifest,
-  pages: [],
-  resources: '["({})"]',
+  hextuples: [],
+  manifest: newManifest as WebManifest,
+  // pages: [],
+  resources: [{
+    id: 0,
+    name: 'home',
+    path: '/',
+    type: ResourceType.RDF,
+    value: '({})',
+  }],
   sitemap: '',
 };
 
@@ -60,7 +68,7 @@ export const LoadingScreen = ({ dispatch, project, show }: LoadingScreenProps): 
       return;
     }
 
-    fetch(project.iri)
+    fetch(project.iri, { headers: { Accept: 'application/json' } })
       .then((res) => res.json())
       .then((data: ServerData) => dispatch({
         data,
