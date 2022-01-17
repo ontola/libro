@@ -9,6 +9,7 @@ import ContactPage from './ContactPage';
 import CTA from './CTA';
 import Facet from './Facet';
 import Feature from './Feature';
+import FeatureBlock from './FeatureBlock';
 import Features from './Features';
 import SalesHeader from './Header';
 import HomePage from './HomePage';
@@ -32,6 +33,7 @@ export default [
   ...ContactPage,
   ...Facet,
   ...Feature,
+  ...FeatureBlock,
   ...Features,
   ...HomePage,
   ...MailchimpForm,
