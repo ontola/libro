@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import SettingsIcon from '@material-ui/icons/Settings';
 import WebIcon from '@material-ui/icons/Web';
 import {
@@ -17,6 +18,7 @@ import {
   ProjectContextProps,
 } from '../context/ProjectContext';
 
+import { DistributionsPanel } from './Panels/DistributionsPanel';
 import { ResourcePanel } from './Panels/ResourcePanel';
 
 const useStyles = makeStyles({
@@ -92,6 +94,12 @@ export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Eleme
               label="Sitemap"
               value={ComponentName.Sitemap}
             />
+            <Tab
+              classes={classes}
+              icon={<DoubleArrowIcon className={classes.iconTransform} />}
+              label="Distributions"
+              value={ComponentName.Distributions}
+            />
           </TabList>
         </Grid>
         <Grid item>
@@ -115,6 +123,14 @@ export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Eleme
             className={classes.closed}
             value={ComponentName.Sitemap}
           />
+          <TabPanel
+            value={ComponentName.Distributions}
+          >
+            <DistributionsPanel
+              dispatch={dispatch}
+              project={project}
+            />
+          </TabPanel>
         </Grid>
       </Grid>
     </TabContext>
