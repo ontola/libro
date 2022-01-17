@@ -29,6 +29,7 @@ export enum ResourceType {
   Elements,
   MediaObject,
   SiteMap,
+  Distributions,
 }
 
 export interface Editable {
@@ -53,6 +54,7 @@ export enum ComponentName {
   Manifest = 'manifest',
   Sitemap = 'sitemap',
   Website = 'website',
+  Distributions = 'distributions',
 }
 
 export enum DialogType {
@@ -77,6 +79,7 @@ export interface ProjectContext {
   manifest: Component,
   sitemap: Component,
   website: Component,
+  distributions: Component,
   subResource: number;
 }
 
@@ -93,6 +96,8 @@ export enum ProjectAction {
   DeleteResource,
   ShowDialog,
   ImportData,
+  CreateDistribution,
+  DeleteDistribution,
 }
 
 interface UpdateComponentAction {
@@ -154,6 +159,14 @@ interface ImportDataAction {
   data: string;
 }
 
+interface CreateDistributionAction {
+  type: ProjectAction.CreateDistribution;
+}
+
+interface DeleteDistributionAction {
+  type: ProjectAction.DeleteDistribution;
+}
+
 export type Action = UpdateComponentAction
   | UpdateSubRDFResourceAction
   | SetFileAction
@@ -165,7 +178,9 @@ export type Action = UpdateComponentAction
   | AddResourceAction
   | DeleteResourceAction
   | ShowDialogAction
-  | ImportDataAction;
+  | ImportDataAction
+  | CreateDistributionAction
+  | DeleteDistributionAction;
 
 export type ProjectState = [ProjectContext, Dispatch<Action>];
 
@@ -190,6 +205,10 @@ const resource = (r: Partial<Component>): Component => ({
 const initialState: ProjectContext = {
   current: ComponentName.Manifest,
   dialog: undefined,
+  distributions: resource({
+    name: ComponentName.Distributions,
+    type: ResourceType.Distributions,
+  }),
   iri: undefined,
   loading: false,
   manifest: {
