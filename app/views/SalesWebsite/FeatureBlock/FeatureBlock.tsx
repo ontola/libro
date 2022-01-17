@@ -1,4 +1,9 @@
-import { makeStyles } from '@material-ui/styles';
+import {
+  Typography,
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -17,12 +22,26 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    margin: '3rem',
   },
   image: {
     maxWidth: '30% !important',
+    objectFit: 'contain',
+  },
+  mobileImage: {
+    marginBottom: '24px',
+    maxHeight: '40vh',
+  },
+  mobilePadding: {
+    padding: '1rem',
   },
   text: {
-    maxWidth: '70%',
+    '& h2': {
+      margin: 0,
+
+    },
+    maxWidth: '60%',
   },
 });
 
@@ -31,25 +50,44 @@ const FeatureBlock: FC = () => {
   const [direction] = useProperty(sales.direction);
   const classes = useStyles();
   const [name] = useProperty(schema.name);
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const imageWrap = (
+  const reverse = (direction.value === 'reverse');
+
+  const featureBlockHeading = (
+    <Typography
+      variant="h2"
+    >
+      {name.value}
+    </Typography>
+  );
+
+  const featureBlockImage = (
     <Image
-      className={classes.image}
+      className={mobile ? classes.mobileImage : classes.image}
       linkedProp={image}
     />
   );
-  const reverse = (direction.value === 'reverse');
+
+  if (mobile) {
+    return (
+      <div className={classes.mobilePadding}>
+        {featureBlockHeading}
+        {featureBlockImage}
+        <Property label={schema.text} />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.flexBox}>
-      {reverse ? null : imageWrap}
+      {reverse ? null : featureBlockImage}
       <div className={classes.text}>
-        <h2>
-          {name.value}
-        </h2>
+        {featureBlockHeading}
         <Property label={schema.text} />
       </div>
-      {reverse ? imageWrap : null}
+      {reverse ? featureBlockImage : null}
     </div>
   );
 };
