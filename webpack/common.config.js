@@ -53,14 +53,12 @@ const common = {
   },
 
   plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'static/preloader.css',
-          to: path.resolve(__dirname, '..', 'dist', 'f_assets'),
-        },
-      ],
-    }),
+    new CopyWebpackPlugin([
+      {
+        from: 'static/preloader.css',
+        to: path.resolve(__dirname, '..', 'dist', 'f_assets'),
+      },
+    ]),
     new webpack.ProvidePlugin({
       xmlhttprequest: 'imports-loader?this=>global!exports-loader?global.XMLHttpRequest!global.XMLHttpRequest',
     }),
