@@ -1,3 +1,4 @@
+import TableCell from '@material-ui/core/TableCell';
 import { normalizeType } from 'link-lib';
 import {
   Property,
@@ -18,7 +19,7 @@ const TableCells: React.FC = () => {
       {columns.map((column) => {
         if (!lrs.getResourceProperty(subject, column)) {
           return (
-            <td key={normalizeType(column)[0].value} />
+            <TableCell key={normalizeType(column)[0].value} />
           );
         }
 
