@@ -8889,6 +8889,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hextuples@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "hextuples@npm:2.0.0"
+  dependencies:
+    "@ontologies/core": ">=2.0.0"
+  peerDependencies:
+    can-ndjson-stream: ^1.0.2
+  checksum: 1088309acf8cc0542653e99f3a0986b9e66062179d94f109b6d40328a093fed0cd75d468b39091c40a840916a307bcfeb3ceba8188cd7b9514cb508e4f2965bb
+  languageName: node
+  linkType: hard
+
 "history@npm:^4.10.1, history@npm:^4.9.0":
   version: 4.10.1
   resolution: "history@npm:4.10.1"
@@ -10990,9 +11001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-lib@npm:3.0.0-4":
-  version: 3.0.0-4
-  resolution: "link-lib@npm:3.0.0-4"
+"link-lib@npm:3.0.0-5":
+  version: 3.0.0-5
+  resolution: "link-lib@npm:3.0.0-5"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -11000,25 +11011,25 @@ __metadata:
     "@ontologies/schema": ">=1.0.0"
     "@ontologies/shacl": ">=1.0.0"
     "@ontologies/xsd": ">=1.0.0"
-    can-ndjson-stream: ^1.0.2
+    hextuples: ">=2.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.1
-  checksum: b374706709fc4b6831a2e97bdf70be1c7fd9c7b55ac68bc50d869451c21eaca0d3759a28868d2ccc67768aef37ae81fe2a721f9abbb3b2fa18da1267dc7e36d8
+  checksum: 137e697bc056ac491318ddde207fa2373be6d9931ce573b4ad389a7f4ff24bf1b772783b7ed609754f673d65a94b8464c9c1c0ba61d7ef5f777d7e97ca25785d
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-29":
-  version: 3.0.0-29
-  resolution: "link-redux@npm:3.0.0-29"
+"link-redux@npm:3.0.0-30":
+  version: 3.0.0-30
+  resolution: "link-redux@npm:3.0.0-30"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
     hoist-non-react-statics: ">=3.x"
     http-status-codes: ">= 1.x"
-    link-lib: ">=3.0.0-1"
+    link-lib: ">=3.0.0-5"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: b1717e0c93254032b21dff12f0d66dfe1149c634aab2ee91f6c6a1f8ebcc73e4da556fc26eaf5a72f7b78f3afc86208297be4fbb68b69897ea1fc6585a60746c
+  checksum: 96cf351889c74dc76cdc99537c0d35df2b65c6fbf07b40531e899aab18b4075ff50bbfd2bab92eb30fcfd46ff9249f9ae73a64ce77f4f8c4d387697463a5a34e
   languageName: node
   linkType: hard
 
@@ -12537,6 +12548,7 @@ __metadata:
     file-loader: ^6.2.0
     final-form: ^4.20.0
     fontawesome: ^4.7.2
+    hextuples: ^2.0.0
     history: ^4.10.1
     html-webpack-plugin: ^5.3.2
     http-status-codes: ^1.3.2
@@ -12547,8 +12559,8 @@ __metadata:
     jest: ^27.3.1
     jest-fetch-mock: ^3.0.3
     jsdom: ^16.6.0
-    link-lib: 3.0.0-4
-    link-redux: 3.0.0-29
+    link-lib: 3.0.0-5
+    link-redux: 3.0.0-30
     lint-staged: ^10.5.4
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^2.4.5
