@@ -511,6 +511,13 @@ export const mapMessages: Messages = defineMessages({
   },
 });
 
+export const permissionMessages: Messages = defineMessages({
+  validForType: {
+    defaultMessage: 'Only for {parentType}',
+    id: 'https://app.argu.co/i18n/permissions/validForType',
+  },
+});
+
 export const pdfMessages: Messages = defineMessages({
   commentClickToAdd: {
     defaultMessage: 'Click where you want to add your comment',

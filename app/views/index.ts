@@ -41,6 +41,7 @@ import FormGroup from './FormGroup';
 import FormOption from './FormOption';
 import FormPage from './FormPage';
 import Forum from './Forum/index';
+import GrantTree from './GrantTree';
 import Group from './Group';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
@@ -120,6 +121,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...FormOption,
     ...FormPage,
     ...Forum,
+    ...GrantTree,
     ...GroenLinks,
     ...Group,
     ...ImageObject,

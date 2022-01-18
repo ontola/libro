@@ -139,6 +139,7 @@ export default {
   parentMenu: ontola('parentMenu'),
   pass: ontola('pass'),
   password: ontola('password'),
+  pluralLabel: ontola('pluralLabel'),
   profileMenu: ontola('profileMenu'),
   publishAction: ontola('publishAction'),
   query: ontola('query'),
