@@ -258,10 +258,10 @@ const useMap = (props: UseMapProps): {
   const [deselect, setDeselect] = useState<undefined | (() => void)>(undefined);
 
   useEffect(() => {
-    if (mapToken.accessToken) {
+    if (mapToken.token) {
       setError(undefined);
     }
-  }, [mapToken.accessToken]);
+  }, [mapToken.token]);
 
   const handleError = useCallback((e) => {
     handle(e);
@@ -279,11 +279,11 @@ const useMap = (props: UseMapProps): {
   const handleSelect = useSelectHandler(onClusterSelect, onSelect);
 
   useEffect(() => {
-    if (mapToken.accessToken) {
+    if (mapToken.token) {
       const sources = layers.map(toVectorSource);
       setLayerSources(sources);
 
-      const source = toTileSource(mapToken.accessToken, mapboxTileURL);
+      const source = toTileSource(mapToken.token, mapboxTileURL);
       source.addEventListener('tileloadend', handleLoad);
       source.addEventListener('tileloaderror', handleError);
       source.addEventListener('imageloaderror', handleError);
@@ -297,12 +297,12 @@ const useMap = (props: UseMapProps): {
     }
 
     return () => undefined;
-  }, [mapToken.accessToken]);
+  }, [mapToken.token]);
 
   useEffect(() => {
     const map = createMap({
       ...props,
-      accessToken: mapToken.accessToken,
+      accessToken: mapToken.token,
       currentLocationTooltip: intl.formatMessage(mapMessages.currentLocationTooltip),
       layerSources,
       mapRef,
@@ -315,7 +315,7 @@ const useMap = (props: UseMapProps): {
         map.setTarget(undefined);
       }
     };
-  }, [mapRef.current, mapToken.accessToken, layerSources, tileSource]);
+  }, [mapRef.current, mapToken.token, layerSources, tileSource]);
 
   useEffect(() => {
     const viewChangeHandler = createViewChangeHandler(makeViewUpdater(

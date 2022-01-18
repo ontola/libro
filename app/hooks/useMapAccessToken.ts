@@ -5,31 +5,31 @@ import { handle } from '../helpers/logging';
 import useStoredState from './useStoredState';
 
 export interface LoadingMapAccessToken {
-  accessToken: undefined;
   error: undefined;
   expiresAt: undefined;
   loading: true;
+  token: undefined;
 }
 
 const LOADING_TOKEN: LoadingMapAccessToken = {
-  accessToken: undefined,
   error: undefined,
   expiresAt: undefined,
   loading: true,
+  token: undefined,
 };
 
 export interface ErrorMapAccessToken {
-  accessToken: undefined;
   error: Error;
   expiresAt: undefined;
   loading: false;
+  token: undefined;
 }
 
 export interface ActiveMapAccessToken {
-  accessToken: string;
   error: undefined;
   expiresAt: string;
   loading: false;
+  token: string;
 }
 
 export type MapAccessToken = LoadingMapAccessToken | ErrorMapAccessToken | ActiveMapAccessToken;
@@ -75,10 +75,10 @@ const useMapAccessToken = (): [MapAccessToken, RequestMapAccessToken] => {
     requestToken().then(setToken).catch((e: Error) => {
       handle(e);
       const errorToken: ErrorMapAccessToken = {
-        accessToken: undefined,
         error: e,
         expiresAt: undefined,
         loading: false,
+        token: undefined,
       };
 
       setToken(errorToken);
