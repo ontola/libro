@@ -45,13 +45,15 @@ class TableRowClass extends Topology<TableRowProps> {
   public render() {
     const { classes, ...filterProps } = this.props;
 
-    return this.wrap((
+    return this.wrap((subject) => (
       <TableRow
         className={clsx({
           [this.props.classes.tableRowClickable]: !!this.props.onClick,
         })}
+        resource={subject && subject.value}
         {...filterProps}
-      />));
+      />
+    ));
   }
 }
 
