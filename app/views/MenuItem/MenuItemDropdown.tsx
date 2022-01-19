@@ -2,6 +2,7 @@ import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,
+  array,
   register,
   useIds,
 } from 'link-redux';
@@ -9,7 +10,6 @@ import React from 'react';
 
 import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import ResourceBoundary from '../../components/ResourceBoundary';
-import { useSeqToArr } from '../../hooks/useSeqToArr';
 import ontola from '../../ontology/ontola';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
@@ -24,8 +24,7 @@ const trigger: Trigger = (props) => (
 );
 
 const MenuItemDropdown = () => {
-  const [menuItems] = useIds(ontola.menuItems);
-  const [items] = useSeqToArr(menuItems);
+  const items = useIds(array(ontola.menuItems));
 
   return(
     <ResourceBoundary>

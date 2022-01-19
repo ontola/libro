@@ -1,15 +1,15 @@
 import {
   FC,
   Property,
+  array,
   register,
-  useGlobalIds, 
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { IsActiveCheck } from '../../components/Link';
 import UnorderedList from '../../components/UnorderedList';
-import { useSeqToArr } from '../../hooks/useSeqToArr';
 import ontola from '../../ontology/ontola';
 import { CardRow } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
@@ -29,8 +29,7 @@ const MenuItemCardAppendix: FC<MenuItemCardAppendixProps> = ({
     isActive,
     onClick,
   }), [isActive, onClick]);
-  const [menuItemSequence] = useGlobalIds(ontola.menuItems);
-  const [menuItems] = useSeqToArr(menuItemSequence);
+  const menuItems = useIds(array(ontola.menuItems));
 
   if (menuItems.length == 0) {
     return null;

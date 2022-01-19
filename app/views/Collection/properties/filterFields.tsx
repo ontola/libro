@@ -3,6 +3,7 @@ import { SomeTerm } from '@ontologies/core';
 import {
   FC,
   Resource,
+  array,
   register,
   useIds,
 } from 'link-redux';
@@ -10,7 +11,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import TriggerButton, { Trigger } from '../../../components/DropdownMenu/TriggerButton';
-import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
@@ -26,8 +26,7 @@ const trigger: Trigger = (props) => (
 );
 
 const FilterFields: FC<FilterFieldsProps> = () => {
-  const [filterSequence] = useIds(ontola.filterFields);
-  const [filterFields] = useSeqToArr(filterSequence);
+  const filterFields = useIds(array(ontola.filterFields));
 
   const menuItems = React.useCallback(({ handleClose }) => filterFields
     .map((field) => (

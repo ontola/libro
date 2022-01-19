@@ -4,13 +4,13 @@ import * as schema from '@ontologies/schema';
 import {
   Property,
   Resource,
+  array,
   register,
   useIds,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
 import Card from '../../topologies/Card';
@@ -24,8 +24,7 @@ const useStyles = makeStyles(() => ({
 
 const Timeline = () => {
   const classes = useStyles();
-  const [itemsSeq] = useIds(argu.timelineItems);
-  const [items] = useSeqToArr(itemsSeq);
+  const items = useIds(array(argu.timelineItems));
 
   return (
     <Card>

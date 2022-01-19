@@ -8,6 +8,7 @@ import { SomeNode } from 'link-lib';
 import {
   Property,
   Resource,
+  array,
   register,
   useDataFetching,
   useFields,
@@ -18,7 +19,6 @@ import React, { useState } from 'react';
 import CardContent from '../../../../components/Card/CardContent';
 import CardDivider from '../../../../components/Card/CardDivider';
 import { iriFromTemplate } from '../../../../helpers/uriTemplate';
-import { useContainerToArr } from '../../../../hooks/useContainerToArr';
 import app from '../../../../ontology/app';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
@@ -50,8 +50,7 @@ const DashboardPageFull = () => {
   const [dashboard] = useIds(teamGL.dashboard);
 
   useDataFetching([dashboard]);
-  const [itemSequence] = useIds(dashboard, ontola.menuItems);
-  const [items] = useContainerToArr(itemSequence);
+  const items = useIds(dashboard, array(ontola.menuItems));
   const firstItem = items[0];
   const [currentTab, setCurrentTab] = useState<SomeNode | undefined>(undefined);
   const [iriTemplate] = useFields(isNode(currentTab) ? currentTab : undefined, ontola.href);

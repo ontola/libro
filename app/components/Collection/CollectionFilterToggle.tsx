@@ -2,12 +2,15 @@ import Badge from '@material-ui/core/Badge';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Portal from '@material-ui/core/Portal';
-import { useIds, useLinkRenderContext } from 'link-redux';
+import {
+  array,
+  useIds,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { useSeqToArr } from '../../hooks/useSeqToArr';
 import ontola from '../../ontology/ontola';
 import { collectionMessages } from '../../translations/messages';
 import { FilterComboInput } from '../FilterComboInput';
@@ -28,8 +31,7 @@ const CollectionFilterToggle = ({
   const { redirectPagination } = useCollectionOptions();
 
   const filters = useIds(ontola.collectionFilter);
-  const [fieldSequence] = useIds(ontola.filterFields);
-  const [filterFields] = useSeqToArr(fieldSequence);
+  const filterFields = useIds(array(ontola.filterFields));
 
   const [filterBarState, toggleFilterBar] = React.useState<{
     focus: boolean,
