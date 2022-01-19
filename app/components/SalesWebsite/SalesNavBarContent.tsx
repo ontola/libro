@@ -49,6 +49,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     flexWrap: 'wrap',
     height: '43px',
     justifyContent: 'space-between',
+    margin: 'auto',
+    maxWidth: theme.breakpoints.values.lg,
     overflowY: 'hidden',
     width: '100%',
     [theme.breakpoints.down('sm')]: {
