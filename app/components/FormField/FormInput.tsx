@@ -91,7 +91,7 @@ const FormInput: React.FC<FormInputProps> = ({
       key={[name, index].join('.')}
     >
       <InputComponent
-        autofocus={(autofocus && index === 0) ?? false}
+        autofocus={!!autofocus && (index === 0)}
         errors={errors}
         inputIndex={index}
         inputValue={value}

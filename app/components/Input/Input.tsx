@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import React, { EventHandler } from 'react';
 
-import { isString } from '../../helpers/types';
 import { FocusRelatedEventHandler } from '../../hooks/useFormField';
 
 export enum InputMode {
@@ -100,8 +99,13 @@ const Input: React.FC<PropTypes> = ({
 
   const inputRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
-    if (props.autoFocus && inputRef.current && isString(element)) {
+    if (props.autoFocus && inputRef.current) {
       inputRef.current.focus();
+
+      if (inputRef.current instanceof HTMLTextAreaElement) {
+        inputRef.current.selectionStart = inputRef.current.value.length;
+        inputRef.current.selectionEnd = inputRef.current.value.length;
+      }
     }
   }, [props.autoFocus, inputRef.current]);
 
