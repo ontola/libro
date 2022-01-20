@@ -39,7 +39,7 @@ const Communicator = (): null => {
       try {
         const graphs = parseToGraph(source);
         const data = graphs.flatMap(([_, rdfIndex]) => (
-          rdfIndex as RDFIndex
+          rdfIndex
         ).quads);
         const next = await generateLRS(message.manifest, data);
         register(next.lrs);

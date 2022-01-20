@@ -1,7 +1,5 @@
-import { Quad } from '@ontologies/core';
 import { RenderHookOptions, renderHook } from '@testing-library/react-hooks';
 import { DataObject } from 'link-lib';
-import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
 import React from 'react';
 
@@ -19,7 +17,7 @@ export const createHookWrapper = async <TProps extends unknown>(data: DataObject
   const websiteContext = getWebsiteContextFromWebsite('https://example.com/');
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
-  const { lrs } = await generateLRS(manifest, (graph as RDFIndex).quads as Quad[]);
+  const { lrs } = await generateLRS(manifest, graph.quads);
   const wrapper: React.ComponentType<React.PropsWithChildren<TProps>> = ({ children }) => (
     <RenderStoreProvider value={lrs}>
       {children}

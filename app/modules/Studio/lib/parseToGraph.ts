@@ -27,7 +27,6 @@ import {
   normalizeType,
   toGraph,
 } from 'link-lib';
-import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { ParsedObject } from 'link-lib/dist-types/types';
 
 import ontApp from '../../../ontology/app';
@@ -215,12 +214,10 @@ const hexJSONDataType = (object: SomeTerm): string => {
 
 export const sourceToHextuples = (source: string, uri: string, origin: string = window?.location.origin): string => {
   const quads = parseToGraph(source, origin).flatMap(([subject, store]) => {
-    store.addQuadruples([
-      [subject, ontHttp.statusCode, rdf.literal(OK), ontLl.meta],
-      [rdf.namedNode(uri), ontHttp.statusCode, rdf.literal(OK), ontLl.meta],
-    ]);
+    store.add(subject, ontHttp.statusCode, rdf.literal(OK), ontLl.meta);
+    store.add(rdf.namedNode(uri), ontHttp.statusCode, rdf.literal(OK), ontLl.meta);
 
-    return (store as RDFIndex).quads;
+    return store.quads;
   });
 
   return quads.map((q) => JSON.stringify([

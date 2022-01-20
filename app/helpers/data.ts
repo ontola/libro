@@ -136,7 +136,7 @@ function listToArr<I extends Term = SomeTerm>(
   let first;
 
   if (rest.termType === 'BlankNode') {
-    const firstStatement = lrs.store.find(rest, rdfx.first, null, null);
+    const [firstStatement] = lrs.store.match(rest, rdfx.first, null, null, true);
     first = firstStatement && firstStatement.object as I;
   } else {
     first = lrs.getResourceProperty(rest, rdfx.first) as I;
@@ -154,7 +154,7 @@ function listToArr<I extends Term = SomeTerm>(
     acc.push(first);
   }
 
-  const nextRest = lrs.store.find(rest, rdfx.rest, null, null);
+  const nextRest = lrs.store.match(rest, rdfx.rest, null, null, true)[0];
 
   if (nextRest) {
     const nextObj = nextRest.object;

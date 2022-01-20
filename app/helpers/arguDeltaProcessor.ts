@@ -35,7 +35,7 @@ function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
 function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
   const replaceables = delta
     .filter(([s, , , g]) => rdf.equals(g, ontola.replace)
-          && lrs.store.find(s, null, null, null));
+          && lrs.store.match(s, null, null, null, true)[0]);
 
   return lrs.store.replaceMatches(replaceables);
 }

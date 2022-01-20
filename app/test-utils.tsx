@@ -116,9 +116,10 @@ export const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedOb
     const mainIRI = graphs[0][0];
     const store = new RDFStore().getInternalStore();
 
-    for (const g of graphs) {
-      const s = g[1];
-      store.addQuads(s.quads);
+    for (const [, graph] of graphs) {
+      for (const s of graph.quads) {
+        store.add(s.subject, s.predicate, s.object, s.graph);
+      }
     }
 
     const dataObjects = graphs.reduce<NamedBlobTuple[]>(
@@ -155,7 +156,7 @@ export const renderLinked = async <
   } = opts;
 
   const [iri, graph] = resourcesToGraph(resources);
-  const ctx = await generateCtx(graph as RDFIndex, iri);
+  const ctx = await generateCtx(graph, iri);
 
   const wrapper = wrapProviders({
     ctx,

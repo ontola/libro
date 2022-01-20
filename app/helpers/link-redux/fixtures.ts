@@ -52,7 +52,7 @@ function getSubject(obj: any, subject: string | Node | null): Node | string {
   return subject || keys?.pop();
 }
 
-const isRDFIndex = (v: unknown): v is RDFIndex => Object.prototype.hasOwnProperty.call(v, 'quads');
+const isRDFIndex = (v: unknown): v is RDFIndex => Array.isArray((v as RDFIndex).quads);
 
 export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Quad[] {
   if (typeof obj === 'undefined') {
@@ -60,7 +60,7 @@ export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Q
   }
 
   if (isRDFIndex(obj)) {
-    return obj.quads as Quad[];
+    return obj.quads;
   }
 
   const statements: Quad[] = [];
