@@ -8,32 +8,40 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
+  Resource,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import Image from '../../../components/Image';
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 
 const useStyles = makeStyles({
   flexBox: {
+    '& picture': {
+      '& img':{
+        borderRadius: '15px',
+        height: 'auto',
+        width: '100%',
+      },
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      maxWidth: '40% !important',
+    },
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     margin: '3rem',
   },
-  image: {
-    maxWidth: '30% !important',
-    objectFit: 'contain',
-  },
-  mobileImage: {
-    marginBottom: '24px',
-    maxHeight: '40vh',
-  },
-  mobilePadding: {
+  mobile: {
+    '& img':{
+      borderRadius: '15px',
+      marginBottom: '24px',
+      maxHeight: '40vh',
+    },
     padding: '1rem',
   },
   text: {
@@ -41,7 +49,10 @@ const useStyles = makeStyles({
       margin: 0,
 
     },
-    maxWidth: '60%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    maxWidth: '50%',
   },
 });
 
@@ -64,15 +75,12 @@ const FeatureBlock: FC = () => {
   );
 
   const featureBlockImage = (
-    <Image
-      className={mobile ? classes.mobileImage : classes.image}
-      linkedProp={image}
-    />
+    <Resource subject={image} />
   );
 
   if (mobile) {
     return (
-      <div className={classes.mobilePadding}>
+      <div className={classes.mobile}>
         {featureBlockHeading}
         {featureBlockImage}
         <Property label={schema.text} />
