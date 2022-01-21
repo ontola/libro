@@ -61,10 +61,9 @@ const Proposition = (props: PropositionProps): JSX.Element => {
       >
         {props.name}
       </Typography>
-      <div
-        className={classes.subtitle}
-        dangerouslySetInnerHTML={{ __html: props.text }}
-      />
+      <div className={classes.subtitle}>
+        <Property label={schema.text} />
+      </div>
     </Grid>
   );
 };
