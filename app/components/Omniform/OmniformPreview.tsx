@@ -23,6 +23,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   omniformPreview: {
     '& .fa': {
       paddingRight: '0.5em',
+      verticalAlign: 'middle',
     },
     '&:hover span': {
       color: theme.palette.grey.midDark,
