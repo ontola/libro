@@ -43,7 +43,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   header: {
     alignItems: 'center',
     backgroundAttachment: 'fixed',
-    backgroundColor: theme.palette.background.default,
     backgroundPosition: '50% 40%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '110%',

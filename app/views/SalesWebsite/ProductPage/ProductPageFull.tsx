@@ -99,9 +99,7 @@ const ProductPageFull: FC = () => {
           <Property label={sales.cases} />
         </Container>
       </div>
-      <Container size={Size.Large}>
-        <Property label={sales.features} />
-      </Container>
+      <Property label={sales.features} />
       <Property
         label={sales.callToActionBlock}
         trackingId="product-page-full-cta"

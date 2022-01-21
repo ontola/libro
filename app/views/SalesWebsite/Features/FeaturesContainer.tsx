@@ -10,8 +10,9 @@ import React from 'react';
 
 import { Parallax } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
-import Container, { containerTopology } from '../../../topologies/Container';
+import { LibroTheme, Size } from '../../../themes/themes';
+import { allTopologies } from '../../../topologies';
+import Container  from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -53,7 +54,7 @@ const FeaturesContainer: FC = () => {
       subtitle={text.value}
       title={name.value}
     >
-      <div>
+      <Container size={Size.Large}>
         <Showcase>
           <div className={classes.propositionSelector}>
             <Property label={sales.featuresShowcase} />
@@ -80,13 +81,13 @@ const FeaturesContainer: FC = () => {
             </Grid>
           </Grid>
         </Container>
-      </div>
+      </Container>
     </Parallax>
   );
 };
 
 FeaturesContainer.type = sales.Features;
 
-FeaturesContainer.topology = containerTopology;
+FeaturesContainer.topology = allTopologies;
 
 export default FeaturesContainer;
