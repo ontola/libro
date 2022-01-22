@@ -1,6 +1,6 @@
 import rdf, {
   BlankNode,
-  Quad,
+  Quadruple,
   SomeTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
@@ -12,6 +12,8 @@ import {
   ResponseAndFallbacks,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+
+import { quadruple } from '../quadruple';
 
 enum HexPosition {
   Subject = 0,
@@ -36,10 +38,10 @@ export default {
   acceptValue: 1.0,
   mediaTypes: ['application/hex+x-ndjson'],
 
-  transformer: (store: LinkReduxLRSType) => (res: ResponseAndFallbacks): Promise<Quad[]> => {
+  transformer: (store: LinkReduxLRSType) => (res: ResponseAndFallbacks): Promise<Quadruple[]> => {
     const bnMap: { [s: string]: BlankNode } = {};
     // Skip the (expensive) proxy object when parsing
-    const quad = rdf.quad.bind(rdf);
+    const quad = quadruple;
     const literal = rdf.literal.bind(rdf);
     const namedNode = rdf.namedNode.bind(rdf);
     const blankNodeF = rdf.blankNode.bind(rdf);
@@ -72,7 +74,7 @@ export default {
       h[HexPosition.Graph] ? namedNode(h[HexPosition.Graph]) : defaultGraph(),
     );
 
-    const delta: Quad[] = [];
+    const delta: Quadruple[] = [];
     let parse;
 
     if (res instanceof Response && hasReadableStreamConstructor) {

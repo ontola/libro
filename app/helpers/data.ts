@@ -2,7 +2,8 @@ import * as as from '@ontologies/as';
 import rdf, {
   NamedNode,
   Node,
-  Quad,
+  QuadPosition,
+  Quadruple,
   SomeTerm,
   Term,
   isNamedNode,
@@ -96,12 +97,12 @@ function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRST
     return false;
   }
 
-  return lrs.tryEntity(iri).length > 0 || [OK, NOT_FOUND].includes(lrs.getStatus(iri).status!);
+  return lrs.tryRecord(iri) !== undefined || [OK, NOT_FOUND].includes(lrs.getStatus(iri).status!);
 }
 
-function numAsc(a: Quad, b: Quad) {
-  const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
-  const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
+function numAsc(a: Quadruple, b: Quadruple) {
+  const aP = Number.parseInt(a[QuadPosition.predicate].value.slice(base.length), 10);
+  const bP = Number.parseInt(b[QuadPosition.predicate].value.slice(base.length), 10);
 
   return aP - bP;
 }
@@ -136,8 +137,8 @@ function listToArr<I extends Term = SomeTerm>(
   let first;
 
   if (rest.termType === 'BlankNode') {
-    const [firstStatement] = lrs.store.match(rest, rdfx.first, null, null, true);
-    first = firstStatement && firstStatement.object as I;
+    const [firstStatement] = lrs.store.match(rest, rdfx.first, null, true);
+    first = firstStatement && firstStatement[QuadPosition.object] as I;
   } else {
     first = lrs.getResourceProperty(rest, rdfx.first) as I;
 
@@ -154,10 +155,10 @@ function listToArr<I extends Term = SomeTerm>(
     acc.push(first);
   }
 
-  const nextRest = lrs.store.match(rest, rdfx.rest, null, null, true)[0];
+  const nextRest = lrs.store.match(rest, rdfx.rest, null, true)[0];
 
   if (nextRest) {
-    const nextObj = nextRest.object;
+    const nextObj = nextRest[QuadPosition.object];
 
     if (nextObj.termType === 'Literal' || (nextObj as any).termType === 'Collection') {
       throw new Error(`Rest value must be a resource, was ${nextObj.termType}`);
@@ -187,9 +188,9 @@ function seqToArr<I extends Term = SomeTerm>(
   }
 
   lrs.tryEntity(rest)
-    .filter((s) => s && s.predicate.value.match(sequenceFilter) !== null)
+    .filter((s) => s && s[QuadPosition.predicate].value.match(sequenceFilter) !== null)
     .sort(numAsc)
-    .map((s) => acc.push(s.object as I));
+    .map((s) => acc.push(s[QuadPosition.object] as I));
 
   return acc;
 }

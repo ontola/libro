@@ -1,4 +1,3 @@
-import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import React from 'react';
 
 import { appContextEditor } from '../../../appContext';

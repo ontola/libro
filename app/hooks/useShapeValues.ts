@@ -1,4 +1,5 @@
 import rdfFactory, {
+  QuadPosition,
   SomeTerm,
   isNamedNode,
   isNode,
@@ -63,7 +64,7 @@ const useShapeValues = (targetFromProp: LaxNode, shapeProps: NodeShape[]): Value
       if (target && path) {
         const [dugQuads, dugTargets] = lrs.digDeeper(target, path);
         dugTargets.forEach((subj) => resolvedTargets.add(subj));
-        newMap[rdfFactory.id(currentProps.subject)] = dugQuads.map((q) => q.object);
+        newMap[rdfFactory.id(currentProps.subject)] = dugQuads.map((q) => q[QuadPosition.object]);
       }
     });
 

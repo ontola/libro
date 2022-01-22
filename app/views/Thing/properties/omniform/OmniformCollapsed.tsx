@@ -54,7 +54,7 @@ export interface CollapsedOmniformProps {
 
 const mapInlineStateToProps = (state: UnscopedOmniformState, ownProps: CollapsedOmniformProps) => ({
   opened: getOmniformOpenState(state, ownProps.subject)
-    || !!ownProps.sameAs.find((sameAs: NamedNode) => getOmniformOpenState(state, sameAs)),
+    || !!ownProps.sameAs?.find((sameAs: NamedNode) => getOmniformOpenState(state, sameAs)),
 });
 
 const mapInlineDispatchToProps = (dispatch: (action: Action) => void, ownProps: CollapsedOmniformProps) => ({

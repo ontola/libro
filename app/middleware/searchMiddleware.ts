@@ -12,6 +12,7 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
+import { quadruple } from '../helpers/quadruple';
 import app from '../ontology/app';
 import http from '../ontology/http';
 import ld from '../ontology/ld';
@@ -25,7 +26,7 @@ export const searchMiddleware = (): MiddlewareFn<React.ComponentType<any>> => (s
   (store as any).actions.search = {};
 
   store.processDelta([
-    rdf.quad(app['individuals/searchTarget'], http.statusCode, rdf.literal(HttpStatus.OK), ll.meta),
+    quadruple(app['individuals/searchTarget'], http.statusCode, rdf.literal(HttpStatus.OK), ll.meta),
   ], true);
 
   const { dispatch, parse } = createActionPair<SearchActionMap>(app.ns, store);

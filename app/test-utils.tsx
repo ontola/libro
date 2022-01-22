@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
+import { Node, QuadPosition } from '@ontologies/core';
 import { Queries, queries } from '@testing-library/dom';
 import {
   RenderOptions,
@@ -10,11 +10,11 @@ import { createMemoryHistory } from 'history';
 import {
   ComponentRegistration,
   DataObject,
+  RDFIndex,
   RDFStore,
   createStore,
   toGraph,
 } from 'link-lib';
-import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import {
   NamedBlobTuple,
   ParsedObject,
@@ -118,7 +118,12 @@ export const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedOb
 
     for (const [, graph] of graphs) {
       for (const s of graph.quads) {
-        store.add(s.subject, s.predicate, s.object, s.graph);
+        store.add(
+          s[QuadPosition.subject],
+          s[QuadPosition.predicate],
+          s[QuadPosition.object],
+          s[QuadPosition.graph],
+        );
       }
     }
 

@@ -17,6 +17,7 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
+import { quadruple } from '../helpers/quadruple';
 import app from '../ontology/app';
 import http from '../ontology/http';
 import libro from '../ontology/libro';
@@ -41,8 +42,8 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
 
   store.processDelta([
-    rdf.quad(app.menu, rdfx.type, app.Menu),
-    rdf.quad(app.menu, http.statusCode, rdf.literal(HttpStatus.OK), ll.meta),
+    quadruple(app.menu, rdfx.type, app.Menu),
+    quadruple(app.menu, http.statusCode, rdf.literal(HttpStatus.OK), ll.meta),
   ], true);
 
   /**

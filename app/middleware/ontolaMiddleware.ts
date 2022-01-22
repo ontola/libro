@@ -2,6 +2,7 @@ import rdf, {
   Literal,
   NamedNode,
   Node,
+  Quadruple,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -20,6 +21,7 @@ import React from 'react';
 import { safeCredentials } from '../helpers/dom';
 import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
+import { quadruple } from '../helpers/quadruple';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
 import hexjson from '../helpers/transformers/hexjson';
 import app from '../ontology/app';
@@ -64,27 +66,27 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const snackbarQueue = rdf.blankNode();
 
   store.processDelta([
-    rdf.quad(
+    [
       ontola.ns('snackbar/manager'),
       rdfx.type,
       ontola.ns('snackbar/Manager'),
       ld.add,
-    ),
-    rdf.quad(
+    ],
+    [
       ontola.ns('snackbar/manager'),
       ontola.ns('snackbar/queue'),
       snackbarQueue,
       ld.add,
-    ),
-    rdf.quad(
+    ],
+    [
       snackbarQueue,
       rdfx.type,
       rdfx.Seq,
       ld.add,
-    ),
+    ],
   ], true);
 
-  const queueSnackbar = (text: string) => {
+  const queueSnackbar = (text: string): Quadruple[] => {
     const s = rdf.blankNode();
 
     const queue = store.getResourceProperty<Node>(
@@ -93,18 +95,18 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     )!;
 
     return [
-      rdf.quad(
+      [
         s,
         rdfx.type,
         ontola.ns('snackbar/Snackbar'),
         ld.add,
-      ),
-      rdf.quad(
+      ],
+      [
         s,
         schema.text,
         rdf.literal(text),
         ld.add,
-      ),
+      ],
       ...seqPush(store.store, queue, s),
     ];
   };
@@ -128,7 +130,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const dialogManager = ontola.ns('dialog/manager');
 
   store.processDelta([
-    rdf.quad(
+    quadruple(
       dialogManager,
       rdfx.type,
       ontola.ns('dialog/Manager'),
@@ -137,7 +139,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   ], true);
 
   const hideDialog = () => [
-    rdf.quad(
+    quadruple(
       dialogManager,
       ontola.ns('dialog/resource'),
       ontola.ns('dialog/closed'),
@@ -146,19 +148,19 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   ];
 
   const showDialog = (value: string, size?: DialogSize | null, opener?: string | null) => [
-    rdf.quad(
+    quadruple(
       dialogManager,
       ontola.ns('dialog/resource'),
       rdf.namedNode(value),
       ld.replace,
     ),
-    rdf.quad(
+    quadruple(
       dialogManager,
       ontola.ns('dialog/size'),
       rdf.literal(size || DialogSize.Lg),
       ld.replace,
     ),
-    rdf.quad(
+    quadruple(
       dialogManager,
       ontola.ns('dialog/opener'),
       opener ? rdf.namedNode(opener) : app.ns(currentPath().slice(1)),

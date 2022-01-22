@@ -1,9 +1,10 @@
+import { QuadPosition } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import {
   FC,
   except,
   register,
-  useQuads,
+  useQuadruples,
 } from 'link-redux';
 import React from 'react';
 
@@ -17,7 +18,7 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const SubmissionDataContainer: FC = () => {
-  const properties = useQuads(except(rdfx.type));
+  const properties = useQuadruples(except(rdfx.type));
 
   return (
     <Card>
@@ -25,8 +26,8 @@ const SubmissionDataContainer: FC = () => {
         <AttributeList>
           {properties.map((property) => (
             <AttributeListItem
-              key={property.predicate.value}
-              label={property.predicate}
+              key={property[QuadPosition.predicate].value}
+              label={property[QuadPosition.predicate]}
               onError={() => null}
             />
           ))}

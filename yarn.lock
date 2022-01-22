@@ -2894,15 +2894,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rdfdev/collections@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@rdfdev/collections@npm:1.2.0"
+"@rdfdev/collections@npm:0.0.0-9ea75cda":
+  version: 0.0.0-9ea75cda
+  resolution: "@rdfdev/collections@npm:0.0.0-9ea75cda"
   peerDependencies:
     "@ontologies/core": "*"
     "@ontologies/ld": "*"
     "@ontologies/rdf": "*"
     "@ontologies/rdfs": "*"
-  checksum: 29b110819954511fc67d364f69a295616f776fdcd585c034eec05423214cf3f81db6657acf2ca9bf482269a1daeb612429fce5a7e507b7961713b03d03e12754
+  checksum: 3d040faaaaf6b923e7afedacda80d9171e21aab27681e880b804f9942f10d3d9a4ea0c248a49fd9265c06966b2af0464b6a1688440e12f86eaeb6cec7749d92d
   languageName: node
   linkType: hard
 
@@ -11001,9 +11001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-lib@npm:0.0.0-0b1c2b7f":
-  version: 0.0.0-0b1c2b7f
-  resolution: "link-lib@npm:0.0.0-0b1c2b7f"
+"link-lib@npm:0.0.0-55d411d9":
+  version: 0.0.0-55d411d9
+  resolution: "link-lib@npm:0.0.0-55d411d9"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -11014,13 +11014,13 @@ __metadata:
     hextuples: ">=2.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.1
-  checksum: 1c12093d8b1a8eaabf1ead319d14b416f4f70b204fc22791b4cebaf1d1bd21663270696515d32215aa2d4fb18fd13c8461e955a5ca16832a507979a580c813a7
+  checksum: 298c5d5eecc903e2a9860070d50d5890df987c093092b2d96d46e0247e326ff3dbe9cfd84ea9dab6f31719e4eedd27f477de301fff02c84e73f75b06c3525041
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-30":
-  version: 3.0.0-30
-  resolution: "link-redux@npm:3.0.0-30"
+"link-redux@npm:0.0.0-53b3c05e":
+  version: 0.0.0-53b3c05e
+  resolution: "link-redux@npm:0.0.0-53b3c05e"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -11029,7 +11029,7 @@ __metadata:
     link-lib: ">=3.0.0-5"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 96cf351889c74dc76cdc99537c0d35df2b65c6fbf07b40531e899aab18b4075ff50bbfd2bab92eb30fcfd46ff9249f9ae73a64ce77f4f8c4d387697463a5a34e
+  checksum: 8462901e2a48d8521360a2bc165e6618ddbe1c6d2aa96d57bae2166131f92c6e50d591a0c8e9eb3483e68e32d568d94d4c25d9f322e4568c8d890b7584c9f212
   languageName: node
   linkType: hard
 
@@ -12487,7 +12487,7 @@ __metadata:
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
     "@rails/actioncable": ^6.1.4-1
     "@rdfdev/actions": ^1.1.1
-    "@rdfdev/collections": ^1.2.0
+    "@rdfdev/collections": 0.0.0-9ea75cda
     "@rdfdev/iri": ^1.2.0
     "@react-spring/web": ^9.3.1
     "@testing-library/dom": ^8.6.0
@@ -12559,8 +12559,8 @@ __metadata:
     jest: ^27.3.1
     jest-fetch-mock: ^3.0.3
     jsdom: ^16.6.0
-    link-lib: 0.0.0-0b1c2b7f
-    link-redux: 3.0.0-30
+    link-lib: 0.0.0-55d411d9
+    link-redux: 0.0.0-53b3c05e
     lint-staged: ^10.5.4
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^2.4.5

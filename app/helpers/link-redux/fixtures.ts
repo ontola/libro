@@ -1,16 +1,17 @@
 import rdf, {
   Node,
-  Quad,
+  Quadruple,
+  SomeTerm,
   createNS,
 } from '@ontologies/core';
 import { History } from 'history';
-import { DataObject } from 'link-lib';
-import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
+import { DataObject, RDFIndex } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import { Store } from 'redux';
 
 import { defaultManifest } from '../defaultManifest';
 import generateLRS from '../generateLRS';
+import { quadruple } from '../quadruple';
 import ServiceWorkerCommunicator from '../ServiceWorkerCommunicator';
 
 import { TestContext, defaultContext } from './utilities';
@@ -32,7 +33,7 @@ const context = (
   subject: iri,
 });
 
-async function chargeLRS(id: Node | string, obj: Quad[], store: Store | undefined = undefined): Promise<TestContext> {
+async function chargeLRS(id: Node | string, obj: Quadruple[], store: Store | undefined = undefined): Promise<TestContext> {
   const testManifest = defaultManifest('https://app.argu.co/freetown');
 
   const {
@@ -54,7 +55,7 @@ function getSubject(obj: any, subject: string | Node | null): Node | string {
 
 const isRDFIndex = (v: unknown): v is RDFIndex => Array.isArray((v as RDFIndex).quads);
 
-export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Quad[] {
+export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Quadruple[] {
   if (typeof obj === 'undefined') {
     return [];
   }
@@ -63,7 +64,7 @@ export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Q
     return obj.quads;
   }
 
-  const statements: Quad[] = [];
+  const statements: Quadruple[] = [];
   Object.keys(obj).forEach((s) => {
     const resource = (obj)[s];
     const subject = s.startsWith('_:')
@@ -74,9 +75,9 @@ export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Q
       const predicate = rdf.namedNode(p.slice(1, -1));
 
       if (Array.isArray(object)) {
-        object.forEach((iObject) => statements.push(rdf.quad(subject, predicate, iObject)));
+        object.forEach((iObject) => statements.push(quadruple(subject, predicate, iObject as SomeTerm)));
       } else {
-        statements.push(rdf.quad(subject, predicate, object));
+        statements.push(quadruple(subject, predicate, object as SomeTerm));
       }
     });
   });

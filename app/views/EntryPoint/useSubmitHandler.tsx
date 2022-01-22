@@ -1,4 +1,4 @@
-import { Quad, isNamedNode } from '@ontologies/core';
+import { Quadruple, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import HttpStatus from 'http-status-codes';
@@ -110,7 +110,7 @@ const useSubmitHandler = ({
         throw e;
       }
 
-      return lrs.api.feedResponse(e.response).then((statements: Quad[]) => {
+      return lrs.api.feedResponse(e.response).then((statements: Quadruple[]) => {
         const name = anyRDFValue(statements, schema.text);
 
         if (name) {

@@ -1,9 +1,13 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import {
+  NamedNode,
+  QuadPosition,
+  SomeTerm,
+} from '@ontologies/core';
 import {
   FC,
   Resource,
   register,
-  useQuads,
+  useQuadruples,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,21 +22,21 @@ interface ViewsProps {
 }
 
 const Views: FC<ViewsProps> = ({ label }) => {
-  const prop = useQuads(label);
+  const prop = useQuadruples(label);
 
   if (prop.length === 1) {
     return (
       <Resource
         forceRender
-        subject={prop[0].object}
+        subject={prop[0][QuadPosition.object]}
       />
     );
   }
 
   const obs = prop.map((iri) => (
     <Resource
-      key={`views-${iri.object.value}`}
-      subject={iri.object}
+      key={`views-${iri[QuadPosition.object].value}`}
+      subject={iri[QuadPosition.object]}
     />
   ));
 

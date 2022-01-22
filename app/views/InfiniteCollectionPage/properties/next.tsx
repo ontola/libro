@@ -1,5 +1,6 @@
 import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import { SomeNode } from 'link-lib/dist-types/types';
 import {
   PropertyProps,
   register,
@@ -11,6 +12,7 @@ import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
+import { quadruple } from '../../../helpers/quadruple';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -27,8 +29,8 @@ const InfiniteCollectionNext = ({
   const onClick = useCallback(
     () => new Promise(() => {
       lrs.store.addQuads([
-        rdf.quad(partOf, ontola.pages, linkedProp),
-        rdf.quad(subject, argu.void, rdf.literal(0)),
+        quadruple(partOf as SomeNode, ontola.pages, linkedProp),
+        quadruple(subject, argu.void, rdf.literal(0)),
       ]);
       (lrs as any).broadcast();
     }),

@@ -84,9 +84,9 @@ export function error(...msg: any[]): void {
   }
 }
 
-export function handle(exception: Error): void {
+export function handle(exception: unknown): void {
   error(exception);
-  client.notify(exception);
+  client.notify(exception as Error);
 }
 
 export function log(...msg: any[]): void {

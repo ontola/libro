@@ -20,11 +20,12 @@ import { FormFieldError, InputMeta } from '../components/FormField';
 import {
   fieldActiveCID,
   fieldVariantPreviewCID,
-  useFormStyles, 
+  useFormStyles,
 } from '../components/FormField/FormField';
 import { arraysEqual } from '../helpers/data';
 import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
+import { quadruple } from '../helpers/quadruple';
 import {
   isJSONLDObject,
   isNumber,
@@ -114,7 +115,7 @@ const valueChanged = (oldValue: InputValue[], newValue: InputValue[] | undefined
 const changeDelta = (object: SomeNode, path: NamedNode, nextValue: InputValue[]) => {
   if (!nextValue || nextValue.length === 0) {
     return [
-      rdf.quad(
+      quadruple(
         object,
         path,
         sp.Variable,
@@ -124,7 +125,7 @@ const changeDelta = (object: SomeNode, path: NamedNode, nextValue: InputValue[])
   }
 
   return nextValue.map((val) => (
-    rdf.quad(
+    quadruple(
       object,
       path,
       isJSONLDObject(val) ? val['@id'] : val,

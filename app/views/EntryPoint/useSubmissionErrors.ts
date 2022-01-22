@@ -1,4 +1,4 @@
-import { isNode } from '@ontologies/core';
+import { QuadPosition, isNode } from '@ontologies/core';
 import {
   LaxNode,
   useDataInvalidation,
@@ -17,12 +17,12 @@ const useSubmissionErrors = (errorResponse: LaxNode): [SubmissionErrors, ClearEr
   const submissionErrors = React.useMemo<SubmissionErrors>(() => {
     if (isNode(errorResponse)) {
       const errs = lrs.tryEntity(errorResponse).reduce((acc: SubmissionErrors, triple) => {
-        const key = btoa(triple.predicate.value);
+        const key = btoa(triple[QuadPosition.predicate].value);
 
         return {
           ...acc,
           [key]: (acc[key] || []).concat([{
-            error: triple.object.value,
+            error: triple[QuadPosition.object].value,
             index: 0,
           }]),
         };

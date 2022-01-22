@@ -1,6 +1,6 @@
 import rdf, {
   Node,
-  Quad,
+  QuadPosition,
   Quadruple,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
@@ -12,8 +12,8 @@ import sp from '../ontology/sp';
 
 export interface DeltaProcessors {
   deltas: Quadruple[][];
-  flush(): Quad[];
-  processDelta(delta: Quadruple[]): Quad[];
+  flush(): Quadruple[];
+  processDelta(delta: Quadruple[]): Quadruple[];
   queueDelta(delta: Quadruple[]): void;
 }
 
@@ -26,7 +26,6 @@ function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
           rdf.equals(s, sp.Variable) ? null : s,
           rdf.equals(p, sp.Variable) ? null : p,
           rdf.equals(o, sp.Variable) ? null : o as Node,
-          null,
         ),
       );
     });
@@ -35,7 +34,7 @@ function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
 function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
   const replaceables = delta
     .filter(([s, , , g]) => rdf.equals(g, ontola.replace)
-          && lrs.store.match(s, null, null, null, true)[0]);
+          && lrs.store.match(s, null, null, true)[0]);
 
   return lrs.store.replaceMatches(replaceables);
 }
@@ -56,10 +55,9 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
           rdf.equals(s, sp.Variable) ? null : s,
           rdf.equals(p, sp.Variable) ? null : p,
           rdf.equals(o, sp.Variable) ? null : o as Node,
-          null,
-        ).forEach((match: Quad) => {
-          lrs.api.invalidate(match.subject);
-          lrs.store.removeResource(match.subject);
+        ).forEach((match: Quadruple) => {
+          lrs.api.invalidate(match[QuadPosition.subject]);
+          lrs.store.removeResource(match[QuadPosition.subject]);
         });
       }
     });
@@ -86,7 +84,7 @@ function arguDeltaProcessor(lrs: LinkReduxLRSType): DeltaProcessors {
     deltas: [] as Quadruple[][],
 
     flush() {
-      let statements: Quad[] = [];
+      let statements: Quadruple[] = [];
       const nextDeltas = this.deltas;
       this.deltas = [];
 

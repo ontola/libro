@@ -5,6 +5,7 @@ import * as ontAs from '@ontologies/as';
 import rdf, {
   Literal,
   Node,
+  QuadPosition,
   SomeTerm,
   isBlankNode,
   isLiteral,
@@ -221,12 +222,14 @@ export const sourceToHextuples = (source: string, uri: string, origin: string = 
   });
 
   return quads.map((q) => JSON.stringify([
-    hexJSONSubject(q.subject),
-    q.predicate.value,
-    hexJSONValue(q.object),
-    hexJSONDataType(q.object),
-    (q.object as Literal).language ?? '',
-    q.graph.value === 'rdf:defaultGraph' ? ontLd.add.value : q.graph.value,
+    hexJSONSubject(q[QuadPosition.subject]),
+    q[QuadPosition.predicate].value,
+    hexJSONValue(q[QuadPosition.object]),
+    hexJSONDataType(q[QuadPosition.object]),
+    (q[QuadPosition.object] as Literal).language ?? '',
+    q[QuadPosition.graph].value === 'rdf:defaultGraph'
+      ? ontLd.add.value
+      : q[QuadPosition.graph].value,
   ])).join('\n');
 };
 

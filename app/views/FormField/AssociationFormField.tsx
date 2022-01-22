@@ -1,5 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, { NamedNode, isNamedNode } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  QuadPosition,
+  isNamedNode, 
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
@@ -56,8 +60,8 @@ const useItemFactory = () => {
 
     if (blankObject) {
       lrs.store.quadsFor(blankObject).forEach((quad) => {
-        if (formPaths.indexOf(quad.predicate) !== -1 || conditionalFormPaths.indexOf(quad.predicate) !== -1) {
-          values[btoa(quad.predicate.value)] = [quad.object];
+        if (formPaths.indexOf(quad[QuadPosition.predicate]) !== -1 || conditionalFormPaths.indexOf(quad[QuadPosition.predicate]) !== -1) {
+          values[btoa(quad[QuadPosition.predicate].value)] = [quad[QuadPosition.object]];
         }
       });
     }

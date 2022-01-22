@@ -1,11 +1,11 @@
-import { Quad } from '@ontologies/core';
+import { Quadruple } from '@ontologies/core';
 import { DataProcessor } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 export const HTTP_RETRY_WITH = 449;
 
 export interface SubmitDataProcessor extends Omit<DataProcessor, 'feedResponse' | 'execExecHeader' > {
-  feedResponse:  (res: Response) => Promise<Quad[]>;
+  feedResponse:  (res: Response) => Promise<Quadruple[]>;
   execExecHeader: (header: string | null, args: unknown) => void;
 }
 
