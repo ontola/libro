@@ -32,6 +32,7 @@ const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) =>  {
     (next.store as any).langPrefs = (old.store as any).langPrefs;
     (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
     next.schema.addQuads((old.schema as any).store.quads);
+    (next.store.getInternalStore().store.journal as any).data = JSON.parse(JSON.stringify((old.store.getInternalStore().store.journal as any).data));
     next.actions = old.actions;
 
     const nextDispatch = next.dispatch;

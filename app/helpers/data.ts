@@ -11,11 +11,10 @@ import rdf, {
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import {
-  BAD_REQUEST,
-  NOT_FOUND,
-  OK,
-} from 'http-status-codes';
-import { LazyNNArgument, normalizeType } from 'link-lib';
+  LazyNNArgument,
+  RecordState,
+  normalizeType,
+} from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { FileStore } from '../hooks/useFileStore';
@@ -86,18 +85,12 @@ function convertKeysAtoB(obj: { [k: string]: any }, fileStore: FileStore, aToB =
   return output;
 }
 
-function entityHasError(lrs: LinkReduxLRSType, iri: Node): boolean {
-  const status = lrs.getStatus(iri).status;
-
-  return status !== null && status >= BAD_REQUEST;
-}
-
 function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRSType>(lrs: T, iri: Node | undefined): boolean {
   if (!iri) {
     return false;
   }
 
-  return lrs.tryRecord(iri) !== undefined || [OK, NOT_FOUND].includes(lrs.getStatus(iri).status!);
+  return lrs.getState(iri.value) === RecordState.Present;
 }
 
 function numAsc(a: Quadruple, b: Quadruple) {
@@ -274,7 +267,6 @@ export {
   bestType,
   containerToArr,
   convertKeysAtoB,
-  entityHasError,
   entityIsLoaded,
   filter,
   filterFind,
