@@ -12,6 +12,7 @@ import { useFieldForwardRules } from '../hooks/useFieldForwardRules';
 import { useFieldHashes } from '../hooks/useFieldHashes';
 import { useFlowActiveField } from '../hooks/useFlowActiveField';
 import { useFlowFields } from '../hooks/useFlowFields';
+import { useSetFocusToActiveField } from '../hooks/useSetFocusToActiveField';
 import { useTouchFields } from '../hooks/useTouchFields';
 
 import { FlowBackground } from './FlowBackground';
@@ -75,6 +76,8 @@ const FlowForm = (): JSX.Element | null => {
   useAutoForward(activeField, hashedFieldMap, isAutoForwardField, activateNextField);
 
   useTouchFields(currentIndex, fields.length);
+
+  useSetFocusToActiveField(Array.from(hashedFieldMap.keys())[currentIndex]);
 
   if (loading) {
     return null;

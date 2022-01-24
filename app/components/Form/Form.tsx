@@ -72,6 +72,13 @@ export interface FormContext {
 export const FormContext = React.createContext<Partial<FormContext>>({});
 
 const mutators = {
+  focusField(key: string, state: MutableState<Record<string, any>, Record<string, any>>) {
+    const field = state.fields[key];
+
+    if (field) {
+      field.active = true;
+    }
+  },
   touchFields: (_: string, state: MutableState<Record<string, any>, Record<string, any>>) => {
     for (const field of Object.values(state.fields)) {
       field.touched = true;

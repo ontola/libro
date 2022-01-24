@@ -295,7 +295,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
       ...meta,
       error: err,
     });
-  }, [meta.touched, meta.error, meta.pristine, meta.dirtySinceLastSubmit]);
+  }, [meta.touched, meta.error, meta.pristine, meta.dirtySinceLastSubmit, meta.active]);
 
   React.useLayoutEffect(() => {
     if (input && whitelisted && addFieldName) {

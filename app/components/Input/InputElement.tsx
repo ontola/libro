@@ -17,20 +17,24 @@ import {
 } from '../FormField/FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import { InputComponentProps } from '../FormField/InputComponentProps';
-import Input, { PropTypes as InputProps, InputType } from '../Input/Input';
+import Input, {
+  PropTypes as InputProps,
+  InputType,
+} from '../Input/Input';
 
 interface StyleProps {
   invalid?: boolean;
   touched?: boolean;
 }
 
-const TEXTFIELD_MIN_ROWS = 3;
-
 export interface InputPropTypes extends InputComponentProps {
   trailer: (props: any) => any;
   type?: InputType;
 }
 
+type SharedInputProps = InputProps & Partial<PlainEditorProps> & Partial<Omit<Textarea.Props, keyof InputProps>>;
+
+const TEXTFIELD_MIN_ROWS = 3;
 const FLOW_INPUT_PADDING = 4;
 
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
@@ -59,6 +63,7 @@ const InputElement = ({
   trailer: Trailer,
   type,
 }: InputPropTypes): JSX.Element => {
+
   const {
     onKeyUp,
     theme,
@@ -73,6 +78,9 @@ const InputElement = ({
     placeholder,
     storeKey,
   } = React.useContext(FormFieldContext);
+
+  const [focus, setFocus] = React.useState(autofocus);
+
   const {
     maxInclusive,
     minInclusive,
@@ -84,6 +92,10 @@ const InputElement = ({
     invalid,
     touched,
   } = meta;
+
+  React.useEffect(() => {
+    setFocus(autofocus || meta.active);
+  }, [meta.active]);
 
   const classes = useStyles({
     invalid,
@@ -101,13 +113,12 @@ const InputElement = ({
     [classes.flowInput]: theme === FormTheme.Flow,
   });
 
-  const sharedProps: InputProps & Partial<PlainEditorProps> & Partial<Omit<Textarea.Props, keyof InputProps>> = {
-    'autoFocus': autofocus,
+  const sharedProps: SharedInputProps = {
     'data-testid': name,
-    'id': name,
+    id: name,
     name,
     onBlur,
-    'onChange': (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
       let val;
 
       if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
@@ -120,7 +131,7 @@ const InputElement = ({
     },
     onFocus,
     required,
-    'value': inputValue?.value,
+    value: inputValue?.value,
   };
 
   let element;
@@ -146,6 +157,7 @@ const InputElement = ({
     <div className={className}>
       <Input
         {...sharedProps}
+        autoFocus={focus}
         element={element}
         max={maxInclusive}
         // TODO: [AOD-218] HTML only noscript
