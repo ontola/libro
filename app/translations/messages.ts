@@ -73,6 +73,10 @@ export const collapsibleMessages: Messages = defineMessages({
 });
 
 export const collectionMessages: Messages = defineMessages({
+  add: {
+    defaultMessage: 'Add item',
+    id: 'https://app.argu.co/i18n/as:CollectionPage/as:Add/placeholder',
+  },
   collectionActionsAriaLabel: {
     defaultMessage: 'Collection actions',
     id: 'https://app.argu.co/i18n/as:CollectionPage/collectionActionsAriaLabel',
@@ -88,6 +92,10 @@ export const collectionMessages: Messages = defineMessages({
   previousLabel: {
     defaultMessage: 'previous',
     id: 'https://app.argu.co/i18n/as:CollectionPage/as:previous/label',
+  },
+  sort: {
+    defaultMessage: 'Sort',
+    id: 'https://app.argu.co/i18n/as:CollectionPage/as:Sort/placeholder',
   },
 });
 
@@ -411,6 +419,10 @@ export const navBarMessages: Messages = defineMessages({
   moreDropdownButton: {
     defaultMessage: 'More',
     id: 'https://app.argu.co/i18n/navBarMessages/moreDropdownButton',
+  },
+  userSettings: {
+    defaultMessage: 'User settings',
+    id: 'https://app.argu.co/i18n/navBarMessages/userSettings',
   },
 });
 

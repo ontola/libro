@@ -17,8 +17,14 @@
   "https://app.argu.co/i18n/argu:lastActivityAt/label": {
     "defaultMessage": "letzte Aktivität: {date}"
   },
+  "https://app.argu.co/i18n/as:CollectionPage/as:Add/placeholder": {
+    "defaultMessage": "Artikel hinzufügen"
+  },
   "https://app.argu.co/i18n/as:CollectionPage/as:Filter/placeholder": {
     "defaultMessage": "Filtern"
+  },
+  "https://app.argu.co/i18n/as:CollectionPage/as:Sort/placeholder": {
+    "defaultMessage": "Sortieren"
   },
   "https://app.argu.co/i18n/as:CollectionPage/as:next/label": {
     "defaultMessage": "nächste"
@@ -343,6 +349,9 @@
   },
   "https://app.argu.co/i18n/navBarMessages/moreDropdownButton": {
     "defaultMessage": "Mehr"
+  },
+  "https://app.argu.co/i18n/navBarMessages/userSettings": {
+    "defaultMessage": "Benutzereinstellungen"
   },
   "https://app.argu.co/i18n/navbar/search": {
     "defaultMessage": "Suche"
