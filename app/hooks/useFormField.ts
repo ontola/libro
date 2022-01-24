@@ -20,7 +20,7 @@ import { FormFieldError, InputMeta } from '../components/FormField';
 import {
   fieldActiveCID,
   fieldVariantPreviewCID,
-  useFormStyles, 
+  useFormStyles,
 } from '../components/FormField/FormField';
 import { arraysEqual } from '../helpers/data';
 import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
@@ -58,7 +58,7 @@ interface MapFieldPropsShape {
 
 export type InputValue = JSONLDObject | SomeTerm;
 export type OnInputChange = (newValues: InputValue[]) => void;
-export type FocusRelatedEventHandler = (e: React.FocusEvent<HTMLElement>) => void;
+export type FocusRelatedEventHandler = (e?: React.FocusEvent<HTMLElement>) => void;
 export type ItemFactory = () => InputValue;
 
 export interface UseFormFieldProps {

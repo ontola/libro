@@ -8,7 +8,7 @@ import Suspense from '../components/Suspense';
 
 const DateTimePicker = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: "Forms" */ '../async/DateTimePicker'),
+  () => import(/* webpackChunkName: "Forms" */ '../async/DatePicker/DateTimePicker'),
 );
 
 const DateTimePickerLoader = (props: InputComponentProps): JSX.Element => {
