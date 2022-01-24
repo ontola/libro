@@ -9,19 +9,31 @@ import { registerRoute, setDefaultHandler } from 'workbox-routing';
 import {
   CacheFirst,
   NetworkOnly,
-  StaleWhileRevalidate 
+  StaleWhileRevalidate
 } from 'workbox-strategies';
 
-const scope = self.registration.scope;
-const basePath = scope.includes('://') ? new URL(scope).pathname : scope;
-const offlineFile = `${basePath}${basePath.endsWith('/') ? '' : '/'}public/offline.html`;
+const offlineFile = '/f_assets/offline.html';
 
 self.skipWaiting();
 
 clientsClaim();
 cleanupOutdatedCaches();
 
-precacheAndRoute(self.__WB_MANIFEST);
+const whitelist = [
+  'main',
+  'actioncable',
+  'Forms',
+  'offline.html',
+];
+const blacklist = [
+  '.map',
+  'LICENSE',
+];
+
+precacheAndRoute((self.__WB_MANIFEST).filter((entry) =>
+  whitelist.some((b) => entry.url.includes(b))
+  && !blacklist.some((b) => entry.url.includes(b))
+));
 
 const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line @typescript-eslint/no-magic-numbers
 
