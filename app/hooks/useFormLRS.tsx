@@ -20,18 +20,17 @@ export interface ClonedLRS extends LinkReduxLRSType {
 const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) =>  {
   const { lrs: next } = await generateLRS(
     manifest,
-    [],
+    undefined,
     { middleware: false },
   );
 
   register(next);
 
   if (old) {
-    next.store.addQuads((old.store as any).store.quads);
+    next.store.addQuadruples((old.store as any).store.quads);
     next.store.changeTimestamps = (old.store as any).changeTimestamps.slice();
     (next.store as any).langPrefs = (old.store as any).langPrefs;
     (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
-    next.schema.addQuads((old.schema as any).store.quads);
     (next.store.getInternalStore().store.journal as any).data = JSON.parse(JSON.stringify((old.store.getInternalStore().store.journal as any).data));
     next.actions = old.actions;
 

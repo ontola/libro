@@ -10,9 +10,10 @@ import { APP_ELEMENT } from './config';
 import { defaultManifest } from './helpers/defaultManifest';
 import './helpers/typescript';
 import generateLRS from './helpers/generateLRS';
-import { handle, log } from './helpers/logging';
+import { log } from './helpers/logging';
 import App from './App';
 import patchRequestInitGenerator from './helpers/monkey';
+import { seedToSlice } from './helpers/seed';
 import { WebManifest } from './WebManifest';
 
 const getWebsiteManifest = (): WebManifest => {
@@ -33,22 +34,15 @@ const getWebsiteManifest = (): WebManifest => {
   const {
     lrs,
     history,
-  } = await generateLRS(manifest);
+  } = await generateLRS(manifest, seedToSlice(window.INITIAL__DATA));
   patchRequestInitGenerator(lrs);
 
   if (document.documentElement.lang) {
     (lrs.store as any).langPrefs.unshift(document.documentElement.lang);
   }
 
-  const BOOT_TIMEOUT = 10000;
-  let timeout: undefined | number;
-
   function mount() {
     log('Mounting app');
-
-    if (typeof window !== 'undefined') {
-      window.clearTimeout(timeout);
-    }
 
     render(
       <AppContextProvider
@@ -61,32 +55,7 @@ const getWebsiteManifest = (): WebManifest => {
     );
   }
 
-  new Promise((resolve, reject) => {
-    if (typeof window.INITIAL__DATA !== 'undefined') {
-      log('Seeding LRS');
-      const seedRequest = new Response(
-        window.INITIAL__DATA,
-        { headers: new Headers({ 'Content-Type': 'application/hex+x-ndjson' }) },
-      );
-
-      timeout = window.setTimeout(() => {
-        handle(new Error('Forced mount'));
-        mount();
-      }, BOOT_TIMEOUT);
-
-      (lrs.api as any)
-        .feedResponse(seedRequest, true)
-        .then(resolve)
-        .catch(reject);
-    } else {
-      throw new Error(`No seed data present (was '${typeof window.INITIAL__DATA}')`);
-    }
-  })
-    .then(mount)
-    .catch((e) => {
-      handle(e);
-      mount();
-    });
+  mount();
 
   if (typeof window !== 'undefined') {
     enableDevtools(lrs);

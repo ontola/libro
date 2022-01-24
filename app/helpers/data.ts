@@ -90,7 +90,7 @@ function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRST
     return false;
   }
 
-  return lrs.getState(iri.value) === RecordState.Present;
+  return lrs.getState(iri.value).current === RecordState.Present;
 }
 
 function numAsc(a: Quadruple, b: Quadruple) {

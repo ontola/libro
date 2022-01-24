@@ -2,6 +2,7 @@ import React from 'react';
 
 import { appContextEditor } from '../../../appContext';
 import generateLRS from '../../../helpers/generateLRS';
+import { quadruplesToDataSlice } from '../../../helpers/quadruplesToDataSlice';
 import register from '../../../views';
 import parseToGraph from '../lib/parseToGraph';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
@@ -40,7 +41,7 @@ const Communicator = (): null => {
         const data = graphs.flatMap(([_, rdfIndex]) => (
           rdfIndex
         ).quads);
-        const next = await generateLRS(message.manifest, data);
+        const next = await generateLRS(message.manifest, quadruplesToDataSlice(data));
         register(next.lrs);
 
         updateCtx((prev) => (

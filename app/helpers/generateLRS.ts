@@ -14,7 +14,12 @@ import {
   createBrowserHistory,
   createMemoryHistory,
 } from 'history';
-import { MiddlewareFn, createStore } from 'link-lib';
+import {
+  DataRecord,
+  LinkedRenderStoreOptions,
+  MiddlewareFn,
+  createStore,
+} from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { FRONTEND_ACCEPT } from '../config';
@@ -68,7 +73,7 @@ const history = __CLIENT__ && !__TEST__
 
 export default async function generateLRS(
   manifest: WebManifest,
-  initialDelta: Quadruple[] = [],
+  initialData: Record<string, DataRecord> = {},
   options: GenerateLRSOpts = defaultOpts,
 ): Promise<LRSBundle> {
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
@@ -81,13 +86,16 @@ export default async function generateLRS(
     searchMiddleware(),
     execFilter(manifest.ontola.website_iri),
   ] : [];
-  const storeOptions = __CLIENT__
-    ? { report: handle }
-    : {
-      apiOpts: { bulkEndpoint: 'http://localhost/link-lib/bulk' },
-      report: handle,
-    };
-  const lrs = createStore<React.ComponentType<any>>(storeOptions, middleware);
+  const storeOptions: LinkedRenderStoreOptions<React.ComponentType> = {
+    data: initialData,
+    report: handle,
+  };
+
+  if (!__CLIENT__) {
+    storeOptions.apiOpts = { bulkEndpoint: 'http://localhost/link-lib/bulk' };
+  }
+
+  const lrs = createStore<React.ComponentType>(storeOptions, middleware);
   serviceWorkerCommunicator.linkedRenderStore = lrs;
   (lrs as any).bulkFetch = true;
 
@@ -131,16 +139,28 @@ export default async function generateLRS(
     });
   }
 
-  lrs.store.getInternalStore().newPropertyAction(rdfx.type, (q: Quadruple): boolean => {
+  lrs.store.getInternalStore().newPropertyAction(rdfx.type, (q: DataRecord): boolean => {
     if (THING_TYPES.includes(rdf.id(q[QuadPosition.object]))) {
       return false;
     }
 
-    lrs.schema.addQuads([quadruple(
-      q[QuadPosition.object] as NamedNode,
-      rdfs.subClassOf,
-      schema.Thing,
-    )]);
+    const value = q[rdfx.type.value];
+
+    if (Array.isArray(value)) {
+      for (const v of value) {
+        lrs.store.add(
+          v as NamedNode,
+          rdfs.subClassOf,
+          schema.Thing,
+        );
+      }
+    } else {
+      lrs.store.add(
+        value as NamedNode,
+        rdfs.subClassOf,
+        schema.Thing,
+      );
+    }
 
     return false;
   });
@@ -383,8 +403,7 @@ export default async function generateLRS(
   ];
   // tslint:enable max-line-length
 
-  lrs.addOntologySchematics(ontologicalClassData);
-  lrs.store.addQuads(ontologicalClassData);
+  lrs.store.addQuadruples(ontologicalClassData);
 
   const ontologicalPropertyData = [
     quadruple(foaf.name, owl.sameAs, schema.name),
@@ -446,19 +465,14 @@ export default async function generateLRS(
     quadruple(argu.usages, rdfs.label, rdf.literal('Gebruikt', languages.nl)),
   ];
 
-  lrs.addOntologySchematics(ontologicalPropertyData);
-  lrs.store.addQuads(ontologicalPropertyData);
+  lrs.store.addQuadruples(ontologicalPropertyData);
 
   const ontologyData = [
     ...appOntology,
     quadruple(ll.loadingResource, rdfx.type, ll.LoadingResource),
   ];
 
-  lrs.store.addQuads(ontologyData);
-
-  if (initialDelta.length > 0) {
-    await lrs.processDelta(initialDelta);
-  }
+  lrs.store.addQuadruples(ontologyData);
 
   return {
     history,
