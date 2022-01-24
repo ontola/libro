@@ -49,7 +49,10 @@ const LinkedMenuTrigger = (): JSX.Element | null => {
     ), [image, name, href]);
 
   return (
-    <Menu trigger={menuItemTrigger}>
+    <Menu
+      title={name}
+      trigger={menuItemTrigger}
+    >
       {({ handleClose, ref }: MenuChildProps) => (
         <Resource
           childProps={{

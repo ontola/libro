@@ -9,11 +9,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { useIntl } from 'react-intl';
 
 import TriggerButton, { Trigger } from '../../../components/DropdownMenu/TriggerButton';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
+import { collectionMessages } from '../../../translations/messages';
 
 interface FilterFieldsProps {
   linkedProp: SomeTerm;
@@ -26,6 +28,7 @@ const trigger: Trigger = (props) => (
 );
 
 const FilterFields: FC<FilterFieldsProps> = () => {
+  const intl = useIntl();
   const filterFields = useIds(array(ontola.filterFields));
 
   const menuItems = React.useCallback(({ handleClose }) => filterFields
@@ -39,6 +42,7 @@ const FilterFields: FC<FilterFieldsProps> = () => {
 
   return (
     <Menu
+      title={intl.formatMessage(collectionMessages.filter)}
       trigger={trigger}
     >
       {menuItems}

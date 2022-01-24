@@ -8,6 +8,7 @@ export interface TriggerButtonProps {
   id?: string;
   open?: boolean;
   color?: PropTypes.Color;
+  title: string;
 }
 
 export type Trigger = (triggerProps: TriggerButtonProps) => JSX.Element;
@@ -19,6 +20,7 @@ const TriggerButton = ({
   open,
   children,
   color = 'default',
+  title,
 }: React.PropsWithChildren<TriggerButtonProps>): JSX.Element => (
   <IconButton
     centerRipple
@@ -28,6 +30,7 @@ const TriggerButton = ({
     color={color}
     ref={anchorRef}
     size="small"
+    title={title}
     onClick={onClick}
   >
     {children}

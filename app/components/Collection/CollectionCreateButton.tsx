@@ -7,13 +7,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { entityIsLoaded, sort } from '../../helpers/data';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
-import { formMessages } from '../../translations/messages';
+import { collectionMessages, formMessages } from '../../translations/messages';
 import Button from '../Button';
 import TriggerButton, { Trigger } from '../DropdownMenu/TriggerButton';
 
@@ -66,6 +66,7 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
   trigger,
 }) => {
   const lrs = useLRS();
+  const intl = useIntl();
   const createActions = useIds(ontola.createAction);
   const validActions = useValidActions(createActions);
   const renderedActions = useFavoriteActions(validActions, false);
@@ -86,7 +87,10 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
 
     if (renderedActions.length > 1) {
       return (
-        <Menu trigger={TriggerComponent}>
+        <Menu
+          title={intl.formatMessage(collectionMessages.add)}
+          trigger={TriggerComponent}
+        >
           {() => (
             renderedActions
               .sort(sort(ORDER))
@@ -106,7 +110,10 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
   }
 
   return (
-    <TriggerComponent onClick={showDialog} />
+    <TriggerComponent
+      title={intl.formatMessage(collectionMessages.add)}
+      onClick={showDialog}
+    />
   );
 };
 

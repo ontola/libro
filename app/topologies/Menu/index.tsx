@@ -9,6 +9,7 @@ export const menuTopology = argu.ns('topologies/menu');
 
 interface PropTypes {
   trigger: Trigger;
+  title: string;
 }
 
 class Menu extends Topology<PropTypes> {
@@ -20,12 +21,14 @@ class Menu extends Topology<PropTypes> {
   public renderContent(): TopologyContent {
     const {
       children,
+      title,
       trigger,
     } = this.props;
 
     return this.wrap((
       <DropdownMenu
         className="Menu"
+        title={title}
         trigger={trigger}
       >
         {children}

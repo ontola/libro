@@ -24,6 +24,7 @@ export interface DropdownMenuProps {
   className?: string;
   disablePadding?: boolean;
   trigger: Trigger;
+  title: string;
 }
 
 let count = 0;
@@ -56,6 +57,7 @@ const DropdownMenu = ({
   children,
   className,
   trigger,
+  title,
 }: DropdownMenuProps): JSX.Element => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -93,6 +95,7 @@ const DropdownMenu = ({
         id,
         onClick: handleClick,
         open,
+        title,
       })}
       <Popper
         transition

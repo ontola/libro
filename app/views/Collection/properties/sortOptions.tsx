@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { useIntl } from 'react-intl';
 
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import TriggerButton, { Trigger } from '../../../components/DropdownMenu/TriggerButton';
@@ -15,6 +16,7 @@ import { SortProps, useSorting } from '../../../hooks/useSorting';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
+import { collectionMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
 
 export interface SortOptionsProps {
@@ -63,6 +65,7 @@ const SortOption = ({
 };
 
 const SortOptions: FC<SortOptionsProps> = () => {
+  const intl = useIntl();
   const { currentCollection } = useCollectionOptions();
   const sortOptions = useSorting(currentCollection);
 
@@ -80,6 +83,7 @@ const SortOptions: FC<SortOptionsProps> = () => {
 
   return (
     <Menu
+      title={intl.formatMessage(collectionMessages.sort)}
       trigger={trigger}
     >
       {menuItems}

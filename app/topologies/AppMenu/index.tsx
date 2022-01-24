@@ -11,6 +11,7 @@ export const appMenuCID = 'CID-AppMenu';
 
 export interface AppMenuProps {
   children: React.ReactNode | RenderProp;
+  title?: string;
   trigger: Trigger;
 }
 
@@ -35,6 +36,7 @@ class AppMenu extends Topology<
       <DropdownMenu
         disablePadding
         className={appMenuCID}
+        title={this.props.title ?? 'App Menu'}
         trigger={this.props.trigger}
       >
         {({ handleClose }) => this.renderContent(handleClose)}

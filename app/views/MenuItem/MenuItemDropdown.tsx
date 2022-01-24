@@ -5,6 +5,7 @@ import {
   array,
   register,
   useIds,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -25,10 +26,14 @@ const trigger: Trigger = (props) => (
 
 const MenuItemDropdown = () => {
   const items = useIds(array(ontola.menuItems));
+  const [name] = useProperty(schema.name);
 
   return(
     <ResourceBoundary>
-      <Menu trigger={trigger}>
+      <Menu
+        title={name.value}
+        trigger={trigger}
+      >
         {items.map((item) => (
           <Resource
             key={item.value}
