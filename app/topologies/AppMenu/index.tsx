@@ -7,6 +7,7 @@ import app from '../../ontology/app';
 import Topology from '../Topology';
 
 export const appMenuTopology = app.ns('topologies/appMenu');
+export const appMenuCID = 'CID-AppMenu';
 
 export interface AppMenuProps {
   children: React.ReactNode | RenderProp;
@@ -33,7 +34,7 @@ class AppMenu extends Topology<
     return (
       <DropdownMenu
         disablePadding
-        className="AppMenu"
+        className={appMenuCID}
         trigger={this.props.trigger}
       >
         {({ handleClose }) => this.renderContent(handleClose)}

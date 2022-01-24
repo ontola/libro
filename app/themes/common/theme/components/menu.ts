@@ -1,4 +1,5 @@
 import { loadingParagraphCID } from '../../../../components/Loading';
+import { appMenuCID } from '../../../../topologies/AppMenu';
 import { LibroTheme, MaterialStyleMap } from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
@@ -16,7 +17,7 @@ export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiMenu: {
     paper: {
       [theme.breakpoints.down('sm')]: {
-        '&.AppMenu': {
+        [`&.${appMenuCID}`]: {
           maxWidth: '100%',
           width: '100%',
         },

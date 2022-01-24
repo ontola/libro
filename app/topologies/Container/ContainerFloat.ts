@@ -8,7 +8,6 @@ import Topology from '../Topology';
  * In the top right corner of a container
  */
 export const containerFloatTopology = argu.ns('containerFloat');
-const containerFloatCID = 'CID-ContainerFloat';
 
 const styles = {
   containerFloat : {
@@ -34,7 +33,6 @@ class ContainerFloat extends Topology<WithStyles<typeof styles>> {
     const { classes } = this.props;
 
     return clsx({
-      [containerFloatCID]: true,
       [classes.containerFloat]: true,
     });
   }
