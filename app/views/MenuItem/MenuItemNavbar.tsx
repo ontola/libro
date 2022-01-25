@@ -32,6 +32,7 @@ const MenuItemNavbar = () => {
       icon={icon}
       image={icon ? undefined : image}
       label={name?.value}
+      title={name.value}
       to={href?.value}
     />
   );

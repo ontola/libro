@@ -44,6 +44,7 @@ const LinkedMenuTrigger = (): JSX.Element | null => {
         image={icon ? undefined : image}
         label={name}
         ref={anchorRef}
+        title={name}
         onClick={onClick}
       />
     ), [image, name, href]);

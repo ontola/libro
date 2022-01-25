@@ -20,7 +20,7 @@ export interface NavbarLinkLinkProps extends Pick<AriaAttributes, 'aria-controls
   label?: string | JSX.Element;
   onClick?: React.MouseEventHandler;
   spin?: boolean,
-  title?: string,
+  title: string,
   to?: string;
 }
 

@@ -19,6 +19,7 @@ const SearchResultNavbar = (): JSX.Element => {
     <NavbarLinkLink
       icon="search"
       label={label}
+      title={label.props.defaultMessage}
       to={app.search.value}
     />
   );

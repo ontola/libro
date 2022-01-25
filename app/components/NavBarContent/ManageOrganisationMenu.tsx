@@ -28,6 +28,7 @@ export const ManageOrganisationMenu = (): JSX.Element | null => {
     <NavbarLinkLink
       icon={icon}
       label={name}
+      title={name}
       to={setingsMenu.value}
     />
   );

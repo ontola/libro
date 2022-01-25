@@ -9,6 +9,7 @@ import {
   useStrings,
 } from 'link-redux';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import Link from '../../components/Link';
 import { NavbarLinkIcon, NavbarLinkLink } from '../../components/NavbarLink';
@@ -17,6 +18,7 @@ import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
+import { navBarMessages } from '../../translations/messages';
 
 export interface PersonNavbarProps {
   onClick: () => void;
@@ -38,6 +40,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
   linkRef,
   ...navlinkProps
 }) => {
+  const intl = useIntl();
   const [image] = useGlobalIds(schema.image);
   const [name] = useStrings(NAME_PREDICATES);
   const classes = useStyles();
@@ -47,7 +50,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
       <NavbarLinkLink
         image={image}
         ref={linkRef}
-        title={name}
+        title={intl.formatMessage(navBarMessages.userSettings)}
         {...navlinkProps}
       >
         {image ? (
