@@ -82,6 +82,7 @@ import Token from './Token';
 import User from './User';
 import Vocabulary from './Vocabulary';
 import VoteEvent from './VoteEvent';
+import WebPageTabPane from './WebPage';
 import Widget from './Widget';
 
 export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
@@ -161,6 +162,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...User,
     ...Vocabulary,
     ...VoteEvent,
+    ...WebPageTabPane,
     ...Widget,
   ];
 }
