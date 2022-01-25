@@ -18,6 +18,9 @@ const colorBaseOrange = 'rgb(161, 98, 37)';
 /* eslint-disable sort-keys, @typescript-eslint/no-magic-numbers */
 // coefficient = (100 - (percentage * 2)) / 100
 const colors = {
+  black: {
+    main: '#010101',
+  },
   blue: {
     dark: darken(colorBaseBlue, 0.60),
     main: colorBaseBlue,
@@ -78,6 +81,7 @@ const colors = {
   },
   white: {
     contrastText: 'rgba(0, 0, 0, 0.87)',
+    main: '#FFFFFF',
   },
   orange: {
     dark: 'rgb(104, 93, 82)',
