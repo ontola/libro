@@ -1,4 +1,3 @@
-import * as foaf from '@ontologies/foaf';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -13,6 +12,7 @@ import React from 'react';
 
 import Link from '../../components/Link';
 import { NavbarLinkIcon, NavbarLinkLink } from '../../components/NavbarLink';
+import { NAME_PREDICATES } from '../../helpers/metaData';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
@@ -39,7 +39,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
   ...navlinkProps
 }) => {
   const [image] = useGlobalIds(schema.image);
-  const [name] = useStrings(foaf.name);
+  const [name] = useStrings(NAME_PREDICATES);
   const classes = useStyles();
 
   return (
@@ -47,6 +47,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
       <NavbarLinkLink
         image={image}
         ref={linkRef}
+        title={name}
         {...navlinkProps}
       >
         {image ? (
