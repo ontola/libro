@@ -11001,9 +11001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-lib@npm:0.0.0-0e47e5d2":
-  version: 0.0.0-0e47e5d2
-  resolution: "link-lib@npm:0.0.0-0e47e5d2"
+"link-lib@npm:0.0.0-841d4362":
+  version: 0.0.0-841d4362
+  resolution: "link-lib@npm:0.0.0-841d4362"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -11014,13 +11014,13 @@ __metadata:
     hextuples: ">=2.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.1
-  checksum: 44917742974e13ae05a4e4d3318c9a81777d7b64b0d77b4e77c1b1a9cf6e79e587e98e6d5904e85d5d56bd20a1ec70b58ea899b948794f58b12e138b6afa359e
+  checksum: cb017f02a027c68db41ab00f1d20ac35edc52e6074e58b7d6865578428a5085e53ddc7729b063545ca80a516b5c17b580476314916df5819e25893a663a933bc
   languageName: node
   linkType: hard
 
-"link-redux@npm:0.0.0-d9f07de1":
-  version: 0.0.0-d9f07de1
-  resolution: "link-redux@npm:0.0.0-d9f07de1"
+"link-redux@npm:0.0.0-8994e43e":
+  version: 0.0.0-8994e43e
+  resolution: "link-redux@npm:0.0.0-8994e43e"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -11029,7 +11029,7 @@ __metadata:
     link-lib: ">=3.0.0-5"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: a465caf2672a9394ee91d6eecef4b1132e22599d4c6d587e90cc836bd54aec00ea2c840680b7a014cd8152aa69bf49550153ca5d3e82e9080922151a10d0a263
+  checksum: 19b3c4aeb548acf3732f33987e309d807f58cc77e9a87df00471a2ac5f074e35be1537674916b1ae152c9cf471f9a93c31f1abc18c90ab103ce24599f75013bc
   languageName: node
   linkType: hard
 
@@ -12559,8 +12559,8 @@ __metadata:
     jest: ^27.3.1
     jest-fetch-mock: ^3.0.3
     jsdom: ^16.6.0
-    link-lib: 0.0.0-0e47e5d2
-    link-redux: 0.0.0-d9f07de1
+    link-lib: 0.0.0-841d4362
+    link-redux: 0.0.0-8994e43e
     lint-staged: ^10.5.4
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^2.4.5
