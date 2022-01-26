@@ -6,6 +6,7 @@ const customVariables = deepmerge(
   variables, {
     appBar: {
       height: '2.7rem',
+      position: 'relative',
     },
   },
 );

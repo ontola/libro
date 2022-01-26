@@ -20,7 +20,6 @@ export default (theme: LibroTheme): MaterialStyleMap => {
       color: theme.palette.common.black,
       textDecoration: 'underline',
     },
-    fontSize: '1.125rem',
   };
 
   return customAppBar;
