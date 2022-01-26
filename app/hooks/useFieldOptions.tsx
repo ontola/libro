@@ -1,4 +1,4 @@
-import rdf, {
+import {
   SomeTerm,
   isNamedNode,
 } from '@ontologies/core';
@@ -31,6 +31,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
   useDataInvalidation([shIn, ...options].filter(isNamedNode));
   useDataFetching([shIn, ...options].filter(isNamedNode));
   const [optionsArray, optionsLoading] = useContainerToArr(shIn);
+  const shInUpdate = shIn && lrs.store.getInternalStore().store.getStatus(shIn.value).lastUpdate;
 
   React.useEffect(() => {
     if (!optionsLoading) {
@@ -42,7 +43,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
     } else {
       setLoading(!!shIn);
     }
-  }, [loading, optionsLoading, options, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
+  }, [loading, optionsLoading, options, shIn, shInUpdate]);
 
   return {
     loading,

@@ -1,9 +1,10 @@
-import rdf, {
+import {
   Node,
   QuadPosition,
   Quadruple,
 } from '@ontologies/core';
-import { SomeNode } from 'link-lib';
+import * as rdf from '@ontologies/rdf';
+import { equals } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ll from '../ontology/ll';
@@ -12,70 +13,88 @@ import sp from '../ontology/sp';
 
 export interface DeltaProcessors {
   deltas: Quadruple[][];
-  flush(): Quadruple[];
-  processDelta(delta: Quadruple[]): Quadruple[];
-  queueDelta(delta: Quadruple[]): void;
+  flush(): Set<string>;
+  processDelta(delta: Quadruple[]): void;
+  queueDelta(delta: Quadruple[], subjects: number[]): void;
 }
 
 function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
-  delta
-    .filter(([, , , why]) => rdf.equals(why, ontola.remove))
-    .forEach(([s, p, o]) => {
+  const removes = delta.filter(([, , , why]) => equals(why, ontola.remove));
+
+  for (const [s, p, o] of removes) {
+    const wildSubject = equals(s, sp.Variable);
+    const wildPredicate = equals(p, sp.Variable);
+    const wildObject = equals(o, sp.Variable);
+
+    if (!wildSubject && !wildPredicate && wildObject) {
+      lrs.store.getInternalStore().store.deleteField(s.value, p.value);
+    } else if (!wildSubject && !wildPredicate && !wildObject) {
+      lrs.store.getInternalStore().store.deleteFieldMatching(s.value, p.value, o);
+    } else if (!wildSubject && wildPredicate && wildObject) {
+      lrs.store.removeResource(s);
+    } else {
       lrs.store.removeQuads(
         lrs.store.match(
-          rdf.equals(s, sp.Variable) ? null : s,
-          rdf.equals(p, sp.Variable) ? null : p,
-          rdf.equals(o, sp.Variable) ? null : o as Node,
+          wildSubject ? null : s,
+          wildPredicate ? null : p,
+          wildObject ? null : o as Node,
         ),
       );
-    });
+    }
+  }
 }
 
 function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
-  const replaceables = delta
-    .filter(([s, , , g]) => rdf.equals(g, ontola.replace)
-          && lrs.store.match(s, null, null, true)[0]);
+  const store = lrs.store.getInternalStore().store;
+  const replaceables = delta.filter(([s, , , g]) => {
+    const isReplace = equals(g, ontola.replace);
+
+    if (isReplace
+      && s.termType === 'NamedNode'
+      && store.getField(s.value, rdf.type.value) === undefined) {
+      lrs.queueEntity(s, { reload: true });
+    }
+
+    return isReplace;
+  });
 
   return lrs.store.replaceMatches(replaceables);
 }
 
 function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
-  delta
-    .filter(([, , , why]) => rdf.equals(why, ontola.invalidate))
-    .forEach(([s, p, o]) => {
-      if (s
-              && !rdf.equals(s, sp.Variable)
-              && rdf.equals(p, sp.Variable)
-              && rdf.equals(o, sp.Variable)
-      ) {
-        lrs.api.invalidate(s);
-        lrs.store.removeResource(s);
-      } else {
-        lrs.store.match(
-          rdf.equals(s, sp.Variable) ? null : s,
-          rdf.equals(p, sp.Variable) ? null : p,
-          rdf.equals(o, sp.Variable) ? null : o as Node,
-        ).forEach((match: Quadruple) => {
-          lrs.api.invalidate(match[QuadPosition.subject]);
-          lrs.store.removeResource(match[QuadPosition.subject]);
-        });
-      }
-    });
+  const invalidates = delta.filter(([, , , why]) => equals(why, ontola.invalidate));
+
+  for (const [s, p, o] of invalidates) {
+    const wildSubject = equals(s, sp.Variable);
+    const wildPredicate = equals(p, sp.Variable);
+    const wildObject = equals(o, sp.Variable);
+
+    if (!wildSubject && wildPredicate && wildObject) {
+      lrs.store.removeResource(s);
+    } else {
+      lrs.store.match(
+        wildSubject ? null : s,
+        wildPredicate ? null : p,
+        wildObject ? null : o as Node,
+      ).forEach((match: Quadruple) => {
+        lrs.store.removeResource(match[QuadPosition.subject]);
+      });
+    }
+  }
 }
 
 function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
   const supplants = delta.reduce<Quadruple[]>(
-    (acc, [s, p, o, g]) => rdf.equals(g, ll.supplant) ? [...acc, [s, p, o, g]] : acc,
+    (acc, [s, p, o, g]) => equals(g, ll.supplant) ? [...acc, [s, p, o, g]] : acc,
     [],
   );
 
-  supplants
-    .reduce<SomeNode[]>((acc, cur) => acc.includes(cur[0])
-      ? acc
-      : acc.concat(cur[0]), [])
-    .forEach((s) => {
-      lrs.store.removeResource(s);
-    });
+  const resources = Array.from(new Set(supplants.map(([s]) => s)));
+
+  for (const s of resources) {
+    lrs.store.removeResource(s);
+  }
+
   lrs.store.addQuadruples(supplants);
 }
 
@@ -83,28 +102,27 @@ function arguDeltaProcessor(lrs: LinkReduxLRSType): DeltaProcessors {
   return {
     deltas: [] as Quadruple[][],
 
-    flush() {
-      let statements: Quadruple[] = [];
+    flush(): Set<string> {
       const nextDeltas = this.deltas;
       this.deltas = [];
 
       for (const delta of nextDeltas) {
         try {
-          statements = statements.concat(this.processDelta(delta));
+          this.processDelta(delta);
         } catch (e) {
           lrs.report(e);
         }
       }
 
-      return statements;
+      // Records will be updated via operations on the store.
+      return new Set();
     },
 
-    processDelta(delta: Quadruple[]) {
+    processDelta(delta: Quadruple[]): void {
       processSupplant(delta, lrs);
       processRemove(delta, lrs);
       processInvalidate(delta, lrs);
-
-      return processReplace(delta, lrs);
+      processReplace(delta, lrs);
     },
 
     queueDelta(delta: Quadruple[]) {

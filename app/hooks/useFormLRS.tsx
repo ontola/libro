@@ -28,10 +28,9 @@ const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) =>  {
 
   if (old) {
     next.store.addQuadruples((old.store as any).store.quads);
-    next.store.changeTimestamps = (old.store as any).changeTimestamps.slice();
     (next.store as any).langPrefs = (old.store as any).langPrefs;
     (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
-    (next.store.getInternalStore().store.journal as any).data = JSON.parse(JSON.stringify((old.store.getInternalStore().store.journal as any).data));
+    next.store.getInternalStore().store.journal = next.store.getInternalStore().store.journal.copy((next.store as any).handleChange.bind(next.store));
     next.actions = old.actions;
 
     const nextDispatch = next.dispatch;
