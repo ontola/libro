@@ -30,7 +30,7 @@ const ThingImageProp = ({
   linkedProp,
 }: ThingImagePropProps): JSX.Element | null => {
   useDataInvalidation(linkedProp);
-  const status = useStatus(linkedProp);
+  const status = useStatus(isFontAwesomeIRI(linkedProp?.value) ? undefined : linkedProp);
 
   if (children) {
     return (
