@@ -1,9 +1,9 @@
-import { Literal } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty,
+  useIds,
   useStrings,
 } from 'link-redux';
 import React from 'react';
@@ -14,20 +14,26 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
 interface EntryPointCardFloatProps extends ButtonWithFeedbackProps {
-  count: Literal;
+  count: number;
+  image: SomeTerm;
+  name: string;
 }
 
 const EntryPointCardFloat: FC<EntryPointCardFloatProps> = ({
   active,
   count,
   disabled,
+  image: imageFromProp,
+  name: nameFromProp,
   onClick,
   subject,
   title,
   variant,
 }): JSX.Element => {
-  const [image] = useProperty(schema.image);
-  const [name] = useProperty(schema.name);
+  const [imageFromData] = useIds(schema.image);
+  const [nameFromData] = useStrings(schema.name);
+  const image = imageFromProp ?? imageFromData;
+  const name = nameFromProp ?? nameFromData;
   const [httpMethod] = useStrings(schema.httpMethod);
   const parsedURL = new URL(subject.value);
   const href = parsedURL && parsedURL.pathname + parsedURL.search;
@@ -41,11 +47,11 @@ const EntryPointCardFloat: FC<EntryPointCardFloatProps> = ({
       disabled={disabled}
       href={httpMethod === 'GET' ? href : undefined}
       icon={icon}
-      title={title ?? name.value}
+      title={title ?? name}
       variant={variant}
       onClick={onClick}
     >
-      {count.value}
+      {count.toString()}
     </ButtonWithFeedback>
   );
 };

@@ -1,6 +1,5 @@
 import {
   FC,
-  Property,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -10,11 +9,7 @@ import argu from '../../ontology/argu';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const VoteEventTableCell: FC = () => (
-  <VoteData>
-    <Property label={argu.votesProCount} />
-    <Property label={argu.votesNeutralCount} />
-    <Property label={argu.votesConCount} />
-  </VoteData>
+  <VoteData />
 );
 
 VoteEventTableCell.type = argu.VoteEvent;

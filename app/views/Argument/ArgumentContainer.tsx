@@ -40,7 +40,7 @@ const ArgumentContainer: FC<ArgumentConainerProps> = ({ highlighted, subject }):
       <Property label={ontola.coverPhoto} />
       <div className={classes.content}>
         <CardContent noSpacing>
-          <CardHeader float={<Property label={ontola.favoriteAction} />}>
+          <CardHeader float={<Property label={argu.voteOptions} />}>
             <Property label={[schema.name, rdfs.label]} />
           </CardHeader>
           <Property label={[schema.text, schema.description, dbo.abstract]} />

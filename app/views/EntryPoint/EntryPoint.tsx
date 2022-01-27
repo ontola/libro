@@ -1,17 +1,17 @@
-import { Literal } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
   FC,
   register,
-  useProperty,
+  useIds,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import { ButtonVariant } from '../../components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
 import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -31,12 +31,14 @@ import { pageTopology } from '../../topologies/Page';
 import useEntryPointFormProps from './useEntryPointFormProps';
 
 interface EntryPointProps extends ButtonWithFeedbackProps {
-  count: Literal;
+  image: SomeTerm;
+  name: string;
   stretch: boolean;
 }
 
 const EntryPoint: FC<EntryPointProps> = ({
-  count,
+  image: imageFromProp,
+  name: nameFromProp,
   onClick,
   stretch,
   subject,
@@ -44,9 +46,10 @@ const EntryPoint: FC<EntryPointProps> = ({
   ...rest
 }) => {
   const { onSubmit } = useEntryPointFormProps(subject!, rest);
-  const [image] = useProperty(schema.image);
-  const [name] = useProperty(schema.name);
-  const label = `${name.value} ${countInParentheses(count)}`;
+  const [imageFromData] = useIds(schema.image);
+  const [nameFromData] = useStrings(schema.name);
+  const image = imageFromProp ?? imageFromData;
+  const name = nameFromProp ?? nameFromData;
 
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : undefined;
   const classes = clsx({
@@ -65,7 +68,7 @@ const EntryPoint: FC<EntryPointProps> = ({
       {...rest}
     >
       <span>
-        {label}
+        {name}
       </span>
     </ButtonWithFeedback>
   );

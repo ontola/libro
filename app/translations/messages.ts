@@ -589,25 +589,6 @@ export const thingMessages: Messages = defineMessages({
   },
 });
 
-export const voteMessages: Messages = defineMessages({
-  closedMessage: {
-    defaultMessage: 'Voting no longer possible',
-    id: 'https://app.argu.co/i18n/votes/expireable/states/closed/message',
-  },
-  conMessage: {
-    defaultMessage: 'Click to vote against this idea',
-    id: 'https://app.argu.co/i18n/votes/con/message',
-  },
-  neutralMessage: {
-    defaultMessage: 'Click to vote neutral on this idea',
-    id: 'https://app.argu.co/i18n/votes/neutral/message',
-  },
-  proMessage: {
-    defaultMessage: 'Click to vote for this idea',
-    id: 'https://app.argu.co/i18n/votes/pro/message',
-  },
-});
-
 export const surveyMessages: Messages = defineMessages({
   closedButtonText: {
     defaultMessage: 'Survey Closed',

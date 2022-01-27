@@ -31,11 +31,9 @@ const CollectionCreateAction: FC<PropTypes> = ({
 }) => {
   const { omniform: collectionOmniform } = useCollectionOptions();
   const [isPartOf] = useProperty(schema.isPartOf);
-  const [totalItems] = useProperty(as.totalItems);
 
   return (
     <Resource
-      count={totalItems}
       isPartOf={isPartOf}
       omniform={omniform || collectionOmniform}
       subject={linkedProp}

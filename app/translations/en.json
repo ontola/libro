@@ -490,18 +490,6 @@
   "https://app.argu.co/i18n/voteFlow/confirmMessage": {
     "defaultMessage": "Confirm your vote via e-mail:"
   },
-  "https://app.argu.co/i18n/votes/con/message": {
-    "defaultMessage": "Click to vote against this idea"
-  },
-  "https://app.argu.co/i18n/votes/expireable/states/closed/message": {
-    "defaultMessage": "Voting no longer possible"
-  },
-  "https://app.argu.co/i18n/votes/neutral/message": {
-    "defaultMessage": "Click to vote neutral on this idea"
-  },
-  "https://app.argu.co/i18n/votes/pro/message": {
-    "defaultMessage": "Click to vote for this idea"
-  },
   "https://app.argu.co/i18n/xsd:boolean/false": {
     "defaultMessage": "No"
   },

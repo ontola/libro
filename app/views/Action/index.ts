@@ -12,7 +12,6 @@ import ActionNested from './ActionNested';
 import ActionTableCell from './ActionTableCell';
 import CreateAction from './CreateAction';
 import CreateSession from './CreateSession';
-import CreateVote from './CreateVote';
 import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
 import ReadAction from './ReadAction';
@@ -20,7 +19,6 @@ import ReadAction from './ReadAction';
 export default [
   ...CreateAction,
   ...CreateSession,
-  ...CreateVote,
   ActionMain,
   ActionCardRow,
   ActionContainer,

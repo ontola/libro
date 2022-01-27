@@ -1,5 +1,5 @@
 import SignInFlow from './properties/signInFlow';
-import VotePercentage from './properties/votePercentage';
+import VoteOptions from './properties/voteOptions';
 import VoteEventContainer from './VoteEventContainer';
 import VoteEventFull from './VoteEventFull';
 import VoteEventMainBody from './VoteEventMainBody';
@@ -10,6 +10,6 @@ export default [
   VoteEventMainBody,
   VoteEventFull,
   VoteEventTableCell,
-  VotePercentage,
+  VoteOptions,
   SignInFlow,
 ];

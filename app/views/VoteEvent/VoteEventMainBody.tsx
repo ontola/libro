@@ -6,14 +6,13 @@ import {
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import { mainBodyTopology } from '../../topologies/MainBody';
 
 const VoteEventMainBody: FC = () => (
   <div itemScope>
     <ActionsBar>
-      <Property label={ontola.favoriteAction} />
+      <Property label={argu.voteOptions} />
     </ActionsBar>
     <Property
       forceRender

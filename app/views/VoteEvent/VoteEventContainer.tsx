@@ -7,7 +7,6 @@ import {
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import { cardTopology } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
@@ -26,7 +25,7 @@ const VoteEventContainer: FC = () => {
     <React.Fragment key="VoteEventContainer">
       <div className={classes.actionBar}>
         <ActionsBar>
-          <Property label={ontola.favoriteAction} />
+          <Property label={argu.voteOptions} />
         </ActionsBar>
         <Property
           forceRender

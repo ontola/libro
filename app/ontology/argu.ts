@@ -94,6 +94,7 @@ export default {
   createPagePermission: argu('createPagePermission'),
   createProArgumentPermission: argu('createProArgumentPermission'),
   createQuestionPermission: argu('createQuestionPermission'),
+  createVote: argu('createVote'),
   createVotePermission: argu('createVotePermission'),
   currentPhase: argu('currentPhase'),
   currentVote: argu('currentVote'),
@@ -173,11 +174,9 @@ export default {
   usages: argu('usages'),
   usedCoupons: argu('usedCoupons'),
   voteEvents: argu('voteEvents'),
+  voteOptions: argu('voteOptions'),
   voteableVoteEvent: argu('voteableVoteEvent'),
   votes: argu('votes'),
-  votesConCount: argu('votesConCount'),
-  votesNeutralCount: argu('votesNeutralCount'),
-  votesProCount: argu('votesProCount'),
   yes: argu('yes'),
 
   /* datatypes */
