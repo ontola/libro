@@ -86,7 +86,7 @@ const Detail = ({
       data-testid="Detail"
       href={url}
       target={url && isDifferentWebsite(url) ? '_blank' : undefined}
-      title={title}
+      title={url ? title : undefined}
       onClick={handleClick}
     >
       {image && (
