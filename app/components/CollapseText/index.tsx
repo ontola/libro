@@ -25,7 +25,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
           color: theme.palette.grey.midDark,
         },
       },
-      background: `linear-gradient(to bottom, ${theme.palette.transparent.main} 0%, ${theme.palette.background.default} 30%, ${theme.palette.background.default} 100%)`,
+      background: `linear-gradient(to bottom, ${theme.palette.transparent.main} 0%, ${theme.palette.background.paper} 30%, ${theme.palette.background.paper} 100%)`,
       bottom: '1em',
       lineHeight: '3em',
       position: 'relative',
