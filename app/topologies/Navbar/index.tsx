@@ -25,10 +25,7 @@ interface NavbarProps {
 
 const styles = (theme: LibroTheme): CSSPropertiesMap => ({
   elevated: {
-    boxShadow: `0px 4.5px 4.3px rgba(0, 0, 0, 0.05),
-                0px 12.5px 11.9px rgba(0, 0, 0, 0.032),
-                0px 30.1px 28.6px rgba(0, 0, 0, 0.024),
-                0px 100px 95px rgba(0, 0, 0, 0.016)`,
+    boxShadow: '0px 0px 17px rgba(0, 0, 0, 0.1)',
   },
   wrapper: {
     color: theme.appBar.resolveColor(),
