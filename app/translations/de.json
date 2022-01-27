@@ -341,9 +341,6 @@
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Zum aktuellen Standort wechseln"
   },
-  "https://app.argu.co/i18n/navBarMessages/manageOrganisationButton": {
-    "defaultMessage": "Management"
-  },
   "https://app.argu.co/i18n/navBarMessages/moreDropdownButton": {
     "defaultMessage": "Mehr"
   },

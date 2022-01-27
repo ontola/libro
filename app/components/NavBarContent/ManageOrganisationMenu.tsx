@@ -1,46 +1,34 @@
+import * as schema from '@ontologies/schema';
 import {
-  Resource,
   array,
+  useGlobalIds,
   useIds,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
+import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { NAME_PREDICATES } from '../../helpers/metaData';
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
-import AppMenu from '../../topologies/AppMenu';
-import { navBarMessages } from '../../translations/messages';
-import { Trigger } from '../DropdownMenu/TriggerButton';
-import { TriggerButtonNavBar } from '../DropdownMenu/TriggerButtonNavBar';
-
-const trigger: Trigger = (props) => (
-  <TriggerButtonNavBar
-    {...props}
-    icon="cogs"
-  >
-    <FormattedMessage {...navBarMessages.manageOrganisationButton} />
-  </TriggerButtonNavBar>
-);
+import { NavbarLinkLink } from '../NavbarLink';
 
 export const ManageOrganisationMenu = (): JSX.Element | null => {
-  const [manageMenu] = useIds(frontendIRI, ontola.manageMenu);
-  const menuItems = useIds(manageMenu, array(ontola.menuItems));
+  const [setingsMenu] = useIds(frontendIRI, ontola.settingsMenu);
+  const [name] = useStrings(setingsMenu, NAME_PREDICATES);
+  const [image] = useGlobalIds(setingsMenu, schema.image);
+  const menuItems = useIds(setingsMenu, array(ontola.menuItems));
+  const icon = image && normalizeFontAwesomeIRI(image);
 
   if (menuItems?.length === 0) {
     return null;
   }
 
   return (
-    <AppMenu trigger={trigger}>
-      {({ handleClose }) => menuItems.map((iri) => (
-        <Resource
-          childProps={{
-            onClose: handleClose,
-          }}
-          key={iri.value}
-          subject={iri}
-        />
-      ))}
-    </AppMenu>
+    <NavbarLinkLink
+      icon={icon}
+      label={name}
+      to={setingsMenu.value}
+    />
   );
 };
