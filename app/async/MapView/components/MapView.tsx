@@ -87,7 +87,7 @@ export const MapView: React.FC<MapViewProps> = ({
     });
   }, [setView]);
 
-  if (loading || !mapboxTileURL) {
+  if (loading || !mapboxTileURL || (resolvedCenter && !view)) {
     return <LoadingCard />;
   }
 

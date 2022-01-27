@@ -27,8 +27,6 @@ import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 
-const DEFAULT_ZOOM = 6.8;
-
 const viewMapping = {
   lat: schema.latitude,
   lon: schema.longitude,
@@ -127,7 +125,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const storeCoordinates = (newLon: string | number, newLat: string | number) => {
     lonOnChange([rdf.literal(newLon)]);
     latOnChange([rdf.literal(newLat)]);
-    const newZoom = zoomLevel?.value || initialView.zoom || DEFAULT_ZOOM;
+    const newZoom = zoomLevel?.value || initialView.zoom;
 
     if (newZoom) {
       zoomLevelOnChange([rdf.literal(newZoom)]);
