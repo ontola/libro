@@ -1,26 +1,19 @@
-import 'dayjs/locale/nl';
-import 'dayjs/locale/en';
-import 'dayjs/locale/de';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import dayjs from 'dayjs';
-import {
-  RenderStoreProvider,
-  useLRS,
-} from 'link-redux';
-import React, {
-  FunctionComponent,
-  ReactNode,
-} from 'react';
+import 'dayjs/locale/de';
+import 'dayjs/locale/en';
+import 'dayjs/locale/nl';
+import { RenderStoreProvider, useLRS } from 'link-redux';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
 import { appContext } from '../appContext';
+import germanMessages from '../lang/de.json';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
-import germanMessages from '../lang/de.json';
 import AppFrame from '../routes/App';
 import themes from '../themes';
 import { WebManifest } from '../WebManifest';

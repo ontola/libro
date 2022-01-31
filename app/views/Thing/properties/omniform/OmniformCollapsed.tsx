@@ -36,9 +36,12 @@ import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import CardRow from '../../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../../topologies/Container';
 
-import { actionsAreAllDisabled, useActions } from './helpers';
+import {
+  actionsAreAllDisabled,
+  useActions, 
+} from './helpers';
 
-const KEY_ESCAPE = 27;
+const ESCAPE_KEY = 27;
 
 export interface CollapsedOmniformProps {
   clickToOpen?: boolean;
@@ -88,7 +91,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   }, [opened, closeForm, openForm]);
 
   const handleKey = React.useCallback((e) => {
-    if (e.keyCode === KEY_ESCAPE) {
+    if (e.keyCode === ESCAPE_KEY) {
       closeForm();
     }
   }, [closeForm]);
@@ -134,7 +137,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
     return null;
   }
 
-  const shouldShow = !(!clickToOpen || !hasItems || actionsAreAllDisabled(items, lrs));
+  const shouldShow = clickToOpen && hasItems && !actionsAreAllDisabled(items, lrs);
 
   return (
     <React.Fragment>

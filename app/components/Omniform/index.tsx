@@ -125,13 +125,13 @@ const Omniform = (props: OmniformProps & OmniformStateProps & OmniformDispatchPr
   const types = React.useMemo(() => (
     Array.from(actions).map((iri) => (
       <Resource
-        key={iri!.value}
+        key={iri.value}
         subject={iri}
       >
         <Property
           current={rdf.equals(iri, action)}
           label={schema.result}
-          onClick={onActionChange(iri!)}
+          onClick={onActionChange(iri)}
         />
       </Resource>
     ))
