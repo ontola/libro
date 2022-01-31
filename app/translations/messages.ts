@@ -416,6 +416,10 @@ export const navBarMessages: Messages = defineMessages({
     defaultMessage: 'More',
     id: 'https://app.argu.co/i18n/navBarMessages/moreDropdownButton',
   },
+  search: {
+    defaultMessage: 'Search...',
+    id: 'https://app.argu.co/i18n/navbar/search',
+  },
 });
 
 export const motionMessages: Messages = defineMessages({

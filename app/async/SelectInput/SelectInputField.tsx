@@ -2,6 +2,7 @@ import {
   InputAdornment,
   TextField,
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
 import {
   SomeTerm,
@@ -56,6 +57,7 @@ const SelectInputField: React.FC = () => {
     fieldShape,
     name,
     onChange,
+    placeholder,
     values,
   } = React.useContext(FormFieldContext);
   const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
@@ -122,6 +124,7 @@ const SelectInputField: React.FC = () => {
     const inputBaseClassName = clsx({
       [classes.inputBaseFlow]: theme === FormTheme.Flow,
     });
+    const endAdornment = searchable ? <SearchIcon color="action" /> : (params.InputProps.endAdornment as any)?.props?.children;
 
     const inputProps = {
       ...params,
@@ -130,10 +133,11 @@ const SelectInputField: React.FC = () => {
         classes: { root: inputBaseClassName },
         endAdornment: (
           <div className="MuiAutocomplete-endAdornment">
-            {(params.InputProps.endAdornment as any)?.props?.children}
+            {endAdornment}
             {createButton}
           </div>
         ),
+        placeholder,
       },
     };
 

@@ -350,7 +350,7 @@
     "defaultMessage": "More"
   },
   "https://app.argu.co/i18n/navbar/search": {
-    "defaultMessage": "Search"
+    "defaultMessage": "Search..."
   },
   "https://app.argu.co/i18n/navbar/skipToMain": {
     "defaultMessage": "Skip navigation"
