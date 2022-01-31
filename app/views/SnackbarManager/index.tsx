@@ -1,11 +1,11 @@
-import { firstTermOfSeq } from '@rdfdev/collections';
+import * as rdfx from '@ontologies/rdf';
 import {
   Resource,
   register,
   useAction,
   useDataInvalidation,
   useIds,
-  useLRS,
+  useNumbers,
 } from 'link-redux';
 import React from 'react';
 
@@ -14,12 +14,11 @@ import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 export const SnackbarManager = (): JSX.Element | null => {
-  const lrs = useLRS();
   const finishSnackbar = useAction(libro.actions.snackbar.finished);
   const [queue] = useIds(ontola.ns('snackbar/queue'));
   useDataInvalidation(queue);
-
-  const element = firstTermOfSeq(lrs.store, queue);
+  const [currentIndex] = useNumbers(ontola.ns('snackbar/current'));
+  const [element] = useIds(queue, rdfx.ns(`_${currentIndex}`));
 
   if (!element) {
     return null;

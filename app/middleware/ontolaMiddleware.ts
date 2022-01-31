@@ -6,7 +6,6 @@ import rdf, {
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { seqPush, seqShift } from '@rdfdev/collections';
 import clipboardCopy from 'clipboard-copy';
 import { History } from 'history';
 import {
@@ -79,6 +78,18 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       ld.add,
     ],
     [
+      ontola.ns('snackbar/manager'),
+      ontola.ns('snackbar/number'),
+      rdf.literal(0),
+      ld.add,
+    ],
+    [
+      ontola.ns('snackbar/manager'),
+      ontola.ns('snackbar/current'),
+      rdf.literal(0),
+      ld.add,
+    ],
+    [
       snackbarQueue,
       rdfx.type,
       rdfx.Seq,
@@ -89,7 +100,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const queueSnackbar = (text: string): Quadruple[] => {
     const s = rdf.blankNode();
 
-    const queue = store.getResourceProperty<Node>(
+    const snackNumber = store.getResourceProperty<Node>(
+      ontola.ns('snackbar/manager'),
+      ontola.ns('snackbar/number'),
+    )!;
+    store.store.getInternalStore().store.setField(
+      ontola.ns('snackbar/manager').value,
+      ontola.ns('snackbar/number').value,
+      rdf.literal(Number(snackNumber.value) + 1),
+    );
+    const queueId = store.getResourceProperty<Node>(
       ontola.ns('snackbar/manager'),
       ontola.ns('snackbar/queue'),
     )!;
@@ -107,17 +127,13 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         rdf.literal(text),
         ld.add,
       ],
-      ...seqPush(store.store, queue, s),
+      [
+        queueId,
+        rdfx.ns(`_${snackNumber.value}`),
+        s,
+        ld.add,
+      ],
     ];
-  };
-
-  const shiftSnackbar = () => {
-    const queue = store.getResourceProperty<NamedNode>(
-      ontola.ns('snackbar/manager'),
-      ontola.ns('snackbar/queue'),
-    )!;
-
-    return seqShift(store.store, queue);
   };
 
   (store as any).actions.ontola.showSnackbar = (message: Literal | string) =>
@@ -365,7 +381,19 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     if (iri.value.startsWith(libro.actions.snackbar.finished.value)) {
-      store.processDelta(shiftSnackbar(), true);
+      const current = store.getResourceProperty<NamedNode>(
+        ontola.ns('snackbar/manager'),
+        ontola.ns('snackbar/current'),
+      )!;
+
+      store.processDelta([
+        [
+          ontola.ns('snackbar/manager'),
+          ontola.ns('snackbar/current'),
+          rdf.literal(Number(current.value) + 1),
+          ld.replace,
+        ],
+      ]);
 
       return Promise.resolve();
     }
