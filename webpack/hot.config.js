@@ -61,13 +61,14 @@ module.exports = merge(common, {
           /sw\/index\.js/
         ],
         test: /\.(m?(t|j)sx?)$/,
-        use: [{
-          loader: 'ts-loader',
+        use: {
+          loader: 'esbuild-loader',
           options: {
-            experimentalWatchApi: true,
-            transpileOnly: true,
+            loader: 'tsx',
+            target: 'es2018',
+            tsconfigRaw: require(path.resolve(__dirname, '..', 'app', 'tsconfig.json')),
           },
-        }],
+        },
       },
       {
         test: /\.(sa|sc|c)ss$/,

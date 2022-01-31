@@ -2,9 +2,9 @@ const path = require('path');
 
 const BrotliPlugin = require('brotli-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -73,14 +73,24 @@ function createConfig(options) {
             path.resolve(__dirname, '../node_modules/webidl-conversions'),
           ],
           test: /\.(m?(t|j)sx?)$/,
-          use: 'ts-loader',
+          use: {
+            loader: 'esbuild-loader',
+            options: {
+              loader: 'tsx',
+              target: 'es2018',
+              tsconfigRaw: require(path.resolve(__dirname, '..', 'app', 'tsconfig.json')),
+            },
+          }
         },
       ],
     },
 
     optimization: {
       minimizer: [
-        new TerserPlugin(),
+        new ESBuildMinifyPlugin({
+          legalComments: 'none',
+          target: 'es2018',
+        }),
         new OptimizeCSSAssetsPlugin({}),
       ],
     },
