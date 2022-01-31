@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   Property,
-  useDataInvalidation,
-  useProperty,
-  useResourceProperty,
+  useDataFetching,
+  useIds,
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
@@ -38,10 +37,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 export const PageHeader = ({ detailsBarChildren }: PageHeaderProps): JSX.Element => {
   const classes = useStyles();
 
-  const [coverPhoto] = useProperty(ontola.coverPhoto) as Node[];
-  useDataInvalidation(coverPhoto);
-  const [imagePositionY] = useResourceProperty(coverPhoto, ontola.imagePositionY);
-  const [url] = useResourceProperty(coverPhoto, ontola.imgUrl1500x2000);
+  const [coverPhoto] = useIds(ontola.coverPhoto);
+  useDataFetching(coverPhoto);
+  const [imagePositionY] = useLiterals(coverPhoto, ontola.imagePositionY);
+  const [url] = useIds(coverPhoto, ontola.imgUrl1500x2000);
 
   const defaultItems = (
     <React.Fragment>
