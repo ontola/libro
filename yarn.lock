@@ -11226,9 +11226,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-lib@npm:0.0.0-a67946be":
-  version: 0.0.0-a67946be
-  resolution: "link-lib@npm:0.0.0-a67946be"
+"link-lib@npm:0.0.0-8475f2de":
+  version: 0.0.0-8475f2de
+  resolution: "link-lib@npm:0.0.0-8475f2de"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -11239,7 +11239,7 @@ __metadata:
     hextuples: ">=2.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.1
-  checksum: 0ae002eaa31b8a1827115ae3c14b746e55c9a8cdc8ddda2c69bd25faaa7ce2c549acc8184582b35e9ccb3b5e51ae16816957802e133bed1b0639920b02520157
+  checksum: 9c5627f6729877c570c6cdcd3aa6f95e974da4f0ad6d54c17399f141809afe9d0a7e39137ae2728adc41b5dcf43316943713ebd73b6d48156f55898346daeeca
   languageName: node
   linkType: hard
 
@@ -12785,7 +12785,7 @@ __metadata:
     jest: ^27.3.1
     jest-fetch-mock: ^3.0.3
     jsdom: ^16.6.0
-    link-lib: 0.0.0-a67946be
+    link-lib: 0.0.0-8475f2de
     link-redux: 0.0.0-54fdcd16
     lint-staged: ^10.5.4
     memoize-one: ^5.0.5
