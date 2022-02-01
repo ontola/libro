@@ -1,4 +1,4 @@
-import rdfFactory, {
+import {
   QuadPosition,
   SomeTerm,
   isNamedNode,
@@ -21,9 +21,7 @@ import { isPromise } from '../helpers/types';
 
 import { NodeShape, ValuesFor } from './useShapeValidation';
 
-export interface ValuesMap {
-  [subject: number]: SomeTerm[];
-}
+export type ValuesMap = Record<string, SomeTerm[]>;
 
 interface ShShape {
   hasValue?: SomeTerm;
@@ -64,7 +62,7 @@ const useShapeValues = (targetFromProp: LaxNode, shapeProps: NodeShape[]): Value
       if (target && path) {
         const [dugQuads, dugTargets] = lrs.digDeeper(target, path);
         dugTargets.forEach((subj) => resolvedTargets.add(subj));
-        newMap[rdfFactory.id(currentProps.subject)] = dugQuads.map((q) => q[QuadPosition.object]);
+        newMap[currentProps.subject!.value] = dugQuads.map((q) => q[QuadPosition.object]);
       }
     });
 
@@ -76,13 +74,19 @@ const useShapeValues = (targetFromProp: LaxNode, shapeProps: NodeShape[]): Value
   }, [lrs, shapeProps, update, targetFromProp]);
 
   return React.useCallback<ValuesFor>((shape: SomeNode) => {
-    const value = shapeValues[rdfFactory.id(shape)];
+    const value = shapeValues[shape.value];
 
     if (!value) {
       return undefined;
     }
 
-    return lrs.store.canon(value);
+    return value.map((v) => {
+      if (isNode(v)) {
+        return lrs.store.primary(v);
+      }
+
+      return v;
+    });
   }, [shapeValues]);
 };
 

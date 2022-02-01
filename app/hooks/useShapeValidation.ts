@@ -4,7 +4,7 @@ import {
   isNode,
 } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
-import { SomeNode } from 'link-lib';
+import { LinkedRenderStore, SomeNode } from 'link-lib';
 import {
   LaxNode,
   LinkReduxLRSType,
@@ -150,8 +150,18 @@ const validateShape = (shapeProps: NodeShape[], valuesFor: ValuesFor, shape: Lax
   return true;
 };
 
+const primary = (lrs: LinkedRenderStore<unknown>, value: SomeTerm): SomeTerm => {
+  if (isNode(value)) {
+    return lrs.store.primary(value);
+  }
+
+  return value;
+};
+
 const normalizeProps = (lrs: LinkReduxLRSType, props: RawNodeShape): NodeShape => {
-  const hasValueProp = props.hasValue ? lrs.store.canon(props.hasValue) : undefined;
+  const hasValueProp = props.hasValue
+    ? primary(lrs, props.hasValue)
+    : undefined;
   const shInValues = props.shIn.flatMap((value) => {
     const acc = isNamedNode(value) ? containerToArr<SomeTerm>(lrs, [], value) : value;
 
@@ -160,7 +170,7 @@ const normalizeProps = (lrs: LinkReduxLRSType, props: RawNodeShape): NodeShape =
     }
 
     return acc;
-  }).map((v) => lrs.store.canon(v));
+  }).map((v) => primary(lrs, v));
 
   return {
     ...props,

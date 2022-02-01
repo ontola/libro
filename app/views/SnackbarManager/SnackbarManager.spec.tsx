@@ -34,6 +34,8 @@ describe('SnackbarManager', () => {
     const resources = {
       '@id': iri.value,
       [rdfx.type.toString()]: ontola.ns('snackbar/Manager'),
+      [ontola.ns('snackbar/number').toString()]: rdf.literal(0),
+      [ontola.ns('snackbar/current').toString()]: rdf.literal(0),
       [ontola.ns('snackbar/queue').toString()]: seq([
         {
           '@id': rdf.blankNode(),

@@ -139,7 +139,7 @@ export default async function generateLRS(
     });
   }
 
-  lrs.store.getInternalStore().newPropertyAction(rdfx.type, (q: DataRecord): boolean => {
+  lrs.store.getInternalStore().newPropertyAction(rdfx.type.value, (q: DataRecord): boolean => {
     if (THING_TYPES.includes(rdf.id(q[QuadPosition.object]))) {
       return false;
     }
