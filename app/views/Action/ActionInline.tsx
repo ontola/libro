@@ -10,20 +10,25 @@ import {
   Property,
   register,
   useGlobalIds,
+  useIds,
   useProperty,
 } from 'link-redux';
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { SyntheticEvent } from 'react';
 
 import { ButtonVariant } from '../../components/Button';
 import { bestType, filterFind } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
+import {
+  omniformContext,
+  omniformOpenInline,
+  omniformSetAction,
+} from '../../state/omniform';
 import { LibroTheme } from '../../themes/themes';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { listTopology } from '../../topologies/List';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
+import { CardListOnClick } from './helpers';
 
 interface InlineCreateActionProps {
   count: Literal;
@@ -46,13 +51,25 @@ function getColor(theme: LibroTheme, types: NamedNode[]) {
 
 const ActionInline: FC<InlineCreateActionProps> = ({
   omniform,
-  onClick,
   subject,
   variant,
 }) => {
   const materialTheme = useTheme();
   const [actionStatus] = useProperty(schema.actionStatus);
   const type = useGlobalIds(rdfx.type);
+  const [isPartOf] = useIds(schema.isPartOf);
+
+  const { omniformState, setOmniformState } = React.useContext(omniformContext);
+
+  const onClick = (e: SyntheticEvent<any>) => {
+    e.preventDefault();
+
+    setOmniformState(omniformOpenInline(omniformState, isPartOf.value));
+    setOmniformState(omniformSetAction(omniformState, {
+      action: subject,
+      parentIRI: btoa(isPartOf.value),
+    }));
+  };
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
@@ -86,10 +103,6 @@ ActionInline.type = schema.Action;
 ActionInline.topology = [
   actionsBarTopology,
   listTopology,
-];
-
-ActionInline.hocs = [
-  connect(null, mapCardListDispatchToProps),
 ];
 
 export default register(ActionInline);

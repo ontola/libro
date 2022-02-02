@@ -37,6 +37,7 @@ import { generateCtx } from './helpers/link-redux/fixtures';
 import { isFunction } from './helpers/types';
 import { WebsiteContext } from './location';
 import configureStore from './state';
+import { OmniformState, omniformContext } from './state/omniform';
 import themes from './themes';
 import englishMessages from './lang/en.json';
 import { getViews } from './views';
@@ -80,6 +81,13 @@ const wrapProviders = ({
       </Router>
     ) : children;
 
+    const [omniformState, setOmniformState] = React.useState<OmniformState>({ });
+
+    const omniformStateMemo = React.useMemo(() => ({
+      omniformState,
+      setOmniformState,
+    }), [omniformState, setOmniformState]);
+
     return (
       <Provider store={configureStore(ctx.history)}>
         <ResponsiveContext.Provider value={viewPort}>
@@ -90,14 +98,16 @@ const wrapProviders = ({
             >
               <HelmetProvider context={{}}>
                 <RenderStoreProvider value={lrs}>
-                  <IntlProvider
-                    locale="en"
-                    messages={englishMessages}
-                  >
-                    <ThemeProvider theme={themes.common({})}>
-                      {routerOrChildren}
-                    </ThemeProvider>
-                  </IntlProvider>
+                  <omniformContext.Provider value={omniformStateMemo}>
+                    <IntlProvider
+                      locale="en"
+                      messages={englishMessages}
+                    >
+                      <ThemeProvider theme={themes.common({})}>
+                        {routerOrChildren}
+                      </ThemeProvider>
+                    </IntlProvider>
+                  </omniformContext.Provider>
                 </RenderStoreProvider>
               </HelmetProvider>
             </AppContextProvider>

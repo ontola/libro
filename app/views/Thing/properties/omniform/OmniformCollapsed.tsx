@@ -5,7 +5,6 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  ReturnType,
   register,
   useDataFetching,
   useGlobalIds,
@@ -13,8 +12,6 @@ import {
   useTopology,
 } from 'link-redux';
 import React from 'react';
-import { connect } from 'react-redux';
-import { Action } from 'redux';
 
 import CollectionCreateButton, { TriggerType } from '../../../../components/Collection/CollectionCreateButton';
 import Heading from '../../../../components/Heading';
@@ -25,9 +22,9 @@ import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';
 import ontola from '../../../../ontology/ontola';
 import {
-  UnscopedOmniformState,
   getOmniformOpenState,
   omniformCloseInline,
+  omniformContext,
   omniformOpenInline,
 } from '../../../../state/omniform';
 import Card, { cardTopology } from '../../../../topologies/Card';
@@ -38,50 +35,41 @@ import { containerTopology } from '../../../../topologies/Container';
 
 import {
   actionsAreAllDisabled,
-  useActions, 
+  useActions,
 } from './helpers';
 
 const ESCAPE_KEY = 27;
 
 export interface CollapsedOmniformProps {
   clickToOpen?: boolean;
-  closeForm: () => void;
   header?: string;
   linkedProp: SomeTerm;
-  openForm: () => void;
-  opened?: boolean;
-  potentialAction: NamedNode[];
-  sameAs: NamedNode[];
   subject: NamedNode;
 }
 
-const mapInlineStateToProps = (state: UnscopedOmniformState, ownProps: CollapsedOmniformProps) => ({
-  opened: getOmniformOpenState(state, ownProps.subject)
-    || !!ownProps.sameAs?.find((sameAs: NamedNode) => getOmniformOpenState(state, sameAs)),
-});
-
-const mapInlineDispatchToProps = (dispatch: (action: Action) => void, ownProps: CollapsedOmniformProps) => ({
-  closeForm: () => Promise.resolve(dispatch(omniformCloseInline(ownProps.subject))),
-  openForm: () => Promise.resolve(dispatch(omniformOpenInline(ownProps.subject))),
-});
-
 const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
-  const {
-    clickToOpen,
-    closeForm,
-    openForm,
-    opened,
-    potentialAction,
-    header,
-    sameAs,
-  } = props;
-
   const lrs = useLRS();
   const topology = useTopology();
   const types = useGlobalIds(rdfx.type);
+  const potentialAction = useGlobalIds(schema.potentialAction);
+  const sameAs = useGlobalIds(owl.sameAs);
+
+  const { omniformState, setOmniformState } = React.useContext(omniformContext);
+  const opened = getOmniformOpenState(omniformState, props.subject.value)
+    || !!sameAs.find((sAs: NamedNode) => getOmniformOpenState(omniformState, sAs.value));
 
   useDataFetching(sameAs);
   const items = useActions(potentialAction);
+
+  const closeForm = React.useCallback(
+    () => setOmniformState(omniformCloseInline(omniformState, props.subject.value)),
+    [props.subject.value, omniformState],
+  );
+  const openForm = React.useCallback(
+    () => setOmniformState(omniformOpenInline(omniformState, props.subject.value)),
+    [props.subject.value, omniformState],
+  );
+
   const toggle = React.useCallback(() => {
     if (opened) {
       closeForm();
@@ -107,7 +95,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   }
 
   const hasItems = items.filter((item) => entityIsLoaded(lrs, item)).length > 0;
-  const renderHeader = header && hasItems;
+  const renderHeader = props.header && hasItems;
   const Wrapper = topology === containerTopology ? 'div' : CardRow;
   const wrapperOpts = topology === containerTopology ? {} : { borderTop: true };
   const entryPointWrapper = topology === containerTopology ? Card : undefined;
@@ -117,13 +105,14 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
       <React.Fragment>
         {renderHeader && (
           <Heading>
-            {header}
+            {props.header}
           </Heading>
         )}
         <Wrapper {...wrapperOpts}>
           <OmniformConnector
             autofocusForm
             borderTop={topology !== containerTopology}
+            closeForm={closeForm}
             entryPointWrapper={entryPointWrapper}
             items={items}
             onDone={toggle}
@@ -133,17 +122,17 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
         </Wrapper>
       </React.Fragment>
     );
-  } else if (!clickToOpen) {
+  } else if (!props.clickToOpen) {
     return null;
   }
 
-  const shouldShow = clickToOpen && hasItems && !actionsAreAllDisabled(items, lrs);
+  const shouldShow = props.clickToOpen && hasItems && !actionsAreAllDisabled(items, lrs);
 
   return (
     <React.Fragment>
       {renderHeader && (
         <Heading>
-          {header}
+          {props.header}
         </Heading>
       )}
       <Collapse
@@ -170,21 +159,6 @@ CollapsedOmniformProp.topology = [
   cardMainTopology,
   cardTopology,
   containerTopology,
-];
-
-CollapsedOmniformProp.mapDataToProps = {
-  potentialAction: {
-    label: schema.potentialAction,
-    returnType: ReturnType.AllTerms,
-  },
-  sameAs: {
-    label: owl.sameAs,
-    returnType: ReturnType.AllTerms,
-  },
-};
-
-CollapsedOmniformProp.hocs = [
-  connect(mapInlineStateToProps, mapInlineDispatchToProps),
 ];
 
 CollapsedOmniformProp.defaultProps = {

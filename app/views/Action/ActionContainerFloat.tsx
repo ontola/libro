@@ -7,19 +7,24 @@ import {
   useDataFetching,
   useFields,
   useGlobalIds,
+  useIds,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { connect } from 'react-redux';
 
 import { filterFind } from '../../helpers/data';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { useShowDialog } from '../../hooks/useShowDialog';
+import {
+  omniformContext,
+  omniformOpenInline,
+  omniformSetAction, 
+} from '../../state/omniform';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import { CardListOnClick, mapCardListDispatchToProps } from './helpers';
+import { CardListOnClick } from './helpers';
 
 interface ActionContainerFloatProps {
   omniform: boolean;
@@ -28,16 +33,28 @@ interface ActionContainerFloatProps {
 
 const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
   omniform,
-  onClick,
   subject,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
   const [target] = useGlobalIds(schema.target);
   const showDialog = useShowDialog(subject.value);
+  const [isPartOf] = useIds(schema.isPartOf);
 
   const [image] = useFields(target, schema.image);
   useDataFetching(target);
+
+  const { omniformState, setOmniformState } = React.useContext(omniformContext);
+
+  const onClick = (e: SyntheticEvent<any>) => {
+    e.preventDefault();
+
+    setOmniformState(omniformOpenInline(omniformState, isPartOf.value));
+    setOmniformState(omniformSetAction(omniformState, {
+      action: subject,
+      parentIRI: btoa(isPartOf.value),
+    }));
+  };
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
@@ -63,10 +80,6 @@ ActionContainerFloat.type = schema.Action;
 
 ActionContainerFloat.topology = [
   containerFloatTopology,
-];
-
-ActionContainerFloat.hocs = [
-  connect(null, mapCardListDispatchToProps),
 ];
 
 export default register(ActionContainerFloat);

@@ -15,6 +15,7 @@ import germanMessages from '../lang/de.json';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
 import AppFrame from '../routes/App';
+import { OmniformState, omniformContext } from '../state/omniform';
 import themes from '../themes';
 import { WebManifest } from '../WebManifest';
 
@@ -101,6 +102,13 @@ const IndexContainer = ({
   const themeVariables = getThemeVariables(manifest);
   const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);
 
+  const [omniformState, setOmniformState] = React.useState<OmniformState>({ });
+
+  const omniformStateMemo = React.useMemo(() => ({
+    omniformState,
+    setOmniformState,
+  }), [omniformState, setOmniformState]);
+
   return (
     <Provider store={store}>
       <IntlProvider
@@ -108,14 +116,16 @@ const IndexContainer = ({
         messages={messages}
       >
         <RenderStoreProvider value={lrs}>
-          <UpdateLRSIntl>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Router>
-                <AppFrame />
-              </Router>
-            </ThemeProvider>
-          </UpdateLRSIntl>
+          <omniformContext.Provider value={omniformStateMemo}>
+            <UpdateLRSIntl>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Router>
+                  <AppFrame />
+                </Router>
+              </ThemeProvider>
+            </UpdateLRSIntl>
+          </omniformContext.Provider>
         </RenderStoreProvider>
       </IntlProvider>
     </Provider>

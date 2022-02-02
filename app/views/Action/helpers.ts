@@ -5,27 +5,8 @@ import { useHistory } from 'react-router';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { redirectPage } from '../../middleware/reloading';
-import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 
 export type CardListOnClick = (e: SyntheticEvent<any>) => Promise<[any, any]>;
-
-interface DispatchToProps {
-  onClick: CardListOnClick;
-}
-
-export const mapCardListDispatchToProps = (dispatch: (...args: any[]) => void, ownProps: Record<string, any>): DispatchToProps => ({
-  onClick: (e: SyntheticEvent<any>) => {
-    e.preventDefault();
-
-    return Promise.all([
-      dispatch(omniformOpenInline(ownProps.isPartOf)),
-      dispatch(omniformSetAction({
-        action: ownProps.subject,
-        parentIRI: btoa(ownProps.isPartOf.value),
-      })),
-    ]);
-  },
-});
 
 export type OnDoneHandler = (iri: string) => void;
 
