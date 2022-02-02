@@ -3,8 +3,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonVariant } from '../../components/Button';
+import { ERROR_CLASSES } from '../../helpers/metaData';
 import useErrorReload from '../../hooks/useErrorReload';
-import ll from '../../ontology/ll';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -49,7 +49,7 @@ const ErrorButtonInline: FC<ErrorComponentProps> = ({
   );
 };
 
-ErrorButtonInline.type = ll.ErrorResource;
+ErrorButtonInline.type = ERROR_CLASSES;
 
 ErrorButtonInline.topology = [
   attributeListTopology,

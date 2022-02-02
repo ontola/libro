@@ -7,12 +7,30 @@ import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 
 import dbo from '../ontology/dbo';
+import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 import { Icon, WebManifest } from '../WebManifest';
 
 import { stripMarkdown } from './markdownHelper';
 
 const raw = (list: NamedNode[]): string[] => list.map((n) => n.value);
+
+export const ERROR_CLASSES = [
+  ll.ErrorResource,
+  ontola.ns('errors/RecordNotFoundError'),
+  ontola.ns('errors/AccountLockedError'),
+  ontola.ns('errors/ForbiddenError'),
+  ontola.ns('errors/UnauthorizedError'),
+  ontola.ns('errors/UnknownEmailError'),
+  ontola.ns('errors/WrongPasswordError'),
+  ontola.ns('errors/NoPasswordError'),
+  ontola.ns('errors/ExpiredError'),
+  ontola.ns('errors/RecordNotFoundError'),
+  ontola.ns('errors/RoutingErrorError'),
+  ontola.ns('errors/RecordNotUniqueError'),
+  ontola.ns('errors/UnpermittedParametersError'),
+  ontola.ns('errors/ParameterMissingError'),
+];
 
 export const COVER_PREDICATES = [ontola.coverPhoto];
 export const COVER_URL_PREDICATES = [ontola.imgUrl1500x2000];

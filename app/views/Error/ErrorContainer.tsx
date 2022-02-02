@@ -3,7 +3,7 @@ import React from 'react';
 
 import CardError from '../../components/Error/CardError';
 import { ErrorComponentProps } from '../../components/Error/helpers';
-import ll from '../../ontology/ll';
+import { ERROR_CLASSES } from '../../helpers/metaData';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
@@ -14,7 +14,7 @@ const ErrorContainer: FC<ErrorComponentProps> = (props) => (
   <CardError {...props} />
 );
 
-ErrorContainer.type = ll.ErrorResource;
+ErrorContainer.type = ERROR_CLASSES;
 
 ErrorContainer.topology = [
   alertDialogTopology,

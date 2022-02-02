@@ -7,8 +7,8 @@ import BlurButton from '../../components/BlurButton';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../components/NavbarLink/NavbarLinkLabel';
+import { ERROR_CLASSES } from '../../helpers/metaData';
 import useErrorReload from '../../hooks/useErrorReload';
-import ll from '../../ontology/ll';
 import { navbarTopology } from '../../topologies/Navbar';
 import { errorMessages } from '../../translations/messages';
 import { bodyDescriptorForStatus } from '../../components/Error/errorMessages';
@@ -70,7 +70,7 @@ const ErrorNavbar: FC<ErrorComponentProps> = (props) => {
   );
 };
 
-ErrorNavbar.type = ll.ErrorResource;
+ErrorNavbar.type = ERROR_CLASSES;
 
 ErrorNavbar.topology = navbarTopology;
 
