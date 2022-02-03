@@ -1,10 +1,10 @@
 import {
   Node,
   QuadPosition,
-  Quadruple,
+  Quadruple, 
 } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
-import { equals } from 'link-lib';
+import { RecordState, equals } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ll from '../ontology/ll';
@@ -71,6 +71,7 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
 
     if (!wildSubject && wildPredicate && wildObject) {
       lrs.store.removeResource(s);
+      lrs.store.getInternalStore().store.journal.transition(s.value, RecordState.Absent);
     } else {
       lrs.store.match(
         wildSubject ? null : s,
