@@ -5,7 +5,7 @@ import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
 import React from 'react';
 
-import { getWebsiteContextFromWebsite } from './helpers/app';
+import getWebsiteContextFromWebsite from './helpers/app';
 import { defaultManifest } from './helpers/defaultManifest';
 import generateLRS from './helpers/generateLRS';
 import { resourcesToGraph } from './test-utils';
@@ -15,7 +15,7 @@ export interface HookTestBundle<TProps> {
   wrapper: React.ComponentType<React.PropsWithChildren<TProps>>;
 }
 
-export const createHookWrapper = async <TProps extends unknown>(data: DataObject | DataObject[]): Promise<HookTestBundle<TProps>> => {
+export async function createHookWrapper<TProps>(data: DataObject | DataObject[]): Promise<HookTestBundle<TProps>> {
   const websiteContext = getWebsiteContextFromWebsite('https://example.com/');
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
@@ -30,7 +30,7 @@ export const createHookWrapper = async <TProps extends unknown>(data: DataObject
     lrs,
     wrapper,
   };
-};
+}
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const renderLinkedHook = async <TProps, TResult>(
