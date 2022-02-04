@@ -110,6 +110,7 @@ const DropdownMenu = ({
         open={open}
         placement="bottom"
         role={undefined}
+        onClick={handleClick}
       >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps}>
