@@ -18,6 +18,7 @@ import FontAwesome from 'react-fontawesome';
 import argu from '../../ontology/argu';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
+import { highlightContext } from '../../state/highlight';
 import {
   getOmniformAction,
   omniformContext,
@@ -83,6 +84,7 @@ const convertFieldContext = (parentIRI: string, actionIRI: Node) => {
 const Omniform = (props: OmniformProps): JSX.Element | null => {
   const lrs = useLRS();
   const { omniformState, setOmniformState } = React.useContext(omniformContext);
+  const { highlightState, setHighlightState } = React.useContext(highlightContext);
 
   // The NamedNode of the currently selected form.
   const action = getOmniformAction(omniformState, props.parentIRI) ?? props.actions.values().next().value;
@@ -123,11 +125,11 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
     ))
   ), [props.actions, action]);
 
-  const responseCallback = React.useCallback(() => {
-    // if (response.iri) {
-    //   props.dispatchHighlightResource(response.iri);
-    // }
-  }, []);
+  const responseCallback = React.useCallback((response) => {
+    if (response.iri) {
+      setHighlightState(response.iri);
+    }
+  }, [highlightState]);
 
   const linkedFieldset = React.useCallback(() => {
     if (!isNamedNode(action)) {

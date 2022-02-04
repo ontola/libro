@@ -15,6 +15,7 @@ import germanMessages from '../lang/de.json';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
 import AppFrame from '../routes/App';
+import { highlightContext } from '../state/highlight';
 import { OmniformState, omniformContext } from '../state/omniform';
 import themes from '../themes';
 import { WebManifest } from '../WebManifest';
@@ -109,6 +110,13 @@ const IndexContainer = ({
     setOmniformState,
   }), [omniformState, setOmniformState]);
 
+  const [highlightState, setHighlightState] = React.useState<string | undefined>(undefined);
+
+  const highlightStateMemo = React.useMemo(() => ({
+    highlightState,
+    setHighlightState,
+  }), [highlightState, setHighlightState]);
+
   return (
     <Provider store={store}>
       <IntlProvider
@@ -117,14 +125,16 @@ const IndexContainer = ({
       >
         <RenderStoreProvider value={lrs}>
           <omniformContext.Provider value={omniformStateMemo}>
-            <UpdateLRSIntl>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Router>
-                  <AppFrame />
-                </Router>
-              </ThemeProvider>
-            </UpdateLRSIntl>
+            <highlightContext.Provider value={highlightStateMemo}>
+              <UpdateLRSIntl>
+                <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  <Router>
+                    <AppFrame />
+                  </Router>
+                </ThemeProvider>
+              </UpdateLRSIntl>
+            </highlightContext.Provider>
           </omniformContext.Provider>
         </RenderStoreProvider>
       </IntlProvider>

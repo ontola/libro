@@ -10,7 +10,7 @@ import {
 import { enableBatching } from 'redux-batched-actions';
 import thunk from 'redux-thunk';
 
-import * as reducers from './reducers';
+import * as reducers from './highlight';
 
 const configureStore = (
   history: History,

@@ -14,27 +14,27 @@ import { LoadingHidden, LoadingOpinion } from '../../components/Loading';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { highlightContext } from '../../state/highlight';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import DetailsBar from '../../topologies/DetailsBar';
-import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { sideBarTopology } from '../../topologies/SideBar';
 
 export interface CommentContainerProps {
   depth?: number;
-  highlighted?: boolean;
   onItemClick?: (item: SomeNode) => void;
 }
 
 const CommentContainer: FC<CommentContainerProps> = ({
   depth = 0,
-  highlighted,
   onItemClick,
   subject,
 }) => {
+  const { highlightState } = React.useContext(highlightContext);
+
   const onClick = React.useCallback(() => {
     if (onItemClick && subject) {
       onItemClick(subject);
@@ -44,7 +44,7 @@ const CommentContainer: FC<CommentContainerProps> = ({
   return (
     <React.Fragment>
       <Card
-        shine={highlighted}
+        shine={subject.value === highlightState}
         onClick={onClick}
       >
         <DetailsBar
@@ -97,8 +97,6 @@ const CommentContainer: FC<CommentContainerProps> = ({
   );
 };
 
-CommentContainer.hocs = [connectHighlighting];
-
 CommentContainer.type = [
   schema.Comment,
   argu.Comment,
@@ -109,7 +107,5 @@ CommentContainer.topology = [
   containerTopology,
   sideBarTopology,
 ];
-
-CommentContainer.propTypes = hightlightPropTypes;
 
 export default register(CommentContainer);

@@ -10,21 +10,19 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import { connectHighlighting } from '../../containers/Highlight';
 import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
+import { highlightContext } from '../../state/highlight';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import CardMicroRow, { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { listTopology } from '../../topologies/List';
 
-interface CommentSectionProps extends SubjectProp {
-  highlighted: boolean;
-}
-
-const CommentSection = ({ highlighted, subject }: CommentSectionProps): JSX.Element => {
+const CommentSection = ({ subject }: SubjectProp): JSX.Element => {
   const lrs = useLRS();
   const [creator] = useIds(schema.creator);
+  const { highlightState } = React.useContext(highlightContext);
+
   useDataInvalidation([creator, subject]);
 
   if (creator && !entityIsLoaded(lrs, creator)) {
@@ -32,7 +30,7 @@ const CommentSection = ({ highlighted, subject }: CommentSectionProps): JSX.Elem
   }
 
   return (
-    <CardMicroRow highlighted={highlighted}>
+    <CardMicroRow highlighted={subject.value === highlightState}>
       <Property
         label={schema.creator}
       />
@@ -41,8 +39,6 @@ const CommentSection = ({ highlighted, subject }: CommentSectionProps): JSX.Elem
     </CardMicroRow>
   );
 };
-
-CommentSection.hocs = [connectHighlighting];
 
 CommentSection.type = [
   schema.Comment,
