@@ -14,7 +14,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions, useHasInteraction } from '../../../components/Collection/CollectionProvider';
 import GridItem from '../../../components/Grid/GridItem';
 import { isTableDisplay } from '../../../helpers/collections';
 import app from '../../../ontology/app';
@@ -34,12 +34,13 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 const Empty: FC<PropertyProps> = () => {
   const topology = useTopology();
   const [baseCollection] = useGlobalIds(ontola.baseCollection);
+  const hasInteraction = useHasInteraction(baseCollection);
 
   const styles = useStyles();
   const { collectionDisplay } = useCollectionOptions();
   const collectionType = useFields(baseCollection, rdfx.type);
 
-  if (collectionType.includes(ontola.SearchResult)) {
+  if (collectionType.includes(ontola.SearchResult) || hasInteraction) {
     return null;
   }
 

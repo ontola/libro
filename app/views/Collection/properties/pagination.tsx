@@ -1,5 +1,5 @@
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import { NamedNode, SomeTerm } from '@ontologies/core';
 import {
   FC,
   Property,
@@ -16,28 +16,29 @@ import { CollectionTypes } from '../types';
 
 import { PaginationProps } from './defaultPagination';
 
+const paginationType = (hidePagination: boolean | undefined, collectionType: SomeTerm): NamedNode => {
+  if (hidePagination) {
+    return as.totalItems;
+  }
+
+  if (collectionType === ontola['collectionType/infinite']) {
+    return ontola.infinitePagination;
+  }
+
+  return ontola.defaultPagination;
+};
+
 const Pagination: FC<PaginationProps> = ({ alignText }) => {
   const { hidePagination } = useCollectionOptions();
   const [collectionType] = useProperty(ontola.collectionType);
 
-  if (hidePagination) {
-    return (
-      <Property label={as.totalItems} />
-    );
-  } else if (rdf.id(collectionType) === rdf.id(ontola['collectionType/infinite'])) {
-    return (
-      <Property
-        forceRender
-        label={ontola.infinitePagination}
-      />
-    );
-  }
+  const paginationLabel = paginationType(hidePagination, collectionType);
 
   return (
     <Property
-      forceRender
       alignText={alignText}
-      label={ontola.defaultPagination}
+      forceRender={!hidePagination}
+      label={paginationLabel}
     />
   );
 };

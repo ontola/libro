@@ -193,6 +193,9 @@ const usePageButtons = (): JSX.Element[] | null => {
 };
 
 const useStyles = makeStyles(() => ({
+  paginationWrapper: {
+    marginBottom: '1em',
+  },
   textLeft: {
     textAlign: 'left',
   },
@@ -215,6 +218,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
         <div
           className={clsx(
             defaultPaginationCID,
+            classes.paginationWrapper,
             alignText==='right' ? classes.textRight : classes.textLeft,
           )}
           data-testid="paginationWrapper"

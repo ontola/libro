@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
@@ -27,12 +26,6 @@ import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';
 import { CollectionFrameWrapper } from './CollectionFrameWrapper';
 import { useCollectionOptions } from './CollectionProvider';
 
-const useStyles = makeStyles({
-  paginationWrapper: {
-    marginBottom: '1em',
-  },
-});
-
 export interface CollectionFrameProps {
   Wrapper: React.ElementType,
 }
@@ -40,7 +33,6 @@ export interface CollectionFrameProps {
 const CollectionFrame = ({
   Wrapper,
 }: CollectionFrameProps): JSX.Element => {
-  const styles = useStyles();
   const {
     collectionDisplay,
     currentCollectionPages,
@@ -151,12 +143,10 @@ const CollectionFrame = ({
           label={ontola.header}
         />
         {body}
-        <div className={styles.paginationWrapper}>
-          <Property
-            forceRender
-            label={app.pagination}
-          />
-        </div>
+        <Property
+          forceRender
+          label={app.pagination}
+        />
         {!depth && (
           <Property
             forceRender
