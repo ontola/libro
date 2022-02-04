@@ -24,7 +24,6 @@ import { RenderStoreProvider } from 'link-redux';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
-import { Provider } from 'react-redux';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { Router } from 'react-router';
 
@@ -36,7 +35,6 @@ import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
 import { isFunction } from './helpers/types';
 import { WebsiteContext } from './location';
-import configureStore from './state';
 import { highlightContext } from './state/highlight';
 import { OmniformState, omniformContext } from './state/omniform';
 import themes from './themes';
@@ -97,33 +95,31 @@ const wrapProviders = ({
     }), [highlightState, setHighlightState]);
 
     return (
-      <Provider store={configureStore(ctx.history)}>
-        <ResponsiveContext.Provider value={viewPort}>
-          <WebsiteContext.Provider value={websiteContext}>
-            <AppContextProvider
-              lrs={ctx?.lrs}
-              manifest={manifest}
-            >
-              <HelmetProvider context={{}}>
-                <RenderStoreProvider value={lrs}>
-                  <omniformContext.Provider value={omniformStateMemo}>
-                    <highlightContext.Provider value={highlightStateMemo}>
-                      <IntlProvider
-                        locale="en"
-                        messages={englishMessages}
-                      >
-                        <ThemeProvider theme={themes.common({})}>
-                          {routerOrChildren}
-                        </ThemeProvider>
-                      </IntlProvider>
-                    </highlightContext.Provider>
-                  </omniformContext.Provider>
-                </RenderStoreProvider>
-              </HelmetProvider>
-            </AppContextProvider>
-          </WebsiteContext.Provider>
-        </ResponsiveContext.Provider>
-      </Provider>
+      <ResponsiveContext.Provider value={viewPort}>
+        <WebsiteContext.Provider value={websiteContext}>
+          <AppContextProvider
+            lrs={ctx?.lrs}
+            manifest={manifest}
+          >
+            <HelmetProvider context={{}}>
+              <RenderStoreProvider value={lrs}>
+                <omniformContext.Provider value={omniformStateMemo}>
+                  <highlightContext.Provider value={highlightStateMemo}>
+                    <IntlProvider
+                      locale="en"
+                      messages={englishMessages}
+                    >
+                      <ThemeProvider theme={themes.common({})}>
+                        {routerOrChildren}
+                      </ThemeProvider>
+                    </IntlProvider>
+                  </highlightContext.Provider>
+                </omniformContext.Provider>
+              </RenderStoreProvider>
+            </HelmetProvider>
+          </AppContextProvider>
+        </WebsiteContext.Provider>
+      </ResponsiveContext.Provider>
     );
   };
 

@@ -7,8 +7,6 @@ import 'dayjs/locale/nl';
 import { RenderStoreProvider, useLRS } from 'link-redux';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
-import { Provider } from 'react-redux';
-import { Store } from 'redux';
 
 import { appContext } from '../appContext';
 import germanMessages from '../lang/de.json';
@@ -26,7 +24,6 @@ export interface RouterProps {
 
 export interface IndexContainerProps {
   Router: FunctionComponent<RouterProps>;
-  store: Store;
   manifest: WebManifest,
 }
 
@@ -77,7 +74,6 @@ const getThemeVariables = (manifest: WebManifest) => {
 
 const IndexContainer = ({
   Router,
-  store,
   manifest,
 }: IndexContainerProps): JSX.Element => {
   const { lrs, theme: themeName } = React.useContext(appContext);
@@ -118,27 +114,25 @@ const IndexContainer = ({
   }), [highlightState, setHighlightState]);
 
   return (
-    <Provider store={store}>
-      <IntlProvider
-        locale={selectedLang}
-        messages={messages}
-      >
-        <RenderStoreProvider value={lrs}>
-          <omniformContext.Provider value={omniformStateMemo}>
-            <highlightContext.Provider value={highlightStateMemo}>
-              <UpdateLRSIntl>
-                <ThemeProvider theme={theme}>
-                  <CssBaseline />
-                  <Router>
-                    <AppFrame />
-                  </Router>
-                </ThemeProvider>
-              </UpdateLRSIntl>
-            </highlightContext.Provider>
-          </omniformContext.Provider>
-        </RenderStoreProvider>
-      </IntlProvider>
-    </Provider>
+    <IntlProvider
+      locale={selectedLang}
+      messages={messages}
+    >
+      <RenderStoreProvider value={lrs}>
+        <omniformContext.Provider value={omniformStateMemo}>
+          <highlightContext.Provider value={highlightStateMemo}>
+            <UpdateLRSIntl>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Router>
+                  <AppFrame />
+                </Router>
+              </ThemeProvider>
+            </UpdateLRSIntl>
+          </highlightContext.Provider>
+        </omniformContext.Provider>
+      </RenderStoreProvider>
+    </IntlProvider>
   );
 };
 
