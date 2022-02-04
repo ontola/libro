@@ -3231,6 +3231,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/css-mediaquery@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@types/css-mediaquery@npm:0.1.1"
+  checksum: b8beb960238fd32b44396fd0871fc8626d9e0136217f168effccd3cc33a0673f1a94e8a982e385a46c34b5ab4b19c9220be7ec628818837a3c47dcaa973954c4
+  languageName: node
+  linkType: hard
+
 "@types/eslint-scope@npm:^3.7.0":
   version: 3.7.0
   resolution: "@types/eslint-scope@npm:3.7.0"
@@ -12682,6 +12689,7 @@ __metadata:
     "@testing-library/react-hooks": ^7.0.2
     "@testing-library/user-event": ^13.5.0
     "@typeform/embed": ^0.33.2
+    "@types/css-mediaquery": ^0.1.1
     "@types/jest": ^27.0.2
     "@types/ol": ^6.4.2
     "@types/papaparse": ^5.2.6
@@ -12719,6 +12727,7 @@ __metadata:
     core-js: ^3.10.1
     cross-env: ^5.2.0
     css-loader: ^5.2.0
+    css-mediaquery: ^0.1.2
     dayjs: ^1.8.15
     deepmerge: ^4.2.2
     dotenv: ^8.0.0
