@@ -1,7 +1,7 @@
 import {
   Node,
   QuadPosition,
-  Quadruple, 
+  Quadruple,
 } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
 import { RecordState, equals } from 'link-lib';
@@ -15,7 +15,7 @@ export interface DeltaProcessors {
   deltas: Quadruple[][];
   flush(): Set<string>;
   processDelta(delta: Quadruple[]): void;
-  queueDelta(delta: Quadruple[], subjects: number[]): void;
+  queueDelta(delta: Quadruple[]): void;
 }
 
 function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {

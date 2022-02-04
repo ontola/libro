@@ -49,7 +49,7 @@ const useErrorReload = (subject: SomeNode | undefined, reloadLinkedObject: Reloa
     return Object
       .entries(((lrs.api as any).statusMap as StatusMap))
       .forEach(([id, s]) => {
-        const iri = rdf.fromId(id);
+        const iri = rdf.namedNode(id);
         const shouldReload = !isDifferentWebsite(iri) && s?.status && (
           s.status >= (INTERNAL_SERVER_ERROR - 1) || RETRYABLE_ERRORS.includes(s.status)
         );
