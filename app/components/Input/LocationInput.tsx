@@ -16,8 +16,7 @@ import MapView, {
 } from '../../containers/MapView';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
-import { InputValue } from '../../hooks/useFormField';
-import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
+import { InputValue, useFormFieldForPath } from '../../hooks/useFormField';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';

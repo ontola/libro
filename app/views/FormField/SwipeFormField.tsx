@@ -3,7 +3,7 @@ import React from 'react';
 
 import { formFieldTopologies } from '../../components/FormField/FormField';
 import SwipeInputLoader from '../../containers/SwipeInput';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
 const SwipeFormField: FC = ({ subject }) => {

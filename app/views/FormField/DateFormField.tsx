@@ -9,7 +9,7 @@ import React from 'react';
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import DatePicker from '../../containers/DatePicker';
 import DateTimePicker from '../../containers/DateTimePicker';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
 const DateFormField: FC = ({

@@ -3,7 +3,7 @@ import React from 'react';
 
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import ToggleButtonGroup from '../../components/ToggleButtonGroup';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
 const ToggleButtonGroupField: FC = ({

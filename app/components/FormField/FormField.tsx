@@ -6,12 +6,12 @@ import { calculateFormFieldName } from '../../helpers/forms';
 import { PermittedFormField } from '../../hooks/useFormField';
 import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { LibroTheme } from '../../themes/themes';
+import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { formFooterTopology } from '../../topologies/FormFooter';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { fieldLabelCID } from '../FieldLabel';
 import ResourceBoundary from '../ResourceBoundary';
-import { cardTopology } from '../../topologies/Card';
 
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldLabel from './FormFieldLabel';
@@ -25,6 +25,7 @@ export const fieldInputHiddenCID = 'CID-FieldInputHidden';
 export const fieldInputMarkdownCID = 'CID-FieldInputMarkdown';
 export const fieldInputSelectCID = 'CID-FieldInputSelect';
 export const fieldVariantPreviewCID = 'CID-FieldVariantPreview';
+export const fieldErrorCID = 'CID-FieldError';
 
 export const formFieldTopologies = [
   cardMainTopology,
@@ -119,8 +120,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
     padding: '0 2px',
   },
   fieldVariantDefault: {
-    marginBottom: '1em',
-    [`& .${fieldInputCID}`]: {
+    '& $fieldInput': {
       '&:hover': {
         borderColor: theme.palette.grey.light,
       },
@@ -146,6 +146,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
         border: 'unset',
       },
     },
+    marginBottom: '1em',
     [`& .${fieldInputCheckboxCID}`]: {
       alignItems: 'baseline',
       backgroundColor: 'inherit',
@@ -158,7 +159,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
       },
     },
     [`&.${fieldActiveCID}`]: {
-      [`& .${fieldInputCID}`]: {
+      '& $fieldInput': {
         backgroundColor: theme.palette.common.white,
         borderColor: theme.palette.grey.light,
         outlineOffset: '2px',
@@ -173,7 +174,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
     },
   },
   fieldVariantPreview: {
-    [`& .${fieldInputCID}`]: {
+    '& $fieldInput': {
       '&:hover': {
         boxShadow: `inset 5px 0 0 ${theme.palette.grey.light}`,
       },
@@ -189,7 +190,7 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
       width: '100%',
     },
     [`& .${fieldActiveCID}`]: {
-      [`& .${fieldInputCID}`]: {
+      '& $fieldInput': {
         boxShadow: `inset 5px 0 0 ${theme.palette.grey.main}`,
       },
     },

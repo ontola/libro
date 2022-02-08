@@ -9,6 +9,7 @@ import { LibroTheme } from '../../themes/themes';
 import { FormContext, FormTheme } from '../Form/Form';
 import {
   FormFieldContext,
+  fieldErrorCID,
   fieldInputCID,
   fieldInputCheckboxCID,
   fieldInputHiddenCID,
@@ -38,6 +39,11 @@ const TEXTFIELD_MIN_ROWS = 3;
 const FLOW_INPUT_PADDING = 4;
 
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
+  'canHaveError': {
+    [`.${fieldErrorCID} &`]: {
+      borderColor: theme.palette.error.main,
+    },
+  },
   flowInput: {
     '& textarea': {
       height: '100px',
@@ -63,7 +69,6 @@ const InputElement = ({
   trailer: Trailer,
   type,
 }: InputPropTypes): JSX.Element => {
-
   const {
     onKeyUp,
     theme,
@@ -106,6 +111,7 @@ const InputElement = ({
   const className = clsx({
     'Field__input--active': active,
     [formClasses.fieldInput]: true,
+    [classes.canHaveError]: true,
     [fieldInputCID]: true,
     [fieldInputCheckboxCID]: type === InputType.Checkbox,
     [fieldInputHiddenCID]: type === InputType.Hidden,
@@ -131,7 +137,7 @@ const InputElement = ({
     },
     onFocus,
     required,
-    value: inputValue?.value,
+    value: inputValue?.value ?? '',
   };
 
   let element;

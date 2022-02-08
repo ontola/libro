@@ -6,6 +6,7 @@ import { LaxIdentifier } from 'link-redux';
 import React from 'react';
 
 import { calcPercentage } from '../../../../helpers/numbers';
+import form from '../../../../ontology/form';
 import { LibroTheme } from '../../../../themes/themes';
 import { useAutoForward } from '../hooks/useAutoForward';
 import { useFieldForwardRules } from '../hooks/useFieldForwardRules';
@@ -46,7 +47,7 @@ const useStyles = makeStyles({
 const FlowForm = (): JSX.Element | null => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const matchMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const isWidescreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const [fields, loading] = useFlowFields();
   const [
@@ -60,7 +61,14 @@ const FlowForm = (): JSX.Element | null => {
   const { isAutoForwardField, isForwardedByEnter } = useFieldForwardRules(activeField);
 
   const activateNextField = React.useCallback(() => {
-    activateField(fields[currentIndex + 1]);
+    const nextIndex = currentIndex + 1;
+
+    if (nextIndex === fields.length) {
+      activateField(form.ns('Flow/SubmissionScreen'));
+    } else {
+      activateField(fields[currentIndex + 1]);
+    }
+
   }, [fields.length, currentIndex]);
 
   const activatePreviousField = React.useCallback(() => {
@@ -84,8 +92,11 @@ const FlowForm = (): JSX.Element | null => {
   }
 
   return (
-    <div className={classes.surveyWrapper}>
-      {matchMdUp && (
+    <div
+      className={classes.surveyWrapper}
+      data-testid="flow-form"
+    >
+      {isWidescreen && (
         <FlowBackground
           progress={calcPercentage(currentIndex, fields.length) ?? 0}
         />
@@ -94,7 +105,7 @@ const FlowForm = (): JSX.Element | null => {
         container
         className={classes.grow}
       >
-        {matchMdUp && (
+        {isWidescreen && (
           <Grid
             item
             className={classes.stepperWrapper}
@@ -116,13 +127,13 @@ const FlowForm = (): JSX.Element | null => {
             canForwardByEnter={isForwardedByEnter}
             currentIndex={currentIndex}
             fields={fields}
-            isPhone={!matchMdUp}
+            isPhone={!isWidescreen}
             onNext={activateNextField}
             onSubmitBack={handleSubmitBack}
           />
         </Grid>
       </Grid>
-      {!matchMdUp && (
+      {!isWidescreen && (
         <MobileStepper
           activeStep={currentIndex}
           backButton={null}

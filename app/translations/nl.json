@@ -242,6 +242,27 @@
   "https://app.argu.co/i18n/footer/privacy": {
     "defaultMessage": "Privacy"
   },
+  "https://app.argu.co/i18n/formValidation/invalidEmail": {
+    "defaultMessage": "Ongeldig e-mailadres"
+  },
+  "https://app.argu.co/i18n/formValidation/maxCount": {
+    "defaultMessage": "Maximaal {max}"
+  },
+  "https://app.argu.co/i18n/formValidation/maxLength": {
+    "defaultMessage": "Maximaal {max} tekens, nu: {count}"
+  },
+  "https://app.argu.co/i18n/formValidation/minCount": {
+    "defaultMessage": "Minimaal {min}"
+  },
+  "https://app.argu.co/i18n/formValidation/minLength": {
+    "defaultMessage": "Minimaal {min} tekens"
+  },
+  "https://app.argu.co/i18n/formValidation/pattern": {
+    "defaultMessage": "Waarde is niet toegestaan"
+  },
+  "https://app.argu.co/i18n/formValidation/required": {
+    "defaultMessage": "*Vereist"
+  },
   "https://app.argu.co/i18n/forms/actions/cancel": {
     "defaultMessage": "annuleren"
   },
@@ -382,6 +403,9 @@
   },
   "https://app.argu.co/i18n/pdf/previousPage": {
     "defaultMessage": "Vorige pagina (←)"
+  },
+  "https://app.argu.co/i18n/permissions/validForType": {
+    "defaultMessage": "Alleen voor {parentType}"
   },
   "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
     "defaultMessage": "LinkedIn profiel van {name}"

@@ -9,7 +9,7 @@ import React from 'react';
 
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
 const getInputType = (type: SomeTerm) => {

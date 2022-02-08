@@ -1,12 +1,9 @@
-import {
-  FC,
-  register,
-} from 'link-redux';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import MoneyInput from '../../components/Input/MoneyInput';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
 const MoneyField: FC = ({

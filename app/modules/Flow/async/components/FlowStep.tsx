@@ -40,6 +40,8 @@ const FlowStep = ({
     [classes.stepValid]: valid,
   });
 
+  const completed = valid && touched;
+
   return (
     <Step
       {...otherProps}
@@ -47,7 +49,8 @@ const FlowStep = ({
         completed: stepClassName,
         root: stepClassName,
       }}
-      completed={valid && touched}
+      completed={completed}
+      data-testid={completed ? `completed-step-${fieldHash}` : `step-${fieldHash}`}
       onClick={handleClick}
     >
       <StepLabel>

@@ -3,7 +3,7 @@ import React from 'react';
 
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import { MultipleEmailInput } from '../../components/Input/MultipleEmailInput';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import form from '../../ontology/form';
 
 const MultipleEmailFormField: FC = ({

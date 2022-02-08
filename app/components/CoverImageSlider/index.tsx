@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
-import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
+import { useFormFieldForPath } from '../../hooks/useFormField';
 import ontola from '../../ontology/ontola';
 
 const ThumbComponent = (props: any) => (

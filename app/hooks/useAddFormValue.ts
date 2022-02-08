@@ -16,15 +16,17 @@ import {
 
 type AddItem = () => void;
 
+const isDestroyedValue = (value: JSONLDObject) => value[destroyFieldName] === rdf.literal(true);
+
 /**
- * Returns a callback to add values to a form input. It restores deleted values when available first.
+ * Returns a callback to add values to a form input. If there are any deleted values it will restore one instead.
  */
 const useAddFormValue = (values: InputValue[], onChange: OnInputChange, itemFactory: ItemFactory): AddItem => (
   React.useCallback(() => {
     const newValues = values?.slice() ?? [];
 
     const removedIndex = newValues.findIndex((newValue: InputValue) => (
-      isJSONLDObject(newValue) ? newValue[destroyFieldName] === rdf.literal(true) : false
+      isJSONLDObject(newValue) && isDestroyedValue(newValue)
     ));
 
     if (removedIndex >= 0) {

@@ -14,7 +14,7 @@ import React, { EventHandler } from 'react';
 import { FormTheme } from '../../components/Form/Form';
 import { SHADOW } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
-import { InputValue } from '../../hooks/useFormField';
+import { FocusRelatedEventHandler, InputValue } from '../../hooks/useFormField';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
@@ -25,7 +25,9 @@ interface PropTypes {
   classes: Classes
   loading?: boolean;
   name?: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: EventHandler<any>;
+  onFocus: FocusRelatedEventHandler;
   options: SomeTerm[];
   required?: boolean;
   theme?: FormTheme;
@@ -87,7 +89,9 @@ class RadioGroup extends Topology<PropTypes> {
     const {
       classes,
       name,
+      onBlur,
       onChange,
+      onFocus,
       options,
       required,
       theme,
@@ -128,6 +132,8 @@ class RadioGroup extends Topology<PropTypes> {
                   icon={<RadioButtonUncheckedIcon fontSize="small" />}
                   name={name}
                   required={required}
+                  onBlur={onBlur}
+                  onFocusVisible={onFocus}
                 />
               )}
               key={option.value}

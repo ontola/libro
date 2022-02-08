@@ -6,6 +6,7 @@ import React from 'react';
 
 import { FormContext } from '../../../../components/Form/Form';
 import { inputValueFromStorage } from '../../../../hooks/useInitialValues';
+import form from '../../../../ontology/form';
 
 type FlowActiveField = [
   activeField: LaxNode,
@@ -41,22 +42,33 @@ export const useFlowActiveField = (fields: SomeNode[], loading: boolean): FlowAc
     sessionStore,
   } = React.useContext(FormContext);
 
-  const [activeField, setActiveField] = React.useState<LaxNode>(fields[0]);
+  const [activeField, setActiveField] = React.useState<LaxNode>(undefined);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const fieldPaths = useGlobalIds(fields, sh.path);
 
-  const currentIndex = fields.findIndex((field) => field === activeField);
-
   React.useEffect(() => {
-    if (!loading) {
+    if (loading) {
+      return;
+    }
+
+    if (activeField === undefined) {
       const initialIndex = findInitialIndex(sessionStore, object, formID, fieldPaths);
       const initialField = fields[initialIndex];
+      setActiveField(initialField);
 
-      if (initialField !== activeField) {
-        setActiveField(initialField);
-      }
+      return;
     }
-  }, [loading]);
 
-  return [activeField, setActiveField, currentIndex === -1 ? fields.length : currentIndex];
+    if (activeField.value === form.ns('Flow/SubmissionScreen').value) {
+      setCurrentIndex(fields.length);
+
+      return;
+    }
+
+    const index = fields.findIndex((field) => field === activeField);
+    setCurrentIndex(index < 0 ? fields.length : index);
+  }, [loading, activeField]);
+
+  return [activeField, setActiveField, currentIndex];
 };

@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import useFieldOptions from '../../hooks/useFieldOptions';
 import RadioGroup from '../../topologies/RadioGroup';
+import { formMessages } from '../../translations/messages';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormContext } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
@@ -17,6 +18,8 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
   const { theme } = React.useContext(FormContext);
   const {
     fieldShape,
+    onFocus,
+    onBlur,
     name,
   } = React.useContext(FormFieldContext);
   const {
@@ -33,10 +36,7 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
 
   if (options.length === 0) {
     return (
-      <FormattedMessage
-        defaultMessage="No options available"
-        id="https://app.argu.co/i18n/forms/radioGroup/noOptions"
-      />
+      <FormattedMessage {...formMessages.radioNoOptions} />
     );
   }
 
@@ -48,7 +48,9 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
         required={fieldShape.required}
         theme={theme}
         value={inputValue}
+        onBlur={onBlur}
         onChange={onChange}
+        onFocus={onFocus}
       />
       <Resource
         subject={shIn}

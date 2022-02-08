@@ -62,6 +62,10 @@
     "arrow-body-style": ["error", "as-needed"],
     "arrow-spacing": "error",
     "comma-spacing": "error",
+    "complexity": [
+      "warn",
+      10
+    ],
     "eol-last": ["error", "always"],
     "import/dynamic-import-chunkname": "error",
     "import/extensions": ["error",

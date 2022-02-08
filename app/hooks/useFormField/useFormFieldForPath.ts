@@ -1,11 +1,13 @@
 import { NamedNode } from '@ontologies/core';
 
-import useFormField, {
+import useInputId from '../useInputId';
+
+import {
   ForbiddenFormField,
   PermittedFormField,
   UseFormFieldProps,
-} from './useFormField';
-import useInputId from './useInputId';
+} from './types';
+import { useFormField } from './useFormField';
 
 export const useFormFieldForPath = (path: NamedNode, options: UseFormFieldProps = {}): PermittedFormField | ForbiddenFormField => {
   const field = useInputId(path);

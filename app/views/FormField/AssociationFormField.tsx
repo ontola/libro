@@ -1,5 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, { NamedNode, isNamedNode } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  isNamedNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
@@ -21,7 +24,7 @@ import AssociationInput from '../../components/Input/AssociationInput';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../helpers/diggers';
 import { SubmitDataProcessor } from '../../helpers/errorHandling';
 import { JSONLDObject } from '../../helpers/forms';
-import useFormField from '../../hooks/useFormField';
+import { useFormField } from '../../hooks/useFormField';
 import { ClonedLRS } from '../../hooks/useFormLRS';
 import form from '../../ontology/form';
 import ll from '../../ontology/ll';

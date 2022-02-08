@@ -75,6 +75,7 @@ export const FlowControls = ({
       <IconButton
         aria-label={intl.formatMessage(flowMessages.previousAriaLabel)}
         color="primary"
+        data-testid="previous-button"
         disabled={currentIndex === 0}
         onClick={onPrevious}
       >
@@ -92,6 +93,7 @@ export const FlowControls = ({
         </Fade>
         <Button
           color="primary"
+          data-testid="next-button"
           disabled={currentIndex >= fieldLength}
           endIcon={<ArrowForward />}
           variant="contained"

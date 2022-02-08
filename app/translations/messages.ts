@@ -345,6 +345,10 @@ export const formMessages: Messages = defineMessages({
     defaultMessage: 'What do you think?',
     id: 'https://app.argu.co/i18n/forms/omniform/header',
   },
+  radioNoOptions: {
+    defaultMessage: 'No options available',
+    id: 'https://app.argu.co/i18n/forms/radioGroup/noOptions',
+  },
   showMarkdownInstructions: {
     defaultMessage: 'Text formatting instructions',
     id: 'https://app.argu.co/i18n/forms/showMarkdownInstructions',
@@ -356,6 +360,37 @@ export const formMessages: Messages = defineMessages({
   typeToSearch: {
     defaultMessage: 'Type to start searching',
     id: 'https://app.argu.co/i18n/forms/select/typeToSearch',
+  },
+});
+
+export const formValidationMessages: Messages = defineMessages({
+  invalidEmail: {
+    defaultMessage: 'Invalid Email Address',
+    id: 'https://app.argu.co/i18n/formValidation/invalidEmail',
+  },
+  maxCount: {
+    defaultMessage: 'Max {max}',
+    id: 'https://app.argu.co/i18n/formValidation/maxCount',
+  },
+  maxLength: {
+    defaultMessage: 'Max {max} characters, now: {count}',
+    id: 'https://app.argu.co/i18n/formValidation/maxLength',
+  },
+  minCount: {
+    defaultMessage: 'Choose at least {min}',
+    id: 'https://app.argu.co/i18n/formValidation/minCount',
+  },
+  minLength: {
+    defaultMessage: 'At least {min} characters',
+    id: 'https://app.argu.co/i18n/formValidation/minLength',
+  },
+  pattern: {
+    defaultMessage: 'Value is not allowed',
+    id: 'https://app.argu.co/i18n/formValidation/pattern',
+  },
+  required: {
+    defaultMessage: '*Required',
+    id: 'https://app.argu.co/i18n/formValidation/required',
   },
 });
 

@@ -4,7 +4,7 @@ import React from 'react';
 
 import Dropzone from '../../containers/Dropzone';
 import { isFileType } from '../../helpers/types';
-import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
+import { useFormFieldForPath } from '../../hooks/useFormField';
 import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
 import { FormContext } from '../Form/Form';

@@ -8,6 +8,7 @@ import { SomeNode } from 'link-lib';
 import { LaxNode } from 'link-redux';
 import React from 'react';
 
+import form from '../../../../ontology/form';
 import { useFlowStepperStyles } from '../hooks/useFlowStyles';
 
 import FlowStep from './FlowStep';
@@ -40,13 +41,14 @@ export const FlowStepper = ({
     onStepClick(field);
   }, [hashedFields]);
 
-  const onFlagClick = () => onStepClick(undefined);
+  const onFlagClick = () => onStepClick(form.ns('Flow/SubmissionScreen'));
 
   return (
     <Stepper
       activeStep={currentIndex}
       classes={stepperClasses}
       connector={<StepConnector classes={connectorClasses} />}
+      data-testid="flow-stepper"
       orientation="vertical"
     >
       {hashes.map((fieldHash) => (
@@ -59,6 +61,7 @@ export const FlowStepper = ({
       ))}
       <Step
         classes={{ root: classes.step }}
+        data-testid="step-flag"
         onClick={onFlagClick}
       >
         <StepLabel
