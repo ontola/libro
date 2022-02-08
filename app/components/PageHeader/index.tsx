@@ -51,7 +51,6 @@ export const PageHeader = ({ detailsBarChildren }: PageHeaderProps): JSX.Element
       <Property label={argu.expiresAt} />
       <Property label={argu.followsCount} />
       <Property label={argu.motionsCount} />
-      <Property label={schema.location} />
       <Property label={argu.grantedGroups} />
     </React.Fragment>
   );
