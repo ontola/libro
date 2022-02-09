@@ -22,7 +22,7 @@ export interface CardRowProps {
 
 const styles = (theme: LibroTheme) => createStyles({
   backdrop: {
-    backgroundColor: theme.palette.grey.xxLight,
+    backgroundColor: theme.palette.background.paper,
     [`& .${collapseTextToggleCID}`]: {
       background: `linear-gradient(to bottom, ${theme.palette.transparent.main} 0%, ${theme.palette.grey.xxLight} 30%, ${theme.palette.grey.xxLight} 100%)`,
     },

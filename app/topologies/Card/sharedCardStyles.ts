@@ -43,6 +43,7 @@ export const cardStyles = (theme: LibroTheme) => createStyles({
     display: 'flex',
     flexDirection: 'column',
     marginBottom: theme.spacing(CARD_BOTTOM_MARGIN),
+    paddingTop: '0.25rem',
   },
 });
 

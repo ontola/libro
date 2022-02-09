@@ -11,7 +11,7 @@ import { HOVER_COEFFICIENT } from '../Link/ThemeStyles';
 export const cardContentClassIdentifier = 'CID-CardContent';
 
 const PADDING_BLOCK = 4;
-const PADDING_INLINE = 6;
+const PADDING_INLINE = 7;
 const ENDSPACING_BOTTOM_PADDING = 4;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

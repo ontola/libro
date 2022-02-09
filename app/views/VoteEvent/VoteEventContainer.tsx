@@ -14,7 +14,7 @@ import { containerTopology } from '../../topologies/Container';
 
 const useStyles = makeStyles({
   actionBar: {
-    padding: '.75rem 1.3rem',
+    padding: '.75rem 1.3125rem',
   },
 });
 
