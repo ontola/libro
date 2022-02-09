@@ -11,6 +11,7 @@ import {
 import React from 'react';
 import { useLocation } from 'react-router';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import CardDivider from '../../components/Card/CardDivider';
 import { LoadingHidden } from '../../components/Loading';
 import { PageHeader } from '../../components/PageHeader';
@@ -84,10 +85,7 @@ const ProjectFull: FC = ({
               label={schema.text}
               onLoad={LoadingHidden}
             />
-            <Property
-              label={[argu.attachments, meeting.attachment]}
-              limit={Infinity}
-            />
+            <AllWithProperty label={[argu.attachments, meeting.attachment]} />
           </Property>
         </Resource>
       </MainBody>

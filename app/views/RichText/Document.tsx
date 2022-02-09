@@ -1,18 +1,15 @@
 import {
   FC,
-  Property,
   register,
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import elements from '../../ontology/elements';
 import { allTopologies } from '../../topologies';
 
 const Document: FC = () => (
-  <Property
-    label={elements.children}
-    limit={Infinity}
-  />
+  <AllWithProperty label={elements.children} />
 );
 
 Document.type = elements.Document;

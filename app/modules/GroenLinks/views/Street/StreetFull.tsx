@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../../../components/AllWithProperty';
 import CardContent from '../../../../components/Card/CardContent';
 import Collection from '../../../../components/Collection';
 import { entityIsLoaded } from '../../../../helpers/data';
@@ -46,10 +47,7 @@ const StreetFull = () => {
               <Resource subject={teamGL.postalDigits} />
               {': '}
             </span>
-            <Property
-              label={teamGL.postalDigits}
-              limit={Infinity}
-            />
+            <AllWithProperty label={teamGL.postalDigits} />
           </p>
         </CardContent>
       </CardMain>

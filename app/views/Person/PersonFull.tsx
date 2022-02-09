@@ -13,6 +13,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import SubSection from '../../components/SubSection';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
@@ -77,10 +78,7 @@ const PersonFull: FC = () => {
             <Property label={[schema.name, rdfs.label, foaf.name]} />
             <Hidden smDown>
               <ContentDetails>
-                <Property
-                  label={org.organization}
-                  limit={Infinity}
-                />
+                <AllWithProperty label={org.organization} />
               </ContentDetails>
             </Hidden>
           </Grid>
@@ -89,10 +87,7 @@ const PersonFull: FC = () => {
         </Grid>
         <Hidden mdUp>
           <ContentDetails>
-            <Property
-              label={org.organization}
-              limit={Infinity}
-            />
+            <AllWithProperty label={org.organization} />
           </ContentDetails>
         </Hidden>
         <Property label={schema.description} />

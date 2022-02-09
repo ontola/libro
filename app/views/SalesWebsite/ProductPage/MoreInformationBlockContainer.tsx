@@ -6,9 +6,10 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { Property, useProperty } from 'link-redux';
+import { useProperty } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../../components/AllWithProperty';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
 import { containerTopology } from '../../../topologies/Container';
@@ -49,10 +50,7 @@ const MoreInformationBlockContainer = (): JSX.Element => {
       >
         {title.value}
       </Typography>
-      <Property
-        label={sales.sections}
-        limit={Infinity}
-      />
+      <AllWithProperty label={sales.sections} />
     </Grid>
   );
 };

@@ -1,11 +1,12 @@
 import { NamedNode } from '@ontologies/core';
 import {
-  Property,
   Resource,
   useLRS,
   useLinkRenderContext,
 } from 'link-redux';
 import React from 'react';
+
+import AllWithProperty from '../../components/AllWithProperty';
 
 export interface AttributeListItemProps {
   label: NamedNode;
@@ -36,9 +37,8 @@ const AttributeListItem: React.FC<AttributeListItemProps & any> = ({
           : <Resource subject={label} />}
       </th>
       <td>
-        <Property
+        <AllWithProperty
           label={label}
-          limit={Infinity}
           {...otherProps}
         />
       </td>

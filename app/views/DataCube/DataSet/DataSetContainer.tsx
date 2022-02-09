@@ -11,6 +11,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../../components/AllWithProperty';
 import HeaderWithMenu from '../../../components/HeaderWithMenu';
 import ScrollContainer from '../../../components/ScrollContainer';
 import { tryParseInt } from '../../../helpers/numbers';
@@ -71,9 +72,8 @@ const DataSetContainer = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <Property
+            <AllWithProperty
               label={qb.observation}
-              limit={Infinity}
               measures={orderedMeasures}
             />
           </TableBody>

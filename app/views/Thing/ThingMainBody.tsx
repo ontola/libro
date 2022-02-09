@@ -4,6 +4,7 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import LDLink from '../../components/LDLink';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
@@ -17,10 +18,7 @@ const ThingMainBody = () => (
       <Property label={[schema.name, rdfs.label, foaf.name]} />
     </LDLink>
     <Property label={[schema.text, schema.description, dbo.abstract]} />
-    <Property
-      label={[argu.attachments, meeting.attachment]}
-      limit={Infinity}
-    />
+    <AllWithProperty label={[argu.attachments, meeting.attachment]} />
   </ResourceBoundary>
 );
 

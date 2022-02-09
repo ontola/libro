@@ -10,6 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import CardContent from '../../components/Card/CardContent';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
@@ -34,10 +35,7 @@ const Timeline = () => {
           wrapper={React.Fragment}
         />
         <TimelineBase>
-          <Property
-            label={argu.legend}
-            limit={Infinity}
-          />
+          <AllWithProperty label={argu.legend} />
         </TimelineBase>
         <div className={classes.timelineWrapper}>
           <TimelineBase>

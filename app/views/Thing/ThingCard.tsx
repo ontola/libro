@@ -5,6 +5,7 @@ import HttpStatus from 'http-status-codes';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import CardContent from '../../components/Card/CardContent';
 import { handleErrorStatuses } from '../../components/Error';
 import { LoadingOpinion } from '../../components/Loading';
@@ -26,10 +27,7 @@ const ThingCard = (): JSX.Element => (
       />
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
-      <Property
-        label={meeting.attachment}
-        limit={Infinity}
-      />
+      <AllWithProperty label={meeting.attachment} />
     </CardContent>
   </CardRow>
 );

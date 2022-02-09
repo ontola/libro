@@ -2,11 +2,11 @@ import * as as from '@ontologies/as';
 import { NamedNode } from '@ontologies/core';
 import {
   FC,
-  Property,
   useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../components/AllWithProperty';
 import CollectionProvider from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
 
@@ -27,11 +27,10 @@ export default function getCollectionPage(
 
     if (props.insideCollection) {
       return (
-        <Property
+        <AllWithProperty
           forceRender
           collectionDisplay={props.collectionDisplay ?? collectionDisplayFromData}
           label={as.items}
-          renderLimit={Infinity}
         />
       );
     }

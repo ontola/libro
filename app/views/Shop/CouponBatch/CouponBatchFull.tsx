@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import AllWithProperty from '../../../components/AllWithProperty';
 import CardContent from '../../../components/Card/CardContent';
 import CardDivider from '../../../components/Card/CardDivider';
 import Heading, { HeadingSize } from '../../../components/Heading';
@@ -28,10 +29,7 @@ const CouponBatchFull: FC = () => (
           container
           spacing={2}
         >
-          <Property
-            label={argu.coupons}
-            limit={Infinity}
-          />
+          <AllWithProperty label={argu.coupons} />
         </Grid>
         <CardDivider margin />
         <Heading size={HeadingSize.LG}>
@@ -41,10 +39,7 @@ const CouponBatchFull: FC = () => (
           container
           spacing={2}
         >
-          <Property
-            label={argu.usedCoupons}
-            limit={Infinity}
-          />
+          <AllWithProperty label={argu.usedCoupons} />
         </Grid>
       </CardContent>
     </CardMain>

@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import AllWithProperty from '../../../components/AllWithProperty';
 import AttributeListItem from '../../../components/AttributeListItem';
 import Button from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
@@ -58,10 +59,7 @@ const DatasetFull: FC = ({
           <Resource subject={dcat.distribution} />
         </Heading>
       </CardContent>
-      <Property
-        label={dcat.distribution}
-        limit={Infinity}
-      />
+      <AllWithProperty label={dcat.distribution} />
     </CardMain>
   </Container>
 );
