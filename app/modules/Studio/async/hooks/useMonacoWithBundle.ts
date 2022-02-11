@@ -1,4 +1,4 @@
-import { loader, useMonaco } from '@monaco-editor/react';
+import { useMonaco } from '@monaco-editor/react';
 import React from 'react';
 
 import { error } from '../../../../helpers/logging';
@@ -10,7 +10,6 @@ type Monaco = typeof import('monaco-editor/esm/vs/editor/editor.api');
 export const useMonacoWithBundle = (): boolean => {
   const context = useStudioContextBundle();
   const [initialized, setInitialized] = React.useState<Monaco[]>([]);
-  loader.config({ paths: { vs: '/f_assets/vs' } });
   const monaco = useMonaco();
   const [latest, setLatest] = React.useState(!monaco);
 

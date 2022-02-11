@@ -385,6 +385,9 @@
   "https://app.argu.co/i18n/pdf/previousPage": {
     "defaultMessage": "Previous page (←)"
   },
+  "https://app.argu.co/i18n/permissions/validForType": {
+    "defaultMessage": "Only for {parentType}"
+  },
   "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
     "defaultMessage": "LinkedIn profile of {name}"
   },

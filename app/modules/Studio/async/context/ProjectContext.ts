@@ -23,13 +23,14 @@ export interface ServerData {
   sitemap: string;
 }
 
+// Keep in sync with /cache/src/commonMain/kotlin/io/ontola/studio/Project.kt
 export enum ResourceType {
-  RDF,
-  Manifest,
-  Elements,
-  MediaObject,
-  SiteMap,
-  Distributions,
+  RDF = 0,
+  Manifest = 1,
+  Elements = 2,
+  MediaObject = 3,
+  SiteMap = 4,
+  Distributions = 5,
 }
 
 export interface Editable {
