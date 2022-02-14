@@ -8,27 +8,22 @@ import { makeStyles } from '@material-ui/styles';
 import rdfcore, {
   Node,
   SomeTerm,
-  isLiteral,
-  isNamedNode,
 } from '@ontologies/core';
-import * as rdf from '@ontologies/rdf';
-import * as rdfs from '@ontologies/rdfs';
-import * as schema from '@ontologies/schema';
-import * as xsd from '@ontologies/xsd';
-import { term } from '@rdfdev/iri';
-import { SomeNode, getTermBestLang } from 'link-lib';
+import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React, { ChangeEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { arraysEqual } from '../../helpers/data';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import useMultipleFieldOptions from '../../hooks/useMultipleFieldOptions';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { booleanTranslation, collectionMessages } from '../../translations/messages';
+import { collectionMessages } from '../../translations/messages';
 import { useCollectionOptions } from '../Collection/CollectionProvider';
+
+import { useToLabel } from './lib/useToLabel';
 
 export interface FilterComboInputProps {
   autoFocus: boolean;
@@ -60,39 +55,6 @@ const useStyleOverrides = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const filterKeyToName = (lrs: LinkReduxLRSType, filter: SomeNode): string => {
-  const name = lrs.dig(filter, [ontola.filterKey, rdfs.label]);
-
-  if (name.length === 0) {
-    const filterKey = lrs.getResourceProperty(filter, ontola.filterKey);
-
-    return isNamedNode(filterKey) ? term(filterKey) : '';
-  }
-
-  return getTermBestLang(name, (lrs as any).store.langPrefs)?.value;
-};
-
-const toLabel = (lrs: LinkReduxLRSType, intl: IntlShape, filterTerm: SomeTerm) => {
-
-  if (isLiteral(filterTerm)) {
-    if (filterTerm.datatype === xsd.xsdboolean) {
-      return intl.formatMessage(booleanTranslation[filterTerm.value]);
-    }
-
-    return filterTerm.value;
-  }
-
-  const type = lrs.getResourceProperty(filterTerm, rdf.type);
-
-  if (type === ontola.FilterField || type === ontola.CollectionFilter) {
-    return filterKeyToName(lrs, filterTerm) ?? '';
-  }
-
-  const name = lrs.getResourceProperty(filterTerm as Node, [schema.name, rdfs.label]);
-
-  return name?.value;
-};
-
 const getFilterValues = (lrs: LinkReduxLRSType, filter: SomeTerm) => lrs.dig(filter as Node, [ontola.filterOptions, ontola.filterValue]);
 
 const createFilterParam = (lrs: LinkReduxLRSType, filter: FilterValue) => {
@@ -101,9 +63,6 @@ const createFilterParam = (lrs: LinkReduxLRSType, filter: FilterValue) => {
 
   return param;
 };
-
-const compareFilters = (lrs: LinkReduxLRSType, intl: IntlShape, a: FilterValue, b: FilterValue) =>
-  toLabel(lrs, intl, a.key) === toLabel(lrs, intl, b.key) && toLabel(lrs, intl, a.value) === toLabel(lrs, intl, b.value);
 
 export const FilterComboInput = ({
   autoFocus,
@@ -120,7 +79,11 @@ export const FilterComboInput = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const iriTemplate = useIRITemplate(partOf);
   const { setCollectionResource } = useCollectionOptions();
+  const toLabel = useToLabel();
 
+  const compareFilters = (a: FilterValue, b: FilterValue) => (
+    toLabel(a.key) === toLabel(b.key) && toLabel(a.value) === toLabel(b.value)
+  );
   const [filterValues, setFilterValues] = React.useState<FilterValue[]>([]);
   const [acValues, setAcValues] = React.useState<FilterValue[]>([]);
   const [collectionShIn, setCollectionShIn] = React.useState<SomeNode[]>([]);
@@ -172,7 +135,7 @@ export const FilterComboInput = ({
         }));
       });
 
-      const values = filterValues.filter((v) => currentFilterValues.some((cv) => compareFilters(lrs, intl, v, cv)));
+      const values = filterValues.filter((v) => currentFilterValues.some((cv) => compareFilters(v, cv)));
       setAcValues(values);
     }
   }, [currentFilters, filterValues]);
@@ -185,14 +148,14 @@ export const FilterComboInput = ({
     }
   }, [shown, autoFocus]);
 
-  const getOptionLabel = (option: FilterValue) => `${toLabel(lrs, intl, option.key)}: ${toLabel(lrs, intl, option.value)}`;
+  const getOptionLabel = (option: FilterValue) => `${toLabel(option.key)}: ${toLabel(option.value)}`;
 
   const acFilterOptions = createFilterOptions({
     stringify: getOptionLabel,
   });
 
   const renderOption = (option: FilterValue, state: AutocompleteRenderOptionState) => {
-    const text = toLabel(lrs, intl, option.value);
+    const text = toLabel(option.value);
 
     return (
       <span className={classes.option}>
@@ -225,7 +188,7 @@ export const FilterComboInput = ({
       classes={overrides}
       filterOptions={acFilterOptions}
       getOptionLabel={getOptionLabel}
-      groupBy={(option) => toLabel(lrs, intl, option.key) ?? ''}
+      groupBy={(option) => toLabel(option.key) ?? ''}
       options={filterValues}
       renderInput={(params) => (
         <TextField
