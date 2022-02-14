@@ -1,12 +1,8 @@
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
-import {
-  WithStyles,
-  withStyles,
-  withTheme, 
-} from '@material-ui/styles';
-import clsx from 'clsx';
+import { withStyles, withTheme } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/styles/withStyles/withStyles';
 import React from 'react';
 import { WrappedComponentProps, injectIntl } from 'react-intl';
 
@@ -20,13 +16,9 @@ export const navbarTopology = app.ns('topologies/navbar');
 interface NavbarProps {
   theme: any;
   fullWidth?: boolean;
-  elevated?: boolean;
 }
 
 const styles = (theme: LibroTheme): CSSPropertiesMap => ({
-  elevated: {
-    boxShadow: '0px 0px 17px rgba(0, 0, 0, 0.1)',
-  },
   wrapper: {
     color: theme.appBar.resolveColor(),
     zIndex: theme.zIndex.appBar + 1,
@@ -43,10 +35,7 @@ class Navbar extends Topology<PropType> {
   }
 
   getClassName(): string | undefined {
-    return clsx({
-      [this.props.classes.wrapper]: true,
-      [this.props.classes.elevated]: this.props.elevated,
-    });
+    return this.props.classes.wrapper;
   }
 
   public renderContent() {

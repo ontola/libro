@@ -1,5 +1,4 @@
 import {
-  FC,
   Property,
   register,
   useAction,
@@ -8,15 +7,16 @@ import {
 import React from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
-import { PersonNavbarProps } from '../Person/PersonNavbar';
 
 import { RegisteredTypes } from './types';
 
-const UserNavbar: FC<PersonNavbarProps> = (props) => {
+const UserNavbar = () => {
   const [mountAction] = useGlobalIds(ontola.mountAction);
   const onMountAction = useAction(mountAction);
+  const toggleMenu = useAction(app.ns('actions/menu/toggle'));
 
   React.useEffect(() => {
     if (mountAction) {
@@ -28,7 +28,13 @@ const UserNavbar: FC<PersonNavbarProps> = (props) => {
     <ResourceBoundary>
       <Property
         label={ontola.actor}
-        {...props}
+        onClick={(e: MouseEvent) => {
+          if (e) {
+            e.preventDefault();
+          }
+
+          toggleMenu();
+        }}
       />
     </ResourceBoundary>
   );

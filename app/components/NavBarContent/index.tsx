@@ -5,7 +5,6 @@ import React from 'react';
 
 import app from '../../ontology/app';
 
-import { ManageOrganisationMenu } from './ManageOrganisationMenu';
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';
 
 export interface NavBarContentProps {
@@ -41,7 +40,7 @@ const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): 
         )}
       >
         <div className={classes.pusher} />
-        <ManageOrganisationMenu />
+        <Resource subject={app.c_a} />
         {!hideSearch && (
           <Resource
             subject={app.search}
