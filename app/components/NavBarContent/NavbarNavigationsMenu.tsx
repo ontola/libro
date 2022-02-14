@@ -16,17 +16,17 @@ const NavbarNavigationsMenu = (): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Resource
-      forceRender
-      subject={frontendIRI}
-    >
-      <Property label={ontola.navigationsMenu}>
-        <div className="NavBarContent__items">
-          <div className={classes.itemPusher} />
+    <div className="NavBarContent__items">
+      <div className={classes.itemPusher} />
+      <Resource
+        forceRender
+        subject={frontendIRI}
+      >
+        <Property label={ontola.navigationsMenu}>
           <Property label={ontola.menuItems} />
-        </div>
-      </Property>
-    </Resource>
+        </Property>
+      </Resource>
+    </div>
   );
 };
 
