@@ -16,6 +16,7 @@ import { allTopologies } from '../../../topologies';
 interface PropTypes {
   linkedProp: SomeNode;
   omniform: boolean;
+  onDone: () => void;
   onLoad: () => void;
   responseCallback?: (response: Response) => void;
   theme: ButtonTheme;
@@ -24,6 +25,7 @@ interface PropTypes {
 const CreateAction: FC<PropTypes> = ({
   linkedProp,
   omniform,
+  onDone,
   onLoad,
   responseCallback,
   theme,
@@ -37,6 +39,7 @@ const CreateAction: FC<PropTypes> = ({
       responseCallback={responseCallback}
       subject={linkedProp}
       theme={theme}
+      onDone={onDone}
       onLoad={onLoad}
     />
   );
