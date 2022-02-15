@@ -89,6 +89,7 @@ const AssociationFormField: FC = ({
     <FormField
       {...fieldProps}
       className={clsx(classes.fieldAssociation, fieldProps.className)}
+      description={fieldProps.values.length > 0 ? fieldProps.description : undefined}
       inputComponent={AssociationInput}
       label={fieldProps.values.length > 0 ? fieldProps.label : undefined}
     />

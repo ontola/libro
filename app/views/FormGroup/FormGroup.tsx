@@ -9,6 +9,7 @@ import React from 'react';
 
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
+import { inlineTopology } from '../../topologies/Inline';
 
 import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 import useStyles from './FormGroupStyles';
@@ -30,7 +31,13 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
 
   return (
     <fieldset className={className}>
-      <Property label={schema.name} />
+      <legend>
+        <Property
+          label={schema.name}
+          topology={inlineTopology}
+        />
+      </legend>
+      <Property label={schema.text} />
       <Property
         label={form.fields}
       />
