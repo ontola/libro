@@ -1,15 +1,14 @@
+import rdf from '@ontologies/core';
 import {
   FormControl,
   Input,
   InputAdornment,
 } from '@material-ui/core';
-import rdf from '@ontologies/core';
-import * as schema from '@ontologies/schema';
-import { useFields } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { tryParseInt } from '../../helpers/numbers';
+import useCurrency from '../../hooks/useCurrency';
 import { FormContext } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
@@ -25,8 +24,7 @@ const MoneyInput: React.FC<InputComponentProps> = ({
     onBlur,
     onFocus,
   } = React.useContext(FormFieldContext);
-  const [currency] = useFields(object, schema.currency);
-  const [priceCurrency] = useFields(object, schema.priceCurrency);
+  const currency = useCurrency(object);
   const handleChange = React.useCallback((e: any) => {
     e.preventDefault();
     onChange(rdf.literal(e.target.value * 100));
@@ -35,7 +33,7 @@ const MoneyInput: React.FC<InputComponentProps> = ({
   const parts = intl.formatNumberToParts(
     value,
     {
-      currency: (currency || priceCurrency)?.value,
+      currency,
       currencyDisplay: 'narrowSymbol',
       style: 'currency',
     },
