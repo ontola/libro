@@ -14,7 +14,6 @@ import { navbarTopology } from '../../topologies/Navbar';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
 import { selectTopology } from '../../topologies/Select';
 import { selectedValueTopology } from '../../topologies/SelectedValue';
-import { tableCellTopology } from '../../topologies/TableCell';
 
 interface ImageObjectProps {
   /** Hover text to display. */
@@ -42,7 +41,6 @@ ImageObject.topology = [
   menuTopology,
   formFooterTopology,
   pageHeaderTopology,
-  tableCellTopology,
   navbarTopology,
   selectTopology,
   selectedValueTopology,
