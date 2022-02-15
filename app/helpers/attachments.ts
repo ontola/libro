@@ -1,5 +1,6 @@
 import { Literal, NamedNode } from '@ontologies/core';
 import { filenameStr } from '@rdfdev/iri';
+import { LaxNode } from 'link-redux';
 
 import fa4 from '../ontology/fa4';
 
@@ -11,7 +12,7 @@ export function downloadUrl(contentUrl: NamedNode): string {
 }
 
 export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Literal }): NamedNode {
-  switch (encodingFormat && encodingFormat.value) {
+  switch (encodingFormat?.value) {
   case 'application/zip':
     return fa4.ns('file-archive-o');
   case 'application/pdf':
@@ -21,9 +22,10 @@ export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Li
   }
 }
 
-export function isPDF(encodingFormat: Literal, contentUrl: NamedNode): boolean {
+export function isPDF(encodingFormat: Literal| undefined, contentUrl: LaxNode): boolean {
   return encodingFormat?.value === 'application/pdf'
-    || contentUrl?.value.includes('api.openraadsinformatie.nl');
+    || contentUrl?.value?.includes('api.openraadsinformatie.nl')
+    || false;
 }
 
 export const csvTypes = [
@@ -44,14 +46,14 @@ export const xlsExts = [
   'ods',
 ];
 
-export const isCSV = (url: string, mime: string | undefined): boolean =>
-  filenameStr(url).split('.').pop() === 'csv'
+export const isCSV = (url: string | undefined, mime: string | undefined): boolean =>
+  (url && filenameStr(url).split('.').pop() === 'csv')
     || csvTypes.some((it) => mime?.includes(it));
 
-export const isXLS = (url: string, mime: string | undefined): boolean =>
-  xlsExts.includes(filenameStr(url).split('.').pop() ?? '') ||
+export const isXLS = (url: string | undefined, mime: string | undefined): boolean =>
+  (url && xlsExts.includes(filenameStr(url).split('.').pop() ?? '')) ||
   xlsTypes.some((it) => mime?.includes(it));
 
-export function isSheet(url: string, encodingFormat: Literal): boolean {
-  return isCSV(url, encodingFormat.value) || isXLS(url, encodingFormat.value);
+export function isSheet(url: string | undefined, encodingFormat: Literal | undefined): boolean {
+  return isCSV(url, encodingFormat?.value) || isXLS(url, encodingFormat?.value);
 }
