@@ -11,7 +11,7 @@ import GridItem from '../../components/Grid/GridItem';
 import { tryParseInt } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import Container from '../../topologies/Container';
+import Container, { LargeContainer } from '../../topologies/Container';
 import FullResource from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 
@@ -34,6 +34,9 @@ const Widget = () => {
     break;
   case argu.container:
     Wrapper = Container;
+    break;
+  case argu.largeContainer:
+    Wrapper = LargeContainer;
     break;
   default:
     Wrapper = FullResource;
