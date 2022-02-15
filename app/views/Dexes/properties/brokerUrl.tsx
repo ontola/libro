@@ -12,6 +12,7 @@ import dexes from '../../../ontology/dexes';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { tableRowTopology } from '../../../topologies/TableRow';
 import { messages } from '../messages';
 
 const BrokerUrl: FC<PropertyProps> = ({
@@ -35,6 +36,7 @@ BrokerUrl.topology = [
   cardFixedTopology,
   cardMainTopology,
   cardTopology,
+  tableRowTopology,
 ];
 
 export default register(BrokerUrl);
