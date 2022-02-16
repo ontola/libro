@@ -1,7 +1,7 @@
 import {
   Table,
   TableContainer,
-  createStyles, 
+  createStyles,
 } from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
@@ -24,8 +24,10 @@ const styles = (theme: LibroTheme) => createStyles({
           color: theme.palette.grey.xLight,
         },
       },
-      '& a': {
-        margin: '0 .1rem',
+      '& a, & button': {
+        '& .fa': {
+          color: 'inherit',
+        },
       },
     },
     '& tr': {
@@ -34,10 +36,6 @@ const styles = (theme: LibroTheme) => createStyles({
       },
       borderBottom: theme.palette.grey.xLight,
     },
-    width: '100%',
-  },
-  tableWrapper: {
-    maxWidth: '100%',
   },
 });
 
@@ -55,7 +53,7 @@ class TableClass extends TopologyProvider<TableProps> {
 
   public render() {
     return this.wrap((
-      <TableContainer className={this.props.classes.tableWrapper}>
+      <TableContainer>
         <Table className={this.props.classes.table}>
           {this.props.children}
         </Table>

@@ -353,6 +353,18 @@
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Zum aktuellen Standort wechseln"
   },
+  "https://app.argu.co/i18n/monetization/extensionMissing": {
+    "defaultMessage": "Holen Sie sich die <a>Coil Browser extension</a>, um fortzufahren."
+  },
+  "https://app.argu.co/i18n/monetization/intro": {
+    "defaultMessage": "Auf diese Inhalte kann nur über die Webmonetarisierung zugegriffen werden."
+  },
+  "https://app.argu.co/i18n/monetization/snackbar": {
+    "defaultMessage": "WebMonetarisierung gestartet, danke für deine Unterstützung!"
+  },
+  "https://app.argu.co/i18n/monetization/stoppedPaying": {
+    "defaultMessage": "Etwas ist schief gelaufen. Funktioniert Ihr Wallet (z. B. Coil-Wallet) und haben Sie ein Abonnement?"
+  },
   "https://app.argu.co/i18n/navBarMessages/moreDropdownButton": {
     "defaultMessage": "Mehr"
   },
@@ -394,6 +406,9 @@
   },
   "https://app.argu.co/i18n/pdf/previousPage": {
     "defaultMessage": "Vorherige Seite (←)"
+  },
+  "https://app.argu.co/i18n/permissions/validForType": {
+    "defaultMessage": "Nur für {parentType}"
   },
   "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
     "defaultMessage": "LinkedIn-Profil von {name}"
@@ -521,11 +536,17 @@
   "https://app.argu.co/i18n/xsd:boolean/true": {
     "defaultMessage": "Ja"
   },
+  "https://dexpods.eu/i18n/published": {
+    "defaultMessage": "Veröffentlicht"
+  },
   "https://dexpods.eu/i18n/showInBroker": {
     "defaultMessage": "Ansicht im Broker"
   },
   "https://dexpods.eu/i18n/showInDexes": {
     "defaultMessage": "Blick auf Dexes"
+  },
+  "https://dexpods.eu/i18n/showPublication": {
+    "defaultMessage": "Publication anzeigen"
   },
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Wert in die Zwischenablage kopiert"

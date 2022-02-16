@@ -353,6 +353,18 @@
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Ga naar huidige locatie"
   },
+  "https://app.argu.co/i18n/monetization/extensionMissing": {
+    "defaultMessage": "Installeer de <a>Coil Browser extensie</a> om door te gaan."
+  },
+  "https://app.argu.co/i18n/monetization/intro": {
+    "defaultMessage": "Deze content kan alleen worden bekeken met Webmonetization."
+  },
+  "https://app.argu.co/i18n/monetization/snackbar": {
+    "defaultMessage": "WebMonetization is gestart, bedankt voor de support!"
+  },
+  "https://app.argu.co/i18n/monetization/stoppedPaying": {
+    "defaultMessage": "Er ging iets fout. Werkt jouw Wallet (e.g. Coil wallet) correct, en heb je een abonnement?"
+  },
   "https://app.argu.co/i18n/navBarMessages/moreDropdownButton": {
     "defaultMessage": "Meer"
   },
@@ -566,11 +578,17 @@
   "https://dexpods.eu/i18n/goToFile": {
     "defaultMessage": "Ga naar bestand"
   },
+  "https://dexpods.eu/i18n/published": {
+    "defaultMessage": "Gepubliceerd"
+  },
   "https://dexpods.eu/i18n/showInBroker": {
     "defaultMessage": "Bekijk in de Broker"
   },
   "https://dexpods.eu/i18n/showInDexes": {
     "defaultMessage": "Bekijk op Dexes"
+  },
+  "https://dexpods.eu/i18n/showPublication": {
+    "defaultMessage": "Bekijk publicatie"
   },
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Waarde is naar klembord gekopieerd"

@@ -29,7 +29,7 @@ const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
 
   const [feedback, setFeedback] = React.useState(false);
   const onDoneHandler = useDoneHandler(onDone ?? ignoreOnDone);
-  const actionIcon = image ? normalizeFontAwesomeIRI(image.value) : 'plus';
+  const actionIcon = image ? normalizeFontAwesomeIRI(image.value) : (oneClick ? 'plus' : undefined);
 
   const handleClick = React.useCallback(
     (e) => {

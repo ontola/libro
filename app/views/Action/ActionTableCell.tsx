@@ -4,12 +4,12 @@ import {
   FC,
   register,
   useProperty,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 
-import LDLink from '../../components/LDLink';
-import { LinkFeature } from '../../components/Link';
+import Button, { ButtonTheme } from '../../components/Button';
+import { TEXT_PREDICATES } from '../../helpers/metaData';
 import useOneClickProps from '../../hooks/useOneClickProps';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import { tableCellTopology } from '../../topologies/TableCell';
@@ -19,8 +19,9 @@ const ActionTableCell: FC = ({
   subject,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [name] = useProperty(schema.name);
-  const [error] = useProperty(schema.error);
+  const [name] = useStrings(schema.name);
+  const [text] = useStrings(TEXT_PREDICATES);
+  const [error] = useStrings(schema.error);
   const {
     icon,
     loading,
@@ -29,23 +30,19 @@ const ActionTableCell: FC = ({
   const showDialog = useShowDialog(subject.value);
 
   const invalid = invalidStatusIds.includes(rdf.id(actionStatus));
-  const title = invalid ? error?.value : name?.value;
+  const title = invalid ? error : text;
 
   return (
-    <LDLink
+    <Button
       disabled={invalid || loading}
-      features={[LinkFeature.Bold]}
+      icon={icon}
+      loading={loading}
+      theme={ButtonTheme.Subtle}
       title={title}
       onClick={onClick ?? showDialog}
     >
-      {icon ? (
-        <FontAwesome
-          name={icon}
-          spin={loading}
-          title={title}
-        />
-      ) : title}
-    </LDLink>
+      {name}
+    </Button>
   );
 };
 

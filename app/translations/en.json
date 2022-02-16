@@ -101,7 +101,7 @@
     "defaultMessage": "The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource."
   },
   "https://app.argu.co/i18n/errors/request/200/header": {
-    "defaultMessage": "Error in request"
+    "defaultMessage": "Bad request (400 Bad Request)"
   },
   "https://app.argu.co/i18n/errors/request/401/body": {
     "defaultMessage": "You have to be logged in to view this resource."
@@ -158,7 +158,7 @@
     "defaultMessage": "Unprocessable Entity"
   },
   "https://app.argu.co/i18n/errors/request/429/body": {
-    "defaultMessage": "You're making too many requests, please try again later"
+    "defaultMessage": "You're making too many request, try again in half a minute."
   },
   "https://app.argu.co/i18n/errors/request/429/header": {
     "defaultMessage": "Too many requests"
@@ -170,7 +170,7 @@
     "defaultMessage": "Problem with the browser"
   },
   "https://app.argu.co/i18n/errors/request/500/body": {
-    "defaultMessage": "Something went wrong on our side, please try again later"
+    "defaultMessage": "An error occurred on our side, please try again later."
   },
   "https://app.argu.co/i18n/errors/request/500/header": {
     "defaultMessage": "Internal server error"
@@ -355,6 +355,18 @@
   "https://app.argu.co/i18n/map/currentLocationTooltip": {
     "defaultMessage": "Move to current location"
   },
+  "https://app.argu.co/i18n/monetization/extensionMissing": {
+    "defaultMessage": "Get the <a>Coil Browser extension</a> to continue."
+  },
+  "https://app.argu.co/i18n/monetization/intro": {
+    "defaultMessage": "This content can only be accessed through Webmonetization."
+  },
+  "https://app.argu.co/i18n/monetization/snackbar": {
+    "defaultMessage": "WebMonetization started, thanks for your support!"
+  },
+  "https://app.argu.co/i18n/monetization/stoppedPaying": {
+    "defaultMessage": "Something went wrong. Is your Wallet (e.g. Coil wallet) working, and do you have a subscription?"
+  },
   "https://app.argu.co/i18n/navBarMessages/moreDropdownButton": {
     "defaultMessage": "More"
   },
@@ -529,11 +541,17 @@
   "https://dexpods.eu/i18n/goToFile": {
     "defaultMessage": "Go to file"
   },
+  "https://dexpods.eu/i18n/published": {
+    "defaultMessage": "Published"
+  },
   "https://dexpods.eu/i18n/showInBroker": {
     "defaultMessage": "Show in the Broker"
   },
   "https://dexpods.eu/i18n/showInDexes": {
     "defaultMessage": "Show in Dexes"
+  },
+  "https://dexpods.eu/i18n/showPublication": {
+    "defaultMessage": "Show publication"
   },
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Copied value to clipboard",

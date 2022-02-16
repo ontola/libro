@@ -5,6 +5,7 @@ import Dialog from './components/dialog';
 import Icon from './components/icon';
 import Input from './components/input';
 import Menu from './components/menu';
+import Table from './components/table';
 import Tabs from './components/tabs';
 
 export default [
@@ -15,5 +16,6 @@ export default [
   Icon,
   Input,
   Menu,
+  Table,
   Tabs,
 ];
