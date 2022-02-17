@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import rdf, { Node } from '@ontologies/core';
+import deepmerge from 'deepmerge';
 import { Resource } from 'link-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -22,7 +23,7 @@ export interface ContentFrameProps {
   title?: string;
 }
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => (deepmerge({
   appContainer: {
     '& #start-of-content': {
       flex: 1,
@@ -38,7 +39,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     flexDirection: 'column',
     minHeight: '100vh',
   },
-}));
+}, theme.overrides?.ContentFrame || {})));
 
 const ContentFrame = ({
   children,

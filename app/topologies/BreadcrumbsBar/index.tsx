@@ -2,6 +2,7 @@ import MUIContainer from '@material-ui/core/Container';
 import { WithStyles } from '@material-ui/core/styles';
 import { createStyles, withStyles } from '@material-ui/styles';
 import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
+import deepmerge from 'deepmerge';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
@@ -13,7 +14,7 @@ export interface BreadcrumbsBarProps {
   classes?: Classes;
 }
 
-const styles = createStyles((theme: LibroTheme) => ({
+const styles = createStyles((theme: LibroTheme) => (deepmerge({
   breadcrumbsBar: {
     backgroundColor: theme.palette.grey.xxLight,
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -29,7 +30,7 @@ const styles = createStyles((theme: LibroTheme) => ({
     display: 'flex',
     gap: '.3rem',
   },
-}));
+}, theme.overrides?.BreadcrumbsBar || {})));
 
 type PropTypes = BreadcrumbsBarProps & WithStyles<typeof styles>;
 

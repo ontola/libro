@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {
   WithStyles,
   withStyles,
-  withTheme, 
+  withTheme,
 } from '@material-ui/styles';
 import clsx from 'clsx';
 import React from 'react';
@@ -18,14 +18,22 @@ import Topology from '../Topology';
 export const navbarTopology = app.ns('topologies/navbar');
 
 interface NavbarProps {
-  theme: any;
-  fullWidth?: boolean;
   elevated?: boolean;
+  float?: boolean;
+  fullWidth?: boolean;
+  theme: any;
 }
 
 const styles = (theme: LibroTheme): CSSPropertiesMap => ({
   elevated: {
     boxShadow: '0px 0px 17px rgba(0, 0, 0, 0.1)',
+  },
+  float: {
+    borderRadius: '1em',
+    display: 'inline-block',
+    float: 'right',
+    position: 'relative',
+    width: 'auto',
   },
   wrapper: {
     color: theme.appBar.resolveColor(),
@@ -45,6 +53,7 @@ class Navbar extends Topology<PropType> {
   getClassName(): string | undefined {
     return clsx({
       [this.props.classes.wrapper]: true,
+      [this.props.classes.float]: this.props.float,
       [this.props.classes.elevated]: this.props.elevated,
     });
   }

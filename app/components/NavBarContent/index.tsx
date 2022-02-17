@@ -9,7 +9,7 @@ import { ManageOrganisationMenu } from './ManageOrganisationMenu';
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';
 
 export interface NavBarContentProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   hideSearch?: boolean;
   hideMenu?: boolean;
 }

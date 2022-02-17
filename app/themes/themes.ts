@@ -77,6 +77,14 @@ declare module '@material-ui/core/styles/createTheme' {
   }
 }
 
+declare module '@material-ui/core/styles/overrides' {
+  interface ComponentNameToClassKey {
+    BreadcrumbsBar: string;
+    ContentFrame: string;
+    PageHeader: string;
+  }
+}
+
 export interface AppBarThemeOpts extends React.CSSProperties {
   background: string;
   iconBreakPoint: Breakpoint;

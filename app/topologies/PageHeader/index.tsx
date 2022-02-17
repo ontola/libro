@@ -1,9 +1,10 @@
 import {
   WithStyles,
   createStyles,
-  withStyles, 
+  withStyles,
 } from '@material-ui/styles';
 import clsx from 'clsx';
+import deepmerge from 'deepmerge';
 import {
   TopologyProvider,
   Type,
@@ -14,7 +15,7 @@ import argu from '../../ontology/argu';
 import {
   LibroTheme,
   Margin,
-  Size, 
+  Size,
 } from '../../themes/themes';
 import { cardClassIdentifier } from '../Card/sharedCardStyles';
 import Container from '../Container';
@@ -37,7 +38,7 @@ type PageHeaderProps = WithStyles<typeof styles> & {
   positionY?: number;
 };
 
-const styles = (theme: LibroTheme) => createStyles({
+const styles = (theme: LibroTheme) => createStyles(deepmerge({
   pageHeader: {
     '& .MuiContainer-root': {
       bottom: 0,
@@ -75,7 +76,7 @@ const styles = (theme: LibroTheme) => createStyles({
     backgroundColor: theme.palette.transparent.light7,
     height: '100%',
   },
-});
+}, theme.overrides?.PageHeader || {}));
 
 /**
  * Page filler with title and nav items at the top of a page
