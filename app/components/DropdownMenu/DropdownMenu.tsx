@@ -12,6 +12,7 @@ import { isFunction } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 
+import { DropdownMenuContext } from './DropdownMenuContext';
 import { Trigger } from './TriggerButton';
 
 export interface Test2 extends SubjectProp {
@@ -61,9 +62,15 @@ const DropdownMenu = ({
 }: DropdownMenuProps): JSX.Element => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(0);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const [dialogResource] = useFields(ontola.ns('dialog/manager'), ontola.ns('dialog/resource'));
   const [id, _] = React.useState(getNewAriaId());
+
+  const loadedValue = React.useMemo(() => ({
+    loaded,
+    setLoaded,
+  }), [loaded, setLoaded]);
 
   const handleClick = () => {
     setOpen(!open);
@@ -89,7 +96,7 @@ const DropdownMenu = ({
   }, [dialogResource]);
 
   return (
-    <React.Fragment>
+    <DropdownMenuContext.Provider value={loadedValue}>
       {trigger({
         anchorRef,
         id,
@@ -111,33 +118,31 @@ const DropdownMenu = ({
           },
         }}
         open={open}
-        placement="bottom"
+        placement="bottom-end"
         role={undefined}
         onClick={handleClick}
       >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps}>
-            <div>
-              <Paper
-                className={classes.paper}
-                elevation={8}
-              >
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocus
-                    className={className}
-                    id={id}
-                    onKeyDown={handleListKeyDown}
-                  >
-                    {childComponent(children, handleClose)}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </div>
+            <Paper
+              className={classes.paper}
+              elevation={8}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocus
+                  className={className}
+                  id={id}
+                  onKeyDown={handleListKeyDown}
+                >
+                  {childComponent(children, handleClose)}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
           </Fade>
         )}
       </Popper>
-    </React.Fragment>
+    </DropdownMenuContext.Provider>
   );
 };
 

@@ -7,11 +7,17 @@ import {
 } from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
 import { SomeNode } from 'link-lib';
-import { Property, useLRS } from 'link-redux';
+import {
+  Property,
+  useDataInvalidation,
+  useLRS, 
+} from 'link-redux';
 import React from 'react';
 
 import ontola from '../../ontology/ontola';
 import MenuItem from '../MenuItem';
+
+import { DropdownMenuContext } from './DropdownMenuContext';
 
 interface DropdownMenuItem {
   action?: NamedNode;
@@ -78,6 +84,13 @@ const DropdownMenuItem = ({
     ref: innerRef,
     subject,
   };
+
+  const { setLoaded } = React.useContext(DropdownMenuContext);
+
+  const invalidationNumber = useDataInvalidation(ontola.menuItems);
+  React.useEffect(() => {
+    setLoaded(invalidationNumber);
+  }, [invalidationNumber]);
 
   if (menuItems) {
     return (
