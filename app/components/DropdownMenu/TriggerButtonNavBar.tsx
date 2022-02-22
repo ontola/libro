@@ -20,6 +20,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     color: 'inherit',
     display: 'flex',
     fontWeight: theme.typography.fontWeightMedium,
+    padding: '6px 8px',
   },
 }));
 

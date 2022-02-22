@@ -1,3 +1,4 @@
+import { ButtonBase } from '@material-ui/core';
 import React, {
   CSSProperties,
   MouseEvent,
@@ -29,14 +30,14 @@ const BlurButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<B
   onClick,
   ...props
 }, ref) => (
-  <button
+  <ButtonBase
     ref={ref}
     type="button"
     {...props}
     onClick={(e) => preventAfterClickOutline(e, onClick)}
   >
     {children}
-  </button>
+  </ButtonBase>
 ));
 
 BlurButton.displayName = 'BlurButton';
