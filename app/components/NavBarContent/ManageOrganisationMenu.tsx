@@ -14,13 +14,13 @@ import ontola from '../../ontology/ontola';
 import { NavbarLinkLink } from '../NavbarLink';
 
 export const ManageOrganisationMenu = (): JSX.Element | null => {
-  const [setingsMenu] = useIds(frontendIRI, ontola.settingsMenu);
-  const [name] = useStrings(setingsMenu, NAME_PREDICATES);
-  const [image] = useGlobalIds(setingsMenu, schema.image);
-  const menuItems = useIds(setingsMenu, array(ontola.menuItems));
+  const [settingsMenu] = useIds(frontendIRI, ontola.settingsMenu);
+  const [name] = useStrings(settingsMenu, NAME_PREDICATES);
+  const [image] = useGlobalIds(settingsMenu, schema.image);
+  const menuItems = useIds(settingsMenu, array(ontola.menuItems));
   const icon = image && normalizeFontAwesomeIRI(image);
 
-  if (menuItems?.length === 0) {
+  if (!menuItems?.length) {
     return null;
   }
 
@@ -29,7 +29,7 @@ export const ManageOrganisationMenu = (): JSX.Element | null => {
       icon={icon}
       label={name}
       title={name}
-      to={setingsMenu.value}
+      to={settingsMenu.value}
     />
   );
 };

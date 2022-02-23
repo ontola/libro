@@ -1,6 +1,5 @@
 import { useTheme } from '@material-ui/core';
 import Button, { ButtonProps } from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
@@ -56,15 +55,10 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
   const hideLabel = image || (icon && !matches);
 
   const iconCom = typeof icon !== 'string' ? icon : (
-    <Icon
-      color="inherit"
-      fontSize="small"
-    >
-      <FontAwesome
-        name={icon}
-        spin={spin}
-      />
-    </Icon>
+    <FontAwesome
+      name={icon}
+      spin={spin}
+    />
   );
 
   let Component: React.ComponentType<any> | string;
