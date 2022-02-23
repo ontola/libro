@@ -9,17 +9,12 @@ import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';
 
 import argu from '../../ontology/argu';
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme, Margin } from '../../themes/themes';
 
 export const tableTopology = argu.ns('table');
 
 const styles = (theme: LibroTheme) => createStyles({
   table: {
-    '& tbody': {
-      display: 'block',
-      maxHeight: '70vh',
-      overflowX: 'auto',
-    },
     '& td': {
       '& .fa': {
         color: theme.palette.grey.xxLightForegroundSmall,
@@ -33,12 +28,10 @@ const styles = (theme: LibroTheme) => createStyles({
         margin: '0 .1rem',
       },
     },
-    '& thead, tr': {
-      display: 'table',
-      tableLayout: 'fixed',
-      width: '100%',
-    },
     '& tr': {
+      '& > *:first-child': {
+        paddingLeft: theme.spacing(Margin.Large),
+      },
       borderBottom: theme.palette.grey.xLight,
     },
     width: '100%',

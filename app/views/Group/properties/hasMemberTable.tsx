@@ -10,7 +10,6 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import org from '../../../ontology/org';
-import TableCell from '../../../topologies/TableCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
 const HasMemberTable: FC<PropertyProps> = ({
@@ -19,9 +18,9 @@ const HasMemberTable: FC<PropertyProps> = ({
   const [totalItems] = useNumbers(isNode(linkedProp) ? linkedProp : undefined, as.totalItems);
 
   return (
-    <TableCell>
+    <React.Fragment>
       {totalItems}
-    </TableCell>
+    </React.Fragment>
   );
 };
 

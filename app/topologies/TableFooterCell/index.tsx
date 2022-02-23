@@ -1,3 +1,4 @@
+import { TableCell } from '@material-ui/core';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,12 +26,12 @@ class TableFooterCell extends TopologyProvider<Props> {
 
   public render() {
     return this.wrap((
-      <td
+      <TableCell
         className={tableFooterCellCID}
         colSpan={this.props.colSpan}
       >
         {this.props.children}
-      </td>
+      </TableCell>
     ));
   }
 }

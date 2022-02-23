@@ -18,6 +18,7 @@ const Order: FC<PropertyProps> = () => (
       label={ontola.moveUpAction}
       onLoad={LoadingHidden}
     />
+    <br />
     <Property
       label={ontola.moveDownAction}
       onLoad={LoadingHidden}

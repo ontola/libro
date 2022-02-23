@@ -11,7 +11,7 @@ export const tableHeaderCellTopology = argu.ns('tableHeaderCell');
 
 const styles = (theme: LibroTheme) => createStyles({
   tableHeaderCell: {
-    padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Large)}`,
+    padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Small)}`,
     textAlign: 'left',
     wordBreak: 'normal',
   },

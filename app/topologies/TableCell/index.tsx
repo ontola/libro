@@ -17,9 +17,10 @@ export const tableCellTopology = argu.ns('tableCell');
 const styles = (theme: LibroTheme) => createStyles({
   tableCell: {
     [`& .${headingCID}`]: {
+      margin: 0,
       wordBreak: 'normal',
     },
-    padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Large)}`,
+    padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Small)}`,
     textAlign: 'left',
   },
 });
