@@ -1,7 +1,6 @@
 import Button from '@material-ui/core/Button';
 import rdf, { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
 import {
   Property,
   literal,
@@ -9,6 +8,7 @@ import {
   useFields,
   useIds,
   useLRS,
+  useLinkRenderContext,
   useResourceLinks,
   value,
 } from 'link-redux';
@@ -20,15 +20,11 @@ import collectionMembers from '../../helpers/diggers';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { pdfMessages } from '../../translations/messages';
+import { MediaViewerProps } from '../MediaViewer/MediaViewer';
 import PageWithSideBar from '../PageWithSideBar';
 
 import { CommentProps } from './PDFComment';
 import PDFComments from './PDFComments';
-
-export interface AnnotatedPDFViewerProps {
-  subject: SomeNode;
-  url: string;
-}
 
 const commentPropMap = {
   page: literal(argu.pdfPage),
@@ -37,12 +33,12 @@ const commentPropMap = {
   y: literal(argu.pdfPositionY),
 };
 
-const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
-  subject,
-  url,
+const AnnotatedPDFViewer: React.FC<MediaViewerProps> = ({
+  contentUrl,
 }) => {
   const lrs = useLRS();
   const intl = useIntl();
+  const { subject } = useLinkRenderContext();
   const [commentsCollection] = useIds(schema.comment);
   const [createCommentAction] = useFields(commentsCollection, ontola.createAction);
   const commentCollectionTimestamp = useDataInvalidation(commentsCollection);
@@ -119,7 +115,7 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
         Overlay={Overlay}
         pageNumber={pageNumber}
         subject={subject}
-        url={url}
+        url={contentUrl}
         onClick={commentMode ? handlePageClick : undefined}
         onPageNumberChange={setPageNumber}
       />

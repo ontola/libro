@@ -45,7 +45,7 @@ const DropzoneInner = ({
   const imagePositionYShape = useInputId(ontola.imagePositionY);
 
   if (preview && !encodingFormat?.startsWith('image/')) {
-    const fileImage = imageRepresentationUrl({ encodingFormat: rdf.literal(encodingFormat) });
+    const fileImage = imageRepresentationUrl({ encodingFormat });
 
     return children(
       <div className={classes.documentPreviewWrapper}>

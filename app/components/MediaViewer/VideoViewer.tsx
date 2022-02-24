@@ -1,14 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { NamedNode } from '@ontologies/core';
-import * as schema from '@ontologies/schema';
-import {
-  FC,
-  register,
-  useProperty,
-} from 'link-redux';
 import React from 'react';
 
-import { allTopologies } from '../../../topologies';
+import { MediaViewerProps } from './MediaViewer';
 
 const YOUTUBE_TEST = /^(https:)?\/\/(www.)?youtube.com\/embed\//;
 
@@ -32,25 +25,24 @@ const useStyles = makeStyles({
   },
 });
 
-interface PropTypes {
-  autoPlay: boolean;
-  linkedProp: NamedNode;
-  loop: boolean;
-  muted: boolean;
-  playsInline: boolean;
+interface VideoViewerProps extends MediaViewerProps {
+  autoPlay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  playsInline?: boolean;
 }
 
-const VideoContentUrl: FC<PropTypes> = ({
+const VideoViewer = ({
   autoPlay,
-  linkedProp,
+  embedUrl,
+  contentUrl,
   loop,
   muted,
   playsInline,
-}) => {
-  const [embedUrl] = useProperty(schema.embedUrl);
+}: VideoViewerProps): JSX.Element => {
   const classes = useStyles();
 
-  if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
+  if (embedUrl && YOUTUBE_TEST.test(embedUrl)) {
     return (
       <div className={classes.mediaObjectPageInfoBarVideoContainer}>
         <iframe
@@ -59,7 +51,7 @@ const VideoContentUrl: FC<PropTypes> = ({
           className={classes.mediaObjectPageInfoBarVideoIframe}
           data-test="MediaObject-viewer-video-iframe"
           frameBorder="0"
-          src={embedUrl.value}
+          src={embedUrl}
           title="attachment-inline-video-embed"
         />
       </div>
@@ -75,16 +67,10 @@ const VideoContentUrl: FC<PropTypes> = ({
       loop={loop}
       muted={muted}
       playsInline={playsInline}
-      src={linkedProp.value}
+      src={contentUrl}
     />
   );
   /* eslint-enable jsx-a11y/media-has-caption */
 };
 
-VideoContentUrl.type = schema.VideoObject;
-
-VideoContentUrl.property = schema.contentUrl;
-
-VideoContentUrl.topology = allTopologies;
-
-export default register(VideoContentUrl);
+export default VideoViewer;

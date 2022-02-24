@@ -3,9 +3,8 @@ import {
   FC,
   register,
   useFields,
-  useGlobalIds,
   useIds,
-  useLiterals,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
@@ -20,8 +19,8 @@ interface PropTypes {
 
 const MediaObjectPreview: FC<PropTypes> = ({ sequenceIndex }) => {
   const [caption] = useFields(schema.caption);
-  const [contentUrl] = useGlobalIds(schema.contentUrl);
-  const [encodingFormat] = useLiterals([schema.encodingFormat, schema.fileFormat]);
+  const [contentUrl] = useStrings(schema.contentUrl);
+  const [encodingFormat] = useStrings([schema.encodingFormat, schema.fileFormat]);
   const [filename] = useFields(dbo.filename);
   const [isPartOf] = useIds(schema.isPartOf);
 

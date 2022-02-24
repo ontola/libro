@@ -1,11 +1,11 @@
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  Property,
   register,
 } from 'link-redux';
 import React from 'react';
 
+import LinkedMediaViewer from '../../components/MediaViewer/LinkedMediaViewer';
 import WebMonetization from '../../components/WebMonetization';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
@@ -13,7 +13,7 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 const MediaObjectFull: FC = () => (
   <WebMonetization>
     <Container>
-      <Property label={schema.contentUrl} />
+      <LinkedMediaViewer downloadSection />
     </Container>
   </WebMonetization>
 );

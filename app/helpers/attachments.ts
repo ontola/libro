@@ -1,18 +1,17 @@
-import { Literal, NamedNode } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import { filenameStr } from '@rdfdev/iri';
-import { LaxNode } from 'link-redux';
 
 import fa4 from '../ontology/fa4';
 
-export function downloadUrl(contentUrl: NamedNode): string {
-  const downloadLink = new URL(contentUrl.value);
+export function downloadUrl(contentUrl: string): string {
+  const downloadLink = new URL(contentUrl);
   downloadLink.searchParams.set('download', 'true');
 
   return downloadLink.toString();
 }
 
-export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Literal }): NamedNode {
-  switch (encodingFormat?.value) {
+export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: string }): NamedNode {
+  switch (encodingFormat) {
   case 'application/zip':
     return fa4.ns('file-archive-o');
   case 'application/pdf':
@@ -22,9 +21,9 @@ export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Li
   }
 }
 
-export function isPDF(encodingFormat: Literal| undefined, contentUrl: LaxNode): boolean {
-  return encodingFormat?.value === 'application/pdf'
-    || contentUrl?.value?.includes('api.openraadsinformatie.nl')
+export function isPDF(encodingFormat: string | undefined, contentUrl: string | undefined): boolean {
+  return encodingFormat === 'application/pdf'
+    || contentUrl?.includes('api.openraadsinformatie.nl')
     || false;
 }
 
@@ -54,6 +53,6 @@ export const isXLS = (url: string | undefined, mime: string | undefined): boolea
   (url && xlsExts.includes(filenameStr(url).split('.').pop() ?? '')) ||
   xlsTypes.some((it) => mime?.includes(it));
 
-export function isSheet(url: string | undefined, encodingFormat: Literal | undefined): boolean {
-  return isCSV(url, encodingFormat?.value) || isXLS(url, encodingFormat?.value);
+export function isSheet(url: string | undefined, encodingFormat: string | undefined): boolean {
+  return isCSV(url, encodingFormat) || isXLS(url, encodingFormat);
 }

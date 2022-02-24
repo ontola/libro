@@ -34,7 +34,7 @@ interface DocumentAttachmentProps extends SharedAttachmentProps {
 
 interface ImageAttachmentProps extends SharedAttachmentProps {
   isDocument: true;
-  contentUrl: SomeTerm;
+  contentUrl: string;
 }
 
 const usePreviewHandler = (isPartOf: SomeNode, sequenceIndex: number) => {
@@ -81,7 +81,7 @@ const AttachmentPreview = (props: DocumentAttachmentProps | ImageAttachmentProps
   if (props.isDocument) {
     return (
       <DocumentAttachmentPreview
-        downloadURL={props.contentUrl?.value}
+        downloadURL={props.contentUrl}
         {...sharedProps}
       />
     );

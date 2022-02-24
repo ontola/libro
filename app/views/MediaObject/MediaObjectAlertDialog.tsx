@@ -8,12 +8,12 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import LinkedMediaViewer from '../../components/MediaViewer/LinkedMediaViewer';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
+import { alertDialogTopology } from '../../topologies/Dialog';
 
 const MediaObjectContainer: FC = () => (
   <Card>
     <CardContent endSpacing>
-      <LinkedMediaViewer downloadSection />
+      <LinkedMediaViewer />
     </CardContent>
   </Card>
 );
@@ -24,6 +24,6 @@ MediaObjectContainer.type = [
   schema.VideoObject,
 ];
 
-MediaObjectContainer.topology = containerTopology;
+MediaObjectContainer.topology = alertDialogTopology;
 
 export default register(MediaObjectContainer);
