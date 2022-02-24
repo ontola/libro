@@ -92,6 +92,15 @@ const colors = {
 };
 /* eslint-enable sort-keys, @typescript-eslint/no-magic-numbers */
 
+const mqBreakpoints = {
+  largeLowerBound: '900px',
+  microUpperBound: '320px',
+  smallLowerBound: '650px',
+  smallUpperBound: __CLIENT__ ? '899.5px' : '900px',
+  smallestLowerBound: __CLIENT__ ? '319.5px' : '320px',
+  smallestUpperBound: __CLIENT__ ? '649.5px' : '650px',
+};
+
 //  6px = 0.375rem = 0.1875 * 2rem
 const SIX_PX = 0.1875;
 
@@ -126,6 +135,14 @@ const theme = {
     small: '35rem',
   },
   greyBorder: `solid 1px ${colors.grey.xLight}`,
+  mediaQueries: {
+    largeAndAbove: `(min-width: ${mqBreakpoints.largeLowerBound})`,
+    micro: `(max-width: ${mqBreakpoints.microUpperBound})`,
+    smallAndAbove: `(min-width: ${mqBreakpoints.smallestUpperBound})`,
+    smallAndBelow: `(max-width: ${mqBreakpoints.smallUpperBound})`,
+    smallOnly: `(min-width: ${mqBreakpoints.smallLowerBound}) and (max-width: ${mqBreakpoints.smallUpperBound})`,
+    smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound}) and (max-width: ${mqBreakpoints.smallestUpperBound})`,
+  },
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {
@@ -146,6 +163,11 @@ const theme = {
       primary: colors.grey.xDark,
       secondary: colors.grey.midDark,
     },
+  },
+  semanticColors: {
+    'https://argu.co/ns/core#ConArgument': '#684747',
+    'https://argu.co/ns/core#ProArgument': '#547f4b',
+    'https://argu.co/ns/rivm#InterventionType': '#164173',
   },
   spacing: (factor: number): string => `${SIX_PX * factor}rem`,
   typography: {
@@ -175,7 +197,5 @@ const theme = {
   zIndexLoader: 1200,
   zIndexOverlay: 1900,
 };
-
-export type CommonColors = typeof colors;
 
 export default theme;

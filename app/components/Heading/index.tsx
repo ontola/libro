@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
-import { semanticColors } from '../shared/config';
 
 export enum HeadingSize {
   XL = 1,
@@ -81,7 +80,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     textAlign: 'center',
   },
   [HeadingVariant.Question]: {},
-  [HeadingVariant.Semantic]: Object.entries(semanticColors).reduce((acc, [k, v]) => ({
+  [HeadingVariant.Semantic]: Object.entries(theme.semanticColors).reduce((acc, [k, v]) => ({
     ...acc,
     [`&[typeof='${k}']`]: {
       color: v,

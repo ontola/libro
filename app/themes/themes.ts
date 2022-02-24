@@ -59,6 +59,17 @@ declare module '@material-ui/core/styles/createTheme' {
     containerWidth: {
       [K in Size]: string;
     };
+    mediaQueries: {
+      largeAndAbove: string;
+      micro: string;
+      smallAndAbove: string;
+      smallAndBelow: string;
+      smallOnly: string;
+      smallestOnly: string;
+    }
+    semanticColors: {
+      [index: string]: string;
+    };
     zIndexHoverBox: number;
     zIndexLoader: number;
     zIndexOverlay: number;
