@@ -11,7 +11,7 @@ import { ERROR_CLASSES } from '../../helpers/metaData';
 import useErrorReload from '../../hooks/useErrorReload';
 import { navbarTopology } from '../../topologies/Navbar';
 import { errorMessages } from '../../translations/messages';
-import { bodyDescriptorForStatus } from '../../components/Error/errorMessages';
+import { bodyDescriptorForStatus, useErrorStatus } from '../../components/Error/errorMessages';
 import { ErrorComponentProps } from '../../components/Error/helpers';
 
 const ErrorNavbar: FC<ErrorComponentProps> = (props) => {
@@ -27,7 +27,8 @@ const ErrorNavbar: FC<ErrorComponentProps> = (props) => {
   } = useErrorReload(subject, reloadLinkedObject);
 
   const retryText = intl.formatMessage(errorMessages.clickRetry);
-  const bodyDescriptor = bodyDescriptorForStatus(linkRequestStatus);
+  const statusCode = useErrorStatus(linkRequestStatus);
+  const bodyDescriptor = bodyDescriptorForStatus(statusCode);
   const bodyText = bodyDescriptor ? intl.formatMessage(bodyDescriptor) : null;
 
   return (

@@ -5,7 +5,7 @@ import Button, { ButtonProps } from '../Button';
 import useErrorReload from '../../hooks/useErrorReload';
 
 import { ErrorComponentProps } from './helpers';
-import { useTitleForStatus } from './errorMessages';
+import { useErrorStatus, useTitleForStatus } from './errorMessages';
 
 const ErrorButtonWithFeedback = (props: ErrorComponentProps & ButtonProps): JSX.Element => {
   const {
@@ -18,7 +18,8 @@ const ErrorButtonWithFeedback = (props: ErrorComponentProps & ButtonProps): JSX.
     loading,
     reload,
   } = useErrorReload(subject, reloadLinkedObject);
-  const titleForStatus = useTitleForStatus(linkRequestStatus);
+  const statusCode = useErrorStatus(linkRequestStatus);
+  const titleForStatus = useTitleForStatus(statusCode);
 
   return (
     <Button

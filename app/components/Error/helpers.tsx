@@ -17,6 +17,6 @@ export const notAvailableError = (status?: number | null): boolean => (
   status ? [HttpStatus.UNAUTHORIZED, HttpStatus.FORBIDDEN, HttpStatus.NOT_FOUND].includes(status) : false
 );
 
-export const shouldShowSignIn = (actorType?: string, requestStatus?: RequestStatus): boolean => (
-  actorType === 'GuestUser' && notAvailableError(requestStatus?.status)
+export const shouldShowSignIn = (actorType?: string, statusCode?: number): boolean => (
+  actorType === 'GuestUser' && notAvailableError(statusCode)
 );

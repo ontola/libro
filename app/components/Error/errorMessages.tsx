@@ -1,20 +1,22 @@
+import * as rdfx from '@ontologies/rdf';
 import HttpStatus from 'http-status-codes';
+import { RequestStatus } from 'link-lib';
+import { useIds } from 'link-redux';
 import { MessageDescriptor, useIntl } from 'react-intl';
 
 import { handle } from '../../helpers/logging';
+import { ERROR_STATUS_CODES } from '../../helpers/metaData';
 import { errorMessages } from '../../translations/messages';
 
-import { RequestStatus } from './helpers';
-
-export function bodyDescriptorForStatus(requestStatus?: RequestStatus): undefined | MessageDescriptor {
-  if (!requestStatus?.requested || requestStatus.status < HttpStatus.MULTIPLE_CHOICES) {
+export function bodyDescriptorForStatus(statusCode: number): undefined | MessageDescriptor {
+  if (statusCode < HttpStatus.MULTIPLE_CHOICES) {
     return undefined;
   }
 
-  const descriptor = errorMessages[`${requestStatus.status}/body`];
+  const descriptor = errorMessages[`${statusCode}/body`];
 
   if (!descriptor) {
-    handle(new Error(`translation missing for ${requestStatus.status}/body`));
+    handle(new Error(`translation missing for ${statusCode}/body`));
 
     return undefined;
   }
@@ -22,15 +24,15 @@ export function bodyDescriptorForStatus(requestStatus?: RequestStatus): undefine
   return descriptor;
 }
 
-export function headerDescriptorForStatus(requestStatus?: RequestStatus): undefined | MessageDescriptor {
-  if (!requestStatus?.requested || requestStatus.status < HttpStatus.MULTIPLE_CHOICES) {
+export function headerDescriptorForStatus(statusCode: number): undefined | MessageDescriptor {
+  if (statusCode < HttpStatus.MULTIPLE_CHOICES) {
     return undefined;
   }
 
-  const descriptor = errorMessages[`${requestStatus.status}/header`];
+  const descriptor = errorMessages[`${statusCode}/header`];
 
   if (!descriptor) {
-    handle(new Error(`translation missing for ${requestStatus.status}/header`));
+    handle(new Error(`translation missing for ${statusCode}/header`));
 
     return undefined;
   }
@@ -38,15 +40,20 @@ export function headerDescriptorForStatus(requestStatus?: RequestStatus): undefi
   return descriptor;
 }
 
-export function useTitleForStatus(requestStatus?: RequestStatus): undefined | string {
+export const useErrorStatus = (linkRequestStatus?: RequestStatus):number =>  {
+  const [errorType] = useIds(rdfx.type);
+
+  if (linkRequestStatus?.status) {
+    return linkRequestStatus.status;
+  }
+
+  return ERROR_STATUS_CODES[errorType.value] ?? HttpStatus.BAD_REQUEST;
+};
+
+export function useTitleForStatus(statusCode: number): undefined | string {
   const intl = useIntl();
-
-  if (!requestStatus?.requested) {
-    return undefined;
-  }
-
-  const header = headerDescriptorForStatus(requestStatus);
-  const body = bodyDescriptorForStatus(requestStatus);
+  const header = headerDescriptorForStatus(statusCode);
+  const body = bodyDescriptorForStatus(statusCode);
 
   return [header, body]
     .map((descriptor) => descriptor ? intl.formatMessage(descriptor) : undefined)

@@ -1,5 +1,8 @@
 import * as schema from '@ontologies/schema';
-import { ReturnType, useLink } from 'link-redux';
+import {
+  ReturnType,
+  useLink,
+} from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
@@ -15,7 +18,11 @@ import { SignInFormLink } from '../../components/SignInForm';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import Card from '../../topologies/Card';
 
-import { bodyDescriptorForStatus, headerDescriptorForStatus } from './errorMessages';
+import {
+  bodyDescriptorForStatus,
+  headerDescriptorForStatus,
+  useErrorStatus,
+} from './errorMessages';
 import { ErrorComponentProps, shouldShowSignIn } from './helpers';
 
 const propMap = {
@@ -38,8 +45,9 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
   const errFromData = useLink(propMap, dataErrOpts);
 
   const err = caughtError ?? error ?? errFromData;
-  const headerDescription = headerDescriptorForStatus(linkRequestStatus);
-  const bodyDescriptor = bodyDescriptorForStatus(linkRequestStatus);
+  const statusCode = useErrorStatus(linkRequestStatus);
+  const headerDescription = headerDescriptorForStatus(statusCode);
+  const bodyDescriptor = bodyDescriptorForStatus(statusCode);
 
   let mainAction = (
     <ErrorButtonWithFeedback
@@ -53,7 +61,7 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
     </ErrorButtonWithFeedback>
   );
 
-  if (shouldShowSignIn(actorType?.value, linkRequestStatus)) {
+  if (shouldShowSignIn(actorType?.value, statusCode)) {
     mainAction = (
       <SignInFormLink Component={Button} />
     );

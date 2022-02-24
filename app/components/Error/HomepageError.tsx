@@ -8,10 +8,13 @@ import CardContent from '../Card/CardContent';
 import Container from '../../topologies/Container';
 import PageHeader from '../../topologies/PageHeader';
 
+import { useErrorStatus } from './errorMessages';
 import { ErrorComponentProps, notAvailableError } from './helpers';
 
 const HomepageError = (props: ErrorComponentProps): JSX.Element => {
-  if (notAvailableError(props.linkRequestStatus?.status)) {
+  const statusCode = useErrorStatus(props.linkRequestStatus);
+
+  if (notAvailableError(statusCode)) {
     return (
       <div>
         <PageHeader>

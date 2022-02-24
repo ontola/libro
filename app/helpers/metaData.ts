@@ -1,10 +1,11 @@
 import * as as from '@ontologies/as';
-import { NamedNode, QuadPosition } from '@ontologies/core';
+import rdf, { NamedNode, QuadPosition } from '@ontologies/core';
 import * as dcterms from '@ontologies/dcterms';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
+import HttpStatus from 'http-status-codes';
 
 import dbo from '../ontology/dbo';
 import ll from '../ontology/ll';
@@ -15,22 +16,23 @@ import { stripMarkdown } from './markdownHelper';
 
 const raw = (list: NamedNode[]): string[] => list.map((n) => n.value);
 
-export const ERROR_CLASSES = [
-  ll.ErrorResource,
-  ontola.ns('errors/RecordNotFoundError'),
-  ontola.ns('errors/AccountLockedError'),
-  ontola.ns('errors/ForbiddenError'),
-  ontola.ns('errors/UnauthorizedError'),
-  ontola.ns('errors/UnknownEmailError'),
-  ontola.ns('errors/WrongPasswordError'),
-  ontola.ns('errors/NoPasswordError'),
-  ontola.ns('errors/ExpiredError'),
-  ontola.ns('errors/RecordNotFoundError'),
-  ontola.ns('errors/RoutingErrorError'),
-  ontola.ns('errors/RecordNotUniqueError'),
-  ontola.ns('errors/UnpermittedParametersError'),
-  ontola.ns('errors/ParameterMissingError'),
-];
+export const ERROR_STATUS_CODES = {
+  [ll.ErrorResource.value]: HttpStatus.BAD_REQUEST,
+  [ontola.ns('errors/AccountLockedError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+  [ontola.ns('errors/ForbiddenError').value]: HttpStatus.FORBIDDEN,
+  [ontola.ns('errors/UnauthorizedError').value]: HttpStatus.UNAUTHORIZED,
+  [ontola.ns('errors/UnknownEmailError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+  [ontola.ns('errors/WrongPasswordError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+  [ontola.ns('errors/NoPasswordError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+  [ontola.ns('errors/ExpiredError').value]: HttpStatus.GONE,
+  [ontola.ns('errors/RecordNotFoundError').value]: HttpStatus.NOT_FOUND,
+  [ontola.ns('errors/RoutingErrorError').value]: HttpStatus.NOT_FOUND,
+  [ontola.ns('errors/RecordNotUniqueError').value]: HttpStatus.NOT_MODIFIED,
+  [ontola.ns('errors/UnpermittedParametersError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+  [ontola.ns('errors/ParameterMissingError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+};
+
+export const ERROR_CLASSES = Object.keys(ERROR_STATUS_CODES).map((key) => rdf.namedNode(key));
 
 export const COVER_PREDICATES = [ontola.coverPhoto];
 export const COVER_URL_PREDICATES = [ontola.imgUrl1500x2000];

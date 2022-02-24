@@ -18,7 +18,7 @@ import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { parentTopology } from '../../topologies/Parent';
-import { useTitleForStatus } from '../../components/Error/errorMessages';
+import { useErrorStatus, useTitleForStatus } from '../../components/Error/errorMessages';
 import { ErrorComponentProps } from '../../components/Error/helpers';
 
 const ErrorButtonInline: FC<ErrorComponentProps> = ({
@@ -30,7 +30,8 @@ const ErrorButtonInline: FC<ErrorComponentProps> = ({
     loading,
     reload,
   } = useErrorReload(subject, reloadLinkedObject);
-  const titleForStatus = useTitleForStatus(linkRequestStatus);
+  const statusCode = useErrorStatus(linkRequestStatus);
+  const titleForStatus = useTitleForStatus(statusCode);
 
   return (
     <Button
