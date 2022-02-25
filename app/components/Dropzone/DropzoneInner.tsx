@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf from '@ontologies/core';
 import React from 'react';
 
 import { imageRepresentationUrl } from '../../helpers/attachments';
