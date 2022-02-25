@@ -76,7 +76,7 @@
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.10.0",
     "@monaco-editor/react": "^4.2.2",
-    "@mui/x-data-grid": "^4.0.0",
+    "@mui/x-data-grid": "^4.0.2",
     "@ontola/link-devtools": "^2.0.2",
     "@ontola/memoized-factory": "^2.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",

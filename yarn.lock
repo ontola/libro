@@ -2638,9 +2638,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-data-grid@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "@mui/x-data-grid@npm:4.0.1"
+"@mui/x-data-grid@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@mui/x-data-grid@npm:4.0.2"
   dependencies:
     "@material-ui/utils": ^5.0.0-beta.4
     clsx: ^1.1.1
@@ -2650,7 +2650,7 @@ __metadata:
     "@material-ui/core": ^4.12.0 || ^5.0.0-beta.0
     "@material-ui/styles": ^4.11.4 || ^5.0.0-beta.0
     react: ^17.0.0
-  checksum: 1b29618ae40783a22187ddb1bfa6099372a0e77ca876fb6cfe6f121b4302834e8854cc1756412e6f02d137f2bd3832c379222280d836cfe9a17a718c9f58e95a
+  checksum: cff830671495f38d5035eb2183975024361bee5ab20d596e7eb2d3f0136f1caa3e9aca682828e09990565ca9ef8c579f3780904b8bbea9c0f5406738bd27ce32
   languageName: node
   linkType: hard
 
@@ -12598,7 +12598,7 @@ __metadata:
     "@material-ui/pickers": ^3.2.10
     "@material-ui/styles": ^4.10.0
     "@monaco-editor/react": ^4.2.2
-    "@mui/x-data-grid": ^4.0.0
+    "@mui/x-data-grid": ^4.0.2
     "@ontola/link-devtools": ^2.0.2
     "@ontola/memoized-factory": ^2.0.1
     "@ontologies/as": ^2.0.0-rc.1

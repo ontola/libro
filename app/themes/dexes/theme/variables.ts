@@ -6,7 +6,7 @@ const customVariables = deepmerge(
   variables, {
     palette: {
       background: {
-        default: 'none',
+        default: 'rgba(255, 255, 255, 0)',
       },
     },
   },
