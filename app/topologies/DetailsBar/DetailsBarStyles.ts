@@ -31,10 +31,8 @@ const styles = (theme: LibroTheme): Styles => ({
     marginLeft: '.5em',
   },
   shared: {
-    '--vertical-scroller-background': theme.palette.grey.xxLight,
     '-webkit-overflow-scrolling': 'touch',
     alignItems: 'flex-start',
-    backgroundColor: theme.palette.grey.xxLight,
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
     boxSizing: 'border-box',
