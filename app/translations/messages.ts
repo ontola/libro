@@ -280,7 +280,7 @@ export const footerMessages: Messages = defineMessages({
   },
 });
 
-export const formMessages: Messages = defineMessages({
+export const formMessages = defineMessages({
   cancelLabel: {
     defaultMessage: 'cancel',
     id: 'https://app.argu.co/i18n/forms/actions/cancel',
@@ -484,6 +484,81 @@ export const studioToolbarMessages: Messages = defineMessages({
   savedNotification: {
     defaultMessage: 'Document saved.',
     id: 'https://rdf.studio/i18n/savedNotification',
+  },
+});
+
+export const studioDistributionMessages = defineMessages({
+  actionDeploy: {
+    defaultMessage: 'Deploy',
+    id: 'https://rdf.studio/i18n/distributions/actionDeploy',
+  },
+  actionUnmount: {
+    defaultMessage: 'Unmount',
+    id: 'https://rdf.studio/i18n/distributions/actionUnmount',
+  },
+  deployDialogBody: {
+    defaultMessage: 'Mounting distribution v{version} to:',
+    id: 'https://rdf.studio/i18n/distributions/deployDialogBody',
+  },
+  deployDialogTitle: {
+    defaultMessage: 'Deploy Distribution',
+    id: 'https://rdf.studio/i18n/distributions/deployDialogTitle',
+  },
+  deploySuccess: {
+    defaultMessage: 'Distribution {version} deployed to {route}',
+    id: 'https://rdf.studio/i18n/distributions/deploySuccess',
+  },
+  distributionDialogPrimaryButton: {
+    defaultMessage: 'Create',
+    id: 'https://rdf.studio/i18n/distributions/distributionDialogPrimaryButton',
+  },
+  distributionDialogTitle: {
+    defaultMessage: 'Create Distribution',
+    id: 'https://rdf.studio/i18n/distributions/distributionDialogTitle ',
+  },
+  distributionDialogWarning: {
+    defaultMessage: 'Warning! You have unsaved changes. Creating a new distribution now will not include these changes.',
+    id: 'https://rdf.studio/i18n/distributions/distributionDialogWarning',
+  },
+  distributionsHeading: {
+    defaultMessage: 'Distributions',
+    id: 'https://rdf.studio/i18n/distributions/distributionsHeading',
+  },
+  publicationsHeading: {
+    defaultMessage: 'Publications',
+    id: 'https://rdf.studio/i18n/distributions/publicationsHeading',
+  },
+  tableHeadingActions: {
+    defaultMessage: 'Actions',
+    id: 'https://rdf.studio/i18n/distributions/tableHeadingActions',
+  },
+  tableHeadingCreatedAt: {
+    defaultMessage: 'Created Date',
+    id: 'https://rdf.studio/i18n/distributions/tableHeadingCreatedAt',
+  },
+  tableHeadingDescription: {
+    defaultMessage: 'Description',
+    id: 'https://rdf.studio/i18n/distributions/tableHeadingDescription',
+  },
+  tableHeadingDistribution: {
+    defaultMessage: 'Distribution',
+    id: 'https://rdf.studio/i18n/distributions/tableHeadingDistribution',
+  },
+  tableHeadingRoute: {
+    defaultMessage: 'Route',
+    id: 'https://rdf.studio/i18n/distributions/tableHeadingRoute',
+  },
+  tableHeadingVersion: {
+    defaultMessage: 'Version',
+    id: 'https://rdf.studio/i18n/distributions/tableHeadingVersion',
+  },
+  unmountError: {
+    defaultMessage: 'Could not unmount {route}',
+    id: 'https://rdf.studio/i18n/distributions/unmountError',
+  },
+  unmountSuccess: {
+    defaultMessage: '{route} unmounted',
+    id: 'https://rdf.studio/i18n/distributions/unmountSuccess',
   },
 });
 

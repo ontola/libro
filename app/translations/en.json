@@ -527,6 +527,60 @@
   "https://ns.ontola.io/app/videoUnsupported": {
     "defaultMessage": "No video support"
   },
+  "https://rdf.studio/i18n/distributions/actionDeploy": {
+    "defaultMessage": "Deploy"
+  },
+  "https://rdf.studio/i18n/distributions/actionUnmount": {
+    "defaultMessage": "Unmount"
+  },
+  "https://rdf.studio/i18n/distributions/deployDialogBody": {
+    "defaultMessage": "Mounting distribution v{version} to:"
+  },
+  "https://rdf.studio/i18n/distributions/deployDialogTitle": {
+    "defaultMessage": "Deploy Distribution"
+  },
+  "https://rdf.studio/i18n/distributions/deploySuccess": {
+    "defaultMessage": "Distribution {version} deployed to {route}"
+  },
+  "https://rdf.studio/i18n/distributions/distributionDialogPrimaryButton": {
+    "defaultMessage": "Create"
+  },
+  "https://rdf.studio/i18n/distributions/distributionDialogTitle ": {
+    "defaultMessage": "Create Distribution"
+  },
+  "https://rdf.studio/i18n/distributions/distributionDialogWarning": {
+    "defaultMessage": "Warning! You have unsaved changes. Creating a new distribution now will not include these changes."
+  },
+  "https://rdf.studio/i18n/distributions/distributionsHeading": {
+    "defaultMessage": "Distributions"
+  },
+  "https://rdf.studio/i18n/distributions/publicationsHeading": {
+    "defaultMessage": "Publications"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingActions": {
+    "defaultMessage": "Actions"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingCreatedAt": {
+    "defaultMessage": "Created Date"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingDescription": {
+    "defaultMessage": "Description"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingDistribution": {
+    "defaultMessage": "Distribution"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingRoute": {
+    "defaultMessage": "Route"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingVersion": {
+    "defaultMessage": "Version"
+  },
+  "https://rdf.studio/i18n/distributions/unmountError": {
+    "defaultMessage": "Could not unmount {route}"
+  },
+  "https://rdf.studio/i18n/distributions/unmountSuccess": {
+    "defaultMessage": "{route} unmounted"
+  },
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documents"
   },

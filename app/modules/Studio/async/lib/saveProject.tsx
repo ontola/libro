@@ -24,8 +24,8 @@ import {
 import { parseSource } from '../hooks/useGenerateLRSFromSource';
 import { filterNodes, nodesToSitemap } from '../hooks/useSitemap';
 
-import { projectToSource } from './projectToSource';
 import { toHextuples } from './hextupleSerializer';
+import { projectToSource } from './projectToSource';
 
 const projectToServerData = async (project: ProjectContext, prerender: boolean): Promise<ServerData> => {
   const manifest = JSON.parse(project.manifest.value);
@@ -56,7 +56,7 @@ const projectToBody = async (project: ProjectContext, prerender: boolean): Promi
 export const createProject = async (project: ProjectContext, prerender: boolean): Promise<Response> => {
   const body = await projectToBody(project, prerender);
 
-  return await fetch('/_studio/projects', {
+  return fetch('/_studio/projects', {
     body,
     headers: {
       'Accept': 'application/json',
@@ -69,7 +69,7 @@ export const createProject = async (project: ProjectContext, prerender: boolean)
 export const updateProject = async (project: ProjectContext, prerender: boolean): Promise<Response> => {
   const body = await projectToBody(project, prerender);
 
-  return await fetch(project.iri!, {
+  return fetch(project.iri!, {
     body,
     headers: {
       'Accept': 'application/json',

@@ -1,4 +1,3 @@
-import { AppBar } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { TabContext, TabPanel } from '@material-ui/lab';
@@ -25,6 +24,10 @@ interface CodeEditorProps extends ProjectContextProps {
 const useStyles = makeStyles({
   grow: {
     height: '100%',
+  },
+  tabs: {
+    backgroundColor: '#fbfbfb',
+    position: 'static',
   },
 });
 
@@ -61,23 +64,22 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
 
   return (
     <TabContext value={tab}>
-      <AppBar position="static">
-        <Tabs
-          value={tab}
-          onChange={(_: unknown, newValue: string) => {
-            setTab(newValue);
-          }}
-        >
-          <Tab
-            label="Editor"
-            value="editor"
-          />
-          <Tab
-            label="Preview"
-            value="preview"
-          />
-        </Tabs>
-      </AppBar>
+      <Tabs
+        className={classes.tabs}
+        value={tab}
+        onChange={(_: unknown, newValue: string) => {
+          setTab(newValue);
+        }}
+      >
+        <Tab
+          label="Editor"
+          value="editor"
+        />
+        <Tab
+          label="Preview"
+          value="preview"
+        />
+      </Tabs>
       <TabPanel
         className={classes.grow}
         value="editor"

@@ -7,6 +7,8 @@ import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { DialogType, ProjectContextProps } from '../../context/ProjectContext';
 import { usePopoutViewer } from '../../hooks/usePopoutViewer';
 import { Content } from '../Content';
+import { CreateDistributionDialog } from '../dialogs/CreateDistributionDialog';
+import { DeployDialog } from '../dialogs/DeployDialog';
 import { ImportDialog } from '../dialogs/ImportDialog';
 import { LeftPanel } from '../LeftPanel';
 import Toolbar from '../Toolbar';
@@ -18,7 +20,6 @@ const useStyles = makeStyles({
   },
   editor: {
     height: '100%',
-    overflow: 'scroll',
   },
   grow: {
     flexGrow: 1,
@@ -92,6 +93,18 @@ export const ProjectScreen = ({ dispatch, project }: ProjectContextProps): JSX.E
       </Grid>
       {project.dialog === DialogType.Import && (
         <ImportDialog
+          dispatch={dispatch}
+          project={project}
+        />
+      )}
+      {project.dialog === DialogType.CreateDistribution && (
+        <CreateDistributionDialog
+          dispatch={dispatch}
+          project={project}
+        />
+      )}
+      {project.dialog === DialogType.Deploy && (
+        <DeployDialog
           dispatch={dispatch}
           project={project}
         />
