@@ -28,6 +28,11 @@ import {
 } from '../context/ProjectContext';
 import { savePrerender, saveProject } from '../lib/saveProject';
 
+const TOOLBAR_HEIGHT = 4;
+const TOOLBAR_SPACING = 0.5;
+
+export const TOTAL_TOOLBAR_HEIGHT = TOOLBAR_HEIGHT + TOOLBAR_SPACING;
+
 const useStyles = makeStyles({
   popper: {
     zIndex: 1,
@@ -39,9 +44,8 @@ const useStyles = makeStyles({
     alignItems: 'center',
     display: 'flex',
     gap: '1em',
-    height: '4rem',
-    marginBottom: '.5em',
-    padding: '.5em',
+    height: `${TOOLBAR_HEIGHT}rem`,
+    padding: `${TOOLBAR_SPACING}rem`,
     width: '100%',
   },
   toolbarSelectForm: {
@@ -95,6 +99,9 @@ const Toolbar = ({
 
   const handleSave = React.useCallback(() => {
     createHandler(saveProject)();
+    dispatch({
+      type: ProjectAction.HashProjectData,
+    });
   }, [setSaving, project]);
 
   const handlePrerender = React.useCallback(() => {
@@ -116,7 +123,7 @@ const Toolbar = ({
   return (
     <Paper
       className={classes.toolbar}
-      elevation={3}
+      elevation={0}
     >
       <IconButton
         color="primary"

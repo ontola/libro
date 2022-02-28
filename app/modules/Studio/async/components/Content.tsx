@@ -11,6 +11,7 @@ import {
 import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
 
 import { CodeEditor } from './Editors/CodeEditor';
+import { DistributionsEditor } from './Editors/DistributionsEditor';
 import { SiteMapEditor } from './Editors/SiteMapEditor';
 import { SubResourceEditor } from './Editors/SubResourceEditor';
 
@@ -116,6 +117,15 @@ export const Content = ({ project, dispatch, onMount }: EditorProps): JSX.Elemen
       <div>
         Media Object Uploader
       </div>
+    );
+  }
+
+  if (resource.type === ResourceType.Distributions) {
+    return (
+      <DistributionsEditor
+        dispatch={dispatch}
+        project={project}
+      />
     );
   }
 

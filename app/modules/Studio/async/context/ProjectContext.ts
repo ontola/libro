@@ -1,6 +1,8 @@
 import React, { Dispatch } from 'react';
 
 import { WebManifest } from '../../../../WebManifest';
+import { DistributionMeta, DistributionMetaWithIRI } from '../lib/distributionAgent';
+import { hashProjectData } from '../lib/hashProject';
 import { serverDataToProject } from '../lib/serverDataToProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
 
@@ -25,12 +27,12 @@ export interface ServerData {
 
 // Keep in sync with /cache/src/commonMain/kotlin/io/ontola/studio/Project.kt
 export enum ResourceType {
-  RDF = 0,
-  Manifest = 1,
-  Elements = 2,
-  MediaObject = 3,
-  SiteMap = 4,
-  Distributions = 5,
+  RDF = 'RDF',
+  Manifest = 'MANIFEST',
+  Elements = 'ELEMENTS',
+  MediaObject = 'MEDIAOBJECT',
+  SiteMap = 'SITEMAP',
+  Distributions = 'DISTRIBUTIONS',
 }
 
 export interface Editable {
@@ -60,6 +62,8 @@ export enum ComponentName {
 
 export enum DialogType {
   Import,
+  CreateDistribution,
+  Deploy,
 }
 
 export interface ProjectContextReaderProps {
@@ -82,6 +86,8 @@ export interface ProjectContext {
   website: Component,
   distributions: Component,
   subResource: number;
+  serverDataHash: number;
+  distributionToDeploy?: DistributionMetaWithIRI;
 }
 
 export enum ProjectAction {
@@ -95,10 +101,12 @@ export enum ProjectAction {
   Finished,
   AddResource,
   DeleteResource,
+  ShowDeployDialog,
   ShowDialog,
   ImportData,
   CreateDistribution,
   DeleteDistribution,
+  HashProjectData,
 }
 
 interface UpdateComponentAction {
@@ -152,7 +160,12 @@ interface DeleteResourceAction {
 
 interface ShowDialogAction {
   type: ProjectAction.ShowDialog;
-  dialogType: DialogType | undefined;
+  dialogType: Exclude<DialogType, DialogType.Deploy> | undefined;
+}
+
+interface ShowDeployDialogAction {
+  type: ProjectAction.ShowDeployDialog;
+  distributionToDeploy: DistributionMetaWithIRI;
 }
 
 interface ImportDataAction {
@@ -168,6 +181,10 @@ interface DeleteDistributionAction {
   type: ProjectAction.DeleteDistribution;
 }
 
+interface HashProjectData {
+  type: ProjectAction.HashProjectData;
+}
+
 export type Action = UpdateComponentAction
   | UpdateSubRDFResourceAction
   | SetFileAction
@@ -179,9 +196,11 @@ export type Action = UpdateComponentAction
   | AddResourceAction
   | DeleteResourceAction
   | ShowDialogAction
+  | ShowDeployDialogAction
   | ImportDataAction
   | CreateDistributionAction
-  | DeleteDistributionAction;
+  | DeleteDistributionAction
+  | HashProjectData;
 
 export type ProjectState = [ProjectContext, Dispatch<Action>];
 
@@ -219,6 +238,7 @@ const initialState: ProjectContext = {
     value: '{}',
   },
   name: undefined,
+  serverDataHash: 0,
   sitemap: resource({
     name: ComponentName.Sitemap,
     type: ResourceType.SiteMap,
@@ -351,6 +371,14 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
     return {
       ...state,
       dialog: action.dialogType,
+      distributionToDeploy: undefined,
+    };
+
+  case ProjectAction.ShowDeployDialog:
+    return {
+      ...state,
+      dialog: DialogType.Deploy,
+      distributionToDeploy: action.distributionToDeploy,
     };
 
   case ProjectAction.ImportData:
@@ -360,6 +388,12 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
         ...state.website,
         children: subResourcesFromData(action.data, state.websiteIRI),
       },
+    };
+
+  case ProjectAction.HashProjectData:
+    return {
+      ...state,
+      serverDataHash: hashProjectData(state),
     };
 
   default:

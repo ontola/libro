@@ -1,5 +1,3 @@
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import MonacoEditor, { Monaco } from '@monaco-editor/react';
 import { editor } from 'monaco-editor';
 import React from 'react';
@@ -14,12 +12,6 @@ interface DataEditorProps {
   onMount?: () => void;
   value: string;
 }
-
-const useStyles = makeStyles({
-  inherit: {
-    height: 'inherit',
-  },
-});
 
 const languageForType = (type: ResourceType): string => {
   if (type === ResourceType.Manifest) {
@@ -45,7 +37,6 @@ export const DataEditor = ({
   onChange,
   onMount,
 }: DataEditorProps): JSX.Element => {
-  const classes = useStyles();
   const [ prefersDark ] = React.useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   const handleMount = React.useCallback((_, monaco) => {
@@ -57,41 +48,29 @@ export const DataEditor = ({
   }, [onMount]);
 
   return (
-    <Grid
-      container
-      className={classes.inherit}
-      direction="column"
-    >
-      <Grid
-        item
-        className={classes.inherit}
-        xs={11}
-      >
-        <MonacoEditor
-          saveViewState
-          // defaultLanguage="typescript"
-          height="inherit"
-          language={languageForType(resource.type)}
-          line={0}
-          options={{
-            codeLens: true,
-            formatOnPaste: true,
-            formatOnType: true,
-            lineNumbersMinChars: 1,
-            minimap: {
-              enabled: false,
-            },
-            wordWrap: 'on',
-            ...(options ?? {}),
-          }}
-          path={resource.name}
-          theme={prefersDark ? 'vs-dark' : 'vs-light'}
-          value={value}
-          width="100vw"
-          onChange={onChange}
-          onMount={handleMount}
-        />
-      </Grid>
-    </Grid>
+    <MonacoEditor
+      saveViewState
+      // defaultLanguage="typescript"
+      height="inherit"
+      language={languageForType(resource.type)}
+      line={0}
+      options={{
+        codeLens: true,
+        formatOnPaste: true,
+        formatOnType: true,
+        lineNumbersMinChars: 1,
+        minimap: {
+          enabled: false,
+        },
+        wordWrap: 'on',
+        ...(options ?? {}),
+      }}
+      path={resource.name}
+      theme={prefersDark ? 'vs-dark' : 'vs-light'}
+      value={value}
+      width="100%"
+      onChange={onChange}
+      onMount={handleMount}
+    />
   );
 };

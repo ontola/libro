@@ -18,8 +18,21 @@ import {
   ProjectContextProps,
 } from '../context/ProjectContext';
 
-import { DistributionsPanel } from './Panels/DistributionsPanel';
 import { ResourcePanel } from './Panels/ResourcePanel';
+import { TOTAL_TOOLBAR_HEIGHT } from './Toolbar';
+
+const useTabStyles = makeStyles({
+  root: {
+    minWidth: '1em',
+    paddingLeft: '.1em',
+    paddingRight: '.1em',
+  },
+  wrapper: {
+    gap: '.5rem',
+    transform: 'rotate(180deg)',
+    writingMode: 'vertical-rl',
+  },
+});
 
 const useStyles = makeStyles({
   closed: {
@@ -34,18 +47,14 @@ const useStyles = makeStyles({
   leftPanel: {
     width: 'max-content',
   },
-  root: {
-    minWidth: '1em',
-    paddingLeft: '.1em',
-    paddingRight: '.1em',
-  },
-  wrapper: {
-    transform: 'rotate(180deg)',
-    writingMode: 'vertical-rl',
+  panel: {
+    height: `calc(100vh - ${TOTAL_TOOLBAR_HEIGHT}rem)`,
+    overflow: 'auto',
   },
 });
 
 export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Element => {
+  const tabClasses = useTabStyles();
   const classes = useStyles();
   const [tab, setTab] = React.useState<ComponentName | 'closed'>(ComponentName.Manifest);
 
@@ -77,32 +86,35 @@ export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Eleme
             }}
           >
             <Tab
-              classes={classes}
+              classes={tabClasses}
               icon={<WebIcon className={classes.iconTransform} />}
               label="Manifest"
               value={ComponentName.Manifest}
             />
             <Tab
-              classes={classes}
+              classes={tabClasses}
               icon={<SettingsIcon className={classes.iconTransform} />}
               label="Resources"
               value={ComponentName.Website}
             />
             <Tab
-              classes={classes}
+              classes={tabClasses}
               icon={<AccountTreeIcon className={classes.iconTransform} />}
               label="Sitemap"
               value={ComponentName.Sitemap}
             />
             <Tab
-              classes={classes}
+              classes={tabClasses}
               icon={<DoubleArrowIcon className={classes.iconTransform} />}
               label="Distributions"
               value={ComponentName.Distributions}
             />
           </TabList>
         </Grid>
-        <Grid item>
+        <Grid
+          item
+          className={classes.panel}
+        >
           <TabPanel
             className={classes.closed}
             value="closed"
@@ -124,13 +136,9 @@ export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Eleme
             value={ComponentName.Sitemap}
           />
           <TabPanel
+            className={classes.closed}
             value={ComponentName.Distributions}
-          >
-            <DistributionsPanel
-              dispatch={dispatch}
-              project={project}
-            />
-          </TabPanel>
+          />
         </Grid>
       </Grid>
     </TabContext>

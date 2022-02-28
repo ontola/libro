@@ -371,11 +371,23 @@
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documenten"
   },
-  "https://rdf.studio/i18n/downloadButtonLabel": {
-    "defaultMessage": "Downloaden"
+  "https://rdf.studio/i18n/importButtonLabel": {
+    "defaultMessage": "Data importeren"
+  },
+  "https://rdf.studio/i18n/importDialog/confirm": {
+    "defaultMessage": "Importeren"
+  },
+  "https://rdf.studio/i18n/importDialog/text": {
+    "defaultMessage": "Dit overschijft alle resources! Plak hextupels om te importeren"
+  },
+  "https://rdf.studio/i18n/importDialog/title": {
+    "defaultMessage": "Data importeren"
   },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Weet je zeker dat je het document wilt overschrijven: {docID}?"
+  },
+  "https://rdf.studio/i18n/prerenderButtonLabel": {
+    "defaultMessage": "Prerender & Opslaan"
   },
   "https://rdf.studio/i18n/resourceDropdownLabel": {
     "defaultMessage": "Resource ({current}/{total} geselecteerd)"
@@ -421,6 +433,9 @@
   },
   "https://app.argu.co/i18n/pdf/previousPage": {
     "defaultMessage": "Vorige pagina (←)"
+  },
+  "https://app.argu.co/i18n/permissions/validForType": {
+    "defaultMessage": "Alleen voor {parentType}"
   },
   "https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn": {
     "defaultMessage": "LinkedIn profiel van {name}"
@@ -547,6 +562,60 @@
   },
   "https://ns.ontola.io/app/videoUnsupported": {
     "defaultMessage": "Geen video-ondersteuning aanwezig"
+  },
+  "https://rdf.studio/i18n/distributions/actionDeploy": {
+    "defaultMessage": "Publiceren"
+  },
+  "https://rdf.studio/i18n/distributions/actionUnmount": {
+    "defaultMessage": "Los koppelen"
+  },
+  "https://rdf.studio/i18n/distributions/deployDialogBody": {
+    "defaultMessage": "Distributie v{version} koppelen aan:"
+  },
+  "https://rdf.studio/i18n/distributions/deployDialogTitle": {
+    "defaultMessage": "Distributie publiceren"
+  },
+  "https://rdf.studio/i18n/distributions/deploySuccess": {
+    "defaultMessage": "Distributie v{version} is gepubliceerd naar {route}"
+  },
+  "https://rdf.studio/i18n/distributions/distributionDialogPrimaryButton": {
+    "defaultMessage": "Aanmaken"
+  },
+  "https://rdf.studio/i18n/distributions/distributionDialogTitle ": {
+    "defaultMessage": "Maak distributie aan"
+  },
+  "https://rdf.studio/i18n/distributions/distributionDialogWarning": {
+    "defaultMessage": "LET OP! Je verranderingen zijn nog niet opgeslagen, deze verranderingen worden niet meegenomen in de nieuwe distributie."
+  },
+  "https://rdf.studio/i18n/distributions/distributionsHeading": {
+    "defaultMessage": "Distributies"
+  },
+  "https://rdf.studio/i18n/distributions/publicationsHeading": {
+    "defaultMessage": "Publicaties"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingActions": {
+    "defaultMessage": "Handelingen"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingCreatedAt": {
+    "defaultMessage": "Aangemaakt op"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingDescription": {
+    "defaultMessage": "Beschrijving"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingDistribution": {
+    "defaultMessage": "Distributie"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingRoute": {
+    "defaultMessage": "Route"
+  },
+  "https://rdf.studio/i18n/distributions/tableHeadingVersion": {
+    "defaultMessage": "Versie"
+  },
+  "https://rdf.studio/i18n/distributions/unmountError": {
+    "defaultMessage": "{route} kon niet worden losgekoppeld."
+  },
+  "https://rdf.studio/i18n/distributions/unmountSuccess": {
+    "defaultMessage": "{route} is losgekoppeld."
   },
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documenten"

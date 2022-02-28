@@ -8,9 +8,9 @@ import generateLRS from '../../../helpers/generateLRS';
 import http from '../../../ontology/http';
 import ll from '../../../ontology/ll';
 import register from '../../../views';
-import parseToGraph from '../lib/parseToGraph';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
 import { PageViewerState } from '../lib/PageViewerState';
+import parseToGraph from '../lib/parseToGraph';
 
 const Communicator = (): null => {
   const updateCtx = React.useContext(appContextEditor);
@@ -81,6 +81,7 @@ const Communicator = (): null => {
         lrs.processDelta(statusUpdate, true);
         register(lrs);
 
+        window.LRS = lrs;
         updateCtx((prev) => ({
           ...prev,
           lrs,

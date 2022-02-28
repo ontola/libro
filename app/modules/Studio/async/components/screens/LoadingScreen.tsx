@@ -70,10 +70,16 @@ export const LoadingScreen = ({ dispatch, project, show }: LoadingScreenProps): 
 
     fetch(project.iri, { headers: { Accept: 'application/json' } })
       .then((res) => res.json())
-      .then((data: ServerData) => dispatch({
-        data,
-        type: ProjectAction.Finished,
-      }));
+      .then((data: ServerData) => {
+        dispatch({
+          data,
+          type: ProjectAction.Finished,
+        });
+
+        dispatch({
+          type: ProjectAction.HashProjectData,
+        });
+      });
   }, [project.iri]);
 
   React.useEffect(() => {
