@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateEditorLibs generateOntologyDeclerations should parse the ontology correctly 1`] = `
+"declare type FAKEONTOLOGY = {
+ns: (term: string) => NamedNode,
+TrendGraph: NamedNode;
+['Weird:Variable//Thing']: NamedNode;
+trend: NamedNode;
+};
+declare const fakeOntology: FAKEONTOLOGY;"
+`;
