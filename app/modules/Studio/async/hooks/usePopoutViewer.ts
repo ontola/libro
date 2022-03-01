@@ -2,7 +2,7 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
-import { ProjectContext } from '../context/ProjectContext';
+import { ProjectContext, subResource } from '../context/ProjectContext';
 import { PageViewerState } from '../../lib/PageViewerState';
 import { projectToSource } from '../lib/projectToSource';
 
@@ -16,11 +16,29 @@ interface PopoutEditorProps {
   project: ProjectContext;
 }
 
+const normalize = (urlOrPath: string, websiteIRI: string) => {
+  try {
+    return new URL(urlOrPath).toString();
+  } catch (e) {
+    return `${websiteIRI}${urlOrPath}`;
+  }
+};
+
+const subResourceIri = (project: ProjectContext): string => {
+  const path = subResource(project)?.path;
+
+  if (!path || path === '/') {
+    return 'auto';
+  }
+
+  return normalize(path, project.websiteIRI);
+};
+
 const projectToPageViewerState = (project: ProjectContext): PageViewerState => {
   const source = projectToSource(project);
 
   return {
-    currentResource: 'auto',
+    currentResource: subResourceIri(project),
     doc: {
       manifestOverride: project.manifest.value,
       source,
@@ -43,6 +61,7 @@ export const usePopoutViewer = ({ onClose, onOpen, project }: PopoutEditorProps)
   }, [
     project.manifest.value,
     project.website.children,
+    project.subResource,
     sendUpdate,
   ]);
 
