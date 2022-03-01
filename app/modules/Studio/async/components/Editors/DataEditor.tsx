@@ -3,6 +3,7 @@ import { editor } from 'monaco-editor';
 import React from 'react';
 
 import { Editable, ResourceType } from '../../context/ProjectContext';
+import { generateEditorLibs } from '../../lib/generateEditorLibs';
 import { manifestSchemas } from '../../lib/manifestSchema';
 
 interface DataEditorProps {
@@ -30,6 +31,10 @@ const configureHighlighting = (monaco: Monaco) => {
   });
 };
 
+const configureLibs = (monaco: Monaco) => {
+  monaco.languages.typescript.typescriptDefaults.addExtraLib(generateEditorLibs(), 'ts:lib.d.ts');
+};
+
 export const DataEditor = ({
   resource,
   value,
@@ -37,10 +42,11 @@ export const DataEditor = ({
   onChange,
   onMount,
 }: DataEditorProps): JSX.Element => {
-  const [ prefersDark ] = React.useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const [prefersDark] = React.useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   const handleMount = React.useCallback((_, monaco) => {
     configureHighlighting(monaco);
+    configureLibs(monaco);
 
     if (onMount) {
       onMount();
