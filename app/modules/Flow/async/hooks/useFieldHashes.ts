@@ -1,7 +1,7 @@
 import { isNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
-import {useDataInvalidation, useResourceLinks} from 'link-redux';
+import { useDataInvalidation, useResourceLinks } from 'link-redux';
 import React from 'react';
 
 const isNotNull = (x: unknown): x is [string, SomeNode] => x !== null;
