@@ -4,6 +4,7 @@ import React from 'react';
 interface PropTypes {
   name: string;
   value: string;
+  customErrorMessage?: string;
 }
 
 const useStyles = makeStyles({
@@ -18,8 +19,15 @@ const useStyles = makeStyles({
   },
 });
 
-const HiddenRequiredInput: React.FC<PropTypes> = ({ name, value }) => {
+const HiddenRequiredInput: React.FC<PropTypes> = ({ name, value, customErrorMessage }) => {
   const classes = useStyles();
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (ref.current && customErrorMessage) {
+      ref.current.setCustomValidity(value ? '' : customErrorMessage);
+    }
+  }, [customErrorMessage, value, ref.current]);
 
   return (
     <input
@@ -27,6 +35,7 @@ const HiddenRequiredInput: React.FC<PropTypes> = ({ name, value }) => {
       className={classes.inputHiddenField}
       id={name}
       name={name}
+      ref={ref}
       type="text"
       value={value || ''}
       onChange={() => null}
