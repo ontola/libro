@@ -386,6 +386,17 @@ export const grantedGroupMessages: Messages = defineMessages({
   },
 });
 
+export const hiddenRequiredInputErrors: Messages = defineMessages({
+  location: {
+    defaultMessage: 'Please select a location',
+    id: 'https://app.argu.co/i18n/hiddenRequiredInput/location',
+  },
+  zoomLevel: {
+    defaultMessage: 'Please select a zoom level',
+    id: 'https://app.argu.co/i18n/hiddenRequiredInput/zoomLevel',
+  },
+});
+
 export const imageAltMessages: Messages = defineMessages({
   arguLogo: {
     defaultMessage: 'the Argu logo',

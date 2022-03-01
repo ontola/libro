@@ -329,6 +329,12 @@
   "https://app.argu.co/i18n/forms/signOut/link/label": {
     "defaultMessage": "Abmelden"
   },
+  "https://app.argu.co/i18n/hiddenRequiredInput/location": {
+    "defaultMessage": "Bitte wählen Sie einen Ort aus"
+  },
+  "https://app.argu.co/i18n/hiddenRequiredInput/zoomLevel": {
+    "defaultMessage": "Bitte wählen Sie eine Zoomstufe"
+  },
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "das Argu-Logo"
   },

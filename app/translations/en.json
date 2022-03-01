@@ -331,6 +331,12 @@
   "https://app.argu.co/i18n/forms/signOut/link/label": {
     "defaultMessage": "Log out"
   },
+  "https://app.argu.co/i18n/hiddenRequiredInput/location": {
+    "defaultMessage": "Please select a location"
+  },
+  "https://app.argu.co/i18n/hiddenRequiredInput/zoomLevel": {
+    "defaultMessage": "Please select a zoom level"
+  },
   "https://app.argu.co/i18n/imageAlts/arguLogo": {
     "defaultMessage": "the Argu logo"
   },

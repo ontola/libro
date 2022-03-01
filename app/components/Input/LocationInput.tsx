@@ -9,6 +9,7 @@ import {
   useResourceLink,
 } from 'link-redux';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import MapView, {
   MapVariant,
@@ -21,6 +22,7 @@ import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
+import { hiddenRequiredInputErrors } from '../../translations/messages';
 import { FormContext, FormTheme } from '../Form/Form';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
@@ -94,6 +96,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   inputValue,
   onChange,
 }) => {
+  const intl = useIntl();
   const { theme } = React.useContext(FormContext);
   const { fieldShape: { required } } = React.useContext(FormFieldContext);
 
@@ -137,14 +140,17 @@ const LocationInput: React.FC<InputComponentProps> = ({
       {required && (
         <React.Fragment>
           <HiddenRequiredInput
+            customErrorMessage={intl.formatMessage(hiddenRequiredInputErrors.location)}
             name={latName}
             value={lat?.value}
           />
           <HiddenRequiredInput
+            customErrorMessage={intl.formatMessage(hiddenRequiredInputErrors.location)}
             name={lonName}
             value={lon?.value}
           />
           <HiddenRequiredInput
+            customErrorMessage={intl.formatMessage(hiddenRequiredInputErrors.zoomLevel)}
             name={zoomLevelName}
             value={zoomLevel?.value}
           />
