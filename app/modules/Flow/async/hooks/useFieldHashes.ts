@@ -1,12 +1,13 @@
 import { isNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
-import { useResourceLinks } from 'link-redux';
+import {useDataInvalidation, useResourceLinks} from 'link-redux';
 import React from 'react';
 
 const isNotNull = (x: unknown): x is [string, SomeNode] => x !== null;
 
 export const useFieldHashes = (fields: SomeNode[]): Map<string, SomeNode> => {
+  const timestamp = useDataInvalidation(fields);
   const fieldPaths = useResourceLinks(
     fields,
     { path: sh.path },
@@ -27,7 +28,7 @@ export const useFieldHashes = (fields: SomeNode[]): Map<string, SomeNode> => {
       .filter(isNotNull);
 
     return new Map<string, SomeNode>(map);
-  }, [fieldPaths.length]);
+  }, [timestamp, fieldPaths.length]);
 
   return hashes;
 };
