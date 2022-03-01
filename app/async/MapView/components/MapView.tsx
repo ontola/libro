@@ -17,7 +17,8 @@ import MapCanvas from './MapCanvas';
 
 const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
-const DEFAULT_ZOOM = 6.8;
+
+export const DEFAULT_ZOOM = 6.8;
 
 export const MapView: React.FC<MapViewProps> = ({
   initialLat,

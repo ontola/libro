@@ -11,6 +11,8 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+// eslint-disable-next-line no-restricted-imports
+import { DEFAULT_ZOOM } from '../../async/MapView/components/MapView';
 import MapView, {
   MapVariant,
   Placement,
@@ -128,7 +130,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   const storeCoordinates = (newLon: string | number, newLat: string | number) => {
     lonOnChange([rdf.literal(newLon)]);
     latOnChange([rdf.literal(newLat)]);
-    const newZoom = zoomLevel?.value || initialView.zoom;
+    const newZoom = zoomLevel?.value || DEFAULT_ZOOM;
 
     if (newZoom) {
       zoomLevelOnChange([rdf.literal(newZoom)]);
