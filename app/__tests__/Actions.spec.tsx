@@ -13,6 +13,7 @@ import { act } from '@testing-library/react';
 import { Resource } from 'link-redux';
 import React from 'react';
 
+import { headingCID } from '../components/Heading';
 import argu from '../ontology/argu';
 import ex from '../ontology/ex';
 import example from '../ontology/example';
@@ -124,7 +125,8 @@ describe('Actions', () => {
     // renders the form title
     const elem = await getByText('Edit object');
     expect(elem).toBeVisible();
-    expect(elem.classList.value.includes('heading')).toBe(true);
+    expect(elem.tagName).toEqual('H1');
+    expect(elem.classList.value.includes(headingCID)).toBe(true);
 
     // initializes an empty form
     expect(formInstance).toHaveFormValues({

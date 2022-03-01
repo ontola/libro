@@ -12,6 +12,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { Size } from '../../themes/themes';
@@ -38,7 +39,7 @@ const ForumFull = () => {
   const [positionY] = useNumbers(coverPhoto, ontola.imagePositionY);
 
   return (
-    <React.Fragment>
+    <HeadingContext>
       {(hideHeader?.value !== 'true')
       && (
         <PageHeader
@@ -56,7 +57,7 @@ const ForumFull = () => {
           </Grid>
         </Container>
       </div>
-    </React.Fragment>
+    </HeadingContext>
   );
 };
 

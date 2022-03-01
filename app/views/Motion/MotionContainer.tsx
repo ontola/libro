@@ -8,6 +8,7 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -30,26 +31,28 @@ const MotionContainer: FC = ({ subject }) => {
       about={subject.value}
       shine={subject.value === highlightState}
     >
-      <Property label={ontola.coverPhoto} />
-      <CardContent noSpacing>
-        <Property label={[schema.name, rdfs.label]} />
-        <Property label={[schema.text, schema.description, dbo.abstract]} />
-      </CardContent>
-      <CardRow>
-        <Property label={[argu.attachments, meeting.attachment]} />
-      </CardRow>
-      <Property label={argu.voteableVoteEvent} />
-      <CardAppendix>
-        <Property
-          forceRender
-          label={argu.arguments}
-        />
-        <Property label={argu.topComment} />
-        <Property
-          forceRender
-          label={app.omniform}
-        />
-      </CardAppendix>
+      <HeadingContext>
+        <Property label={ontola.coverPhoto} />
+        <CardContent noSpacing>
+          <Property label={[schema.name, rdfs.label]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
+        </CardContent>
+        <CardRow>
+          <Property label={[argu.attachments, meeting.attachment]} />
+        </CardRow>
+        <Property label={argu.voteableVoteEvent} />
+        <CardAppendix>
+          <Property
+            forceRender
+            label={argu.arguments}
+          />
+          <Property label={argu.topComment} />
+          <Property
+            forceRender
+            label={app.omniform}
+          />
+        </CardAppendix>
+      </HeadingContext>
     </Card>
   );
 };

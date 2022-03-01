@@ -16,6 +16,7 @@ import React from 'react';
 
 import ActionButton from '../../../components/ActionButton';
 import Heading, {
+  HeadingProps,
   HeadingSize,
   HeadingVariant,
 } from '../../../components/Heading';
@@ -54,11 +55,6 @@ export const namePredicates = [
   dcterms.title,
 ];
 
-interface ColoredHeadingProps {
-  size?: HeadingSize;
-  variant?: HeadingVariant;
-}
-
 interface WrapperProps {
   wrapper: React.ElementType;
 }
@@ -71,7 +67,7 @@ const propsMap = {
 const ColoredHeading = ({
   size,
   variant,
-}: ColoredHeadingProps) => {
+}: HeadingProps) => {
   const {
     name,
     type,

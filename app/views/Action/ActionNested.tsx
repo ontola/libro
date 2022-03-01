@@ -11,6 +11,7 @@ import React from 'react';
 
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import { SignInFormLink } from '../../components/SignInForm';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
@@ -37,13 +38,15 @@ const ActionNested: FC<ActionProps> = ({
   if (isInvalidActionStatus(actionStatus)) {
     return (
       <Container>
-        <CardMain>
-          <CardContent endSpacing>
-            <Property label={schema.name} />
-            <Property label={schema.error} />
-            <SignInFormLink Component={Button} />
-          </CardContent>
-        </CardMain>
+        <HeadingContext>
+          <CardMain>
+            <CardContent endSpacing>
+              <Property label={schema.name} />
+              <Property label={schema.error} />
+              <SignInFormLink Component={Button} />
+            </CardContent>
+          </CardMain>
+        </HeadingContext>
       </Container>
     );
   }
@@ -53,20 +56,22 @@ const ActionNested: FC<ActionProps> = ({
 
   return (
     <Container>
-      <CardMain>
-        <CardContent endSpacing>
-          <Property label={schema.name} />
-          <Property
-            header
-            label={schema.target}
-            responseCallback={responseCallback}
-            sessionStore={sessionStore}
-            onCancel={onCancel ?? closeModal}
-            onDone={onDoneHandler}
-          />
-          {Appendix && <Appendix />}
-        </CardContent>
-      </CardMain>
+      <HeadingContext>
+        <CardMain>
+          <CardContent endSpacing>
+            <Property label={schema.name} />
+            <Property
+              header
+              label={schema.target}
+              responseCallback={responseCallback}
+              sessionStore={sessionStore}
+              onCancel={onCancel ?? closeModal}
+              onDone={onDoneHandler}
+            />
+            {Appendix && <Appendix />}
+          </CardContent>
+        </CardMain>
+      </HeadingContext>
     </Container>
   );
 };

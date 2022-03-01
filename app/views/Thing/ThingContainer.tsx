@@ -9,6 +9,7 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
@@ -27,17 +28,19 @@ const ThingContainer: FC = ({ subject }) => {
       about={subject.value}
       shine={subject.value === highlightState}
     >
-      <Property label={ontola.coverPhoto} />
-      <CardContent noSpacing>
-        <Property label={[schema.name, rdfs.label, foaf.name]} />
-        <Property label={[schema.text, schema.description, dbo.abstract]} />
-      </CardContent>
-      <CardRow>
-        <Property label={[argu.attachments, meeting.attachment]} />
-      </CardRow>
-      <CardAppendix>
-        <Property label={argu.topComment} />
-      </CardAppendix>
+      <HeadingContext>
+        <Property label={ontola.coverPhoto} />
+        <CardContent noSpacing>
+          <Property label={[schema.name, rdfs.label, foaf.name]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
+        </CardContent>
+        <CardRow>
+          <Property label={[argu.attachments, meeting.attachment]} />
+        </CardRow>
+        <CardAppendix>
+          <Property label={argu.topComment} />
+        </CardAppendix>
+      </HeadingContext>
     </Card>
   );
 };

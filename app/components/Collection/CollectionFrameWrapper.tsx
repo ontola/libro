@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
+import HeadingContext from '../Heading/HeadingContext';
+
 import { CollectionHeaderFloatCID } from './HeaderFloat';
 
 const useStyles = makeStyles({
@@ -20,9 +22,11 @@ export const CollectionFrameWrapper = ({ Wrapper, children }: React.PropsWithChi
 
   return (
     <Wrapper>
-      <div className={classes.wrapper}>
-        {children}
-      </div>
+      <HeadingContext>
+        <div className={classes.wrapper}>
+          {children}
+        </div>
+      </HeadingContext>
     </Wrapper>
   );
 };

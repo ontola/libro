@@ -10,6 +10,7 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import CardHeader from '../../components/Card/CardHeader';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -19,7 +20,7 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
-export interface ArgumentConainerProps {
+export interface ArgumentContainerProps {
   highlighted: boolean;
 }
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ArgumentContainer: FC<ArgumentConainerProps> = ({ highlighted, subject }): JSX.Element => {
+const ArgumentContainer: FC<ArgumentContainerProps> = ({ highlighted, subject }): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -37,24 +38,26 @@ const ArgumentContainer: FC<ArgumentConainerProps> = ({ highlighted, subject }):
       about={subject.value}
       shine={highlighted}
     >
-      <Property label={ontola.coverPhoto} />
-      <div className={classes.content}>
-        <CardContent noSpacing>
-          <CardHeader float={<Property label={argu.voteOptions} />}>
-            <Property label={[schema.name, rdfs.label]} />
-          </CardHeader>
-          <Property label={[schema.text, schema.description, dbo.abstract]} />
-        </CardContent>
-      </div>
-      <CardAppendix>
-        <Property label={argu.voteableVoteEvent} />
-        <Property label={argu.topComment} />
-        <Property
-          clickToOpen
-          forceRender
-          label={app.omniform}
-        />
-      </CardAppendix>
+      <HeadingContext>
+        <Property label={ontola.coverPhoto} />
+        <div className={classes.content}>
+          <CardContent noSpacing>
+            <CardHeader float={<Property label={argu.voteOptions} />}>
+              <Property label={[schema.name, rdfs.label]} />
+            </CardHeader>
+            <Property label={[schema.text, schema.description, dbo.abstract]} />
+          </CardContent>
+        </div>
+        <CardAppendix>
+          <Property label={argu.voteableVoteEvent} />
+          <Property label={argu.topComment} />
+          <Property
+            clickToOpen
+            forceRender
+            label={app.omniform}
+          />
+        </CardAppendix>
+      </HeadingContext>
     </Card>
   );
 };

@@ -1,16 +1,17 @@
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
+import { headingContext } from '../../state/headings';
 import { LibroTheme } from '../../themes/themes';
 
 export enum HeadingSize {
   XL = 1,
-  LG,
-  MD,
-  SM,
-  XS,
+  LG = 2,
+  MD = 3,
+  SM = 4,
+  XS = 5,
+  XXS = 6,
 }
 
 export enum HeadingVariant {
@@ -31,40 +32,41 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     '& b': {
       color: theme.palette.grey.dark,
     },
-    'color': theme.palette.grey.midDark,
-    'lineHeight': 1.3,
-    'marginBottom': '.6rem',
-  },
-  heading: {
-    '&:is(h1)': {
-      fontSize: theme.typography.fontSizes.xxLarge,
-      fontWeight: 'bold',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '1.5rem',
-      },
-      [theme.breakpoints.down('xs')]: {
-        fontSize: '1.3rem',
-      },
-    },
-    '&:is(h2)': {
-      fontSize: theme.typography.fontSizes.xLarge,
-      fontWeight: 'bold',
-    },
-    '&:is(h3)': {
-      fontSize: theme.typography.fontSizes.large,
-      fontWeight: 'bold',
-    },
-    '&:is(h4)': {
-      fontSize: theme.typography.fontSizes.medium,
-      fontWeight: 'bold',
-      lineHeight: '1.1em',
-    },
-    '&:is(h5, h6)': {
-      fontSize: theme.typography.fontSizes.small,
-    },
     '.MuiDialog-paper > div > &': {
       color: theme.palette.common.white,
     },
+    color: theme.palette.grey.midDark,
+    lineHeight: 1.3,
+    marginBottom: '.6rem',
+  },
+  [HeadingSize.XL]: {
+    fontSize: theme.typography.fontSizes.xxLarge,
+    fontWeight: 'bold',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.3rem',
+    },
+  },
+  [HeadingSize.LG]: {
+    fontSize: theme.typography.fontSizes.xLarge,
+    fontWeight: 'bold',
+  },
+  [HeadingSize.MD]: {
+    fontSize: theme.typography.fontSizes.large,
+    fontWeight: 'bold',
+  },
+  [HeadingSize.SM]: {
+    fontSize: theme.typography.fontSizes.medium,
+    fontWeight: 'bold',
+    lineHeight: '1.1em',
+  },
+  [HeadingSize.XS]: {
+    fontSize: theme.typography.fontSizes.small,
+  },
+  [HeadingSize.XXS]: {
+    fontSize: theme.typography.fontSizes.small,
   },
   [HeadingVariant.Alert]: {
     color: theme.palette.error.dark,
@@ -93,7 +95,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-interface PropTypes {
+export interface HeadingProps {
   className?: string;
   display?: 'inherit';
   size?: HeadingSize;
@@ -101,11 +103,7 @@ interface PropTypes {
   variant?: HeadingVariant;
 }
 
-const defaultProps = {
-  size: HeadingSize.LG,
-};
-
-const Heading: React.FC<PropTypes> = ({
+const Heading: React.FC<HeadingProps> = ({
   children,
   className,
   display,
@@ -113,15 +111,27 @@ const Heading: React.FC<PropTypes> = ({
   type,
   variant = '',
 }) => {
-  const Element = `h${size}` as React.ElementType;
   const classes = useStyles();
+  let level = React.useContext(headingContext);
+
+  if (!level) {
+    if (__DEVELOPMENT__) {
+      throw new Error(`Wrong heading level: ${level}`);
+    }
+    else {
+      level = 1;
+    }
+  }
+
+  const Element = `h${level}` as React.ElementType;
+
   const headingClass = clsx({
     [headingCID]: true,
-    [classes.heading]: true,
-    [className ?? '']: true,
     [classes.default]: true,
     [classes.inherit]: display === 'inherit',
+    [classes[size ?? level]]: true,
     [classes[variant]]: true,
+    [className ?? '']: true,
   });
 
   return (
@@ -134,7 +144,5 @@ const Heading: React.FC<PropTypes> = ({
     </Element>
   );
 };
-
-Heading.defaultProps = defaultProps;
 
 export default Heading;

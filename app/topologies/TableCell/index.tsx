@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import React, { ReactNode } from 'react';
 
 import { headingCID } from '../../components/Heading';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
 import { LibroTheme, Margin } from '../../themes/themes';
 
@@ -56,10 +57,12 @@ class TableCellClass extends TopologyProvider<PropTypes> {
     });
 
     return this.wrap((
-      <TableCell
-        className={className}
-        {...filterProps}
-      />));
+      <HeadingContext>
+        <TableCell
+          className={className}
+          {...filterProps}
+        />
+      </HeadingContext>));
   }
 }
 

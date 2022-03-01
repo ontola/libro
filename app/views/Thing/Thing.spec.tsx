@@ -77,6 +77,7 @@ describe('Thing', () => {
     } = await renderAs(Page);
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
+    expect(queryByText(RESOURCE_NAME)?.tagName).toEqual('H1');
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByText(PARENT_NAME)).toBeVisible();
     expect(queryByTestId('CoverPhoto')).toHaveStyle(`
@@ -91,6 +92,7 @@ describe('Thing', () => {
       queryByTestId,
     } = await renderAs(Container);
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
+    expect(queryByText(RESOURCE_NAME)?.tagName).toEqual('H1');
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByTestId('coverImage')).toHaveStyle(`
       background-image: url(${boxUrl});

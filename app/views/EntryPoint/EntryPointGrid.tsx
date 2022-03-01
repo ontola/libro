@@ -14,6 +14,7 @@ import React from 'react';
 import Button from '../../components/Button';
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import GridHeader from '../../components/Grid/GridHeader';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import { LoadingHidden } from '../../components/Loading';
 import ontola from '../../ontology/ontola';
 import { footerTopology } from '../../topologies/Footer';
@@ -49,6 +50,7 @@ const EntryPointGrid: FC<PropTypes> = ({
   const topology = useTopology();
   const entryPointFormProps = useEntryPointFormProps(subject!, otherProps);
   const [name] = useProperty(schema.name);
+
   const footer = React.useCallback((loading: boolean) => (
     <FormFooter>
       <Button
@@ -66,7 +68,7 @@ const EntryPointGrid: FC<PropTypes> = ({
   });
 
   return (
-    <React.Fragment>
+    <HeadingContext>
       <Property label={schema.isPartOf}>
         <GridHeader header={<Property label={schema.name} />}>
           <Property
@@ -81,7 +83,7 @@ const EntryPointGrid: FC<PropTypes> = ({
         className={className}
         footer={footer}
       />
-    </React.Fragment>
+    </HeadingContext>
   );
 };
 
