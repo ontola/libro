@@ -20,9 +20,8 @@ import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { highlightContext } from '../../state/highlight';
 import {
-  getOmniformAction,
-  omniformContext,
-  omniformSetAction,
+  useOmniformActiveAction,
+  useOmniformChangeFactory,
 } from '../../state/omniform';
 import { LibroTheme } from '../../themes/themes';
 import FormFooter from '../../topologies/FormFooter';
@@ -83,13 +82,12 @@ const convertFieldContext = (parentIRI: string, actionIRI: Node) => {
 
 const Omniform = (props: OmniformProps): JSX.Element | null => {
   const lrs = useLRS();
-  const { omniformState, setOmniformState } = React.useContext(omniformContext);
   const { highlightState, setHighlightState } = React.useContext(highlightContext);
 
-  // The NamedNode of the currently selected form.
-  const action = getOmniformAction(omniformState, props.parentIRI) ?? props.actions.values().next().value;
+  const action = useOmniformActiveAction(props.parentIRI) ?? props.actions.values().next().value;
+  const onActionChange = useOmniformChangeFactory(props.parentIRI);
 
-  const onStatusForbidden = (e: () => Promise<void>) => {
+  const onStatusForbidden = React.useCallback((e: () => Promise<void>) => {
     convertFieldContext(props.parentIRI, action);
     lrs.actions.ontola.navigate(action);
 
@@ -98,17 +96,10 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
       .app
       .startSignIn(action)
       .then(() => Promise.reject(e));
-  };
+  }, [props.parentIRI, action]);
 
   const [submitLabel] = useStrings(action, dig(schema.target, schema.name));
   const classes = useStyles();
-
-  const onActionChange = (actionNode: Node) => () => {
-    setOmniformState(omniformSetAction(omniformState, {
-      action: actionNode,
-      parentIRI: props.parentIRI,
-    }));
-  };
 
   const types = React.useMemo(() => (
     Array.from(props.actions).map((iri) => (
@@ -123,7 +114,7 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
         />
       </Resource>
     ))
-  ), [props.actions, action]);
+  ), [props.actions, props.parentIRI, action]);
 
   const responseCallback = React.useCallback((response) => {
     if (response.iri) {

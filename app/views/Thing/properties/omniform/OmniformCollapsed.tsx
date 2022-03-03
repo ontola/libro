@@ -1,12 +1,10 @@
 import Collapse from '@material-ui/core/Collapse';
 import { NamedNode, SomeTerm } from '@ontologies/core';
-import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useDataFetching,
   useGlobalIds,
   useLRS,
   useTopology,
@@ -22,10 +20,9 @@ import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';
 import ontola from '../../../../ontology/ontola';
 import {
-  getOmniformOpenState,
-  omniformCloseInline,
-  omniformContext,
-  omniformOpenInline,
+  useOmniformClose,
+  useOmniformOpen,
+  useOmniformOpenedState,
 } from '../../../../state/omniform';
 import Card, { cardTopology } from '../../../../topologies/Card';
 import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
@@ -52,23 +49,13 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   const topology = useTopology();
   const types = useGlobalIds(rdfx.type);
   const potentialAction = useGlobalIds(schema.potentialAction);
-  const sameAs = useGlobalIds(owl.sameAs);
 
-  const { omniformState, setOmniformState } = React.useContext(omniformContext);
-  const opened = getOmniformOpenState(omniformState, props.subject.value)
-    || !!sameAs.find((sAs: NamedNode) => getOmniformOpenState(omniformState, sAs.value));
+  const opened = useOmniformOpenedState(props.subject);
 
-  useDataFetching(sameAs);
   const items = useActions(potentialAction);
 
-  const closeForm = React.useCallback(
-    () => setOmniformState(omniformCloseInline(omniformState, props.subject.value)),
-    [props.subject.value, omniformState],
-  );
-  const openForm = React.useCallback(
-    () => setOmniformState(omniformOpenInline(omniformState, props.subject.value)),
-    [props.subject.value, omniformState],
-  );
+  const closeForm = useOmniformClose(props.subject);
+  const openForm = useOmniformOpen(props.subject);
 
   const toggle = React.useCallback(() => {
     if (opened) {

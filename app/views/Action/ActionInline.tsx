@@ -13,16 +13,12 @@ import {
   useIds,
   useProperty,
 } from 'link-redux';
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 
 import { ButtonVariant } from '../../components/Button';
 import { bestType, filterFind } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
-import {
-  omniformContext,
-  omniformOpenInline,
-  omniformSetAction,
-} from '../../state/omniform';
+import { useOmniformOpenAction } from '../../state/omniform';
 import { LibroTheme } from '../../themes/themes';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { listTopology } from '../../topologies/List';
@@ -59,17 +55,7 @@ const ActionInline: FC<InlineCreateActionProps> = ({
   const type = useGlobalIds(rdfx.type);
   const [isPartOf] = useIds(schema.isPartOf);
 
-  const { omniformState, setOmniformState } = React.useContext(omniformContext);
-
-  const onClick = (e: SyntheticEvent<any>) => {
-    e.preventDefault();
-
-    setOmniformState(omniformOpenInline(omniformState, isPartOf.value));
-    setOmniformState(omniformSetAction(omniformState, {
-      action: subject,
-      parentIRI: btoa(isPartOf.value),
-    }));
-  };
+  const onClick = useOmniformOpenAction(isPartOf, subject);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;

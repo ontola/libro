@@ -10,17 +10,13 @@ import {
   useIds,
   useProperty,
 } from 'link-redux';
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { filterFind } from '../../helpers/data';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { useShowDialog } from '../../hooks/useShowDialog';
-import {
-  omniformContext,
-  omniformOpenInline,
-  omniformSetAction, 
-} from '../../state/omniform';
+import { useOmniformOpenAction } from '../../state/omniform';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -44,17 +40,7 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
   const [image] = useFields(target, schema.image);
   useDataFetching(target);
 
-  const { omniformState, setOmniformState } = React.useContext(omniformContext);
-
-  const onClick = (e: SyntheticEvent<any>) => {
-    e.preventDefault();
-
-    setOmniformState(omniformOpenInline(omniformState, isPartOf.value));
-    setOmniformState(omniformSetAction(omniformState, {
-      action: subject,
-      parentIRI: btoa(isPartOf.value),
-    }));
-  };
+  const onClick = useOmniformOpenAction(isPartOf, subject);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
