@@ -4,15 +4,15 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import MapCanvas from '../../../../async/MapView/components/MapCanvas';
-import { FOCUS_ZOOM } from '../../../../async/MapView/hooks/useMap';
+import MapCanvas from '../../../MapView/async/components/MapCanvas';
+import { FOCUS_ZOOM } from '../../../MapView/async/hooks/useMap';
 import { LoadingCard } from '../../../../components/Loading';
 import {
   ClusterSelectCallback,
   FeatureSelectCallback,
   MapVariant,
   ViewProps,
-} from '../../../../containers/MapView';
+} from '../../../MapView/components/MapView';
 import { getMetaContent } from '../../../../helpers/dom';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import useJSON from '../../../../hooks/useJSON';

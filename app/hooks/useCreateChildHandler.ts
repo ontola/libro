@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { MapClickCallback } from '../containers/MapView';
+import { MapClickCallback } from '../modules/MapView/components/MapView';
 import { conditionalFormFieldsPath, formFieldsPath } from '../helpers/diggers';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';

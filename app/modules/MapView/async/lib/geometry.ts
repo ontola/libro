@@ -7,9 +7,9 @@ import {
   Geometry,
   GeometryType,
   Point, 
-} from '../../../containers/MapView';
-import { tryParseFloat } from '../../../helpers/numbers';
-import { InputValue } from '../../../hooks/useFormField';
+} from '../../components/MapView';
+import { tryParseFloat } from '../../../../helpers/numbers';
+import { InputValue } from '../../../../hooks/useFormField';
 
 const roundToTwo = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 

@@ -7,12 +7,12 @@ import { Coordinate } from 'ol/coordinate';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { ButtonVariant } from '../../../components/Button';
-import ErrorButtonWithFeedback from '../../../components/Error/ErrorButtonWithFeedback';
-import LinkLoader from '../../../components/Loading/LinkLoader';
-import OverlayContainer from '../../../components/OverlayContainer';
-import { MapVariant, NavigateCallback } from '../../../containers/MapView';
-import { alertDialogTopology } from '../../../topologies/Dialog';
+import { ButtonVariant } from '../../../../components/Button';
+import ErrorButtonWithFeedback from '../../../../components/Error/ErrorButtonWithFeedback';
+import LinkLoader from '../../../../components/Loading/LinkLoader';
+import OverlayContainer from '../../../../components/OverlayContainer';
+import { MapVariant, NavigateCallback } from '../../components/MapView';
+import { alertDialogTopology } from '../../../../topologies/Dialog';
 import useMap, { UseMapProps } from '../hooks/useMap';
 import useMapStyles from '../hooks/useMapStyles';
 import useOverlay from '../hooks/useOverlay';

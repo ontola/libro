@@ -36,10 +36,10 @@ import {
   MapViewChangeCallback,
   MapZoomCallback,
   ViewProps,
-} from '../../../containers/MapView';
-import { handle } from '../../../helpers/logging';
-import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../hooks/useMapAccessToken';
-import { mapMessages } from '../../../translations/messages';
+} from '../../components/MapView';
+import { handle } from '../../../../helpers/logging';
+import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../../hooks/useMapAccessToken';
+import { mapMessages } from '../../../../translations/messages';
 import CurrentLocationControl from '../components/CurrentLocationControl';
 
 import { useSelectHandler } from './useSelectHandler';

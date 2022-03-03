@@ -9,7 +9,7 @@ import {
   useRef,
 } from 'react';
 
-import { NavigateCallback } from '../../../containers/MapView';
+import { NavigateCallback } from '../../components/MapView';
 
 interface PropTypes {
   map: Map | undefined;

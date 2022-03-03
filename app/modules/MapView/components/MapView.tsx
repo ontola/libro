@@ -4,15 +4,15 @@ import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import React, { useMemo } from 'react';
 
-import { FormTheme } from '../components/Form/Form';
-import LinkLoader from '../components/Loading/LinkLoader';
-import Suspense from '../components/Suspense';
-import { getMetaContent } from '../helpers/dom';
-import useFontsChecker from '../hooks/useFontsChecker';
+import { FormTheme } from '../../../components/Form/Form';
+import LinkLoader from '../../../components/Loading/LinkLoader';
+import Suspense from '../../../components/Suspense';
+import { getMetaContent } from '../../../helpers/dom';
+import useFontsChecker from '../../../hooks/useFontsChecker';
 
 const MapView = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: "MapView" */ '../async/MapView'),
+  () => import(/* webpackChunkName: "MapView" */ '../async'),
 );
 
 export interface Point {

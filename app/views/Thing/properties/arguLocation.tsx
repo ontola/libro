@@ -19,7 +19,7 @@ import MapView, {
   FeatureSelectCallback,
   MapVariant,
   NavigateCallback,
-} from '../../../containers/MapView';
+} from '../../../modules/MapView/components/MapView';
 import { isResource } from '../../../helpers/types';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import useCreateChildHandler from '../../../hooks/useCreateChildHandler';

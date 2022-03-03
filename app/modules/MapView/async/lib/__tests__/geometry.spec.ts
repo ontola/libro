@@ -4,7 +4,7 @@
 import { NamedNode } from '@ontologies/core';
 import { toLonLat } from 'ol/proj';
 
-import { GeometryType } from '../../../../containers/MapView';
+import { GeometryType } from '../../../components/MapView';
 import {
   distance,
   toFeature,

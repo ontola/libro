@@ -11,16 +11,15 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-// eslint-disable-next-line no-restricted-imports
-import { DEFAULT_ZOOM } from '../../async/MapView/components/MapView';
 import MapView, {
   MapVariant,
   Placement,
-} from '../../containers/MapView';
+} from '../../modules/MapView/components/MapView';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
 import { InputValue } from '../../hooks/useFormField';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
+import { DEFAULT_ZOOM } from '../../modules/MapView/lib/settings';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';

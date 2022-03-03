@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import MapView from '../../containers/MapView';
+import MapView from '../../modules/MapView/components/MapView';
 import argu from '../../ontology/argu';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';

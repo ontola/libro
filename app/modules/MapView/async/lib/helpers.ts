@@ -10,7 +10,7 @@ import Icon from 'ol/style/Icon';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 
-import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
+import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../../helpers/iris';
 
 interface IconProps {
   background: {

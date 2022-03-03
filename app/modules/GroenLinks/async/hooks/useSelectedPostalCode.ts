@@ -6,8 +6,8 @@ import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import React from 'react';
 
-import { FOCUS_ZOOM } from '../../../../async/MapView/hooks/useMap';
-import { ViewProps } from '../../../../containers/MapView';
+import { FOCUS_ZOOM } from '../../../MapView/async/hooks/useMap';
+import { ViewProps } from '../../../MapView/components/MapView';
 
 import { PostalMapping } from './usePostalShapes';
 

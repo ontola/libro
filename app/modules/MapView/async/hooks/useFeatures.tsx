@@ -4,7 +4,7 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import { Placement } from '../../../containers/MapView';
+import { Placement } from '../../components/MapView';
 import { getStyles } from '../lib/helpers';
 
 const isVisited = (feature: Feature<Point>): boolean =>

@@ -2,23 +2,23 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import { LoadingCard } from '../../../components/Loading';
+import { LoadingCard } from '../../../../components/Loading';
 import {
   FeatureSelectCallback,
   Layer,
   MapViewChangeCallback,
   MapViewProps,
   ViewProps,
-} from '../../../containers/MapView';
+} from '../../components/MapView';
+import {
+  DEFAULT_LAT,
+  DEFAULT_LON,
+  DEFAULT_ZOOM, 
+} from '../../lib/settings';
 import { useFeatures } from '../hooks/useFeatures';
 import { usePlacementIds } from '../hooks/usePlacementIds';
 
 import MapCanvas from './MapCanvas';
-
-const DEFAULT_LAT = 52.1344;
-const DEFAULT_LON = 5.1917;
-
-export const DEFAULT_ZOOM = 6.8;
 
 export const MapView: React.FC<MapViewProps> = ({
   initialLat,
