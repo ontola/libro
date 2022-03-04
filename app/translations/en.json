@@ -322,6 +322,9 @@
   "https://app.argu.co/i18n/forms/select/typeToSearch": {
     "defaultMessage": "Type to start searching"
   },
+  "https://app.argu.co/i18n/forms/session/confirmViaEmail": {
+    "defaultMessage": "Confirm your vote via e-mail:"
+  },
   "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": {
     "defaultMessage": "Please confirm your vote by clicking the link we've sent to {email}"
   },
@@ -519,9 +522,6 @@
   },
   "https://app.argu.co/i18n/trashable/deletedNotice": {
     "defaultMessage": "This resource has been deleted on {date}"
-  },
-  "https://app.argu.co/i18n/voteFlow/confirmMessage": {
-    "defaultMessage": "Confirm your vote via e-mail:"
   },
   "https://app.argu.co/i18n/xsd:boolean/false": {
     "defaultMessage": "No"

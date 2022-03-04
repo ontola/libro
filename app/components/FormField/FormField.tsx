@@ -8,6 +8,7 @@ import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { formFooterTopology } from '../../topologies/FormFooter';
+import { mainBodyTopology } from '../../topologies/MainBody';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { fieldLabelCID } from '../FieldLabel';
 import ResourceBoundary from '../ResourceBoundary';
@@ -30,6 +31,7 @@ export const formFieldTopologies = [
   cardMainTopology,
   cardTopology,
   formFooterTopology,
+  mainBodyTopology,
   omniformFieldsTopology,
   flowTopology,
 ];

@@ -55,18 +55,18 @@ const ActionNested: FC<ActionProps> = ({
   return (
     <Container>
       <CardMain>
-        <CardContent>
+        <CardContent endSpacing>
           <Property label={schema.name} />
+          <Property
+            header
+            label={schema.target}
+            responseCallback={responseCallback}
+            sessionStore={sessionStore}
+            onCancel={onCancel ?? closeModal}
+            onDone={onDoneHandler}
+          />
+          {Appendix && <Appendix />}
         </CardContent>
-        <Property
-          header
-          label={schema.target}
-          responseCallback={responseCallback}
-          sessionStore={sessionStore}
-          onCancel={onCancel ?? closeModal}
-          onDone={onDoneHandler}
-        />
-        {Appendix && <Appendix />}
       </CardMain>
     </Container>
   );

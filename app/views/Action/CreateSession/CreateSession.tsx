@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
@@ -10,7 +11,6 @@ import { TopologyContextType } from 'link-redux/dist-types/types';
 import React, { ReactChild } from 'react';
 import { Redirect } from 'react-router';
 
-import CardContent from '../../../components/Card/CardContent';
 import AccountHelpersCardAppendix from '../../../components/SignInForm/AccountHelpersCardAppendix';
 import { isDifferentWebsite, retrievePath } from '../../../helpers/iris';
 import { serializeForStorage } from '../../../helpers/persistence';
@@ -25,12 +25,19 @@ interface CreateSessionProps {
   topologyCtx: TopologyContextType;
 }
 
+const useStyles = makeStyles({
+  reasonPadding: {
+    padding: '1rem 0',
+  },
+});
+
 const CreateSession: FC<CreateSessionProps> = ({
   reason,
   subject,
   topologyCtx,
 }) => {
   const lrs = useLRS();
+  const classes = useStyles();
   const [currentSubject, setSubject] = React.useState(subject);
   const [email, setEmail] = React.useState<null | string>(null);
   const getRedirectLocation = () => new URL(subject.value).searchParams.get('redirect_url') || website;
@@ -76,7 +83,8 @@ const CreateSession: FC<CreateSessionProps> = ({
     return <Redirect to={retrievePath(redirectLocation)!} />;
   }
 
-  const ActionComponent = lrs.getComponentForType(schema.CreateAction, topologyCtx);
+  const ActionComponent = lrs.getComponentForType(schema.Action, topologyCtx);
+
   const appendix = () => (
     <AccountHelpersCardAppendix
       currentSubject={currentSubject}
@@ -94,9 +102,9 @@ const CreateSession: FC<CreateSessionProps> = ({
   return (
     <Resource subject={currentSubject}>
       {reason && (
-        <CardContent endSpacing>
+        <div className={classes.reasonPadding}>
           {reason}
-        </CardContent>
+        </div>
       )}
       <ActionComponent
         appendix={appendix}

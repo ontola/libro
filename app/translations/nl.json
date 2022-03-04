@@ -320,6 +320,9 @@
   "https://app.argu.co/i18n/forms/select/typeToSearch": {
     "defaultMessage": "Typ om te zoeken"
   },
+  "https://app.argu.co/i18n/forms/session/confirmViaEmail": {
+    "defaultMessage": "Bevestig jouw stem via e-mail"
+  },
   "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": {
     "defaultMessage": "Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild naar {email}"
   },
@@ -556,9 +559,6 @@
   },
   "https://app.argu.co/i18n/trashable/deletedNotice": {
     "defaultMessage": " Dit item is verwijderd op {date}"
-  },
-  "https://app.argu.co/i18n/voteFlow/confirmMessage": {
-    "defaultMessage": "Bevestig jouw stem via e-mail"
   },
   "https://app.argu.co/i18n/xsd:boolean/false": {
     "defaultMessage": "Nee"

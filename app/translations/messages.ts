@@ -458,6 +458,17 @@ export const notificationMessages: Messages = defineMessages({
   },
 });
 
+export const signInMessages: Messages = defineMessages({
+  guestUser: {
+    defaultMessage:'Confirm your vote via e-mail:',
+    id:'https://app.argu.co/i18n/forms/session/confirmViaEmail',
+  },
+  unconfirmedUser: {
+    defaultMessage:"Please confirm your vote by clicking the link we've sent to {email}",
+    id:'https://app.argu.co/i18n/forms/session/emailConfirmationReminder',
+  },
+});
+
 export const studioToolbarMessages: Messages = defineMessages({
   documentDropdownLabel: {
     defaultMessage: 'Documents',

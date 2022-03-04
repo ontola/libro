@@ -11,20 +11,20 @@ import React from 'react';
 import Link, { LinkTarget } from '../../components/Link';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 
-interface ActionMainProps {
+interface ActionCardMainProps {
   actionStatus?: SomeTerm;
   name?: SomeTerm;
   target?: SomeNode;
 }
 
-const ActionMain: FC<ActionMainProps> = ({
+const ActionCardMain: FC<ActionCardMainProps> = ({
   children,
   subject,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
 
-  if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
+  if (actionStatus !== schema.PotentialActionStatus) {
     return null;
   }
 
@@ -48,10 +48,10 @@ const ActionMain: FC<ActionMainProps> = ({
   );
 };
 
-ActionMain.type = schema.Action;
+ActionCardMain.type = schema.Action;
 
-ActionMain.topology = [
+ActionCardMain.topology = [
   cardMainTopology,
 ];
 
-export default register(ActionMain);
+export default register(ActionCardMain);

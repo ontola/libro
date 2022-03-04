@@ -9,8 +9,8 @@ import {
 import React from 'react';
 
 import Button from '../../components/Button';
-import CardContent from '../../components/Card/CardContent';
 import { SignInFormLink } from '../../components/SignInForm';
+import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
@@ -27,11 +27,11 @@ const ActionCardRow: FC<ActionProps> = ({
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return (
-      <CardContent endSpacing>
+      <React.Fragment>
         <Property label={schema.name} />
         <Property label={schema.error} />
         <SignInFormLink Component={Button} />
-      </CardContent>
+      </React.Fragment>
     );
   }
 
@@ -52,6 +52,6 @@ ActionCardRow.type = [
   schema.UpdateAction,
 ];
 
-ActionCardRow.topology = cardRowTopology;
+ActionCardRow.topology = [cardTopology, cardRowTopology];
 
 export default register(ActionCardRow);

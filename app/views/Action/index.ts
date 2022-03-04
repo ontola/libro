@@ -7,7 +7,8 @@ import ActionDropdownContent from './ActionDropdownContent';
 import ActionFull from './ActionFull';
 import ActionWidget from './ActionGrid';
 import ActionInline from './ActionInline';
-import ActionMain from './ActionMain';
+import ActionBodyMain from './ActionBodyMain';
+import ActionCardMain from './ActionCardMain';
 import ActionNested from './ActionNested';
 import ActionTableCell from './ActionTableCell';
 import CreateAction from './CreateAction';
@@ -19,7 +20,8 @@ import ReadAction from './ReadAction';
 export default [
   ...CreateAction,
   ...CreateSession,
-  ActionMain,
+  ActionBodyMain,
+  ActionCardMain,
   ActionCardRow,
   ActionContainer,
   ActionContainerFloat,

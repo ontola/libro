@@ -14,17 +14,16 @@ import { useHistory } from 'react-router';
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
-import { cardTopology } from '../../topologies/Card';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 
-interface EntryPointCardMainProps extends EntryPointProps {
+interface EntryPointMainBodyProps extends EntryPointProps {
   onCancel: EventHandler<SyntheticEvent<unknown>>;
 }
 
-const EntryPointCardMain: FC<EntryPointCardMainProps> = ({
+const EntryPointMainBody: FC<EntryPointMainBodyProps> = ({
   onCancel,
   subject,
   ...otherProps
@@ -55,11 +54,10 @@ const EntryPointCardMain: FC<EntryPointCardMainProps> = ({
   );
 };
 
-EntryPointCardMain.type = schema.EntryPoint;
+EntryPointMainBody.type = schema.EntryPoint;
 
-EntryPointCardMain.topology = [
-  cardTopology,
-  cardMainTopology,
+EntryPointMainBody.topology = [
+  mainBodyTopology,
 ];
 
-export default register(EntryPointCardMain);
+export default register(EntryPointMainBody);

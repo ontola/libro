@@ -49,17 +49,17 @@ const ActionFull: FC<ActionProps> = ({
       <Metadata />
       <Container>
         <CardMain>
-          <CardContent>
+          <CardContent endSpacing>
             <Property label={schema.name} />
+            <Property
+              header
+              label={schema.target}
+              sessionStore={sessionStore}
+              onCancel={onCancel}
+              onDone={onDoneHandler}
+            />
+            {Appendix && <Appendix />}
           </CardContent>
-          <Property
-            header
-            label={schema.target}
-            sessionStore={sessionStore}
-            onCancel={onCancel}
-            onDone={onDoneHandler}
-          />
-          {Appendix && <Appendix />}
         </CardMain>
       </Container>
     </React.Fragment>

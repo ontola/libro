@@ -5,7 +5,8 @@ import EntryPointCardMain from './EntryPointCardMain';
 import EntryPointContainer from './EntryPointContainer';
 import EntryPointDetail from './EntryPointDetail';
 import EntryPointWidget from './EntryPointGrid';
-import EntryPointOmiform from './EntryPointOmiform';
+import EntryPointMainBody from './EntryPointMainBody';
+import EntryPointOmniform from './EntryPointOmniform';
 
 export default [
   EntryPointButton,
@@ -13,7 +14,8 @@ export default [
   EntryPointCardMain,
   EntryPointContainer,
   EntryPointDetail,
-  EntryPointOmiform,
+  EntryPointMainBody,
+  EntryPointOmniform,
   EntryPointWidget,
   EntryPoint,
 ];

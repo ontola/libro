@@ -1,43 +1,44 @@
 import * as schema from '@ontologies/schema';
 import {
   FC,
-  Resource,
+  Property,
   register,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { containerTopology } from '../../topologies/Container';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
-const ActionContainer: FC<ActionProps> = ({
+const ActionBodyMain: FC<ActionProps> = ({
+  onCancel,
   onDone,
+  sessionStore,
 }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
-  const [target] = useProperty(schema.target);
   const onDoneHandler = useDoneHandler(onDone);
 
   if (actionStatus !== schema.PotentialActionStatus) {
     return null;
   }
 
-  if (!target) {
-    return null;
-  }
-
   return (
-    <Resource
-      subject={target}
+    <Property
+      header
+      label={schema.target}
+      sessionStore={sessionStore}
+      topology={mainBodyTopology}
+      onCancel={onCancel}
       onDone={onDoneHandler}
     />
   );
 };
 
-ActionContainer.type = schema.Action;
+ActionBodyMain.type = schema.Action;
 
-ActionContainer.topology = [
-  containerTopology,
+ActionBodyMain.topology = [
+  mainBodyTopology,
 ];
 
-export default register(ActionContainer);
+export default register(ActionBodyMain);

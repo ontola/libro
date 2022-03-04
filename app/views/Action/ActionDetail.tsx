@@ -18,7 +18,7 @@ const ActionDetail = () => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
 
-  if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (!actionStatus || invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 
