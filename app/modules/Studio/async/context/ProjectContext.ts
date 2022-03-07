@@ -28,11 +28,11 @@ export interface ServerData {
 // Keep in sync with /cache/src/commonMain/kotlin/io/ontola/studio/Project.kt
 export enum ResourceType {
   RDF = 'RDF',
-  Manifest = 'MANIFEST',
-  Elements = 'ELEMENTS',
-  MediaObject = 'MEDIAOBJECT',
-  SiteMap = 'SITEMAP',
-  Distributions = 'DISTRIBUTIONS',
+  Manifest = 'Manifest',
+  Elements = 'Elements',
+  MediaObject = 'MediaObject',
+  SiteMap = 'SiteMap',
+  Distributions = 'Distributions',
 }
 
 export interface Editable {

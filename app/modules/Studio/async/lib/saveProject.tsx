@@ -12,6 +12,7 @@ import { AppContext } from '../../../../appContext';
 import { AppContextProvider } from '../../../../AppContextProvider';
 import { WebsiteCtx } from '../../../../helpers/app';
 import generateLRS from '../../../../helpers/generateLRS';
+import { quadruplesToDataSlice } from '../../../../helpers/quadruplesToDataSlice';
 import { trailing } from '../../../../ontology/app';
 import { sliceIRI } from '../../../../ontology/appSlashless';
 import { WebManifest } from '../../../../WebManifest';
@@ -129,7 +130,6 @@ const renderResource = (
       <CssBaseline />
       <App
         prerender
-        history={history}
         websiteCtxOverride={websiteCtxValue}
       />
     </AppContextProvider>,
@@ -146,7 +146,7 @@ export const renderCurrentResource = async (project: ProjectContext): Promise<Re
   const source = projectToSource(project);
   const [, data] = parseSource(source, project.websiteIRI);
   const manifest = JSON.parse(project.manifest.value);
-  const { lrs } = await generateLRS(manifest, data);
+  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data));
   const appContext = projectAppContext(project);
   const websiteCtxValue: WebsiteCtx = projectWebsiteContext(appContext.website);
   const history = createMemoryHistory();
@@ -167,14 +167,14 @@ export const renderProject = async (project: ProjectContext): Promise<Array<Rend
   const source = projectToSource(project);
   const [nodes, data] = parseSource(source, project.websiteIRI);
   const manifest = JSON.parse(project.manifest.value);
-  const { lrs } = await generateLRS(manifest, data);
+  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data));
   const history = createMemoryHistory();
   const sitemap = filterNodes(nodes);
 
   const appContext = projectAppContext(project);
   const websiteCtxValue: WebsiteCtx = projectWebsiteContext(appContext.website);
 
-  const pages = [];
+  const pages: Array<RenderedPage | Error> = [];
 
   for (const iri of sitemap) {
     try {
@@ -189,14 +189,14 @@ export const renderProject = async (project: ProjectContext): Promise<Array<Rend
 
       pages.push(page);
     } catch (e) {
-      pages.push(e);
+      pages.push(e as Error);
     }
   }
 
   return pages;
 };
 
-const execSave = async (project: ProjectContext, prerender: boolean): Promise<{ iri: string }> => {
+const execSave = async (project: ProjectContext, prerender: boolean): Promise<{ iri: string; }> => {
   const method = project.iri ? updateProject : createProject;
 
   const res = await method(project, prerender);
@@ -210,8 +210,8 @@ const execSave = async (project: ProjectContext, prerender: boolean): Promise<{ 
   return Promise.resolve(ctx);
 };
 
-export const savePrerender = async (project: ProjectContext): Promise<{ iri: string }> =>
+export const savePrerender = async (project: ProjectContext): Promise<{ iri: string; }> =>
   execSave(project, true);
 
-export const saveProject = async (project: ProjectContext): Promise<{ iri: string }> =>
+export const saveProject = async (project: ProjectContext): Promise<{ iri: string; }> =>
   execSave(project, false);

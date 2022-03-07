@@ -2,6 +2,8 @@ import {
   Literal,
   Node,
   Quad,
+  QuadPosition,
+  Quadruple,
   SomeTerm,
   Term,
   isBlankNode,
@@ -30,12 +32,12 @@ const hexJSONDataType = (object: Term) => {
     : rdfx.ns('blankNode').value;
 };
 
-export const toHextuples = (quads: Quad[]): string[][] => quads
+export const toHextuples = (quads: Quadruple[]): string[][] => quads
   .map((q) => [
-    hexJSONSubject(q.subject),
-    q.predicate.value,
-    hexJSONValue(q.object),
-    hexJSONDataType(q.object),
-    (q.object as Literal).language ?? '',
-    q.graph.value === 'rdf:defaultGraph' ? ld.add.value : q.graph.value,
+    hexJSONSubject(q[QuadPosition.subject]),
+    q[QuadPosition.predicate].value,
+    hexJSONValue(q[QuadPosition.object]),
+    hexJSONDataType(q[QuadPosition.object]),
+    (q[QuadPosition.object] as Literal).language ?? '',
+    q[QuadPosition.graph].value === 'rdf:defaultGraph' ? ld.supplant.value : q[QuadPosition.graph].value,
   ]);

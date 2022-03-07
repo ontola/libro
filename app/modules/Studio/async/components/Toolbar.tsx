@@ -74,7 +74,7 @@ const Toolbar = ({
 
   const showMessage = (msg: string) => lrs.actions.ontola.showSnackbar(msg);
 
-  const createHandler = (cb: (p: ProjectContext) => Promise<{ iri: string }>) => async () => {
+  const createHandler = (cb: (p: ProjectContext) => Promise<{ iri: string; }>) => async () => {
     try {
       setSaving(true);
       const { iri } = await cb(project);
@@ -84,7 +84,9 @@ const Toolbar = ({
       });
       await showMessage(intl.formatMessage(studioToolbarMessages.savedNotification));
       setSaving(false);
-    } catch(_) {
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
       await showMessage(intl.formatMessage(studioToolbarMessages.saveFailedNotification));
       setSaving(false);
     }
