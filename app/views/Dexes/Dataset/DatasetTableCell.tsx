@@ -5,7 +5,7 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import Button, { ButtonTheme } from '../../../components/Button';
+import Button, { ButtonVariant } from '../../../components/Button';
 import dexes from '../../../ontology/dexes';
 import { tableCellTopology } from '../../../topologies/TableCell';
 import { messages } from '../messages';
@@ -19,8 +19,8 @@ const DatasetTableCell: FC = ({
     <Button
       href={subject.value}
       icon="check"
-      theme={ButtonTheme.Subtle}
       title={intl.formatMessage(messages.showPublication)}
+      variant={ButtonVariant.Subtle}
     >
       <FormattedMessage {...messages.published} />
     </Button>

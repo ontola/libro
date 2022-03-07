@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Button, { ButtonTheme } from '../../components/Button';
+import Button, { ButtonVariant } from '../../components/Button';
 import { TEXT_PREDICATES } from '../../helpers/metaData';
 import useOneClickProps from '../../hooks/useOneClickProps';
 import { useShowDialog } from '../../hooks/useShowDialog';
@@ -37,8 +37,8 @@ const ActionTableCell: FC = ({
       disabled={invalid || loading}
       icon={icon}
       loading={loading}
-      theme={ButtonTheme.Subtle}
       title={title}
+      variant={ButtonVariant.Subtle}
       onClick={onClick ?? showDialog}
     >
       {name}
