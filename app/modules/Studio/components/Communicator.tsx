@@ -1,16 +1,19 @@
-import rdf, { Quadruple } from '@ontologies/core';
+import rdf, { QuadPosition, Quadruple } from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
 import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import React from 'react';
 
 import { appContextEditor } from '../../../appContext';
 import generateLRS from '../../../helpers/generateLRS';
+import { quadruplesToDataSlice } from '../../../helpers/quadruplesToDataSlice';
 import http from '../../../ontology/http';
 import ll from '../../../ontology/ll';
 import register from '../../../views';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
 import { PageViewerState } from '../lib/PageViewerState';
 import parseToGraph from '../lib/parseToGraph';
+
+const extractSubject = (q: Quadruple) => q[QuadPosition.subject];
 
 const Communicator = (): null => {
   const updateCtx = React.useContext(appContextEditor);
@@ -30,10 +33,10 @@ const Communicator = (): null => {
   React.useEffect(() => {
     const listener = (e: MessageEvent<EditorUpdateEvent>) => {
       switch (e.data.type) {
-        case EditorEvents.EditorUpdate:
-          return setMessage(e.data.viewOpts);
-        case EditorEvents.EditorClose:
-          return window.close();
+      case EditorEvents.EditorUpdate:
+        return setMessage(e.data.viewOpts);
+      case EditorEvents.EditorClose:
+        return window.close();
       }
     };
 
@@ -51,13 +54,14 @@ const Communicator = (): null => {
 
     const { currentResource, doc: { source }, manifest: { ontola: { website_iri } } } = message;
 
-    try {
-      const graphs = parseToGraph(source, website_iri);
-      const data = graphs.flatMap(([_, rdfIndex]) => (rdfIndex as RDFIndex).quads);
-      const next = generateLRS(message.manifest, data);
+    const updateContext = async () => {
+      try {
+        const graphs = parseToGraph(source, website_iri);
+        const data = graphs.flatMap(([_, rdfIndex]) => (rdfIndex as RDFIndex).quads);
+        const next = await generateLRS(message.manifest, quadruplesToDataSlice(data));
+        const { lrs } = next;
 
-      next.then(({ lrs }) => {
-        const statusUpdate = Array.from(new Set(data.map((q) => q.subject)))
+        const statusUpdate = Array.from(new Set(data.map(extractSubject)))
           .map<Quadruple>((s) => [
             s,
             http.statusCode,
@@ -91,11 +95,13 @@ const Communicator = (): null => {
           themeOpts: message.manifest.ontola?.theme_options ?? prev.themeOpts,
           website: message.manifest.ontola?.website_iri ?? prev.website,
         }));
-      });
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.debug(err);
-    }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
+    };
+
+    updateContext();
   }, [message, updateCtx]);
 
   return null;

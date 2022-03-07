@@ -12493,12 +12493,7 @@ __metadata:
     clsx: ^1.1.1
     compression-webpack-plugin: ^7.1.2
     concurrently: ^6.3.0
-<<<<<<< HEAD
-    copy-webpack-plugin: ^5.1.1
-=======
-    connected-react-router: ^6.9.1
     copy-webpack-plugin: ^9.0.1
->>>>>>> 607c259c1 (core#822 Studio v3)
     core-js: ^3.10.1
     cross-env: ^5.2.0
     css-loader: ^5.2.0
