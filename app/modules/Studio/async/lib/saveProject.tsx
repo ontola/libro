@@ -130,6 +130,7 @@ const renderResource = (
       <CssBaseline />
       <App
         prerender
+        history={history}
         websiteCtxOverride={websiteCtxValue}
       />
     </AppContextProvider>,

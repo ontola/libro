@@ -1,7 +1,7 @@
+import { History } from 'history';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { StaticRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Router, StaticRouter } from 'react-router';
 
 import { appContext } from './appContext';
 import IndexContainer, { RouterProps } from './containers/IndexContainer';
@@ -11,6 +11,7 @@ import { WebsiteContext } from './location';
 import { WebManifest } from './WebManifest';
 
 interface AppProps {
+  history: History;
   location?: string;
   manifestOverride?: WebManifest,
   prerender?: boolean,
@@ -18,12 +19,17 @@ interface AppProps {
 }
 
 const App = ({
+  history,
   location,
   prerender,
   manifestOverride,
   websiteCtxOverride,
 }: AppProps): JSX.Element => {
-  const { lrs, manifest, website } = React.useContext(appContext);
+  const {
+    lrs,
+    manifest,
+    website,
+  } = React.useContext(appContext);
   register(lrs);
   const websiteCtxValue = websiteCtxOverride ?? getWebsiteContextFromWebsite(website);
   const manifestValue = manifestOverride ?? manifest;
@@ -32,9 +38,9 @@ const App = ({
 
   if (__CLIENT__ || !prerender) {
     router = ({ children }: RouterProps) => (
-      <BrowserRouter>
+      <Router history={history}>
         {children}
-      </BrowserRouter>
+      </Router>
     );
   } else {
     const { websiteOrigin } = websiteCtxValue;

@@ -31,7 +31,10 @@ const getWebsiteManifest = (): WebManifest => {
 
   const manifest = getWebsiteManifest();
 
-  const { lrs } = await generateLRS(manifest, seedToSlice(window.INITIAL__DATA));
+  const {
+    history,
+    lrs,
+  } = await generateLRS(manifest, seedToSlice(window.INITIAL__DATA));
   patchRequestInitGenerator(lrs);
 
   if (document.documentElement.lang) {
@@ -46,7 +49,7 @@ const getWebsiteManifest = (): WebManifest => {
         lrs={lrs}
         manifest={manifest}
       >
-        <App />
+        <App history={history} />
       </AppContextProvider>,
       document.getElementById(APP_ELEMENT),
     );
