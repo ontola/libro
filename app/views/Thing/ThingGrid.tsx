@@ -5,7 +5,7 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
@@ -19,11 +19,11 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { gridTopology } from '../../topologies/Grid';
 
 const ThingGrid: FC = () => {
-  const [name] = useProperty([schema.name, rdfs.label, foaf.name]);
+  const [name] = useStrings([schema.name, rdfs.label, foaf.name]);
 
   return (
     <CardFixed>
-      <LDLink aria-label={name.value}>
+      <LDLink aria-label={name}>
         <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label, foaf.name]} />
