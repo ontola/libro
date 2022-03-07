@@ -82,7 +82,7 @@ export const usePopoutViewer = ({ onClose, onOpen, project }: PopoutEditorProps)
     window.addEventListener('message', nextListener);
 
     return () => {
-      window.addEventListener('message', nextListener);
+      window.removeEventListener('message', nextListener);
     };
   }, [updateDoc]);
 
