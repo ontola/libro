@@ -33,7 +33,6 @@ type PropTypes = WithStyles<typeof styles> & TableCellProps & {
   noBorder?: boolean;
   children?: ReactNode;
   colSpan?: number;
-  elementProps?: Record<string, unknown>;
 };
 
 class TableCellClass extends TopologyProvider<PropTypes> {
@@ -48,7 +47,12 @@ class TableCellClass extends TopologyProvider<PropTypes> {
   }
 
   public render() {
-    const { classes, noBorder, ...filterProps } = this.props;
+    const {
+      children,
+      classes,
+      colSpan,
+      noBorder,
+    } = this.props;
 
     const className = clsx({
       [classes.tableCell]: true,
@@ -58,8 +62,11 @@ class TableCellClass extends TopologyProvider<PropTypes> {
     return this.wrap((
       <TableCell
         className={className}
-        {...filterProps}
-      />));
+        colSpan={colSpan}
+      >
+        {children}
+      </TableCell>
+    ));
   }
 }
 

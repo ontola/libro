@@ -43,7 +43,7 @@ class TableRowClass extends Topology<TableRowProps> {
   }
 
   public render() {
-    const { classes, ...filterProps } = this.props;
+    const { classes, children } = this.props;
 
     return this.wrap((subject) => (
       <TableRow
@@ -51,8 +51,9 @@ class TableRowClass extends Topology<TableRowProps> {
           [classes.tableRowClickable]: !!this.props.onClick,
         })}
         resource={subject && subject.value}
-        {...filterProps}
-      />
+      >
+        {children}
+      </TableRow>
     ));
   }
 }

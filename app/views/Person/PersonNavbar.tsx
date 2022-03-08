@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
 const PersonNavbar: FC<PersonNavbarProps> = ({
   subject,
   linkRef,
-  ...navlinkProps
+  onClick,
 }) => {
   const intl = useIntl();
   const [image] = useGlobalIds(schema.image);
@@ -51,7 +51,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
         image={image}
         ref={linkRef}
         title={intl.formatMessage(navBarMessages.userSettings)}
-        {...navlinkProps}
+        onClick={onClick}
       >
         {image ? (
           <NavbarLinkIcon>

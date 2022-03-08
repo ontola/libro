@@ -13,6 +13,7 @@ const styles = (theme: LibroTheme): Styles => ({
   },
   default: {
     height: '2rem',
+    margin: '.125rem 0',
   },
   layoutOnly: {
     [`& .${scrollBoxCID}`]: {

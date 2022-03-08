@@ -186,7 +186,6 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
       data-test="Button-button"
       ref={ref as React.Ref<HTMLButtonElement>}
       {...sharedProps}
-      {...otherProps}
     >
       {currentIcon && (
         <FontAwesome

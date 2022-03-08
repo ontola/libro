@@ -31,13 +31,12 @@ class TableBodyClass extends TopologyProvider<TableBodyProps> {
   }
 
   public render() {
-    const { classes, ...filterProps } = this.props;
+    const { classes, children } = this.props;
 
     return this.wrap(
-      <TableBody
-        className={classes.tableBody}
-        {...filterProps}
-      />,
+      <TableBody className={classes.tableBody}>
+        {children}
+      </TableBody>,
     );
   }
 }

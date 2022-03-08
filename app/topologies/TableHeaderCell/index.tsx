@@ -19,7 +19,6 @@ const styles = (theme: LibroTheme) => createStyles({
 
 type TableHeaderCellProps = WithStyles<typeof styles> & {
   children?: ReactNode;
-  elementProps?: Record<string, unknown>;
 };
 
 class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {

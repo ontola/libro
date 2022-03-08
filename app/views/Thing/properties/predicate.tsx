@@ -12,8 +12,8 @@ interface ThingPredicateTableRowProps {
   label: NamedNode;
 }
 
-const ThingPredicateTableRow = ({ children, label }: ThingPredicateTableRowProps): JSX.Element => (
-  <TableCell elementProps={{ property: label?.value }}>
+const ThingPredicateTableRow = ({ children }: ThingPredicateTableRowProps): JSX.Element => (
+  <TableCell>
     {children}
   </TableCell>
 );
