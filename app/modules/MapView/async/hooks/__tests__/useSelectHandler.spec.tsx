@@ -26,3 +26,4 @@ describe('useSelectHandler', () => {
     });
   });
 });
+/* eslint-enable @typescript-eslint/no-magic-numbers */

@@ -18,3 +18,5 @@ declare global {
     WEBSITE_MANIFEST?: WebManifest;
   }
 }
+
+/* eslint-enable no-unused-vars */

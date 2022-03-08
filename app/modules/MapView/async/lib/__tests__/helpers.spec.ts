@@ -1,5 +1,4 @@
 /** @jest-environment jsdom*/
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import { Feature } from 'ol';
 
@@ -24,6 +23,7 @@ describe('helpers', () => {
   describe('featureCount', () => {
     it('handles correct input', () => {
       expect(featureCount(singleVisited)).toBe(1);
+      /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
       expect(featureCount(featureMix)).toBe(2);
     });
   });

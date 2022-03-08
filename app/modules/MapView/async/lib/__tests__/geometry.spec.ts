@@ -130,3 +130,5 @@ describe('geometry', () => {
     });
   });
 });
+
+/* eslint-enable @typescript-eslint/no-magic-numbers */

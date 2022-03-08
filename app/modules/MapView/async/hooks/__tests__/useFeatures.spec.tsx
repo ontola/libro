@@ -45,3 +45,4 @@ describe('useFeatures', () => {
     });
   });
 });
+/* eslint-enable @typescript-eslint/no-magic-numbers */

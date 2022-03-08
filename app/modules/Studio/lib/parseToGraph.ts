@@ -236,3 +236,5 @@ export const sourceToHextuples = (source: string, uri: string, origin: string = 
 };
 
 export default parseToGraph;
+
+/* eslint-enable @typescript-eslint/no-unused-vars */

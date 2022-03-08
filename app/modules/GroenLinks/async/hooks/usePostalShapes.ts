@@ -43,9 +43,8 @@ interface ShapeStyle {
 const shapeStyle: ShapeStyle = {};
 
 for (let i = 0; i <= SHADE_COUNT; i++) {
-  /* eslint-disable @typescript-eslint/no-magic-numbers */
+  /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
   const fillColor = `hsla(120, 64%, ${(65 - (5 * i)).toFixed()}%, ${(0.2 + 0.06 * i).toFixed(2)})`;
-  /* eslint-enable @typescript-eslint/no-magic-numbers */
 
   shapeStyle[i] = new Style({
     fill: new Fill({

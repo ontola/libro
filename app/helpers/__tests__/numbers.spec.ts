@@ -1,4 +1,4 @@
-/* eslint @typescript-eslint/no-magic-numbers: 0 */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import { calcPercentage } from '../numbers';
 
@@ -19,3 +19,5 @@ describe('helpers', () => {
     });
   });
 });
+
+/* eslint-enable @typescript-eslint/no-magic-numbers */

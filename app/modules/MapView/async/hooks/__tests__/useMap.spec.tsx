@@ -19,6 +19,7 @@ describe('useMap', () => {
       onMove: () => {},
       onViewChange: () => {},
       onZoom: () => {},
+      /* eslint-enable @typescript-eslint/no-empty-function */
     };
     const moveSpy = jest.spyOn(o, 'onMove');
     const viewSpy = jest.spyOn(o, 'onViewChange');
@@ -100,3 +101,4 @@ describe('useMap', () => {
     });
   });
 });
+/* eslint-enable @typescript-eslint/no-magic-numbers */
