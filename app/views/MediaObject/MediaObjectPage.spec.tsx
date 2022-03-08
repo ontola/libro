@@ -41,6 +41,7 @@ describe('MediaObject', () => {
       queryByLabelText,
       queryByText,
       queryByTitle,
+      queryByRole,
     } = await renderLinked(
       ({ iri }) => (
         <Page>
@@ -54,7 +55,10 @@ describe('MediaObject', () => {
     );
 
     expect(queryByText(PARENT_NAME)).toBeVisible();
-    expect(queryByText(FILE_NAME)).toBeVisible();
+    expect(queryByRole('heading', {
+      level: 1,
+      name: FILE_NAME, 
+    })).toBeVisible();
     expect(queryByTitle('Downloaden')).toHaveProperty('href', `${CONTENT_URL}?download=true`);
     expect(queryByLabelText(FILE_NAME)).toHaveProperty('src', CONTENT_URL);
   });
