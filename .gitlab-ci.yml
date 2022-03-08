@@ -10,6 +10,13 @@ default:
     - yarn --immutable
     - yarn run t10s:compile
 
+stages:
+  - build
+  - manualTag
+  - devProxy
+  - bake
+  - tag
+
 build:
   stage: build
   script:
@@ -19,7 +26,19 @@ build:
     paths:
       - dist
 
+codeQuality:
+  stage: build
+  script:
+    - yarn run lint:code
+    - yarn run t10s:lint
+
+test:
+  stage: build
+  script:
+    - yarn run test
+
 bake:
+  stage: bake
   image: docker:18.09.8
   services:
     - docker:18.09.8-dind
@@ -59,18 +78,6 @@ stagingTagManual:
     - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:staging
     - docker push $CI_REGISTRY_IMAGE:staging
   when: manual
-
-codeQuality:
-  stage: test
-  script:
-    - yarn run lint:code
-    - yarn run lint:style
-    - yarn run t10s:lint
-
-test:
-  stage: test
-  script:
-    - yarn run test
 
 autoTagProduction:
   stage: tag
@@ -115,11 +122,3 @@ stagingDevProxy:
   script:
     - eval $STAGING_PIPELINE_TRIGGER
   when: manual
-
-stages:
-  - build
-  - bake
-  - manualTag
-  - devProxy
-  - test
-  - tag
