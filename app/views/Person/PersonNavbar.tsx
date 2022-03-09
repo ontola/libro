@@ -8,7 +8,7 @@ import {
   useGlobalIds,
   useStrings,
 } from 'link-redux';
-import React from 'react';
+import React, { AriaAttributes } from 'react';
 import { useIntl } from 'react-intl';
 
 import Link from '../../components/Link';
@@ -20,7 +20,7 @@ import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 import { navBarMessages } from '../../translations/messages';
 
-export interface PersonNavbarProps {
+export interface PersonNavbarProps  extends Pick<AriaAttributes, 'aria-controls' | 'aria-expanded' | 'aria-haspopup'> {
   onClick: () => void;
   linkRef: React.Ref<HTMLButtonElement>
 }
@@ -39,6 +39,7 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
   subject,
   linkRef,
   onClick,
+  ...ariaProps
 }) => {
   const intl = useIntl();
   const [image] = useGlobalIds(schema.image);
@@ -48,6 +49,9 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
   return (
     <div className={classes.wrapper}>
       <NavbarLinkLink
+        aria-controls={ariaProps['aria-controls']}
+        aria-expanded={ariaProps['aria-expanded']}
+        aria-haspopup={ariaProps['aria-haspopup']}
         image={image}
         ref={linkRef}
         title={intl.formatMessage(navBarMessages.userSettings)}
