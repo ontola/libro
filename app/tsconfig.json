@@ -1,7 +1,6 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "jsx": "react",
     "esModuleInterop": true,
     "lib": [
       "es2020",
@@ -10,8 +9,6 @@
     ],
     "resolveJsonModule": true,
     "noEmit": false,
-    "allowJs": true,
-    "incremental": true,
     "sourceMap": true,
     "typeRoots": [
       "../@types",

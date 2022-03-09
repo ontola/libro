@@ -35,7 +35,8 @@ codeQuality:
 test:
   stage: build
   script:
-    - yarn run test
+    - ./node_modules/.bin/jest --coverage --coverageReporters="text-summary" --no-cache
+  coverage: '/Lines.+\d+.\d+%/'
 
 bake:
   stage: bake

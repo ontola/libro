@@ -13,7 +13,6 @@
     "build:metaData": "esbuild --bundle --format=esm --outfile=./dist/metaData.js app/helpers/metaData.ts",
     "build:parseToGraph": "esbuild --bundle --format=esm --outfile=./dist/parseToGraph.js app/modules/Studio/lib/parseToGraph.ts",
     "build:verbose": "rimraf ./dist && NODE_ENV=production webpack -p --progress --verbose --display-error-details --config ./webpack/static.config.js",
-    "coverage": "jest --coverage",
     "t10s:extract": "formatjs extract  'app/**/*[!\\.d].{js,jsx,ts,tsx}' --out-file app/translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --throws",
     "t10s:compile": "formatjs compile-folder --ast app/translations app/lang",
     "t10s:lint": "node --experimental-modules --harmony-top-level-await --experimental-json-modules ./bin/lint-translations.mjs",
