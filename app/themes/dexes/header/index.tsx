@@ -1,15 +1,23 @@
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import NavBarContent from '../../../components/NavBarContent';
 import retrievePath from '../../../helpers/iris';
 import { frontendIRI } from '../../../ontology/app';
 import Navbar from '../../../topologies/Navbar';
+import { messages } from '../../../views/Dexes/messages';
 import { LibroTheme } from '../../themes';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
+  demoNotice: {
+    color: theme.palette.grey.midDark,
+    fontWeight: 'bold',
+    marginBottom: '1em',
+    textAlign: 'right',
+  },
   logoWrapper: {
     '& img': {
       maxHeight: '100%',
@@ -33,6 +41,9 @@ const DexesHeader = (): JSX.Element => {
   return (
     <div className={classes.wrapper}>
       <Container maxWidth="xl">
+        <div className={classes.demoNotice}>
+          <FormattedMessage {...messages.demoNotice} />
+        </div>
         <NavLink
           className={classes.logoWrapper}
           to={retrievePath(frontendIRI)!}

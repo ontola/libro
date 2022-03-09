@@ -538,6 +538,9 @@
   "https://app.argu.co/i18n/xsd:boolean/true": {
     "defaultMessage": "Yes"
   },
+  "https://dexpods.eu/i18n/demoNotice": {
+    "defaultMessage": "Warning: this is a beta environment for demonstration purposes"
+  },
   "https://dexpods.eu/i18n/goToFile": {
     "defaultMessage": "Go to file"
   },
