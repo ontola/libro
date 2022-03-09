@@ -18,7 +18,6 @@ const styles = createStyles((theme: LibroTheme) => ({
     backgroundColor: theme.palette.grey.xxLight,
     borderBottom: `1px solid ${theme.palette.divider}`,
     position: 'relative',
-    top: '-1rem',
     width: '100%',
     ...(theme.appBar.background === 'white' ? {
       borderTop: `1px solid ${theme.palette.divider}`,
@@ -43,12 +42,11 @@ class BreadcrumbsBar extends Topology<PropTypes> {
     super(props);
 
     this.topology = parentTopology;
-    this.className = props.classes.breadcrumbsBar;
   }
 
   public render() {
     return this.wrap((
-      <div className={this.getClassName()}>
+      <div className={this.props.classes.breadcrumbsBar}>
         <MUIContainer
           maxWidth="lg"
         >

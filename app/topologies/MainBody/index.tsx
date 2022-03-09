@@ -18,7 +18,6 @@ const styles = (theme: LibroTheme) => createStyles({
   },
   wrapper: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: '-1rem',
     paddingBottom: '2rem',
     paddingTop: '1rem',
   },
