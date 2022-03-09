@@ -4,7 +4,6 @@ import rdf, {
   QuadPosition,
   Quadruple,
 } from '@ontologies/core';
-import * as foaf from '@ontologies/foaf';
 import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
@@ -406,9 +405,6 @@ export default async function generateLRS(
   lrs.store.addQuadruples(ontologicalClassData);
 
   const ontologicalPropertyData = [
-    quadruple(foaf.name, owl.sameAs, schema.name),
-    quadruple(schema.name, rdfx.type, rdfx.Property),
-
     quadruple(argu.applyLink, rdfx.type, rdfx.Property),
     quadruple(argu.applyLink, rdfs.label, rdf.literal('Link', languages.de)),
     quadruple(argu.applyLink, rdfs.label, rdf.literal('Link', languages.en)),
