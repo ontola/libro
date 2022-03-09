@@ -32,7 +32,7 @@ const styles = (theme: LibroTheme) => createStyles({
 type PropTypes = WithStyles<typeof styles> & TableCellProps & {
   noBorder?: boolean;
   children?: ReactNode;
-  colspan?: number;
+  colSpan?: number;
   elementProps?: Record<string, unknown>;
 };
 

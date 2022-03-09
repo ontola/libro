@@ -258,7 +258,7 @@ export const LoadingCellRow = (): JSX.Element => {
 
   return(
     <TableRow>
-      <TableCell colspan={100}>
+      <TableCell colSpan={100}>
         <div
           className={clsx(
             classes.loadingCellRow,

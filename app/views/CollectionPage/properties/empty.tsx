@@ -37,12 +37,11 @@ const Empty: FC<PropertyProps> = () => {
   const hasInteraction = useHasInteraction(baseCollection);
 
   const styles = useStyles();
-  const { collectionDisplay } = useCollectionOptions();
+  const {
+    collectionDisplay,
+    columns,
+  } = useCollectionOptions();
   const collectionType = useFields(baseCollection, rdfx.type);
-
-  if (collectionType.includes(ontola.SearchResult) || hasInteraction) {
-    return null;
-  }
 
   const message = (
     <span className={styles.empty}>
@@ -52,6 +51,20 @@ const Empty: FC<PropertyProps> = () => {
       />
     </span>
   );
+
+  if (isTableDisplay(collectionDisplay)) {
+    return (
+      <TableRow>
+        <TableCell colSpan={columns?.length ?? 1}>
+          {message}
+        </TableCell>
+      </TableRow>
+    );
+  }
+
+  if (collectionType.includes(ontola.SearchResult) || hasInteraction) {
+    return null;
+  }
 
   if (rdf.equals(collectionDisplay, ontola['collectionDisplay/card'])) {
     return (
@@ -74,16 +87,6 @@ const Empty: FC<PropertyProps> = () => {
       <Container>
         {message}
       </Container>
-    );
-  }
-
-  if (isTableDisplay(collectionDisplay)) {
-    return (
-      <TableRow>
-        <TableCell>
-          {message}
-        </TableCell>
-      </TableRow>
     );
   }
 
