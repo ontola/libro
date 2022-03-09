@@ -1,6 +1,7 @@
 import { createStyles } from '@material-ui/styles';
 
 import { cardContentClassIdentifier } from '../../components/Card/CardContent';
+import { headingCID } from '../../components/Heading';
 import { LibroTheme } from '../../themes/themes';
 
 const CARD_BOTTOM_MARGIN = 5;
@@ -43,7 +44,9 @@ export const cardStyles = (theme: LibroTheme) => createStyles({
     display: 'flex',
     flexDirection: 'column',
     marginBottom: theme.spacing(CARD_BOTTOM_MARGIN),
-    paddingTop: '0.25rem',
+    [`& .${headingCID}`]: {
+      marginTop: '0.25rem',
+    },
   },
 });
 
