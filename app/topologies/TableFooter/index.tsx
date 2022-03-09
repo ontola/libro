@@ -19,6 +19,8 @@ const styles = (theme: LibroTheme) => ({
         borderBottomRightRadius: theme.shape.borderRadius,
       },
       backgroundColor: theme.palette.grey.xxLight,
+      // to prevent double border from Card
+      borderBottom: 0,
       padding: 0,
 
       [`&.${tableFooterCellCID}`]: {
