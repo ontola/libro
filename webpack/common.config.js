@@ -56,10 +56,6 @@ const common = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'static/preloader.css',
-          to: path.resolve(__dirname, '..', 'dist', 'f_assets'),
-        },
-        {
           from: 'node_modules/monaco-editor/min/vs',
           to: path.resolve(__dirname, '..', 'dist', 'f_assets', 'vs'),
         },

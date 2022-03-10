@@ -19,6 +19,7 @@ import { useLRS } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { handle } from '../../../../helpers/logging';
 import { studioToolbarMessages } from '../../../../translations/messages';
 import {
   DialogType,
@@ -85,8 +86,7 @@ const Toolbar = ({
       await showMessage(intl.formatMessage(studioToolbarMessages.savedNotification));
       setSaving(false);
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
+      handle(e);
       await showMessage(intl.formatMessage(studioToolbarMessages.saveFailedNotification));
       setSaving(false);
     }
