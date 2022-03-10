@@ -1,7 +1,6 @@
 import {
   Literal,
   Node,
-  Quad,
   QuadPosition,
   Quadruple,
   SomeTerm,

@@ -1,6 +1,7 @@
 import rdf, {
   BlankNode,
   Quad,
+  Quadruple,
   SomeTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
@@ -132,10 +133,10 @@ export default {
   acceptValue: 1.0,
   mediaTypes: ['application/hex+x-ndjson'],
 
-  transformer: (store: LinkReduxLRSType): (_: ResponseAndFallbacks) => Promise<Quad[]> => {
+  transformer: (store: LinkReduxLRSType): (_: ResponseAndFallbacks) => Promise<Quadruple[]> => {
     const parser = new HexJsonParser();
 
-    return async (res: ResponseAndFallbacks): Promise<Quad[]> => {
+    return async (res: ResponseAndFallbacks): Promise<Quadruple[]> => {
       const delta: Quad[] = await parseResponse(parser, res);
       // eslint-disable-next-line no-prototype-builtins
       const isExpedited = res.hasOwnProperty('expedite')

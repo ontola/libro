@@ -1,7 +1,7 @@
 import React, { Dispatch } from 'react';
 
 import { WebManifest } from '../../../../WebManifest';
-import { DistributionMeta, DistributionMetaWithIRI } from '../lib/distributionAgent';
+import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
 import { serverDataToProject } from '../lib/serverDataToProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
