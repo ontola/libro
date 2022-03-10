@@ -8,7 +8,7 @@ import { projectToSource } from '../lib/projectToSource';
 
 import { useNewDialogHandle } from './useDialogHandle';
 
-const EDITOR_UPDATE_FREQ = 300;
+const EDITOR_UPDATE_FREQ = 2000;
 
 interface PopoutEditorProps {
   onClose: () => void;

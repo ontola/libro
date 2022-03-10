@@ -412,6 +412,18 @@
   "https://app.argu.co/i18n/sales/contactUs": {
     "defaultMessage": "Contact us"
   },
+  "https://app.argu.co/i18n/sales/intervalSwitcherMonthly": {
+    "defaultMessage": "Monthly"
+  },
+  "https://app.argu.co/i18n/sales/intervalSwitcherYearly": {
+    "defaultMessage": "Save 10% annually"
+  },
+  "https://app.argu.co/i18n/sales/priceIntervalMonthly": {
+    "defaultMessage": "/ month"
+  },
+  "https://app.argu.co/i18n/sales/priceIntervalYearly": {
+    "defaultMessage": "/ year"
+  },
   "https://app.argu.co/i18n/sales/readmore": {
     "defaultMessage": "Read more"
   },

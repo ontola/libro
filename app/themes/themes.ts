@@ -93,6 +93,7 @@ export enum Margin {
   'Small' = 2.7,
   'Medium' = 5.4,
   'Large' = 8.1,
+  'XL' = 12,
 }
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 

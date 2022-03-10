@@ -5,6 +5,7 @@ import BlogContainer from './Blogs';
 import CasePage from './CasePage';
 import Cases from './Cases';
 import CasesPage from './CasesPage';
+import ComparisonTable from './ComparisonTable';
 import ContactPage from './ContactPage';
 import CTA from './CTA';
 import Facet from './Facet';
@@ -31,6 +32,7 @@ export default [
   ...Cases,
   ...CasesPage,
   ...ContactPage,
+  ...ComparisonTable,
   ...Facet,
   ...Feature,
   ...FeatureBlock,

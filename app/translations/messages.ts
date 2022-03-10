@@ -670,10 +670,26 @@ export const phaseMessages: Messages = defineMessages({
   },
 });
 
-export const salesMessages: Messages = defineMessages({
+export const salesMessages = defineMessages({
   contactUs: {
     defaultMessage: 'Contact us',
     id: 'https://app.argu.co/i18n/sales/contactUs',
+  },
+  intervalSwitcherMonthly: {
+    defaultMessage: 'Monthly',
+    id: 'https://app.argu.co/i18n/sales/intervalSwitcherMonthly',
+  },
+  intervalSwitcherYearly: {
+    defaultMessage: 'Save 10% annually',
+    id: 'https://app.argu.co/i18n/sales/intervalSwitcherYearly',
+  },
+  priceIntervalMonthly: {
+    defaultMessage: '/ month',
+    id: 'https://app.argu.co/i18n/sales/priceIntervalMonthly',
+  },
+  priceIntervalYearly: {
+    defaultMessage: '/ year',
+    id: 'https://app.argu.co/i18n/sales/priceIntervalYearly',
   },
   showAll: {
     defaultMessage: 'Show all',

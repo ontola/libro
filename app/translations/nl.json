@@ -449,6 +449,18 @@
   "https://app.argu.co/i18n/sales/contactUs": {
     "defaultMessage": "Neem contact op"
   },
+  "https://app.argu.co/i18n/sales/intervalSwitcherMonthly": {
+    "defaultMessage": "Maandelijks"
+  },
+  "https://app.argu.co/i18n/sales/intervalSwitcherYearly": {
+    "defaultMessage": "Bespaar jaarlijks 10%"
+  },
+  "https://app.argu.co/i18n/sales/priceIntervalMonthly": {
+    "defaultMessage": "/ maand"
+  },
+  "https://app.argu.co/i18n/sales/priceIntervalYearly": {
+    "defaultMessage": "/ jaar"
+  },
   "https://app.argu.co/i18n/sales/readmore": {
     "defaultMessage": "Lees meer"
   },
