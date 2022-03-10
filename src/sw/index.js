@@ -41,7 +41,7 @@ const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line @typescript-eslint/n
  * Assets caching
  */
 registerRoute(
-  /\.(?:js|css|gz|ttf|woff|woff2|otf)$/,
+  /\.(?:|gz|ttf|woff|woff2|otf)$/,
   new CacheFirst({
     cacheName: 'assets',
     plugins: [

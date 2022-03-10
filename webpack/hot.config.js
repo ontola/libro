@@ -18,6 +18,9 @@ module.exports = merge(common, {
       },
       webSocketURL: 'auto://0.0.0.0:0/ws',
     },
+    headers: {
+      'Service-Worker-Allowed': '/',
+    },
     hot: true,
     port: 3001,
     proxy: [

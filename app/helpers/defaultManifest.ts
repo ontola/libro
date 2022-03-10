@@ -41,7 +41,7 @@ export const defaultManifest = (websiteIRI: string): WebManifest => {
     scope: websiteIRI,
     serviceworker: {
       scope: websiteIRI,
-      src: `${websiteIRI}/sw.js`,
+      src: '/f_assets/sw.js',
     },
     short_name: 'Libro',
     start_url: `${websiteIRI}/`,
