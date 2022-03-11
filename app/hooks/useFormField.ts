@@ -33,7 +33,7 @@ import {
 } from '../helpers/types';
 import validators, { combineValidators } from '../helpers/validators';
 import form from '../ontology/form';
-import ll from '../ontology/ll';
+import ld from '../ontology/ld';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
 import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
@@ -129,7 +129,7 @@ const changeDelta = (object: SomeNode, path: NamedNode, nextValue: InputValue[])
       object,
       path,
       isJSONLDObject(val) ? val['@id'] : val,
-      ll.replace,
+      ld.replace,
     )
   ));
 };

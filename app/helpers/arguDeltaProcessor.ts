@@ -7,7 +7,7 @@ import * as rdf from '@ontologies/rdf';
 import { RecordState, equals } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import ll from '../ontology/ll';
+import ld from '../ontology/ld';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
 
@@ -86,7 +86,7 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
 
 function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
   const supplants = delta.reduce<Quadruple[]>(
-    (acc, [s, p, o, g]) => equals(g, ll.supplant) ? [...acc, [s, p, o, g]] : acc,
+    (acc, [s, p, o, g]) => equals(g, ld.supplant) ? [...acc, [s, p, o, g]] : acc,
     [],
   );
 
