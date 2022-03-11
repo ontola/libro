@@ -16,16 +16,16 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 const TokenFull = (): JSX.Element => (
   <Container>
     <CardMain>
-      <CardContent noSpacing>
+      <CardContent endSpacing>
         <Property label={[schema.name, rdfs.label]} />
         <Property label={[schema.text, schema.description, dbo.abstract]} />
+        <ActionsBar>
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={LoadingHidden}
+          />
+        </ActionsBar>
       </CardContent>
-      <ActionsBar>
-        <Property
-          label={ontola.favoriteAction}
-          onLoad={LoadingHidden}
-        />
-      </ActionsBar>
     </CardMain>
   </Container>
 );
