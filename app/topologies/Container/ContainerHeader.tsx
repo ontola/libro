@@ -26,6 +26,7 @@ const styles = (theme: LibroTheme) => ({
     alignItems: 'center',
     display: 'flex',
     marginBottom: '1rem',
+    marginTop: '1rem',
   },
   header: {
     alignItems: 'center',
