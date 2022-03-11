@@ -3,6 +3,7 @@
     "react",
     "jsx-a11y",
     "import",
+    "unused-imports",
     "local-rules"
   ],
   "env": {
@@ -49,22 +50,35 @@
     ]
   },
   "rules": {
-    "@typescript-eslint/no-magic-numbers": ["error",
+    "@typescript-eslint/no-magic-numbers": [
+      "error",
       {
         "ignore": [
-          -1, 0, 1,
+          -1,
+          0,
+          1,
           100
         ],
         "ignoreEnums": true
       }
     ],
-    "arrow-parens": ["error", "always"],
-    "arrow-body-style": ["error", "as-needed"],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
     "arrow-spacing": "error",
     "comma-spacing": "error",
-    "eol-last": ["error", "always"],
+    "eol-last": [
+      "error",
+      "always"
+    ],
     "import/dynamic-import-chunkname": "error",
-    "import/extensions": ["error",
+    "import/extensions": [
+      "error",
       {
         "css": "always",
         "json": "always",
@@ -79,28 +93,44 @@
     // The ones that are commented out resulted in errors. May be something wrong with the jsx-a11y plugin.
     // "jsx-a11y/anchor-has-content": "error",
     "import/no-duplicates": "error",
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true
-    }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
     "import/no-webpack-loader-syntax": "error",
-    "import/order": ["error", {
-      "groups": [
-        "builtin",
-        "external",
-        "internal",
-        "parent",
-        "sibling",
-        "index"
-      ],
-      "newlines-between": "always"
-    }],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
     "import/prefer-default-export": "off",
-    "indent": ["error", 2],
+    "indent": [
+      "error",
+      2
+    ],
     "jsx-a11y/alt-text": "warn",
-    "jsx-a11y/anchor-is-valid": ["error", {
-      "components": ["Link"],
-      "specialLink": ["to"]
-    }],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "to"
+        ]
+      }
+    ],
     "jsx-a11y/aria-props": "error",
     "jsx-a11y/aria-proptypes": "error",
     "jsx-a11y/aria-role": "error",
@@ -125,16 +155,26 @@
     "jsx-a11y/role-supports-aria-props": "error",
     "jsx-a11y/scope": "error",
     "jsx-a11y/tabindex-no-positive": "error",
-    "jsx-quotes": ["error", "prefer-double"],
-    "local-rules/export-declaration-newline": ["error", {
-      "minProperties": 3,
-      "countDefault": false
-    }],
-    "local-rules/import-declaration-newline": ["error", {
-      "minProperties": 3,
-      "countDefault": false
-    }],
-    "new-cap": ["error",
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
+    ],
+    "local-rules/export-declaration-newline": [
+      "error",
+      {
+        "minProperties": 3,
+        "countDefault": false
+      }
+    ],
+    "local-rules/import-declaration-newline": [
+      "error",
+      {
+        "minProperties": 3,
+        "countDefault": false
+      }
+    ],
+    "new-cap": [
+      "error",
       {
         "capIsNewExceptions": [
           "Alert",
@@ -145,9 +185,12 @@
       }
     ],
     "no-console": "error",
-    "no-else-return": ["error", {
-      "allowElseIf": true
-    }],
+    "no-else-return": [
+      "error",
+      {
+        "allowElseIf": true
+      }
+    ],
     "no-inline-comments": "error",
     "no-invalid-this": "error",
     "no-magic-numbers": "off",
@@ -157,18 +200,28 @@
         "max": 1
       }
     ],
-    "no-plusplus": ["error", {
-      "allowForLoopAfterthoughts": true
-    }],
-    "no-restricted-imports": ["error", {
-      "patterns": ["*/async", "**/async"]
-    }],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "*/async",
+          "**/async"
+        ]
+      }
+    ],
     "no-restricted-syntax": "off",
     "no-shadow": "error",
     "no-undef-init": "error",
     "no-unmodified-loop-condition": "error",
     "no-unused-vars": "off",
-    "object-curly-newline": ["error",
+    "object-curly-newline": [
+      "error",
       {
         "ObjectExpression": {
           "consistent": true,
@@ -191,16 +244,29 @@
         }
       }
     ],
-    "object-curly-spacing": ["error", "always"],
-    "object-property-newline": ["error", {
-      "allowAllPropertiesOnSameLine": false,
-      "allowMultiplePropertiesPerLine": false
-    }],
-    "one-var": ["error", {
-      "uninitialized": "never"
-    }],
-    "one-var-declaration-per-line": ["error", "initializations"],
-    "padding-line-between-statements": ["error",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "object-property-newline": [
+      "error",
+      {
+        "allowAllPropertiesOnSameLine": false,
+        "allowMultiplePropertiesPerLine": false
+      }
+    ],
+    "one-var": [
+      "error",
+      {
+        "uninitialized": "never"
+      }
+    ],
+    "one-var-declaration-per-line": [
+      "error",
+      "initializations"
+    ],
+    "padding-line-between-statements": [
+      "error",
       {
         "blankLine": "always",
         "next": "return",
@@ -227,164 +293,246 @@
         "prev": "export"
       }
     ],
-    "quotes": ["error", "single", {
-      "avoidEscape": true
-    }],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "react/button-has-type": "error",
     "react/destructuring-assignment": "off",
     "react/display-name": "off",
-    "react/function-component-definition": ["error", {
-      "namedComponents": "arrow-function",
-      "unnamedComponents": "arrow-function"
-    }],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react/jsx-boolean-value": "error",
     "react/jsx-closing-bracket-location": "error",
     "react/jsx-closing-tag-location": "error",
     "react/jsx-curly-brace-presence": "error",
-    "react/jsx-curly-newline": ["error", {
-      "multiline": "forbid",
-      "singleline": "forbid"
-    }],
+    "react/jsx-curly-newline": [
+      "error",
+      {
+        "multiline": "forbid",
+        "singleline": "forbid"
+      }
+    ],
     "react/jsx-curly-spacing": "error",
     "react/jsx-equals-spacing": "error",
-    "react/jsx-first-prop-new-line": ["error",
+    "react/jsx-first-prop-new-line": [
+      "error",
       "multiline"
     ],
-    "react/jsx-fragments": ["error",
+    "react/jsx-fragments": [
+      "error",
       "element"
     ],
-    "react/jsx-indent": ["error", 2],
-    "react/jsx-indent-props": ["error", 2],
-    "react/jsx-max-props-per-line": ["error",
+    "react/jsx-indent": [
+      "error",
+      2
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      2
+    ],
+    "react/jsx-max-props-per-line": [
+      "error",
       {
         "when": "always"
       }
     ],
     "react/jsx-no-constructed-context-values": "error",
-    "react/jsx-one-expression-per-line": ["error", {"allow":"none"}],
+    "react/jsx-one-expression-per-line": [
+      "error",
+      {
+        "allow": "none"
+      }
+    ],
     "react/jsx-props-no-multi-spaces": "error",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-sort-default-props": "error",
-    "react/jsx-sort-props": ["error",
+    "react/jsx-sort-props": [
+      "error",
       {
         "callbacksLast": true,
         "shorthandFirst": true
       }
     ],
-    "react/jsx-tag-spacing": ["error", {
-      "beforeClosing": "never"
-    }],
-    "react/jsx-wrap-multilines": ["error", {
-      "declaration": "parens-new-line",
-      "assignment": "parens-new-line",
-      "return": "parens-new-line",
-      "arrow": "parens-new-line",
-      "condition": "parens-new-line",
-      "logical": "parens-new-line",
-      "prop": "parens-new-line"
-    }],
+    "react/jsx-tag-spacing": [
+      "error",
+      {
+        "beforeClosing": "never"
+      }
+    ],
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "parens-new-line"
+      }
+    ],
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/self-closing-comp": "error",
-    "react/sort-comp": ["error", {
-      "order": [
-        "contextType",
-        "type",
-        "property",
-        "topology",
-        "mapDataToProps",
-        "linkOpts",
-        "hocs",
-        "propTypes",
-        "static-methods",
-        "lifecycle",
-        "everything-else",
-        "render"
-      ]
-    }],
+    "react/sort-comp": [
+      "error",
+      {
+        "order": [
+          "contextType",
+          "type",
+          "property",
+          "topology",
+          "mapDataToProps",
+          "linkOpts",
+          "hocs",
+          "propTypes",
+          "static-methods",
+          "lifecycle",
+          "everything-else",
+          "render"
+        ]
+      }
+    ],
     "react/static-property-placement": "off",
-    "sort-imports": ["error", {
-      "ignoreDeclarationSort": true
-    }],
-    "sort-keys": ["error", "asc", {
-      "natural": true
-    }],
-    "space-before-function-paren": ["error", {
-      "anonymous": "never",
-      "named": "never",
-      "asyncArrow": "always"
-    }],
-    "space-unary-ops": ["error", {
-      "words": true,
-      "nonwords": false
-    }]
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "sort-keys": [
+      "error",
+      "asc",
+      {
+        "natural": true
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "space-unary-ops": [
+      "error",
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ]
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
-      "plugins": [ "@typescript-eslint"],
-      "extends": ["plugin:@typescript-eslint/recommended"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended"
+      ],
       "parser": "@typescript-eslint/parser",
       "rules": {
         "no-shadow": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-module-boundary-types": ["error", {
-          "allowedNames": [
-            "componentDidUpdate",
-            "componentWillUnmount",
-            "componentDidCatch",
-            "render"
-          ]
-        }],
+        "@typescript-eslint/explicit-module-boundary-types": [
+          "error",
+          {
+            "allowedNames": [
+              "componentDidUpdate",
+              "componentWillUnmount",
+              "componentDidCatch",
+              "render"
+            ]
+          }
+        ],
         "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/no-unused-vars": ["warn", {"argsIgnorePattern": "([iI]gnored|^_+)", "varsIgnorePattern": "([iI]gnored|^_+)"}],
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "([iI]gnored|^_+)",
+            "varsIgnorePattern": "([iI]gnored|^_+)"
+          }
+        ],
+        "unused-imports/no-unused-imports": "error",
         "@typescript-eslint/semi": "error",
         "@typescript-eslint/no-shadow": "error",
-        "@typescript-eslint/comma-dangle": ["error", {
-          "arrays": "always-multiline",
-          "objects": "always-multiline",
-          "imports": "always-multiline",
-          "exports": "always-multiline",
-          "functions": "always-multiline",
-          "enums": "always-multiline",
-          "generics": "always-multiline",
-          "tuples": "always-multiline"
-        }],
-        "@typescript-eslint/array-type": ["error", {
-          "default": "array-simple",
-          "readonly": "array-simple"
-        }]
+        "@typescript-eslint/comma-dangle": [
+          "error",
+          {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "always-multiline",
+            "enums": "always-multiline",
+            "generics": "always-multiline",
+            "tuples": "always-multiline"
+          }
+        ],
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            "default": "array-simple",
+            "readonly": "array-simple"
+          }
+        ]
       }
     },
     {
-      "files": ["*.d.ts"],
+      "files": [
+        "*.d.ts"
+      ],
       "rules": {
         "one-var": "off"
       }
     },
     {
-      "files": ["app/**/*.js", "app/**/*.jsx"],
+      "files": [
+        "app/**/*.js",
+        "app/**/*.jsx"
+      ],
       "env": {
         "browser": true
       }
     },
     {
-      "files": ["webpack/*"],
+      "files": [
+        "webpack/*"
+      ],
       "env": {
         "node": true
       }
     },
     {
-      "files": ["*.spec.js", "*.spec.jsx", "tests/*.js", "**/__tests__/*.js"],
+      "files": [
+        "*.spec.js",
+        "*.spec.jsx",
+        "tests/*.js",
+        "**/__tests__/*.js"
+      ],
       "env": {
         "jest": true
       },
       "globals": {
         // Node Specs
         "global": true,
-
         // Shared specs
         "declareProps": true,
         "defineMarker": true,
@@ -395,10 +543,8 @@
         "set": true,
         "setProp": true,
         "subject": true,
-
         // Unit specs
         "argUnit": true,
-
         // View specs
         "as": true,
         "describeView": true,
@@ -413,7 +559,9 @@
       }
     },
     {
-      "files": ["app/**/async/**/*"],
+      "files": [
+        "app/**/async/**/*"
+      ],
       "rules": {
         "no-restricted-imports": "off"
       }

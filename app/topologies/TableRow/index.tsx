@@ -11,7 +11,7 @@ import Topology from '../Topology';
 export const tableRowTopology = argu.ns('tableRow');
 
 const styles = (theme: LibroTheme) => ({
-  tableRowClickable : {
+  tableRowClickable: {
     '&:hover': {
       background: theme.palette.grey.xxLight,
       cursor: 'pointer',
@@ -19,7 +19,7 @@ const styles = (theme: LibroTheme) => ({
   },
 });
 
-type TableRowElementProps = { onClick: any };
+type TableRowElementProps = { onClick: any; };
 type TableRowProps = WithStyles<typeof styles> & TableRowElementProps;
 
 class TableRowClass extends Topology<TableRowProps> {
@@ -48,7 +48,7 @@ class TableRowClass extends Topology<TableRowProps> {
     return this.wrap((subject) => (
       <TableRow
         className={clsx({
-          [this.props.classes.tableRowClickable]: !!this.props.onClick,
+          [classes.tableRowClickable]: !!this.props.onClick,
         })}
         resource={subject && subject.value}
         {...filterProps}

@@ -37,7 +37,7 @@ import ontSp from '../../app/ontology/sp';
 import ontTeamGL from '../../app/ontology/teamGL';
 import ontWdt from '../../app/ontology/wdt';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 
 // @ts-ignore
 const as = ontAs;
@@ -123,4 +123,4 @@ const date = (s: string) => ontoloiesCore.literal(new Date(s));
 // @ts-ignore
 const rdf = ontoloiesCore;
 
-/* eslint-enable @typescript-eslint/no-unused-vars */
+/* eslint-enable unused-imports/no-unused-vars */

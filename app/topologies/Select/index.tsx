@@ -41,7 +41,7 @@ class Select<P extends Props = Record<string, unknown>> extends Topology<P> {
   public render() {
     const {
       children,
-      scrollIntoView, // eslint-disable-line @typescript-eslint/no-unused-vars
+      scrollIntoView, // eslint-disable-line unused-imports/no-unused-vars
       innerRef,
       ...props
     } = this.props;
