@@ -11,6 +11,7 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
+import { ButtonVariant } from '../../../components/Button';
 import { sort } from '../../../helpers/data';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
@@ -43,6 +44,7 @@ const sortBind = (props: SortProps) => props
       isPartOf={props.subject}
       key={iri.value}
       subject={iri}
+      variant={ButtonVariant.Default}
     />
   ));
 
