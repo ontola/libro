@@ -9,15 +9,14 @@ import argu from '../../../ontology/argu';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
 const ApplyLink = ({ linkedProp }: PropertyProps) => {
-  if (!linkedProp) {
+  if (!linkedProp?.value) {
     return null;
   }
 
   return (
-    <input
-      readOnly
-      value={linkedProp.value}
-    />
+    <React.Fragment>
+      {linkedProp.value}
+    </React.Fragment>
   );
 };
 
