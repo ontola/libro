@@ -58,6 +58,7 @@ const CollectionFilterToggle = ({
         <Portal container={filterContainerRef.current}>
           <Collapse
             in={filterBarState.show}
+            style={{ marginTop: '-1rem' }}
             timeout={FILTER_TRANSITION_LENGTH}
           >
             <FilterComboInput
