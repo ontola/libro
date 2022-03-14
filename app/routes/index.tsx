@@ -31,24 +31,25 @@ if (__DEVELOPMENT__) {
       path="/d/sandbox"
     />
   ));
-  subRoutes.splice(-1, 0, (
+}
+
+subRoutes.splice(-1, 0, (
+  <Route
+    component={RDFStudio}
+    key="studio"
+    path="/d/studio"
+  />
+));
+
+if (__CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer')) {
+  subRoutes.shift();
+  subRoutes.unshift((
     <Route
-      component={RDFStudio}
-      key="studio"
-      path="/d/studio"
+      component={PopoutViewer}
+      key="popout-viewer"
+      path="*"
     />
   ));
-
-  if (__CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer')) {
-    subRoutes.shift();
-    subRoutes.unshift((
-      <Route
-        component={PopoutViewer}
-        key="popout-viewer"
-        path="*"
-      />
-    ));
-  }
 }
 
 export default (
