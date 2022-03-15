@@ -9,6 +9,8 @@ import CollectionFrame from '../../../components/Collection/CollectionFrame';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
+import { cardTopology } from '../../../topologies/Card';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import Container, {
   LargeContainer,
   containerTopology,
@@ -46,6 +48,8 @@ const DefaultCollectionFrame: FC<CollectionFrameProps> = () => {
 DefaultCollectionFrame.type = CollectionTypes;
 DefaultCollectionFrame.topology = allTopologiesExcept(
   alertDialogTopology,
+  cardTopology,
+  cardMainTopology,
   containerTopology,
   gridTopology,
   mainBodyTopology,
@@ -63,6 +67,8 @@ const WrappedCollectionFrame: FC<CollectionFrameProps> = () => (
 WrappedCollectionFrame.type = CollectionTypes;
 WrappedCollectionFrame.topology = [
   alertDialogTopology,
+  cardTopology,
+  cardMainTopology,
   containerTopology,
   gridTopology,
   mainBodyTopology,

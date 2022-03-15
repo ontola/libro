@@ -59,6 +59,9 @@ const DatasetFull: FC = () => {
           )}
         </CardContent>
         <CardContent noSpacing>
+          <Property label={dexes.conditions} />
+        </CardContent>
+        <CardContent noSpacing>
           <Heading>
             <Resource subject={dcat.distribution} />
           </Heading>

@@ -3,6 +3,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   PropertyProps,
+  Resource,
   register,
   useDataFetching,
   useValues,
@@ -17,14 +18,23 @@ import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { namePredicates } from '../../Thing/properties/name';
 
 const Offer: FC<PropertyProps> = ({
+  children,
   linkedProp,
 }) => {
+  useDataFetching(isNamedNode(linkedProp) ? linkedProp : undefined);
+  const [name] = useValues(isNamedNode(linkedProp) ? linkedProp : undefined, namePredicates);
+
   if (!isNamedNode(linkedProp)) {
     return null;
   }
 
-  useDataFetching(linkedProp);
-  const [name] = useValues(linkedProp, namePredicates);
+  if (children) {
+    return (
+      <Resource subject={linkedProp}>
+        {children}
+      </Resource>
+    );
+  }
 
   return (
     <div>

@@ -8,6 +8,7 @@ export default {
   /* classes */
   // eslint-disable-next-line sort-keys
   Agreement: dexes('Agreement'),
+  Condition: dexes('Condition'),
   Dataset: dexes('Dataset'),
   Distribution: dexes('Distribution'),
   Folder: dexes('Folder'),
@@ -19,6 +20,10 @@ export default {
   assigner: dexes('assigner'),
   attributionOptions: dexes('attributionOptions'),
   brokerUrl: dexes('brokerUrl'),
+  conditionAmount: dexes('conditionAmount'),
+  conditionDuration: dexes('conditionDuration'),
+  conditionText: dexes('conditionText'),
+  conditions: dexes('conditions'),
   dataOwner: dexes('dataOwner'),
   dateSigned: dexes('dateSigned'),
   entries: dexes('entries'),

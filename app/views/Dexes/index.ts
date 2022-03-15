@@ -1,4 +1,5 @@
 import Agreement from './Agreement';
+import Condition from './Condition';
 import Dataset from './Dataset';
 import Distribution from './Distribution';
 import Folder from './Folder';
@@ -8,6 +9,7 @@ import Properties from './properties';
 
 export default [
   ...Agreement,
+  ...Condition,
   ...Dataset,
   ...Distribution,
   ...Properties,

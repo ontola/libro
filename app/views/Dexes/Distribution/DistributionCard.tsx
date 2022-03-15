@@ -47,7 +47,9 @@ const DistributionCard = () => {
           topology={inlineTopology}
         />
       )}
-      <Property label={dexes.offer} />
+      <Property label={dexes.offer}>
+        <Property label={dexes.brokerUrl} />
+      </Property>
     </CardContent>
   );
 };
