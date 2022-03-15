@@ -9,7 +9,6 @@ import {
   isLiteral,
   isNamedNode,
 } from '@ontologies/core';
-import * as rdfx from '@ontologies/rdf';
 
 import ld from '../../../../ontology/ld';
 
@@ -27,8 +26,8 @@ const hexJSONDataType = (object: Term) => {
   }
 
   return isNamedNode(object)
-    ? rdfx.ns('namedNode').value
-    : rdfx.ns('blankNode').value;
+    ? 'globalId'
+    : 'localId';
 };
 
 export const toHextuples = (quads: Quadruple[]): string[][] => quads
