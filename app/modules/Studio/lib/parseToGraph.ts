@@ -104,7 +104,7 @@ const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, 
     ) as T;
 };
 
-const parseToGraph = (source: string, websiteIRI: string): ParsedObject[] => {
+const parseToGraph = (source: string, websiteIRI: string, idempotentNaming = true): ParsedObject[] => {
   // @ts-ignore
   const as = ontAs;
   // @ts-ignore
@@ -184,7 +184,14 @@ const parseToGraph = (source: string, websiteIRI: string): ParsedObject[] => {
   const wdt = ontWdt;
 
   // @ts-ignore
-  const local = (s: string) => rdf.namedNode(`${websiteIRI}/${s}`);
+  const local = (s: string) => {
+    if (s === '' || s.startsWith('#') || s.startsWith('/') || s.startsWith('?')) {
+      return rdf.namedNode(`${websiteIRI}${s}`);
+    }
+
+    return rdf.namedNode(`${websiteIRI}/${s}`);
+  };
+
   // @ts-ignore
   const url = (s: string) => rdf.namedNode(s);
   // @ts-ignore
@@ -194,11 +201,12 @@ const parseToGraph = (source: string, websiteIRI: string): ParsedObject[] => {
   // @ts-ignore
   const seq = linkSeq;
   // tslint:disable-next-line:no-eval
-  const data = eval(source);
+  const data = normalizeType(eval(source));
+  const normalized = idempotentNaming
+    ? data.map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
+    : data;
 
-  return normalizeType(data)
-    .map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
-    .map((t) => toGraph(t));
+  return normalized.map((t) => toGraph(t));
 };
 
 const hexJSONSubject = (subject: Node): string => (isBlankNode(subject) ? `_:${subject.value}` : subject.value);
@@ -215,13 +223,14 @@ const hexJSONDataType = (object: SomeTerm): string => {
     : ontRdfx.ns('blankNode').value;
 };
 
-export const sourceToHextuples = (source: string, uri: string, origin: string = window?.location.origin): string => {
-  const quads = parseToGraph(source, origin).flatMap(([subject, store]) => {
-    store.add(subject, ontHttp.statusCode, rdf.literal(OK), ontLl.meta);
-    store.add(rdf.namedNode(uri), ontHttp.statusCode, rdf.literal(OK), ontLl.meta);
+export const sourceToHextuples = (source: string, websiteIRI: string): string => {
+  const quads = parseToGraph(source, websiteIRI, false)
+    .flatMap(([subject, store]) => {
+      store.add(subject, ontHttp.statusCode, rdf.literal(OK), ontLl.meta);
+      store.add(rdf.namedNode(websiteIRI), ontHttp.statusCode, rdf.literal(OK), ontLl.meta);
 
-    return store.quads;
-  });
+      return store.quads;
+    });
 
   return quads.map((q) => JSON.stringify([
     hexJSONSubject(q[QuadPosition.subject]),
@@ -236,3 +245,4 @@ export const sourceToHextuples = (source: string, uri: string, origin: string = 
 };
 
 export default parseToGraph;
+

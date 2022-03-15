@@ -1,5 +1,5 @@
 import * as ontAs from '@ontologies/as';
-import ontoloiesCore from '@ontologies/core';
+import ontologiesCore from '@ontologies/core';
 import * as ontDcterms from '@ontologies/dcterms';
 import * as ontFoaf from '@ontologies/foaf';
 import * as ontOwl from '@ontologies/owl';
@@ -114,13 +114,20 @@ const teamGL = ontTeamGL;
 const wdt = ontWdt;
 
 // @ts-ignore
-const local = (s: string) => ontoloiesCore.namedNode(`${window.location.origin}/${s}`);
-// @ts-ignore
-const url = (s: string) => ontoloiesCore.namedNode(s);
-// @ts-ignore
-const date = (s: string) => ontoloiesCore.literal(new Date(s));
+const local = (s: string) => {
+  if (s === '' || s.startsWith('#') || s.startsWith('/') || s.startsWith('?')) {
+    return ontologiesCore.namedNode(`${window.location.origin}${s}`);
+  }
+
+  return ontologiesCore.namedNode(`${window.location.origin}/${s}`);
+};
 
 // @ts-ignore
-const rdf = ontoloiesCore;
+const url = (s: string) => ontologiesCore.namedNode(s);
+// @ts-ignore
+const date = (s: string) => ontologiesCore.literal(new Date(s));
+
+// @ts-ignore
+const rdf = ontologiesCore;
 
 /* eslint-enable unused-imports/no-unused-vars */

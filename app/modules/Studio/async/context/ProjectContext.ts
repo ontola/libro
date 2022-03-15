@@ -1,6 +1,7 @@
 import React, { Dispatch } from 'react';
 
 import { WebManifest } from '../../../../WebManifest';
+import { sourceToHextuples } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
 import { serverDataToProject } from '../lib/serverDataToProject';
@@ -170,6 +171,7 @@ interface ShowDeployDialogAction {
 
 interface ImportDataAction {
   type: ProjectAction.ImportData;
+  dataType: 'hextuples' | 'source';
   data: string;
 }
 
@@ -381,14 +383,19 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
       distributionToDeploy: action.distributionToDeploy,
     };
 
-  case ProjectAction.ImportData:
+  case ProjectAction.ImportData: {
+    const data = action.dataType === 'hextuples'
+      ? action.data
+      : sourceToHextuples(action.data, state.websiteIRI);
+
     return {
       ...state,
       website: {
         ...state.website,
-        children: subResourcesFromData(action.data, state.websiteIRI),
+        children: subResourcesFromData(data, state.websiteIRI),
       },
     };
+  }
 
   case ProjectAction.HashProjectData:
     return {

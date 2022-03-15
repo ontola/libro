@@ -6,8 +6,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  MenuItem,
   TextField,
 } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -19,12 +21,16 @@ const useStyles = makeStyles({
   inherit: {
     color: 'inherit',
   },
+  textField: {
+    maxHeight: '30em',
+  },
 });
 
 export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => {
   const intl = useIntl();
   const classes = useStyles();
 
+  const [dataType, setDataType] = React.useState<'hextuples' | 'source'>('hextuples');
   const [data, setData] = React.useState('');
 
   const handleClose = React.useCallback(() => {
@@ -37,6 +43,7 @@ export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => 
   const handleImport = React.useCallback(() => {
     dispatch({
       data,
+      dataType,
       type: ProjectAction.ImportData,
     });
     dispatch({
@@ -58,12 +65,27 @@ export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => 
         <DialogContentText>
           {intl.formatMessage(studioToolbarMessages.importDialogText)}
         </DialogContentText>
+        <Select
+          autoWidth
+          multiple={false}
+          native={false}
+          value={dataType}
+          onChange={(e) => setDataType(e.target.value as 'hextuples' | 'source')}
+        >
+          <MenuItem value="hextuples">
+            hextuples
+          </MenuItem>
+          <MenuItem value="source">
+            source (Typescript)
+          </MenuItem>
+        </Select>
         <TextField
           autoFocus
           fullWidth
           multiline
+          className={classes.textField}
           id="data"
-          label="hextuples"
+          label={dataType}
           margin="dense"
           type="text"
           value={data}
