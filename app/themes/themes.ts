@@ -85,6 +85,11 @@ export interface AppBarThemeOpts extends React.CSSProperties {
 
 export type LibroTheme = Theme;
 
+export interface IndexablePalette {
+  [key: string]: Color;
+  [key: number]: Color;
+}
+
 export type CSSPropertiesMap = { [key: string]: CSSProperties };
 export type MaterialStyleMap = { [key: string]: CSSPropertiesMap };
 

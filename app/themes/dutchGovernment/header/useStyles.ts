@@ -1,19 +1,14 @@
-import { Color } from '@material-ui/core';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 
 import {
   CSSPropertiesMap,
+  IndexablePalette,
   LibroTheme,
-  Margin, 
+  Margin,
 } from '../../themes';
 
 const LIGHTEN = 0.7;
-
-interface IndexablePalette {
-  [key: string]: Color;
-  [key: number]: Color;
-}
 
 const useStyles = makeStyles((theme: LibroTheme): CSSPropertiesMap => {
   const backgroundColor = theme.appBar.background
