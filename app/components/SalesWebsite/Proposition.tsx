@@ -2,7 +2,11 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import * as schema from '@ontologies/schema';
-import { Property } from 'link-redux';
+import {
+  Property,
+  Resource,
+  useIds, 
+} from 'link-redux';
 import React from 'react';
 
 interface PropositionProps {
@@ -43,6 +47,7 @@ const useStyles = makeStyles({
 
 const Proposition = (props: PropositionProps): JSX.Element => {
   const classes = useStyles(props);
+  const [text] = useIds(schema.text);
 
   return (
     <Grid
@@ -62,7 +67,7 @@ const Proposition = (props: PropositionProps): JSX.Element => {
         {props.name}
       </Typography>
       <div className={classes.subtitle}>
-        <Property label={schema.text} />
+        <Resource subject={text} />
       </div>
     </Grid>
   );
