@@ -7,7 +7,7 @@ import React from 'react';
 import { gridHeaderCID } from '../../components/Grid/GridHeader';
 import { headingCID } from '../../components/Heading';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { IndexablePalette, LibroTheme } from '../../themes/themes';
 import Topology from '../Topology';
 
 export const footerTopology = ontola.ns('footer');
@@ -25,29 +25,36 @@ enum GridWidth {
 
 const TWO_ITEMS = 2;
 
-const styles = (theme: LibroTheme) => ({
-  footer: {
-    [`& .${gridHeaderCID}`]: {
-      [`& .${headingCID}`]: {
-        marginBottom: '.6rem',
+const styles = (theme: LibroTheme) => {
+  const backgroundColor = theme.appBar.background
+    ? (theme.palette as unknown as IndexablePalette)[theme.appBar.background]?.main ?? theme.palette.common.black
+    : theme.palette.common.black;
+
+  return ({
+    footer: {
+      [`& .${gridHeaderCID}`]: {
+        [`& .${headingCID}`]: {
+          marginBottom: '.6rem',
+        },
       },
+      '& .fa + div': {
+        marginLeft: '.2rem',
+      },
+      '& img': {
+        maxWidth: '100%',
+      },
+      backgroundColor,
+      color: theme.appBar.resolveColor(),
+      marginTop: '1rem',
+      padding: '1rem',
+      position: 'relative' as any,
     },
-    '& .fa + div': {
-      marginLeft: '.2rem',
+    footerContainer: {
+      margin: 'auto',
+      maxWidth: theme.containerWidth.large,
     },
-    '& img': {
-      maxWidth: '100%',
-    },
-    backgroundColor: theme.appBar.background,
-    color: theme.appBar.resolveColor(),
-    marginTop: '1rem',
-    padding: '1rem',
-  },
-  footerContainer: {
-    margin: 'auto',
-    maxWidth: theme.containerWidth.large,
-  },
-});
+  });
+};
 
 class Footer extends Topology<FooterProps> {
   constructor(props: FooterProps) {
