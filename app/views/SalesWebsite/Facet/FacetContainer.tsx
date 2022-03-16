@@ -1,10 +1,8 @@
-import { Collapse, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { makeStyles } from '@material-ui/styles';
 import * as as from '@ontologies/as';
-import { Node, SomeTerm } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {
@@ -18,6 +16,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { Facet, FacetType } from '../../../components/SalesWebsite/Facet';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
 import { containerTopology } from '../../../topologies/Container';
@@ -31,33 +30,8 @@ const useStyles = makeStyles<LibroTheme, Record<string, string>>((theme) => ({
     marginTop: 133,
     width: 300,
   },
-  button: {
-    alignItems: 'center',
-    color: '#000',
-    display: 'flex',
-    flexDirection: 'row',
-    fontFamily: 'Open Sans',
-  },
   buttonG: {
     color: 'red',
-  },
-  buttonText: {
-    '&:hover': {
-      color: '#000',
-      cursor: 'pointer',
-    },
-    color: '#707070',
-    fontWeight: 'bold',
-    lineHeight: 1.2,
-    marginBottom: 0,
-    textAlign: 'left',
-  },
-  buttonTextSelected: {
-    color: '#000',
-    fontWeight: 'bold',
-    lineHeight: 1.2,
-    marginBottom: 0,
-    textAlign: 'left',
   },
   circleBase: {
     backgroundColor: (props) => props.color,
@@ -69,9 +43,6 @@ const useStyles = makeStyles<LibroTheme, Record<string, string>>((theme) => ({
     transition: 'background-color 500ms',
     zIndex: 0,
   },
-  collapseText: {
-    marginLeft: '2rem',
-  },
   containerRow: {
     flexDirection: 'row',
   },
@@ -80,14 +51,6 @@ const useStyles = makeStyles<LibroTheme, Record<string, string>>((theme) => ({
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'row',
     },
-  },
-  facetContainer: {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'row',
-    fontFamily: 'Open Sans',
-    fontSize: 20,
-    lineHeight: 1.2,
   },
   leftPaneContainer: {
     padding: 20,
@@ -155,7 +118,7 @@ const FacetContainer: FC = () => {
   const facets = useResourceLinks(members, facetProps);
 
   const [color, setColor] = React.useState('#000');
-  const [currentFacet, setCurrentFacet] = React.useState(members[0]);
+  const [currentFacet, setCurrentFacet] = React.useState<FacetType>(facets[0]);
   const [video, setVideo] = React.useState<SomeTerm>();
 
   const classes = useStyles({
@@ -174,9 +137,10 @@ const FacetContainer: FC = () => {
   });
 
   React.useEffect(() => {
-    const facet = facets.find((f) => f.subject === currentFacet);
-    setVideo(facet?.image);
-    setColor(facet?.color?.value ?? '#000');
+    if (currentFacet) {
+      setVideo(currentFacet.image);
+      setColor(currentFacet.color?.value ?? '#000');
+    }
   }, [currentFacet]);
 
   return (
@@ -209,60 +173,12 @@ const FacetContainer: FC = () => {
           md={6}
         >
           {facets.map((facet) => (
-            <div key={facet.subject!.value}>
-              <div className={classes.facetContainer}>
-                {facet.subject !== currentFacet ? (
-                  <button
-                    className={classes.button}
-                    key={facet.subject!.value}
-                    type="button"
-                    onClick={() => setCurrentFacet(facet.subject as Node)}
-                  >
-                    <ChevronRight
-                      style={{
-                        color: '#B33A00',
-                        fontSize: 30,
-                      }}
-                    />
-                    <Typography
-                      className={classes.buttonText}
-                      onClick={() => setCurrentFacet(facet.subject as Node)}
-                    >
-                      {facet.name!.value}
-                    </Typography>
-                  </button>
-                )
-                  : (
-                    <button
-                      className={classes.button}
-                      key={facet.subject!.value}
-                      type="button"
-                      onClick={() => setCurrentFacet(facet.subject as Node)}
-                    >
-                      <KeyboardArrowDownIcon
-                        style={{
-                          color: '#B33A00',
-                          fontSize: 30,
-                        }}
-                      />
-                      <Typography
-                        className={classes.buttonTextSelected}
-                        onClick={() => setCurrentFacet(facet.subject as Node)}
-                      >
-                        {facet.name!.value}
-                      </Typography>
-                    </button>
-                  )}
-              </div>
-              <Collapse in={facet.subject === currentFacet}>
-                <Typography
-                  className={classes.collapseText}
-                  variant="body1"
-                >
-                  {facet.text!.value}
-                </Typography>
-              </Collapse>
-            </div>
+            <Facet
+              current={facet.subject === currentFacet.subject}
+              facet={facet}
+              key={facet.subject?.value}
+              onClick={setCurrentFacet}
+            />
           ))}
         </Grid>
         <Grid
