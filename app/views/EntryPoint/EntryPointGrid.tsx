@@ -8,7 +8,6 @@ import {
   useProperty,
   useTopology,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../components/Button';
@@ -36,11 +35,11 @@ const useStyles = makeStyles({
   },
 });
 
-interface PropTypes extends EntryPointProps {
+interface EntryPointGridProps extends EntryPointProps {
   smallButton: boolean;
 }
 
-const EntryPointGrid: FC<PropTypes> = ({
+const EntryPointGrid: FC<EntryPointGridProps> = ({
   smallButton,
   subject,
   ...otherProps

@@ -1,5 +1,4 @@
-import { Resource, subjectType } from 'link-redux';
-import PropTypes from 'prop-types';
+import { Resource } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -36,13 +35,6 @@ const HomepageError = (props: ErrorComponentProps): JSX.Element => {
   }
 
   return <Resource subject={props.subject} />;
-};
-
-HomepageError.propTypes = {
-  linkRequestStatus: PropTypes.shape({
-    status: PropTypes.number,
-  }),
-  subject: subjectType,
 };
 
 export default HomepageError;

@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const useStyles = makeStyles({
@@ -20,10 +19,6 @@ const PageHeaderText: React.FC = ({ children }) => {
       {children}
     </div>
   );
-};
-
-PageHeaderText.propTypes = {
-  children: PropTypes.node,
 };
 
 export default PageHeaderText;

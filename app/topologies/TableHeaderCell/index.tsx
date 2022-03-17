@@ -1,7 +1,6 @@
 import { createStyles } from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import { ReactNode } from 'react';
 
 import argu from '../../ontology/argu';
@@ -23,10 +22,6 @@ type TableHeaderCellProps = WithStyles<typeof styles> & {
 };
 
 class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
   constructor(props: TableHeaderCellProps) {
     super(props);
 

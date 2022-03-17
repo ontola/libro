@@ -1,5 +1,4 @@
 import { WithStyles, withStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
 import { PropsWithChildren } from 'react';
 
 import argu from '../../ontology/argu';
@@ -35,10 +34,6 @@ const styles = (theme: LibroTheme) => ({
 type TableFooterProps = PropsWithChildren<WithStyles<typeof styles>>;
 
 class TableFooter extends Topology<TableFooterProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
   constructor(props: TableFooterProps) {
     super(props);
 

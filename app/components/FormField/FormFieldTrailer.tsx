@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
@@ -12,7 +11,7 @@ import { FormFieldContext } from './FormField';
 
 import { FormFieldError } from './';
 
-interface PropTypes {
+interface FormFieldTrailerProps {
   errors: FormFieldError[];
   inputValue: SomeTerm;
 }
@@ -28,7 +27,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const FormFieldTrailer: React.FC<PropTypes> = ({
+const FormFieldTrailer: React.FC<FormFieldTrailerProps> = ({
   errors,
   inputValue,
 }) => {

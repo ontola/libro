@@ -1,6 +1,5 @@
 import { TableCell } from '@material-ui/core';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import argu from '../../ontology/argu';
@@ -8,17 +7,12 @@ import argu from '../../ontology/argu';
 export const tableFooterCellTopology = argu.ns('tableFooterCell');
 export const tableFooterCellCID = 'CID-TableFooterCell';
 
-interface Props {
+interface TableFooterCellProps {
   colSpan?: number;
 }
 
-class TableFooterCell extends TopologyProvider<Props> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    colSpan: PropTypes.number,
-  };
-
-  constructor(props: Props) {
+class TableFooterCell extends TopologyProvider<TableFooterCellProps> {
+  constructor(props: TableFooterCellProps) {
     super(props);
 
     this.topology = tableFooterCellTopology;

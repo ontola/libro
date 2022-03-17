@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import LinkLoader from '../Loading/LinkLoader';
 
-const Suspense: React.FC<any> = ({ children, fallback }) => {
+interface SuspenseProps {
+  children: JSX.Element;
+  fallback: JSX.Element;
+}
+
+const Suspense: React.FC<SuspenseProps> = ({ children, fallback }) => {
   if (!__CLIENT__) {
     return fallback;
   }
@@ -13,11 +17,6 @@ const Suspense: React.FC<any> = ({ children, fallback }) => {
       {children}
     </React.Suspense>
   );
-};
-
-Suspense.propTypes = {
-  children: PropTypes.node,
-  fallback: PropTypes.node,
 };
 
 Suspense.defaultProps = {

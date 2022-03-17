@@ -1,7 +1,6 @@
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/styles';
 import rdf from '@ontologies/core';
-import * as PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
@@ -69,12 +68,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface PropTypes {
+interface CoverImageSliderProps {
   onChange: (e: any, value: number | number[]) => void;
   value: number;
 }
 
-const CoverImageSlider: React.FC<PropTypes> = ({
+const CoverImageSlider: React.FC<CoverImageSliderProps> = ({
   value,
   onChange,
 }) => {

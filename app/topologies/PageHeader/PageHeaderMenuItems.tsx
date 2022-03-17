@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
@@ -22,10 +21,6 @@ const PageHeaderMenuItems: React.FC = ({ children }) => {
       {children}
     </div>
   );
-};
-
-PageHeaderMenuItems.propTypes = {
-  children: PropTypes.node,
 };
 
 export default PageHeaderMenuItems;

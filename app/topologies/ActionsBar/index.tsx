@@ -5,7 +5,6 @@ import {
 } from '@material-ui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { loadingButtonCID } from '../../components/Loading';
@@ -13,7 +12,7 @@ import argu from '../../ontology/argu';
 
 export const actionsBarTopology = argu.actionsBar;
 
-type PropTypes = WithStyles<typeof styles> & {
+type ActionsBarProps = WithStyles<typeof styles> & {
   small?: boolean;
 };
 
@@ -40,8 +39,8 @@ const styles = createStyles({
   },
 });
 
-class ActionsBar extends TopologyProvider<PropTypes> {
-  constructor(props: PropTypes) {
+class ActionsBar extends TopologyProvider<ActionsBarProps> {
+  constructor(props: ActionsBarProps) {
     super(props);
 
     this.className = 'ActionsBar';

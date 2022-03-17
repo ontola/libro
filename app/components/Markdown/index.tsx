@@ -1,13 +1,12 @@
 import {
   WithStyles,
   createStyles,
-  withStyles, 
+  withStyles,
 } from '@material-ui/styles';
 import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
 import memoize from 'memoize-one';
-import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
@@ -177,11 +176,16 @@ const codePre = (link: any) => (
   </code>
 );
 
-type PropTypes = WithStyles<typeof styles> & {
+type MarkdownProps = WithStyles<typeof styles> & {
+  /** Array of strings that need to be highlighted */
   highlightedText?: string;
+  /** Disable creation of anchor elements in the output */
   noLinks?: boolean;
+  /** Remove padding */
   noSpacing?: boolean;
+  /** Makes all links tabbable. */
   tabbable?: boolean;
+  /** The content of the item */
   text: string;
 };
 
@@ -189,20 +193,7 @@ interface MarkdownState {
   hasError: boolean;
 }
 
-class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
-  public static propTypes = {
-    /** Array of strings that need to be highlighted */
-    highlightedText: PropTypes.string,
-    /** Disable creation of anchor elements in the output */
-    noLinks: PropTypes.bool,
-    /** Remove padding */
-    noSpacing: PropTypes.bool,
-    /** Makes all links tabbable. */
-    tabbable: PropTypes.bool,
-    /** The content of the item */
-    text: PropTypes.string.isRequired,
-  };
-
+class Markdown extends React.PureComponent<MarkdownProps, MarkdownState> {
   public static getDerivedStateFromError(): MarkdownState {
     return { hasError: true };
   }
@@ -211,7 +202,7 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
     tabbable: true,
   };
 
-  constructor(props: PropTypes) {
+  constructor(props: MarkdownProps) {
     super(props);
 
     this.state = {

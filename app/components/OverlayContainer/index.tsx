@@ -1,11 +1,10 @@
 import { makeStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
 import React, { MouseEvent, MouseEventHandler } from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { cardClassIdentifier } from '../../topologies/Card/sharedCardStyles';
 
-interface PropTypes {
+interface OverlayContainerProps {
   children: React.ReactNode;
   clickHandler: MouseEventHandler;
   overlayRef: HTMLElement | null;
@@ -38,7 +37,7 @@ const OverlayContainer = ({
   children,
   clickHandler,
   overlayRef,
-}: PropTypes): JSX.Element | null => {
+}: OverlayContainerProps): JSX.Element | null => {
   if (!overlayRef) {
     return null;
   }

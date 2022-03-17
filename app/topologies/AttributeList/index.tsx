@@ -1,7 +1,6 @@
 import { createStyles } from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';
 
 import argu from '../../ontology/argu';
@@ -50,12 +49,6 @@ type AttributeListProps = WithStyles<typeof styles> & {
 };
 
 class AttributeList extends Topology<PropsWithChildren<AttributeListProps>> {
-  public static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    fullLabel: PropTypes.bool,
-  };
-
   public static defaultProps = {
     fullLabel: true,
   };

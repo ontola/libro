@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { SomeTerm, isLiteral } from '@ontologies/core';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { isString } from '../../helpers/types';
@@ -9,7 +8,7 @@ import { LibroTheme } from '../../themes/themes';
 
 export const CHAR_COUNTER_THRESHOLD = 0.8;
 
-interface PropTypes {
+interface CharCounterProps {
   maxLength: number;
   threshold: number;
   value: SomeTerm | string;
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
 }));
 
-const CharCounter: React.FC<PropTypes> = ({
+const CharCounter: React.FC<CharCounterProps> = ({
   maxLength,
   threshold,
   value,

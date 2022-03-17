@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useFormState } from 'react-final-form';
 import FontAwesome from 'react-fontawesome';
 
 import { useFormGroup } from './FormGroupProvider';
 
-interface PropTypes {
+interface FormGroupErrorCountProps {
   className: string;
 }
 
-const FormGroupErrorCount: React.FC<PropTypes> = ({
+const FormGroupErrorCount: React.FC<FormGroupErrorCountProps> = ({
   className,
 }) => {
   const { fieldNames } = useFormGroup();

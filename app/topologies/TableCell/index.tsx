@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import React, { ReactNode } from 'react';
 
 import { headingCID } from '../../components/Heading';
@@ -29,19 +28,15 @@ const styles = (theme: LibroTheme) => createStyles({
   },
 });
 
-type PropTypes = WithStyles<typeof styles> & TableCellProps & {
+type TableCellClassProps = WithStyles<typeof styles> & TableCellProps & {
   noBorder?: boolean;
   children?: ReactNode;
   colSpan?: number;
   elementProps?: Record<string, unknown>;
 };
 
-class TableCellClass extends TopologyProvider<PropTypes> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  constructor(props: PropTypes) {
+class TableCellClass extends TopologyProvider<TableCellClassProps> {
+  constructor(props: TableCellClassProps) {
     super(props);
 
     this.topology = tableCellTopology;

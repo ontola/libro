@@ -9,7 +9,6 @@ import {
   useDataFetching,
   useResourceLinks,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -77,12 +76,6 @@ GrantedGroups.type = schema.Thing;
 GrantedGroups.topology = allTopologiesExcept(detailsBarTopology, contentDetailsTopology);
 
 GrantedGroups.property = argu.grantedGroups;
-
-GrantedGroups.propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }),
-};
 
 export default [
   register(GrantedGroups),

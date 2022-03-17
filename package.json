@@ -162,7 +162,6 @@
     "path-browserify": "^1.0.1",
     "postcss": "^8.2.9",
     "postcss-loader": "^5.2.0",
-    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-autosize-textarea": "^7.1.0",
     "react-collapse": "^5.1.0",

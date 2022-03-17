@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
@@ -93,7 +92,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-interface PropTypes {
+interface HeadingProps {
   className?: string;
   display?: 'inherit';
   size?: HeadingSize;
@@ -105,7 +104,7 @@ const defaultProps = {
   size: HeadingSize.LG,
 };
 
-const Heading: React.FC<PropTypes> = ({
+const Heading: React.FC<HeadingProps> = ({
   children,
   className,
   display,

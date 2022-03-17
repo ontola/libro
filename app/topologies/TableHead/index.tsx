@@ -1,7 +1,6 @@
 import { TableHead } from '@material-ui/core';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';
 
 import argu from '../../ontology/argu';
@@ -33,10 +32,6 @@ const styles = (theme: LibroTheme) => ({
 type TableHeadProps = PropsWithChildren<WithStyles<typeof styles>>;
 
 class TableHeadClass extends TopologyProvider<TableHeadProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
   constructor(props: TableHeadProps) {
     super(props);
 
