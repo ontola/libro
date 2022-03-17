@@ -6,6 +6,14 @@ import {
 
 import { overrides } from './overrides';
 
+export const SCREENSIZE = {
+  lg: 900,
+  md: 650,
+  sm: 320,
+  xl: 1120,
+  xs: 0,
+};
+
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
  */
@@ -122,13 +130,7 @@ const theme = {
     crazy: '0 0 20px 1px rgba(0, 0, 0, .3)',
   },
   breakpoints: {
-    values: {
-      xs: 0,
-      sm: 320,
-      md: 650,
-      lg: 900,
-      xl: 1120,
-    },
+    values: SCREENSIZE,
     /* eslint-enable sort-keys */
   },
   containerWidth: {

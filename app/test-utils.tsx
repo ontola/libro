@@ -6,7 +6,6 @@ import {
   RenderResult,
   render,
 } from '@testing-library/react';
-import mediaQuery from 'css-mediaquery';
 import { createMemoryHistory } from 'history';
 import {
   ComponentRegistration,
@@ -40,7 +39,6 @@ import { WebsiteContext } from './location';
 import { highlightContext } from './state/highlight';
 import { OmniformState, omniformContext } from './state/omniform';
 import themes from './themes';
-import { SCREENSIZE } from './themes/common/theme/variables';
 import { getViews } from './views';
 
 interface WrapProvidersArgs {
@@ -52,14 +50,6 @@ interface WrapProvidersArgs {
 
 interface ChildrenProps {
   children: React.ReactElement;
-}
-
-export enum ScreenWidth {
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl',
 }
 
 const allViews = () => [...getViews(), ...componentRegistrations()];
@@ -90,7 +80,7 @@ const wrapProviders = ({
       </Router>
     ) : children;
 
-    const [omniformState, setOmniformState] = React.useState<OmniformState>({ });
+    const [omniformState, setOmniformState] = React.useState<OmniformState>({});
 
     const omniformStateMemo = React.useMemo(() => ({
       omniformState,
@@ -170,14 +160,14 @@ interface TestRenderOpts {
 
 interface LinkedTestRenderOpts extends TestRenderOpts {
   resources?: any;
-  views?: Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>>
+  views?: Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>>;
 }
 
 export const renderLinked = async <
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
   >(
-  ui: ((props: { iri: Node }) => React.ReactElement) | React.ReactElement,
+  ui: ((props: { iri: Node; }) => React.ReactElement) | React.ReactElement,
   opts: LinkedTestRenderOpts & RenderOptions<Q, Container> = {},
 ): Promise<RenderResult<Q, Container>> => {
   const {
@@ -213,7 +203,7 @@ export const renderLinked = async <
 const renderWithWrappers = <
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
->(
+  >(
     ui: React.ReactElement,
     opts: TestRenderOpts & RenderOptions<Q, Container> = {},
   ): RenderResult<Q, Container> => {
@@ -233,37 +223,6 @@ const renderWithWrappers = <
   return render(ui, {
     wrapper,
     ...options,
-  });
-};
-
-const createMatchMedia = (width: number) => (query: string): MediaQueryList => ({
-  addEventListener: jest.fn(),
-  addListener: () => jest.fn(),
-  dispatchEvent: jest.fn(),
-  matches: mediaQuery.match(query, { width }),
-  media: query,
-  onchange: null,
-  removeEventListener: jest.fn(),
-  removeListener: () => jest.fn(),
-});
-
-/**
- * Sets the window innerWidth and mocks [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
- * so that [useMediaQuery](https://v4.mui.com/components/use-media-query/) will function like expected.
- *
- * !IMPORTANT Don't forget to add an `afterEach` to your test where you call `mockScreenWidth()` to reset the screen size to it's default.
- * @param screenSize Size of the screen. Leave empty for default screensize. These values correspond to the breakpoints set in the common theme.
- */
-export const mockScreenWidth = (screenSize: ScreenWidth = ScreenWidth.SM): void => {
-  Object.defineProperty(window, 'innerWidth', {
-    configurable: true,
-    value: SCREENSIZE[screenSize],
-    writable: true,
-  });
-
-  Object.defineProperty(window, 'matchMedia', {
-    value: createMatchMedia(window.innerWidth),
-    writable: true,
   });
 };
 
