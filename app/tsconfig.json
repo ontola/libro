@@ -9,12 +9,7 @@
     ],
     "resolveJsonModule": true,
     "noEmit": false,
-    "sourceMap": true,
-    "typeRoots": [
-      "../@types",
-      "../node_modules/@types",
-      "../node_modules/link-lib/@types"
-    ]
+    "sourceMap": true
   },
   "include": [
     "./*.ts",

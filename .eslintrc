@@ -39,7 +39,6 @@
       "version": "16.8.6"
     },
     "import/resolver": {
-      "node": {},
       "webpack": {
         "config": "./webpack/common.config.js"
       }
@@ -47,6 +46,10 @@
     "import/ignore": [
       "test-utils",
       "test-utils-hooks"
+    ],
+    "import/external-module-folders": [
+      "node_modules",
+      ".yarn"
     ]
   },
   "rules": {

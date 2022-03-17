@@ -43,7 +43,7 @@ module.exports = {
   ],
   testURL: 'https://argu.dev/o/1',
   transform: {
-    '^.+\\.m?(j|t)sx?$': 'ts-jest',
+    '^.+\\.m?(j|t)sx?$': require.resolve('ts-jest'),
   },
   transformIgnorePatterns: [
     'node_modules/(?!(intl-messageformat|react-intl|ol)/).+\\.js$',

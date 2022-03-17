@@ -26,9 +26,9 @@ package-lock.json
 /app/tsconfig.tsbuildinfo
 
 .yarn/*
+!.yarn/cache
 !.yarn/patches
-!.yarn/releases
 !.yarn/plugins
+!.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-.pnp.*

@@ -19,7 +19,6 @@ const common = {
     jsonld: '{}',
     'solid-auth-cli': 'null',
     'solid-auth-client': 'self.fetch',
-    'universal-url': '{URL: self.URL}',
     'whatwg-url': 'self.URL',
     xmldom: '{}',
     xmlhttprequest: 'self.XMLHttpRequest',
@@ -56,7 +55,7 @@ const common = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'node_modules/monaco-editor/min/vs',
+          from: path.dirname(require.resolve('monaco-editor/min/vs/loader.js')),
           to: path.resolve(__dirname, '..', 'dist', 'f_assets', 'vs'),
         },
       ],
@@ -93,8 +92,9 @@ const common = {
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
     fallback: {
       path: require.resolve('path-browserify'),
+      url: false,
     },
-    modules: ['./node_modules'],
+    // modules: [require.resolve('./node_modules')],
   },
 };
 
