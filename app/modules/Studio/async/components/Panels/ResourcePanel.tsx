@@ -66,16 +66,16 @@ export const ResourcePanel = ({ dispatch, project }: ProjectContextProps): JSX.E
         className={classes.resourceList}
       >
         <List>
-          {project.website.children.map((resource, i) => (
+          {project.website.children.map((resource) => (
             <ListItem
               button
               className={classes.listItem}
-              key={i}
-              selected={project.subResource === i}
-              onClick={() => selectResource(i)}
+              key={resource.id}
+              selected={project.subResource === resource.id}
+              onClick={() => selectResource(resource.id)}
             >
               <ListItemText>
-                {i}
+                {resource.id}
                 {' '}
                 {displayName(resource)}
               </ListItemText>

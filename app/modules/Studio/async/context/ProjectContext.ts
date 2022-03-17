@@ -215,7 +215,8 @@ export const currentComponent = (project: ProjectContext): Component =>
   project[project.current];
 
 export const subResource = (project: ProjectContext): SubResource =>
-  currentComponent(project).children[project.subResource];
+  currentComponent(project).children.find((it) => it.id === project.subResource)
+  ?? currentComponent(project).children[0];
 
 const resource = (r: Partial<Component>): Component => ({
   children: [],
@@ -320,8 +321,10 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
 
   case ProjectAction.UpdateRDFSubResource: {
     const nextChildren = [...state.website.children];
-    nextChildren[action.id] = {
-      ...nextChildren[action.id],
+    const index = nextChildren.findIndex((it) => it.id === action.id);
+
+    nextChildren[index] = {
+      ...nextChildren[index],
       ...action.data,
     };
 
