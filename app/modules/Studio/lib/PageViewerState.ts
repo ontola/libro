@@ -1,5 +1,5 @@
 import { WebManifest } from '../../../WebManifest';
-import { LibroDocument } from '../components/Studio';
+import { LibroDocument } from '../components/StudioLoader';
 
 export interface PageViewerState {
   doc: LibroDocument;

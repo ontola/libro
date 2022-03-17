@@ -7,7 +7,7 @@ import {
   appContextEditor,
 } from './appContext';
 import { getMetaContent } from './helpers/dom';
-import Communicator from './modules/Studio/components/Communicator';
+import CommunicatorLoader from './modules/Studio/components/CommunicatorLoader';
 
 const defaultCtxValue = <T extends AppContext, K extends string & keyof T>(
   appCtxOverrides: Partial<T> | undefined,
@@ -34,7 +34,7 @@ export const AppContextProvider = ({
   return (
     <React.Fragment>
       <appContextEditor.Provider value={setCtx}>
-        {__DEVELOPMENT__ && <Communicator />}
+        <CommunicatorLoader websiteIRI={manifest.ontola.website_iri} />
         <appContext.Provider value={ctx}>
           {children}
         </appContext.Provider>

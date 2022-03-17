@@ -1,19 +1,15 @@
-import rdf, { QuadPosition, Quadruple } from '@ontologies/core';
+import rdf, { Quadruple } from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
-import RDFIndex from 'link-lib/dist-types/store/RDFIndex';
 import React from 'react';
 
 import { appContextEditor } from '../../../appContext';
 import generateLRS from '../../../helpers/generateLRS';
-import { quadruplesToDataSlice } from '../../../helpers/quadruplesToDataSlice';
+import { seedToSlice } from '../../../helpers/seed';
 import http from '../../../ontology/http';
 import ll from '../../../ontology/ll';
 import register from '../../../views';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
 import { PageViewerState } from '../lib/PageViewerState';
-import parseToGraph from '../lib/parseToGraph';
-
-const extractSubject = (q: Quadruple) => q[QuadPosition.subject];
 
 const Communicator = (): null => {
   const updateCtx = React.useContext(appContextEditor);
@@ -52,24 +48,16 @@ const Communicator = (): null => {
       return;
     }
 
-    const { currentResource, doc: { source }, manifest: { ontola: { website_iri } } } = message;
+    const { currentResource, doc: { seed } } = message;
 
     const updateContext = async () => {
       try {
-        const graphs = parseToGraph(source, website_iri);
-        const data = graphs.flatMap(([_, rdfIndex]) => (rdfIndex as RDFIndex).quads);
-        const next = await generateLRS(message.manifest, quadruplesToDataSlice(data));
+        const slice = seedToSlice(seed);
+        const next = await generateLRS(message.manifest, slice);
         const { lrs } = next;
+        const records = Object.keys(slice);
 
-        const statusUpdate = Array.from(new Set(data.map(extractSubject)))
-          .map<Quadruple>((s) => [
-            s,
-            http.statusCode,
-            rdf.literal(HttpStatus.OK),
-            ll.meta,
-          ]);
-
-        if (statusUpdate.length === 0) {
+        if (records.length === 0) {
           updateCtx((prev) => ({
             ...prev,
             manifest: message.manifest,
@@ -81,6 +69,14 @@ const Communicator = (): null => {
 
           return;
         }
+
+        const statusUpdate = records
+          .map<Quadruple>((s) => [
+            s.startsWith('_') ? rdf.blankNode(s) : rdf.namedNode(s),
+            http.statusCode,
+            rdf.literal(HttpStatus.OK),
+            ll.meta,
+          ]);
 
         lrs.processDelta(statusUpdate, true);
         register(lrs);

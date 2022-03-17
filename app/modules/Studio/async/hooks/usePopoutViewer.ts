@@ -1,9 +1,12 @@
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { WebManifest } from '../../../../WebManifest';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
+import parseToGraph from '../../lib/parseToGraph';
 import { ProjectContext, subResource } from '../context/ProjectContext';
 import { PageViewerState } from '../../lib/PageViewerState';
+import { graphToSeed } from '../lib/graphToSeed';
 import { projectToSource } from '../lib/projectToSource';
 
 import { useNewDialogHandle } from './useDialogHandle';
@@ -36,14 +39,18 @@ const subResourceIri = (project: ProjectContext): string => {
 
 const projectToPageViewerState = (project: ProjectContext): PageViewerState => {
   const source = projectToSource(project);
+  const manifest = JSON.parse(project.manifest.value) as WebManifest;
+  const quads = parseToGraph(source, manifest.ontola.website_iri, true)
+    .flatMap(([, it]) => it.quads);
+  const slice = graphToSeed(quads);
 
   return {
     currentResource: subResourceIri(project),
     doc: {
       manifestOverride: project.manifest.value,
-      source,
+      seed: JSON.stringify(slice),
     },
-    manifest: JSON.parse(project.manifest.value),
+    manifest,
   };
 };
 

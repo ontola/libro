@@ -5,7 +5,7 @@ import Suspense from '../../../components/Suspense';
 
 export interface LibroDocument {
   manifestOverride: string;
-  source: string;
+  seed: string;
 }
 
 const Studio = React.lazy(

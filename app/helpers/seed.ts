@@ -2,31 +2,40 @@ import rdf from '@ontologies/core';
 import { DataRecord } from 'link-lib';
 
 export interface Value {
-  type: 'id' | 'lid' | 'p' | 'ls'
+  type: 'id' | 'lid' | 'p' | 'ls';
   v: string;
 }
 
-export interface GlobalId {
+export interface GlobalId extends Value {
   type: 'id';
   v: string;
 }
 
-export interface LocalId {
+export interface LocalId extends Value {
   type: 'lid';
   v: string;
 }
 
-export interface Primitive {
+export interface Primitive extends Value {
   type: 'p';
   v: string;
   dt: string;
 }
 
-export interface LangString {
+export interface LangString extends Value {
   type: 'ls';
-  l: string;
   v: string;
+  l: string;
 }
+
+export type Identifyable = { _id: GlobalId | LocalId };
+export type Fields = Record<string, Value[]>;
+
+export type SeedDataRecord = Identifyable & Fields;
+
+export type Seed = Record<string, SeedDataRecord>;
+
+export type Slice = Record<string, DataRecord>;
 
 const valueToStoreValue = (v: Value) => {
   switch (v.type) {
@@ -37,7 +46,7 @@ const valueToStoreValue = (v: Value) => {
   }
 };
 
-export const seedToSlice = (initialData: string | undefined): Record<string, DataRecord> => {
+export const seedToSlice = (initialData: string | undefined): Slice => {
   if (initialData === undefined) {
     return {};
   }
