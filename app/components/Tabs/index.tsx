@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import MUITabs from '@material-ui/core/Tabs';
-import { History, Location } from 'history';
+import { Location } from 'history';
 import React from 'react';
 
 import { currentLocationControl } from '../../helpers/paths';
@@ -15,7 +15,7 @@ export interface TabsProps {
   variant?: TabVariant;
   value: unknown;
   resource: string | undefined;
-  location: Location<History.PoorMansUnknown>;
+  location: Location<unknown>;
 }
 
 const useSubSectionStyles = makeStyles<LibroTheme>((theme) => ({

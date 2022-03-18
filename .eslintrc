@@ -14,6 +14,7 @@
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "ignorePatterns": ["*/.yarn/**"],
   "root": true,
   "globals": {
     "__CLIENT__": true,
@@ -219,6 +220,7 @@
       }
     ],
     "no-restricted-syntax": "off",
+    "no-undef": "off",
     "no-shadow": "error",
     "no-undef-init": "error",
     "no-unmodified-loop-condition": "error",

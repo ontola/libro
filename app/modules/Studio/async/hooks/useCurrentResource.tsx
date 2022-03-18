@@ -1,5 +1,5 @@
 import rdf, { NamedNode } from '@ontologies/core';
-import { History, Location } from 'history';
+import { Location } from 'history';
 import React from 'react';
 import { useHistory } from 'react-router';
 
@@ -7,7 +7,7 @@ import { appContext } from '../../../../appContext';
 
 export const pageViewerRelativeIRI = (
   website: string,
-  location: Location<History.PoorMansUnknown>,
+  location: Location<unknown>,
 ): string => {
   const url = new URL(website);
 

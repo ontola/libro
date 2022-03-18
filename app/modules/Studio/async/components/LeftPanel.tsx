@@ -81,7 +81,7 @@ export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Eleme
           <TabList
             orientation="vertical"
             value={tab}
-            onChange={(_, value) => {
+            onChange={(_: unknown, value: ComponentName) => {
               setTab(value === tab ? 'closed' : value);
             }}
           >

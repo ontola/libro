@@ -4,16 +4,16 @@ import LinkLoader from '../Loading/LinkLoader';
 
 interface SuspenseProps {
   children: JSX.Element;
-  fallback: JSX.Element;
+  fallback?: JSX.Element | null;
 }
 
 const Suspense: React.FC<SuspenseProps> = ({ children, fallback }) => {
   if (!__CLIENT__) {
-    return fallback;
+    return fallback!;
   }
 
   return (
-    <React.Suspense fallback={fallback}>
+    <React.Suspense fallback={fallback!}>
       {children}
     </React.Suspense>
   );
