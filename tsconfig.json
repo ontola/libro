@@ -7,17 +7,30 @@
     "incremental": true,
     "jsx": "react",
     "lib": [
-      "ES2020"
+      "es2020",
+      "dom",
+      "dom.iterable"
     ],
     "maxNodeModuleJsDepth": 0,
     "moduleResolution": "node",
     "module": "esnext",
-    "noEmit": true,
+    "noEmit": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "resolveJsonModule": true,
     "strict": true,
-    "target": "ES2018"
+    "sourceMap": true,
+    "target": "ES2018",
+    "types": [
+      "jest",
+      "@testing-library/jest-dom"
+    ]
   },
-  "include": []
+  "include": [
+    "./app/*.ts",
+    "./app/**/*.ts",
+    "./app/*.tsx",
+    "./app/**/*.tsx"
+  ]
 }

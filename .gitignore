@@ -24,6 +24,7 @@ yarn-error.log
 package-lock.json
 /app/lang/*.json
 /app/tsconfig.tsbuildinfo
+tsconfig.tsbuildinfo
 
 .yarn/*
 !.yarn/cache
