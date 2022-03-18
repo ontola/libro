@@ -17,8 +17,6 @@ const common = {
     fetch: 'self.fetch',
     'isomorphic-fetch': 'self.fetch',
     jsonld: '{}',
-    'solid-auth-cli': 'null',
-    'solid-auth-client': 'self.fetch',
     'whatwg-url': 'self.URL',
     xmldom: '{}',
     xmlhttprequest: 'self.XMLHttpRequest',

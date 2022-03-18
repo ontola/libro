@@ -535,30 +535,7 @@
       },
       "globals": {
         // Node Specs
-        "global": true,
-        // Shared specs
-        "declareProps": true,
-        "defineMarker": true,
-        "its": true,
-        "marker": true,
-        "markerNS": true,
-        "testProps": true,
-        "set": true,
-        "setProp": true,
-        "subject": true,
-        // Unit specs
-        "argUnit": true,
-        // View specs
-        "as": true,
-        "describeView": true,
-        "c": true,
-        "ch": true,
-        "list": true,
-        "r": true,
-        "s": true,
-        "seq": true,
-        "t": true,
-        "within": true
+        "global": true
       }
     },
     {
