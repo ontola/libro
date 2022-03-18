@@ -15,20 +15,19 @@ module.exports = {
     __TEST__: true,
     'ts-jest': {
       isolatedModules: true,
-      tsconfig: 'app/tsconfig.json',
+      tsconfig: 'tsconfig.json',
     },
   },
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.(scss|css|less)$': 'identity-obj-proxy',
   },
-  preset: 'ts-jest',
   setupFiles: [
     './app/useFactory.ts',
   ],
   setupFilesAfterEnv: [
     '<rootDir>/tests/testhelper-node.ts',
-    '@testing-library/jest-dom/extend-expect',
+    require.resolve('@testing-library/jest-dom/extend-expect'),
   ],
   testEnvironment: 'node',
   testMatch: [

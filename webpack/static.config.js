@@ -1,5 +1,4 @@
 const path = require('path');
-
 const BrotliPlugin = require('brotli-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader')
@@ -75,7 +74,7 @@ function createConfig(options) {
             options: {
               loader: 'tsx',
               target: 'es2018',
-              tsconfigRaw: require(path.resolve(__dirname, '..', 'app', 'tsconfig.json')),
+              tsconfigRaw: require(path.resolve(__dirname, '..', 'tsconfig.json')),
             },
           }
         },

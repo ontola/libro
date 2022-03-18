@@ -1,5 +1,4 @@
 const path = require('path');
-
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -66,7 +65,7 @@ module.exports = merge(common, {
           options: {
             loader: 'tsx',
             target: 'es2018',
-            tsconfigRaw: require(path.resolve(__dirname, '..', 'app', 'tsconfig.json')),
+            tsconfigRaw: require(path.resolve(__dirname, '..', 'tsconfig.json')),
           },
         },
       },

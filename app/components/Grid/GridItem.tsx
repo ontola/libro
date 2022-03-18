@@ -23,7 +23,7 @@ const columnWidth = (base: number, size: number, factor: number): GridSize => (
 
 export interface GridItemProps extends GridProps {
   Fallback?: React.ComponentType,
-  children: React.ReactNode,
+  children: JSX.Element,
   maxColumns: number,
   size: number,
 }
