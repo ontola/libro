@@ -79,7 +79,7 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
     );
   }
 
-  if (!renderedActions) {
+  if (renderedActions.length == 0) {
     return null;
   }
 
