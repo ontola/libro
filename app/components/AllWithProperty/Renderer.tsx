@@ -2,7 +2,7 @@ import {
   NamedNode,
   SomeTerm,
   isLiteral,
-  isNamedNode,
+  isNode,
 } from '@ontologies/core';
 import { Literal } from '@ontologies/rdfs';
 import { SomeNode } from 'link-lib';
@@ -60,7 +60,7 @@ const Renderer = ({
     }
   }
 
-  if (isNamedNode(value)) {
+  if (isNode(value)) {
     return (
       <Resource
         subject={value}
