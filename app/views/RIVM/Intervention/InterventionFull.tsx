@@ -64,6 +64,7 @@ const InterventionFull: FC = () => (
             <Property label={schema.image}>
               <AttributeListItem
                 label={ontola.imgUrl568x400}
+                propertyLabel=""
                 style={{ maxHeight: '10em' }}
               />
             </Property>
