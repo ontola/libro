@@ -1,6 +1,6 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
+import { Node } from '@ontologies/core';
 import clsx from 'clsx';
 import {
   Property,
@@ -13,7 +13,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
 import AppMenu from '../../topologies/AppMenu';
 import { navBarMessages } from '../../translations/messages';
 import { Trigger } from '../DropdownMenu/TriggerButton';
@@ -21,13 +20,14 @@ import { TriggerButtonNavBar } from '../DropdownMenu/TriggerButtonNavBar';
 
 export const navBarContentItemsCID = 'CID-NavBarContentItems';
 
+interface NavbarNavigationsMenuProps {
+  navBarRef: React.RefObject<HTMLDivElement>;
+}
+
 const useStyles = makeStyles({
-  itemPusher: {
-    display: 'flex',
-    height: '100%',
-  },
   navBarContentItems: {
     display: 'flex',
+    flexGrow: 1,
     flexWrap: 'wrap',
     height: '100%',
     maxHeight: '100%',
@@ -57,13 +57,37 @@ const createTrigger: (classes: ReturnType<typeof useStyles>) => Trigger = (class
   );
 };
 
-const NavbarNavigationsMenu = (): JSX.Element => {
+const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.Element => {
   const classes = useStyles();
-  const theme = useTheme<LibroTheme>();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
   const [navigationsMenu] = useIds(frontendIRI, ontola.navigationsMenu);
   const menuItems = useIds(navigationsMenu, array(ontola.menuItems));
+  const menuItemRefs = React.useRef<HTMLElement[]>([]);
+  const [visibleItemRefs, setVisibleItemRefs] = React.useState<Set<Element>>(new Set(menuItemRefs.current));
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((changedEntries) => {
+      for (const entry of changedEntries) {
+        setVisibleItemRefs((prevRefs) => {
+          if (entry.isIntersecting) {
+            prevRefs.add(entry.target);
+          }
+          else {
+            prevRefs.delete(entry.target);
+          }
+
+          return new Set(prevRefs);
+        });
+      }
+    }, { root: navBarRef.current });
+
+    menuItemRefs.current.forEach((menuItemRef) => observer.observe(menuItemRef));
+  }, [menuItems]);
+
+  const [hiddenItems, setHiddenItems] = React.useState<Node[]>([]);
+
+  React.useEffect(() => {
+    setHiddenItems(menuItems.filter((_, index) => !visibleItemRefs.has(menuItemRefs.current[index])));
+  }, [menuItems, visibleItemRefs.size]);
 
   return (
     <Resource
@@ -77,17 +101,17 @@ const NavbarNavigationsMenu = (): JSX.Element => {
             classes.navBarContentItems,
           )}
         >
-          <div className={classes.itemPusher} />
-          {menuItems?.map((iri) => (
+          {menuItems?.map((iri, index) => (
             <Resource
               key={iri.value}
+              menuItemRef={(element: HTMLElement) => menuItemRefs.current[index] = element}
               subject={iri}
             />
           ))}
         </div>
-        {isMobile && (
+        {(hiddenItems.length > 0) && (
           <AppMenu trigger={createTrigger(classes)}>
-            {({ handleClose }) => menuItems?.map((iri) => (
+            {({ handleClose }) => hiddenItems?.map((iri) => (
               <Resource
                 hideIcon
                 childProps={{

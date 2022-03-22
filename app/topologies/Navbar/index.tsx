@@ -27,6 +27,9 @@ const styles = (theme: LibroTheme): CSSPropertiesMap => ({
   elevated: {
     boxShadow: '0px 0px 17px rgba(0, 0, 0, 0.1)',
   },
+  root: {
+    display: 'block',
+  },
   wrapper: {
     color: theme.appBar.resolveColor(),
     zIndex: theme.zIndex.appBar + 1,
@@ -76,6 +79,7 @@ class Navbar extends Topology<PropType> {
             <ToolbarWrapper {...toolbarWrapperProps}>
               <Toolbar
                 disableGutters
+                classes={this.props.classes}
                 variant="dense"
               >
                 {this.props.children}

@@ -13,7 +13,11 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
-const MenuItemNavbar = () => {
+interface MenuItemNavbarProps {
+  menuItemRef: React.ForwardedRef<HTMLButtonElement>,
+}
+
+const MenuItemNavbar = ({ menuItemRef }: MenuItemNavbarProps) => {
   const [href] = useProperty(ontola.href);
   const [image] = useIds(schema.image);
   const [menuItems] = useProperty(ontola.menuItems);
@@ -32,6 +36,7 @@ const MenuItemNavbar = () => {
       icon={icon}
       image={icon ? undefined : image}
       label={name?.value}
+      ref={menuItemRef}
       title={name.value}
       to={href?.value}
     />

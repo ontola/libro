@@ -4,8 +4,6 @@ import React from 'react';
 import NavBarContent from '../../../components/NavBarContent';
 import Navbar from '../../../topologies/Navbar';
 
-const style = { flexGrow: 1 };
-
 const CommonHeader = (): JSX.Element => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -14,9 +12,7 @@ const CommonHeader = (): JSX.Element => {
 
   return (
     <Navbar elevated={trigger}>
-      <NavBarContent>
-        <div style={style} />
-      </NavBarContent>
+      <NavBarContent />
     </Navbar>
   );
 };

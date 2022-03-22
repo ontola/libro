@@ -9,7 +9,6 @@ import { ManageOrganisationMenu } from './ManageOrganisationMenu';
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';
 
 export interface NavBarContentProps {
-  children: React.ReactNode;
   hideSearch?: boolean;
   hideMenu?: boolean;
 }
@@ -17,22 +16,29 @@ export interface NavBarContentProps {
 export const navBarContentMenusCID = 'CID-NavBarContentMenus';
 
 const useStyles = makeStyles({
+  navBarContent: {
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'space-between',
+  },
   navBarContentMenus: {
     display: 'flex',
-    flexShrink: 1,
     height: '100%',
-  },
-  pusher: {
-    flexGrow: 1,
   },
 });
 
-const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): JSX.Element => {
+const NavBarContent: React.FC<NavBarContentProps> = ({ children, hideSearch, hideMenu }): JSX.Element => {
   const classes = useStyles();
+  const navBarRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <React.Fragment>
-      <NavbarNavigationsMenu />
+    <div
+      className={classes.navBarContent}
+      ref={navBarRef}
+    >
+      <NavbarNavigationsMenu
+        navBarRef={navBarRef}
+      />
       {children}
       <div
         className={clsx(
@@ -40,7 +46,6 @@ const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): 
           classes.navBarContentMenus,
         )}
       >
-        <div className={classes.pusher} />
         <ManageOrganisationMenu />
         {!hideSearch && (
           <Resource
@@ -50,7 +55,7 @@ const NavBarContent = ({ children, hideSearch, hideMenu }: NavBarContentProps): 
         )}
         {!hideMenu && <Resource subject={app.menu} />}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
