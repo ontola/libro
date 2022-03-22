@@ -109,7 +109,7 @@ registerRoute(
 //     ],
 //   })
 // );
-setDefaultHandler(new NetworkOnly());
+// setDefaultHandler(new NetworkOnly());
 
 offlineFallback({
   pageFallback: offlineFile,
