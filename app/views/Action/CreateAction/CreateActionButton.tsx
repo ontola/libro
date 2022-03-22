@@ -1,4 +1,4 @@
-import rdf, { Literal } from '@ontologies/core';
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -29,7 +29,7 @@ import { tableCellTopology } from '../../../topologies/TableCell';
 import { tableFooterCellTopology } from '../../../topologies/TableFooterCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import { tabPaneTopology } from '../../../topologies/TabPane';
-import { invalidStatusIds } from '../../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../../Thing/properties/omniform/helpers';
 
 export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (
   !!prop && Object.values(LinkTarget as any).includes(prop)
@@ -57,7 +57,7 @@ const CreateActionButton: FC = ({ children }) => {
 
   return (
     <LDLink
-      disabled={!!error || invalidStatusIds.includes(rdf.id(actionStatus))}
+      disabled={!!error || isInvalidActionStatus(actionStatus)}
       features={[LinkFeature.Bold]}
       target={normalizeTarget(target)}
       title={error?.value ?? name?.value}

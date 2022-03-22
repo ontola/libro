@@ -22,7 +22,7 @@ import { useOmniformOpenAction } from '../../state/omniform';
 import { LibroTheme } from '../../themes/themes';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { listTopology } from '../../topologies/List';
-import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { OMNIFORM_FILTER, isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';
 
@@ -57,7 +57,7 @@ const ActionInline: FC<InlineCreateActionProps> = ({
 
   const onClick = useOmniformOpenAction(isPartOf, subject);
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return null;
   }
 

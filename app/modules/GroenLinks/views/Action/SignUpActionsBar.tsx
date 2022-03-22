@@ -1,5 +1,4 @@
 import { useTheme } from '@material-ui/core';
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
@@ -12,7 +11,7 @@ import { ButtonVariant } from '../../../../components/Button';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
 import { actionsBarTopology } from '../../../../topologies/ActionsBar';
-import { invalidStatusIds } from '../../../../views/Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../../../../views/Thing/properties/omniform/helpers';
 
 const SignUpActionsBar = () => {
   const theme = useTheme();
@@ -34,7 +33,7 @@ const SignUpActionsBar = () => {
     );
   }
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return null;
   }
 

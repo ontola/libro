@@ -1,4 +1,3 @@
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -15,7 +14,7 @@ import { SignInFormLink } from '../../components/SignInForm';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
@@ -30,7 +29,7 @@ const ActionFull: FC<ActionProps> = ({
   const onDoneHandler = useDoneHandler(onDone);
   const Appendix = appendix;
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return (
       <Container>
         <CardMain>

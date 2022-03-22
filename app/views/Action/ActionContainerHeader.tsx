@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, { Literal } from '@ontologies/core';
+import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -16,7 +16,7 @@ import useOneClickProps from '../../hooks/useOneClickProps';
 import libro from '../../ontology/libro';
 import { LibroTheme } from '../../themes/themes';
 import { containerHeaderTopology } from '../../topologies/Container/ContainerHeader';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps } from './helpers';
 
@@ -83,7 +83,7 @@ const ActionContainerHeader: FC<ActionProps> = ({
     );
   }
 
-  if (!!error || invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (!!error || isInvalidActionStatus(actionStatus)) {
     return null;
   }
 

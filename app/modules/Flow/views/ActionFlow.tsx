@@ -1,7 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/styles';
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -17,7 +16,7 @@ import CardContent from '../../../components/Card/CardContent';
 import { SignInFormLink } from '../../../components/SignInForm';
 import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
-import { invalidStatusIds } from '../../../views/Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../../../views/Thing/properties/omniform/helpers';
 import { ActionProps, useDoneHandler } from '../../../views/Action/helpers';
 import { flowTopology } from '../topologies/Flow';
 
@@ -48,7 +47,7 @@ const ActionFlow: FC<ActionProps> = ({
   const classes = useStyles();
   const [actionStatus] = useProperty(schema.actionStatus);
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return (
       <Container>
         <CardMain>

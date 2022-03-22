@@ -1,4 +1,4 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -37,7 +37,7 @@ export const invalidStatusIds = [
 const actionIsAllowed = (lrs: LinkReduxLRSType, action: SomeNode) => {
   const actionStatus = lrs.getResourceProperty(action, schema.actionStatus);
 
-  return !actionStatus || !invalidStatusIds.includes(rdf.id(actionStatus));
+  return !isInvalidActionStatus(actionStatus);
 };
 
 export const useActions = (items: NamedNode[]): NamedNode[] => {
@@ -52,3 +52,5 @@ export const useActions = (items: NamedNode[]): NamedNode[] => {
 export const actionsAreAllDisabled = (items: NamedNode[], lrs: LinkReduxLRSType): boolean => (
   items.every((action) => !actionIsAllowed(lrs, action))
 );
+
+export const isInvalidActionStatus = (actionStatus: SomeTerm | undefined): boolean => invalidStatusIds.includes(rdf.id(actionStatus));

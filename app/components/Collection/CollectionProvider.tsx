@@ -1,5 +1,5 @@
 import * as as from '@ontologies/as';
-import rdf, {
+import {
   NamedNode,
   SomeTerm,
 } from '@ontologies/core';
@@ -27,7 +27,7 @@ import { SortProps, useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { useCollectionStyles } from '../../views/Collection';
-import { invalidStatusIds } from '../../views/Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
 
 export interface CollectionProps {
@@ -96,7 +96,7 @@ export const useHasInteraction = (collectionResource: SomeNode): boolean => {
     return true;
   }
 
-  return actionStatus && !invalidStatusIds.includes(rdf.id(actionStatus));
+  return actionStatus && !isInvalidActionStatus(actionStatus);
 };
 
 const CollectionProvider = ({

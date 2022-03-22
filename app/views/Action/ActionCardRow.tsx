@@ -1,4 +1,3 @@
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -13,7 +12,7 @@ import { SignInFormLink } from '../../components/SignInForm';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
@@ -25,7 +24,7 @@ const ActionCardRow: FC<ActionProps> = ({
   const [actionStatus] = useProperty(schema.actionStatus);
   const onDoneHandler = useDoneHandler(onDone);
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return (
       <React.Fragment>
         <Property label={schema.name} />

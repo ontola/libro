@@ -1,4 +1,3 @@
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -13,7 +12,7 @@ import { LinkFeature } from '../../components/Link';
 import useOneClickProps from '../../hooks/useOneClickProps';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import { tableCellTopology } from '../../topologies/TableCell';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 const ActionTableCell: FC = ({
   subject,
@@ -28,7 +27,7 @@ const ActionTableCell: FC = ({
   } = useOneClickProps();
   const showDialog = useShowDialog(subject.value);
 
-  const invalid = invalidStatusIds.includes(rdf.id(actionStatus));
+  const invalid = isInvalidActionStatus(actionStatus);
   const title = invalid ? error?.value : name?.value;
 
   return (

@@ -1,4 +1,3 @@
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -17,7 +16,7 @@ import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
@@ -35,7 +34,7 @@ const ActionNested: FC<ActionProps> = ({
   const lrs = useLRS();
   const isModal = topology === alertDialogTopology;
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return (
       <Container>
         <CardMain>

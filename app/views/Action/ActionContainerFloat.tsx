@@ -1,5 +1,4 @@
 import IconButton from '@material-ui/core/IconButton';
-import rdf  from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -18,7 +17,7 @@ import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import { useOmniformOpenAction } from '../../state/omniform';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { OMNIFORM_FILTER, isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';
 
@@ -42,7 +41,7 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
 
   const onClick = useOmniformOpenAction(isPartOf, subject);
 
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return null;
   }
 

@@ -1,4 +1,3 @@
-import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   Property,
@@ -10,15 +9,15 @@ import React from 'react';
 import LDLink from '../../components/LDLink';
 import { LinkTarget } from '../../components/Link';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
+import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 const ActionDetail = () => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
 
-  if (!actionStatus || invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (isInvalidActionStatus(actionStatus)) {
     return null;
   }
 
