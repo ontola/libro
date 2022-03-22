@@ -59,10 +59,6 @@ const FormInput: React.FC<FormInputProps> = ({
   const { removable } = fieldShape;
   const classes = useStyles();
 
-  if (isMarkedForRemove(value)) {
-    return null;
-  }
-
   const removeItem = React.useCallback(() => {
     const newValue = values?.slice() || [];
     const curentValue = newValue[index];
@@ -84,6 +80,10 @@ const FormInput: React.FC<FormInputProps> = ({
   const errors = React.useMemo(() => (
     inputErrors.filter((err) => err?.index === index)
   ), [inputErrors, index]);
+
+  if (isMarkedForRemove(value)) {
+    return null;
+  }
 
   return (
     <div
