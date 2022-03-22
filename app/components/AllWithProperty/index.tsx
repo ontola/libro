@@ -24,6 +24,7 @@ const AllWithProperty = ({ label, ...other }: AllPropertyProps): JSX.Element => 
       {props.map((p, index) => (
         <Renderer
           key={`${p.value}-${index}`}
+          label={label}
           value={p}
           view={view}
           {...other}

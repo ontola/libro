@@ -20,11 +20,13 @@ export interface OtherProps {
 }
 
 interface RendererProps extends OtherProps {
+  label: NamedNode | NamedNode[];
   value: SomeTerm;
   view?: ElementType;
 }
 
 const Renderer = ({
+  label,
   value,
   view: View,
   ...otherProps
@@ -36,6 +38,7 @@ const Renderer = ({
   if (View) {
     return (
       <View
+        label={label}
         linkedProp={value}
         subject={subject}
         {...otherProps}
