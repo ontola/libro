@@ -2,17 +2,15 @@ import Badge from '@material-ui/core/Badge';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Portal from '@material-ui/core/Portal';
-import {
-  useIds,
-  useLinkRenderContext,
-} from 'link-redux';
+import { useLinkRenderContext } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import ontola from '../../ontology/ontola';
 import { collectionMessages } from '../../translations/messages';
 import { FilterComboInput } from '../FilterComboInput';
+import { useActiveValues } from '../FilterComboInput/lib/useActiveValues';
+import { useFilterOptions } from '../FilterComboInput/lib/useFilterOptions';
 
 import { useCollectionOptions } from './CollectionProvider';
 import { useVisibleFilters } from './lib/useVisibleFilters';
@@ -30,15 +28,17 @@ const CollectionFilterToggle = ({
   const { subject } = useLinkRenderContext();
   const { redirectPagination } = useCollectionOptions();
 
-  const activeFilters = useIds(ontola.activeFilters);
   const filterFields = useVisibleFilters();
+
+  const filterValues = useFilterOptions(filterFields);
+  const [activeValues, hiddenActiveValues] = useActiveValues(filterValues);
 
   const [filterBarState, toggleFilterBar] = React.useState<{
     focus: boolean,
     show: boolean,
   }>({
     focus: false,
-    show: !!redirectPagination && activeFilters.length > 0,
+    show: !!redirectPagination && activeValues.length > 0,
   });
   const handleClick = React.useCallback(() => {
     toggleFilterBar({
@@ -64,9 +64,10 @@ const CollectionFilterToggle = ({
             timeout={FILTER_TRANSITION_LENGTH}
           >
             <FilterComboInput
-              activeFilters={activeFilters}
+              activeValues={activeValues}
               autoFocus={filterBarState.focus}
-              filters={filterFields}
+              filterValues={filterValues}
+              hiddenActiveValues={hiddenActiveValues}
               partOf={subject}
               shown={filterBarState.show}
               transitionTime={FILTER_TRANSITION_LENGTH}
@@ -77,7 +78,7 @@ const CollectionFilterToggle = ({
       <Badge
         badgeContent=" "
         color="secondary"
-        invisible={filterBarState.show || activeFilters.length == 0}
+        invisible={filterBarState.show || activeValues.length == 0}
         overlap="circular"
         variant="dot"
       >

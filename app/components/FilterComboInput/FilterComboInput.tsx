@@ -19,13 +19,12 @@ import { useCollectionOptions } from '../Collection/CollectionProvider';
 import { filteredCollectionIRI } from './lib/filteredCollectionIRI';
 import { filterToLabel } from './lib/filterToLabel';
 import { FilterValue } from './lib/FilterValue';
-import { useActiveValues } from './lib/useActiveValues';
-import { useFilterOptions } from './lib/useFilterOptions';
 
 export interface FilterComboInputProps {
-  activeFilters: SomeNode[];
+  activeValues: FilterValue[];
   autoFocus: boolean;
-  filters: SomeNode[];
+  filterValues: FilterValue[];
+  hiddenActiveValues: FilterValue[];
   partOf: SomeNode;
   shown: boolean;
   transitionTime: number;
@@ -48,9 +47,10 @@ const useStyleOverrides = makeStyles<LibroTheme>((theme) => ({
 }));
 
 export const FilterComboInput = ({
-  activeFilters,
+  activeValues,
   autoFocus,
-  filters,
+  filterValues,
+  hiddenActiveValues,
   partOf,
   shown,
   transitionTime,
@@ -62,9 +62,6 @@ export const FilterComboInput = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const iriTemplate = useIRITemplate(partOf);
   const { setCollectionResource } = useCollectionOptions();
-
-  const filterValues = useFilterOptions(filters);
-  const activeValues = useActiveValues(activeFilters, filterValues);
 
   const getOptionLabel = React.useCallback(
     (option: FilterValue) => `${filterToLabel(lrs, intl, option.key)}: ${filterToLabel(lrs, intl, option.value)}`,
@@ -98,7 +95,7 @@ export const FilterComboInput = ({
   );
 
   const handleChange = React.useCallback((_: ChangeEvent<unknown>, value: FilterValue[]) => {
-    const filteredIRI = filteredCollectionIRI(lrs, value, iriTemplate);
+    const filteredIRI = filteredCollectionIRI(lrs, value.concat(hiddenActiveValues), iriTemplate);
 
     setCollectionResource(filteredIRI);
   }, [lrs, iriTemplate]);

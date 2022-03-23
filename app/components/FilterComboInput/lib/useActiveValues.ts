@@ -1,5 +1,8 @@
-import { SomeNode } from 'link-lib/dist-types/types';
-import { LinkReduxLRSType, useLRS } from 'link-redux';
+import {
+  LinkReduxLRSType,
+  useIds,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 
@@ -8,13 +11,16 @@ import ontola from '../../../ontology/ontola';
 import { filterToLabel } from './filterToLabel';
 import { FilterValue } from './FilterValue';
 
+type ActiveValues = [activeValues: FilterValue[], hiddenActiveValues: FilterValue[]];
+
 const compareFilters = (lrs: LinkReduxLRSType, intl: IntlShape, a: FilterValue, b: FilterValue) =>
   filterToLabel(lrs, intl, a.key) === filterToLabel(lrs, intl, b.key) && filterToLabel(lrs, intl, a.value) === filterToLabel(lrs, intl, b.value);
 
-export const useActiveValues = (activeFilters: SomeNode[], filterValues: FilterValue[]): FilterValue[] => {
+export const useActiveValues = (filterValues: FilterValue[]): ActiveValues => {
   const lrs = useLRS();
   const intl = useIntl();
-  const [acValues, setAcValues] = React.useState<FilterValue[]>([]);
+  const activeFilters = useIds(ontola.activeFilters);
+  const [acValues, setAcValues] = React.useState<ActiveValues>([[], []]);
 
   React.useEffect(() => {
     const currentFilterValues = activeFilters.flatMap((currentFilter) => {
@@ -26,8 +32,16 @@ export const useActiveValues = (activeFilters: SomeNode[], filterValues: FilterV
       }));
     });
 
-    const values = filterValues.filter((v) => currentFilterValues.some((cv) => compareFilters(lrs, intl, v, cv)));
-    setAcValues(values);
+    const splitValues = currentFilterValues.reduce<ActiveValues>(
+      ([pass, fail], cv) => (
+        filterValues.some((v) => compareFilters(lrs, intl, v, cv))
+          ? [[...pass, cv], fail]
+          : [pass, [...fail, cv]]
+      ),
+      [[], []],
+    );
+
+    setAcValues(splitValues);
   }, [activeFilters, filterValues]);
 
   return acValues;
