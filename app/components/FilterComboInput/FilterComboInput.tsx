@@ -34,9 +34,9 @@ import { filteredCollectionIRI } from './lib/filteredCollectionIRI';
 import { FilterValue } from './lib/FilterValue';
 
 export interface FilterComboInputProps {
+  activeFilters: SomeTerm[];
   autoFocus: boolean;
   filters: SomeTerm[];
-  currentFilters: SomeTerm[];
   partOf: SomeNode;
   shown: boolean;
   transitionTime: number;
@@ -97,9 +97,9 @@ const compareFilters = (lrs: LinkReduxLRSType, intl: IntlShape, a: FilterValue, 
   toLabel(lrs, intl, a.key) === toLabel(lrs, intl, b.key) && toLabel(lrs, intl, a.value) === toLabel(lrs, intl, b.value);
 
 export const FilterComboInput = ({
+  activeFilters,
   autoFocus,
   filters,
-  currentFilters,
   partOf,
   shown,
   transitionTime,
@@ -154,7 +154,7 @@ export const FilterComboInput = ({
 
   React.useEffect(() => {
     if (filterValues.length > 0) {
-      const currentFilterValues = currentFilters.flatMap((currentFilter) => {
+      const currentFilterValues = activeFilters.flatMap((currentFilter) => {
         const values = lrs.getResourceProperties(currentFilter as Node, ontola.filterValue);
 
         return values.map((val) => ({
@@ -166,7 +166,7 @@ export const FilterComboInput = ({
       const values = filterValues.filter((v) => currentFilterValues.some((cv) => compareFilters(lrs, intl, v, cv)));
       setAcValues(values);
     }
-  }, [currentFilters, filterValues]);
+  }, [activeFilters, filterValues]);
 
   React.useEffect(() => {
     if (shown && autoFocus) {

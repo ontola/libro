@@ -141,9 +141,9 @@ const CollectionProvider = ({
 
   const hasInteraction = useHasInteraction(originalCollection);
   const sortOptions = useSorting(currentCollection);
-  const originalFilters = useFields(originalCollection, ontola.collectionFilter);
-  const currentFilters = useFields(currentCollection, ontola.collectionFilter);
-  const appliedFilters = currentFilters.filter((filter) => !originalFilters.includes(filter));
+  const originalFilters = useFields(originalCollection, ontola.activeFilters);
+  const activeFilters = useFields(currentCollection, ontola.activeFilters);
+  const appliedFilters = activeFilters.filter((filter) => !originalFilters.includes(filter));
 
   const collectionOptions = React.useMemo<CollectionContext>(() => ({
     appliedFilters,

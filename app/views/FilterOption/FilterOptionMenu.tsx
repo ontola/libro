@@ -19,7 +19,7 @@ import ontola from '../../ontology/ontola';
 import { menuTopology } from '../../topologies/Menu';
 
 interface FilterOptionMenuCompProps {
-  currentFilters: SomeNode[];
+  activeFilters: SomeNode[];
   filterCount: SomeTerm;
   filterKey: SomeNode;
   filterValue: SomeTerm;
@@ -32,7 +32,7 @@ interface FilterOptionMenuCompPropsWithRef extends FilterOptionMenuCompProps {
 }
 
 const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
-  currentFilters,
+  activeFilters,
   filterCount,
   filterKey,
   filterValue,
@@ -41,7 +41,7 @@ const FilterOptionMenuComp: React.FC<FilterOptionMenuCompPropsWithRef> = ({
 }) => {
   const iriTemplate = useIRITemplate(partOf);
   const { setCollectionResource } = useCollectionOptions();
-  const selected = currentFilters.some((filter) => filter === filterValue);
+  const selected = activeFilters.some((filter) => filter === filterValue);
   const param = `${encodeURIComponent(filterKey.value)}=${encodeURIComponent(filterValue.value)}`;
   const url = selected
     ? iriTemplate.remove('filter%5B%5D', param)?.value

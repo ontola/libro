@@ -5,7 +5,7 @@ import Portal from '@material-ui/core/Portal';
 import {
   array,
   useIds,
-  useLinkRenderContext, 
+  useLinkRenderContext,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -30,7 +30,7 @@ const CollectionFilterToggle = ({
   const { subject } = useLinkRenderContext();
   const { redirectPagination } = useCollectionOptions();
 
-  const filters = useIds(ontola.collectionFilter);
+  const activeFilters = useIds(ontola.activeFilters);
   const filterFields = useIds(array(ontola.filterFields));
 
   const [filterBarState, toggleFilterBar] = React.useState<{
@@ -38,7 +38,7 @@ const CollectionFilterToggle = ({
     show: boolean,
   }>({
     focus: false,
-    show: !!redirectPagination && filters.length > 0,
+    show: !!redirectPagination && activeFilters.length > 0,
   });
   const handleClick = React.useCallback(() => {
     toggleFilterBar({
@@ -64,8 +64,8 @@ const CollectionFilterToggle = ({
             timeout={FILTER_TRANSITION_LENGTH}
           >
             <FilterComboInput
+              activeFilters={activeFilters}
               autoFocus={filterBarState.focus}
-              currentFilters={filters}
               filters={filterFields}
               partOf={subject}
               shown={filterBarState.show}
@@ -77,7 +77,7 @@ const CollectionFilterToggle = ({
       <Badge
         badgeContent=" "
         color="secondary"
-        invisible={filterBarState.show || filters.length == 0}
+        invisible={filterBarState.show || activeFilters.length == 0}
         overlap="circular"
         variant="dot"
       >
