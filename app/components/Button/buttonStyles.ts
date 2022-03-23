@@ -317,8 +317,8 @@ export default makeStyles<LibroTheme>((theme) => ({
       backgroundColor: 'var(--buttonBackground)',
     },
     '&$cardFloat': {
-      '--button-padding-horizontal': 0,
-      '--button-padding-vertical': '.5rem',
+      '--button-padding-horizontal': '.5rem',
+      '--button-padding-vertical': 0,
     },
     '&$stretched': {
       '--button-padding-horizontal': 0,
