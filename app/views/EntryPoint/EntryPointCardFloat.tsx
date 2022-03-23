@@ -51,7 +51,7 @@ const EntryPointCardFloat: FC<EntryPointCardFloatProps> = ({
       variant={variant}
       onClick={onClick}
     >
-      {count.toString()}
+      {count?.toString()}
     </ButtonWithFeedback>
   );
 };
