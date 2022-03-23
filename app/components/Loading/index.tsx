@@ -54,6 +54,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     height: '1.5em',
     margin: '1em',
   },
+  loadingCardFixed: {
+    minWidth: '18em',
+  },
   loadingCardFloat: {
     borderRadius: '999px !important',
     height: '2em',
@@ -61,6 +64,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   loadingCellRow: {
     height: '1em',
+  },
+  loadingFullResource: {
+    maxWidth: 'unset',
   },
   loadingHeader: {
     height: '2em',
@@ -231,14 +237,17 @@ export const LoadingCardFixed = ({ fill }: LoadingCardFixedProps): JSX.Element =
   const classes = useStyles();
 
   return (
-    <CardFixed fill={fill}>
+    <CardFixed
+      loading
+      fill={fill}
+    >
       <CardContent>
         <div
           className={clsx(
             classes.loadingHeader,
             classes.loadingBackground,
+            classes.loadingCardFixed,
           )}
-          style={{ minWidth: '18em' }}
         />
         <LoadingParagraph />
         <LoadingParagraph />
@@ -281,13 +290,17 @@ export const LoadingPage = (): JSX.Element => (
   </FullResourceTopology>
 );
 
-export const LoadingFullResource = (): JSX.Element => (
-  <FullResourceTopology>
-    <Container>
-      <LoadingCard />
-    </Container>
-  </FullResourceTopology>
-);
+export const LoadingFullResource = (): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <FullResourceTopology>
+      <Container className={classes.loadingFullResource}>
+        <LoadingCard />
+      </Container>
+    </FullResourceTopology>
+  );
+};
 
 export const LoadingDetail = (): JSX.Element => {
   const classes = useStyles();

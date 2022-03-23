@@ -83,9 +83,16 @@ export default [
     RENDER_CLASS_NAME,
     [
       alertDialogTopology,
-      containerTopology,
       flowTopology,
       listTopology,
+    ],
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingButton,
+    ll.LoadingResource,
+    RENDER_CLASS_NAME,
+    [
+      containerTopology,
     ],
   ),
   LinkedRenderStore.registerRenderer(

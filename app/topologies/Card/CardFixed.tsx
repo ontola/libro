@@ -21,6 +21,7 @@ export const cardFixedTopology = argu.cardFixed;
 export interface CardFixedProps {
   fill?: boolean;
   fixed?: boolean;
+  loading?: boolean;
 }
 
 const styles = (theme: LibroTheme) => ({
@@ -31,6 +32,9 @@ const styles = (theme: LibroTheme) => ({
       height: '100%',
       margin: 0,
       width: '100%',
+    },
+    loading: {
+      margin: '0rem 0.5625rem',
     },
   }),
 });
@@ -61,6 +65,7 @@ class CardFixed extends Topology<PropType> {
       [classes.card]: true,
       [classes.fixed]: true,
       [classes.fill]: this.props.fill,
+      [classes.loading]: this.props.loading,
     });
   }
 }
