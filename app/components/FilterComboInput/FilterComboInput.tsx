@@ -46,6 +46,8 @@ const useStyleOverrides = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
+const childProps = { color: 'primary' };
+
 export const FilterComboInput = ({
   activeValues,
   autoFocus,
@@ -78,6 +80,31 @@ export const FilterComboInput = ({
     ),
     [lrs, intl, classes],
   );
+  const renderInput = React.useCallback((params) => (
+    <TextField
+      {...params}
+      inputRef={inputRef}
+      margin="normal"
+      placeholder={intl.formatMessage(collectionMessages.filter)}
+      variant="outlined"
+    />
+  ), [inputRef, intl]);
+  const groupBy = React.useCallback(
+    (option) => filterToLabel(lrs, intl, option.key) ?? '',
+    [lrs, intl, filterToLabel],
+  );
+  const handleChange = React.useCallback((_: ChangeEvent<unknown>, value: FilterValue[]) => {
+    const filteredIRI = filteredCollectionIRI(lrs, value.concat(hiddenActiveValues), iriTemplate);
+
+    setCollectionResource(filteredIRI);
+  }, [lrs, iriTemplate]);
+
+  const acFilterOptions = React.useMemo(
+    () => createFilterOptions({
+      stringify: getOptionLabel,
+    }),
+    [getOptionLabel],
+  );
 
   React.useEffect(() => {
     if (shown && autoFocus) {
@@ -87,40 +114,19 @@ export const FilterComboInput = ({
     }
   }, [shown, autoFocus]);
 
-  const acFilterOptions = React.useMemo(
-    () => createFilterOptions({
-      stringify: getOptionLabel,
-    }),
-    [getOptionLabel],
-  );
-
-  const handleChange = React.useCallback((_: ChangeEvent<unknown>, value: FilterValue[]) => {
-    const filteredIRI = filteredCollectionIRI(lrs, value.concat(hiddenActiveValues), iriTemplate);
-
-    setCollectionResource(filteredIRI);
-  }, [lrs, iriTemplate]);
-
   return (
     <Autocomplete
       autoComplete
       autoHighlight
       multiple
       openOnFocus
-      ChipProps={{ color: 'primary' }}
+      ChipProps={childProps}
       classes={overrides}
       filterOptions={acFilterOptions}
       getOptionLabel={getOptionLabel}
-      groupBy={(option) => filterToLabel(lrs, intl, option.key) ?? ''}
+      groupBy={groupBy}
       options={filterValues}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          inputRef={inputRef}
-          margin="normal"
-          placeholder={intl.formatMessage(collectionMessages.filter)}
-          variant="outlined"
-        />
-      )}
+      renderInput={renderInput}
       renderOption={renderOption}
       value={activeValues}
       onChange={handleChange}

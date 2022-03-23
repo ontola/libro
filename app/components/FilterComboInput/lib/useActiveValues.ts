@@ -33,11 +33,15 @@ export const useActiveValues = (filterValues: FilterValue[]): ActiveValues => {
     });
 
     const splitValues = currentFilterValues.reduce<ActiveValues>(
-      ([pass, fail], cv) => (
-        filterValues.some((v) => compareFilters(lrs, intl, v, cv))
-          ? [[...pass, cv], fail]
-          : [pass, [...fail, cv]]
-      ),
+      ([pass, fail], cv) => {
+        const match = filterValues.find((v) => compareFilters(lrs, intl, v, cv));
+
+        return (
+          match
+            ? [[...pass, match], fail]
+            : [pass, [...fail, cv]]
+        );
+      },
       [[], []],
     );
 

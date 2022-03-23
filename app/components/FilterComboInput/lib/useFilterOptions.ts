@@ -6,13 +6,15 @@ import React from 'react';
 import { arraysEqual } from '../../../helpers/data';
 import useMultipleFieldOptions from '../../../hooks/useMultipleFieldOptions';
 import ontola from '../../../ontology/ontola';
+import { useVisibleFilters } from '../../Collection/lib/useVisibleFilters';
 
 import { FilterValue } from './FilterValue';
 
 const getFilterValues = (lrs: LinkReduxLRSType, filter: SomeTerm) => lrs.dig(filter as Node, [ontola.filterOptions, ontola.filterValue]);
 
-export const useFilterOptions = (filters: SomeTerm[]): FilterValue[] => {
+export const useFilterOptions = (): FilterValue[] => {
   const lrs = useLRS();
+  const filterFields = useVisibleFilters();
   const [filterValues, setFilterValues] = React.useState<FilterValue[]>([]);
   const [collectionShIn, setCollectionShIn] = React.useState<SomeNode[]>([]);
   const { loading, optionsMap } = useMultipleFieldOptions(collectionShIn);
@@ -21,8 +23,8 @@ export const useFilterOptions = (filters: SomeTerm[]): FilterValue[] => {
     const valueList: FilterValue[] = [];
     const shInList: SomeNode[] = [];
 
-    for (const filter of filters) {
-      const shIn = lrs.getResourceProperty(filter as Node, ontola.filterOptionsIn) as SomeNode;
+    for (const filter of filterFields) {
+      const shIn = lrs.getResourceProperty(filter, ontola.filterOptionsIn) as SomeNode;
 
       if (shIn) {
         if (!loading) {
@@ -50,7 +52,7 @@ export const useFilterOptions = (filters: SomeTerm[]): FilterValue[] => {
     if (!arraysEqual(shInList, collectionShIn)) {
       setCollectionShIn(shInList);
     }
-  }, [filters, optionsMap]);
+  }, [filterFields, optionsMap]);
 
   return filterValues;
 };

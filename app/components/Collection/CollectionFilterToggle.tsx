@@ -13,7 +13,6 @@ import { useActiveValues } from '../FilterComboInput/lib/useActiveValues';
 import { useFilterOptions } from '../FilterComboInput/lib/useFilterOptions';
 
 import { useCollectionOptions } from './CollectionProvider';
-import { useVisibleFilters } from './lib/useVisibleFilters';
 
 const FILTER_TRANSITION_LENGTH = 100;
 
@@ -28,9 +27,7 @@ const CollectionFilterToggle = ({
   const { subject } = useLinkRenderContext();
   const { redirectPagination } = useCollectionOptions();
 
-  const filterFields = useVisibleFilters();
-
-  const filterValues = useFilterOptions(filterFields);
+  const filterValues = useFilterOptions();
   const [activeValues, hiddenActiveValues] = useActiveValues(filterValues);
 
   const [filterBarState, toggleFilterBar] = React.useState<{
@@ -51,7 +48,7 @@ const CollectionFilterToggle = ({
     setShowPortal(!!filterContainerRef?.current);
   }, [filterContainerRef?.current]);
 
-  if (filterFields.length == 0) {
+  if (filterValues.length == 0) {
     return null;
   }
 
