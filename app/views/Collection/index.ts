@@ -15,7 +15,6 @@ import CollectionTabPane from './CollectionTabPane';
 import CollectionFrame from './properties/collectionFrame';
 import CreateAction from './properties/createAction';
 import DefaultPagination, { defaultPaginationCID } from './properties/defaultPagination';
-import FilterFields from './properties/filterFields';
 import Header from './properties/header';
 import InfinitePagination from './properties/infinitePagination';
 import IsPartOf from './properties/isPartOf';
@@ -61,7 +60,6 @@ export default [
   CollectionDefault,
   CollectionList,
   CreateAction,
-  FilterFields,
   ...Header,
   ...IsPartOf,
   ...Name,
