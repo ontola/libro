@@ -3,7 +3,6 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Portal from '@material-ui/core/Portal';
 import {
-  array,
   useIds,
   useLinkRenderContext,
 } from 'link-redux';
@@ -16,6 +15,7 @@ import { collectionMessages } from '../../translations/messages';
 import { FilterComboInput } from '../FilterComboInput';
 
 import { useCollectionOptions } from './CollectionProvider';
+import { useVisibleFilters } from './lib/useVisibleFilters';
 
 const FILTER_TRANSITION_LENGTH = 100;
 
@@ -31,7 +31,7 @@ const CollectionFilterToggle = ({
   const { redirectPagination } = useCollectionOptions();
 
   const activeFilters = useIds(ontola.activeFilters);
-  const filterFields = useIds(array(ontola.filterFields));
+  const filterFields = useVisibleFilters();
 
   const [filterBarState, toggleFilterBar] = React.useState<{
     focus: boolean,

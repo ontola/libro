@@ -166,6 +166,7 @@ export default {
   trashAction: ontola('trashAction'),
   updateAction: ontola('updateAction'),
   view: ontola('view'),
+  visible: ontola('visible'),
   widgetResource: ontola('widgetResource'),
   widgetSize: ontola('widgetSize'),
   widgets: ontola('widgets'),
