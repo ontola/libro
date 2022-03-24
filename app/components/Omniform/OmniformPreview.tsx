@@ -36,6 +36,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     paddingLeft: '1rem',
     width: '100%',
   },
+  omniformPreviewCard: {
+    borderTop: `1px solid ${theme.palette.divider}`,
+  },
   omniformPreviewContainer: {
     border: theme.greyBorder,
     borderRadius: theme.shape.borderRadius,
@@ -70,6 +73,7 @@ const OmniformPreview = ({
       className={clsx({
         [classes.omniformPreview]: true,
         [classes.omniformPreviewContainer]: topology === containerTopology,
+        [classes.omniformPreviewCard]: topology !== containerTopology,
       })}
       type="button"
       onClick={onClick}

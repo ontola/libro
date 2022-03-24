@@ -120,6 +120,7 @@ export default makeStyles<LibroTheme>((theme) => ({
     '&:hover, &:focus': {
       color: theme.palette.grey.dark,
     },
+    borderRadius: theme.shape.borderRadius,
     color: theme.palette.grey.main,
   },
 
@@ -129,10 +130,6 @@ export default makeStyles<LibroTheme>((theme) => ({
         boxShadow: 'unset',
         fontWeight: theme.typography.fontWeightBold,
       },
-      '&::after': {
-        backgroundColor: theme.palette.grey.xLight,
-      },
-      backgroundColor: theme.palette.background.default,
       color: theme.palette.grey.midDark,
     },
     '&::after': {
@@ -149,6 +146,7 @@ export default makeStyles<LibroTheme>((theme) => ({
     '&:hover, &:focus': {
       color: theme.palette.grey.dark,
     },
+    borderRadius: theme.shape.borderRadius,
     color: theme.palette.grey.midLight,
     overflow: 'hidden',
     paddingLeft: '.8em',

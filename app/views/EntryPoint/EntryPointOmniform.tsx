@@ -9,17 +9,16 @@ import CardContent from '../../components/Card/CardContent';
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import { FormTheme } from '../../components/Form/Form';
 import { LoadingGridContent } from '../../components/Loading';
+import Card from '../../topologies/Card';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 
 interface EntryPointOmniformProps extends EntryPointProps {
-  entryPointWrapper: React.ElementType;
   parentIRI: string;
 }
 
 const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
-  entryPointWrapper,
   footer,
   parentIRI,
   subject,
@@ -37,7 +36,7 @@ const EntryPointOmniform: FC<EntryPointOmniformProps> = ({
   return (
     <EntryPointForm
       {...entryPointFormProps}
-      Wrapper={entryPointWrapper}
+      Wrapper={Card}
       footer={footer}
       theme={FormTheme.Preview}
       onLoad={() => (

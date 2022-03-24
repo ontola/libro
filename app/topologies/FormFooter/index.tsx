@@ -1,28 +1,23 @@
-import { withStyles } from '@material-ui/styles';
-import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
-import clsx from 'clsx';
+import {
+  WithStyles,
+  createStyles,
+  withStyles, 
+} from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import { CSSPropertiesMap, LibroTheme } from '../../themes/themes';
 
 export const formFooterTopology = argu.formFooter;
 
-const styles = (theme: LibroTheme): CSSPropertiesMap => ({
-  borderTop: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-  },
+const styles = () => createStyles({
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
   },
 });
 
-interface PropTypes {
-  borderTop?: boolean;
-  classes: ClassNameMap;
-}
+type PropTypes = WithStyles<typeof styles>;
 
 class FormFooter extends TopologyProvider<PropTypes> {
   constructor(props: PropTypes) {
@@ -32,10 +27,7 @@ class FormFooter extends TopologyProvider<PropTypes> {
   }
 
   public render() {
-    const className = clsx({
-      [this.props.classes.borderTop]: this.props.borderTop,
-      [this.props.classes.wrapper]: true,
-    });
+    const className = this.props.classes.wrapper;
 
     return this.wrap((
       <div className={className}>

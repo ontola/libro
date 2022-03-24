@@ -1,9 +1,11 @@
 import Collapse from '@material-ui/core/Collapse';
+import { makeStyles } from '@material-ui/styles';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
+  TopologyType,
   register,
   useGlobalIds,
   useLRS,
@@ -24,10 +26,9 @@ import {
   useOmniformOpen,
   useOmniformOpenedState,
 } from '../../../../state/omniform';
-import Card, { cardTopology } from '../../../../topologies/Card';
+import { cardTopology } from '../../../../topologies/Card';
 import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
-import CardRow from '../../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../../topologies/Container';
 
 import {
@@ -44,7 +45,16 @@ export interface CollapsedOmniformProps {
   subject: NamedNode;
 }
 
+const useStyles = makeStyles({
+  open: {
+    padding:'0.75rem',
+  },
+});
+
+const cardTopologies = new Set<TopologyType>([cardAppendixTopology, cardMainTopology, cardTopology]);
+
 const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
+  const classes = useStyles();
   const lrs = useLRS();
   const topology = useTopology();
   const types = useGlobalIds(rdfx.type);
@@ -83,9 +93,6 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
 
   const hasItems = items.filter((item) => entityIsLoaded(lrs, item)).length > 0;
   const renderHeader = props.header && hasItems;
-  const Wrapper = topology === containerTopology ? 'div' : CardRow;
-  const wrapperOpts = topology === containerTopology ? {} : { borderTop: true };
-  const entryPointWrapper = topology === containerTopology ? Card : undefined;
 
   if (opened) {
     return (
@@ -95,18 +102,16 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
             {props.header}
           </Heading>
         )}
-        <Wrapper {...wrapperOpts}>
+        <div className={cardTopologies.has(topology) ? classes.open : ''}>
           <OmniformConnector
             autofocusForm
-            borderTop={topology !== containerTopology}
             closeForm={closeForm}
-            entryPointWrapper={entryPointWrapper}
             items={items}
             onDone={toggle}
             onKeyUp={handleKey}
             {...props}
           />
-        </Wrapper>
+        </div>
       </React.Fragment>
     );
   } else if (!props.clickToOpen) {
@@ -126,12 +131,10 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
         mountOnEnter
         in={shouldShow}
       >
-        <Wrapper {...wrapperOpts}>
-          <OmniformPreview
-            primaryAction={items[0]}
-            onClick={toggle}
-          />
-        </Wrapper>
+        <OmniformPreview
+          primaryAction={items[0]}
+          onClick={toggle}
+        />
       </Collapse>
     </React.Fragment>
   );

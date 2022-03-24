@@ -32,9 +32,7 @@ import { FormFieldError } from '../FormField';
 export interface OmniformProps {
   actions: Set<Node>;
   autofocusForm?: boolean;
-  borderTop?: boolean;
   closeForm?: () => void;
-  entryPointWrapper?: React.ElementType;
   error?: FormFieldError;
   formInstance?: FormApi<any, Partial<any>>;
   onCancel?: () => void;
@@ -130,7 +128,7 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
     const object = lrs.getResourceProperty(action, schema.object);
 
     const footer = (loading: boolean): JSX.Element => (
-      <FormFooter borderTop={props.borderTop}>
+      <FormFooter>
         <Property label={ll.actionBody} />
         {types.length > 1 ? types : null}
         <FormFooterRight
@@ -146,7 +144,6 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
         <Property
           forceRender
           autofocusForm={props.autofocusForm}
-          entryPointWrapper={props.entryPointWrapper}
           footer={footer}
           formInstance={props.formInstance}
           key={action.value}
