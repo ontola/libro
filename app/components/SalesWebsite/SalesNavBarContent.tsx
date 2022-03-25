@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
 import { LibroTheme } from '../../themes/themes';
+import { useWebsiteIRI } from '../../hooks/useWebsiteIRI';
 
 import { SalesNavBarDrawer } from './SalesNavBarDrawer';
 
@@ -63,6 +63,8 @@ const SalesNavBarContent = (): JSX.Element => {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
+  const websiteIRI = useWebsiteIRI();
+
   const handleDrawerButtonClick = () => {
     setDrawerOpen(true);
   };
@@ -75,7 +77,7 @@ const SalesNavBarContent = (): JSX.Element => {
     <React.Fragment>
       <Resource
         forceRender
-        subject={frontendIRI}
+        subject={websiteIRI}
       >
         <Property label={ontola.navigationsMenu}>
           <div className={classes.navBar}>

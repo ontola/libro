@@ -16,7 +16,7 @@ const useAppBarOverrides = makeStyles({
   },
 });
 
-const SalesWebsiteHeader = (): JSX.Element => {
+const SalesWebsiteHeader: React.FC = () => {
   const appBarOverrides = useAppBarOverrides();
 
   return (

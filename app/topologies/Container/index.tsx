@@ -54,7 +54,7 @@ class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
 }
 
 export interface LargeContainerProps {
-  children: NonNullable<React.ReactNode>
+  children: NonNullable<React.ReactNode>;
 }
 
 export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => (

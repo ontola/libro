@@ -4,10 +4,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
-import { frontendIRI } from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import Navbar from '../../../topologies/Navbar';
 import { LibroTheme } from '../../themes';
+import { useWebsiteIRI } from '../../../hooks/useWebsiteIRI';
 
 import { ChapterSearch } from './ChapterSearch';
 
@@ -53,6 +53,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
 const AcademyHeader = (): JSX.Element => {
   const classNames = useStyles();
+  const websiteIRI = useWebsiteIRI();
 
   return (
     <Navbar
@@ -62,9 +63,9 @@ const AcademyHeader = (): JSX.Element => {
       <div className={classNames.nav}>
         <NavLink
           className={classNames.logoWrapper}
-          to={retrievePath(frontendIRI)!}
+          to={retrievePath(websiteIRI)!}
         >
-          <Resource subject={frontendIRI}>
+          <Resource subject={websiteIRI}>
             <Property label={ontola.navigationsMenu}>
               <Property label={ontola.menuItems} />
             </Property>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import { LinkReduxLRSType, useLRS } from 'link-redux';
+import { Quadruple } from '@ontologies/core';
 
 import { WebManifest } from '../../../../WebManifest';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
@@ -8,6 +10,7 @@ import { ProjectContext, subResource } from '../context/ProjectContext';
 import { PageViewerState } from '../../lib/PageViewerState';
 import { graphToSeed } from '../lib/graphToSeed';
 import { projectToSource } from '../lib/projectToSource';
+import { handle } from '../../../../helpers/logging';
 
 import { useNewDialogHandle } from './useDialogHandle';
 
@@ -37,11 +40,19 @@ const subResourceIri = (project: ProjectContext): string => {
   return normalize(path, project.websiteIRI);
 };
 
-const projectToPageViewerState = (project: ProjectContext): PageViewerState => {
+const projectToPageViewerState = (project: ProjectContext, lrs: LinkReduxLRSType): PageViewerState => {
   const source = projectToSource(project);
   const manifest = JSON.parse(project.manifest.value) as WebManifest;
-  const quads = parseToGraph(source, manifest.ontola.website_iri, true)
-    .flatMap(([, it]) => it.quads);
+  let quads: Quadruple[] = [];
+
+  try {
+    quads = parseToGraph(source, manifest.ontola.website_iri, true)
+      .flatMap(([, it]) => it.quads);
+  } catch (e) {
+    handle(e);
+    lrs.actions.ontola.showSnackbar('Could not parse data');
+  }
+
   const slice = graphToSeed(quads);
 
   return {
@@ -56,12 +67,14 @@ const projectToPageViewerState = (project: ProjectContext): PageViewerState => {
 
 export const usePopoutViewer = ({ onClose, onOpen, project }: PopoutEditorProps): () => void => {
   const initialLoadListener = React.useRef<((e: MessageEvent<EditorUpdateEvent>) => void) | undefined>();
+  const lrs = useLRS();
+
   const [recreateDialog, sendUpdate] = useNewDialogHandle(onOpen, onClose);
 
   const updateDoc = React.useCallback(() => {
     const message = {
       type: EditorEvents.EditorUpdate,
-      viewOpts: projectToPageViewerState(project),
+      viewOpts: projectToPageViewerState(project, lrs),
     };
 
     sendUpdate(message);
