@@ -11,8 +11,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { formMessages, studioDistributionMessages } from '../../../../../translations/messages';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
+import { useHasUnsavedChanges } from '../../hooks/useHasUnsavedChanges';
 import { createNewDistribution } from '../../lib/distributionAgent';
-import { hashProjectData } from '../../lib/hashProject';
 
 const versionInputProps = {
   startAdornment: (
@@ -27,7 +27,7 @@ export const CreateDistributionDialog = ({ dispatch, project }: ProjectContextPr
   const [version, setVersion] = React.useState('');
   const [message, setMessage] = React.useState('');
 
-  const currentHash = React.useMemo(() => hashProjectData(project), []);
+  const hasUnsavedChanges = useHasUnsavedChanges(project);
 
   const handleClose = React.useCallback(() => {
     dispatch({
@@ -47,8 +47,6 @@ export const CreateDistributionDialog = ({ dispatch, project }: ProjectContextPr
       }
     });
   }, [project.iri, version, message]);
-
-  const hasUnsavedChanges = currentHash !== project.serverDataHash;
 
   return (
     <Dialog

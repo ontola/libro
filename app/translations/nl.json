@@ -378,7 +378,7 @@
     "defaultMessage": "Documenten"
   },
   "https://rdf.studio/i18n/importButtonLabel": {
-    "defaultMessage": "Data importeren"
+    "defaultMessage": "Importeren"
   },
   "https://rdf.studio/i18n/importDialog/confirm": {
     "defaultMessage": "Importeren"
@@ -634,6 +634,15 @@
   },
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documenten"
+  },
+  "https://rdf.studio/i18n/exportButtonLabel": {
+    "defaultMessage": "Exporteren"
+  },
+  "https://rdf.studio/i18n/exportDialog/dialogTitle": {
+    "defaultMessage": "Data exporteren"
+  },
+  "https://rdf.studio/i18n/exportDialog/saveChanges": {
+    "defaultMessage": "Sla wijzigingen op om inconsistente data te voorkomen."
   },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Weet je zeker dat je het document wilt overschrijven: {docID}?"

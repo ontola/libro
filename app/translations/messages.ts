@@ -469,13 +469,17 @@ export const signInMessages: Messages = defineMessages({
   },
 });
 
-export const studioToolbarMessages: Messages = defineMessages({
+export const studioToolbarMessages = defineMessages({
   documentDropdownLabel: {
     defaultMessage: 'Documents',
     id: 'https://rdf.studio/i18n/documentDropdownLabel',
   },
+  exportButtonLabel: {
+    defaultMessage: 'Export',
+    id: 'https://rdf.studio/i18n/exportButtonLabel',
+  },
   importButtonLabel: {
-    defaultMessage: 'Import data',
+    defaultMessage: 'Import',
     id: 'https://rdf.studio/i18n/importButtonLabel',
   },
   importDialogConfirm: {
@@ -521,6 +525,17 @@ export const studioToolbarMessages: Messages = defineMessages({
   savedNotification: {
     defaultMessage: 'Document saved.',
     id: 'https://rdf.studio/i18n/savedNotification',
+  },
+});
+
+export const studioExportMessages = defineMessages({
+  dialogTitle: {
+    defaultMessage: 'Export Data',
+    id: 'https://rdf.studio/i18n/exportDialog/dialogTitle',
+  },
+  saveChanges: {
+    defaultMessage: 'Save changes before exporting to prevent inconsistencies.',
+    id: 'https://rdf.studio/i18n/exportDialog/saveChanges',
   },
 });
 

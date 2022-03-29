@@ -539,6 +539,15 @@
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Dokumente"
   },
+  "https://rdf.studio/i18n/exportButtonLabel": {
+    "defaultMessage": "Exportieren"
+  },
+  "https://rdf.studio/i18n/exportDialog/dialogTitle": {
+    "defaultMessage": "Daten exportieren"
+  },
+  "https://rdf.studio/i18n/exportDialog/saveChanges": {
+    "defaultMessage": "Änderungen speichern, um inkonsistente Daten zu vermeiden."
+  },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Sind Sie sicher, dass Sie überschreiben möchten: {docID}?"
   },

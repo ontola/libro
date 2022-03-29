@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import CloseIcon from '@material-ui/icons/Close';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import LaunchIcon from '@material-ui/icons/Launch';
 import SaveIcon from '@material-ui/icons/Save';
 import { useLRS } from 'link-redux';
@@ -99,6 +100,13 @@ const Toolbar = ({
     });
   }, [setSaving, project]);
 
+  const openExportDialog = React.useCallback(() => {
+    dispatch({
+      dialogType: DialogType.Export,
+      type: ProjectAction.ShowDialog,
+    });
+  }, [setSaving, project]);
+
   const handleSave = React.useCallback(() => {
     createHandler(saveProject)();
     dispatch({
@@ -132,7 +140,8 @@ const Toolbar = ({
         onClick={recreateDialog}
       >
         <Badge
-          color={connected ? 'primary' : 'secondary'}
+          color="secondary"
+          invisible={!connected}
           variant="dot"
         >
           <LaunchIcon />
@@ -142,17 +151,26 @@ const Toolbar = ({
         {project.iri}
       </Typography>
       <span className={classes.spacer} />
-      <Button
-        disabled={saving}
-        startIcon={<CloudUploadIcon />}
-        variant="outlined"
-        onClick={openImportDialog}
-      >
-        {intl.formatMessage(studioToolbarMessages.importButtonLabel)}
-      </Button>
+      <ButtonGroup>
+        <Button
+          disabled={saving}
+          startIcon={<CloudUploadIcon />}
+          variant="outlined"
+          onClick={openImportDialog}
+        >
+          {intl.formatMessage(studioToolbarMessages.importButtonLabel)}
+        </Button>
+        <Button
+          disabled={saving}
+          startIcon={<CloudDownloadIcon />}
+          variant="outlined"
+          onClick={openExportDialog}
+        >
+          {intl.formatMessage(studioToolbarMessages.exportButtonLabel)}
+        </Button>
+      </ButtonGroup>
       <ButtonGroup
         innerRef={anchorRef}
-        variant="contained"
       >
         <Button
           disabled={saving}
@@ -163,8 +181,8 @@ const Toolbar = ({
           {intl.formatMessage(studioToolbarMessages.saveButtonLabel)}
         </Button>
         <Button
-          color="primary"
           size="small"
+          variant="outlined"
           onClick={handleToggle}
         >
           <ArrowDropDownIcon />
@@ -202,15 +220,14 @@ const Toolbar = ({
         )}
       </Popper>
 
-      <Button
-        variant="outlined"
+      <IconButton
         onClick={() => dispatch({
           iri: undefined,
           type: ProjectAction.Load,
         })}
       >
         <CloseIcon />
-      </Button>
+      </IconButton>
     </Paper>
   );
 };

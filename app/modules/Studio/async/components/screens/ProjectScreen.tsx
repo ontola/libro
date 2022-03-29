@@ -9,6 +9,7 @@ import { usePopoutViewer } from '../../hooks/usePopoutViewer';
 import { Content } from '../Content';
 import { CreateDistributionDialog } from '../dialogs/CreateDistributionDialog';
 import { DeployDialog } from '../dialogs/DeployDialog';
+import { ExportDialog } from '../dialogs/ExportDialog';
 import { ImportDialog } from '../dialogs/ImportDialog';
 import { LeftPanel } from '../LeftPanel';
 import Toolbar from '../Toolbar';
@@ -105,6 +106,12 @@ export const ProjectScreen = ({ dispatch, project }: ProjectContextProps): JSX.E
       )}
       {project.dialog === DialogType.Deploy && (
         <DeployDialog
+          dispatch={dispatch}
+          project={project}
+        />
+      )}
+      {project.dialog === DialogType.Export && (
+        <ExportDialog
           dispatch={dispatch}
           project={project}
         />

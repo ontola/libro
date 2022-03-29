@@ -104,7 +104,7 @@
     "defaultMessage": "The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource."
   },
   "https://app.argu.co/i18n/errors/request/200/header": {
-    "defaultMessage": "Error in request"
+    "defaultMessage": "Bad request (400 Bad Request)"
   },
   "https://app.argu.co/i18n/errors/request/401/body": {
     "defaultMessage": "You have to be logged in to view this resource."
@@ -161,7 +161,7 @@
     "defaultMessage": "Unprocessable Entity"
   },
   "https://app.argu.co/i18n/errors/request/429/body": {
-    "defaultMessage": "You're making too many requests, please try again later"
+    "defaultMessage": "You're making too many request, try again in half a minute."
   },
   "https://app.argu.co/i18n/errors/request/429/header": {
     "defaultMessage": "Too many requests"
@@ -173,7 +173,7 @@
     "defaultMessage": "Problem with the browser"
   },
   "https://app.argu.co/i18n/errors/request/500/body": {
-    "defaultMessage": "Something went wrong on our side, please try again later"
+    "defaultMessage": "An error occurred on our side, please try again later."
   },
   "https://app.argu.co/i18n/errors/request/500/header": {
     "defaultMessage": "Internal server error"
@@ -599,8 +599,17 @@
   "https://rdf.studio/i18n/documentDropdownLabel": {
     "defaultMessage": "Documents"
   },
+  "https://rdf.studio/i18n/exportButtonLabel": {
+    "defaultMessage": "Export"
+  },
+  "https://rdf.studio/i18n/exportDialog/dialogTitle": {
+    "defaultMessage": "Export Data"
+  },
+  "https://rdf.studio/i18n/exportDialog/saveChanges": {
+    "defaultMessage": "Save changes before exporting to prevent inconsistencies."
+  },
   "https://rdf.studio/i18n/importButtonLabel": {
-    "defaultMessage": "Import data"
+    "defaultMessage": "Import"
   },
   "https://rdf.studio/i18n/importDialog/confirm": {
     "defaultMessage": "import"

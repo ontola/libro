@@ -63,6 +63,7 @@ export enum ComponentName {
 
 export enum DialogType {
   Import,
+  Export,
   CreateDistribution,
   Deploy,
 }

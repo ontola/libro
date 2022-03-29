@@ -32,3 +32,4 @@ package-lock.json
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+report.*.json
