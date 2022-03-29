@@ -13,7 +13,6 @@ import {
 } from '../../context/ProjectContext';
 import { parseSource } from '../../hooks/useGenerateLRSFromSource';
 import { websiteRelativePath } from '../../lib/iri';
-import { PrerenderPreview } from '../PrerenderPreview';
 
 import { DataEditor } from './DataEditor';
 
@@ -40,7 +39,7 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
   const [tab, setTab] = React.useState('editor');
   const [value, setValue] = React.useState(() => resource.value);
 
-  const [scheduleSave,, flushSave] = useDebouncedCallback<(v: string) => void>((next) => {
+  const [scheduleSave, , flushSave] = useDebouncedCallback<(v: string) => void>((next) => {
     try {
       const [[iri]] = parseSource(next, project.websiteIRI);
 
@@ -75,10 +74,6 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
           label="Editor"
           value="editor"
         />
-        <Tab
-          label="Preview"
-          value="preview"
-        />
       </Tabs>
       <TabPanel
         className={classes.grow}
@@ -93,12 +88,6 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
           }}
           onMount={onMount}
         />
-      </TabPanel>
-      <TabPanel
-        className={classes.grow}
-        value="preview"
-      >
-        <PrerenderPreview project={project} />
       </TabPanel>
     </TabContext>
   );
