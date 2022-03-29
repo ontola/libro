@@ -30,9 +30,11 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gap: '20px',
     justifyContent: 'space-between',
     margin: 'auto',
-    paddingBottom: '0px',
-    paddingTop: '0.5rem',
     width: '100%',
+  },
+  root: {
+    height: 'unset !important',
+    minHeight: 'unset !important',
   },
   searchButton: {
     alignSelf: 'strech',
@@ -48,6 +50,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   wrapper: {
     padding: theme.spacing(HEADER_PADDING),
+    position: 'static',
   },
 }));
 
@@ -58,7 +61,10 @@ const AcademyHeader = (): JSX.Element => {
   return (
     <Navbar
       fullWidth
-      classes={({ wrapper: classNames.wrapper })}
+      classes={({
+        toolbar: classNames.root,
+        wrapper: classNames.wrapper,
+      })}
     >
       <div className={classNames.nav}>
         <NavLink

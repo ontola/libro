@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {
   WithStyles,
   withStyles,
-  withTheme, 
+  withTheme,
 } from '@material-ui/styles';
 import clsx from 'clsx';
 import React from 'react';
@@ -30,6 +30,7 @@ const styles = (theme: LibroTheme): CSSPropertiesMap => ({
   root: {
     display: 'block',
   },
+  toolbar: {},
   wrapper: {
     color: theme.appBar.resolveColor(),
     zIndex: theme.zIndex.appBar + 1,
@@ -60,7 +61,7 @@ class Navbar extends Topology<PropType> {
       position,
     } = this.props.theme.appBar;
 
-    const ToolbarWrapper = this.props.fullWidth ? 'div' : Container;
+    const ToolbarWrapper = this.props.fullWidth ? React.Fragment : Container;
     const toolbarWrapperProps = this.props.fullWidth ? {} : { maxWidth };
 
     return this.wrap((subject) => (
@@ -79,7 +80,7 @@ class Navbar extends Topology<PropType> {
             <ToolbarWrapper {...toolbarWrapperProps}>
               <Toolbar
                 disableGutters
-                classes={this.props.classes}
+                classes={{ root: this.props.classes.root }}
                 variant="dense"
               >
                 {this.props.children}

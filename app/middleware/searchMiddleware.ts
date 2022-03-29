@@ -1,7 +1,4 @@
-import rdf, {
-  Node,
-  Quadruple,
-} from '@ontologies/core';
+import rdf, { Node } from '@ontologies/core';
 import { createActionPair } from '@rdfdev/actions';
 import HttpStatus from 'http-status-codes';
 import {
@@ -40,7 +37,10 @@ export const searchMiddleware = (): MiddlewareFn<React.ComponentType<any>> => (s
 
     switch (base) {
     case app.ns('setTarget'): {
-      const delta: Quadruple[] = [[app['individuals/searchTarget'], app.target, target!, ld.replace]];
+
+      const delta = [
+        quadruple(app['individuals/searchTarget'], app.target, target!, ld.replace),
+      ];
 
       return store.processDelta(delta, true);
     }

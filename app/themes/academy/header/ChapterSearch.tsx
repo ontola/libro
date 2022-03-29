@@ -42,7 +42,7 @@ export const ChapterSearch = (): JSX.Element => {
   const intl = useIntl();
   const classNames = useStyles();
 
-  const [target] = useIds(app.target, dig(app['individuals/searchTarget']));
+  const [target] = useIds(app['individuals/searchTarget'], dig(app.target));
   const [title] = useFields(target, schema.title);
 
   const searchObject = useChapterSearch(target);
@@ -50,7 +50,7 @@ export const ChapterSearch = (): JSX.Element => {
   const [inputValue, setInputValue] = React.useState('');
 
   const filterOptions = createFilterOptions({
-    stringify: (option: { key: string, text: string }) => option.text,
+    stringify: (option: { key: string; text: string; }) => option.text,
   });
 
   const handleChange = (_: React.ChangeEvent<Record<string, unknown>>, value: string | SearchObject) => {
