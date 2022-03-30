@@ -5,6 +5,11 @@ import SalesNavBarContent from '../../../components/SalesWebsite/SalesNavBarCont
 import Navbar from '../../../topologies/Navbar';
 
 const useAppBarOverrides = makeStyles({
+  root: {
+    display: 'flex',
+    height: 'unset !important',
+    minHeight: 'unset !important',
+  },
   wrapper: {
     '@supports not (backdrop-filter: blur(3px))': {
       backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -12,7 +17,7 @@ const useAppBarOverrides = makeStyles({
     backdropFilter: 'blur(3px)',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     padding: '10px',
-    paddingTop: '15px',
+    paddingTop: '11px',
   },
 });
 

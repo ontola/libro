@@ -4,7 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { frontendIRI } from '../../ontology/app';
+import { useWebsiteIRI } from '../../hooks/useWebsiteIRI';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
 import { LibroTheme } from '../../themes/themes';
@@ -35,6 +35,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JSX.Element => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
+  const websiteIRI = useWebsiteIRI();
+
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const [anchor, setAnchor] = React.useState<'top' | 'bottom'>('top');
 
@@ -63,7 +65,7 @@ export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JS
     >
       <Resource
         forceRender
-        subject={frontendIRI}
+        subject={websiteIRI}
       >
         <Property label={ontola.navigationsMenu}>
           <div

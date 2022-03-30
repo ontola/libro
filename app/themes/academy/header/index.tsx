@@ -62,7 +62,7 @@ const AcademyHeader = (): JSX.Element => {
     <Navbar
       fullWidth
       classes={({
-        toolbar: classNames.root,
+        root: classNames.root,
         wrapper: classNames.wrapper,
       })}
     >

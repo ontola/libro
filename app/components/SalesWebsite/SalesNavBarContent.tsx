@@ -19,7 +19,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     [theme.breakpoints.down('sm')]: {
       display: 'block',
     },
-    marginBottom: '4px',
   },
   cta: {
     alignItems: 'center',
