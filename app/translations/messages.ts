@@ -21,11 +21,15 @@ export const academyMessages: Messages = defineMessages({
   },
 });
 
-export const actionMessages: Messages = defineMessages({
+export const actionMessages = defineMessages({
   copyFinished: {
     defaultMessage: 'Copied value to clipboard',
     description: 'The (inline) message to indicate the value was copied to their clipboard',
     id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
+  },
+  copyTooltip: {
+    defaultMessage: 'Copy to clipboard',
+    id: 'https://ns.ontola.io/actions/copyToClipboard/copyTooltip',
   },
 });
 

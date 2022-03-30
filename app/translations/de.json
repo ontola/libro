@@ -533,6 +533,9 @@
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Wert in die Zwischenablage kopiert"
   },
+  "https://ns.ontola.io/actions/copyToClipboard/copyTooltip": {
+    "defaultMessage": "in die Zwischenablage kopieren"
+  },
   "https://ns.ontola.io/app/videoUnsupported": {
     "defaultMessage": "Keine Video-Unterstützung"
   },

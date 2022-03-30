@@ -161,7 +161,7 @@
     "defaultMessage": "Unprocessable Entity"
   },
   "https://app.argu.co/i18n/errors/request/429/body": {
-    "defaultMessage": "You're making too many request, try again in half a minute."
+    "defaultMessage": "You're making too many requests, try again in half a minute."
   },
   "https://app.argu.co/i18n/errors/request/429/header": {
     "defaultMessage": "Too many requests"
@@ -538,6 +538,9 @@
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Copied value to clipboard",
     "description": "The (inline) message to indicate the value was copied to their clipboard"
+  },
+  "https://ns.ontola.io/actions/copyToClipboard/copyTooltip": {
+    "defaultMessage": "Copy to clipboard"
   },
   "https://ns.ontola.io/app/videoUnsupported": {
     "defaultMessage": "No video support"

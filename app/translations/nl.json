@@ -575,6 +575,9 @@
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": {
     "defaultMessage": "Waarde is naar klembord gekopieerd"
   },
+  "https://ns.ontola.io/actions/copyToClipboard/copyTooltip": {
+    "defaultMessage": "Kopieer naar het klembord"
+  },
   "https://ns.ontola.io/app/videoUnsupported": {
     "defaultMessage": "Geen video-ondersteuning aanwezig"
   },
