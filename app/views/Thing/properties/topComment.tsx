@@ -21,7 +21,6 @@ const TopComment = (): JSX.Element => {
 
   return (
     <CardRow
-      backdrop
       borderTop
     >
       <Resource subject={topComment} />
