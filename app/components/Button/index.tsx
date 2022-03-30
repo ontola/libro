@@ -23,6 +23,7 @@ export interface ButtonProps {
   action?: NamedNode,
   /** Should be true when the button is toggleable and toggled. */
   active?: boolean;
+  alwaysShowChildren?: true;
   /** Additional aria label */
   ariaLabel?: string;
   list?: boolean;
@@ -80,6 +81,7 @@ const defaultProps = {
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({
   active,
   action,
+  alwaysShowChildren,
   ariaLabel,
   cardFloat,
   list,
@@ -108,7 +110,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
 }, ref) => {
   const lrs = useLRS();
   const muiTheme = useTheme<LibroTheme>();
-  const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
+  const largeScreen = useMediaQuery(muiTheme.breakpoints.up('md'));
   const classes = useStyles({ color });
   const handleAction = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
@@ -202,7 +204,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
           spin={loading}
         />
       )}
-      {children && (!icon || !isMobile) && (
+      {children && (alwaysShowChildren || !icon || largeScreen) && (
         <span className={buttonLabelClass}>
           {children}
         </span>

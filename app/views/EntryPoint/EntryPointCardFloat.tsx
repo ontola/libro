@@ -41,6 +41,7 @@ const EntryPointCardFloat: FC<EntryPointCardFloatProps> = ({
 
   return (
     <ButtonWithFeedback
+      alwaysShowChildren
       cardFloat
       plain
       active={active}

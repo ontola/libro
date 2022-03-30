@@ -1,3 +1,5 @@
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
@@ -12,6 +14,7 @@ import React from 'react';
 import { ButtonVariant } from '../../components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { LibroTheme } from '../../themes/themes';
 import { allTopologiesExcept } from '../../topologies';
 import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -31,12 +34,14 @@ import { pageTopology } from '../../topologies/Page';
 import useEntryPointFormProps from './useEntryPointFormProps';
 
 interface EntryPointProps extends ButtonWithFeedbackProps {
+  count: number;
   image: SomeTerm;
   name: string;
   stretch: boolean;
 }
 
 const EntryPoint: FC<EntryPointProps> = ({
+  count,
   image: imageFromProp,
   name: nameFromProp,
   onClick,
@@ -45,6 +50,8 @@ const EntryPoint: FC<EntryPointProps> = ({
   variant,
   ...rest
 }) => {
+  const muiTheme = useTheme<LibroTheme>();
+  const largeScreen = useMediaQuery(muiTheme.breakpoints.up('md'));
   const { onSubmit } = useEntryPointFormProps(subject!, rest);
   const [imageFromData] = useIds(schema.image);
   const [nameFromData] = useStrings(schema.name);
@@ -61,6 +68,7 @@ const EntryPoint: FC<EntryPointProps> = ({
 
   return (
     <ButtonWithFeedback
+      alwaysShowChildren
       className={classes}
       icon={icon}
       variant={variant ?? ButtonVariant.Transparent}
@@ -68,7 +76,7 @@ const EntryPoint: FC<EntryPointProps> = ({
       {...rest}
     >
       <span>
-        {name}
+        {largeScreen ? name : count || ''}
       </span>
     </ButtonWithFeedback>
   );

@@ -4,6 +4,7 @@ import React from 'react';
 import Button, { ButtonProps } from '../Button';
 
 export interface ButtonWithFeedbackProps extends ButtonProps {
+  alwaysShowChildren?: true;
   feedbackIcon?: string;
   linkRequestStatus?: EmptyRequestStatus | FulfilledRequestStatus;
   onClick: () => Promise<any>;
