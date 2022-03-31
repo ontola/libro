@@ -8,7 +8,12 @@ import { waitFor } from '@testing-library/react';
 import example from '../../../../../ontology/example';
 import form from '../../../../../ontology/form';
 import { renderLinkedHook } from '../../../../../test-utils-hooks';
-import { useFieldForwardRulesImpl } from '../useFieldForwardRules';
+import {
+  PointerType,
+  mockMedia,
+  pointerQuery,
+} from '../../../../../test-utils-media';
+import { useFieldForwardRules } from '../useFieldForwardRules';
 
 const createField = (...fieldTypes: NamedNode[]) => fieldTypes.map((fieldType, index) => ({
   '@id': example.ns(`field${index}`).value,
@@ -18,23 +23,26 @@ const createField = (...fieldTypes: NamedNode[]) => fieldTypes.map((fieldType, i
 const createRenderer = (...fieldData: NamedNode[]) => {
   const data = createField(...fieldData);
 
-  return (initialField: NamedNode = example.ns('field0'), initialIsMobile = false) => renderLinkedHook(
-    ({ field, isMobile }) => useFieldForwardRulesImpl(field, isMobile),
+  return (initialField: NamedNode = example.ns('field0')) => renderLinkedHook(
+    ({ field }) => useFieldForwardRules(field),
     data,
     {
       initialProps: {
         field: initialField,
-        isMobile: initialIsMobile,
       },
     },
   );
 };
 
 describe('useFieldForwardRules', () => {
+  afterEach(() => {
+    mockMedia();
+  });
   describe('isAutoForwardField', () => {
     it('returns false when no data is present.', async () => {
+      mockMedia(pointerQuery(PointerType.Fine));
       const { result } = await renderLinkedHook(
-        () => useFieldForwardRulesImpl(undefined, false),
+        () => useFieldForwardRules(undefined),
         {},
       );
 
@@ -64,25 +72,28 @@ describe('useFieldForwardRules', () => {
     });
 
     it('should be false on desktop and true on mobile for mobile only autoforward fields', async () => {
+      mockMedia(pointerQuery(PointerType.Fine));
       const field = example.ns('field0');
 
-      const { result, rerender } = await createRenderer(form.DateInput)(field, false);
+      const { result, rerender } = await createRenderer(form.DateInput)(field);
 
       expect(result.current.isAutoForwardField).toBe(false);
 
+      mockMedia(pointerQuery(PointerType.Coarse));
+
       rerender({
         field,
-        isMobile: true,
       });
 
-      waitFor(() => expect(result.current.isAutoForwardField).toBe(true));
+      await waitFor(() => expect(result.current.isAutoForwardField).toBe(true));
     });
   });
 
   describe('isForwardedByEnter', () => {
     it('returns true when no data is present', async () => {
+      mockMedia(pointerQuery(PointerType.Fine));
       const { result } = await renderLinkedHook(
-        () => useFieldForwardRulesImpl(undefined, false),
+        () => useFieldForwardRules(undefined),
         {},
       );
 
@@ -111,10 +122,11 @@ describe('useFieldForwardRules', () => {
       waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
     });
 
-    it('should be false when isMobile is true', async () => {
-      const { result } = await createRenderer(form.TextInput)(example.ns('field0'), true);
+    it('should be false when pointer is coarse', async () => {
+      mockMedia(pointerQuery(PointerType.Coarse));
+      const { result } = await createRenderer(form.TextInput)(example.ns('field0'));
 
-      waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
+      await waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
     });
   });
 
@@ -123,11 +135,11 @@ describe('useFieldForwardRules', () => {
 
     expect(result.current.isAutoForwardField).toEqual(false);
 
+    mockMedia(pointerQuery(PointerType.Fine));
     rerender({
       field: example.ns('field1'),
-      isMobile: false,
     });
 
-    waitFor(() => expect(result.current.isAutoForwardField).toEqual(true));
+    await waitFor(() => expect(result.current.isAutoForwardField).toEqual(true));
   });
 });

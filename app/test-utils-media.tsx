@@ -112,3 +112,27 @@ export const hoverCapable = (hasHover = false): MediaMatcher => {
     media: query,
   });
 };
+
+export enum PointerType {
+  None = 'none',
+  Fine = 'fine',
+  Coarse = 'coarse',
+}
+
+export const pointerQuery = (pointer: PointerType): MediaMatcher => {
+  const match = (query: string): boolean => {
+    switch (query) {
+    case '(pointer: none)': return pointer === PointerType.None;
+    case '(pointer: fine)': return pointer === PointerType.Fine;
+    case '(pointer: coarse)': return pointer === PointerType.Coarse;
+    }
+
+    return false;
+  };
+
+  return (query: string): MediaQueryList => ({
+    ...mediaQueryListFunctions(),
+    matches: match(query),
+    media: query,
+  });
+};
