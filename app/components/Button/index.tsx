@@ -110,7 +110,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
 }, ref) => {
   const lrs = useLRS();
   const muiTheme = useTheme<LibroTheme>();
-  const largeScreen = useMediaQuery(muiTheme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(muiTheme.breakpoints.up('md'));
   const classes = useStyles({ color });
   const handleAction = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
@@ -204,7 +204,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
           spin={loading}
         />
       )}
-      {children && (alwaysShowChildren || !icon || largeScreen) && (
+      {children && (alwaysShowChildren || !icon || screenIsWide) && (
         <span className={buttonLabelClass}>
           {children}
         </span>

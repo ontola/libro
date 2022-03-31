@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 const GroenLinksHeader = (): JSX.Element => {
   const [logo, setLogo] = React.useState<string | undefined>();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
   const logoSmall = '/assets/logoSmall.png';
 
@@ -34,12 +34,12 @@ const GroenLinksHeader = (): JSX.Element => {
     <Navbar>
       <NavBarContent>
         <Link
-          className={matches ? classes.logo : classes.logoSmall}
+          className={screenIsWide ? classes.logo : classes.logoSmall}
           to="/"
         >
           <img
             alt=""
-            src={matches ? logo : logoSmall}
+            src={screenIsWide ? logo : logoSmall}
           />
         </Link>
       </NavBarContent>

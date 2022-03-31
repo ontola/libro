@@ -62,7 +62,7 @@ const FeatureBlock: FC = () => {
   const classes = useStyles();
   const [name] = useProperty(schema.name);
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
 
   const reverse = (direction.value === 'reverse');
 
@@ -78,7 +78,7 @@ const FeatureBlock: FC = () => {
     <Resource subject={image} />
   );
 
-  if (mobile) {
+  if (screenIsNarrow) {
     return (
       <div className={classes.mobile}>
         {featureBlockHeading}

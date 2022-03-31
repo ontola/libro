@@ -42,7 +42,7 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
 }: NavbarLinkLinkProps, ref): JSX.Element => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const matches = useMediaQuery(theme.breakpoints.up(theme.appBar.iconBreakPoint));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(theme.appBar.iconBreakPoint));
 
   if (to === undefined && !onClick) {
     return (
@@ -52,7 +52,7 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
     );
   }
 
-  const hideLabel = image || (icon && !matches);
+  const hideLabel = image || (icon && !screenIsWide);
 
   const iconCom = typeof icon !== 'string' ? icon : (
     <FontAwesome

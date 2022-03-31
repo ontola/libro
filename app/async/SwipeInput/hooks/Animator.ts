@@ -87,13 +87,13 @@ export class Animator {
     cardAPI: CardAnimationAPI,
     iconAPI: IconAnimationAPI,
     overlayAPI: OverlayAnimationAPI,
-    isDesktop: boolean,
+    screenIsWide: boolean,
   ) {
     this.cardAPI = cardAPI;
     this.iconAPI = iconAPI;
     this.overlayAPI = overlayAPI;
 
-    this.confirmSlideDistance = isDesktop ? confirmSlideDistanceLarge : confirmSlideDistanceSmall;
+    this.confirmSlideDistance = screenIsWide ? confirmSlideDistanceLarge : confirmSlideDistanceSmall;
   }
 
   public animateShowInfo(): void {

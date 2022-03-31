@@ -19,8 +19,8 @@ import { allTopologies } from '../../../topologies';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 
 const THE_NUMBER_TWO = 2;
-const LARGE_SCREEN_COLUMN_COUNT = 4;
-const SMALL_SCREEN_COLUMN_COUNT = 2;
+const WIDE_SCREEN_COLUMN_COUNT = 4;
+const NARROW_SCREEN_COLUMN_COUNT = 2;
 
 interface ComparisonTableGroupProps {
   first?: boolean,
@@ -41,7 +41,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const ComparisonTableGroup: FC<ComparisonTableGroupProps> = ({ first }) => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
   const [title] = useStrings(schema.text);
   const [itemsNode] = useIds(as.items);
@@ -57,7 +57,7 @@ const ComparisonTableGroup: FC<ComparisonTableGroupProps> = ({ first }) => {
       <tr>
         <td
           className={headingClass}
-          colSpan={largeScreen ? LARGE_SCREEN_COLUMN_COUNT : SMALL_SCREEN_COLUMN_COUNT}
+          colSpan={screenIsWide ? WIDE_SCREEN_COLUMN_COUNT : NARROW_SCREEN_COLUMN_COUNT}
         >
           <Typography
             className={classes.headingText}

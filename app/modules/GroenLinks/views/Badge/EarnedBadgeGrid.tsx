@@ -19,10 +19,10 @@ import { gridTopology } from '../../../../topologies/Grid';
 const PENDING_BADGE_OPACITY = 0.2;
 
 const useStyles = makeStyles(() => ({
-  header: {
+  heading: {
     fontSize: '1em!important',
   },
-  headerSmall: {
+  headingSmall: {
     fontSize: '.9em!important',
   },
 }));
@@ -35,7 +35,7 @@ const EarnedBadgeGrid = () => {
   const [image] = useFields(badge, schema.image);
   const [name] = useFields(badge, schema.name);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
   const classes = useStyles();
 
   return (
@@ -47,7 +47,7 @@ const EarnedBadgeGrid = () => {
     >
       <Property label={teamGL.badge}>
         <Heading
-          className={matches ? classes.headerSmall : classes.header}
+          className={screenIsNarrow ? classes.headingSmall : classes.heading}
           size={HeadingSize.LG}
         >
           {name?.value}

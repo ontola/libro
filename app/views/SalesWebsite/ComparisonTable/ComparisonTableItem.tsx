@@ -20,8 +20,8 @@ import TableCell from '../../../topologies/TableCell';
 import { LibroTheme, Margin } from '../../../themes/themes';
 import { CollapsibleComparisonTitle } from '../../../components/SalesWebsite/CollapsibleComparisonTitle';
 
-const SMALL_COLSPAN = 2;
-const LARGE_COLSPAN = 1;
+const TWO_SMALL_COLUMNS = 2;
+const ONE_BIG_COLUMN = 1;
 
 interface ComparisonTableItemProps {
   first?: boolean,
@@ -46,7 +46,7 @@ const ComparisonTableItem: FC<ComparisonTableItemProps> = ({ first }) => {
   const classes = useStyles();
   const tooltipClasses = useTooltipClasses();
   const theme = useTheme<LibroTheme>();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
   const [title] = useStrings(schema.name);
   const [description] = useStrings(schema.text);
@@ -76,9 +76,9 @@ const ComparisonTableItem: FC<ComparisonTableItemProps> = ({ first }) => {
       <tr>
         <td
           className={titleClass}
-          colSpan={largeScreen ? LARGE_COLSPAN : SMALL_COLSPAN}
+          colSpan={screenIsWide ? ONE_BIG_COLUMN : TWO_SMALL_COLUMNS}
         >
-          {largeScreen ?
+          {screenIsWide ?
             title :
             (
               <CollapsibleComparisonTitle
@@ -87,7 +87,7 @@ const ComparisonTableItem: FC<ComparisonTableItemProps> = ({ first }) => {
               />
             )}
         </td>
-        {largeScreen && (
+        {screenIsWide && (
           <React.Fragment>
             <td>
               <Tooltip
@@ -102,7 +102,7 @@ const ComparisonTableItem: FC<ComparisonTableItemProps> = ({ first }) => {
           </React.Fragment>
         )}
       </tr>
-      {!largeScreen && (
+      {!screenIsWide && (
         <tr>
           <Tiers />
         </tr>

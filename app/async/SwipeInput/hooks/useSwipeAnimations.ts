@@ -41,9 +41,9 @@ export const useSwipeAnimations = (
   const [side, setSide] = React.useState<HoverSide>(HoverSide.Yes);
 
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
-  const confirmThreshold = isDesktop ? confirmVoteThresholdLarge : confirmVoteThresholdSmall;
+  const confirmThreshold = screenIsWide ? confirmVoteThresholdLarge : confirmVoteThresholdSmall;
 
   const [cardProps, cardAPI] = useSpring(() => ({
     config: Animator.config,
@@ -70,8 +70,8 @@ export const useSwipeAnimations = (
     cardAPI,
     iconAPI,
     overlayAPI,
-    isDesktop,
-  ), [cardAPI, iconAPI, overlayAPI, isDesktop]);
+    screenIsWide,
+  ), [cardAPI, iconAPI, overlayAPI, screenIsWide]);
 
   React.useEffect(() => {
     switch (cardState.raw) {

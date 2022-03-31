@@ -26,7 +26,7 @@ const DialogManager = () => {
   const lrs = useLRS();
 
   const theme = useTheme();
-  const showFullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
 
   const backdropClasses = useBackdropStyles();
   const dialogClasses = useDialogStyles();
@@ -48,37 +48,34 @@ const DialogManager = () => {
   }
 
   return (
-    <React.Fragment>
-
-      <Dialog
-        fullWidth
-        open
-        BackdropProps={{
-          classes: backdropClasses,
-        }}
+    <Dialog
+      fullWidth
+      open
+      BackdropProps={{
+        classes: backdropClasses,
+      }}
+      // @ts-ignore
+      PaperComponent={DialogContainer}
+      PaperProps={{
         // @ts-ignore
-        PaperComponent={DialogContainer}
-        PaperProps={{
-          // @ts-ignore
-          close: close(resource, false),
-          maxWidth: maxWidth,
-        }}
-        className={dialogTheme}
-        classes={dialogClasses}
-        fullScreen={showFullScreen}
-        maxWidth={maxWidth}
-        scroll="body"
-        onClose={close(resource, false)}
-      >
-        <DialogTopology>
-          <Resource
-            forceRender
-            subject={resource}
-            onDone={close(resource, true)}
-          />
-        </DialogTopology>
-      </Dialog>
-    </React.Fragment>
+        close: close(resource, false),
+        maxWidth: maxWidth,
+      }}
+      className={dialogTheme}
+      classes={dialogClasses}
+      fullScreen={screenIsNarrow}
+      maxWidth={maxWidth}
+      scroll="body"
+      onClose={close(resource, false)}
+    >
+      <DialogTopology>
+        <Resource
+          forceRender
+          subject={resource}
+          onDone={close(resource, true)}
+        />
+      </DialogTopology>
+    </Dialog>
   );
 };
 

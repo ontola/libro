@@ -51,12 +51,13 @@ const EntryPoint: FC<EntryPointProps> = ({
   ...rest
 }) => {
   const muiTheme = useTheme<LibroTheme>();
-  const largeScreen = useMediaQuery(muiTheme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(muiTheme.breakpoints.up('md'));
   const { onSubmit } = useEntryPointFormProps(subject!, rest);
   const [imageFromData] = useIds(schema.image);
   const [nameFromData] = useStrings(schema.name);
   const image = imageFromProp ?? imageFromData;
   const name = nameFromProp ?? nameFromData;
+  const displayCount = count === 0 ? '' : count;
 
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : undefined;
   const classes = clsx({
@@ -76,7 +77,7 @@ const EntryPoint: FC<EntryPointProps> = ({
       {...rest}
     >
       <span>
-        {largeScreen ? name : count || ''}
+        {screenIsWide ? name : displayCount}
       </span>
     </ButtonWithFeedback>
   );

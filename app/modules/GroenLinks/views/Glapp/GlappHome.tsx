@@ -56,7 +56,7 @@ const GlappHome: FC = () => {
   const classes = useStyles();
   const theme: any = useTheme();
 
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
   const [name] = useFields(app.c_a, schema.givenName);
 
   const [selectedPostalCode, setSelectedPostalCodeRaw] = React.useState<number | undefined>(undefined);
@@ -84,7 +84,7 @@ const GlappHome: FC = () => {
         selectedPostalCode={selectedPostalCode}
         setSelectedPostalCode={setSelectedPostalCode}
       />
-      <div className={matches ? classes.wrapperFull : classes.wrapperSmall}>
+      <div className={screenIsWide ? classes.wrapperFull : classes.wrapperSmall}>
         <Card>
           <CardContent>
             <h2>

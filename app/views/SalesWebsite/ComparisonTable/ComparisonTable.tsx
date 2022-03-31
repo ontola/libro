@@ -76,7 +76,7 @@ const ComparisonTable: FC = () => {
 
   const classes = useStyles({ animating });
   const theme = useTheme<LibroTheme>();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
   const [title] = useStrings(schema.text);
 
@@ -126,7 +126,7 @@ const ComparisonTable: FC = () => {
         <table className={classes.table}>
           <thead className={classes.head}>
             <TableHeaderRow className={classes.headerRow}>
-              {largeScreen && (
+              {screenIsWide && (
                 <React.Fragment>
                   <th className={classes.titleCell} />
                   <th className={classes.infoCell} />

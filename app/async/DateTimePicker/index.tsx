@@ -37,7 +37,7 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
   const intl = useIntl();
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const mdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
   const { theme: formTheme } = React.useContext(FormContext);
   const {
     fieldShape,
@@ -46,7 +46,7 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
     onFocus,
   } = React.useContext(FormFieldContext);
 
-  const showStatic = formTheme === FormTheme.Flow && mdUp;
+  const showStatic = formTheme === FormTheme.Flow && screenIsWide;
   const value = inputValue.value?.length > 0 ? inputValue.value : null;
   const className = clsx({
     [classes.flowDatePicker]: showStatic,

@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 const FlowForm = (): JSX.Element | null => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const matchMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
   const [fields, loading] = useFlowFields();
   const [
@@ -82,7 +82,7 @@ const FlowForm = (): JSX.Element | null => {
 
   return (
     <div className={classes.surveyWrapper}>
-      {matchMdUp && (
+      {screenIsWide && (
         <FlowBackground
           progress={calcPercentage(currentIndex, fields.length) ?? 0}
         />
@@ -91,7 +91,7 @@ const FlowForm = (): JSX.Element | null => {
         container
         className={classes.grow}
       >
-        {matchMdUp && (
+        {screenIsWide && (
           <Grid
             item
             className={classes.stepperWrapper}
@@ -113,13 +113,13 @@ const FlowForm = (): JSX.Element | null => {
             canForwardByEnter={isForwardedByEnter}
             currentIndex={currentIndex}
             fields={fields}
-            isPhone={!matchMdUp}
+            isPhone={!screenIsWide}
             onNext={activateNextField}
             onSubmitBack={handleSubmitBack}
           />
         </Grid>
       </Grid>
-      {!matchMdUp && (
+      {!screenIsWide && (
         <MobileStepper
           activeStep={currentIndex}
           backButton={null}

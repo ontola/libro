@@ -42,7 +42,7 @@ export const HeaderFloat = ({
   } = useCollectionOptions();
   const renderPagination = !hidePagination;
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
   const [renderButtons, setRenderButtons] = React.useState(false);
 
@@ -50,7 +50,7 @@ export const HeaderFloat = ({
     setRenderButtons(false);
   }, [setRenderButtons]);
 
-  const showButtons = isDesktop || renderButtons;
+  const showButtons = screenIsWide || renderButtons;
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>

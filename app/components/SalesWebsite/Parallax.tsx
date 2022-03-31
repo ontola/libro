@@ -1,8 +1,6 @@
 import {
   Grid,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -14,7 +12,11 @@ import retrievePath from '../../helpers/iris';
 import { LibroTheme } from '../../themes/themes';
 import Container from '../../topologies/Container';
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
+interface StyleProps {
+  backgroundImageUrl: string;
+}
+
+const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   button: {
     fontSize: '1.6rem',
     fontWeight: 'bold',
@@ -43,6 +45,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   header: {
     alignItems: 'center',
     backgroundAttachment: 'fixed',
+    backgroundImage: ({ backgroundImageUrl }) => `url(${backgroundImageUrl})`,
     backgroundPosition: '50% 40%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '110%',
@@ -84,16 +87,10 @@ export const Parallax = ({
   title,
   subtitle,
 }: ParallaxProps): JSX.Element => {
-  const classes = useStyles();
-  const styles = useTheme();
-  const parallax = useMediaQuery(styles.breakpoints.down('sm'))
-    ? backgroundImageUrl : backgroundImageUrl;
+  const classes = useStyles({ backgroundImageUrl });
 
   return (
-    <div
-      className={classes.header}
-      style={{ backgroundImage: `url(${parallax})` }}
-    >
+    <div className={classes.header}>
       <div className={classes.gradient} />
       <Container>
         <Grid
