@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@material-ui/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
@@ -6,12 +7,10 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import MediaQuery from 'react-responsive';
 import { useTheme } from '@material-ui/core/styles';
 
 import Button, { ButtonVariant } from '../../components/Button';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { values } from '../../helpers/ssr';
 import { formFooterTopology } from '../../topologies/FormFooter';
 
 interface RDFSClassFormFooterProps {
@@ -27,17 +26,7 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
   const [description] = useProperty(schema.description);
   const [image] = useProperty(schema.image);
   const [label] = useProperty(rdfs.label);
-
-  const children = !image
-    ? label?.value
-    : (
-      <MediaQuery
-        query={theme.mediaQueries.smallAndAbove}
-        values={values}
-      >
-        {label?.value}
-      </MediaQuery>
-    );
+  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <Button
@@ -47,7 +36,7 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
       variant={ButtonVariant.Omniform}
       onClick={onClick}
     >
-      {children}
+      {(!image || screenIsWide) && label?.value}
     </Button>
   );
 };

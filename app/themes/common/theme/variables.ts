@@ -6,13 +6,15 @@ import {
 
 import { overrides } from './overrides';
 
+/* eslint-disable sort-keys */
 export const SCREENSIZE = {
+  xl: 1120,
   lg: 900,
   md: 650,
   sm: 320,
-  xl: 1120,
   xs: 0,
 };
+/* eslint-enable sort-keys */
 
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
@@ -102,15 +104,6 @@ const colors = {
 };
 /* eslint-enable sort-keys, @typescript-eslint/no-magic-numbers */
 
-const mqBreakpoints = {
-  largeLowerBound: '900px',
-  microUpperBound: '320px',
-  smallLowerBound: '650px',
-  smallUpperBound: __CLIENT__ ? '899.5px' : '900px',
-  smallestLowerBound: __CLIENT__ ? '319.5px' : '320px',
-  smallestUpperBound: __CLIENT__ ? '649.5px' : '650px',
-};
-
 //  6px = 0.375rem = 0.1875 * 2rem
 const SIX_PX = 0.1875;
 
@@ -122,16 +115,14 @@ const theme = {
     position: 'fixed',
   },
   boxShadow: {
-    /* eslint-disable sort-keys */
-    transparent: '0 0 0 rgba(0, 0, 0, 0)',
     base: '0 0 25px rgba(0, 0, 0, .06)',
-    intense: '0 2px 8px rgba(0, 0, 0, .2)',
-    inside: '0 2px 8px rgba(0, 0, 0, .2) inset',
     crazy: '0 0 20px 1px rgba(0, 0, 0, .3)',
+    inside: '0 2px 8px rgba(0, 0, 0, .2) inset',
+    intense: '0 2px 8px rgba(0, 0, 0, .2)',
+    transparent: '0 0 0 rgba(0, 0, 0, 0)',
   },
   breakpoints: {
     values: SCREENSIZE,
-    /* eslint-enable sort-keys */
   },
   containerWidth: {
     large: '70rem',
@@ -139,14 +130,6 @@ const theme = {
     small: '35rem',
   },
   greyBorder: `solid 1px ${colors.grey.xLight}`,
-  mediaQueries: {
-    largeAndAbove: `(min-width: ${mqBreakpoints.largeLowerBound})`,
-    micro: `(max-width: ${mqBreakpoints.microUpperBound})`,
-    smallAndAbove: `(min-width: ${mqBreakpoints.smallestUpperBound})`,
-    smallAndBelow: `(max-width: ${mqBreakpoints.smallUpperBound})`,
-    smallOnly: `(min-width: ${mqBreakpoints.smallLowerBound}) and (max-width: ${mqBreakpoints.smallUpperBound})`,
-    smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound}) and (max-width: ${mqBreakpoints.smallestUpperBound})`,
-  },
   overrides,
   // Palette defaults are overwritten by custom theming configuration
   palette: {

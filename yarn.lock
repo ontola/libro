@@ -3542,15 +3542,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-responsive@npm:^8.0.2":
-  version: 8.0.2
-  resolution: "@types/react-responsive@npm:8.0.2"
-  dependencies:
-    "@types/react": "*"
-  checksum: 8d2f82ad1cfaafc3eb3999d3af0d733338b9a210038136a2e1b5062cf2f4de81943379f0f6a51fd97d08592f6b0dcd3580d3dcdbc8330e7aaa5d39c1b91facd3
-  languageName: node
-  linkType: hard
-
 "@types/react-router-dom@npm:^5.1.7":
   version: 5.1.7
   resolution: "@types/react-router-dom@npm:5.1.7"
@@ -9351,7 +9342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hyphenate-style-name@npm:^1.0.0, hyphenate-style-name@npm:^1.0.3":
+"hyphenate-style-name@npm:^1.0.3":
   version: 1.0.3
   resolution: "hyphenate-style-name@npm:1.0.3"
   checksum: e333f610e7cb32210861ff8c55f99582cdc39e4737903936a7eb61702c98f8db45f33d54f9d230221fabc4d321b2ab8382b8af50d24a1eba21916f2edddd7b85
@@ -11647,15 +11638,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"matchmediaquery@npm:^0.3.0":
-  version: 0.3.1
-  resolution: "matchmediaquery@npm:0.3.1"
-  dependencies:
-    css-mediaquery: ^0.1.2
-  checksum: 154e1650f79d78858424d7086093756ad2fdb1cd9ad19230b99a47c363a1da9c6692d6ca56ea49447fb516f580c59fd60d8b9a06247e088d8e1a658e6e5604d7
-  languageName: node
-  linkType: hard
-
 "mdast-add-list-metadata@npm:1.0.1":
   version: 1.0.1
   resolution: "mdast-add-list-metadata@npm:1.0.1"
@@ -12663,7 +12645,6 @@ __metadata:
     "@types/react-fontawesome": ^1.6.4
     "@types/react-is": ^17.0.0
     "@types/react-pdf": ^5.0.0
-    "@types/react-responsive": ^8.0.2
     "@types/react-router": ^5.1.13
     "@types/react-router-dom": ^5.1.7
     "@types/typeform__embed": ^0.22.2
@@ -12746,7 +12727,6 @@ __metadata:
     react-markdown: ^5.0.3
     react-pdf: 4.1.0
     react-refresh: ^0.10.0
-    react-responsive: ^7.0.0
     react-router: ^5.2.1
     react-router-dom: ^5.2.1
     react-router-scroll-memory: ^2.0.7
@@ -13938,7 +13918,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.6, prop-types@npm:^15.5.7, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.5.6, prop-types@npm:^15.5.7, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -14325,19 +14305,6 @@ __metadata:
   version: 0.10.0
   resolution: "react-refresh@npm:0.10.0"
   checksum: 089b8ea9ad8038046c0467a2476595eedab9e30620f50daa50e844c81d626de43a44a6a628256ae58e68885d5fe1d7e05074ddfd99ece3808b013d043f0c6030
-  languageName: node
-  linkType: hard
-
-"react-responsive@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "react-responsive@npm:7.0.0"
-  dependencies:
-    hyphenate-style-name: ^1.0.0
-    matchmediaquery: ^0.3.0
-    prop-types: ^15.6.1
-  peerDependencies:
-    react: ^16.8.0
-  checksum: 737c88fd0d4f4ab7773437e96699d4b0943540d08c9da73dd49683aacad5bb7dd21fa09e46865b72eb5570a7135fa55dbf9443ea41e3dc13bff3793f23d33e77
   languageName: node
   linkType: hard
 
