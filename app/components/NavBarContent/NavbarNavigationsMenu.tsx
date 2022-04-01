@@ -64,23 +64,25 @@ const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.E
   const menuItemRefs = React.useRef<HTMLElement[]>([]);
   const [visibleItemRefs, setVisibleItemRefs] = React.useState<Set<Element>>(new Set(menuItemRefs.current));
 
+  const observer = React.useMemo(() => new IntersectionObserver((changedEntries) => {
+    for (const entry of changedEntries) {
+      setVisibleItemRefs((prevRefs) => {
+        if (entry.isIntersecting) {
+          prevRefs.add(entry.target);
+        }
+        else {
+          prevRefs.delete(entry.target);
+        }
+
+        return new Set(prevRefs);
+      });
+    }
+  }, { root: navBarRef.current }), []);
+
   React.useEffect(() => {
-    const observer = new IntersectionObserver((changedEntries) => {
-      for (const entry of changedEntries) {
-        setVisibleItemRefs((prevRefs) => {
-          if (entry.isIntersecting) {
-            prevRefs.add(entry.target);
-          }
-          else {
-            prevRefs.delete(entry.target);
-          }
-
-          return new Set(prevRefs);
-        });
-      }
-    }, { root: navBarRef.current });
-
     menuItemRefs.current.forEach((menuItemRef) => observer.observe(menuItemRef));
+
+    return () => observer.disconnect();
   }, [menuItems]);
 
   const [hiddenItems, setHiddenItems] = React.useState<Node[]>([]);

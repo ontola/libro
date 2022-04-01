@@ -29,5 +29,4 @@ class HoverBox extends TopologyProvider<HoverBoxProps> {
   }
 }
 
-export { HoverBoxProps } from './HoverBoxImpl';
 export default HoverBox;

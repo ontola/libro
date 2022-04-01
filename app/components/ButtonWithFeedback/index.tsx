@@ -17,12 +17,9 @@ const defaultProps = {
  * Wraps a Button component changing it's icon based on the promise status of the `onClick` return
  * value.
  */
-const ButtonWithFeedback: React.FC<ButtonWithFeedbackProps> = (props) => {
-  const {
-    feedbackIcon,
-    onClick,
-  } = props;
+const ButtonWithFeedback: React.FC<ButtonWithFeedbackProps> = ({ feedbackIcon, onClick, ...buttonProps }) => {
   const [feedback, setFeedback] = React.useState(false);
+
   const handleClick = React.useCallback(() => {
     setFeedback(true);
 
@@ -41,12 +38,12 @@ const ButtonWithFeedback: React.FC<ButtonWithFeedbackProps> = (props) => {
     feedbackProps.icon = feedbackIcon;
   }
 
-  const buttonProps = {
-    ...props,
-    ...feedbackProps,
-  };
-
-  return <Button {...buttonProps} />;
+  return (
+    <Button
+      {...buttonProps}
+      {...feedbackProps}
+    />
+  );
 };
 
 ButtonWithFeedback.defaultProps = defaultProps;

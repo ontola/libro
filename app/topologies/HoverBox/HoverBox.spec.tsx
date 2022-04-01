@@ -8,7 +8,9 @@ import React from 'react';
 import { act, render } from '../../test-utils';
 import { hoverCapable, mockMedia } from '../../test-utils-media';
 
-import HoverBox, { HoverBoxProps } from './index';
+import { HoverBoxProps } from './HoverBoxImpl';
+
+import HoverBox from './index';
 
 describe('HoverBox', () => {
   const renderComp = (props: HoverBoxProps) => render((

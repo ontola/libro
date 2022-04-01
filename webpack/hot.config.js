@@ -12,6 +12,7 @@ module.exports = merge(common, {
   devServer: {
     allowedHosts: 'all',
     client: {
+      logging: 'none',
       overlay: {
         errors: false,
         warnings: false,
