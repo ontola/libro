@@ -4,7 +4,7 @@ import { SomeNode } from 'link-lib';
 import {
   LaxNode,
   useDataFetching,
-  useGlobalIds, 
+  useGlobalIds,
 } from 'link-redux';
 import React, { SyntheticEvent } from 'react';
 

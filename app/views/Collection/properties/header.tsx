@@ -9,10 +9,12 @@ import { HeaderFloat } from '../../../components/Collection/HeaderFloat';
 import { LoadingHidden } from '../../../components/Loading';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
-import { allTopologiesExcept } from '../../../topologies';
-import { cardTopology } from '../../../topologies/Card';
+import {
+  allTopologiesExcept,
+  cardTopology,
+  pageTopology,
+} from '../../../topologies';
 import ContainerHeader from '../../../topologies/Container/ContainerHeader';
-import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
 interface HeaderProps {

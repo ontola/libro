@@ -2,7 +2,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import CollectionProvider, { CollectionProviderProps } from '../../components/Collection/CollectionProvider';
-import { alertDialogTopology } from '../../topologies/Dialog';
+import { alertDialogTopology } from '../../topologies';
 
 import { CollectionTypes } from './types';
 

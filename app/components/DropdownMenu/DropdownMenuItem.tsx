@@ -10,7 +10,7 @@ import { SomeNode } from 'link-lib';
 import {
   Property,
   useDataInvalidation,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 

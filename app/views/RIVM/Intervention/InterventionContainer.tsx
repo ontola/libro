@@ -15,13 +15,15 @@ import dbo from '../../../ontology/dbo';
 import meeting from '../../../ontology/meeting';
 import rivm from '../../../ontology/rivm';
 import { highlightContext } from '../../../state/highlight';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../topologies';
 import ActionsBar from '../../../topologies/ActionsBar';
 import AttributeList from '../../../topologies/AttributeList';
 import Card from '../../../topologies/Card';
 import CardRow from '../../../topologies/Card/CardRow';
-import { containerTopology } from '../../../topologies/Container';
-import { alertDialogTopology } from '../../../topologies/Dialog';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const InterventionContainer: FC = ({ subject }) => {
   const { highlightState } = React.useContext(highlightContext);

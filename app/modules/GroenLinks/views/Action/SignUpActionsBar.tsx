@@ -10,7 +10,7 @@ import React from 'react';
 import { ButtonVariant } from '../../../../components/Button';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
-import { actionsBarTopology } from '../../../../topologies/ActionsBar';
+import { actionsBarTopology } from '../../../../topologies';
 import { isInvalidActionStatus } from '../../../../views/Thing/properties/omniform/helpers';
 
 const SignUpActionsBar = () => {

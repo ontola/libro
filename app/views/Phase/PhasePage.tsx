@@ -13,7 +13,7 @@ import { entityIsLoaded } from '../../helpers/data';
 import retrievePath from '../../helpers/iris';
 import usePhases, { phaseIRI } from '../../hooks/usePhases';
 import argu from '../../ontology/argu';
-import { pageTopology } from '../../topologies/Page';
+import { pageTopology } from '../../topologies';
 
 const PhasePage: FC = ({ subject }) => {
   const lrs = useLRS();

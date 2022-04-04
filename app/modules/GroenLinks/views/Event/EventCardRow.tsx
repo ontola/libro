@@ -4,7 +4,7 @@ import React from 'react';
 
 import CardContent from '../../../../components/Card/CardContent';
 import teamGL from '../../../../ontology/teamGL';
-import { cardRowTopology } from '../../../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../../../topologies';
 import ContentDetails from '../../../../topologies/ContentDetails';
 
 const EventCardRow = () => (

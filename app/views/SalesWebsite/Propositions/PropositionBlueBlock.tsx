@@ -7,7 +7,7 @@ import React from 'react';
 
 import Proposition from '../../../components/SalesWebsite/Proposition';
 import sales from '../../../ontology/sales';
-import { blueBlockTopology } from '../../../topologies/SalesWebsite/BlueBlock';
+import { blueBlockTopology } from '../../../topologies';
 
 const PropositionBlueBlock: FC = () => {
   const [name] = useProperty(schema.name);

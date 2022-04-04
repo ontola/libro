@@ -10,11 +10,11 @@ import { FormattedMessage } from 'react-intl';
 
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { pageTopology } from '../../topologies';
 import PageHeader from '../../topologies/PageHeader';
 import Card from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
-import { pageTopology } from '../../topologies/Page';
 import HomepageError from '../../components/Error/HomepageError';
 
 const OrganizationPage = () => {

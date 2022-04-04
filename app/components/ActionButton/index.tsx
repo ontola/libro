@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import React, { MouseEventHandler } from 'react';
 
 import { countInParentheses } from '../../helpers/numbers';
-import { listTopology } from '../../topologies/List';
+import { listTopology } from '../../topologies';
 import Button from '../Button';
 
 interface ActionButtonProps {

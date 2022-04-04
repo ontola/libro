@@ -9,7 +9,7 @@ import React from 'react';
 import NavbarLinkLabel from '../../../components/NavbarLink/NavbarLinkLabel';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { navbarTopology } from '../../../topologies/Navbar';
+import { navbarTopology } from '../../../topologies';
 
 const MenuItemLabelHeader: FC<PropertyProps> = ({ linkedProp }) => (
   <NavbarLinkLabel>

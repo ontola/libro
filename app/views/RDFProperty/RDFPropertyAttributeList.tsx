@@ -7,8 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { inlineTopology } from '../../topologies/Inline';
+import { attributeListTopology, inlineTopology } from '../../topologies';
 
 const RDFPropertyAttributeList = () => (
   <label>

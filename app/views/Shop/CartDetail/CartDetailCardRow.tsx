@@ -8,8 +8,8 @@ import {
 import React from 'react';
 
 import argu from '../../../ontology/argu';
+import { cardRowTopology } from '../../../topologies';
 import { CardMicroRow } from '../../../topologies/Card';
-import { cardRowTopology } from '../../../topologies/Card/CardRow';
 
 const useStyle = makeStyles(() => ({
   wrapper: {

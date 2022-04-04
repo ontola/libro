@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import app from '../../ontology/app';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { actionsBarTopology } from '../../topologies';
 import { SignOutFormLink } from '../../components/SignOutForm';
 
 const AppSignOutActionsBar = (): JSX.Element => {

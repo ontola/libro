@@ -5,8 +5,8 @@ import {
 } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { cardFixedTopology } from '../../topologies';
 import Topology from '../Topology';
 
 import {
@@ -15,8 +15,6 @@ import {
   cardFixedStyles,
   cardStyles,
 } from './sharedCardStyles';
-
-export const cardFixedTopology = argu.cardFixed;
 
 export interface CardFixedProps {
   fill?: boolean;

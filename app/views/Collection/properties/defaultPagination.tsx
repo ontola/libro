@@ -19,10 +19,12 @@ import Button, { ButtonVariant } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
-import { allTopologiesExcept } from '../../../topologies';
-import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
+import {
+  allTopologiesExcept,
+  cardAppendixTopology,
+  pageTopology,
+} from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
-import { pageTopology } from '../../../topologies/Page';
 import { collectionMessages } from '../../../translations/messages';
 import { CollectionTypes } from '../types';
 

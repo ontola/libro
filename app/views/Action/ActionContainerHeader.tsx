@@ -15,7 +15,7 @@ import { LinkFeature, LinkTarget } from '../../components/Link';
 import useOneClickProps from '../../hooks/useOneClickProps';
 import libro from '../../ontology/libro';
 import { LibroTheme } from '../../themes/themes';
-import { containerHeaderTopology } from '../../topologies/Container/ContainerHeader';
+import { containerHeaderTopology } from '../../topologies';
 import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps } from './helpers';

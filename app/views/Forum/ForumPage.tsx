@@ -4,8 +4,8 @@ import React from 'react';
 
 import Metadata from '../../components/Metadata';
 import argu from '../../ontology/argu';
+import { pageTopology } from '../../topologies';
 import FullResource from '../../topologies/FullResource';
-import { pageTopology } from '../../topologies/Page';
 
 const ForumPage = (props: any): JSX.Element => (
   <React.Fragment>

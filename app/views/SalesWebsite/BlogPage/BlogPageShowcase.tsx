@@ -21,7 +21,7 @@ import { NavLink } from 'react-router-dom';
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { showcaseTopology } from '../../../topologies/Showcase';
+import { showcaseTopology } from '../../../topologies';
 
 export interface BlogPageShowcaseProps {
   headingLevel?: React.ElementType;

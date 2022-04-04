@@ -4,11 +4,13 @@ import React from 'react';
 
 import CardContent from '../../../../components/Card/CardContent';
 import teamGL from '../../../../ontology/teamGL';
-import { allTopologiesExcept } from '../../../../topologies';
+import {
+  allTopologiesExcept,
+  pageTopology,
+  parentTopology,
+} from '../../../../topologies';
 import { CardMain } from '../../../../topologies/Card';
 import Container from '../../../../topologies/Container';
-import { pageTopology } from '../../../../topologies/Page';
-import { parentTopology } from '../../../../topologies/Parent';
 
 import SearchPostalForm from './SearchPostalForm';
 

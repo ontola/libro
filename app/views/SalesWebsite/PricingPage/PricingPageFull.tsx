@@ -13,8 +13,8 @@ import { IntervalSwitcher } from '../../../components/SalesWebsite/IntervalSwitc
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import sales from '../../../ontology/sales';
 import { LibroTheme, Margin } from '../../../themes/themes';
+import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import Grid from '../../../topologies/Grid';
 import { PricingInterval } from '../Tier/Price';
 

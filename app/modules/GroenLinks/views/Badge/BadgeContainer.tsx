@@ -14,11 +14,13 @@ import FormFooterRight from '../../../../components/Form/FooterRight';
 import Heading from '../../../../components/Heading';
 import Image from '../../../../components/Image';
 import teamGL from '../../../../ontology/teamGL';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../../topologies';
 import Card from '../../../../topologies/Card';
-import { containerTopology } from '../../../../topologies/Container';
-import { alertDialogTopology } from '../../../../topologies/Dialog';
 import FormFooter from '../../../../topologies/FormFooter';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
 import { badgeMessages } from '../../../../translations/messages';
 
 const BadgeContainer: FC = ({ subject }) => {

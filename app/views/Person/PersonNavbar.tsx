@@ -17,7 +17,7 @@ import { NAME_PREDICATES } from '../../helpers/metaData';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 import { navBarMessages } from '../../translations/messages';
 
 export interface PersonNavbarProps {

@@ -16,8 +16,7 @@ import { useCollectionOptions } from '../../components/Collection/CollectionProv
 import { isResource } from '../../helpers/types';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import ontola from '../../ontology/ontola';
-import { allTopologies } from '../../topologies';
-import { inlineTopology } from '../../topologies/Inline';
+import { allTopologies, inlineTopology } from '../../topologies';
 
 const Value = ({ prop }: { prop: SomeTerm }) => {
   const lrs = useLRS();

@@ -1,14 +1,12 @@
 import {
   WithStyles,
   createStyles,
-  withStyles, 
+  withStyles,
 } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-
-export const formFooterTopology = argu.formFooter;
+import { formFooterTopology } from '../../topologies';
 
 const styles = () => createStyles({
   wrapper: {

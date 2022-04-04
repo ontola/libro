@@ -11,7 +11,7 @@ import { useTheme } from '@material-ui/core/styles';
 
 import Button, { ButtonVariant } from '../../components/Button';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { formFooterTopology } from '../../topologies/FormFooter';
+import { formFooterTopology } from '../../topologies';
 
 interface RDFSClassFormFooterProps {
   current?: boolean;

@@ -2,10 +2,8 @@ import Grid from '@material-ui/core/Grid';
 import { GridSpacing } from '@material-ui/core/Grid/Grid';
 import React from 'react';
 
-import argu from '../../ontology/argu';
+import { showcaseTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const showcaseTopology = argu.ns('topologies/showcase');
 
 interface ShowcaseProps {
   className?: string;

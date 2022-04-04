@@ -5,8 +5,7 @@ import React from 'react';
 
 import dbo from '../../../ontology/dbo';
 import wdt from '../../../ontology/wdt';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { navbarTopology } from '../../../topologies/Navbar';
+import { detailsBarTopology, navbarTopology } from '../../../topologies';
 
 const PersonImageProp = ({ linkedProp }: PropertyProps) => (
   <Resource

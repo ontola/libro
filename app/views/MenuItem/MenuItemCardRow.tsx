@@ -8,7 +8,7 @@ import React from 'react';
 
 import Link, { IsActiveCheck } from '../../components/Link';
 import ontola from '../../ontology/ontola';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../topologies';
 
 import { MenuTypes } from './types';
 

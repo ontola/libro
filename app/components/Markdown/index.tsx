@@ -1,7 +1,7 @@
 import {
   WithStyles,
   createStyles,
-  withStyles, 
+  withStyles,
 } from '@material-ui/styles';
 import rdf from '@ontologies/core';
 import clsx from 'clsx';

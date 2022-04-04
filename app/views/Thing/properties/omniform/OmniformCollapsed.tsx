@@ -26,10 +26,12 @@ import {
   useOmniformOpen,
   useOmniformOpenedState,
 } from '../../../../state/omniform';
-import { cardTopology } from '../../../../topologies/Card';
-import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
-import { cardMainTopology } from '../../../../topologies/Card/CardMain';
-import { containerTopology } from '../../../../topologies/Container';
+import {
+  cardAppendixTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+} from '../../../../topologies';
 
 import {
   actionsAreAllDisabled,

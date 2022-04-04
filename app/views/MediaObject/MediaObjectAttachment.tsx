@@ -15,9 +15,11 @@ import LDLink from '../../components/LDLink';
 import { tryParseInt } from '../../helpers/numbers';
 import dbo from '../../ontology/dbo';
 import { LibroTheme } from '../../themes/themes';
-import { cardTopology } from '../../topologies/Card';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
+import {
+  cardMainTopology,
+  cardRowTopology,
+  cardTopology,
+} from '../../topologies';
 
 const attachmentIconCID = 'CID-AttachmentIcon';
 

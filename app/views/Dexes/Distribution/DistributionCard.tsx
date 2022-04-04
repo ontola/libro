@@ -10,10 +10,12 @@ import CardDivider from '../../../components/Card/CardDivider';
 import Heading, { HeadingSize } from '../../../components/Heading';
 import dcat from '../../../ontology/dcat';
 import dexes from '../../../ontology/dexes';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { inlineTopology } from '../../../topologies/Inline';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  inlineTopology,
+} from '../../../topologies';
 
 const DistributionCard = () => (
   <CardContent endSpacing>

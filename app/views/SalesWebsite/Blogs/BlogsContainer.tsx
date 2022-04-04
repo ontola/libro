@@ -13,7 +13,7 @@ import React from 'react';
 
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { containerTopology } from '../../../topologies/Container';
+import { containerTopology } from '../../../topologies';
 import Showcase from '../../../topologies/Showcase';
 
 const BLOG_SPACING = 8;

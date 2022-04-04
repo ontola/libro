@@ -11,7 +11,7 @@ import { PageHeader } from '../../components/PageHeader';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import wdt from '../../ontology/wdt';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { fullResourceTopology } from '../../topologies';
 import MainBody from '../../topologies/MainBody';
 
 const TermFull: FC = () => (

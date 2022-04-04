@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import argu from '../../../ontology/argu';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 
 const ApplyLink = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp?.value) {

@@ -12,8 +12,8 @@ import CardContent from '../../components/Card/CardContent';
 import { LoadingHidden } from '../../components/Loading';
 import ontola from '../../ontology/ontola';
 import { Size } from '../../themes/themes';
+import { gridTopology } from '../../topologies';
 import Container from '../../topologies/Container';
-import { gridTopology } from '../../topologies/Grid';
 
 const useStyles = makeStyles(() => ({
   banner: {

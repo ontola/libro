@@ -5,9 +5,11 @@ import {
 import React from 'react';
 
 import form from '../../ontology/form';
-import { allTopologiesExcept } from '../../topologies';
-import { formFooterTopology } from '../../topologies/FormFooter';
-import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import {
+  allTopologiesExcept,
+  formFooterTopology,
+  omniformFieldsTopology,
+} from '../../topologies';
 
 const FormPage = () => (
   <Property

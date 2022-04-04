@@ -9,7 +9,7 @@ import CardContent from '../../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
-import { containerTopology } from '../../../../topologies/Container';
+import { containerTopology } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import ActionsBar from '../../../../topologies/ActionsBar';

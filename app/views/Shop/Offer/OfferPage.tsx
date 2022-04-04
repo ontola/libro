@@ -11,8 +11,8 @@ import React from 'react';
 import { Redirect } from 'react-router';
 
 import { retrievePath } from '../../../helpers/iris';
+import { pageTopology } from '../../../topologies';
 import FullResource from '../../../topologies/FullResource';
-import { pageTopology } from '../../../topologies/Page';
 
 const OfferPage: FC = ({
   subject,

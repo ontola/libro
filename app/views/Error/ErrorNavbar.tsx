@@ -9,7 +9,7 @@ import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../components/NavbarLink/NavbarLinkLabel';
 import { ERROR_CLASSES } from '../../helpers/metaData';
 import useErrorReload from '../../hooks/useErrorReload';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 import { errorMessages } from '../../translations/messages';
 import { bodyDescriptorForStatus, useErrorStatus } from '../../components/Error/errorMessages';
 import { ErrorComponentProps } from '../../components/Error/helpers';

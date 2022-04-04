@@ -21,7 +21,7 @@ import usePhases from '../../hooks/usePhases';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { fullResourceTopology } from '../../topologies';
 import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 

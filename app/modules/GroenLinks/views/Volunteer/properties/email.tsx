@@ -5,8 +5,7 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 
 import teamGL from '../../../../../ontology/teamGL';
-import { allTopologiesExcept } from '../../../../../topologies';
-import { tableRowTopology } from '../../../../../topologies/TableRow';
+import { allTopologiesExcept, tableRowTopology } from '../../../../../topologies';
 import { useContactOptionStyles } from '../index';
 
 const Email = ({ linkedProp }: PropertyProps) => {

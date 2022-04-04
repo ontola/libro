@@ -17,8 +17,7 @@ import SVG from '../../containers/SVG';
 import { NAME_PREDICATES } from '../../helpers/metaData';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { footerTopology } from '../../topologies/Footer';
-import { gridTopology } from '../../topologies/Grid';
+import { footerTopology, gridTopology } from '../../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   image: {

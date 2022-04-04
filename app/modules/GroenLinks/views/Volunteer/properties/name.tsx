@@ -6,9 +6,11 @@ import React from 'react';
 import Heading, { HeadingSize } from '../../../../../components/Heading';
 import LDLink from '../../../../../components/LDLink';
 import teamGL from '../../../../../ontology/teamGL';
-import { allTopologiesExcept } from '../../../../../topologies';
-import { pageTopology } from '../../../../../topologies/Page';
-import { selectTopology } from '../../../../../topologies/Select';
+import {
+  allTopologiesExcept,
+  pageTopology,
+  selectTopology,
+} from '../../../../../topologies';
 
 const Name = ({ linkedProp }: PropertyProps) => (
   <LDLink>

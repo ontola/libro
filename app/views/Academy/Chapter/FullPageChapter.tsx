@@ -8,7 +8,7 @@ import * as schema from '@ontologies/schema';
 import React from 'react';
 
 import argu from '../../../ontology/argu';
-import { pageTopology } from '../../../topologies/Page';
+import { pageTopology } from '../../../topologies';
 import Metadata from '../../../components/Metadata';
 
 const FullPageChapter: FC = ({ subject }) => {

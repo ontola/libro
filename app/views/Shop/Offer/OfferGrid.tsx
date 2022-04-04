@@ -14,9 +14,9 @@ import { LinkTarget } from '../../../components/Link';
 import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import ontola from '../../../ontology/ontola';
+import { gridTopology } from '../../../topologies';
 import CardFixed from '../../../topologies/Card/CardFixed';
 import DetailsBar, { DetailsBarVariant } from '../../../topologies/DetailsBar';
-import { gridTopology } from '../../../topologies/Grid';
 
 import OfferActionButtons from './OfferActionButtons';
 

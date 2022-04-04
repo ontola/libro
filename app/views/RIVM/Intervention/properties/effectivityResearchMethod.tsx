@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import rivm from '../../../../ontology/rivm';
-import { cardMainTopology } from '../../../../topologies/Card/CardMain';
+import { cardMainTopology } from '../../../../topologies';
 
 const EffectivityResearchMethod: FC<PropertyProps> = ({ linkedProp }) => {
   const researchSplit = linkedProp.value.split(',');

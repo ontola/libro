@@ -5,7 +5,7 @@ import React from 'react';
 import Detail from '../../../components/Detail';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 
 const FollowsCount = ({ linkedProp }: PropertyProps): JSX.Element | null => {
   if (tryParseInt(linkedProp) === 0) {

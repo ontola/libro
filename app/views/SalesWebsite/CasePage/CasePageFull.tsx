@@ -20,7 +20,7 @@ import { ArticleContent } from '../../../components/SalesWebsite';
 import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import { fullResourceTopology } from '../../../topologies';
 import { blogMessages, caseMessages } from '../../../translations/messages';
 
 const ARTICLE_PADDING = 4;

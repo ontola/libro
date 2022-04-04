@@ -6,8 +6,7 @@ import {
 import React from 'react';
 
 import Detail from '../../components/Detail';
-import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../topologies';
 
 interface EntryPointDetailProps {
   name: string;

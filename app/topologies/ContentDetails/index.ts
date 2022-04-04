@@ -1,9 +1,7 @@
 import { WithStyles, withStyles } from '@material-ui/styles';
 import { TopologyProvider } from 'link-redux';
 
-import argu from '../../ontology/argu';
-
-export const contentDetailsTopology = argu.ns('contentDetails');
+import { contentDetailsTopology } from '../../topologies';
 
 const styles = {
   contentDetails: {

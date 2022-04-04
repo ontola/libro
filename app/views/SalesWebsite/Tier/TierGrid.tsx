@@ -24,7 +24,7 @@ import { useIntl } from 'react-intl';
 import { CallToActionButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { LibroTheme, Margin } from '../../../themes/themes';
-import { gridTopology } from '../../../topologies/Grid';
+import { gridTopology } from '../../../topologies';
 import { salesMessages } from '../../../translations/messages';
 
 import { PricingInterval } from './Price';

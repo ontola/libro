@@ -12,8 +12,7 @@ import React from 'react';
 import libro from '../../../../ontology/libro';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
-import { alertDialogTopology } from '../../../../topologies/Dialog';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
+import { alertDialogTopology, fullResourceTopology } from '../../../../topologies';
 
 const AddressFull: FC = () => {
   const lrs = useLRS();

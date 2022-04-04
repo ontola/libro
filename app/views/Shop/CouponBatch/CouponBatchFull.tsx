@@ -13,9 +13,9 @@ import CardContent from '../../../components/Card/CardContent';
 import CardDivider from '../../../components/Card/CardDivider';
 import Heading, { HeadingSize } from '../../../components/Heading';
 import argu from '../../../ontology/argu';
+import { fullResourceTopology } from '../../../topologies';
 import { CardMain } from '../../../topologies/Card';
 import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const CouponBatchFull: FC = () => (
   <Container>

@@ -9,10 +9,10 @@ import CardContent from '../../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
+import { fullResourceTopology } from '../../../../topologies';
 import Container from '../../../../topologies/Container';
 import CardMain from '../../../../topologies/Card/CardMain';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
 
 const GroupFull = () => (
   <React.Fragment>

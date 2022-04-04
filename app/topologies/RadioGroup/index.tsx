@@ -15,11 +15,9 @@ import { FormTheme } from '../../components/Form/Form';
 import { SHADOW } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { radioGroupTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const radioGroupTopology = argu.ns('radioGroup');
 
 interface PropTypes {
   classes: Classes

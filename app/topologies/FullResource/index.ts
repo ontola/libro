@@ -1,9 +1,7 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 
-import argu from '../../ontology/argu';
-
-export const fullResourceTopology = argu.fullResource;
+import { fullResourceTopology } from '../../topologies';
 
 class FullResource extends TopologyProvider {
   public static propTypes = {

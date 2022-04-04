@@ -15,8 +15,8 @@ import { NavLink } from 'react-router-dom';
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import Container, { containerTopology } from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import { containerTopology, fullResourceTopology } from '../../../topologies';
+import Container from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
 
 export interface CaseContainerProps {

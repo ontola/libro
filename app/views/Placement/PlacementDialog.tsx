@@ -4,7 +4,7 @@ import React from 'react';
 
 import MapView from '../../modules/MapView/components/MapView';
 import argu from '../../ontology/argu';
-import { alertDialogTopology } from '../../topologies/Dialog';
+import { alertDialogTopology } from '../../topologies';
 
 const PlacementAlertDialog = ({ subject }: SubjectProp): JSX.Element => {
   const placements = React.useMemo(() => [subject], [subject]);

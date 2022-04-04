@@ -12,8 +12,7 @@ import React from 'react';
 import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
+import { cardFloatTopology, containerFloatTopology } from '../../topologies';
 import Menu from '../../topologies/Menu';
 
 import { MenuTypes } from './types';

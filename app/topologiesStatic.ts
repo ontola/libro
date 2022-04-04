@@ -2,50 +2,94 @@ import rdf from '@ontologies/core';
 import { MapDataToPropsParam } from 'link-redux';
 import { ComponentClass, FunctionComponent } from 'react';
 
-import flowTopologyComponent, { flowTopology } from './modules/Flow/topologies/Flow';
-import actionsBarTopologyComponent, { actionsBarTopology } from './topologies/ActionsBar';
-import appMenuTopologyComponent, { appMenuTopology } from './topologies/AppMenu';
-import attributeListTopologyComponent, { attributeListTopology } from './topologies/AttributeList';
-import cardTopologyComponent, { cardTopology } from './topologies/Card';
-import cardAppendixTopologyComponent, { cardAppendixTopology } from './topologies/Card/CardAppendix';
-import cardFixedTopologyComponent, { cardFixedTopology } from './topologies/Card/CardFixed';
-import cardFloatTopologyComponent, { cardFloatTopology } from './topologies/Card/CardFloat';
-import cardMainTopologyComponent, { cardMainTopology } from './topologies/Card/CardMain';
-import cardMicroRowTopologyComponent, { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
-import cardRowTopologyComponent, { cardRowTopology } from './topologies/Card/CardRow';
-import containerTopologyComponent, { containerTopology } from './topologies/Container';
-import containerFloatTopologyComponent, { containerFloatTopology } from './topologies/Container/ContainerFloat';
-import containerHeaderTopologyComponent, { containerHeaderTopology } from './topologies/Container/ContainerHeader';
-import contentDetailsTopologyComponent, { contentDetailsTopology } from './topologies/ContentDetails';
-import detailsBarTopologyComponent, { detailsBarTopology } from './topologies/DetailsBar';
-import alertDialogTopologyComponent, { alertDialogTopology } from './topologies/Dialog';
-import formFooterTopologyComponent, { formFooterTopology } from './topologies/FormFooter';
-import fullResourceTopologyComponent, { fullResourceTopology } from './topologies/FullResource';
-import gridTopologyComponent, { gridTopology } from './topologies/Grid';
+import {
+  actionsBarTopology,
+  alertDialogTopology,
+  appMenuTopology,
+  attributeListTopology,
+  blueBlockTopology,
+  cardAppendixTopology,
+  cardFixedTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  cardTopology,
+  containerFloatTopology,
+  containerHeaderTopology,
+  containerTopology,
+  contentDetailsTopology,
+  detailsBarTopology,
+  flowTopology,
+  formFooterTopology,
+  fullResourceTopology,
+  gridTopology,
+  inlineTopology,
+  listTopology,
+  mainBodyTopology,
+  menuTopology,
+  navbarTopology,
+  omniformFieldsTopology,
+  omniformSupplementBarTopology,
+  pageHeaderTopology,
+  pageTopology,
+  parentTopology,
+  radioGroupTopology,
+  selectTopology,
+  tabBarTopology,
+  tabPaneTopology,
+  tableBodyTopology,
+  tableCellTopology,
+  tableFooterCellTopology,
+  tableFooterRowTopology,
+  tableHeaderCellTopology,
+  tableHeaderRowTopology,
+  tableRowTopology,
+  tableTopology,
+} from './topologies';
+import actionsBarTopologyComponent from './topologies/ActionsBar';
+import appMenuTopologyComponent from './topologies/AppMenu';
+import attributeListTopologyComponent from './topologies/AttributeList';
+import cardTopologyComponent from './topologies/Card';
+import cardAppendixTopologyComponent from './topologies/Card/CardAppendix';
+import cardFixedTopologyComponent from './topologies/Card/CardFixed';
+import cardFloatTopologyComponent from './topologies/Card/CardFloat';
+import cardMainTopologyComponent from './topologies/Card/CardMain';
+import cardMicroRowTopologyComponent from './topologies/Card/CardMicroRow';
+import cardRowTopologyComponent from './topologies/Card/CardRow';
+import containerTopologyComponent from './topologies/Container';
+import containerFloatTopologyComponent from './topologies/Container/ContainerFloat';
+import containerHeaderTopologyComponent from './topologies/Container/ContainerHeader';
+import contentDetailsTopologyComponent from './topologies/ContentDetails';
+import detailsBarTopologyComponent from './topologies/DetailsBar';
+import alertDialogTopologyComponent from './topologies/Dialog';
+import flowTopologyComponent from './modules/Flow/topologies/Flow';
+import formFooterTopologyComponent from './topologies/FormFooter';
+import fullResourceTopologyComponent from './topologies/FullResource';
+import gridTopologyComponent from './topologies/Grid';
 import hoverBoxTopologyComponent from './topologies/HoverBox';
-import { inlineTopology } from './topologies/Inline';
-import listTopologyComponent, { listTopology } from './topologies/List';
-import mainBodyComponent, { mainBodyTopology } from './topologies/MainBody';
-import menuTopologyComponent, { menuTopology } from './topologies/Menu';
-import navbarTopologyComponent, { navbarTopology } from './topologies/Navbar';
-import omniformFieldsTopologyComponent, { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
-import omniformSupplementBarTopologyComponent, { omniformSupplementBarTopology } from './topologies/OmniformSupplementBar/OmniformSupplementBar';
-import { pageTopology, Page as pageTopologyComponent } from './topologies/Page';
-import pageHeaderTopologyComponent, { pageHeaderTopology } from './topologies/PageHeader';
-import parentTopologyComponent, { parentTopology } from './topologies/Parent';
-import radioGroupTopologyComponent, { radioGroupTopology } from './topologies/RadioGroup';
-import blueBlockTopologyComponent, { blueBlockTopology } from './topologies/SalesWebsite/BlueBlock';
-import selectTopologyComponent, { selectTopology } from './topologies/Select';
-import tabBarTopologyComponent, { tabBarTopology } from './topologies/TabBar';
-import tableTopologyComponent, { tableTopology } from './topologies/Table';
-import tableBodyComponent, { tableBodyTopology } from './topologies/TableBody';
-import tableCellTopologyComponent, { tableCellTopology } from './topologies/TableCell';
-import tableFooterCellTopologyComponent, { tableFooterCellTopology } from './topologies/TableFooterCell';
-import tableFooterRowTopologyComponent, { tableFooterRowTopology } from './topologies/TableFooterRow';
-import tableHeaderCellTopologyComponent, { tableHeaderCellTopology } from './topologies/TableHeaderCell';
-import tableHeaderRowTopologyComponent, { tableHeaderRowTopology } from './topologies/TableHeaderRow';
-import tableRowTopologyComponent, { tableRowTopology } from './topologies/TableRow';
-import tabPaneTopologyComponent, { tabPaneTopology } from './topologies/TabPane';
+import listTopologyComponent from './topologies/List';
+import mainBodyComponent from './topologies/MainBody';
+import menuTopologyComponent from './topologies/Menu';
+import navbarTopologyComponent from './topologies/Navbar';
+import omniformFieldsTopologyComponent from './topologies/OmniformFields/OmniformFields';
+import omniformSupplementBarTopologyComponent from './topologies/OmniformSupplementBar/OmniformSupplementBar';
+import { Page as pageTopologyComponent } from './topologies/Page';
+import pageHeaderTopologyComponent from './topologies/PageHeader';
+import parentTopologyComponent from './topologies/Parent';
+import radioGroupTopologyComponent from './topologies/RadioGroup';
+import blueBlockTopologyComponent from './topologies/SalesWebsite/BlueBlock';
+import selectTopologyComponent from './topologies/Select';
+import tabBarTopologyComponent from './topologies/TabBar';
+import tableTopologyComponent from './topologies/Table';
+import tableBodyComponent from './topologies/TableBody';
+import tableCellTopologyComponent from './topologies/TableCell';
+import tableFooterCellTopologyComponent from './topologies/TableFooterCell';
+import tableFooterRowTopologyComponent from './topologies/TableFooterRow';
+import tableHeaderCellTopologyComponent from './topologies/TableHeaderCell';
+import tableHeaderRowTopologyComponent from './topologies/TableHeaderRow';
+import tableRowTopologyComponent from './topologies/TableRow';
+import tabPaneTopologyComponent from './topologies/TabPane';
 
 interface TopologyMap {
   [k: number]: [FunctionComponent<any> | ComponentClass<any>, MapDataToPropsParam | undefined];

@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { tableHeaderRowTopology } from '../../../topologies/TableHeaderRow';
+import { tableHeaderRowTopology } from '../../../topologies';
 
 interface StyleProps {
   color: string;

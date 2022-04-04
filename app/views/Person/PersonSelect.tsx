@@ -16,7 +16,8 @@ import React, { MouseEventHandler } from 'react';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { selectTopology, useSelectItemStyles } from '../../topologies/Select';
+import { selectTopology } from '../../topologies';
+import { useSelectItemStyles } from '../../topologies/Select';
 
 interface PersonSelectProps {
   'aria-selected': boolean;

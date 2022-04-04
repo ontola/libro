@@ -1,9 +1,7 @@
 import React from 'react';
 
-import argu from '../../ontology/argu';
+import { cardAppendixTopology } from '../../topologies';
 import Topology, { TopologyContent } from '../Topology';
-
-export const cardAppendixTopology = argu.ns('cardAppendix');
 
 /**
  * Renders an empty CardAppendix

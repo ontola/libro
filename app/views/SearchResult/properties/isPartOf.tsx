@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { inlineTopology } from '../../../topologies/Inline';
+import { inlineTopology } from '../../../topologies';
 
 const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {
   const [parentType] = useFields(linkedProp as NamedNode, rdfx.type);

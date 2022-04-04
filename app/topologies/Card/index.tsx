@@ -2,8 +2,8 @@ import { WithStyles } from '@material-ui/core/styles';
 import { createStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { cardTopology } from '../../topologies';
 import Topology from '../Topology';
 
 import {
@@ -11,8 +11,6 @@ import {
   cardStyles,
   shineStyles,
 } from './sharedCardStyles';
-
-export const cardTopology = argu.card;
 
 interface CardProps {
   about?: string;

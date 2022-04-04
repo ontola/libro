@@ -15,13 +15,15 @@ import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { highlightContext } from '../../state/highlight';
+import {
+  alertDialogTopology,
+  containerTopology,
+  sideBarTopology,
+} from '../../topologies';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import DetailsBar from '../../topologies/DetailsBar';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { sideBarTopology } from '../../topologies/SideBar';
 
 export interface CommentContainerProps {
   depth?: number;

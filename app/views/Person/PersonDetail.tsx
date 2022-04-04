@@ -14,8 +14,7 @@ import LDLink from '../../components/LDLink';
 import { LinkFeature, LinkTheme } from '../../components/Link';
 import argu from '../../ontology/argu';
 import person from '../../ontology/person';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { tableCellTopology } from '../../topologies/TableCell';
+import { detailsBarTopology, tableCellTopology } from '../../topologies';
 import { personMessages } from '../../translations/messages';
 
 interface PersonDetailProps {

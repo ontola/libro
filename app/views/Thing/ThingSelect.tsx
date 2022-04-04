@@ -13,7 +13,8 @@ import React, { CSSProperties } from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
-import { selectTopology, useSelectItemStyles } from '../../topologies/Select';
+import { selectTopology } from '../../topologies';
+import { useSelectItemStyles } from '../../topologies/Select';
 
 interface ThingSelectProps extends SubjectProp {
   'aria-selected': boolean;

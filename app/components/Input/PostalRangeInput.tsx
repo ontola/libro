@@ -6,7 +6,7 @@ import React from 'react';
 import {
   FormFieldContext,
   fieldInputCID,
-  useFormStyles, 
+  useFormStyles,
 } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 

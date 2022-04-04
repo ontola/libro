@@ -11,11 +11,11 @@ import AttributeListItem from '../../../components/AttributeListItem';
 import CardContent from '../../../components/Card/CardContent';
 import LDLink from '../../../components/LDLink';
 import dbo from '../../../ontology/dbo';
+import { gridTopology } from '../../../topologies';
 import CardFixed from '../../../topologies/Card/CardFixed';
 import rivm from '../../../ontology/rivm';
 import DetailsBar from '../../../topologies/DetailsBar';
 import AttributeList from '../../../topologies/AttributeList';
-import { gridTopology } from '../../../topologies/Grid';
 
 const InterventionTypeGrid: FC = () => (
   <CardFixed>

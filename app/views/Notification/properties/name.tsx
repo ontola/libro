@@ -8,11 +8,13 @@ import React from 'react';
 
 import Heading, { HeadingSize } from '../../../components/Heading';
 import argu from '../../../ontology/argu';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { containerTopology } from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../topologies';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Heading size={HeadingSize.MD}>

@@ -8,10 +8,12 @@ import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { listTopology } from '../../topologies/List';
-import { mainBodyTopology } from '../../topologies/MainBody';
+import {
+  actionsBarTopology,
+  fullResourceTopology,
+  listTopology,
+  mainBodyTopology,
+} from '../../topologies';
 
 const ThingFull: FC = () => {
   const { p, c } = useViewBuilderToolkit();

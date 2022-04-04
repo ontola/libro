@@ -3,8 +3,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
 
 import ActionButton from '../../components/ActionButton';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { listTopology } from '../../topologies/List';
+import { actionsBarTopology, listTopology } from '../../topologies';
 
 export default LinkedRenderStore.registerRenderer(
   link({ name: schema.name })(ActionButton),

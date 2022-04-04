@@ -3,7 +3,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 
 const NotificationHeader = () => (
   <Property

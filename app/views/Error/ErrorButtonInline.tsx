@@ -5,19 +5,21 @@ import { FormattedMessage } from 'react-intl';
 import Button, { ButtonVariant } from '../../components/Button';
 import { ERROR_CLASSES } from '../../helpers/metaData';
 import useErrorReload from '../../hooks/useErrorReload';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { cardTopology } from '../../topologies/Card';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { hoverBoxTopology } from '../../topologies/HoverBox';
-import { inlineTopology } from '../../topologies/Inline';
-import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { parentTopology } from '../../topologies/Parent';
+import {
+  attributeListTopology,
+  cardFixedTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  cardTopology,
+  containerFloatTopology,
+  detailsBarTopology,
+  hoverBoxTopology,
+  inlineTopology,
+  omniformFieldsTopology,
+  parentTopology,
+} from '../../topologies';
 import { useErrorStatus, useTitleForStatus } from '../../components/Error/errorMessages';
 import { ErrorComponentProps } from '../../components/Error/helpers';
 

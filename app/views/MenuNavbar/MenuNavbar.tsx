@@ -8,8 +8,8 @@ import React from 'react';
 
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import app from '../../ontology/app';
+import { navbarTopology } from '../../topologies';
 import AppMenu from '../../topologies/AppMenu';
-import { navbarTopology } from '../../topologies/Navbar';
 
 const trigger: Trigger = ({
   onClick,

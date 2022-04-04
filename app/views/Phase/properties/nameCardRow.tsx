@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import argu from '../../../ontology/argu';
-import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../../topologies';
 
 const PhaseNameCardRow: FC<PropertyProps> = ({ linkedProp }) => (
   <span>

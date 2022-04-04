@@ -22,9 +22,9 @@ import { iriFromTemplate } from '../../../../helpers/uriTemplate';
 import app from '../../../../ontology/app';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
+import { fullResourceTopology } from '../../../../topologies';
 import { CardMain } from '../../../../topologies/Card';
 import Container from '../../../../topologies/Container';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
 import TabBar from '../../../../topologies/TabBar';
 import TabPane from '../../../../topologies/TabPane';
 

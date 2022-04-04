@@ -4,11 +4,9 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { tableRowTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const tableRowTopology = argu.ns('tableRow');
 
 const styles = (theme: LibroTheme) => ({
   tableRowClickable: {

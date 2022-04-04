@@ -8,7 +8,7 @@ import Button from '../../../components/Button';
 import { ReadMoreButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { showcaseTopology } from '../../../topologies/Showcase';
+import { showcaseTopology } from '../../../topologies';
 
 const INNER_CONTAINER_GAP = 3;
 const INNER_CONTAINER_PADDING = 2;

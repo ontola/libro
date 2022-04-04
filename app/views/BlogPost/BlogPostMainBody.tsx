@@ -16,7 +16,7 @@ import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
-import { mainBodyTopology } from '../../topologies/MainBody';
+import { mainBodyTopology } from '../../topologies';
 
 const useStyles = makeStyles(() => ({
   wrapper: {

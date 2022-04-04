@@ -1,7 +1,7 @@
 import {
   MiddlewareActionHandler,
   MiddlewareWithBoundLRS,
-  SomeNode, 
+  SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 

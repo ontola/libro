@@ -10,12 +10,10 @@ import clsx from 'clsx';
 import React from 'react';
 import { WrappedComponentProps, injectIntl } from 'react-intl';
 
-import app from '../../ontology/app';
 import { CSSPropertiesMap, LibroTheme } from '../../themes/themes';
+import { navbarTopology } from '../../topologies';
 import { landmarkMessages } from '../../translations/messages';
 import Topology from '../Topology';
-
-export const navbarTopology = app.ns('topologies/navbar');
 
 interface NavbarProps {
   theme: any;

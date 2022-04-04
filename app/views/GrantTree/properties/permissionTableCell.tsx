@@ -11,7 +11,7 @@ import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import argu from '../../../ontology/argu';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 import ontola from '../../../ontology/ontola';
 import { permissionMessages } from '../../../translations/messages';
 

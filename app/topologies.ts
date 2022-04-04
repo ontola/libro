@@ -1,56 +1,59 @@
 import rdf, { NamedNode } from '@ontologies/core';
 
-import { flowTopology } from './modules/Flow/topologies/Flow';
-import { actionsBarTopology } from './topologies/ActionsBar';
-import { appMenuTopology } from './topologies/AppMenu';
-import { attributeListTopology } from './topologies/AttributeList';
-import { cardTopology } from './topologies/Card';
-import { cardAppendixTopology } from './topologies/Card/CardAppendix';
-import { cardFixedTopology } from './topologies/Card/CardFixed';
-import { cardFloatTopology } from './topologies/Card/CardFloat';
-import { cardMainTopology } from './topologies/Card/CardMain';
-import { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
-import { cardRowTopology } from './topologies/Card/CardRow';
-import { chapterContentToplogy } from './topologies/ChapterContent';
-import { containerTopology } from './topologies/Container';
-import { containerFloatTopology } from './topologies/Container/ContainerFloat';
-import { containerHeaderTopology } from './topologies/Container/ContainerHeader';
-import { contentDetailsTopology } from './topologies/ContentDetails';
-import { detailsBarTopology } from './topologies/DetailsBar';
-import { alertDialogTopology } from './topologies/Dialog';
-import { footerTopology } from './topologies/Footer';
-import { formFooterTopology } from './topologies/FormFooter';
-import { fullResourceTopology } from './topologies/FullResource';
-import { gridTopology } from './topologies/Grid';
-import { hoverBoxTopology } from './topologies/HoverBox';
-import { inlineTopology } from './topologies/Inline';
-import { listTopology } from './topologies/List';
-import { mainBodyTopology } from './topologies/MainBody';
-import { menuTopology } from './topologies/Menu';
-import { navbarTopology } from './topologies/Navbar';
-import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
-import { omniformSupplementBarTopology } from './topologies/OmniformSupplementBar/OmniformSupplementBar';
-import { pageTopology } from './topologies/Page';
-import { pageHeaderTopology } from './topologies/PageHeader';
-import { parentTopology } from './topologies/Parent';
-import { radioGroupTopology } from './topologies/RadioGroup';
-import { blueBlockTopology } from './topologies/SalesWebsite/BlueBlock';
-import { selectTopology } from './topologies/Select';
-import { selectedValueTopology } from './topologies/SelectedValue';
-import { showcaseTopology } from './topologies/Showcase';
-import { sideBarTopology } from './topologies/SideBar';
-import { tabBarTopology } from './topologies/TabBar';
-import { tableTopology } from './topologies/Table';
-import { tableBodyTopology } from './topologies/TableBody';
-import { tableCellTopology } from './topologies/TableCell';
-import { tableFooterCellTopology } from './topologies/TableFooterCell';
-import { tableFooterRowTopology } from './topologies/TableFooterRow';
-import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
-import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
-import { tableRowTopology } from './topologies/TableRow';
-import { tabPaneTopology } from './topologies/TabPane';
+import app from './ontology/app';
+import argu from './ontology/argu';
+import ontola from './ontology/ontola';
+import sales from './ontology/sales';
 
-export { default as topologyComponentMap } from './topologiesStatic';
+export const actionsBarTopology = argu.actionsBar;
+export const alertDialogTopology = ontola.ns('dialog/alert');
+export const appMenuTopology = app.ns('topologies/appMenu');
+export const attributeListTopology = argu.ns('attributeList');
+export const blueBlockTopology = sales.blueBlock;
+export const cardAppendixTopology = argu.ns('cardAppendix');
+export const cardFixedTopology = argu.cardFixed;
+export const cardFloatTopology = argu.ns('cardFloat');
+export const cardMainTopology = argu.cardMain;
+export const cardMicroRowTopology = argu.ns('cardMicroRow');
+export const cardRowTopology = argu.ns('cardRow');
+export const cardTopology = argu.card;
+export const chapterContentTopology = argu.ns('chapterContent');
+export const containerFloatTopology = argu.ns('containerFloat');
+export const containerHeaderTopology = argu.ns('containerHeader');
+export const containerTopology = argu.container;
+export const contentDetailsTopology = argu.ns('contentDetails');
+export const detailsBarTopology = argu.detail;
+export const flowTopology = argu.ns('flow');
+export const footerTopology = ontola.ns('footer');
+export const formFooterTopology = argu.formFooter;
+export const fullResourceTopology = argu.fullResource;
+export const gridTopology = argu.grid;
+export const hoverBoxTopology = argu.ns('cardHover');
+export const inlineTopology = argu.inline;
+export const listTopology = argu.ns('list');
+export const mainBodyTopology = argu.ns('mainBody');
+export const menuTopology = argu.ns('topologies/menu');
+export const navbarTopology = app.ns('topologies/navbar');
+export const omniformFieldsTopology = argu.ns('omniformFields');
+export const omniformSupplementBarTopology = argu.ns('omniformSupplementBar');
+export const pageHeaderTopology = argu.ns('pageHeader');
+export const pageTopology = argu.ns('page');
+export const parentTopology = argu.ns('parent');
+export const radioGroupTopology = argu.ns('radioGroup');
+export const selectTopology = argu.ns('select');
+export const selectedValueTopology = argu.selectedValue;
+export const showcaseTopology = argu.ns('topologies/showcase');
+export const sideBarTopology = argu.ns('sideBarTopology');
+export const tabBarTopology = argu.ns('tabBar');
+export const tabPaneTopology = argu.tabPane;
+export const tableBodyTopology = argu.ns('tableBody');
+export const tableCellTopology = argu.ns('tableCell');
+export const tableFooterCellTopology = argu.ns('tableFooterCell');
+export const tableFooterRowTopology = argu.ns('tableFooterRow');
+export const tableHeaderCellTopology = argu.ns('tableHeaderCell');
+export const tableHeaderRowTopology = argu.ns('tableHeaderRow');
+export const tableRowTopology = argu.ns('tableRow');
+export const tableTopology = argu.ns('table');
 
 export const allTopologies: NamedNode[] = [
   undefined as unknown as NamedNode,
@@ -65,7 +68,7 @@ export const allTopologies: NamedNode[] = [
   cardMainTopology,
   cardMicroRowTopology,
   cardRowTopology,
-  chapterContentToplogy,
+  chapterContentTopology,
   containerTopology,
   containerFloatTopology,
   containerHeaderTopology,

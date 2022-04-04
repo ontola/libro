@@ -3,9 +3,8 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import argu from '../../ontology/argu';
+import { tableFooterCellTopology } from '../../topologies';
 
-export const tableFooterCellTopology = argu.ns('tableFooterCell');
 export const tableFooterCellCID = 'CID-TableFooterCell';
 
 interface Props {

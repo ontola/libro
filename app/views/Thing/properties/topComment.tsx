@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 
 import LDLink from '../../../components/LDLink';
 import argu from '../../../ontology/argu';
-import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
+import { cardAppendixTopology } from '../../../topologies';
 import CardMicroRow from '../../../topologies/Card/CardMicroRow';
 import CardRow from '../../../topologies/Card/CardRow';
 import { thingMessages } from '../../../translations/messages';

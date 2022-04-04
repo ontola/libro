@@ -11,9 +11,9 @@ import GridItem from '../../components/Grid/GridItem';
 import { tryParseInt } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { gridTopology } from '../../topologies';
 import Container from '../../topologies/Container';
 import FullResource from '../../topologies/FullResource';
-import { gridTopology } from '../../topologies/Grid';
 
 const Widget = () => {
   const [topology] = useProperty(ontola.topology);

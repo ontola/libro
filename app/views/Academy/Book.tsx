@@ -24,7 +24,7 @@ import retrievePath from '../../helpers/iris';
 import { useChapterNavigation } from '../../hooks/Academy/useChapterNavigation';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { fullResourceTopology } from '../../topologies';
 import SideBar from '../../topologies/SideBar';
 import { academyMessages } from '../../translations/messages';
 

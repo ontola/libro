@@ -11,7 +11,7 @@ import { entityIsLoaded } from '../../../../helpers/data';
 import { useCurrentActor } from '../../../../hooks/useCurrentActor';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
-import { tableTopology } from '../../../../topologies/Table';
+import { tableTopology } from '../../../../topologies';
 import TableRow from '../../../../topologies/TableRow';
 
 const AddressTable: FC = ({ subject }) => {

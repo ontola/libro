@@ -11,8 +11,8 @@ import CardContent from '../../components/Card/CardContent';
 import { IsActiveCheck } from '../../components/Link';
 import UnorderedList from '../../components/UnorderedList';
 import ontola from '../../ontology/ontola';
+import { cardAppendixTopology } from '../../topologies';
 import { CardRow } from '../../topologies/Card';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { MenuTypes } from './types';
 

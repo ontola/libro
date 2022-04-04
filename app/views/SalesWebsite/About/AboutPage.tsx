@@ -11,7 +11,7 @@ import React from 'react';
 
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import { fullResourceTopology } from '../../../topologies';
 
 const SECTION_BOTTOM_MARGIN = 30;
 

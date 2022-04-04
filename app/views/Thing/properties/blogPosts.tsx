@@ -4,7 +4,7 @@ import React from 'react';
 
 import Collection from '../../../components/Collection';
 import argu from '../../../ontology/argu';
-import { mainBodyTopology } from '../../../topologies/MainBody';
+import { mainBodyTopology } from '../../../topologies';
 
 const noLoading = () => null;
 

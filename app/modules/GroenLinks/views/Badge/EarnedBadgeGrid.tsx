@@ -14,7 +14,7 @@ import React from 'react';
 import Heading, { HeadingSize } from '../../../../components/Heading';
 import Image from '../../../../components/Image';
 import teamGL from '../../../../ontology/teamGL';
-import { gridTopology } from '../../../../topologies/Grid';
+import { gridTopology } from '../../../../topologies';
 
 const PENDING_BADGE_OPACITY = 0.2;
 

@@ -5,9 +5,7 @@ import React from 'react';
 
 import { LoadingFullResource } from '../../components/Loading';
 import Suspense from '../../components/Suspense';
-import argu from '../../ontology/argu';
-
-export const gridTopology = argu.grid;
+import { gridTopology } from '../../topologies';
 
 type GridProps = GridTypeMap['props'] & { className?: string };
 

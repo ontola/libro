@@ -14,8 +14,7 @@ import VoteButton from '../../../components/VoteButton/VoteButton';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import useCurrentVote from '../../../hooks/votes/useCurrentVote';
 import argu from '../../../ontology/argu';
-import { actionsBarTopology } from '../../../topologies/ActionsBar';
-import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
+import { actionsBarTopology, cardFloatTopology } from '../../../topologies';
 
 const VoteOptions: FC<PropertyProps> = ({
   linkedProp,

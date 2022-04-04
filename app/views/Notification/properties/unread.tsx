@@ -8,12 +8,14 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { containerTopology } from '../../../topologies/Container';
-import { navbarTopology } from '../../../topologies/Navbar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  fullResourceTopology,
+  navbarTopology,
+} from '../../../topologies';
 
 const Unread: FC<PropertyProps> = ({
   linkedProp,

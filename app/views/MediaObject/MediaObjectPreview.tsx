@@ -12,7 +12,7 @@ import React from 'react';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { imageRepresentationUrl, isPDF } from '../../helpers/attachments';
 import dbo from '../../ontology/dbo';
-import { listTopology } from '../../topologies/List';
+import { listTopology } from '../../topologies';
 
 interface PropTypes {
   sequenceIndex: number;

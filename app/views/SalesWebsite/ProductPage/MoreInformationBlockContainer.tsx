@@ -12,7 +12,7 @@ import React from 'react';
 import AllWithProperty from '../../../components/AllWithProperty';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { containerTopology } from '../../../topologies/Container';
+import { containerTopology } from '../../../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {

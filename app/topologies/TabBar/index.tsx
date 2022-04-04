@@ -2,10 +2,8 @@ import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 import { TabVariant, Tabs } from '../../components/Tabs';
-import argu from '../../ontology/argu';
+import { tabBarTopology } from '../../topologies';
 import TopologyProvider from '../Topology';
-
-export const tabBarTopology = argu.ns('tabBar');
 
 interface Props extends RouteComponentProps<any> {
   value: any;

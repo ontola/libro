@@ -11,8 +11,7 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardFixedTopology, cardRowTopology } from '../../topologies';
 import List, { ListDirection } from '../../topologies/List';
 
 import { CollectionTypes } from './types';

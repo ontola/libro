@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import Detail from '../../../components/Detail';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 import { motionMessages } from '../../../translations/messages';
 
 const MotionsCount = ({ linkedProp }: PropertyProps): JSX.Element | null => {

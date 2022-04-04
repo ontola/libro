@@ -10,8 +10,8 @@ import React from 'react';
 
 import qb from '../../../ontology/qb';
 import { Size } from '../../../themes/themes';
+import { tabPaneTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
-import { tabPaneTopology } from '../../../topologies/TabPane';
 
 export interface DataSetTabPaneProps {
   nextPage?: () => void;

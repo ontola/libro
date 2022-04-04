@@ -9,9 +9,11 @@ import { FormattedMessage } from 'react-intl';
 
 import Button from '../../../components/Button';
 import dexes from '../../../ontology/dexes';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+} from '../../../topologies';
 import { messages } from '../messages';
 
 const BrokerUrl: FC<PropertyProps> = ({

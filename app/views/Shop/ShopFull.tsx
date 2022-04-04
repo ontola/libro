@@ -15,11 +15,10 @@ import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
+import { fullResourceTopology, tabPaneTopology } from '../../topologies';
 import ActionsBar from '../../topologies/ActionsBar';
-import { fullResourceTopology } from '../../topologies/FullResource';
 import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
-import { tabPaneTopology } from '../../topologies/TabPane';
 
 const ShopFull: FC = (): JSX.Element => (
   <React.Fragment>

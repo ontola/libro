@@ -18,13 +18,13 @@ import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
 import ontola from '../../../ontology/ontola';
 import rivm from '../../../ontology/rivm';
+import { fullResourceTopology } from '../../../topologies';
 import ActionsBar from '../../../topologies/ActionsBar';
 import AttributeList from '../../../topologies/AttributeList';
 import CardMain from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';
 import Container from '../../../topologies/Container';
 import DetailsBar from '../../../topologies/DetailsBar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
 const InterventionFull: FC = () => (

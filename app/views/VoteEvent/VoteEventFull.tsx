@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import argu from '../../ontology/argu';
+import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const VoteEventFull: FC = () => (
   <Container>

@@ -10,8 +10,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import form from '../../ontology/form';
-import { allTopologies } from '../../topologies';
-import { inlineTopology } from '../../topologies/Inline';
+import { allTopologies, inlineTopology } from '../../topologies';
 
 import FormGroupErrorCount from './FormGroupErrorCount';
 import FormGroupProvider, { useFormGroup } from './FormGroupProvider';

@@ -1,8 +1,6 @@
 import { TopologyProvider } from 'link-redux';
 
-import argu from '../../ontology/argu';
-
-export const selectedValueTopology = argu.selectedValue;
+import { selectedValueTopology } from '../../topologies';
 
 class SelectedValue extends TopologyProvider {
   constructor(props: Record<string, unknown>) {

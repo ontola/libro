@@ -9,7 +9,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import sales from '../../../ontology/sales';
-import { tableCellTopology } from '../../../topologies/TableCell';
+import { tableCellTopology } from '../../../topologies';
 
 interface StyleProps {
   color: string;

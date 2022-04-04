@@ -11,11 +11,13 @@ import Image, {
 } from '../../../components/Image';
 import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import ontola from '../../../ontology/ontola';
-import { allTopologiesExcept } from '../../../topologies';
-import { formFooterTopology } from '../../../topologies/FormFooter';
-import { listTopology } from '../../../topologies/List';
-import { pageTopology } from '../../../topologies/Page';
-import { selectedValueTopology } from '../../../topologies/SelectedValue';
+import {
+  allTopologiesExcept,
+  formFooterTopology,
+  listTopology,
+  pageTopology,
+  selectedValueTopology,
+} from '../../../topologies';
 
 const style = {
   height: '100%',

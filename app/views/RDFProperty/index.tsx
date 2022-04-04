@@ -11,10 +11,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { allTopologiesExcept } from '../../topologies';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { pageTopology } from '../../topologies/Page';
-import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
+import {
+  allTopologiesExcept,
+  attributeListTopology,
+  pageTopology,
+  tableHeaderRowTopology,
+} from '../../topologies';
 
 import RDFPropertyAttributeList from './RDFPropertyAttributeList';
 

@@ -9,7 +9,7 @@ import React from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 import { PersonNavbarProps } from '../Person/PersonNavbar';
 
 import { RegisteredTypes } from './types';

@@ -1,8 +1,6 @@
 import { TopologyProvider } from 'link-redux';
 
-import argu from '../../ontology/argu';
-
-export const omniformSupplementBarTopology = argu.ns('omniformSupplementBar');
+import { omniformSupplementBarTopology } from '../../topologies';
 
 class OmniformSupplementBar extends TopologyProvider {
   constructor(props: Record<string, unknown>) {

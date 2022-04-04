@@ -7,8 +7,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { fullResourceTopology } from '../../../topologies';
 import BreadcrumbsBar from '../../../topologies/BreadcrumbsBar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import { CollectionTypes } from '../types';
 
 export interface IsPartOfProps {

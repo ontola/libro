@@ -13,10 +13,9 @@ import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import { SignInFormLink } from '../../components/SignInForm';
+import { alertDialogTopology, tabPaneTopology } from '../../topologies';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { tabPaneTopology } from '../../topologies/TabPane';
 import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';

@@ -15,10 +15,10 @@ import Button from '../../../../components/Button';
 import CardContent from '../../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import teamGL from '../../../../ontology/teamGL';
+import { alertDialogTopology } from '../../../../topologies';
 import AttributeList from '../../../../topologies/AttributeList';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { alertDialogTopology } from '../../../../topologies/Dialog';
 import { formMessages } from '../../../../translations/messages';
 import { useVisitPostalCode } from '../Glapp/helpers';
 

@@ -8,9 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+} from '../../../topologies';
 
 const ReadActionCard: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);

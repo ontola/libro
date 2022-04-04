@@ -4,11 +4,9 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';
 
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { attributeListTopology } from '../../topologies';
 import Topology, { TopologyContent } from '../Topology';
-
-export const attributeListTopology = argu.ns('attributeList');
 
 const styles = (theme: LibroTheme) => createStyles({
   attributeList: {

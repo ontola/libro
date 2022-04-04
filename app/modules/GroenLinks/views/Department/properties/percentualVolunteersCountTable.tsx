@@ -7,7 +7,7 @@ import React from 'react';
 
 import { tryParseFloat } from '../../../../../helpers/numbers';
 import teamGL from '../../../../../ontology/teamGL';
-import { tableRowTopology } from '../../../../../topologies/TableRow';
+import { tableRowTopology } from '../../../../../topologies';
 import TableCell from '../../../../../topologies/TableCell';
 
 import TrendIndicator from './trendIndicator';

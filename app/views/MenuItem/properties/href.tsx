@@ -10,8 +10,7 @@ import React from 'react';
 import Link, { LinkFeature } from '../../../components/Link';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { footerTopology } from '../../../topologies/Footer';
-import { navbarTopology } from '../../../topologies/Navbar';
+import { footerTopology, navbarTopology } from '../../../topologies';
 
 interface HrefProps {
   component: React.FunctionComponent<any>;

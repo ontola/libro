@@ -7,14 +7,16 @@ import {
 import React from 'react';
 
 import ontola from '../../ontology/ontola';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { formFooterTopology } from '../../topologies/FormFooter';
-import { menuTopology } from '../../topologies/Menu';
-import { navbarTopology } from '../../topologies/Navbar';
-import { pageHeaderTopology } from '../../topologies/PageHeader';
-import { selectTopology } from '../../topologies/Select';
-import { selectedValueTopology } from '../../topologies/SelectedValue';
-import { tableCellTopology } from '../../topologies/TableCell';
+import {
+  detailsBarTopology,
+  formFooterTopology,
+  menuTopology,
+  navbarTopology,
+  pageHeaderTopology,
+  selectTopology,
+  selectedValueTopology,
+  tableCellTopology,
+} from '../../topologies';
 
 interface ImageObjectProps {
   /** Hover text to display. */

@@ -14,8 +14,8 @@ import React from 'react';
 import { FilterableArticleCollection } from '../../../components/SalesWebsite/FilterableArticleCollection';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
+import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import Grid from '../../../topologies/Grid';
 
 const SECTION_SPACING = 10;

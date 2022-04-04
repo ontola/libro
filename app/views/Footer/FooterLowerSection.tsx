@@ -14,7 +14,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
-import { footerTopology } from '../../topologies/Footer';
+import { footerTopology } from '../../topologies';
 import { footerMessages, imageAltMessages } from '../../translations/messages';
 
 const STACKED_GRID_GAP = 5;

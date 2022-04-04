@@ -16,8 +16,8 @@ import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { Size } from '../../themes/themes';
+import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
 import PageHeader from '../../topologies/PageHeader';
 

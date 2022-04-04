@@ -1,11 +1,9 @@
 import { Container as MaterialContainer } from '@material-ui/core';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import { Size } from '../../themes/themes';
+import { containerTopology } from '../../topologies';
 import Topology, { TopologyContent } from '../Topology';
-
-export const containerTopology = argu.container;
 
 export interface ContainerProps {
   className?: string;

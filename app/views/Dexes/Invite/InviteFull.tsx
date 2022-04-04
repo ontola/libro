@@ -17,11 +17,11 @@ import { LoadingHidden } from '../../../components/Loading';
 import argu from '../../../ontology/argu';
 import dexes from '../../../ontology/dexes';
 import ontola from '../../../ontology/ontola';
+import { fullResourceTopology } from '../../../topologies';
 import ActionsBar from '../../../topologies/ActionsBar';
 import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
 import DetailsBar from '../../../topologies/DetailsBar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 
 const InviteFull: FC = () => {

@@ -9,8 +9,7 @@ import React from 'react';
 
 import { useStrippedMarkdown } from '../../../helpers/useStrippedMarkdown';
 import ontola from '../../../ontology/ontola';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { hoverBoxTopology } from '../../../topologies/HoverBox';
+import { cardFixedTopology, hoverBoxTopology } from '../../../topologies';
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles(() => ({

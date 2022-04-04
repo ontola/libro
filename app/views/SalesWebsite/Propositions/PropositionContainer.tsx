@@ -7,7 +7,7 @@ import React from 'react';
 
 import Proposition from '../../../components/SalesWebsite/Proposition';
 import sales from '../../../ontology/sales';
-import { containerTopology } from '../../../topologies/Container';
+import { containerTopology } from '../../../topologies';
 
 const PropositionContainer: FC = () => {
   const [name] = useProperty(schema.name);

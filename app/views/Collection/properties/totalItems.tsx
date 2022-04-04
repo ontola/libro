@@ -11,12 +11,14 @@ import LDLink from '../../../components/LDLink';
 import { buildRegister } from '../../../helpers/buildRegister';
 import retrievePath from '../../../helpers/iris';
 import { tryParseInt } from '../../../helpers/numbers';
-import { allTopologiesExcept } from '../../../topologies';
-import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
+import {
+  allTopologiesExcept,
+  cardAppendixTopology,
+  detailsBarTopology,
+  pageTopology,
+  tableCellTopology,
+} from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { pageTopology } from '../../../topologies/Page';
-import { tableCellTopology } from '../../../topologies/TableCell';
 import { CollectionTypes } from '../types';
 
 const useIsSinglePage = () => {

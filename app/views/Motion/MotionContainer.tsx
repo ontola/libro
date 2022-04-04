@@ -16,12 +16,14 @@ import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import opengov from '../../ontology/opengov';
 import { highlightContext } from '../../state/highlight';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const MotionContainer: FC = ({ subject }) => {
   const { highlightState } = React.useContext(highlightContext);

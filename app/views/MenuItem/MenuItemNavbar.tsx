@@ -11,7 +11,7 @@ import { NavbarLinkLink } from '../../components/NavbarLink';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 
 interface MenuItemNavbarProps {
   menuItemRef: React.ForwardedRef<HTMLButtonElement>,

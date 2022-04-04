@@ -20,8 +20,8 @@ import { isTableDisplay } from '../../../helpers/collections';
 import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import { LibroTheme } from '../../../themes/themes';
-import { allTopologies } from '../../../topologies';
-import Container, { containerTopology } from '../../../topologies/Container';
+import { allTopologies, containerTopology } from '../../../topologies';
+import Container from '../../../topologies/Container';
 import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
 

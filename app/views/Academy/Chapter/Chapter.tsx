@@ -10,10 +10,12 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';
-import { allTopologiesExcept } from '../../../topologies';
+import {
+  allTopologiesExcept,
+  pageTopology,
+  sideBarTopology,
+} from '../../../topologies';
 import { ChapterContent } from '../../../topologies/ChapterContent';
-import { pageTopology } from '../../../topologies/Page';
-import { sideBarTopology } from '../../../topologies/SideBar';
 
 const H1_BOTTOM_MARGIN = 5;
 

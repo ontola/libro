@@ -10,7 +10,8 @@ import React from 'react';
 
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
-import { ListDirection, listTopology } from '../../topologies/List';
+import { listTopology } from '../../topologies';
+import { ListDirection } from '../../topologies/List';
 
 import { CollectionTypes } from './types';
 

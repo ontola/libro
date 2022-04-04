@@ -7,9 +7,8 @@ import React from 'react';
 
 import { ErrorComponentProps } from '../../components/Error/helpers';
 import { ERROR_CLASSES } from '../../helpers/metaData';
+import { fullResourceTopology, tabPaneTopology } from '../../topologies';
 import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { tabPaneTopology } from '../../topologies/TabPane';
 
 const ErrorFull: FC<ErrorComponentProps> = (props) => (
   <Container>

@@ -17,8 +17,8 @@ import { FormattedDate, FormattedMessage } from 'react-intl';
 import { ArticleContent, ShareBlog } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
+import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import { blogMessages } from '../../../translations/messages';
 
 const CREATOR_IMAGE_SIZE = '4rem';

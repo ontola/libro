@@ -1,6 +1,6 @@
 import { register } from 'link-redux';
 
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { fullResourceTopology } from '../../topologies';
 
 import getCollectionPage from './getCollectionPage';
 

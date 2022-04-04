@@ -1,11 +1,9 @@
 import React from 'react';
 
-import DropdownMenu  from '../../components/DropdownMenu/DropdownMenu';
+import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
-import argu from '../../ontology/argu';
+import { menuTopology } from '../../topologies';
 import Topology, { TopologyContent } from '../Topology';
-
-export const menuTopology = argu.ns('topologies/menu');
 
 interface PropTypes {
   trigger: Trigger;

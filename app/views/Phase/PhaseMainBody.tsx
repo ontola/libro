@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import argu from '../../ontology/argu';
-import { mainBodyTopology } from '../../topologies/MainBody';
+import { mainBodyTopology } from '../../topologies';
 
 const PhaseMainBody: FC = () => <Property label={schema.text} />;
 

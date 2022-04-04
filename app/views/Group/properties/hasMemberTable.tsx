@@ -10,7 +10,7 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import org from '../../../ontology/org';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 
 const HasMemberTable: FC<PropertyProps> = ({
   linkedProp,

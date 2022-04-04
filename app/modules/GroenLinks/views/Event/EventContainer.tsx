@@ -9,11 +9,10 @@ import CardContent from '../../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
+import { alertDialogTopology, containerTopology } from '../../../../topologies';
 import ActionsBar from '../../../../topologies/ActionsBar';
-import { containerTopology } from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import Card from '../../../../topologies/Card';
-import { alertDialogTopology } from '../../../../topologies/Dialog';
 
 const EventContainer = () => (
   <Card>

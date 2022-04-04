@@ -8,7 +8,7 @@ import React from 'react';
 import Image from '../../../components/Image';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { showcaseTopology } from '../../../topologies/Showcase';
+import { showcaseTopology } from '../../../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {

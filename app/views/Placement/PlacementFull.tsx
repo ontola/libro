@@ -3,8 +3,8 @@ import React from 'react';
 
 import MapView from '../../modules/MapView/components/MapView';
 import argu from '../../ontology/argu';
+import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const PlacementAlertDialog: FC = ({
   subject,

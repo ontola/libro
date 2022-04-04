@@ -7,8 +7,7 @@ import React from 'react';
 
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
-import { cardTopology } from '../../topologies/Card';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardRowTopology, cardTopology } from '../../topologies';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   expired: {

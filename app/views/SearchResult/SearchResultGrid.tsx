@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import ontola from '../../ontology/ontola';
-import { gridTopology } from '../../topologies/Grid';
+import { gridTopology } from '../../topologies';
 
 export const SearchResultGrid: FC = () => (
   <Property label={ontola.query} />

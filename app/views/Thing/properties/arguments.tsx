@@ -8,12 +8,14 @@ import React from 'react';
 
 import ArgumentColumns from '../../../components/Arguments/ArgumentColumns';
 import argu from '../../../ontology/argu';
-import { allTopologiesExcept } from '../../../topologies';
-import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
+import {
+  allTopologiesExcept,
+  cardAppendixTopology,
+  pageTopology,
+  tabPaneTopology,
+} from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
 import Container from '../../../topologies/Container';
-import { pageTopology } from '../../../topologies/Page';
-import { tabPaneTopology } from '../../../topologies/TabPane';
 
 const Arguments: FC<PropertyProps> = () =>
   <ArgumentColumns />;

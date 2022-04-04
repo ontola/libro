@@ -12,8 +12,8 @@ import Progress from '../../../components/Progress';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import { LibroTheme, Margin } from '../../../themes/themes';
+import { fullResourceTopology } from '../../../topologies';
 import Card from '../../../topologies/Card';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 
 import { useCartProgressFormatter } from './helpers';
 

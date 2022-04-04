@@ -14,8 +14,8 @@ import Heading, { HeadingSize } from '../../components/Heading';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 
 interface OrganizationPageProps {
   hideHeader?: Literal;

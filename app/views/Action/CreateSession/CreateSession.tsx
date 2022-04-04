@@ -17,8 +17,7 @@ import { serializeForStorage } from '../../../helpers/persistence';
 import { useCurrentActor } from '../../../hooks/useCurrentActor';
 import { website } from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
-import { allTopologiesExcept } from '../../../topologies';
-import { actionsBarTopology } from '../../../topologies/ActionsBar';
+import { actionsBarTopology, allTopologiesExcept } from '../../../topologies';
 
 interface CreateSessionProps {
   reason: ReactChild;

@@ -11,9 +11,11 @@ import Collection from '../../../components/Collection';
 import Progress from '../../../components/Progress';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
-import { allTopologiesExcept } from '../../../topologies';
-import { containerTopology } from '../../../topologies/Container';
-import { parentTopology } from '../../../topologies/Parent';
+import {
+  allTopologiesExcept,
+  containerTopology,
+  parentTopology,
+} from '../../../topologies';
 
 import { useCartProgressFormatter } from './helpers';
 

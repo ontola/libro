@@ -18,8 +18,8 @@ import SubSection from '../../components/SubSection';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
 import { LibroTheme } from '../../themes/themes';
+import { fullResourceTopology } from '../../topologies';
 import ContentDetails from '../../topologies/ContentDetails';
-import { fullResourceTopology } from '../../topologies/FullResource';
 import MainBody from '../../topologies/MainBody';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({

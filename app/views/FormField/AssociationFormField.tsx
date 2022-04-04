@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 import rdf, {
   NamedNode,
   QuadPosition,
-  isNamedNode, 
+  isNamedNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';

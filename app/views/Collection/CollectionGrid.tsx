@@ -9,9 +9,9 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
 import ontola from '../../ontology/ontola';
+import { gridTopology } from '../../topologies';
 import { CardFixed } from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
-import { gridTopology } from '../../topologies/Grid';
 import List, { ListDirection } from '../../topologies/List';
 
 import { CollectionTypes } from './types';

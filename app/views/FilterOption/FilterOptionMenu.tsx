@@ -16,7 +16,7 @@ import MenuItem from '../../components/MenuItem';
 import { retrievePath } from '../../helpers/iris';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import ontola from '../../ontology/ontola';
-import { menuTopology } from '../../topologies/Menu';
+import { menuTopology } from '../../topologies';
 
 interface FilterOptionMenuCompProps {
   activeFilters: SomeNode[];

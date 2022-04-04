@@ -20,7 +20,7 @@ import React from 'react';
 import * as ReactIs from 'react-is';
 
 import { componentMap } from '../components';
-import { topologyComponentMap } from '../topologies';
+import topologyMap from '../topologiesStatic';
 
 interface PropertyProps {
   onLoad?: React.ComponentType | null;
@@ -30,7 +30,7 @@ const component = (_: LinkReduxLRSType) => {
   function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: JSX.Element[]): JSX.Element;
   function top(t: Node, children?: JSX.Element[]): JSX.Element;
   function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | JSX.Element[], children?: JSX.Element[]): JSX.Element {
-    const [Comp] = topologyComponentMap[rdf.id(t)] ?? componentMap[rdf.id(t)] ?? [];
+    const [Comp] = topologyMap[rdf.id(t)] ?? componentMap[rdf.id(t)] ?? [];
     const propsIsChildren = Array.isArray(props);
     const compProps = propsIsChildren ? {} : (props ?? {});
     const childElems = React.Children.map(

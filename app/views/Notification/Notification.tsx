@@ -4,16 +4,15 @@ import {
   register,
   useGlobalIds,
   useLRS,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { containerTopology, fullResourceTopology } from '../../topologies';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const style = { width: '100%' };
 

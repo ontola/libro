@@ -6,7 +6,7 @@ import React from 'react';
 import Heading, { HeadingSize, HeadingVariant } from '../../../components/Heading';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { footerTopology } from '../../../topologies/Footer';
+import { footerTopology } from '../../../topologies';
 
 interface MenuItemLabelFooterProps {
   linkedProp: Literal;

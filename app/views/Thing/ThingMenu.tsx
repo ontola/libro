@@ -5,7 +5,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import LDLink from '../../components/LDLink';
-import { menuTopology } from '../../topologies/Menu';
+import { menuTopology } from '../../topologies';
 
 const ThingMenu = (): JSX.Element => (
   <LDLink>

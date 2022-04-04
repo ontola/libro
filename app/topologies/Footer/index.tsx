@@ -6,11 +6,9 @@ import React from 'react';
 
 import { gridHeaderCID } from '../../components/Grid/GridHeader';
 import { headingCID } from '../../components/Heading';
-import ontola from '../../ontology/ontola';
 import { IndexablePalette, LibroTheme } from '../../themes/themes';
+import { footerTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const footerTopology = ontola.ns('footer');
 
 type FooterProps = WithStyles<typeof styles> & {
   legacy?: boolean;

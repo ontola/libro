@@ -10,11 +10,13 @@ import React from 'react';
 import Heading, { HeadingSize } from '../../../components/Heading';
 import Link from '../../../components/Link';
 import ontola from '../../../ontology/ontola';
-import { allTopologiesExcept } from '../../../topologies';
-import { navbarTopology } from '../../../topologies/Navbar';
-import { pageTopology } from '../../../topologies/Page';
-import { parentTopology } from '../../../topologies/Parent';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import {
+  allTopologiesExcept,
+  navbarTopology,
+  pageTopology,
+  parentTopology,
+  tableRowTopology,
+} from '../../../topologies';
 import { CollectionTypes } from '../types';
 
 interface CollectionNameProps {

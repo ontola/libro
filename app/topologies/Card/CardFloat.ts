@@ -4,13 +4,8 @@ import {
   withStyles,
 } from '@material-ui/styles';
 
-import argu from '../../ontology/argu';
+import { cardFloatTopology } from '../../topologies';
 import Topology from '../Topology';
-
-/**
- * In the top right corner of a card
- */
-export const cardFloatTopology = argu.ns('cardFloat');
 
 const styles = createStyles({
   cardFloat: {
@@ -20,6 +15,7 @@ const styles = createStyles({
 });
 
 /**
+ * In the top right corner of a card
  * Sets the cardFloat topology
  * @returns {component} Component
  */

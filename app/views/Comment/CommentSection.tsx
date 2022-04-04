@@ -13,10 +13,13 @@ import React from 'react';
 import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import { highlightContext } from '../../state/highlight';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import CardMicroRow, { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { listTopology } from '../../topologies/List';
+import {
+  cardAppendixTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  listTopology,
+} from '../../topologies';
+import CardMicroRow from '../../topologies/Card/CardMicroRow';
 
 const CommentSection = ({ subject }: SubjectProp): JSX.Element => {
   const lrs = useLRS();

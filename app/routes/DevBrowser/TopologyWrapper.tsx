@@ -7,16 +7,25 @@ import { Resource } from 'link-redux';
 import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
 import { LibroTheme, Margin } from '../../themes/themes';
-import Card, { cardTopology } from '../../topologies/Card';
-import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import CardMain, { cardMainTopology } from '../../topologies/Card/CardMain';
-import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
-import Container, { containerTopology } from '../../topologies/Container';
-import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
-import Grid, { gridTopology } from '../../topologies/Grid';
-import { inlineTopology } from '../../topologies/Inline';
-import { navbarTopology } from '../../topologies/Navbar';
-import { parentTopology } from '../../topologies/Parent';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardRowTopology,
+  cardTopology,
+  containerTopology,
+  detailsBarTopology,
+  gridTopology,
+  inlineTopology,
+  navbarTopology,
+  parentTopology,
+} from '../../topologies';
+import Card from '../../topologies/Card';
+import CardFixed from '../../topologies/Card/CardFixed';
+import CardMain from '../../topologies/Card/CardMain';
+import CardRow from '../../topologies/Card/CardRow';
+import Container from '../../topologies/Container';
+import DetailsBar from '../../topologies/DetailsBar';
+import Grid from '../../topologies/Grid';
 
 export interface TopologyWrapperProps {
   pure: boolean;

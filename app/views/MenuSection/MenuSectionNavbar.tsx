@@ -4,7 +4,7 @@ import React from 'react';
 
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 
 const MenuSection = (): JSX.Element => (
   <div data-testid="MenuSection-menu-section">

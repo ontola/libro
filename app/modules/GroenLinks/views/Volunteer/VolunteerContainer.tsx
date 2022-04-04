@@ -8,7 +8,7 @@ import React from 'react';
 
 import CardContent from '../../../../components/Card/CardContent';
 import teamGL from '../../../../ontology/teamGL';
-import { containerTopology } from '../../../../topologies/Container';
+import { containerTopology } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
 

@@ -16,7 +16,7 @@ import { filterFind } from '../../helpers/data';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import { useOmniformOpenAction } from '../../state/omniform';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
+import { containerFloatTopology } from '../../topologies';
 import { OMNIFORM_FILTER, isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';

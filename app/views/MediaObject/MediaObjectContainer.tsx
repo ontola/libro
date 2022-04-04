@@ -7,8 +7,8 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 
 const MediaObjectContainer: FC = () => (
   <Card>

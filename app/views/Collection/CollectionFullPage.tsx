@@ -8,8 +8,8 @@ import {
 import React from 'react';
 
 import Metadata from '../../components/Metadata';
+import { pageTopology } from '../../topologies';
 import FullResource from '../../topologies/FullResource';
-import { pageTopology } from '../../topologies/Page';
 import { CollectionViewTypes } from '../CollectionPage/types';
 
 import { CollectionTypes } from './types';

@@ -7,10 +7,8 @@ import {
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
-
-export const mainBodyTopology = argu.ns('mainBody');
+import { mainBodyTopology } from '../../topologies';
 
 const styles = (theme: LibroTheme) => createStyles({
   paper: {

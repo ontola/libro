@@ -15,10 +15,9 @@ import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
+import { alertDialogTopology, containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
 
 export interface ArgumentContainerProps {
   highlighted: boolean;

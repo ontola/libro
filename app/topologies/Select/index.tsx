@@ -1,10 +1,8 @@
 import { makeStyles } from '@material-ui/styles';
 import React, { Ref } from 'react';
 
-import argu from '../../ontology/argu';
+import { selectTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const selectTopology = argu.ns('select');
 
 export const useSelectItemStyles = makeStyles({
   selectItem: {

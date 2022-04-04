@@ -4,10 +4,8 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import { ReactNode } from 'react';
 
-import argu from '../../ontology/argu';
 import { LibroTheme, Margin } from '../../themes/themes';
-
-export const tableHeaderCellTopology = argu.ns('tableHeaderCell');
+import { tableHeaderCellTopology } from '../../topologies';
 
 const styles = (theme: LibroTheme) => createStyles({
   tableHeaderCell: {

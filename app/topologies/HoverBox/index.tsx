@@ -1,11 +1,9 @@
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
+import { hoverBoxTopology } from '../../topologies';
 
 import { HoverBoxImpl, HoverBoxProps } from './HoverBoxImpl';
-
-export const hoverBoxTopology = argu.ns('cardHover');
 
 /**
  * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'

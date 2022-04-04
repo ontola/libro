@@ -8,7 +8,7 @@ import {
   FC,
   Property,
   Resource,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 

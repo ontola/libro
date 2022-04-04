@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
 
 import argu from '../../ontology/argu';
-import { parentTopology } from '../../topologies/Parent';
+import { parentTopology } from '../../topologies';
 
 const OrganizationParent = () => null;
 

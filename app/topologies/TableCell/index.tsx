@@ -12,10 +12,8 @@ import React, { ReactNode } from 'react';
 
 import { headingCID } from '../../components/Heading';
 import HeadingContext from '../../components/Heading/HeadingContext';
-import argu from '../../ontology/argu';
 import { LibroTheme, Margin } from '../../themes/themes';
-
-export const tableCellTopology = argu.ns('tableCell');
+import { tableCellTopology } from '../../topologies';
 
 const styles = (theme: LibroTheme) => createStyles({
   noBorder: {

@@ -10,7 +10,7 @@ import React from 'react';
 
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { parentProps } from '../../ontology/app';
-import { parentTopology } from '../../topologies/Parent';
+import { parentTopology } from '../../topologies';
 
 import { namePredicates } from './properties/name';
 

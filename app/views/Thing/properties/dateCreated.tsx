@@ -5,8 +5,7 @@ import React from 'react';
 
 import DetailDate from '../../../components/DetailDate';
 import RelativeDate from '../../../components/RelativeDate';
-import { allTopologiesExcept } from '../../../topologies';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { allTopologiesExcept, tableRowTopology } from '../../../topologies';
 
 interface PropTypes {
   linkedProp: Literal;

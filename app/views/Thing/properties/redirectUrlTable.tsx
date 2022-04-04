@@ -4,7 +4,7 @@ import React from 'react';
 
 import Link from '../../../components/Link';
 import ontola from '../../../ontology/ontola';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 
 const RedirectUrlTable = ({ linkedProp }: PropertyProps): JSX.Element | null => {
   if (!linkedProp) {

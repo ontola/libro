@@ -2,12 +2,10 @@ import { Container as MaterialContainer } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import React from 'react';
 
-import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
+import { blueBlockTopology } from '../../../topologies';
 import Container, { ContainerProps } from '../../Container';
 import { TopologyContent } from '../../Topology';
-
-export const blueBlockTopology = sales.blueBlock;
 
 const styles = (theme: LibroTheme) => ({
   root: {

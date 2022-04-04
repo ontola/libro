@@ -11,11 +11,13 @@ import React from 'react';
 import AttributeListItem from '../../components/AttributeListItem';
 import CardContent from '../../components/Card/CardContent';
 import argu from '../../ontology/argu';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../topologies';
 import AttributeList from '../../topologies/AttributeList';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const SubmissionDataContainer: FC = () => {
   const properties = useQuadruples(except(rdfx.type));

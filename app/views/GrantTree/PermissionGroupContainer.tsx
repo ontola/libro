@@ -3,7 +3,7 @@ import React from 'react';
 
 import argu from '../../ontology/argu';
 import org from '../../ontology/org';
-import { containerTopology } from '../../topologies/Container';
+import { containerTopology } from '../../topologies';
 
 const PermissionGroupContainer = () => (
   <React.Fragment>

@@ -16,7 +16,7 @@ import useActionStatus from '../../hooks/useActionStatus';
 import Flow from '../../modules/Flow/topologies/Flow';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { alertDialogTopology } from '../../topologies/Dialog';
+import { alertDialogTopology } from '../../topologies';
 import { surveyMessages } from '../../translations/messages';
 
 const style = { padding: '0.5rem 0' };

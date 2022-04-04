@@ -12,10 +12,12 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
 import argu from '../../../ontology/argu';
+import {
+  containerTopology,
+  inlineTopology,
+  mainBodyTopology,
+} from '../../../topologies';
 import Card from '../../../topologies/Card';
-import { containerTopology } from '../../../topologies/Container';
-import { inlineTopology } from '../../../topologies/Inline';
-import { mainBodyTopology } from '../../../topologies/MainBody';
 
 interface TrashedAtProps {
   linkedProp: NamedNode;

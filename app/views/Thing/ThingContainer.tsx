@@ -15,10 +15,10 @@ import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { highlightContext } from '../../state/highlight';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
 
 const ThingContainer: FC = ({ subject }) => {
   const { highlightState } = React.useContext(highlightContext);

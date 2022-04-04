@@ -14,11 +14,11 @@ import React from 'react';
 import Button from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
 import { SignInFormLink } from '../../../components/SignInForm';
+import { flowTopology } from '../../../topologies';
 import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
 import { isInvalidActionStatus } from '../../../views/Thing/properties/omniform/helpers';
 import { ActionProps, useDoneHandler } from '../../../views/Action/helpers';
-import { flowTopology } from '../topologies/Flow';
 
 const useStyles = makeStyles({
   controlStrip: {

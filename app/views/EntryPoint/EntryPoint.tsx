@@ -15,21 +15,23 @@ import { ButtonVariant } from '../../components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { LibroTheme } from '../../themes/themes';
-import { allTopologiesExcept } from '../../topologies';
-import { cardTopology } from '../../topologies/Card';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { containerTopology } from '../../topologies/Container';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { contentDetailsTopology } from '../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { flowTopology } from '../../modules/Flow/topologies/Flow';
-import { footerTopology } from '../../topologies/Footer';
-import { gridTopology } from '../../topologies/Grid';
-import { mainBodyTopology } from '../../topologies/MainBody';
-import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { listTopology } from '../../topologies/List';
-import { pageTopology } from '../../topologies/Page';
+import {
+  allTopologiesExcept,
+  cardFloatTopology,
+  cardMainTopology,
+  cardTopology,
+  containerFloatTopology,
+  containerTopology,
+  contentDetailsTopology,
+  detailsBarTopology,
+  flowTopology,
+  footerTopology,
+  gridTopology,
+  listTopology,
+  mainBodyTopology,
+  omniformFieldsTopology,
+  pageTopology,
+} from '../../topologies';
 
 import useEntryPointFormProps from './useEntryPointFormProps';
 

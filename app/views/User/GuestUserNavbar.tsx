@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { SignInFormLink } from '../../components/SignInForm';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import ontola from '../../ontology/ontola';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 
 const GuestUserNavbar = () => {
   const label = (

@@ -19,7 +19,7 @@ import React from 'react';
 import { Facet, FacetType } from '../../../components/SalesWebsite/Facet';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { containerTopology } from '../../../topologies/Container';
+import { containerTopology } from '../../../topologies';
 
 const SMALL_SCREEN_TITLE_MARGIN = 15;
 

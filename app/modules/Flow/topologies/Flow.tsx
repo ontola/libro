@@ -3,9 +3,7 @@ import withStyles from '@material-ui/styles/withStyles';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-
-export const flowTopology = argu.ns('flow');
+import { flowTopology } from '../../../topologies';
 
 export type FlowProps = Record<string, unknown> & {
   className?: string;

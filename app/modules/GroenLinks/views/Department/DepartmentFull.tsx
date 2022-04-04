@@ -13,10 +13,10 @@ import LinkedDetailDate from '../../../../components/LinkedDetailDate';
 import argu from '../../../../ontology/argu';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
+import { fullResourceTopology } from '../../../../topologies';
 import CardMain from '../../../../topologies/Card/CardMain';
 import Container from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
 
 const DepartmentFull = () => {
   const postalRanges = useProperty(teamGL.postalRanges, { returnType: ReturnType.AllLiterals });

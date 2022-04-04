@@ -3,7 +3,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import TableCells from '../../components/TableCells';
-import { tableTopology } from '../../topologies/Table';
+import { tableTopology } from '../../topologies';
 import TableRow from '../../topologies/TableRow';
 
 const ThingTable: FC = () => (

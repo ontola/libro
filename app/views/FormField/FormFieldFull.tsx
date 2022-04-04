@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import form from '../../ontology/form';
+import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const FormFieldFull: FC = ({
   subject,

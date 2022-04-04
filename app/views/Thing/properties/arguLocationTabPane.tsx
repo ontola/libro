@@ -10,8 +10,7 @@ import React from 'react';
 import { MapVariant } from '../../../modules/MapView/components/MapView';
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';
-import { fullResourceTopology } from '../../../topologies/FullResource';
-import { tabPaneTopology } from '../../../topologies/TabPane';
+import { fullResourceTopology, tabPaneTopology } from '../../../topologies';
 
 import { ArguLocationProps } from './arguLocation';
 

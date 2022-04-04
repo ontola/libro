@@ -6,15 +6,13 @@ import {
 import clsx from 'clsx';
 
 import { collapseTextToggleCID } from '../../components/CollapseText';
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { cardMicroRowTopology } from '../../topologies';
 import Topology from '../Topology';
 
 import { shineStyles } from './sharedCardStyles';
 
 export const cardMicroRowClassIdentifier = 'CID-CardMicroRow';
-
-export const cardMicroRowTopology = argu.ns('cardMicroRow');
 
 export interface CardMicroRowProps {
   highlighted?: boolean;

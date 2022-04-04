@@ -11,24 +11,26 @@ import React from 'react';
 import LDLink from '../../../components/LDLink';
 import { LinkFeature, LinkTarget } from '../../../components/Link';
 import libro from '../../../ontology/libro';
-import { allTopologiesExcept } from '../../../topologies';
-import { actionsBarTopology } from '../../../topologies/ActionsBar';
-import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { cardRowTopology } from '../../../topologies/Card/CardRow';
-import { containerTopology } from '../../../topologies/Container';
-import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
-import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
-import { alertDialogTopology } from '../../../topologies/Dialog';
-import { fullResourceTopology } from '../../../topologies/FullResource';
-import { gridTopology } from '../../../topologies/Grid';
-import { listTopology } from '../../../topologies/List';
-import { menuTopology } from '../../../topologies/Menu';
-import { pageTopology } from '../../../topologies/Page';
-import { tableCellTopology } from '../../../topologies/TableCell';
-import { tableFooterCellTopology } from '../../../topologies/TableFooterCell';
-import { tableRowTopology } from '../../../topologies/TableRow';
-import { tabPaneTopology } from '../../../topologies/TabPane';
+import {
+  actionsBarTopology,
+  alertDialogTopology,
+  allTopologiesExcept,
+  cardFloatTopology,
+  cardMainTopology,
+  cardRowTopology,
+  containerFloatTopology,
+  containerHeaderTopology,
+  containerTopology,
+  fullResourceTopology,
+  gridTopology,
+  listTopology,
+  menuTopology,
+  pageTopology,
+  tabPaneTopology,
+  tableCellTopology,
+  tableFooterCellTopology,
+  tableRowTopology,
+} from '../../../topologies';
 import { isInvalidActionStatus } from '../../Thing/properties/omniform/helpers';
 
 export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (

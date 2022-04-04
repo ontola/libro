@@ -5,7 +5,7 @@ import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
-import { parentTopology } from '../Parent';
+import { parentTopology } from '../../topologies';
 import Topology from '../Topology';
 
 export interface BreadcrumbsBarProps {

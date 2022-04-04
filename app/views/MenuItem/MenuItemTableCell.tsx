@@ -12,7 +12,7 @@ import React from 'react';
 import Link from '../../components/Link';
 import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
 import ontola from '../../ontology/ontola';
-import { tableCellTopology } from '../../topologies/TableCell';
+import { tableCellTopology } from '../../topologies';
 
 import { MenuTypes } from './types';
 

@@ -9,8 +9,8 @@ import CardContent from '../../../../components/Card/CardContent';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
+import { cardRowTopology } from '../../../../topologies';
 import ActionsBar from '../../../../topologies/ActionsBar';
-import { cardRowTopology } from '../../../../topologies/Card/CardRow';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import { useContactOptionStyles } from '../Volunteer';
 

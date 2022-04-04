@@ -4,7 +4,7 @@ import React from 'react';
 import {
   FC,
   Property,
-  register, 
+  register,
 } from 'link-redux';
 
 import CardContent from '../../components/Card/CardContent';
@@ -12,9 +12,9 @@ import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import { highlightContext } from '../../state/highlight';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
 
 const ForumContainer: FC = ({ subject }) => {
   const { highlightState } = React.useContext(highlightContext);

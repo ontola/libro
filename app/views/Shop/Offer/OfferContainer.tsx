@@ -14,12 +14,14 @@ import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import meeting from '../../../ontology/meeting';
 import ontola from '../../../ontology/ontola';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../topologies';
 import Card from '../../../topologies/Card';
 import CardRow from '../../../topologies/Card/CardRow';
-import { containerTopology } from '../../../topologies/Container';
 import DetailsBar, { DetailsBarVariant } from '../../../topologies/DetailsBar';
-import { alertDialogTopology } from '../../../topologies/Dialog';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 
 import OfferActionButtons from './OfferActionButtons';
 

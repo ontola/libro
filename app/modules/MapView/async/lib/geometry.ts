@@ -6,7 +6,7 @@ import { fromLonLat } from 'ol/proj';
 import {
   Geometry,
   GeometryType,
-  Point, 
+  Point,
 } from '../../components/MapView';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import { InputValue } from '../../../../hooks/useFormField';

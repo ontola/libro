@@ -4,7 +4,7 @@ import React from 'react';
 
 import MenuSectionLabel from '../../../components/MenuSectionLabel';
 import argu from '../../../ontology/argu';
-import { navbarTopology } from '../../../topologies/Navbar';
+import { navbarTopology } from '../../../topologies';
 
 const MenuSectionName = ({ linkedProp }: PropertyProps): JSX.Element => (
   <MenuSectionLabel linkedProp={linkedProp} />

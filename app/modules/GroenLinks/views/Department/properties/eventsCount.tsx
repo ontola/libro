@@ -4,8 +4,7 @@ import emoji from 'react-easy-emoji';
 
 import Detail from '../../../../../components/Detail';
 import teamGL from '../../../../../ontology/teamGL';
-import { detailsBarTopology } from '../../../../../topologies/DetailsBar';
-import { contentDetailsTopology } from '../../../../../topologies/ContentDetails';
+import { contentDetailsTopology, detailsBarTopology } from '../../../../../topologies';
 
 const EventsCount = ({ linkedProp }: PropertyProps) => (
   <Detail

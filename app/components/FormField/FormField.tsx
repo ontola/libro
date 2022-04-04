@@ -4,15 +4,17 @@ import React, { FunctionComponent } from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';
 import { PermittedFormField } from '../../hooks/useFormField';
-import { flowTopology } from '../../modules/Flow/topologies/Flow';
 import { LibroTheme } from '../../themes/themes';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { formFooterTopology } from '../../topologies/FormFooter';
-import { mainBodyTopology } from '../../topologies/MainBody';
-import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import {
+  cardMainTopology,
+  cardTopology,
+  flowTopology,
+  formFooterTopology,
+  mainBodyTopology,
+  omniformFieldsTopology,
+} from '../../topologies';
 import { fieldLabelCID } from '../FieldLabel';
 import ResourceBoundary from '../ResourceBoundary';
-import { cardTopology } from '../../topologies/Card';
 
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldLabel from './FormFieldLabel';

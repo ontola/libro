@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import teamGL from '../../../../../ontology/teamGL';
-import { tableRowTopology } from '../../../../../topologies/TableRow';
+import { tableRowTopology } from '../../../../../topologies';
 import TableCell from '../../../../../topologies/TableCell';
 
 import TrendIndicator from './trendIndicator';

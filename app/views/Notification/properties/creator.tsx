@@ -9,12 +9,14 @@ import React from 'react';
 
 import LDDetail from '../../../components/LDDetail';
 import argu from '../../../ontology/argu';
-import { cardTopology } from '../../../topologies/Card';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { containerTopology } from '../../../topologies/Container';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { navbarTopology } from '../../../topologies/Navbar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import {
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  detailsBarTopology,
+  fullResourceTopology,
+  navbarTopology,
+} from '../../../topologies';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Resource

@@ -5,8 +5,8 @@ import {
 import React from 'react';
 
 import qb from '../../../ontology/qb';
+import { tableRowTopology } from '../../../topologies';
 import TableHeaderCell from '../../../topologies/TableHeaderCell';
-import { tableRowTopology } from '../../../topologies/TableRow';
 import { contentsProps, titleProps } from '../../../ontology/app';
 
 const MeasurePropertyTableRow = () => {

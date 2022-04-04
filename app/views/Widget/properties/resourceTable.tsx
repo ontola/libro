@@ -14,7 +14,7 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 import { namePredicates } from '../../Thing/properties/name';
 
 const NamePropMap = {

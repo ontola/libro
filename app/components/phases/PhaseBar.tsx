@@ -10,7 +10,7 @@ import { NAME_PREDICATES, TEXT_PREDICATES } from '../../helpers/metaData';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../topologies';
 import { phaseMessages } from '../../translations/messages';
 import { LoadingHidden } from '../Loading';
 import { CreateStepOnClick } from '../Stepper/Stepper';

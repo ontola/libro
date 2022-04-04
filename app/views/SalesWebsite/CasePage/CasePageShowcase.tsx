@@ -12,8 +12,7 @@ import { ReadMoreButton } from '../../../components/SalesWebsite';
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
-import { gridTopology } from '../../../topologies/Grid';
-import { showcaseTopology } from '../../../topologies/Showcase';
+import { gridTopology, showcaseTopology } from '../../../topologies';
 
 export interface CasePageShowcaseProps {
   noBackdrop?: boolean;

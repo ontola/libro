@@ -18,9 +18,12 @@ import { LoadingDetail } from '../../../components/Loading';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
-import { allTopologiesExcept } from '../../../topologies';
-import ContentDetails, { contentDetailsTopology } from '../../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import {
+  allTopologiesExcept,
+  contentDetailsTopology,
+  detailsBarTopology,
+} from '../../../topologies';
+import ContentDetails from '../../../topologies/ContentDetails';
 import { grantedGroupMessages } from '../../../translations/messages';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));

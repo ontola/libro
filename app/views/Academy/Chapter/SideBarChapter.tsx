@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
 import argu from '../../../ontology/argu';
-import { sideBarTopology } from '../../../topologies/SideBar';
+import { sideBarTopology } from '../../../topologies';
 import { LibroTheme } from '../../../themes/themes';
 
 const ICON_PADDING = 3;

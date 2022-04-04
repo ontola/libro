@@ -20,40 +20,42 @@ import Loading, {
 import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 import Spinner from '../../components/Spinner';
 import ll from '../../ontology/ll';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { appMenuTopology } from '../../topologies/AppMenu';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { cardTopology } from '../../topologies/Card';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { contentDetailsTopology } from '../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { flowTopology } from '../../modules/Flow/topologies/Flow';
-import { formFooterTopology } from '../../topologies/FormFooter';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { gridTopology } from '../../topologies/Grid';
-import { hoverBoxTopology } from '../../topologies/HoverBox';
-import { inlineTopology } from '../../topologies/Inline';
-import { listTopology } from '../../topologies/List';
-import { mainBodyTopology } from '../../topologies/MainBody';
-import { menuTopology } from '../../topologies/Menu';
-import { navbarTopology } from '../../topologies/Navbar';
-import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { pageTopology } from '../../topologies/Page';
-import { parentTopology } from '../../topologies/Parent';
-import { selectTopology } from '../../topologies/Select';
-import { selectedValueTopology } from '../../topologies/SelectedValue';
-import { tabBarTopology } from '../../topologies/TabBar';
-import { tableTopology } from '../../topologies/Table';
-import { tableCellTopology } from '../../topologies/TableCell';
-import { tabPaneTopology } from '../../topologies/TabPane';
+import {
+  actionsBarTopology,
+  alertDialogTopology,
+  appMenuTopology,
+  attributeListTopology,
+  cardAppendixTopology,
+  cardFixedTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  cardTopology,
+  containerFloatTopology,
+  containerTopology,
+  contentDetailsTopology,
+  detailsBarTopology,
+  flowTopology,
+  formFooterTopology,
+  fullResourceTopology,
+  gridTopology,
+  hoverBoxTopology,
+  inlineTopology,
+  listTopology,
+  mainBodyTopology,
+  menuTopology,
+  navbarTopology,
+  omniformFieldsTopology,
+  pageTopology,
+  parentTopology,
+  selectTopology,
+  selectedValueTopology,
+  tabBarTopology,
+  tabPaneTopology,
+  tableCellTopology,
+  tableTopology,
+} from '../../topologies';
 
 export default [
   LinkedRenderStore.registerRenderer(

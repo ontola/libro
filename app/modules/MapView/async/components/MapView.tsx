@@ -13,7 +13,7 @@ import {
 import {
   DEFAULT_LAT,
   DEFAULT_LON,
-  DEFAULT_ZOOM, 
+  DEFAULT_ZOOM,
 } from '../../lib/settings';
 import { useFeatures } from '../hooks/useFeatures';
 import { usePlacementIds } from '../hooks/usePlacementIds';

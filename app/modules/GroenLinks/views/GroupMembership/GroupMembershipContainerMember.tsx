@@ -10,8 +10,8 @@ import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import org from '../../../../ontology/org';
 import teamGL from '../../../../ontology/teamGL';
+import { containerTopology } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
-import { containerTopology } from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
 
 const GroupMembershipContainerMember = () => (

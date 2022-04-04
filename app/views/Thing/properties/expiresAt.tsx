@@ -13,7 +13,7 @@ import Detail from '../../../components/Detail';
 import isPastDate from '../../../helpers/date';
 import { filterUpdateInterval, useDateUpdateInterval } from '../../../hooks/useDateUpdateInterval';
 import argu from '../../../ontology/argu';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 import { statusMessages } from '../../../translations/messages';
 
 interface PropTypes {

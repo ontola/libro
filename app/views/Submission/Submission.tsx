@@ -17,16 +17,18 @@ import LinkLoader from '../../components/Loading/LinkLoader';
 import useActionStatus from '../../hooks/useActionStatus';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { allTopologiesExcept } from '../../topologies';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
+import {
+  actionsBarTopology,
+  alertDialogTopology,
+  allTopologiesExcept,
+  parentTopology,
+  tableCellTopology,
+  tableRowTopology,
+  tableTopology,
+} from '../../topologies';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
-import { alertDialogTopology } from '../../topologies/Dialog';
 import FormFooter from '../../topologies/FormFooter';
-import { parentTopology } from '../../topologies/Parent';
-import { tableTopology } from '../../topologies/Table';
-import { tableCellTopology } from '../../topologies/TableCell';
-import { tableRowTopology } from '../../topologies/TableRow';
 import { surveyMessages } from '../../translations/messages';
 
 const useStyles = makeStyles(() => ({

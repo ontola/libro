@@ -12,8 +12,7 @@ import React from 'react';
 import Detail from '../../../../../components/Detail';
 import { normalizeFontAwesomeIRI } from '../../../../../helpers/iris';
 import teamGL from '../../../../../ontology/teamGL';
-import { contentDetailsTopology } from '../../../../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../../../../topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../../../../topologies';
 
 const EventTypeDetailsBar = ({ linkedProp }: PropertyProps) => {
   const [image] = useProperty(schema.image);

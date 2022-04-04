@@ -9,7 +9,7 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
-import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../../topologies';
 
 interface AttatchmentsProps {
   linkedProp: SomeNode;

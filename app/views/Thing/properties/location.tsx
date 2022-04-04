@@ -15,8 +15,7 @@ import { retrievePath } from '../../../helpers/iris';
 import { isResource } from '../../../helpers/types';
 import { useShowDialog } from '../../../hooks/useShowDialog';
 import ontola from '../../../ontology/ontola';
-import { contentDetailsTopology } from '../../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../../topologies';
 
 interface LocationDetailProps {
   linkedProp: Node;

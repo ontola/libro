@@ -8,8 +8,7 @@ import {
 import React from 'react';
 
 import rivm from '../../../../ontology/rivm';
-import { allTopologies } from '../../../../topologies';
-import { inlineTopology } from '../../../../topologies/Inline';
+import { allTopologies, inlineTopology } from '../../../../topologies';
 
 const NatureOfCost: FC<PropertyProps> = ({ linkedProp }) => (
   <div>

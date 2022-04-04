@@ -10,7 +10,7 @@ import React from 'react';
 import { DocumentAttachmentPreview } from '../../components/AttachmentPreview/DocumentAttachmentPreview';
 import { imageRepresentationUrl } from '../../helpers/attachments';
 import dbo from '../../ontology/dbo';
-import { chapterContentToplogy } from '../../topologies/ChapterContent';
+import { chapterContentTopology } from '../../topologies';
 
 const emptyClickHandler = () => null;
 
@@ -33,6 +33,6 @@ const MediaObjectChapterContent: FC = () => {
 
 MediaObjectChapterContent.type = schema.MediaObject;
 
-MediaObjectChapterContent.topology = chapterContentToplogy;
+MediaObjectChapterContent.topology = chapterContentTopology;
 
 export default register(MediaObjectChapterContent);

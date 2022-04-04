@@ -2,7 +2,7 @@ import { register } from 'link-redux';
 
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
-import { parentTopology } from '../../topologies/Parent';
+import { parentTopology } from '../../topologies';
 
 const GuestUserParent = () => null;
 

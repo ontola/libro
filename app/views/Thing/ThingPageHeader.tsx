@@ -12,12 +12,13 @@ import CardContent from '../../components/Card/CardContent';
 import CollapseText from '../../components/CollapseText';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import argu from '../../ontology/argu';
+import { pageHeaderTopology } from '../../topologies';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
 import {
   PageHeaderImageAndTextWrapper,
   PageHeaderText,
-  pageHeaderTopology,
+
 } from '../../topologies/PageHeader';
 import { defaultMenus } from '../common';
 

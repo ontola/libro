@@ -15,7 +15,7 @@ import { TabVariant } from '../../components/Tabs';
 import { isDifferentWebsite } from '../../helpers/iris';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { tabBarTopology } from '../../topologies/TabBar';
+import { tabBarTopology } from '../../topologies';
 
 import { MenuTypes } from './types';
 

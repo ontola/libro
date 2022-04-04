@@ -7,10 +7,12 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import argu from '../../ontology/argu';
+import {
+  cardAppendixTopology,
+  cardTopology,
+  containerTopology,
+} from '../../topologies';
 import ActionsBar from '../../topologies/ActionsBar';
-import { cardTopology } from '../../topologies/Card';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import { containerTopology } from '../../topologies/Container';
 
 const VoteEventContainer: FC = () => (
   <CardContent>

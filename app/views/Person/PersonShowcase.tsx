@@ -14,7 +14,7 @@ import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { showcaseTopology } from '../../topologies/Showcase';
+import { showcaseTopology } from '../../topologies';
 import { personeShowcaseMessages } from '../../translations/messages';
 
 const CONTAINER_PADDING = 5;

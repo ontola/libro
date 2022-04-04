@@ -2,13 +2,11 @@ import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 
-import argu from '../../ontology/argu';
+import { tableHeaderRowTopology } from '../../topologies';
 
 export interface TableHeaderRowProps {
   className?: string;
 }
-
-export const tableHeaderRowTopology = argu.ns('tableHeaderRow');
 
 /** The same as {TableRow} but needed since headers are nearly always rendered differently. */
 class TableHeaderRow extends TopologyProvider<TableHeaderRowProps> {

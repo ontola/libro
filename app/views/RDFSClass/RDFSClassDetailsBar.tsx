@@ -3,7 +3,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import LDDetail from '../../components/LDDetail';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../topologies';
 
 const RDFSClassDetailsBar: FC = () => (
   <LDDetail />

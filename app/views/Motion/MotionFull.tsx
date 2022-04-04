@@ -15,7 +15,7 @@ import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import opengov from '../../ontology/opengov';
 import wdt from '../../ontology/wdt';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { fullResourceTopology } from '../../topologies';
 import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 

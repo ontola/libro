@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { isResource } from '../../helpers/types';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { LibroTheme } from '../../themes/themes';
-import { inlineTopology } from '../../topologies/Inline';
+import { inlineTopology } from '../../topologies';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';

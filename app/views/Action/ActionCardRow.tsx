@@ -9,9 +9,11 @@ import React from 'react';
 
 import Button from '../../components/Button';
 import { SignInFormLink } from '../../components/SignInForm';
-import { cardTopology } from '../../topologies/Card';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
+import {
+  cardMainTopology,
+  cardRowTopology,
+  cardTopology,
+} from '../../topologies';
 import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';

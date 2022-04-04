@@ -7,8 +7,8 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { gridTopology } from '../../topologies';
 import CardFixed from '../../topologies/Card/CardFixed';
-import { gridTopology } from '../../topologies/Grid';
 
 const MediaObjectGrid: FC = () => (
   <CardFixed>

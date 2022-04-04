@@ -11,10 +11,10 @@ import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import org from '../../../../ontology/org';
 import teamGL from '../../../../ontology/teamGL';
+import { fullResourceTopology } from '../../../../topologies';
 import Container from '../../../../topologies/Container';
 import CardMain from '../../../../topologies/Card/CardMain';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
 
 import { useContactOptionStyles } from './index';
 

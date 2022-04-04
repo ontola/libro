@@ -8,8 +8,8 @@ import React from 'react';
 
 import HeadingContext from '../../components/Heading/HeadingContext';
 import Metadata from '../../components/Metadata';
+import { pageTopology } from '../../topologies';
 import FullResource from '../../topologies/FullResource';
-import { pageTopology } from '../../topologies/Page';
 
 const ThingPage = (props: any): JSX.Element => (
   <HeadingContext>

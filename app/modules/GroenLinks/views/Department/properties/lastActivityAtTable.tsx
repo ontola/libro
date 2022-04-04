@@ -8,8 +8,8 @@ import React from 'react';
 import RelativeDate from '../../../../../components/RelativeDate';
 import argu from '../../../../../ontology/argu';
 import teamGL from '../../../../../ontology/teamGL';
+import { tableRowTopology } from '../../../../../topologies';
 import TableCell from '../../../../../topologies/TableCell';
-import { tableRowTopology } from '../../../../../topologies/TableRow';
 
 interface LastActivityAtTableRowProps {
   linkedProp: Literal;

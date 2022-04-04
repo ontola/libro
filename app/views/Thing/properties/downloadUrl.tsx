@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 
 const DownloadUrl = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp) {

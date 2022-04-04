@@ -8,7 +8,7 @@ import React from 'react';
 import { FormattedDate } from 'react-intl';
 
 import rivm from '../../../../ontology/rivm';
-import { attributeListTopology } from '../../../../topologies/AttributeList';
+import { attributeListTopology } from '../../../../topologies';
 
 const DatePublished: FC<PropertyProps> = ({ linkedProp }) => <FormattedDate value={linkedProp.value} />;
 

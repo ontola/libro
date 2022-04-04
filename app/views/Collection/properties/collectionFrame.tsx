@@ -8,16 +8,16 @@ import React from 'react';
 import CollectionFrame from '../../../components/Collection/CollectionFrame';
 import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
-import { allTopologiesExcept } from '../../../topologies';
-import Container, {
-  LargeContainer,
+import {
+  alertDialogTopology,
+  allTopologiesExcept,
   containerTopology,
-} from '../../../topologies/Container';
-import { alertDialogTopology } from '../../../topologies/Dialog';
-import { gridTopology } from '../../../topologies/Grid';
-import { mainBodyTopology } from '../../../topologies/MainBody';
-import { pageTopology } from '../../../topologies/Page';
-import { sideBarTopology } from '../../../topologies/SideBar';
+  gridTopology,
+  mainBodyTopology,
+  pageTopology,
+  sideBarTopology,
+} from '../../../topologies';
+import Container, { LargeContainer } from '../../../topologies/Container';
 import { CollectionTypes } from '../types';
 
 interface CollectionFrameProps {

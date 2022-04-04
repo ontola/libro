@@ -5,7 +5,7 @@ import React from 'react';
 
 import { NavbarLinkImageWrapper } from '../../components/NavbarLink';
 import ontola from '../../ontology/ontola';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 
 import ImageObject from './ImageObject';
 import ImageObjectCardMain from './ImageObjectCardMain';

@@ -11,8 +11,8 @@ import React from 'react';
 import { ArticleContent, HeaderProductPages } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
 import { LibroTheme, Size } from '../../../themes/themes';
+import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

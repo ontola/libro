@@ -4,7 +4,7 @@ import React from 'react';
 
 import LDLink from '../../components/LDLink';
 import ontola from '../../ontology/ontola';
-import { tableCellTopology } from '../../topologies/TableCell';
+import { tableCellTopology } from '../../topologies';
 
 import { CollectionTypes } from './types';
 

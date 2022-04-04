@@ -10,8 +10,7 @@ import React from 'react';
 import Image from '../../../components/Image';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
-import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
-import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
+import { cardFloatTopology, containerFloatTopology } from '../../../topologies';
 
 interface MenuItemLabelCardProps {
   linkedProp: Literal;

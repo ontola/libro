@@ -14,8 +14,8 @@ import { useHistory } from 'react-router';
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
+import { mainBodyTopology } from '../../topologies';
 import FormFooter from '../../topologies/FormFooter';
-import { mainBodyTopology } from '../../topologies/MainBody';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 

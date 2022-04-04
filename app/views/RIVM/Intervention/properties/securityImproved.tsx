@@ -7,8 +7,7 @@ import {
 import React from 'react';
 
 import rivm from '../../../../ontology/rivm';
-import { cardMainTopology } from '../../../../topologies/Card/CardMain';
-import { inlineTopology } from '../../../../topologies/Inline';
+import { cardMainTopology, inlineTopology } from '../../../../topologies';
 
 const SecurityImproved: FC<PropertyProps> = ({ linkedProp }) => {
   if (linkedProp.value === 'Weet niet') {

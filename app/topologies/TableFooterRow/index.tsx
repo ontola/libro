@@ -1,9 +1,7 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 
-import argu from '../../ontology/argu';
-
-export const tableFooterRowTopology = argu.ns('tableFooterRow');
+import { tableFooterRowTopology } from '../../topologies';
 
 /** The same as {TableRow} but needed since headers are nearly always rendered differently. */
 class TableFooterRow extends TopologyProvider {

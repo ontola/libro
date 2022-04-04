@@ -17,10 +17,12 @@ import GridHeader from '../../components/Grid/GridHeader';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import { LoadingHidden } from '../../components/Loading';
 import ontola from '../../ontology/ontola';
-import { footerTopology } from '../../topologies/Footer';
+import {
+  footerTopology,
+  gridTopology,
+  navbarTopology,
+} from '../../topologies';
 import FormFooter from '../../topologies/FormFooter';
-import { gridTopology } from '../../topologies/Grid';
-import { navbarTopology } from '../../topologies/Navbar';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 

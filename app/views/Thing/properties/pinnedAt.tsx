@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
 import argu from '../../../ontology/argu';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 import { statusMessages } from '../../../translations/messages';
 
 const PinnedAt = ({ linkedProp }: PropertyProps): JSX.Element => {

@@ -20,8 +20,7 @@ import { bestType, filterFind } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
 import { useOmniformOpenAction } from '../../state/omniform';
 import { LibroTheme } from '../../themes/themes';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { listTopology } from '../../topologies/List';
+import { actionsBarTopology, listTopology } from '../../topologies';
 import { OMNIFORM_FILTER, isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';

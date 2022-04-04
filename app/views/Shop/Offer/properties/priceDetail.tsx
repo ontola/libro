@@ -11,7 +11,7 @@ import { FormattedNumber } from 'react-intl';
 import Detail, { DetailVariant } from '../../../../components/Detail';
 import { tryParseInt } from '../../../../helpers/numbers';
 import argu from '../../../../ontology/argu';
-import { detailsBarTopology } from '../../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../../topologies';
 
 interface PriceProps {
   linkedProp: Literal;

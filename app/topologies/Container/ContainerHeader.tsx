@@ -3,8 +3,8 @@ import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
 import React from 'react';
 
 import { headingCID } from '../../components/Heading';
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { containerHeaderTopology } from '../../topologies';
 import Topology from '../Topology';
 
 import ContainerFloat from './ContainerFloat';
@@ -35,11 +35,6 @@ const styles = (theme: LibroTheme) => ({
     gap: theme.spacing(HEADER_GAP),
   },
 });
-
-/**
- * In the top right corner of a container
- */
-export const containerHeaderTopology = argu.ns('containerHeader');
 
 export interface ContainerHeaderProps {
   children: React.ReactNode;

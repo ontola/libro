@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import ontola from '../../ontology/ontola';
-import { inlineTopology } from '../../topologies/Inline';
+import { inlineTopology } from '../../topologies';
 
 import { CollectionTypes } from './types';
 

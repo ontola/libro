@@ -10,8 +10,8 @@ import React from 'react';
 import { LoadingHidden } from '../../../components/Loading';
 import argu from '../../../ontology/argu';
 import meeting from '../../../ontology/meeting';
+import { mainBodyTopology } from '../../../topologies';
 import List from '../../../topologies/List';
-import { mainBodyTopology } from '../../../topologies/MainBody';
 
 const Attachments: FC<PropertyProps> = () => (
   <List>

@@ -22,29 +22,31 @@ import Heading, {
 } from '../../../components/Heading';
 import LDLink from '../../../components/LDLink';
 import { LinkTarget } from '../../../components/Link';
-import { actionsBarTopology } from '../../../topologies/ActionsBar';
-import { attributeListTopology } from '../../../topologies/AttributeList';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { cardRowTopology } from '../../../topologies/Card/CardRow';
-import { containerTopology } from '../../../topologies/Container';
-import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
-import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
-import { footerTopology } from '../../../topologies/Footer';
-import { fullResourceTopology } from '../../../topologies/FullResource';
-import { gridTopology } from '../../../topologies/Grid';
-import { hoverBoxTopology } from '../../../topologies/HoverBox';
-import { inlineTopology } from '../../../topologies/Inline';
-import { listTopology } from '../../../topologies/List';
-import { mainBodyTopology } from '../../../topologies/MainBody';
-import { navbarTopology } from '../../../topologies/Navbar';
-import { pageHeaderTopology } from '../../../topologies/PageHeader';
-import { parentTopology } from '../../../topologies/Parent';
-import { radioGroupTopology } from '../../../topologies/RadioGroup';
-import { selectTopology } from '../../../topologies/Select';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import {
+  actionsBarTopology,
+  attributeListTopology,
+  cardFixedTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardRowTopology,
+  cardTopology,
+  containerFloatTopology,
+  containerHeaderTopology,
+  containerTopology,
+  footerTopology,
+  fullResourceTopology,
+  gridTopology,
+  hoverBoxTopology,
+  inlineTopology,
+  listTopology,
+  mainBodyTopology,
+  navbarTopology,
+  pageHeaderTopology,
+  parentTopology,
+  radioGroupTopology,
+  selectTopology,
+  tableRowTopology,
+} from '../../../topologies';
 
 export const namePredicates = [
   schema.name,

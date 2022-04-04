@@ -8,10 +8,10 @@ import { LoadingHidden } from '../../components/Loading';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
+import { fullResourceTopology } from '../../topologies';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const TokenFull = (): JSX.Element => (
   <Container>

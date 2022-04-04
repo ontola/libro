@@ -11,7 +11,7 @@ import React from 'react';
 import { SearchText } from '../../../components/Academy/SearchText';
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';
-import { selectTopology } from '../../../topologies/Select';
+import { selectTopology } from '../../../topologies';
 
 export interface ChapterSelectProps {
   text: string;

@@ -1,7 +1,7 @@
 import {
   WithStyles,
   createStyles,
-  withStyles, 
+  withStyles,
 } from '@material-ui/styles';
 import clsx from 'clsx';
 import {
@@ -10,20 +10,18 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import {
   LibroTheme,
   Margin,
-  Size, 
+  Size,
 } from '../../themes/themes';
+import { pageHeaderTopology } from '../../topologies';
 import Container from '../Container';
 
 export { default as PageHeaderImage } from './PageHeaderImage';
 export { default as PageHeaderImageAndTextWrapper } from './PageHeaderImageAndTextWrapper';
 export { default as PageHeaderMenuItems } from './PageHeaderMenuItems';
 export { default as PageHeaderText } from './PageHeaderText';
-
-export const pageHeaderTopology = argu.ns('pageHeader');
 
 const defaultPercentage = 50;
 

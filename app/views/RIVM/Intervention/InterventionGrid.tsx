@@ -15,10 +15,10 @@ import argu from '../../../ontology/argu';
 import dbo from '../../../ontology/dbo';
 import ontola from '../../../ontology/ontola';
 import rivm from '../../../ontology/rivm';
+import { gridTopology } from '../../../topologies';
 import CardFixed from '../../../topologies/Card/CardFixed';
 import DetailsBar from '../../../topologies/DetailsBar';
 import AttributeList from '../../../topologies/AttributeList';
-import { gridTopology } from '../../../topologies/Grid';
 
 const InterventionGrid: FC = () => (
   <CardFixed>

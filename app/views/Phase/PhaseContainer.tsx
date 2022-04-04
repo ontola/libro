@@ -10,8 +10,8 @@ import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 
 const PhaseContainer: FC = () => (

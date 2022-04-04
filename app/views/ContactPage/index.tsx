@@ -6,8 +6,8 @@ import FontAwesome from 'react-fontawesome';
 import { PipedriveForm } from '../../components/PipedriveForm';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { fullResourceTopology } from '../../topologies';
 import Card from '../../topologies/Card';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 interface PersonProps {
   email: string;

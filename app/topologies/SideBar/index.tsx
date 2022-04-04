@@ -1,10 +1,8 @@
 import { ClassNameMap, withStyles } from '@material-ui/styles';
 import React from 'react';
 
-import argu from '../../ontology/argu';
+import { sideBarTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const sideBarTopology = argu.ns('sideBarTopology');
 
 const styles = {
   wrapper: {

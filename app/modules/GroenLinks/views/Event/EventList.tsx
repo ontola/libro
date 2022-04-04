@@ -8,9 +8,9 @@ import {
 import React from 'react';
 
 import teamGL from '../../../../ontology/teamGL';
+import { listTopology } from '../../../../topologies';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import HoverBox from '../../../../topologies/HoverBox';
-import { listTopology } from '../../../../topologies/List';
 
 const EventList: FC = ({
   subject,

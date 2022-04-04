@@ -5,7 +5,7 @@ import {
 import React from 'react';
 
 import org from '../../../../ontology/org';
-import { cardRowTopology } from '../../../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../../../topologies';
 
 const GroupMembershipCardRow = () => (
   <Property label={org.organization} />

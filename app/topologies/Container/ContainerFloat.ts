@@ -1,13 +1,8 @@
 import { WithStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
-import argu from '../../ontology/argu';
+import { containerFloatTopology } from '../../topologies';
 import Topology from '../Topology';
-
-/**
- * In the top right corner of a container
- */
-export const containerFloatTopology = argu.ns('containerFloat');
 
 const styles = {
   containerFloat : {
@@ -17,6 +12,7 @@ const styles = {
 };
 
 /**
+ * In the top right corner of a container
  * Sets the containerFloat topology
  * @returns {component} Component
  */

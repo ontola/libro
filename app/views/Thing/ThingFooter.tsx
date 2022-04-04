@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { footerTopology } from '../../topologies/Footer';
+import { footerTopology } from '../../topologies';
 import dbo from '../../ontology/dbo';
 
 const ThingFooter = (): JSX.Element => (

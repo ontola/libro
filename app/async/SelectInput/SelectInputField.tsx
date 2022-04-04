@@ -35,7 +35,7 @@ import { isResource } from '../../helpers/types';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
-import { selectTopology } from '../../topologies/Select';
+import { selectTopology } from '../../topologies';
 import SelectedValue from '../../topologies/SelectedValue';
 
 import FullWidthPopper from './FullWidthPopper';

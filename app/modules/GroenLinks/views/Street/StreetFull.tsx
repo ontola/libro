@@ -14,9 +14,9 @@ import Collection from '../../../../components/Collection';
 import { entityIsLoaded } from '../../../../helpers/data';
 import app from '../../../../ontology/app';
 import teamGL from '../../../../ontology/teamGL';
+import { fullResourceTopology } from '../../../../topologies';
 import CardMain from '../../../../topologies/Card/CardMain';
 import Container from '../../../../topologies/Container';
-import { fullResourceTopology } from '../../../../topologies/FullResource';
 
 const PRELOAD_IRIS = [
   app.ns('enums/surveys/did_vote'),

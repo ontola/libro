@@ -18,11 +18,11 @@ import Heading from '../../../components/Heading';
 import LinkedDetailDate from '../../../components/LinkedDetailDate';
 import dcat from '../../../ontology/dcat';
 import dexes from '../../../ontology/dexes';
+import { fullResourceTopology } from '../../../topologies';
 import AttributeList from '../../../topologies/AttributeList';
 import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
 import DetailsBar from '../../../topologies/DetailsBar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 import { defaultMenus } from '../../common';
 import { messages } from '../messages';
 

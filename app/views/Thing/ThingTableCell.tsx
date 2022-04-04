@@ -7,7 +7,7 @@ import LDDetail from '../../components/LDDetail';
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
 import { NAME_PREDICATES } from '../../helpers/metaData';
-import { tableCellTopology } from '../../topologies/TableCell';
+import { tableCellTopology } from '../../topologies';
 
 const ThingTableCell = () => {
   const [name] = useStrings(NAME_PREDICATES);

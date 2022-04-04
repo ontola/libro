@@ -5,7 +5,7 @@ import {
 } from '@material-ui/styles';
 import clsx from 'clsx';
 
-import argu from '../../ontology/argu';
+import { listTopology } from '../../topologies';
 import Topology from '../Topology';
 
 export enum ListDirection {
@@ -17,8 +17,6 @@ interface ListProps extends WithStyles<typeof styles> {
   overflow?: boolean;
   wrap?: boolean;
 }
-
-export const listTopology = argu.ns('list');
 
 const styles = () => createStyles({
   column: {

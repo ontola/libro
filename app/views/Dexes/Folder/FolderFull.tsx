@@ -14,9 +14,11 @@ import { components } from '../../../components';
 import { useViewBuilderToolkit } from '../../../helpers/builder';
 import dexes from '../../../ontology/dexes';
 import ontola from '../../../ontology/ontola';
-import { containerTopology } from '../../../topologies/Container';
-import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import {
+  containerHeaderTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../topologies';
 
 import UploadTarget from './UploadTarget';
 

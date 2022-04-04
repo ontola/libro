@@ -14,7 +14,7 @@ import React from 'react';
 
 import { tryParseFloat } from '../../../../helpers/numbers';
 import rivm from '../../../../ontology/rivm';
-import { attributeListTopology } from '../../../../topologies/AttributeList';
+import { attributeListTopology } from '../../../../topologies';
 
 const ICON_COUNT = 5;
 

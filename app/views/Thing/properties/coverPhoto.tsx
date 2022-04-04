@@ -17,11 +17,13 @@ import LDLink from '../../../components/LDLink';
 import { LoadingCoverPhoto } from '../../../components/Loading';
 import { tryParseInt } from '../../../helpers/numbers';
 import ontola from '../../../ontology/ontola';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { mainBodyTopology } from '../../../topologies/MainBody';
-import { pageTopology } from '../../../topologies/Page';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  mainBodyTopology,
+  pageTopology,
+} from '../../../topologies';
 
 const useStyles = makeStyles({
   coverImageLink: {

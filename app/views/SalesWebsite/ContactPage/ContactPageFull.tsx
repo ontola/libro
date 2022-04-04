@@ -23,8 +23,8 @@ import { Propositions } from '../../../components/SalesWebsite/Propositions';
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
 import { LibroTheme } from '../../../themes/themes';
+import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const BOTTOM_MARGIN = 35;
 const PIPEDRIVE_CARD_TOP_MARGIN = 5;

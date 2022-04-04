@@ -26,10 +26,12 @@ import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';
-import { containerTopology } from '../../../topologies/Container';
-import { fullResourceTopology } from '../../../topologies/FullResource';
-import { gridTopology } from '../../../topologies/Grid';
-import { mainBodyTopology } from '../../../topologies/MainBody';
+import {
+  containerTopology,
+  fullResourceTopology,
+  gridTopology,
+  mainBodyTopology,
+} from '../../../topologies';
 
 export interface ArguLocationProps {
   linkedProp: SomeNode;

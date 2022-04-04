@@ -9,12 +9,14 @@ import React from 'react';
 import Link from '../../../components/Link';
 import { retrievePath } from '../../../helpers/iris';
 import argu from '../../../ontology/argu';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { containerTopology } from '../../../topologies/Container';
-import { navbarTopology } from '../../../topologies/Navbar';
-import { fullResourceTopology } from '../../../topologies/FullResource';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  fullResourceTopology,
+  navbarTopology,
+} from '../../../topologies';
 
 interface TargetProps extends PropertyProps {
   onClick: () => void;

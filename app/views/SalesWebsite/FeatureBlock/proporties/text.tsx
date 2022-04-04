@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import sales from '../../../../ontology/sales';
-import { containerTopology } from '../../../../topologies/Container';
+import { containerTopology } from '../../../../topologies';
 
 const FeatureBlockText : FC<PropertyProps> = ({ linkedProp }): JSX.Element => (
   <Resource subject={linkedProp} />

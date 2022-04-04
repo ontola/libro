@@ -5,12 +5,10 @@ import { TopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import VerticalScroller from '../../components/VerticalScroller';
-import argu from '../../ontology/argu';
+import { detailsBarTopology } from '../../topologies';
 import { CardFloat } from '../Card';
 
 import DetailsBarStyles from './DetailsBarStyles';
-
-export const detailsBarTopology = argu.detail;
 
 export interface DetailsBarProps {
   borderBottom: boolean;

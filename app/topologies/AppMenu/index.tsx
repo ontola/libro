@@ -3,10 +3,9 @@ import React from 'react';
 import DropdownMenu, { RenderProp } from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import { isFunction } from '../../helpers/types';
-import app from '../../ontology/app';
+import { appMenuTopology } from '../../topologies';
 import Topology from '../Topology';
 
-export const appMenuTopology = app.ns('topologies/appMenu');
 export const appMenuCID = 'CID-AppMenu';
 
 export interface AppMenuProps {

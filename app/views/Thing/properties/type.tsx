@@ -3,12 +3,12 @@ import * as schema from '@ontologies/schema';
 import {
   Resource,
   register,
-  useGlobalIds, 
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
 import { bestType } from '../../../helpers/data';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 
 const TypeDetail = () => {
   const type = useGlobalIds(rdfx.type);

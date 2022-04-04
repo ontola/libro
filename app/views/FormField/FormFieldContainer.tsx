@@ -11,11 +11,13 @@ import CardContent from '../../components/Card/CardContent';
 import Form from '../../components/Form/Form';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../topologies';
 import { CardMain } from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
 
 const FormFieldContainer: FC = ({
   subject,

@@ -26,8 +26,7 @@ import { phaseIRI } from '../../../hooks/usePhases';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { LibroTheme } from '../../../themes/themes';
-import { allTopologies } from '../../../topologies';
-import { containerTopology } from '../../../topologies/Container';
+import { allTopologies, containerTopology } from '../../../topologies';
 
 export interface PhasesProps {
   linkedProp: Node,

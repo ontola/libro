@@ -1,7 +1,5 @@
-import ontola from '../../ontology/ontola';
+import { alertDialogTopology } from '../../topologies';
 import Topology from '../Topology';
-
-export const alertDialogTopology = ontola.ns('dialog/alert');
 
 /**
  * Sets a dialog topology.

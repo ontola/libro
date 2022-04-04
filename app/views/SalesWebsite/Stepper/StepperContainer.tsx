@@ -6,8 +6,7 @@ import Step from '../../../components/SalesWebsite/Step';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import sales from '../../../ontology/sales';
-import { chapterContentToplogy } from '../../../topologies/ChapterContent';
-import { containerTopology } from '../../../topologies/Container';
+import { chapterContentTopology, containerTopology } from '../../../topologies';
 
 interface StepperContainerProps {
   count: number;
@@ -36,7 +35,7 @@ StepperContainer.type = sales.Step;
 
 StepperContainer.topology = [
   containerTopology,
-  chapterContentToplogy,
+  chapterContentTopology,
 ];
 
 export default StepperContainer;

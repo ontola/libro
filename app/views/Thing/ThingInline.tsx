@@ -6,8 +6,7 @@ import React from 'react';
 
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { inlineTopology } from '../../topologies/Inline';
+import { attributeListTopology, inlineTopology } from '../../topologies';
 
 const ThingInline = () => (
   <LDLink features={[LinkFeature.Bold]}>

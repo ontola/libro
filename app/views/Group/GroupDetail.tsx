@@ -6,8 +6,7 @@ import React from 'react';
 
 import Detail from '../../components/Detail';
 import argu from '../../ontology/argu';
-import { contentDetailsTopology } from '../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../topologies';
 
 const GroupDetail = (): JSX.Element => {
   const [name] = useProperty(argu.nameSingular);

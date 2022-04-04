@@ -4,10 +4,8 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';
 
-import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
-
-export const tableBodyTopology = argu.ns('tableBody');
+import { tableBodyTopology } from '../../topologies';
 
 const styles = (theme: LibroTheme) => ({
   tableBody: {

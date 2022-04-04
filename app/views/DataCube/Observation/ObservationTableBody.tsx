@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import qb from '../../../ontology/qb';
-import { tableBodyTopology } from '../../../topologies/TableBody';
+import { tableBodyTopology } from '../../../topologies';
 import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
 

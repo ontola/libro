@@ -9,9 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { loadingButtonCID } from '../../components/Loading';
-import argu from '../../ontology/argu';
-
-export const actionsBarTopology = argu.actionsBar;
+import { actionsBarTopology } from '../../topologies';
 
 type PropTypes = WithStyles<typeof styles> & {
   small?: boolean;
