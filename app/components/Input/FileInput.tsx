@@ -7,7 +7,7 @@ import { isFileType } from '../../helpers/types';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
-import { FormContext } from '../Form/Form';
+import { formContext } from '../Form/FormContext';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
@@ -20,7 +20,7 @@ const FileInput: React.FC<InputComponentProps> = ({
   const {
     fileStore,
     storeFile,
-  } = React.useContext(FormContext);
+  } = React.useContext(formContext);
   const {
     name,
     fieldShape,

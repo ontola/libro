@@ -6,7 +6,7 @@ import Textarea from 'react-autosize-textarea';
 import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
-import { FormContext, FormTheme } from '../Form/Form';
+import { FormTheme, formContext } from '../Form/FormContext';
 import {
   FormFieldContext,
   fieldInputCID,
@@ -62,7 +62,7 @@ const InputElement = ({
   const {
     onKeyUp,
     theme,
-  } = React.useContext(FormContext);
+  } = React.useContext(formContext);
   const {
     autofocus,
     fieldShape,

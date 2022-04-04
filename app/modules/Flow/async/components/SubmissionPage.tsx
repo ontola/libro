@@ -7,7 +7,7 @@ import { useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonVariant } from '../../../../components/Button';
-import { FormContext } from '../../../../components/Form/Form';
+import { formContext } from '../../../../components/Form/FormContext';
 import { flowMessages } from '../../lib/messages';
 
 export interface SubmissionPageProps {
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 export const SubmissionPage = ({ onBack }: SubmissionPageProps): JSX.Element => {
   const classes = useStyles();
-  const { submitting } = React.useContext(FormContext);
+  const { submitting } = React.useContext(formContext);
 
   const { errors } = useFormState({
     subscription: {

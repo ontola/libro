@@ -10,14 +10,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext } from '../../components/Form/Form';
+import { formContext } from '../../components/Form/FormContext';
 import { formFieldTopologies } from '../../components/FormField/FormField';
 import form from '../../ontology/form';
 import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
 const ResourceField = () => {
   const [path] = useProperty(sh.path);
-  const { object, whitelist } = React.useContext(FormContext);
+  const { object, whitelist } = React.useContext(formContext);
   const { setHasContent } = useFormGroup();
   React.useLayoutEffect(() => {
     if (setHasContent) {

@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React, { useState } from 'react';
 
-import { FormContext } from '../components/Form/Form';
+import { formContext } from '../components/Form/FormContext';
 import { isNumber } from '../helpers/types';
 import ontola from '../ontology/ontola';
 
@@ -71,7 +71,7 @@ const mapShapeProps = {
 };
 
 const useFieldShape = (field: LaxNode, alwaysVisible: boolean): ResolvedShapeForm => {
-  const { object } = React.useContext(FormContext);
+  const { object } = React.useContext(formContext);
   const [fieldShape, setFieldShape] = useState({});
   const shapeProps = useResourceLink(field, mapShapeProps) as unknown as ShapeForm;
   const propsFromObjectMap: ShapeFromObjectForm = {};

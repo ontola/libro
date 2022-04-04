@@ -10,7 +10,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { tryParseInt } from '../../helpers/numbers';
-import { FormContext } from '../Form/Form';
+import { formContext } from '../Form/FormContext';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
@@ -19,7 +19,7 @@ const MoneyInput: React.FC<InputComponentProps> = ({
   onChange,
 }) => {
   const intl = useIntl();
-  const { object } = React.useContext(FormContext);
+  const { object } = React.useContext(formContext);
   const {
     name,
     onBlur,

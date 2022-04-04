@@ -21,7 +21,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
-import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormTheme, formContext } from '../../components/Form/FormContext';
 import {
   FormFieldContext,
   fieldInputCID,
@@ -51,7 +51,7 @@ import VirtualizedSelect from './VirtualizedSelect';
 const VIRTUALIZATION_THRESHOLD = 10;
 
 const SelectInputField: React.FC = () => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const {
     fieldShape,
     name,

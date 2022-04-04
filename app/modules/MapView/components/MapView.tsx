@@ -4,7 +4,7 @@ import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import React, { useMemo } from 'react';
 
-import { FormTheme } from '../../../components/Form/Form';
+import { FormTheme } from '../../../components/Form/FormContext';
 import LinkLoader from '../../../components/Loading/LinkLoader';
 import Suspense from '../../../components/Suspense';
 import { getMetaContent } from '../../../helpers/dom';

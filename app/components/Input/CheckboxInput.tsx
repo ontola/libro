@@ -9,7 +9,7 @@ import React from 'react';
 
 import { SHADOW } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
-import { FormContext, FormTheme } from '../Form/Form';
+import { FormTheme, formContext } from '../Form/FormContext';
 import {
   FormFieldContext,
   fieldInputCID,
@@ -55,7 +55,7 @@ const CheckboxInput = ({
 }: InputComponentProps): JSX.Element => {
   const classes = useCheckboxStyles();
   const formClasses = useFormStyles();
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const { name, onChange } = React.useContext(FormFieldContext);
   const [label] = useStrings(schema.name);
   const checkBoxClassName = clsx({

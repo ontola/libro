@@ -11,7 +11,7 @@ import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 
-import { FormTheme } from '../../components/Form/Form';
+import { FormTheme } from '../../components/Form/FormContext';
 import { SHADOW } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';

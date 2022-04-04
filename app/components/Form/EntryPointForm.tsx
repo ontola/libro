@@ -20,7 +20,8 @@ import useSubmissionErrors from '../../views/EntryPoint/useSubmissionErrors';
 import { SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { LoadingGridContent } from '../Loading';
 
-import Form, { FormTheme } from './Form';
+import Form from './Form';
+import { FormTheme } from './FormContext';
 
 const subscription = {
   submitting: true,

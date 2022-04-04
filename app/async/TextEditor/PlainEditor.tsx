@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonVariant } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
-import { FormContext } from '../../components/Form/Form';
+import { formContext } from '../../components/Form/FormContext';
 import { fieldInputCID, useFormStyles } from '../../components/FormField/FormField';
 import Markdown from '../../components/Markdown';
 import { PlainEditorProps } from '../../containers/TextEditor';
@@ -52,7 +52,7 @@ const PlainEditor: FC<PlainEditorProps> = ({
   const classes = useStyles();
   const formClasses = useFormStyles();
   const [showPreview, setShowPreview] = React.useState(false);
-  const { onKeyUp } = React.useContext(FormContext);
+  const { onKeyUp } = React.useContext(formContext);
 
   return (
     <div>

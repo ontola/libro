@@ -24,7 +24,7 @@ import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { hiddenRequiredInputErrors } from '../../translations/messages';
-import { FormContext, FormTheme } from '../Form/Form';
+import { FormTheme, formContext } from '../Form/FormContext';
 import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
@@ -64,7 +64,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 }));
 
 const usePlacements = (latInput: InputValue, lonInput: InputValue, zoomLevel: InputValue): [Placement[], InitialView] => {
-  const { object, parentObject } = React.useContext(FormContext);
+  const { object, parentObject } = React.useContext(formContext);
   const [parentLocation] = useIds(parentObject, dig(schema.isPartOf, schema.location));
   const initialView = useResourceLink(
     parentLocation,
@@ -98,7 +98,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
   onChange,
 }) => {
   const intl = useIntl();
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const { fieldShape: { required } } = React.useContext(FormFieldContext);
 
   const classes = useStyles();

@@ -4,7 +4,7 @@ import React from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';
 
-import { FormContext } from './Form';
+import { formContext } from './FormContext';
 
 interface PropTypes {
   formIRI: SomeNode;
@@ -22,26 +22,26 @@ const FormSection: React.FC<PropTypes> = ({
   path,
   propertyIndex,
 }) => {
-  const formContext = React.useContext(FormContext);
+  const formContextProps = React.useContext(formContext);
   const formSection = calculateFormFieldName(name, propertyIndex);
   const sectionContext = React.useMemo(() => ({
-    ...formContext,
+    ...formContextProps,
     formIRI,
     formSection,
     object,
-    parentObject: formContext.object,
+    parentObject: formContextProps.object,
     whitelist: undefined,
-  }), [formContext, formIRI, formSection, object]);
+  }), [formContextProps, formIRI, formSection, object]);
 
   return (
-    <FormContext.Provider value={sectionContext}>
+    <formContext.Provider value={sectionContext}>
       <fieldset
         className="Field__section"
         property={path.value}
       >
         {children}
       </fieldset>
-    </FormContext.Provider>
+    </formContext.Provider>
   );
 };
 

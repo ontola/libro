@@ -4,7 +4,7 @@ import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { useFieldErrorStyles } from '../../views/ErrorResponse';
-import { FormContext } from '../Form/Form';
+import { formContext } from '../Form/FormContext';
 
 import { FormFieldError } from './index';
 
@@ -38,7 +38,7 @@ const FieldHelper: React.FC<PropTypes> = ({
   error,
   right,
 }) => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const classes = useStyles();
   const className = clsx({
     [classes.fieldHelper]: true,

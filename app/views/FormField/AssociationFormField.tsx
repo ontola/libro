@@ -18,7 +18,7 @@ import {
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { FormContext } from '../../components/Form/Form';
+import { formContext } from '../../components/Form/FormContext';
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import { fieldWrapperCID } from '../../components/FormField/FormInput';
 import AssociationInput from '../../components/Input/AssociationInput';
@@ -44,7 +44,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const useItemFactory = () => {
   const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
   const [path] = useGlobalIds(sh.path);
-  const { object } = React.useContext(FormContext);
+  const { object } = React.useContext(formContext);
   const association = lrs.originalLRS.getResourceProperty(object, path) as NamedNode;
   const [createAction] = useGlobalIds(association, ontola.createAction);
   const formPaths = lrs.dig(createAction, [schema.target, ll.actionBody, ...formFieldsPath, sh.path]);

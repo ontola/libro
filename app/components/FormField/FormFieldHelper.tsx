@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { isJSONLDObject } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
-import { FormContext } from '../Form/Form';
+import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
@@ -24,7 +24,7 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
   error,
   value,
 }) => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const {
     fieldShape,
     helperText,

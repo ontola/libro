@@ -6,22 +6,14 @@ import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
-import useFileStore, {
-  FileStore,
-  StoreFile,
-} from '../../hooks/useFileStore';
+import useFileStore, { FileStore } from '../../hooks/useFileStore';
 import { InputValue } from '../../hooks/useFormField';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { SubmissionErrors } from '../FormField';
 
 import FormBody from './FormBody';
-
-export enum FormTheme {
-  Default = 'default',
-  Flow = 'flow',
-  Preview = 'preview',
-}
+import { FormTheme } from './FormContext';
 
 export interface FormProps {
   action?: string;
@@ -50,26 +42,6 @@ const defaultProps = {
   theme: FormTheme.Default,
   validateOnBlur: false,
 };
-
-export interface FormContext {
-  autofocusForm: boolean;
-  blacklist?: number[];
-  fileStore: FileStore;
-  formID: string;
-  formIRI: SomeNode;
-  formSection?: string;
-  object?: SomeNode;
-  onKeyUp?: EventHandler<any>;
-  parentObject?: SomeNode;
-  sessionStore?: Storage;
-  submissionErrors?: SubmissionErrors;
-  storeFile?: StoreFile;
-  submitting?: boolean;
-  theme?: FormTheme;
-  whitelist?: number[];
-}
-
-export const FormContext = React.createContext<Partial<FormContext>>({});
 
 const mutators = {
   touchFields: (_: string, state: MutableState<Record<string, any>, Record<string, any>>) => {

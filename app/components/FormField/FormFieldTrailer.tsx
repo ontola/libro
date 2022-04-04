@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
-import { FormContext } from '../Form/Form';
+import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import { FormFieldContext } from './FormField';
@@ -32,7 +32,7 @@ const FormFieldTrailer: React.FC<PropTypes> = ({
   errors,
   inputValue,
 }) => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const classes = useStyles();
   const {
     fieldShape: { maxLength },

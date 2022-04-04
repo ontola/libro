@@ -12,7 +12,7 @@ import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
-import { FormContext, FormTheme } from '../Form/Form';
+import { FormTheme, formContext } from '../Form/FormContext';
 import {
   FormFieldContext,
   fieldInputCID,
@@ -61,7 +61,7 @@ function handleChange(e: any, values: InputValue[], onChange: EventHandler<any>)
 }
 
 const CheckboxesInput: React.FC = () => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const {
     name,
     onBlur,

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormTheme, formContext } from '../../components/Form/FormContext';
 import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
@@ -35,7 +35,7 @@ const TextFormField: FC = ({
   const fieldProps = useFormField(subject, {
     delay: true,
   });
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const [type] = useProperty(rdfx.type);
   const TextInput = React.useCallback((inputProps) => (
     <InputElement

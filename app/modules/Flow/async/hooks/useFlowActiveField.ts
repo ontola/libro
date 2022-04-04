@@ -4,7 +4,7 @@ import { SomeNode } from 'link-lib';
 import { LaxNode, useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import { FormContext } from '../../../../components/Form/Form';
+import { formContext } from '../../../../components/Form/FormContext';
 import { inputValueFromStorage } from '../../../../hooks/useInitialValues';
 
 type FlowActiveField = [
@@ -39,7 +39,7 @@ export const useFlowActiveField = (fields: SomeNode[], loading: boolean): FlowAc
     formID,
     object,
     sessionStore,
-  } = React.useContext(FormContext);
+  } = React.useContext(formContext);
 
   const [activeField, setActiveField] = React.useState<LaxNode>(fields[0]);
 

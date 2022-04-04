@@ -4,23 +4,23 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormTheme, formContext } from '../../components/Form/FormContext';
 import form from '../../ontology/form';
 import { formFooterTopology } from '../../topologies';
 
 const FormPageFooter = () => {
-  const formContext = React.useContext(FormContext);
+  const formContextProps = React.useContext(formContext);
   const context = React.useMemo(() => ({
-    ...formContext,
+    ...formContextProps,
     theme: FormTheme.Preview,
-  }), [formContext]);
+  }), [formContextProps]);
 
   return (
-    <FormContext.Provider value={context}>
+    <formContext.Provider value={context}>
       <Property
         label={form.footerGroup}
       />
-    </FormContext.Provider>
+    </formContext.Provider>
   );
 };
 

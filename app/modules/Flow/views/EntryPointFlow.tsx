@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import EntryPointForm from '../../../components/Form/EntryPointForm';
-import { FormTheme } from '../../../components/Form/Form';
+import { FormTheme } from '../../../components/Form/FormContext';
 import { flowTopology } from '../../../topologies';
 import useEntryPointFormProps, { EntryPointProps } from '../../../views/EntryPoint/useEntryPointFormProps';
 

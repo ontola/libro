@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { FormFieldContext } from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
@@ -38,7 +38,7 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
   const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
-  const { theme: formTheme } = React.useContext(FormContext);
+  const { theme: formTheme } = React.useContext(formContext);
   const {
     fieldShape,
     name,

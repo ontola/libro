@@ -4,7 +4,7 @@ import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import FieldLabel from '../FieldLabel';
-import { FormContext, FormTheme } from '../Form/Form';
+import { FormTheme, formContext } from '../Form/FormContext';
 
 import { FormFieldContext } from './FormField';
 
@@ -24,7 +24,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 }));
 
 const FormFieldLabel: React.FC = () => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const {
     label,
     name,

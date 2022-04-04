@@ -7,7 +7,8 @@ import { FileStore, StoreFile } from '../../hooks/useFileStore';
 import { LibroTheme } from '../../themes/themes';
 import Input, { InputType } from '../Input/Input';
 
-import { FormContext, FormProps } from './Form';
+import { FormProps } from './Form';
+import { FormContext, formContext } from './FormContext';
 
 interface FormBodyProps extends FormProps {
   children?: React.ReactNode;
@@ -89,7 +90,7 @@ const FormBody = ({
   const classes = useStyles();
 
   return (
-    <FormContext.Provider value={context}>
+    <formContext.Provider value={context}>
       <form
         action={action}
         className={className ?? classes.form}
@@ -100,7 +101,7 @@ const FormBody = ({
         {isFunction(children) && children(submitting)}
         {methodInput}
       </form>
-    </FormContext.Provider>
+    </formContext.Provider>
   );
 };
 

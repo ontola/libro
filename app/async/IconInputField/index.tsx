@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { FormContext, FormTheme } from '../../components/Form/Form';
+import { FormTheme, formContext } from '../../components/Form/FormContext';
 import {
   FormFieldContext,
   fieldInputCID,
@@ -38,7 +38,7 @@ const IconInputField: React.FC<InputComponentProps> = ({
   onChange,
   inputValue,
 }) => {
-  const { theme } = React.useContext(FormContext);
+  const { theme } = React.useContext(formContext);
   const {
     fieldShape,
     name,

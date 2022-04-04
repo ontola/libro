@@ -6,14 +6,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { FormContext } from '../../components/Form/Form';
+import { formContext } from '../../components/Form/FormContext';
 import useShapeValidation from '../../hooks/useShapeValidation';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const Condition = () => {
   const shapes = useIds(sh.node);
-  const { object } = React.useContext(FormContext);
+  const { object } = React.useContext(formContext);
   const [pass] = useShapeValidation(shapes, object);
 
   if (pass) {

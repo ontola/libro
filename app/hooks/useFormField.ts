@@ -15,7 +15,7 @@ import {
 import React from 'react';
 import { useField } from 'react-final-form';
 
-import { FormContext } from '../components/Form/Form';
+import { formContext } from '../components/Form/FormContext';
 import { FormFieldError, InputMeta } from '../components/FormField';
 import {
   fieldActiveCID,
@@ -202,7 +202,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     submissionErrors,
     theme,
     whitelist,
-  } = React.useContext(FormContext);
+  } = React.useContext(formContext);
 
   const fieldProps = useResourceLink(field, mapFieldProps) as MapFieldPropsShape;
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
