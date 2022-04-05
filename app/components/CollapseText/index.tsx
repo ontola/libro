@@ -10,12 +10,11 @@ import {
 import { parseBoolean } from '../../helpers/persistence';
 import useStoredState from '../../hooks/useStoredState';
 import { LibroTheme } from '../../themes/themes';
+import { collapseTextToggleCID } from '../../topologies/Card/sharedCardStyles';
 import { collapsibleMessages } from '../../translations/messages';
 import Button, { ButtonLabelIdentifierClass } from '../Button';
 import Collapsible from '../Collapsible';
 import Markdown from '../Markdown';
-
-export const collapseTextToggleCID = 'CID-CollapseTextToggle';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   collapseText: {

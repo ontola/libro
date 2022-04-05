@@ -2,12 +2,11 @@ import { WithStyles } from '@material-ui/core/styles';
 import { createStyles, withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
-import { collapseTextToggleCID } from '../../components/CollapseText';
 import { LibroTheme } from '../../themes/themes';
 import { cardRowTopology } from '../../topologies';
 import Topology from '../Topology';
 
-import { cardClassIdentifier } from './sharedCardStyles';
+import { cardClassIdentifier, collapseTextToggleCID } from './sharedCardStyles';
 
 export const cardRowClassIdentifier = 'CID-CardRow';
 export const cardRowBackdropClassIdentifier = 'CID-CardRowBackdrop';

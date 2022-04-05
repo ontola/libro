@@ -8,6 +8,7 @@ const CARD_BOTTOM_MARGIN = 5;
 
 export const cardClassIdentifier = 'CID-Card';
 export const cardFixedClassIdentifier = 'CID-CardFixed';
+export const collapseTextToggleCID = 'CID-CollapseTextToggle';
 
 export const shineStyles = createStyles({
   '@keyframes shineAnimation': {
