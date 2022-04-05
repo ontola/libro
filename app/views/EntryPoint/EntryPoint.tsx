@@ -69,7 +69,6 @@ const EntryPoint: FC<EntryPointProps> = ({
 
   return (
     <ButtonWithFeedback
-      alwaysShowChildren
       className={classes}
       icon={icon}
       variant={variant ?? ButtonVariant.Transparent}

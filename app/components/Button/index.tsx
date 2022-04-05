@@ -1,5 +1,3 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/styles';
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
@@ -7,7 +5,6 @@ import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { LibroTheme } from '../../themes/themes';
 import BlurButton from '../BlurButton';
 import LinkDuo from '../LinkDuo';
 
@@ -23,7 +20,6 @@ export interface ButtonProps {
   action?: NamedNode,
   /** Should be true when the button is toggleable and toggled. */
   active?: boolean;
-  alwaysShowChildren?: true;
   /** Additional aria label */
   ariaLabel?: string;
   list?: boolean;
@@ -81,7 +77,6 @@ const defaultProps = {
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({
   active,
   action,
-  alwaysShowChildren,
   ariaLabel,
   cardFloat,
   list,
@@ -109,8 +104,6 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
   ...otherProps
 }, ref) => {
   const lrs = useLRS();
-  const muiTheme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(muiTheme.breakpoints.up('md'));
   const classes = useStyles({ color });
   const handleAction = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
@@ -204,7 +197,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
           spin={loading}
         />
       )}
-      {children && (alwaysShowChildren || !icon || screenIsWide) && (
+      {children && (
         <span className={buttonLabelClass}>
           {children}
         </span>
