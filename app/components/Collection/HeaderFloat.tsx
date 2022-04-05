@@ -15,9 +15,9 @@ import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { collectionMessages } from '../../translations/messages';
 
+import { useCollectionOptions } from './CollectionContext';
 import CollectionCreateButton from './CollectionCreateButton';
 import CollectionFilterToggle, { CollectionFilterProps } from './CollectionFilterToggle';
-import { useCollectionOptions } from './CollectionProvider';
 
 export const CollectionHeaderFloatCID = 'CID-CollectionHeaderFloat';
 

@@ -14,7 +14,7 @@ import { useIntl } from 'react-intl';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import { LibroTheme } from '../../themes/themes';
 import { collectionMessages } from '../../translations/messages';
-import { useCollectionOptions } from '../Collection/CollectionProvider';
+import { useCollectionOptions } from '../Collection/CollectionContext';
 
 import { filteredCollectionIRI } from './lib/filteredCollectionIRI';
 import { filterToLabel } from './lib/filterToLabel';

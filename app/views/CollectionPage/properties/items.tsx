@@ -17,7 +17,7 @@ import React, {
   ElementType,
 } from 'react';
 
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
 import { tryParseInt } from '../../../helpers/numbers';

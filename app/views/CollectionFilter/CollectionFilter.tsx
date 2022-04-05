@@ -12,7 +12,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { useCollectionOptions } from '../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../components/Collection/CollectionContext';
 import { isResource } from '../../helpers/types';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import ontola from '../../ontology/ontola';

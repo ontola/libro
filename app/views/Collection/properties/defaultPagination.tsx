@@ -17,7 +17,7 @@ import { useIntl } from 'react-intl';
 
 import Button, { ButtonVariant } from '../../../components/Button';
 import CardContent from '../../../components/Card/CardContent';
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
 import ontola from '../../../ontology/ontola';
 import {
   allTopologiesExcept,

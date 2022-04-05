@@ -14,7 +14,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
-import { useCollectionOptions, useHasInteraction } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
+import { useHasInteraction } from '../../../components/Collection/CollectionProvider';
 import GridItem from '../../../components/Grid/GridItem';
 import { isTableDisplay } from '../../../helpers/collections';
 import app from '../../../ontology/app';

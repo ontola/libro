@@ -11,7 +11,7 @@ import {
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { useCollectionOptions } from '../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../components/Collection/CollectionContext';
 import MenuItem from '../../components/MenuItem';
 import { retrievePath } from '../../helpers/iris';
 import { useIRITemplate } from '../../hooks/useIRITemplate';

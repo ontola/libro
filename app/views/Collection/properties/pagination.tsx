@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
 import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';

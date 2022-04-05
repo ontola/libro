@@ -12,7 +12,7 @@ import { FilterComboInput } from '../FilterComboInput';
 import { useActiveValues } from '../FilterComboInput/lib/useActiveValues';
 import { useFilterOptions } from '../FilterComboInput/lib/useFilterOptions';
 
-import { useCollectionOptions } from './CollectionProvider';
+import { useCollectionOptions } from './CollectionContext';
 
 const FILTER_TRANSITION_LENGTH = 100;
 

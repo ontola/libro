@@ -23,12 +23,14 @@ import { tryParseInt } from '../../helpers/numbers';
 import useActionStatus from '../../hooks/useActionStatus';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 import { useListToArr } from '../../hooks/useListToArr';
-import { SortProps, useSorting } from '../../hooks/useSorting';
+import { useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { useCollectionStyles } from '../../views/Collection';
 import { isInvalidActionStatus } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
+
+import { CollectionContext, collectionContext } from './CollectionContext';
 
 export interface CollectionProps {
   clickToOpen?: boolean;
@@ -47,27 +49,6 @@ export interface CollectionProviderProps extends CollectionProps {
   omniform?: boolean;
 }
 
-export interface CollectionContext {
-  appliedFilters: SomeTerm[];
-  collectionDisplay?: NamedNode;
-  columns: NamedNode[];
-  currentCollection?: SomeNode;
-  currentCollectionPages?: SomeNode[];
-  depth?: number;
-  hasInteraction?: boolean;
-  headerButtons?: ReactNode;
-  hideHeader?: boolean;
-  hidePagination?: boolean;
-  maxColumns?: number;
-  omniform?: boolean;
-  onItemClick?: () => void;
-  originalCollection: SomeNode;
-  redirectPagination?: boolean;
-  setCollectionResource: (resource: NamedNode) => void;
-  sortOptions: SortProps[];
-  view?: NamedNode;
-}
-
 export interface CollectionDataProps {
   collectionDisplayFromData: NamedNode;
   maxColumns: SomeTerm;
@@ -83,10 +64,6 @@ const propMap = {
   totalItems: as.totalItems,
   view: ll.view,
 };
-
-const CollectionContext = React.createContext<CollectionContext>({} as CollectionContext);
-
-export const useCollectionOptions = (): CollectionContext => React.useContext(CollectionContext);
 
 export const useHasInteraction = (collectionResource: SomeNode): boolean => {
   const [_, actionStatus] = useActionStatus(collectionResource, ontola.createAction);
@@ -208,14 +185,14 @@ const CollectionProvider = ({
 
   if (children) {
     return (
-      <CollectionContext.Provider value={collectionOptions}>
+      <collectionContext.Provider value={collectionOptions}>
         {children}
-      </CollectionContext.Provider>
+      </collectionContext.Provider>
     );
   }
 
   return (
-    <CollectionContext.Provider value={collectionOptions}>
+    <collectionContext.Provider value={collectionOptions}>
       <ResourceBoundary
         subject={currentCollection}
         wrapperProps={wrapperProps}
@@ -227,7 +204,7 @@ const CollectionProvider = ({
           />
         </Resource>
       </ResourceBoundary>
-    </CollectionContext.Provider>
+    </collectionContext.Provider>
   );
 };
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { entityIsLoaded } from '../../helpers/data';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
-import { useCollectionOptions } from '../Collection/CollectionProvider';
+import { useCollectionOptions } from '../Collection/CollectionContext';
 
 const TableHeadCells = (): JSX.Element => {
   const lrs = useLRS();

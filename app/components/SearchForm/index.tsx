@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import { LibroTheme, Margin } from '../../themes/themes';
 import Button from '../Button';
-import { useCollectionOptions } from '../Collection/CollectionProvider';
+import { useCollectionOptions } from '../Collection/CollectionContext';
 
 interface SearchFormProps {
   autoFocus?: boolean;

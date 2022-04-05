@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { useCollectionOptions } from '../Collection/CollectionProvider';
+import { useCollectionOptions } from '../Collection/CollectionContext';
 
 const TableCells: React.FC = () => {
   const { columns } = useCollectionOptions();

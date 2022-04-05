@@ -22,9 +22,9 @@ import { LoadingCardFixed } from '../Loading';
 import Suspense from '../Suspense';
 import TableHeadCells from '../TableHeadCells';
 
+import { useCollectionOptions } from './CollectionContext';
 import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';
 import { CollectionFrameWrapper } from './CollectionFrameWrapper';
-import { useCollectionOptions } from './CollectionProvider';
 
 export interface CollectionFrameProps {
   Wrapper: React.ElementType,

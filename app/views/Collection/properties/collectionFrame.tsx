@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
 import CollectionFrame from '../../../components/Collection/CollectionFrame';
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
 import ontola from '../../../ontology/ontola';
 import {
   alertDialogTopology,

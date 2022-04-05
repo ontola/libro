@@ -11,7 +11,7 @@ import {
 import React from 'react';
 
 import { ButtonVariant } from '../../../components/Button';
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
 import ontola from '../../../ontology/ontola';
 import { actionsBarTopology } from '../../../topologies';
 

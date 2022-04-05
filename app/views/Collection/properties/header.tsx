@@ -4,7 +4,7 @@ import { Property, Resource } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import CardHeader from '../../../components/Card/CardHeader';
-import { useCollectionOptions } from '../../../components/Collection/CollectionProvider';
+import { useCollectionOptions } from '../../../components/Collection/CollectionContext';
 import { HeaderFloat } from '../../../components/Collection/HeaderFloat';
 import { LoadingHidden } from '../../../components/Loading';
 import { buildRegister } from '../../../helpers/buildRegister';
