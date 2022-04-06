@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { isMarkedForRemove } from '../../helpers/forms';
 import { formMessages } from '../../translations/messages';
 import { useFormGroup } from '../../views/FormGroup/FormGroupProvider';
 import Button, { ButtonVariant } from '../Button';
@@ -20,10 +21,18 @@ const FormFieldAddButton: React.FC = () => {
   const {
     addFormValue,
     field,
+    fieldShape,
     values,
   } = React.useContext(formFieldContext);
+  const { maxCount } = fieldShape;
+  const showAddButton = !maxCount || values.filter((val) => !isMarkedForRemove(val)).length < (maxCount || 0);
+
   const [label] = useStrings(field, schema.name);
   const [image] = useGlobalIds(field, dig(sh.targetClass, schema.image));
+
+  if (!showAddButton) {
+    return null;
+  }
 
   if (buttonContainerRef?.current && values.length === 0) {
     return (

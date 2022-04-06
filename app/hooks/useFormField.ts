@@ -1,4 +1,7 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  isNamedNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
@@ -25,7 +28,11 @@ import {
   useFormStyles,
 } from '../components/FormField/UseFormStyles';
 import { arraysEqual } from '../helpers/data';
-import { calculateFormFieldName } from '../helpers/forms';
+import {
+  calculateFormFieldName,
+  destroyFieldName,
+  retrieveIdFromValue,
+} from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import { quadruple } from '../helpers/quadruple';
 import {
@@ -288,6 +295,19 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     newItem,
   );
 
+  const removeItem = React.useCallback((index: number) => {
+    const newValue = values.slice();
+    const currentValue = newValue[index];
+
+    if (isJSONLDObject(currentValue) && isNamedNode(retrieveIdFromValue(currentValue))) {
+      currentValue[destroyFieldName] = rdf.literal(true);
+    } else {
+      newValue.splice(index, 1);
+    }
+
+    input.onChange(newValue);
+  }, [values, input.onChange]);
+
   const {
     active,
     dirtySinceLastSubmit,
@@ -319,6 +339,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     onBlur: memoizedOnBlur,
     onChange: input.onChange,
     onFocus: memoizedOnFocus,
+    removeItem,
     storeKey,
     values,
     whitelisted,

@@ -60,6 +60,7 @@ function createConfig(options) {
         {
           include: [
             path.resolve(__dirname, '../app'),
+            path.resolve(__dirname, '../node_modules/@dnd-kit'),
             path.resolve(__dirname, '../node_modules/@ontola'),
             path.resolve(__dirname, '../node_modules/@ontologies'),
             path.resolve(__dirname, '../node_modules/@rdfdev'),

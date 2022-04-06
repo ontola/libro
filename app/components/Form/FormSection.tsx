@@ -7,6 +7,7 @@ import { calculateFormFieldName } from '../../helpers/forms';
 import { formContext } from './FormContext';
 
 interface PropTypes {
+  className?: string;
   formIRI: SomeNode;
   name: string;
   object: SomeNode;
@@ -16,6 +17,7 @@ interface PropTypes {
 
 const FormSection: React.FC<PropTypes> = ({
   children,
+  className,
   formIRI,
   name,
   object,
@@ -36,7 +38,7 @@ const FormSection: React.FC<PropTypes> = ({
   return (
     <formContext.Provider value={sectionContext}>
       <fieldset
-        className="Field__section"
+        className={className}
         property={path.value}
       >
         {children}

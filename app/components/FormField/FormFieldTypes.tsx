@@ -53,6 +53,8 @@ export interface PermittedFormField {
   onBlur: FocusRelatedEventHandler;
   onChange: OnInputChange;
   onFocus: FocusRelatedEventHandler;
+  removeItem: (index: number) => void;
+  sortable?: boolean;
   path?: NamedNode;
   placeholder?: string;
   storeKey?: string;

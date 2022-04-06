@@ -1,18 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
-import rdf, {
-  isNamedNode,
-  isTerm,
-} from '@ontologies/core';
+import rdf, { isTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import {
-  destroyFieldName,
-  isMarkedForRemove,
-  retrieveIdFromValue,
-} from '../../helpers/forms';
-import { isJSONLDObject } from '../../helpers/types';
+import { SortableProps } from '../../containers/Sortable';
+import { isMarkedForRemove } from '../../helpers/forms';
 import { LibroTheme } from '../../themes/themes';
 import Button from '../Button';
 
@@ -22,20 +15,23 @@ import { InputValue } from './FormFieldTypes';
 
 export const fieldWrapperCID = 'CID-FieldWrapper';
 
-interface FormInputProps {
+export interface FormInputProps {
   index: number;
+  sortableProps?: SortableProps;
   value: InputValue;
 }
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
-  fieldInputRemoveButton: {
-    color: theme.palette.grey.midDark,
-    fontSize: theme.typography.fontSizes.xLarge,
-    padding: '0 0.5rem 0.5rem',
+const useStyles = makeStyles<LibroTheme>(() => ({
+  fieldButtons: {
+    '& button, & [role="button"]': {
+      color: '#707070',
+      float: 'right',
+      padding: '0.1em',
+    },
+    paddingRight: '0.5em',
     position: 'absolute',
-    right: 0,
     top: 0,
-    zIndex: 11,
+    width: '100%',
   },
   fieldWrapper: {
     display: 'inline-block',
@@ -46,31 +42,20 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const FormInput: React.FC<FormInputProps> = ({
   index,
   value,
+  sortableProps,
 }) => {
   const {
     inputErrors,
     autofocus,
     fieldShape,
     inputComponent: InputComponent,
-    name,
     onChange,
+    removeItem,
     values,
   } = React.useContext(formFieldContext);
   const { removable } = fieldShape;
   const classes = useStyles();
 
-  const removeItem = React.useCallback(() => {
-    const newValue = values?.slice() || [];
-    const curentValue = newValue[index];
-
-    if (isJSONLDObject(curentValue) && isNamedNode(retrieveIdFromValue(curentValue))) {
-      curentValue[destroyFieldName] = rdf.literal(true);
-    } else {
-      newValue.splice(index, 1);
-    }
-
-    onChange(newValue);
-  }, [values, index, onChange]);
   const inputOnChange = React.useCallback((val: InputValue) => {
     const newValue = values?.slice() || [];
     newValue[index] = isTerm(val) ? val : rdf.literal(val ?? '');
@@ -88,7 +73,8 @@ const FormInput: React.FC<FormInputProps> = ({
   return (
     <div
       className={clsx(fieldWrapperCID, classes.fieldWrapper)}
-      key={[name, index].join('.')}
+      ref={sortableProps?.setNodeRef}
+      style={sortableProps?.style}
     >
       <InputComponent
         autofocus={!!autofocus && (index === 0)}
@@ -97,15 +83,24 @@ const FormInput: React.FC<FormInputProps> = ({
         inputValue={value}
         onChange={inputOnChange}
       />
-      {removable && (
-        <Button
-          plain
-          className={classes.fieldInputRemoveButton}
-          onClick={removeItem}
-        >
-          <FontAwesome name="times" />
-        </Button>
-      )}
+      <div className={classes.fieldButtons}>
+        {removable && (
+          <Button
+            plain
+            onClick={() => removeItem(index)}
+          >
+            <FontAwesome name="times" />
+          </Button>
+        )}
+        {sortableProps && (
+          <div
+            {...sortableProps.listeners}
+            {...sortableProps.attributes}
+          >
+            <FontAwesome name="arrows" />
+          </div>
+        )}
+      </div>
       <FormFieldHelper
         error={errors?.[0]}
         value={value}

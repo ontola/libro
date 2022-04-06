@@ -1335,6 +1335,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.15.4":
+  version: 7.17.8
+  resolution: "@babel/runtime@npm:7.17.8"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 68d195c1630bb91ac20e86635d292a17ebab7f361cfe79406b3f5a6cc2e59fa283ae5006568899abf869312c2b35b744bd407aea8ffdb650f1a68d07785d47e9
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.17.2":
   version: 7.17.2
   resolution: "@babel/runtime@npm:7.17.2"
@@ -1488,6 +1497,55 @@ __metadata:
   version: 0.5.6
   resolution: "@discoveryjs/json-ext@npm:0.5.6"
   checksum: e97df618511fb202dffa2eb0d23e17dfb02943a70e5bc38f6b9603ad1cb1d6b525aa2b07ff9fb00b041abe425b341146ddd9e487f1e35ddadc8c6b8c56358ae0
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/accessibility@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@dnd-kit/accessibility@npm:3.0.0"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: feac6afea07ece1568df38973d7a1a1b994782a6df119983250c3849ca2a3818a7bcc67fe4c5d22b0a1cfde866081644d677d2188abed507b3eccc255da79320
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/core@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@dnd-kit/core@npm:4.0.3"
+  dependencies:
+    "@dnd-kit/accessibility": ^3.0.0
+    "@dnd-kit/utilities": ^3.0.1
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 828609317504f32bf37238840e5d2ae545efaaa779d696fdad1606d2ae22ae5668a43466db007efde89c8c1ef04ca66b2c61b6e98465f9487ec37c8e3d11a1b2
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/sortable@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@dnd-kit/sortable@npm:5.1.0"
+  dependencies:
+    "@dnd-kit/utilities": ^3.0.0
+    tslib: ^2.0.0
+  peerDependencies:
+    "@dnd-kit/core": ^4.0.2
+    react: ">=16.8.0"
+  checksum: f2f687a70dc52894e569d6377d7cb2e5e1761f0164cf08a1d0c8c3df43d6e88fd2858e0f5dfc8a5670fac8f6ce9a2ed91b0aeb8837f44d067acf21d1baf6a55e
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/utilities@npm:^3.0.0, @dnd-kit/utilities@npm:^3.0.1":
+  version: 3.1.0
+  resolution: "@dnd-kit/utilities@npm:3.1.0"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: b9cb87dd4a26389aeb667d6b11e3854e00479e4f2842f36d9abc4dfee67fd06e0f75525ab9475462d57b055094a7723169c95362affdd84b0e656b96424c0f8c
   languageName: node
   linkType: hard
 
@@ -3036,13 +3094,6 @@ __metadata:
   peerDependencies:
     rollup: ^1.20.0||^2.0.0
   checksum: 8be16e27863c219edbb25a4e6ec2fe0e1e451d9e917b6a43cf2ae5bc025a6b8faaa40f82a6e53b66d0de37b58ff472c6c3d57a83037ae635041f8df959d6d9aa
-  languageName: node
-  linkType: hard
-
-"@scarf/scarf@npm:^1.0.5":
-  version: 1.0.6
-  resolution: "@scarf/scarf@npm:1.0.6"
-  checksum: 3a17181105f4553c15e289cf49a9a57aecec4e678f13a135999ceac8efdc9ba6e5ef57a95bbdb0b18575c458d38b55af2406d17c0c1ac293925851e1eb94f432
   languageName: node
   linkType: hard
 
@@ -8404,13 +8455,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"final-form@npm:^4.20.0":
-  version: 4.20.0
-  resolution: "final-form@npm:4.20.0"
+"final-form@npm:^4.20.4":
+  version: 4.20.6
+  resolution: "final-form@npm:4.20.6"
   dependencies:
     "@babel/runtime": ^7.10.0
-    "@scarf/scarf": ^1.0.5
-  checksum: cfdf9bb966f491a4fa45c179b0a3392a32ae7fe64648ce4e13e3de41a115c149c3e647da59b423e607da82c8b88be9c79d770aa551ad2a712c260995a3a4ca65
+  checksum: 6f8ac3643f0cd0cb34b204c41dec114382a3542d839b73e1376d6360da35eac3cd3e1c59b5ba8cfe915fe39d110af7178134131fe8ad667e23e657f682cbf359
   languageName: node
   linkType: hard
 
@@ -12616,6 +12666,9 @@ __metadata:
     "@babel/preset-typescript": ^7.15.0
     "@bugsnag/js": ^7.5.1
     "@date-io/dayjs": ^1.3.13
+    "@dnd-kit/core": ^4.0.3
+    "@dnd-kit/sortable": ^5.1.0
+    "@dnd-kit/utilities": ^3.0.1
     "@formatjs/cli": ^4.2.6
     "@formatjs/intl-relativetimeformat": ^8.1.4
     "@formatjs/intl-unified-numberformat": ^3.3.7
@@ -12703,7 +12756,7 @@ __metadata:
     exports-loader: ^2.0.0
     fast-deep-equal: ^2.0.1
     file-loader: ^6.2.0
-    final-form: ^4.20.0
+    final-form: ^4.20.4
     fontawesome: ^4.7.2
     hextuples: ^2.0.0
     history: ^4.10.1
@@ -12739,7 +12792,7 @@ __metadata:
     react-dom: ^17.0.2
     react-dropzone: ^11.4.2
     react-easy-emoji: ^1.4.0
-    react-final-form: ^6.5.0
+    react-final-form: ^6.5.7
     react-fontawesome: ^1.6.1
     react-helmet-async: ^1.0.9
     react-intl: ^5.15.7
@@ -14205,17 +14258,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-final-form@npm:^6.5.0":
-  version: 6.5.0
-  resolution: "react-final-form@npm:6.5.0"
+"react-final-form@npm:^6.5.7":
+  version: 6.5.8
+  resolution: "react-final-form@npm:6.5.8"
   dependencies:
-    "@babel/runtime": ^7.10.0
-    "@scarf/scarf": ^1.0.5
-    ts-essentials: ^6.0.5
+    "@babel/runtime": ^7.15.4
   peerDependencies:
-    final-form: ^4.20.0
-    react: ^16.8.0
-  checksum: 672e12ef0e0203cce37e7c7187215e84dd44092e50543cb6b34636ea7b7aa15143053f17e8b8c258ce66587faa21520e5d034713a6bbe94b19e69d4d3d796917
+    final-form: ^4.20.4
+    react: ^16.8.0 || ^17.0.0
+  checksum: ea73cbd941e5f338429753cfde8bdfd849571d00eeea1fe90e39463c2da02d5ebe5551e8d30234800174ef96d853edd7db776a2bab17ab71ca3ecc9a24a5fc28
   languageName: node
   linkType: hard
 
@@ -16523,15 +16574,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-essentials@npm:^6.0.5":
-  version: 6.0.7
-  resolution: "ts-essentials@npm:6.0.7"
-  peerDependencies:
-    typescript: ">=3.7.0"
-  checksum: b47a1793df9ea997d50d2cc9155433952b189cfca0c534a6f3f3dce6aa782a37574d2179dee6d55ed918835aa17addda49619ff2bd2eb3e60e331db3ce30a79b
-  languageName: node
-  linkType: hard
-
 "ts-jest@npm:^27.0.7":
   version: 27.0.7
   resolution: "ts-jest@npm:27.0.7"
@@ -16597,17 +16639,17 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"tslib@npm:^2.0.0, tslib@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^2.0.3, tslib@npm:^2.1.0":
   version: 2.2.0
   resolution: "tslib@npm:2.2.0"
   checksum: a48c9639f7496fa701ea8ffe0561070fcb44c104a59632f7f845c0af00825c99b6373575ec59b2b5cdbfd7505875086dbe5dc83312304d8979f22ce571218ca3
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "tslib@npm:2.3.1"
-  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 

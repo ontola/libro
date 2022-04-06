@@ -1,23 +1,15 @@
 import React from 'react';
 
-import { isMarkedForRemove } from '../../helpers/forms';
-
 import FormFieldAddButton from './FormFieldAddButton';
 import { formFieldContext } from './FormFieldContext';
 import FormInput from './FormInput';
 
 const FormInputs = (): JSX.Element | null => {
-  const {
-    fieldShape,
-    values,
-  } = React.useContext(formFieldContext);
-  const { maxCount } = fieldShape;
+  const { values } = React.useContext(formFieldContext);
 
   if (!values) {
     return null;
   }
-
-  const showAddButton = !maxCount || values.filter((val) => !isMarkedForRemove(val)).length < (maxCount || 0);
 
   return (
     <React.Fragment>
@@ -28,7 +20,7 @@ const FormInputs = (): JSX.Element | null => {
           value={value}
         />
       ))}
-      {showAddButton && <FormFieldAddButton />}
+      <FormFieldAddButton />
     </React.Fragment>
   );
 };

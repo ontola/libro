@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SortableInputs from '../../containers/Sortable/SortableInputs';
 import ResourceBoundary from '../ResourceBoundary';
 
 import { formFieldContext } from './FormFieldContext';
@@ -30,7 +31,9 @@ const FormField = (props: FormFieldProps): JSX.Element => {
       <formFieldContext.Provider value={contextProps}>
         <FormFieldLabel />
         <FormFieldDescription />
-        {combinedComponent ? <props.inputComponent /> : <FormInputs />}
+        {combinedComponent ? <props.inputComponent /> : (
+          props.sortable ? <SortableInputs /> : <FormInputs />
+        )}
       </formFieldContext.Provider>
     </ResourceBoundary>
   );
@@ -42,6 +45,7 @@ FormField.defaultProps = {
   meta: {},
   onBlur: () => undefined,
   onFocus: () => undefined,
+  removeItem: () => undefined,
 };
 
 export default FormField;
