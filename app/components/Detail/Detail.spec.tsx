@@ -3,9 +3,10 @@
  */
 
 import rdf from '@ontologies/core';
+import { fireEvent } from '@testing-library/dom';
 import React from 'react';
 
-import { render } from '../../test-utils';
+import { imageQueries, render } from '../../test-utils';
 
 import Detail, { DetailProps } from './index';
 
@@ -58,6 +59,21 @@ describe('Detail', () => {
     });
   });
 
+  describe('with a title', () => {
+    const props = { title: 'A title' };
+
+    it('should have a label when hovered', async () => {
+      const { getByTestId, findByRole, findByTestId } = renderComp(props);
+      fireEvent.mouseOver(getByTestId('Detail'));
+
+      const wrapper = await findByTestId('Detail');
+      const tooltip = await findByRole('tooltip');
+
+      expect(tooltip.children[0]).toHaveTextContent('A title');
+      expect(tooltip.getAttribute('id')).toEqual(wrapper.getAttribute('aria-describedby'));
+    });
+  });
+
   describe('with an image', () => {
     const props = {
       imageUrl: rdf.namedNode('http://example.org/photo.jpg'),
@@ -70,13 +86,15 @@ describe('Detail', () => {
     });
 
     it('should render an image', () => {
-      const { getByLabelText } = renderComp(props);
-      expect(getByLabelText(props.title)).toBeInstanceOf(HTMLImageElement);
-    });
+      const { getByImgSrc } = render((
+        <Detail
+          {...props}
+        />
+      ), {
+        queries: imageQueries,
+      });
 
-    it('should have the correct url', () => {
-      const { getByLabelText } = renderComp(props);
-      expect(getByLabelText(props.title)).toHaveAttribute('src', 'http://example.org/photo.jpg');
+      expect(getByImgSrc('http://example.org/photo.jpg')).toBeVisible();
     });
   });
 

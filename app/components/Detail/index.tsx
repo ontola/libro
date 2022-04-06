@@ -1,3 +1,4 @@
+import { Tooltip } from '@material-ui/core';
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import React, {
@@ -81,30 +82,29 @@ const Detail = ({
   const image = icon ? fa4.ns(icon) : imageUrl;
 
   return (
-    <Element
-      className={detailClass}
-      data-testid="Detail"
-      href={url}
-      target={url && isDifferentWebsite(url) ? '_blank' : undefined}
-      title={url ? title : undefined}
-      onClick={handleClick}
-    >
-      {image && (
-        <Image
-          ariaLabel={title}
-          className={styles.image}
-          data-test="Detail-image"
-          linkedProp={image}
-          spin={spin}
-        />
-      )}
-      <DetailText
-        data-test="Detail-DetailText"
-        variant={variant}
+    <Tooltip title={title ?? ''}>
+      <Element
+        className={detailClass}
+        data-testid="Detail"
+        href={url}
+        target={url && isDifferentWebsite(url) ? '_blank' : undefined}
+        onClick={handleClick}
       >
-        {text}
-      </DetailText>
-    </Element>
+        {image && (
+          <Image
+            className={styles.image}
+            linkedProp={image}
+            spin={spin}
+          />
+        )}
+        <DetailText
+          data-test="Detail-DetailText"
+          variant={variant}
+        >
+          {text}
+        </DetailText>
+      </Element>
+    </Tooltip>
   );
 };
 

@@ -1,9 +1,16 @@
 import { ThemeProvider } from '@material-ui/styles';
 import { Node, QuadPosition } from '@ontologies/core';
-import { Queries, queries } from '@testing-library/dom';
+import {
+  Matcher,
+  MatcherOptions,
+  Queries,
+  queries,
+} from '@testing-library/dom';
 import {
   RenderOptions,
   RenderResult,
+  buildQueries,
+  queryHelpers,
   render,
 } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
@@ -227,3 +234,26 @@ export * from '@testing-library/react';
 
 // override render method
 export { renderWithWrappers as render };
+
+const queryAllByImgSrc = (container: HTMLElement, id: Matcher, options?: MatcherOptions): HTMLElement[] =>
+  queryHelpers.queryAllByAttribute('src', container, id, options);
+const getMultipleError = (_: Element | null, imgSrc: string): string =>
+  `Found multiple images with src: ${imgSrc}`;
+const getMissingError = (_: Element | null, imgSrc: string): string =>
+  `Unable to find an image with src: ${imgSrc}`;
+
+const [
+  queryByImgSrc,
+  getAllByImgSrc,
+  getByImgSrc,
+  findAllByImgSrc,
+  findByImgSrc,
+] = buildQueries(queryAllByImgSrc, getMultipleError, getMissingError);
+
+export const imageQueries = {
+  findAllByImgSrc,
+  findByImgSrc,
+  getAllByImgSrc,
+  getByImgSrc,
+  queryByImgSrc,
+};
