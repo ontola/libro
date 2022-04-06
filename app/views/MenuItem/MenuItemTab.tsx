@@ -73,6 +73,7 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
       icon={<Property label={schema.image} />}
       key={subject.value}
       label={<Property label={schema.name} />}
+      tabIndex={selected ? 0 : -1}
       value={subject.value}
       onChange={handleClick}
     />
