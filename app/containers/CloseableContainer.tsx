@@ -1,19 +1,29 @@
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import useStoredState from '../hooks/useStoredState';
 import Button from '../components/Button';
+import { formMessages } from '../translations/messages';
 
-export interface CloseableContainerProps {
-  children: React.ReactNode;
+interface ClosableContainerProps {
   id: string;
 }
 
-const style: React.CSSProperties = { position: 'relative' };
+const useStyles = makeStyles({
+  closableContainer: {
+    alignItems: 'flex-start',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+});
 
-const CloseableContainer = ({
+const CloseableContainer: React.FC<ClosableContainerProps> = ({
   children,
   id,
-}: CloseableContainerProps): JSX.Element | null => {
+}) => {
+  const classes = useStyles();
+  const { formatMessage } = useIntl();
   const storeKey = `${id}-closeable`;
   const [opened, setOpened] = useStoredState(storeKey, true);
   const toggleCloseable = React.useCallback(
@@ -26,15 +36,15 @@ const CloseableContainer = ({
   }
 
   return (
-    <div style={style}>
+    <div className={classes.closableContainer}>
+      {children}
       <Button
-        corner
+        narrow
         plain
         icon="close"
-        title="Sluiten"
+        title={formatMessage(formMessages.close)}
         onClick={toggleCloseable}
       />
-      {children}
     </div>
   );
 };
