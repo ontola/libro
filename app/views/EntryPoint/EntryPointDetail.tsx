@@ -14,7 +14,7 @@ interface EntryPointDetailProps {
 
 const EntryPointDetail = ({ name }: EntryPointDetailProps): JSX.Element => {
   const [image] = useProperty(schema.image);
-  
+
   const icon = image?.value?.startsWith('fa-')
     ? image.value.slice('fa-'.length)
     : image?.value;

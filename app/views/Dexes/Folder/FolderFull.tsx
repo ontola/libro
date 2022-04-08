@@ -7,11 +7,13 @@ import {
   useFindSubject,
   useGlobalIds,
   useIds,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
 import { components } from '../../../components';
-import { useViewBuilderToolkit } from '../../../helpers/builder';
+import { property } from '../../../helpers/properties';
+import component from '../../../helpers/component';
 import dexes from '../../../ontology/dexes';
 import ontola from '../../../ontology/ontola';
 import {
@@ -23,7 +25,9 @@ import {
 import UploadTarget from './UploadTarget';
 
 const FolderFull: FC = () => {
-  const { c, p } = useViewBuilderToolkit();
+  const lrs = useLRS();
+  const c = component();
+  const p = property(lrs);
   const createActions = useGlobalIds(ontola.createAction);
   useDataFetching(createActions);
   const [uploadAction] = useFindSubject(

@@ -1,9 +1,17 @@
 import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
-import { FC, register } from 'link-redux';
+import {
+  FC,
+  register,
+  useLRS,
+} from 'link-redux';
 
 import { components } from '../../components';
-import { useViewBuilderToolkit, withoutLoading } from '../../helpers/builder';
+import {
+  property,
+  withoutLoading,
+} from '../../helpers/properties';
+import component from '../../helpers/component';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
@@ -16,7 +24,9 @@ import {
 } from '../../topologies';
 
 const ThingFull: FC = () => {
-  const { p, c } = useViewBuilderToolkit();
+  const lrs = useLRS();
+  const c = component();
+  const p = property(lrs);
 
   return (
     c(components.ResourceBoundary, [

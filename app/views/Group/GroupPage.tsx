@@ -12,7 +12,7 @@ import { pageTopology } from '../../topologies';
 
 const GroupPage = () => {
   const [settingsMenu] = useProperty(ontola.settingsMenu);
-  
+
   return(
     <Redirect to={retrievePath(settingsMenu.value)!} />
   );

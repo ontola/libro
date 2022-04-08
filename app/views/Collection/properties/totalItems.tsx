@@ -24,7 +24,7 @@ import { CollectionTypes } from '../types';
 const useIsSinglePage = () => {
   const [first] = useProperty(as.first);
   const [last] = useProperty(as.last);
-  
+
   return first === last;
 };
 
