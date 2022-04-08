@@ -26,7 +26,7 @@ import { useListToArr } from '../../hooks/useListToArr';
 import { useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
-import { useCollectionStyles } from '../../views/Collection';
+import { useCollectionStyles } from '../../views/Collection/useCollectionStyles';
 import { isInvalidActionStatus } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
 

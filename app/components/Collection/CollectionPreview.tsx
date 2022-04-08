@@ -5,7 +5,7 @@ import React, { KeyboardEvent, MouseEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { tryParseInt } from '../../helpers/numbers';
-import { useCollectionStyles } from '../../views/Collection';
+import { useCollectionStyles } from '../../views/Collection/useCollectionStyles';
 import Heading from '../Heading';
 import LinkDuo from '../LinkDuo';
 import ResourceBoundary from '../ResourceBoundary';
