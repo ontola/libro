@@ -8,9 +8,9 @@ import {
 import * as rdfx from '@ontologies/rdf';
 import * as xsd from '@ontologies/xsd';
 
-import { toDataObject } from './quadsToDataObject';
 import { quote } from './serialization';
 import { NodeType, shortenGlobalId } from './shortMap';
+import { ToDataObject } from './types';
 
 const integerTypes = [
   xsd.integer,
@@ -71,6 +71,7 @@ export const serializeValue = (
   data: Quad[],
   websiteIRI: string,
   indentation: number,
+  toDataObject: ToDataObject,
 ): string | undefined => {
   if (isNamedNode(value)) {
     return serializeNamedNode(value, websiteIRI);

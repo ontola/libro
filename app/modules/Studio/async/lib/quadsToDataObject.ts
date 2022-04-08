@@ -63,10 +63,10 @@ const regularObject = (
     let value: string | undefined;
 
     if (v.length === 1) {
-      value = serializeValue(v[0], data, websiteIRI, nextIndentation);
+      value = serializeValue(v[0], data, websiteIRI, nextIndentation, toDataObject);
     } else {
       const [, deepBump] = getBumps(nextIndentation);
-      const values = v.map((it) => deepBump + serializeValue(it, data, websiteIRI, nextIndentation));
+      const values = v.map((it) => deepBump + serializeValue(it, data, websiteIRI, nextIndentation, toDataObject));
       const serialized = values.join(',\n');
       value = `[\n${serialized},\n${longBump}]`;
     }
@@ -94,7 +94,7 @@ export const toDataObject = (
       .some((it) => rdf.equals(it, rdfx.Seq));
 
     if (isSeq) {
-      return serializeSeqObject(id, data, indentation, websiteIRI);
+      return serializeSeqObject(id, data, indentation, websiteIRI, toDataObject);
     }
   }
 
