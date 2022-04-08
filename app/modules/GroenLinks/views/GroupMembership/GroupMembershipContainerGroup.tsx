@@ -13,7 +13,7 @@ import teamGL from '../../../../ontology/teamGL';
 import { containerTopology } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { useContactOptionStyles } from '../Volunteer';
+import { useContactOptionStyles } from '../Volunteer/useContactOptionStyles';
 
 const GroupMembershipContainerGroup = () => {
   const classes = useContactOptionStyles();

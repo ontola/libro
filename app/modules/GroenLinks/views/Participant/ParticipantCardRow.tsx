@@ -12,7 +12,7 @@ import teamGL from '../../../../ontology/teamGL';
 import { cardRowTopology } from '../../../../topologies';
 import ActionsBar from '../../../../topologies/ActionsBar';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { useContactOptionStyles } from '../Volunteer';
+import { useContactOptionStyles } from '../Volunteer/useContactOptionStyles';
 
 const ParticipantCardRow = () => {
   const classes = useContactOptionStyles();

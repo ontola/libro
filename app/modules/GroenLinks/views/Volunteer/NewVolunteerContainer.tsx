@@ -14,7 +14,7 @@ import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import ActionsBar from '../../../../topologies/ActionsBar';
 
-import { useContactOptionStyles } from './index';
+import { useContactOptionStyles } from './useContactOptionStyles';
 
 const NewVolunteerContainer = () => {
   const classes = useContactOptionStyles();

@@ -16,7 +16,7 @@ import Container from '../../../../topologies/Container';
 import CardMain from '../../../../topologies/Card/CardMain';
 import ContentDetails from '../../../../topologies/ContentDetails';
 
-import { useContactOptionStyles } from './index';
+import { useContactOptionStyles } from './useContactOptionStyles';
 
 const VolunteerFull = () => {
   const classes = useContactOptionStyles();

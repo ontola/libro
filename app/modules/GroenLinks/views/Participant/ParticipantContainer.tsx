@@ -14,7 +14,7 @@ import Card from '../../../../topologies/Card';
 import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ActionsBar from '../../../../topologies/ActionsBar';
 import ContentDetails from '../../../../topologies/ContentDetails';
-import { useContactOptionStyles } from '../Volunteer';
+import { useContactOptionStyles } from '../Volunteer/useContactOptionStyles';
 
 const ParticipantContainer = () => {
   const classes = useContactOptionStyles();

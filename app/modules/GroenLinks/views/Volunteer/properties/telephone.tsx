@@ -5,7 +5,7 @@ import emoji from 'react-easy-emoji';
 
 import teamGL from '../../../../../ontology/teamGL';
 import { allTopologiesExcept, tableRowTopology } from '../../../../../topologies';
-import { useContactOptionStyles } from '../index';
+import { useContactOptionStyles } from '../useContactOptionStyles';
 
 const Telephone = ({ linkedProp }: PropertyProps) => {
   const classes = useContactOptionStyles();

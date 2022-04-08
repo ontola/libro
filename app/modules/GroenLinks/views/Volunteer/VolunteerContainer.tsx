@@ -12,7 +12,7 @@ import { containerTopology } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
 
-import { useContactOptionStyles } from './index';
+import { useContactOptionStyles } from './useContactOptionStyles';
 
 const VolunteerContainer = () => {
   const classes = useContactOptionStyles();
