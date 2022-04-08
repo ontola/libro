@@ -4,7 +4,6 @@ import { WebManifest } from '../../../../WebManifest';
 import { sourceToHextuples } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
-import { serverDataToProject } from '../lib/serverDataToProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
 
 export interface RenderedPage {
@@ -263,6 +262,40 @@ export const emptySubResource = (id: number): SubResource => ({
   value: '',
 });
 
+const INDENT = 4;
+
+const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
+  const manifest: Component = {
+    children: [],
+    name: ComponentName.Manifest,
+    type: ResourceType.Manifest,
+    value: JSON.stringify(data.manifest, null, INDENT),
+  };
+  const website: Component = {
+    children: data.resources,
+    name: ComponentName.Website,
+    type: ResourceType.RDF,
+    value: '',
+  };
+  const sitemap: Component = {
+    children: [],
+    name: ComponentName.Sitemap,
+    type: ResourceType.SiteMap,
+    value: data.sitemap,
+  };
+
+  const websiteIRI = JSON.parse(manifest.value).ontola.website_iri;
+
+  return {
+    loading: false,
+    manifest,
+    sitemap,
+    subResource: 0,
+    website,
+    websiteIRI,
+  };
+};
+
 const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   switch (action.type) {
   case ProjectAction.Load:
@@ -414,5 +447,3 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
 
 export const useProjectStateReducer = (): ProjectState =>
   React.useReducer(reducer, initialState);
-
-// export const useProjectState = (): ProjectState => React.useContext(projectContext);
