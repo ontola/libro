@@ -1,10 +1,11 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
+import FormField from '../../components/FormField/FormField';
 import RadioGroupWrapper from '../../components/RadioGroupWrapper';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const RadioGroupFormField: FC = ({
   subject,

@@ -1,10 +1,10 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { formFieldTopologies } from '../../components/FormField/FormField';
 import SwipeInputLoader from '../../containers/SwipeInput';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const SwipeFormField: FC = ({ subject }) => {
   const fieldProps = useFormField(subject, {

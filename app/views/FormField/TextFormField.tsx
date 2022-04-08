@@ -8,10 +8,11 @@ import {
 import React from 'react';
 
 import { FormTheme, formContext } from '../../components/Form/FormContext';
-import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
+import FormField from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const getInputType = (theme: FormTheme | undefined, type: SomeTerm) => {
   if (type === form.EmailInput) {

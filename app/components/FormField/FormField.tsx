@@ -5,14 +5,6 @@ import React, { FunctionComponent } from 'react';
 import { calculateFormFieldName } from '../../helpers/forms';
 import { PermittedFormField } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
-import {
-  cardMainTopology,
-  cardTopology,
-  flowTopology,
-  formFooterTopology,
-  mainBodyTopology,
-  omniformFieldsTopology,
-} from '../../topologies';
 import { fieldLabelCID } from '../FieldLabel';
 import ResourceBoundary from '../ResourceBoundary';
 
@@ -28,15 +20,6 @@ export const fieldInputHiddenCID = 'CID-FieldInputHidden';
 export const fieldInputMarkdownCID = 'CID-FieldInputMarkdown';
 export const fieldInputSelectCID = 'CID-FieldInputSelect';
 export const fieldVariantPreviewCID = 'CID-FieldVariantPreview';
-
-export const formFieldTopologies = [
-  cardMainTopology,
-  cardTopology,
-  formFooterTopology,
-  mainBodyTopology,
-  omniformFieldsTopology,
-  flowTopology,
-];
 
 export interface CombinedFormFieldProps extends PermittedFormField {
   combinedComponent: true;

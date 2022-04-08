@@ -108,6 +108,15 @@ export const allTopologies: NamedNode[] = [
   tabBarTopology,
 ];
 
+export const formFieldTopologies = [
+  cardMainTopology,
+  cardTopology,
+  formFooterTopology,
+  mainBodyTopology,
+  omniformFieldsTopology,
+  flowTopology,
+];
+
 export function allTopologiesExcept(...topologies: NamedNode[]): NamedNode[] {
   const filtered = allTopologies.slice();
   topologies.forEach((t) => {

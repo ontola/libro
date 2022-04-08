@@ -11,8 +11,8 @@ import {
 import React from 'react';
 
 import { formContext } from '../../components/Form/FormContext';
-import { formFieldTopologies } from '../../components/FormField/FormField';
 import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
 const ResourceField = () => {

@@ -19,7 +19,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { formContext } from '../../components/Form/FormContext';
-import FormField, { formFieldTopologies } from '../../components/FormField/FormField';
+import FormField from '../../components/FormField/FormField';
 import { fieldWrapperCID } from '../../components/FormField/FormInput';
 import AssociationInput from '../../components/Input/AssociationInput';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../helpers/diggers';
@@ -31,6 +31,7 @@ import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
+import { formFieldTopologies } from '../../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   fieldAssociation: {

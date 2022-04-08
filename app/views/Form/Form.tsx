@@ -4,8 +4,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { formFieldTopologies } from '../../components/FormField/FormField';
 import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const Form = () => (
   <Property label={form.pages} />
