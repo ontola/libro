@@ -5,7 +5,7 @@ import FormField from '../../../../components/FormField/FormField';
 import DatePicker from '../../../../containers/DatePicker';
 import { InputValue } from '../../../../hooks/useFormField';
 
-import { DATE_SIZE } from './DashboardPageFull';
+export const DATE_SIZE = 2;
 
 type DateRange = [Date, Date];
 

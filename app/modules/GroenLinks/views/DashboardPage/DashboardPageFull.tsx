@@ -28,11 +28,10 @@ import Container from '../../../../topologies/Container';
 import TabBar from '../../../../topologies/TabBar';
 import TabPane from '../../../../topologies/TabPane';
 
-import DasboardTabBar from './DashboardTabBar';
-import DateRangeFilter from './DateRangeFilter';
+import DashboardTabBar from './DashboardTabBar';
+import DateRangeFilter, { DATE_SIZE } from './DateRangeFilter';
 import PostalRangeFilter from './PostalRangeFilter';
 
-export const DATE_SIZE = 2;
 const VALID_POSTAL_RANGE_LENGTH = 9;
 const ONE_WEEK = 7;
 
@@ -94,7 +93,7 @@ const DashboardPageFull = () => {
       <TabBar value={currentTab?.value}>
         {items.map((item) => (
           isNode(item) && (
-            <DasboardTabBar
+            <DashboardTabBar
               key={item.value}
               subject={item}
               value={item.value}

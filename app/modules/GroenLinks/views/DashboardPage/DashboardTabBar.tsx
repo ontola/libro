@@ -4,13 +4,13 @@ import { SomeNode } from 'link-lib';
 import { Property, Resource } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
-interface DasboardTabBarProps {
+interface DashboardTabBarProps {
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   subject: SomeNode;
   value: string;
 }
 
-const DasboardTabBar: React.FC<DasboardTabBarProps> = ({
+const DashboardTabBar: React.FC<DashboardTabBarProps> = ({
   subject,
   onClick,
 }) => (
@@ -26,4 +26,4 @@ const DasboardTabBar: React.FC<DasboardTabBarProps> = ({
   />
 );
 
-export default DasboardTabBar;
+export default DashboardTabBar;
