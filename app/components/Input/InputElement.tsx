@@ -7,16 +7,16 @@ import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 import { FormTheme, formContext } from '../Form/FormContext';
+import { FormFieldContext } from '../FormField/FormField';
+import FormFieldTrailer from '../FormField/FormFieldTrailer';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 import {
-  FormFieldContext,
   fieldInputCID,
   fieldInputCheckboxCID,
   fieldInputHiddenCID,
   fieldInputMarkdownCID,
   useFormStyles,
-} from '../FormField/FormField';
-import FormFieldTrailer from '../FormField/FormFieldTrailer';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+} from '../FormField/UseFormStyles';
 import Input, { PropTypes as InputProps, InputType } from '../Input/Input';
 
 interface StyleProps {

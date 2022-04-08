@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-import { fieldVariantPreviewCID } from '../../components/FormField/FormField';
+import { fieldVariantPreviewCID } from '../../components/FormField/UseFormStyles';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 

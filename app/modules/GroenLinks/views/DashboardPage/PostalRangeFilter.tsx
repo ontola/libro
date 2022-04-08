@@ -6,7 +6,8 @@ import rdf, {
 import clsx from 'clsx';
 import React from 'react';
 
-import FormField, { useFormStyles } from '../../../../components/FormField/FormField';
+import FormField from '../../../../components/FormField/FormField';
+import { useFormStyles } from '../../../../components/FormField/UseFormStyles';
 import PostalRangeInput from '../../../../components/Input/PostalRangeInput';
 import useAddFormValue from '../../../../hooks/useAddFormValue';
 import { InputValue } from '../../../../hooks/useFormField';

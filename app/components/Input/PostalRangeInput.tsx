@@ -3,12 +3,9 @@ import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';
 
-import {
-  FormFieldContext,
-  fieldInputCID,
-  useFormStyles,
-} from '../FormField/FormField';
+import { FormFieldContext } from '../FormField/FormField';
 import { InputComponentProps } from '../FormField/InputComponentProps';
+import { fieldInputCID, useFormStyles } from '../FormField/UseFormStyles';
 
 export const MAX_POSTAL_DIGITS = 9999;
 export const MIN_POSTAL_DIGITS = 1000;

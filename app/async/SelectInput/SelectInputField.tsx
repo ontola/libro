@@ -22,12 +22,12 @@ import { useIntl } from 'react-intl';
 
 import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
+import { FormFieldContext } from '../../components/FormField/FormField';
 import {
-  FormFieldContext,
   fieldInputCID,
   fieldInputSelectCID,
   useFormStyles,
-} from '../../components/FormField/FormField';
+} from '../../components/FormField/UseFormStyles';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { LoadingHidden, LoadingRow } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';

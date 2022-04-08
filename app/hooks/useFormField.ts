@@ -21,7 +21,7 @@ import {
   fieldActiveCID,
   fieldVariantPreviewCID,
   useFormStyles,
-} from '../components/FormField/FormField';
+} from '../components/FormField/UseFormStyles';
 import { arraysEqual } from '../helpers/data';
 import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';

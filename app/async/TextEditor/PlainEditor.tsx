@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import Button, { ButtonVariant } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { formContext } from '../../components/Form/FormContext';
-import { fieldInputCID, useFormStyles } from '../../components/FormField/FormField';
+import { fieldInputCID, useFormStyles } from '../../components/FormField/UseFormStyles';
 import Markdown from '../../components/Markdown';
 import { PlainEditorProps } from '../../containers/TextEditor';
 import { LibroTheme } from '../../themes/themes';

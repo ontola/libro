@@ -6,13 +6,13 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { FormTheme, formContext } from '../../components/Form/FormContext';
+import { FormFieldContext } from '../../components/FormField/FormField';
+import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import {
-  FormFieldContext,
   fieldInputCID,
   fieldInputSelectCID,
   useFormStyles,
-} from '../../components/FormField/FormField';
-import { InputComponentProps } from '../../components/FormField/InputComponentProps';
+} from '../../components/FormField/UseFormStyles';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { FABase, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import SelectedValue from '../../topologies/SelectedValue';

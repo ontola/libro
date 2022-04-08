@@ -10,13 +10,13 @@ import React from 'react';
 import { SHADOW } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 import { FormTheme, formContext } from '../Form/FormContext';
+import { FormFieldContext } from '../FormField/FormField';
+import { InputComponentProps } from '../FormField/InputComponentProps';
 import {
-  FormFieldContext,
   fieldInputCID,
   fieldInputCheckboxCID,
-  useFormStyles,
-} from '../FormField/FormField';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+  useFormStyles, 
+} from '../FormField/UseFormStyles';
 
 export const useCheckboxStyles = makeStyles<LibroTheme>((theme) => ({
   checkBoxWrapper: {
