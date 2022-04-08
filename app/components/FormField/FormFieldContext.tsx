@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FormFieldProps } from './FormField';
+import { FormFieldProps } from './FormFieldTypes';
 
 type FormFieldContext = Omit<FormFieldProps, 'className' | 'combinedComponent' | 'whitelisted'>;
 

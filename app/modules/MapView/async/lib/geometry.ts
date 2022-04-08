@@ -3,13 +3,13 @@ import { Coordinate } from 'ol/coordinate';
 import { Circle, Polygon } from 'ol/geom';
 import { fromLonLat } from 'ol/proj';
 
+import { InputValue } from '../../../../components/FormField/FormFieldTypes';
 import {
   Geometry,
   GeometryType,
   Point,
 } from '../../components/MapView';
 import { tryParseFloat } from '../../../../helpers/numbers';
-import { InputValue } from '../../../../hooks/useFormField';
 
 const roundToTwo = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 

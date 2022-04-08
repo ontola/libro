@@ -9,13 +9,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { InputValue } from '../../components/FormField/FormFieldTypes';
 import {
   HTTP_RETRY_WITH,
   SubmitDataProcessor,
   handleHTTPRetry,
 } from '../../helpers/errorHandling';
 import { isDifferentWebsite } from '../../helpers/iris';
-import { InputValue } from '../../hooks/useFormField';
 
 export interface SubmitHandlerProps {
   entryPoint: SomeNode;

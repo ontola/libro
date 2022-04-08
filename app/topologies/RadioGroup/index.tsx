@@ -12,9 +12,9 @@ import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 
 import { FormTheme } from '../../components/Form/FormContext';
+import { InputValue } from '../../components/FormField/FormFieldTypes';
 import { SHADOW } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
-import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import { radioGroupTopology } from '../../topologies';
 import Topology from '../Topology';

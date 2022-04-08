@@ -11,7 +11,7 @@ import useFieldOptions from '../../hooks/useFieldOptions';
 import { LibroTheme } from '../../themes/themes';
 import { inlineTopology } from '../../topologies';
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
 

@@ -7,10 +7,9 @@ import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
 import useFileStore, { FileStore } from '../../hooks/useFileStore';
-import { InputValue } from '../../hooks/useFormField';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
-import { SubmissionErrors } from '../FormField';
+import { InputValue, SubmissionErrors } from '../FormField/FormFieldTypes';
 
 import FormBody from './FormBody';
 import { FormTheme } from './FormContext';

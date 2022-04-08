@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 import { tryParseInt } from '../../helpers/numbers';
 import { formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 
 const MoneyInput: React.FC<InputComponentProps> = ({
   inputValue,

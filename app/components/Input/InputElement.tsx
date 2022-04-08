@@ -9,7 +9,7 @@ import { LibroTheme } from '../../themes/themes';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputCheckboxCID,

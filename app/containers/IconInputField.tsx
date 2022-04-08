@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputComponentProps } from '../components/FormField/InputComponentProps';
+import { InputComponentProps } from '../components/FormField/FormFieldTypes';
 import LinkLoader from '../components/Loading/LinkLoader';
 import Suspense from '../components/Suspense';
 import useFontsChecker from '../hooks/useFontsChecker';

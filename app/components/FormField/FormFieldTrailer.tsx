@@ -9,8 +9,7 @@ import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import { formFieldContext } from './FormFieldContext';
-
-import { FormFieldError } from './';
+import { FormFieldError } from './FormFieldTypes';
 
 interface PropTypes {
   errors: FormFieldError[];

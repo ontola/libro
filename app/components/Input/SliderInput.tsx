@@ -8,7 +8,7 @@ import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 const SliderSize = 8;

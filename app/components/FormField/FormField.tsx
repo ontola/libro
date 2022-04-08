@@ -1,23 +1,12 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 
-import { PermittedFormField } from '../../hooks/useFormField';
 import ResourceBoundary from '../ResourceBoundary';
 
 import { formFieldContext } from './FormFieldContext';
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldLabel from './FormFieldLabel';
+import { FormFieldProps } from './FormFieldTypes';
 import FormInputs from './FormInputs';
-import { InputComponentProps } from './InputComponentProps';
-
-export interface CombinedFormFieldProps extends PermittedFormField {
-  combinedComponent: true;
-  inputComponent: FunctionComponent;
-}
-export interface SingularFormFieldProps extends PermittedFormField {
-  combinedComponent: false | undefined;
-  inputComponent: FunctionComponent<InputComponentProps>;
-}
-export type FormFieldProps = CombinedFormFieldProps | SingularFormFieldProps;
 
 /**
  * Creates a field for forms.

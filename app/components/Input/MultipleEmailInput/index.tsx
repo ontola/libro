@@ -6,9 +6,9 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { formMessages } from '../../../translations/messages';
-import { FormFieldError } from '../../FormField';
 import { formFieldContext } from '../../FormField/FormFieldContext';
 import FormFieldHelper from '../../FormField/FormFieldHelper';
+import { FormFieldError } from '../../FormField/FormFieldTypes';
 import HiddenRequiredInput from '../HiddenRequiredInput';
 
 import EmailOption from './EmailOption';

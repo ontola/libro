@@ -1,6 +1,6 @@
 import { isTerm } from '@ontologies/core';
 
-import { InputValue } from '../hooks/useFormField';
+import { InputValue } from '../components/FormField/FormFieldTypes';
 
 import { isMarkedForRemove } from './forms';
 

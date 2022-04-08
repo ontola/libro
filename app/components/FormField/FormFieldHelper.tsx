@@ -2,14 +2,12 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { isJSONLDObject } from '../../helpers/types';
-import { InputValue } from '../../hooks/useFormField';
 import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
 import { formFieldContext } from './FormFieldContext';
-
-import { FormFieldError } from './';
+import { FormFieldError, InputValue } from './FormFieldTypes';
 
 interface ErrorHelper {
   error: FormFieldError;

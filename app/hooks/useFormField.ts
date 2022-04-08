@@ -1,7 +1,4 @@
-import rdf, {
-  NamedNode,
-  SomeTerm,
-} from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import clsx from 'clsx';
@@ -16,14 +13,19 @@ import React from 'react';
 import { useField } from 'react-final-form';
 
 import { formContext } from '../components/Form/FormContext';
-import { FormFieldError, InputMeta } from '../components/FormField';
+import {
+  ForbiddenFormField,
+  InputValue,
+  ItemFactory,
+  PermittedFormField,
+} from '../components/FormField/FormFieldTypes';
 import {
   fieldActiveCID,
   fieldVariantPreviewCID,
   useFormStyles,
 } from '../components/FormField/UseFormStyles';
 import { arraysEqual } from '../helpers/data';
-import { JSONLDObject, calculateFormFieldName } from '../helpers/forms';
+import { calculateFormFieldName } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import { quadruple } from '../helpers/quadruple';
 import {
@@ -39,7 +41,7 @@ import sp from '../ontology/sp';
 import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
 
 import useAddFormValue from './useAddFormValue';
-import useFieldShape, { ResolvedShapeForm } from './useShapeProps';
+import useFieldShape from './useShapeProps';
 
 const mapFieldProps = {
   description: literal(schema.text),
@@ -57,47 +59,11 @@ interface MapFieldPropsShape {
   placeholder?: string;
 }
 
-export type InputValue = JSONLDObject | SomeTerm;
-export type OnInputChange = (newValues: InputValue[]) => void;
-export type FocusRelatedEventHandler = (e: React.FocusEvent<HTMLElement>) => void;
-export type ItemFactory = () => InputValue;
-
 export interface UseFormFieldProps {
   alwaysVisible?: boolean;
   delay?: boolean;
   newItem?: ItemFactory;
   storage?: boolean;
-}
-
-export interface ForbiddenFormField {
-  field?: SomeNode;
-  fieldShape: Record<string, never>;
-  name: string;
-  onChange: OnInputChange;
-  values: InputValue[];
-  whitelisted: false;
-}
-
-export interface PermittedFormField {
-  addFormValue?: () => any;
-  autofocus?: boolean;
-  className?: string;
-  description?: string;
-  field?: SomeNode;
-  fieldShape: ResolvedShapeForm;
-  helperText?: string | null;
-  inputErrors: FormFieldError[];
-  label?: string | React.ReactNode;
-  meta: InputMeta;
-  name: string;
-  onBlur: FocusRelatedEventHandler;
-  onChange: OnInputChange;
-  onFocus: FocusRelatedEventHandler;
-  path?: NamedNode;
-  placeholder?: string;
-  storeKey?: string;
-  values: InputValue[];
-  whitelisted?: true;
 }
 
 interface InputProps {

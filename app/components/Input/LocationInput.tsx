@@ -17,7 +17,6 @@ import MapView, {
 } from '../../modules/MapView/components/MapView';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseFloat } from '../../helpers/numbers';
-import { InputValue } from '../../hooks/useFormField';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import { DEFAULT_ZOOM } from '../../modules/MapView/lib/settings';
 import fa4 from '../../ontology/fa4';
@@ -26,7 +25,7 @@ import { LibroTheme } from '../../themes/themes';
 import { hiddenRequiredInputErrors } from '../../translations/messages';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps, InputValue } from '../FormField/FormFieldTypes';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 

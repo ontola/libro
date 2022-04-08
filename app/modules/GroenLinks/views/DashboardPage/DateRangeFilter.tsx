@@ -2,8 +2,8 @@ import rdf from '@ontologies/core';
 import React from 'react';
 
 import FormField from '../../../../components/FormField/FormField';
+import { InputValue } from '../../../../components/FormField/FormFieldTypes';
 import DatePicker from '../../../../containers/DatePicker';
-import { InputValue } from '../../../../hooks/useFormField';
 
 export const DATE_SIZE = 2;
 

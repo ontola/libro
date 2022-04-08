@@ -19,6 +19,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { InputValue } from '../components/FormField/FormFieldTypes';
 import { entityIsLoaded, resourceHasType } from '../helpers/data';
 import {
   collectionMembers,
@@ -34,8 +35,6 @@ import { getStorageKey, storageGet } from '../helpers/persistence';
 import { isResource } from '../helpers/types';
 import form from '../ontology/form';
 import ontola from '../ontology/ontola';
-
-import { InputValue } from './useFormField';
 
 const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
   const firstValue = value[0];

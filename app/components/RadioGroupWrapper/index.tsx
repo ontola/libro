@@ -7,7 +7,7 @@ import RadioGroup from '../../topologies/RadioGroup';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 import { LoadingHidden, LoadingRow } from '../Loading';
 
 const RadioGroupWrapper: React.FC<InputComponentProps> = ({

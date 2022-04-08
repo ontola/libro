@@ -2,7 +2,7 @@ import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 
 import { FileStore, StoreFile } from '../../hooks/useFileStore';
-import { SubmissionErrors } from '../FormField';
+import { SubmissionErrors } from '../FormField/FormFieldTypes';
 
 export enum FormTheme {
   Default = 'default',

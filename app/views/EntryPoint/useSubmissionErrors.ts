@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { SubmissionErrors } from '../../components/FormField';
+import { SubmissionErrors } from '../../components/FormField/FormFieldTypes';
 
 type ClearErrors = () => void;
 

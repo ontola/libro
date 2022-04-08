@@ -13,12 +13,12 @@ import {
   retrieveIdFromValue,
 } from '../../helpers/forms';
 import { isJSONLDObject } from '../../helpers/types';
-import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import Button from '../Button';
 
 import { formFieldContext } from './FormFieldContext';
 import FormFieldHelper from './FormFieldHelper';
+import { InputValue } from './FormFieldTypes';
 
 export const fieldWrapperCID = 'CID-FieldWrapper';
 

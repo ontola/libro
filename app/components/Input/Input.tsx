@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 import React, { EventHandler } from 'react';
 
-import { FocusRelatedEventHandler } from '../../hooks/useFormField';
+import { FocusRelatedEventHandler } from '../FormField/FormFieldTypes';
 
 export enum InputMode {
   Decimal = 'decimal',

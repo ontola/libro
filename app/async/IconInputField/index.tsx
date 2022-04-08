@@ -7,7 +7,7 @@ import FontAwesome from 'react-fontawesome';
 
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
-import { InputComponentProps } from '../../components/FormField/InputComponentProps';
+import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputSelectCID,

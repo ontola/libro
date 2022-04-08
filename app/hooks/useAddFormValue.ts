@@ -2,17 +2,16 @@ import rdf from '@ontologies/core';
 import React from 'react';
 
 import {
+  InputValue,
+  ItemFactory,
+  OnInputChange,
+} from '../components/FormField/FormFieldTypes';
+import {
   JSONLDObject,
   clearRemoval,
   destroyFieldName,
 } from '../helpers/forms';
 import { isJSONLDObject } from '../helpers/types';
-
-import {
-  InputValue,
-  ItemFactory,
-  OnInputChange,
-} from './useFormField';
 
 type AddItem = () => void;
 

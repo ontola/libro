@@ -8,12 +8,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { parseForStorage } from '../../helpers/persistence';
 import useFieldOptions from '../../hooks/useFieldOptions';
-import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
+import { InputValue } from '../FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputCheckboxCID,

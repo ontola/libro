@@ -27,7 +27,7 @@ import { LibroTheme } from '../../themes/themes';
 import FormFooter from '../../topologies/FormFooter';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import { FormFooterRight } from '../Form';
-import { FormFieldError } from '../FormField';
+import { FormFieldError } from '../FormField/FormFieldTypes';
 
 export interface OmniformProps {
   actions: Set<Node>;

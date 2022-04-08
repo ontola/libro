@@ -6,7 +6,7 @@ import { LibroTheme } from '../../themes/themes';
 import { useFieldErrorStyles } from '../../views/ErrorResponse';
 import { formContext } from '../Form/FormContext';
 
-import { FormFieldError } from './index';
+import { FormFieldError } from './FormFieldTypes';
 
 interface PropTypes {
   helperText?: string | React.ReactNode;

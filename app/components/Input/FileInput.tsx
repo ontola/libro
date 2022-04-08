@@ -9,7 +9,7 @@ import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
 import { formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
 

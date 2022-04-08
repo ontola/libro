@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import { LibroTheme } from '../../../themes/themes';
-import { FormFieldError } from '../../FormField';
+import { FormFieldError } from '../../FormField/FormFieldTypes';
 
 interface EmailOption {
   getTagProps: AutocompleteGetTagProps;

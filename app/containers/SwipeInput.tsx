@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { PermittedFormField } from '../components/FormField/FormFieldTypes';
 import Spinner from '../components/Spinner';
 import Suspense from '../components/Suspense';
-import { PermittedFormField } from '../hooks/useFormField';
 
 const SwipeInput = React.lazy(
   // eslint-disable-next-line no-inline-comments

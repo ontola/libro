@@ -4,7 +4,7 @@ import { LaxIdentifier, LaxNode } from 'link-redux';
 import React from 'react';
 import { useField } from 'react-final-form';
 
-import { InputValue } from '../../../../hooks/useFormField';
+import { InputValue } from '../../../../components/FormField/FormFieldTypes';
 
 const AUTO_FORWARD_TIMEOUT_MS = 1000;
 const NON_FORWARD_FIELD_NAME = 'NON FORWARD FIELD';

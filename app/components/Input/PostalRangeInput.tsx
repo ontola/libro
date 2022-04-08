@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 import { formFieldContext } from '../FormField/FormFieldContext';
-import { InputComponentProps } from '../FormField/InputComponentProps';
+import { InputComponentProps } from '../FormField/FormFieldTypes';
 import { fieldInputCID, useFormStyles } from '../FormField/UseFormStyles';
 
 export const MAX_POSTAL_DIGITS = 9999;

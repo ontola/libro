@@ -7,10 +7,10 @@ import clsx from 'clsx';
 import React from 'react';
 
 import FormField from '../../../../components/FormField/FormField';
+import { InputValue } from '../../../../components/FormField/FormFieldTypes';
 import { useFormStyles } from '../../../../components/FormField/UseFormStyles';
 import PostalRangeInput from '../../../../components/Input/PostalRangeInput';
 import useAddFormValue from '../../../../hooks/useAddFormValue';
-import { InputValue } from '../../../../hooks/useFormField';
 
 interface PostalRangeFilterProps {
   label: string;

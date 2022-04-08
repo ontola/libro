@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
-import { InputComponentProps } from '../../components/FormField/InputComponentProps';
+import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
