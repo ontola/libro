@@ -7,7 +7,7 @@ import TextEditor, { PlainEditorProps } from '../../containers/TextEditor';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { LibroTheme } from '../../themes/themes';
 import { FormTheme, formContext } from '../Form/FormContext';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import {
@@ -72,7 +72,7 @@ const InputElement = ({
     onFocus,
     placeholder,
     storeKey,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const {
     maxInclusive,
     minInclusive,

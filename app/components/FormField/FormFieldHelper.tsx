@@ -7,7 +7,7 @@ import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
-import { FormFieldContext } from './FormField';
+import { formFieldContext } from './FormFieldContext';
 
 import { FormFieldError } from './';
 
@@ -29,7 +29,7 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
     fieldShape,
     helperText,
     meta: { touched },
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const {
     maxLength,
     required,

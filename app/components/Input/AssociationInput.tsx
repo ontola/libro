@@ -5,7 +5,7 @@ import React from 'react';
 import { isJSONLDObject } from '../../helpers/types';
 import form from '../../ontology/form';
 import { FormSection } from '../Form';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 const AssociationInput: React.FC<InputComponentProps> = ({
@@ -16,7 +16,7 @@ const AssociationInput: React.FC<InputComponentProps> = ({
     field,
     name,
     path,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const nestedObject = isJSONLDObject(inputValue) ? inputValue['@id'] : undefined;
   const [nestedFormIRI] = useFields(field, form.form);
 

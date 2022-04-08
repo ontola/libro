@@ -6,7 +6,7 @@ import { LibroTheme } from '../../themes/themes';
 import FieldLabel from '../FieldLabel';
 import { FormTheme, formContext } from '../Form/FormContext';
 
-import { FormFieldContext } from './FormField';
+import { formFieldContext } from './FormFieldContext';
 
 const FLOW_FIELD_LABEL_MARGIN = 8;
 
@@ -29,7 +29,7 @@ const FormFieldLabel: React.FC = () => {
     label,
     name,
     fieldShape,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const classes = useStyles();
   const className = clsx({
     [classes.formFieldTitleFlow]: theme === FormTheme.Flow,

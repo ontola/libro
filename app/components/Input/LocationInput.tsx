@@ -25,7 +25,7 @@ import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
 import { hiddenRequiredInputErrors } from '../../translations/messages';
 import { FormTheme, formContext } from '../Form/FormContext';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
@@ -99,7 +99,7 @@ const LocationInput: React.FC<InputComponentProps> = ({
 }) => {
   const intl = useIntl();
   const { theme } = React.useContext(formContext);
-  const { fieldShape: { required } } = React.useContext(FormFieldContext);
+  const { fieldShape: { required } } = React.useContext(formFieldContext);
 
   const classes = useStyles();
 

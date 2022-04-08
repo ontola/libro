@@ -8,7 +8,7 @@ import { LibroTheme } from '../../themes/themes';
 import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
-import { FormFieldContext } from './FormField';
+import { formFieldContext } from './FormFieldContext';
 
 import { FormFieldError } from './';
 
@@ -37,7 +37,7 @@ const FormFieldTrailer: React.FC<PropTypes> = ({
   const {
     fieldShape: { maxLength },
     meta,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const {
     invalid,
     touched,

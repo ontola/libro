@@ -7,7 +7,7 @@ import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
 import { LibroTheme } from '../../themes/themes';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
@@ -72,7 +72,7 @@ const SliderInput: React.FC<InputComponentProps> = ({
     name,
     onBlur,
     onFocus,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const overrideClasses = useSliderOverrideStyles();
 
   const {

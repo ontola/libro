@@ -13,7 +13,7 @@ import { formMessages } from '../../translations/messages';
 import { useFormGroup } from '../../views/FormGroup/FormGroupProvider';
 import Button, { ButtonVariant } from '../Button';
 
-import { FormFieldContext } from './FormField';
+import { formFieldContext } from './FormFieldContext';
 
 const FormFieldAddButton: React.FC = () => {
   const { buttonContainerRef } = useFormGroup();
@@ -21,7 +21,7 @@ const FormFieldAddButton: React.FC = () => {
     addFormValue,
     field,
     values,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const [label] = useStrings(field, schema.name);
   const [image] = useGlobalIds(field, dig(sh.targetClass, schema.image));
 

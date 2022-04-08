@@ -3,7 +3,7 @@ import React from 'react';
 
 import Markdown from '../Markdown';
 
-import { FormFieldContext } from './FormField';
+import { formFieldContext } from './FormFieldContext';
 
 const useStyles = makeStyles({
   fieldDescription:{
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 const FormFieldDescription: React.FC = () => {
-  const { description } = React.useContext(FormFieldContext);
+  const { description } = React.useContext(formFieldContext);
   const classes = useStyles();
 
   if (!description) {

@@ -22,7 +22,7 @@ import { useIntl } from 'react-intl';
 
 import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
-import { FormFieldContext } from '../../components/FormField/FormField';
+import { formFieldContext } from '../../components/FormField/FormFieldContext';
 import {
   fieldInputCID,
   fieldInputSelectCID,
@@ -57,7 +57,7 @@ const SelectInputField: React.FC = () => {
     name,
     onChange,
     values,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
 
   const { formatMessage } = useIntl();

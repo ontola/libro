@@ -2,15 +2,15 @@ import React from 'react';
 
 import { isMarkedForRemove } from '../../helpers/forms';
 
-import { FormFieldContext } from './FormField';
 import FormFieldAddButton from './FormFieldAddButton';
+import { formFieldContext } from './FormFieldContext';
 import FormInput from './FormInput';
 
 const FormInputs = (): JSX.Element | null => {
   const {
     fieldShape,
     values,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const { maxCount } = fieldShape;
 
   if (!values) {

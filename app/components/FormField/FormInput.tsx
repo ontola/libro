@@ -17,7 +17,7 @@ import { InputValue } from '../../hooks/useFormField';
 import { LibroTheme } from '../../themes/themes';
 import Button from '../Button';
 
-import { FormFieldContext } from './FormField';
+import { formFieldContext } from './FormFieldContext';
 import FormFieldHelper from './FormFieldHelper';
 
 export const fieldWrapperCID = 'CID-FieldWrapper';
@@ -55,7 +55,7 @@ const FormInput: React.FC<FormInputProps> = ({
     name,
     onChange,
     values,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const { removable } = fieldShape;
   const classes = useStyles();
 

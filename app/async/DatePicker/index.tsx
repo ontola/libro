@@ -10,7 +10,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { FormTheme, formContext } from '../../components/Form/FormContext';
-import { FormFieldContext } from '../../components/FormField/FormField';
+import { formFieldContext } from '../../components/FormField/FormFieldContext';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { SHADOW_LIGHT } from '../../helpers/flow';
@@ -44,7 +44,7 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
     name,
     onBlur,
     onFocus,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
 
   const showStatic = formTheme === FormTheme.Flow && screenIsWide;
   const value = inputValue.value?.length > 0 ? inputValue.value : null;

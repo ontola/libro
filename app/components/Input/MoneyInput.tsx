@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 
 import { tryParseInt } from '../../helpers/numbers';
 import { formContext } from '../Form/FormContext';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 const MoneyInput: React.FC<InputComponentProps> = ({
@@ -24,7 +24,7 @@ const MoneyInput: React.FC<InputComponentProps> = ({
     name,
     onBlur,
     onFocus,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const [currency] = useFields(object, schema.currency);
   const [priceCurrency] = useFields(object, schema.priceCurrency);
   const handleChange = React.useCallback((e: any) => {

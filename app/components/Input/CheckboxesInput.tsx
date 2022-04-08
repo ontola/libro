@@ -13,7 +13,7 @@ import { LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormTheme, formContext } from '../Form/FormContext';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import {
   fieldInputCID,
   fieldInputCheckboxCID,
@@ -69,7 +69,7 @@ const CheckboxesInput: React.FC = () => {
     onFocus,
     fieldShape,
     values,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const checkboxClasses = useCheckboxStyles();
   const classes = useStyles();
   const formClasses = useFormStyles();

@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { PermittedFormField } from '../../hooks/useFormField';
 import ResourceBoundary from '../ResourceBoundary';
 
+import { formFieldContext } from './FormFieldContext';
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldLabel from './FormFieldLabel';
 import FormInputs from './FormInputs';
@@ -17,10 +18,6 @@ export interface SingularFormFieldProps extends PermittedFormField {
   inputComponent: FunctionComponent<InputComponentProps>;
 }
 export type FormFieldProps = CombinedFormFieldProps | SingularFormFieldProps;
-
-export type FormFieldContext = Omit<FormFieldProps, 'className' | 'combinedComponent' | 'whitelisted' >;
-
-export const FormFieldContext = React.createContext<FormFieldContext>(undefined as any);
 
 /**
  * Creates a field for forms.
@@ -41,11 +38,11 @@ const FormField = (props: FormFieldProps): JSX.Element => {
       subject={contextProps.path}
       wrapperProps={{ className }}
     >
-      <FormFieldContext.Provider value={contextProps}>
+      <formFieldContext.Provider value={contextProps}>
         <FormFieldLabel />
         <FormFieldDescription />
         {combinedComponent ? <props.inputComponent /> : <FormInputs />}
-      </FormFieldContext.Provider>
+      </formFieldContext.Provider>
     </ResourceBoundary>
   );
 };

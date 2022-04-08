@@ -6,7 +6,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { FormTheme, formContext } from '../../components/Form/FormContext';
-import { FormFieldContext } from '../../components/FormField/FormField';
+import { formFieldContext } from '../../components/FormField/FormFieldContext';
 import { InputComponentProps } from '../../components/FormField/InputComponentProps';
 import {
   fieldInputCID,
@@ -42,7 +42,7 @@ const IconInputField: React.FC<InputComponentProps> = ({
   const {
     fieldShape,
     name,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const classes = useSelectStyles();
   const formClasses = useFormStyles();
   const handleChange = React.useCallback((e, v) => {

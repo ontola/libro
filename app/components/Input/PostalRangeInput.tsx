@@ -3,7 +3,7 @@ import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';
 
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import { fieldInputCID, useFormStyles } from '../FormField/UseFormStyles';
 
@@ -35,7 +35,7 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
     name,
     onBlur,
     onFocus,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const splitRange = inputValue.value.split('-');
 
   const handleChange = (e: any) => {

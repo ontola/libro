@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 
 import { formMessages } from '../../../translations/messages';
 import { FormFieldError } from '../../FormField';
-import { FormFieldContext } from '../../FormField/FormField';
+import { formFieldContext } from '../../FormField/FormFieldContext';
 import FormFieldHelper from '../../FormField/FormFieldHelper';
 import HiddenRequiredInput from '../HiddenRequiredInput';
 
@@ -41,7 +41,7 @@ export const MultipleEmailInput = (): JSX.Element => {
     onFocus,
     placeholder,
     values,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const overrideClasses = useOverrideStyle();
 
   const [textFieldValue, setTextFieldValue] = React.useState<string>('');

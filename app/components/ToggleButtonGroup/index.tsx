@@ -10,7 +10,7 @@ import { isResource } from '../../helpers/types';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { LibroTheme } from '../../themes/themes';
 import { inlineTopology } from '../../topologies';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
@@ -41,7 +41,7 @@ const ToggleButtonGroup: React.FC<InputComponentProps> = ({
   const {
     name,
     fieldShape,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const {
     required,
     shIn,

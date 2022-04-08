@@ -8,7 +8,7 @@ import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import { useListToArr } from '../../hooks/useListToArr';
 import dbo from '../../ontology/dbo';
 import { formContext } from '../Form/FormContext';
-import { FormFieldContext } from '../FormField/FormField';
+import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
 import HiddenRequiredInput from './HiddenRequiredInput';
@@ -24,7 +24,7 @@ const FileInput: React.FC<InputComponentProps> = ({
   const {
     name,
     fieldShape,
-  } = React.useContext(FormFieldContext);
+  } = React.useContext(formFieldContext);
   const { required } = fieldShape;
   const {
     fieldShape: encodingFormatShape,
