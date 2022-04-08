@@ -23,7 +23,9 @@ const useStyles = makeStyles({
   },
   resourceList: {
     flexGrow: 1,
+    height: '87vh',
     maxWidth: '20em',
+    overflowX: 'hidden',
   },
 });
 

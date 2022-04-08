@@ -350,7 +350,7 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   }
 
   case ProjectAction.AddResource: {
-    const id = state.website.children.length;
+    const id = state.website.children.length + 1;
 
     return {
       ...state,
