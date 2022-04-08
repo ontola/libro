@@ -9,6 +9,7 @@ import { WebsiteCtx, getWebsiteContextFromWebsite } from './helpers/app';
 import register from './views';
 import { WebsiteContext } from './location';
 import { WebManifest } from './WebManifest';
+import HeadingContext from './components/Heading/HeadingContext';
 
 interface AppProps {
   history: History;
@@ -59,10 +60,12 @@ const App = ({
     <React.StrictMode>
       <WebsiteContext.Provider value={websiteCtxValue}>
         <HelmetProvider>
-          <IndexContainer
-            Router={router}
-            manifest={manifestValue}
-          />
+          <HeadingContext>
+            <IndexContainer
+              Router={router}
+              manifest={manifestValue}
+            />
+          </HeadingContext>
         </HelmetProvider>
       </WebsiteContext.Provider>
     </React.StrictMode>

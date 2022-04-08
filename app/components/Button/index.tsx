@@ -26,7 +26,6 @@ export interface ButtonProps {
   cardFloat?: boolean;
   centered?: boolean;
   /** Label of the button */
-  children?: React.ReactNode;
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling */
   /** and use the 'plain' prop. */
   className?: string;
@@ -74,7 +73,7 @@ const defaultProps = {
  * Used for any action in the app. Handles touch events and blurs after handling the onClick.
  * @returns {component} Component
  */
-const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, React.PropsWithChildren<ButtonProps>>(({
   active,
   action,
   ariaLabel,

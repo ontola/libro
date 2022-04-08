@@ -2,19 +2,10 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme } from '../../../themes/themes';
+import { CallToActionButton } from '../CallToActionButton';
 
-import { CallToActionButton } from './CallToActionButton';
-
-export interface HeaderProps {
-  backgroundImageUrl: string,
-  backgroundImageUrlMobile: string,
-  backgroundImageXL: string,
-  buttonLink?: string,
-  buttonText?: string,
-  title: string,
-  subtitle?: string,
-}
+import type { HeaderProps } from './HeaderProps';
 
 const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   button: {
@@ -72,7 +63,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   },
 }));
 
-export const Header = ({
+export const Header: React.FC<HeaderProps> = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
   backgroundImageXL,
@@ -81,7 +72,7 @@ export const Header = ({
   title,
   subtitle,
   children,
-}: React.PropsWithChildren<HeaderProps>): JSX.Element => {
+}) => {
   const classes = useStyles({
     backgroundImageUrl,
     backgroundImageUrlMobile,

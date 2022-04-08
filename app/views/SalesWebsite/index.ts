@@ -1,4 +1,5 @@
 import About from './About';
+import AnimatedCarousel from './AnimatedCarousel';
 import Block from './Block';
 import BlogPage from './BlogPage';
 import BlogContainer from './Blogs';
@@ -19,11 +20,13 @@ import PricingPage from './PricingPage';
 import ProcessPage from './ProcessPage';
 import ProductPage from './ProductPage';
 import Proposition from './Propositions';
+import SellingPoint from './SellingPoint';
 import Stepper from './Stepper';
 import Tier from './Tier';
 
 export default [
   ...About,
+  ...AnimatedCarousel,
   ...Block,
   ...BlogContainer,
   ...BlogPage,
@@ -44,6 +47,7 @@ export default [
   ...ProductPage,
   ...Proposition,
   ...Stepper,
+  ...SellingPoint,
   SalesHeader,
   ...Tier,
 ];

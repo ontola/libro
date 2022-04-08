@@ -2,9 +2,11 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useIds,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
+import * as schema from '@ontologies/schema';
 
 import { CallToAction } from '../../../components/SalesWebsite/CallToAction';
 import sales from '../../../ontology/sales';
@@ -15,15 +17,15 @@ export interface CallToActionBlockProps {
 }
 
 const CallToActionBlock: FC<CallToActionBlockProps> = ({ trackingId }) => {
-  const [callToActionBackgroundImage] = useProperty(sales.callToActionBackgroundImage);
-  const [callToActionText] = useProperty(sales.callToActionText);
-  const [callToActionTitle] = useProperty(sales.callToActionTitle);
+  const [callToActionBackgroundImage] = useIds(schema.image);
+  const [callToActionText] = useIds(schema.text);
+  const [callToActionTitle] = useStrings(schema.name);
 
   return (
     <CallToAction
       imageUrl={callToActionBackgroundImage.value}
-      subtitle={callToActionText.value}
-      title={callToActionTitle.value}
+      text={callToActionText}
+      title={callToActionTitle}
     >
       <Property
         label={sales.callToAction}

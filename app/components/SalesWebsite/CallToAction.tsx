@@ -1,8 +1,12 @@
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { SomeNode } from 'link-lib';
+import { Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme, Margin } from '../../themes/themes';
+
+const TWO = 2;
 
 const useStyles = makeStyles<LibroTheme, Partial<CallToActionProps>>((theme) => ({
   button: {
@@ -17,9 +21,8 @@ const useStyles = makeStyles<LibroTheme, Partial<CallToActionProps>>((theme) => 
     backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
-    padding: 20,
-    paddingBottom: '5rem',
-    paddingTop: '2rem',
+    paddingBlock: theme.spacing(Margin.XL * TWO),
+    paddingInline: theme.spacing(Margin.Small),
     width: '100%',
   },
   subtitle: {
@@ -40,17 +43,17 @@ const useStyles = makeStyles<LibroTheme, Partial<CallToActionProps>>((theme) => 
 
 export interface CallToActionProps {
   title: string,
-  subtitle: string,
+  text: SomeNode,
   imageUrl: string,
 }
 
 /** Full page with a branded header */
-export const CallToAction = ({
+export const CallToAction: React.FC<CallToActionProps> = ({
   title,
-  subtitle,
+  text,
   imageUrl,
   children,
-}: React.PropsWithChildren<CallToActionProps>): JSX.Element => {
+}) => {
   const classes = useStyles({ imageUrl });
 
   return (
@@ -61,13 +64,7 @@ export const CallToAction = ({
       >
         {title}
       </Typography>
-      <Typography
-        className={classes.subtitle}
-        component="p"
-        variant="subtitle1"
-      >
-        {subtitle}
-      </Typography>
+      <Resource subject={text} />
       {children}
     </div>
   );

@@ -1,7 +1,7 @@
-import { register } from 'link-redux';
-
-import DuoBlockContainer from './BlockShowcase';
+import Block from './Block';
+import BlockShowcase from './BlockShowcase';
 
 export default [
-  ...register(DuoBlockContainer),
+  ...Block,
+  ...BlockShowcase,
 ];

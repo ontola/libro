@@ -4,7 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/styles';
 import * as schema from '@ontologies/schema';
-import { FC, useProperty } from 'link-redux';
+import {
+  FC,
+  register,
+  useProperty,
+} from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -113,4 +117,4 @@ BlockShowcase.type = sales.Block;
 
 BlockShowcase.topology = showcaseTopology;
 
-export default BlockShowcase;
+export default register(BlockShowcase);

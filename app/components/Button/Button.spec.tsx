@@ -22,7 +22,7 @@ describe('Button', () => {
   const link = 'http://argu.co/resource';
   const onClick = jest.fn();
 
-  const renderComp = (props: Partial<ButtonProps> = {}) => render((
+  const renderComp = (props: Partial<React.PropsWithChildren<ButtonProps>> = {}) => render((
     <ThemeProvider theme={themes.common({})}>
       <Button
         ariaLabel={aria}

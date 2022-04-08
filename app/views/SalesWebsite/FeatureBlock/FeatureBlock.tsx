@@ -1,101 +1,90 @@
 import {
   Typography,
   makeStyles,
-  useMediaQuery,
-  useTheme,
 } from '@material-ui/core';
 import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   FC,
   Property,
-  Resource,
   register,
-  useProperty,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
+import elements from '../../../ontology/elements';
 import sales from '../../../ontology/sales';
+import { LibroTheme, Margin } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 
-const useStyles = makeStyles({
-  flexBox: {
-    '& picture': {
-      '& img':{
-        borderRadius: '15px',
-        height: 'auto',
-        width: '100%',
+interface StyleProps {
+  reverse: boolean;
+}
+
+const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
+  centered: {},
+  featureBlock: {
+    [theme.breakpoints.down('sm')]: {
+      '&&&': {
+        gridTemplateAreas: '"title" "image" "text"',
+        gridTemplateColumns: '1fr',
+        gridTemplateRows: 'auto auto auto',
       },
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      maxWidth: '40% !important',
     },
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    margin: '3rem',
+    '&$centered': {
+      gridTemplateRows: '1fr 1fr',
+    },
+    columnGap: theme.spacing(Margin.Medium),
+    display: 'grid',
+    gridTemplateAreas: ({ reverse }) => !reverse ?
+      '"image title" "image text"' :
+      '"title image" "text image"',
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateRows: 'auto 1fr',
   },
-  mobile: {
-    '& img':{
-      borderRadius: '15px',
-      marginBottom: '24px',
-      maxHeight: '40vh',
+  image: {
+    '& img': {
+      borderRadius: theme.shape.borderRadius,
     },
-    padding: '1rem',
+    gridArea: 'image',
   },
   text: {
-    '& h2': {
-      margin: 0,
-
-    },
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    maxWidth: '50%',
+    gridArea: 'text',
   },
-});
+  title: {
+    '&$centered': {
+      alignSelf: 'end',
+    },
+    gridArea: 'title',
+  },
+}));
 
 const FeatureBlock: FC = () => {
-  const [image] = useProperty(schema.image);
-  const [direction] = useProperty(sales.direction);
-  const classes = useStyles();
-  const [name] = useProperty(schema.name);
-  const theme = useTheme();
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
+  const [direction] = useStrings(sales.direction);
+  const [alignment] = useStrings(elements.align);
+  const reverse = (direction === 'reverse');
+  const classes = useStyles({ reverse });
+  const [name] = useStrings(schema.name);
 
-  const reverse = (direction.value === 'reverse');
-
-  const featureBlockHeading = (
-    <Typography
-      variant="h2"
-    >
-      {name.value}
-    </Typography>
-  );
-
-  const featureBlockImage = (
-    <Resource subject={image} />
-  );
-
-  if (screenIsNarrow) {
-    return (
-      <div className={classes.mobile}>
-        {featureBlockHeading}
-        {featureBlockImage}
-        <Property label={schema.text} />
-      </div>
-    );
-  }
+  const addCenter = (className: string) => clsx({
+    [className]: true,
+    [classes.centered]: alignment === 'center',
+  });
 
   return (
-    <div className={classes.flexBox}>
-      {reverse ? null : featureBlockImage}
+    <div className={addCenter(classes.featureBlock)}>
+      <Typography
+        className={addCenter(classes.title)}
+        variant="h2"
+      >
+        {name}
+      </Typography>
+      <div className={classes.image}>
+        <Property label={schema.image} />
+      </div>
       <div className={classes.text}>
-        {featureBlockHeading}
         <Property label={schema.text} />
       </div>
-      {reverse ? featureBlockImage : null}
     </div>
   );
 };

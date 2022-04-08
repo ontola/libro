@@ -11507,6 +11507,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-react@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "lottie-react@npm:2.2.1"
+  dependencies:
+    lottie-web: ^5.8.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: 37ca04e2baf0ae18def7e82b1746175a742410e8adcadd2d8c0f4206eee4dac65a4ba1d14709134fac2d8251d514b866af1d62e6d87fea345eb7af383e569efa
+  languageName: node
+  linkType: hard
+
+"lottie-web@npm:^5.8.1":
+  version: 5.9.1
+  resolution: "lottie-web@npm:5.9.1"
+  checksum: f8895754bc22fea498ae6c1b99c24c5de08272ba730d7039525aa7026a043b24c2f9b534282a7654ebdf317dde0b13acd45246dd21db49fc1cb382d88d9dbe66
+  languageName: node
+  linkType: hard
+
 "loud-rejection@npm:^2.2.0":
   version: 2.2.0
   resolution: "loud-rejection@npm:2.2.0"
@@ -12700,6 +12719,7 @@ __metadata:
     link-lib: 0.0.0-1fe47fc6
     link-redux: 0.0.0-3442dc4b
     lint-staged: ^10.5.4
+    lottie-react: ^2.2.1
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^2.4.5
     monaco-editor: ^0.27.0

@@ -10,11 +10,12 @@ import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
-import Container from '../../topologies/Container';
+import { LibroTheme } from '../../../themes/themes';
+import Container from '../../../topologies/Container';
+import { ArticleContent } from '../ArticleContent';
+import { CallToActionButton } from '../CallToActionButton';
 
-import { ArticleContent } from './ArticleContent';
-import { CallToActionButton } from './CallToActionButton';
+import type { HeaderProps } from './HeaderProps';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   articleContent: {
@@ -87,18 +88,12 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-export interface HeaderProductPagesProps {
-  backgroundImageUrl: string,
-  backgroundImageUrlMobile: string,
-  buttonLink: string,
-  buttonText: string,
-  children: React.ReactChild;
-  title: string,
-  subtitle: SomeTerm,
+interface HeaderProductPagesProps extends Omit<HeaderProps, 'subtitle'> {
+  subtitle: SomeTerm;
 }
 
 /** Full page with a branded header */
-export const HeaderProductPages = ({
+export const HeaderProductPages: React.FC<HeaderProductPagesProps> = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
   buttonLink,
@@ -106,7 +101,7 @@ export const HeaderProductPages = ({
   title,
   subtitle,
   children,
-}: HeaderProductPagesProps): JSX.Element => {
+}) => {
   const classes = useStyles();
   const styles = useTheme();
 
@@ -164,9 +159,9 @@ export const HeaderProductPages = ({
             </Typography>
             <div className={classes.buttonWrapper}>
               <CallToActionButton
-                text={buttonText}
+                text={buttonText!}
                 trackingId={trackingId}
-                url={buttonLink}
+                url={buttonLink!}
               />
             </div>
           </Grid>

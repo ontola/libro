@@ -12,8 +12,10 @@ export interface InnerTextProps {
 
 const useStyles = makeStyles<undefined, Partial<InnerTextProps>>({
   bold: {
-    color: ({ color }) => color ?? 'inherit',
     fontWeight: 700,
+  },
+  color: {
+    color: ({ color }) => color ?? 'inherit',
   },
   italic: {
     fontStyle: 'italic',
@@ -33,6 +35,7 @@ export const InnerText = ({
   const classes = useStyles({ color });
   const className = clsx({
     [classes.bold]: bold,
+    [classes.color]: color,
     [classes.italic]: italic,
     [classes.underline]: underline,
   });

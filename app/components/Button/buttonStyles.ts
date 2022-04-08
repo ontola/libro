@@ -1,6 +1,6 @@
 import makeStyles from '@material-ui/styles/makeStyles';
 
-import { LibroTheme } from '../../themes/themes';
+import { LibroTheme, Margin } from '../../themes/themes';
 
 export enum ButtonVariant {
   AsCard = 'asCard',
@@ -13,6 +13,7 @@ export enum ButtonVariant {
   Subtle = 'subtle',
   Toggle = 'toggle',
   Transparent = 'transparent',
+  Filled = 'filled',
   Outlined = 'outlined',
 }
 
@@ -20,7 +21,7 @@ interface ColorProps {
   color?: string;
 }
 
-export default makeStyles<LibroTheme>((theme) => ({
+export default makeStyles<LibroTheme, ColorProps>((theme) => ({
   active: {},
 
   button: {
@@ -153,7 +154,25 @@ export default makeStyles<LibroTheme>((theme) => ({
     paddingRight: '.8em',
     position: 'relative',
   },
-
+  [ButtonVariant.Outlined]: {
+    '&:hover, &:focus': {
+      backgroundColor: ({ color }) => color,
+      color: ({ color }) => theme.palette.getContrastText(color ?? theme.palette.primary.main),
+    },
+    border: '1px solid currentColor',
+    borderRadius: theme.shape.borderRadius,
+    color: ({ color }) => color,
+    display: 'flex',
+    gap: theme.spacing(Margin.Small),
+    transition: 'background-color 100ms, color 100ms',
+  },
+  [ButtonVariant.Filled]: {
+    backgroundColor: ({ color }) => color ?? theme.palette.primary.main,
+    borderRadius: theme.shape.borderRadius,
+    color: ({ color }) => theme.palette.getContrastText(color ?? theme.palette.primary.main),
+    display: 'flex',
+    gap: theme.spacing(Margin.Small),
+  },
   [ButtonVariant.Pagination]: {
     '&$active': {
       '& $label': {
@@ -335,12 +354,12 @@ export default makeStyles<LibroTheme>((theme) => ({
       },
       backgroundColor: 'var(--buttonBackground)',
     },
-    '--buttonBackground': ({ color }: ColorProps) => color ? color : theme.palette.grey.main,
-    '--buttonText': ({ color }: ColorProps) => color ? theme.palette.getContrastText(color) : theme.palette.common.white,
+    '--buttonBackground': ({ color }) => color ? color : theme.palette.grey.main,
+    '--buttonText': ({ color }) => color ? theme.palette.getContrastText(color) : theme.palette.common.white,
     alignItems: 'center',
     border: '1px solid currentColor !important',
     borderRadius: theme.shape.borderRadius,
-    color: ({ color }: ColorProps) => color ? color : theme.palette.grey.main,
+    color: ({ color }) => color ? color : theme.palette.grey.main,
     display: 'flex',
     fontWeight: theme.typography.fontWeightMedium,
     justifyContent: 'center',

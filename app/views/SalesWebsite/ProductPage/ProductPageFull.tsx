@@ -4,6 +4,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
+  useIds,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -61,7 +62,7 @@ const ProductPageFull: FC = () => {
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [title] = useProperty(schema.description);
-  const [text] = useProperty(schema.text);
+  const [text] = useIds(schema.text);
   const [featureTitle] = useProperty(sales.featureTitle);
 
   return (

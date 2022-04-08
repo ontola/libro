@@ -3,82 +3,36 @@ import { makeStyles } from '@material-ui/styles';
 import { FC, Property } from 'link-redux';
 import React from 'react';
 
+import HeadingContext from '../../../components/Heading/HeadingContext';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
-import { fullResourceTopology } from '../../../topologies';
+import { LibroTheme, Margin } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
-import Showcase from '../../../topologies/Showcase';
+import { fullResourceTopology } from '../../../topologies';
+import { HeaderTheme } from '../Header';
+
+const TWO = 2;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   blogs: {
     [theme.breakpoints.down('sm')]: {
       marginTop: '5em',
     },
-    marginBottom: '10em',
-    marginTop: '10em',
-  },
-  buttonPrimary: {
-    backgroundColor: '#B33A00',
-    borderRadius: 3,
-    color: 'white',
-    height: 48,
-    margin: 20,
-    padding: 20,
+    marginBlock: theme.spacing(Margin.XXL * TWO),
   },
   caseContainer: {
     background: 'linear-gradient(to bottom, #f8fbff, #ffffff)',
     backgroundSize: '100vw',
-    padding: 20,
+    marginBottom: theme.spacing(Margin.XXL),
+    padding: theme.spacing(Margin.XXL),
+    paddingBottom: 0,
   },
-  gridStyle: {
-    marginBottom: 20,
-    marginTop: 20,
-    paddingBottom: 20,
-    paddingTop: 20,
-  },
-  paperContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  productPageTile: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 5,
-    color: 'black',
-    height: 170,
-    margin: 10,
-    padding: '0 30px',
-    width: 250,
+  container: {
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '95vw',
+    },
   },
   propositionContainer: {
-    marginTop: 45,
-  },
-  propositionSelector: {
-    [theme.breakpoints.down('sm')]: {
-      boxShadow: 'unset',
-      gridGap: 40,
-      gridTemplateColumns: '1fr 1fr',
-      padding: 20,
-    },
-    [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: '1fr',
-    },
-    backgroundColor: 'white',
-    borderRadius: 5,
-    boxShadow: '0 0 25px rgba(0,0,0,0.2)',
-    display: 'grid',
-    flex: 1,
-    gridTemplateColumns: '1fr 1fr 1fr 1fr',
-    marginBottom: 100,
-    overflow: 'hidden',
-  },
-  subtitle: {
-    textAlign: 'center',
-    width: 643,
-  },
-  wrapper: {
-    // This should be removed if Page no longer sets a margin
-    backgroundColor: theme.palette.background.default,
-    marginTop: '-1rem',
+    marginTop: theme.spacing(Margin.XXL),
   },
 }));
 
@@ -86,18 +40,14 @@ const HomePageFull: FC = () => {
   const classes = useStyles();
 
   return (
-    <main
-      className={classes.wrapper}
-      role="main"
-    >
-      <Property label={sales.header} />
-      <Container className={classes.propositionContainer}>
-        <Showcase
-          className={classes.propositionSelector}
-          spacing={0}
-        >
-          <Property label={sales.showcase} />
-        </Showcase>
+    <HeadingContext>
+
+      <Property
+        label={sales.header}
+        theme={HeaderTheme.HomePage}
+      />
+      <Container className={classes.container}>
+        <Property label={sales.sections} />
       </Container>
       <div className={classes.caseContainer}>
         <Property
@@ -105,6 +55,7 @@ const HomePageFull: FC = () => {
           label={sales.cases}
         />
       </div>
+      <Property label={sales.duoBlock} />
       <Container>
         <Grid
           container
@@ -113,9 +64,6 @@ const HomePageFull: FC = () => {
         >
           <Property label={sales.propositions} />
         </Grid>
-        <Showcase className={classes.propositionContainer}>
-          <Property label={sales.duoBlock} />
-        </Showcase>
         <div className={classes.blogs}>
           <Property
             centerHeading
@@ -127,7 +75,7 @@ const HomePageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="home-page-full-cta"
       />
-    </main>
+    </HeadingContext>
   );
 };
 

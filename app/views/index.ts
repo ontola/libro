@@ -83,6 +83,7 @@ import Vocabulary from './Vocabulary';
 import VoteEvent from './VoteEvent';
 import WebPageTabPane from './WebPage';
 import Widget from './Widget';
+import LottieAnimation from './LottieAnimation';
 
 export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
   return [
@@ -126,6 +127,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...ImageObject,
     ...InfiniteCollectionPage,
     ...Loading,
+    ...LottieAnimation,
     ...MediaObject,
     ...Meeting,
     ...Menu,

@@ -8,6 +8,7 @@ export default {
   /* === Classes === */
   // eslint-disable-next-line sort-keys
   A: elements('A'),
+  Button: elements('Button'),
   Document: elements('Document'),
   Grid: elements('Grid'),
   H1: elements('H1'),
@@ -22,6 +23,8 @@ export default {
   Note: elements('Note'),
   Ol: elements('Ol'),
   P: elements('P'),
+  Row: elements('Row'),
+  Spacer: elements('Spacer'),
   Span: elements('Span'),
   Tip: elements('Tip'),
   Ul: elements('Ul'),
@@ -34,7 +37,10 @@ export default {
   children: elements('children'),
   color: elements('color'),
   float: elements('float'),
+  gap: elements('gap'),
+  iconPosition: elements('iconPosition'),
   italic: elements('italic'),
+  minWidth: elements('minWidth'),
   underline: elements('underline'),
   variant: elements('variant'),
 };

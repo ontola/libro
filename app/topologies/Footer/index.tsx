@@ -6,6 +6,7 @@ import React from 'react';
 
 import { gridHeaderCID } from '../../components/Grid/GridHeader';
 import { headingCID } from '../../components/Heading';
+import HeadingContext from '../../components/Heading/HeadingContext';
 import { IndexablePalette, LibroTheme } from '../../themes/themes';
 import { footerTopology } from '../../topologies';
 import Topology from '../Topology';
@@ -72,28 +73,30 @@ class Footer extends Topology<FooterProps> {
     }
 
     return this.wrap((
-      <Box
-        className={this.getClassName()}
-      >
-        <div className={this.props.classes.footerContainer}>
-          <Grid
-            container
-            spacing={6}
-          >
-            {this.props.resources.map((iri) => (
-              <Grid
-                item
-                key={iri.value}
-                lg={Footer.lgSize(this.props.resources!.length)}
-                md={Footer.mdSize(this.props.resources!.length)}
-                xs={GridWidth.full}
-              >
-                <Resource subject={iri} />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      </Box>
+      <HeadingContext>
+        <Box
+          className={this.getClassName()}
+        >
+          <div className={this.props.classes.footerContainer}>
+            <Grid
+              container
+              spacing={6}
+            >
+              {this.props.resources.map((iri) => (
+                <Grid
+                  item
+                  key={iri.value}
+                  lg={Footer.lgSize(this.props.resources!.length)}
+                  md={Footer.mdSize(this.props.resources!.length)}
+                  xs={GridWidth.full}
+                >
+                  <Resource subject={iri} />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        </Box>
+      </HeadingContext>
     ));
   }
 

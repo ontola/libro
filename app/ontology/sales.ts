@@ -8,6 +8,7 @@ export default {
   /* classes */
   // eslint-disable-next-line sort-keys
   AboutPage: sales('AboutPage'),
+  AnimatedCarousel: sales('AnimatedCarousel'),
   Block: sales('Block'),
   /** A page containing a blogpost. */
   BlogPage: sales('BlogPage'),
@@ -39,6 +40,7 @@ export default {
   ProcessPage: sales('ProcessPage'),
   ProductPage: sales('ProductPage'),
   Proposition: sales('Proposition'),
+  SellingPoint: sales('SellingPoint'),
   Step: sales('Step'),
   Team: sales('Team'),
   Tier: sales('Tier'),

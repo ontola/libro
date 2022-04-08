@@ -13,6 +13,9 @@ import Renderer, { OtherProps } from './Renderer';
 
 type AllPropertyProps = PropertyPropTypes & OtherProps;
 
+/**
+ * @deprecated
+ */
 const AllWithProperty = ({ label, ...other }: AllPropertyProps): JSX.Element => {
   const topology = useTopology();
   const types = useGlobalIds(rdfx.type);
