@@ -1,8 +1,6 @@
 import rdf from '@ontologies/core';
 
 import {
-  clearRemoval,
-  destroyFieldName,
   isMarkedForRemove,
   retrieveIdFromValue,
 } from '../forms';
@@ -10,33 +8,6 @@ import {
 describe('helpers', () => {
   describe('forms', () => {
     const node = rdf.namedNode('id');
-    describe('clearRemoval', () => {
-      const expected = {
-        '@id': node,
-        key1: 'value1',
-        key2: 'value2',
-        key3: 'value3',
-      };
-
-      it('removes destroy field name', () => {
-        expect(clearRemoval({
-          '@id': node,
-          [destroyFieldName]: 'w/e',
-          key1: 'value1',
-          key2: 'value2',
-          key3: 'value3',
-        })).toEqual(expected);
-      });
-
-      it('does not change other keys', () => {
-        expect(clearRemoval({
-          '@id': node,
-          key1: 'value1',
-          key2: 'value2',
-          key3: 'value3',
-        })).toEqual(expected);
-      });
-    });
 
     describe('retrieveIdFromValue', () => {
       it('retrieves id from JSONLDObject', () => {
