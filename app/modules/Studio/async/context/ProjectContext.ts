@@ -5,12 +5,12 @@ import { sourceToHextuples } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
-
-export interface RenderedPage {
-  path: string;
-  content: string;
-  sheet: string;
-}
+import {
+  Editable,
+  RenderedPage,
+  ResourceType,
+  SubResource, 
+} from '../lib/types';
 
 export interface ServerData {
   /** Only on write */
@@ -23,28 +23,6 @@ export interface ServerData {
    */
   resources: SubResource[];
   sitemap: string;
-}
-
-// Keep in sync with /cache/src/commonMain/kotlin/io/ontola/studio/Project.kt
-export enum ResourceType {
-  RDF = 'RDF',
-  Manifest = 'Manifest',
-  Elements = 'Elements',
-  MediaObject = 'MediaObject',
-  SiteMap = 'SiteMap',
-  Distributions = 'Distributions',
-}
-
-export interface Editable {
-  type: ResourceType;
-  name: string;
-}
-
-export interface SubResource extends Editable {
-  id: number;
-  path: string;
-  prerender?: RenderedPage;
-  value: string;
 }
 
 export interface Component extends Editable {

@@ -6,9 +6,9 @@ import { WebManifest } from '../../../../../WebManifest';
 import {
   ProjectAction,
   ProjectContextProps,
-  ResourceType,
   ServerData,
 } from '../../context/ProjectContext';
+import { ResourceType } from '../../lib/types';
 
 export interface LoadingScreenProps extends ProjectContextProps {
   show: boolean;

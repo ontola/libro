@@ -8,13 +8,10 @@ import rdf, {
 import { doc } from '@rdfdev/iri';
 
 import { HexJsonParser } from '../../../../helpers/transformers/hexjson';
-import {
-  ResourceType,
-  SubResource,
-} from '../context/ProjectContext';
 
 import { websiteRelativePath } from './iri';
 import { toWrappedDataDocument } from './quadsToDataObject';
+import { ResourceType, SubResource } from './types';
 
 const findLocalReferrals = (subject: Node, data: Quad[]): Set<BlankNode> => new Set(data
   .filter((q) => rdf.equals(q.subject, subject))

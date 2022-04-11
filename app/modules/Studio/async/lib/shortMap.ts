@@ -40,6 +40,7 @@ import ontTeamGL from '../../../../ontology/teamGL';
 import ontWdt from '../../../../ontology/wdt';
 
 import { quote } from './serialization';
+import { NodeProperty, NodeType } from './types';
 
 type Test = { ns: Namespace };
 type ExplicitNamespaceMap = Test & Exclude<Test, Record<string, NamedNode>>;
@@ -204,17 +205,6 @@ const createShortMap = (websiteIRI: string): ShortMap => {
     },
   };
 };
-
-export enum NodeType {
-  StringValue,
-  LocalPath,
-  Shorthand,
-}
-
-export interface NodeProperty {
-  type: NodeType;
-  value: string;
-}
 
 const jsSymbolMatcher = /^([_$a-zA-Z])[_$a-zA-Z0-9]*$/;
 

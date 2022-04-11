@@ -2,9 +2,9 @@ import MonacoEditor, { Monaco } from '@monaco-editor/react';
 import { editor } from 'monaco-editor';
 import React from 'react';
 
-import { Editable, ResourceType } from '../../context/ProjectContext';
 import { generateEditorLibs } from '../../lib/generateEditorLibs';
 import { manifestSchemas } from '../../lib/manifestSchema';
+import { Editable, ResourceType } from '../../lib/types';
 
 interface DataEditorProps {
   onChange?: (v: string | undefined) => void;

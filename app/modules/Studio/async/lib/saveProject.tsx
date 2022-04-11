@@ -18,7 +18,6 @@ import { sliceIRI } from '../../../../ontology/appSlashless';
 import { WebManifest } from '../../../../WebManifest';
 import {
   ProjectContext,
-  RenderedPage,
   ServerData,
   subResource,
 } from '../context/ProjectContext';
@@ -27,6 +26,7 @@ import { filterNodes, nodesToSitemap } from '../hooks/useSitemap';
 
 import { toHextuples } from './hextupleSerializer';
 import { projectToSource } from './projectToSource';
+import { RenderedPage } from './types';
 
 const projectToServerData = async (project: ProjectContext, prerender: boolean): Promise<ServerData> => {
   const manifest = JSON.parse(project.manifest.value);

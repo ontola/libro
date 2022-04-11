@@ -9,8 +9,8 @@ import * as rdfx from '@ontologies/rdf';
 import * as xsd from '@ontologies/xsd';
 
 import { quote } from './serialization';
-import { NodeType, shortenGlobalId } from './shortMap';
-import { ToDataObject } from './types';
+import { shortenGlobalId } from './shortMap';
+import { NodeType, ToDataObject } from './types';
 
 const integerTypes = [
   xsd.integer,

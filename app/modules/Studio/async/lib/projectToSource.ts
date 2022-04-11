@@ -1,4 +1,6 @@
-import { ProjectContext, SubResource } from '../context/ProjectContext';
+import { ProjectContext } from '../context/ProjectContext';
+
+import { SubResource } from './types';
 
 export const childrenToSource = (children: SubResource[]): string => {
   const childSources = children

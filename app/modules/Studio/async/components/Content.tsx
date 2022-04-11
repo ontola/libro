@@ -5,10 +5,10 @@ import React from 'react';
 
 import {
   ProjectContextProps,
-  ResourceType,
   currentComponent,
 } from '../context/ProjectContext';
 import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
+import { ResourceType } from '../lib/types';
 
 import { CodeEditor } from './Editors/CodeEditor';
 import { DistributionsEditor } from './Editors/DistributionsEditor';

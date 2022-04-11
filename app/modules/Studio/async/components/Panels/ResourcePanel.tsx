@@ -12,8 +12,9 @@ import React from 'react';
 import {
   ProjectAction,
   ProjectContextProps,
-  SubResource,
+
 } from '../../context/ProjectContext';
+import { SubResource } from '../../lib/types';
 
 const useStyles = makeStyles({
   listItem: {
