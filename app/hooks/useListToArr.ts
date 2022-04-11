@@ -11,7 +11,7 @@ import { listToArr } from '../helpers/data';
 
 import { ResolvedArray } from './useContainerToArr';
 
-export function useListToArr<I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I>  {
+export function useListToArr<I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I> {
   const lrs = useLRS();
   const lastUpdate = useDataFetching(isNode(subject) ? subject : []);
 

@@ -131,11 +131,11 @@ describe('useFieldForwardRules', () => {
   });
 
   it('should update when activeField changes.', async () => {
+    mockMedia(pointerQuery(PointerType.Fine));
     const { result, rerender } = await createRenderer(form.TextAreaInput, form.RadioGroup)();
 
     expect(result.current.isAutoForwardField).toEqual(false);
 
-    mockMedia(pointerQuery(PointerType.Fine));
     rerender({
       field: example.ns('field1'),
     });

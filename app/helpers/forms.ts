@@ -44,12 +44,12 @@ export function clearRemoval(value: JSONLDObject): JSONLDObject {
 }
 
 export function retrieveIdFromValue(value: JSONLDObject | Node | Literal | undefined): Node | undefined {
-  if (isJSONLDObject(value)) {
-    return value['@id'];
-  }
-
   if (typeof value === 'undefined' || isNode(value)) {
     return value;
+  }
+
+  if (isJSONLDObject(value)) {
+    return value['@id'];
   }
 
   return undefined;
