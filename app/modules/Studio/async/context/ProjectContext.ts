@@ -1,5 +1,8 @@
+import { Quad } from '@ontologies/core';
 import React, { Dispatch } from 'react';
 
+import { seedToSlice, sliceToQuads } from '../../../../helpers/seed';
+import { HexJsonParser } from '../../../../helpers/transformers/hexjson';
 import { WebManifest } from '../../../../WebManifest';
 import { sourceToHextuples } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
@@ -88,6 +91,12 @@ export enum ProjectAction {
   HashProjectData,
 }
 
+export enum ImportType {
+  Hextuples = 'hextuples',
+  Source = 'source',
+  Website = 'website',
+}
+
 interface UpdateComponentAction {
   type: ProjectAction.UpdateComponent;
   id: ComponentName;
@@ -149,7 +158,7 @@ interface ShowDeployDialogAction {
 
 interface ImportDataAction {
   type: ProjectAction.ImportData;
-  dataType: 'hextuples' | 'source';
+  dataType: ImportType;
   data: string;
 }
 
@@ -399,9 +408,27 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
     };
 
   case ProjectAction.ImportData: {
-    const data = action.dataType === 'hextuples'
-      ? action.data
-      : sourceToHextuples(action.data, state.websiteIRI);
+    let data: Quad[];
+    const parser = new HexJsonParser();
+
+    switch (action.dataType) {
+    case ImportType.Hextuples: {
+      data = parser.parseString(action.data);
+      break;
+    }
+
+    case ImportType.Source: {
+      const hextuples = sourceToHextuples(action.data, state.websiteIRI);
+      data = parser.parseString(hextuples);
+      break;
+    }
+
+    case ImportType.Website: {
+      const slice = seedToSlice(action.data);
+      data = sliceToQuads(slice);
+      break;
+    }
+    }
 
     return {
       ...state,

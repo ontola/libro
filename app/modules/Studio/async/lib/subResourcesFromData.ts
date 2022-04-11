@@ -7,8 +7,6 @@ import rdf, {
 } from '@ontologies/core';
 import { doc } from '@rdfdev/iri';
 
-import { HexJsonParser } from '../../../../helpers/transformers/hexjson';
-
 import { websiteRelativePath } from './iri';
 import { toWrappedDataDocument } from './quadsToDataObject';
 import { ResourceType, SubResource } from './types';
@@ -61,9 +59,7 @@ const partitionIdsByDoc = (data: Quad[]):  Map<NamedNode, Set<Node>> => {
   return documents;
 };
 
-export const subResourcesFromData = (data: string, websiteIRI: string): SubResource[] => {
-  const parser = new HexJsonParser();
-  const quads = parser.parseString(data);
+export const subResourcesFromData = (quads: Quad[], websiteIRI: string): SubResource[] => {
   const documents = partitionIdsByDoc(quads);
 
   const resources: SubResource[] = [];

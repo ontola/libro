@@ -1,5 +1,5 @@
-import rdf from '@ontologies/core';
-import { DataRecord } from 'link-lib';
+import rdf, { Quad } from '@ontologies/core';
+import { DataRecord, normalizeType } from 'link-lib';
 
 export interface Value {
   type: 'id' | 'lid' | 'p' | 'ls';
@@ -67,3 +67,19 @@ export const seedToSlice = (initialData: string | undefined): Slice => {
     return value.map(valueToStoreValue);
   });
 };
+
+export const sliceToQuads = (slice: Slice): Quad[] => Object.values(slice).reduce((acc: Quad[], obj: DataRecord) => {
+  const resourceQuads: Quad[] = [];
+
+  Object.entries(obj).forEach(([predicate, v]) => {
+    normalizeType(v).forEach((value) => {
+      resourceQuads.push(rdf.quad(
+        obj._id,
+        rdf.namedNode(predicate),
+        value,
+      ));
+    });
+  });
+
+  return [...acc, ...resourceQuads];
+}, []);
