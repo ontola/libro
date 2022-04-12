@@ -1,6 +1,6 @@
 import { CSSProperties } from '@material-ui/styles';
 
-import { scrollBoxCID } from '../../components/VerticalScroller';
+import { detailBarsOverlap, scrollBoxCID } from '../../components/VerticalScroller';
 import { LibroTheme } from '../../themes/themes';
 
 interface Styles {
@@ -25,10 +25,11 @@ const styles = (theme: LibroTheme): Styles => ({
   },
   right: {
     alignSelf: 'flex-end',
+    background: `linear-gradient(to right, ${theme.palette.transparent.main}, ${theme.palette.background.paper} 15%, ${theme.palette.background.paper})`,
     color: theme.palette.grey.xxLightForegroundSmall,
     display: 'flex',
     height: '100%',
-    marginLeft: '.5em',
+    paddingLeft: detailBarsOverlap,
   },
   shared: {
     '-webkit-overflow-scrolling': 'touch',
