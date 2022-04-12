@@ -8,6 +8,7 @@ import {
   isNode,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
+import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
@@ -40,6 +41,12 @@ const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
   const firstValue = value[0];
 
   return value?.length === 1 && isNode(firstValue) && resourceHasType(lrs, firstValue, as.Collection);
+};
+
+const isSequence = (lrs: LinkReduxLRSType, value: Term[]) => {
+  const firstValue = value[0];
+
+  return value?.length === 1 && isNode(firstValue) && resourceHasType(lrs, firstValue, rdfx.Seq);
 };
 
 const renderedFieldValue = (fieldType?: NamedNode) => (
@@ -103,13 +110,18 @@ const getInitialValues = (
       const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
 
       const initialValue = defaultValue.length > 0 ? defaultValue : lrs.getResourceProperties(object, path);
-      let value = valueFromStorage || initialValue;
+
+      let value = valueFromStorage ?? initialValue;
 
       if (renderedFieldValue(fieldType)) {
         dependentResources.push(...value.filter(isResource));
 
         if (isCollection(lrs, value)) {
           const members = lrs.dig(value[0] as SomeNode, collectionMembers);
+          dependentResources.push(...members.filter(isResource));
+          value = members;
+        } else if (isSequence(lrs, value)) {
+          const members = lrs.getResourceProperties(value[0] as SomeNode, rdfs.member);
           dependentResources.push(...members.filter(isResource));
           value = members;
         }
