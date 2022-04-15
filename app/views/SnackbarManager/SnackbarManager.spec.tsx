@@ -9,17 +9,16 @@ import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import app from '../../ontology/app';
-import ontola from '../../ontology/ontola';
+import libro from '../../ontology/libro';
 import { renderLinked } from '../../test-utils';
 
 describe('SnackbarManager', () => {
   it('renders nothing if queue is empty', async () => {
-    const iri = app.ns('snackbar/manager');
+    const iri = libro.ns('snackbar/manager');
     const resources = {
       '@id': iri.value,
-      [rdfx.type.toString()]: ontola.ns('snackbar/Manager'),
-      [ontola.ns('snackbar/queue').toString()]: seq([]),
+      [rdfx.type.toString()]: libro.ns('snackbar/Manager'),
+      [libro.ns('snackbar/queue').toString()]: seq([]),
     };
 
     const { queryByTestId } = await renderLinked((
@@ -30,16 +29,16 @@ describe('SnackbarManager', () => {
   });
 
   it('renders snackbar if item in queue',  async () => {
-    const iri = app.ns('snackbar/manager');
+    const iri = libro.ns('snackbar/manager');
     const resources = {
       '@id': iri.value,
-      [rdfx.type.toString()]: ontola.ns('snackbar/Manager'),
-      [ontola.ns('snackbar/number').toString()]: rdf.literal(0),
-      [ontola.ns('snackbar/current').toString()]: rdf.literal(0),
-      [ontola.ns('snackbar/queue').toString()]: seq([
+      [rdfx.type.toString()]: libro.ns('snackbar/Manager'),
+      [libro.ns('snackbar/number').toString()]: rdf.literal(0),
+      [libro.ns('snackbar/current').toString()]: rdf.literal(0),
+      [libro.ns('snackbar/queue').toString()]: seq([
         {
           '@id': rdf.blankNode(),
-          [rdfx.type.toString()]: ontola.ns('snackbar/Snackbar'),
+          [rdfx.type.toString()]: libro.ns('snackbar/Snackbar'),
           [schema.text.toString()]: '',
         },
       ]),

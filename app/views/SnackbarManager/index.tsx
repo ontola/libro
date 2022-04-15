@@ -10,14 +10,13 @@ import {
 import React from 'react';
 
 import libro from '../../ontology/libro';
-import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 export const SnackbarManager = (): JSX.Element | null => {
   const finishSnackbar = useAction(libro.actions.snackbar.finished);
-  const [queue] = useIds(ontola.ns('snackbar/queue'));
+  const [queue] = useIds(libro.ns('snackbar/queue'));
   useDataInvalidation(queue);
-  const [currentIndex] = useNumbers(ontola.ns('snackbar/current'));
+  const [currentIndex] = useNumbers(libro.ns('snackbar/current'));
   const [element] = useIds(queue, rdfx.ns(`_${currentIndex}`));
 
   if (!element) {
@@ -33,7 +32,7 @@ export const SnackbarManager = (): JSX.Element | null => {
   );
 };
 
-SnackbarManager.type = ontola.ns('snackbar/Manager');
+SnackbarManager.type = libro.ns('snackbar/Manager');
 
 SnackbarManager.topology = allTopologies;
 

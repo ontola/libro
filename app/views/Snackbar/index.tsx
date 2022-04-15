@@ -9,7 +9,7 @@ import {
 import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
-import ontola from '../../ontology/ontola';
+import libro from '../../ontology/libro';
 import { allTopologies } from '../../topologies';
 import { formMessages } from '../../translations/messages';
 
@@ -74,7 +74,7 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
   );
 };
 
-SnackbarView.type = ontola.ns('snackbar/Snackbar');
+SnackbarView.type = libro.ns('snackbar/Snackbar');
 
 SnackbarView.topology = allTopologies;
 

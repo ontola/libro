@@ -34,7 +34,7 @@ const getWebsiteManifest = (): WebManifest => {
   const {
     history,
     lrs,
-  } = await generateLRS(manifest, seedToSlice(window.INITIAL__DATA));
+  } = await generateLRS(manifest, seedToSlice(window.INITIAL__DATA, manifest.ontola.website_iri));
   patchRequestInitGenerator(lrs);
 
   if (document.documentElement.lang) {

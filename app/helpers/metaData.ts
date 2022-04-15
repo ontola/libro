@@ -19,6 +19,7 @@ const raw = (list: NamedNode[]): string[] => list.map((n) => n.value);
 export const ERROR_STATUS_CODES = {
   [ll.ErrorResource.value]: HttpStatus.BAD_REQUEST,
   [ontola.ns('errors/AccountLockedError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
+  [ontola.ns('errors/ConnectionFailedError').value]: HttpStatus.BAD_GATEWAY,
   [ontola.ns('errors/ForbiddenError').value]: HttpStatus.FORBIDDEN,
   [ontola.ns('errors/UnauthorizedError').value]: HttpStatus.UNAUTHORIZED,
   [ontola.ns('errors/UnknownEmailError').value]: HttpStatus.UNPROCESSABLE_ENTITY,
