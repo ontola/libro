@@ -15,7 +15,6 @@ import React from 'react';
 import { appContext } from '../../appContext';
 import { DialogSize, isDialogSize } from '../../middleware/ontolaMiddleware';
 import libro from '../../ontology/libro';
-import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
 
@@ -32,8 +31,8 @@ const DialogManager = () => {
   const dialogClasses = useDialogStyles();
 
   const { theme: dialogTheme } = React.useContext(appContext);
-  const [resource] = useIds(ontola.ns('dialog/resource'));
-  const [size] = useStrings(ontola.ns('dialog/size'));
+  const [resource] = useIds(libro.ns('dialog/resource'));
+  const [size] = useStrings(libro.ns('dialog/size'));
 
   const maxWidth = isDialogSize(size) ? size : DialogSize.Xl;
   const close = (item: SomeNode, done: boolean) => (
@@ -43,7 +42,7 @@ const DialogManager = () => {
     )
   );
 
-  if (!resource || resource === ontola.ns('dialog/closed')) {
+  if (!resource || resource === libro.ns('dialog/closed')) {
     return null;
   }
 
@@ -79,7 +78,7 @@ const DialogManager = () => {
   );
 };
 
-DialogManager.type = ontola.ns('dialog/Manager');
+DialogManager.type = libro.ns('dialog/Manager');
 
 DialogManager.topology = allTopologies;
 

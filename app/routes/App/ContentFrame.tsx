@@ -11,7 +11,7 @@ import Banners from '../../components/Banners';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import SkipNavigation from '../../components/SkipNavigation';
 import { CONTAINER_ELEMENT } from '../../config';
-import ontola from '../../ontology/ontola';
+import libro from '../../ontology/libro';
 import headers from '../../themes/headers';
 import { LibroTheme } from '../../themes/themes';
 import Footer from '../../topologies/Footer';
@@ -77,8 +77,8 @@ const ContentFrame = ({
         >
           {footerResource && <Resource subject={rdf.namedNode(footerResource)} />}
         </Footer>
-        <Resource subject={ontola.ns('snackbar/manager')} />
-        <Resource subject={ontola.ns('dialog/manager')} />
+        <Resource subject={libro.ns('snackbar/manager')} />
+        <Resource subject={libro.ns('dialog/manager')} />
       </div>
     </HoverHelper>
   );

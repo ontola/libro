@@ -42,6 +42,7 @@ import { quadruple } from './quadruple';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
 import hexjson from './transformers/hexjson';
+import empndjson from './transformers/empndjson';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
 export interface LRSBundle {
@@ -96,6 +97,7 @@ export default async function generateLRS(
 
   lrs.deltaProcessors.unshift(arguDeltaProcessor(lrs));
 
+  lrs.api.registerTransformer(empndjson.transformer(lrs, manifest.ontola.website_iri), empndjson.mediaTypes, empndjson.acceptValue);
   lrs.api.registerTransformer(hexjson.transformer(lrs), hexjson.mediaTypes, hexjson.acceptValue);
   transformers(lrs).forEach((t) =>
     lrs.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),

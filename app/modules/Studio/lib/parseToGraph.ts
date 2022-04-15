@@ -92,7 +92,7 @@ const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, 
     return obj;
   }
 
-  const seed: DataObject = { '@id': (obj as any)['@id'] ?? rdf.blankNode(path) };
+  const seed: DataObject = { '@id': (obj as any)['@id'] ?? rdf.namedNode(path) };
 
   return Object.entries(obj)
     .reduce(

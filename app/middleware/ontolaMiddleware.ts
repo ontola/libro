@@ -66,26 +66,26 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   store.processDelta([
     [
-      ontola.ns('snackbar/manager'),
+      libro.ns('snackbar/manager'),
       rdfx.type,
-      ontola.ns('snackbar/Manager'),
+      libro.ns('snackbar/Manager'),
       ld.add,
     ],
     [
-      ontola.ns('snackbar/manager'),
-      ontola.ns('snackbar/queue'),
+      libro.ns('snackbar/manager'),
+      libro.ns('snackbar/queue'),
       snackbarQueue,
       ld.add,
     ],
     [
-      ontola.ns('snackbar/manager'),
-      ontola.ns('snackbar/number'),
+      libro.ns('snackbar/manager'),
+      libro.ns('snackbar/number'),
       rdf.literal(0),
       ld.add,
     ],
     [
-      ontola.ns('snackbar/manager'),
-      ontola.ns('snackbar/current'),
+      libro.ns('snackbar/manager'),
+      libro.ns('snackbar/current'),
       rdf.literal(0),
       ld.add,
     ],
@@ -101,24 +101,24 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     const s = rdf.blankNode();
 
     const snackNumber = store.getResourceProperty<Node>(
-      ontola.ns('snackbar/manager'),
-      ontola.ns('snackbar/number'),
+      libro.ns('snackbar/manager'),
+      libro.ns('snackbar/number'),
     )!;
     store.store.getInternalStore().store.setField(
-      ontola.ns('snackbar/manager').value,
-      ontola.ns('snackbar/number').value,
+      libro.ns('snackbar/manager').value,
+      libro.ns('snackbar/number').value,
       rdf.literal(Number(snackNumber.value) + 1),
     );
     const queueId = store.getResourceProperty<Node>(
-      ontola.ns('snackbar/manager'),
-      ontola.ns('snackbar/queue'),
+      libro.ns('snackbar/manager'),
+      libro.ns('snackbar/queue'),
     )!;
 
     return [
       [
         s,
         rdfx.type,
-        ontola.ns('snackbar/Snackbar'),
+        libro.ns('snackbar/Snackbar'),
         ld.add,
       ],
       [
@@ -143,13 +143,13 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    * Ontola dialog setup
    */
 
-  const dialogManager = ontola.ns('dialog/manager');
+  const dialogManager = libro.ns('dialog/manager');
 
   store.processDelta([
     quadruple(
       dialogManager,
       rdfx.type,
-      ontola.ns('dialog/Manager'),
+      libro.ns('dialog/Manager'),
       ld.add,
     ),
   ], true);
@@ -157,8 +157,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const hideDialog = () => [
     quadruple(
       dialogManager,
-      ontola.ns('dialog/resource'),
-      ontola.ns('dialog/closed'),
+      libro.ns('dialog/resource'),
+      libro.ns('dialog/closed'),
       ld.replace,
     ),
   ];
@@ -166,19 +166,19 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const showDialog = (value: string, size?: DialogSize | null, opener?: string | null) => [
     quadruple(
       dialogManager,
-      ontola.ns('dialog/resource'),
+      libro.ns('dialog/resource'),
       rdf.namedNode(value),
       ld.replace,
     ),
     quadruple(
       dialogManager,
-      ontola.ns('dialog/size'),
+      libro.ns('dialog/size'),
       rdf.literal(size || DialogSize.Lg),
       ld.replace,
     ),
     quadruple(
       dialogManager,
-      ontola.ns('dialog/opener'),
+      libro.ns('dialog/opener'),
       opener ? rdf.namedNode(opener) : app.ns(currentPath().slice(1)),
       ld.replace,
     ),
@@ -219,8 +219,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    */
 
   const closeOldDialogs = () => {
-    const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
-    const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
+    const dialog = store.getResourceProperty(dialogManager, libro.ns('dialog/resource'));
+    const opener = store.getResourceProperty(dialogManager, libro.ns('dialog/opener'));
 
     if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
       store.exec(libro.actions.dialog.close);
@@ -301,7 +301,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         iri.value.startsWith(libro.actions.expireSession.value)) {
       const location = new URL(iri.value).searchParams.get('location');
 
-      return fetch(app.ns('logout').value, safeCredentials({
+      return fetch(libro.ns('logout').value, safeCredentials({
         method: 'POST',
       }))
         .then(() => {
@@ -343,7 +343,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.dialog.close.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
-      const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
+      const dialog = store.getResourceProperty(dialogManager, libro.ns('dialog/resource'));
 
       if (!resource || (dialog && resource === dialog.value)) {
         store.processDelta(hideDialog(), true);
@@ -382,14 +382,14 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.snackbar.finished.value)) {
       const current = store.getResourceProperty<NamedNode>(
-        ontola.ns('snackbar/manager'),
-        ontola.ns('snackbar/current'),
+        libro.ns('snackbar/manager'),
+        libro.ns('snackbar/current'),
       )!;
 
       store.processDelta([
         [
-          ontola.ns('snackbar/manager'),
-          ontola.ns('snackbar/current'),
+          libro.ns('snackbar/manager'),
+          libro.ns('snackbar/current'),
           rdf.literal(Number(current.value) + 1),
           ld.replace,
         ],

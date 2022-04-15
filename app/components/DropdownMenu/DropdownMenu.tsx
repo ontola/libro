@@ -9,7 +9,7 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { isFunction } from '../../helpers/types';
-import ontola from '../../ontology/ontola';
+import libro from '../../ontology/libro';
 import { LibroTheme } from '../../themes/themes';
 
 import { DropdownMenuContext } from './DropdownMenuContext';
@@ -64,7 +64,7 @@ const DropdownMenu = ({
   const [open, setOpen] = React.useState(false);
   const [loaded, setLoaded] = React.useState(0);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-  const [dialogResource] = useFields(ontola.ns('dialog/manager'), ontola.ns('dialog/resource'));
+  const [dialogResource] = useFields(libro.ns('dialog/manager'), libro.ns('dialog/resource'));
   const [id, _] = React.useState(getNewAriaId());
 
   const loadedValue = React.useMemo(() => ({
