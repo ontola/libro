@@ -5,16 +5,7 @@ import {
 } from '@material-ui/core/styles';
 
 import { overrides } from './overrides';
-
-/* eslint-disable sort-keys */
-export const SCREENSIZE = {
-  xl: 1120,
-  lg: 900,
-  md: 650,
-  sm: 320,
-  xs: 0,
-};
-/* eslint-enable sort-keys */
+import { SCREENSIZE } from './screensize';
 
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss

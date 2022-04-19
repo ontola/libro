@@ -1,6 +1,6 @@
 import { Overrides } from '@material-ui/core/styles/overrides';
 
-import { mediaQueries } from '../../../components/shared/config';
+import { SCREENSIZE } from './screensize';
 
 export const overrides: Overrides = {
   MuiCssBaseline: {
@@ -27,7 +27,7 @@ export const overrides: Overrides = {
         right: '0',
         top: '0',
 
-        [mediaQueries.smallOnly]: {
+        [`(min-width: ${SCREENSIZE.md}) and (max-width: ${SCREENSIZE.lg})`]: {
           bottom: '3em',
         },
       },
