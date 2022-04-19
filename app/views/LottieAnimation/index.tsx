@@ -4,11 +4,16 @@ import {
   useProperty,
 } from 'link-redux';
 import * as schema from '@ontologies/schema';
-import Lottie, { LottieRef } from 'lottie-react';
-import React from 'react';
+import React, { Suspense } from 'react';
+import type { LottieRef } from 'lottie-react';
 
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
+
+const Lottie = React.lazy(
+  // eslint-disable-next-line no-inline-comments
+  () => import(/* webpackChunkName: "Sales" */ 'lottie-react'),
+);
 
 interface LottieAnimationProps {
   onComplete?: () => void;
@@ -35,21 +40,25 @@ const LottieAnimation: FC<LottieAnimationProps> = ({
       .then((res) => res.json())
       .then((json) => {
         setData(json);
-        onDataReady && onDataReady();
+        onDataReady?.();
       })
       // eslint-disable-next-line no-console
       .catch(console.error);
   }, [url]);
 
   return (
-    <Lottie
-      animationData={data}
-      autoplay={autoplay}
-      loop={loop}
-      lottieRef={lottieRef}
-      onComplete={onComplete}
-      onDataReady={onDataReady}
-    />
+    <Suspense
+      fallback={null}
+    >
+      <Lottie
+        animationData={data}
+        autoplay={autoplay}
+        loop={loop}
+        lottieRef={lottieRef}
+        onComplete={onComplete}
+        onDataReady={onDataReady}
+      />
+    </Suspense>
   );
 };
 

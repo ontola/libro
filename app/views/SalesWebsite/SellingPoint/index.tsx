@@ -16,7 +16,7 @@ import Link from '../../../components/Link';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   card: {
-    '$wrapper:hover &': {
+    '$wrapper:hover &, $wrapper:focus &': {
       boxShadow: '0px 1px 3.6px rgba(0, 0, 0, 0.06), 0px 2.9px 10px rgba(0, 0, 0, 0.039), 0px 6.9px 24.1px rgba(0, 0, 0, 0.03), 0px 23px 80px rgba(0, 0, 0, 0.021);',
     },
     borderRadius: theme.shape.borderRadius,

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles';
 import { FC, Property } from 'link-redux';
 import React from 'react';
 
-import HeadingContext from '../../../components/Heading/HeadingContext';
 import sales from '../../../ontology/sales';
 import { LibroTheme, Margin } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
@@ -40,8 +39,7 @@ const HomePageFull: FC = () => {
   const classes = useStyles();
 
   return (
-    <HeadingContext>
-
+    <React.Fragment>
       <Property
         label={sales.header}
         theme={HeaderTheme.HomePage}
@@ -75,7 +73,7 @@ const HomePageFull: FC = () => {
         label={sales.callToActionBlock}
         trackingId="home-page-full-cta"
       />
-    </HeadingContext>
+    </React.Fragment>
   );
 };
 

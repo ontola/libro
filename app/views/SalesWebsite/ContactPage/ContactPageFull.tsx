@@ -1,6 +1,4 @@
 import {
-  Card,
-  CardContent,
   Grid,
   Link,
   Typography,
@@ -13,12 +11,13 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
+  Resource,
   register,
+  useIds,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { PipedriveForm } from '../../../components/PipedriveForm';
 import { Propositions } from '../../../components/SalesWebsite/Propositions';
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
@@ -102,6 +101,7 @@ const PricingPageFull: FC = () => {
   const [discordText] = useProperty(sales.discordText);
   const [website] = useProperty(sales.website);
   const [websiteUrl] = useProperty(sales.websiteUrl);
+  const [form] = useIds(sales.pipedriveForm);
 
   return (
     <main role="main">
@@ -205,11 +205,9 @@ const PricingPageFull: FC = () => {
             <div className={classes.memberContainer}>
               <Property label={schema.members} />
             </div>
-            <Card className={classes.pipedriveCard}>
-              <CardContent>
-                <PipedriveForm />
-              </CardContent>
-            </Card>
+            <div className={classes.pipedriveCard}>
+              <Resource subject={form} />
+            </div>
           </Grid>
         </Grid>
       </Container>

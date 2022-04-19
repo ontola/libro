@@ -1,9 +1,12 @@
 import React from 'react';
 
-const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/JJw99yDkXav2SVTvGiEs7pXNHJTAxP2zGw1UTQ6NK8AmCp643bD97K3WeRzXfVN';
 const PIPEDRIVE_SCRIPT_URL = 'https://webforms.pipedrive.com/f/loader';
 
-export const usePipedrive = (): React.Ref<HTMLDivElement> => {
+export interface PipedriveFormProps {
+  url: string;
+}
+
+const usePipedrive = (url: string): React.Ref<HTMLDivElement> => {
   const pipedriveDivRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -15,20 +18,20 @@ export const usePipedrive = (): React.Ref<HTMLDivElement> => {
     div && div.appendChild(script);
 
     return () => {
-      div && document.body.removeChild(div);
+      script.remove();
     };
-  }, []);
+  }, [url]);
 
   return pipedriveDivRef;
 };
 
-export const PipedriveForm = (): JSX.Element => {
-  const pipedriveDivRef = usePipedrive();
+export const PipedriveForm: React.FC<PipedriveFormProps> = ({ url }) => {
+  const pipedriveDivRef = usePipedrive(url);
 
   return (
     <div
       className="pipedriveWebForms"
-      data-pd-webforms={PIPEDRIVE_FORM_URL}
+      data-pd-webforms={url}
       ref={pipedriveDivRef}
     />
   );

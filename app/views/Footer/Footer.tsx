@@ -9,6 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 import { allTopologies } from '../../topologies';
@@ -42,18 +43,20 @@ const Footer: FC = () => {
   const menuItems = useIds(array(argu.columns));
 
   return (
-    <footer
-      className={classNames.footer}
-      role="contentinfo"
-    >
-      {menuItems.map((item) => (
-        <Resource
-          key={item.value}
-          subject={item}
-        />
-      ))}
-      <Resource subject={lowerSection} />
-    </footer>
+    <HeadingContext overrideStartLevel={2}>
+      <footer
+        className={classNames.footer}
+        role="contentinfo"
+      >
+        {menuItems.map((item) => (
+          <Resource
+            key={item.value}
+            subject={item}
+          />
+        ))}
+        <Resource subject={lowerSection} />
+      </footer>
+    </HeadingContext>
   );
 };
 

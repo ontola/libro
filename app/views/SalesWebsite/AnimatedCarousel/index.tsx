@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
-import { LottieRefCurrentProps } from 'lottie-react';
+import type { LottieRefCurrentProps } from 'lottie-react';
 
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
@@ -20,7 +20,7 @@ import {
 } from '../../../hooks/useStateMachine';
 
 enum State {
-  Loading,
+  LoadingAnimation,
   AnimatingIn,
   AnimatingOut,
   Waiting,
@@ -32,23 +32,36 @@ enum Action {
   Alarm,
 }
 
+const RETRY_FREQUENCY = 10;
+
+const timeout = (fn: () => void, ms: number): () => void => {
+  const id = setTimeout(fn, ms);
+
+  return () => clearTimeout(id);
+};
+
+const startAnimation = (controller: LottieRefCurrentProps, direction: 1 | -1) => {
+  controller.setDirection(direction);
+  controller.play();
+};
+
 const stateMachine: StateMachine<State, Action> = [
-  [any, Action.LoadComplete, State.AnimatingIn],
+  [State.LoadingAnimation, Action.LoadComplete, State.AnimatingIn],
   [any, Action.AnimationComplete, State.Waiting],
-  [State.AnimatingOut, Action.AnimationComplete, State.Loading],
+  [State.AnimatingOut, Action.AnimationComplete, State.LoadingAnimation],
   [State.Waiting, Action.Alarm, State.AnimatingOut],
 ];
-
-const nextIndex = (index: number, list: unknown[]) => (index + 1) % list.length;
 
 const AnimatedCarousel: FC = () => {
   const items = useIds(array(as.items));
   const [duration] = useNumbers(schema.duration);
+  const [state, dispatch] = useStateMachine(stateMachine, State.LoadingAnimation);
 
-  const lottieRef = React.useRef<LottieRefCurrentProps>(null);
+  const [update, setUpdate] = React.useState(0);
 
-  const [state, dispatch] = useStateMachine(stateMachine, State.Loading);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const controller = React.useRef<LottieRefCurrentProps>(null);
+
+  const [currentIndex, nextIndex] = React.useReducer((index) => (index + 1) % items.length, 0);
 
   const onComplete = React.useCallback(() => {
     dispatch(Action.AnimationComplete);
@@ -59,45 +72,39 @@ const AnimatedCarousel: FC = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    const startAnimation = (direction: 1 | -1) => {
-      if (!lottieRef.current) return;
-
-      lottieRef.current.setDirection(direction);
-      lottieRef.current.play();
-    };
+    if (!controller.current) {
+      // HACK: Callback refs don't work with Lottie-React so we have to wait until the ref is set.
+      return timeout(() => {
+        setUpdate((num) => num + 1);
+      }, RETRY_FREQUENCY);
+    }
 
     switch (state.raw) {
     case State.AnimatingIn:
-      startAnimation(1);
+      startAnimation(controller.current, 1);
       break;
     case State.AnimatingOut:
-      startAnimation(-1);
+      startAnimation(controller.current, -1);
       break;
-    case State.Loading:
-      setCurrentIndex((index) => nextIndex(index, items));
+    case State.LoadingAnimation:
+      nextIndex();
       break;
-      
-    case State.Waiting: {
-      const timeout = setTimeout(() => dispatch(Action.Alarm), duration);
-
-      return () => clearTimeout(timeout);
-    }
+    case State.Waiting:
+      return timeout(() => dispatch(Action.Alarm), duration);
     }
 
     return;
-  }, [state, duration, lottieRef, items]);
+  }, [state, duration, update]);
 
   return (
-    <div>
-      <Resource
-        autoplay={false}
-        loop={false}
-        lottieRef={lottieRef}
-        subject={items[currentIndex]}
-        onComplete={onComplete}
-        onDataReady={onDataReady}
-      />
-    </div>
+    <Resource
+      autoplay={false}
+      loop={false}
+      lottieRef={controller}
+      subject={items[currentIndex]}
+      onComplete={onComplete}
+      onDataReady={onDataReady}
+    />
   );
 };
 

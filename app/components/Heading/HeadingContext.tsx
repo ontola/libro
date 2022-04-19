@@ -2,11 +2,15 @@ import React from 'react';
 
 import { headingContext } from '../../state/headings';
 
-const HeadingContext:React.FC = ({ children }) => {
+export interface HeadingContextProps {
+  overrideStartLevel?: number;
+}
+
+const HeadingContext: React.FC<HeadingContextProps> = ({ children, overrideStartLevel }) => {
   const headingLevel = React.useContext(headingContext);
 
   return (
-    <headingContext.Provider value={headingLevel+1}>
+    <headingContext.Provider value={overrideStartLevel ?? headingLevel + 1}>
       {children}
     </headingContext.Provider>
   );

@@ -1,6 +1,7 @@
 import {
   FC,
   register,
+  useIds,
   useStrings,
 } from 'link-redux';
 import * as schema from '@ontologies/schema';
@@ -19,6 +20,7 @@ const ElementsButton: FC = () => {
   const [color] = useStrings(elements.color);
   const [icon] = useStrings(schema.image);
   const [iconPosition] = useStrings(elements.iconPosition);
+  const [href] = useIds(elements.href);
 
   const endIcon = React.useMemo(() => iconPosition !== 'end' ?
     null : (
@@ -31,6 +33,7 @@ const ElementsButton: FC = () => {
     <Button
       color={color}
       endIcon={endIcon}
+      href={href?.value}
       icon={iconPosition === 'start' ? icon : undefined}
       variant={variant as ButtonVariant}
       {...(trackingId ? { id: trackingId } : {})}

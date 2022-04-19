@@ -16,13 +16,16 @@ import Features from './Features';
 import SalesHeader from './Header';
 import HomePage from './HomePage';
 import MailchimpForm from './MailchimpForm';
+import PipedriveForm from './PipedriveForm';
 import PricingPage from './PricingPage';
 import ProcessPage from './ProcessPage';
 import ProductPage from './ProductPage';
 import Proposition from './Propositions';
 import SellingPoint from './SellingPoint';
+import StackedImages from './StackedImages';
 import Stepper from './Stepper';
 import Tier from './Tier';
+import TrialPage from './TrialPage';
 
 export default [
   ...About,
@@ -42,6 +45,7 @@ export default [
   ...Features,
   ...HomePage,
   ...MailchimpForm,
+  ...PipedriveForm,
   ...PricingPage,
   ...ProcessPage,
   ...ProductPage,
@@ -49,5 +53,7 @@ export default [
   ...Stepper,
   ...SellingPoint,
   SalesHeader,
+  ...StackedImages,
   ...Tier,
+  ...TrialPage,
 ];

@@ -1,10 +1,10 @@
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Resource } from 'link-redux';
+import { Property } from 'link-redux';
 import React from 'react';
 
-import appSlashless from '../../ontology/appSlashless';
 import Container from '../../topologies/Container';
+import sales from '../../ontology/sales';
 
 const useStyles = makeStyles({
   propositionContainer: {
@@ -23,7 +23,7 @@ export const Propositions = (): JSX.Element => {
         className={classes.propositionContainer}
         direction="row"
       >
-        <Resource subject={appSlashless.ns('#propositions')} />
+        <Property label={sales.propositions} />
       </Grid>
     </Container>
   );

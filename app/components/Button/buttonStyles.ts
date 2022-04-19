@@ -155,23 +155,33 @@ export default makeStyles<LibroTheme, ColorProps>((theme) => ({
     position: 'relative',
   },
   [ButtonVariant.Outlined]: {
+    '& $label': {
+      marginTop: '-4px',
+    },
     '&:hover, &:focus': {
       backgroundColor: ({ color }) => color,
+      borderColor: ({ color }) => color,
       color: ({ color }) => theme.palette.getContrastText(color ?? theme.palette.primary.main),
     },
+    alignItems: 'center',
     border: '1px solid currentColor',
     borderRadius: theme.shape.borderRadius,
     color: ({ color }) => color,
     display: 'flex',
     gap: theme.spacing(Margin.Small),
-    transition: 'background-color 100ms, color 100ms',
+    padding: theme.spacing(Margin.Medium),
+    transition: 'background-color 100ms, color 100ms, border-color 100ms',
   },
   [ButtonVariant.Filled]: {
+    '& $label': {
+      marginTop: '-4px',
+    },
     backgroundColor: ({ color }) => color ?? theme.palette.primary.main,
     borderRadius: theme.shape.borderRadius,
     color: ({ color }) => theme.palette.getContrastText(color ?? theme.palette.primary.main),
     display: 'flex',
     gap: theme.spacing(Margin.Small),
+    padding: theme.spacing(Margin.Medium),
   },
   [ButtonVariant.Pagination]: {
     '&$active': {

@@ -38,6 +38,7 @@ export default {
   color: elements('color'),
   float: elements('float'),
   gap: elements('gap'),
+  href: elements('href'),
   iconPosition: elements('iconPosition'),
   italic: elements('italic'),
   minWidth: elements('minWidth'),
