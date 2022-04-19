@@ -46,17 +46,19 @@ export function byteToSize(byte: number): [number, string] {
 export function tryParseFloat(linkedProp: unknown): number | undefined {
   const value = isTerm(linkedProp) ? linkedProp.value : linkedProp;
 
-  const resultOrNaN = Number.parseFloat(`${value}`);
+  const parsed = Number.parseFloat(value as string);
 
-  return Number.isNaN(resultOrNaN) ? undefined : resultOrNaN;
+  return (isNaN(value as number) || isNaN(parsed))
+    ? undefined : parsed;
 }
 
 export function tryParseInt(linkedProp: unknown): number | undefined {
   const value = isTerm(linkedProp) ? linkedProp.value : linkedProp;
 
-  const resultOrNaN = Number.parseInt(`${value}`, 10);
+  const parsed = Number.parseInt(value as string);
 
-  return Number.isNaN(resultOrNaN) ? undefined : resultOrNaN;
+  return (isNaN(value as number) || isNaN(parsed))
+    ? undefined : parsed;
 }
 
 export type MappedRange = (num: number) => number;
