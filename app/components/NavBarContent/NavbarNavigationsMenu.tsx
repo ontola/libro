@@ -1,6 +1,5 @@
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { makeStyles } from '@material-ui/styles';
-import { Node } from '@ontologies/core';
 import clsx from 'clsx';
 import {
   Property,
@@ -57,6 +56,14 @@ const createTrigger: (classes: ReturnType<typeof useStyles>) => Trigger = (class
   );
 };
 
+const observeElements = (elements: HTMLElement[], observer: IntersectionObserver) => {
+  elements.forEach((element) => {
+    if (element) {
+      observer.observe(element);
+    }
+  });
+};
+
 const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.Element => {
   const classes = useStyles();
   const [navigationsMenu] = useIds(frontendIRI, ontola.navigationsMenu);
@@ -77,19 +84,18 @@ const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.E
         return new Set(prevRefs);
       });
     }
-  }, { root: navBarRef.current }), []);
+  }, { root: navBarRef.current }), [navBarRef.current]);
 
   React.useEffect(() => {
-    menuItemRefs.current.forEach((menuItemRef) => observer.observe(menuItemRef));
+    observeElements(menuItemRefs.current, observer);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      setVisibleItemRefs(new Set());
+    };
   }, [menuItems]);
 
-  const [hiddenItems, setHiddenItems] = React.useState<Node[]>([]);
-
-  React.useEffect(() => {
-    setHiddenItems(menuItems.filter((_, index) => !visibleItemRefs.has(menuItemRefs.current[index])));
-  }, [menuItems, visibleItemRefs.size]);
+  const hiddenItems = menuItems.filter((_, index) => !visibleItemRefs.has(menuItemRefs.current[index]));
 
   return (
     <Resource
