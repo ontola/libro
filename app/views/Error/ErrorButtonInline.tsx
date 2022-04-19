@@ -1,9 +1,11 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import Button, { ButtonVariant } from '../../components/Button';
+import { SignInFormLink } from '../../components/SignInForm';
 import { ERROR_CLASSES } from '../../helpers/metaData';
+import { useCurrentActor } from '../../hooks/useCurrentActor';
 import useErrorReload from '../../hooks/useErrorReload';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { cardTopology } from '../../topologies/Card';
@@ -18,8 +20,17 @@ import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { parentTopology } from '../../topologies/Parent';
-import { useErrorStatus, useTitleForStatus } from '../../components/Error/errorMessages';
-import { ErrorComponentProps } from '../../components/Error/helpers';
+import {
+  bodyDescriptorForStatus,
+  headerDescriptorForStatus,
+  useErrorStatus,
+} from '../../components/Error/errorMessages';
+import { ErrorComponentProps, shouldShowSignIn } from '../../components/Error/helpers';
+
+const retryDescription = {
+  defaultMessage: 'Retry',
+  id: 'https://app.argu.co/i18n/errors/inlineButton/label',
+};
 
 const ErrorButtonInline: FC<ErrorComponentProps> = ({
   linkRequestStatus,
@@ -30,22 +41,28 @@ const ErrorButtonInline: FC<ErrorComponentProps> = ({
     loading,
     reload,
   } = useErrorReload(subject, reloadLinkedObject);
+  const intl = useIntl();
+  const { actorType } = useCurrentActor();
   const statusCode = useErrorStatus(linkRequestStatus);
-  const titleForStatus = useTitleForStatus(statusCode);
+  const headerDescription = headerDescriptorForStatus(statusCode);
+  const bodyDescription = bodyDescriptorForStatus(statusCode);
+
+  if (shouldShowSignIn(actorType?.value, statusCode)) {
+    return (
+      <SignInFormLink Component={Button} />
+    );
+  }
 
   return (
     <Button
       small
       icon="exclamation-triangle"
       loading={loading}
-      title={titleForStatus}
+      title={intl.formatMessage(bodyDescription ?? retryDescription)}
       variant={ButtonVariant.Subtle}
       onClick={reload}
     >
-      <FormattedMessage
-        defaultMessage="Retry"
-        id="https://app.argu.co/i18n/errors/inlineButton/label"
-      />
+      <FormattedMessage {...(headerDescription ?? retryDescription)} />
     </Button>
   );
 };
