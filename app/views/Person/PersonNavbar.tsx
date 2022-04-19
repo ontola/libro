@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
+import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -77,7 +78,10 @@ const PersonNavbar: FC<PersonNavbarProps> = ({
   );
 };
 
-PersonNavbar.type = schema.Person;
+PersonNavbar.type = [
+  schema.Person,
+  foaf.Person,
+];
 
 PersonNavbar.topology = navbarTopology;
 

@@ -1,3 +1,4 @@
+import PersonalProfileDocument from './PersonalProfileDocument';
 import PersonDetail from './PersonDetail';
 import PersonFooter from './PersonFooter';
 import PersonFormFooter from './PersonFormFooter';
@@ -15,6 +16,7 @@ export default [
   PersonFormFooter,
   PersonFull,
   PersonNavbar,
+  PersonalProfileDocument,
   PersonSection,
   PersonSelect,
   PersonShowcase,
