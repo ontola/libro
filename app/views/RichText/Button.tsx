@@ -25,6 +25,7 @@ const ElementsButton: FC = () => {
   const endIcon = React.useMemo(() => iconPosition !== 'end' ?
     null : (
       <FontAwesome
+        data-testid="button-end-icon"
         name={icon}
       />
     ), [iconPosition, icon]);

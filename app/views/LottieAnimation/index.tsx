@@ -1,6 +1,7 @@
 import {
   FC,
   register,
+  useLRS,
   useProperty,
 } from 'link-redux';
 import * as schema from '@ontologies/schema';
@@ -32,6 +33,7 @@ const LottieAnimation: FC<LottieAnimationProps> = ({
 }) => {
   const [url] = useProperty(schema.contentUrl);
   const [data, setData] = React.useState('');
+  const lrs = useLRS();
 
   React.useEffect(() => {
     if (!url || !url.value) return;
@@ -42,8 +44,7 @@ const LottieAnimation: FC<LottieAnimationProps> = ({
         setData(json);
         onDataReady?.();
       })
-      // eslint-disable-next-line no-console
-      .catch(console.error);
+      .catch(lrs.report);
   }, [url]);
 
   return (

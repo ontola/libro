@@ -1,8 +1,7 @@
 import { lighten } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
-import { isNode } from '@ontologies/core';
 import clsx from 'clsx';
-import { normalizeType } from 'link-lib';
+import { SomeNode, normalizeType } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -18,7 +17,7 @@ const ASIDE_LIGHTEN_AMOUNT = 0.8;
 const ASIDE_ICON_PADDING_RIGHT = 2;
 
 export interface FertileComponentProps {
-  children: React.ReactNode,
+  children: SomeNode,
   href?: string,
   listVariant?: ListVariant,
   color?: string,
@@ -173,12 +172,12 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
         />
       )}
       <WrapperEl>
-        {isNode(children) ? normalizeType(children).map((child) => (
+        {normalizeType(children).map((child) => (
           <Resource
             key={child.value}
             subject={child}
           />
-        )) : children}
+        ))}
       </WrapperEl>
     </Comp>
   );

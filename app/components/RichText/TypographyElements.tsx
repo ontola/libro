@@ -1,14 +1,14 @@
 import { Variant } from '@material-ui/core/styles/createTypography';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
-import { isNode } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 
 export interface TypographyElementProps {
-  children?: React.ReactChildren;
+  children?: SomeNode;
   align?: 'center' | 'left' | 'right' | 'inherit' | 'justify',
 }
 
@@ -50,7 +50,7 @@ export const createTypographyComponent = (variant: Variant) => ({
       paragraph={variant === 'body1'}
       variant={variant}
     >
-      {isNode(children) ? <Resource subject={children} /> : children}
+      <Resource subject={children} />
     </Typography>
   );
 };

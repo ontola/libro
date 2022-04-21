@@ -23,7 +23,6 @@ import CollectionPage from './CollectionPage';
 import Comment from './Comment';
 import Condition from './Condition';
 import Confirmation from './Confirmation';
-import ContactPage from './ContactPage';
 import CustomForm from './CustomForm';
 import DataCube from './DataCube';
 import DataType from './DataType';
@@ -103,7 +102,6 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...Comment,
     ...Condition,
     ...Confirmation,
-    ...ContactPage,
     ...CustomForm,
     ...DataCube,
     ...DataType,

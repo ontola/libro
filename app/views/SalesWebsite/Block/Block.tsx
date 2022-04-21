@@ -10,8 +10,7 @@ import * as schema from '@ontologies/schema';
 import { makeStyles } from '@material-ui/styles';
 
 import sales from '../../../ontology/sales';
-import { allTopologiesExcept } from '../../../topologies';
-import { showcaseTopology } from '../../../topologies/Showcase';
+import { allTopologiesExcept, showcaseTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 import { LibroTheme, Margin } from '../../../themes/themes';
 
