@@ -59,6 +59,7 @@ import ontola from './ontola';
 import Organization from './Organization';
 import Person from './Person';
 import Phase from './Phase';
+import Poll from './Poll';
 import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
@@ -140,6 +141,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...Organization,
     ...Person,
     ...Phase,
+    ...Poll,
     ...Project,
     ...SalesWebsite,
     ...Placement,

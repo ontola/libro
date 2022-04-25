@@ -16,6 +16,7 @@ import {
   SubmitDataProcessor,
   handleHTTPRetry,
 } from '../../helpers/errorHandling';
+import { fontAwesomeIRI } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 import { countInParentheses } from '../../helpers/numbers';
 import useCounts from '../../hooks/votes/useCounts';
@@ -91,10 +92,9 @@ const VoteButton = ({
     <Resource
       active={active}
       color={color}
-      count={count}
       disabled={expired}
       grow={grow}
-      image={image}
+      image={image ?? fontAwesomeIRI('circle-o')}
       name={name ? `${name} ${countInParentheses(count)}` : null}
       stretch={grow}
       subject={target}
