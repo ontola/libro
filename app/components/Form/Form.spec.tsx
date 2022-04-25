@@ -23,6 +23,7 @@ import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import {
   fireEvent,
+  mockStorage,
   renderLinked,
 } from '../../test-utils';
 import { Page } from '../../topologies/Page';
@@ -32,16 +33,6 @@ const entryPoint = example.ns('new#EntryPoint');
 const formSelector = action.value;
 const schemaText = calculateFormFieldName(schema.text);
 const arguPassword = calculateFormFieldName(ontola.password);
-
-const mockStorage = (initialValues: Record<string, string>): [Record<string, string>, Storage] => {
-  const store = initialValues;
-  const storage = {
-    getItem: (key: string): string | null => store[key] ?? null,
-    setItem: (key: string, value: string) => { store[key] = value; },
-  };
-
-  return [store, storage as Storage];
-};
 
 describe('Form', () => {
   const resources = {

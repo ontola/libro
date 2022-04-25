@@ -229,6 +229,16 @@ const renderWithWrappers = <
   });
 };
 
+export const mockStorage = (initialValues: Record<string, string>): [Record<string, string>, Storage] => {
+  const store = initialValues;
+  const storage = {
+    getItem: (key: string): string | null => store[key] ?? null,
+    setItem: (key: string, value: string) => { store[key] = value; },
+  };
+
+  return [store, storage as Storage];
+};
+
 // re-export everything
 export * from '@testing-library/react';
 

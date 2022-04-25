@@ -14,14 +14,14 @@ import React, {
 } from 'react';
 
 import { entityIsLoaded } from '../../helpers/data';
-import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
 import useSubmissionErrors from '../../views/EntryPoint/useSubmissionErrors';
 import { SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { LoadingGridContent } from '../Loading';
 
-import Form from './Form';
 import { FormTheme } from './FormContext';
+import useInitialValues from './lib/useInitialValues';
+import Form from './Form';
 
 const subscription = {
   submitting: true,

@@ -62,3 +62,15 @@ export const storageSet = (sessionStore: Storage | undefined, key: string, newVa
     (sessionStore || sessionStorage).setItem(key, serializeForStorage(newValue));
   }
 };
+
+export const inputValueFromStorage = (
+  sessionStore: Storage | undefined,
+  path: NamedNode,
+  object: SomeNode | undefined,
+  formID: string,
+  nested: boolean,
+): SomeTerm[] | undefined => {
+  const storageKey = getStorageKey(formID, nested ? object : undefined, path);
+
+  return storageGet(sessionStore, storageKey);
+};
