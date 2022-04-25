@@ -11,7 +11,7 @@ import React from 'react';
 
 import LinkLoader from '../../../components/Loading/LinkLoader';
 import VoteButton from '../../../components/VoteButton/VoteButton';
-import { useSeqToArr } from '../../../hooks/useSeqToArr';
+import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import useCurrentVote from '../../../hooks/votes/useCurrentVote';
 import argu from '../../../ontology/argu';
 import { actionsBarTopology, cardFloatTopology } from '../../../topologies';
@@ -19,7 +19,7 @@ import { actionsBarTopology, cardFloatTopology } from '../../../topologies';
 const VoteOptions: FC<PropertyProps> = ({
   linkedProp,
 }) => {
-  const [options, loading] = useSeqToArr<SomeNode>(isNamedNode(linkedProp) ? linkedProp : undefined);
+  const [options, loading] = useContainerToArr<SomeNode>(isNamedNode(linkedProp) ? linkedProp : undefined);
   const [createAction] = useIds(argu.createVote);
   const [currentVote, currentOption] = useCurrentVote();
 

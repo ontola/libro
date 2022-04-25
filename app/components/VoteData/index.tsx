@@ -5,7 +5,7 @@ import { SomeNode } from 'link-lib';
 import { useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import { useSeqToArr } from '../../hooks/useSeqToArr';
+import { useContainerToArr } from '../../hooks/useContainerToArr';
 import useCounts from '../../hooks/votes/useCounts';
 import argu from '../../ontology/argu';
 
@@ -35,7 +35,7 @@ const VoteData = ({
   hover,
 }: VoteDataProps): JSX.Element | null => {
   const [voteOptionsSequence] = useGlobalIds(argu.voteOptions);
-  const [voteOptions] = useSeqToArr<SomeNode>(voteOptionsSequence);
+  const [voteOptions] = useContainerToArr<SomeNode>(voteOptionsSequence);
   const counts = useCounts(voteOptions.filter(isNamedNode));
   const classes = useStyles();
   const className = clsx({
