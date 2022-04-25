@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface FormFooterRight {
+  crammed?: boolean;
   loading?: boolean;
   onCancel?: (e: any) => void;
   onSubmit?: (e: any) => void;
@@ -21,6 +22,7 @@ interface FormFooterRight {
 
 const FormFooterRight: React.FC<FormFooterRight> = ({
   children,
+  crammed,
   loading,
   onCancel,
   onSubmit,
@@ -28,32 +30,40 @@ const FormFooterRight: React.FC<FormFooterRight> = ({
 }) => {
   const classes = useStyles();
 
-  const cancelButton = onCancel && (
-    <Button
-      variant={ButtonVariant.Transparent}
-      onClick={onCancel}
-    >
-      <FormattedMessage
-        defaultMessage="cancel"
-        id="https://app.argu.co/i18n/forms/actions/cancel"
-      />
-    </Button>
+  if (children) {
+    return (
+      <div className={classes.wrapper}>
+        children
+      </div>
+    );
+  }
+
+  const cancelMessage = (
+    <FormattedMessage
+      defaultMessage="cancel"
+      id="https://app.argu.co/i18n/forms/actions/cancel"
+    />
   );
 
   return (
     <div className={classes.wrapper}>
-      {children ?? (
-        <React.Fragment>
-          {cancelButton}
-          <Button
-            loading={loading}
-            type="submit"
-            onClick={onSubmit}
-          >
-            {submitLabel}
-          </Button>
-        </React.Fragment>
+      {onCancel && (
+        <Button
+          icon={crammed ? 'trash' : ''}
+          variant={ButtonVariant.Transparent}
+          onClick={onCancel}
+        >
+          {!crammed && cancelMessage}
+        </Button>
       )}
+      <Button
+        icon={crammed ? 'send' : ''}
+        loading={loading}
+        type="submit"
+        onClick={onSubmit}
+      >
+        {!crammed && submitLabel}
+      </Button>
     </div>
   );
 };

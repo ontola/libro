@@ -1,4 +1,5 @@
-import { makeStyles } from '@material-ui/styles';
+import { useMediaQuery } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import rdf, {
   Node,
   isNamedNode,
@@ -79,6 +80,7 @@ const convertFieldContext = (parentIRI: string, actionIRI: Node) => {
 };
 
 const Omniform = (props: OmniformProps): JSX.Element | null => {
+  const theme = useTheme<LibroTheme>();
   const lrs = useLRS();
   const { highlightState, setHighlightState } = React.useContext(highlightContext);
 
@@ -121,17 +123,22 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
   }, [highlightState]);
 
   const linkedFieldset = React.useCallback(() => {
+    const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
+    const screenIsVeryNarrow = useMediaQuery(theme.breakpoints.down('xs'));
+
     if (!isNamedNode(action)) {
       return null;
     }
 
     const object = lrs.getResourceProperty(action, schema.object);
+    const showSwitcher = types.length > 1 && !screenIsVeryNarrow;
 
     const footer = (loading: boolean): JSX.Element => (
       <FormFooter>
         <Property label={ll.actionBody} />
-        {types.length > 1 ? types : null}
+        {showSwitcher ? types : null}
         <FormFooterRight
+          crammed={screenIsNarrow}
           loading={loading}
           submitLabel={submitLabel}
           onCancel={props.closeForm}

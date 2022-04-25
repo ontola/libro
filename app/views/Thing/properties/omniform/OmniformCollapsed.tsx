@@ -23,7 +23,7 @@ import link from '../../../../ontology/link';
 import ontola from '../../../../ontology/ontola';
 import {
   useOmniformClose,
-  useOmniformOpen,
+  useOmniformOpenAction,
   useOmniformOpenedState,
 } from '../../../../state/omniform';
 import {
@@ -67,15 +67,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   const items = useActions(potentialAction);
 
   const closeForm = useOmniformClose(props.subject);
-  const openForm = useOmniformOpen(props.subject);
-
-  const toggle = React.useCallback(() => {
-    if (opened) {
-      closeForm();
-    } else {
-      openForm();
-    }
-  }, [opened, closeForm, openForm]);
+  const openForm = useOmniformOpenAction(props.subject, items[0]);
 
   const handleKey = React.useCallback((e) => {
     if (e.keyCode === ESCAPE_KEY) {
@@ -109,7 +101,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
             autofocusForm
             closeForm={closeForm}
             items={items}
-            onDone={toggle}
+            onDone={closeForm}
             onKeyUp={handleKey}
             {...props}
           />
@@ -135,7 +127,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
       >
         <OmniformPreview
           primaryAction={items[0]}
-          onClick={toggle}
+          onClick={openForm}
         />
       </Collapse>
     </React.Fragment>
