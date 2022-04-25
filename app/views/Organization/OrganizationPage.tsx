@@ -16,6 +16,7 @@ import Card from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
 import HomepageError from '../../components/Error/HomepageError';
+import HeadingContext from '../../components/Heading/HeadingContext';
 
 const OrganizationPage = () => {
   const [hideHeader] = useProperty(ontola.hideHeader);
@@ -33,7 +34,11 @@ const OrganizationPage = () => {
 
   return (
     <React.Fragment>
-      {hideHeader?.value !== 'true' && <PageHeader />}
+      {hideHeader?.value !== 'true' && (
+        <HeadingContext>
+          <PageHeader />
+        </HeadingContext>
+      )}
       <Container>
         <Card>
           <CardContent>
