@@ -1,4 +1,4 @@
-import {
+import rdf, {
   NamedNode,
   SomeTerm,
   isBlankNode,
@@ -16,6 +16,10 @@ export const createCurrentURL = (_window?: Window) => (): string | undefined => 
 
   return _window.location.href;
 };
+
+export function fontAwesomeIRI(icon: string): NamedNode {
+  return rdf.namedNode(`${FABase}${icon}`);
+}
 
 export function isFontAwesomeIRI(iri: string): boolean {
   return iri.startsWith(FABase);

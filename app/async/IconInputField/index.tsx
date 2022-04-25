@@ -1,6 +1,6 @@
 import { InputAdornment, TextField } from '@material-ui/core';
 import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
-import rdf, { NamedNode, isNamedNode } from '@ontologies/core';
+import { NamedNode, isNamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -14,13 +14,13 @@ import {
   useFormStyles,
 } from '../../components/FormField/UseFormStyles';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
-import { FABase, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { fontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import SelectedValue from '../../topologies/SelectedValue';
 import useSelectStyles from '../SelectInput/useSelectStyles';
 
 import fontAwesomeIcons from './helpers/fontAwesomeIcons';
 
-const options = fontAwesomeIcons.sort().map((icon) => rdf.namedNode(`${FABase}${icon}`));
+const options = fontAwesomeIcons.sort().map(fontAwesomeIRI);
 
 const renderOption = (option: NamedNode) => {
   const icon = normalizeFontAwesomeIRI(option);
