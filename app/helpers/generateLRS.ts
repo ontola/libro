@@ -1,9 +1,5 @@
 import * as as from '@ontologies/as';
-import rdf, {
-  NamedNode,
-  QuadPosition,
-  Quadruple,
-} from '@ontologies/core';
+import rdf, { Quadruple } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
@@ -32,7 +28,6 @@ import { searchMiddleware } from '../middleware/searchMiddleware';
 import { appOntology, website } from '../ontology/app';
 import argu from '../ontology/argu';
 import form from '../ontology/form';
-import link from '../ontology/link';
 import ll from '../ontology/ll';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
@@ -123,13 +118,6 @@ export default async function generateLRS(
     nl: 'nl',
   };
 
-  const THING_TYPES = [
-    schema.Thing,
-    rdfs.Resource,
-    owl.Thing,
-    link.Document,
-  ].map((t) => rdf.id(t));
-
   const websocketPath = !__TEST__ && getMetaContent('websocket-path');
 
   if (__CLIENT__ && websocketPath && !localStorage.getItem('_apex_disable_ws') && options.middleware) {
@@ -138,32 +126,6 @@ export default async function generateLRS(
       subscribeDeltaChannel(lrs, 'RootChannel');
     });
   }
-
-  lrs.store.getInternalStore().newPropertyAction(rdfx.type.value, (q: DataRecord): boolean => {
-    if (THING_TYPES.includes(rdf.id(q[QuadPosition.object]))) {
-      return false;
-    }
-
-    const value = q[rdfx.type.value];
-
-    if (Array.isArray(value)) {
-      for (const v of value) {
-        lrs.store.add(
-          v as NamedNode,
-          rdfs.subClassOf,
-          schema.Thing,
-        );
-      }
-    } else {
-      lrs.store.add(
-        value as NamedNode,
-        rdfs.subClassOf,
-        schema.Thing,
-      );
-    }
-
-    return false;
-  });
 
   // tslint:disable max-line-length
   const ontologicalClassData: Quadruple[] = [
