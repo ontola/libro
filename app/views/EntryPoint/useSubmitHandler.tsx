@@ -15,6 +15,7 @@ import {
   SubmitDataProcessor,
   handleHTTPRetry,
 } from '../../helpers/errorHandling';
+import { clearFormStorage } from '../../helpers/forms';
 import { isDifferentWebsite } from '../../helpers/iris';
 
 export interface SubmitHandlerProps {
@@ -73,9 +74,7 @@ const useSubmitHandler = ({
 
     return lrs.exec(action, formData).then((response) => {
       if (formApi) {
-        if (__CLIENT__) {
-          Object.keys(sessionStorage).forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
-        }
+        clearFormStorage(formID);
 
         window.setTimeout(() => formApi?.reset(), 0);
       }

@@ -37,6 +37,12 @@ export function calculateFormFieldName(...segments: Array<string | number | Term
     .join('.');
 }
 
+export function clearFormStorage(formID: string): void {
+  if (__CLIENT__) {
+    Object.keys(sessionStorage).forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
+  }
+}
+
 export function retrieveIdFromValue(value: JSONLDObject | Node | Literal | undefined): Node | undefined {
   if (typeof value === 'undefined' || isNode(value)) {
     return value;
