@@ -111,7 +111,7 @@ export const ChapterSearch = (): JSX.Element => {
           variant="outlined"
         />
       )}
-      renderOption={(option, state) => (
+      renderOption={(_, option, state) => (
         <Resource
           input={state.inputValue}
           subject={rdf.namedNode(option.key)}

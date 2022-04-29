@@ -70,7 +70,7 @@ export const FilterComboInput = ({
     [lrs, intl],
   );
   const renderOption = React.useCallback(
-    (option: FilterValue, state: AutocompleteRenderOptionState) => (
+    (_: unknown, option: FilterValue, state: AutocompleteRenderOptionState) => (
       <span className={classes.option}>
         <FontAwesome name={state.selected ? 'check-square-o' : 'square-o'} />
         <span>

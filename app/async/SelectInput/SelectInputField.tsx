@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import {
   SomeTerm,
+  isLiteral,
   isNamedNode,
   isSomeTerm,
 } from '@ontologies/core';
@@ -42,7 +43,6 @@ import SelectedValue from '../../topologies/SelectedValue';
 import FullWidthPopper from './FullWidthPopper';
 import { formatEmptyMessage } from './lib/emptyMessage';
 import { filterOptions } from './lib/filterOptions';
-import { renderOption } from './lib/renderOption';
 import { sortByGroup } from './lib/sortByGroup';
 import { useItemToString } from './lib/useItemToString';
 import SelectList from './SelectList';
@@ -50,6 +50,28 @@ import useSelectStyles from './useSelectStyles';
 import VirtualizedSelect from './VirtualizedSelect';
 
 const VIRTUALIZATION_THRESHOLD = 10;
+
+const getRenderOption = (className: string) => (_: unknown, item: SomeTerm) => {
+  if (isLiteral(item.termType)) {
+    return (
+      <option
+        className={className}
+        key={item.value}
+        value={item.value}
+      >
+        {item.value}
+      </option>
+    );
+  }
+
+  return (
+    <Resource
+      element="div"
+      key={item.value}
+      subject={item}
+    />
+  );
+};
 
 const SelectInputField: React.FC = () => {
   const { theme } = React.useContext(formContext);
@@ -208,7 +230,7 @@ const SelectInputField: React.FC = () => {
           noOptionsText={formatEmptyMessage(formatMessage, searchable, inputValue)}
           options={sortedOptions}
           renderInput={renderInput}
-          renderOption={renderOption(formClasses.fieldListElement)}
+          renderOption={getRenderOption(formClasses.fieldListElement)}
           onChange={handleChange}
           onClose={() => {
             setOpen(false);

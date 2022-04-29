@@ -26,7 +26,7 @@ import fontAwesomeIcons from './helpers/fontAwesomeIcons';
 
 const options = fontAwesomeIcons.sort().map(fontAwesomeIRI);
 
-const renderOption = (option: NamedNode) => {
+const renderOption = (_: unknown, option: NamedNode) => {
   const icon = normalizeFontAwesomeIRI(option);
 
   return (
