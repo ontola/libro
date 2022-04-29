@@ -1,10 +1,9 @@
+import { TableCell, TableCellProps } from '@mui/material';
 import {
-  TableCell,
-  TableCellProps,
   WithStyles,
   createStyles,
   withStyles,
-} from '@material-ui/core';
+} from '@mui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';

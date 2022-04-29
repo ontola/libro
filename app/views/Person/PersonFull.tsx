@@ -1,6 +1,6 @@
-import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
-import { makeStyles } from '@material-ui/styles';
+import Grid from '@mui/material/Grid';
+import Hidden from '@mui/material/Hidden';
+import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfs from '@ontologies/rdfs';

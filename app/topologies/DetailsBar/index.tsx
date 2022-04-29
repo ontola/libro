@@ -1,5 +1,5 @@
-import { withStyles } from '@material-ui/core';
-import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
+import { withStyles } from '@mui/styles';
+import { Classes } from '@mui/styles/mergeClasses/mergeClasses';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';

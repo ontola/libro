@@ -1,5 +1,4 @@
-import { createStyles } from '@material-ui/styles';
-import withStyles from '@material-ui/styles/withStyles';
+import { createStyles, withStyles } from '@mui/styles';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 

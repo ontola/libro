@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';

@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { NamedNode, isLiteral } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { ACCEPTED } from 'http-status-codes';

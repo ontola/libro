@@ -1,11 +1,13 @@
-import AppBar from '@material-ui/core/AppBar';
-import Container from '@material-ui/core/Container';
-import Toolbar from '@material-ui/core/Toolbar';
+import {
+  AppBar,
+  Container,
+  Toolbar,
+} from '@mui/material';
 import {
   WithStyles,
   withStyles,
   withTheme,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 import { WrappedComponentProps, injectIntl } from 'react-intl';

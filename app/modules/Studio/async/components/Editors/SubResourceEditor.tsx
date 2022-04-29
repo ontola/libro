@@ -1,7 +1,7 @@
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import { TabContext, TabPanel } from '@material-ui/lab';
-import { makeStyles } from '@material-ui/styles';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import { TabContext, TabPanel } from '@mui/lab';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 

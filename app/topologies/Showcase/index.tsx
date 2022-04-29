@@ -1,5 +1,4 @@
-import Grid from '@material-ui/core/Grid';
-import { GridSpacing } from '@material-ui/core/Grid/Grid';
+import { Grid, GridSpacing } from '@mui/material';
 import React from 'react';
 
 import { showcaseTopology } from '../../topologies';

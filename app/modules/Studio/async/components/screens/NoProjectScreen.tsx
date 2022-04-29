@@ -1,5 +1,4 @@
-import { Typography } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
+import { Container, Typography } from '@mui/material';
 import React, { Dispatch } from 'react';
 
 import {

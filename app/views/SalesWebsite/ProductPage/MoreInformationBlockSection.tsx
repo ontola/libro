@@ -1,6 +1,6 @@
-import Typography from '@material-ui/core/Typography';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { makeStyles } from '@material-ui/styles';
+import Typography from '@mui/material/Typography';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';

@@ -7,10 +7,10 @@ import {
   DialogContentText,
   DialogTitle,
   MenuItem,
+  Select,
   TextField,
-} from '@material-ui/core';
-import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useIntl } from 'react-intl';
 

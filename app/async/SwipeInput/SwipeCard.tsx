@@ -1,8 +1,10 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Card,
+  CardContent,
+  Divider,
+  Typography,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { animated } from '@react-spring/web';
 import clsx from 'clsx';
 import React from 'react';

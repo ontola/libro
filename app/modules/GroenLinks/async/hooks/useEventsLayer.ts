@@ -1,4 +1,4 @@
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';

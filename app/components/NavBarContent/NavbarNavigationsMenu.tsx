@@ -1,5 +1,5 @@
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { makeStyles } from '@material-ui/styles';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import {
   Property,

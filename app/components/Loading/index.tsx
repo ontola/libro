@@ -1,5 +1,5 @@
-import Tab from '@material-ui/core/Tab';
-import { makeStyles } from '@material-ui/styles';
+import Tab from '@mui/material/Tab';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';

@@ -1,5 +1,5 @@
-import Collapse from '@material-ui/core/Collapse';
-import { makeStyles } from '@material-ui/styles';
+import Collapse from '@mui/material/Collapse';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   Property,

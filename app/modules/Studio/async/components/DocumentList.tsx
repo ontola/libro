@@ -5,15 +5,15 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
+  List,
   ListItem,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
-} from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import React from 'react';
 
 import { serverDocumentsContext } from '../context/ServerDocumentsContext';

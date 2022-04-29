@@ -1,5 +1,5 @@
-import { useMediaQuery, useTheme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   Property,

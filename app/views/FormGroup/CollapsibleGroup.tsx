@@ -1,5 +1,4 @@
-import { ButtonBase } from '@material-ui/core';
-import Collapse from '@material-ui/core/Collapse';
+import { ButtonBase, Collapse } from '@mui/material';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import {

@@ -1,4 +1,4 @@
-import { ClassNameMap, makeStyles } from '@material-ui/styles';
+import { ClassNameMap, makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import { Resource } from 'link-redux';

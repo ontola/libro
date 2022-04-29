@@ -1,5 +1,5 @@
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import { Typography, useMediaQuery } from '@mui/material';
+import { makeStyles, useTheme } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import * as as from '@ontologies/as';
 import {
@@ -11,7 +11,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 import clsx from 'clsx';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import sales from '../../../ontology/sales';
 import { LibroTheme, Margin } from '../../../themes/themes';

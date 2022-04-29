@@ -1,4 +1,4 @@
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 import React from 'react';
 
 import NavBarContent from '../../../components/NavBarContent';

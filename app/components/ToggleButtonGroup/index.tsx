@@ -1,6 +1,6 @@
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import MaterialToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { makeStyles } from '@material-ui/styles';
+import ToggleButton from '@mui/material/ToggleButton';
+import MaterialToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';

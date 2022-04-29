@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import * as as from '@ontologies/as';
 import { NamedNode, Node } from '@ontologies/core';
 import * as schema from '@ontologies/schema';

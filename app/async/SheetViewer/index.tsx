@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import HttpStatus from 'http-status-codes';
 import React from 'react';

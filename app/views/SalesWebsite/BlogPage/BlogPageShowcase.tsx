@@ -4,8 +4,8 @@ import {
   CardContent,
   CardMedia,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {

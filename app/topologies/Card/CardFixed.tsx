@@ -2,7 +2,7 @@ import {
   WithStyles,
   createStyles,
   withStyles,
-} from '@material-ui/core/styles';
+} from '@mui/styles';
 import clsx from 'clsx';
 
 import { LibroTheme } from '../../themes/themes';

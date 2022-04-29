@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import { isNamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';

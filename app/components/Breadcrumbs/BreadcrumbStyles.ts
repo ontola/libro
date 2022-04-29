@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 import { LibroTheme } from '../../themes/themes';
 import { headingCID } from '../Heading';

@@ -1,4 +1,4 @@
-import { Container as MaterialContainer } from '@material-ui/core';
+import { Container as MaterialContainer } from '@mui/material';
 import React from 'react';
 
 import { Size } from '../../themes/themes';

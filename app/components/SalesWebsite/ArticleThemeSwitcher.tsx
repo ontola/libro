@@ -1,5 +1,5 @@
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/styles';
+import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';

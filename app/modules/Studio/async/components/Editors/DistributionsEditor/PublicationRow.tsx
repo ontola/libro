@@ -1,9 +1,12 @@
-import { Grid, Link } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import LinkOffIcon from '@material-ui/icons/LinkOff';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import {
+  Button,
+  Grid,
+  Link,
+  TableCell,
+  TableRow,
+} from '@mui/material';
+import LinkOffIcon from '@mui/icons-material/LinkOff';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';

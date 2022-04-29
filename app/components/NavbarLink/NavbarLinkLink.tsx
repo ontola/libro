@@ -1,7 +1,10 @@
-import { useTheme } from '@material-ui/core';
-import Button, { ButtonProps } from '@material-ui/core/Button';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Button,
+  ButtonProps,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React, { AriaAttributes } from 'react';

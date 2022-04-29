@@ -1,7 +1,7 @@
-import MUIButton from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { ArrowBack } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/styles';
+import MUIButton from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { ArrowBack } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';

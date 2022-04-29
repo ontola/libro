@@ -2,8 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { createTheme } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { render } from '@testing-library/react';
 import React from 'react';
 

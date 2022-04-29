@@ -1,4 +1,4 @@
-import { Portal } from '@material-ui/core';
+import { Portal } from '@mui/material';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import {

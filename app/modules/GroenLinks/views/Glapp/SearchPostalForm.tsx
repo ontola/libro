@@ -1,7 +1,7 @@
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-import { makeStyles } from '@material-ui/styles';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 
 import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../../../components/Input/PostalRangeInput';

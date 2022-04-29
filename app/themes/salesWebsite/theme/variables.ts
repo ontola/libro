@@ -1,6 +1,6 @@
-import { ThemeOptions } from '@material-ui/core/styles/createTheme';
-import { TypographyOptions } from '@material-ui/core/styles/createTypography';
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { Overrides } from '@mui/material';
+import { DeprecatedThemeOptions } from '@mui/material/styles';
+import { TypographyOptions } from '@mui/material/styles/createTypography';
 import deepmerge from 'deepmerge';
 
 import variables from '../../common/theme/variables';
@@ -98,7 +98,7 @@ const breakpoints = {
   /* eslint-enable sort-keys */
 };
 
-const customVariables: ThemeOptions = {
+const customVariables: DeprecatedThemeOptions = {
   breakpoints,
   overrides,
   palette,

@@ -1,5 +1,8 @@
-import { GridProps, Grid as MaterialGrid } from '@material-ui/core';
-import { GridSize } from '@material-ui/core/Grid/Grid';
+import {
+  GridProps,
+  GridSize,
+  Grid as MaterialGrid,
+} from '@mui/material';
 import React from 'react';
 
 import LinkLoader from '../Loading/LinkLoader';

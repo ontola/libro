@@ -1,9 +1,11 @@
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import { makeStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import PublishIcon from '@material-ui/icons/Publish';
+import {
+  Button,
+  Chip,
+  TableCell,
+  TableRow,
+} from '@mui/material';
+import PublishIcon from '@mui/icons-material/Publish';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 

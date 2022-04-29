@@ -1,5 +1,8 @@
-import Container, { ContainerProps } from '@material-ui/core/Container';
-import { PaperProps } from '@material-ui/core/Paper';
+import {
+  Container,
+  ContainerProps,
+  PaperProps,
+} from '@mui/material';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 

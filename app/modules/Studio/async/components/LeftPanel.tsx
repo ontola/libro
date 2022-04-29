@@ -1,15 +1,14 @@
-import { Grid } from '@material-ui/core';
-import Tab from '@material-ui/core/Tab';
-import AccountTreeIcon from '@material-ui/icons/AccountTree';
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-import SettingsIcon from '@material-ui/icons/Settings';
-import WebIcon from '@material-ui/icons/Web';
+import { Grid, Tab } from '@mui/material';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import SettingsIcon from '@mui/icons-material/Settings';
+import WebIcon from '@mui/icons-material/Web';
 import {
   TabContext,
   TabList,
   TabPanel,
-} from '@material-ui/lab';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/lab';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 
 import {

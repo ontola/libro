@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 
 import CardActions from '../../components/Card/CardActions';

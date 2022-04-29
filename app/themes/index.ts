@@ -1,6 +1,8 @@
-import { createTheme } from '@material-ui/core';
-import { ThemeOptions } from '@material-ui/core/styles/createTheme';
-import { PaletteColor } from '@material-ui/core/styles/createPalette';
+import {
+  DeprecatedThemeOptions,
+  PaletteColor,
+  createTheme, 
+} from '@mui/material/styles';
 import deepmerge from 'deepmerge';
 
 import common from './common/theme';
@@ -14,7 +16,7 @@ type ComponentStyle = (theme: LibroTheme) => MaterialStyleMap;
 
 interface GenerateStyle {
   components?: ComponentStyle[];
-  variables?: ThemeOptions;
+  variables?: DeprecatedThemeOptions;
 }
 
 const generateStyle = ({

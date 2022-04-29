@@ -1,12 +1,12 @@
+import { makeStyles } from '@mui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   register,
   useStrings,
 } from 'link-redux';
-import * as schema from '@ontologies/schema';
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';

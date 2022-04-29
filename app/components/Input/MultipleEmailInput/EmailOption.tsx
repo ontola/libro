@@ -1,6 +1,5 @@
-import { Chip } from '@material-ui/core';
-import { AutocompleteGetTagProps } from '@material-ui/lab';
-import { makeStyles } from '@material-ui/styles';
+import { AutocompleteGetTagProps, Chip } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 
 import { LibroTheme } from '../../../themes/themes';

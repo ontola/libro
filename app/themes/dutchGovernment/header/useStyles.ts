@@ -1,5 +1,5 @@
-import { lighten } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles } from '@material-ui/styles';
+import { lighten } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 
 import {
   CSSPropertiesMap,

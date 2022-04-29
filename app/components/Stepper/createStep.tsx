@@ -5,8 +5,8 @@ import {
   StepIconProps,
   StepLabel,
   StepLabelClasskey,
-} from '@material-ui/core';
-import { ClassNameMap } from '@material-ui/styles';
+} from '@mui/material';
+import { ClassNameMap } from '@mui/styles';
 import React from 'react';
 
 import { StepIcon } from './StepIcon';

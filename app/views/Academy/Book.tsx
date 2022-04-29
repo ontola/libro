@@ -1,7 +1,9 @@
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Button,
+  Grid,
+  LinearProgress,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';

@@ -1,6 +1,6 @@
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import { makeStyles } from '@material-ui/styles';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { makeStyles } from '@mui/styles';
 import { animated } from '@react-spring/web';
 import React from 'react';
 

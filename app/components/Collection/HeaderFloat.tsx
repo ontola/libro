@@ -1,11 +1,11 @@
 import {
+  ClickAwayListener,
   IconButton,
-  makeStyles,
   useMediaQuery,
   useTheme,
-} from '@material-ui/core';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import clsx from 'clsx';
 import { Property, Resource } from 'link-redux';
 import React from 'react';

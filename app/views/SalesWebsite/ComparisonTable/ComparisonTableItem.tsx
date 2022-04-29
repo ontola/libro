@@ -1,3 +1,8 @@
+import InfoIcon from '@mui/icons-material/Info';
+import { Tooltip, useMediaQuery } from '@mui/material';
+import { makeStyles, useTheme } from '@mui/styles';
+import * as schema from '@ontologies/schema';
+import clsx from 'clsx';
 import {
   FC,
   Resource,
@@ -5,13 +10,7 @@ import {
   useIds,
   useStrings,
 } from 'link-redux';
-import * as schema from '@ontologies/schema';
 import React from 'react';
-import InfoIcon from '@material-ui/icons/Info';
-import { makeStyles, useTheme } from '@material-ui/styles';
-import clsx from 'clsx';
-import Tooltip from '@material-ui/core/Tooltip';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';

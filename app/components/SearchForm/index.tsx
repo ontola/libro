@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import rdf, { SomeTerm } from '@ontologies/core';
 import equal from 'fast-deep-equal';
 import { useLRS, useLinkRenderContext } from 'link-redux';

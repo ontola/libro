@@ -1,4 +1,4 @@
-import makeStyles from '@material-ui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import { LibroTheme, Margin } from '../../themes/themes';
 

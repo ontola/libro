@@ -1,6 +1,5 @@
-import { Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
+import { Grid, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';

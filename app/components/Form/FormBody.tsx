@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import equal from 'fast-deep-equal';
 import React, { FormEventHandler } from 'react';
 

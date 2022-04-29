@@ -3,9 +3,9 @@ import {
   List,
   ListItem,
   Typography,
-} from '@material-ui/core';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,

@@ -1,8 +1,8 @@
-import Fade from '@material-ui/core/Fade';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import TouchAppIcon from '@material-ui/icons/TouchApp';
-import { makeStyles } from '@material-ui/styles';
+import Fade from '@mui/material/Fade';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import TouchAppIcon from '@mui/icons-material/TouchApp';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 

@@ -1,4 +1,5 @@
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
@@ -7,7 +8,6 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
 
 import Button, { ButtonVariant } from '../../components/Button';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';

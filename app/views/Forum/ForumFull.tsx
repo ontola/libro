@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import * as schema from '@ontologies/schema';
 import {
   Property,
@@ -15,13 +15,13 @@ import React from 'react';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { Size } from '../../themes/themes';
+import { LibroTheme, Size } from '../../themes/themes';
 import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';
 import Grid from '../../topologies/Grid';
 import PageHeader from '../../topologies/PageHeader';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   pageBackground: {
     backgroundColor: theme.palette.background.default,
     paddingTop: '2rem',

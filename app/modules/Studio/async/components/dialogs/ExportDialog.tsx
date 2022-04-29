@@ -1,14 +1,16 @@
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import { makeStyles } from '@mui/styles';
+import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import { useLRS } from 'link-redux';
-import Tooltip from '@material-ui/core/Tooltip';
-import { makeStyles } from '@material-ui/styles';
 
 import { actionMessages, studioExportMessages } from '../../../../../translations/messages';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';

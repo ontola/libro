@@ -1,6 +1,6 @@
-import Drawer from '@material-ui/core/Drawer';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import Drawer from '@mui/material/Drawer';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles, useTheme } from '@mui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 

@@ -2,11 +2,11 @@ import {
   Grid,
   Link,
   Typography,
-} from '@material-ui/core';
-import EmailIcon from '@material-ui/icons/Email';
-import PhoneIcon from '@material-ui/icons/Phone';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,

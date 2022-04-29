@@ -1,4 +1,4 @@
-import Tab from '@material-ui/core/Tab';
+import Tab from '@mui/material/Tab';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import { Property, Resource } from 'link-redux';

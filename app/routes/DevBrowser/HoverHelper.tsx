@@ -2,7 +2,7 @@ import * as as from '@ontologies/as';
 import rdf, { Node } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React, { MouseEvent } from 'react';
 import { useKey } from 'rooks';

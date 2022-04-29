@@ -1,5 +1,5 @@
-import Fade from '@material-ui/core/Fade';
-import { makeStyles } from '@material-ui/core/styles';
+import Fade from '@mui/material/Fade';
+import makeStyles from '@mui/styles/makeStyles';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import React from 'react';

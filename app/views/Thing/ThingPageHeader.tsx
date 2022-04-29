@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -12,6 +12,7 @@ import CardContent from '../../components/Card/CardContent';
 import CollapseText from '../../components/CollapseText';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import argu from '../../ontology/argu';
+import { LibroTheme } from '../../themes/themes';
 import { pageHeaderTopology } from '../../topologies';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
@@ -22,7 +23,7 @@ import {
 } from '../../topologies/PageHeader';
 import { defaultMenus } from '../common';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   thingPageHeader: {
     marginTop: '-5rem',
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers

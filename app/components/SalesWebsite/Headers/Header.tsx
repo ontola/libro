@@ -1,5 +1,5 @@
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { isNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';

@@ -1,5 +1,5 @@
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import { makeStyles } from '@material-ui/styles';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';

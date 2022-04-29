@@ -2,7 +2,7 @@ import {
   WithStyles,
   createStyles,
   withStyles,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import clsx from 'clsx';
 import {
   TopologyProvider,

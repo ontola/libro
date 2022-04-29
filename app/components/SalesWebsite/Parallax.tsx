@@ -1,10 +1,10 @@
 import {
+  Button,
   Grid,
   Typography,
-} from '@material-ui/core';
-import Button from '@material-ui/core/Button/Button';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 

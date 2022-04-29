@@ -1,7 +1,9 @@
-import { Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button/Button';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Button,
+  Grid,
+  Typography,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';

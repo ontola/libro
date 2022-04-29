@@ -1,8 +1,9 @@
 import {
+  Autocomplete,
+  AutocompleteRenderInputParams,
   InputAdornment,
   TextField,
-} from '@material-ui/core';
-import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
+} from '@mui/material';
 import {
   SomeTerm,
   isNamedNode,

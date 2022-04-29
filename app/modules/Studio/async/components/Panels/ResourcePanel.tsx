@@ -1,11 +1,11 @@
 import {
   Button,
   Grid,
+  List,
   ListItem,
   ListItemText,
-} from '@material-ui/core';
-import List from '@material-ui/core/List';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { termStr } from '@rdfdev/iri';
 import React from 'react';
 

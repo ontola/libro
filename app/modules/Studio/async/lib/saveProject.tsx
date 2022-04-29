@@ -1,5 +1,5 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
 import rdf, { createNS } from '@ontologies/core';
 import { MemoryHistory, createMemoryHistory } from 'history';
 import { MULTIPLE_CHOICES } from 'http-status-codes';

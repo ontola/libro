@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 import { fieldVariantPreviewCID } from '../../components/FormField/UseFormStyles';
 import { SHADOW_LIGHT } from '../../helpers/flow';

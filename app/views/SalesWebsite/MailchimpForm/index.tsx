@@ -1,8 +1,10 @@
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import { ChevronRight, MailRounded } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Button,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { ChevronRight, MailRounded } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,

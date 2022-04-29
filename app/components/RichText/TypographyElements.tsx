@@ -1,6 +1,6 @@
-import { Variant } from '@material-ui/core/styles/createTypography';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
+import { Variant } from '@mui/material/styles/createTypography';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';

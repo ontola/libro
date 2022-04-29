@@ -2,7 +2,7 @@ import {
   WithStyles,
   createStyles,
   withStyles,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 

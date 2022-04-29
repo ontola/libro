@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { useStrings } from 'link-redux';

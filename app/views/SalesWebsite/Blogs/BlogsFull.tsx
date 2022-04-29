@@ -1,5 +1,5 @@
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {

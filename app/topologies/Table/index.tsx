@@ -1,9 +1,9 @@
+import { Table, TableContainer } from '@mui/material';
 import {
-  Table,
-  TableContainer,
+  WithStyles,
   createStyles,
-} from '@material-ui/core';
-import { WithStyles, withStyles } from '@material-ui/styles';
+  withStyles,
+} from '@mui/styles';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';

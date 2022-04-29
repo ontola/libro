@@ -1,6 +1,5 @@
-import { FormControlLabel } from '@material-ui/core';
-import CheckBox from '@material-ui/core/Checkbox';
-import makeStyles from '@material-ui/styles/makeStyles';
+import { Checkbox, FormControlLabel } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
@@ -17,7 +16,7 @@ import { InputValue } from '../FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputCheckboxCID,
-  useFormStyles, 
+  useFormStyles,
 } from '../FormField/UseFormStyles';
 import { LoadingHidden } from '../Loading';
 import Spinner from '../Spinner';
@@ -122,7 +121,7 @@ const CheckboxesInput: React.FC = () => {
         <FormControlLabel
           checked={values?.some((v) => v.value === item.value)}
           control={(
-            <CheckBox
+            <Checkbox
               color="primary"
               id={item.value}
               value={JSON.stringify(item)}

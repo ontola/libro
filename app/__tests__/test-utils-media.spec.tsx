@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 

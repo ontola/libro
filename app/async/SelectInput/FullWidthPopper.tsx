@@ -1,5 +1,4 @@
-import { Popper } from '@material-ui/core';
-import { PopperProps } from '@material-ui/core/Popper/Popper';
+import { Popper, PopperProps } from '@mui/material';
 import React from 'react';
 
 import useSelectStyles from './useSelectStyles';

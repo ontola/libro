@@ -1,5 +1,5 @@
-import { TableHead } from '@material-ui/core';
-import { WithStyles, withStyles } from '@material-ui/styles';
+import { TableHead } from '@mui/material';
+import { WithStyles, withStyles } from '@mui/styles';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';

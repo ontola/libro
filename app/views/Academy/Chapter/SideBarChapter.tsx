@@ -11,7 +11,7 @@ import React from 'react';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import FontAwesome from 'react-fontawesome';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 import argu from '../../../ontology/argu';

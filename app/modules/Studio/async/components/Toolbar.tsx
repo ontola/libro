@@ -1,21 +1,21 @@
 import {
+  Badge,
   Button,
   ButtonGroup,
   ClickAwayListener,
   Grow,
   IconButton,
+  Paper,
   Popper,
   Typography,
-} from '@material-ui/core';
-import Badge from '@material-ui/core/Badge';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import CloseIcon from '@material-ui/icons/Close';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import LaunchIcon from '@material-ui/icons/Launch';
-import SaveIcon from '@material-ui/icons/Save';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CloseIcon from '@mui/icons-material/Close';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import LaunchIcon from '@mui/icons-material/Launch';
+import SaveIcon from '@mui/icons-material/Save';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';

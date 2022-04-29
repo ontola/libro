@@ -1,4 +1,4 @@
-import TableCell from '@material-ui/core/TableCell';
+import TableCell from '@mui/material/TableCell';
 import { normalizeType } from 'link-lib';
 import {
   Property,

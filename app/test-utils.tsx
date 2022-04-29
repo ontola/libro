@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { Node, QuadPosition } from '@ontologies/core';
 import {
   Matcher,

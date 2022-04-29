@@ -1,9 +1,11 @@
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-import TimelineItemBase from '@material-ui/lab/TimelineItem';
-import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import { makeStyles } from '@material-ui/styles';
+import {
+  TimelineContent,
+  TimelineDot,
+  TimelineItem as TimelineItemBase,
+  TimelineOppositeContent,
+  TimelineSeparator,
+} from '@mui/lab';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';

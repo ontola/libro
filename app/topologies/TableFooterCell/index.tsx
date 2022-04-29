@@ -1,4 +1,4 @@
-import { TableCell } from '@material-ui/core';
+import { TableCell } from '@mui/material';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';

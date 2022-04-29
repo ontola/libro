@@ -1,5 +1,5 @@
-import { TableRow } from '@material-ui/core';
-import { WithStyles, withStyles } from '@material-ui/styles';
+import { TableRow } from '@mui/material';
+import { WithStyles, withStyles } from '@mui/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';

@@ -1,6 +1,8 @@
-import Fade from '@material-ui/core/Fade';
-import Slide from '@material-ui/core/Slide';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {
+  Fade,
+  Slide,
+  useMediaQuery,
+} from '@mui/material';
 import React from 'react';
 
 export interface FlowAnimationProps {

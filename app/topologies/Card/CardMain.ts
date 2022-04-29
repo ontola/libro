@@ -1,4 +1,4 @@
-import { WithStyles, withStyles } from '@material-ui/core/styles';
+import { WithStyles, withStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 import { LibroTheme } from '../../themes/themes';

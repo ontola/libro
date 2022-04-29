@@ -1,5 +1,5 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';

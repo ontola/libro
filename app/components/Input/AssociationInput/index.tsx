@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import { isNamedNode, isNode } from '@ontologies/core';
 import { useIds } from 'link-redux';
 import React from 'react';

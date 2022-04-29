@@ -1,5 +1,5 @@
-import { withStyles } from '@material-ui/core';
-import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
+import withStyles from '@mui/styles/withStyles';
+import { ClassNameMap } from '@mui/styles/withStyles/withStyles';
 import React from 'react';
 
 import { headingCID } from '../../components/Heading';

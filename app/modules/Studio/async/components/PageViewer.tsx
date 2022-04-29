@@ -1,4 +1,4 @@
-import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@mui/material';
 import HttpStatus from 'http-status-codes';
 import {
   Resource,

@@ -1,6 +1,6 @@
-import IconButton from '@material-ui/core/IconButton';
-import { Menu } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/styles';
+import IconButton from '@mui/material/IconButton';
+import { Menu } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 

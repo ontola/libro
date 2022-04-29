@@ -1,9 +1,11 @@
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Fade from '@material-ui/core/Fade';
-import MenuList from '@material-ui/core/MenuList';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import { makeStyles } from '@material-ui/styles';
+import {
+  ClickAwayListener,
+  Fade,
+  MenuList,
+  Paper,
+  Popper,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { useFields } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';

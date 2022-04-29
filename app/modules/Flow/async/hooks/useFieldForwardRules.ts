@@ -1,4 +1,4 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Node } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
 import { LaxIdentifier, useIds } from 'link-redux';

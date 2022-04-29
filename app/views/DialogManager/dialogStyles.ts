@@ -1,5 +1,5 @@
-import { alpha } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
+import { alpha } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 
 import { DialogSize } from '../../middleware/ontolaMiddleware';
 import { LibroTheme } from '../../themes/themes';

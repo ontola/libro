@@ -1,5 +1,5 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles, useTheme } from '@mui/styles';
 import React from 'react';
 import { FormSpy } from 'react-final-form';
 

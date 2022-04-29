@@ -2,7 +2,7 @@ import {
   WithStyles,
   createStyles,
   withStyles,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';

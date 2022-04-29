@@ -1,13 +1,14 @@
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
+import { LibroTheme } from '../../../../themes/themes';
 import { ProjectContext, useProjectStateReducer } from '../context/ProjectContext';
 
 import { NoProjectScreen } from './screens/NoProjectScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
 import { LoadingScreen } from './screens/LoadingScreen';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   windowOverlay: {
     background: 'white',
     bottom: 0,

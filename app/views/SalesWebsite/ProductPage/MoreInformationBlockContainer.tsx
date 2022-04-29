@@ -3,8 +3,8 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { useProperty } from 'link-redux';
 import React from 'react';

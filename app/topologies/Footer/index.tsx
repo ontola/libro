@@ -1,5 +1,5 @@
-import { Box, Grid } from '@material-ui/core';
-import { WithStyles, withStyles } from '@material-ui/styles';
+import { Box, Grid } from '@mui/material';
+import { WithStyles, withStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';

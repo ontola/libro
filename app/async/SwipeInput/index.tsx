@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { dig, useGlobalIds } from 'link-redux';

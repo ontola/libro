@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 import Textarea from 'react-autosize-textarea';

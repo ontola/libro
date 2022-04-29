@@ -2,9 +2,9 @@ import {
   Button,
   Container,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { Literal, NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
@@ -29,7 +29,7 @@ import {
 } from '../../../helpers/attachments';
 import { byteToSize, tryParseInt } from '../../../helpers/numbers';
 import dbo from '../../../ontology/dbo';
-import { Margin } from '../../../themes/themes';
+import { LibroTheme, Margin } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 
 interface PropTypes {
@@ -38,7 +38,7 @@ interface PropTypes {
   linkedProp: NamedNode;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   downloadSection: {
     display: 'flex',
   },

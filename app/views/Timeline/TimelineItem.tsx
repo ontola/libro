@@ -1,10 +1,12 @@
-import TimelineItemBase from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
-import { makeStyles } from '@material-ui/styles';
+import {
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem as TimelineItemBase,
+  TimelineOppositeContent,
+  TimelineSeparator,
+} from '@mui/lab';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,

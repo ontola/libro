@@ -1,5 +1,5 @@
-import Slider from '@material-ui/core/Slider';
-import { makeStyles } from '@material-ui/styles';
+import Slider from '@mui/material/Slider';
+import { makeStyles } from '@mui/styles';
 import { useProperty } from 'link-redux';
 import React from 'react';
 

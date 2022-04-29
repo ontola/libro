@@ -1,8 +1,7 @@
-import Collapse from '@material-ui/core/Collapse';
-import Typography from '@material-ui/core/Typography';
-import { ChevronRight } from '@material-ui/icons';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { makeStyles } from '@material-ui/styles';
+import { Collapse, Typography } from '@mui/material';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { makeStyles } from '@mui/styles';
 import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';

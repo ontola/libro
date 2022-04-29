@@ -1,5 +1,9 @@
-import { InputAdornment, TextField } from '@material-ui/core';
-import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
+import {
+  Autocomplete,
+  AutocompleteRenderInputParams,
+  InputAdornment,
+  TextField,
+} from '@mui/material';
 import { NamedNode, isNamedNode } from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';

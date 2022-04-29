@@ -1,10 +1,10 @@
-import TextField from '@material-ui/core/TextField';
 import {
   Autocomplete,
   AutocompleteRenderOptionState,
+  TextField,
   createFilterOptions,
-} from '@material-ui/lab';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { SomeNode } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React, { ChangeEvent } from 'react';

@@ -1,12 +1,12 @@
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { makeStyles } from '@mui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
   useStrings,
 } from 'link-redux';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import * as schema from '@ontologies/schema';
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 
 import sales from '../../../ontology/sales';
 import { tableCellTopology } from '../../../topologies';

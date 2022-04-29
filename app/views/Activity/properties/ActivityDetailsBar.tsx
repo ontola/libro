@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
 import { Property } from 'link-redux';

@@ -1,6 +1,5 @@
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/styles';
+import { Autocomplete, TextField } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import rdf from '@ontologies/core';
 import React from 'react';
 import { useIntl } from 'react-intl';

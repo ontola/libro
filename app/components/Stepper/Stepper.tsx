@@ -2,9 +2,8 @@ import {
   Stepper as MUIStepper,
   StepConnector,
   StepperClasskey,
-  makeStyles,
-} from '@material-ui/core';
-import { ClassNameMap } from '@material-ui/styles';
+} from '@mui/material';
+import { ClassNameMap, makeStyles } from '@mui/styles';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 

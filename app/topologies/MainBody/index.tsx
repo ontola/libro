@@ -1,9 +1,9 @@
-import { Container as MUIContainer } from '@material-ui/core';
+import { Container as MUIContainer } from '@mui/material';
 import {
   WithStyles,
   createStyles,
   withStyles,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 

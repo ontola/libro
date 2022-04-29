@@ -1,5 +1,5 @@
-import { Container as MaterialContainer } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import { Container as MaterialContainer } from '@mui/material';
+import { withStyles } from '@mui/styles';
 import React from 'react';
 
 import { LibroTheme } from '../../../themes/themes';

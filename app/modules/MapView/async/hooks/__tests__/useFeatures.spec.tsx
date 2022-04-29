@@ -1,7 +1,7 @@
 /** @jest-environment jsdom*/
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import { NamedNode } from '@ontologies/core';
 import { fromLonLat } from 'ol/proj';
 

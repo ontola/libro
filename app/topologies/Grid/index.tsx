@@ -1,5 +1,4 @@
-import { Grid as MaterialGrid } from '@material-ui/core';
-import { GridTypeMap } from '@material-ui/core/Grid/Grid';
+import { GridTypeMap, Grid as MaterialGrid } from '@mui/material';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 

@@ -1,6 +1,5 @@
-import Dialog from '@material-ui/core/Dialog';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Dialog, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {

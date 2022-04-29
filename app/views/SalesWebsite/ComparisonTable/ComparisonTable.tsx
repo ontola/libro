@@ -7,13 +7,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 import * as schema from '@ontologies/schema';
-import Typography from '@material-ui/core/Typography';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { makeStyles, useTheme } from '@material-ui/styles';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {
+  Collapse,
+  IconButton,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { makeStyles, useTheme } from '@mui/styles';
 
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';

@@ -1,4 +1,4 @@
-import { ClassNameMap, withStyles } from '@material-ui/styles';
+import { ClassNameMap, withStyles } from '@mui/styles';
 import React from 'react';
 
 import { sideBarTopology } from '../../topologies';

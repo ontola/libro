@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import { ReactNodeLike } from 'prop-types';
 import React from 'react';
 

@@ -1,8 +1,11 @@
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
-import SearchIcon from '@material-ui/icons/Search';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import {
+  Autocomplete,
+  InputAdornment,
+  TextField,
+  createFilterOptions,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {

@@ -1,6 +1,8 @@
-import Step from '@material-ui/core/Step';
-import { StepProps } from '@material-ui/core/Step/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import {
+  Step,
+  StepLabel,
+  StepProps,
+} from '@mui/material';
 import clsx from 'clsx';
 import React from 'react';
 import { useField } from 'react-final-form';

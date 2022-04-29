@@ -1,4 +1,4 @@
-import { WithStyles, withStyles } from '@material-ui/styles';
+import { WithStyles, withStyles } from '@mui/styles';
 import PropTypes from 'prop-types';
 import { PropsWithChildren } from 'react';
 

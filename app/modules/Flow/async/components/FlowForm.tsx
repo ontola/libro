@@ -1,7 +1,9 @@
-import Grid from '@material-ui/core/Grid';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import {
+  Grid,
+  MobileStepper,
+  useMediaQuery,
+} from '@mui/material';
+import { makeStyles, useTheme } from '@mui/styles';
 import { LaxIdentifier } from 'link-redux';
 import React from 'react';
 

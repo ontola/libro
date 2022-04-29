@@ -1,5 +1,5 @@
-import { useMediaQuery } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import rdf, {
   Node,
   isNamedNode,

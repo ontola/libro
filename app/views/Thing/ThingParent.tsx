@@ -1,4 +1,4 @@
-import { ChevronRight } from '@material-ui/icons';
+import { ChevronRight } from '@mui/icons-material';
 import * as schema from '@ontologies/schema';
 import {
   FC,

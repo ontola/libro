@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/styles';
+import { createStyles } from '@mui/styles';
 
 import { cardContentClassIdentifier } from '../../components/Card/CardContent';
 import { headingCID } from '../../components/Heading';

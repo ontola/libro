@@ -1,8 +1,10 @@
-import { Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button/Button';
-import Grid from '@material-ui/core/Grid';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Button,
+  Grid,
+  Typography,
+} from '@mui/material';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,

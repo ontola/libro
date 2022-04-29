@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import * as as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import { SomeNode } from 'link-lib/dist-types/types';

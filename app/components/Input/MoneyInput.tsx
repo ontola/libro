@@ -2,7 +2,7 @@ import {
   FormControl,
   Input,
   InputAdornment,
-} from '@material-ui/core';
+} from '@mui/material';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { useFields } from 'link-redux';

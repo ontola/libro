@@ -1,4 +1,4 @@
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import rdfFactory, { SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';

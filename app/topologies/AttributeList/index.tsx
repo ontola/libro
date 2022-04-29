@@ -1,5 +1,8 @@
-import { createStyles } from '@material-ui/core';
-import { WithStyles, withStyles } from '@material-ui/styles';
+import {
+  WithStyles,
+  createStyles,
+  withStyles,
+} from '@mui/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';

@@ -1,4 +1,4 @@
-import { WithStyles, withStyles } from '@material-ui/styles';
+import { WithStyles, withStyles } from '@mui/styles';
 import { TopologyProvider } from 'link-redux';
 
 import { contentDetailsTopology } from '../../topologies';

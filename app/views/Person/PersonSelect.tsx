@@ -1,4 +1,4 @@
-import { InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
 import { NamedNode, isNamedNode } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
 import * as rdfx from '@ontologies/rdf';

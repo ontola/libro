@@ -1,7 +1,10 @@
-import MUIContainer from '@material-ui/core/Container';
-import { WithStyles } from '@material-ui/core/styles';
-import { createStyles, withStyles } from '@material-ui/styles';
 import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
+import MUIContainer from '@mui/material/Container';
+import {
+  WithStyles,
+  createStyles,
+  withStyles,
+} from '@mui/styles';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';

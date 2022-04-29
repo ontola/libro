@@ -1,7 +1,9 @@
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MaterialMenuItem from '@material-ui/core/MenuItem';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import {
+  ListItemIcon,
+  ListItemText,
+  MenuItem as MaterialMenuItem,
+} from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { SomeNode } from 'link-lib';
 import React, {
   HTMLAttributes,

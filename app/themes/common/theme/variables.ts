@@ -2,7 +2,7 @@ import {
   alpha,
   darken,
   lighten,
-} from '@material-ui/core/styles';
+} from '@mui/material/styles';
 
 import { overrides } from './overrides';
 import { SCREENSIZE } from './screensize';

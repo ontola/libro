@@ -1,8 +1,10 @@
-import Step from '@material-ui/core/Step';
-import StepConnector from '@material-ui/core/StepConnector';
-import StepLabel from '@material-ui/core/StepLabel';
-import Stepper from '@material-ui/core/Stepper';
-import { Flag } from '@material-ui/icons';
+import {
+  Step,
+  StepConnector,
+  StepLabel,
+  Stepper,
+} from '@mui/material';
+import { Flag } from '@mui/icons-material';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import { LaxNode } from 'link-redux';

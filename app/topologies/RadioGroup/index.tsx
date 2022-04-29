@@ -1,11 +1,16 @@
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import MaterialRadioGroup from '@material-ui/core/RadioGroup';
-import { darken } from '@material-ui/core/styles';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { createStyles, withStyles } from '@material-ui/styles';
-import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
+import {
+  FormControlLabel,
+  RadioGroup as MaterialRadioGroup,
+  Radio,
+} from '@mui/material';
+import { darken } from '@mui/material/styles';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import {
+  createStyles,
+  withStyles,
+} from '@mui/styles';
+import { Classes } from '@mui/styles/mergeClasses/mergeClasses';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import { Resource } from 'link-redux';

@@ -1,5 +1,5 @@
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSpring } from '@react-spring/web';
 import { ReactDOMAttributes, useDrag } from '@use-gesture/react';
 import React from 'react';

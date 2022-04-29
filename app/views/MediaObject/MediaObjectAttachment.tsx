@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';

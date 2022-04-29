@@ -1,6 +1,6 @@
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/core/styles';
-import { ClassNameMap } from '@material-ui/styles/withStyles/withStyles';
+import LinearProgress from '@mui/material/LinearProgress';
+import makeStyles from '@mui/styles/makeStyles';
+import { ClassNameMap } from '@mui/styles/withStyles/withStyles';
 import clsx from 'clsx';
 import React, { ReactNode } from 'react';
 

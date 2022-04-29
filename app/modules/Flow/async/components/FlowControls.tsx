@@ -1,8 +1,10 @@
-import Button from '@material-ui/core/Button';
-import Fade from '@material-ui/core/Fade';
-import IconButton from '@material-ui/core/IconButton';
-import { ArrowBack, ArrowForward } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Button,
+  Fade,
+  IconButton,
+} from '@mui/material';
+import { ArrowBack, ArrowForward } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { dig, useValues } from 'link-redux';
 import React from 'react';

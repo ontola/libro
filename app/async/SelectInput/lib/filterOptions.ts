@@ -1,4 +1,4 @@
-import { FilterOptionsState } from '@material-ui/lab';
+import { FilterOptionsState } from '@mui/material/useAutocomplete';
 import { SomeTerm } from '@ontologies/core';
 
 const DIACRITICS_MATCH = /[\u0300-\u036f]/g;

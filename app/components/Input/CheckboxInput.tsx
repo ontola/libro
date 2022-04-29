@@ -1,6 +1,5 @@
-import { FormControlLabel } from '@material-ui/core';
-import CheckBox from '@material-ui/core/Checkbox';
-import makeStyles from '@material-ui/styles/makeStyles';
+import { Checkbox, FormControlLabel } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
@@ -15,7 +14,7 @@ import { InputComponentProps } from '../FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputCheckboxCID,
-  useFormStyles, 
+  useFormStyles,
 } from '../FormField/UseFormStyles';
 
 export const useCheckboxStyles = makeStyles<LibroTheme>((theme) => ({
@@ -74,7 +73,7 @@ const CheckboxInput = ({
     <div className={checkBoxClassName}>
       <FormControlLabel
         checked={inputValue.value === 'true'}
-        control={<CheckBox color="primary" />}
+        control={<Checkbox color="primary" />}
         label={label}
         name={name}
         onChange={handleChange}

@@ -1,5 +1,5 @@
-import { CircularProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { CircularProgress } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';

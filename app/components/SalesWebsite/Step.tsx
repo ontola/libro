@@ -1,5 +1,6 @@
-import { Grid, Typography } from '@material-ui/core';
-import { lighten, makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@mui/material';
+import { lighten } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import React from 'react';
 

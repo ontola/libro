@@ -1,9 +1,9 @@
-import { Color, Theme } from '@material-ui/core';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
-import { CSSProperties } from '@material-ui/styles';
+import { Color, Theme } from '@mui/material';
+import { Breakpoint } from '@mui/material/styles';
+import { CSSProperties } from '@mui/styles';
 import React from 'react';
 
-declare module '@material-ui/core/index' {
+declare module '@mui/material/index' {
   interface Color {
     xDark: string;
     dark: string;
@@ -26,7 +26,7 @@ interface MapIcon {
   text: string,
 }
 
-declare module '@material-ui/core/styles/createTypography' {
+declare module '@mui/material/styles/createTypography' {
   interface FontStyle {
     fontSizes: {
       [K in Size]: string;
@@ -34,7 +34,7 @@ declare module '@material-ui/core/styles/createTypography' {
   }
 }
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   interface LinkOptions {
     header: string;
     text: string;
@@ -50,7 +50,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core/styles/createTheme' {
+declare module '@mui/material/styles/createTheme' {
   interface Theme {
     appBar: AppBarThemeOpts;
     boxShadow: {

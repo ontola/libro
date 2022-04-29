@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
-import MUITabs from '@material-ui/core/Tabs';
+import makeStyles from '@mui/styles/makeStyles';
+import MUITabs from '@mui/material/Tabs';
 import { History, Location } from 'history';
 import React from 'react';
 

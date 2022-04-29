@@ -1,3 +1,5 @@
+import { makeStyles } from '@mui/styles';
+import * as schema from '@ontologies/schema';
 import {
   FC,
   Resource,
@@ -6,8 +8,6 @@ import {
   useStrings,
 } from 'link-redux';
 import React from 'react';
-import * as schema from '@ontologies/schema';
-import { makeStyles } from '@material-ui/styles';
 
 import sales from '../../../ontology/sales';
 import { allTopologiesExcept, showcaseTopology } from '../../../topologies';

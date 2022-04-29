@@ -1,5 +1,5 @@
-import CardMedia from '@material-ui/core/CardMedia';
-import { makeStyles } from '@material-ui/styles';
+import CardMedia from '@mui/material/CardMedia';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 
 export interface SwipeCardMediaProps {
