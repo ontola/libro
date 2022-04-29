@@ -97,7 +97,7 @@ export const Parallax = ({
           container
           alignItems="center"
           direction="row"
-          justify="center"
+          justifyContent="center"
         >
           <Grid
             item

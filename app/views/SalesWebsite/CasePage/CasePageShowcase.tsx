@@ -88,7 +88,7 @@ const CasePageShowcase: FC<CasePageShowcaseProps> = (props) => {
           container
           className={classes.container}
           direction="column"
-          justify="flex-start"
+          justifyContent="flex-start"
         >
           <Typography
             className={classes.themeIndicator}

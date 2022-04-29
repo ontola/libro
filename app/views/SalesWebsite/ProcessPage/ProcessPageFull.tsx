@@ -119,7 +119,7 @@ const ProcessPageFull: FC = () => {
           alignItems="center"
           className={classes.container}
           direction="row"
-          justify="center"
+          justifyContent="center"
         >
           <Grid
             item

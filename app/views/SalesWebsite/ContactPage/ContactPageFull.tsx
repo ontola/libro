@@ -110,7 +110,7 @@ const PricingPageFull: FC = () => {
         <Grid
           container
           direction="row"
-          justify="space-around"
+          justifyContent="space-around"
           wrap="wrap"
         >
           <Grid
@@ -125,7 +125,7 @@ const PricingPageFull: FC = () => {
             <Grid
               container
               direction="column"
-              justify="space-between"
+              justifyContent="space-between"
               wrap="nowrap"
             >
               <Grid item>

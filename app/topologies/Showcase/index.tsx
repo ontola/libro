@@ -27,7 +27,7 @@ class Showcase extends Topology<ShowcaseProps> {
         container
         className={this.props.className}
         direction="row"
-        justify="center"
+        justifyContent="center"
         spacing={this.props.spacing}
       >
         {children}

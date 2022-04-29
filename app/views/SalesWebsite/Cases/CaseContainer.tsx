@@ -87,7 +87,7 @@ const CaseContainer: FC<CaseContainerProps> = ({ noBackdrop }) => {
         container
         alignItems="center"
         direction="column"
-        justify="center"
+        justifyContent="center"
       >
         <Typography variant="h2">
           {name.value}

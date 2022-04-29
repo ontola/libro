@@ -132,7 +132,7 @@ export const HeaderProductPages: React.FC<HeaderProductPagesProps> = ({
           container
           alignItems="center"
           direction="row"
-          justify="center"
+          justifyContent="center"
         >
           <Grid
             item

@@ -53,7 +53,7 @@ const Feature: FC = () => {
       container
       className={classes.container}
       direction="column"
-      justify="flex-start"
+      justifyContent="flex-start"
     >
       <Image linkedProp={image} />
       <Typography
