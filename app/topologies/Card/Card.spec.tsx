@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 
 import CardActions from '../../components/Card/CardActions';
@@ -17,11 +17,13 @@ import Card from './';
 describe('Card component', () => {
   it('Card should render', () => {
     const { getByTestId } = render(
-      <ThemeProvider theme={themes.common({})}>
-        <Card>
-          Content
-        </Card>
-      </ThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={themes.common({})}>
+          <Card>
+            Content
+          </Card>
+        </ThemeProvider>
+      </StyledEngineProvider>,
     );
     expect(getByTestId('card')).toBeVisible();
     expect(getByTestId('card')).toHaveTextContent('Content');
@@ -29,11 +31,13 @@ describe('Card component', () => {
 
   it('CardActions should render', () => {
     const { getByTestId } = render(
-      <ThemeProvider theme={themes.common({})}>
-        <CardActions>
-          Content
-        </CardActions>
-      </ThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={themes.common({})}>
+          <CardActions>
+            Content
+          </CardActions>
+        </ThemeProvider>
+      </StyledEngineProvider>,
     );
 
     expect(getByTestId('card-actions')).toBeVisible();
@@ -41,11 +45,13 @@ describe('Card component', () => {
 
   it('CardContent should render', () => {
     const { getByTestId } = render(
-      <ThemeProvider theme={themes.common({})}>
-        <CardContent>
-          Content
-        </CardContent>
-      </ThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={themes.common({})}>
+          <CardContent>
+            Content
+          </CardContent>
+        </ThemeProvider>
+      </StyledEngineProvider>,
     );
 
     expect(getByTestId('card-content')).toBeVisible();
@@ -54,11 +60,13 @@ describe('Card component', () => {
 
   it('CardRow should render', () => {
     const { getByTestId } = render(
-      <ThemeProvider theme={themes.common({})}>
-        <CardRow backdrop>
-          Content
-        </CardRow>
-      </ThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={themes.common({})}>
+          <CardRow backdrop>
+            Content
+          </CardRow>
+        </ThemeProvider>
+      </StyledEngineProvider>,
     );
 
     expect(getByTestId('card-row')).toBeVisible();

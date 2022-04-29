@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import {
   act,
   fireEvent,
@@ -23,12 +23,14 @@ describe('Button', () => {
   const onClick = jest.fn();
 
   const renderComp = (props: Partial<React.PropsWithChildren<ButtonProps>> = {}) => render((
-    <ThemeProvider theme={themes.common({})}>
-      <Button
-        ariaLabel={aria}
-        {...props}
-      />
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={themes.common({})}>
+        <Button
+          ariaLabel={aria}
+          {...props}
+        />
+      </ThemeProvider>
+    </StyledEngineProvider>
   ));
 
   it('should render', () => {

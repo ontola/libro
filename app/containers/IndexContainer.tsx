@@ -1,5 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/de';
 import 'dayjs/locale/en';
@@ -122,12 +122,14 @@ const IndexContainer = ({
         <omniformContext.Provider value={omniformStateMemo}>
           <highlightContext.Provider value={highlightStateMemo}>
             <UpdateLRSIntl>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Router>
-                  <AppFrame />
-                </Router>
-              </ThemeProvider>
+              <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  <Router>
+                    <AppFrame />
+                  </Router>
+                </ThemeProvider>
+              </StyledEngineProvider>
             </UpdateLRSIntl>
           </highlightContext.Provider>
         </omniformContext.Provider>

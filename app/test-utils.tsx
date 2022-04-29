@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { Node, QuadPosition } from '@ontologies/core';
 import {
   Matcher,
@@ -113,9 +113,11 @@ const wrapProviders = ({
                     locale="en"
                     messages={englishMessages}
                   >
-                    <ThemeProvider theme={themes.common({})}>
-                      {routerOrChildren}
-                    </ThemeProvider>
+                    <StyledEngineProvider injectFirst>
+                      <ThemeProvider theme={themes.common({})}>
+                        {routerOrChildren}
+                      </ThemeProvider>
+                    </StyledEngineProvider>
                   </IntlProvider>
                 </highlightContext.Provider>
               </omniformContext.Provider>
