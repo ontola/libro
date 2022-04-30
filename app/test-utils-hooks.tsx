@@ -19,7 +19,7 @@ export async function createHookWrapper<TProps>(data: DataObject | DataObject[])
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
   const slice = quadruplesToDataSlice(graph.quads);
-  const { lrs } = await generateLRS(manifest, slice);
+  const { lrs } = await generateLRS(manifest, slice, {});
   const wrapper: React.ComponentType<React.PropsWithChildren<TProps>> = ({ children }) => (
     <RenderStoreProvider value={lrs}>
       {children}

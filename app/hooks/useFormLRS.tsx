@@ -21,6 +21,7 @@ const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) =>  {
   const { lrs: next } = await generateLRS(
     manifest,
     undefined,
+    window.EMP_SYMBOL_MAP,
     { middleware: false },
   );
 

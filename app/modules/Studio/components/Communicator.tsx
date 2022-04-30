@@ -52,8 +52,8 @@ const Communicator = (): null => {
 
     const updateContext = async () => {
       try {
-        const slice = seedToSlice(seed);
-        const next = await generateLRS(message.manifest, slice);
+        const slice = seedToSlice(seed, message.manifest.ontola.website_iri, window.EMP_SYMBOL_MAP);
+        const next = await generateLRS(message.manifest, slice, window.EMP_SYMBOL_MAP);
         const { lrs } = next;
         const records = Object.keys(slice);
 

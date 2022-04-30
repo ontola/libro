@@ -6,6 +6,7 @@ import Button, { ButtonVariant } from '../../components/Button';
 import { ERROR_CLASSES } from '../../helpers/metaData';
 import useErrorReload from '../../hooks/useErrorReload';
 import {
+  appMenuTopology,
   attributeListTopology,
   cardFixedTopology,
   cardFloatTopology,
@@ -55,6 +56,7 @@ const ErrorButtonInline: FC<ErrorComponentProps> = ({
 ErrorButtonInline.type = ERROR_CLASSES;
 
 ErrorButtonInline.topology = [
+  appMenuTopology,
   attributeListTopology,
   cardFixedTopology,
   cardFloatTopology,

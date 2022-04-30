@@ -40,7 +40,7 @@ async function chargeLRS(id: Node | string, obj: Quadruple[], store: Store | und
     lrs,
     history,
     serviceWorkerCommunicator,
-  } = await generateLRS(testManifest);
+  } = await generateLRS(testManifest, {}, {});
   await lrs.processDelta(obj, true);
   lrs.store.flush();
 
