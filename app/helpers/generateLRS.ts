@@ -70,6 +70,7 @@ const history = __CLIENT__ && !__TEST__
 export default async function generateLRS(
   manifest: WebManifest,
   initialData: Record<string, DataRecord> = {},
+  mapping: Record<string, string>,
   options: GenerateLRSOpts = defaultOpts,
 ): Promise<LRSBundle> {
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
@@ -97,7 +98,7 @@ export default async function generateLRS(
 
   lrs.deltaProcessors.unshift(arguDeltaProcessor(lrs));
 
-  lrs.api.registerTransformer(empndjson.transformer(lrs, manifest.ontola.website_iri), empndjson.mediaTypes, empndjson.acceptValue);
+  lrs.api.registerTransformer(empndjson.transformer(lrs, manifest.ontola.website_iri, mapping), empndjson.mediaTypes, empndjson.acceptValue);
   lrs.api.registerTransformer(hexjson.transformer(lrs), hexjson.mediaTypes, hexjson.acceptValue);
   transformers(lrs).forEach((t) =>
     lrs.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),

@@ -4,7 +4,7 @@ import { seedToSlice } from '../seed';
 
 describe('seed', () => {
   it('handles empty seed', () => {
-    const slice = seedToSlice(JSON.stringify({}));
+    const slice = seedToSlice(JSON.stringify({}), undefined, {});
 
     expect(slice).toEqual({});
   });
@@ -17,7 +17,7 @@ describe('seed', () => {
           v: '1',
         },
       },
-    }));
+    }), undefined, {});
 
     expect(slice).toEqual({
       1: {
@@ -34,7 +34,7 @@ describe('seed', () => {
           v: '_:abc',
         },
       },
-    }));
+    }), undefined, {});
 
     expect(slice).toEqual({
       '_:abc': {
@@ -53,7 +53,7 @@ describe('seed', () => {
       },
     });
     const websiteIRI = 'https://example.com';
-    const slice = seedToSlice(data, websiteIRI);
+    const slice = seedToSlice(data, websiteIRI, {});
 
     expect(slice).toEqual({
       'https://example.com/1': {
@@ -74,7 +74,7 @@ describe('seed', () => {
           v: 'name',
         },
       },
-    }));
+    }), undefined, {});
 
     expect(slice).toEqual({
       1: {
@@ -85,6 +85,9 @@ describe('seed', () => {
   });
 
   it('handles shortened field names', () => {
+    const symbolMap = {
+      'attachments': 'https://argu.co/ns/core#attachments',
+    };
     const slice = seedToSlice(JSON.stringify({
       1: {
         _id: {
@@ -96,7 +99,7 @@ describe('seed', () => {
           v: 'name',
         },
       },
-    }));
+    }), undefined, symbolMap);
 
     expect(slice).toEqual({
       1: {
@@ -126,7 +129,7 @@ describe('seed', () => {
           },
         ],
       },
-    }));
+    }), undefined, {});
 
     expect(slice).toEqual({
       1: {

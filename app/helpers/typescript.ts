@@ -15,6 +15,7 @@ declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION__?: any;
     INITIAL__DATA?: string;
+    EMP_SYMBOL_MAP: Record<string, string>;
     WEBSITE_MANIFEST?: WebManifest;
   }
 }

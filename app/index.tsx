@@ -34,7 +34,11 @@ const getWebsiteManifest = (): WebManifest => {
   const {
     history,
     lrs,
-  } = await generateLRS(manifest, seedToSlice(window.INITIAL__DATA, manifest.ontola.website_iri));
+  } = await generateLRS(
+    manifest,
+    seedToSlice(window.INITIAL__DATA, manifest.ontola.website_iri, window.EMP_SYMBOL_MAP),
+    window.EMP_SYMBOL_MAP,
+  );
   patchRequestInitGenerator(lrs);
 
   if (document.documentElement.lang) {

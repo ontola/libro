@@ -147,7 +147,7 @@ export const renderCurrentResource = async (project: ProjectContext): Promise<Re
   const source = projectToSource(project);
   const [, data] = parseSource(source, project.websiteIRI);
   const manifest = JSON.parse(project.manifest.value);
-  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data));
+  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
   const appContext = projectAppContext(project);
   const websiteCtxValue: WebsiteCtx = projectWebsiteContext(appContext.website);
   const history = createMemoryHistory();
@@ -168,7 +168,7 @@ export const renderProject = async (project: ProjectContext): Promise<Array<Rend
   const source = projectToSource(project);
   const [nodes, data] = parseSource(source, project.websiteIRI);
   const manifest = JSON.parse(project.manifest.value);
-  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data));
+  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
   const history = createMemoryHistory();
   const sitemap = filterNodes(nodes);
 
