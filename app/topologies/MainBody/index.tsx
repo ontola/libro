@@ -21,9 +21,10 @@ const styles = (theme: LibroTheme) => createStyles({
   },
 });
 
-type PropType = WithStyles<typeof styles>;
-class MainBody extends TopologyProvider<PropType> {
-  constructor(props: PropType) {
+type MainBodyProps = React.PropsWithChildren<WithStyles<typeof styles>>;
+
+class MainBody extends TopologyProvider<MainBodyProps> {
+  constructor(props: MainBodyProps) {
     super(props);
     this.topology = mainBodyTopology;
   }

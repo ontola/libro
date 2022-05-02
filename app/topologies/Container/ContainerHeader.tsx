@@ -1,5 +1,4 @@
-import withStyles from '@mui/styles/withStyles';
-import { ClassNameMap } from '@mui/styles/withStyles/withStyles';
+import { WithStyles, withStyles } from '@mui/styles';
 import React from 'react';
 
 import { headingCID } from '../../components/Heading';
@@ -8,13 +7,6 @@ import { containerHeaderTopology } from '../../topologies';
 import Topology from '../Topology';
 
 import ContainerFloat from './ContainerFloat';
-
-export interface ContainerHeaderProps {
-  /** The children float to the left */
-  children: React.ReactNode,
-  /** The float content floats to the right */
-  float: React.ReactNode,
-}
 
 const HEADER_GAP = 4;
 
@@ -36,9 +28,11 @@ const styles = (theme: LibroTheme) => ({
   },
 });
 
-export interface ContainerHeaderProps {
+interface ContainerHeaderProps extends WithStyles<typeof styles> {
+  /** The children float to the left */
   children: React.ReactNode;
-  classes: ClassNameMap;
+  /** The float content floats to the right */
+  float: React.ReactNode,
 }
 
 /**

@@ -7,10 +7,10 @@ import { darken } from '@mui/material/styles';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import {
+  WithStyles,
   createStyles,
   withStyles,
 } from '@mui/styles';
-import { Classes } from '@mui/styles/mergeClasses/mergeClasses';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import { Resource } from 'link-redux';
@@ -24,20 +24,9 @@ import { LibroTheme } from '../../themes/themes';
 import { radioGroupTopology } from '../../topologies';
 import Topology from '../Topology';
 
-interface PropTypes {
-  classes: Classes
-  loading?: boolean;
-  name?: string;
-  onChange: EventHandler<any>;
-  options: SomeTerm[];
-  required?: boolean;
-  theme?: FormTheme;
-  value?: InputValue;
-}
-
 const DARKEN_COEFFICIENT = 0.2;
 
-const radioGroupStyles = createStyles((theme: LibroTheme) => ({
+const radioGroupStyles = (theme: LibroTheme) => createStyles( {
   '@keyframes flow-radio-clicked': {
     'from': {
       transform: 'scale(1)',
@@ -77,10 +66,20 @@ const radioGroupStyles = createStyles((theme: LibroTheme) => ({
     overflowX: 'auto',
     paddingLeft: '1rem',
   },
-}));
+});
 
-class RadioGroup extends Topology<PropTypes> {
-  constructor(props: PropTypes) {
+interface RadioGroupProps extends WithStyles<typeof radioGroupStyles> {
+  loading?: boolean;
+  name?: string;
+  onChange: EventHandler<any>;
+  options: SomeTerm[];
+  required?: boolean;
+  theme?: FormTheme;
+  value?: InputValue;
+}
+
+class RadioGroup extends Topology<RadioGroupProps> {
+  constructor(props: RadioGroupProps) {
     super(props);
 
     this.topology = radioGroupTopology;

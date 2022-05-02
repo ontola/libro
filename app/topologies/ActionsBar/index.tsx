@@ -5,15 +5,10 @@ import {
 } from '@mui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { loadingButtonCID } from '../../components/Loading';
 import { actionsBarTopology } from '../../topologies';
-
-type PropTypes = WithStyles<typeof styles> & {
-  small?: boolean;
-};
 
 const styles = createStyles({
   actionsBar: {
@@ -38,8 +33,12 @@ const styles = createStyles({
   },
 });
 
-class ActionsBar extends TopologyProvider<PropTypes> {
-  constructor(props: PropTypes) {
+interface ActionsBarProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
+  small?: boolean;
+}
+
+class ActionsBar extends TopologyProvider<ActionsBarProps> {
+  constructor(props: ActionsBarProps) {
     super(props);
 
     this.className = 'ActionsBar';

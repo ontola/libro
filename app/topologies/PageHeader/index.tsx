@@ -25,13 +25,6 @@ export { default as PageHeaderText } from './PageHeaderText';
 
 const defaultPercentage = 50;
 
-type PageHeaderProps = WithStyles<typeof styles> & {
-  // URL to the background image
-  background?: string;
-  // Number between 0 and 100
-  positionY?: number;
-};
-
 const styles = (theme: LibroTheme) => createStyles({
   pageHeader: {
     '& .MuiContainer-root': {
@@ -61,6 +54,13 @@ const styles = (theme: LibroTheme) => createStyles({
     },
   },
 });
+
+interface PageHeaderProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
+  // URL to the background image
+  background?: string;
+  // Number between 0 and 100
+  positionY?: number;
+}
 
 /**
  * Page filler with title and nav items at the top of a page

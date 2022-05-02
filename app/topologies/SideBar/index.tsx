@@ -1,4 +1,4 @@
-import { ClassNameMap, withStyles } from '@mui/styles';
+import { WithStyles, withStyles } from '@mui/styles';
 import React from 'react';
 
 import { sideBarTopology } from '../../topologies';
@@ -10,9 +10,7 @@ const styles = {
   },
 };
 
-export interface SideBarProps {
-  classes?: ClassNameMap;
-}
+type SideBarProps = WithStyles<typeof styles>;
 
 class SideBar extends Topology<SideBarProps> {
   constructor(props: SideBarProps) {

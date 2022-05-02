@@ -4,6 +4,7 @@ import {
   withStyles,
 } from '@mui/styles';
 import clsx from 'clsx';
+import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { cardTopology } from '../../topologies';
@@ -15,15 +16,6 @@ import {
   shineStyles,
 } from './sharedCardStyles';
 
-interface CardProps {
-  about?: string;
-  className?: string;
-  fixed?: boolean;
-  onClick?: any;
-  shine?: boolean;
-  warn?: boolean;
-}
-
 type CardElementProps = {
   'data-testid': 'card';
   onClick: any;
@@ -32,7 +24,6 @@ type CardElementProps = {
 const styles = (theme: LibroTheme) => ({
   ...createStyles({
     warn: {
-      // @ts-ignore
       border: `2px solid ${theme.palette.red.dark}`,
     },
   }),
@@ -40,20 +31,27 @@ const styles = (theme: LibroTheme) => ({
   ...shineStyles,
 });
 
-type PropType = CardProps & WithStyles<typeof styles>;
+interface CardProps extends React.PropsWithChildren<WithStyles<typeof styles>>{
+  about?: string;
+  className?: string;
+  fixed?: boolean;
+  onClick?: any;
+  shine?: boolean;
+  warn?: boolean;
+}
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class Card extends Topology<PropType> {
+class Card extends Topology<CardProps> {
   public static defaultProps = {
     fixed: false,
     shine: false,
     warn: false,
   };
 
-  constructor(props: PropType) {
+  constructor(props: CardProps) {
     super(props);
 
     this.topology = cardTopology;

@@ -4,6 +4,7 @@ import {
   withStyles,
 } from '@mui/styles';
 import clsx from 'clsx';
+import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { cardMicroRowTopology } from '../../topologies';
@@ -12,10 +13,6 @@ import Topology from '../Topology';
 import { collapseTextToggleCID, shineStyles } from './sharedCardStyles';
 
 export const cardMicroRowClassIdentifier = 'CID-CardMicroRow';
-
-export interface CardMicroRowProps {
-  highlighted?: boolean;
-}
 
 const styles = (theme: LibroTheme) => ({
   ...createStyles({
@@ -36,14 +33,16 @@ const styles = (theme: LibroTheme) => ({
   ...shineStyles,
 });
 
-type PropType = CardMicroRowProps & WithStyles<typeof styles>;
+export interface CardMicroRowProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
+  highlighted?: boolean;
+}
 
 /**
  * Used to divide a card in multiple rows
  * @returns {component} Component
  */
-class CardMicroRow extends Topology<PropType> {
-  constructor(props: PropType) {
+class CardMicroRow extends Topology<CardMicroRowProps> {
+  constructor(props: CardMicroRowProps) {
     super(props);
 
     this.topology = cardMicroRowTopology;

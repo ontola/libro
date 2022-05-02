@@ -1,4 +1,3 @@
-import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
 import MUIContainer from '@mui/material/Container';
 import {
   WithStyles,
@@ -11,12 +10,7 @@ import { LibroTheme } from '../../themes/themes';
 import { parentTopology } from '../../topologies';
 import Topology from '../Topology';
 
-export interface BreadcrumbsBarProps {
-  showArrow?: boolean;
-  classes?: Classes;
-}
-
-const styles = createStyles((theme: LibroTheme) => ({
+const styles = (theme: LibroTheme) => createStyles({
   breadcrumbsBar: {
     backgroundColor: theme.palette.grey.xxLight,
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -32,16 +26,18 @@ const styles = createStyles((theme: LibroTheme) => ({
     display: 'flex',
     gap: '.3rem',
   },
-}));
+});
 
-type PropTypes = BreadcrumbsBarProps & WithStyles<typeof styles>;
+interface BreadcrumbsBarProps extends React.PropsWithChildren<WithStyles<typeof styles>>{
+  showArrow?: boolean;
+}
 
 /**
  * Used to divide a card in multiple rows
  * @returns {component} Component
  */
-class BreadcrumbsBar extends Topology<PropTypes> {
-  public constructor(props: PropTypes) {
+class BreadcrumbsBar extends Topology<BreadcrumbsBarProps> {
+  public constructor(props: BreadcrumbsBarProps) {
     super(props);
 
     this.topology = parentTopology;

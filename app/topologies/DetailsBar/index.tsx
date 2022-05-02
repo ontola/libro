@@ -1,5 +1,4 @@
-import { withStyles } from '@mui/styles';
-import { Classes } from '@mui/styles/mergeClasses/mergeClasses';
+import { WithStyles, withStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
@@ -10,19 +9,18 @@ import { CardFloat } from '../Card';
 
 import DetailsBarStyles from './DetailsBarStyles';
 
-export interface DetailsBarProps {
+export enum DetailsBarVariant {
+  Default = 'default',
+  Wide = 'wide',
+}
+
+interface DetailsBarProps extends React.PropsWithChildren<WithStyles<typeof DetailsBarStyles>>{
   borderBottom: boolean;
-  classes: Classes;
   className?: string;
   layoutOnly?: boolean;
   right?: ReactNode;
   scrollable?: boolean;
   variant?: DetailsBarVariant;
-}
-
-export enum DetailsBarVariant {
-  Default = 'default',
-  Wide = 'wide',
 }
 
 class DetailsBar extends TopologyProvider<DetailsBarProps> {

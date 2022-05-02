@@ -1,5 +1,6 @@
 import { WithStyles, withStyles } from '@mui/styles';
 import clsx from 'clsx';
+import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology } from '../../topologies';
@@ -12,27 +13,25 @@ import {
   cardStyles,
 } from './sharedCardStyles';
 
-export interface CardMainProps {
-  fixed?: boolean;
-}
-
 const styles = (theme: LibroTheme) => ({
   ...cardStyles(theme),
   ...cardFixedStyles(theme),
 });
 
-type PropType = CardMainProps & WithStyles<typeof styles>;
+interface CardMainProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
+  fixed?: boolean;
+}
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class CardMain extends Topology<PropType> {
+class CardMain extends Topology<CardMainProps> {
   public static defaultProps = {
     fixed: false,
   };
 
-  constructor(props: PropType) {
+  constructor(props: CardMainProps) {
     super(props);
 
     this.topology = cardMainTopology;

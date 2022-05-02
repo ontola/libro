@@ -4,6 +4,7 @@ import {
   withStyles,
 } from '@mui/styles';
 import clsx from 'clsx';
+import React from 'react';
 
 import { listTopology } from '../../topologies';
 import Topology from '../Topology';
@@ -12,7 +13,7 @@ export enum ListDirection {
   Column = 'column',
 }
 
-interface ListProps extends WithStyles<typeof styles> {
+interface ListProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
   direction?: ListDirection;
   overflow?: boolean;
   wrap?: boolean;

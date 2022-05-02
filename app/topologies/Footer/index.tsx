@@ -11,11 +11,6 @@ import { IndexablePalette, LibroTheme } from '../../themes/themes';
 import { footerTopology } from '../../topologies';
 import Topology from '../Topology';
 
-type FooterProps = WithStyles<typeof styles> & {
-  legacy?: boolean;
-  resources?: Node[];
-};
-
 enum GridWidth {
   third = 4,
   half = 6,
@@ -54,6 +49,11 @@ const styles = (theme: LibroTheme) => {
     },
   });
 };
+
+interface FooterProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
+  legacy?: boolean;
+  resources?: Node[];
+}
 
 class Footer extends Topology<FooterProps> {
   constructor(props: FooterProps) {

@@ -4,6 +4,7 @@ import {
   withStyles,
 } from '@mui/styles';
 import clsx from 'clsx';
+import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { cardRowTopology } from '../../topologies';
@@ -13,12 +14,6 @@ import { cardClassIdentifier, collapseTextToggleCID } from './sharedCardStyles';
 
 export const cardRowClassIdentifier = 'CID-CardRow';
 export const cardRowBackdropClassIdentifier = 'CID-CardRowBackdrop';
-
-export interface CardRowProps {
-  backdrop?: boolean;
-  borderTop?: boolean;
-  showArrow?: boolean;
-}
 
 const styles = (theme: LibroTheme) => createStyles({
   backdrop: {
@@ -44,14 +39,18 @@ const styles = (theme: LibroTheme) => createStyles({
   },
 });
 
-type PropType = CardRowProps & WithStyles<typeof styles>;
+interface CardRowProps extends React.PropsWithChildren<WithStyles<typeof styles>>{
+  backdrop?: boolean;
+  borderTop?: boolean;
+  showArrow?: boolean;
+}
 
 /**
  * Used to divide a card in multiple rows
  * @returns {component} Component
  */
-class CardRow extends Topology<PropType> {
-  constructor(props: PropType) {
+class CardRow extends Topology<CardRowProps> {
+  constructor(props: CardRowProps) {
     super(props);
 
     this.topology = cardRowTopology;
