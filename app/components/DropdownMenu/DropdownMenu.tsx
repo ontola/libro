@@ -78,7 +78,7 @@ const DropdownMenu = ({
     setOpen(!open);
   };
 
-  const handleClose = (event?: React.MouseEvent<EventTarget>) => {
+  const handleClose = (event?: MouseEvent | TouchEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event?.target as HTMLElement)) {
       return;
     }

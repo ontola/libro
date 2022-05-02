@@ -56,7 +56,7 @@ export const ChapterSearch = (): JSX.Element => {
     stringify: (option: { key: string; text: string; }) => option.text,
   });
 
-  const handleChange = (_: React.ChangeEvent<Record<string, unknown>>, value: string | SearchObject) => {
+  const handleChange = (_: unknown, value: string | SearchObject) => {
     if (!value || typeof value === 'string') {
       return;
     }
@@ -65,7 +65,7 @@ export const ChapterSearch = (): JSX.Element => {
     setInputValue('');
   };
 
-  const handleInputChange = (_: React.ChangeEvent<Record<string, unknown>>, value: string) => {
+  const handleInputChange = (_: unknown, value: string) => {
     setInputValue(value);
   };
 
@@ -89,7 +89,7 @@ export const ChapterSearch = (): JSX.Element => {
       className={classNames.search}
       classes={{ listbox: classNames.listbox }}
       filterOptions={filterOptions}
-      getOptionLabel={(option) => option.key ?? ''}
+      getOptionLabel={(option) => typeof option === 'string' ? '' : option.key}
       open={!!inputValue}
       options={searchObject ?? []}
       renderInput={(params) => (

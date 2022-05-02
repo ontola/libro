@@ -105,7 +105,7 @@ const customVariables: DeprecatedThemeOptions = {
   shape: {
     borderRadius: 5,
   },
-  spacing: (factor) => `${SIX_PX * factor}rem`,
+  spacing: (factor: number) => `${SIX_PX * factor}rem`,
   typography,
 };
 

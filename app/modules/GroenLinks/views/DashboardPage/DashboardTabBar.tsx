@@ -5,7 +5,7 @@ import { Property, Resource } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
 interface DashboardTabBarProps {
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick: (e: MouseEvent<HTMLDivElement>) => void;
   subject: SomeNode;
   value: string;
 }

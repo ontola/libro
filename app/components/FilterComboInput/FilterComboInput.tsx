@@ -46,7 +46,7 @@ const useStyleOverrides = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const childProps = { color: 'primary' };
+const childProps: { color: 'primary' } = { color: 'primary' };
 
 export const FilterComboInput = ({
   activeValues,
