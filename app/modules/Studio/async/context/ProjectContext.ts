@@ -197,39 +197,39 @@ export const subResource = (project: ProjectContext): SubResource =>
   currentComponent(project).children.find((it) => it.id === project.subResource)
   ?? currentComponent(project).children[0];
 
-const resource = (r: Partial<Component>): Component => ({
-  children: [],
-  type: ResourceType.RDF,
-  value: '',
-  ...r,
-}) as Component;
+const resource = (name: ComponentName, type = ResourceType.RDF, children = [], value = '' ): Component => ({
+  children: children,
+  name: name,
+  type: type,
+  value: value,
+});
 
 const initialState: ProjectContext = {
   current: ComponentName.Manifest,
   dialog: undefined,
-  distributions: resource({
-    name: ComponentName.Distributions,
-    type: ResourceType.Distributions,
-  }),
+  distributions: resource(
+    ComponentName.Distributions,
+    ResourceType.Distributions,
+  ),
   iri: undefined,
   loading: false,
-  manifest: {
-    children: [],
-    name: ComponentName.Manifest,
-    type: ResourceType.Manifest,
-    value: '{}',
-  },
+  manifest: resource(
+    ComponentName.Manifest,
+    ResourceType.Manifest,
+    [],
+    '{}',
+  ),
   name: undefined,
   serverDataHash: 0,
-  sitemap: resource({
-    name: ComponentName.Sitemap,
-    type: ResourceType.SiteMap,
-  }),
+  sitemap: resource(
+    ComponentName.Sitemap,
+    ResourceType.SiteMap,
+  ),
   subResource: 0,
-  website: resource({
-    name: ComponentName.Website,
-    type: ResourceType.RDF,
-  }),
+  website: resource(
+    ComponentName.Website,
+    ResourceType.RDF,
+  ),
   websiteIRI: 'https://changeme.localdev/',
 };
 
