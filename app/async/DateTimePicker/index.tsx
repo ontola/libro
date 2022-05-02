@@ -1,8 +1,11 @@
-import DayJSUtils from '@date-io/dayjs';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { makeStyles } from '@material-ui/styles';
+import { LocalizationProvider, MobileDateTimePicker } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import {
+  TextField,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import rdf from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 import clsx from 'clsx';
@@ -42,8 +45,6 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
   const {
     fieldShape,
     name,
-    onBlur,
-    onFocus,
   } = React.useContext(formFieldContext);
 
   const showStatic = formTheme === FormTheme.Flow && screenIsWide;
@@ -53,9 +54,7 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
   });
 
   return (
-    <MuiPickersUtilsProvider
-      utils={DayJSUtils}
-    >
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       {fieldShape.required && (
         <HiddenRequiredInput
           name={name}
@@ -63,31 +62,27 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
         />
       )}
       <div className={className}>
-        <DateTimePicker
-          autoOk
+        <MobileDateTimePicker
+          disableMaskedInput
           showTodayButton
           ampm={false}
-          cancelLabel={intl.formatMessage(formMessages.cancelLabel)}
-          clearLabel={intl.formatMessage(formMessages.clearLabel)}
+          cancelText={intl.formatMessage(formMessages.cancelLabel)}
+          clearText={intl.formatMessage(formMessages.clearLabel)}
           clearable={!!inputValue.value}
-          format="D MMMM YYYY HH:mm"
-          id={name}
-          inputVariant="outlined"
-          invalidDateMessage={intl.formatMessage(formMessages.invalidDateMessage)}
-          invalidLabel={intl.formatMessage(formMessages.invalidLabel)}
-          margin="dense"
-          maxDateMessage={intl.formatMessage(formMessages.maxDateMessage)}
-          minDateMessage={intl.formatMessage(formMessages.minDateMessage)}
-          okLabel={intl.formatMessage(formMessages.okLabel)}
-          todayLabel={intl.formatMessage(formMessages.todayLabel)}
+          inputFormat="d MMMM yyyy HH:mm"
+          okText={intl.formatMessage(formMessages.okLabel)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              fullWidth
+            />
+          )}
+          todayText={intl.formatMessage(formMessages.todayLabel)}
           value={value}
-          variant={showStatic ? 'static' : 'dialog'}
-          onBlur={onBlur}
-          onChange={(e) => onChange(e === null ? null : rdf.literal(e.format(), xsd.dateTime))}
-          onFocus={onFocus}
+          onChange={(newDateTime) => onChange(newDateTime === null ? null : rdf.literal(newDateTime, xsd.dateTime))}
         />
       </div>
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 };
 
