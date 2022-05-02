@@ -110,15 +110,6 @@ const DropdownMenu = ({
         transition
         anchorEl={anchorRef.current}
         className={classes.popper}
-        modifiers={{
-          flip: {
-            enabled: true,
-          },
-          preventOverflow: {
-            boundariesElement: 'viewport',
-            enabled: true,
-          },
-        }}
         open={open}
         placement="bottom-end"
         role={undefined}

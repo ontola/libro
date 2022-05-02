@@ -69,7 +69,6 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
 
   return (
     <MaterialMenuItem
-      button={isButton}
       component={component}
       ref={innerRef}
       onClick={action}

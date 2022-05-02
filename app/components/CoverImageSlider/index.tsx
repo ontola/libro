@@ -8,14 +8,6 @@ import { tryParseInt } from '../../helpers/numbers';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import ontola from '../../ontology/ontola';
 
-const ThumbComponent = (props: any) => (
-  <span {...props}>
-    <span className="bar" />
-    <span className="bar" />
-    <span className="bar" />
-  </span>
-);
-
 const CENTER_Y = 50;
 
 const useStyles = makeStyles(() => ({
@@ -62,8 +54,7 @@ const useStyles = makeStyles(() => ({
       width: 0,
     },
     '& .MuiSlider-thumb': {
-      marginBottom: -13,
-      marginLeft: -12,
+      marginLeft: '1rem',
     },
     'height': 'auto',
   },
@@ -105,10 +96,8 @@ const CoverImageSlider: React.FC<PropTypes> = ({
 
   return (
     <Slider
-      ThumbComponent={ThumbComponent}
       classes={classes}
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      defaultValue={100 - (imagePositionY || 50)}
+      defaultValue={100 - (imagePositionY || CENTER_Y)}
       orientation="vertical"
       track={false}
       value={100 - value}

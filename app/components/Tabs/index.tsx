@@ -58,6 +58,7 @@ export const Tabs = ({
 
   return (
     <MUITabs
+      scrollButtons
       classes={variant === TabVariant.SubSection ? {
         flexContainer: subSectionClasses.flexContainer,
         indicator: subSectionClasses.indicator,
@@ -65,7 +66,6 @@ export const Tabs = ({
         scroller: subSectionClasses.scroller,
       } : {}}
       resource={resource}
-      scrollButtons="on"
       value={value || currentLocationControl(location).value}
       variant="scrollable"
     >

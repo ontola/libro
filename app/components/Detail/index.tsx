@@ -82,7 +82,10 @@ const Detail = ({
   const image = icon ? fa4.ns(icon) : imageUrl;
 
   return (
-    <Tooltip title={title ?? ''}>
+    <Tooltip
+      describeChild
+      title={title ?? ''}
+    >
       <Element
         className={detailClass}
         data-testid="Detail"
