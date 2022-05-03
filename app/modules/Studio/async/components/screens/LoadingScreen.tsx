@@ -36,7 +36,7 @@ const newManifest = {
 };
 
 const newDocument: ServerData = {
-  hextuples: [],
+  data: {},
   manifest: newManifest as WebManifest,
   // pages: [],
   resources: [{

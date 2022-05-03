@@ -23,8 +23,8 @@ import {
 } from '../context/ProjectContext';
 import { parseSource } from '../hooks/useGenerateLRSFromSource';
 import { filterNodes, nodesToSitemap } from '../hooks/useSitemap';
+import { toEmpJson } from '../../../../helpers/empjsonSerializer';
 
-import { toHextuples } from './hextupleSerializer';
 import { projectToSource } from './projectToSource';
 import { RenderedPage } from './types';
 
@@ -32,8 +32,8 @@ const projectToServerData = async (project: ProjectContext, prerender: boolean):
   const manifest = JSON.parse(project.manifest.value);
   const resources = project.website.children;
   const source = projectToSource(project);
-  const [nodes, data] = parseSource(source, project.websiteIRI);
-  const hextuples = toHextuples(data);
+  const [nodes, quads] = parseSource(source, project.websiteIRI);
+  const data = toEmpJson(quads);
   const sitemap = nodesToSitemap(nodes);
   let pages: RenderedPage[] = [];
 
@@ -43,7 +43,7 @@ const projectToServerData = async (project: ProjectContext, prerender: boolean):
   }
 
   return {
-    hextuples,
+    data,
     manifest,
     pages,
     resources,

@@ -1,6 +1,6 @@
-import rdf from '@ontologies/core';
+import rdf, { Quad } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
-import { DataRecord } from 'link-lib';
+import { DataRecord, normalizeType } from 'link-lib';
 
 export interface Value {
   type: 'id' | 'lid' | 'p' | 's' | 'dt' | 'b' | 'i' | 'l' | 'ls';
@@ -23,12 +23,12 @@ export interface Primitive extends Value {
   dt: string;
 }
 
-export interface String extends Value {
+export interface EmpString extends Value {
   type: 's';
   v: string;
 }
 
-export interface Boolean extends Value {
+export interface EmpBoolean extends Value {
   type: 'b';
   v: string;
 }
@@ -55,7 +55,7 @@ export interface LangString extends Value {
 }
 
 export type Identifyable = { _id: GlobalId | LocalId };
-export type Fields = Record<string, Value[]>;
+export type Fields = Record<string, Value | Value[]>;
 
 export type SeedDataRecord = Identifyable & Fields;
 
@@ -136,4 +136,28 @@ export const seedToSlice = (
 
     return nextValue;
   });
+};
+
+export const sliceToQuads = (slice: Slice): Quad[] => Object
+  .values(slice)
+  .flatMap(recordToQuads);
+
+export const recordToQuads = (record: DataRecord): Quad[] => {
+  const subject = record._id;
+
+  return Object
+    .entries(record)
+    .reduce((acc, [field, value]) => {
+      if (field === '_id') return acc;
+
+      const predicate = rdf.namedNode(field);
+      const fieldQuads = normalizeType(value)
+        .map((v) => rdf.quad(
+          subject,
+          predicate,
+          v,
+        ));
+
+      return [...acc, ...fieldQuads];
+    }, [] as Quad[]);
 };

@@ -59,6 +59,7 @@ import ontSales from '../../../ontology/sales';
 import ontSp from '../../../ontology/sp';
 import ontTeamGL from '../../../ontology/teamGL';
 import ontWdt from '../../../ontology/wdt';
+import { toEmpJson } from '../../../helpers/empjsonSerializer';
 
 const isSerializablePrimitive = (obj: any): obj is Exclude<SerializableDataTypes, DataObject> => {
   if (obj === undefined || obj === null) {
@@ -221,6 +222,13 @@ const hexJSONDataType = (object: SomeTerm): string => {
   return isNamedNode(object)
     ? ontRdfx.ns('namedNode').value
     : ontRdfx.ns('blankNode').value;
+};
+
+export const sourceToSlice = (source: string, websiteIRI: string): string => {
+  const quads = parseToGraph(source, websiteIRI, false)
+    .flatMap(([_, store]) => store.quads);
+
+  return JSON.stringify(toEmpJson(quads));
 };
 
 export const sourceToHextuples = (source: string, websiteIRI: string): string => {

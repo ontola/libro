@@ -1,7 +1,8 @@
 import React, { Dispatch } from 'react';
 
+import { Seed } from '../../../../helpers/seed';
 import { WebManifest } from '../../../../WebManifest';
-import { sourceToHextuples } from '../../lib/parseToGraph';
+import { sourceToSlice } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
@@ -9,12 +10,12 @@ import {
   Editable,
   RenderedPage,
   ResourceType,
-  SubResource, 
+  SubResource,
 } from '../lib/types';
 
 export interface ServerData {
   /** Only on write */
-  hextuples: string[][];
+  data: Seed;
   manifest: WebManifest;
   /** Only on write */
   pages?: RenderedPage[];
@@ -149,7 +150,7 @@ interface ShowDeployDialogAction {
 
 interface ImportDataAction {
   type: ProjectAction.ImportData;
-  dataType: 'hextuples' | 'source';
+  dataType: 'dataslice' | 'source';
   data: string;
 }
 
@@ -399,15 +400,15 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
     };
 
   case ProjectAction.ImportData: {
-    const data = action.dataType === 'hextuples'
+    const data = action.dataType === 'dataslice'
       ? action.data
-      : sourceToHextuples(action.data, state.websiteIRI);
+      : sourceToSlice(action.data, state.websiteIRI);
 
     return {
       ...state,
       website: {
         ...state.website,
-        children: subResourcesFromData(data, state.websiteIRI),
+        children: subResourcesFromData(data, state.websiteIRI, window.EMP_SYMBOL_MAP),
       },
     };
   }

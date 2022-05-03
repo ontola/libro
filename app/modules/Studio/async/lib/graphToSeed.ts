@@ -66,8 +66,15 @@ export const graphToSeed = (quads: Quadruple[]): Seed => {
 
     const record: SeedDataRecord = data.reduce<SeedDataRecord>((acc, q) => {
       const predicate = q[QuadPosition.predicate].value;
-      acc[predicate] ||= [];
-      acc[predicate].push(toValue(q[QuadPosition.object]));
+      const value = toValue(q[QuadPosition.object]);
+
+      if (Array.isArray(acc[predicate])) {
+        (acc[predicate] as Value[]).push(value);
+      } else if (acc[predicate] === undefined) {
+        acc[predicate] = value;
+      } else {
+        acc[predicate] ||= [(acc[predicate] as Value), value];
+      }
 
       return acc;
     }, {

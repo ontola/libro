@@ -30,7 +30,7 @@ export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => 
   const intl = useIntl();
   const classes = useStyles();
 
-  const [dataType, setDataType] = React.useState<'hextuples' | 'source'>('hextuples');
+  const [dataType, setDataType] = React.useState<'dataslice' | 'source'>('source');
   const [data, setData] = React.useState('');
 
   const handleClose = React.useCallback(() => {
@@ -70,13 +70,13 @@ export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => 
           multiple={false}
           native={false}
           value={dataType}
-          onChange={(e) => setDataType(e.target.value as 'hextuples' | 'source')}
+          onChange={(e) => setDataType(e.target.value as 'dataslice' | 'source')}
         >
-          <MenuItem value="hextuples">
-            hextuples
-          </MenuItem>
           <MenuItem value="source">
             source (Typescript)
+          </MenuItem>
+          <MenuItem value="dataslice">
+            data slice
           </MenuItem>
         </Select>
         <TextField

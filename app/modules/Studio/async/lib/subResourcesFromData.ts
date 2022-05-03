@@ -4,10 +4,13 @@ import rdf, {
   Node,
   Quad,
   isBlankNode,
+  isNamedNode,
 } from '@ontologies/core';
 import { doc } from '@rdfdev/iri';
+import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
 
-import { HexJsonParser } from '../../../../helpers/transformers/hexjson';
+import { sliceToQuads } from '../../../../helpers/seed';
+import { NdEmpJsonParser } from '../../../../helpers/transformers/empndjson';
 
 import { websiteRelativePath } from './iri';
 import { toWrappedDataDocument } from './quadsToDataObject';
@@ -38,49 +41,31 @@ export const groupLocalIdsByGlobalIds = (documents: Map<NamedNode, Set<Node>>, d
   }
 };
 
-const partitionIdsByDoc = (data: Quad[]):  Map<NamedNode, Set<Node>> => {
-  const blankNodes = new Set();
-  const documents = new Map<NamedNode, Set<Node>>();
+const documentsInSlice = (slice: DataSlice): NamedNode[] => {
+  const ids = Object
+    .values(slice)
+    .map((record) => record._id)
+    .filter<NamedNode>(isNamedNode)
+    .map(doc);
 
-  for (const quad of data) {
-    const { subject } = quad;
-
-    if (isBlankNode(subject)) {
-      blankNodes.add(subject);
-    } else {
-      const root = doc(subject);
-
-      if (!documents.has(root)) {
-        documents.set(root, new Set());
-      }
-
-      documents.get(root)!.add(subject);
-    }
-  }
-
-  return documents;
+  return Array.from(new Set(ids));
 };
 
-export const subResourcesFromData = (data: string, websiteIRI: string): SubResource[] => {
-  const parser = new HexJsonParser();
-  const quads = parser.parseString(data);
-  const documents = partitionIdsByDoc(quads);
+export const subResourcesFromData = (data: string, websiteIRI: string, mapping: Record<string, string>): SubResource[] => {
+  const parser = new NdEmpJsonParser();
+  const slice = parser.parseString(data, websiteIRI, mapping)[0];
+  const quads = sliceToQuads(slice);
+  const documents = documentsInSlice(slice);
 
-  const resources: SubResource[] = [];
-
-  let index = 0;
-
-  for (const [document, _] of documents.entries()) {
+  return documents.map((document, index) => {
     const value = toWrappedDataDocument(document, quads, websiteIRI);
 
-    resources.push({
-      id: index += 1,
+    return {
+      id: index,
       name: `website-${index}`,
       path: websiteRelativePath(document.value, websiteIRI),
       type: ResourceType.RDF,
       value,
-    });
-  }
-
-  return resources;
+    };
+  });
 };
