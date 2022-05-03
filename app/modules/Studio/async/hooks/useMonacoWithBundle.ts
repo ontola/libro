@@ -31,6 +31,9 @@ export const useMonacoWithBundle = (): boolean => {
         lib: [
           'ES2020',
         ],
+        noUnusedLocals: true,
+        noUnusedParameters: true,
+        strict: true,
         target: monaco.languages.typescript.ScriptTarget.ES2020,
       });
 

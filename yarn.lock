@@ -2680,28 +2680,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@monaco-editor/loader@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@monaco-editor/loader@npm:1.1.1"
+"@monaco-editor/loader@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "@monaco-editor/loader@npm:1.3.1"
   dependencies:
     state-local: ^1.0.6
   peerDependencies:
     monaco-editor: ">= 0.21.0 < 1"
-  checksum: 2ee812929ba8e98fbb6ed7edce507439ab3ff97684e713b7e214919a040121fb87c7309faf70b26d14d697209f64536729273e9abc181d83bc582f50fbee4a46
+  checksum: 4772210d4e0d2d22f17c7c6bec869a20eaf3a98c6b4020e01827b42e567c4730ab0730be0f7b599d9beb314234fad1fd0b4c66bae110c83743316ec62130d2e9
   languageName: node
   linkType: hard
 
-"@monaco-editor/react@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "@monaco-editor/react@npm:4.2.2"
+"@monaco-editor/react@npm:^4.4.4":
+  version: 4.4.4
+  resolution: "@monaco-editor/react@npm:4.4.4"
   dependencies:
-    "@monaco-editor/loader": ^1.1.1
+    "@monaco-editor/loader": ^1.3.1
     prop-types: ^15.7.2
   peerDependencies:
     monaco-editor: ">= 0.25.0 < 1"
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: d6c6764954cf1a09dc69a289f2fab8f26fc2117fa3c092c30648898bfee508005bf576975aa3a81ef0ef480528688c091fdec0b731e5f7239be64d6690d647a1
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 82f63dd9f5a8f81899565d20a5ae57d939d5a9e30b761145c676276771c075389989808e3ea2587677197fd8dcc6b2e8e18a0fd96c42f6e15de699fb914a5e2a
   languageName: node
   linkType: hard
 
@@ -12103,10 +12103,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monaco-editor@npm:^0.27.0":
-  version: 0.27.0
-  resolution: "monaco-editor@npm:0.27.0"
-  checksum: 766ce20ea6f5b5861ce3a05fa437d0755622520ce3e7d6af84a103ea5daa52fe7053cfa4ab470fa84eb42a27810c336b39764c984b9cd30bc32fd69b2eba233b
+"monaco-editor@npm:^0.33.0":
+  version: 0.33.0
+  resolution: "monaco-editor@npm:0.33.0"
+  checksum: f88fd1c9be0d6845436aa92ee7f7bcc49f9e9bf452f73bb5efbbe52e50678d1c2aec4d612a943310f5e2282c1d9fcc41b792b65a5b9008e6054908e7e10311ea
   languageName: node
   linkType: hard
 
@@ -12678,7 +12678,7 @@ __metadata:
     "@material-ui/lab": ^4.0.0-alpha.56
     "@material-ui/pickers": ^3.2.10
     "@material-ui/styles": ^4.10.0
-    "@monaco-editor/react": ^4.2.2
+    "@monaco-editor/react": ^4.4.4
     "@mui/x-data-grid": ^4.0.0
     "@ontola/link-devtools": ^2.0.2
     "@ontola/memoized-factory": ^2.0.1
@@ -12775,7 +12775,7 @@ __metadata:
     lottie-react: ^2.2.1
     memoize-one: ^5.0.5
     mini-css-extract-plugin: ^2.4.5
-    monaco-editor: ^0.27.0
+    monaco-editor: ^0.33.0
     n-quads-parser: ^2.1.1
     null-loader: ^4.0.1
     ol: ^6.4.3
