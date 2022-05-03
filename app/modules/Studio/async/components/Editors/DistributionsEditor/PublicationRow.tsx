@@ -1,7 +1,9 @@
+import { Grid, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -53,7 +55,19 @@ export const PublicationRow: React.FC<PublicationRowProps> = ({
   return (
     <TableRow>
       <TableCell colSpan={2}>
-        {publication.startRoute}
+        <Link
+          href={publication.startRoute}
+          target="_blank"
+        >
+          <Grid
+            container
+            alignItems="center"
+            direction="row"
+          >
+            <OpenInNewIcon />
+            {publication.startRoute}
+          </Grid>
+        </Link>
       </TableCell>
       <TableCell>
         {distribution ? `v${distribution.version}` : '...'}
