@@ -8,13 +8,15 @@ import { LibroTheme, MaterialStyleMap } from '../../../themes';
 export default (theme: LibroTheme): MaterialStyleMap => (
   deepmerge(appbar(theme), {
     MuiAppBar: {
-      root: {
-        '& .MuiToolbar-root': {
-          [`& > .${navBarContentItemsCID}`]: {
-            flexBasis: '100%',
-          },
-          [`& > .${navBarContentMenusCID}`]: {
-            flexBasis: '100%',
+      styleOverrides: {
+        root: {
+          '& .MuiToolbar-root': {
+            [`& > .${navBarContentItemsCID}`]: {
+              flexBasis: '100%',
+            },
+            [`& > .${navBarContentMenusCID}`]: {
+              flexBasis: '100%',
+            },
           },
         },
       },

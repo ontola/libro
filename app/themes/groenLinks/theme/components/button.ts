@@ -6,10 +6,12 @@ import { MaterialStyleMap } from '../../../themes';
 export default (): MaterialStyleMap => (
   deepmerge(button(), {
     MuiButton: {
-      label: {
-        fontFamily: 'Suisse Webfont',
-        fontWeight: 900,
-        textTransform: 'uppercase',
+      styleOverrides: {
+        label: {
+          fontFamily: 'Suisse Webfont',
+          fontWeight: 900,
+          textTransform: 'uppercase',
+        },
       },
     },
   })

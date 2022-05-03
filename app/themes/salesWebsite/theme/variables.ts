@@ -1,5 +1,4 @@
-import { Overrides } from '@mui/material';
-import { DeprecatedThemeOptions } from '@mui/material/styles';
+import { ThemeOptions } from '@mui/material/styles';
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 import deepmerge from 'deepmerge';
 
@@ -7,20 +6,24 @@ import variables from '../../common/theme/variables';
 
 const SIX_PX = 0.1875;
 
-const overrides: Overrides = {
+const components = {
   MuiButton: {
-    iconSizeMedium: {
-      '& > *:first-child': {
-        fontSize: 'inherit',
+    styleOverrides: {
+      iconSizeMedium: {
+        '& > *:first-child': {
+          fontSize: 'inherit',
+        },
+        fontSize: '1.6em',
+        marginLeft: 0,
       },
-      fontSize: '1.6em',
-      marginLeft: 0,
     },
   },
   MuiSvgIcon: {
-    root: {
-      fontWeight: 'bold',
-      verticalAlign: 'middle',
+    styleOverrides: {
+      root: {
+        fontWeight: 'bold',
+        verticalAlign: 'middle',
+      },
     },
   },
 };
@@ -98,9 +101,9 @@ const breakpoints = {
   /* eslint-enable sort-keys */
 };
 
-const customVariables: DeprecatedThemeOptions = {
+const customVariables: ThemeOptions = {
   breakpoints,
-  overrides,
+  components,
   palette,
   shape: {
     borderRadius: 5,

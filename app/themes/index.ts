@@ -29,12 +29,12 @@ const generateStyle = ({
   (theme.overrides!.MuiCssBaseline!['@global']!.html as any).background = (mergedVariables.palette as any).background.default;
 
   if (components) {
-    theme.overrides = components.reduce(
+    theme.components = components.reduce(
       (acc, component) => ({
         ...acc,
         ...component(theme),
       }),
-      theme.overrides,
+      theme.components,
     );
   }
 
