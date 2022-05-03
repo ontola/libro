@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/ontola/cache/master:latest
+FROM registry.gitlab.com/ontola/cache/glapp:latest
 WORKDIR /app
 
 COPY ./client_version.txt /app/client_version.txt
