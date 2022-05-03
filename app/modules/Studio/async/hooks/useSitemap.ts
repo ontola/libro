@@ -7,6 +7,7 @@ import { projectToSource } from '../lib/projectToSource';
 import { parseSource } from './useGenerateLRSFromSource';
 
 const BLACKLIST_PATTERNS = [
+  '<',
   '#',
   'menus/footer',
 ];
