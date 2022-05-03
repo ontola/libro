@@ -67,9 +67,12 @@ export const useMonacoWithBundle = (): boolean => {
       }
 
       monaco.languages.typescript.typescriptDefaults.addExtraLib('\
+      interface LangMap { en: string | DataObject, nl: string | DataObject }\
+      \
       const local = (s: string) => rdf.namedNode(`${window.location.origin}/${s}`);\
       const url = (s: string) => rdf.namedNode(s);\
       const lang = (language: string, value: string) => rdf.literal(value, language);\
+      const t = (langMap: LangMap>) => Object.entries(langMap).map(([k, v]) => rdf.literal(v, k));\
       const date = (s: string) => rdf.literal(new Date(s));\
     ');
     } catch (e) {

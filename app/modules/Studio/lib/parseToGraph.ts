@@ -193,6 +193,21 @@ const parseToGraph = (source: string, websiteIRI: string, idempotentNaming = tru
     return rdf.namedNode(`${websiteIRI}/${s}`);
   };
 
+  interface LangMap { en: string | DataObject, nl: string | DataObject }
+  // @ts-ignore
+  const t = (langMap: LangMap): Array<Literal | DataObject> =>
+    Object.entries(langMap).map(([k, v]) => {
+      if (typeof v === 'string') {
+        return rdf.literal(v, k);
+      }
+
+      return {
+        [rdfx.type.toString()]: libro.ns('TranslatedObject'),
+        [libro.ns('language').toString()]: k,
+        [libro.ns('value').toString()]: v,
+      };
+    });
+
   // @ts-ignore
   const url = (s: string) => rdf.namedNode(s);
   // @ts-ignore
@@ -207,7 +222,11 @@ const parseToGraph = (source: string, websiteIRI: string, idempotentNaming = tru
     ? data.map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
     : data;
 
-  return normalized.map((t) => toGraph(t));
+  return normalized.map((obj) => toGraph(obj, undefined, undefined, {
+    _ids: {
+      ns: (_) => rdf.namedNode('_ids'),
+    },
+  }));
 };
 
 const hexJSONSubject = (subject: Node): string => (isBlankNode(subject) ? `_:${subject.value}` : subject.value);
