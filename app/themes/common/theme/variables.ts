@@ -4,7 +4,6 @@ import {
   lighten,
 } from '@mui/material/styles';
 
-import { overrides } from './overrides';
 import { SCREENSIZE } from './screensize';
 
 /**
@@ -121,7 +120,6 @@ const theme = {
     small: '35rem',
   },
   greyBorder: `solid 1px ${colors.grey.xLight}`,
-  overrides,
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {
