@@ -93,6 +93,7 @@ const common = {
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
     fallback: {
       path: require.resolve('path-browserify'),
+      url: require.resolve('url'),
     },
     modules: ['./node_modules'],
   },
