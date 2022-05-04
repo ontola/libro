@@ -43,13 +43,17 @@ interface EntryPointProps extends ButtonWithFeedbackProps {
 }
 
 const EntryPoint: FC<EntryPointProps> = ({
+  color,
   count,
+  disabled,
+  grow,
   image: imageFromProp,
   name: nameFromProp,
   onClick,
   stretch,
   subject,
   variant,
+  title,
   ...rest
 }) => {
   const muiTheme = useTheme<LibroTheme>();
@@ -72,10 +76,13 @@ const EntryPoint: FC<EntryPointProps> = ({
   return (
     <ButtonWithFeedback
       className={classes}
+      color={color}
+      disabled={disabled}
+      grow={grow}
       icon={icon}
+      title={title}
       variant={variant ?? ButtonVariant.Transparent}
       onClick={handleOnClick}
-      {...rest}
     >
       <span>
         {screenIsWide ? name : displayCount}

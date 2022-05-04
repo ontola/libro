@@ -112,7 +112,7 @@ const Input: React.FC<PropTypes> = ({
   return (
     <Element
       className={`${classes.input} ${className ?? ''}`}
-      ref={inputRef}
+      ref={typeof Element === 'function' ? undefined : inputRef}
       value={value ?? ''}
       {...props}
     />

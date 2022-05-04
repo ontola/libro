@@ -74,11 +74,10 @@ const defaultProps = {
  * @returns {component} Component
  */
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, React.PropsWithChildren<ButtonProps>>(({
-  active,
   action,
+  active,
   ariaLabel,
   cardFloat,
-  list,
   centered,
   children,
   className,
@@ -88,17 +87,18 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, React.Pro
   edge,
   endIcon,
   grow,
+  href,
   icon,
+  list,
   loading,
   margins,
+  narrow,
   onClick,
+  plain,
   small,
   stretch,
-  narrow,
-  plain,
   title,
   type,
-  href,
   variant,
   ...otherProps
 }, ref) => {
