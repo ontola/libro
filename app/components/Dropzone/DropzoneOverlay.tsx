@@ -12,7 +12,7 @@ interface Props {
 }
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
-  icon :{
+  icon: {
     '&.fa': {
       fontSize: '3rem',
     },

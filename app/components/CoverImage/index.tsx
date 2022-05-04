@@ -23,8 +23,8 @@ export const useCoverImageStyles = makeStyles((theme: LibroTheme) => ({
     transform: 'scale(1.2)',
     width: '100%',
   },
-  coverImageWrapper : {
-    [`.${cardClassIdentifier} &`] :{
+  coverImageWrapper: {
+    [`.${cardClassIdentifier} &`]: {
       borderTopLeftRadius: theme.shape.borderRadius,
       borderTopRightRadius: theme.shape.borderRadius,
       height: '7em',
@@ -37,7 +37,7 @@ export const useCoverImageStyles = makeStyles((theme: LibroTheme) => ({
       flex: 1,
       height: 'auto',
     },
-    '.Page > &' : {
+    '.Page > &': {
       marginTop: `-${theme.spacing(Margin.Medium)}`,
     },
     backgroundColor: theme.palette.grey.xxLight,

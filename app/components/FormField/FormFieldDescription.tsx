@@ -6,7 +6,7 @@ import Markdown from '../Markdown';
 import { formFieldContext } from './FormFieldContext';
 
 const useStyles = makeStyles({
-  fieldDescription:{
+  fieldDescription: {
     fontSize: '.8rem',
     marginBottom: '.3rem',
     marginTop: '-.3rem',

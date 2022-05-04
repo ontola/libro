@@ -15,14 +15,14 @@ interface PropTypes {
 }
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
-  fieldHelper :{
+  fieldHelper: {
     color: theme.palette.grey.main,
     display: 'flex',
     fontSize: '.8em',
     justifyContent: 'space-between',
     paddingRight: '.8rem',
   },
-  fieldHelperPreview :{
+  fieldHelperPreview: {
     bottom: 0,
     height: 'initial',
     padding: '5px 20px 0',

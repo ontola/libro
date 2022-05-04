@@ -5,7 +5,7 @@ import { containerFloatTopology } from '../../topologies';
 import Topology from '../Topology';
 
 const styles = {
-  containerFloat : {
+  containerFloat: {
     alignItems: 'center',
     display: 'flex',
   },
