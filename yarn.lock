@@ -11250,9 +11250,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-lib@npm:4.0.0-ef8b1866":
-  version: 4.0.0-ef8b1866
-  resolution: "link-lib@npm:4.0.0-ef8b1866"
+"link-lib@npm:4.0.0-2fb78301":
+  version: 4.0.0-2fb78301
+  resolution: "link-lib@npm:4.0.0-2fb78301"
   peerDependencies:
     "@ontologies/as": ">=1.0.1"
     "@ontologies/core": ">=2.0.0"
@@ -11263,7 +11263,7 @@ __metadata:
     hextuples: ">=2.0.0"
     http-status-codes: ">= 1.x"
     n-quads-parser: ^2.1.1
-  checksum: 706eb27e1b63896a8476387139da86222ac2f9a39894f099449e2ae780dbcab0d9c6e3a7acc6f60345e116eab7b4afccc205a0a95f440d189685d78e1f54918f
+  checksum: 6466a35c84b05149958f2c09d379b224103bd03ff68267fec0fc4ece0676ee55536e6265d082bf104c88b2b30ad0c6ccc55efbaf157146b7504ae26a8529e704
   languageName: node
   linkType: hard
 
@@ -12769,7 +12769,7 @@ __metadata:
     jest: ^27.3.1
     jest-fetch-mock: ^3.0.3
     jsdom: ^16.6.0
-    link-lib: 4.0.0-ef8b1866
+    link-lib: 4.0.0-2fb78301
     link-redux: 4.0.0-28c25352
     lint-staged: ^10.5.4
     lottie-react: ^2.2.1
