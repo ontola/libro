@@ -1,14 +1,11 @@
-import { isNode } from '@ontologies/core';
-import * as sh from '@ontologies/shacl';
+import * as rdfs from '@ontologies/rdfs';
 import {
   FC,
   PropertyProps,
-  array,
-  literal,
+  dig,
   register,
-  useDataInvalidation,
   useIds,
-  useResourceLinks,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
@@ -17,27 +14,14 @@ import ontola from '../../../ontology/ontola';
 import { tableRowTopology } from '../../../topologies';
 import { namePredicates } from '../../Thing/properties/name';
 
-const NamePropMap = {
-  name: literal(namePredicates),
-};
-
-const TargetPropMap = {
-  target: sh.targetNode,
-};
-
 const ResourceTable: FC<PropertyProps> = () => {
-  const widgetResources = useIds(array(ontola.widgetResource));
-  const targetNodesMap = useResourceLinks(widgetResources, TargetPropMap);
-  const targetNodes = targetNodesMap.map((map) => map.target);
-  useDataInvalidation(targetNodes.filter(isNode));
-  const nameSubjects = targetNodesMap.map((map) => map.target ?? map.subject);
-  const nameMap = useResourceLinks(nameSubjects.filter(isNode), NamePropMap);
-  const subjects = nameMap.map((map) => map.subject?.value).join(', ');
-  const names = nameMap.map((map) => map.name).join(', ');
+  const subjects = useIds(dig(ontola.widgetResource, rdfs.member, rdfs.member));
+  const names = useStrings(subjects, namePredicates);
+  const label = names.map((value, i) => value[0] ?? subjects[i].value).join(', ');
 
   return (
-    <div title={subjects}>
-      {names}
+    <div title={subjects.join(', ')}>
+      {label}
     </div>
   );
 };
