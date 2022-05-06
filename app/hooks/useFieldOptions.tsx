@@ -5,7 +5,6 @@ import {
 import { SomeNode } from 'link-lib';
 import {
   useDataFetching,
-  useDataInvalidation,
   useLRS,
 } from 'link-redux';
 import React from 'react';
@@ -28,7 +27,6 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
     setLoading(true);
   }, [shIn]);
 
-  useDataInvalidation([shIn, ...options].filter(isNamedNode));
   useDataFetching([shIn, ...options].filter(isNamedNode));
   const [optionsArray, optionsLoading] = useContainerToArr(shIn);
   const shInUpdate = shIn && lrs.store.getInternalStore().store.getStatus(shIn.value).lastUpdate;

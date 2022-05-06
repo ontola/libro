@@ -21,7 +21,7 @@ const useInitialValues = (
   actionBody: LaxNode,
   object: SomeNode | undefined,
   formID: string,
-): [boolean | NamedNode | BlankNode | undefined,  Record<string, unknown> | undefined] => {
+): [boolean | NamedNode | BlankNode | undefined,  Record<string, unknown> | undefined, number | null] => {
   const lrs = useLRS();
   const [timestamp, setTimestamp] = React.useState<null | number>(null);
   const [loading, setLoading] = React.useState<boolean | SomeNode | undefined>(true);
@@ -30,10 +30,6 @@ const useInitialValues = (
 
   React.useEffect(() => {
     if (!actionBody || !object) {
-      return;
-    }
-
-    if (!loading) {
       return;
     }
 
@@ -58,10 +54,10 @@ const useInitialValues = (
   }
 
   if (!actionBody || !object) {
-    return [false, {}];
+    return [false, {}, null];
   }
 
-  return [loading, initialValues as Record<string, unknown>];
+  return [loading, initialValues as Record<string, unknown>, timestamp];
 };
 
 export default useInitialValues;

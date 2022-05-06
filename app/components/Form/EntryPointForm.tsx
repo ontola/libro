@@ -77,7 +77,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   whitelist,
 }) => {
   const lrs = useLRS();
-  const [loading, initialValues] = useInitialValues(
+  const [loading, initialValues, version] = useInitialValues(
     sessionStore,
     actionBody,
     object,
@@ -142,6 +142,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
       formID={formID}
       formIRI={actionBody}
       initialValues={initialValues}
+      key={`version-${version}`}
       method={httpMethod}
       object={object}
       sessionStore={sessionStore}
