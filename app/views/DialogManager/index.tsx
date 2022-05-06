@@ -1,7 +1,7 @@
 import Dialog from '@material-ui/core/Dialog';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   Resource,
@@ -41,6 +41,15 @@ const DialogManager = () => {
       { done },
     )
   );
+  const onDone = (item: SomeNode, done: boolean) => (
+    (redirect: NamedNode | undefined, method: string) => {
+      if (method === 'DELETE' && redirect) {
+        return lrs.actions.ontola.navigate(redirect);
+      }
+
+      return close(item, done)();
+    }
+  );
 
   if (!resource || resource === libro.ns('dialog/closed')) {
     return null;
@@ -71,7 +80,7 @@ const DialogManager = () => {
         <Resource
           forceRender
           subject={resource}
-          onDone={close(resource, true)}
+          onDone={onDone(resource, true)}
         />
       </DialogTopology>
     </Dialog>
