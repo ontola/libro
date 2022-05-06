@@ -42,11 +42,11 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
         '& > div': {
           width: '100%',
         },
-        '& input': {
-          padding: '0.5rem 1.3rem',
+        '& ul': {
           width: '100%',
         },
-        '& ul': {
+        '&& input': {
+          padding: '0.5rem 1.3rem',
           width: '100%',
         },
         MozAppearance: 'menulist-button',
