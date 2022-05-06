@@ -2,6 +2,8 @@ import rdf, { Quad } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 import { DataRecord, normalizeType } from 'link-lib';
 
+import { sliceIRI } from '../ontology/appSlashless';
+
 export interface Value {
   type: 'id' | 'lid' | 'p' | 's' | 'dt' | 'b' | 'i' | 'l' | 'ls';
   v: string;
@@ -65,15 +67,15 @@ export type Slice = Record<string, DataRecord>;
 
 const dataTypes = ['id', 'lid', 'p', 's', 'dt', 'b', 'i', 'l', 'ls'];
 
-const valueToStoreValue = (v: Value, websiteIRI: string | undefined, mapping: Record<string, string>) => {
+const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string, string>, isSubPath: boolean) => {
   switch (v.type) {
   case 'id': {
     if (v.v === '/') {
-      return rdf.namedNode(websiteIRI ?? '');
+      return isSubPath ? rdf.namedNode(websiteIRI) : rdf.namedNode(`${websiteIRI}/`);
     }
 
     if (v.v.startsWith('/')) {
-      return rdf.namedNode((websiteIRI ?? '') + v.v);
+      return rdf.namedNode(websiteIRI + v.v);
     }
 
     return rdf.namedNode(mapping[v.v] ? mapping[v.v] : v.v);
@@ -90,9 +92,9 @@ const valueToStoreValue = (v: Value, websiteIRI: string | undefined, mapping: Re
   }
 };
 
-const getValue = (value: any, websiteIRI: string | undefined, mapping: Record<string, string>) => {
+const getValue = (value: any, websiteIRI: string, mapping: Record<string, string>, isSubPath: boolean) => {
   if (!Array.isArray(value) && Object.hasOwnProperty.call(value, 'type') && dataTypes.includes(value.type)) {
-    return valueToStoreValue(value, websiteIRI, mapping);
+    return valueToStoreValue(value, websiteIRI, mapping, isSubPath);
   }
 
   if (value.length === 1) {
@@ -102,8 +104,12 @@ const getValue = (value: any, websiteIRI: string | undefined, mapping: Record<st
   return value;
 };
 
-const keyOverride = (key: string, value: any, websiteIRI: string | undefined, mapping: Record<string, string>) => {
-  if (websiteIRI && key.startsWith('/')) {
+const keyOverride = (key: string, value: any, websiteIRI: string, mapping: Record<string, string>, isSubPath: boolean) => {
+  if (key === '/') {
+    return isSubPath ? websiteIRI : `${websiteIRI}/`;
+  }
+
+  if (key.startsWith('/')) {
     return `${websiteIRI}${key}`;
   }
 
@@ -116,16 +122,19 @@ const keyOverride = (key: string, value: any, websiteIRI: string | undefined, ma
 
 export const seedToSlice = (
   initialData: string | undefined,
-  websiteIRI: string | undefined,
+  websiteIRI: string,
   mapping: Record<string, string>,
 ): Slice => {
   if (initialData === undefined) {
     return {};
   }
 
+  const isSubPath = !websiteIRI.endsWith('/');
+  const normalizedWebsiteIRI = sliceIRI(websiteIRI);
+
   return JSON.parse(initialData, function(key: string, value: any) {
-    const nextValue = getValue(value, websiteIRI, mapping);
-    const differentKey = keyOverride(key, value, websiteIRI, mapping);
+    const nextValue = getValue(value, normalizedWebsiteIRI, mapping, isSubPath);
+    const differentKey = keyOverride(key, value, normalizedWebsiteIRI, mapping, isSubPath);
 
     if (differentKey) {
       // eslint-disable-next-line no-invalid-this
