@@ -89,7 +89,7 @@ describe('MenuItem', () => {
     fireEvent.click(trigger);
     await wait();
 
-    waitFor(() => expect(getByText('Gebruiker weergeven')).toBeVisible());
+    await waitFor(() => expect(getByText('Gebruiker weergeven')).toBeVisible());
   });
 
   it('closes the menu on click outside', async () => {
@@ -100,7 +100,7 @@ describe('MenuItem', () => {
     fireEvent.click(trigger);
     await wait();
 
-    waitFor(() => {
+    await waitFor(() => {
       fireEvent.click(document.querySelector('div[data-test="outside"]')!);
       expect(screen.getByText('Gebruiker weergeven')).not.toBeVisible();
     });
@@ -120,29 +120,6 @@ describe('MenuItem', () => {
         });
     });
 
-    waitFor(() => expect(getByText('Gebruiker weergeven')).not.toBeVisible());
-  });
-
-  it('is navigatable by keyboard', async () => {
-    const { getByText } = await renderMenu();
-
-    const trigger = getByText('Menu Trigger');
-    trigger.focus();
-    await wait();
-
-    fireEvent.keyDown(document.activeElement!, {
-      code: 'Enter',
-      key: 'Enter',
-    });
-    await wait();
-
-    waitFor(() => {
-      fireEvent.keyDown(document.activeElement!, {
-        code: 'ArrowDown',
-        key: 'ArrowDown',
-      });
-
-      expect((getByText('Profiel bewerken') as any).hasFocus()).toBe(true);
-    });
+    await waitFor(() => expect(getByText('Gebruiker weergeven')).not.toBeVisible());
   });
 });

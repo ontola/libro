@@ -35,6 +35,10 @@ const getNewAriaId = () => `dropdown-${count += 1}`;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   paper: {
+    '& a': {
+      display: 'flex',
+      padding: '10px 16px',
+    },
     maxHeight: '90vh',
     overflowX: 'auto',
   },
