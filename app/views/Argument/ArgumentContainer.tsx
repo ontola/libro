@@ -1,16 +1,19 @@
 import { makeStyles } from '@mui/styles';
+import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
   register,
+  useTopology,
 } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import CardHeader from '../../components/Card/CardHeader';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -18,6 +21,7 @@ import ontola from '../../ontology/ontola';
 import { alertDialogTopology, containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
+import DetailsBar from '../../topologies/DetailsBar';
 
 export interface ArgumentContainerProps {
   highlighted: boolean;
@@ -31,6 +35,7 @@ const useStyles = makeStyles({
 
 const ArgumentContainer: FC<ArgumentContainerProps> = ({ highlighted, subject }): JSX.Element => {
   const classes = useStyles();
+  const topology = useTopology();
 
   return (
     <Card
@@ -40,6 +45,11 @@ const ArgumentContainer: FC<ArgumentContainerProps> = ({ highlighted, subject })
       <HeadingContext>
         <Property label={ontola.coverPhoto} />
         <div className={classes.content}>
+          <DetailsBar>
+            <Property label={schema.creator} />
+            {topology === alertDialogTopology && <Property label={rdfx.type} />}
+            <LinkedDetailDate />
+          </DetailsBar>
           <CardContent noSpacing>
             <CardHeader float={<Property label={argu.voteOptions} />}>
               <Property label={[schema.name, rdfs.label]} />
