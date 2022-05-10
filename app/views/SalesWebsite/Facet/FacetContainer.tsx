@@ -70,7 +70,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     fontSize: theme.typography.fontSizes.xLarge,
     fontWeight: theme.typography.fontWeightBold,
     margin: 0,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(SMALL_SCREEN_TITLE_MARGIN),
     },
   },

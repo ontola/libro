@@ -26,7 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     justifySelf: 'end',
   },
   phaseBar: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       gridTemplateAreas: '"timespan timespan" "title buttons" "actions actions"',
       gridTemplateColumns: '1fr auto',
     },

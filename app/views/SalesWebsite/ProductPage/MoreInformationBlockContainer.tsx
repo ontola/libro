@@ -16,14 +16,14 @@ import { containerTopology } from '../../../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: 50,
     },
     width: 'unset',
   },
   title: {
     textAlign: 'right',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'left',
     },
   },
@@ -34,7 +34,7 @@ const MoreInformationBlockContainer = (): JSX.Element => {
   const [title] = useProperty(schema.name);
 
   const styles = useTheme();
-  const flexDirection = useMediaQuery(styles.breakpoints.down('sm'))
+  const flexDirection = useMediaQuery(styles.breakpoints.down('md'))
     ? 'flex-start' : 'flex-end';
 
   return (

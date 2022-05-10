@@ -33,7 +33,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gridTemplateAreas: '"logo policy privacy socials"',
     minWidth: '100%',
     paddingTop: '2rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       gap: theme.spacing(STACKED_GRID_GAP),
       gridTemplateAreas: '"policy" "privacy" "logo" "socials"',
       justifyItems: 'center',

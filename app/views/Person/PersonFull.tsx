@@ -76,7 +76,7 @@ const PersonFull: FC = () => {
             xs={10}
           >
             <Property label={[schema.name, rdfs.label, foaf.name]} />
-            <Hidden smDown>
+            <Hidden mdDown>
               <ContentDetails>
                 <AllWithProperty label={org.organization} />
               </ContentDetails>

@@ -22,7 +22,7 @@ interface StyleProps {
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   centered: {},
   featureBlock: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '&&&': {
         gridTemplateAreas: '"title" "image" "text"',
         gridTemplateColumns: '1fr',

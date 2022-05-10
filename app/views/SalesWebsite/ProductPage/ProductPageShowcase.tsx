@@ -22,7 +22,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     padding: theme.spacing(INNER_CONTAINER_PADDING),
   },
   productButton: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '&:hover': {
         boxShadow: '0 0 25px rgba(0,0,0,0.2) !important',
       },

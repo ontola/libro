@@ -26,7 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     justifyContent: 'center',
   },
   inputWrapper: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '1rem',
     },
     maxHeight: '95vh',

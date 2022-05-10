@@ -123,8 +123,8 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
   }, [highlightState]);
 
   const linkedFieldset = React.useCallback(() => {
-    const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
-    const screenIsVeryNarrow = useMediaQuery(theme.breakpoints.down('xs'));
+    const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
+    const screenIsVeryNarrow = useMediaQuery(theme.breakpoints.down('sm'));
 
     if (!isNamedNode(action)) {
       return null;

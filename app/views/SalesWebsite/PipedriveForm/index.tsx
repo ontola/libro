@@ -25,7 +25,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     padding: theme.spacing(Margin.Large),
     width: '100%',
     zIndex: 1,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       boxShadow: 'unset',
       padding: theme.spacing(Margin.Small),
     },

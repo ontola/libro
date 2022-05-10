@@ -21,7 +21,7 @@ const IDLE_CARD_TIMEOUT = 1500;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   swipeInputWrapper: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: 'min(20rem, 60vh)',
     },
     display: 'flex',

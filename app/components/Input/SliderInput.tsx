@@ -27,7 +27,7 @@ const useSliderOverrideStyles = makeStyles<LibroTheme>((theme) => ({
     width: `calc(${SliderSize}px * 2)`,
   },
   markLabel: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '&[data-index="1"]': {
         transform: 'translateX(-100%)',
       },

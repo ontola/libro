@@ -33,7 +33,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     left: '-1.5rem',
     position: 'absolute',
     top: '-1.5rem',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       left: '-.5rem',
     },
   },
@@ -43,7 +43,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     },
     position: 'relative',
     transition: 'transform 100ms ease-in-out',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingInline: '1rem',
     },
   },

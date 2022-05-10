@@ -32,7 +32,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
 
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       backgroundAttachment: 'unset',
       backgroundImage: ({ backgroundImageUrlMobile }) => `url(${backgroundImageUrlMobile})`,
     },
@@ -43,7 +43,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   },
   spacer: {
     margin: 50,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: 30,
     },
   },
@@ -55,7 +55,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     textAlign: 'center',
   },
   title: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '2rem',
     },
     fontSize: '3rem',

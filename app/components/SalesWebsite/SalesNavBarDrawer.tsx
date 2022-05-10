@@ -37,7 +37,7 @@ export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JS
   const theme = useTheme<LibroTheme>();
   const websiteIRI = useWebsiteIRI();
 
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('xs'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
   const [anchor, setAnchor] = React.useState<'top' | 'bottom'>('top');
 
   React.useEffect(() => {

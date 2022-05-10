@@ -51,7 +51,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       flexDirection: 'row',
     },
   },

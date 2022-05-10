@@ -36,7 +36,7 @@ const useStyles = makeStyles<LibroTheme, StepProps>((theme: LibroTheme) => ({
     gridTemplateAreas: '"line-top box" "circle box" "line-bottom box"',
     gridTemplateColumns: 'var(--circle-size) auto',
     gridTemplateRows: '1fr var(--circle-size) 1fr',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '--circle-size': '50px',
     },
   },

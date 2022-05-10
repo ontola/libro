@@ -10,7 +10,7 @@ export interface CoverPhotoProps {
 
 const useStyles = makeStyles<LibroTheme, CoverPhotoProps>((theme) => ({
   img: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       borderRadius: 'unset',
       height: '200px',
       marginLeft: '-0.5625rem',

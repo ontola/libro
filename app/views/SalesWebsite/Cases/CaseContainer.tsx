@@ -32,7 +32,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     margin: 30,
   },
   image: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       backgroundSize: 'fill',
       maxWidth: '100%',
     },

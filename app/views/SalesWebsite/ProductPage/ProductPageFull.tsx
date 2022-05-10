@@ -36,7 +36,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   textBlockContainer: {
     marginBottom: 50,
     padding: '6rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '1rem',
     },
   },

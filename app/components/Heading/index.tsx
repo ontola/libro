@@ -42,10 +42,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   [HeadingSize.XL]: {
     fontSize: theme.typography.fontSizes.xxLarge,
     fontWeight: 'bold',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1.5rem',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.3rem',
     },
   },

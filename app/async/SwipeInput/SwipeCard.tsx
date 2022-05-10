@@ -87,10 +87,10 @@ const useStyles = makeStyles<LibroTheme, Partial<SwipeCardProps>>((theme) => ({
     cursor: 'grabbing',
   },
   cardHeight: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: 'min(20rem, 80vh)',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       height: 'min(15rem, 80vh)',
     },
     height: 'min(30rem, 80vh)',
@@ -107,7 +107,7 @@ const useStyles = makeStyles<LibroTheme, Partial<SwipeCardProps>>((theme) => ({
     touchAction: 'none',
   },
   title: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1rem',
       padding: 0,
     },

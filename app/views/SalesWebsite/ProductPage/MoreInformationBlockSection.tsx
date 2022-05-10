@@ -27,7 +27,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   subtitle: {
     textAlign: 'right',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'left',
     },
   },

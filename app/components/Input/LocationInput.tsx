@@ -46,7 +46,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: 'min(80vw, 600px)',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       maxHeight: '40vh',
     },
     borderRadius: theme.shape.borderRadius,

@@ -46,7 +46,7 @@ const useStyles = makeStyles<LibroTheme, CasePageShowcaseProps>((theme) => ({
     justifyContent: 'center',
     padding: 20,
     textAlign: 'left',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       background: '#f8fbff !important',
     },
   },

@@ -49,7 +49,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     objectFit: 'cover',
     shapeOutside: 'circle(50%)',
     width: 'min(400px, 30vw)',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       borderRadius: theme.shape.borderRadius,
       clipPath: 'unset',
       float: 'unset',
@@ -58,13 +58,13 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
       marginBottom: '1.5rem',
       width: '100%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       height: 150,
     },
   },
   imageWrapper: {
     filter: 'drop-shadow(0px 8px 13px rgba(0, 0, 0, .4))',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       filter: 'unset',
     },
   },

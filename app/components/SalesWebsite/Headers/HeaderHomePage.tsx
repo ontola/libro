@@ -19,7 +19,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     fontSize: 18,
   },
   header: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       alignItems: 'start',
       gridTemplateAreas: '"image" "title"',
       marginBottom: theme.spacing(Margin.Large * TWO),
@@ -43,7 +43,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     gridArea: 'image',
   },
   outerWrapper: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'start',
     },
     display: 'flex',
@@ -55,7 +55,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   },
   spacer: {
     margin: 50,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: 30,
     },
   },

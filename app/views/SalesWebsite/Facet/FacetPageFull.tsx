@@ -17,7 +17,7 @@ import Container from '../../../topologies/Container';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   callToPricing: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '5em',
     },
     paddingBottom: '7em',

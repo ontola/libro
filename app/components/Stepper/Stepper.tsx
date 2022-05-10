@@ -52,7 +52,7 @@ const useStepLabelOverrideStyles = makeStyles((theme: LibroTheme) => ({
     },
   },
   labelContainer: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },

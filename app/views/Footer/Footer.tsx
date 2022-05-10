@@ -31,7 +31,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginBottom: '2rem',
     padding: theme.spacing(DESKTOP_PADDING),
     width: 'min(100%, 1500px)',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(MOBILE_PADDING),
     },
   },

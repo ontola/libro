@@ -21,7 +21,7 @@ export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiMenu: {
     styleOverrides: {
       paper: {
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
           [`&.${appMenuCID}`]: {
             maxWidth: '100%',
             width: '100%',

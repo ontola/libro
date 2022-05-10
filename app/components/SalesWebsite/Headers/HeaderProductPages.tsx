@@ -22,7 +22,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     margin: 'unset',
     maxWidth: '100%',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '& p': {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -105,7 +105,7 @@ export const HeaderProductPages: React.FC<HeaderProductPagesProps> = ({
   const classes = useStyles();
   const styles = useTheme();
 
-  const backgroundImage = useMediaQuery(styles.breakpoints.down('xs'))
+  const backgroundImage = useMediaQuery(styles.breakpoints.down('sm'))
     ? backgroundImageUrlMobile : backgroundImageUrl;
 
   const imageView = (
@@ -117,7 +117,7 @@ export const HeaderProductPages: React.FC<HeaderProductPagesProps> = ({
     </div>
   );
 
-  const image = useMediaQuery(styles.breakpoints.down('sm'))
+  const image = useMediaQuery(styles.breakpoints.down('md'))
     ? null : imageView;
 
   const trackingId = `${title?.replace(/[^a-zA-Z]+/g, '-')}-header-button`;

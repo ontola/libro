@@ -29,13 +29,13 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginBottom: '5rem',
   },
   propositionSelector: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       boxShadow: 'unset',
       gridGap: 40,
       gridTemplateColumns: '1fr 1fr',
       padding: 20,
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr',
     },
     backgroundColor: 'white',

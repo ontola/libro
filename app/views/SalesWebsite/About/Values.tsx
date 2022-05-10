@@ -25,7 +25,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     width: 'min(100%, 1440px)',
   },
   item: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '&:nth-child(odd)': {
         '& h3': {
           color: theme.palette.getContrastText(theme.palette.primary.main),

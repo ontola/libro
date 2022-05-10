@@ -35,7 +35,7 @@ const EarnedBadgeGrid = () => {
   const [image] = useFields(badge, schema.image);
   const [name] = useFields(badge, schema.name);
   const theme = useTheme();
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
   const classes = useStyles();
 
   return (

@@ -83,7 +83,7 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
   },
 
   list: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(LIST_LEFT_MARGIN_MOBILE),
     },
     '& li p': {

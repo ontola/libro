@@ -30,7 +30,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     textAlign: 'center',
   },
   container: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '1rem',
     },
     backgroundColor: (props: Record<string, string>) => props.backgroundColor,
@@ -46,7 +46,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     color: (props: Record<string, string>) => props.color,
   },
   subTitle: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1.14rem',
       textAlign: 'start',
     },
@@ -55,7 +55,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     textAlign: 'center',
   },
   title: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'start',
     },
     fontWeight: 'bold',

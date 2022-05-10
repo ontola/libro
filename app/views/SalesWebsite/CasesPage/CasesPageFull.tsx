@@ -35,7 +35,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     padding: '2rem',
   },
   item: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(GRID_ITEM_SPACING),
     },
   },

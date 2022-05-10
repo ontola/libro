@@ -76,7 +76,7 @@ export default makeStyles<LibroTheme>((theme) => ({
   },
   flowInput: {
     height: '35rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: '40vh',
     },
   },

@@ -62,7 +62,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     gridArea: 'article',
   },
   button: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       flexGrow: 1,
     },
     flexShrink: 1,
@@ -104,7 +104,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     gridTemplateAreas: '"sidebar article" "sidebar button-nav"',
     gridTemplateColumns: 'minmax(25ch, auto) minmax(75%, 1fr)',
     gridTemplateRows: 'minmax(70vh, auto) 200px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       gridTemplateAreas: '"article" "button-nav" "sidebar"',
       gridTemplateColumns: '1fr',
     },

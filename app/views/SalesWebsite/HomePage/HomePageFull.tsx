@@ -13,7 +13,7 @@ const TWO = 2;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   blogs: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '5em',
     },
     marginBlock: theme.spacing(Margin.XXL * TWO),
@@ -26,7 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     paddingBottom: 0,
   },
   container: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       maxWidth: '95vw',
     },
   },

@@ -24,7 +24,7 @@ const DialogManager = () => {
   const lrs = useLRS();
 
   const theme = useTheme();
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
 
   const backdropClasses = useBackdropStyles();
   const dialogClasses = useDialogStyles();

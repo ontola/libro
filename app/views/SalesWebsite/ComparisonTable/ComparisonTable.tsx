@@ -62,7 +62,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     width: '100%',
   },
   tier: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '50%',
     },
     textAlign: 'center',

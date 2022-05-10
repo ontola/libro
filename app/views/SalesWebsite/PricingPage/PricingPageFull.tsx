@@ -26,7 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginTop: '7em',
   },
   tierGrid: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       gridTemplateColumns: 'repeat(3, 20rem)',
       overflowX: 'auto',
       paddingBottom: theme.spacing(Margin.Medium),

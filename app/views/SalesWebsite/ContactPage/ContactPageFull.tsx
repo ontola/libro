@@ -50,7 +50,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gap: '0.5rem',
   },
   memberCardContainer: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '5em',
     },
   },

@@ -47,7 +47,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     minHeight: '250px',
     padding: theme.spacing(CONTAINER_PADDING),
     width: 'min(100%, 70vw)',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '8vw',
     },
   },
