@@ -1,5 +1,3 @@
-import Grid from '@mui/material/Grid';
-import Hidden from '@mui/material/Hidden';
 import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
@@ -26,17 +24,17 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   image: {
     backgroundSize: 'cover',
     border: `1px solid ${theme.palette.grey.light}`,
-    borderRadius: '100%',
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
+    borderRadius: '2.5rem',
+    flexShrink: 0,
+    height: '5rem',
+    marginRight: '0.5625rem',
+    width: '5rem',
+  },
+  shrinker: {
+    flexShrink: 1,
   },
   wrapper: {
-    paddingTop: '100%',
-    position: 'relative',
-    width: '100%',
+    display: 'flex',
   },
 }));
 
@@ -47,50 +45,25 @@ const PersonFull: FC = () => {
   return (
     <React.Fragment>
       <MainBody>
-        <Grid
-          container
-          alignItems="center"
-          spacing={2}
-        >
+        <div className={classes.wrapper}>
           <Property label={schema.image}>
             <Property label={schema.thumbnail}>
               {([src]: SomeTerm[]) => (
-                <Grid
-                  item
-                  md={1}
-                  xs={2}
-                >
-                  <div className={classes.wrapper}>
-                    <div
-                      className={classes.image}
-                      style={{ backgroundImage: `url("${src.value}")` }}
-                    />
-                  </div>
-                </Grid>
+                <div
+                  className={classes.image}
+                  style={{ backgroundImage: `url("${src.value}")` }}
+                />
               )}
             </Property>
           </Property>
-          <Grid
-            item
-            md={11}
-            xs={10}
-          >
+          <div className={classes.shrinker}>
             <Property label={[schema.name, rdfs.label, foaf.name]} />
-            <Hidden mdDown>
-              <ContentDetails>
-                <AllWithProperty label={org.organization} />
-              </ContentDetails>
-            </Hidden>
-          </Grid>
-          {' '}
-
-        </Grid>
-        <Hidden mdUp>
-          <ContentDetails>
-            <AllWithProperty label={org.organization} />
-          </ContentDetails>
-        </Hidden>
-        <Property label={schema.description} />
+            <ContentDetails>
+              <AllWithProperty label={org.organization} />
+            </ContentDetails>
+            <Property label={schema.description} />
+          </div>
+        </div>
       </MainBody>
       <SubSection menu={settingsMenu} />
     </React.Fragment>
