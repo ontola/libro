@@ -15,6 +15,7 @@ interface UseDialogContainerStylesProps {
 export const useDialogContainerStyles = makeStyles<LibroTheme, UseDialogContainerStylesProps>((theme) => ({
   childWrapper: {
     marginTop: '4rem',
+    padding: '0.5625rem',
   },
   closeButton: {
     alignItems: 'center',

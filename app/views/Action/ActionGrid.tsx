@@ -22,12 +22,11 @@ import { footerTopology, gridTopology } from '../../topologies';
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   image: {
     '& svg': {
-      borderRadius: theme.shape.borderRadius,
-      boxShadow:
-        `0.5px 3.7px 3.1px rgba(0, 0, 0, 0.04),
-        1.2px 8.5px 8.6px rgba(0, 0, 0, 0.027),
-        2.3px 16.8px 20.8px rgba(0, 0, 0, 0.021),
-        6px 44px 69px rgba(0, 0, 0, 0.015)`,
+      filter: `
+        drop-shadow(0.5px  3.7px  3.1px rgba(0, 0, 0, 0.040))
+        drop-shadow(1.2px  8.5px  8.6px rgba(0, 0, 0, 0.027))
+        drop-shadow(2.3px 16.8px 20.8px rgba(0, 0, 0, 0.021))
+        drop-shadow(6.0px 44.0px 69.0px rgba(0, 0, 0, 0.015))`,
       height: 'auto',
       width: '100%',
     },
