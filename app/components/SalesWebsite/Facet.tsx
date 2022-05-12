@@ -3,17 +3,17 @@ import Typography from '@material-ui/core/Typography';
 import { ChevronRight } from '@material-ui/icons';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { makeStyles } from '@material-ui/styles';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import clsx from 'clsx';
-import { LinkedDataObject, TermOpts } from 'link-redux';
 import React from 'react';
 
-export type FacetType = LinkedDataObject<{
-  color: NamedNode;
+import type { ResourceLink } from '../../helpers/link-redux/types';
+
+export type FacetType = ResourceLink<{
   image: NamedNode;
   name: NamedNode;
   text: NamedNode;
-}, TermOpts, SomeTerm | undefined>;
+}>;
 
 export interface FacetProps {
   current?: boolean;

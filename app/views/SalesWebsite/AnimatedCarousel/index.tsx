@@ -18,6 +18,7 @@ import {
   any,
   useStateMachine,
 } from '../../../hooks/useStateMachine';
+import { timeoutEffect } from '../../../helpers/timeoutEffect';
 
 enum State {
   LoadingAnimation,
@@ -33,12 +34,6 @@ enum Action {
 }
 
 const RETRY_FREQUENCY = 10;
-
-const timeout = (fn: () => void, ms: number): () => void => {
-  const id = setTimeout(fn, ms);
-
-  return () => clearTimeout(id);
-};
 
 const startAnimation = (controller: LottieRefCurrentProps, direction: 1 | -1) => {
   controller.setDirection(direction);
@@ -74,7 +69,7 @@ const AnimatedCarousel: FC = () => {
   React.useEffect(() => {
     if (!controller.current) {
       // HACK: Callback refs don't work with Lottie-React so we have to wait until the ref is set.
-      return timeout(() => {
+      return timeoutEffect(() => {
         setUpdate((num) => num + 1);
       }, RETRY_FREQUENCY);
     }
@@ -90,7 +85,7 @@ const AnimatedCarousel: FC = () => {
       nextIndex();
       break;
     case State.Waiting:
-      return timeout(() => dispatch(Action.Alarm), duration);
+      return timeoutEffect(() => dispatch(Action.Alarm), duration);
     }
 
     return;
