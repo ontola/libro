@@ -1,3 +1,5 @@
+import { SomeNode } from 'link-lib';
+
 export interface HeaderProps {
   backgroundImageUrl: string,
   backgroundImageUrlMobile: string,
@@ -5,5 +7,5 @@ export interface HeaderProps {
   buttonLink?: string,
   buttonText?: string,
   title: string,
-  subtitle?: string,
+  subtitle?: string | SomeNode,
 }

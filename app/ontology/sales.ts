@@ -50,6 +50,8 @@ export default {
   Values: sales('values'),
 
   /* properties */
+  animationLength: sales('animationLength'),
+  animationSplit: sales('animationSplit'),
   approximateHeight: sales('approximateHeight'),
   backgroundImage: sales('backgroundImage'),
   backgroundImageMobile: sales('backgroundImageMobile'),

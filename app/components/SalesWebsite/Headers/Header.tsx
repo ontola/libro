@@ -1,5 +1,7 @@
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { isNode } from '@ontologies/core';
+import { Resource } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../themes/themes';
@@ -79,6 +81,28 @@ export const Header: React.FC<HeaderProps> = ({
     backgroundImageXL,
   });
 
+  const subtitleNode = React.useMemo(() => {
+    if (typeof subtitle === 'string') {
+      return (
+        <Typography
+          className={classes.subtitle}
+          component="p"
+          variant="subtitle1"
+        >
+          {subtitle}
+        </Typography>
+      );
+    } else if (isNode(subtitle)) {
+      return (
+        <div className={classes.subtitle}>
+          <Resource subject={subtitle} />
+        </div>
+      );
+    }
+
+    return <div className={classes.spacer} />;
+  }, [classes, subtitle]);
+
   return (
     <div className={classes.header}>
       <Typography
@@ -87,18 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
       >
         {title}
       </Typography>
-      {subtitle ?
-        (
-          <Typography
-            className={classes.subtitle}
-            component="p"
-            variant="subtitle1"
-          >
-            {subtitle}
-          </Typography>
-        ) : (
-          <div className={classes.spacer} />
-        )}
+      {subtitleNode}
       {buttonText && (
         <CallToActionButton
           text={buttonText}

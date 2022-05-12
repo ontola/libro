@@ -3,8 +3,10 @@ import {
   FC,
   register,
   useProperty,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
+import { isLiteral } from '@ontologies/core';
 
 import { Header } from '../../../components/SalesWebsite/Headers/Header';
 import { HeaderHomePage } from '../../../components/SalesWebsite/Headers/HeaderHomePage';
@@ -32,12 +34,14 @@ const SalesHeader: FC<SalesHeaderProps> = ({ subComponent, theme }) => {
   const [backgroundImage] = useProperty(sales.backgroundImage);
   const [backgroundImageMobile] = useProperty(sales.backgroundImageMobile);
   const [backgroundImageXL] = useProperty(sales.backgroundImageXL);
-  const [title] = useProperty(schema.name);
+  const [title] = useStrings(schema.name);
   const [text] = useProperty(schema.text);
   const [buttonLink] = useProperty(sales.buttonLink);
   const [buttonText] = useProperty(sales.buttonText);
 
   const HeaderComp = headerMap.get(theme) ?? Header;
+
+  const subtitle = isLiteral(text) ? text.value : text;
 
   return (
     <HeaderComp
@@ -46,8 +50,8 @@ const SalesHeader: FC<SalesHeaderProps> = ({ subComponent, theme }) => {
       backgroundImageXL={backgroundImageXL?.value}
       buttonLink={buttonLink?.value}
       buttonText={buttonText?.value}
-      subtitle={text?.value}
-      title={title.value}
+      subtitle={subtitle}
+      title={title}
     >
       {subComponent}
     </HeaderComp>

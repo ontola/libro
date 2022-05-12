@@ -1,7 +1,6 @@
 import {
   FC,
   register,
-  useLRS,
   useProperty,
 } from 'link-redux';
 import * as schema from '@ontologies/schema';
@@ -10,6 +9,7 @@ import type { LottieRef } from 'lottie-react';
 
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
+import useJSON from '../../hooks/useJSON';
 
 const Lottie = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -32,20 +32,13 @@ const LottieAnimation: FC<LottieAnimationProps> = ({
   lottieRef,
 }) => {
   const [url] = useProperty(schema.contentUrl);
-  const [data, setData] = React.useState('');
-  const lrs = useLRS();
+  const [data] = useJSON(url.value);
 
   React.useEffect(() => {
-    if (!url || !url.value) return;
-
-    fetch(url.value)
-      .then((res) => res.json())
-      .then((json) => {
-        setData(json);
-        onDataReady?.();
-      })
-      .catch(lrs.report);
-  }, [url]);
+    if (data !== undefined) {
+      onDataReady?.();
+    }
+  }, [data]);
 
   return (
     <Suspense
