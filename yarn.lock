@@ -2808,7 +2808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ontologies/core@npm:>=2.0.0, @ontologies/core@npm:^2.0.2":
+"@ontologies/core@npm:>=2.0.0":
   version: 2.0.2
   resolution: "@ontologies/core@npm:2.0.2"
   dependencies:
@@ -2816,6 +2816,17 @@ __metadata:
   peerDependencies:
     "@ontologies/core": ">=1.5.0"
   checksum: ecd28d7f25721fca37e9979beb8d06cb5df48b6efa06e91de3e7361ec14ca280db8ae84423a0c1541a3ea9e9032cdbccac9160899ce89c7fecca141534ec7039
+  languageName: node
+  linkType: hard
+
+"@ontologies/core@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@ontologies/core@npm:2.0.3"
+  dependencies:
+    "@ungap/global-this": ^0.3.1
+  peerDependencies:
+    "@ontologies/core": ">=1.5.0"
+  checksum: 6453a930d10cd3064b93d6a7ab441233c981b0ef501675ace43c4081ab723116a1d24f35d3d20db9ea4532939efaa3c2c0b4c69a8416128b561171cbf686d956
   languageName: node
   linkType: hard
 
@@ -12799,7 +12810,7 @@ __metadata:
     "@ontola/link-devtools": ^2.0.2
     "@ontola/memoized-factory": ^2.0.1
     "@ontologies/as": ^2.0.0-rc.1
-    "@ontologies/core": ^2.0.2
+    "@ontologies/core": ^2.0.3
     "@ontologies/dcterms": ^2.0.0
     "@ontologies/foaf": ^2.0.0
     "@ontologies/ld": ^2.0.0
