@@ -11,7 +11,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { appContext } from '../../appContext';
 import { DialogSize, isDialogSize } from '../../middleware/ontolaMiddleware';
 import libro from '../../ontology/libro';
 import { BreakPoints } from '../../themes/themes';
@@ -30,7 +29,6 @@ const DialogManager = () => {
   const backdropClasses = useBackdropStyles();
   const dialogClasses = useDialogStyles();
 
-  const { theme: dialogTheme } = React.useContext(appContext);
   const [resource] = useIds(libro.ns('dialog/resource'));
   const [size] = useStrings(libro.ns('dialog/size'));
 
@@ -69,7 +67,6 @@ const DialogManager = () => {
         close: close(resource, false),
         maxWidth: maxWidth,
       }}
-      className={dialogTheme}
       classes={dialogClasses}
       fullScreen={screenIsNarrow}
       maxWidth={maxWidth}

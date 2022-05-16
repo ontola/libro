@@ -6,7 +6,6 @@ import { LibroTheme } from '../../themes/themes';
 
 const backdropAlphaCoefficient = 0.90;
 const backdropAlphaCoefficientNoBlur = 0.95;
-const oneRem = 5;
 
 interface UseDialogContainerStylesProps {
   maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false | undefined;
@@ -14,7 +13,7 @@ interface UseDialogContainerStylesProps {
 
 export const useDialogContainerStyles = makeStyles<LibroTheme, UseDialogContainerStylesProps>((theme) => ({
   childWrapper: {
-    marginTop: '4rem',
+    margin: '4rem 0',
     padding: '0.5625rem',
   },
   closeButton: {
@@ -38,11 +37,7 @@ export const useDialogContainerStyles = makeStyles<LibroTheme, UseDialogContaine
     height: '100%',
   },
   dialogWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     margin: 'auto',
-    minHeight: '100%',
     width: ({ maxWidth }) => `min(100%, ${theme.breakpoints.values[maxWidth || DialogSize.Lg]}px)`,
   },
 }));
@@ -57,16 +52,12 @@ export const useBackdropStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-export const useDialogStyles = makeStyles<LibroTheme>((theme) => ({
-  paper: {
-    marginBottom: 'auto',
-    marginTop: 'auto',
-    padding: theme.spacing(oneRem),
-  },
+export const useDialogStyles = makeStyles({
   scrollBody: {
     '&::after': {
       content: 'unset',
     },
+    display: 'flex',
     textAlign: 'unset',
   },
-}));
+});
