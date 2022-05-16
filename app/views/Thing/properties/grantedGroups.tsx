@@ -4,10 +4,9 @@ import {
   FC,
   Property,
   PropertyProps,
-  ReturnType,
   register,
   useDataFetching,
-  useResourceLinks,
+  useStrings,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,11 +31,8 @@ const GrantedGroupsDetail: FC<PropertyProps> = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
   useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
   const [groups, groupsLoading] = useContainerToArr<NamedNode>(isNamedNode(linkedProp) ? linkedProp : undefined);
-  const groupNames = useResourceLinks(
-    groups,
-    { name: schema.name },
-    { returnType: ReturnType.Value },
-  ).map(({ name }) => name)
+  useDataFetching(groups);
+  const groupNames = useStrings(groups, schema.name)
     .filter(Boolean)
     .join(', ');
 
