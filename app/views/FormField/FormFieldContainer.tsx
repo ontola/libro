@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import Form from '../../components/Form/Form';
+import { UnwrappedForm } from '../../components/Form/Form';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
 import {
@@ -17,7 +17,7 @@ import {
   fullResourceTopology,
 } from '../../topologies';
 import { CardMain } from '../../topologies/Card';
-import DetailsBar from '../../topologies/DetailsBar';
+import ContentDetails from '../../topologies/ContentDetails';
 
 const FormFieldContainer: FC = ({
   subject,
@@ -26,11 +26,15 @@ const FormFieldContainer: FC = ({
 
   return (
     <CardMain>
-      <DetailsBar right={<Property label={ontola.actionsMenu} />} />
       <CardContent endSpacing>
-        <Form key={timestamp.toString()}>
+        <UnwrappedForm key={timestamp.toString()}>
           {() => <Resource subject={subject} />}
-        </Form>
+        </UnwrappedForm>
+        <ContentDetails>
+          <Property label={ontola.actionsMenu}>
+            <Property label={ontola.menuItems} />
+          </Property>
+        </ContentDetails>
       </CardContent>
     </CardMain>
   );

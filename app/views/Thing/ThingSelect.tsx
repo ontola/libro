@@ -4,9 +4,10 @@ import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import {
+  Property,
   register,
   useGlobalIds,
-  useLink,
+  useStrings,
 } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React, { CSSProperties } from 'react';
@@ -61,16 +62,22 @@ const ThingSelect = ({
 
   const [itemClass] = useGlobalIds(rdfx.type);
   const [labelProp] = useGlobalIds(itemClass, ontola['forms/inputs/select/displayProp']);
+  const [image] = useGlobalIds(schema.image);
 
   if (labelProp) {
     labels.unshift(labelProp);
   }
 
-  const { label } = useLink({ label: labels });
+  const [label] = useStrings(labels);
 
   return (
     <ResourceBoundary wrapperProps={wrapperProps ?? defaultWrapperProps()}>
-      {(label ?? subject).value}
+      {image && (
+        <div className={classes.image}>
+          <Property label={schema.image} />
+        </div>
+      )}
+      {label ?? subject?.value}
     </ResourceBoundary>
   );
 };

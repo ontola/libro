@@ -62,6 +62,7 @@ declare module '@material-ui/core/styles/createTheme' {
     semanticColors: {
       [index: string]: string;
     };
+    zIndexFormInputButtons: number;
     zIndexHoverBox: number;
     zIndexLoader: number;
     zIndexOverlay: number;

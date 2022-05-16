@@ -21,7 +21,7 @@ export interface FormInputProps {
   value: InputValue;
 }
 
-const useStyles = makeStyles<LibroTheme>(() => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   fieldButtons: {
     '& button, & [role="button"]': {
       color: '#707070',
@@ -32,6 +32,7 @@ const useStyles = makeStyles<LibroTheme>(() => ({
     position: 'absolute',
     top: 0,
     width: '100%',
+    zIndex: theme.zIndexFormInputButtons,
   },
   fieldWrapper: {
     display: 'inline-block',

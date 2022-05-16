@@ -5,6 +5,10 @@ import { selectTopology } from '../../topologies';
 import Topology from '../Topology';
 
 export const useSelectItemStyles = makeStyles({
+  image: {
+    display: 'flex',
+    marginRight: '.2em',
+  },
   selectItem: {
     '& .NavbarLink__image': {
       marginRight: '.1em',

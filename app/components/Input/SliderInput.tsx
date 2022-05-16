@@ -49,7 +49,11 @@ const useSliderOverrideStyles = makeStyles<LibroTheme>((theme) => ({
   },
   thumb: {
     '&[aria-valuenow="NaN"]': {
-      display: 'none',
+      '&:hover': {
+        fontSize: 20,
+      },
+      left: '50%',
+      opacity: 0.2,
     },
     'height': ThumbSize,
     'marginLeft': `calc((${ThumbSize}px / 2) * -1)`,
@@ -61,7 +65,7 @@ const useSliderOverrideStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const getAriaValueText = (v: number) => v.toString();
+const getAriaValueText = (v: number) => Number.isNaN(v) ? '⭤' : v.toString();
 
 const SliderInput: React.FC<InputComponentProps> = ({
   inputValue,
@@ -113,6 +117,7 @@ const SliderInput: React.FC<InputComponentProps> = ({
         min={minInclusive}
         track={false}
         valueLabelDisplay="auto"
+        valueLabelFormat={getAriaValueText}
         onBlur={onBlur}
         onChange={handleChange}
         onFocus={onFocus}

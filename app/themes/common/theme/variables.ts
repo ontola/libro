@@ -172,6 +172,7 @@ const theme = {
     drawer: 920,
     modal: 920,
   },
+  zIndexFormInputButtons: 10,
   zIndexHoverBox: 100,
   zIndexLoader: 1200,
   zIndexOverlay: 1900,

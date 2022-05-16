@@ -4,15 +4,22 @@ import {
   Resource,
   array,
   register,
+  useGlobalIds,
   useIds,
-  useProperty,
+  useLRS,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
-import { cardFloatTopology, containerFloatTopology } from '../../topologies';
+import {
+  cardFloatTopology,
+  containerFloatTopology,
+  contentDetailsTopology,
+} from '../../topologies';
 import Menu from '../../topologies/Menu';
 
 import { MenuTypes } from './types';
@@ -24,13 +31,41 @@ const trigger: Trigger = (props) => (
 );
 
 const MenuItemDropdown = () => {
+  const lrs = useLRS();
   const items = useIds(array(ontola.menuItems));
-  const [name] = useProperty(schema.name);
+  const [action] = useGlobalIds(ontola.action);
+  const [name] = useStrings(schema.name);
+  const [loading, setLoading] = React.useState(false);
+  const actionHandler = React.useCallback((e) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    setLoading(true);
+
+    return lrs.exec(action!).then(() => setLoading(false));
+  }, [action]);
+
+  if (items.length == 0) {
+    return (
+      <TriggerButton
+        title={name}
+        onClick={actionHandler}
+      >
+        {loading ? (
+          <FontAwesome
+            spin
+            name="spinner"
+          />
+        ) : <Property label={schema.image} />}
+      </TriggerButton>
+    );
+  }
 
   return(
     <ResourceBoundary>
       <Menu
-        title={name.value}
+        title={name}
         trigger={trigger}
       >
         {items.map((item) => (
@@ -46,6 +81,10 @@ const MenuItemDropdown = () => {
 
 MenuItemDropdown.type = MenuTypes;
 
-MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];
+MenuItemDropdown.topology = [
+  cardFloatTopology,
+  containerFloatTopology,
+  contentDetailsTopology,
+];
 
 export default register(MenuItemDropdown);
