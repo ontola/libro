@@ -43,6 +43,7 @@ import GrantTree from './GrantTree';
 import Group from './Group';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
+import LinkedRecord from './LinkedRecord';
 import Opinion from './Opinion';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
@@ -124,6 +125,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...Group,
     ...ImageObject,
     ...InfiniteCollectionPage,
+    LinkedRecord,
     ...Loading,
     ...LottieAnimation,
     ...MediaObject,
