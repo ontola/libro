@@ -102,7 +102,7 @@ describe('Sales Header Test', () => {
       expect(text).toBeVisible();
     });
 
-    it('renders elements subtitle', async () => {
+    it('renders Elements subtitle', async () => {
       const { getByText } = await render(header3Iri);
 
       const title = getByText('Argu App Applicatie');

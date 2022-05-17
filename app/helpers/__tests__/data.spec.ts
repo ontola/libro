@@ -21,11 +21,11 @@ describe('helpers', () => {
         expect(allow(input, [])).toHaveLength(0);
       });
 
-      it('should let elements through by IRI', () => {
+      it('should let Elements through by IRI', () => {
         expect(allow(input, [ex.ns('e')])).toEqual([e]);
       });
 
-      it('should let elements through by regex', () => {
+      it('should let Elements through by regex', () => {
         expect(allow(input, [/e$/])).toEqual([e]);
       });
     });
@@ -35,13 +35,13 @@ describe('helpers', () => {
         expect(filter(input, [])).toHaveLength(input.length);
       });
 
-      it('should filter elements by IRI', () => {
+      it('should filter Elements by IRI', () => {
         const result = filter(input, [e]);
         expect(result).toHaveLength(input.length - 1);
         expect(result).not.toContain([e]);
       });
 
-      it('should filter elements by regex', () => {
+      it('should filter Elements by regex', () => {
         const result = filter(input, [/e$/]);
         expect(result).toHaveLength(input.length - 1);
         expect(result).not.toContain([e]);
@@ -49,7 +49,7 @@ describe('helpers', () => {
     });
 
     describe('sort', () => {
-      it('should sort the elements', () => {
+      it('should sort the Elements', () => {
         expect(input.sort(sort([]))).toEqual(ordered);
       });
 

@@ -14,7 +14,7 @@ interface PropTypes {
 }
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  // Hides elements for regular users, but should maintain visibility for assistance technology
+  // Hides Elements for regular users, but should maintain visibility for assistance technology
   ariaHidden: {
     height: '1px',
     left: '-10000px',

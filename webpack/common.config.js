@@ -62,6 +62,9 @@ const common = {
       ],
     }),
     new webpack.ProvidePlugin({
+      './jsx-runtime.js': 'react/jsx-runtime',
+      'react/jsx-dev-runtime.js': 'react/jsx-dev-runtime',
+      'react/jsx-runtime.js': 'react/jsx-runtime',
       xmlhttprequest: 'imports-loader?this=>global!exports-loader?global.XMLHttpRequest!global.XMLHttpRequest',
     }),
     new webpack.DefinePlugin({

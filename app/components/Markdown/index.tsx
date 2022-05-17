@@ -193,7 +193,7 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
   public static propTypes = {
     /** Array of strings that need to be highlighted */
     highlightedText: PropTypes.string,
-    /** Disable creation of anchor elements in the output */
+    /** Disable creation of anchor Elements in the output */
     noLinks: PropTypes.bool,
     /** Remove padding */
     noSpacing: PropTypes.bool,

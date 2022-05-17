@@ -9,7 +9,7 @@ export const overrides: Overrides = {
         position: 'relative',
       },
 
-      // Hides elements for regular users, but should maintain visibility for assistance technology
+      // Hides Elements for regular users, but should maintain visibility for assistance technology
       '.AriaHidden': {
         height: '1px',
         left: '10000px',

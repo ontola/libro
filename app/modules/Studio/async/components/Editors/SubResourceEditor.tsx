@@ -15,6 +15,7 @@ import { parseSource } from '../../hooks/useGenerateLRSFromSource';
 import { websiteRelativePath } from '../../lib/iri';
 
 import { DataEditor } from './DataEditor';
+import { ElementsEditorLoader } from './ElementsEditorLoader';
 
 interface CodeEditorProps extends ProjectContextProps {
   onMount?: () => void;
@@ -74,12 +75,32 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
           label="Editor"
           value="editor"
         />
+        <Tab
+          label="Elements"
+          value="elements"
+        />
       </Tabs>
       <TabPanel
         className={classes.grow}
         value="editor"
       >
         <DataEditor
+          resource={resource}
+          value={value}
+          onChange={(v) => {
+            setValue(v!);
+            scheduleSave(v!);
+          }}
+          onMount={onMount}
+        />
+      </TabPanel>
+      <TabPanel
+        className={classes.grow}
+        value="elements"
+      >
+        <ElementsEditorLoader
+          dispatch={dispatch}
+          project={project}
           resource={resource}
           value={value}
           onChange={(v) => {

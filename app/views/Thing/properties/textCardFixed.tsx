@@ -32,7 +32,7 @@ const STRING_CUTOFF = 150;
 
 /**
  * Only displays text when there is no cover image, and does not overflow.
- * Note: It doesn't render inline anchor elements since it should always be wrapped in an outer
+ * Note: It doesn't render inline anchor Elements since it should always be wrapped in an outer
  * anchor.
  */
 const TextCutoff = () => {
