@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
-import { ELEMENT_DEFAULT, Value } from '@udecode/plate';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import clsx from 'clsx';
 import React from 'react';
 
 import { ElementsWrapperProps } from '../lib/ElementsWrapperProps';
 
 import { ElementsEditor } from './components';
+import { deepRecordToElementsValue } from './lib/deepRecordToElementsValue';
+import { editorClassName } from './lib/editorClassName';
 
 // const messages = {
 //   boldButton: {
@@ -62,89 +63,30 @@ import { ElementsEditor } from './components';
 // };
 
 const useStyles = makeStyles((theme: any) => ({
-  slateEditor: {
-    minHeight: '100px',
-    padding: '8px 11px',
-    wordBreak: 'break-word',
-  },
-  slateItalic: {
-    fontStyle: 'italic',
-  },
-  slateOrderedList: {
-    listStyleType: 'decimal',
-  },
-  slateToolbar: {
-    '& .MuiToggleButton-root': {
-      '& svg': {
-        height: '20px',
-        width: '20px',
-      },
-      'border': 0,
-      'marginRight': '1px',
-      'padding': '.45em',
-    },
-    'borderBottom': `1px solid ${theme?.palette?.grey?.xLight}`,
-    'display': 'grid',
-    'grid-template-columns': 'repeat(auto-fit, 2.5em)',
-    'margin': '0px',
-    'padding': '2px',
-  },
-  slateUnorderedList: {
-    '& ul': {
-      '& ul': {
-        listStyleType: 'square',
-      },
-      'listStyleType': 'circle',
-    },
-    'listStyleType': 'disc',
-  },
-  wrapper: {
+  container: {
     backgroundColor: theme?.palette?.grey?.xxLight,
     border: `1px solid ${theme?.palette?.grey?.xLight}`,
     borderRadius: '5px',
+    height: '100%',
+    overflowY: 'scroll',
+  },
+  wrapper: {
+    backgroundColor: 'white',
     flex: 1,
+    height: '100%',
+    overflow: 'hidden',
+    paddingBottom: '4em',
     position: 'relative',
   },
 }));
 
-// const rootPropsClassName = (className: string) => ({
-//   rootProps: {
-//     className,
-//   },
-// });
-
-const deepRecordToElementsValue = (slice: DeepRecord): Value => [{
-  children: [
-    {
-      text: '',
-    },
-  ],
-  type: ELEMENT_DEFAULT,
-}];
-
 const ElementsWrapper: React.FC<ElementsWrapperProps> = ({
-  onChange,
   placeholder,
   value,
 }) => {
   const classes = useStyles();
   // const intl = useIntl();
 
-  // const defaultPlugins = useMemo(() => {
-  //   const options  = mergeAndCompare(
-  //     concatStrings(' '),
-  //     defaultPluginsOptions,
-  //     {
-  //       italic: {
-  //         italic: rootPropsClassName(classes.slateItalic),
-  //       },
-  //       list: {
-  //         ol: rootPropsClassName(classes.slateOrderedList),
-  //         ul: rootPropsClassName(classes.slateUnorderedList),
-  //       },
-  //     },
-  //   ) as DefaultCommandPluginsOptions;
-  //
   //   options.bold.bold.buttonTitle = intl.formatMessage(messages.boldButton);
   //   options.codeBlock.code_block.buttonTitle = intl.formatMessage(messages.codeBlockButton);
   //   options.heading.h1.buttonTitle = intl.formatMessage(messages.heading1Button);
@@ -169,16 +111,17 @@ const ElementsWrapper: React.FC<ElementsWrapperProps> = ({
   // }, [classes]);
 
   return (
-    <div className={classes.wrapper}>
-      <ElementsEditor
-        className={classes.slateEditor}
-        placeholder={placeholder}
-        // plugins={defaultPlugins}
-        toolbarClassName={classes.slateToolbar}
-        value={deepRecordToElementsValue(value)}
-        // onBlur={onChange}
-        // onChange={onChange}
-      />
+    <div className={clsx(classes.wrapper, editorClassName)}>
+      <div className={classes.container}>
+        <ElementsEditor
+          id={value._id.value}
+          // plugins={defaultPlugins}
+          placeholder={placeholder}
+          value={deepRecordToElementsValue(value)}
+          // onBlur={onChange}
+          // onChange={onChange}
+        />
+      </div>
     </div>
   );
 };

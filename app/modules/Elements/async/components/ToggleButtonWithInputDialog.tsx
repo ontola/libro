@@ -4,7 +4,7 @@ import React, {
   useState,
 } from 'react';
 import { Editor, Transforms } from 'slate';
-import { ReactEditor, useSlate } from 'slate-react';
+import { ReactEditor, useEditor } from 'slate-react';
 
 import { InputDialog } from './InputDialog';
 import { ToggleButton } from './ToggleButton';
@@ -34,7 +34,7 @@ export const ToggleButtonWithInputDialog: React.FC<ToggleButtonWithInputDialogPr
   dialogTitle,
   onDialogOK,
 }) => {
-  const editor: ReactEditor = useSlate();
+  const editor = useEditor();
 
   const [open, setOpen] = React.useState(false);
   const [selection, setSelection] = useState<any>(null);

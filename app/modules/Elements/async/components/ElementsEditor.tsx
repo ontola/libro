@@ -1,30 +1,67 @@
+import { makeStyles } from '@material-ui/core/styles';
+import { PlateStoreState } from '@udecode/plate-core/dist/types/PlateStore';
 import React from 'react';
-import { Plate, Value } from '@udecode/plate';
+import {
+  HeadingToolbar,
+  Plate,
+} from '@udecode/plate';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-// import { CommandPlugins } from '../plugins/types';
-// import { PluginEditor } from '../transforms/withPlugins';
-// import { findValidSlatePoint } from '../utils';
+import { config } from '../lib/config';
+import { editorClassName } from '../lib/editorClassName';
+import { plugins } from '../lib/plugins';
 
-import { EditableWithPluginsProps } from './EditableWithPlugins';
+import { MarkBallonToolbar, ToolbarButtons } from './Toolbars';
 
 // const DEBOUNCE_TIMEOUT = 1000;
 
-export interface ElementsEditorProps extends Omit<EditableWithPluginsProps, 'onBlur'> {
+export interface ElementsEditorProps {
   // onBlur?: (editor: PluginEditor, nodes: Node[]) => void;
   // onChange?: (editor: PluginEditor, nodes: Node[]) => void;
+  id: string;
   placeholder?: string;
   // plugins?: CommandPlugins;
-  value?: Value;
+  value?: PlateStoreState['value'];
 }
 
+const useStyles = makeStyles({
+  toolbar: {
+    [`.${editorClassName} &`]: {
+      backgroundColor: 'white',
+      marginLeft: 0,
+      marginRight: 0,
+      position: 'sticky !important' as unknown,
+      top: 0,
+      zIndex: 1,
+    },
+  },
+});
+
 export const ElementsEditor = ({
+  id,
   value,
-}: ElementsEditorProps): JSX.Element => (
-  <Plate
-    id="editor"
-    initialValue={value}
-  />
-);
+}: ElementsEditorProps): JSX.Element => {
+  const classes = useStyles();
+
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <Plate
+        editableProps={config.editableProps}
+        id={id}
+        initialValue={value}
+        plugins={plugins}
+        onChange={(v) => console.log('Test', v)}
+      >
+        <HeadingToolbar className={classes.toolbar}>
+          <ToolbarButtons />
+        </HeadingToolbar>
+
+        <MarkBallonToolbar />
+      </Plate>
+    </DndProvider>
+  );
+};
 
 // export const ElementsEditor2: React.FC<ElementsEditorProps> = ({
 //   onBlur,
