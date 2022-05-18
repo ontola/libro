@@ -26,6 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     flexGrow: 1,
     height: '100%',
     marginRight: `-${detailBarsOverlap}`,
+    maxWidth: '100%',
     overflowX: 'scroll',
     paddingLeft: '0.5rem',
   },
