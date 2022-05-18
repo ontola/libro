@@ -67,11 +67,11 @@ export type Slice = Record<string, DataRecord>;
 
 const dataTypes = ['id', 'lid', 'p', 's', 'dt', 'b', 'i', 'l', 'ls'];
 
-const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string, string>, isSubPath: boolean) => {
+const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string, string>) => {
   switch (v.type) {
   case 'id': {
     if (v.v === '/') {
-      return isSubPath ? rdf.namedNode(websiteIRI) : rdf.namedNode(`${websiteIRI}/`);
+      return rdf.namedNode(websiteIRI);
     }
 
     if (v.v.startsWith('/')) {
@@ -92,9 +92,9 @@ const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string,
   }
 };
 
-const getValue = (value: any, websiteIRI: string, mapping: Record<string, string>, isSubPath: boolean) => {
+const getValue = (value: any, websiteIRI: string, mapping: Record<string, string>) => {
   if (!Array.isArray(value) && Object.hasOwnProperty.call(value, 'type') && dataTypes.includes(value.type)) {
-    return valueToStoreValue(value, websiteIRI, mapping, isSubPath);
+    return valueToStoreValue(value, websiteIRI, mapping);
   }
 
   if (value.length === 1) {
@@ -104,9 +104,9 @@ const getValue = (value: any, websiteIRI: string, mapping: Record<string, string
   return value;
 };
 
-const keyOverride = (key: string, value: any, websiteIRI: string, mapping: Record<string, string>, isSubPath: boolean) => {
+const keyOverride = (key: string, value: any, websiteIRI: string, mapping: Record<string, string>) => {
   if (key === '/') {
-    return isSubPath ? websiteIRI : `${websiteIRI}/`;
+    return websiteIRI;
   }
 
   if (key.startsWith('/')) {
@@ -129,12 +129,11 @@ export const seedToSlice = (
     return {};
   }
 
-  const isSubPath = !websiteIRI.endsWith('/');
   const normalizedWebsiteIRI = sliceIRI(websiteIRI);
 
   return JSON.parse(initialData, function(key: string, value: any) {
-    const nextValue = getValue(value, normalizedWebsiteIRI, mapping, isSubPath);
-    const differentKey = keyOverride(key, value, normalizedWebsiteIRI, mapping, isSubPath);
+    const nextValue = getValue(value, normalizedWebsiteIRI, mapping);
+    const differentKey = keyOverride(key, value, normalizedWebsiteIRI, mapping);
 
     if (differentKey) {
       // eslint-disable-next-line no-invalid-this
