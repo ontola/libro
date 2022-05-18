@@ -21,7 +21,7 @@ const columnWidth = (base: number, size: number, factor: number): GridSize => (
       GRID_FULL,
       size * (GRID_FULL / Math.floor((base / GRID_FULL) * factor)),
     ),
-  ) as GridSize
+  )
 );
 
 export interface GridItemProps extends GridProps {

@@ -16,7 +16,7 @@ import Container from '../../topologies/Container';
 import FullResource from '../../topologies/FullResource';
 
 const Widget = () => {
-  const [topology] = useProperty(ontola.topology);
+  const [changeTopology] = useProperty(ontola.topology);
   const [widgetSize] = useProperty(ontola.widgetSize);
 
   const size = tryParseInt(widgetSize);
@@ -25,12 +25,10 @@ const Widget = () => {
   }), []);
 
   let Wrapper: React.ElementType;
-  let wrapperOpts = {};
 
-  switch (topology) {
+  switch (changeTopology) {
   case argu.grid:
-    Wrapper = GridItem;
-    wrapperOpts = { size: 3 };
+    Wrapper = React.Fragment;
     break;
   case argu.container:
     Wrapper = Container;
@@ -40,14 +38,14 @@ const Widget = () => {
   }
 
   return (
-    <GridItem size={size}>
-      <Wrapper {...wrapperOpts}>
+    <Wrapper>
+      <GridItem size={size}>
         <Property
           childProps={childProps}
           label={ontola.widgetResource}
         />
-      </Wrapper>
-    </GridItem>
+      </GridItem>
+    </Wrapper>
   );
 };
 
