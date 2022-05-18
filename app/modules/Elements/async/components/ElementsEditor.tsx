@@ -18,7 +18,7 @@ import { MarkBallonToolbar, ToolbarButtons } from './Toolbars';
 
 export interface ElementsEditorProps {
   // onBlur?: (editor: PluginEditor, nodes: Node[]) => void;
-  // onChange?: (editor: PluginEditor, nodes: Node[]) => void;
+  onChange?: (value: PlateStoreState['value']) => void;
   id: string;
   placeholder?: string;
   // plugins?: CommandPlugins;
@@ -41,6 +41,7 @@ const useStyles = makeStyles({
 export const ElementsEditor = ({
   id,
   value,
+  onChange,
 }: ElementsEditorProps): JSX.Element => {
   const classes = useStyles();
 
@@ -51,7 +52,10 @@ export const ElementsEditor = ({
         id={id}
         initialValue={value}
         plugins={plugins}
-        onChange={(v) => console.log('Test', v)}
+        onChange={(v) => {
+          console.log('Test', v);
+          if (onChange) { onChange(v); }
+        }}
       >
         <HeadingToolbar className={classes.toolbar}>
           <ToolbarButtons />

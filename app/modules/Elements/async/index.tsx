@@ -7,6 +7,7 @@ import { ElementsWrapperProps } from '../lib/ElementsWrapperProps';
 import { ElementsEditor } from './components';
 import { deepRecordToElementsValue } from './lib/deepRecordToElementsValue';
 import { editorClassName } from './lib/editorClassName';
+import { elementsValueToDeepRecord } from './lib/elementsValueToDeepRecord';
 
 // const messages = {
 //   boldButton: {
@@ -83,6 +84,7 @@ const useStyles = makeStyles((theme: any) => ({
 const ElementsWrapper: React.FC<ElementsWrapperProps> = ({
   placeholder,
   value,
+  onChange,
 }) => {
   const classes = useStyles();
   // const intl = useIntl();
@@ -115,11 +117,10 @@ const ElementsWrapper: React.FC<ElementsWrapperProps> = ({
       <div className={classes.container}>
         <ElementsEditor
           id={value._id.value}
-          // plugins={defaultPlugins}
           placeholder={placeholder}
           value={deepRecordToElementsValue(value)}
           // onBlur={onChange}
-          // onChange={onChange}
+          onChange={(v) => onChange(elementsValueToDeepRecord(value._id, v))}
         />
       </div>
     </div>

@@ -5,10 +5,11 @@ import React from 'react';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import elements from '../../../../../ontology/elements';
 import ElementsLoader from '../../../../Elements/components/ElementsLoader';
-import { dataObjectsToDeepSlice } from '../../../lib/dataObjectsToDeepSlice';
+import { DeepSlice, dataObjectsToDeepSlice } from '../../../lib/dataObjectsToDeepSlice';
 import { evaluate } from '../../../lib/evaluate';
 import { findRecordsOfType } from '../../../lib/findRecordsOfType';
 import { ProjectContextProps } from '../../context/ProjectContext';
+import { deepSliceToSource } from '../../lib/deepSliceToSource';
 import { Editable } from '../../lib/types';
 
 interface DataEditorProps extends ProjectContextProps {
@@ -21,14 +22,15 @@ interface DataEditorProps extends ProjectContextProps {
 export const ElementsEditorLoader = ({
   project,
   value,
+  onChange,
 }: DataEditorProps): JSX.Element => {
   const source = evaluate(value, project.websiteIRI);
   const slice = dataObjectsToDeepSlice(source);
   const documents = findRecordsOfType(slice, elements.Document);
-  const [docId, setDocId] = React.useState(0);
+  const [docIndex, setDocIndex] = React.useState(0);
 
   React.useEffect(() => {
-    setDocId(0);
+    setDocIndex(0);
   }, [documents.length, project.current, project.subResource]);
 
   if (documents.length === 0) {
@@ -45,8 +47,8 @@ export const ElementsEditorLoader = ({
         <Select
           id="demo-simple-select"
           labelId="demo-simple-select-label"
-          value={docId}
-          onChange={(e) => setDocId(Number(e.target.value))}
+          value={docIndex}
+          onChange={(e) => setDocIndex(Number(e.target.value))}
         >
           {documents.map((doc, i) => (
             <MenuItem
@@ -60,8 +62,21 @@ export const ElementsEditorLoader = ({
       )}
       <ElementsLoader
         placeholder="test"
-        value={documents[docId]}
-        onChange={(...args) => console.log(...args)}
+        value={documents[docIndex]}
+        onChange={(deepRecord) => {
+          const docId = documents[docIndex]._id;
+          const updatedSlice: DeepSlice = {
+            ...slice,
+            [docId.value]: deepRecord,
+          };
+          console.log(updatedSlice);
+
+          if (onChange) {
+            const newSource = deepSliceToSource(updatedSlice, project.websiteIRI);
+            console.log('newSource', newSource);
+            onChange(newSource);
+          }
+        }}
       />
     </ErrorBoundary>
   );

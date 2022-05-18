@@ -2,15 +2,14 @@ import {
   Literal,
   NamedNode,
   isLiteral,
-  isNode,
+  isNode, 
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
-  ELEMENT_DEFAULT,
   TDescendant,
   TElement,
-  TText,
+  TText, 
 } from '@udecode/plate';
 import { PlateStoreState } from '@udecode/plate-core/dist/types/PlateStore';
 import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
@@ -18,26 +17,10 @@ import { SomeNode } from 'link-lib/dist-types/types';
 
 import elements from '../../../../ontology/elements';
 
+import { elementsMap } from './mapping';
+
 type ElementsTypes = typeof elements.H1 | typeof elements.H2 | typeof elements.H3 | typeof elements.H4 | typeof elements.H5
   | typeof elements.H6 | typeof elements.Img | typeof elements.Li | typeof elements.Ol | typeof elements.P | typeof elements.Ul;
-
-const elementsMap = {
-  [elements.A.value]: 'a',
-  [elements.Document.value]: ELEMENT_DEFAULT,
-  [elements.Tip.value]: 'code',
-  ['component:Button']: 'component:Button',
-  [elements.H1.value]: 'h1',
-  [elements.H2.value]: 'h2',
-  [elements.H3.value]: 'h3',
-  [elements.H4.value]: 'h4',
-  [elements.H5.value]: 'h5',
-  [elements.H6.value]: 'h6',
-  [elements.Img.value]: 'img',
-  [elements.Li.value]: 'li',
-  [elements.Ol.value]: 'ol',
-  [elements.P.value]: 'p',
-  [elements.Ul.value]: 'ul',
-};
 
 interface ElementsDeepRecord extends DeepRecord {
   type: ElementsTypes;
@@ -149,5 +132,5 @@ export const deepRecordToElementsValue = (record: DeepRecord): PlateStoreState['
   const elementsDeepRecord = toElementsDeepRecord(record);
   const child = toDescendant(elementsDeepRecord);
 
-  return child.children;
+  return child.children as TElement[];
 };

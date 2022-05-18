@@ -141,10 +141,16 @@ const isMultiple = (id: Node, data: Quad[]) => {
     return false;
   }
 
-  return nestedResources(id, data).size > 0;
+  return Array.from(nestedResources(id, data))
+    .filter((v) => isNamedNode(v))
+    .length > 0;
 };
 
-export const toWrappedDataDocument = (id: Node, data: Quad[], websiteIRI: string, indentation = 0): string => {
+export const toWrappedDataDocument = (id: Node | undefined, data: Quad[], websiteIRI: string, indentation = 0): string => {
+  if (id === undefined) {
+    return '({})';
+  }
+
   if (isMultiple(id, data)) {
     const [, , nestedIndent] = getBumps(indentation);
     const [stringified] = toDataDocument(id, data, websiteIRI, nestedIndent);
@@ -154,5 +160,5 @@ export const toWrappedDataDocument = (id: Node, data: Quad[], websiteIRI: string
 
   const [stringified] = toDataDocument(id, data, websiteIRI, indentation);
 
-  return `(${stringified})`;
+  return `(${stringified ?? '{}'})`;
 };
