@@ -4,6 +4,7 @@ import React from 'react';
 import {
   HeadingToolbar,
   Plate,
+  createPlateEditor,
 } from '@udecode/plate';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -44,17 +45,26 @@ export const ElementsEditor = ({
   onChange,
 }: ElementsEditorProps): JSX.Element => {
   const classes = useStyles();
+  const editor = createPlateEditor({
+    id,
+    plugins,
+  });
 
   return (
     <DndProvider backend={HTML5Backend}>
       <Plate
         editableProps={config.editableProps}
+        editor={editor}
         id={id}
         initialValue={value}
-        plugins={plugins}
         onChange={(v) => {
-          console.log('Test', v);
-          if (onChange) { onChange(v); }
+          const isAstChange = editor.operations.some(
+            (op) => 'set_selection' !== op.type,
+          );
+
+          if (isAstChange && onChange) {
+            onChange(v);
+          }
         }}
       >
         <HeadingToolbar className={classes.toolbar}>
