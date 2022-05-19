@@ -26,8 +26,9 @@ export interface NavbarLinkLinkProps extends Pick<AriaAttributes, 'aria-controls
   to?: string;
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
+    fontSize: theme.navBarFontSize,
     minWidth: 'unset',
   },
 }));

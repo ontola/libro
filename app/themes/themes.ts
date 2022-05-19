@@ -59,6 +59,8 @@ declare module '@mui/material/styles/createTheme' {
     containerWidth: {
       [K in Size]: string;
     };
+    greyBorder: string;
+    navBarFontSize: string;
     semanticColors: {
       [index: string]: string;
     };
@@ -66,7 +68,6 @@ declare module '@mui/material/styles/createTheme' {
     zIndexHoverBox: number;
     zIndexLoader: number;
     zIndexOverlay: number;
-    greyBorder: string;
   }
 }
 

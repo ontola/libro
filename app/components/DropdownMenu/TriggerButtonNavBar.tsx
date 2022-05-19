@@ -19,6 +19,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignItems: 'center',
     color: 'inherit',
     display: 'flex',
+    fontSize: theme.navBarFontSize,
     fontWeight: theme.typography.fontWeightMedium,
     padding: '6px 8px',
   },

@@ -128,6 +128,7 @@ const theme = {
     small: '35rem',
   },
   greyBorder: `solid 1px ${colors.grey.xLight}`,
+  navBarFontSize: '.95em',
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {
