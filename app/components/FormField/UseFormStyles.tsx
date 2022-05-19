@@ -130,8 +130,9 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
       },
     },
     [`& .${fieldLabelCID}`]: {
-      '&-required': {
-        color: theme.palette.red.main,
+      '&-optional': {
+        color: theme.palette.grey.main,
+        paddingLeft: '1ch',
       },
       margin: 0,
       paddingBottom: '.3rem',

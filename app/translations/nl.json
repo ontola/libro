@@ -308,11 +308,11 @@
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
     "defaultMessage": "Plaats een {type}..."
   },
+  "https://app.argu.co/i18n/forms/optional/helperText": {
+    "defaultMessage": "optioneel"
+  },
   "https://app.argu.co/i18n/forms/radioGroup/noOptions": {
     "defaultMessage": "Geen opties beschikbaar"
-  },
-  "https://app.argu.co/i18n/forms/required/helperText": {
-    "defaultMessage": "*Vereist"
   },
   "https://app.argu.co/i18n/forms/select/noMatchingItems": {
     "defaultMessage": "Geen matchende items"

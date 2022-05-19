@@ -308,11 +308,11 @@
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
     "defaultMessage": "Eine {type} teilen..."
   },
+  "https://app.argu.co/i18n/forms/optional/helperText": {
+    "defaultMessage": "optional"
+  },
   "https://app.argu.co/i18n/forms/radioGroup/noOptions": {
     "defaultMessage": "Keine Optionen verfügbar"
-  },
-  "https://app.argu.co/i18n/forms/required/helperText": {
-    "defaultMessage": "*Benötigt"
   },
   "https://app.argu.co/i18n/forms/select/noMatchingItems": {
     "defaultMessage": "Keine passenden Artikel"

@@ -310,11 +310,11 @@
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": {
     "defaultMessage": "Share your {type}..."
   },
+  "https://app.argu.co/i18n/forms/optional/helperText": {
+    "defaultMessage": "optional"
+  },
   "https://app.argu.co/i18n/forms/radioGroup/noOptions": {
     "defaultMessage": "No options available"
-  },
-  "https://app.argu.co/i18n/forms/required/helperText": {
-    "defaultMessage": "*Required"
   },
   "https://app.argu.co/i18n/forms/select/noMatchingItems": {
     "defaultMessage": "No matching items"

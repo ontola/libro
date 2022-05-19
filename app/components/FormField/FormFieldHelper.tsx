@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import { isJSONLDObject } from '../../helpers/types';
 import { formContext } from '../Form/FormContext';
@@ -30,7 +29,6 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
   } = React.useContext(formFieldContext);
   const {
     maxLength,
-    required,
   } = fieldShape;
 
   const renderCharCounter = theme !== 'preview';
@@ -39,18 +37,12 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
     return null;
   }
 
-  const requiredHelper = required && (
-    <FormattedMessage
-      defaultMessage="*Required"
-      id="https://app.argu.co/i18n/forms/required/helperText"
-    />
-  );
   const renderHelperText = helperText === null || (helperText?.length || 0) > 0;
 
   return (
     <FieldHelper
       error={touched ? error : undefined}
-      helperText={renderHelperText ? helperText : requiredHelper}
+      helperText={renderHelperText ? helperText : ''}
       right={renderCharCounter && maxLength && value && !isJSONLDObject(value) ? (
         <CharCounter
           maxLength={maxLength}

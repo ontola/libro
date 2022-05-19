@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { LibroTheme } from '../../themes/themes';
 
@@ -10,7 +11,7 @@ interface PropTypes {
   htmlFor: string;
   label: string | React.ReactNode;
   hidden?: boolean;
-  required?: boolean;
+  optional?: boolean;
 }
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     width: '1px',
   },
   fieldLabel: {
-    color: theme.palette.grey.xxLightForegroundSmall,
+    color: theme.palette.grey.midDark,
     display: 'block',
     fontSize: '1em',
     fontWeight: 'bold',
@@ -35,7 +36,7 @@ const FieldLabel: React.FC<PropTypes> = ({
   htmlFor,
   label,
   hidden,
-  required,
+  optional,
 }) => {
   const classes = useStyles();
 
@@ -49,9 +50,14 @@ const FieldLabel: React.FC<PropTypes> = ({
       htmlFor={htmlFor}
     >
       {label}
-      {required && (
-        <span className={`${fieldLabelCID}-required`}>
-          *
+      {optional && (
+        <span className={`${fieldLabelCID}-optional`}>
+          (
+          <FormattedMessage
+            defaultMessage="Optional"
+            id="https://app.argu.co/i18n/forms/optional/helperText"
+          />
+          )
         </span>
       )}
     </label>

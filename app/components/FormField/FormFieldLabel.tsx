@@ -45,7 +45,7 @@ const FormFieldLabel: React.FC = () => {
         hidden={theme === 'preview'}
         htmlFor={name}
         label={label}
-        required={fieldShape.required}
+        optional={!fieldShape.required}
       />
     </span>
   );
