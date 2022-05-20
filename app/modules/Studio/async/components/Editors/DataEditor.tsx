@@ -8,7 +8,8 @@ import { Editable, ResourceType } from '../../lib/types';
 
 interface DataEditorProps {
   onChange?: (v: string | undefined) => void;
-  resource: Editable;
+  resourceType: ResourceType;
+  resource?: Editable;
   options?: editor.IStandaloneEditorConstructionOptions,
   onMount?: () => void;
   value: string;
@@ -37,6 +38,7 @@ const configureLibs = (monaco: Monaco) => {
 
 export const DataEditor = ({
   resource,
+  resourceType,
   value,
   options,
   onChange,
@@ -58,7 +60,7 @@ export const DataEditor = ({
       saveViewState
       // defaultLanguage="typescript"
       height="inherit"
-      language={languageForType(resource.type)}
+      language={languageForType(resourceType)}
       line={0}
       options={{
         codeLens: true,
@@ -71,7 +73,7 @@ export const DataEditor = ({
         wordWrap: 'on',
         ...(options ?? {}),
       }}
-      path={resource.name}
+      path={resource?.name ?? resourceType}
       theme={prefersDark ? 'vs-dark' : 'vs-light'}
       value={value}
       width="100%"

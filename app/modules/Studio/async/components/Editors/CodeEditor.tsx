@@ -6,6 +6,7 @@ import {
   ProjectContextProps,
   currentComponent,
 } from '../../context/ProjectContext';
+import { ResourceType } from '../../lib/types';
 
 import { DataEditor } from './DataEditor';
 
@@ -35,6 +36,7 @@ export const CodeEditor = ({ project, dispatch, onMount }: CodeEditorProps): JSX
   return (
     <DataEditor
       resource={component}
+      resourceType={ResourceType.RDF}
       value={value}
       onChange={(v) => {
         setValue(v!);

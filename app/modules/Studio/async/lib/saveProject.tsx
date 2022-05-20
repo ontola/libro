@@ -30,7 +30,6 @@ import { projectToSource } from './projectToSource';
 import { RenderedPage } from './types';
 
 const projectToServerData = async (project: ProjectContext, prerender: boolean): Promise<ServerData> => {
-  const manifest = JSON.parse(project.manifest.value);
   const resources = project.website.children;
   const source = projectToSource(project);
   const [nodes, quads] = parseSource(source, project.websiteIRI, false);
@@ -45,7 +44,7 @@ const projectToServerData = async (project: ProjectContext, prerender: boolean):
 
   return {
     data,
-    manifest,
+    manifest: project.manifest,
     pages,
     resources,
     sitemap,
@@ -82,16 +81,14 @@ export const updateProject = async (project: ProjectContext, prerender: boolean)
 };
 
 const projectAppContext = (project: ProjectContext): Partial<AppContext> => {
-  const manifest: WebManifest = JSON.parse(project.manifest.value);
-
-  if (!manifest.ontola.theme) {
+  if (!project.manifest.ontola.theme) {
     throw new Error('No theme');
   }
 
   return {
-    theme: manifest.ontola.theme,
-    themeOpts: manifest.ontola.theme_options,
-    website: manifest.ontola.website_iri,
+    theme: project.manifest.ontola.theme,
+    themeOpts: project.manifest.ontola.theme_options,
+    website: project.manifest.ontola.website_iri,
   };
 };
 
@@ -147,8 +144,7 @@ const renderResource = (
 export const renderCurrentResource = async (project: ProjectContext): Promise<RenderedPage> => {
   const source = projectToSource(project);
   const [, data] = parseSource(source, project.websiteIRI);
-  const manifest = JSON.parse(project.manifest.value);
-  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
+  const { lrs } = await generateLRS(project.manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
   const appContext = projectAppContext(project);
   const websiteCtxValue: WebsiteCtx = projectWebsiteContext(appContext.website);
   const history = createMemoryHistory();
@@ -160,7 +156,7 @@ export const renderCurrentResource = async (project: ProjectContext): Promise<Re
     lrs,
     appContext,
     websiteCtxValue,
-    manifest,
+    project.manifest,
     resource.path,
   );
 };
@@ -168,8 +164,7 @@ export const renderCurrentResource = async (project: ProjectContext): Promise<Re
 export const renderProject = async (project: ProjectContext): Promise<Array<RenderedPage | Error>> => {
   const source = projectToSource(project);
   const [nodes, data] = parseSource(source, project.websiteIRI);
-  const manifest = JSON.parse(project.manifest.value);
-  const { lrs } = await generateLRS(manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
+  const { lrs } = await generateLRS(project.manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
   const history = createMemoryHistory();
   const sitemap = filterNodes(nodes);
 
@@ -185,7 +180,7 @@ export const renderProject = async (project: ProjectContext): Promise<Array<Rend
         lrs,
         appContext,
         websiteCtxValue,
-        manifest,
+        project.manifest,
         iri,
       );
 

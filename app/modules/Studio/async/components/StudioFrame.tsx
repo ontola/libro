@@ -2,7 +2,11 @@ import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { ProjectContext, useProjectStateReducer } from '../context/ProjectContext';
+import {
+  ProjectContext,
+  projectContext,
+  useProjectStateReducer,
+} from '../context/ProjectContext';
 
 import { LoadingScreen } from './screens/LoadingScreen';
 import { NoProjectScreen } from './screens/NoProjectScreen';
@@ -32,23 +36,26 @@ const screen = (project: ProjectContext): [React.FC<any> | undefined, boolean] =
 
 export const StudioFrame = (): JSX.Element => {
   const classes = useStyles();
-  const [project, dispatch] = useProjectStateReducer();
+  const projectCtx = useProjectStateReducer();
+  const [project, dispatch] = projectCtx;
 
   const [Screen, loading] = screen(project);
 
   return  (
-    <div className={classes.windowOverlay}>
-      {Screen && (
-        <Screen
+    <projectContext.Provider value={projectCtx}>
+      <div className={classes.windowOverlay}>
+        {Screen && (
+          <Screen
+            dispatch={dispatch}
+            project={project}
+          />
+        )}
+        <LoadingScreen
           dispatch={dispatch}
           project={project}
+          show={loading}
         />
-      )}
-      <LoadingScreen
-        dispatch={dispatch}
-        project={project}
-        show={loading}
-      />
-    </div>
+      </div>
+    </projectContext.Provider>
   );
 };

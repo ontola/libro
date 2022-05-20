@@ -81,6 +81,7 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
       >
         <DataEditor
           resource={resource}
+          resourceType={resource.type}
           value={value}
           onChange={(v) => {
             setValue(v!);

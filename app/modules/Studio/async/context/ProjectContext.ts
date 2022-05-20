@@ -1,5 +1,6 @@
 import React, { Dispatch } from 'react';
 
+import { defaultManifest } from '../../../../helpers/defaultManifest';
 import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { Seed } from '../../../Common/lib/seed';
 import { sourceToSlice } from '../../lib/parseToGraph';
@@ -61,10 +62,10 @@ export interface ProjectContext {
   iri: string | undefined;
   websiteIRI: string;
   loading: boolean;
-  manifest: Component,
   sitemap: Component,
   website: Component,
   distributions: Component,
+  manifest: WebManifest,
   subResource: number;
   serverDataHash: number;
   distributionToDeploy?: DistributionMetaWithIRI;
@@ -73,6 +74,7 @@ export interface ProjectContext {
 export enum ProjectAction {
   Load,
   UpdateComponent,
+  UpdateManifest,
   UpdateRDFSubResource,
   SetFile,
   SetResource,
@@ -89,10 +91,15 @@ export enum ProjectAction {
   HashProjectData,
 }
 
+interface UpdateManifestAction {
+  type: ProjectAction.UpdateManifest;
+  value: WebManifest;
+}
+
 interface UpdateComponentAction {
   type: ProjectAction.UpdateComponent;
   id: ComponentName;
-  value: string
+  value: string;
 }
 
 interface UpdateSubRDFResourceAction {
@@ -167,6 +174,7 @@ interface HashProjectData {
 }
 
 export type Action = UpdateComponentAction
+  | UpdateManifestAction
   | UpdateSubRDFResourceAction
   | SetFileAction
   | SetResourceAction
@@ -190,14 +198,29 @@ export const projectContext = React.createContext<ProjectState>([
   () => undefined,
 ]);
 
-export const currentComponent = (project: ProjectContext): Component =>
+export const currentComponent = (project: ProjectContext): Component | WebManifest =>
   project[project.current];
 
-export const subResource = (project: ProjectContext): SubResource =>
-  currentComponent(project).children.find((it) => it.id === project.subResource)
-  ?? currentComponent(project).children[0];
+const isWebManifest = (_value: Component | WebManifest, name: string | undefined): _value is WebManifest =>
+  name === ComponentName.Manifest;
 
-const resource = (name: ComponentName, type = ResourceType.RDF, children = [], value = '' ): Component => ({
+export const subResource = (project: ProjectContext): SubResource => {
+  const component = currentComponent(project);
+
+  if (isWebManifest(component, project.current)) {
+    throw new Error();
+  }
+
+  return component.children.find((it) => it.id === project.subResource)
+    ?? component.children[0];
+};
+
+const resource = (
+  name: ComponentName,
+  type: ResourceType,
+  value: string,
+  children = [],
+): Component => ({
   children: children,
   name: name,
   type: type,
@@ -210,25 +233,23 @@ const initialState: ProjectContext = {
   distributions: resource(
     ComponentName.Distributions,
     ResourceType.Distributions,
+    '',
   ),
   iri: undefined,
   loading: false,
-  manifest: resource(
-    ComponentName.Manifest,
-    ResourceType.Manifest,
-    [],
-    '{}',
-  ),
+  manifest: defaultManifest('https://changeme.localdev/'),
   name: undefined,
   serverDataHash: 0,
   sitemap: resource(
     ComponentName.Sitemap,
     ResourceType.SiteMap,
+    '',
   ),
   subResource: 0,
   website: resource(
     ComponentName.Website,
     ResourceType.RDF,
+    '',
   ),
   websiteIRI: 'https://changeme.localdev/',
 };
@@ -241,15 +262,7 @@ export const emptySubResource = (id: number): SubResource => ({
   value: '',
 });
 
-const INDENT = 4;
-
 const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
-  const manifest: Component = {
-    children: [],
-    name: ComponentName.Manifest,
-    type: ResourceType.Manifest,
-    value: JSON.stringify(data.manifest, null, INDENT),
-  };
   const website: Component = {
     children: data.resources,
     name: ComponentName.Website,
@@ -263,15 +276,13 @@ const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
     value: data.sitemap,
   };
 
-  const websiteIRI = JSON.parse(manifest.value).ontola.website_iri;
-
   return {
     loading: false,
-    manifest,
+    manifest: data.manifest,
     sitemap,
     subResource: 0,
     website,
-    websiteIRI,
+    websiteIRI: data.manifest.ontola.website_iri,
   };
 };
 
@@ -310,21 +321,17 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
     };
   }
 
-  case ProjectAction.UpdateComponent: {
-    let websiteIRI = state.websiteIRI;
-
-    if (action.id === 'manifest') {
-      try {
-        const manifest = JSON.parse(action.value);
-        websiteIRI = manifest?.ontola?.website_iri ?? state.websiteIRI;
-      } catch (e) {
-        //
-      }
-    }
-
+  case ProjectAction.UpdateManifest: {
     return {
       ...state,
-      websiteIRI,
+      manifest: action.value,
+      websiteIRI: action.value.ontola?.website_iri ?? state.websiteIRI,
+    };
+  }
+
+  case ProjectAction.UpdateComponent: {
+    return {
+      ...state,
       [action.id]: {
         ...state[action.id],
         value: action.value,

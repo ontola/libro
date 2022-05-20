@@ -2,12 +2,16 @@ import { Grid, Skeleton } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
-import { ProjectContextProps, currentComponent } from '../context/ProjectContext';
+import {
+  ComponentName,
+  ProjectContextProps,
+  currentComponent,
+} from '../context/ProjectContext';
 import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
-import { ResourceType } from '../lib/types';
 
 import { CodeEditor } from './Editors/CodeEditor';
 import { DistributionsEditor } from './Editors/DistributionsEditor';
+import { ManifestEditor } from './Editors/ManifestEditor';
 import { SiteMapEditor } from './Editors/SiteMapEditor';
 import { SubResourceEditor } from './Editors/SubResourceEditor';
 
@@ -76,7 +80,7 @@ export const Content = ({ project, dispatch, onMount }: EditorProps): JSX.Elemen
     );
   }
 
-  if (resource.type === ResourceType.RDF && project.subResource !== -1) {
+  if (project.current === ComponentName.Website && project.subResource !== -1) {
     return (
       <SubResourceEditor
         dispatch={dispatch}
@@ -86,7 +90,11 @@ export const Content = ({ project, dispatch, onMount }: EditorProps): JSX.Elemen
     );
   }
 
-  if (resource.type === ResourceType.Manifest || resource.type === ResourceType.RDF) {
+  if (project.current === ComponentName.Manifest) {
+    return <ManifestEditor onMount={onMount} />;
+  }
+
+  if (project.current === ComponentName.Website) {
     return (
       <CodeEditor
         dispatch={dispatch}
@@ -96,27 +104,11 @@ export const Content = ({ project, dispatch, onMount }: EditorProps): JSX.Elemen
     );
   }
 
-  if (resource.type === ResourceType.SiteMap) {
+  if (project.current === ComponentName.Sitemap) {
     return <SiteMapEditor project={project} />;
   }
 
-  if (resource.type === ResourceType.Elements) {
-    return (
-      <div>
-        RTE
-      </div>
-    );
-  }
-
-  if (resource.type === ResourceType.MediaObject) {
-    return (
-      <div>
-        Media Object Uploader
-      </div>
-    );
-  }
-
-  if (resource.type === ResourceType.Distributions) {
+  if (project.current === ComponentName.Distributions) {
     return (
       <DistributionsEditor
         dispatch={dispatch}

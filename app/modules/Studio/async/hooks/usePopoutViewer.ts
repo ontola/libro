@@ -4,11 +4,14 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { handle } from '../../../../helpers/logging';
-import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
 import { PageViewerState } from '../../lib/PageViewerState';
 import parseToGraph from '../../lib/parseToGraph';
-import { ProjectContext, subResource } from '../context/ProjectContext';
+import {
+  ComponentName,
+  ProjectContext,
+  subResource,
+} from '../context/ProjectContext';
 import { graphToSeed } from '../lib/graphToSeed';
 import { projectToSource } from '../lib/projectToSource';
 
@@ -31,6 +34,10 @@ const normalize = (urlOrPath: string, websiteIRI: string) => {
 };
 
 const subResourceIri = (project: ProjectContext): string => {
+  if (project.current === ComponentName.Manifest) {
+    return 'auto';
+  }
+
   const path = subResource(project)?.path;
 
   if (!path || path === '/') {
@@ -42,11 +49,10 @@ const subResourceIri = (project: ProjectContext): string => {
 
 const projectToPageViewerState = (project: ProjectContext, lrs: LinkReduxLRSType): PageViewerState => {
   const source = projectToSource(project);
-  const manifest = JSON.parse(project.manifest.value) as WebManifest;
   let quads: Quadruple[] = [];
 
   try {
-    quads = parseToGraph(source, manifest.ontola.website_iri, true)
+    quads = parseToGraph(source, project.manifest.ontola.website_iri, true)
       .flatMap(([, it]) => it.quads);
   } catch (e) {
     handle(e);
@@ -58,10 +64,10 @@ const projectToPageViewerState = (project: ProjectContext, lrs: LinkReduxLRSType
   return {
     currentResource: subResourceIri(project),
     doc: {
-      manifestOverride: project.manifest.value,
+      manifestOverride: JSON.stringify(project.manifest),
       seed: JSON.stringify(slice),
     },
-    manifest,
+    manifest: project.manifest,
   };
 };
 
@@ -79,7 +85,7 @@ export const usePopoutViewer = ({ onClose, onOpen, project }: PopoutEditorProps)
 
     sendUpdate(message);
   }, [
-    project.manifest.value,
+    JSON.stringify(project.manifest),
     project.website.children,
     project.subResource,
     sendUpdate,
