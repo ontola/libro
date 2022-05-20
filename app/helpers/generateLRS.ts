@@ -1,7 +1,5 @@
 import * as as from '@ontologies/as';
 import rdf, { Quadruple } from '@ontologies/core';
-import * as foaf from '@ontologies/foaf';
-import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
@@ -133,7 +131,6 @@ export default async function generateLRS(
   // tslint:disable max-line-length
   const ontologicalClassData: Quadruple[] = [
     quadruple(schema.Thing, rdfs.subClassOf, rdfs.Resource),
-    quadruple(owl.Thing, owl.sameAs, schema.Thing),
 
     quadruple(schema.Thing, rdfx.type, rdfs.Class),
     quadruple(schema.Thing, rdfs.comment, rdf.literal('The most generic type of item.')),
@@ -371,7 +368,6 @@ export default async function generateLRS(
   lrs.store.addQuadruples(ontologicalClassData);
 
   const ontologicalPropertyData = [
-    quadruple(foaf.name, owl.sameAs, schema.name),
     quadruple(schema.name, rdfx.type, rdfx.Property),
 
     quadruple(argu.applyLink, rdfx.type, rdfx.Property),
