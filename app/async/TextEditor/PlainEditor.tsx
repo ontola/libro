@@ -22,6 +22,7 @@ const defaultProps = {
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   buttonWrapper: {
     display: 'flex',
+    flexWrap: 'wrap',
   },
   preview: {
     padding: '10px 20px',

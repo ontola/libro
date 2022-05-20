@@ -9,6 +9,9 @@ const useSelectStyles = makeStyles((theme: LibroTheme) => ({
     boxShadow: SHADOW_LIGHT,
   },
   input: {
+    '& .MuiAutocomplete-endAdornment': {
+      position: 'absolute',
+    },
     '&& div': {
       flexWrap: 'nowrap',
     },

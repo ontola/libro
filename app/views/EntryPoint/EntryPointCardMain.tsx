@@ -1,3 +1,5 @@
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -13,6 +15,7 @@ import React, {
 import EntryPointForm from '../../components/Form/EntryPointForm';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
+import { LibroTheme } from '../../themes/themes';
 import { cardMainTopology, cardTopology } from '../../topologies';
 import FormFooter from '../../topologies/FormFooter';
 
@@ -31,11 +34,14 @@ const EntryPointCardMain: FC<EntryPointCardMainProps> = ({
   const entryPointFormProps = useEntryPointFormProps(subject!, otherProps);
   const handleCancel = useFormCancel(entryPointFormProps.formID, onCancel);
   const [name] = useStrings(schema.name);
+  const theme = useTheme<LibroTheme>();
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
 
   const footer = (loading: boolean) => (
     <FormFooter>
       <Property label={ll.actionBody} />
       <FormFooterRight
+        crammed={screenIsNarrow}
         loading={loading}
         submitLabel={name}
         onCancel={handleCancel}
