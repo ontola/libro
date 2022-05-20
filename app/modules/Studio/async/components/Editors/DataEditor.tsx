@@ -12,6 +12,7 @@ interface DataEditorProps {
   id?: string;
   options?: editor.IStandaloneEditorConstructionOptions,
   onMount?: () => void;
+  reloadValue?: () => void;
   value: string;
 }
 
@@ -38,6 +39,7 @@ const configureLibs = (monaco: Monaco) => {
 
 export const DataEditor = ({
   id,
+  reloadValue,
   resourceType,
   value,
   options,
@@ -45,6 +47,12 @@ export const DataEditor = ({
   onMount,
 }: DataEditorProps): JSX.Element => {
   const [prefersDark] = React.useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  React.useEffect(() => {
+    if (reloadValue) {
+      reloadValue();
+    }
+  }, []);
 
   const handleMount = React.useCallback((_, monaco) => {
     configureHighlighting(monaco);
@@ -63,7 +71,9 @@ export const DataEditor = ({
       language={languageForType(resourceType)}
       line={0}
       options={{
+        automaticLayout: true,
         codeLens: true,
+        definitionLinkOpensInPeek: true,
         formatOnPaste: true,
         formatOnType: true,
         lineNumbersMinChars: 1,

@@ -46,6 +46,7 @@ const ElementsGrid: FC = () => {
 };
 
 ElementsGrid.type = elements.Grid;
+
 ElementsGrid.topology = allTopologies;
 
 export default register(ElementsGrid);

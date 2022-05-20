@@ -1,8 +1,7 @@
-import { Node, Quad } from '@ontologies/core';
+import type { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
 
 export type ToDataObject = (
-  id: Node,
-  data: Quad[],
+  record: DeepRecord,
   websiteIRI: string,
   indentation?: number,
 ) => string | undefined;
@@ -25,6 +24,7 @@ export enum ResourceType {
 
 export interface Editable {
   type: ResourceType;
+  /** @deprecated */
   name: string;
 }
 

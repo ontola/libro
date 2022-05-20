@@ -1,14 +1,21 @@
 import {
   NamedNode,
-  Quad,
   SomeTerm,
   isBlankNode,
   isNamedNode,
+  isSomeTerm,
+  isTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as xsd from '@ontologies/xsd';
+import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
 
-import { quote } from './serialization';
+import {
+  getBumps,
+  quote,
+  quoteForObjectKey,
+} from './serialization';
+import { serializeSeqObject } from './serializeSeqObject';
 import { shortenGlobalId } from './shortMap';
 import { NodeType, ToDataObject } from './types';
 
@@ -66,19 +73,104 @@ const serializeNamedNode = (value: NamedNode, websiteIRI: string): string => {
   }
 };
 
-export const serializeValue = (
-  value: SomeTerm,
-  data: Quad[],
+const serializePlainDeepRecord = (
+  record: DeepRecord,
   websiteIRI: string,
   indentation: number,
   toDataObject: ToDataObject,
+): string | undefined => {
+  const [shortBump, longBump, nextIndentation] = getBumps(indentation);
+  let stringified = '{\n';
+
+  const { _id, ...fields } = record;
+
+  if (Object.keys(fields).length === 0) {
+    return undefined;
+  }
+
+  if (isNamedNode(_id)) {
+    stringified += `${longBump}"@id": ${serializeDocumentIdValue(_id, websiteIRI)},\n`;
+  }
+
+  for (const [k, v] of Object.entries(fields)) {
+    const key = quoteForObjectKey(shortenGlobalId(k, websiteIRI));
+    let value: string | undefined;
+
+    if (Array.isArray(v)) {
+      const [, deepBump] = getBumps(nextIndentation);
+      const values = v.map((it) => deepBump + serializeRecordOrValue(
+        it,
+        websiteIRI,
+        nextIndentation,
+        toDataObject,
+      ));
+      const serialized = values.join(',\n');
+      value = `[\n${serialized},\n${longBump}]`;
+    } else if (isTerm(v)) {
+      value = serializeValue(v, websiteIRI);
+    } else {
+      value = serializeRecordOrValue(v, websiteIRI, nextIndentation, toDataObject);
+    }
+
+    if (value !== undefined) {
+      stringified += `${longBump}${key}: ${value},\n`;
+    }
+  }
+
+  stringified += `${shortBump}}`;
+
+  return stringified;
+};
+
+export const serializeDeepRecord = (
+  record: DeepRecord,
+  websiteIRI: string,
+  indentation: number,
+  toDataObject: ToDataObject,
+): string | undefined => {
+  const isSeq = record[rdfx.type.value] === rdfx.Seq;
+
+  if (isSeq && isBlankNode(record._id)) {
+    return serializeSeqObject(record, indentation, websiteIRI, toDataObject);
+  }
+
+  return serializePlainDeepRecord(
+    record,
+    websiteIRI,
+    indentation,
+    toDataObject,
+  );
+};
+
+export const serializeRecordOrValue = (
+  value: SomeTerm | DeepRecord,
+  websiteIRI: string,
+  indentation: number,
+  toDataObject: ToDataObject,
+): string | undefined => {
+  if (isSomeTerm(value)) {
+    return serializeValue(value, websiteIRI);
+  }
+
+  return serializeDeepRecord(
+    value,
+    websiteIRI,
+    indentation,
+    toDataObject,
+  );
+};
+
+export const serializeValue = (
+  value: SomeTerm,
+  websiteIRI: string,
 ): string | undefined => {
   if (isNamedNode(value)) {
     return serializeNamedNode(value, websiteIRI);
   }
 
   if (isBlankNode(value)) {
-    return toDataObject(value, data, websiteIRI, indentation);
+    throw new Error(`Dangling blank node ${value.value}`);
+
   }
 
   if (value.datatype === xsd.xsdboolean) {

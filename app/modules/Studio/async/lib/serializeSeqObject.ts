@@ -1,21 +1,23 @@
-import rdf, { Node, Quad } from '@ontologies/core';
+import { SomeTerm } from '@ontologies/core';
+import { DeepRecord, DeepRecordFieldValue } from 'link-lib/dist-types/store/StructuredStore';
 
 import { getBumps } from './serialization';
-import { serializeValue } from './serializeValue';
+import { serializeRecordOrValue } from './serializeValue';
 import { ToDataObject } from './types';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
-function numAsc(a: Quad, b: Quad) {
-  const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
-  const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
+type Entry = [field: string, value: DeepRecordFieldValue];
+
+function numAsc(a: Entry, b: Entry) {
+  const aP = Number.parseInt(a[0].slice(base.length), 10);
+  const bP = Number.parseInt(b[0].slice(base.length), 10);
 
   return aP - bP;
 }
 
 export const serializeSeqObject = (
-  id: Node,
-  data: Quad[],
+  record: DeepRecord,
   indentation: number,
   websiteIRI: string,
   toDataObject: ToDataObject,
@@ -24,11 +26,23 @@ export const serializeSeqObject = (
 
   let stringified = 'seq([\n';
 
-  data
-    .filter((q) => rdf.equals(q.subject, id) && q.predicate.value.startsWith(base))
+  const serialize = (it: SomeTerm | DeepRecord) => serializeRecordOrValue(it,
+    websiteIRI,
+    nextIndentation,
+    toDataObject,
+  );
+
+  Object.entries(record)
+    .filter(([field]) => field.startsWith(base))
     .sort(numAsc)
-    .forEach((it) => {
-      stringified += `${longBump}${serializeValue(it.object, data, websiteIRI, nextIndentation, toDataObject)},\n`;
+    .forEach(([, it]) => {
+      if (Array.isArray(it)) {
+        for (let i = 0; i < it.length; i++) {
+          stringified += `${longBump}${serialize(it[i])},\n`;
+        }
+      } else {
+        stringified += `${longBump}${serialize(it)},\n`;
+      }
     });
 
   stringified += `${shortBump}])`;

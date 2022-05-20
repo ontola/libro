@@ -182,6 +182,67 @@ describe('deepSliceToSource', () => {
       },
     };
 
-    expect(deepSliceToSource(source, example.ns('').value)).toEqual({});
+    expect(deepSliceToSource(source, example.ns('').value)).toEqual(`({
+  "@id": local("online-participatie/wat-is-participatie/wat-is-beter-online-of-fysieke-participatie").value,
+  [rdfx.type]: argu.Chapter,
+  [schema.title]: "Wat is beter: online of fysieke participatie?",
+  [schema.isPartOf]: local(""),
+  [argu.chapterContent]: {
+    [rdfx.type]: elements.Document,
+    [elements.children]: seq([
+      {
+        [rdfx.type]: elements.P,
+        [elements.children]: seq([
+          {
+            [rdfx.type]: elements.InnerText,
+            [schema.text]: "Online en fysiek hebben beide voor- en nadelen. Elk participatietraject is anders en het is dus ook niet te zeggen dat online of fysiek beter is. Door online en fysiek te combineren kun je een heel krachtig participatietraject neerzetten.",
+          },
+        ]),
+      },
+      {
+        [rdfx.type]: elements.H2,
+        [elements.children]: seq([
+          {
+            [rdfx.type]: elements.InnerText,
+            [schema.text]: "De belangrijkste voordelen van online en fysiek die je wil benutten zijn:",
+          },
+        ]),
+      },
+      {
+        [rdfx.type]: elements.Ul,
+        [elements.children]: seq([
+          {
+            [rdfx.type]: elements.Li,
+            [elements.children]: seq([
+              {
+                [rdfx.type]: elements.P,
+                [elements.children]: seq([
+                  {
+                    [rdfx.type]: elements.InnerText,
+                    [schema.text]: "Het zo laagdrempelig mogelijk maken voor mensen om deel te nemen. Voor de meeste mensen is dat online, voor sommige mensen is dat fysiek. Biedt naast een bijeenkomst dus ook online mogelijkheden om mee te denken en andersom.",
+                  },
+                ]),
+              },
+            ]),
+          },
+          {
+            [rdfx.type]: elements.Li,
+            [elements.children]: seq([
+              {
+                [rdfx.type]: elements.P,
+                [elements.children]: seq([
+                  {
+                    [rdfx.type]: elements.InnerText,
+                    [schema.text]: "Zorg dat het centrale informatiepunt online is. Als je een fysieke bijeenkomst organiseert is het verstandig om de inzichten uit die bijeenkomst te delen op het online platform waar andere mensen ook op kunnen reageren. Zo voorkom je dat de online deelnemers en de fysieke deelnemers op verschillende ideeën en vragen gaan reageren.",
+                  },
+                ]),
+              },
+            ]),
+          },
+        ]),
+      },
+    ]),
+  },
+})`);
   });
 });

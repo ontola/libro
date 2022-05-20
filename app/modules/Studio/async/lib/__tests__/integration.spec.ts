@@ -4,7 +4,7 @@
 
 import parseToGraph from '../../../lib/parseToGraph';
 import { deepSliceToSource } from '../deepSliceToSource';
-import { subResourcesFromData } from '../subResourcesFromData';
+import { sliceFromData } from '../sliceFromData';
 
 describe('integration', () => {
   it('produces parsable output', () => {
@@ -21,13 +21,13 @@ describe('integration', () => {
       },
     });
 
-    const children = subResourcesFromData(empJson, 'https://schema.org', {});
+    const children = sliceFromData(empJson, 'https://schema.org', {});
     const source = deepSliceToSource(children, '');
 
     expect(() => {
       parseToGraph(source, 'http://schema.org/');
     }).not.toThrow();
-    expect(source).toEqual(` ({
+    expect(source).toEqual(`({
   "@id": schema.encodingFormat.value,
   [schema.comment]: "\\\\n\\\\nIn",
 })`);
@@ -47,7 +47,7 @@ describe('integration', () => {
       },
     });
 
-    const children = subResourcesFromData(empJson, '', {});
+    const children = sliceFromData(empJson, '', {});
     const source = deepSliceToSource(children, '');
 
     expect(() => {
@@ -79,7 +79,7 @@ describe('integration', () => {
       },
     });
 
-    const children = subResourcesFromData(empJson, 'https://schema.org', {});
+    const children = sliceFromData(empJson, 'https://schema.org', {});
     const source = deepSliceToSource(children, '');
 
     expect(() => {

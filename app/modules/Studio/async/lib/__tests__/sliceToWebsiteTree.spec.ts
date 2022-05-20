@@ -45,6 +45,52 @@ describe('sliceToWebsiteTree', () => {
     });
   });
 
+  it('processes a relative origin with root fragments', () => {
+    const slice = {
+      '/': {
+        _id: empJsonId(rdf.namedNode('/')),
+      },
+      '/#foo': {
+        _id: empJsonId(rdf.namedNode('/#foo')),
+      },
+    };
+
+    expect(sliceToWebsiteTree(slice)).toEqual({
+      '/': {
+        children: {},
+        fragments: [
+          'foo',
+        ],
+        icon: undefined,
+        path: '',
+        segment: '/',
+      },
+    });
+  });
+
+  it('processes a relative origin with absolutised root fragments', () => {
+    const slice = {
+      '#foo': {
+        _id: empJsonId(rdf.namedNode('#foo')),
+      },
+      '/': {
+        _id: empJsonId(rdf.namedNode('/')),
+      },
+    };
+
+    expect(sliceToWebsiteTree(slice)).toEqual({
+      '/': {
+        children: {},
+        fragments: [
+          'foo',
+        ],
+        icon: undefined,
+        path: '',
+        segment: '/',
+      },
+    });
+  });
+
   it('processes an origin with holes', () => {
     const slice = {
       'https://example.com/': {

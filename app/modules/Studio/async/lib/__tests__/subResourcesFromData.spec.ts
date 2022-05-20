@@ -6,7 +6,7 @@ import rdf, {
 import * as schema from '@ontologies/schema';
 
 import example from '../../../../Kernel/ontology/example';
-import { groupLocalIdsByGlobalIds } from '../subResourcesFromData';
+import { groupLocalIdsByGlobalIds } from '../sliceFromData';
 
 describe('subResourcesFromData', () => {
   describe('groupLocalIdsByGlobalIds', () => {

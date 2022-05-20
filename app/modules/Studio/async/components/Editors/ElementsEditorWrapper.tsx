@@ -1,0 +1,28 @@
+import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import React from 'react';
+
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import { DeepSeedDataRecord } from '../../../../../helpers/seed';
+import ElementsEditorLoader from '../../../../ElementsEditor/components/ElementsEditorLoader';
+
+interface DataEditorProps {
+  onChange: (v: DeepRecord | undefined) => void;
+  onMount?: () => void;
+  record: DeepSeedDataRecord;
+  websiteIRI: string;
+}
+
+export const ElementsEditorWrapper = ({
+  record,
+  websiteIRI,
+  onChange,
+}: DataEditorProps): JSX.Element => (
+  <ErrorBoundary>
+    <ElementsEditorLoader
+      placeholder="test"
+      value={record}
+      websiteIRI={websiteIRI}
+      onChange={onChange}
+    />
+  </ErrorBoundary>
+);

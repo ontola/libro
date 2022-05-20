@@ -16,12 +16,16 @@ const ASIDE_PADDING = 4;
 const ASIDE_LIGHTEN_AMOUNT = 0.8;
 const ASIDE_ICON_PADDING_RIGHT = 2;
 
-export interface FertileComponentProps {
-  children: SomeNode,
+export interface FertileComponentWrapperProps {
+  children: React.ReactNode;
   href?: string,
   listVariant?: ListVariant,
   color?: string,
   trackingId?: string,
+}
+
+export interface FertileComponentProps extends FertileComponentWrapperProps{
+  children: SomeNode,
 }
 
 export enum FertileComponentVariant {
@@ -124,13 +128,13 @@ const elementMap = new Map<string, React.ElementType>([
   ['aside', 'div'],
 ]);
 
-export const createFertileComponent = (Elem: string, variant?: FertileComponentVariant) => ({
+export const createComponentWrapper = (Elem: string, variant?: FertileComponentVariant) => ({
   children,
   color,
   href,
   listVariant,
   trackingId,
-}: FertileComponentProps): JSX.Element => {
+}: FertileComponentWrapperProps): JSX.Element => {
   const classes = useStyles({ color });
   const isList = ['ol', 'ul'].includes(Elem);
 
@@ -147,7 +151,7 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
     [classes.con]: listVariant === ListVariant.Con,
   });
 
-  const WrapperEl = variant === FertileComponentVariant.Tip ? 'span' : React.Fragment;
+  const ChildrenWrapper = variant === FertileComponentVariant.Tip ? 'span' : React.Fragment;
 
   const componentAttributes = Elem === 'a' ?
     {
@@ -159,7 +163,6 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
   const Comp = elementMap.get(Elem) ?? Elem;
 
   return (
-    // @ts-ignore
     <Comp
       className={className}
       {...componentAttributes}
@@ -171,14 +174,27 @@ export const createFertileComponent = (Elem: string, variant?: FertileComponentV
           size="2x"
         />
       )}
-      <WrapperEl>
-        {normalizeType(children).map((child) => (
-          <Resource
-            key={child.value}
-            subject={child}
-          />
-        ))}
-      </WrapperEl>
+      <ChildrenWrapper>
+        {children}
+      </ChildrenWrapper>
     </Comp>
+  );
+};
+
+export const createFertileComponent = (Elem: string, variant?: FertileComponentVariant): ((props: FertileComponentProps) => JSX.Element) => {
+  const Wrapper = createComponentWrapper(Elem, variant);
+
+  return ({
+    children,
+    ...wrapperProps
+  }: FertileComponentProps): JSX.Element => (
+    <Wrapper {...wrapperProps}>
+      {normalizeType(children).map((child) => (
+        <Resource
+          key={child.value}
+          subject={child}
+        />
+      ))}
+    </Wrapper>
   );
 };

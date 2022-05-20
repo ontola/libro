@@ -3,9 +3,14 @@ import rdf, {
   isNode,
   isTerm,
 } from '@ontologies/core';
-import { DataObject, SomeNode } from 'link-lib';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
-import { SerializableDataTypes, SerializablePrimitives } from 'link-lib/dist-types/types';
+import {
+  DataObject,
+  DeepRecord,
+  DeepRecordFieldValue,
+  SerializableDataTypes,
+  SerializablePrimitives,
+  SomeNode,
+} from 'link-lib';
 
 export type DeepSlice = Record<string, DeepRecord>;
 
@@ -42,7 +47,7 @@ const valueToTerm = (value: SerializablePrimitives): SomeTerm | DeepRecord => {
   return rdf.literal(value);
 };
 
-const valuesToTerm = (value: SerializableDataTypes): SomeTerm | DeepRecord | Array<SomeTerm | DeepRecord> => {
+const valuesToTerm = (value: SerializableDataTypes): DeepRecordFieldValue => {
   if (Array.isArray(value))
     return value.map((val) => valueToTerm(val));
 

@@ -47,6 +47,11 @@ const originToTree = (seed: Seed, origin: string, paths: string[]): Path => {
   const tree: Path = createPath('', origin, iconForPath(seed, '/'));
 
   for (const path of paths) {
+    if (path.startsWith('#')) {
+      tree.fragments.push(path.slice(1));
+      continue;
+    }
+
     const segments = path.split('/');
 
     segments.reduce((node, segment, i) => {
@@ -67,10 +72,12 @@ const originToTree = (seed: Seed, origin: string, paths: string[]): Path => {
 
 export const sliceToWebsiteTree = (slice: DeepSeed): WebsiteTree => {
   const flat = flattenSeed(slice);
-  const ids = Object.keys(flat).filter((id) => id.includes('://') || id.startsWith('/'));
+  const ids = Object.keys(flat).filter((id) => id.includes('://') || id.startsWith('/') || id.startsWith('#'));
   const maps = ids.reduce((acc: ByOrigin, id) => {
-    const origin = id.startsWith('/') ? '/' : originStr(id) + '/';
-    const path = id.slice(origin.length);
+    const isAbsoluteFragment = id.startsWith('#');
+    const isAbsolute = id.startsWith('/') || isAbsoluteFragment;
+    const origin = isAbsolute ? '/' : originStr(id) + '/';
+    const path = id.slice(isAbsoluteFragment ? 0 : origin.length);
 
     acc[origin] ||= [];
 

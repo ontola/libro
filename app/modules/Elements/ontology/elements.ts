@@ -8,6 +8,8 @@ export default {
   /* === Classes === */
   // eslint-disable-next-line sort-keys
   A: elements('A'),
+  ActionItem: elements('ActionItem'),
+  Blockquote: elements('Blockquote'),
   Button: elements('Button'),
   Document: elements('Document'),
   Grid: elements('Grid'),
@@ -20,6 +22,7 @@ export default {
   Img: elements('Img'),
   InnerText: elements('InnerText'),
   Li: elements('Li'),
+  Lic: elements('Lic'),
   Note: elements('Note'),
   Ol: elements('Ol'),
   P: elements('P'),
@@ -33,15 +36,20 @@ export default {
   /* === Properties === */
   // eslint-disable-next-line sort-keys
   align: elements('align'),
+  backgroundColor: elements('backgroundColor'),
   bold: elements('bold'),
+  caption: elements('caption'),
+  checked: elements('checked'),
   children: elements('children'),
   color: elements('color'),
   float: elements('float'),
   gap: elements('gap'),
   href: elements('href'),
   iconPosition: elements('iconPosition'),
+  indent: elements('indent'),
   italic: elements('italic'),
   minWidth: elements('minWidth'),
   underline: elements('underline'),
   variant: elements('variant'),
+  width: elements('width'),
 };

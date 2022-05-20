@@ -1,16 +1,15 @@
-import rdf, { Quad } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import * as xsd from '@ontologies/xsd';
-import HttpStatus from 'http-status-codes';
+import type { DeepRecord } from 'link-lib';
 
 import ex from '../../../../../ontology/ex';
-import http from '../../../../../ontology/http';
 import { createAppNS } from '../../../../Common/ontology/app';
-import example from '../../../../Kernel/ontology/example';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { toDataDocument, toDataObject } from '../quadsToDataObject';
+import { DeepSlice } from '../../../lib/dataObjectsToDeepSlice';
+import { deepSliceToTypeScript, toDataObject } from '../deepSliceToTypeScript';
 
 const websiteIRI = 'https://mysite.example.com/';
 const appNS = createAppNS(websiteIRI);
@@ -106,156 +105,162 @@ const oneSeqWithLocalsProp = `{
   ]),
 }`;
 
-const multiResourceDocument = `{
-  "@id": "http://example.com/ns",
-  [rdfx.type]: owl.Ontology,
-},
-{
-  "@id": ex.ns("prop").value,
-  [rdfx.type]: owl.ObjectProperty,
-},
+const multiResourceDocument = `[
+  {
+    "@id": "http://example.com/ns",
+    [rdfx.type]: owl.Ontology,
+  },
+  {
+    "@id": ex.ns("prop").value,
+    [rdfx.type]: owl.ObjectProperty,
+  },
+]
 `;
 
-describe('quadsToDataObject', () => {
+describe('deepSliceToTypeScript', () => {
   describe('toDataObject', () => {
     it('skips empty object', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [];
+      const data: DeepRecord = {
+        _id: subject,
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
-
-      expect(result).toEqual(undefined);
-    });
-
-    it('skips objects without appropriate data', () => {
-      const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(example.ns('0'), http.statusCode, HttpStatus.OK),
-      ];
-
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(undefined);
     });
 
     it('serializes shorthand globalId property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, rdfx.type, schema.Book),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [rdfx.type.value]: schema.Book,
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneShorthandGlobalIdProp);
     });
 
     it('serializes namespace property key', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.ns('extensionProp'), rdf.literal('')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.ns('extensionProp').value]: rdf.literal(''),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneNSPropKey);
     });
 
     it('serializes unknown globalId property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, rdfx.type, rdf.namedNode('https://dexes.localdev/resources/5')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [rdfx.type.value]: rdf.namedNode('https://dexes.localdev/resources/5'),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneUnknownGlobalIdProp);
     });
 
     it('serializes websiteIRI scoped globalId property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, rdfx.type, rdf.namedNode(`${websiteIRI}resources/5`)),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [rdfx.type.value]: rdf.namedNode(`${websiteIRI}resources/5`),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneWebsiteIRIScopedGlobalIdProp);
     });
 
     it('serializes string property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.name, rdf.literal('title')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.name.value]: rdf.literal('title'),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneStringLiteralProp);
     });
 
     it('serializes string property with newlines', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.name, rdf.literal('.\\n\\nIn')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.name.value]: rdf.literal('.\\n\\nIn'),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneNewlineStringLiteralProp);
     });
 
     it('serializes langString property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.name, rdf.literal('title', 'en')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.name.value]: rdf.literal('title', 'en'),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneLangStringLiteralProp);
     });
 
     it('serializes two string property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.name, rdf.literal('title1')),
-        rdf.quad(subject, schema.name, rdf.literal('title2')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.name.value]: [
+          rdf.literal('title1'),
+          rdf.literal('title2'),
+        ],
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(twoStringLiteralProp);
     });
 
     it('serializes boolean property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.isGift, rdf.literal(false)),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.isGift.value]: rdf.literal(false),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneBooleanLiteralProp);
     });
 
     it('serializes dateTime property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.dateCreated, rdf.literal('2021-04-06T14:11:53.996Z', xsd.dateTime)),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.dateCreated.value]: rdf.literal('2021-04-06T14:11:53.996Z', xsd.dateTime),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneDateLiteralProp);
     });
 
     it('serializes number property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.estimatedCost, rdf.literal(100)),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.estimatedCost.value]: rdf.literal(100),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneNumberLiteralProp);
     });
@@ -263,11 +268,12 @@ describe('quadsToDataObject', () => {
     it('serializes decimal property', () => {
       const cost = 100.5;
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, schema.estimatedCost, rdf.literal(cost)),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.estimatedCost.value]: rdf.literal(cost),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneDecimalLiteralProp);
     });
@@ -275,23 +281,27 @@ describe('quadsToDataObject', () => {
     it('serializes nested object', () => {
       const subject = appNS.ns('0');
       const author = rdf.blankNode();
-      const data: Quad[] = [
-        rdf.quad(subject, schema.author, author),
-        rdf.quad(author, schema.name, rdf.literal('Andy')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.author.value]: {
+          _id: author,
+          [schema.name.value]: rdf.literal('Andy'),
+        },
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneNestedStringProp);
     });
 
     it('serializes complex name shorthand property', () => {
       const subject = appNS.ns('0');
-      const data: Quad[] = [
-        rdf.quad(subject, ontola['format/svg'], rdf.literal('')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [ontola['format/svg'].value]: rdf.literal(''),
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneComplexNameShorthandProp);
     });
@@ -299,14 +309,17 @@ describe('quadsToDataObject', () => {
     it('serializes seq objects', () => {
       const subject = appNS.ns('0');
       const comment = rdf.blankNode();
-      const data: Quad[] = [
-        rdf.quad(subject, schema.comment, comment),
-        rdf.quad(comment, rdfx.type, rdfx.Seq),
-        rdf.quad(comment, rdfx.ns('_2'), rdf.literal('comment 2')),
-        rdf.quad(comment, rdfx.ns('_1'), rdf.literal('comment 1')),
-      ];
+      const data = {
+        _id: subject,
+        [schema.comment.value]: {
+          _id: comment,
+          [rdfx.type.value]: rdfx.Seq,
+          [rdfx.ns('_2').value]: rdf.literal('comment 2'),
+          [rdfx.ns('_1').value]: rdf.literal('comment 1'),
+        },
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneSeqProp);
     });
@@ -314,28 +327,36 @@ describe('quadsToDataObject', () => {
     it('serializes seq objects with local iris', () => {
       const subject = appNS.ns('0');
       const comment = rdf.blankNode();
-      const data: Quad[] = [
-        rdf.quad(subject, schema.comment, comment),
-        rdf.quad(comment, rdfx.type, rdfx.Seq),
-        rdf.quad(comment, rdfx.ns('_2'), appNS.ns('2')),
-        rdf.quad(comment, rdfx.ns('_1'), appNS.ns('1')),
-      ];
+      const data: DeepRecord = {
+        _id: subject,
+        [schema.comment.value]: {
+          _id: comment,
+          [rdfx.type.value]: rdfx.Seq,
+          [rdfx.ns('_2').value]: appNS.ns('2'),
+          [rdfx.ns('_1').value]: appNS.ns('1'),
+        },
+      };
 
-      const result = toDataObject(subject, data, websiteIRI);
+      const result = toDataObject(data, websiteIRI);
 
       expect(result).toEqual(oneSeqWithLocalsProp);
     });
   });
 
-  describe('toDataDocument', () => {
-    it('serializes nested resources', () => {
-      const subject = rdf.namedNode('http://example.com/ns');
-      const data: Quad[] = [
-        rdf.quad(rdf.namedNode('http://example.com/ns'), rdfx.type, owl.Ontology),
-        rdf.quad(ex.ns('prop'), rdfx.type, owl.ObjectProperty),
-      ];
+  describe('deepSliceToTypeScript', () => {
+    it('serializes multiple records', () => {
+      const data: DeepSlice = {
+        [rdf.namedNode('http://example.com/ns').value]: {
+          _id: rdf.namedNode('http://example.com/ns'),
+          [rdfx.type.value]: owl.Ontology,
+        },
+        [ex.ns('prop').value]: {
+          _id: ex.ns('prop'),
+          [rdfx.type.value]: owl.ObjectProperty,
+        },
+      };
 
-      const [result, multiple] = toDataDocument(subject, data, websiteIRI);
+      const [result, multiple] = deepSliceToTypeScript(data, websiteIRI);
 
       expect(multiple).toBeTruthy();
       expect(result).toEqual(multiResourceDocument);

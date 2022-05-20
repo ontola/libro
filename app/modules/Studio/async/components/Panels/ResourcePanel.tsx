@@ -18,6 +18,8 @@ import {
 } from '../../context/ProjectContext';
 import { Path, sliceToWebsiteTree } from '../../lib/sliceToWebsiteTree';
 
+const UNIQUE_OFFSET_MULTIPLIER = 1000;
+
 const useListItemStyles = makeStyles({
   label: {
     fontSize: '.8rem !important',
@@ -101,8 +103,8 @@ export const ResourcePanel = ({ dispatch, project }: ProjectContextProps): JSX.E
     } else {
       setContextMenu({
         id,
-        mouseX: event.clientX + 2,
-        mouseY: event.clientY - 6,
+        mouseX: event.clientX,
+        mouseY: event.clientY,
       });
     }
   }, [contextMenu]);
@@ -159,8 +161,8 @@ export const ResourcePanel = ({ dispatch, project }: ProjectContextProps): JSX.E
           className={classes.treeView}
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
-          defaultExpanded={['*']}
-          defaultSelected="/"
+          defaultExpanded={['0.']}
+          defaultSelected="'0.'"
           sx={{
             flexGrow: 1,
             height: 110,
@@ -170,7 +172,7 @@ export const ResourcePanel = ({ dispatch, project }: ProjectContextProps): JSX.E
           onNodeSelect={selectResource}
         >
           {Object.entries(sliceToWebsiteTree(project.data))
-            .map(([origin, path], i) => renderTree(origin, path, 1000 * i))}
+            .map(([origin, path], i) => renderTree(origin, path, UNIQUE_OFFSET_MULTIPLIER * i))}
         </TreeView>
         <Menu
           anchorPosition={contextMenu !== null

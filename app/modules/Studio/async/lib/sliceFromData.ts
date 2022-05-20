@@ -34,7 +34,7 @@ export const groupLocalIdsByGlobalIds = (documents: Map<NamedNode, Set<Node>>, d
   }
 };
 
-export const subResourcesFromData = (data: string, websiteIRI: string, mapping: Record<string, string>): Slice => {
+export const sliceFromData = (data: string, websiteIRI: string, mapping: Record<string, string>): Slice => {
   const parser = new NdEmpJsonParser();
 
   return parser.parseString(data, websiteIRI, mapping)[0];

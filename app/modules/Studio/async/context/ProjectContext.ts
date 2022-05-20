@@ -1,5 +1,7 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { hextupleStringParser } from 'hextuples';
+import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
 import React, { Dispatch } from 'react';
 
 import { defaultManifest } from '../../../../helpers/defaultManifest';
@@ -10,13 +12,15 @@ import {
 } from '../../../Common/lib/seed';
 import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { empJsonId, empJsonString } from '../../../Kernel/lib/empjsonSerializer';
+import { quadruplesToDataSlice } from '../../../Kernel/lib/quadruplesToDataSlice';
 import { sourceToSlice } from '../../lib/sourceToSlice';
 import { compactDeepSeed } from '../lib/compactDeepSeed';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
+import { nestDeepSeed } from '../lib/nestDeepSeed';
 import { nestSeed } from '../lib/nestSeed';
 import { sliceToDeepSeed } from '../lib/sliceToDeepSeed';
-import { subResourcesFromData } from '../lib/subResourcesFromData';
+import { sliceFromData } from '../lib/sliceFromData';
 import {
   Editable,
   RenderedPage,
@@ -85,6 +89,7 @@ export const enum ProjectAction {
   UpdateComponent,
   UpdateManifest,
   UpdateRDFSubResource,
+  UpdateNestedRecord,
   SetFile,
   SetResource,
   Close,
@@ -116,7 +121,13 @@ interface UpdateComponentAction {
 interface UpdateSubRDFResourceAction {
   type: ProjectAction.UpdateRDFSubResource;
   id: string;
-  record: DeepSeedDataRecord,
+  record: DeepSeedDataRecord;
+}
+
+interface UpdateNestedRecordAction {
+  type: ProjectAction.UpdateNestedRecord;
+  path: string[];
+  record: DeepSeedDataRecord;
 }
 
 interface SetFileAction {
@@ -182,7 +193,7 @@ interface SetDataAction {
 
 interface ImportDataAction {
   type: ProjectAction.ImportData;
-  dataType: 'parsed_deepslice' | 'dataslice' | 'source';
+  dataType: 'dataslice' | 'source' | 'hextuples';
   data: string;
 }
 
@@ -201,6 +212,7 @@ interface HashProjectData {
 export type Action = UpdateComponentAction
   | UpdateManifestAction
   | UpdateSubRDFResourceAction
+  | UpdateNestedRecordAction
   | SetFileAction
   | SetResourceAction
   | LoadAction
@@ -230,6 +242,22 @@ export const currentComponent = (project: ProjectContext): Component | WebManife
 
 export const selectedRecord = (project: ProjectContext): DeepSeedDataRecord | undefined =>
   project.data[project.selected.origin + project.selected.path];
+
+const importActionToDataSlice = (action: ImportDataAction, websiteIRI: string): DataSlice => {
+  switch (action.dataType) {
+  case 'dataslice':
+    return sliceFromData(action.data, websiteIRI, window.EMP_SYMBOL_MAP);
+
+  case 'source': {
+    const slice = sourceToSlice(action.data, websiteIRI);
+
+    return sliceFromData(slice, websiteIRI, window.EMP_SYMBOL_MAP);
+  }
+
+  case 'hextuples':
+    return quadruplesToDataSlice(hextupleStringParser(action.data).map((quad) => rdf.qdrFromQuad(quad)));
+  }
+};
 
 const resource = (
   name: ComponentName,
@@ -391,6 +419,30 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
     };
   }
 
+  case ProjectAction.UpdateNestedRecord: {
+    const data = {
+      ...state.data,
+    };
+
+    if (action.path.length <= 1) {
+      data[action.record._id.v] = action.record;
+    } else {
+      const [first, ...paths] = action.path;
+      paths.reduce((cur: DeepSeedDataRecord, path, i) => {
+        if (i === paths.length - 1) {
+          cur[path] = action.record;
+        }
+
+        return cur[path] as DeepSeedDataRecord;
+      }, data[first]);
+    }
+
+    return {
+      ...state,
+      data,
+    };
+  }
+
   case ProjectAction.UpdateRDFSubResource: {
     return {
       ...state,
@@ -480,15 +532,14 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   }
 
   case ProjectAction.ImportData: {
-    const rawData = action.dataType === 'dataslice'
-      ? action.data
-      : sourceToSlice(action.data, state.websiteIRI);
-    const slice = subResourcesFromData(rawData, state.websiteIRI, window.EMP_SYMBOL_MAP);
+    const slice = importActionToDataSlice(action, state.websiteIRI);
     const deepSeed = sliceToDeepSeed(slice);
+    const nested = nestDeepSeed(deepSeed);
+    const compacted = compactDeepSeed(nested, state.websiteIRI);
 
     return {
       ...state,
-      data: deepSeed,
+      data: compacted,
     };
   }
 

@@ -235,6 +235,13 @@ export const shortenGlobalId = (iri: string, websiteIRI: string): NodeProperty =
     };
   }
 
+  if (iri.startsWith('/') || iri.startsWith('#')) {
+    return {
+      type: NodeType.LocalPath,
+      value: iri,
+    };
+  }
+
   for (const [k, { map, prefix }] of shortMapEntries) {
     if (iri.startsWith(prefix)) {
       const term = iri.split(prefix).pop();

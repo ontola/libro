@@ -1,6 +1,9 @@
 import { QuadPosition, Quadruple } from '@ontologies/core';
-import { DataRecord, FieldValue } from 'link-lib';
-import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
+import {
+  DataRecord,
+  DataSlice,
+  FieldValue, 
+} from 'link-lib';
 
 export const quadruplesToDataSlice = (quads: Quadruple[]): DataSlice => quads.reduce<Record<string, DataRecord>>((acc, quad) => {
   const subject = quad[QuadPosition.subject].value;

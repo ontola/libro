@@ -30,7 +30,7 @@ export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => 
   const intl = useIntl();
   const classes = useStyles();
 
-  const [dataType, setDataType] = React.useState<'dataslice' | 'source'>('source');
+  const [dataType, setDataType] = React.useState<'dataslice' | 'source'>('dataslice');
   const [data, setData] = React.useState('');
 
   const handleClose = React.useCallback(() => {
@@ -72,11 +72,11 @@ export const ImportDialog = ({ dispatch }: ProjectContextProps): JSX.Element => 
           value={dataType}
           onChange={(e) => setDataType(e.target.value as 'dataslice' | 'source')}
         >
-          <MenuItem value="source">
-            source (Typescript)
-          </MenuItem>
           <MenuItem value="dataslice">
             data slice
+          </MenuItem>
+          <MenuItem value="source">
+            source (Typescript)
           </MenuItem>
         </Select>
         <TextField
