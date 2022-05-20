@@ -4,7 +4,11 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import Heading, { HeadingSize } from '../../Heading';
 
@@ -19,7 +23,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     fontSize: 18,
   },
   header: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       alignItems: 'start',
       gridTemplateAreas: '"image" "title"',
       marginBottom: theme.spacing(Margin.Large * TWO),
@@ -32,7 +36,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     width: '100%',
   },
   image: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       maxWidth: 'calc(100% - 4rem)',
       position: 'relative',
       right: '-4rem',
@@ -43,7 +47,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     gridArea: 'image',
   },
   outerWrapper: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       justifyContent: 'start',
     },
     display: 'flex',
@@ -55,7 +59,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   },
   spacer: {
     margin: 50,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       margin: 30,
     },
   },
@@ -71,7 +75,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   },
   titleWrapper: {
     gridArea: 'title',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       minWidth: '25rem',
     },
   },

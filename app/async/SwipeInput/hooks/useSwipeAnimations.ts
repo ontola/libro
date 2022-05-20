@@ -5,6 +5,7 @@ import { ReactDOMAttributes, useDrag } from '@use-gesture/react';
 import React from 'react';
 
 import { Dispatcher, State } from '../../../hooks/useStateMachine';
+import { BreakPoints } from '../../../themes/themes';
 import {
   CardAction,
   CardState,
@@ -41,7 +42,7 @@ export const useSwipeAnimations = (
   const [side, setSide] = React.useState<HoverSide>(HoverSide.Yes);
 
   const theme = useTheme();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   const confirmThreshold = screenIsWide ? confirmVoteThresholdLarge : confirmVoteThresholdSmall;
 

@@ -24,7 +24,7 @@ import {
   useOmniformActiveAction,
   useOmniformChangeFactory,
 } from '../../state/omniform';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import FormFooter from '../../topologies/FormFooter';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import { FormFooterRight } from '../Form';
@@ -123,8 +123,8 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
   }, [highlightState]);
 
   const linkedFieldset = React.useCallback(() => {
-    const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
-    const screenIsVeryNarrow = useMediaQuery(theme.breakpoints.down('sm'));
+    const screenIsNarrow = useMediaQuery(theme.breakpoints.down(BreakPoints.Medium));
+    const screenIsVeryNarrow = useMediaQuery(theme.breakpoints.down(BreakPoints.Small));
 
     if (!isNamedNode(action)) {
       return null;

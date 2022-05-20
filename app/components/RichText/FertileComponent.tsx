@@ -6,7 +6,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import Link from '../Link';
 
 const LIST_LEFT_MARGIN = 14;
@@ -83,7 +83,7 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
   },
 
   list: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       marginLeft: theme.spacing(LIST_LEFT_MARGIN_MOBILE),
     },
     '& li p': {

@@ -16,7 +16,11 @@ import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import TableCell from '../../../topologies/TableCell';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import { CollapsibleComparisonTitle } from '../../../components/SalesWebsite/CollapsibleComparisonTitle';
 
 const TWO_SMALL_COLUMNS = 2;
@@ -45,7 +49,7 @@ const ComparisonTableItem: FC<ComparisonTableItemProps> = ({ first }) => {
   const classes = useStyles();
   const tooltipClasses = useTooltipClasses();
   const theme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   const [title] = useStrings(schema.name);
   const [description] = useStrings(schema.text);

@@ -4,7 +4,11 @@ import { FC, Property } from 'link-redux';
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies';
 import { HeaderTheme } from '../Header';
@@ -13,7 +17,7 @@ const TWO = 2;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   blogs: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       marginTop: '5em',
     },
     marginBlock: theme.spacing(Margin.XXL * TWO),
@@ -26,7 +30,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     paddingBottom: 0,
   },
   container: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down(BreakPoints.Large)]: {
       maxWidth: '95vw',
     },
   },

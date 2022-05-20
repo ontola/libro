@@ -4,7 +4,7 @@ import { isNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { CallToActionButton } from '../CallToActionButton';
 
 import type { HeaderProps } from './HeaderProps';
@@ -32,18 +32,18 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       backgroundAttachment: 'unset',
       backgroundImage: ({ backgroundImageUrlMobile }) => `url(${backgroundImageUrlMobile})`,
     },
 
-    [theme.breakpoints.up('xl')]: {
+    [theme.breakpoints.up(BreakPoints.XLarge)]: {
       backgroundImage: ({ backgroundImageXL }) => `url(${backgroundImageXL}) !important`,
     },
   },
   spacer: {
     margin: 50,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       margin: 30,
     },
   },
@@ -55,7 +55,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
     textAlign: 'center',
   },
   title: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       fontSize: '2rem',
     },
     fontSize: '3rem',

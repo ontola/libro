@@ -11,6 +11,7 @@ import React from 'react';
 
 import Button, { ButtonVariant } from '../../components/Button';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { BreakPoints } from '../../themes/themes';
 import { formFooterTopology } from '../../topologies';
 
 interface RDFSClassFormFooterProps {
@@ -26,7 +27,7 @@ const RDFSClassFormFooter: FC<RDFSClassFormFooterProps> = ({
   const [description] = useProperty(schema.description);
   const [image] = useProperty(schema.image);
   const [label] = useProperty(rdfs.label);
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   return (
     <Button

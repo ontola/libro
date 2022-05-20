@@ -11,6 +11,7 @@ import {
 import React from 'react';
 
 import {
+  BreakPoints,
   LibroTheme,
   Margin,
   Size,
@@ -40,7 +41,7 @@ const styles = (theme: LibroTheme) => createStyles({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     height: '20em',
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(BreakPoints.Large)]: {
       height: '35em',
     },
   },
@@ -49,7 +50,7 @@ const styles = (theme: LibroTheme) => createStyles({
     backgroundColor: 'var(--navbar-background)',
     height: '10em',
     opacity: 0.3,
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(BreakPoints.Large)]: {
       height: '15em',
     },
   },

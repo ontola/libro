@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 
 import { FlowAnimation } from './FlowAnimation';
 import { SubmissionPage } from './SubmissionPage';
@@ -26,7 +26,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     justifyContent: 'center',
   },
   inputWrapper: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       padding: '1rem',
     },
     maxHeight: '95vh',

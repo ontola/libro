@@ -13,7 +13,7 @@ import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { showcaseTopology } from '../../topologies';
 import { personeShowcaseMessages } from '../../translations/messages';
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     minHeight: '250px',
     padding: theme.spacing(CONTAINER_PADDING),
     width: 'min(100%, 70vw)',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       marginTop: '8vw',
     },
   },

@@ -12,7 +12,7 @@ import React from 'react';
 
 import { FilterableArticleCollection } from '../../../components/SalesWebsite/FilterableArticleCollection';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
@@ -29,13 +29,13 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginBottom: '5rem',
   },
   propositionSelector: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       boxShadow: 'unset',
       gridGap: 40,
       gridTemplateColumns: '1fr 1fr',
       padding: 20,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       gridTemplateColumns: '1fr',
     },
     backgroundColor: 'white',

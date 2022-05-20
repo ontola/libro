@@ -1,4 +1,8 @@
-import { LibroTheme, MaterialStyleMap } from '../../../themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  MaterialStyleMap,
+} from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiTab: {
@@ -14,7 +18,7 @@ export default (theme: LibroTheme): MaterialStyleMap => ({
       },
       root: {
         textTransform: 'none',
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up(BreakPoints.Small)]: {
           minWidth: null,
         },
       },

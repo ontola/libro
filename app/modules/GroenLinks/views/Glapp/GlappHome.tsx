@@ -14,6 +14,7 @@ import CardError from '../../../../components/Error/CardError';
 import useMapAccessToken from '../../../../hooks/useMapAccessToken';
 import app from '../../../../ontology/app';
 import teamGL from '../../../../ontology/teamGL';
+import { BreakPoints } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
 import { cardClassIdentifier } from '../../../../topologies/Card/sharedCardStyles';
@@ -56,7 +57,7 @@ const GlappHome: FC = () => {
   const classes = useStyles();
   const theme: any = useTheme();
 
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
   const [name] = useFields(app.c_a, schema.givenName);
 
   const [selectedPostalCode, setSelectedPostalCodeRaw] = React.useState<number | undefined>(undefined);

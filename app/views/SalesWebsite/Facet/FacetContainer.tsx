@@ -24,7 +24,11 @@ import {
   useStateMachine,
 } from '../../../hooks/useStateMachine';
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import { containerTopology } from '../../../topologies';
 
 type Direction = 'forward' | 'reverse';
@@ -70,7 +74,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     fontSize: theme.typography.fontSizes.xLarge,
     fontWeight: theme.typography.fontWeightBold,
     margin: 0,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       marginTop: theme.spacing(SMALL_SCREEN_TITLE_MARGIN),
     },
   },
@@ -104,7 +108,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
       ? '2fr 3fr'
       : '3fr 2fr',
     marginBottom: theme.spacing(Margin.XXL),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '&&': {
         gap: theme.spacing(Margin.Small),
         gridTemplateAreas: '"title" "animation" "list"',

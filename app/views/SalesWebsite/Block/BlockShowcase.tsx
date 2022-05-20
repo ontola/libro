@@ -16,7 +16,7 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { showcaseTopology } from '../../../topologies';
 
 const CONAINER_SPACING = 20;
@@ -30,7 +30,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     textAlign: 'center',
   },
   container: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       padding: '1rem',
     },
     backgroundColor: (props: Record<string, string>) => props.backgroundColor,
@@ -46,7 +46,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     color: (props: Record<string, string>) => props.color,
   },
   subTitle: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       fontSize: '1.14rem',
       textAlign: 'start',
     },
@@ -55,7 +55,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     textAlign: 'center',
   },
   title: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       textAlign: 'start',
     },
     fontWeight: 'bold',

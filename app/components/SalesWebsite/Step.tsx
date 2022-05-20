@@ -4,7 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import Link from '../Link';
 
 interface StepProps {
@@ -36,7 +36,7 @@ const useStyles = makeStyles<LibroTheme, StepProps>((theme: LibroTheme) => ({
     gridTemplateAreas: '"line-top box" "circle box" "line-bottom box"',
     gridTemplateColumns: 'var(--circle-size) auto',
     gridTemplateRows: '1fr var(--circle-size) 1fr',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '--circle-size': '50px',
     },
   },

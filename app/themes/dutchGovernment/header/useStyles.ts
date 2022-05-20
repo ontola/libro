@@ -2,6 +2,7 @@ import { lighten } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 import {
+  BreakPoints,
   CSSPropertiesMap,
   IndexablePalette,
   LibroTheme,
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: LibroTheme): CSSPropertiesMap => {
       paddingLeft: '134px',
       paddingRight: 0,
       textDecoration: 'none',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up(BreakPoints.Medium)]: {
         marginTop: 0,
         minHeight: '88px',
         paddingLeft: '240px',
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme: LibroTheme): CSSPropertiesMap => {
       },
     },
     navBarContent: {
-      [theme.breakpoints.up('lg')]: {
+      [theme.breakpoints.up(BreakPoints.Large)]: {
         padding: `0 ${theme.spacing(Margin.Small)}`,
       },
 
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme: LibroTheme): CSSPropertiesMap => {
       marginRight: 0,
       paddingTop: '34px',
       width: '145px',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up(BreakPoints.Medium)]: {
         fontSize: '14px',
         lineHeight: '14px',
         marginLeft: '9px',

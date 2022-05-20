@@ -6,7 +6,7 @@ import React from 'react';
 
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { useWebsiteIRI } from '../../hooks/useWebsiteIRI';
 
 import { SalesNavBarDrawer } from './SalesNavBarDrawer';
@@ -16,7 +16,7 @@ const LOGO_MARGIN_COMPENSATION = 4;
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
     display: 'none',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       display: 'block',
     },
   },
@@ -24,7 +24,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignItems: 'center',
     display: 'flex',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       display: 'none',
     },
   },
@@ -38,7 +38,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 
     '& img': {
       width: '4.3rem',
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down(BreakPoints.Medium)]: {
         marginRight: theme.spacing(LOGO_MARGIN_COMPENSATION),
       },
     },
@@ -52,7 +52,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     maxWidth: theme.breakpoints.values.lg,
     overflowY: 'hidden',
     width: '100%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       justifyContent: 'flex-start',
     },
   },

@@ -7,7 +7,7 @@ import { useStrings } from 'link-redux';
 import React from 'react';
 
 import { SHADOW } from '../../helpers/flow';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/FormFieldTypes';
@@ -30,14 +30,14 @@ export const useCheckboxStyles = makeStyles<LibroTheme>((theme) => ({
       paddingLeft: '0px',
     },
     '& label': {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up(BreakPoints.Medium)]: {
         fontSize: '1.1rem',
       },
       fontSize: '1rem',
       fontWeight: theme.typography.fontWeightMedium,
     },
     '& svg': {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up(BreakPoints.Medium)]: {
         fontSize: '2rem',
         marginBottom: '.5rem',
         marginTop: '.5rem',

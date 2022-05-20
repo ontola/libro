@@ -13,7 +13,11 @@ import React from 'react';
 import clsx from 'clsx';
 
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 
@@ -40,7 +44,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const ComparisonTableGroup: FC<ComparisonTableGroupProps> = ({ first }) => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   const [title] = useStrings(schema.text);
   const [itemsNode] = useIds(as.items);

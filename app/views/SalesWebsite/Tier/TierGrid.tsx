@@ -23,7 +23,11 @@ import { useIntl } from 'react-intl';
 
 import { CallToActionButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import { gridTopology } from '../../../topologies';
 import { salesMessages } from '../../../translations/messages';
 
@@ -50,7 +54,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: theme.spacing(Margin.Medium),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       minHeight: '40rem',
     },
   },
@@ -70,7 +74,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     marginTop: theme.spacing(Margin.Medium),
   },
   infoHeader: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       minHeight: '12rem',
     },
   },

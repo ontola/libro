@@ -14,7 +14,7 @@ import React from 'react';
 import { ButtonVariant } from '../../components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import {
   allTopologiesExcept,
   cardFloatTopology,
@@ -56,8 +56,8 @@ const EntryPoint: FC<EntryPointProps> = ({
   title,
   ...rest
 }) => {
-  const muiTheme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(muiTheme.breakpoints.up('md'));
+  const theme = useTheme<LibroTheme>();
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
   const { onSubmit } = useEntryPointFormProps(subject!, rest);
   const [imageFromData] = useIds(schema.image);
   const [nameFromData] = useStrings(schema.name);

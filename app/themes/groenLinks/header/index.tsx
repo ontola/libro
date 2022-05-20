@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import NavBarContent from '../../../components/NavBarContent';
 import Navbar from '../../../topologies/Navbar';
+import { BreakPoints } from '../../themes';
 
 const useStyles = makeStyles(() => ({
   logo: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles(() => ({
 const GroenLinksHeader = (): JSX.Element => {
   const [logo, setLogo] = React.useState<string | undefined>();
   const theme = useTheme();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
   const classes = useStyles();
   const logoSmall = '/assets/logoSmall.png';
 

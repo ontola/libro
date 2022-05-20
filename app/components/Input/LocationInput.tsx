@@ -21,7 +21,7 @@ import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 import { DEFAULT_ZOOM } from '../../modules/MapView/lib/settings';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { hiddenRequiredInputErrors } from '../../translations/messages';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
@@ -43,10 +43,10 @@ interface InitialView {
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   locationFlow: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       width: 'min(80vw, 600px)',
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       maxHeight: '40vh',
     },
     borderRadius: theme.shape.borderRadius,

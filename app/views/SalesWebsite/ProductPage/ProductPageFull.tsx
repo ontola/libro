@@ -11,7 +11,11 @@ import React from 'react';
 
 import { ArticleContent, HeaderProductPages } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { LibroTheme, Size } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Size,
+} from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 import BlueBlock from '../../../topologies/SalesWebsite/BlueBlock';
@@ -36,7 +40,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   textBlockContainer: {
     marginBottom: 50,
     padding: '6rem',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       padding: '1rem',
     },
   },

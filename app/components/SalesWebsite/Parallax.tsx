@@ -9,7 +9,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../helpers/iris';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import Container from '../../topologies/Container';
 
 interface StyleProps {
@@ -22,7 +22,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     fontWeight: 'bold',
     justifyContent: 'center',
     margin: 0,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       justifyContent: 'flex-end',
     },
   },
@@ -55,14 +55,14 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   },
   subtitle: {
     textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       textAlign: 'left',
     },
   },
   title: {
     marginTop: 60,
     textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       textAlign: 'left',
     },
   },

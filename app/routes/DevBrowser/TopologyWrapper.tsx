@@ -6,7 +6,11 @@ import { Resource } from 'link-redux';
 
 import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
-import { LibroTheme, Margin } from '../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../themes/themes';
 import {
   cardFixedTopology,
   cardMainTopology,
@@ -35,7 +39,7 @@ export interface TopologyWrapperProps {
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   navBarContentWithStyle: {
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(BreakPoints.Large)]: {
       padding: `0 ${theme.spacing(Margin.Small)}`,
     },
 

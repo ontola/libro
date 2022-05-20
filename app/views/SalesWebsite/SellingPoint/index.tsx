@@ -10,7 +10,11 @@ import React from 'react';
 
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import ontola from '../../../ontology/ontola';
 import Link from '../../../components/Link';
 
@@ -33,7 +37,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     left: '-1.5rem',
     position: 'absolute',
     top: '-1.5rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       left: '-.5rem',
     },
   },
@@ -43,7 +47,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     },
     position: 'relative',
     transition: 'transform 100ms ease-in-out',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       paddingInline: '1rem',
     },
   },

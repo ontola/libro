@@ -12,7 +12,7 @@ import React from 'react';
 import Image from '../../components/Image';
 import elements from '../../ontology/elements';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { allTopologies } from '../../topologies';
 
 interface StyleProps {
@@ -21,7 +21,7 @@ interface StyleProps {
 
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   float: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up(BreakPoints.Small)]: {
       float: ({ float }) => float,
       maxWidth: '50% !Important',
       padding: '10px',

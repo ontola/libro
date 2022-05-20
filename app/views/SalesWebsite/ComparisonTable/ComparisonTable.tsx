@@ -21,7 +21,11 @@ import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import TableHeaderRow from '../../../topologies/TableHeaderRow';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 
 interface StyleProps {
   animating: boolean;
@@ -62,7 +66,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     width: '100%',
   },
   tier: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       width: '50%',
     },
     textAlign: 'center',
@@ -78,7 +82,7 @@ const ComparisonTable: FC = () => {
 
   const classes = useStyles({ animating });
   const theme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   const [title] = useStrings(schema.text);
 

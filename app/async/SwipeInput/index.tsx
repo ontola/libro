@@ -7,7 +7,7 @@ import React from 'react';
 import { PermittedFormField } from '../../components/FormField/FormFieldTypes';
 import { useStateMachine } from '../../hooks/useStateMachine';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 
 import {
   CardAction,
@@ -21,7 +21,7 @@ const IDLE_CARD_TIMEOUT = 1500;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   swipeInputWrapper: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       height: 'min(20rem, 60vh)',
     },
     display: 'flex',

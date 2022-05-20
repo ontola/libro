@@ -7,7 +7,7 @@ import React from 'react';
 import Button from '../../../components/Button';
 import { ReadMoreButton } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { showcaseTopology } from '../../../topologies';
 
 const INNER_CONTAINER_GAP = 3;
@@ -22,7 +22,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     padding: theme.spacing(INNER_CONTAINER_PADDING),
   },
   productButton: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '&:hover': {
         boxShadow: '0 0 25px rgba(0,0,0,0.2) !important',
       },
@@ -39,7 +39,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     width: '28em',
   },
   subTextContainer: {
-    [theme.breakpoints.up('xs')]: {
+    [theme.breakpoints.up(BreakPoints.XSmall)]: {
       height: 66,
     },
     whiteSpace: 'break-spaces',

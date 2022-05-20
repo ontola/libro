@@ -13,7 +13,7 @@ import React from 'react';
 
 import { FilterableArticleCollection } from '../../../components/SalesWebsite/FilterableArticleCollection';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 import Grid from '../../../topologies/Grid';
@@ -35,7 +35,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     padding: '2rem',
   },
   item: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       marginTop: theme.spacing(GRID_ITEM_SPACING),
     },
   },

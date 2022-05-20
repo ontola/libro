@@ -12,7 +12,11 @@ import React from 'react';
 import { IntervalSwitcher } from '../../../components/SalesWebsite/IntervalSwitcher';
 import { useSeqToArr } from '../../../hooks/useSeqToArr';
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 import Grid from '../../../topologies/Grid';
@@ -26,7 +30,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginTop: '7em',
   },
   tierGrid: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       gridTemplateColumns: 'repeat(3, 20rem)',
       overflowX: 'auto',
       paddingBottom: theme.spacing(Margin.Medium),

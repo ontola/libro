@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 
 const mapQuestionBoxShadow = 3;
 
@@ -76,7 +76,7 @@ export default makeStyles<LibroTheme>((theme) => ({
   },
   flowInput: {
     height: '35rem',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       height: '40vh',
     },
   },

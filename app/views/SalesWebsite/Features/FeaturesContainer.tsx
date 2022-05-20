@@ -10,7 +10,11 @@ import React from 'react';
 
 import { Parallax } from '../../../components/SalesWebsite';
 import sales from '../../../ontology/sales';
-import { LibroTheme, Size } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Size,
+} from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 import Container  from '../../../topologies/Container';
 import Showcase from '../../../topologies/Showcase';
@@ -22,10 +26,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gridTemplateColumns: '1fr 1fr 1fr 1fr',
     marginBottom: 70,
     marginTop: 30,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       gridTemplateColumns: '1fr 1fr',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       gridTemplateColumns: '1fr',
     },
   },

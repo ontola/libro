@@ -11,7 +11,11 @@ import React from 'react';
 import sales from '../../../ontology/sales';
 import { allTopologies } from '../../../topologies';
 import { PipedriveForm as PipedriveFormComp } from '../../../components/PipedriveForm';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 
 interface StyleProps {
   approximateHeight: string;
@@ -25,7 +29,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     padding: theme.spacing(Margin.Large),
     width: '100%',
     zIndex: 1,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       boxShadow: 'unset',
       padding: theme.spacing(Margin.Small),
     },

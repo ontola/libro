@@ -11,7 +11,7 @@ import React from 'react';
 
 import { mapRange } from '../../helpers/numbers';
 import { Dispatcher, State } from '../../hooks/useStateMachine';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 
 import { CardAction, CardState } from './CardState';
 import { useSwipeAnimations } from './hooks/useSwipeAnimations';
@@ -87,10 +87,10 @@ const useStyles = makeStyles<LibroTheme, Partial<SwipeCardProps>>((theme) => ({
     cursor: 'grabbing',
   },
   cardHeight: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       height: 'min(20rem, 80vh)',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       height: 'min(15rem, 80vh)',
     },
     height: 'min(30rem, 80vh)',
@@ -107,7 +107,7 @@ const useStyles = makeStyles<LibroTheme, Partial<SwipeCardProps>>((theme) => ({
     touchAction: 'none',
   },
   title: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       fontSize: '1rem',
       padding: 0,
     },

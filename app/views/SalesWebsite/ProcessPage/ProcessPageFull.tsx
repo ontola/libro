@@ -10,7 +10,7 @@ import React from 'react';
 
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 
@@ -51,7 +51,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       flexDirection: 'row',
     },
   },

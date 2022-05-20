@@ -25,7 +25,7 @@ import { NavLink } from 'react-router-dom';
 import retrievePath from '../../helpers/iris';
 import { useChapterNavigation } from '../../hooks/Academy/useChapterNavigation';
 import argu from '../../ontology/argu';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { fullResourceTopology } from '../../topologies';
 import SideBar from '../../topologies/SideBar';
 import { academyMessages } from '../../translations/messages';
@@ -47,7 +47,7 @@ const ARTICEL_PADDING_BIG = 15;
 
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   article: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       padding: theme.spacing(ARTICEL_PADDING_BIG),
     },
     margin: 'auto',
@@ -62,7 +62,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     gridArea: 'article',
   },
   button: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       flexGrow: 1,
     },
     flexShrink: 1,
@@ -104,7 +104,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     gridTemplateAreas: '"sidebar article" "sidebar button-nav"',
     gridTemplateColumns: 'minmax(25ch, auto) minmax(75%, 1fr)',
     gridTemplateRows: 'minmax(70vh, auto) 200px',
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down(BreakPoints.Large)]: {
       gridTemplateAreas: '"article" "button-nav" "sidebar"',
       gridTemplateColumns: '1fr',
     },

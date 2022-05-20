@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 import { ReadMoreButton } from '../../../components/SalesWebsite';
 import retrievePath from '../../../helpers/iris';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { gridTopology, showcaseTopology } from '../../../topologies';
 
 export interface CasePageShowcaseProps {
@@ -46,7 +46,7 @@ const useStyles = makeStyles<LibroTheme, CasePageShowcaseProps>((theme) => ({
     justifyContent: 'center',
     padding: 20,
     textAlign: 'left',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       background: '#f8fbff !important',
     },
   },

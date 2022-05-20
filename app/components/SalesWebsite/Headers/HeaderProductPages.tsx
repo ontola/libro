@@ -10,7 +10,7 @@ import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import Container from '../../../topologies/Container';
 import { ArticleContent } from '../ArticleContent';
 import { CallToActionButton } from '../CallToActionButton';
@@ -22,7 +22,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     margin: 'unset',
     maxWidth: '100%',
     width: '100%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '& p': {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -40,7 +40,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignItems: 'left',
     display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       alignItems: 'left',
       justifyContent: 'left',
     },
@@ -75,14 +75,14 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   subtitle: {
     textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       textAlign: 'left',
     },
   },
   title: {
     marginTop: 60,
     textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       textAlign: 'left',
     },
   },

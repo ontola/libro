@@ -2,7 +2,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import FieldLabel from '../FieldLabel';
 import { FormTheme, formContext } from '../Form/FormContext';
 
@@ -15,7 +15,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     '& label': {
       color: theme.palette.text.primary,
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       fontSize: '2rem',
     },
     fontSize: '1.5rem',

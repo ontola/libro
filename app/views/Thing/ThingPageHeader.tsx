@@ -12,7 +12,7 @@ import CardContent from '../../components/Card/CardContent';
 import CollapseText from '../../components/CollapseText';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import argu from '../../ontology/argu';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { pageHeaderTopology } from '../../topologies';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
@@ -28,7 +28,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginTop: '-5rem',
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     maxWidth: theme.breakpoints.values.xl * 2 / 3,
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(BreakPoints.Large)]: {
       paddingRight: '1.125rem',
     },
   },

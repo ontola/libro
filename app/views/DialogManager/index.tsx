@@ -14,6 +14,7 @@ import React from 'react';
 import { appContext } from '../../appContext';
 import { DialogSize, isDialogSize } from '../../middleware/ontolaMiddleware';
 import libro from '../../ontology/libro';
+import { BreakPoints } from '../../themes/themes';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
 
@@ -24,7 +25,7 @@ const DialogManager = () => {
   const lrs = useLRS();
 
   const theme = useTheme();
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down(BreakPoints.Medium));
 
   const backdropClasses = useBackdropStyles();
   const dialogClasses = useDialogStyles();

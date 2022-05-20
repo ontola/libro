@@ -14,6 +14,7 @@ import React from 'react';
 import Heading, { HeadingSize } from '../../../../components/Heading';
 import Image from '../../../../components/Image';
 import teamGL from '../../../../ontology/teamGL';
+import { BreakPoints } from '../../../../themes/themes';
 import { gridTopology } from '../../../../topologies';
 
 const PENDING_BADGE_OPACITY = 0.2;
@@ -35,7 +36,7 @@ const EarnedBadgeGrid = () => {
   const [image] = useFields(badge, schema.image);
   const [name] = useFields(badge, schema.name);
   const theme = useTheme();
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down(BreakPoints.Medium));
   const classes = useStyles();
 
   return (

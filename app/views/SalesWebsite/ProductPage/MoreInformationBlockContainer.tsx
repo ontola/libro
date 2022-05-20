@@ -11,19 +11,19 @@ import React from 'react';
 
 import AllWithProperty from '../../../components/AllWithProperty';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { containerTopology } from '../../../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       marginTop: 50,
     },
     width: 'unset',
   },
   title: {
     textAlign: 'right',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       textAlign: 'left',
     },
   },

@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 
 export interface CoverPhotoProps {
   url: string;
@@ -10,7 +10,7 @@ export interface CoverPhotoProps {
 
 const useStyles = makeStyles<LibroTheme, CoverPhotoProps>((theme) => ({
   img: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       borderRadius: 'unset',
       height: '200px',
       marginLeft: '-0.5625rem',

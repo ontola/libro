@@ -7,7 +7,7 @@ import { ClassNameMap, makeStyles } from '@mui/styles';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 
 import { createStep } from './createStep';
 
@@ -52,7 +52,7 @@ const useStepLabelOverrideStyles = makeStyles((theme: LibroTheme) => ({
     },
   },
   labelContainer: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       display: 'none',
     },
   },

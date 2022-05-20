@@ -8,7 +8,7 @@ import { LaxIdentifier } from 'link-redux';
 import React from 'react';
 
 import { calcPercentage } from '../../../../helpers/numbers';
-import { LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import { useAutoForward } from '../hooks/useAutoForward';
 import { useFieldForwardRules } from '../hooks/useFieldForwardRules';
 import { useFieldHashes } from '../hooks/useFieldHashes';
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 const FlowForm = (): JSX.Element | null => {
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   const [fields, loading] = useFlowFields();
   const [

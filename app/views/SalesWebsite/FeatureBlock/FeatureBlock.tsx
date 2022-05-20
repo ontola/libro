@@ -12,7 +12,11 @@ import React from 'react';
 
 import elements from '../../../ontology/elements';
 import sales from '../../../ontology/sales';
-import { LibroTheme, Margin } from '../../../themes/themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  Margin,
+} from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 
 interface StyleProps {
@@ -22,7 +26,7 @@ interface StyleProps {
 const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   centered: {},
   featureBlock: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '&&&': {
         gridTemplateAreas: '"title" "image" "text"',
         gridTemplateColumns: '1fr',

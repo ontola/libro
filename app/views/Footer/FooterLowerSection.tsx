@@ -13,7 +13,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import argu from '../../ontology/argu';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { footerTopology } from '../../topologies';
 import { footerMessages, imageAltMessages } from '../../translations/messages';
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gridTemplateAreas: '"logo policy privacy socials"',
     minWidth: '100%',
     paddingTop: '2rem',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       gap: theme.spacing(STACKED_GRID_GAP),
       gridTemplateAreas: '"policy" "privacy" "logo" "socials"',
       justifyItems: 'center',

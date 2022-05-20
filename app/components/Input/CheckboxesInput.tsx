@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { parseForStorage } from '../../helpers/persistence';
 import useFieldOptions from '../../hooks/useFieldOptions';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import Select from '../../topologies/Select';
 import CollectionCreateButton from '../Collection/CollectionCreateButton';
 import { FormTheme, formContext } from '../Form/FormContext';
@@ -26,7 +26,7 @@ import HiddenRequiredInput from './HiddenRequiredInput';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   wrapperFlow: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       maxHeight: '70vh',
     },
     marginLeft: '-1rem',

@@ -11,7 +11,7 @@ import React from 'react';
 
 import HeadingContext from '../../components/Heading/HeadingContext';
 import argu from '../../ontology/argu';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { allTopologies } from '../../topologies';
 
 const DESKTOP_PADDING = 30;
@@ -31,7 +31,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     marginBottom: '2rem',
     padding: theme.spacing(DESKTOP_PADDING),
     width: 'min(100%, 1500px)',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       padding: theme.spacing(MOBILE_PADDING),
     },
   },

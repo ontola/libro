@@ -12,7 +12,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { collectionMessages } from '../../translations/messages';
 
 import { useCollectionOptions } from './CollectionContext';
@@ -23,7 +23,7 @@ export const CollectionHeaderFloatCID = 'CID-CollectionHeaderFloat';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   headerFloat: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       opacity: 0,
       transition: 'opacity 150ms ease',
     },
@@ -42,7 +42,7 @@ export const HeaderFloat = ({
   } = useCollectionOptions();
   const renderPagination = !hidePagination;
   const theme = useTheme();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
   const [renderButtons, setRenderButtons] = React.useState(false);
 

@@ -123,3 +123,11 @@ enum ColorNames {
   Transparent = 'transparent',
   Orange = 'orange',
 }
+
+export enum BreakPoints {
+  XSmall = 'xs',
+  Small = 'sm',
+  Medium = 'md',
+  Large = 'lg',
+  XLarge = 'xl',
+}

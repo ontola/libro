@@ -1,6 +1,10 @@
 import { loadingParagraphCID } from '../../../../components/Loading';
 import { appMenuCID } from '../../../../topologies/AppMenu';
-import { LibroTheme, MaterialStyleMap } from '../../../themes';
+import {
+  BreakPoints,
+  LibroTheme,
+  MaterialStyleMap,
+} from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiListItem: {
@@ -21,7 +25,7 @@ export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiMenu: {
     styleOverrides: {
       paper: {
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down(BreakPoints.Medium)]: {
           [`&.${appMenuCID}`]: {
             maxWidth: '100%',
             width: '100%',
@@ -36,7 +40,7 @@ export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiMenuItem: {
     styleOverrides: {
       root: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up(BreakPoints.Medium)]: {
           maxWidth: '14em',
         },
         lineHeight: undefined,

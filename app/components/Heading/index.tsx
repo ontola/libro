@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 import { headingContext } from '../../state/headings';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 
 export enum HeadingSize {
   XL = 1,
@@ -42,10 +42,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   [HeadingSize.XL]: {
     fontSize: theme.typography.fontSizes.xxLarge,
     fontWeight: 'bold',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       fontSize: '1.5rem',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(BreakPoints.Small)]: {
       fontSize: '1.3rem',
     },
   },

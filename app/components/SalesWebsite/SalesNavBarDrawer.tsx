@@ -7,7 +7,7 @@ import React from 'react';
 import { useWebsiteIRI } from '../../hooks/useWebsiteIRI';
 import ontola from '../../ontology/ontola';
 import sales from '../../ontology/sales';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 
 const DRAWER_PADDING = 5;
 
@@ -37,7 +37,7 @@ export const SalesNavBarDrawer = ({ open, onClose }: SalesNavBarDrawerProps): JS
   const theme = useTheme<LibroTheme>();
   const websiteIRI = useWebsiteIRI();
 
-  const screenIsNarrow = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down(BreakPoints.Small));
   const [anchor, setAnchor] = React.useState<'top' | 'bottom'>('top');
 
   React.useEffect(() => {

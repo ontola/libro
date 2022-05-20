@@ -13,7 +13,7 @@ import {
 import React from 'react';
 
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { allTopologies } from '../../../topologies';
 
 const ITEM_PADDING = 10;
@@ -25,7 +25,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     width: 'min(100%, 1440px)',
   },
   item: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '&:nth-child(odd)': {
         '& h3': {
           color: theme.palette.getContrastText(theme.palette.primary.main),
@@ -34,7 +34,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
         color: theme.palette.getContrastText(theme.palette.primary.main),
       },
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       '&:first-child, &:last-child': {
         '& h3': {
           color: theme.palette.getContrastText(theme.palette.primary.main),

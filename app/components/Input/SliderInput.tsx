@@ -6,7 +6,7 @@ import React from 'react';
 import { SHADOW_LIGHT } from '../../helpers/flow';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/FormFieldTypes';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
@@ -27,7 +27,7 @@ const useSliderOverrideStyles = makeStyles<LibroTheme>((theme) => ({
     width: `calc(${SliderSize}px * 2)`,
   },
   markLabel: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       '&[data-index="1"]': {
         transform: 'translateX(-100%)',
       },

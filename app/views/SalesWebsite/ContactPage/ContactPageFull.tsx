@@ -21,7 +21,7 @@ import React from 'react';
 import { Propositions } from '../../../components/SalesWebsite/Propositions';
 import argu from '../../../ontology/argu';
 import sales from '../../../ontology/sales';
-import { LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology } from '../../../topologies';
 import Container from '../../../topologies/Container';
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     gap: '0.5rem',
   },
   memberCardContainer: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(BreakPoints.Medium)]: {
       marginTop: '5em',
     },
   },

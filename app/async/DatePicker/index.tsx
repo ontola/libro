@@ -17,7 +17,7 @@ import { formFieldContext } from '../../components/FormField/FormFieldContext';
 import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import { SHADOW_LIGHT } from '../../helpers/flow';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { formMessages } from '../../translations/messages';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -40,7 +40,7 @@ const DatePickerComponent: React.FC<InputComponentProps> = ({
   const intl = useIntl();
   const classes = useStyles();
   const theme = useTheme<LibroTheme>();
-  const screenIsWide = useMediaQuery(theme.breakpoints.up('md'));
+  const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
   const { theme: formTheme } = React.useContext(formContext);
   const {
     fieldShape,

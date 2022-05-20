@@ -20,7 +20,7 @@ import { FormTheme } from '../../components/Form/FormContext';
 import { InputValue } from '../../components/FormField/FormFieldTypes';
 import { SHADOW } from '../../helpers/flow';
 import { isResource } from '../../helpers/types';
-import { LibroTheme } from '../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { radioGroupTopology } from '../../topologies';
 import Topology from '../Topology';
 
@@ -48,7 +48,7 @@ const radioGroupStyles = (theme: LibroTheme) => createStyles( {
       animation: '$flow-radio-clicked 800ms cubic-bezier(.68,-0.55,.69,2.41) alternate 2',
     },
     '& svg': {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up(BreakPoints.Medium)]: {
         fontSize: '2rem',
         marginBlock: '.5rem',
       },
@@ -58,7 +58,7 @@ const radioGroupStyles = (theme: LibroTheme) => createStyles( {
     },
   },
   wrapperFlow: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(BreakPoints.Medium)]: {
       maxHeight: '70vh',
     },
     marginLeft: '-1rem',
