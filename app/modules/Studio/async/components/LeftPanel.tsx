@@ -1,6 +1,6 @@
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import SettingsIcon from '@mui/icons-material/Settings';
+import CategoryIcon from '@mui/icons-material/Category';
 import WebIcon from '@mui/icons-material/Web';
 import {
   TabContext,
@@ -21,15 +21,15 @@ import { ResourcePanel } from './Panels/ResourcePanel';
 import { TOTAL_TOOLBAR_HEIGHT } from './Toolbar';
 
 const useTabStyles = makeStyles({
+  labelIcon: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column-reverse',
+  },
   root: {
     minWidth: '1em',
-    paddingLeft: '.1em',
-    paddingRight: '.1em',
-  },
-  wrapper: {
-    gap: '.5rem',
-    transform: 'rotate(180deg)',
-    writingMode: 'vertical-rl',
+    paddingLeft: '.4em',
+    paddingRight: '.4em',
   },
 });
 
@@ -40,7 +40,11 @@ const useStyles = makeStyles({
   iconTransform: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    transform: 'rotate(90deg)',
+    transform: 'rotate(270deg)',
+    writingMode: 'vertical-rl',
+  },
+  label: {
+    transform: 'rotate(180deg)',
     writingMode: 'vertical-rl',
   },
   leftPanel: {
@@ -87,25 +91,41 @@ export const LeftPanel = ({ dispatch, project }: ProjectContextProps): JSX.Eleme
             <Tab
               classes={tabClasses}
               icon={<WebIcon className={classes.iconTransform} />}
-              label="Manifest"
+              label={(
+                <p className={classes.label}>
+                  Manifest
+                </p>
+              )}
               value={ComponentName.Manifest}
             />
             <Tab
               classes={tabClasses}
-              icon={<SettingsIcon className={classes.iconTransform} />}
-              label="Resources"
+              icon={<CategoryIcon className={classes.iconTransform} />}
+              label={(
+                <p className={classes.label}>
+                  Resources
+                </p>
+              )}
               value={ComponentName.Website}
             />
             <Tab
               classes={tabClasses}
               icon={<AccountTreeIcon className={classes.iconTransform} />}
-              label="Sitemap"
+              label={(
+                <p className={classes.label}>
+                  Sitemap
+                </p>
+              )}
               value={ComponentName.Sitemap}
             />
             <Tab
               classes={tabClasses}
               icon={<DoubleArrowIcon className={classes.iconTransform} />}
-              label="Distributions"
+              label={(
+                <p className={classes.label}>
+                  Distributions
+                </p>
+              )}
               value={ComponentName.Distributions}
             />
           </TabList>
