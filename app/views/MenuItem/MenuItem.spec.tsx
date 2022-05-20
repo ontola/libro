@@ -5,7 +5,12 @@
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { fireEvent, waitFor } from '@testing-library/dom';
+import {
+  fireEvent,
+  waitFor,
+  within, 
+} from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 import { wait } from '@testing-library/user-event/dist/utils';
 import { Resource } from 'link-redux';
 import React from 'react';
@@ -89,7 +94,7 @@ describe('MenuItem', () => {
     fireEvent.click(trigger);
     await wait();
 
-    await waitFor(() => expect(getByText('Gebruiker weergeven')).toBeVisible());
+    expect(getByText('Gebruiker weergeven')).toBeVisible();
   });
 
   it('closes the menu on click outside', async () => {
@@ -102,8 +107,9 @@ describe('MenuItem', () => {
 
     await waitFor(() => {
       fireEvent.click(document.querySelector('div[data-test="outside"]')!);
-      expect(screen.getByText('Gebruiker weergeven')).not.toBeVisible();
     });
+
+    expect(screen.getByText('Gebruiker weergeven')).not.toBeVisible();
   });
 
   it('closes the menu on menu item click', async () => {
@@ -120,6 +126,20 @@ describe('MenuItem', () => {
         });
     });
 
-    await waitFor(() => expect(getByText('Gebruiker weergeven')).not.toBeVisible());
+    expect(getByText('Gebruiker weergeven')).not.toBeVisible();
+  });
+
+  it('is navigable by keyboard', async () => {
+    const { getByText } = await renderMenu();
+
+    const trigger = getByText('Menu Trigger');
+    trigger.focus();
+
+    userEvent.keyboard('{enter}{arrowdown}{arrowdown}');
+
+    const menuItem = document.activeElement as HTMLElement;
+
+    expect(menuItem.getAttribute('role')).toBe('menuitem');
+    expect(within(menuItem).getByText('Profiel bewerken')).toBeVisible();
   });
 });
