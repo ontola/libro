@@ -1,4 +1,4 @@
-import rdf, { NamedNode, isNamedNode } from '@ontologies/core';
+import { NamedNode, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -15,7 +15,6 @@ import { useIntl } from 'react-intl';
 import Detail from '../../../components/Detail';
 import { LoadingDetail } from '../../../components/Loading';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
-import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import {
   allTopologiesExcept,
@@ -25,7 +24,7 @@ import {
 import ContentDetails from '../../../topologies/ContentDetails';
 import { grantedGroupMessages } from '../../../translations/messages';
 
-const publicGroupIRI = rdf.id(app.ns('g/-1'));
+const publicGroupID = '/g/-1';
 
 const GrantedGroupsDetail: FC<PropertyProps> = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
@@ -40,7 +39,7 @@ const GrantedGroupsDetail: FC<PropertyProps> = ({ linkedProp }) => {
     return <LoadingDetail />;
   }
 
-  if (groups.findIndex((g) => rdf.id(g) === publicGroupIRI) === -1) {
+  if (groups.findIndex((g) => g.value.endsWith(publicGroupID)) === -1) {
     return (
       <Detail
         icon="group"
