@@ -67,37 +67,37 @@ const valueToEmpJson = (term: SomeTerm): Value => {
   }
 };
 
-const empJsonAnyId = (term: NamedNode | BlankNode): GlobalId | LocalId => isNamedNode(term)
+export const empJsonAnyId = (term: NamedNode | BlankNode): GlobalId | LocalId => isNamedNode(term)
   ? empJsonId(term)
   : empJsonLocalId(term);
 
-const empJsonId = (term: NamedNode): GlobalId => ({
+export const empJsonId = (term: NamedNode): GlobalId => ({
   type: 'id',
   v: term.value,
 });
 
-const empJsonLocalId = (term: BlankNode): LocalId => ({
+export const empJsonLocalId = (term: BlankNode): LocalId => ({
   type: 'lid',
   v: term.value,
 });
 
-const empJsonPrimitive = (term: Literal): Primitive => ({
+export const empJsonPrimitive = (term: Literal): Primitive => ({
   dt: term.datatype.value,
   type: 'p',
   v: term.value,
 });
 
-const empJsonBool = (term: Literal): EmpBoolean => ({
+export const empJsonBool = (term: Literal): EmpBoolean => ({
   type: 'b',
   v: term.value,
 });
 
-const empJsonString = (term: Literal): EmpString => ({
+export const empJsonString = (term: Literal): EmpString => ({
   type: 's',
   v: term.value,
 });
 
-const empJsonLangString = (term: Literal): LangString => ({
+export const empJsonLangString = (term: Literal): LangString => ({
   l: term.language!,
   type: 'ls',
   v: term.value,

@@ -1,9 +1,9 @@
 import React, { Dispatch } from 'react';
 
 import { defaultManifest } from '../../../../helpers/defaultManifest';
-import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { Seed } from '../../../Common/lib/seed';
-import { sourceToSlice } from '../../lib/parseToGraph';
+import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
+import { sourceToSlice } from '../../lib/sourceToSlice';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
