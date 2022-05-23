@@ -1,26 +1,27 @@
-import { Node } from '@ontologies/core';
 import React from 'react';
 
 import { ProjectContext } from '../context/ProjectContext';
-import { projectToSource } from '../lib/projectToSource';
-
-import { parseSource } from './useGenerateLRSFromSource';
+import { expandDeepSeed } from '../lib/expandDeepSeed';
+import { flattenSeed } from '../lib/flattenSeed';
 
 const BLACKLIST_PATTERNS = [
   '<',
   '#',
+  '_:',
   'menus/footer',
 ];
 
-export const filterNodes = (resources: Node[]): string[] => resources
-  .filter((r) => !BLACKLIST_PATTERNS.some((bp) => r.value.includes(bp)))
-  .map((r) => r.value);
+const filterNodes = (resources: string[], websiteIRI: string): string[] => resources
+  .filter((r) => r.startsWith(websiteIRI) && !BLACKLIST_PATTERNS.some((bp) => r.includes(bp)))
+  .map((r) => r);
 
-export const nodesToSitemap = (resources: Node[]): string => filterNodes(resources).join('\n');
+const nodesToSitemap = (resources: string[], websiteIRI: string): string => filterNodes(resources, websiteIRI).join('\n');
+
+export const projectToSitemap = (project: ProjectContext): string => {
+  const nodes = Object.keys(flattenSeed(expandDeepSeed(project.data, project.websiteIRI)));
+
+  return nodesToSitemap(nodes, project.websiteIRI);
+};
 
 export const useSitemap = (project: ProjectContext): string =>
-  React.useMemo(() => {
-    const [resources] = parseSource(projectToSource(project), project.websiteIRI);
-
-    return filterNodes(resources).join('\n');
-  }, [project]);
+  React.useMemo(() => projectToSitemap(project), [project]);

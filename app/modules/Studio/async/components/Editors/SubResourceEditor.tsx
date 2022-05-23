@@ -6,13 +6,17 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { handle } from '../../../../../helpers/logging';
+import { sourceToDeepSlice } from '../../../lib/sourceToDeepSlice';
 import {
   ProjectAction,
   ProjectContextProps,
-  subResource,
+  selectedRecord,
 } from '../../context/ProjectContext';
-import { parseSource } from '../../hooks/useGenerateLRSFromSource';
-import { websiteRelativePath } from '../../lib/iri';
+import { compactDeepSeedDataRecord } from '../../lib/compactDeepSeed';
+import { deepRecordToDeepSeed } from '../../lib/deepRecordToDeepSeed';
+import { deepSeedRecordToDeepRecord } from '../../lib/deepSeedRecordToDeepRecord';
+import { deepRecordToSource, deepSeedRecordToSource } from '../../lib/deepSliceToSource';
+import { ResourceType } from '../../lib/types';
 
 import { DataEditor } from './DataEditor';
 
@@ -34,21 +38,22 @@ const EDITOR_TIMEOUT = 300;
 
 export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProps): JSX.Element => {
   const classes = useStyles();
-  const resource = subResource(project);
+  const resource = selectedRecord(project);
 
   const [tab, setTab] = React.useState('editor');
-  const [value, setValue] = React.useState(() => resource.value);
+  const [value, setValue] = React.useState(() => resource
+    ? deepSeedRecordToSource(resource, project.websiteIRI)
+    : '({})');
 
   const [scheduleSave, , flushSave] = useDebouncedCallback<(v: string) => void>((next) => {
     try {
-      const [[iri]] = parseSource(next, project.websiteIRI);
+      const slice = sourceToDeepSlice(next, project.websiteIRI);
+      const record = deepRecordToDeepSeed(Object.values(slice)[0]);
+      const compacted = compactDeepSeedDataRecord(record, project.websiteIRI);
 
       dispatch({
-        data: {
-          path: websiteRelativePath(iri.value, project.websiteIRI),
-          value: next,
-        },
-        id: resource.id,
+        id: resource?._id?.v ?? '/',
+        record: compacted,
         type: ProjectAction.UpdateRDFSubResource,
       });
     } catch (e) {
@@ -58,8 +63,12 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
 
   React.useEffect(() => {
     flushSave();
-    setValue(resource.value);
-  }, [resource]);
+
+    if (resource) {
+      const deepRecord = deepSeedRecordToDeepRecord(resource, project.websiteIRI, window.EMP_SYMBOL_MAP);
+      setValue(deepRecordToSource(deepRecord, project.websiteIRI));
+    }
+  }, [project.subResource]);
 
   return (
     <TabContext value={tab}>
@@ -80,8 +89,8 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
         value="editor"
       >
         <DataEditor
-          resource={resource}
-          resourceType={resource.type}
+          id={project.subResource}
+          resourceType={ResourceType.RDF}
           value={value}
           onChange={(v) => {
             setValue(v!);

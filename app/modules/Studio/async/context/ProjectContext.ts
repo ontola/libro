@@ -1,11 +1,21 @@
+import rdf from '@ontologies/core';
+import * as schema from '@ontologies/schema';
 import React, { Dispatch } from 'react';
 
 import { defaultManifest } from '../../../../helpers/defaultManifest';
-import { Seed } from '../../../Common/lib/seed';
+import {
+  DeepSeed,
+  DeepSeedDataRecord,
+  Seed,
+} from '../../../Common/lib/seed';
 import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
+import { empJsonId, empJsonString } from '../../../Kernel/lib/empjsonSerializer';
 import { sourceToSlice } from '../../lib/sourceToSlice';
+import { compactDeepSeed } from '../lib/compactDeepSeed';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
+import { nestSeed } from '../lib/nestSeed';
+import { sliceToDeepSeed } from '../lib/sliceToDeepSeed';
 import { subResourcesFromData } from '../lib/subResourcesFromData';
 import {
   Editable,
@@ -15,15 +25,10 @@ import {
 } from '../lib/types';
 
 export interface ServerData {
-  /** Only on write */
   data: Seed;
   manifest: WebManifest;
   /** Only on write */
   pages?: RenderedPage[];
-  /**
-   * JSON string of {SubResource}
-   */
-  resources: SubResource[];
   sitemap: string;
 }
 
@@ -57,6 +62,7 @@ export interface ProjectContextProps extends ProjectContextReaderProps {
 
 export interface ProjectContext {
   current: ComponentName;
+  data: DeepSeed;
   dialog: DialogType | undefined;
   name: string | undefined;
   iri: string | undefined;
@@ -66,12 +72,12 @@ export interface ProjectContext {
   website: Component,
   distributions: Component,
   manifest: WebManifest,
-  subResource: number;
+  subResource: string;
   serverDataHash: number;
   distributionToDeploy?: DistributionMetaWithIRI;
 }
 
-export enum ProjectAction {
+export const enum ProjectAction {
   Load,
   UpdateComponent,
   UpdateManifest,
@@ -82,10 +88,12 @@ export enum ProjectAction {
   UpdateProjectIRI,
   Finished,
   AddResource,
+  RenameResource,
   DeleteResource,
   ShowDeployDialog,
   ShowDialog,
   ImportData,
+  SetData,
   CreateDistribution,
   DeleteDistribution,
   HashProjectData,
@@ -104,8 +112,8 @@ interface UpdateComponentAction {
 
 interface UpdateSubRDFResourceAction {
   type: ProjectAction.UpdateRDFSubResource;
-  id: number;
-  data: Partial<SubResource>;
+  id: string;
+  record: DeepSeedDataRecord,
 }
 
 interface SetFileAction {
@@ -115,7 +123,7 @@ interface SetFileAction {
 
 interface SetResourceAction {
   type: ProjectAction.SetResource;
-  id: number;
+  id: string;
 }
 
 interface UpdateProjectIRIAction {
@@ -139,6 +147,12 @@ interface CloseAction {
 
 interface AddResourceAction {
   type: ProjectAction.AddResource;
+  path: string;
+}
+
+interface RenameResourceAction {
+  type: ProjectAction.RenameResource;
+  path: string;
 }
 
 interface DeleteResourceAction {
@@ -155,9 +169,14 @@ interface ShowDeployDialogAction {
   distributionToDeploy: DistributionMetaWithIRI;
 }
 
+interface SetDataAction {
+  type: ProjectAction.SetData;
+  seed: DeepSeed;
+}
+
 interface ImportDataAction {
   type: ProjectAction.ImportData;
-  dataType: 'dataslice' | 'source';
+  dataType: 'parsed_deepslice' | 'dataslice' | 'source';
   data: string;
 }
 
@@ -183,10 +202,12 @@ export type Action = UpdateComponentAction
   | UpdateProjectIRIAction
   | FinishedAction
   | AddResourceAction
+  | RenameResourceAction
   | DeleteResourceAction
   | ShowDialogAction
   | ShowDeployDialogAction
   | ImportDataAction
+  | SetDataAction
   | CreateDistributionAction
   | DeleteDistributionAction
   | HashProjectData;
@@ -201,19 +222,8 @@ export const projectContext = React.createContext<ProjectState>([
 export const currentComponent = (project: ProjectContext): Component | WebManifest =>
   project[project.current];
 
-const isWebManifest = (_value: Component | WebManifest, name: string | undefined): _value is WebManifest =>
-  name === ComponentName.Manifest;
-
-export const subResource = (project: ProjectContext): SubResource => {
-  const component = currentComponent(project);
-
-  if (isWebManifest(component, project.current)) {
-    throw new Error();
-  }
-
-  return component.children.find((it) => it.id === project.subResource)
-    ?? component.children[0];
-};
+export const selectedRecord = (project: ProjectContext): DeepSeedDataRecord | undefined =>
+  project.data[project.subResource];
 
 const resource = (
   name: ComponentName,
@@ -229,6 +239,7 @@ const resource = (
 
 const initialState: ProjectContext = {
   current: ComponentName.Manifest,
+  data: {},
   dialog: undefined,
   distributions: resource(
     ComponentName.Distributions,
@@ -245,7 +256,7 @@ const initialState: ProjectContext = {
     ResourceType.SiteMap,
     '',
   ),
-  subResource: 0,
+  subResource: '/',
   website: resource(
     ComponentName.Website,
     ResourceType.RDF,
@@ -254,21 +265,7 @@ const initialState: ProjectContext = {
   websiteIRI: 'https://changeme.localdev/',
 };
 
-export const emptySubResource = (id: number): SubResource => ({
-  id,
-  name: `website-${id}`,
-  path: `/${id}`,
-  type: ResourceType.RDF,
-  value: '',
-});
-
 const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
-  const website: Component = {
-    children: data.resources,
-    name: ComponentName.Website,
-    type: ResourceType.RDF,
-    value: '',
-  };
   const sitemap: Component = {
     children: [],
     name: ComponentName.Sitemap,
@@ -277,11 +274,11 @@ const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
   };
 
   return {
+    data: compactDeepSeed(nestSeed(data.data), data.manifest.ontola.website_iri),
     loading: false,
     manifest: data.manifest,
     sitemap,
-    subResource: 0,
-    website,
+    subResource: '/',
     websiteIRI: data.manifest.ontola.website_iri,
   };
 };
@@ -340,55 +337,57 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   }
 
   case ProjectAction.UpdateRDFSubResource: {
-    const nextChildren = [...state.website.children];
-    const index = nextChildren.findIndex((it) => it.id === action.id);
-
-    nextChildren[index] = {
-      ...nextChildren[index],
-      ...action.data,
-    };
-
     return {
       ...state,
-      website: {
-        ...state.website,
-        children: nextChildren,
+      data: {
+        ...state.data,
+        [state.subResource]: action.record,
       },
     };
   }
 
   case ProjectAction.AddResource: {
-    const id = state.website.children.length + 1;
+    return {
+      ...state,
+      data: {
+        ...state.data,
+        [action.path]: {
+          _id: empJsonId(rdf.namedNode(action.path)),
+          [schema.name.value]: empJsonString(rdf.literal('')),
+        },
+      },
+      subResource: action.path,
+    };
+  }
+
+  case ProjectAction.RenameResource: {
+    const { _id, ...fields } = state.data[state.subResource];
+
+    const next = {
+      ...state.data,
+      [action.path]: {
+        _id: empJsonId(rdf.namedNode(action.path)),
+        ...fields,
+      },
+    };
+    delete next[state.subResource];
 
     return {
       ...state,
-      subResource: id,
-      website: {
-        ...state.website,
-        children: [
-          ...state.website.children,
-          emptySubResource(id),
-        ],
-      },
+      data: next,
     };
   }
 
   case ProjectAction.DeleteResource: {
-    const toRemove = state.subResource;
+    const {
+      [state.subResource]: _discarded,
+      ...data
+    } = state.data;
 
     return {
       ...state,
-      subResource: 0,
-      website: {
-        ...state.website,
-        children: state.website.children
-          .filter(({ id }) => id !== toRemove)
-          .map((r, id) => ({
-            ...r,
-            id,
-            name: `website-${id}`,
-          })),
-      },
+      data,
+      subResource: '/',
     };
   }
 
@@ -406,17 +405,23 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
       distributionToDeploy: action.distributionToDeploy,
     };
 
+  case ProjectAction.SetData: {
+    return {
+      ...state,
+      data: action.seed,
+    };
+  }
+
   case ProjectAction.ImportData: {
-    const data = action.dataType === 'dataslice'
+    const rawData = action.dataType === 'dataslice'
       ? action.data
       : sourceToSlice(action.data, state.websiteIRI);
+    const slice = subResourcesFromData(rawData, state.websiteIRI, window.EMP_SYMBOL_MAP);
+    const deepSeed = sliceToDeepSeed(slice);
 
     return {
       ...state,
-      website: {
-        ...state.website,
-        children: subResourcesFromData(data, state.websiteIRI, window.EMP_SYMBOL_MAP),
-      },
+      data: deepSeed,
     };
   }
 

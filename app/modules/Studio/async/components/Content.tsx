@@ -9,7 +9,6 @@ import {
 } from '../context/ProjectContext';
 import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
 
-import { CodeEditor } from './Editors/CodeEditor';
 import { DistributionsEditor } from './Editors/DistributionsEditor';
 import { ManifestEditor } from './Editors/ManifestEditor';
 import { SiteMapEditor } from './Editors/SiteMapEditor';
@@ -80,7 +79,7 @@ export const Content = ({ project, dispatch, onMount }: EditorProps): JSX.Elemen
     );
   }
 
-  if (project.current === ComponentName.Website && project.subResource !== -1) {
+  if (project.current === ComponentName.Website) {
     return (
       <SubResourceEditor
         dispatch={dispatch}
@@ -92,16 +91,6 @@ export const Content = ({ project, dispatch, onMount }: EditorProps): JSX.Elemen
 
   if (project.current === ComponentName.Manifest) {
     return <ManifestEditor onMount={onMount} />;
-  }
-
-  if (project.current === ComponentName.Website) {
-    return (
-      <CodeEditor
-        dispatch={dispatch}
-        project={project}
-        onMount={onMount}
-      />
-    );
   }
 
   if (project.current === ComponentName.Sitemap) {

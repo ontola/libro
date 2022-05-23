@@ -4,12 +4,12 @@ import React from 'react';
 
 import { generateEditorLibs } from '../../lib/generateEditorLibs';
 import { manifestSchemas } from '../../lib/manifestSchema';
-import { Editable, ResourceType } from '../../lib/types';
+import { ResourceType } from '../../lib/types';
 
 interface DataEditorProps {
   onChange?: (v: string | undefined) => void;
   resourceType: ResourceType;
-  resource?: Editable;
+  id?: string;
   options?: editor.IStandaloneEditorConstructionOptions,
   onMount?: () => void;
   value: string;
@@ -37,7 +37,7 @@ const configureLibs = (monaco: Monaco) => {
 };
 
 export const DataEditor = ({
-  resource,
+  id,
   resourceType,
   value,
   options,
@@ -73,7 +73,7 @@ export const DataEditor = ({
         wordWrap: 'on',
         ...(options ?? {}),
       }}
-      path={resource?.name ?? resourceType}
+      path={id ?? resourceType}
       theme={prefersDark ? 'vs-dark' : 'vs-light'}
       value={value}
       width="100%"

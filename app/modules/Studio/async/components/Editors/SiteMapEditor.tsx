@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ProjectContextReaderProps } from '../../context/ProjectContext';
 import { useSitemap } from '../../hooks/useSitemap';
+import { ResourceType } from '../../lib/types';
 
 import { DataEditor } from './DataEditor';
 
@@ -15,7 +16,7 @@ export const SiteMapEditor = ({ project }: ProjectContextReaderProps): JSX.Eleme
         readOnly: true,
         wrappingIndent: 'indent',
       }}
-      resource={project.sitemap}
+      resourceType={ResourceType.SiteMap}
       value={sitemap}
     />
   );

@@ -17,7 +17,7 @@ import {
   Value,
 } from '../../../Common/lib/seed';
 
-const toId = (t: Term): GlobalId | LocalId => {
+export const toId = (t: Term): GlobalId | LocalId => {
   if (isNamedNode(t)) {
     return {
       type: 'id',
@@ -33,7 +33,7 @@ const toId = (t: Term): GlobalId | LocalId => {
   throw new Error('Term not named or blank node');
 };
 
-const toValue = (t: Term): Value => {
+export const toValue = (t: Term): Value => {
   if (isLiteral(t)) {
     if (t.language !== undefined && t.language !== '') {
       return {

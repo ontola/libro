@@ -1,4 +1,4 @@
-import rdf, { Quad } from '@ontologies/core';
+import rdf, { Quad, SomeTerm } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 import { DataRecord, normalizeType } from 'link-lib';
 
@@ -63,11 +63,19 @@ export type SeedDataRecord = Identifyable & Fields;
 
 export type Seed = Record<string, SeedDataRecord>;
 
+export type DeepSeedFieldValue = Value | Value[] | DeepSeedDataRecord | DeepSeedDataRecord[];
+
+export type DeepSeedFields = { [field: string]: DeepSeedFieldValue };
+
+export type DeepSeedDataRecord = Identifyable & DeepSeedFields;
+
+export type DeepSeed = Record<string, DeepSeedDataRecord>;
+
 export type Slice = Record<string, DataRecord>;
 
 const dataTypes = ['id', 'lid', 'p', 's', 'dt', 'b', 'i', 'l', 'ls'];
 
-const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string, string>) => {
+export const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string, string>): SomeTerm => {
   switch (v.type) {
   case 'id': {
     if (v.v === '/') {
@@ -92,12 +100,16 @@ const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<string,
   }
 };
 
-const getValue = (value: any, websiteIRI: string, mapping: Record<string, string>) => {
-  if (!Array.isArray(value) && Object.hasOwnProperty.call(value, 'type') && dataTypes.includes(value.type)) {
+export const isValue = (value: unknown): value is Value => !Array.isArray(value)
+  && Object.hasOwnProperty.call(value, 'type')
+  && dataTypes.includes((value as Value).type);
+
+export const getValue = <T>(value: T, websiteIRI: string, mapping: Record<string, string>): SomeTerm | T => {
+  if (isValue(value)) {
     return valueToStoreValue(value, websiteIRI, mapping);
   }
 
-  if (value.length === 1) {
+  if (Array.isArray(value) && value.length === 1) {
     return value[0];
   }
 

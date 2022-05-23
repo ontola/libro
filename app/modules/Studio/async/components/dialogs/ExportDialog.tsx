@@ -52,13 +52,10 @@ export const ExportDialog: React.FC<ProjectContextProps> = ({ dispatch, project 
 
   const hasUnsavedChanges = useHasUnsavedChanges(project);
 
-  const data = React.useMemo(() => {
-    const source = project.website.children
-      .map((child) => child.value)
-      .join(',\n');
-
-    return `[${source}]`;
-  }, [project.website]);
+  const data = React.useMemo(
+    () => JSON.stringify(project.data),
+    [project.website],
+  );
 
   const handleClose = React.useCallback(() => {
     dispatch({

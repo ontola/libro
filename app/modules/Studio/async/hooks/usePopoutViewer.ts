@@ -1,23 +1,18 @@
-import { Quadruple } from '@ontologies/core';
-import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { handle } from '../../../../helpers/logging';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
 import { PageViewerState } from '../../lib/PageViewerState';
-import parseToGraph from '../../lib/parseToGraph';
 import {
   ComponentName,
   ProjectContext,
-  subResource,
+  selectedRecord,
 } from '../context/ProjectContext';
-import { graphToSeed } from '../lib/graphToSeed';
-import { projectToSource } from '../lib/projectToSource';
+import { flattenSeed } from '../lib/flattenSeed';
 
 import { useNewDialogHandle } from './useDialogHandle';
 
-const EDITOR_UPDATE_FREQ = 2000;
+const EDITOR_UPDATE_FREQ = 1000;
 
 interface PopoutEditorProps {
   onClose: () => void;
@@ -38,7 +33,7 @@ const subResourceIri = (project: ProjectContext): string => {
     return 'auto';
   }
 
-  const path = subResource(project)?.path;
+  const path = project.subResource;
 
   if (!path || path === '/') {
     return 'auto';
@@ -47,25 +42,14 @@ const subResourceIri = (project: ProjectContext): string => {
   return normalize(path, project.websiteIRI);
 };
 
-const projectToPageViewerState = (project: ProjectContext, lrs: LinkReduxLRSType): PageViewerState => {
-  const source = projectToSource(project);
-  let quads: Quadruple[] = [];
-
-  try {
-    quads = parseToGraph(source, project.manifest.ontola.website_iri, true)
-      .flatMap(([, it]) => it.quads);
-  } catch (e) {
-    handle(e);
-    lrs.actions.ontola.showSnackbar('Could not parse data');
-  }
-
-  const slice = graphToSeed(quads);
+const projectToPageViewerState = (project: ProjectContext): PageViewerState => {
+  const seed = flattenSeed(project.data);
 
   return {
     currentResource: subResourceIri(project),
     doc: {
       manifestOverride: JSON.stringify(project.manifest),
-      seed: JSON.stringify(slice),
+      seed: JSON.stringify(seed),
     },
     manifest: project.manifest,
   };
@@ -73,21 +57,20 @@ const projectToPageViewerState = (project: ProjectContext, lrs: LinkReduxLRSType
 
 export const usePopoutViewer = ({ onClose, onOpen, project }: PopoutEditorProps): () => void => {
   const initialLoadListener = React.useRef<((e: MessageEvent<EditorUpdateEvent>) => void) | undefined>();
-  const lrs = useLRS();
 
   const [recreateDialog, sendUpdate] = useNewDialogHandle(onOpen, onClose);
 
   const updateDoc = React.useCallback(() => {
     const message = {
       type: EditorEvents.EditorUpdate,
-      viewOpts: projectToPageViewerState(project, lrs),
+      viewOpts: projectToPageViewerState(project),
     };
 
     sendUpdate(message);
   }, [
     JSON.stringify(project.manifest),
     project.website.children,
-    project.subResource,
+    selectedRecord(project),
     sendUpdate,
   ]);
 

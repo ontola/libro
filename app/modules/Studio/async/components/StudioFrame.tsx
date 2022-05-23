@@ -7,6 +7,7 @@ import {
   projectContext,
   useProjectStateReducer,
 } from '../context/ProjectContext';
+import '../lib/debug';
 
 import { LoadingScreen } from './screens/LoadingScreen';
 import { NoProjectScreen } from './screens/NoProjectScreen';
@@ -38,6 +39,10 @@ export const StudioFrame = (): JSX.Element => {
   const classes = useStyles();
   const projectCtx = useProjectStateReducer();
   const [project, dispatch] = projectCtx;
+
+  if (__DEVELOPMENT__) {
+    window.projectCtx = projectCtx;
+  }
 
   const [Screen, loading] = screen(project);
 

@@ -12,7 +12,6 @@ import App from '../../../../components/App';
 import generateLRS from '../../../../helpers/generateLRS';
 import { sliceIRI } from '../../../../ontology/appSlashless';
 import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
-import { toEmpJson } from '../../../Kernel/lib/empjsonSerializer';
 import { quadruplesToDataSlice } from '../../../Kernel/lib/quadruplesToDataSlice';
 import { AppContext } from '../../../Kernel/components/AppContext/appContext';
 import { WebsiteCtx } from '../../../Kernel/components/WebsiteContext/websiteContext';
@@ -21,20 +20,18 @@ import { AppContextEditor } from '../../components/AppContextEditor';
 import {
   ProjectContext,
   ServerData,
-  subResource,
 } from '../context/ProjectContext';
 import { parseSource } from '../hooks/useGenerateLRSFromSource';
-import { filterNodes, nodesToSitemap } from '../hooks/useSitemap';
+import { projectToSitemap } from '../hooks/useSitemap';
 
+import { expandDeepSeed } from './expandDeepSeed';
+import { flattenSeed } from './flattenSeed';
 import { projectToSource } from './projectToSource';
 import { RenderedPage } from './types';
 
 const projectToServerData = async (project: ProjectContext, prerender: boolean): Promise<ServerData> => {
-  const resources = project.website.children;
-  const source = projectToSource(project);
-  const [nodes, quads] = parseSource(source, project.websiteIRI, false);
-  const data = toEmpJson(quads);
-  const sitemap = nodesToSitemap(nodes);
+  const data = flattenSeed(expandDeepSeed(project.data, project.websiteIRI));
+  const sitemap = projectToSitemap(project);
   let pages: RenderedPage[] = [];
 
   if (prerender) {
@@ -46,7 +43,6 @@ const projectToServerData = async (project: ProjectContext, prerender: boolean):
     data,
     manifest: project.manifest,
     pages,
-    resources,
     sitemap,
   };
 };
@@ -141,32 +137,12 @@ const renderResource = (
   };
 };
 
-export const renderCurrentResource = async (project: ProjectContext): Promise<RenderedPage> => {
+export const renderProject = async (project: ProjectContext): Promise<Array<RenderedPage | Error>> => {
   const source = projectToSource(project);
   const [, data] = parseSource(source, project.websiteIRI);
   const { lrs } = await generateLRS(project.manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
-  const appContext = projectAppContext(project);
-  const websiteCtxValue: WebsiteCtx = projectWebsiteContext(appContext.website);
   const history = createMemoryHistory();
-
-  const resource = subResource(project);
-
-  return renderResource(
-    history,
-    lrs,
-    appContext,
-    websiteCtxValue,
-    project.manifest,
-    resource.path,
-  );
-};
-
-export const renderProject = async (project: ProjectContext): Promise<Array<RenderedPage | Error>> => {
-  const source = projectToSource(project);
-  const [nodes, data] = parseSource(source, project.websiteIRI);
-  const { lrs } = await generateLRS(project.manifest, quadruplesToDataSlice(data), window.EMP_SYMBOL_MAP);
-  const history = createMemoryHistory();
-  const sitemap = filterNodes(nodes);
+  const sitemap = projectToSitemap(project);
 
   const appContext = projectAppContext(project);
   const websiteCtxValue: WebsiteCtx = projectWebsiteContext(appContext.website);

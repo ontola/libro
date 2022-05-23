@@ -4,4 +4,6 @@ const example = createNS('http://www.example.com/');
 
 export default {
   ns: example,
+
+  root: example(''),
 };
