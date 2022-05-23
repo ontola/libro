@@ -153,40 +153,8 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, React.Pro
     type,
   };
 
-  if (typeof href !== 'undefined') {
-    return (
-      <LinkDuo
-        data-test="Button-link"
-        role="button"
-        to={href}
-        {...sharedProps}
-        {...otherProps}
-        ref={ref as React.Ref<HTMLAnchorElement>}
-      >
-        {currentIcon && (
-          <FontAwesome
-            className={buttonIconClass}
-            data-test="Button-icon"
-            name={currentIcon}
-            spin={loading}
-          />
-        )}
-        <span className={buttonLabelClass}>
-          {children}
-        </span>
-        {endIcon}
-      </LinkDuo>
-    );
-  }
-
-  return (
-    <BlurButton
-      aria-pressed={active}
-      data-test="Button-button"
-      ref={ref as React.Ref<HTMLButtonElement>}
-      {...sharedProps}
-      {...otherProps}
-    >
+  const childrenWithIcons = (
+    <React.Fragment>
       {currentIcon && (
         <FontAwesome
           className={buttonIconClass}
@@ -202,6 +170,33 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, React.Pro
         </span>
       )}
       {endIcon}
+    </React.Fragment>
+  );
+
+  if (typeof href !== 'undefined') {
+    return (
+      <LinkDuo
+        data-test="Button-link"
+        role="button"
+        to={href}
+        {...sharedProps}
+        {...otherProps}
+        ref={ref as React.Ref<HTMLAnchorElement>}
+      >
+        {childrenWithIcons}
+      </LinkDuo>
+    );
+  }
+
+  return (
+    <BlurButton
+      aria-pressed={active}
+      data-test="Button-button"
+      ref={ref as React.Ref<HTMLButtonElement>}
+      {...sharedProps}
+      {...otherProps}
+    >
+      {childrenWithIcons}
     </BlurButton>
   );
 });

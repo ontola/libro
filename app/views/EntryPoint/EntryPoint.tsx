@@ -43,6 +43,7 @@ interface EntryPointProps extends ButtonWithFeedbackProps {
 }
 
 const EntryPoint: FC<EntryPointProps> = ({
+  active,
   color,
   count,
   disabled,
@@ -75,6 +76,7 @@ const EntryPoint: FC<EntryPointProps> = ({
 
   return (
     <ButtonWithFeedback
+      active={active}
       className={classes}
       color={color}
       disabled={disabled}
@@ -84,9 +86,7 @@ const EntryPoint: FC<EntryPointProps> = ({
       variant={variant ?? ButtonVariant.Transparent}
       onClick={handleOnClick}
     >
-      <span>
-        {screenIsWide ? name : displayCount}
-      </span>
+      {screenIsWide ? name : displayCount}
     </ButtonWithFeedback>
   );
 };
