@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
@@ -116,7 +117,7 @@ const InputElement = ({
         val = e === null ? '' : e;
       }
 
-      onChange(val);
+      onChange(rdf.literal(val));
     },
     onFocus,
     required,

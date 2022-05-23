@@ -17,7 +17,6 @@ import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { fullResourceTopology, tabPaneTopology } from '../../topologies';
 import ActionsBar from '../../topologies/ActionsBar';
-import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 
 const ShopFull: FC = (): JSX.Element => (
@@ -32,16 +31,10 @@ const ShopFull: FC = (): JSX.Element => (
       <Property label={[schema.text, schema.description, dbo.abstract]} />
       <Property label={app.contents} />
       <Property label={foaf.isPrimaryTopicOf} />
-      <List wrap>
-        <Property
-          label={argu.attachments}
-          onLoad={LoadingHidden}
-        />
-        <Property
-          label={meeting.attachment}
-          onLoad={LoadingHidden}
-        />
-      </List>
+      <Property
+        label={[argu.attachments, meeting.attachment]}
+        onLoad={LoadingHidden}
+      />
       <ActionsBar>
         <Property label={ontola.favoriteAction} />
       </ActionsBar>

@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
     borderWidth: '1px',
     bottom: 0,
     left: 0,
+    minHeight: '6em',
     position: 'absolute',
     right: 0,
     top: 0,

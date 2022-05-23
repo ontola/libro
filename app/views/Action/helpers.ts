@@ -21,6 +21,10 @@ export const useDoneHandler = (onDone?: OnDoneHandler): (response: any) => void 
   const [method] = useValues(dig(schema.target, schema.httpMethod));
 
   return useCallback((response) => {
+    if (!response) {
+      return;
+    }
+
     if (onDone) {
       onDone(response.iri, method);
     } else if (response.iri && isDifferentWebsite(response.iri)) {

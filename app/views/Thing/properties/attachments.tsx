@@ -15,7 +15,7 @@ interface AttatchmentsProps {
   linkedProp: SomeNode;
 }
 
-const Attachments: FC<AttatchmentsProps> = ({
+const AttachmentsCardRow: FC<AttatchmentsProps> = ({
   linkedProp,
   children,
 }) => (
@@ -27,12 +27,10 @@ const Attachments: FC<AttatchmentsProps> = ({
   </Resource>
 );
 
-Attachments.type = schema.Thing;
+AttachmentsCardRow.type = schema.Thing;
 
-Attachments.property = [argu.attachments, meeting.attachment];
+AttachmentsCardRow.property = [argu.attachments, meeting.attachment];
 
-Attachments.topology = [
-  cardRowTopology,
-];
+AttachmentsCardRow.topology = cardRowTopology;
 
-export default register(Attachments);
+export default register(AttachmentsCardRow);

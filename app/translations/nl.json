@@ -290,6 +290,9 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Klik of sleep een bestand om te selecteren"
   },
+  "https://app.argu.co/i18n/forms/fileUploadFailed": {
+    "defaultMessage": "Het is niet gelukt om het bestand te uploaden"
+  },
   "https://app.argu.co/i18n/forms/markdownPreview": {
     "defaultMessage": "Voorbeeldweergave"
   },

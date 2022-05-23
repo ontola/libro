@@ -1,7 +1,6 @@
 import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 
-import { FileStore, StoreFile } from '../../hooks/useFileStore';
 import { SubmissionErrors } from '../FormField/FormFieldTypes';
 
 export enum FormTheme {
@@ -13,7 +12,6 @@ export enum FormTheme {
 export interface FormContext {
   autofocusForm: boolean;
   blacklist?: number[];
-  fileStore: FileStore;
   formID: string;
   formIRI: SomeNode;
   formSection?: string;
@@ -22,7 +20,6 @@ export interface FormContext {
   parentObject?: SomeNode;
   sessionStore?: Storage;
   submissionErrors?: SubmissionErrors;
-  storeFile?: StoreFile;
   submitting?: boolean;
   theme?: FormTheme;
   whitelist?: number[];

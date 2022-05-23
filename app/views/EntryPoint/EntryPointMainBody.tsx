@@ -20,10 +20,12 @@ import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProp
 import { useFormCancel } from './useFormCancel';
 
 interface EntryPointMainBodyProps extends EntryPointProps {
+  hideCancel?: boolean;
   onCancel: EventHandler<SyntheticEvent<unknown>>;
 }
 
 const EntryPointMainBody: FC<EntryPointMainBodyProps> = ({
+  hideCancel,
   onCancel,
   subject,
   ...otherProps
@@ -38,7 +40,7 @@ const EntryPointMainBody: FC<EntryPointMainBodyProps> = ({
       <FormFooterRight
         loading={loading}
         submitLabel={name}
-        onCancel={handleCancel}
+        onCancel={hideCancel ? undefined : handleCancel}
       />
     </FormFooter>
   );

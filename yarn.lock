@@ -3314,6 +3314,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rails/activestorage@npm:^7.0.1":
+  version: 7.0.3
+  resolution: "@rails/activestorage@npm:7.0.3"
+  dependencies:
+    spark-md5: ^3.0.1
+  checksum: 0b087b115a3c3513041601f48c105bf4784701a57a13b356718e32ec72f11d38c26fb7780cecc42d8f5b813025e04f4b0fdd78081dfab41a67054d09748a106f
+  languageName: node
+  linkType: hard
+
 "@rdfdev/actions@npm:^1.1.1":
   version: 1.1.1
   resolution: "@rdfdev/actions@npm:1.1.1"
@@ -4004,6 +4013,13 @@ __metadata:
   version: 6.1.6
   resolution: "@types/rails__actioncable@npm:6.1.6"
   checksum: 314aa04c5586a03dcaca75003cf031fd5ef549dfb4d5211be46253e67b1841b59f601e4c839b26b3376b11bb6803720bdf6496f61e377bafb49edd924dd0be6b
+  languageName: node
+  linkType: hard
+
+"@types/rails__activestorage@npm:^7.0.1":
+  version: 7.0.1
+  resolution: "@types/rails__activestorage@npm:7.0.1"
+  checksum: 01a4cc9dca1217b22110b81190b67f1daf30bb32f34acd02e65ac57d4993422039804f95d7db6538839ca0a33c9c506d257e6b3bc18d047992717b53ed88e637
   languageName: node
   linkType: hard
 
@@ -13315,6 +13331,7 @@ __metadata:
     "@ontologies/xsd": ^2.0.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
     "@rails/actioncable": ^6.1.4-1
+    "@rails/activestorage": ^7.0.1
     "@rdfdev/actions": ^1.1.1
     "@rdfdev/collections": 0.0.0-9ea75cda
     "@rdfdev/iri": ^1.2.0
@@ -13330,6 +13347,7 @@ __metadata:
     "@types/ol": ^6.4.2
     "@types/papaparse": ^5.2.6
     "@types/rails__actioncable": ^6.1.6
+    "@types/rails__activestorage": ^7.0.1
     "@types/react": ^17.0.3
     "@types/react-collapse": ^5.0.0
     "@types/react-dom": ^17.0.3
@@ -16332,6 +16350,13 @@ resolve@^2.0.0-next.3:
   version: 1.4.8
   resolution: "sourcemap-codec@npm:1.4.8"
   checksum: b57981c05611afef31605732b598ccf65124a9fcb03b833532659ac4d29ac0f7bfacbc0d6c5a28a03e84c7510e7e556d758d0bb57786e214660016fb94279316
+  languageName: node
+  linkType: hard
+
+"spark-md5@npm:^3.0.1":
+  version: 3.0.2
+  resolution: "spark-md5@npm:3.0.2"
+  checksum: 5feebff0bfabcecf56ba03af3e38fdb068272ed41fbf0a94ff9ef65b9bb9cb1dd69be3684db6542e62497b1eac3ae324c07ac4dcb606465dc36ca048177077bf
   languageName: node
   linkType: hard
 

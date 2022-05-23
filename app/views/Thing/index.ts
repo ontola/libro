@@ -3,7 +3,7 @@ import ArguLocation from './properties/arguLocation';
 import ArguLocationTabPane from './properties/arguLocationTabPane';
 import Arguments from './properties/arguments';
 import Attachments from './properties/attachments';
-import AttachmentsList from './properties/attachmentsList';
+import AttachmentsMainBody from './properties/attachmentsMainBody';
 import BlogPosts from './properties/blogPosts';
 import ContentUrl from './properties/contentUrl';
 import CoverPhoto from './properties/coverPhoto';
@@ -91,7 +91,7 @@ export default [
   ArguLocation,
   ArguLocationTabPane,
   Attachments,
-  AttachmentsList,
+  AttachmentsMainBody,
   BlogPosts,
   ContentUrl,
   ...CoverPhoto,

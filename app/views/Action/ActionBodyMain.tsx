@@ -12,7 +12,6 @@ import { mainBodyTopology } from '../../topologies';
 import { ActionProps, useDoneHandler } from './helpers';
 
 const ActionBodyMain: FC<ActionProps> = ({
-  onCancel,
   onDone,
   sessionStore,
 }) => {
@@ -26,10 +25,10 @@ const ActionBodyMain: FC<ActionProps> = ({
   return (
     <Property
       header
+      hideCancel
       label={schema.target}
       sessionStore={sessionStore}
       topology={mainBodyTopology}
-      onCancel={onCancel}
       onDone={onDoneHandler}
     />
   );

@@ -3,7 +3,6 @@ import equal from 'fast-deep-equal';
 import React, { FormEventHandler } from 'react';
 
 import { isFunction } from '../../helpers/types';
-import { FileStore, StoreFile } from '../../hooks/useFileStore';
 import { LibroTheme } from '../../themes/themes';
 import Input, { InputType } from '../Input/Input';
 
@@ -12,9 +11,7 @@ import { FormContext, formContext } from './FormContext';
 
 interface FormBodyProps extends FormProps {
   children?: React.ReactNode;
-  fileStore?: FileStore;
   handleSubmit?: FormEventHandler<HTMLFormElement>;
-  storeFile?: StoreFile;
   submitting?: boolean;
 }
 
@@ -41,7 +38,6 @@ const FormBody = ({
   blacklist,
   children,
   className,
-  fileStore,
   formID,
   formIRI,
   handleSubmit,
@@ -49,7 +45,6 @@ const FormBody = ({
   object,
   onKeyUp,
   sessionStore,
-  storeFile,
   submissionErrors,
   submitting,
   theme,
@@ -67,7 +62,6 @@ const FormBody = ({
   const nextContext = {
     autofocusForm,
     blacklist,
-    fileStore,
     formID,
     formIRI,
     formSection: undefined,
@@ -75,7 +69,6 @@ const FormBody = ({
     onKeyUp,
     parentObject: undefined,
     sessionStore,
-    storeFile,
     submissionErrors,
     submitting,
     theme,

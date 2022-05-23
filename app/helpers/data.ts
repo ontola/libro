@@ -17,12 +17,10 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { FileStore } from '../hooks/useFileStore';
 import argu from '../ontology/argu';
 import ontola from '../ontology/ontola';
 
 import { sequenceFilter } from './iris';
-import { isFileType } from './types';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
@@ -72,13 +70,13 @@ function compare(a: Node | number, b: Node | number) {
   return 0;
 }
 
-function convertKeysAtoB(obj: { [k: string]: any }, fileStore: FileStore, aToB = true): { [k: string]: any } {
+function convertKeysAtoB(obj: { [k: string]: any }, aToB = true): { [k: string]: any } {
   const output: { [k: string]: any } = {};
   Object.entries(obj).forEach(([k, v]) => {
     if (k === '@id') {
       output[k] = v;
     } else {
-      output[aToB ? atob(k) : k] = serializableValue(v, fileStore);
+      output[aToB ? atob(k) : k] = serializableValue(v);
     }
   });
 
@@ -100,14 +98,12 @@ function numAsc(a: Quadruple, b: Quadruple) {
   return aP - bP;
 }
 
-function serializableValue(v: any, fileStore: FileStore): any | any[] | File | string {
+function serializableValue(v: any): any | any[] | File | string {
   if (Object.prototype.toString.apply(v) === '[object Object]'
       && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
-    return convertKeysAtoB(v, fileStore);
+    return convertKeysAtoB(v);
   } else if (Array.isArray(v)) {
-    return v.map((i) => serializableValue(i, fileStore));
-  } else if (isFileType(v)) {
-    return fileStore[v.value];
+    return v.map((i) => serializableValue(i));
   }
 
   return v;

@@ -29,6 +29,8 @@ export type Tracker =
 
 export interface OntolaManifest {
   allowed_external_sources: string[],
+  blob_upload_iri?: string,
+  blob_preview_iri?: string,
   css_class: string,
   header_background: string,
   header_text: string,

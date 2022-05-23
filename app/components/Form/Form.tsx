@@ -6,7 +6,6 @@ import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { error } from '../../helpers/logging';
-import useFileStore, { FileStore } from '../../hooks/useFileStore';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { FormValues, SubmitHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { InputValue, SubmissionErrors } from '../FormField/FormFieldTypes';
@@ -50,10 +49,10 @@ const mutators = {
   },
 };
 
-const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>, fileStore?: FileStore) => {
+const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) => {
   let formData = {};
 
-  if (formApi && values && fileStore) {
+  if (formApi && values) {
     const registeredValues = formApi
       .getRegisteredFields()
       .reduce((res: Record<string, InputValue>, key: string) => {
@@ -67,7 +66,7 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>, 
         };
       }, {});
 
-    formData = convertKeysAtoB(registeredValues, fileStore);
+    formData = convertKeysAtoB(registeredValues);
   }
 
   return formData;
@@ -83,17 +82,16 @@ const Form: React.FC<FormProps> = (props) => {
     subscription,
     validateOnBlur,
   } = props;
-  const [storeFile, fileStore] = useFileStore();
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
   const submitHandler = React.useCallback((values?: FormValues, formApi?: FormApi<FormValues>): Promise<any> => {
     if (!onSubmit) {
       return Promise.resolve();
     }
 
-    const formData = formDataFromValues(values, formApi, fileStore);
+    const formData = formDataFromValues(values, formApi);
 
     return onSubmit(formData, formApi, () => onSubmit(formData, formApi)).catch(error);
-  }, [onSubmit, sessionStorage, formID, fileStore]);
+  }, [onSubmit, sessionStorage, formID]);
   React.useEffect(() => {
     if (autoSubmit && !autoSubmitted) {
       setAutoSubmitted(true);
@@ -104,9 +102,7 @@ const Form: React.FC<FormProps> = (props) => {
   const render = ({ handleSubmit, submitting }: FormRenderProps<FormValues>) => (
     <FormBody
       {...props}
-      fileStore={fileStore}
       handleSubmit={handleSubmit}
-      storeFile={storeFile}
       submitting={submitting}
     />
   );

@@ -316,6 +316,10 @@ export const formMessages = defineMessages({
     defaultMessage: 'response',
     id: 'https://app.argu.co/i18n/forms/omniform/defaultResponseType',
   },
+  fileUploadFailed: {
+    defaultMessage: 'An error occurred while uploading the file',
+    id: 'https://app.argu.co/i18n/forms/fileUploadFailed',
+  },
   invalidDateMessage: {
     defaultMessage: 'Invalid Date Format',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage',

@@ -22,7 +22,6 @@ import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { fullResourceTopology } from '../../topologies';
-import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 
 const ProjectFull: FC = ({
@@ -49,12 +48,10 @@ const ProjectFull: FC = ({
         />
         <PageHeader />
         <Property label={TEXT_PREDICATES} />
-        <List>
-          <Property
-            label={argu.attachments}
-            onLoad={LoadingHidden}
-          />
-        </List>
+        <Property
+          label={[argu.attachments, meeting.attachment]}
+          onLoad={LoadingHidden}
+        />
         <Property label={schema.location} />
         <CardDivider />
         <Property

@@ -1,18 +1,19 @@
-import rdf from '@ontologies/core';
+import rdf, { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode, normalizeType } from 'link-lib';
-import { useAction } from 'link-redux';
+import { useAction, useGlobalIds } from 'link-redux';
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
 import DropzoneOverlay from '../../../components/Dropzone/DropzoneOverlay';
-import Spinner from '../../../components/Spinner';
+import UploadProgress from '../../../components/Input/FileInput/UploadProgress';
+import { useFileUpload } from '../../../hooks/useFileUpload';
 import { convertKeysAtoB } from '../../../helpers/data';
 import { handle } from '../../../helpers/logging';
-import useFileStore from '../../../hooks/useFileStore';
+import { isInvalidActionStatus } from '../../Thing/properties/omniform/helpers';
 
 interface UploadTargetProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   uploadAction?: SomeNode;
 }
 
@@ -22,37 +23,19 @@ interface UploadTargetProps {
  * In addition, files can be pasted into the document as well.
  */
 const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Element => {
-  const [uploading, setUploading] = React.useState(false);
-  const [storeFile] = useFileStore();
+  const [fileQueue, setFileQueue] = React.useState<File[]>([]);
+  const [uploadFile, progress] = useFileUpload();
+  const [submitting, setSubmitting] = React.useState(false);
   const uploadHandler = useAction(uploadAction);
   const inputRef = React.createRef<HTMLInputElement>();
+  const [actionStatus] = useGlobalIds(uploadAction, schema.actionStatus);
+  const uploadEnabled = !isInvalidActionStatus(actionStatus);
 
   const onDrop = React.useCallback((acceptedFiles: File | File[]) => {
-    if (!uploadHandler) {
-      return [];
+    if (uploadEnabled) {
+      setFileQueue((currentQueue) => [...currentQueue, ...normalizeType(acceptedFiles)]);
     }
-
-    setUploading(true);
-    const actions = normalizeType(acceptedFiles).map((file) => {
-      const [fileReference, newStore] = storeFile(file);
-
-      const formData = convertKeysAtoB({
-        '@id': rdf.blankNode(),
-        [schema.contentUrl.toString()]: fileReference,
-      }, newStore, false);
-
-      return uploadHandler(formData);
-    });
-
-    return Promise.all(actions).then((res) => {
-      setUploading(false);
-
-      return res;
-    }).catch((error) => {
-      setUploading(false);
-      handle(error);
-    });
-  }, [setUploading, uploadHandler, storeFile]);
+  }, [uploadEnabled, setSubmitting, uploadHandler]);
 
   React.useEffect(() => {
     const handler = (e: ClipboardEvent) => {
@@ -70,10 +53,39 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
     return () => {
       document.removeEventListener('paste', handler);
     };
-  });
+  }, [onDrop]);
+
+  React.useEffect(() => {
+    const [nextFile, ...filesLeft] = fileQueue;
+
+    if (!submitting && nextFile && uploadAction) {
+      setSubmitting(true);
+      setFileQueue(filesLeft);
+
+      const handleUploadFinished = (signedId: SomeTerm) => {
+        const formData = convertKeysAtoB({
+          '@id': rdf.blankNode(),
+          [schema.contentUrl.toString()]: signedId,
+        }, false);
+
+        uploadHandler(formData).then(() => {
+          setSubmitting(false);
+        }).catch((error) => {
+          setSubmitting(false);
+          handle(error);
+        });
+      } ;
+
+      uploadFile(nextFile, handleUploadFinished);
+    }
+  }, [submitting, fileQueue, uploadAction]);
 
   if (!uploadAction) {
-    return children;
+    return (
+      <React.Fragment>
+        {children}
+      </React.Fragment>
+    );
   }
 
   return (
@@ -91,7 +103,9 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
           style={{ position: 'relative' }}
           {...getRootProps()}
         >
-          {uploading && <Spinner />}
+          {progress !== undefined && (
+            <UploadProgress value={progress} />
+          )}
           {isDragActive && (
             <DropzoneOverlay
               isDragActive

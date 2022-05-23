@@ -19,7 +19,6 @@ import ontola from '../../ontology/ontola';
 import {
   actionsBarTopology,
   fullResourceTopology,
-  listTopology,
   mainBodyTopology,
 } from '../../topologies';
 
@@ -37,15 +36,7 @@ const ThingFull: FC = () => {
         p(app.thumbnail),
         p(app.contents),
         p(withoutLoading(foaf.isPrimaryTopicOf)),
-        c(listTopology, {
-          wrap: true,
-        }, [
-          p(withoutLoading(argu.attachments)),
-          p(meeting.attachment, {
-            limit: Infinity,
-            onLoad: () => null,
-          }),
-        ]),
+        p(withoutLoading([argu.attachments, meeting.attachment])),
         c(actionsBarTopology, [
           p(withoutLoading(ontola.favoriteAction)),
         ]),

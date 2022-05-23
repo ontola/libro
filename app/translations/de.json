@@ -290,6 +290,9 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Ziehen Sie Ihre Datei hierher oder klicken Sie, um eine Datei auszuwählen"
   },
+  "https://app.argu.co/i18n/forms/fileUploadFailed": {
+    "defaultMessage": "Die Datei konnte nicht hochgeladen werden"
+  },
   "https://app.argu.co/i18n/forms/markdownPreview": {
     "defaultMessage": "Vorschau"
   },

@@ -1,6 +1,6 @@
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import React, { EventHandler, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import { JSONLDObject } from '../../helpers/forms';
 import { ResolvedShapeForm } from '../../hooks/useShapeProps';
@@ -62,12 +62,14 @@ export interface PermittedFormField {
   whitelisted?: true;
 }
 
+export type InputChangeHandler = (newValue: InputValue) => void;
+
 export interface InputComponentProps {
   autofocus: boolean;
   errors: FormFieldError[];
   inputIndex: number;
   inputValue: InputValue;
-  onChange: EventHandler<any>;
+  onChange: InputChangeHandler;
 }
 
 interface CombinedFormFieldProps extends PermittedFormField {

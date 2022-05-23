@@ -82,7 +82,7 @@ describe('helpers', () => {
           'http://schema.org/email': [email],
           'https://ns.ontola.io/core#redirectUrl': [url],
         };
-        expect(convertKeysAtoB(keysInput, {}, true)).toEqual(keysOutput);
+        expect(convertKeysAtoB(keysInput, true)).toEqual(keysOutput);
       });
     });
 

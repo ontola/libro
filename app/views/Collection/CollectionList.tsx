@@ -1,3 +1,4 @@
+import { makeStyles } from '@mui/styles';
 import * as as from '@ontologies/as';
 import { SomeTerm } from '@ontologies/core';
 import {
@@ -8,6 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import CollectionCreateButton, { TriggerType } from '../../components/Collection/CollectionCreateButton';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
 import ontola from '../../ontology/ontola';
 import { listTopology } from '../../topologies';
@@ -21,10 +23,19 @@ export interface CollectionListProps {
   to: SomeTerm;
 }
 
+const useStyles = makeStyles(() => ({
+  createButton: {
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    justifyContent: 'space-around',
+  },
+}));
+
 const CollectionList: FC<CollectionListProps> = ({
   subject,
   to,
 }) => {
+  const classes = useStyles();
   const [totalItems] = useProperty(as.totalItems);
   const pagesShouldRender = totalItems?.value !== '0';
   const hasInteraction = useHasInteraction(subject);
@@ -46,9 +57,9 @@ const CollectionList: FC<CollectionListProps> = ({
         label={as.totalItems}
         to={to}
       />
-      <Property
-        label={ontola.createAction}
-      />
+      <div className={classes.createButton}>
+        <CollectionCreateButton trigger={TriggerType.Icon} />
+      </div>
     </React.Fragment>
   );
 };

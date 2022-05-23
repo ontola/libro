@@ -16,7 +16,6 @@ import ontola from '../../ontology/ontola';
 import opengov from '../../ontology/opengov';
 import wdt from '../../ontology/wdt';
 import { fullResourceTopology } from '../../topologies';
-import List from '../../topologies/List';
 import MainBody from '../../topologies/MainBody';
 
 const MotionFull: FC = () => (
@@ -30,16 +29,10 @@ const MotionFull: FC = () => (
       <PageHeader />
       <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
-      <List wrap>
-        <Property
-          label={argu.attachments}
-          onLoad={LoadingHidden}
-        />
-        <Property
-          label={meeting.attachment}
-          onLoad={LoadingHidden}
-        />
-      </List>
+      <Property
+        label={[argu.attachments, meeting.attachment]}
+        onLoad={LoadingHidden}
+      />
       <Property
         label={argu.voteableVoteEvent}
         onLoad={LoadingHidden}

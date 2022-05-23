@@ -1,5 +1,7 @@
+import * as schema from '@ontologies/schema';
 import {
   Resource,
+  dig,
   useDataFetching,
   useDataInvalidation,
   useIds,
@@ -10,6 +12,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { entityIsLoaded } from '../../helpers/data';
+import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import ontola from '../../ontology/ontola';
 import { collectionMessages, formMessages } from '../../translations/messages';
@@ -29,11 +32,16 @@ interface CollectionCreateButtonProps {
   trigger?: TriggerType;
 }
 
-const IconTrigger: Trigger = (props) => (
-  <TriggerButton {...props}>
-    <FontAwesome name="plus" />
-  </TriggerButton>
-);
+const IconTrigger: Trigger = (props) => {
+  const [image] = useIds(dig(ontola.createAction, schema.target, schema.image));
+  const icon = (image ? normalizeFontAwesomeIRI(image) : undefined) ?? 'plus';
+
+  return (
+    <TriggerButton {...props}>
+      <FontAwesome name={icon} />
+    </TriggerButton>
+  );
+};
 
 const TextTrigger: Trigger = ({
   onClick,

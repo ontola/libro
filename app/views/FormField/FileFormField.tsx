@@ -10,9 +10,7 @@ import { formFieldTopologies } from '../../topologies';
 const FileFormField: FC = ({
   subject,
 }) => {
-  const fieldProps = useFormField(subject, {
-    storage: false,
-  });
+  const fieldProps = useFormField(subject);
 
   if (!fieldProps.whitelisted) {
     return null;

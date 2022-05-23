@@ -161,7 +161,7 @@
     "defaultMessage": "Unprocessable Entity"
   },
   "https://app.argu.co/i18n/errors/request/429/body": {
-    "defaultMessage": "You're making too many requests, try again in half a minute."
+    "defaultMessage": "You're making too many request, try again in half a minute."
   },
   "https://app.argu.co/i18n/errors/request/429/header": {
     "defaultMessage": "Too many requests"
@@ -291,6 +291,9 @@
   },
   "https://app.argu.co/i18n/forms/dropzone/passiveText": {
     "defaultMessage": "Drag & Drop your file here or click to select a file"
+  },
+  "https://app.argu.co/i18n/forms/fileUploadFailed": {
+    "defaultMessage": "An error occurred while uploading the file"
   },
   "https://app.argu.co/i18n/forms/markdownPreview": {
     "defaultMessage": "Preview"
