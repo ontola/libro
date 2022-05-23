@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
   wrapper: {
     display: 'flex',
+    paddingBottom: '1rem',
   },
 }));
 
@@ -61,9 +62,9 @@ const PersonFull: FC = () => {
             <ContentDetails>
               <AllWithProperty label={org.organization} />
             </ContentDetails>
-            <Property label={schema.description} />
           </div>
         </div>
+        <Property label={schema.description} />
       </MainBody>
       <SubSection menu={settingsMenu} />
     </React.Fragment>
