@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { LoadingHidden } from '../../components/Loading';
+import Suspense from '../../components/Suspense';
 import ontola from '../../ontology/ontola';
 import { Size } from '../../themes/themes';
 import { gridTopology } from '../../topologies';
@@ -56,11 +57,13 @@ const Banner = () => {
               label={ontola.dismissAction}
               onLoad={LoadingHidden}
             >
-              <Property
-                smallButton
-                label={schema.target}
-                topology={gridTopology}
-              />
+              <Suspense>
+                <Property
+                  smallButton
+                  label={schema.target}
+                  topology={gridTopology}
+                />
+              </Suspense>
             </Property>
           </CardContent>
         </Container>
