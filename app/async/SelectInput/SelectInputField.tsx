@@ -51,25 +51,29 @@ import VirtualizedSelect from './VirtualizedSelect';
 
 const VIRTUALIZATION_THRESHOLD = 10;
 
-const getRenderOption = (className: string) => (_: unknown, item: SomeTerm) => {
-  if (isLiteral(item.termType)) {
+const getRenderOption = (className: string) => (props: unknown, option: SomeTerm) => {
+  if (isLiteral(option.termType)) {
     return (
-      <option
-        className={className}
-        key={item.value}
-        value={item.value}
-      >
-        {item.value}
-      </option>
+      <li {...props}>
+        <option
+          className={className}
+          key={option.value}
+          value={option.value}
+        >
+          {option.value}
+        </option>
+      </li>
     );
   }
 
   return (
-    <Resource
-      element="div"
-      key={item.value}
-      subject={item}
-    />
+    <li {...props}>
+      <Resource
+        element="div"
+        key={option.value}
+        subject={option}
+      />
+    </li>
   );
 };
 

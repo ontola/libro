@@ -26,15 +26,17 @@ import fontAwesomeIcons from './helpers/fontAwesomeIcons';
 
 const options = fontAwesomeIcons.sort().map(fontAwesomeIRI);
 
-const renderOption = (_: unknown, option: NamedNode) => {
+const renderOption = (props: unknown, option: NamedNode) => {
   const icon = normalizeFontAwesomeIRI(option);
 
   return (
-    <div>
-      <FontAwesome name={icon} />
-      {' '}
-      {icon}
-    </div>
+    <li {...props}>
+      <div>
+        <FontAwesome name={icon} />
+        {' '}
+        {icon}
+      </div>
+    </li>
   );
 };
 
