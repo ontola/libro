@@ -34,6 +34,12 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     borderTopRightRadius: theme.shape.borderRadius,
     opacity: 1,
   },
+  subsection: {
+    '& > *:first-child': {
+      paddingRight: '6px',
+    },
+    minHeight: '48px',
+  },
   unSelectedSubsection: {
     '&:hover': {
       textDecoration: 'underline',
@@ -61,6 +67,7 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
     : onClick;
 
   const tabClass = clsx({
+    [classes.subsection]: variant === TabVariant.SubSection,
     [classes.selectedSubsection]: variant === TabVariant.SubSection && selected,
     [classes.unSelectedSubsection]: variant === TabVariant.SubSection && !selected,
   });
@@ -71,6 +78,7 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
         root: tabClass,
       }}
       icon={<Property label={schema.image} />}
+      iconPosition="start"
       key={subject.value}
       label={<Property label={schema.name} />}
       tabIndex={selected ? 0 : -1}
