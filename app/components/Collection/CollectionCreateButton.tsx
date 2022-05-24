@@ -76,7 +76,7 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
   const renderedActions = useFavoriteActions(validActions, false);
   useDataInvalidation(createActions);
   useDataFetching(createActions);
-  const showDialog = useShowDialog(actionDialog?.value ?? renderedActions[0]?.value);
+  const showDialog = useShowDialog(actionDialog ?? renderedActions[0]);
   const TriggerComponent = getTrigger(trigger);
 
   const freshAction = createActions.find((action) => !entityIsLoaded(lrs, action));

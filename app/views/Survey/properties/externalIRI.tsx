@@ -2,7 +2,7 @@ import { NamedNode } from '@ontologies/core';
 import {
   FC,
   register,
-  useAction,
+  useActionById,
 } from 'link-redux';
 import React from 'react';
 
@@ -21,8 +21,12 @@ const ExternalIRI: FC<ExternalIRIProps> = ({
   linkedProp,
   submitAction,
 }) => {
-  const execAction = useAction(submitAction);
+  const execAction = useActionById(submitAction);
   const handleSubmit = React.useCallback(() => {
+    if (!execAction) {
+      throw new Error('No action available');
+    }
+
     execAction();
   }, [execAction]);
 

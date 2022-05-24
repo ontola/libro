@@ -12,7 +12,7 @@ import { menuTopology } from '../../topologies';
 
 const ActionDropdownContent: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);
-  const showDialog = useShowDialog(subject.value);
+  const showDialog = useShowDialog(subject);
 
   return (
     <MenuItem

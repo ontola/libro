@@ -1,7 +1,7 @@
 import rdf, { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode, normalizeType } from 'link-lib';
-import { useAction, useGlobalIds } from 'link-redux';
+import { useActionById, useGlobalIds } from 'link-redux';
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
@@ -26,7 +26,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
   const [fileQueue, setFileQueue] = React.useState<File[]>([]);
   const [uploadFile, progress] = useFileUpload();
   const [submitting, setSubmitting] = React.useState(false);
-  const uploadHandler = useAction(uploadAction);
+  const uploadHandler = useActionById(uploadAction);
   const inputRef = React.createRef<HTMLInputElement>();
   const [actionStatus] = useGlobalIds(uploadAction, schema.actionStatus);
   const uploadEnabled = !isInvalidActionStatus(actionStatus);
@@ -58,7 +58,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
   React.useEffect(() => {
     const [nextFile, ...filesLeft] = fileQueue;
 
-    if (!submitting && nextFile && uploadAction) {
+    if (!submitting && nextFile && uploadHandler) {
       setSubmitting(true);
       setFileQueue(filesLeft);
 
@@ -78,9 +78,9 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
 
       uploadFile(nextFile, handleUploadFinished);
     }
-  }, [submitting, fileQueue, uploadAction]);
+  }, [submitting, fileQueue, uploadHandler]);
 
-  if (!uploadAction) {
+  if (!uploadEnabled) {
     return (
       <React.Fragment>
         {children}

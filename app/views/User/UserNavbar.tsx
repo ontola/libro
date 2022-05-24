@@ -2,7 +2,7 @@ import {
   FC,
   Property,
   register,
-  useAction,
+  useActionById,
   useGlobalIds,
 } from 'link-redux';
 import React from 'react';
@@ -16,7 +16,7 @@ import { RegisteredTypes } from './types';
 
 const UserNavbar: FC<PersonNavbarProps> = (props) => {
   const [mountAction] = useGlobalIds(ontola.mountAction);
-  const onMountAction = useAction(mountAction);
+  const onMountAction = useActionById(mountAction);
 
   React.useEffect(() => {
     if (mountAction) {

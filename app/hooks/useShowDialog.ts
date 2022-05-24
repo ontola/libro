@@ -1,15 +1,16 @@
-import rdf from '@ontologies/core';
-import { useAction } from 'link-redux';
+import { isNamedNode } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
+import { useLRS } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import libro from '../ontology/libro';
-
-export const useShowDialog = (location: string): MouseEventHandler => {
-  const showDialog = useAction(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(location)}`));
+export const useShowDialog = (location: SomeNode): MouseEventHandler => {
+  const lrs = useLRS();
 
   return React.useCallback((e) => {
     e.preventDefault();
 
-    showDialog();
-  }, [showDialog]);
+    if (isNamedNode(location)) {
+      lrs.actions.ontola.showDialog(location);
+    }
+  }, [location]);
 };

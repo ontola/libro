@@ -2,7 +2,7 @@ import * as rdfx from '@ontologies/rdf';
 import {
   Resource,
   register,
-  useAction,
+  useActionById,
   useDataInvalidation,
   useIds,
   useNumbers,
@@ -13,7 +13,7 @@ import libro from '../../ontology/libro';
 import { allTopologies } from '../../topologies';
 
 export const SnackbarManager = (): JSX.Element | null => {
-  const finishSnackbar = useAction(libro.actions.snackbar.finished);
+  const finishSnackbar = useActionById(libro.actions.snackbar.finished);
   const [queue] = useIds(libro.ns('snackbar/queue'));
   useDataInvalidation(queue);
   const [currentIndex] = useNumbers(libro.ns('snackbar/current'));

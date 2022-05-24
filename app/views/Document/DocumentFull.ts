@@ -2,7 +2,7 @@ import { FulfilledRequestStatus } from 'link-lib/dist-types/types';
 import {
   FC,
   register,
-  useAction,
+  useActionById,
   useIds,
   useLRS,
 } from 'link-redux';
@@ -20,7 +20,7 @@ const DocumentFull: FC = ({ subject }) => {
   const lrs = useLRS();
   const { lastResponseHeaders } = lrs.getStatus(subject) as FulfilledRequestStatus;
   const [action] = useIds(lastResponseHeaders ?? undefined, httph['exec-action']);
-  const execAction = useAction(action);
+  const execAction = useActionById(action);
 
   if (execAction) {
     execAction();

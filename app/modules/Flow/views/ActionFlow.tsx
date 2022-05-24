@@ -6,7 +6,7 @@ import {
   FC,
   Property,
   register,
-  useAction,
+  useLRS,
   useProperty,
 } from 'link-redux';
 import React from 'react';
@@ -42,8 +42,9 @@ const ActionFlow: FC<ActionProps> = ({
   responseCallback,
   sessionStore,
 }) => {
+  const lrs = useLRS();
   const onDoneHandler = useDoneHandler(onDone);
-  const hideDialog = useAction('ontola.hideDialog');
+  const closeModal = lrs.actions.ontola.hideDialog;
   const classes = useStyles();
   const [actionStatus] = useProperty(schema.actionStatus);
 
@@ -61,8 +62,6 @@ const ActionFlow: FC<ActionProps> = ({
     );
   }
 
-  const closeModal = (() => hideDialog());
-
   return (
     <div className={classes.flowContent}>
       <div className={classes.controlStrip}>
@@ -75,7 +74,7 @@ const ActionFlow: FC<ActionProps> = ({
         label={schema.target}
         responseCallback={responseCallback}
         sessionStore={sessionStore}
-        onCancel={onCancel ?? hideDialog}
+        onCancel={onCancel ?? closeModal}
         onDone={onDoneHandler}
       />
       {Appendix && <Appendix />}

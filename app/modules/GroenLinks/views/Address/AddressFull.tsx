@@ -1,15 +1,12 @@
-import rdf from '@ontologies/core';
 import {
   FC,
   Property,
   register,
-  useAction,
   useLRS,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import libro from '../../../../ontology/libro';
 import ontola from '../../../../ontology/ontola';
 import teamGL from '../../../../ontology/teamGL';
 import { alertDialogTopology, fullResourceTopology } from '../../../../topologies';
@@ -17,7 +14,9 @@ import { alertDialogTopology, fullResourceTopology } from '../../../../topologie
 const AddressFull: FC = () => {
   const lrs = useLRS();
   const [street] = useProperty(teamGL.street);
-  const goToStreet = useAction(rdf.namedNode(`${libro.actions.redirect}?location=${encodeURIComponent(street.value)}`));
+  const goToStreet = React.useCallback(() => {
+    lrs.actions.ontola.navigate(street);
+  }, [lrs]);
 
   return (
     <Property

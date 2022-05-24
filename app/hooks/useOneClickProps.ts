@@ -1,8 +1,9 @@
 import * as schema from '@ontologies/schema';
 import {
-  useAction,
+  useActionById,
   useFields,
   useGlobalIds,
+  useLinkRenderContext,
   useLiterals,
 } from 'link-redux';
 import React from 'react';
@@ -21,7 +22,8 @@ export interface OneClickProps {
 const ignoreOnDone = () => null;
 
 const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
-  const actionHandler = useAction();
+  const { subject } = useLinkRenderContext();
+  const actionHandler = useActionById(subject);
 
   const [entryPoint] = useGlobalIds(schema.target);
   const [oneClick] = useLiterals(ontola.oneClick);
@@ -34,9 +36,14 @@ const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
   const handleClick = React.useCallback(
     (e) => {
       e.preventDefault();
+
+      if (!actionHandler) {
+        throw new Error('No action available');
+      }
+
       setFeedback(true);
 
-      return actionHandler().catch((err) => {
+      return actionHandler()?.catch((err) => {
         handle(err);
       }).then(onDoneHandler).finally(() => {
         setFeedback(false);

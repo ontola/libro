@@ -33,7 +33,7 @@ const ActionContainerFloat: FC<ActionContainerFloatProps> = ({
   const [actionStatus] = useProperty(schema.actionStatus);
   const [name] = useProperty(schema.name);
   const [target] = useGlobalIds(schema.target);
-  const showDialog = useShowDialog(subject.value);
+  const showDialog = useShowDialog(subject);
   const [isPartOf] = useIds(schema.isPartOf);
 
   const [image] = useFields(target, schema.image);

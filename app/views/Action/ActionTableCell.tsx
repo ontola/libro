@@ -25,7 +25,7 @@ const ActionTableCell: FC = ({
     loading,
     onClick,
   } = useOneClickProps();
-  const showDialog = useShowDialog(subject.value);
+  const showDialog = useShowDialog(subject);
 
   const invalid = isInvalidActionStatus(actionStatus);
   const title = invalid ? error?.value : name?.value;
