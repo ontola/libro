@@ -75,6 +75,9 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
     margin: '0',
     padding: '10px',
   },
+  fieldLink: {
+    marginBottom: '0.75rem',
+  },
   fieldListElement: {
     alignItems: 'center',
     cursor: 'pointer',

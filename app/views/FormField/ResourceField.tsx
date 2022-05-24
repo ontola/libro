@@ -11,11 +11,13 @@ import {
 import React from 'react';
 
 import { formContext } from '../../components/Form/FormContext';
+import { useFormStyles } from '../../components/FormField/UseFormStyles';
 import form from '../../ontology/form';
 import { formFieldTopologies } from '../../topologies';
 import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
 const ResourceField = () => {
+  const classes = useFormStyles();
   const [path] = useProperty(sh.path);
   const { object, whitelist } = React.useContext(formContext);
   const { setHasContent } = useFormGroup();
@@ -53,7 +55,7 @@ const ResourceField = () => {
         size="3"
       />
       <Property label={[schema.text, sh.description]} />
-      <div>
+      <div className={classes.fieldLink}>
         <Property label={schema.url} />
       </div>
     </React.Fragment>
