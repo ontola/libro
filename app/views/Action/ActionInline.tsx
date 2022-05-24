@@ -10,24 +10,21 @@ import {
   Property,
   register,
   useGlobalIds,
-  useIds,
   useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import { ButtonVariant } from '../../components/Button';
-import { bestType, filterFind } from '../../helpers/data';
+import { bestType } from '../../helpers/data';
 import teamGL from '../../ontology/teamGL';
-import { useOmniformOpenAction } from '../../state/omniform';
 import { LibroTheme } from '../../themes/themes';
 import { actionsBarTopology, listTopology } from '../../topologies';
-import { OMNIFORM_FILTER, isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
+import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';
 
 interface InlineCreateActionProps {
   count: Literal;
-  omniform: boolean;
   onClick: CardListOnClick;
   variant: ButtonVariant;
 }
@@ -45,30 +42,14 @@ function getColor(theme: LibroTheme, types: NamedNode[]) {
 }
 
 const ActionInline: FC<InlineCreateActionProps> = ({
-  omniform,
-  subject,
   variant,
 }) => {
   const materialTheme = useTheme();
   const [actionStatus] = useProperty(schema.actionStatus);
   const type = useGlobalIds(rdfx.type);
-  const [isPartOf] = useIds(schema.isPartOf);
-
-  const onClick = useOmniformOpenAction(isPartOf, subject);
 
   if (isInvalidActionStatus(actionStatus)) {
     return null;
-  }
-
-  const useOmniform = omniform && OMNIFORM_FILTER.find(filterFind(subject));
-
-  if (useOmniform) {
-    return (
-      <Property
-        label={schema.name}
-        onClick={useOmniform ? onClick : null}
-      />
-    );
   }
 
   const color = getColor(materialTheme, type);

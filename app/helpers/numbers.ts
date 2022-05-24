@@ -23,7 +23,7 @@ export const calcPercentage = (value: unknown, total: unknown): number | undefin
   return Math.round((value / total) * PERCENTAGE);
 };
 
-export function countInParentheses(count: number | Literal): string {
+export function countInParentheses(count: undefined | number | Literal): string {
   if (!count) {
     return '';
   }

@@ -6,7 +6,13 @@ import { ListDirection } from '../../topologies/List';
 import Collection from '../Collection';
 import Columns from '../Columns';
 
-const ArgumentColumns = (): JSX.Element => {
+interface ArgumentColumns {
+  omniform?: boolean;
+}
+
+const ArgumentColumns = ({
+  omniform,
+}: ArgumentColumns): JSX.Element => {
   const { subject } = useLinkRenderContext();
 
   return (
@@ -16,6 +22,7 @@ const ArgumentColumns = (): JSX.Element => {
         direction={ListDirection.Column}
         key="pro"
         label={argu.proArguments}
+        omniform={omniform}
         to={subject}
       />
       <Collection
@@ -23,6 +30,7 @@ const ArgumentColumns = (): JSX.Element => {
         direction={ListDirection.Column}
         key="con"
         label={argu.conArguments}
+        omniform={omniform}
         to={subject}
       />
     </Columns>

@@ -46,7 +46,6 @@ export interface CollectionProps {
 
 export interface CollectionProviderProps extends CollectionProps {
   children?: ReactNode;
-  omniform?: boolean;
 }
 
 export interface CollectionDataProps {
@@ -84,7 +83,6 @@ const CollectionProvider = ({
   headerButtons,
   hideHeader,
   hidePagination,
-  omniform,
   onItemClick,
   redirectPagination,
   renderWhenEmpty,
@@ -134,7 +132,6 @@ const CollectionProvider = ({
     hideHeader,
     hidePagination,
     maxColumns: tryParseInt(maxColumns),
-    omniform,
     onItemClick,
     originalCollection,
     redirectPagination,
@@ -154,7 +151,6 @@ const CollectionProvider = ({
     hideHeader,
     hidePagination,
     maxColumns,
-    omniform,
     onItemClick,
     originalCollection,
     setCollectionResource,

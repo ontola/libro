@@ -28,7 +28,7 @@ Arguments.topology = allTopologiesExcept(cardAppendixTopology, pageTopology);
 
 const ArgumentsCardAppendix: FC<PropertyProps> = () => (
   <CardRow backdrop>
-    <ArgumentColumns />
+    <ArgumentColumns omniform />
   </CardRow>
 );
 

@@ -1,16 +1,39 @@
 import * as schema from '@ontologies/schema';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link } from 'link-redux';
+import {
+  FC,
+  register,
+  useStrings,
+} from 'link-redux';
+import React from 'react';
 
 import ActionButton from '../../components/ActionButton';
 import { actionsBarTopology, listTopology } from '../../topologies';
 
-export default LinkedRenderStore.registerRenderer(
-  link({ name: schema.name })(ActionButton),
-  schema.EntryPoint,
-  RENDER_CLASS_NAME,
-  [
-    actionsBarTopology,
-    listTopology,
-  ],
-);
+interface EntryPointButton {
+  count?: number;
+  onClick: React.MouseEventHandler;
+}
+
+const EntryPointButton: FC<EntryPointButton> = ({
+  count,
+  onClick,
+}) => {
+  const [name] = useStrings(schema.name);
+
+  return (
+    <ActionButton
+      count={count}
+      name={name}
+      onClick={onClick}
+    />
+  );
+};
+
+EntryPointButton.type = schema.EntryPoint;
+
+EntryPointButton.topology = [
+  actionsBarTopology,
+  listTopology,
+];
+
+export default register(EntryPointButton);

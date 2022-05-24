@@ -16,7 +16,6 @@ export interface CollectionContext {
   hideHeader?: boolean;
   hidePagination?: boolean;
   maxColumns?: number;
-  omniform?: boolean;
   onItemClick?: () => void;
   originalCollection: SomeNode;
   redirectPagination?: boolean;

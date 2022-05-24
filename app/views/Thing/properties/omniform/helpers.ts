@@ -10,7 +10,7 @@ import {
 import { allowSort } from '../../../../helpers/data';
 import ontola from '../../../../ontology/ontola';
 
-export const OMNIFORM_FILTER = [
+const OMNIFORM_FILTER = [
   /\/m\/new/,
   /\/c\/new/,
   /\/pros\/new/,

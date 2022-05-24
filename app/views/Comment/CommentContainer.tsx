@@ -11,6 +11,7 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import { handleErrorStatuses } from '../../components/Error';
 import { LoadingHidden, LoadingOpinion } from '../../components/Loading';
+import OmniformTrigger from '../../components/Omniform/OmniformTrigger';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
@@ -74,10 +75,7 @@ const CommentContainer: FC<CommentContainerProps> = ({
             label={schema.comment}
             onLoad={LoadingHidden}
           >
-            <Property
-              omniform
-              label={ontola.createAction}
-            />
+            <OmniformTrigger />
           </Property>
         </ActionsBar>
         <CardAppendix>

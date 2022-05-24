@@ -15,7 +15,6 @@ import { allTopologies } from '../../../topologies';
 
 interface PropTypes {
   linkedProp: SomeNode;
-  omniform: boolean;
   onLoad: () => void;
   responseCallback?: (response: Response) => void;
   variant: ButtonVariant;
@@ -23,7 +22,6 @@ interface PropTypes {
 
 const CreateAction: FC<PropTypes> = ({
   linkedProp,
-  omniform,
   onLoad,
   responseCallback,
   variant,
@@ -33,7 +31,6 @@ const CreateAction: FC<PropTypes> = ({
   return(
     <Resource
       isPartOf={isPartOf}
-      omniform={omniform}
       responseCallback={responseCallback}
       subject={linkedProp}
       variant={variant}

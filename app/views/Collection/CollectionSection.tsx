@@ -9,7 +9,9 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
+import OmniformTrigger from '../../components/Omniform/OmniformTrigger';
 import ontola from '../../ontology/ontola';
 import { cardFixedTopology, cardRowTopology } from '../../topologies';
 import List, { ListDirection } from '../../topologies/List';
@@ -17,13 +19,15 @@ import List, { ListDirection } from '../../topologies/List';
 import { CollectionTypes } from './types';
 
 export interface CollectionSectionProps {
-  direction: ListDirection,
+  direction: ListDirection;
+  omniform?: boolean;
   wrap?: boolean;
   to: SomeTerm;
 }
 
 const CollectionSection: FC<CollectionSectionProps> = ({
   direction,
+  omniform,
   subject,
   to,
   wrap,
@@ -53,10 +57,11 @@ const CollectionSection: FC<CollectionSectionProps> = ({
           label={as.totalItems}
           to={to}
         />
-        <Property
-          omniform
-          label={ontola.createAction}
-        />
+        {omniform ? (
+          <OmniformTrigger />
+        ) : (
+          <CollectionCreateButton />
+        )}
       </List>
     </CardContent>
   );

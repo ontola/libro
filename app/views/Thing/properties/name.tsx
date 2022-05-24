@@ -8,13 +8,11 @@ import * as sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
 import {
   PropertyProps,
-  link,
   useLink,
   value,
 } from 'link-redux';
 import React from 'react';
 
-import ActionButton from '../../../components/ActionButton';
 import Heading, {
   HeadingProps,
   HeadingSize,
@@ -23,14 +21,11 @@ import Heading, {
 import LDLink from '../../../components/LDLink';
 import { LinkTarget } from '../../../components/Link';
 import {
-  actionsBarTopology,
   attributeListTopology,
   cardFixedTopology,
-  cardFloatTopology,
   cardMainTopology,
   cardRowTopology,
   cardTopology,
-  containerFloatTopology,
   containerHeaderTopology,
   containerTopology,
   footerTopology,
@@ -38,7 +33,6 @@ import {
   gridTopology,
   hoverBoxTopology,
   inlineTopology,
-  listTopology,
   mainBodyTopology,
   navbarTopology,
   pageHeaderTopology,
@@ -111,17 +105,6 @@ export default [
     schema.Thing,
     namePredicates,
     hoverBoxTopology,
-  ),
-  LinkedRenderStore.registerRenderer(
-    link({ name: schema.name })(ActionButton),
-    schema.Thing,
-    namePredicates,
-    [
-      actionsBarTopology,
-      cardFloatTopology,
-      listTopology,
-      containerFloatTopology,
-    ],
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }: PropertyProps) => (
