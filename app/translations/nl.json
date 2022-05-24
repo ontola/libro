@@ -326,9 +326,6 @@
   "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": {
     "defaultMessage": "Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild naar {email}"
   },
-  "https://app.argu.co/i18n/forms/session/link/label": {
-    "defaultMessage": "Log in"
-  },
   "https://app.argu.co/i18n/forms/showMarkdownInstructions": {
     "defaultMessage": "Tekstopmaak hulp"
   },

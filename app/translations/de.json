@@ -326,9 +326,6 @@
   "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": {
     "defaultMessage": "Bitte bestätigen Sie Ihre Stimme, indem Sie auf den Link klicken, den wir an {email} gesendet haben."
   },
-  "https://app.argu.co/i18n/forms/session/link/label": {
-    "defaultMessage": "Einloggen"
-  },
   "https://app.argu.co/i18n/forms/showMarkdownInstructions": {
     "defaultMessage": "Anweisungen zur Textformatierung"
   },

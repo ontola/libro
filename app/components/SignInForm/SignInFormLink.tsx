@@ -42,8 +42,8 @@ const SignInFormLink: React.FC<SignInFormLinkProps> = ({
     >
       {children || label || (
         <FormattedMessage
-          defaultMessage="Log in"
-          id="https://app.argu.co/i18n/forms/session/link/label"
+          defaultMessage="Log in / sign up"
+          id="https://app.argu.co/i18n/auth/newSessionLink"
         />
       )}
     </Component>

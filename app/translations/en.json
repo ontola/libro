@@ -328,9 +328,6 @@
   "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": {
     "defaultMessage": "Please confirm your vote by clicking the link we've sent to {email}"
   },
-  "https://app.argu.co/i18n/forms/session/link/label": {
-    "defaultMessage": "Log in"
-  },
   "https://app.argu.co/i18n/forms/showMarkdownInstructions": {
     "defaultMessage": "Text formatting instructions"
   },
