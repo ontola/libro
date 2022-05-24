@@ -16,9 +16,13 @@ class SideBar extends Topology<SideBarProps> {
   constructor(props: SideBarProps) {
     super(props);
 
-    this.className = props.classes?.wrapper;
+    this.className = this.getClassName();
     this.elementType = 'div';
     this.topology = sideBarTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.wrapper;
   }
 
   render() {

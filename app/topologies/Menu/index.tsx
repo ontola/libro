@@ -13,6 +13,7 @@ interface PropTypes {
 class Menu extends Topology<PropTypes> {
   constructor(props: PropTypes) {
     super(props);
+
     this.topology = menuTopology;
   }
 

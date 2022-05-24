@@ -1,5 +1,4 @@
 import { WithStyles, withStyles } from '@mui/styles';
-import clsx from 'clsx';
 
 import { containerFloatTopology } from '../../topologies';
 import Topology from '../Topology';
@@ -17,20 +16,15 @@ const styles = {
  * @returns {component} Component
  */
 class ContainerFloat extends Topology<WithStyles<typeof styles>> {
-
   constructor(props: WithStyles<typeof styles>) {
     super(props);
 
-    this.className = props.classes.containerFloat;
+    this.className = this.getClassName();
     this.topology = containerFloatTopology;
   }
 
   public getClassName(): string {
-    const { classes } = this.props;
-
-    return clsx({
-      [classes.containerFloat]: true,
-    });
+    return this.props.classes.containerFloat;
   }
 }
 

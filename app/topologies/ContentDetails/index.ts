@@ -14,8 +14,12 @@ class ContentDetails extends TopologyProvider<WithStyles<typeof styles>> {
   constructor(props: WithStyles<typeof styles>) {
     super(props);
 
-    this.className = props.classes.contentDetails;
+    this.className = this.getClassName();
     this.topology = contentDetailsTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.contentDetails;
   }
 }
 

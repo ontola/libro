@@ -59,8 +59,12 @@ class Footer extends Topology<FooterProps> {
   constructor(props: FooterProps) {
     super(props);
 
-    this.className = this.props.classes.footer;
+    this.className = this.getClassName();
     this.topology = footerTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.footer;
   }
 
   public renderContent() {

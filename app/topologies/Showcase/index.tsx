@@ -16,6 +16,7 @@ class Showcase extends Topology<ShowcaseProps> {
 
   constructor(props: ShowcaseProps) {
     super(props);
+
     this.topology = showcaseTopology;
   }
 

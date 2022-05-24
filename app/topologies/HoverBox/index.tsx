@@ -13,6 +13,7 @@ import { HoverBoxImpl, HoverBoxProps } from './HoverBoxImpl';
 class HoverBox extends TopologyProvider<HoverBoxProps> {
   constructor(props: HoverBoxProps) {
     super(props);
+
     this.topology = hoverBoxTopology;
   }
 

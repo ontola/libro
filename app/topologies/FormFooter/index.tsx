@@ -25,10 +25,8 @@ class FormFooter extends TopologyProvider<PropTypes> {
   }
 
   public render() {
-    const className = this.props.classes.wrapper;
-
     return this.wrap((
-      <div className={className}>
+      <div className={this.props.classes.wrapper}>
         {this.props.children}
       </div>
     ));

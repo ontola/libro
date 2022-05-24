@@ -42,9 +42,13 @@ class TableFooter extends Topology<TableFooterProps> {
   constructor(props: TableFooterProps) {
     super(props);
 
-    this.className = props.classes.tableFooter;
+    this.className = this.getClassName();
     this.elementType = 'tfoot';
     this.topology = tableFooterTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.tableFooter;
   }
 }
 

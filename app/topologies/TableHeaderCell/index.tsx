@@ -31,9 +31,13 @@ class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {
   constructor(props: TableHeaderCellProps) {
     super(props);
 
-    this.className = this.props.classes.tableHeaderCell;
+    this.className = this.getClassName();
     this.elementType = 'th';
     this.topology = tableHeaderCellTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.tableHeaderCell;
   }
 }
 

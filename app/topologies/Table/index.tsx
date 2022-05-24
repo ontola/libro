@@ -48,6 +48,7 @@ class TableClass extends TopologyProvider<TableProps> {
 
   constructor(props: TableProps) {
     super(props);
+
     this.topology = tableTopology;
   }
 

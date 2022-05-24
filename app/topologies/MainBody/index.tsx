@@ -26,6 +26,7 @@ type MainBodyProps = React.PropsWithChildren<WithStyles<typeof styles>>;
 class MainBody extends TopologyProvider<MainBodyProps> {
   constructor(props: MainBodyProps) {
     super(props);
+
     this.topology = mainBodyTopology;
   }
 

@@ -23,8 +23,12 @@ class CardFloat extends Topology<WithStyles<typeof styles>> {
   constructor(props: WithStyles<typeof styles>) {
     super(props);
 
-    this.className = this.props.classes.cardFloat;
+    this.className = this.getClassName();
     this.topology = cardFloatTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.cardFloat;
   }
 }
 

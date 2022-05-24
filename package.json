@@ -22,6 +22,7 @@
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
     "start": "yarn run t10s:compile && yarn run start:wds",
     "start:wds": "cross-env NODE_ENV=development webpack serve -c ./webpack/hot.config.js",
+    "start:wps": "cross-env NODE_ENV=production webpack serve -c ./webpack/hot.config.js",
     "standalone": "cross-env STANDALONE=true yarn run start",
     "test": "NODE_ENV=test jest"
   },

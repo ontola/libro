@@ -72,8 +72,12 @@ class PageHeader extends TopologyProvider<PageHeaderProps> {
   constructor(props: PageHeaderProps) {
     super(props);
 
-    this.className = this.props.classes.pageHeader;
+    this.className = this.getClassName();
     this.topology = pageHeaderTopology;
+  }
+
+  public getClassName(): string {
+    return this.props.classes.pageHeader;
   }
 
   render() {
