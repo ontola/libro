@@ -29,7 +29,6 @@ import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
 import Omniform from './properties/omniform';
 import Order from './properties/order';
-import ParentDetail from './properties/parentDetail';
 import PinnedAt from './properties/pinnedAt';
 import Predicate from './properties/predicate';
 import Price from './properties/price';
@@ -117,7 +116,6 @@ export default [
   ...Name,
   ...Omniform,
   Order,
-  ParentDetail,
   PinnedAt,
   Predicate,
   Price,
