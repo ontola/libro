@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { useHistory } from 'react-router';
 
-import { isDifferentWebsite } from '../../helpers/iris';
+import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import fa4 from '../../ontology/fa4';
 import Image from '../Image';
 
@@ -66,7 +66,7 @@ const Detail = ({
     e.preventDefault();
 
     if (url) {
-      history.push(url);
+      history.push(retrievePath(url));
     }
   }, [url]);
   const handleClick = onClick || (url && !isDifferentWebsite(url) ? handleExternalClick : undefined);

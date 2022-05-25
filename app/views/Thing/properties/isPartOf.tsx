@@ -4,16 +4,21 @@ import {
   Resource,
   register,
 } from 'link-redux';
+import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { parentProps } from '../../../ontology/app';
 import { containerTopology, fullResourceTopology } from '../../../topologies';
 import BreadcrumbsBar from '../../../topologies/BreadcrumbsBar';
 
-const IsPartOfContainer = ({ linkedProp }: PropertyProps): JSX.Element => (
+const IsPartOfContainer = ({
+  linkedProp,
+  subject,
+}: PropertyProps & SubjectProp): JSX.Element => (
   <BreadcrumbsBar>
     <Resource
       first
+      parent={subject}
       subject={linkedProp}
     />
   </BreadcrumbsBar>

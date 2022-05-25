@@ -60,6 +60,7 @@ export default {
   alt: ontola('alt'),
   ariaLabel: ontola('ariaLabel'),
   baseCollection: ontola('baseCollection'),
+  breadcrumb: ontola('breadcrumb'),
   callToAction: ontola('callToAction'),
   claimRewardAction: ontola('claimRewardAction'),
   collectionDisplay: ontola('collectionDisplay'),

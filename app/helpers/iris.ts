@@ -80,7 +80,7 @@ export const isDifferentWebsite = (iri: string | NamedNode | URL): boolean => {
  * @param {string|NamedNode} iri The IRI to process.
  * @returns {undefined|string} The pathname or undefined if invalid.
  */
-export const retrievePath = (iri: NamedNode | string): string | undefined => {
+export const retrievePath = (iri: NamedNode | string): string => {
   const iriString = typeof iri === 'string' ? iri : iri.value;
 
   if (isLocalAnchor(iriString)) {
@@ -89,9 +89,9 @@ export const retrievePath = (iri: NamedNode | string): string | undefined => {
 
   // TODO: https://github.com/linkeddata/rdflib.js/issues/265
   const bugNormalized = iriString.replace(`${frontendOrigin}//`, `${frontendOrigin}/`);
-  const url = iriString && new URL(bugNormalized, frontendOrigin);
+  const url = new URL(bugNormalized, frontendOrigin);
 
-  return url && url.pathname + url.search + url.hash;
+  return url.pathname + url.search + url.hash;
 };
 
 export const currentURL = createCurrentURL(typeof window !== 'undefined' ? window : undefined!);

@@ -2,14 +2,16 @@ import * as schema from '@ontologies/schema';
 import {
   Resource,
   register,
+  useGlobalIds,
   useIds,
   useNumbers,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import LDLink from '../../../components/LDLink';
+import Link from '../../../components/Link';
 import argu from '../../../ontology/argu';
+import ontola from '../../../ontology/ontola';
 import { cardAppendixTopology } from '../../../topologies';
 import CardMicroRow from '../../../topologies/Card/CardMicroRow';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -18,6 +20,9 @@ import { thingMessages } from '../../../translations/messages';
 const TopComment = (): JSX.Element => {
   const [count] = useNumbers(argu.commentsCount);
   const [topComment] = useIds(argu.topComment);
+  const [breadcrumb] = useGlobalIds(topComment, ontola.breadcrumb);
+  const [parent] = useGlobalIds(topComment, schema.isPartOf);
+  const showAll = breadcrumb ?? parent;
 
   return (
     <CardRow
@@ -25,14 +30,18 @@ const TopComment = (): JSX.Element => {
     >
       <Resource subject={topComment} />
       {count > 1 && (
-        <CardMicroRow>
-          <LDLink>
-            <FormattedMessage
-              {...thingMessages.showAllLabel}
-              values={{ count }}
-            />
-          </LDLink>
-        </CardMicroRow>
+        <Resource subject={topComment}>
+          {showAll && (
+            <CardMicroRow>
+              <Link to={showAll.value}>
+                <FormattedMessage
+                  {...thingMessages.showAllLabel}
+                  values={{ count }}
+                />
+              </Link>
+            </CardMicroRow>
+          )}
+        </Resource>
       )}
     </CardRow>
   );

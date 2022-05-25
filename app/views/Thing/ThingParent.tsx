@@ -1,5 +1,6 @@
 import { ChevronRight } from '@mui/icons-material';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -16,10 +17,12 @@ import { namePredicates } from './properties/name';
 
 interface ThingParent {
   first?: boolean;
+  parent?: SomeNode;
 }
 
 const ThingParent: FC<ThingParent> = ({
   first,
+  parent,
 }) => {
   const [name] = useStrings(namePredicates);
 
@@ -33,6 +36,7 @@ const ThingParent: FC<ThingParent> = ({
       <Breadcrumb
         data-test="Thing-parent"
         label={<Property label={namePredicates} />}
+        parent={parent}
         title={name}
       />
       {!first && <ChevronRight fontSize="small" />}

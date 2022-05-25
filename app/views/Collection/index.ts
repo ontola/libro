@@ -13,7 +13,6 @@ import CreateAction from './properties/createAction';
 import DefaultPagination from './properties/defaultPagination';
 import Header from './properties/header';
 import InfinitePagination from './properties/infinitePagination';
-import IsPartOf from './properties/isPartOf';
 import Name from './properties/name';
 import Pages from './properties/pages';
 import Pagination from './properties/pagination';
@@ -35,7 +34,6 @@ export default [
   CollectionList,
   CreateAction,
   ...Header,
-  ...IsPartOf,
   ...Name,
   ...Pages,
   Pagination,
