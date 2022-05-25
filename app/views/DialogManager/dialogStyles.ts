@@ -13,7 +13,6 @@ interface UseDialogContainerStylesProps {
 
 export const useDialogContainerStyles = makeStyles<LibroTheme, UseDialogContainerStylesProps>((theme) => ({
   childWrapper: {
-    margin: '4rem 0',
     padding: '0.5625rem',
   },
   closeButton: {
@@ -31,7 +30,6 @@ export const useDialogContainerStyles = makeStyles<LibroTheme, UseDialogContaine
     top: '0px',
     width: '100%',
     zIndex: 1000,
-
   },
   closeButtonContainer: {
     height: '100%',
@@ -58,6 +56,7 @@ export const useDialogStyles = makeStyles({
       content: 'unset',
     },
     display: 'flex',
+    padding: '4rem 0',
     textAlign: 'unset',
   },
 });
