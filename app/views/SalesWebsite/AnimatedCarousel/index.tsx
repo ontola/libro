@@ -33,7 +33,7 @@ enum Action {
   Alarm,
 }
 
-const RETRY_FREQUENCY = 10;
+const RETRY_INTERVAL = 10;
 
 const startAnimation = (controller: LottieRefCurrentProps, direction: 1 | -1) => {
   controller.setDirection(direction);
@@ -41,7 +41,7 @@ const startAnimation = (controller: LottieRefCurrentProps, direction: 1 | -1) =>
 };
 
 const stateMachine: StateMachine<State, Action> = [
-  [State.LoadingAnimation, Action.LoadComplete, State.AnimatingIn],
+  [any, Action.LoadComplete, State.AnimatingIn],
   [any, Action.AnimationComplete, State.Waiting],
   [State.AnimatingOut, Action.AnimationComplete, State.LoadingAnimation],
   [State.Waiting, Action.Alarm, State.AnimatingOut],
@@ -71,7 +71,7 @@ const AnimatedCarousel: FC = () => {
       // HACK: Callback refs don't work with Lottie-React so we have to wait until the ref is set.
       return timeoutEffect(() => {
         setUpdate((num) => num + 1);
-      }, RETRY_FREQUENCY);
+      }, RETRY_INTERVAL);
     }
 
     switch (state.raw) {
