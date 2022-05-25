@@ -1,3 +1,4 @@
+import { makeStyles } from '@mui/styles';
 import * as as from '@ontologies/as';
 import rdf, { SomeTerm } from '@ontologies/core';
 import * as foaf from '@ontologies/foaf';
@@ -14,10 +15,18 @@ import React, {  ReactElement } from 'react';
 import Detail from '../../../components/Detail';
 import { LinkFeature } from '../../../components/Link';
 import SuspendedLoader from '../../../components/Loading/SuspendedLoader';
-import { allTopologies } from '../../../topologies';
+import { allTopologies, detailsBarTopology } from '../../../topologies';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
+
+const useStyles = makeStyles(() => ({
+  wrapper: {
+    display: 'flex',
+    marginBottom: '1em',
+    marginTop: '1em',
+  },
+}));
 
 const ActivityName = () => {
   const [actor] = useProperty(as.actor) ;
@@ -30,6 +39,7 @@ const ActivityName = () => {
     object,
     target,
   };
+  const classes = useStyles();
   const template = iriMap.name.value;
   const matches = template.match(uriMatch);
   const split = template.split(uriMatch);
@@ -58,6 +68,7 @@ const ActivityName = () => {
             features={features}
             key={prop.value}
             subject={prop}
+            topology={detailsBarTopology}
             onLoad={SuspendedLoader}
           />
         )}
@@ -66,9 +77,9 @@ const ActivityName = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <div className={classes.wrapper}>
       {elems}
-    </React.Fragment>
+    </div>
   );
 };
 

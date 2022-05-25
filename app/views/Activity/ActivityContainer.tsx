@@ -2,8 +2,9 @@ import * as as from '@ontologies/as';
 import * as schema from '@ontologies/schema';
 import { DEFAULT_TOPOLOGY } from 'link-lib';
 import {
+  Property,
   register,
-  useValues,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,13 +16,14 @@ import Card, { CardRow } from '../../topologies/Card';
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 
 const ActivityContainer = (): JSX.Element => {
-  const [text] = useValues(schema.text);
+  const [text] = useStrings(schema.text);
 
   return(
     <Suspense>
-      <Card>
-        <ActivityDetailsBar />
-        {text && (
+      <Property label={schema.name} />
+      {text && (
+        <Card>
+          <ActivityDetailsBar inlineDetails />
           <CardRow>
             <CardContent>
               <p>
@@ -29,8 +31,8 @@ const ActivityContainer = (): JSX.Element => {
               </p>
             </CardContent>
           </CardRow>
-        )}
-      </Card>
+        </Card>
+      )}
     </Suspense>
   );
 };
