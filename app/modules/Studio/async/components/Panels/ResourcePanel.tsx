@@ -1,6 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeItem, TreeView } from '@mui/lab';
+import { TreeItemProps } from '@mui/lab/TreeItem/TreeItem';
 import {
   Button,
   Grid,
@@ -52,41 +53,45 @@ export const ResourcePanel = ({ dispatch, project }: ProjectContextProps): JSX.E
     const name = window.prompt('Enter page path') ?? 'new';
 
     dispatch({
-      path: project.subResource + `/${name}`,
+      id: contextMenu?.id,
+      path: name,
       type: ProjectAction.AddResource,
     });
     setContextMenu(null);
-  }, [dispatch, project.subResource]);
+  }, [dispatch, contextMenu?.id]);
 
   const deleteRecord = React.useCallback(() => {
     dispatch({
+      id: contextMenu?.id,
       type: ProjectAction.DeleteResource,
     });
     setContextMenu(null);
-  }, [dispatch]);
+  }, [dispatch, contextMenu?.id]);
 
   const renameRecord = React.useCallback(() => {
-    const path = window.prompt('Enter resource path', project.subResource);
+    const path = window.prompt('Enter resource path', contextMenu?.id ?? project.selected.path);
 
     if (path) {
       dispatch({
+        id: contextMenu?.id,
         path,
         type: ProjectAction.RenameResource,
       });
     }
 
     setContextMenu(null);
-  }, [dispatch, project]);
+  }, [dispatch, project.selected.path, contextMenu?.id]);
 
   const selectResource = React.useCallback((_: unknown, id: string) => {
     dispatch({
       id: id.slice(id.indexOf('.') + 1),
       type: ProjectAction.SetResource,
     });
-  }, [dispatch]);
+  }, [dispatch, contextMenu?.id]);
 
   const handleContextMenu = React.useCallback((event: React.MouseEvent, id: string) => {
     event.preventDefault();
+    event.stopPropagation();
 
     if (contextMenu !== null) {
       // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
@@ -100,22 +105,46 @@ export const ResourcePanel = ({ dispatch, project }: ProjectContextProps): JSX.E
         mouseY: event.clientY - 6,
       });
     }
-  }, []);
+  }, [contextMenu]);
 
-  const renderTree = (origin: string, path: Path, depth = 0): JSX.Element => (
-    <TreeItem
-      classes={listItemClasses}
-      icon={path.icon && <FontAwesome name={path.icon} />}
-      key={origin + path.path}
-      label={path.segment}
-      nodeId={`${depth}.${path.path}`}
-      onContextMenu={(e) => handleContextMenu(e, path.path)}
-    >
-      {Object
-        .values(path.children)
-        .map((node) => renderTree(origin, node, depth + 1))}
-    </TreeItem>
-  );
+  const renderTree = (origin: string, path: Path, depth = 0): JSX.Element => {
+    const itemProps: Partial<TreeItemProps> = {};
+
+    if (path.icon) {
+      itemProps.icon = <FontAwesome name={path.icon} />;
+    }
+
+    let children = Object
+      .values(path.children)
+      .map((node) => renderTree(origin, node, depth + 1));
+
+    if (path.fragments.length > 0) {
+      const fragments = path.fragments.map((fragment) => (
+        <TreeItem
+          classes={listItemClasses}
+          key={origin + path.path + fragment}
+          label={`#${fragment}`}
+          nodeId={`${depth}.${path.path}#${fragment}`}
+          onContextMenu={(e) => handleContextMenu(e, `${origin}${path.path}#${fragment}`)}
+        />
+      ));
+
+      children = children.concat(fragments);
+    }
+
+    return (
+      <TreeItem
+        classes={listItemClasses}
+        key={origin + path.path}
+        label={path.segment}
+        nodeId={`${depth}.${path.path}`}
+        onContextMenu={(e) => handleContextMenu(e, `${origin}${path.path}`)}
+        {...itemProps}
+      >
+        {children}
+      </TreeItem>
+    );
+  };
 
   return (
     <Grid

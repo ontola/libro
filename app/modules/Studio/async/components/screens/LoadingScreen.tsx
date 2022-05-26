@@ -1,14 +1,15 @@
 import { Grow, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import rdf from '@ontologies/core';
 import React from 'react';
 
 import { WebManifest } from '../../../../Kernel/components/AppContext/WebManifest';
+import { empJsonId } from '../../../../Kernel/lib/empjsonSerializer';
 import {
   ProjectAction,
   ProjectContextProps,
   ServerData,
 } from '../../context/ProjectContext';
-import { ResourceType } from '../../lib/types';
 
 export interface LoadingScreenProps extends ProjectContextProps {
   show: boolean;
@@ -36,16 +37,13 @@ const newManifest = {
 };
 
 const newDocument: ServerData = {
-  data: {},
+  data: {
+    '/': {
+      _id: empJsonId(rdf.namedNode('/')),
+    },
+  },
   manifest: newManifest as WebManifest,
   // pages: [],
-  resources: [{
-    id: 0,
-    name: 'home',
-    path: '/',
-    type: ResourceType.RDF,
-    value: '({})',
-  }],
   sitemap: '',
 };
 

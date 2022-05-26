@@ -44,17 +44,21 @@ const createPath = (path: string, segment: string, icon: string | undefined): Pa
 });
 
 const originToTree = (seed: Seed, origin: string, paths: string[]): Path => {
-  const tree: Path = createPath('/', origin, iconForPath(seed, '/'));
-  const trim = (path: string): string => origin === '/' ? path : path.split(origin).pop()!;
+  const tree: Path = createPath('', origin, iconForPath(seed, '/'));
 
   for (const path of paths) {
-    const [plainPath, _] = trim(path).split('#');
-    const [_root, ...segments] = plainPath.split('/');
+    const segments = path.split('/');
 
-    segments.reduce((node, segment) => {
-      node.children[segment] ||= createPath(path, segment, iconForPath(seed, path));
+    segments.reduce((node, segment, i) => {
+      const [plainSegment, fragment] = segment.split('#');
+      const segmentPath = segments.slice(0, i + 1).join('/');
+      node.children[plainSegment] ||= createPath(segmentPath, plainSegment, iconForPath(seed, path));
 
-      return node.children[segment];
+      if (fragment) {
+        node.children[plainSegment].fragments.push(fragment);
+      }
+
+      return node.children[plainSegment];
     }, tree);
   }
 
@@ -65,11 +69,13 @@ export const sliceToWebsiteTree = (slice: DeepSeed): WebsiteTree => {
   const flat = flattenSeed(slice);
   const ids = Object.keys(flat).filter((id) => id.includes('://') || id.startsWith('/'));
   const maps = ids.reduce((acc: ByOrigin, id) => {
-    const origin = id.startsWith('/') ? '/' : originStr(id);
+    const origin = id.startsWith('/') ? '/' : originStr(id) + '/';
+    const path = id.slice(origin.length);
+
     acc[origin] ||= [];
 
-    if (id.slice(origin.length) !== '/')
-      acc[origin].push(id);
+    if (path !== '')
+      acc[origin].push(path);
 
     return acc;
   }, {});

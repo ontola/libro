@@ -68,11 +68,14 @@ export interface ProjectContext {
   iri: string | undefined;
   websiteIRI: string;
   loading: boolean;
-  sitemap: Component,
-  website: Component,
-  distributions: Component,
-  manifest: WebManifest,
-  subResource: string;
+  sitemap: Component;
+  website: Component;
+  distributions: Component;
+  manifest: WebManifest;
+  selected: {
+    origin: string;
+    path: string;
+  };
   serverDataHash: number;
   distributionToDeploy?: DistributionMetaWithIRI;
 }
@@ -147,16 +150,19 @@ interface CloseAction {
 
 interface AddResourceAction {
   type: ProjectAction.AddResource;
+  id?: string;
   path: string;
 }
 
 interface RenameResourceAction {
   type: ProjectAction.RenameResource;
+  id?: string;
   path: string;
 }
 
 interface DeleteResourceAction {
   type: ProjectAction.DeleteResource;
+  id?: string;
 }
 
 interface ShowDialogAction {
@@ -223,7 +229,7 @@ export const currentComponent = (project: ProjectContext): Component | WebManife
   project[project.current];
 
 export const selectedRecord = (project: ProjectContext): DeepSeedDataRecord | undefined =>
-  project.data[project.subResource];
+  project.data[project.selected.origin + project.selected.path];
 
 const resource = (
   name: ComponentName,
@@ -239,7 +245,11 @@ const resource = (
 
 const initialState: ProjectContext = {
   current: ComponentName.Manifest,
-  data: {},
+  data: {
+    '/': {
+      _id: empJsonId(rdf.namedNode('/')),
+    },
+  },
   dialog: undefined,
   distributions: resource(
     ComponentName.Distributions,
@@ -250,13 +260,16 @@ const initialState: ProjectContext = {
   loading: false,
   manifest: defaultManifest('https://changeme.localdev/'),
   name: undefined,
+  selected: {
+    origin: '/',
+    path: '',
+  },
   serverDataHash: 0,
   sitemap: resource(
     ComponentName.Sitemap,
     ResourceType.SiteMap,
     '',
   ),
-  subResource: '/',
   website: resource(
     ComponentName.Website,
     ResourceType.RDF,
@@ -277,9 +290,48 @@ const serverDataToProject = (data: ServerData): Partial<ProjectContext> => {
     data: compactDeepSeed(nestSeed(data.data), data.manifest.ontola.website_iri),
     loading: false,
     manifest: data.manifest,
+    selected: {
+      origin: '/',
+      path: '',
+    },
     sitemap,
-    subResource: '/',
     websiteIRI: data.manifest.ontola.website_iri,
+  };
+};
+
+const appendPath = (path: string, name: string) => {
+  if (name.startsWith('/')) {
+    return name.slice(1);
+  } else if (path) {
+    const separator = name.startsWith('#') ? '' : '/';
+
+    return `${path}${separator}${name}`;
+  }
+
+  return name;
+
+};
+
+const appendToSelected = (selected: { origin: string, path: string }, name: string): [path: string, id: string] => {
+  const path = appendPath(selected.path, name);
+  const id = `${selected.origin}${path}`;
+
+  return [path, id];
+};
+
+const idToSelected = (id: string): { origin: string, path: string } => {
+  if (id.startsWith('/')) {
+    return {
+      origin: '/',
+      path: id.slice(1),
+    };
+  }
+
+  const url = new URL(id);
+
+  return {
+    origin: url.origin,
+    path: id.slice(url.origin.length),
   };
 };
 
@@ -301,7 +353,10 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   case ProjectAction.SetResource:
     return {
       ...state,
-      subResource: action.id,
+      selected: {
+        origin: state.selected.origin,
+        path: action.id,
+      },
     };
 
   case ProjectAction.UpdateProjectIRI:
@@ -341,27 +396,34 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
       ...state,
       data: {
         ...state.data,
-        [state.subResource]: action.record,
+        [state.selected.origin + state.selected.path]: action.record,
       },
     };
   }
 
   case ProjectAction.AddResource: {
+    const selected = action.id ? idToSelected(action.id) : state.selected;
+    const [path, id] = appendToSelected(selected, action.path);
+
     return {
       ...state,
       data: {
         ...state.data,
-        [action.path]: {
-          _id: empJsonId(rdf.namedNode(action.path)),
+        [id]: {
+          _id: empJsonId(rdf.namedNode(id)),
           [schema.name.value]: empJsonString(rdf.literal('')),
         },
       },
-      subResource: action.path,
+      selected: {
+        origin: state.selected.origin,
+        path: path,
+      },
     };
   }
 
   case ProjectAction.RenameResource: {
-    const { _id, ...fields } = state.data[state.subResource];
+    const id = action.id ?? state.selected.origin + state.selected.path;
+    const { _id, ...fields } = state.data[id];
 
     const next = {
       ...state.data,
@@ -370,7 +432,7 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
         ...fields,
       },
     };
-    delete next[state.subResource];
+    delete next[id];
 
     return {
       ...state,
@@ -379,15 +441,20 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   }
 
   case ProjectAction.DeleteResource: {
+    const id = action.id ?? state.selected.origin + state.selected.path;
+
     const {
-      [state.subResource]: _discarded,
+      [id]: _discarded,
       ...data
     } = state.data;
 
     return {
       ...state,
       data,
-      subResource: '/',
+      selected: {
+        origin: '/',
+        path: '',
+      },
     };
   }
 

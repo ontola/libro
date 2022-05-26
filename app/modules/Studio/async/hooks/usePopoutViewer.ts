@@ -21,10 +21,12 @@ interface PopoutEditorProps {
 }
 
 const normalize = (urlOrPath: string, websiteIRI: string) => {
+  const withoutFragment = urlOrPath.split('#')[0];
+
   try {
-    return new URL(urlOrPath).toString();
+    return new URL(withoutFragment).toString();
   } catch (e) {
-    return `${websiteIRI}${urlOrPath}`;
+    return `${websiteIRI}${withoutFragment}`;
   }
 };
 
@@ -33,13 +35,13 @@ const subResourceIri = (project: ProjectContext): string => {
     return 'auto';
   }
 
-  const path = project.subResource;
+  const id = project.selected.origin + project.selected.path;
 
-  if (!path || path === '/') {
+  if (!id || id === '/') {
     return 'auto';
   }
 
-  return normalize(path, project.websiteIRI);
+  return normalize(id, project.websiteIRI);
 };
 
 const projectToPageViewerState = (project: ProjectContext): PageViewerState => {

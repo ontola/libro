@@ -9,6 +9,24 @@ describe('sliceToWebsiteTree', () => {
     expect(sliceToWebsiteTree({})).toEqual({});
   });
 
+  it('processes a relative origin without subresources', () => {
+    const slice = {
+      '/': {
+        _id: empJsonId(rdf.namedNode('/')),
+      },
+    };
+
+    expect(sliceToWebsiteTree(slice)).toEqual({
+      '/': {
+        children:  {},
+        fragments: [],
+        icon: undefined,
+        path: '',
+        segment: '/',
+      },
+    });
+  });
+
   it('processes an origin without subresources', () => {
     const slice = {
       'https://example.com/': {
@@ -17,7 +35,13 @@ describe('sliceToWebsiteTree', () => {
     };
 
     expect(sliceToWebsiteTree(slice)).toEqual({
-      'https://example.com/': undefined,
+      'http://www.example.com/': {
+        children:  {},
+        fragments: [],
+        icon: undefined,
+        path: '',
+        segment: 'http://www.example.com/',
+      },
     });
   });
 
@@ -32,25 +56,28 @@ describe('sliceToWebsiteTree', () => {
     };
 
     expect(sliceToWebsiteTree(slice)).toEqual({
-      'http://www.example.com': {
+      'http://www.example.com/': {
         children: {
           'foo': {
             children: {
               'bar': {
                 children: {},
                 fragments: [],
-                path: '/foo/bar',
+                icon: undefined,
+                path: 'foo/bar',
                 segment: 'bar',
               },
             },
             fragments: [],
-            path: '/foo',
+            icon: undefined,
+            path: 'foo',
             segment: 'foo',
           },
         },
         fragments: [],
-        path: '/',
-        segment: '/',
+        icon: undefined,
+        path: '',
+        segment: 'http://www.example.com/',
       },
     });
   });
@@ -72,32 +99,36 @@ describe('sliceToWebsiteTree', () => {
     };
 
     expect(sliceToWebsiteTree(slice)).toEqual({
-      'https://example.com': {
+      'http://www.example.com/': {
         children: {
           'foo': {
             children: {
               'bar': {
                 children: {},
                 fragments: [],
-                path: '/foo/bar',
+                icon: undefined,
+                path: 'foo/bar',
                 segment: 'bar',
               },
             },
-            fragments: [],
-            path: '/foo',
+            fragments: [
+              'title',
+            ],
+            icon: undefined,
+            path: 'foo',
             segment: 'foo',
           },
         },
         fragments: [],
-        path: '/',
-        segment: '/',
+        icon: undefined,
+        path: '',
+        segment: 'http://www.example.com/',
       },
     });
   });
 
-  it('processes an origin with subresources', () => {
+  it('processes an origin with fragments', () => {
     const slice = {
-      'https://argu.co/menus/footer/argu': { _id: empJsonId(rdf.namedNode('https://argu.co/menus/footer/argu')) },
       'https://argu.localdev/info': { _id: empJsonId(rdf.namedNode('https://argu.localdev/info')) },
       'https://argu.localdev/info#CTABlock': { _id: empJsonId(rdf.namedNode('https://argu.localdev/info#CTABlock')) },
       'https://argu.localdev/info#CoverImage': { _id: empJsonId(rdf.namedNode('https://argu.localdev/info#CoverImage')) },
@@ -120,30 +151,102 @@ describe('sliceToWebsiteTree', () => {
       'https://argu.localdev/info/energietransitie': { _id: empJsonId(rdf.namedNode('https://argu.localdev/info/energietransitie')) },
       'https://argu.localdev/info/menus/footer': { _id: empJsonId(rdf.namedNode('https://argu.localdev/info/menus/footer')) },
       'https://argu.localdev/info/participatie': { _id: empJsonId(rdf.namedNode('https://argu.localdev/info/participatie')) },
+      'https://argu.localdev/menus/footer/argu': { _id: empJsonId(rdf.namedNode('https://argu.localdev/menus/footer/argu')) },
     };
 
-    console.log(JSON.stringify(sliceToWebsiteTree(slice)));
-
     expect(sliceToWebsiteTree(slice)).toEqual({
-      'https://example.com': {
+      'https://argu.localdev/': {
         children: {
-          'foo': {
+          info: {
             children: {
-              'bar': {
+              community: {
                 children: {},
                 fragments: [],
-                path: '/foo/bar',
-                segment: 'bar',
+                icon: undefined,
+                path: 'info/community',
+                segment: 'community',
+              },
+              energietransitie: {
+                children: {},
+                fragments: [],
+                icon: undefined,
+                path: 'info/energietransitie',
+                segment: 'energietransitie',
+              },
+              menus: {
+                children: {
+                  footer: {
+                    children: {},
+                    fragments: [],
+                    icon: undefined,
+                    path: 'info/menus/footer',
+                    segment: 'footer',
+                  },
+                },
+                fragments: [],
+                icon: undefined,
+                path: 'info/menus',
+                segment: 'menus',
+              },
+              participatie: {
+                children: {},
+                fragments: [],
+                icon: undefined,
+                path: 'info/participatie',
+                segment: 'participatie',
+              },
+            },
+            fragments: [
+              'CTABlock',
+              'CoverImage',
+              'budgetting',
+              'bullhorn',
+              'checklist',
+              'filtration',
+              'flag',
+              'highlightedCases',
+              'infographic',
+              'lock',
+              'moreInformation',
+              'notification',
+              'photo',
+              'propositions',
+              'scenario-discussion',
+              'tenantFiltration',
+              'vote',
+            ],
+            icon: undefined,
+            path: 'info',
+            segment: 'info',
+          },
+          menus: {
+            children: {
+              footer: {
+                children: {
+                  argu: {
+                    children: {},
+                    fragments: [],
+                    icon: undefined,
+                    path: 'menus/footer/argu',
+                    segment: 'argu',
+                  },
+                },
+                fragments: [],
+                icon: undefined,
+                path: 'menus/footer',
+                segment: 'footer',
               },
             },
             fragments: [],
-            path: '/foo',
-            segment: 'foo',
+            icon: undefined,
+            path: 'menus',
+            segment: 'menus',
           },
         },
         fragments: [],
-        path: '/',
-        segment: '/',
+        icon: undefined,
+        path: '',
+        segment: 'https://argu.localdev/',
       },
     });
   });

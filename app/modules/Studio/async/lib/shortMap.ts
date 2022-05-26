@@ -46,6 +46,153 @@ type ExplicitNamespaceMap = Test & Exclude<Test, Record<string, NamedNode>>;
 
 type ShortMap = Record<string, { map: ExplicitNamespaceMap, prefix: string }>;
 
+const staticMap: ShortMap = {
+  appSlashless: {
+    map: ontAppSlashless as ExplicitNamespaceMap,
+    prefix: ontAppSlashless.ns('').value,
+  },
+  argu: {
+    map: ontArgu as ExplicitNamespaceMap,
+    prefix: ontArgu.ns('').value,
+  },
+  as: {
+    map: ontAs as ExplicitNamespaceMap,
+    prefix: ontAs.ns('').value,
+  },
+  dbo: {
+    map: ontDbo as ExplicitNamespaceMap,
+    prefix: ontDbo.ns('').value,
+  },
+  dcterms: {
+    map: ontDcterms as ExplicitNamespaceMap,
+    prefix: ontDcterms.ns('').value,
+  },
+  dexes: {
+    map: ontDexes as ExplicitNamespaceMap,
+    prefix: ontDexes.ns('').value,
+  },
+  elements: {
+    map: ontElements as ExplicitNamespaceMap,
+    prefix: ontElements.ns('').value,
+  },
+  ex: {
+    map: ontEx as ExplicitNamespaceMap,
+    prefix: ontEx.ns('').value,
+  },
+  example: {
+    map: ontExample as ExplicitNamespaceMap,
+    prefix: ontExample.ns('').value,
+  },
+  fa4: {
+    map: ontFa4 as ExplicitNamespaceMap,
+    prefix: ontFa4.ns('').value,
+  },
+  fhir: {
+    map: ontFhir as ExplicitNamespaceMap,
+    prefix: ontFhir.ns('').value,
+  },
+  foaf: {
+    map: ontFoaf as ExplicitNamespaceMap,
+    prefix: ontFoaf.ns('').value,
+  },
+  form: {
+    map: ontForm as ExplicitNamespaceMap,
+    prefix: ontForm.ns('').value,
+  },
+  http: {
+    map: ontHttp as ExplicitNamespaceMap,
+    prefix: ontHttp.ns('').value,
+  },
+  httph: {
+    map: ontHttph as ExplicitNamespaceMap,
+    prefix: ontHttph.ns('').value,
+  },
+  hydra: {
+    map: ontHydra as ExplicitNamespaceMap,
+    prefix: ontHydra.ns('').value,
+  },
+  ld: {
+    map: ontLd as ExplicitNamespaceMap,
+    prefix: ontLd.ns('').value,
+  },
+  libro: {
+    map: ontLibro as ExplicitNamespaceMap,
+    prefix: ontLibro.ns('').value,
+  },
+  link: {
+    map: ontLink as ExplicitNamespaceMap,
+    prefix: ontLink.ns('').value,
+  },
+  ll: {
+    map: ontLl as ExplicitNamespaceMap,
+    prefix: ontLl.ns('').value,
+  },
+  meeting: {
+    map: ontMeeting as ExplicitNamespaceMap,
+    prefix: ontMeeting.ns('').value,
+  },
+  ontola: {
+    map: ontOntola as ExplicitNamespaceMap,
+    prefix: ontOntola.ns('').value,
+  },
+  opengov: {
+    map: ontOpengov as ExplicitNamespaceMap,
+    prefix: ontOpengov.ns('').value,
+  },
+  org: {
+    map: ontOrg as ExplicitNamespaceMap,
+    prefix: ontOrg.ns('').value,
+  },
+  owl: {
+    map: ontOwl as ExplicitNamespaceMap,
+    prefix: ontOwl.ns('').value,
+  },
+  person: {
+    map: ontPerson as ExplicitNamespaceMap,
+    prefix: ontPerson.ns('').value,
+  },
+  qb: {
+    map: ontQb as ExplicitNamespaceMap,
+    prefix: ontQb.ns('').value,
+  },
+  rdfs: {
+    map: ontRdfs as ExplicitNamespaceMap,
+    prefix: ontRdfs.ns('').value,
+  },
+  rdfx: {
+    map: ontRdfx as ExplicitNamespaceMap,
+    prefix: ontRdfx.ns('').value,
+  },
+  sales: {
+    map: ontSales as ExplicitNamespaceMap,
+    prefix: ontSales.ns('').value,
+  },
+  schema: {
+    map: ontSchema as ExplicitNamespaceMap,
+    prefix: ontSchema.ns('').value,
+  },
+  shacl: {
+    map: ontShacl as ExplicitNamespaceMap,
+    prefix: ontShacl.ns('').value,
+  },
+  sp: {
+    map: ontSp as ExplicitNamespaceMap,
+    prefix: ontSp.ns('').value,
+  },
+  teamGL: {
+    map: ontTeamGL as ExplicitNamespaceMap,
+    prefix: ontTeamGL.ns('').value,
+  },
+  wdt: {
+    map: ontWdt as ExplicitNamespaceMap,
+    prefix: ontWdt.ns('').value,
+  },
+  xsd: {
+    map: ontXsd as ExplicitNamespaceMap,
+    prefix: ontXsd.ns('').value,
+  },
+};
+
 const createShortMap = (websiteIRI: string): ShortMap => {
   const ontApp = createAppNS(websiteIRI);
 
@@ -54,150 +201,7 @@ const createShortMap = (websiteIRI: string): ShortMap => {
       map: ontApp as ExplicitNamespaceMap,
       prefix: ontApp.ns('').value,
     },
-    appSlashless: {
-      map: ontAppSlashless as ExplicitNamespaceMap,
-      prefix: ontAppSlashless.ns('').value,
-    },
-    argu: {
-      map: ontArgu as ExplicitNamespaceMap,
-      prefix: ontArgu.ns('').value,
-    },
-    as: {
-      map: ontAs as ExplicitNamespaceMap,
-      prefix: ontAs.ns('').value,
-    },
-    dbo: {
-      map: ontDbo as ExplicitNamespaceMap,
-      prefix: ontDbo.ns('').value,
-    },
-    dcterms: {
-      map: ontDcterms as ExplicitNamespaceMap,
-      prefix: ontDcterms.ns('').value,
-    },
-    dexes: {
-      map: ontDexes as ExplicitNamespaceMap,
-      prefix: ontDexes.ns('').value,
-    },
-    elements: {
-      map: ontElements as ExplicitNamespaceMap,
-      prefix: ontElements.ns('').value,
-    },
-    ex: {
-      map: ontEx as ExplicitNamespaceMap,
-      prefix: ontEx.ns('').value,
-    },
-    example: {
-      map: ontExample as ExplicitNamespaceMap,
-      prefix: ontExample.ns('').value,
-    },
-    fa4: {
-      map: ontFa4 as ExplicitNamespaceMap,
-      prefix: ontFa4.ns('').value,
-    },
-    fhir: {
-      map: ontFhir as ExplicitNamespaceMap,
-      prefix: ontFhir.ns('').value,
-    },
-    foaf: {
-      map: ontFoaf as ExplicitNamespaceMap,
-      prefix: ontFoaf.ns('').value,
-    },
-    form: {
-      map: ontForm as ExplicitNamespaceMap,
-      prefix: ontForm.ns('').value,
-    },
-    http: {
-      map: ontHttp as ExplicitNamespaceMap,
-      prefix: ontHttp.ns('').value,
-    },
-    httph: {
-      map: ontHttph as ExplicitNamespaceMap,
-      prefix: ontHttph.ns('').value,
-    },
-    hydra: {
-      map: ontHydra as ExplicitNamespaceMap,
-      prefix: ontHydra.ns('').value,
-    },
-    ld: {
-      map: ontLd as ExplicitNamespaceMap,
-      prefix: ontLd.ns('').value,
-    },
-    libro: {
-      map: ontLibro as ExplicitNamespaceMap,
-      prefix: ontLibro.ns('').value,
-    },
-    link: {
-      map: ontLink as ExplicitNamespaceMap,
-      prefix: ontLink.ns('').value,
-    },
-    ll: {
-      map: ontLl as ExplicitNamespaceMap,
-      prefix: ontLl.ns('').value,
-    },
-    meeting: {
-      map: ontMeeting as ExplicitNamespaceMap,
-      prefix: ontMeeting.ns('').value,
-    },
-    ontola: {
-      map: ontOntola as ExplicitNamespaceMap,
-      prefix: ontOntola.ns('').value,
-    },
-    opengov: {
-      map: ontOpengov as ExplicitNamespaceMap,
-      prefix: ontOpengov.ns('').value,
-    },
-    org: {
-      map: ontOrg as ExplicitNamespaceMap,
-      prefix: ontOrg.ns('').value,
-    },
-    owl: {
-      map: ontOwl as ExplicitNamespaceMap,
-      prefix: ontOwl.ns('').value,
-    },
-    person: {
-      map: ontPerson as ExplicitNamespaceMap,
-      prefix: ontPerson.ns('').value,
-    },
-    qb: {
-      map: ontQb as ExplicitNamespaceMap,
-      prefix: ontQb.ns('').value,
-    },
-    rdfs: {
-      map: ontRdfs as ExplicitNamespaceMap,
-      prefix: ontRdfs.ns('').value,
-    },
-    rdfx: {
-      map: ontRdfx as ExplicitNamespaceMap,
-      prefix: ontRdfx.ns('').value,
-    },
-    sales: {
-      map: ontSales as ExplicitNamespaceMap,
-      prefix: ontSales.ns('').value,
-    },
-    schema: {
-      map: ontSchema as ExplicitNamespaceMap,
-      prefix: ontSchema.ns('').value,
-    },
-    shacl: {
-      map: ontShacl as ExplicitNamespaceMap,
-      prefix: ontShacl.ns('').value,
-    },
-    sp: {
-      map: ontSp as ExplicitNamespaceMap,
-      prefix: ontSp.ns('').value,
-    },
-    teamGL: {
-      map: ontTeamGL as ExplicitNamespaceMap,
-      prefix: ontTeamGL.ns('').value,
-    },
-    wdt: {
-      map: ontWdt as ExplicitNamespaceMap,
-      prefix: ontWdt.ns('').value,
-    },
-    xsd: {
-      map: ontXsd as ExplicitNamespaceMap,
-      prefix: ontXsd.ns('').value,
-    },
+    ...staticMap,
   };
 };
 
@@ -207,7 +211,7 @@ const validJSSymbol = (value: string): boolean => jsSymbolMatcher.test(value);
 
 const memoizedMap = {
   key: '',
-  value: {} as ShortMap,
+  value: staticMap,
 };
 
 const shortmapFor = (websiteIRI: string): ShortMap => {
@@ -222,7 +226,7 @@ export const shortenGlobalId = (iri: string, websiteIRI: string): NodeProperty =
   const shortMap = shortmapFor(websiteIRI);
   const shortMapEntries = Object.entries(shortMap);
 
-  if (iri.startsWith(websiteIRI)) {
+  if (websiteIRI && iri.startsWith(websiteIRI)) {
     const value = iri.split(websiteIRI).pop() ?? '';
 
     return {

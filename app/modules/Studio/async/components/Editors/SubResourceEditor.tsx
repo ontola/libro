@@ -68,7 +68,7 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
       const deepRecord = deepSeedRecordToDeepRecord(resource, project.websiteIRI, window.EMP_SYMBOL_MAP);
       setValue(deepRecordToSource(deepRecord, project.websiteIRI));
     }
-  }, [project.subResource]);
+  }, [project.selected.origin, project.selected.path]);
 
   return (
     <TabContext value={tab}>
@@ -89,7 +89,7 @@ export const SubResourceEditor = ({ project, dispatch, onMount }: CodeEditorProp
         value="editor"
       >
         <DataEditor
-          id={project.subResource}
+          id={project.selected.origin + project.selected.path}
           resourceType={ResourceType.RDF}
           value={value}
           onChange={(v) => {
