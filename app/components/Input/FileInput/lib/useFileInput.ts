@@ -9,7 +9,7 @@ import dbo from '../../../../ontology/dbo';
 import { InputChangeHandler, InputValue } from '../../../FormField/FormFieldTypes';
 import { useFileUpload } from '../../../../hooks/useFileUpload';
 
-type HandleFileChange = (newFile: File) => void;
+export type HandleFileChange = (newFile: File | undefined) => void;
 type UseFileUpload = [handleFileChange: HandleFileChange, progress: number | undefined, preview: string | undefined];
 
 const previewUrl = (iriTemplate: Template | undefined, inputValue: InputValue): string | undefined => {
@@ -32,10 +32,15 @@ export const useFileInput = (inputValue: InputValue, handleChange: InputChangeHa
   const [uploadFile, progress] = useFileUpload();
 
   const handleFileChange = React.useCallback<HandleFileChange>((newFile) => {
-    encodingFormatOnChange([rdf.literal(newFile.type)]);
-    fileNameFormatOnChange([rdf.literal(newFile.name)]);
-
-    uploadFile(newFile, handleChange);
+    if (newFile) {
+      encodingFormatOnChange([rdf.literal(newFile.type)]);
+      fileNameFormatOnChange([rdf.literal(newFile.name)]);
+      uploadFile(newFile, handleChange);
+    } else {
+      encodingFormatOnChange([rdf.literal('')]);
+      fileNameFormatOnChange([rdf.literal('')]);
+      handleChange(rdf.literal(''));
+    }
   }, [handleChange]);
 
   const preview = previewUrl(blobPreviewUrl, inputValue);

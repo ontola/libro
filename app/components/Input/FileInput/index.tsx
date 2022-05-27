@@ -62,6 +62,7 @@ const FileInput: React.FC<InputComponentProps> = ({
         <UploadProgress value={progress} />
       ) : (
         <Dropzone
+          clearable={!fieldShape.required}
           encodingFormat={encodingFormatValues?.[0]?.value}
           encodingFormatTypes={encodingFormatTypes || ''}
           fileName={fileNameFormatValues?.[0]?.value}

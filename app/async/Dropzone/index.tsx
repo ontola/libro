@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 import ReactDropzone from 'react-dropzone';
 
+import DropzoneClear from '../../components/Dropzone/DropzoneClear';
 import DropzoneInner from '../../components/Dropzone/DropzoneInner';
 import { DropzoneProps } from '../../containers/Dropzone';
 import { LibroTheme, Margin } from '../../themes/themes';
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
 }));
 
 const Dropzone: React.FC<DropzoneProps> = ({
+  clearable,
   encodingFormat,
   fileName,
   encodingFormatTypes,
@@ -49,6 +51,11 @@ const Dropzone: React.FC<DropzoneProps> = ({
   preview,
 }) => {
   const classes = useStyles();
+  const onClear = React.useCallback((e) => {
+    e.preventDefault();
+
+    onChange(undefined);
+  }, []);
   const onDrop = React.useCallback((acceptedFiles) => {
     const [file] = acceptedFiles;
 
@@ -78,24 +85,27 @@ const Dropzone: React.FC<DropzoneProps> = ({
             preview={preview}
           >
             {(renderedPreview: React.ReactNode) => (
-              <button
-                type="button"
-                {...getRootProps({
-                  className: (clsx({
-                    [classes.dropzone]: true,
-                    [classes.active]: isDragActive,
-                  })),
-                  onClick: openDialog,
-                })}
-              >
-                {renderedPreview}
-                <input
-                  {...getInputProps()}
-                  className={classes.input}
-                  ref={inputRef}
-                  type="file"
-                />
-              </button>
+              <React.Fragment>
+                {clearable && preview && <DropzoneClear onClear={onClear} />}
+                <button
+                  type="button"
+                  {...getRootProps({
+                    className: (clsx({
+                      [classes.dropzone]: true,
+                      [classes.active]: isDragActive,
+                    })),
+                    onClick: openDialog,
+                  })}
+                >
+                  {renderedPreview}
+                  <input
+                    {...getInputProps()}
+                    className={classes.input}
+                    ref={inputRef}
+                    type="file"
+                  />
+                </button>
+              </React.Fragment>
             )}
           </DropzoneInner>
         </div>

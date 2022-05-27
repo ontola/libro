@@ -12,6 +12,7 @@ import Button from '../Button';
 import { formFieldContext } from './FormFieldContext';
 import FormFieldHelper from './FormFieldHelper';
 import { InputValue } from './FormFieldTypes';
+import FormInputButtons from './FormInputButtons';
 
 export const fieldWrapperCID = 'CID-FieldWrapper';
 
@@ -21,19 +22,7 @@ export interface FormInputProps {
   value: InputValue;
 }
 
-const useStyles = makeStyles<LibroTheme>((theme) => ({
-  fieldButtons: {
-    '& button, & [role="button"]': {
-      color: '#707070',
-      float: 'right',
-      padding: '0.1em',
-    },
-    paddingRight: '0.5em',
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    zIndex: theme.zIndexFormInputButtons,
-  },
+const useStyles = makeStyles<LibroTheme>(() => ({
   fieldWrapper: {
     display: 'inline-block',
     position: 'relative',
@@ -84,7 +73,7 @@ const FormInput: React.FC<FormInputProps> = ({
         inputValue={value}
         onChange={inputOnChange}
       />
-      <div className={classes.fieldButtons}>
+      <FormInputButtons>
         {removable && (
           <Button
             plain
@@ -101,7 +90,7 @@ const FormInput: React.FC<FormInputProps> = ({
             <FontAwesome name="arrows" />
           </div>
         )}
-      </div>
+      </FormInputButtons>
       <FormFieldHelper
         error={errors?.[0]}
         value={value}

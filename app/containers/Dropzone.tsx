@@ -4,6 +4,7 @@ import React, {
   SyntheticEvent,
 } from 'react';
 
+import { HandleFileChange } from '../components/Input/FileInput/lib/useFileInput';
 import Suspense from '../components/Suspense';
 
 const Dropzone = React.lazy(
@@ -12,12 +13,13 @@ const Dropzone = React.lazy(
 );
 
 export interface DropzoneProps {
+  clearable?: boolean
   encodingFormat?: string;
   fileName?: string;
   encodingFormatTypes: string;
   inputRef: Ref<HTMLInputElement>;
   name: string;
-  onChange: (acceptedFile: File) => void;
+  onChange: HandleFileChange;
   openDialog: EventHandler<SyntheticEvent<unknown>>;
   preview?: string;
 }
