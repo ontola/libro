@@ -17,6 +17,7 @@ import Heading, {
 import { SignInFormLink } from '../../components/SignInForm';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import Card from '../../topologies/Card';
+import HeadingContext from '../Heading/HeadingContext';
 
 import {
   bodyDescriptorForStatus,
@@ -69,32 +70,34 @@ const CardError = (props: ErrorComponentProps): JSX.Element => {
 
   return (
     <Card>
-      <CardContent endSpacing>
-        <Heading
-          size={HeadingSize.LG}
-          variant={HeadingVariant.Alert}
-        >
-          <FontAwesome name="exclamation-triangle" />
-          {' '}
-          {headerDescription ? <FormattedMessage {...headerDescription} /> : (err && err.name)}
-        </Heading>
-        {bodyDescriptor ? (
-          <p>
-            <FormattedMessage {...bodyDescriptor} />
-          </p>
-        ) : null}
-        {err && (
-          <p>
-            {err.message}
-          </p>
-        )}
-        {__DEVELOPMENT__ && err && (
-          <pre>
-            {err.stack}
-          </pre>
-        )}
-        {mainAction}
-      </CardContent>
+      <HeadingContext>
+        <CardContent endSpacing>
+          <Heading
+            size={HeadingSize.LG}
+            variant={HeadingVariant.Alert}
+          >
+            <FontAwesome name="exclamation-triangle" />
+            {' '}
+            {headerDescription ? <FormattedMessage {...headerDescription} /> : (err && err.name)}
+          </Heading>
+          {bodyDescriptor ? (
+            <p>
+              <FormattedMessage {...bodyDescriptor} />
+            </p>
+          ) : null}
+          {err && (
+            <p>
+              {err.message}
+            </p>
+          )}
+          {__DEVELOPMENT__ && err && (
+            <pre>
+              {err.stack}
+            </pre>
+          )}
+          {mainAction}
+        </CardContent>
+      </HeadingContext>
     </Card>
   );
 };
