@@ -38,6 +38,7 @@ export default {
   TextAreaInput: form('TextAreaInput'),
   TextInput: form('TextInput'),
   ToggleButtonGroup: form('ToggleButtonGroup'),
+  UrlInput: form('UrlInput'),
 
   /* properties */
   defaultValue: form('defaultValue'),

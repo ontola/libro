@@ -19,6 +19,7 @@ import SliderFormField from './SliderFormField';
 import SwipeFormField from './SwipeFormField';
 import TextFormField from './TextFormField';
 import ToggleButtonGroupField from './ToggleButtonGroupField';
+import UrlFormField from './UrlFormField';
 
 export default [
   AssociationFormField,
@@ -42,4 +43,5 @@ export default [
   SwipeFormField,
   TextFormField,
   ToggleButtonGroupField,
+  UrlFormField,
 ];
