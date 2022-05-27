@@ -1,8 +1,19 @@
-import { SomeTerm } from '@ontologies/core';
+import * as schema from '@ontologies/schema';
+import { SomeTerm, isNamedNode } from '@ontologies/core';
+import * as rdfx from '@ontologies/rdf';
+import {
+  Resource,
+  useDataFetching,
+  useGlobalIds,
+} from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import {
+  isDifferentWebsite,
+  isFontAwesomeIRI,
+  normalizeFontAwesomeIRI,
+} from '../../helpers/iris';
 
 export interface ImageBaseProps {
   alt?: string,
@@ -30,6 +41,8 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
     style,
     linkedProp,
   } = overrideProps;
+  useDataFetching(isNamedNode(linkedProp) && !isDifferentWebsite(linkedProp) ? linkedProp : undefined);
+  const types = useGlobalIds(isNamedNode(linkedProp) ? linkedProp : undefined, rdfx.type);
 
   if (linkedProp && isFontAwesomeIRI(linkedProp.value)) {
     return (
@@ -46,6 +59,10 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
 
   if (typeof override !== 'undefined') {
     return override(overrideProps as T);
+  }
+
+  if (types.includes(schema.MediaObject) || types.includes(schema.ImageObject)) {
+    return <Resource subject={linkedProp} />;
   }
 
   return (

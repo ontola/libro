@@ -6,13 +6,13 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
-import { Resource } from 'link-redux';
 import React, { AriaAttributes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { LibroTheme } from '../../themes/themes';
+import Image from '../Image';
 import ExternalLink from '../Link/ExternalLink';
 
 export interface NavbarLinkLinkProps extends Pick<AriaAttributes, 'aria-controls' | 'aria-expanded' | 'aria-haspopup'> {
@@ -90,7 +90,10 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
   if (!children && image) {
     return (
       <Component {...buttonProps as NavLinkProps}>
-        <Resource subject={image} />
+        <Image
+          ariaLabel={typeof label === 'string' ? label : undefined}
+          linkedProp={image}
+        />
       </Component>
     );
   }
