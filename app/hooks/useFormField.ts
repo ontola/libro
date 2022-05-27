@@ -180,13 +180,13 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
   const fieldProps = useResourceLink(field, mapFieldProps) as MapFieldPropsShape;
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
   const blacklisted = blacklist?.includes(rdf.id(fieldProps.path));
-  const fieldName = calculateFormFieldName(formSection, fieldProps.path ?? 'undefined');
+  const fieldName = fieldProps.path ? calculateFormFieldName(formSection, fieldProps.path) : undefined;
 
   if (blacklisted || !whitelisted) {
     return {
       field,
       fieldShape: {},
-      name: fieldName,
+      name: fieldName ?? '',
       onChange: () => undefined,
       values: [],
       whitelisted: false,
@@ -228,7 +228,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
 
   const [memoizedMeta, setMemoizedMeta] = React.useState({});
 
-  const { input, meta } = useField(fieldName, {
+  const { input, meta } = useField(fieldName ?? 'undefined', {
     allowNull: true,
     format: (i) => i,
     parse: (i) => i,
@@ -242,6 +242,10 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
   const originalOnChange = input.onChange;
 
   const onChange = React.useCallback((nextValue) => {
+    if (!fieldName) {
+      return;
+    }
+
     if (meta.touched || valueChanged(nextValue, input.value)) {
       saveToLRS(nextValue);
       saveToLocalStorage(nextValue);
@@ -325,7 +329,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
     [classes.fieldVariantPreview]: theme === 'preview',
   });
 
-  const autofocus = !!(autofocusForm && groupIndex === 0 && fieldNames.indexOf(fieldName) === 0);
+  const autofocus = !!(autofocusForm && groupIndex === 0 && fieldNames.indexOf(fieldName ?? '') === 0);
 
   return {
     addFormValue,
