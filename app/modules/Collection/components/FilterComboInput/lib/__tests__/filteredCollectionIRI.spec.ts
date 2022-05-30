@@ -20,17 +20,17 @@ describe('filteredCollectionIRI', () => {
   };
 
   const conceptIsFalse = {
-    key: rdf.blankNode('b133'),
+    key: rdf.blankNode('_:b133'),
     value: rdf.literal(false),
   };
 
   const pinnedIsTrue = {
-    key: rdf.blankNode('b4'),
+    key: rdf.blankNode('_:b4'),
     value: rdf.literal(true),
   };
 
   const pinnedIsFalse = {
-    key: rdf.blankNode('b131'),
+    key: rdf.blankNode('_:b131'),
     value: rdf.literal(false),
   };
 

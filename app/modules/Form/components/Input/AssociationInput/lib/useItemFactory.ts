@@ -39,7 +39,7 @@ export const useItemFactory = (): ItemFactory => {
   const [blankObject] = useIds(association, dig(ontola.createAction, schema.object));
 
   const newItem = React.useCallback(() => {
-    const values: JSONLDObject = { '@id': rdf.blankNode(uuidv4()) };
+    const values: JSONLDObject = { '@id': rdf.blankNode(`_:${uuidv4()}`) };
 
     if (blankObject) {
       lrs.store.quadsFor(blankObject).forEach((quad) => {

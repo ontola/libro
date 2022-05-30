@@ -68,7 +68,7 @@ export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Q
   Object.keys(obj).forEach((s) => {
     const resource = (obj)[s];
     const subject = s.startsWith('_:')
-      ? rdf.blankNode(s.slice('_:'.length))
+      ? rdf.blankNode(s)
       : rdf.namedNode(s.slice(1, -1));
     Object.keys(resource).forEach((p) => {
       const object = resource[p];

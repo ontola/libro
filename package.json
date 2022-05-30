@@ -88,7 +88,7 @@
     "@monaco-editor/react": "^4.4.4",
     "@mui/x-data-grid": "^5.11.1",
     "@ontola/link-devtools": "^2.0.2",
-    "@ontola/memoized-factory": "^2.0.1",
+    "@ontola/memoized-factory": "^2.1.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
     "@rails/activestorage": "^7.0.1",
     "@rdfdev/actions": "^1.1.1",

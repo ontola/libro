@@ -3109,12 +3109,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ontola/memoized-factory@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@ontola/memoized-factory@npm:2.0.1"
+"@ontola/memoized-factory@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@ontola/memoized-factory@npm:2.1.1"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
-  checksum: aac3f4cb01152563a4c4c4da21c0cba5d47086bee3b9a581ec3e7e4fc945fb19005bc4e19892762cb2c1db0e694df05a09adbe2a49be29afea1d0939a87a928f
+  checksum: fad87880bb9500eade3adee3c580a95ec8ae77b5ef56371576484ed0d3abf923937145dfacfbe0da0b71f7c068dac52f0a6bb5a8b4f37e7496917a8f138e9a53
   languageName: node
   linkType: hard
 
@@ -13331,7 +13331,7 @@ __metadata:
     "@mui/styles": ^5.8.0
     "@mui/x-data-grid": ^5.11.1
     "@ontola/link-devtools": ^2.0.2
-    "@ontola/memoized-factory": ^2.0.1
+    "@ontola/memoized-factory": ^2.1.1
     "@ontologies/as": ^2.0.0-rc.1
     "@ontologies/core": ^2.0.3
     "@ontologies/dcterms": ^2.0.0
