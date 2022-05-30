@@ -51,4 +51,6 @@ const VirtualizedSelect = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
   },
 );
 
+VirtualizedSelect.displayName = 'VirtualizedSelect';
+
 export default VirtualizedSelect;

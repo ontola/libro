@@ -49,4 +49,6 @@ MenuItemDropdownContent.topology = [
   menuTopology,
 ];
 
+MenuItemDropdownContent.displayName = 'MenuItemDropdownContent';
+
 export default register(MenuItemDropdownContent);

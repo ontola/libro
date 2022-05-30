@@ -119,4 +119,6 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
   );
 });
 
+NavbarLinkLink.displayName = 'NavbarLinkLink';
+
 export default NavbarLinkLink;

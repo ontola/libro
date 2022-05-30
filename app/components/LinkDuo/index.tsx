@@ -32,4 +32,6 @@ const LinkDuo = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<Link
   return <Link {...props} />;
 });
 
+LinkDuo.displayName = 'LinkDuo';
+
 export default LinkDuo;

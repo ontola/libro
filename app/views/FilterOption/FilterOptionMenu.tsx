@@ -91,4 +91,6 @@ FilterOptionMenu.type = ontola.FilterOption;
 
 FilterOptionMenu.topology = menuTopology;
 
+FilterOptionMenu.displayName = 'FilterOptionMenu';
+
 export default register(FilterOptionMenu);

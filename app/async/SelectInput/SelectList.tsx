@@ -13,4 +13,6 @@ const SelectList = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
   ),
 );
 
+SelectList.displayName = 'SelectList';
+
 export default SelectList;
