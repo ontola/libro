@@ -1,5 +1,6 @@
 import rdf, {
   NamedNode,
+  SomeTerm,
   isNamedNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
@@ -207,12 +208,12 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
 
   const setDefaultValue = React.useCallback(
     storage
-      ? (val) => storageSet(sessionStore, storeKey, val)
+      ? (val: SomeTerm[]) => storageSet(sessionStore, storeKey, val)
       : () => undefined,
     [storeKey],
   );
 
-  const saveToLRS = React.useCallback((nextValue) => {
+  const saveToLRS = React.useCallback((nextValue: InputValue[]) => {
     const delta = object && fieldProps.path && changeDelta(object, fieldProps.path, nextValue);
 
     if (delta) {
@@ -241,7 +242,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): P
 
   const originalOnChange = input.onChange;
 
-  const onChange = React.useCallback((nextValue) => {
+  const onChange = React.useCallback((nextValue: InputValue[]) => {
     if (!fieldName) {
       return;
     }

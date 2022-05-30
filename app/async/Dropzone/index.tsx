@@ -56,7 +56,8 @@ const Dropzone: React.FC<DropzoneProps> = ({
 
     onChange(undefined);
   }, []);
-  const onDrop = React.useCallback((acceptedFiles) => {
+
+  const onDrop = React.useCallback((acceptedFiles: File[]) => {
     const [file] = acceptedFiles;
 
     onChange(

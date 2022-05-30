@@ -1,8 +1,8 @@
 import { darken } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import React from 'react';
+import CardContentProps from 'prop-types';
+import React, { ChildrenProp } from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { headingCID } from '../Heading';
@@ -58,7 +58,7 @@ const defaultProps = {
   noSpacing: false,
 };
 
-interface PropTypes {
+interface CardContentProps {
   alignEnd?: boolean;
   centered?: boolean;
   endSpacing?: boolean;
@@ -71,7 +71,7 @@ interface PropTypes {
  * Wrapper component for Card contents
  * @returns {component} Component
  */
-const CardContent: React.FC<PropTypes> = ({
+const CardContent: React.FC<CardContentProps & ChildrenProp> = ({
   alignEnd,
   centered,
   children,

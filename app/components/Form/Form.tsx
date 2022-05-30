@@ -1,7 +1,7 @@
 import equal from 'fast-deep-equal';
 import { FormApi, MutableState } from 'final-form';
 import { SomeNode } from 'link-lib';
-import React, { EventHandler } from 'react';
+import React, { ChildrenProp, EventHandler } from 'react';
 import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 
 import { convertKeysAtoB } from '../../helpers/data';
@@ -72,7 +72,7 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) 
   return formData;
 };
 
-const Form: React.FC<FormProps> = (props) => {
+const Form: React.FC<FormProps & ChildrenProp> = (props) => {
   const {
     autoSubmit,
     form,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { headingContext } from '../../state/headings';
 
@@ -6,7 +6,7 @@ export interface HeadingContextProps {
   overrideStartLevel?: number;
 }
 
-const HeadingContext: React.FC<HeadingContextProps> = ({ children, overrideStartLevel }) => {
+const HeadingContext: React.FC<HeadingContextProps & ChildrenProp> = ({ children, overrideStartLevel }) => {
   const headingLevel = React.useContext(headingContext);
 
   return (

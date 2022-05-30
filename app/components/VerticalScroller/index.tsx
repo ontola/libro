@@ -38,7 +38,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
  * Button toggles display as single row
  * @returns {component} Component
  */
-const VerticalScroller: React.FC = ({
+const VerticalScroller: React.FC<React.ChildrenProp> = ({
   children,
 }) => {
   const classes = useStyles();
