@@ -4,7 +4,7 @@ import rdf, {
   SomeTerm,
   createNS,
 } from '@ontologies/core';
-import { History } from 'history';
+import type { History } from 'history';
 import { DataObject, RDFIndex } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import { Store } from 'redux';

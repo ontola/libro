@@ -1,7 +1,8 @@
 import { NamedNode } from '@ontologies/core';
-import { Location } from 'history';
+import type { Location } from 'history';
 import { Resource } from 'link-redux';
 import React from 'react';
+import { useLocation } from 'react-router';
 
 import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
@@ -12,17 +13,18 @@ import { Page } from '../../topologies/Page';
 const wildcardMap = new Map();
 wildcardMap.set('/media_objects/', ['page']);
 
-export interface LinkedObjectProps extends WithWebsiteCtx {
-  iri: NamedNode;
-  location: Location;
+interface LinkedObjectProps {
+  iri?: NamedNode;
 }
+
+type Proptypes = LinkedObjectProps & WithWebsiteCtx & WithLocation;
 
 export interface LinkedObjectState {
   caughtError?: Error;
 }
 
-class LinkedObject extends React.Component<LinkedObjectProps, LinkedObjectState> {
-  constructor(props: LinkedObjectProps) {
+class LinkedObject extends React.Component<Proptypes, LinkedObjectState> {
+  constructor(props: Proptypes) {
     super(props);
 
     this.retry = this.retry.bind(this);
@@ -31,7 +33,7 @@ class LinkedObject extends React.Component<LinkedObjectProps, LinkedObjectState>
     };
   }
 
-  componentDidUpdate(prevProps: LinkedObjectProps, prevState: LinkedObjectState) {
+  componentDidUpdate(prevProps: Proptypes, prevState: LinkedObjectState) {
     if (prevState.caughtError && this.props.location.pathname !== prevProps.location.pathname) {
       this.retry();
     }
@@ -103,4 +105,21 @@ class LinkedObject extends React.Component<LinkedObjectProps, LinkedObjectState>
   }
 }
 
-export default withWebsiteCtx<LinkedObjectProps>(LinkedObject);
+type WithLocation = {
+  location: Location;
+};
+
+function withLocation<P>(Component: React.ComponentType<P & WithLocation>) {
+  return (props: P): JSX.Element => {
+    const location = useLocation();
+
+    return (
+      <Component
+        {...props}
+        location={location}
+      />
+    );
+  };
+}
+
+export default withWebsiteCtx<LinkedObjectProps>(withLocation<LinkedObjectProps>(LinkedObject));

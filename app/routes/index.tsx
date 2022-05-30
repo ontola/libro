@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 
 import PopoutViewer from '../modules/Studio/components/PopoutViewerLoader';
 import RDFStudio from '../modules/Studio/components/StudioLoader';
@@ -8,52 +8,44 @@ import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
 import Sandbox from './Sandbox';
 
-const subRoutes = [
-  <Route
-    component={LinkedObject}
-    key="linkedResources"
-    path="*"
-  />,
-];
+const shouldRenderPopoutViewerRoute = () => __CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer');
 
-if (__DEVELOPMENT__) {
-  subRoutes.splice(-1, 0, (
+export default (): JSX.Element => (
+  <Routes>
+    {shouldRenderPopoutViewerRoute() && (
+      <Route
+        element={<PopoutViewer />}
+        key="popout-viewer"
+        path="*"
+      />
+    )}
     <Route
-      component={DevBrowser}
-      key="devbrowser"
-      path="/d/browser"
-    />
-  ));
-  subRoutes.splice(-1, 0, (
-    <Route
-      component={Sandbox}
-      key="sandbox"
-      path="/d/sandbox"
-    />
-  ));
-}
-
-subRoutes.splice(-1, 0, (
-  <Route
-    component={RDFStudio}
-    key="studio"
-    path="/d/studio"
-  />
-));
-
-if (__CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer')) {
-  subRoutes.shift();
-  subRoutes.unshift((
-    <Route
-      component={PopoutViewer}
-      key="popout-viewer"
+      element={<LinkedObject />}
+      key="linkedResources"
       path="*"
     />
-  ));
-}
+    <Route path="d">
+      <Route
+        element={<RDFStudio />}
+        key="studio"
+        path="studio"
+      />
+      {__DEVELOPMENT__ && (
+        <React.Fragment>
 
-export default (
-  <Switch>
-    {subRoutes}
-  </Switch>
+          <Route
+            element={<DevBrowser />}
+            key="devbrowser"
+            path="browser"
+          />
+
+          <Route
+            element={<Sandbox />}
+            key="sandbox"
+            path="sandbox"
+          />
+        </React.Fragment>
+      )}
+    </Route>
+  </Routes>
 );

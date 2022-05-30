@@ -10,12 +10,16 @@ import {
   useStrings,
 } from 'link-redux';
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createMemoryHistory } from 'history';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import { DialogSize, isDialogSize } from '../../middleware/ontolaMiddleware';
 import libro from '../../ontology/libro';
 import { BreakPoints } from '../../themes/themes';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
+import retrievePath from '../../helpers/iris';
 
 import { DialogContainer } from './DialogContainer';
 import { useBackdropStyles, useDialogStyles } from './dialogStyles';
@@ -32,13 +36,25 @@ const DialogManager = () => {
   const [resource] = useIds(libro.ns('dialog/resource'));
   const [size] = useStrings(libro.ns('dialog/size'));
 
+  const [dialogHistory] = React.useState(() => createMemoryHistory());
+
+  React.useEffect(() => {
+    if (resource) {
+      dialogHistory.push(retrievePath(resource.value));
+    }
+  }, [resource]);
+
   const maxWidth = isDialogSize(size) ? size : DialogSize.Xl;
+
   const close = (item: SomeNode, done: boolean) => (
-    () => lrs.exec(
-      rdf.namedNode(`${libro.actions.dialog.close.value}?resource=${encodeURIComponent(item.value)}`),
-      { done },
-    )
+    () => {
+      lrs.exec(
+        rdf.namedNode(`${libro.actions.dialog.close.value}?resource=${encodeURIComponent(item.value)}`),
+        { done },
+      );
+    }
   );
+
   const onDone = (item: SomeNode, done: boolean) => (
     (redirect: NamedNode | undefined, method: string) => {
       if (method === 'DELETE' && redirect) {
@@ -74,11 +90,15 @@ const DialogManager = () => {
       onClose={close(resource, false)}
     >
       <DialogTopology>
-        <Resource
-          forceRender
-          subject={resource}
-          onDone={onDone(resource, true)}
-        />
+        <HistoryRouter
+          history={dialogHistory}
+        >
+          <Resource
+            forceRender
+            subject={resource}
+            onDone={onDone(resource, true)}
+          />
+        </HistoryRouter>
       </DialogTopology>
     </Dialog>
   );

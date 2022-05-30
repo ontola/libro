@@ -13,7 +13,8 @@ import {
   queryHelpers,
   render,
 } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { History, createMemoryHistory } from 'history';
 import {
   ComponentRegistration,
   DataObject,
@@ -31,7 +32,7 @@ import { RenderStoreProvider } from 'link-redux';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
-import { Router } from 'react-router';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import { AppContextProvider } from './AppContextProvider';
 import { componentRegistrations } from './components';
@@ -80,9 +81,9 @@ const wrapProviders = ({
 
   const TestWrapper = ({ children }: ChildrenProps): JSX.Element => {
     const routerOrChildren = !isUnit ? (
-      <Router history={ctx.history}>
+      <HistoryRouter history={ctx.history as History}>
         {children}
-      </Router>
+      </HistoryRouter>
     ) : children;
 
     const [omniformState, setOmniformState] = React.useState<OmniformState>({});

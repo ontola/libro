@@ -4,7 +4,11 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/de';
 import 'dayjs/locale/en';
 import 'dayjs/locale/nl';
-import { RenderStoreProvider, useLRS } from 'link-redux';
+import {
+  RenderStoreProvider,
+  Resource,
+  useLRS,
+} from 'link-redux';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
 
@@ -12,6 +16,7 @@ import { appContext } from '../appContext';
 import germanMessages from '../lang/de.json';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
+import libro from '../ontology/libro';
 import AppFrame from '../routes/App';
 import { highlightContext } from '../state/highlight';
 import { OmniformState, omniformContext } from '../state/omniform';
@@ -99,7 +104,7 @@ const IndexContainer = ({
   const themeVariables = getThemeVariables(manifest);
   const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);
 
-  const [omniformState, setOmniformState] = React.useState<OmniformState>({ });
+  const [omniformState, setOmniformState] = React.useState<OmniformState>({});
 
   const omniformStateMemo = React.useMemo(() => ({
     omniformState,
@@ -128,6 +133,7 @@ const IndexContainer = ({
                   <Router>
                     <AppFrame />
                   </Router>
+                  <Resource subject={libro.ns('dialog/manager')} />
                 </ThemeProvider>
               </StyledEngineProvider>
             </UpdateLRSIntl>

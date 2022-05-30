@@ -2,8 +2,7 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
-import { Redirect } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../helpers/iris';
 import argu from '../../ontology/argu';
@@ -12,10 +11,11 @@ import { pageTopology } from '../../topologies';
 
 const GroupPage = () => {
   const [settingsMenu] = useProperty(ontola.settingsMenu);
+  const navigate = useNavigate();
 
-  return(
-    <Redirect to={retrievePath(settingsMenu.value)!} />
-  );
+  navigate(retrievePath(settingsMenu.value)!, { replace: true });
+
+  return null;
 };
 
 GroupPage.type = argu.Group;

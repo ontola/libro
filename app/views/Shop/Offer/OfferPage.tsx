@@ -8,7 +8,7 @@ import {
   useProperty,
 } from 'link-redux';
 import React from 'react';
-import { Redirect } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../../helpers/iris';
 import { pageTopology } from '../../../topologies';
@@ -18,12 +18,13 @@ const OfferPage: FC = ({
   subject,
 }) => {
   const [partOf] = useProperty(schema.isPartOf);
+  const navigate = useNavigate();
 
-  if (isNamedNode(partOf)) {
-    return (
-      <Redirect to={retrievePath(partOf)!} />
-    );
-  }
+  React.useEffect(() => {
+    if (isNamedNode(partOf)) {
+      navigate(retrievePath(partOf.value)!, { replace: true });
+    }
+  }, [partOf]);
 
   return (
     <FullResource>

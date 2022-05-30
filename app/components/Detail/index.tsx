@@ -5,7 +5,7 @@ import React, {
   MouseEventHandler,
   ReactNode,
 } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import fa4 from '../../ontology/fa4';
@@ -61,12 +61,12 @@ const Detail = ({
   variant,
 }: DetailProps): JSX.Element => {
   const styles = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleExternalClick = React.useCallback((e) => {
     e.preventDefault();
 
     if (url) {
-      history.push(retrievePath(url));
+      navigate(retrievePath(url));
     }
   }, [url]);
   const handleClick = onClick || (url && !isDifferentWebsite(url) ? handleExternalClick : undefined);

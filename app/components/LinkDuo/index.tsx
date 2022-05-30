@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { isDifferentWebsite } from '../../helpers/iris';
-import Link, { LinkPropTypes } from '../Link';
+import Link, { LinkProps } from '../Link';
 
 /**
  * Link that also works for external URL's. Don't pass a href attribute.
  */
-const LinkDuo = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<LinkPropTypes>>((
+const LinkDuo = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<LinkProps>>((
   props,
   ref,
 ): JSX.Element => {

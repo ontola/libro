@@ -3,6 +3,7 @@ import rdf, { Quadruple } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   History,
   createBrowserHistory,
@@ -57,12 +58,8 @@ const defaultOpts = {
   middleware: __CLIENT__,
 };
 
-const basename = __CLIENT__ && !__TEST__ && window.location.pathname.startsWith('/d/studio/viewer')
-  ? '/d/studio/viewer'
-  : '';
-
 const history = __CLIENT__ && !__TEST__
-  ? createBrowserHistory({ basename })
+  ? createBrowserHistory()
   : createMemoryHistory();
 
 export default async function generateLRS(

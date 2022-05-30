@@ -78,7 +78,7 @@ export const isDifferentWebsite = (iri: string | NamedNode | URL): boolean => {
 /**
  * Returns only the pathname and beyond. Useful for relative navigation.
  * @param {string|NamedNode} iri The IRI to process.
- * @returns {undefined|string} The pathname or undefined if invalid.
+ * @returns {string} The pathname and beyond.
  */
 export const retrievePath = (iri: NamedNode | string): string => {
   const iriString = typeof iri === 'string' ? iri : iri.value;

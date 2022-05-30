@@ -1,6 +1,6 @@
 import { NamedNode } from '@ontologies/core';
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../../../helpers/iris';
 import app from '../../../../ontology/app';
@@ -15,7 +15,7 @@ export const useVisitPostalCode = (): {
   recentPostalCodes: string[];
   visitPostalCode: (digits: string | number) => void;
 } => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [recentPostalCodes, addRecentPostalCode] = React.useMemo<VisitPostalCode>(() => {
     if (!__CLIENT__) {
       return [[], () => null];
@@ -36,7 +36,7 @@ export const useVisitPostalCode = (): {
 
   const visitPostalCode = React.useCallback((digits) => {
     addRecentPostalCode(digits);
-    history.push(retrievePath(postalCodeIri(digits)) ?? '#');
+    navigate(retrievePath(postalCodeIri(digits)) ?? '#');
   }, []);
 
   return {

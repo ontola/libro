@@ -1,12 +1,15 @@
+import type { Location } from 'history';
+
 import { pageViewerRelativeIRI } from '../useCurrentResource';
 
 describe('pageViewerRelativeIRI', () => {
   describe('with simple websiteIRI', () => {
     const website = 'https://argu.nl'
-    ;
+      ;
     it('maps root to websiteIRI', () => {
-      const location = {
+      const location: Location = {
         hash: '',
+        key: '',
         pathname: '/',
         search: '',
         state: '',
@@ -17,8 +20,9 @@ describe('pageViewerRelativeIRI', () => {
     });
 
     it('maps nested paths', () => {
-      const location = {
+      const location: Location = {
         hash: '',
+        key: '',
         pathname: '/i/privacy',
         search: '',
         state: '',
@@ -33,8 +37,9 @@ describe('pageViewerRelativeIRI', () => {
     const website = 'https://argu.co/academy';
 
     it('maps root to websiteIRI', () => {
-      const location = {
+      const location: Location = {
         hash: '',
+        key: '',
         pathname: '/',
         search: '',
         state: '',
@@ -45,8 +50,9 @@ describe('pageViewerRelativeIRI', () => {
     });
 
     it('maps website iri', () => {
-      const location = {
+      const location: Location = {
         hash: '',
+        key: '',
         pathname: '/academy',
         search: '',
         state: '',
@@ -57,8 +63,9 @@ describe('pageViewerRelativeIRI', () => {
     });
 
     it('maps nested paths', () => {
-      const location = {
+      const location: Location = {
         hash: '',
+        key: '',
         pathname: '/academy/online-participatie/wat-is-participatie/wat-is-online-participatie',
         search: '',
         state: '',

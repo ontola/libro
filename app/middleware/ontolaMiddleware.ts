@@ -7,11 +7,12 @@ import rdf, {
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import clipboardCopy from 'clipboard-copy';
-import { History } from 'history';
+import type { History } from 'history';
 import {
   MiddlewareActionHandler,
   MiddlewareFn,
   MiddlewareWithBoundLRS,
+  SerializableDataTypes,
   SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
@@ -227,7 +228,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
   };
 
-  history.listen((location, action) => {
+  history.listen(({ location, action }) => {
     if (['POP', 'PUSH'].includes(action)) {
       store.exec(libro.ns(`actions/navigations/${action.toLowerCase()}`),
         {
@@ -235,7 +236,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
           key: location.key || '',
           pathname: location.pathname || '',
           search: location.search || '',
-          state: location.state || '',
+          state: location.state as SerializableDataTypes || '',
         },
       );
     }

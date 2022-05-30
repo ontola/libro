@@ -1,10 +1,10 @@
 import React, { EventHandler, SyntheticEvent } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { clearFormStorage } from '../../helpers/forms';
 
 export const useFormCancel = (formID?: string, onCancel?: EventHandler<SyntheticEvent<unknown>>): EventHandler<SyntheticEvent<unknown>> => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return React.useCallback((e) => {
     if (formID) {
@@ -14,7 +14,7 @@ export const useFormCancel = (formID?: string, onCancel?: EventHandler<Synthetic
     if (onCancel) {
       onCancel(e);
     } else {
-      history.goBack();
+      navigate(-1);
     }
   }, [formID, onCancel]);
 };

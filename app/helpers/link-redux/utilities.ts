@@ -1,5 +1,5 @@
 import { Node } from '@ontologies/core';
-import { History } from 'history';
+import type { History } from 'history';
 import LinkedRenderStore from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import { Store, createStore } from 'redux';

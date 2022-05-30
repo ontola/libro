@@ -1,5 +1,5 @@
 import { NamedNode } from '@ontologies/core';
-import { Location } from 'history';
+import type { Location } from 'history';
 import { NamespaceMap } from 'link-lib';
 
 import app from '../ontology/app';
@@ -9,7 +9,7 @@ import { WebsiteCtx } from './app';
 import { frontendPathname } from './frontendIRIComponents';
 
 export function currentLocationControl(
-  location: Location<any>,
+  location: Location,
   fragment = true,
   basePath = frontendPathname,
   ns: NamespaceMap | WebsiteCtx = { appSlashless },
@@ -22,11 +22,8 @@ export function currentLocationControl(
   return ns.appSlashless.ns(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
 }
 
-export function absoluteRouterLocation(state: Record<string, Record<string, any>>): string {
-  const location: Record<string, any> = state.router.location;
-
-  return location && location.get('pathname') + location.get('search') + location.get('hash');
-}
+export const absoluteRouterLocation = (location: Location, origin: string): string =>
+  origin + location.pathname + location.search + location.hash;
 
 const paths = {
   confirmation(): string {

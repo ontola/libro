@@ -1,7 +1,8 @@
-import { History } from 'history';
+import type { History } from 'history';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { Router, StaticRouter } from 'react-router';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 
 import { appContext } from './appContext';
 import IndexContainer, { RouterProps } from './containers/IndexContainer';
@@ -18,6 +19,34 @@ interface AppProps {
   websiteCtxOverride?: WebsiteCtx,
 }
 
+const createClientRouter = (history: History) => {
+  const basename = __CLIENT__ && !__TEST__ && window.location.pathname.startsWith('/d/studio/viewer')
+    ? 'd/studio/viewer'
+    : '';
+
+  return ({ children }: RouterProps) => (
+    <HistoryRouter
+      basename={basename}
+      history={history}
+    >
+      {children}
+    </HistoryRouter>
+  );
+};
+
+const createServerRouter = (websiteCtxValue: WebsiteCtx, location: string | undefined) => {
+  const { websiteOrigin } = websiteCtxValue;
+  const bugNormalized = location?.replace(`${websiteOrigin}//`, `${websiteOrigin}/`);
+  const iri = bugNormalized ? new URL(bugNormalized, websiteOrigin) : null;
+  const routerLocation = iri ? iri.pathname + iri.search + iri.hash : undefined;
+
+  return ({ children }: RouterProps) => (
+    <StaticRouter location={routerLocation!}>
+      {children}
+    </StaticRouter>
+  );
+};
+
 const App = ({
   history,
   location,
@@ -30,30 +59,15 @@ const App = ({
     manifest,
     website,
   } = React.useContext(appContext);
+
   register(lrs);
+
   const websiteCtxValue = websiteCtxOverride ?? getWebsiteContextFromWebsite(website);
   const manifestValue = manifestOverride ?? manifest;
 
-  let router;
-
-  if (__CLIENT__ || !prerender) {
-    router = ({ children }: RouterProps) => (
-      <Router history={history}>
-        {children}
-      </Router>
-    );
-  } else {
-    const { websiteOrigin } = websiteCtxValue;
-    const bugNormalized = location?.replace(`${websiteOrigin}//`, `${websiteOrigin}/`);
-    const iri = bugNormalized ? new URL(bugNormalized, websiteOrigin) : null;
-    const routerLocation = iri ? iri.pathname + iri.search + iri.hash : undefined;
-
-    router = ({ children }: RouterProps) => (
-      <StaticRouter location={routerLocation}>
-        {children}
-      </StaticRouter>
-    );
-  }
+  const router = __CLIENT__ || !prerender
+    ? createClientRouter(history)
+    : createServerRouter(websiteCtxValue, location);
 
   return (
     <React.StrictMode>

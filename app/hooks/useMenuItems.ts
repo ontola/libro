@@ -1,6 +1,9 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import React from 'react';
-import { useHistory, useLocation } from 'react-router';
+import {
+  useLocation,
+  useNavigate,
+} from 'react-router';
 
 import { useContainerToArr } from './useContainerToArr';
 
@@ -14,7 +17,7 @@ export interface MenuItems {
 
 const useMenuItems = (menuItemsIRI: NamedNode | undefined, redirect?: boolean): MenuItems => {
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [items] = useContainerToArr<NamedNode>(menuItemsIRI);
   const firstItem = items[0];
   const [currentTab, setCurrentTab] = React.useState<NamedNode | null>(null);
@@ -25,11 +28,11 @@ const useMenuItems = (menuItemsIRI: NamedNode | undefined, redirect?: boolean): 
     if (redirect && url) {
       const fragment = new URL(url).hash;
       const newPath = `${location.pathname}${fragment}`;
-      history.replace(newPath);
+      navigate(newPath, { replace: true });
     }
 
     setCurrentTab(rdf.namedNode(url));
-  }, [menuItemsIRI, history, setCurrentTab, redirect]);
+  }, [menuItemsIRI, navigate, setCurrentTab, redirect]);
 
   React.useEffect(() => {
     setCurrentTab(null);

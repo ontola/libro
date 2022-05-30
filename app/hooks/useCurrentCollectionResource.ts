@@ -7,7 +7,7 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { entityIsLoaded, resourceHasType } from '../helpers/data';
 import { retrievePath } from '../helpers/iris';
@@ -41,11 +41,13 @@ type CurrentCollectionResource = [CurrentCollection, CurrentCollectionPage[], Se
 export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: SomeNode):
   CurrentCollectionResource => {
   const lrs = useLRS();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [collectionResource] = useIds(originalCollectionResource, app.collectionResource);
+
   const redirectPage = React.useCallback((newPage: NamedNode) => (
-    history.push(retrievePath(newPage?.value) ?? '#')
-  ), [history]);
+    navigate(retrievePath(newPage?.value) ?? '#')
+  ), [navigate]);
+
   const setCurrentPage = React.useCallback((newPage: NamedNode) => {
     lrs.actions.app.changePage(originalCollectionResource, newPage);
   }, [originalCollectionResource, lrs]);

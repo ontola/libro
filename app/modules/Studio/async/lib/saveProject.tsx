@@ -1,6 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
 import rdf, { createNS } from '@ontologies/core';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { MemoryHistory, createMemoryHistory } from 'history';
 import { MULTIPLE_CHOICES } from 'http-status-codes';
 import { LinkReduxLRSType } from 'link-redux';

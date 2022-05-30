@@ -6,7 +6,7 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import { Redirect } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import LinkLoader from '../../components/Loading/LinkLoader';
 import { entityIsLoaded } from '../../helpers/data';
@@ -19,6 +19,7 @@ const PhasePage: FC = ({ subject }) => {
   const lrs = useLRS();
   const [isPartOf] = useGlobalIds(schema.isPartOf);
   const [phases, loading] = usePhases(isPartOf);
+  const navigate = useNavigate();
 
   if (loading || (__CLIENT__ && !entityIsLoaded(lrs, isPartOf))) {
     return <LinkLoader />;
@@ -27,7 +28,11 @@ const PhasePage: FC = ({ subject }) => {
   const index = phases.indexOf(subject);
   const location = phaseIRI(isPartOf, index);
 
-  return <Redirect to={retrievePath(location)!} />;
+  React.useEffect(() => {
+    navigate(retrievePath(location)!, { replace: true });
+  }, [location]);
+
+  return null;
 };
 
 PhasePage.type = argu.Phase;

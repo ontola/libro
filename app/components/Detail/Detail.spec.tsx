@@ -5,6 +5,7 @@
 import rdf from '@ontologies/core';
 import { fireEvent } from '@testing-library/dom';
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 
 import { imageQueries, render } from '../../test-utils';
 
@@ -14,9 +15,11 @@ describe('Detail', () => {
   const testId = 'Detail';
 
   const renderComp = (props: Partial<DetailProps> = {}) => render((
-    <Detail
-      {...props}
-    />
+    <MemoryRouter>
+      <Detail
+        {...props}
+      />
+    </MemoryRouter>
   ));
 
   it('renders', () => {
@@ -87,9 +90,11 @@ describe('Detail', () => {
 
     it('should render an image', () => {
       const { getByImgSrc } = render((
-        <Detail
-          {...props}
-        />
+        <MemoryRouter>
+          <Detail
+            {...props}
+          />
+        </MemoryRouter>
       ), {
         queries: imageQueries,
       });

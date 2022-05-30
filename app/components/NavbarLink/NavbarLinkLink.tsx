@@ -1,6 +1,5 @@
 import {
   Button,
-  ButtonProps,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
@@ -8,7 +7,7 @@ import { makeStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
 import React, { AriaAttributes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { NavLink, NavLinkProps } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { LibroTheme } from '../../themes/themes';
@@ -65,54 +64,57 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
     />
   );
 
-  let Component: React.ComponentType<any> | string;
-  const buttonProps: Partial<React.ButtonHTMLAttributes<unknown> & NavLinkProps & ButtonProps> = {
+  const baseProps = {
     'aria-label': title,
     className: classes.button,
     title: title,
+    ...ariaProps,
+    color: 'inherit' as const as 'inherit',
+    onClick,
+    startIcon: !hideLabel && iconCom,
   };
-
-  if (!to) {
-    Component = 'button';
-    buttonProps.onClick = onClick;
-    buttonProps.ref = ref;
-  } else if (isDifferentWebsite(to)) {
-    Component = ExternalLink;
-    buttonProps.href = to;
-  } else {
-    Component = NavLink;
-    buttonProps.exact = true;
-    buttonProps.activeClassName = 'active';
-    buttonProps.to = retrievePath(to);
-    buttonProps.ref = ref;
-  }
-
-  if (!children && image) {
-    return (
-      <Component {...buttonProps as NavLinkProps}>
-        <Image
-          ariaLabel={typeof label === 'string' ? label : undefined}
-          linkedProp={image}
-        />
-      </Component>
-    );
-  }
 
   const child = (hideLabel && iconCom) ? iconCom : (children || label);
 
+  if (!to) {
+    return (
+      <Button
+        {...baseProps}
+        component="button"
+        ref={ref}
+      >
+        {child}
+      </Button>
+    );
+  }
+
+  if (isDifferentWebsite(to)) {
+    return (
+      <Button
+        {...baseProps}
+        component={ExternalLink}
+        href={to}
+      >
+        {child}
+      </Button>
+    );
+  }
+
   return (
     <Button
-      {...buttonProps}
-      aria-controls={ariaProps['aria-controls']}
-      aria-expanded={ariaProps['aria-expanded']}
-      aria-haspopup={ariaProps['aria-haspopup']}
-      color="inherit"
-      component={Component as React.ComponentType<any>}
-      ref={ref}
-      startIcon={!hideLabel && iconCom}
-      onClick={onClick}
+      {...baseProps}
+      end
+      component={NavLink}
+      to={retrievePath(to)}
     >
-      {child}
+      {!children && image
+        ? (
+          <Image
+            ariaLabel={typeof label === 'string' ? label : undefined}
+            linkedProp={image}
+          />
+        )
+        : child}
     </Button>
   );
 });

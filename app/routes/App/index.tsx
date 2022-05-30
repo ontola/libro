@@ -1,10 +1,9 @@
-import React, { ComponentType } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import React from 'react';
 
 import '../../components/shared/init.scss';
 import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
-import routes from '../index';
+import Routes from '../index';
 
 import ContentFrame from './ContentFrame';
 
@@ -12,8 +11,8 @@ export interface AppState {
   caughtError?: Error;
 }
 
-class App extends React.PureComponent<RouteComponentProps, AppState> {
-  constructor(props: RouteComponentProps) {
+class App extends React.PureComponent<unknown, AppState> {
+  constructor(props: unknown) {
     super(props);
 
     this.retry = this.retry.bind(this);
@@ -22,7 +21,7 @@ class App extends React.PureComponent<RouteComponentProps, AppState> {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (__CLIENT__) {
       window.scrollTo(0, 0);
     }
@@ -33,7 +32,7 @@ class App extends React.PureComponent<RouteComponentProps, AppState> {
     this.setState({ caughtError: e });
   }
 
-  retry() {
+  retry(): Promise<void> {
     this.setState({
       caughtError: undefined,
     });
@@ -53,10 +52,10 @@ class App extends React.PureComponent<RouteComponentProps, AppState> {
 
     return (
       <ContentFrame>
-        {routes}
+        <Routes />
       </ContentFrame>
     );
   }
 }
 
-export default withRouter<RouteComponentProps, ComponentType<RouteComponentProps>>(App);
+export default App;

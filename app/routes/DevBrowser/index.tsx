@@ -1,25 +1,18 @@
 import rdf from '@ontologies/core';
 import { term } from '@rdfdev/iri';
-import { History, Location } from 'history';
-import { LinkReduxLRSType, withLRS } from 'link-redux';
-import React, {
-  ChangeEvent,
-  Component,
-} from 'react';
+import { useLRS } from 'link-redux';
+import React, { ChangeEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { withRouter } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';
-
-interface DevBrowserProps {
-  history: History;
-  location: Location;
-  lrs: LinkReduxLRSType;
-}
 
 const specialTopologies = [
   undefined,
@@ -29,17 +22,10 @@ const specialTopologies = [
   argu.inline,
 ];
 
-class DevBrowser extends Component<DevBrowserProps> {
-  constructor(props: DevBrowserProps) {
-    super(props);
+const usePropsFromURL = () => {
+  const { search } = useLocation();
 
-    this.handleChangeIri = this.handleChangeIri.bind(this);
-    this.handleChangePure = this.handleChangePure.bind(this);
-    this.handleChangeTopology = this.handleChangeTopology.bind(this);
-  }
-
-  getPropsFromURL() {
-    const { search } = this.props.location;
+  return React.useMemo(() => {
     const params = new URLSearchParams(search);
 
     const iriFromParam = params.get('iri')?.match(/^[a-z]+:\/\/[a-z]+/);
@@ -56,10 +42,15 @@ class DevBrowser extends Component<DevBrowserProps> {
       isPure: pureString === 'true',
       selectedTopology,
     };
-  }
+  }, [search]);
+};
 
-  setParam(param: string, value?: string) {
-    const params = new URLSearchParams(this.props.location.search);
+const useSetParam = () => {
+  const { search } = useLocation();
+  const navigate = useNavigate();
+
+  return React.useCallback((param: string, value?: string) => {
+    const params = new URLSearchParams(search);
 
     if (value) {
       params.set(param, value);
@@ -67,112 +58,115 @@ class DevBrowser extends Component<DevBrowserProps> {
       params.delete(param);
     }
 
-    this.props.history.push(`?${params.toString()}`);
-  }
+    navigate(`?${params.toString()}`);
+  }, [search, navigate]);
+};
 
-  handleChangeIri(event: ChangeEvent<any>) {
-    this.setParam('iri', event.target.value);
-  }
+const DevBrowser = (): JSX.Element => {
+  const lrs = useLRS();
 
-  handleChangeTopology(event: ChangeEvent<any>) {
-    this.setParam('topology', event.target.value);
-  }
+  const {
+    currentResource,
+    currentTopology,
+    isPure,
+    selectedTopology,
+  } = usePropsFromURL();
 
-  handleChangePure(event: ChangeEvent<any>) {
-    this.setParam('pure', event.target.checked.toString());
-  }
+  const setParam = useSetParam();
 
-  render() {
-    const {
-      currentResource,
-      currentTopology,
-      isPure,
-      selectedTopology,
-    } = this.getPropsFromURL();
+  const handleChangeIri = React.useCallback((event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setParam('iri', event.target.value);
+  }, [setParam]);
 
-    const resourcesKeys = Object.keys((this.props.lrs.store as any).store.subjectIndex);
+  const handleChangeTopology = React.useCallback((event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setParam('topology', event.target.value);
+  }, [setParam]);
 
-    return (
-      <div data-marker="DevBrowser">
-        <Helmet title="DevBrowser" />
-        <form
-          style={{ display: 'flex' }}
-          onSubmit={(e) => e.preventDefault()}
+  const handleChangePure = React.useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setParam('pure', event.target.checked.toString());
+  }, [setParam]);
+
+  const resourcesKeys = Object.keys((lrs.store as any).store.subjectIndex);
+
+  return (
+    <div data-marker="DevBrowser">
+      <Helmet title="DevBrowser" />
+      <form
+        style={{ display: 'flex' }}
+        onSubmit={(e) => e.preventDefault()}
+      >
+        <input
+          style={{ flex: '1' }}
+          type="url"
+          value={currentResource.value}
+          onChange={handleChangeIri}
+        />
+        <select
+          style={{ maxWidth: '4em' }}
+          value={currentResource}
+          onBlur={handleChangeIri}
+          onChange={handleChangeIri}
         >
-          <input
-            style={{ flex: '1' }}
-            type="url"
-            value={currentResource.value}
-            onChange={this.handleChangeIri}
-          />
-          <select
-            style={{ maxWidth: '4em' }}
-            value={currentResource}
-            onBlur={this.handleChangeIri}
-            onChange={this.handleChangeIri}
-          >
-            {resourcesKeys.map((resource) => (
-              <option
-                key={resource}
-                value={resource}
-              >
-                {resource}
-              </option>
-            ))}
-          </select>
-          <select
-            value={selectedTopology}
-            onBlur={this.handleChangeTopology}
-            onChange={this.handleChangeTopology}
-          >
-            {allTopologies.slice(0).map((topology, i) => (
-              <option
-                key={(topology === undefined) ? 'default' : topology.value}
-                value={i}
-              >
-                {(topology === undefined) ? 'default' : term(topology)}
-              </option>
-            ))}
-          </select>
-          {specialTopologies.map((topology) => (
-            <button
-              key={(topology === undefined) ? 'default' : term(topology)}
-              style={{
-                backgroundColor: rdf.equals(currentTopology, topology) ? '#d9d9d9' : 'transparent',
-                padding: '0 2px',
-              }}
-              type="button"
-              value={getTopologyNumber(topology)}
-              onClick={this.handleChangeTopology}
+          {resourcesKeys.map((resource) => (
+            <option
+              key={resource}
+              value={resource}
+            >
+              {resource}
+            </option>
+          ))}
+        </select>
+        <select
+          value={selectedTopology}
+          onBlur={handleChangeTopology}
+          onChange={handleChangeTopology}
+        >
+          {allTopologies.slice(0).map((topology, i) => (
+            <option
+              key={(topology === undefined) ? 'default' : topology.value}
+              value={i}
             >
               {(topology === undefined) ? 'default' : term(topology)}
-            </button>
+            </option>
           ))}
-          <input
-            checked={isPure}
-            id="pure"
-            name="isGoing"
-            type="checkbox"
-            onChange={this.handleChangePure}
-          />
-          <label htmlFor="pure">
-            pure
-          </label>
-        </form>
-        <div
-          style={{
-            position: 'relative',
-          }}
-        >
-          <TopologyWrapper
-            pure={isPure}
-            subject={currentResource}
-            topology={currentTopology}
-          />
-        </div>
+        </select>
+        {specialTopologies.map((topology) => (
+          <button
+            key={(topology === undefined) ? 'default' : term(topology)}
+            style={{
+              backgroundColor: rdf.equals(currentTopology, topology) ? '#d9d9d9' : 'transparent',
+              padding: '0 2px',
+            }}
+            type="button"
+            onClick={() => setParam(`${getTopologyNumber(topology)}`)}
+          >
+            {(topology === undefined) ? 'default' : term(topology)}
+          </button>
+        ))}
+        <input
+          checked={isPure}
+          id="pure"
+          name="isGoing"
+          type="checkbox"
+          onChange={handleChangePure}
+        />
+        <label htmlFor="pure">
+          pure
+        </label>
+      </form>
+      <div
+        style={{
+          position: 'relative',
+        }}
+      >
+        <TopologyWrapper
+          pure={isPure}
+          subject={currentResource}
+          topology={currentTopology}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default withRouter(withLRS(DevBrowser));
+export default DevBrowser;

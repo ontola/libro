@@ -13,7 +13,7 @@ import React, {
 import { NavLinkProps } from 'react-router-dom';
 
 import Image from '../Image';
-import Link from '../Link';
+import Link, { LinkProps } from '../Link';
 
 interface MenuItemProps {
   action?: (e: MouseEvent<any>) => void;
@@ -57,12 +57,11 @@ const MenuItem: React.FC<UrlMenuItemProps | SubjectMenuItemProps> = ({
         />
       );
     })
-    : React.forwardRef<HTMLAnchorElement, Omit<NavLinkProps, 'target'>>((props, nestedRef) => (
+    : React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'target'>>((props, nestedRef) => (
       <Link
         allowExternal={allowExternal}
         ref={nestedRef}
         {...props}
-        isActive={undefined}
         to={actionSafeURL!}
       />
     ));

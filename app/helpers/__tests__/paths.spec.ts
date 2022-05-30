@@ -1,5 +1,5 @@
 import { createNS } from '@ontologies/core';
-import { Location } from 'history';
+import type { Location } from 'history';
 
 import path, { currentLocationControl } from '../paths';
 
@@ -12,7 +12,7 @@ function getCurrentLocationControl(websiteIRI: string, pathname = '', search = '
       hash,
       pathname,
       search,
-    } as Location<any>,
+    } as Location,
     false,
     basePath,
     ns,

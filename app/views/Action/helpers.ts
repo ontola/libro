@@ -6,7 +6,7 @@ import {
   useValues,
 } from 'link-redux';
 import React, { SyntheticEvent, useCallback } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { redirectPage } from '../../middleware/reloading';
@@ -16,7 +16,7 @@ export type CardListOnClick = (e: SyntheticEvent<any>) => Promise<[any, any]>;
 export type OnDoneHandler = (iri: string, method: string) => void;
 
 export const useDoneHandler = (onDone?: OnDoneHandler): (response: any) => void => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const lrs = useLRS();
   const [method] = useValues(dig(schema.target, schema.httpMethod));
 
@@ -30,11 +30,11 @@ export const useDoneHandler = (onDone?: OnDoneHandler): (response: any) => void 
     } else if (response.iri && isDifferentWebsite(response.iri)) {
       redirectPage(lrs, response.iri.value);
     } else if (response.iri) {
-      history.push(retrievePath(response.iri.value) ?? '#');
+      navigate(retrievePath(response.iri.value) ?? '#');
     } else {
-      history.goBack();
+      navigate(-1);
     }
-  }, [history, lrs, onDone]);
+  }, [navigate, lrs, onDone]);
 };
 
 export interface ActionProps {

@@ -1,17 +1,19 @@
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import React, { ChildrenProp } from 'react';
+import { useLocation } from 'react-router';
+import type { Location } from 'history';
 
 import { TabVariant, Tabs } from '../../components/Tabs';
 import { tabBarTopology } from '../../topologies';
 import TopologyProvider from '../Topology';
 
-interface Props extends RouteComponentProps<any> {
+interface TabBarProps {
   value: any;
-  variant?: TabVariant
+  variant?: TabVariant;
+  location: Location;
 }
 
-class TabBar extends TopologyProvider<Props> {
-  constructor(props: Props) {
+class TabBarImpl extends TopologyProvider<TabBarProps> {
+  constructor(props: TabBarProps) {
     super(props);
 
     this.topology = tabBarTopology;
@@ -43,4 +45,17 @@ class TabBar extends TopologyProvider<Props> {
   }
 }
 
-export default withRouter(TabBar);
+const TabBar = ({ children, ...props }: Omit<TabBarProps, 'location'> & ChildrenProp): JSX.Element => {
+  const location = useLocation();
+
+  return (
+    <TabBarImpl
+      location={location}
+      {...props}
+    >
+      {children}
+    </TabBarImpl>
+  );
+};
+
+export default TabBar;

@@ -3,9 +3,9 @@ import { useLinkRenderContext, useValues } from 'link-redux';
 import React from 'react';
 
 import { handle } from '../../helpers/logging';
-import Link, { LinkPropTypes } from '../Link';
+import Link, { LinkProps } from '../Link';
 
-export interface LDLinkProps extends Omit<LinkPropTypes, 'to'> {
+export interface LDLinkProps extends Omit<LinkProps, 'to'> {
   to?: string;
 }
 

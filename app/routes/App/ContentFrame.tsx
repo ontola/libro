@@ -3,8 +3,6 @@ import rdf, { Node } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-// @ts-ignore
-import ScrollMemory from 'react-router-scroll-memory';
 
 import { appContext } from '../../appContext';
 import Banners from '../../components/Banners';
@@ -40,6 +38,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
+// TODO: Find or build replacement for React router scroll memory.
 const ContentFrame = ({
   children,
   title,
@@ -68,7 +67,6 @@ const ContentFrame = ({
         <Banners />
         <NetworkStatusIndicator />
         <div id="start-of-content">
-          <ScrollMemory />
           {children}
         </div>
         <Footer
@@ -78,7 +76,6 @@ const ContentFrame = ({
           {footerResource && <Resource subject={rdf.namedNode(footerResource)} />}
         </Footer>
         <Resource subject={libro.ns('snackbar/manager')} />
-        <Resource subject={libro.ns('dialog/manager')} />
       </div>
     </HoverHelper>
   );

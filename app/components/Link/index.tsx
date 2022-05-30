@@ -1,5 +1,6 @@
 import rdf from '@ontologies/core';
 import clsx from 'clsx';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Location } from 'history';
 import { useLRS } from 'link-redux';
 import React, {
@@ -9,12 +10,10 @@ import React, {
   MouseEventHandler,
   Ref,
 } from 'react';
-import { match } from 'react-router';
-import { Link as DomLink, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import {
   isDifferentWebsite,
-  isLocalAnchor,
   retrievePath,
 } from '../../helpers/iris';
 import { isFunction } from '../../helpers/types';
@@ -44,9 +43,9 @@ export enum LinkFeature {
   Subtle = 'subtle',
 }
 
-export type IsActiveCheck = (to: string) => (locationMatch: match<any> | null, location: Location) => boolean;
+export type IsActiveCheck = (to: string) => (locationMatch: any | null, location: Location) => boolean;
 
-export interface LinkPropTypes {
+export interface LinkProps {
   activeClassName?: string;
   allowExternal?: boolean;
   children?: React.ReactNode;
@@ -67,18 +66,9 @@ export interface LinkPropTypes {
   to: string;
 }
 
-interface PropTypesWithRef extends LinkPropTypes {
+interface PropTypesWithRef extends LinkProps {
   innerRef: Ref<HTMLAnchorElement>;
 }
-
-const isActiveDefault = (to: string) => {
-  const relative = retrievePath(to);
-  const sameOrigin = !isDifferentWebsite(to);
-
-  return (locationMatch: match<any>, location: Location) => (
-    !!locationMatch || (sameOrigin && relative === location.pathname + location.search + location.hash)
-  );
-};
 
 const Link = ({
   activeClassName,
@@ -88,7 +78,6 @@ const Link = ({
   disabled,
   features = [],
   innerRef,
-  isActive,
   isIndex = true,
   onClick,
   target,
@@ -100,11 +89,17 @@ const Link = ({
   const lrs = useLRS();
   const featureClasses = featureStyles();
   const themeClasses = themeStyles();
-  const componentClassName = clsx(
+
+  const baseClassName = clsx(
     className,
     themeClasses[theme],
     ...features.map((f) => featureClasses[f]),
   );
+
+  const linkClassName = React.useCallback(({ isActive }: { isActive: boolean; }): string => clsx({
+    [baseClassName]: true,
+    [activeClassName || linkActiveCID]: isActive,
+  }), [baseClassName]);
 
   if (disabled) {
     return (
@@ -125,7 +120,7 @@ const Link = ({
     if (!allowExternal) {
       return (
         <ExternalLink
-          className={componentClassName}
+          className={baseClassName}
           href={to}
           id={other.id}
           ref={innerRef}
@@ -143,9 +138,6 @@ const Link = ({
     path = retrievePath(to);
   }
 
-  const LinkComp = isLocalAnchor(path ?? '') ? DomLink : NavLink;
-  const isExact = LinkComp === DomLink ? undefined : isIndex;
-
   const clickHandler = target !== 'modal'
     ? onClick
     : (e: MouseEvent): (void | undefined) => {
@@ -158,24 +150,22 @@ const Link = ({
     };
 
   return (
-    <LinkComp
+    <NavLink
       {...other}
-      activeClassName={activeClassName || linkActiveCID}
-      className={componentClassName}
-      exact={isExact}
-      innerRef={innerRef}
-      isActive={isActive ? isActive(to) : isActiveDefault(to)}
+      className={linkClassName}
+      end={isIndex}
+      ref={innerRef}
       target={target}
       title={title}
       to={path ?? ''}
       onClick={clickHandler}
     >
       {children}
-    </LinkComp>
+    </NavLink>
   );
 };
 
-export default React.forwardRef<HTMLAnchorElement, LinkPropTypes>((props, ref) => (
+export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
   <Link
     innerRef={ref}
     {...props}
