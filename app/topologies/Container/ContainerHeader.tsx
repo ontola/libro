@@ -25,6 +25,8 @@ const styles = (theme: LibroTheme) => ({
     display: 'flex',
     flex: 1,
     gap: theme.spacing(HEADER_GAP),
+    paddingBottom: '5px',
+    paddingTop: '5px',
   },
 });
 
