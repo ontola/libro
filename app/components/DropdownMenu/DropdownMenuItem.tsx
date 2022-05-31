@@ -68,7 +68,7 @@ const DropdownMenuItem = ({
           lrs
             .actions
             .app
-            .startSignIn();
+            .startSignIn(action);
         }
       });
   }, [lrs, action]);
@@ -124,7 +124,7 @@ const DropdownMenuItem = ({
     <MenuItem
       action={childProps.onClose}
       allowExternal={false}
-      url={href?.value || subject.value}
+      url={(action ?? href)?.value}
       {...sharedProps}
     >
       {name?.value}
