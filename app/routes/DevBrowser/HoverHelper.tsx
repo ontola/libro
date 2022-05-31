@@ -12,7 +12,6 @@ import argu from '../../ontology/argu';
 import dexes from '../../ontology/dexes';
 import elements from '../../ontology/elements';
 import ontola from '../../ontology/ontola';
-import rivm from '../../ontology/rivm';
 import sales from '../../ontology/sales';
 import teamGL from '../../ontology/teamGL';
 
@@ -26,7 +25,6 @@ const getShort = (value: string): string => {
     elements,
     ontola,
     rdf: rdfx,
-    rivm,
     sales,
     schema,
     teamGL,

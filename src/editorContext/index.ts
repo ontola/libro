@@ -32,7 +32,6 @@ import ontOpengov from '../../app/ontology/opengov';
 import ontOrg from '../../app/ontology/org';
 import ontPerson from '../../app/ontology/person';
 import ontQb from '../../app/ontology/qb';
-import ontRivm from '../../app/ontology/rivm';
 import ontSp from '../../app/ontology/sp';
 import ontTeamGL from '../../app/ontology/teamGL';
 import ontWdt from '../../app/ontology/wdt';
@@ -104,8 +103,6 @@ const org = ontOrg;
 const person = ontPerson;
 // @ts-ignore
 const qb = ontQb;
-// @ts-ignore
-const rivm = ontRivm;
 // @ts-ignore
 const sp = ontSp;
 // @ts-ignore

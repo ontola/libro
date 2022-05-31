@@ -153,7 +153,6 @@ const theme = {
   semanticColors: {
     'https://argu.co/ns/core#ConArgument': '#684747',
     'https://argu.co/ns/core#ProArgument': '#547f4b',
-    'https://argu.co/ns/rivm#InterventionType': '#164173',
   },
   spacing: (factor: number): string => `${SIX_PX * factor}rem`,
   typography: {

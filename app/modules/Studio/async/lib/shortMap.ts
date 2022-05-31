@@ -33,7 +33,6 @@ import ontOpengov from '../../../../ontology/opengov';
 import ontOrg from '../../../../ontology/org';
 import ontPerson from '../../../../ontology/person';
 import ontQb from '../../../../ontology/qb';
-import ontRivm from '../../../../ontology/rivm';
 import ontSales from '../../../../ontology/sales';
 import ontSp from '../../../../ontology/sp';
 import ontTeamGL from '../../../../ontology/teamGL';
@@ -170,10 +169,6 @@ const createShortMap = (websiteIRI: string): ShortMap => {
     rdfx: {
       map: ontRdfx as ExplicitNamespaceMap,
       prefix: ontRdfx.ns('').value,
-    },
-    rivm: {
-      map: ontRivm as ExplicitNamespaceMap,
-      prefix: ontRivm.ns('').value,
     },
     sales: {
       map: ontSales as ExplicitNamespaceMap,

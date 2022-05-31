@@ -54,7 +54,6 @@ import ontOpengov from '../../../ontology/opengov';
 import ontOrg from '../../../ontology/org';
 import ontPerson from '../../../ontology/person';
 import ontQb from '../../../ontology/qb';
-import ontRivm from '../../../ontology/rivm';
 import ontSales from '../../../ontology/sales';
 import ontSp from '../../../ontology/sp';
 import ontTeamGL from '../../../ontology/teamGL';
@@ -173,8 +172,6 @@ const parseToGraph = (source: string, websiteIRI: string, idempotentNaming = tru
   const person = ontPerson;
   // @ts-ignore
   const qb = ontQb;
-  // @ts-ignore
-  const rivm = ontRivm;
   // @ts-ignore
   const sales = ontSales;
   // @ts-ignore

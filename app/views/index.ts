@@ -63,7 +63,6 @@ import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
 import RichText from './RichText';
-import RIVM from './RIVM';
 import SalesWebsite from './SalesWebsite';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
@@ -147,7 +146,6 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
     ...RDFProperty,
     ...RDFSClass,
     ...RichText,
-    ...RIVM,
     ...SearchResult,
     ...SeqComp,
     ...Shop,
