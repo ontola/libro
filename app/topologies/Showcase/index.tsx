@@ -1,4 +1,3 @@
-import { Grid, GridSpacing } from '@mui/material';
 import React from 'react';
 
 import { showcaseTopology } from '../../topologies';
@@ -6,14 +5,9 @@ import Topology from '../Topology';
 
 interface ShowcaseProps {
   className?: string;
-  spacing?: GridSpacing;
 }
 
 class Showcase extends Topology<ShowcaseProps> {
-  static defaultProps = {
-    spacing: 2,
-  };
-
   constructor(props: ShowcaseProps) {
     super(props);
 
@@ -21,19 +15,11 @@ class Showcase extends Topology<ShowcaseProps> {
   }
 
   public renderContent(): JSX.Element {
-    const { children } = this.props;
-
-    return this.wrap((
-      <Grid
-        container
-        className={this.props.className}
-        direction="row"
-        justifyContent="center"
-        spacing={this.props.spacing}
-      >
-        {children}
-      </Grid>
-    ));
+    return this.wrap(
+      <div className={this.props.className}>
+        { this.props.children }
+      </div>,
+    );
   }
 }
 

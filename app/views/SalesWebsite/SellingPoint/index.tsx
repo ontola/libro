@@ -28,18 +28,15 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     color: theme.palette.primary.main,
     fontSize: theme.typography.fontSizes.medium,
     fontWeight: theme.typography.fontWeightMedium,
+    marginLeft: '1.5rem',
+    marginTop: '1.5rem',
     padding: theme.spacing(Margin.Large),
     textAlign: 'center',
     transition: 'box-shadow 100ms ease-in-out',
     width: '100%',
   },
   icon: {
-    left: '-1.5rem',
     position: 'absolute',
-    top: '-1.5rem',
-    [theme.breakpoints.down(BreakPoints.Small)]: {
-      left: '-.5rem',
-    },
   },
   wrapper: {
     '&:hover, &:focus': {

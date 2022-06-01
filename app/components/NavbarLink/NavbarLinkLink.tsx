@@ -26,8 +26,12 @@ export interface NavbarLinkLinkProps extends Pick<AriaAttributes, 'aria-controls
 }
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  button: {
+  navBarButton: {
+    '&:first-child': {
+      padding: 0,
+    },
     fontSize: theme.navBarFontSize,
+    height: '100%',
     minWidth: 'unset',
   },
 }));
@@ -66,7 +70,7 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
 
   const baseProps = {
     'aria-label': title,
-    className: classes.button,
+    className: classes.navBarButton,
     title: title,
     ...ariaProps,
     color: 'inherit' as const as 'inherit',

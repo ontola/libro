@@ -73,7 +73,6 @@ export interface ParallaxProps {
   backgroundImageUrlMobile: string,
   buttonLink: string,
   buttonText: string,
-  children: React.ReactChild;
   title: string,
   subtitle: string,
 }
@@ -86,7 +85,7 @@ export const Parallax = ({
   children,
   title,
   subtitle,
-}: ParallaxProps): JSX.Element => {
+}: React.PropsWithChildren<ParallaxProps>): JSX.Element => {
   const classes = useStyles({ backgroundImageUrl });
 
   return (

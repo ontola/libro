@@ -29,11 +29,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     padding: theme.spacing(Margin.XXL),
     paddingBottom: 0,
   },
-  container: {
-    [theme.breakpoints.down(BreakPoints.Large)]: {
-      maxWidth: '95vw',
-    },
-  },
   propositionContainer: {
     marginTop: theme.spacing(Margin.XXL),
   },
@@ -48,7 +43,7 @@ const HomePageFull: FC = () => {
         label={sales.header}
         theme={HeaderTheme.HomePage}
       />
-      <Container className={classes.container}>
+      <Container>
         <Property label={sales.sections} />
       </Container>
       <div className={classes.caseContainer}>

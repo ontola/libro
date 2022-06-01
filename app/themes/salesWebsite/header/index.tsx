@@ -16,8 +16,6 @@ const useAppBarOverrides = makeStyles({
     },
     backdropFilter: 'blur(3px)',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    padding: '10px',
-    paddingTop: '11px',
   },
 });
 
@@ -25,7 +23,10 @@ const SalesWebsiteHeader: React.FC = () => {
   const appBarOverrides = useAppBarOverrides();
 
   return (
-    <Navbar classes={appBarOverrides}>
+    <Navbar
+      fullWidth
+      classes={appBarOverrides}
+    >
       <SalesNavBarContent />
     </Navbar>
   );

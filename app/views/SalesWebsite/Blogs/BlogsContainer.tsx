@@ -30,6 +30,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     display: 'grid',
     gap: theme.spacing(BLOG_SPACING),
     gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+    justifyItems: 'center',
   },
 }));
 

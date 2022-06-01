@@ -80,10 +80,7 @@ const BlogsFull: FC = ({ subject }) => {
         <Property label={schema.text} />
       </Typography>
       <Container className={classes.container}>
-        <Showcase
-          className={classes.propositionSelector}
-          spacing={0}
-        >
+        <Showcase className={classes.propositionSelector}>
           <Property label={sales.showcase} />
         </Showcase>
       </Container>

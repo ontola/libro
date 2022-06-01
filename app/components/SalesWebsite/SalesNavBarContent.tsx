@@ -16,6 +16,7 @@ const LOGO_MARGIN_COMPENSATION = 4;
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
     display: 'none',
+    fontSize: '1rem',
     [theme.breakpoints.down(BreakPoints.Medium)]: {
       display: 'block',
     },
@@ -29,13 +30,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     },
   },
   navBar: {
-    '& a, & > span': {
-      marginBottom: '6px',
-    },
-    '& a:first-of-type': {
-      marginBottom: '0px',
-    },
-
     '& img': {
       width: '4.3rem',
       [theme.breakpoints.down(BreakPoints.Medium)]: {
@@ -46,15 +40,14 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
-    height: '43px',
+    height: '64px',
     justifyContent: 'space-between',
     margin: 'auto',
     maxWidth: theme.breakpoints.values.lg,
     overflowY: 'hidden',
+    paddingLeft: '0.5625rem',
+    paddingRight: '0.5625rem',
     width: '100%',
-    [theme.breakpoints.down(BreakPoints.Medium)]: {
-      justifyContent: 'flex-start',
-    },
   },
 }));
 
