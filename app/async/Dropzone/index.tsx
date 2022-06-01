@@ -1,7 +1,8 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
+import { useLRS } from 'link-redux';
 import React from 'react';
-import ReactDropzone from 'react-dropzone';
+import ReactDropzone, { FileRejection } from 'react-dropzone';
 
 import DropzoneClear from '../../components/Dropzone/DropzoneClear';
 import DropzoneInner from '../../components/Dropzone/DropzoneInner';
@@ -46,10 +47,12 @@ const Dropzone: React.FC<DropzoneProps> = ({
   fileName,
   encodingFormatTypes,
   inputRef,
+  maxSize,
   onChange,
   openDialog,
   preview,
 }) => {
+  const lrs = useLRS();
   const classes = useStyles();
   const onClear = React.useCallback((e) => {
     e.preventDefault();
@@ -57,19 +60,24 @@ const Dropzone: React.FC<DropzoneProps> = ({
     onChange(undefined);
   }, []);
 
-  const onDrop = React.useCallback((acceptedFiles: File[]) => {
+  const onDrop = React.useCallback((acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
+    const error = rejectedFiles?.[0]?.errors?.[0];
+
+    if (error) {
+      lrs.actions.ontola.showSnackbar(error.message);
+    }
+
     const [file] = acceptedFiles;
 
-    onChange(
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      }),
-    );
+    if (file) {
+      onChange(file);
+    }
   }, []);
 
   return (
     <ReactDropzone
       accept={encodingFormatTypes}
+      maxSize={maxSize}
       multiple={false}
       onDrop={onDrop}
     >

@@ -48,6 +48,7 @@ export default {
   groupedOptions: form('groupedOptions'),
   groups: form('groups'),
   hidden: form('hidden'),
+  maxFileSize: form('maxFileSize'),
   pages: form('pages'),
   placeholder: form('placeholder'),
 };

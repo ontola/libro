@@ -1,10 +1,12 @@
 import * as schema from '@ontologies/schema';
+import { useNumbers } from 'link-redux';
 import React from 'react';
 
 import Dropzone from '../../../containers/Dropzone';
 import { useFormFieldForPath } from '../../../hooks/useFormFieldForPath';
 import { useListToArr } from '../../../hooks/useListToArr';
 import dbo from '../../../ontology/dbo';
+import form from '../../../ontology/form';
 import { formFieldContext } from '../../FormField/FormFieldContext';
 import { InputComponentProps } from '../../FormField/FormFieldTypes';
 import HiddenRequiredInput from '../HiddenRequiredInput';
@@ -23,6 +25,7 @@ const FileInput: React.FC<InputComponentProps> = ({
 
   const { required } = fieldShape;
   const { values: fileNameFormatValues } = useFormFieldForPath(dbo.filename);
+  const [maxSize] = useNumbers(form.maxFileSize);
   const {
     fieldShape: encodingFormatShape,
     values: encodingFormatValues,
@@ -67,6 +70,7 @@ const FileInput: React.FC<InputComponentProps> = ({
           encodingFormatTypes={encodingFormatTypes || ''}
           fileName={fileNameFormatValues?.[0]?.value}
           inputRef={inputRef}
+          maxSize={maxSize}
           name={name}
           openDialog={openDialog}
           preview={preview}

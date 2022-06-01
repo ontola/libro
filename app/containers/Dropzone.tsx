@@ -18,6 +18,7 @@ export interface DropzoneProps {
   fileName?: string;
   encodingFormatTypes: string;
   inputRef: Ref<HTMLInputElement>;
+  maxSize?: number;
   name: string;
   onChange: HandleFileChange;
   openDialog: EventHandler<SyntheticEvent<unknown>>;
