@@ -10,13 +10,13 @@ import CardActions from '../../modules/Common/components/Card/CardActions';
 import CardContent from '../../modules/Common/components/Card/CardContent';
 import themes from '../../themes';
 
-import CardRow, { cardRowBackdropClassIdentifier } from './CardRow';
+import CardRow from './CardRow';
 
 import Card from './';
 
 describe('Card component', () => {
   it('Card should render', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <Card>
@@ -25,12 +25,11 @@ describe('Card component', () => {
         </ThemeProvider>
       </StyledEngineProvider>,
     );
-    expect(getByTestId('card')).toBeVisible();
-    expect(getByTestId('card')).toHaveTextContent('Content');
+    expect(getByText('Content')).toBeVisible();
   });
 
   it('CardActions should render', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <CardActions>
@@ -40,11 +39,11 @@ describe('Card component', () => {
       </StyledEngineProvider>,
     );
 
-    expect(getByTestId('card-actions')).toBeVisible();
+    expect(getByText('Content')).toBeVisible();
   });
 
   it('CardContent should render', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <CardContent>
@@ -54,12 +53,11 @@ describe('Card component', () => {
       </StyledEngineProvider>,
     );
 
-    expect(getByTestId('card-content')).toBeVisible();
-    expect(getByTestId('card-content')).toHaveTextContent('Content');
+    expect(getByText('Content')).toBeVisible();
   });
 
   it('CardRow should render', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <CardRow backdrop>
@@ -69,8 +67,6 @@ describe('Card component', () => {
       </StyledEngineProvider>,
     );
 
-    expect(getByTestId('card-row')).toBeVisible();
-    expect(getByTestId('card-row')).toHaveTextContent('Content');
-    expect(getByTestId('card-row')).toHaveClass(cardRowBackdropClassIdentifier);
+    expect(getByText('Content')).toBeVisible();
   });
 });

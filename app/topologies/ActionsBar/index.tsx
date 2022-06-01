@@ -1,16 +1,17 @@
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { TopologyProvider } from 'link-redux';
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
 import { loadingButtonCID } from '../../modules/Core/components/Loading';
 import { actionsBarTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-const styles = createStyles({
+interface ActionsBarProps {
+  small?: boolean;
+}
+
+const useStyles = makeStyles({
   actionsBar: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -33,34 +34,26 @@ const styles = createStyles({
   },
 });
 
-interface ActionsBarProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
-  small?: boolean;
-}
+const ActionsBar: TopologyFC<ActionsBarProps> = ({ children, small }) => {
+  const [ActionsBarTopology] = useTopologyProvider(actionsBarTopology);
+  const classes = useStyles();
 
-class ActionsBar extends TopologyProvider<ActionsBarProps> {
-  constructor(props: ActionsBarProps) {
-    super(props);
+  const className = clsx({
+    [classes.actionsBar]: true,
+    [classes.small]: small,
+  });
 
-    this.className = 'ActionsBar';
-    this.topology = actionsBarTopology;
+  if (children === undefined) {
+    return null;
   }
 
-  public render() {
-    const classes = clsx({
-      [this.props.classes.actionsBar]: true,
-      [this.props.classes.small]: this.props.small,
-    });
-
-    if (this.props.children === undefined) {
-      return null;
-    }
-
-    return this.wrap((
-      <div className={classes}>
-        {this.props.children}
+  return (
+    <ActionsBarTopology>
+      <div className={className}>
+        {children}
       </div>
-    ));
-  }
-}
+    </ActionsBarTopology>
+  );
+};
 
-export default withStyles(styles)(ActionsBar);
+export default ActionsBar;

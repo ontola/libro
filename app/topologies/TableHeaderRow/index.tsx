@@ -1,26 +1,22 @@
-import clsx from 'clsx';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
+import { useTopologyProvider } from 'link-redux';
+import React from 'react';
 
 import { tableHeaderRowTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-export interface TableHeaderRowProps {
-  className?: string;
-}
+export type TableHeaderRowProps = React.HTMLAttributes<HTMLTableRowElement>;
 
-/** The same as {TableRow} but needed since headers are nearly always rendered differently. */
-class TableHeaderRow extends TopologyProvider<TableHeaderRowProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+/** The same as {@link TableRow} but needed since headers are nearly always rendered differently. */
+const TableHeaderRow: TopologyFC<TableHeaderRowProps> = ({ children, ...elemProps }) => {
+  const [TableHeaderRowTopology] = useTopologyProvider(tableHeaderRowTopology);
 
-  constructor(props: TableHeaderRowProps) {
-    super(props);
-
-    this.className = clsx('TableHeaderRow', props.className);
-    this.elementType = 'tr';
-    this.topology = tableHeaderRowTopology;
-  }
-}
+  return (
+    <TableHeaderRowTopology>
+      <tr {...elemProps}>
+        {children}
+      </tr>
+    </TableHeaderRowTopology>
+  );
+};
 
 export default TableHeaderRow;

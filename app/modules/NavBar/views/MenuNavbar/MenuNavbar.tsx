@@ -8,7 +8,7 @@ import React from 'react';
 
 import app from '../../../../ontology/app';
 import { navbarTopology } from '../../../../topologies';
-import AppMenu from '../../../../topologies/AppMenu';
+import AppMenu, { AppMenuChildProps } from '../../../../topologies/AppMenu';
 import { Trigger } from '../../../Menu/components/DropdownMenu/TriggerButton';
 
 const trigger: Trigger = ({
@@ -29,7 +29,7 @@ const trigger: Trigger = ({
 
 const MenuNavbar: FC = () => (
   <AppMenu trigger={trigger}>
-    {({ handleClose }) => (
+    {({ handleClose }: AppMenuChildProps) => (
       <React.Fragment>
         <Resource
           childProps={{ onClose: handleClose }}

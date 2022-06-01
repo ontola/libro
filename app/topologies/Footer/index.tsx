@@ -1,15 +1,20 @@
-import { Box, Grid } from '@mui/material';
-import { WithStyles, withStyles } from '@mui/styles';
+import { Grid } from '@mui/material';
 import { Node } from '@ontologies/core';
-import { Resource } from 'link-redux';
+import { Resource, useTopologyProvider } from 'link-redux';
 import React from 'react';
+import { makeStyles } from '@mui/styles';
 
 import { gridHeaderCID } from '../../modules/Common/components/Grid/GridHeader';
 import { headingCID } from '../../modules/Common/components/Heading';
 import HeadingContext from '../../modules/Common/components/Heading/HeadingContext';
 import { IndexablePalette, LibroTheme } from '../../themes/themes';
 import { footerTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
+
+interface FooterProps {
+  legacy?: boolean;
+  resources?: Node[];
+}
 
 enum GridWidth {
   third = 4,
@@ -19,7 +24,7 @@ enum GridWidth {
 
 const TWO_ITEMS = 2;
 
-const styles = (theme: LibroTheme) => {
+const useStyles = makeStyles((theme: LibroTheme) => {
   const backgroundColor = theme.appBar.background
     ? (theme.palette as unknown as IndexablePalette)[theme.appBar.background]?.main ?? theme.palette.common.black
     : theme.palette.common.black;
@@ -48,50 +53,59 @@ const styles = (theme: LibroTheme) => {
       maxWidth: theme.containerWidth.large,
     },
   });
+});
+
+const mdSize = (itemCount: number): GridWidth => {
+  if (itemCount === 1) {
+    return GridWidth.full;
+  }
+
+  return GridWidth.half;
 };
 
-interface FooterProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
-  legacy?: boolean;
-  resources?: Node[];
-}
-
-class Footer extends Topology<FooterProps> {
-  constructor(props: FooterProps) {
-    super(props);
-
-    this.className = this.getClassName();
-    this.topology = footerTopology;
+const lgSize = (itemCount: number): GridWidth => {
+  if (itemCount === 1) {
+    return GridWidth.full;
   }
 
-  public getClassName(): string {
-    return this.props.classes.footer;
+  if (itemCount === TWO_ITEMS) {
+    return GridWidth.half;
   }
 
-  public renderContent() {
-    if (!this.props.legacy) {
-      return this.wrap(this.props.children);
-    }
+  return GridWidth.third;
+};
 
-    if (!this.props.resources || this.props.resources.length === 0) {
-      return this.wrap(null);
-    }
+const Footer: TopologyFC<FooterProps> = ({ children, legacy, resources }) => {
+  const [FooterTopology] = useTopologyProvider(footerTopology);
+  const classes = useStyles();
 
-    return this.wrap((
+  if (legacy) {
+    return (
+      <FooterTopology>
+        {children}
+      </FooterTopology>
+    );
+  }
+
+  if (!resources?.length) {
+    return null;
+  }
+
+  return (
+    <FooterTopology>
       <HeadingContext>
-        <Box
-          className={this.getClassName()}
-        >
-          <div className={this.props.classes.footerContainer}>
+        <div className={classes.footer}>
+          <div className={classes.footerContainer}>
             <Grid
               container
               spacing={6}
             >
-              {this.props.resources.map((iri) => (
+              {resources.map((iri) => (
                 <Grid
                   item
                   key={iri.value}
-                  lg={Footer.lgSize(this.props.resources!.length)}
-                  md={Footer.mdSize(this.props.resources!.length)}
+                  lg={lgSize(resources.length)}
+                  md={mdSize(resources.length)}
                   xs={GridWidth.full}
                 >
                   <Resource subject={iri} />
@@ -99,30 +113,10 @@ class Footer extends Topology<FooterProps> {
               ))}
             </Grid>
           </div>
-        </Box>
+        </div>
       </HeadingContext>
-    ));
-  }
+    </FooterTopology>
+  );
+};
 
-  static mdSize(itemCount: number): GridWidth {
-    if (itemCount === 1) {
-      return GridWidth.full;
-    }
-
-    return GridWidth.half;
-  }
-
-  static lgSize(itemCount: number): GridWidth {
-    if (itemCount === 1) {
-      return GridWidth.full;
-    }
-
-    if (itemCount === TWO_ITEMS) {
-      return GridWidth.half;
-    }
-
-    return GridWidth.third;
-  }
-}
-
-export default withStyles(styles)(Footer);
+export default Footer;

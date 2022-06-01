@@ -1,60 +1,36 @@
-import type { Location } from 'history';
-import React, { ChildrenProp } from 'react';
-import { useLocation } from 'react-router';
+import { useTopologyProvider } from 'link-redux';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { TabVariant, Tabs } from '../../modules/Common/components/Tabs';
 import { tabBarTopology } from '../../topologies';
-import TopologyProvider from '../Topology';
+import { TopologyFC } from '../Topology';
 
 interface TabBarProps {
   value: any;
   variant?: TabVariant;
-  location: Location;
 }
 
-class TabBarImpl extends TopologyProvider<TabBarProps> {
-  constructor(props: TabBarProps) {
-    super(props);
-
-    this.topology = tabBarTopology;
-    this.className = 'TabBar';
-  }
-
-  public render() {
-    const {
-      children,
-      location,
-      value,
-      variant,
-    } = this.props;
-
-    if (!children) {
-      return null;
-    }
-
-    return this.wrap((subject) => (
-      <Tabs
-        location={location}
-        resource={subject?.value}
-        value={value}
-        variant={variant}
-      >
-        {children}
-      </Tabs>
-    ));
-  }
-}
-
-const TabBar = ({ children, ...props }: Omit<TabBarProps, 'location'> & ChildrenProp): JSX.Element => {
+const TabBar: TopologyFC<TabBarProps> = ({ children, value, variant }) => {
+  const [TabBarTopology, subject] = useTopologyProvider(tabBarTopology);
   const location = useLocation();
 
   return (
-    <TabBarImpl
-      location={location}
-      {...props}
-    >
-      {children}
-    </TabBarImpl>
+    <TabBarTopology>
+      <div
+        className="TabBar"
+        resource={subject?.value}
+      >
+        <Tabs
+          location={location}
+          resource={subject?.value}
+          value={value}
+          variant={variant}
+        >
+          {children}
+        </Tabs>
+      </div>
+    </TabBarTopology>
   );
 };
 

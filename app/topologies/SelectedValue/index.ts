@@ -1,13 +1,6 @@
-import { TopologyProvider } from 'link-redux';
-
 import { selectedValueTopology } from '../../topologies';
+import { createBasicTopologyProvider } from '../Topology';
 
-class SelectedValue extends TopologyProvider {
-  constructor(props: Record<string, unknown>) {
-    super(props);
-
-    this.topology = selectedValueTopology;
-  }
-}
+const SelectedValue = createBasicTopologyProvider(selectedValueTopology);
 
 export default SelectedValue;

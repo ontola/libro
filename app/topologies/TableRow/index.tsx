@@ -1,58 +1,42 @@
-import { TableRow } from '@mui/material';
-import { WithStyles, withStyles } from '@mui/styles';
+import { TableRow as MUITableRow } from '@mui/material';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { makeStyles } from '@mui/styles';
+import { useTopologyProvider } from 'link-redux';
 
 import { LibroTheme } from '../../themes/themes';
 import { tableRowTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
-const styles = (theme: LibroTheme) => ({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   tableRowClickable: {
     '&:hover': {
       background: theme.palette.grey.xxLight,
       cursor: 'pointer',
     },
   },
-});
+}));
 
-type TableRowElementProps = { onClick: any; };
-type TableRowProps = WithStyles<typeof styles> & TableRowElementProps;
+type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>;
 
-class TableRowClass extends Topology<TableRowProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    onClick: PropTypes.func,
-  };
+const TableRow: TopologyFC<TableRowProps> = ({ children, className, ...elemProps }) => {
+  const [TableRowTopology, subject] = useTopologyProvider(tableRowTopology);
+  const classes = useStyles();
 
-  constructor(props: TableRowProps) {
-    super(props);
-
-    this.className = this.getClassName();
-    this.elementType = 'tr';
-    this.topology = tableRowTopology;
-  }
-
-  public getElementProps(): TableRowElementProps {
-    return {
-      onClick: this.props.onClick,
-    };
-  }
-
-  public render() {
-    const { classes, ...filterProps } = this.props;
-
-    return this.wrap((subject) => (
-      <TableRow
+  return (
+    <TableRowTopology>
+      <MUITableRow
         className={clsx({
-          [classes.tableRowClickable]: !!this.props.onClick,
+          [classes.tableRowClickable]: !!elemProps.onClick,
+          [className ?? '']: !!className,
         })}
         resource={subject && subject.value}
-        {...filterProps}
-      />
-    ));
-  }
-}
+        {...elemProps}
+      >
+        {children}
+      </MUITableRow>
+    </TableRowTopology>
+  );
+};
 
-export default withStyles(styles)(TableRowClass);
+export default TableRow;

@@ -1,65 +1,59 @@
 import { Container as MaterialContainer } from '@mui/material';
+import { useTheme } from '@mui/styles';
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
-import { Size } from '../../themes/themes';
+import { LibroTheme, Size } from '../../themes/themes';
 import { containerTopology } from '../../topologies';
-import Topology, { TopologyContent } from '../Topology';
+import { TopologyFC } from '../Topology';
 
 export interface ContainerProps {
   className?: string;
-  children: NonNullable<React.ReactNode>;
   disableGutters?: boolean;
+  children: NonNullable<React.ReactNode>;
   fixed?: boolean;
   size?: Size;
 }
 
-/**
- * Centers the content and defines width
- * @returns {component} Container with children
- */
-class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
-  public static defaultProps = {
-    size: Size.Large,
-  };
-
-  constructor(props: P) {
-    super(props);
-
-    this.topology = containerTopology;
+export const maxWidth = (size: Size): false | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | undefined  => {
+  switch (size) {
+  case Size.Large: return 'xl';
+  case Size.Small: return 'md';
+  case Size.XSmall: return 'sm';
+  default: return 'lg';
   }
+};
 
-  public renderContent(): TopologyContent {
-    return this.wrap((
+/**
+ * Centers the content and defines a max width
+ */
+const Container: TopologyFC<ContainerProps> = ({ children, ...props }) => {
+  const theme = useTheme<LibroTheme>();
+  const [ContainerTopology, subject] = useTopologyProvider(containerTopology);
+  const {
+    size,
+    ...containerProps
+  } = props;
+
+  return (
+    <ContainerTopology>
       <MaterialContainer
         data-testid="container-root"
-        maxWidth={this.maxWidth()}
-        {...this.props}
-      />
-    ));
-  }
+        maxWidth={maxWidth(size ?? theme.containerDefaultSize ?? Size.Large)}
+        resource={subject?.value}
+        {...containerProps}
+      >
+        {children}
+      </MaterialContainer>
+    </ContainerTopology>
+  );
+};
 
-  protected maxWidth(): 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false {
-    if (this.props.size === Size.Large) {
-      return 'xl';
-    }
-
-    if (this.props.size === Size.Small) {
-      return 'md';
-    }
-
-    if (this.props.size === Size.XSmall) {
-      return 'sm';
-    }
-
-    return 'lg';
-  }
-}
-
-export interface LargeContainerProps {
+interface LargeContainerProps {
   children: NonNullable<React.ReactNode>;
 }
 
-export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => (
+export const LargeContainer: React.FC<LargeContainerProps> = ({ children }) => (
   <Container size={Size.Large}>
     {children}
   </Container>

@@ -1,18 +1,16 @@
-import { createStyles, withStyles } from '@mui/styles';
-import { TopologyProvider } from 'link-redux';
+import { createStyles, makeStyles } from '@mui/styles';
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
 import { flowTopology } from '../../../topologies';
+import { TopologyFC } from '../../../topologies/Topology';
 
 export type FlowProps = Record<string, unknown> & {
   className?: string;
-  classes: {
-    root: string;
-  }
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
-const styles = () => createStyles({
+const useStyles = makeStyles(() => createStyles({
   root: {
     bottom: 0,
     height: '100%',
@@ -22,23 +20,19 @@ const styles = () => createStyles({
     top: 0,
     width: '100vw',
   },
-});
+}));
 
-class Flow<P extends FlowProps = FlowProps> extends TopologyProvider<P> {
-  constructor(props: P) {
-    super(props);
+const Flow: TopologyFC<FlowProps> = ({ children }) => {
+  const [FlowTopology] = useTopologyProvider(flowTopology);
+  const classes = useStyles();
 
-    this.topology = flowTopology;
-  }
-
-  render() {
-
-    return (
-      <div className={this.props.classes.root}>
-        {this.wrap(this.props.children)}
+  return (
+    <FlowTopology>
+      <div className={classes.root}>
+        {children}
       </div>
-    );
-  }
-}
+    </FlowTopology>
+  );
+};
 
-export default withStyles(styles)(Flow);
+export default Flow;

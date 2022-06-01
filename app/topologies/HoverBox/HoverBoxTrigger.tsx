@@ -2,11 +2,11 @@ import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import React from 'react';
 
-export interface HoverBoxTriggerProps {
+export type HoverBoxTriggerProps = React.PropsWithChildren<{
   onShow: () => void;
   onHide: () => void;
   onClick?: () => void;
-}
+}>;
 
 const useStyles = makeStyles({
   hoverBox: {

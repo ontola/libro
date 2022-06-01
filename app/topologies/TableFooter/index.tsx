@@ -1,15 +1,15 @@
-import { WithStyles, withStyles } from '@mui/styles';
-import PropTypes from 'prop-types';
-import { PropsWithChildren } from 'react';
+import React from 'react';
+import { makeStyles } from '@mui/styles';
+import { useTopologyProvider } from 'link-redux';
 
 import argu from '../../modules/Argu/ontology/argu';
 import { LibroTheme, Margin } from '../../themes/themes';
 import { tableFooterCellCID } from '../TableFooterCell';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
 export const tableFooterTopology = argu.ns('tableFooter');
 
-const styles = (theme: LibroTheme) => ({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   tableFooter: {
     '& tr > td': {
       '&:first-child': {
@@ -30,26 +30,19 @@ const styles = (theme: LibroTheme) => ({
     },
     color: theme.palette.grey.midDark,
   },
-});
+}));
 
-type TableFooterProps = PropsWithChildren<WithStyles<typeof styles>>;
+const TableFooter: TopologyFC = ({ children }) => {
+  const [TableFooterTopology] = useTopologyProvider(tableFooterTopology);
+  const classes = useStyles();
 
-class TableFooter extends Topology<TableFooterProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+  return (
+    <TableFooterTopology>
+      <tfoot className={classes.tableFooter}>
+        {children}
+      </tfoot>
+    </TableFooterTopology>
+  );
+};
 
-  constructor(props: TableFooterProps) {
-    super(props);
-
-    this.className = this.getClassName();
-    this.elementType = 'tfoot';
-    this.topology = tableFooterTopology;
-  }
-
-  public getClassName(): string {
-    return this.props.classes.tableFooter;
-  }
-}
-
-export default withStyles(styles)(TableFooter);
+export default TableFooter;

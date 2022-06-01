@@ -1,21 +1,17 @@
-import { WithStyles, withStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { TopologyProvider } from 'link-redux';
+import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
+import { makeStyles } from '@mui/styles';
 
 import VerticalScroller from '../../modules/Common/components/VerticalScroller';
 import { detailsBarTopology } from '../../topologies';
 import { CardFloat } from '../Card';
+import { TopologyFC } from '../Topology';
 
-import DetailsBarStyles from './DetailsBarStyles';
+import detailsBarStyles from './DetailsBarStyles';
 
-export enum DetailsBarVariant {
-  Default = 'default',
-  Wide = 'wide',
-}
-
-interface DetailsBarProps extends React.PropsWithChildren<WithStyles<typeof DetailsBarStyles>>{
-  borderBottom: boolean;
+interface DetailsBarProps {
+  borderBottom?: boolean;
   className?: string;
   layoutOnly?: boolean;
   right?: ReactNode;
@@ -23,47 +19,52 @@ interface DetailsBarProps extends React.PropsWithChildren<WithStyles<typeof Deta
   variant?: DetailsBarVariant;
 }
 
-class DetailsBar extends TopologyProvider<DetailsBarProps> {
-  public static defaultProps = {
-    borderBottom: true,
-    scrollable: true,
-    variant: DetailsBarVariant.Default,
-  };
+export enum DetailsBarVariant {
+  Default = 'default',
+  Wide = 'wide',
+}
 
-  constructor(props: DetailsBarProps) {
-    super(props);
+const useStyles = makeStyles(detailsBarStyles);
 
-    this.topology = detailsBarTopology;
-  }
+const DetailsBar: TopologyFC<DetailsBarProps> = ({
+  children, scrollable, className, variant, layoutOnly, borderBottom, right,
+}) => {
+  const [DetailsBarTopology] = useTopologyProvider(detailsBarTopology);
+  const classes = useStyles();
+  const wrapperClass = clsx({
+    [classes.borderBottom]: borderBottom,
+    [classes.shared]: true,
+    [variant ? classes[variant] : '']: variant,
+    [classes.layoutOnly]: layoutOnly,
+    [className || '']: className,
+  });
+  const IconWrapper = scrollable ? VerticalScroller : React.Fragment;
 
-  public render() {
-    const IconWrapper = this.props.scrollable ? VerticalScroller : React.Fragment;
-    const classes = clsx({
-      [this.props.classes.borderBottom]: this.props.borderBottom,
-      [this.props.classes.shared]: true,
-      [this.props.variant ? this.props.classes[this.props.variant] : '']: this.props.variant,
-      [this.props.classes.layoutOnly]: this.props.layoutOnly,
-      [this.props.className || '']: this.props.className,
-    });
-
-    return this.wrap((
+  return (
+    <DetailsBarTopology>
       <div
-        className={classes}
+        className={wrapperClass}
         data-test="DetailsBar"
       >
         <IconWrapper>
-          {this.props.children}
+          {children}
         </IconWrapper>
-        {this.props.right && (
-          <div className={this.props.classes.right}>
+        {right && (
+          <div className={classes.right}>
             <CardFloat>
-              {this.props.right}
+              {right}
             </CardFloat>
           </div>
         )}
       </div>
-    ));
-  }
-}
+    </DetailsBarTopology>
+  );
+};
 
-export default withStyles(DetailsBarStyles)(DetailsBar);
+DetailsBar.defaultProps = {
+  borderBottom: true,
+  scrollable: true,
+  variant: DetailsBarVariant.Default,
+};
+
+export default DetailsBar;

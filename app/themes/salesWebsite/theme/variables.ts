@@ -1,8 +1,8 @@
-import { ThemeOptions } from '@mui/material/styles';
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 import deepmerge from 'deepmerge';
 
 import variables from '../../common/theme/variables';
+import { Size } from '../../themes';
 
 const SIX_PX = 0.1875;
 
@@ -101,9 +101,10 @@ const breakpoints = {
   /* eslint-enable sort-keys */
 };
 
-const customVariables: ThemeOptions = {
+const customVariables = {
   breakpoints,
   components,
+  containerDefaultSize: Size.Medium,
   palette,
   shape: {
     borderRadius: 5,

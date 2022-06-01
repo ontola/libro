@@ -1,43 +1,34 @@
-import { TableBody } from '@mui/material';
-import { WithStyles, withStyles } from '@mui/styles';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
-import React, { PropsWithChildren } from 'react';
+import { TableBody as MUITableBody, TableBodyProps as MUITableBodyProps } from '@mui/material';
+import { useTopologyProvider } from 'link-redux';
+import React from 'react';
+import { makeStyles } from '@mui/styles';
 
 import { LibroTheme } from '../../themes/themes';
 import { tableBodyTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-const styles = (theme: LibroTheme) => ({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   tableBody: {
     '&:nth-child(odd)': {
       backgroundColor: theme.palette.grey.xLight,
     },
   },
-});
+}));
 
-type TableBodyProps = PropsWithChildren<WithStyles<typeof styles>>;
+const TableBody: TopologyFC<MUITableBodyProps> = ({ children, ...muiProps }) => {
+  const [TableBodyTopology] = useTopologyProvider(tableBodyTopology);
+  const classes = useStyles();
 
-class TableBodyClass extends TopologyProvider<TableBodyProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  constructor(props: TableBodyProps) {
-    super(props);
-
-    this.topology = tableBodyTopology;
-  }
-
-  public render() {
-    const { classes, ...filterProps } = this.props;
-
-    return this.wrap(
-      <TableBody
+  return (
+    <TableBodyTopology>
+      <MUITableBody
         className={classes.tableBody}
-        {...filterProps}
-      />,
-    );
-  }
-}
+        {...muiProps}
+      >
+        {children}
+      </MUITableBody>
+    </TableBodyTopology>
+  );
+};
 
-export default withStyles(styles)(TableBodyClass);
+export default TableBody;

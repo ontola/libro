@@ -56,6 +56,7 @@ declare module '@mui/material/styles/createTheme' {
     boxShadow: {
       [K in Shadows]: string;
     };
+    containerDefaultSize?: Size;
     containerWidth: {
       [K in Size]: string;
     };

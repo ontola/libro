@@ -1,20 +1,21 @@
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
+import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { cardMicroRowTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
 import { collapseTextToggleCID, shineStyles } from './sharedCardStyles';
 
 export const cardMicroRowClassIdentifier = 'CID-CardMicroRow';
 
-const styles = (theme: LibroTheme) => ({
+export interface CardMicroRowProps {
+  highlighted?: boolean;
+}
+
+const useStyles = makeStyles((theme: LibroTheme) => ({
   ...createStyles({
     cardMicroRow: {
       '& .Link': {
@@ -31,32 +32,27 @@ const styles = (theme: LibroTheme) => ({
     },
   }),
   ...shineStyles,
-});
-
-export interface CardMicroRowProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
-  highlighted?: boolean;
-}
+}));
 
 /**
  * Used to divide a card in multiple rows
- * @returns {component} Component
  */
-class CardMicroRow extends Topology<CardMicroRowProps> {
-  constructor(props: CardMicroRowProps) {
-    super(props);
+const CardMicroRow: TopologyFC<CardMicroRowProps> = ({ children, highlighted }) => {
+  const [CardMicroRowTopology] = useTopologyProvider(cardMicroRowTopology);
+  const classes = useStyles();
+  const className = clsx({
+    [cardMicroRowClassIdentifier]: true,
+    [classes.cardMicroRow]: true,
+    [classes.shine]: highlighted,
+  });
 
-    this.topology = cardMicroRowTopology;
-  }
+  return (
+    <CardMicroRowTopology>
+      <div className={className}>
+        {children}
+      </div>
+    </CardMicroRowTopology>
+  );
+};
 
-  public getClassName(): string {
-    const { classes } = this.props;
-
-    return clsx({
-      [cardMicroRowClassIdentifier]: true,
-      [classes.cardMicroRow]: true,
-      [classes.shine]: this.props.highlighted,
-    });
-  }
-}
-
-export default withStyles(styles)(CardMicroRow);
+export default CardMicroRow;

@@ -1,17 +1,6 @@
-import { TopologyProvider } from 'link-redux';
-
 import { omniformFieldsTopology } from '../../topologies';
+import { createBasicTopologyProvider } from '../Topology';
 
-class OmniformFields extends TopologyProvider {
-  constructor(props: Record<string, unknown>) {
-    super(props);
-
-    this.topology = omniformFieldsTopology;
-  }
-
-  public render() {
-    return this.wrap(this.props.children);
-  }
-}
+const OmniformFields = createBasicTopologyProvider(omniformFieldsTopology);
 
 export default OmniformFields;

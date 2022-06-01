@@ -1,40 +1,35 @@
 import { Grid, GridSpacing } from '@mui/material';
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
 import { showcaseTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
 interface ShowcaseProps {
   className?: string;
   spacing?: GridSpacing;
 }
 
-class Showcase extends Topology<ShowcaseProps> {
-  static defaultProps = {
-    spacing: 2,
-  };
+const Showcase: TopologyFC<ShowcaseProps> = ({ children, className, spacing }) => {
+  const [ShowcaseTopology] = useTopologyProvider(showcaseTopology);
 
-  constructor(props: ShowcaseProps) {
-    super(props);
-
-    this.topology = showcaseTopology;
-  }
-
-  public renderContent(): JSX.Element {
-    const { children } = this.props;
-
-    return this.wrap((
+  return (
+    <ShowcaseTopology>
       <Grid
         container
-        className={this.props.className}
+        className={className}
         direction="row"
         justifyContent="center"
-        spacing={this.props.spacing}
+        spacing={spacing}
       >
         {children}
       </Grid>
-    ));
-  }
-}
+    </ShowcaseTopology>
+  );
+};
+
+Showcase.defaultProps = {
+  spacing: 2,
+};
 
 export default Showcase;

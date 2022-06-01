@@ -1,31 +1,131 @@
-import { TopologyProvider } from 'link-redux';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles } from '@mui/styles';
+import clsx from 'clsx';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
+import { LibroTheme } from '../../themes/themes';
 import { hoverBoxTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-import { HoverBoxImpl, HoverBoxProps } from './HoverBoxImpl';
+import { HoverBoxTrigger } from './HoverBoxTrigger';
+
+export interface HoverBoxProps {
+  /** Only show when hovering over the trigger / children */
+  hiddenChildren: JSX.Element,
+  onClick?: () => void,
+  popout?: boolean;
+  shine?: boolean;
+}
+
+const useStyles = makeStyles<LibroTheme>((theme) => {
+  const boxPadding = '10px';
+  const boxInset = `calc(${boxPadding} * -1)`;
+
+  return {
+    '@keyframes hb-highlight': {
+      '0%': {
+        boxShadow: 'none',
+      },
+
+      '50%': {
+        animationTimingFunction: 'ease-in',
+        boxShadow: `0 0 1em ${theme.palette.green.light}`,
+      },
+
+      '100%': {
+        animationTimingFunction: 'ease-out',
+        boxShadow: 'none',
+      },
+    },
+    hiddenPart: {
+      '@media (hover: none)': {
+        pointerEvents: 'auto',
+      },
+      display: 'none',
+      pointerEvents: 'none',
+    },
+    hoverBox: {
+      display: 'block',
+      position: 'relative',
+    },
+    popout: {
+      right: 'auto',
+      width: '20em',
+    },
+    shine: {
+      animation: '$hb-highlight 1s 1',
+    },
+    visible: {
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: theme.shape.borderRadius,
+      boxShadow: theme.boxShadow.intense,
+      display: 'block',
+      left: boxInset,
+      padding: boxPadding,
+      position: 'absolute',
+      right: boxInset,
+      top: boxInset,
+      zIndex: theme.zIndexHoverBox,
+    },
+  };
+});
 
 /**
  * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
  * state, make sure to add functionality for touch users.
- * @returns {component} Component
  */
-class HoverBox extends TopologyProvider<HoverBoxProps> {
-  constructor(props: HoverBoxProps) {
-    super(props);
+const HoverBox: TopologyFC<HoverBoxProps> = ({
+  children,
+  hiddenChildren,
+  onClick,
+  popout,
+  shine,
+}) => {
+  const [HoverBoxTopology] = useTopologyProvider(hoverBoxTopology);
+  const classes = useStyles();
 
-    this.topology = hoverBoxTopology;
-  }
+  const [active, setActive] = React.useState(false);
+  const hoverCapable = useMediaQuery('(hover: hover)');
+  const shouldShow = active && hoverCapable;
 
-  render() {
-    return this.wrap((
-      <HoverBoxImpl
-        {...this.props}
+  const showContent = React.useCallback(() => {
+    setActive(true);
+  }, [setActive]);
+
+  const hideContent = React.useCallback(() => {
+    setActive(false);
+  }, [setActive]);
+
+  return (
+    <HoverBoxTopology>
+      <div
+        className={clsx({
+          [classes.hoverBox]: true,
+          [classes.shine]: shine,
+        })}
+        data-testid="HoverBox"
       >
-        {this.props.children}
-      </HoverBoxImpl>
-    ));
-  }
-}
+        <HoverBoxTrigger
+          onClick={onClick}
+          onHide={hideContent}
+          onShow={showContent}
+        >
+          {children}
+        </HoverBoxTrigger>
+        <div
+          className={clsx({
+            [classes.hiddenPart]: true,
+            [classes.visible]: shouldShow,
+            [classes.popout]: shouldShow && popout,
+          })}
+        >
+          {!popout && children}
+          {shouldShow && hiddenChildren}
+        </div>
+      </div>
+    </HoverBoxTopology>
+  );
+};
 
 export default HoverBox;

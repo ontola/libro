@@ -18,7 +18,7 @@ import React from 'react';
 import { renderLinked } from '../../../../../tests/test-utils';
 import app from '../../../../ontology/app';
 import ontola from '../../../../ontology/ontola';
-import AppMenu from '../../../../topologies/AppMenu';
+import AppMenu, { AppMenuChildProps } from '../../../../topologies/AppMenu';
 
 describe('MenuItem', () => {
   const menuIRI = app.ns('menus/user');
@@ -73,7 +73,7 @@ describe('MenuItem', () => {
           </button>
         )}
       >
-        {({ handleClose }) => (
+        {({ handleClose }: AppMenuChildProps) => (
           <Resource
             childProps={{
               handleClose,

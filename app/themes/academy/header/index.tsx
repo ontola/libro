@@ -55,20 +55,20 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 }));
 
 const AcademyHeader = (): JSX.Element => {
-  const classNames = useStyles();
+  const classes = useStyles();
   const websiteIRI = useWebsiteIRI();
 
   return (
     <Navbar
       fullWidth
       classes={({
-        root: classNames.root,
-        wrapper: classNames.wrapper,
+        root: classes.root,
+        wrapper: classes.wrapper,
       })}
     >
-      <div className={classNames.nav}>
+      <div className={classes.nav}>
         <NavLink
-          className={classNames.logoWrapper}
+          className={classes.logoWrapper}
           to={retrievePath(websiteIRI)!}
         >
           <Resource subject={websiteIRI}>
@@ -80,7 +80,7 @@ const AcademyHeader = (): JSX.Element => {
             Academy
           </span>
         </NavLink>
-        <span className={classNames.searchWrapper}>
+        <span className={classes.searchWrapper}>
           <ChapterSearch />
         </span>
       </div>

@@ -23,14 +23,14 @@ import Heading from '../../../Common/components/Heading';
 import Image from '../../../Common/components/Image';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';
 
-const BadgeContainer: FC = ({ subject }) => {
+const BadgeContainer: FC = () => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
   const [image] = useProperty(schema.image);
   const [name] = useProperty(schema.name);
 
   return (
-    <Card about={subject?.value}>
+    <Card>
       <CardContent
         centered
         noSpacing

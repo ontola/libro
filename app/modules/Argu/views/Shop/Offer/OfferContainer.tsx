@@ -25,8 +25,8 @@ import CardHeader from '../../../../Common/components/Card/CardHeader';
 
 import OfferActionButtons from './OfferActionButtons';
 
-const OfferContainer: FC = ({ subject }) => (
-  <Card about={subject?.value}>
+const OfferContainer: FC = () => (
+  <Card>
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
       <CardHeader float={<Property label={ontola.destroyAction} />}>

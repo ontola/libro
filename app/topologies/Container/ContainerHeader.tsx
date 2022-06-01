@@ -1,16 +1,22 @@
-import { WithStyles, withStyles } from '@mui/styles';
 import React from 'react';
+import { makeStyles } from '@mui/styles';
+import { useTopologyProvider } from 'link-redux';
 
 import { headingCID } from '../../modules/Common/components/Heading';
 import { LibroTheme } from '../../themes/themes';
 import { containerHeaderTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
 import ContainerFloat from './ContainerFloat';
 
+export interface ContainerHeaderProps {
+  /** The float content floats to the right */
+  float: React.ReactNode,
+}
+
 const HEADER_GAP = 4;
 
-const styles = (theme: LibroTheme) => ({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   containerHeader: {
     [`& .${headingCID}`]: {
       marginBottom: 0,
@@ -28,39 +34,27 @@ const styles = (theme: LibroTheme) => ({
     paddingBottom: '5px',
     paddingTop: '5px',
   },
-});
-
-interface ContainerHeaderProps extends WithStyles<typeof styles> {
-  /** The children float to the left */
-  children: React.ReactNode;
-  /** The float content floats to the right */
-  float: React.ReactNode,
-}
+}));
 
 /**
  * Holds a header and menu items that float to the top right of the container
- * @returns {component} Component
  */
-class ContainerHeader extends Topology<ContainerHeaderProps> {
+const ContainerHeader: TopologyFC<ContainerHeaderProps> = ({ children, float }) => {
+  const [ContainerHeaderTopology] = useTopologyProvider(containerHeaderTopology);
+  const classes = useStyles();
 
-  constructor(props: ContainerHeaderProps) {
-    super(props);
-
-    this.topology = containerHeaderTopology;
-  }
-
-  public render() {
-    return this.wrap((
-      <div className={this.props.classes.containerHeader}>
-        <div className={this.props.classes.header}>
-          {this.props.children}
+  return (
+    <ContainerHeaderTopology>
+      <div className={classes.containerHeader}>
+        <div className={classes.header}>
+          {children}
         </div>
         <ContainerFloat>
-          {this.props.float}
+          {float}
         </ContainerFloat>
       </div>
-    ));
-  }
-}
+    </ContainerHeaderTopology>
+  );
+};
 
-export default withStyles(styles)(ContainerHeader);
+export default ContainerHeader;

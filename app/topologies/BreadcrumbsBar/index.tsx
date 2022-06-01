@@ -1,16 +1,13 @@
 import MUIContainer from '@mui/material/Container';
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { parentTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
-const styles = (theme: LibroTheme) => createStyles({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   breadcrumbsBar: {
     backgroundColor: theme.palette.grey.xxLight,
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -26,36 +23,23 @@ const styles = (theme: LibroTheme) => createStyles({
     display: 'flex',
     gap: '.3rem',
   },
-});
+}));
 
-interface BreadcrumbsBarProps extends React.PropsWithChildren<WithStyles<typeof styles>>{
-  showArrow?: boolean;
-}
+const BreadcrumbsBar: TopologyFC = ({ children }) => {
+  const [BreadcrumbsBarTopology] = useTopologyProvider(parentTopology);
+  const classes = useStyles();
 
-/**
- * Used to divide a card in multiple rows
- * @returns {component} Component
- */
-class BreadcrumbsBar extends Topology<BreadcrumbsBarProps> {
-  public constructor(props: BreadcrumbsBarProps) {
-    super(props);
-
-    this.topology = parentTopology;
-  }
-
-  public render() {
-    return this.wrap((
-      <div className={this.props.classes.breadcrumbsBar}>
-        <MUIContainer
-          maxWidth="xl"
-        >
-          <div className={this.props.classes.flex}>
-            {this.props.children}
+  return (
+    <BreadcrumbsBarTopology>
+      <div className={classes.breadcrumbsBar}>
+        <MUIContainer maxWidth="xl">
+          <div className={classes.flex}>
+            {children}
           </div>
         </MUIContainer>
       </div>
-    ));
-  }
-}
+    </BreadcrumbsBarTopology>
+  );
+};
 
-export default withStyles(styles)(BreadcrumbsBar);
+export default BreadcrumbsBar;

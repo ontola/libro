@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 const useStyles = makeStyles({
   pageHeaderImageAndTextWrapper: {
@@ -9,7 +8,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PageHeaderMenuItems: React.FC = ({ children }) => {
+const PageHeaderMenuItems: React.FC<ChildrenProp> = ({ children }) => {
   const classes = useStyles();
 
   return (
@@ -17,10 +16,6 @@ const PageHeaderMenuItems: React.FC = ({ children }) => {
       {children}
     </div>
   );
-};
-
-PageHeaderMenuItems.propTypes = {
-  children: PropTypes.node,
 };
 
 export default PageHeaderMenuItems;

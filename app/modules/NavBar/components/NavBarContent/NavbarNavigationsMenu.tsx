@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { frontendIRI } from '../../../../ontology/app';
 import ontola from '../../../../ontology/ontola';
-import AppMenu from '../../../../topologies/AppMenu';
+import AppMenu, { AppMenuChildProps } from '../../../../topologies/AppMenu';
 import { navBarMessages } from '../../../../translations/messages';
 import { usePriorityNavigation } from '../../../Common/hooks/usePriorityNavigation';
 import { Trigger } from '../../../Menu/components/DropdownMenu/TriggerButton';
@@ -86,7 +86,7 @@ const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.E
         </div>
         {(hiddenItems.length > 0) && (
           <AppMenu trigger={createTrigger(classes)}>
-            {({ handleClose }) => hiddenItems.map((iri) => (
+            {({ handleClose }: AppMenuChildProps) => hiddenItems?.map((iri) => (
               <Resource
                 hideIcon
                 childProps={{

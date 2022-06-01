@@ -1,38 +1,29 @@
 import { TableCell } from '@mui/material';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { tableFooterCellTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
 export const tableFooterCellCID = 'CID-TableFooterCell';
 
-interface Props {
+interface TableFooterCellProps {
   colSpan?: number;
 }
 
-class TableFooterCell extends TopologyProvider<Props> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    colSpan: PropTypes.number,
-  };
+const TableFooterCell: TopologyFC<TableFooterCellProps> = ({ children, colSpan }) => {
+  const [TableFooterCellTopology] = useTopologyProvider(tableFooterCellTopology);
 
-  constructor(props: Props) {
-    super(props);
-
-    this.topology = tableFooterCellTopology;
-  }
-
-  public render() {
-    return this.wrap((
+  return (
+    <TableFooterCellTopology>
       <TableCell
         className={tableFooterCellCID}
-        colSpan={this.props.colSpan}
+        colSpan={colSpan}
       >
-        {this.props.children}
+        {children}
       </TableCell>
-    ));
-  }
-}
+    </TableFooterCellTopology>
+  );
+};
 
 export default TableFooterCell;

@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 const useStyles = makeStyles({
   pageHeaderText: {
@@ -12,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PageHeaderText: React.FC = ({ children }) => {
+const PageHeaderText: React.FC<ChildrenProp> = ({ children }) => {
   const classes = useStyles();
 
   return (
@@ -20,10 +19,6 @@ const PageHeaderText: React.FC = ({ children }) => {
       {children}
     </div>
   );
-};
-
-PageHeaderText.propTypes = {
-  children: PropTypes.node,
 };
 
 export default PageHeaderText;

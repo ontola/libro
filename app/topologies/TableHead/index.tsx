@@ -1,15 +1,18 @@
-import { TableHead } from '@mui/material';
-import { WithStyles, withStyles } from '@mui/styles';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
-import React, { PropsWithChildren } from 'react';
+import MUITableHead from '@mui/material/TableHead';
+import { makeStyles } from '@mui/styles';
+import clsx from 'clsx';
+import { useTopologyProvider } from 'link-redux';
+import React from 'react';
 
 import argu from '../../modules/Argu/ontology/argu';
 import { LibroTheme } from '../../themes/themes';
+import { TopologyFC } from '../Topology';
+
+export type TableHeadProps = React.HTMLAttributes<HTMLElement>;
 
 export const tableHeadTopology = argu.ns('tableHead');
 
-const styles = (theme: LibroTheme) => ({
+const useStyles = makeStyles<LibroTheme>((theme: LibroTheme) => ({
   tableHead: {
     '& button': {
       color: 'inherit',
@@ -28,30 +31,22 @@ const styles = (theme: LibroTheme) => ({
     borderBottom: theme.greyBorder,
     color: theme.palette.grey.midDark,
   },
-});
+}));
 
-type TableHeadProps = PropsWithChildren<WithStyles<typeof styles>>;
+const TableHead: TopologyFC<TableHeadProps> = ({ children, className, ...attr }) => {
+  const [TableHeadTopology] = useTopologyProvider(tableHeadTopology);
+  const classes = useStyles();
 
-class TableHeadClass extends TopologyProvider<TableHeadProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+  return (
+    <TableHeadTopology>
+      <MUITableHead
+        className={clsx(classes.tableHead, className)}
+        {...attr}
+      >
+        {children}
+      </MUITableHead>
+    </TableHeadTopology>
+  );
+};
 
-  constructor(props: TableHeadProps) {
-    super(props);
-
-    this.topology = tableHeadTopology;
-  }
-
-  public render() {
-    const { classes, ...otherProps } = this.props;
-
-    return this.wrap((
-      <TableHead
-        className={classes.tableHead}
-        {...otherProps}
-      />));
-  }
-}
-
-export default withStyles(styles)(TableHeadClass);
+export default TableHead;

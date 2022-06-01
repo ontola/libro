@@ -1,26 +1,20 @@
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { cardAppendixTopology } from '../../topologies';
-import Topology, { TopologyContent } from '../Topology';
+import { TopologyFC } from '../Topology';
 
 /**
  * Renders an empty CardAppendix
- * @returns {component} Component
  */
-class CardAppendix extends Topology {
-  constructor(props: Record<string, unknown>) {
-    super(props);
+const CardAppendix: TopologyFC = ({ children }) => {
+  const [CardAppendixTopology] = useTopologyProvider(cardAppendixTopology);
 
-    this.topology = cardAppendixTopology;
-  }
-
-  public renderContent(): TopologyContent {
-    return this.wrap(() => (
-      <React.Fragment>
-        {this.props.children}
-      </React.Fragment>
-    ));
-  }
-}
+  return (
+    <CardAppendixTopology>
+      {children}
+    </CardAppendixTopology>
+  );
+};
 
 export default CardAppendix;

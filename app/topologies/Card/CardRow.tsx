@@ -1,21 +1,23 @@
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
+import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../themes/themes';
 import { cardRowTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
+import { LibroTheme } from '../../themes/themes';
 
 import { cardClassIdentifier, collapseTextToggleCID } from './sharedCardStyles';
 
 export const cardRowClassIdentifier = 'CID-CardRow';
 export const cardRowBackdropClassIdentifier = 'CID-CardRowBackdrop';
 
-const styles = (theme: LibroTheme) => createStyles({
+export interface CardRowProps {
+  backdrop?: boolean;
+  borderTop?: boolean;
+}
+
+const useStyles = makeStyles((theme: LibroTheme) => createStyles({
   backdrop: {
     backgroundColor: theme.palette.background.paper,
     [`& .${collapseTextToggleCID}`]: {
@@ -37,39 +39,29 @@ const styles = (theme: LibroTheme) => createStyles({
     },
     borderTop: theme.greyBorder,
   },
-});
-
-interface CardRowProps extends React.PropsWithChildren<WithStyles<typeof styles>>{
-  backdrop?: boolean;
-  borderTop?: boolean;
-  showArrow?: boolean;
-}
+}));
 
 /**
  * Used to divide a card in multiple rows
- * @returns {component} Component
  */
-class CardRow extends Topology<CardRowProps> {
-  constructor(props: CardRowProps) {
-    super(props);
+const CardRow: TopologyFC<CardRowProps> = ({ children, backdrop, borderTop }) => {
+  const [CardRowTopology] = useTopologyProvider(cardRowTopology);
+  const classes = useStyles();
+  const className = clsx({
+    [cardRowBackdropClassIdentifier]: backdrop,
+    [classes.backdrop]: backdrop,
+    [cardRowClassIdentifier]: true,
+    [classes.cardRow]: true,
+    [classes.topBorder]: borderTop,
+  });
 
-    this.topology = cardRowTopology;
-  }
-  public getElementProps(): Record<string, unknown> {
-    return { 'data-testid': 'card-row' };
-  }
+  return (
+    <CardRowTopology>
+      <div className={className}>
+        {children}
+      </div>
+    </CardRowTopology>
+  );
+};
 
-  public getClassName(): string {
-    const { classes } = this.props;
-
-    return clsx({
-      [cardRowBackdropClassIdentifier]: this.props.backdrop,
-      [classes.backdrop]: this.props.backdrop,
-      [cardRowClassIdentifier]: true,
-      [classes.cardRow]: true,
-      [classes.topBorder]: this.props.borderTop,
-    });
-  }
-}
-
-export default withStyles(styles)(CardRow);
+export default CardRow;

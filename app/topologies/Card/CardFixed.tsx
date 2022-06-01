@@ -1,23 +1,28 @@
 import {
-  WithStyles,
   createStyles,
-  withStyles, 
+  makeStyles,
 } from '@mui/styles';
 import clsx from 'clsx';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../themes/themes';
 import { cardFixedTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
 import {
   cardClassIdentifier,
   cardFixedClassIdentifier,
   cardFixedStyles,
-  cardStyles, 
+  cardStyles,
 } from './sharedCardStyles';
 
-const styles = (theme: LibroTheme) => ({
+export interface CardFixedProps {
+  fill?: boolean;
+  loading?: boolean;
+}
+
+const useStyles = makeStyles((theme: LibroTheme) => ({
   ...cardStyles(theme),
   ...cardFixedStyles(theme),
   ...createStyles({
@@ -30,41 +35,37 @@ const styles = (theme: LibroTheme) => ({
       margin: '0rem 0.5625rem',
     },
   }),
-});
-
-interface CardFixedProps extends React.PropsWithChildren<WithStyles<typeof styles>> {
-  fill?: boolean;
-  fixed?: boolean;
-  loading?: boolean;
-}
+}));
 
 /**
  * Renders an empty Card without padding
- * @returns {component} Component
  */
-class CardFixed extends Topology<CardFixedProps> {
-  public static defaultProps = {
-    fixed: false,
-  };
+const CardFixed: TopologyFC<CardFixedProps> = ({
+  children, fill, loading,
+}) => {
+  const [CardFixedTopology, subject] = useTopologyProvider(cardFixedTopology);
+  const classes = useStyles();
 
-  constructor(props: CardFixedProps) {
-    super(props);
+  const className = clsx({
+    [cardClassIdentifier]: true,
+    [cardFixedClassIdentifier]: true,
+    [classes.card]: true,
+    [classes.fixed]: true,
+    [classes.fill]: fill,
+    [classes.loading]: loading,
+  });
 
-    this.topology = cardFixedTopology;
-  }
+  return (
+    <CardFixedTopology>
+      <div
+        className={className}
+        resource={subject?.value}
+      >
+        {children}
+      </div>
+    </CardFixedTopology>
+  );
+};
 
-  public getClassName(): string {
-    const { classes } = this.props;
+export default CardFixed;
 
-    return clsx({
-      [cardClassIdentifier]: true,
-      [cardFixedClassIdentifier]: true,
-      [classes.card]: true,
-      [classes.fixed]: true,
-      [classes.fill]: this.props.fill,
-      [classes.loading]: this.props.loading,
-    });
-  }
-}
-
-export default withStyles(styles)(CardFixed);

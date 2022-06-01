@@ -1,21 +1,22 @@
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
+import { useTopologyProvider } from 'link-redux';
+import React from 'react';
 
 import { tableFooterRowTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-/** The same as {TableRow} but needed since headers are nearly always rendered differently. */
-class TableFooterRow extends TopologyProvider {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+export type TableFooterRowProps = React.HTMLAttributes<HTMLTableRowElement>;
 
-  constructor(props: Record<string, unknown>) {
-    super(props);
+/** The same as {@link TableRow} but needed since headers are nearly always rendered differently. */
+const TableFooterRow: TopologyFC<TableFooterRowProps> = ({ children, ...elemProps }) => {
+  const [TableFooterRowTopology] = useTopologyProvider(tableFooterRowTopology);
 
-    this.className = 'TableFooterRow';
-    this.elementType = 'tr';
-    this.topology = tableFooterRowTopology;
-  }
-}
+  return (
+    <TableFooterRowTopology>
+      <tr {...elemProps}>
+        {children}
+      </tr>
+    </TableFooterRowTopology>
+  );
+};
 
 export default TableFooterRow;

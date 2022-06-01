@@ -3,17 +3,16 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import {
   FormControlLabel,
   RadioGroup as MaterialRadioGroup,
-  Radio, 
+  Radio,
 } from '@mui/material';
 import { darken } from '@mui/material/styles';
 import {
-  WithStyles,
   createStyles,
-  withStyles, 
+  makeStyles,
 } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
-import { Resource } from 'link-redux';
+import { Resource, useTopologyProvider } from 'link-redux';
 import React, { EventHandler } from 'react';
 
 import { SHADOW } from '../../modules/Common/lib/flow';
@@ -22,11 +21,21 @@ import { FormTheme } from '../../modules/Form/components/Form/FormContext';
 import { InputValue } from '../../modules/Form/components/FormField/FormFieldTypes';
 import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { radioGroupTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
+
+interface RadioGroupProps {
+  loading?: boolean;
+  name?: string;
+  onChange: EventHandler<any>;
+  options: SomeTerm[];
+  required?: boolean;
+  theme?: FormTheme;
+  value?: InputValue;
+}
 
 const DARKEN_COEFFICIENT = 0.2;
 
-const radioGroupStyles = (theme: LibroTheme) => createStyles( {
+const useStyles = makeStyles<LibroTheme>((theme) => createStyles({
   '@keyframes flow-radio-clicked': {
     'from': {
       transform: 'scale(1)',
@@ -66,59 +75,40 @@ const radioGroupStyles = (theme: LibroTheme) => createStyles( {
     overflowX: 'auto',
     paddingLeft: '1rem',
   },
-});
+}));
 
-interface RadioGroupProps extends WithStyles<typeof radioGroupStyles> {
-  loading?: boolean;
-  name?: string;
-  onChange: EventHandler<any>;
-  options: SomeTerm[];
-  required?: boolean;
-  theme?: FormTheme;
-  value?: InputValue;
-}
+const RadioGroup: TopologyFC<RadioGroupProps> = ({
+  theme, options, required, name, value, onChange,
+}) => {
+  const [RadioGroupTopology] = useTopologyProvider(radioGroupTopology);
+  const classes = useStyles();
 
-class RadioGroup extends Topology<RadioGroupProps> {
-  constructor(props: RadioGroupProps) {
-    super(props);
+  const radioClassName = clsx({
+    [classes.radioFlow]: theme === FormTheme.Flow,
+  });
 
-    this.topology = radioGroupTopology;
-  }
+  const labelClassName = clsx({
+    [classes.labelFlow]: theme === FormTheme.Flow,
+  });
 
-  public render() {
-    const {
-      classes,
-      name,
-      onChange,
-      options,
-      required,
-      theme,
-      value,
-    } = this.props;
+  const formControlClassName = clsx({
+    [classes.formControlFlow]: theme === FormTheme.Flow,
+  });
 
-    const radioClassName = clsx({
-      [classes.radioFlow]: theme === FormTheme.Flow,
-    });
+  const wrapperFlowClassName = clsx({
+    [classes.wrapperFlow]: theme === FormTheme.Flow,
+  });
 
-    const labelClassName = clsx({
-      [classes.labelFlow]: theme === FormTheme.Flow,
-    });
+  const onChangeMemo = React.useCallback((_, v) => (
+    onChange(options.find((option) => option.value === v))
+  ), [onChange, options]);
 
-    const formControlClassName = clsx({
-      [classes.formControlFlow]: theme === FormTheme.Flow,
-    });
-
-    const wrapperFlowClassName = clsx({
-      [classes.wrapperFlow]: theme === FormTheme.Flow,
-    });
-
-    return this.wrap((
+  return (
+    <RadioGroupTopology>
       <div className={wrapperFlowClassName}>
         <MaterialRadioGroup
           value={value?.value}
-          onChange={(_, v) => (
-            onChange(options.find((option) => option.value === v))
-          )}
+          onChange={onChangeMemo}
         >
           {options.map((option) => (
             <FormControlLabel
@@ -143,8 +133,8 @@ class RadioGroup extends Topology<RadioGroupProps> {
           ))}
         </MaterialRadioGroup>
       </div>
-    ));
-  }
-}
+    </RadioGroupTopology>
+  );
+};
 
-export default withStyles(radioGroupStyles)(RadioGroup);
+export default RadioGroup;

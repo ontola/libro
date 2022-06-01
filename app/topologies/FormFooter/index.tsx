@@ -1,36 +1,28 @@
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
-import { TopologyProvider } from 'link-redux';
+import { createStyles, makeStyles } from '@mui/styles';
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
 import { formFooterTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-const styles = () => createStyles({
+const useStyles = makeStyles(() => createStyles({
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
   },
-});
+}));
 
-type PropTypes = WithStyles<typeof styles>;
+const FormFooter: TopologyFC = ({ children }) => {
+  const [FormFooterTopology] = useTopologyProvider(formFooterTopology);
+  const classes = useStyles();
 
-class FormFooter extends TopologyProvider<PropTypes> {
-  constructor(props: PropTypes) {
-    super(props);
-
-    this.topology = formFooterTopology;
-  }
-
-  public render() {
-    return this.wrap((
-      <div className={this.props.classes.wrapper}>
-        {this.props.children}
+  return (
+    <FormFooterTopology>
+      <div className={classes.wrapper}>
+        {children}
       </div>
-    ));
-  }
-}
+    </FormFooterTopology>
+  );
+};
 
-export default withStyles(styles)(FormFooter);
+export default FormFooter;

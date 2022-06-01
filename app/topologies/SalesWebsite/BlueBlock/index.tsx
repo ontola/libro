@@ -1,42 +1,40 @@
 import { Container as MaterialContainer } from '@mui/material';
-import { withStyles } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
-import { LibroTheme } from '../../../themes/themes';
+import { LibroTheme, Size } from '../../../themes/themes';
 import { blueBlockTopology } from '../../../topologies';
-import Container, { ContainerProps } from '../../Container';
-import { TopologyContent } from '../../Topology';
+import { ContainerProps, maxWidth } from '../../Container';
+import { TopologyFC } from '../../Topology';
 
-const styles = (theme: LibroTheme) => ({
+const useStyles = makeStyles<LibroTheme>((theme) => ({
   root: {
     background: theme.palette.primary.main,
     padding: 30,
   },
-});
+}));
 
-type BlueBlockProps = ContainerProps & Record<string, unknown> & {classes: {
-  root: string,
-  }};
+const BlueBlock: TopologyFC<ContainerProps> = ({ children, ...props }) => {
+  const [BlueBlockTopology] = useTopologyProvider(blueBlockTopology);
+  const classes = useStyles();
+  const {
+    size,
+    ...containerProps
+  } = props;
 
-class BlueBlock<P extends BlueBlockProps = BlueBlockProps> extends Container<P> {
-  constructor(props: P) {
-    super(props);
-
-    this.topology = blueBlockTopology;
-  }
-
-  public renderContent(): TopologyContent {
-    return this.wrap((
-      <div className={this.props.classes.root}>
+  return (
+    <BlueBlockTopology>
+      <div className={classes.root}>
         <MaterialContainer
-          maxWidth={this.maxWidth()}
-          {...this.props}
-        />
+          maxWidth={maxWidth(size ?? Size.Medium)}
+          {...containerProps}
+        >
+          {children}
+        </MaterialContainer>
       </div>
-    ));
-  }
-}
+    </BlueBlockTopology>
+  );
+};
 
-// TODO
-// @ts-ignore
-export default withStyles(styles)(BlueBlock);
+export default BlueBlock;

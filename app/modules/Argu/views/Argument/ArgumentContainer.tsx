@@ -36,10 +36,7 @@ const ArgumentContainer: FC = ({ subject }): JSX.Element => {
   const { highlightState } = useHighlight();
 
   return (
-    <Card
-      about={subject.value}
-      shine={subject.value === highlightState}
-    >
+    <Card shine={subject.value === highlightState}>
       <HeadingContext>
         <Property label={ontola.coverPhoto} />
         <div className={classes.content}>

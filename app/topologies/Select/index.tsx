@@ -1,8 +1,9 @@
 import { makeStyles } from '@mui/styles';
 import React, { Ref } from 'react';
+import { useTopologyProvider } from 'link-redux';
 
 import { selectTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
 export const useSelectItemStyles = makeStyles({
   image: {
@@ -26,39 +27,27 @@ export const useSelectItemStyles = makeStyles({
   },
 });
 
-interface Props {
+export interface SelectProps {
   innerRef?: Ref<HTMLDivElement>;
   role?: string;
   scrollIntoView?: any;
 }
 
-class Select<P extends Props = Record<string, unknown>> extends Topology<P> {
-  constructor(props: P) {
-    super(props);
+const Select: TopologyFC<SelectProps> = ({ children, innerRef, role }) => {
+  const [SelectTopology] = useTopologyProvider(selectTopology);
 
-    this.elementType = 'ul';
-    this.topology = selectTopology;
-  }
-
-  public render() {
-    const {
-      children,
-      scrollIntoView, // eslint-disable-line unused-imports/no-unused-vars
-      innerRef,
-      ...props
-    } = this.props;
-
-    return this.wrap((
+  return (
+    <SelectTopology>
       <div
         ref={innerRef}
         role="listbox"
       >
-        <ul {...props}>
+        <ul role={role}>
           {children}
         </ul>
       </div>
-    ));
-  }
-}
+    </SelectTopology>
+  );
+};
 
 export default Select;

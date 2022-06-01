@@ -1,35 +1,30 @@
 import { GridTypeMap, Grid as MaterialGrid } from '@mui/material';
-import { TopologyProvider } from 'link-redux';
+import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LoadingFullResource } from '../../modules/Core/components/Loading';
 import Suspense from '../../modules/Core/components/Suspense';
 import { gridTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-type GridProps = GridTypeMap['props'] & { className?: string };
+type GridProps = GridTypeMap['props'] & { className?: string; };
 
-class Grid extends TopologyProvider<GridProps> {
-  constructor(props: GridProps) {
-    super(props);
+const Grid: TopologyFC<GridProps> = ({ children, ...muiGridProps }) => {
+  const [GridTopology] = useTopologyProvider(gridTopology);
 
-    this.topology = gridTopology;
-  }
-
-  public render() {
-    const { children, ...otherProps } = this.props;
-
-    return this.wrap((
+  return (
+    <GridTopology>
       <Suspense fallback={<LoadingFullResource />}>
         <MaterialGrid
           container
           spacing={6}
-          {...otherProps}
+          {...muiGridProps}
         >
           {children}
         </MaterialGrid>
       </Suspense>
-    ));
-  }
-}
+    </GridTopology>
+  );
+};
 
 export default Grid;

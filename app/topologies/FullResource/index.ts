@@ -1,18 +1,6 @@
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
-
 import { fullResourceTopology } from '../../topologies';
+import { createBasicTopologyProvider } from '../Topology';
 
-class FullResource extends TopologyProvider {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  constructor(props: Record<string, unknown>) {
-    super(props);
-
-    this.topology = fullResourceTopology;
-  }
-}
+const FullResource = createBasicTopologyProvider(fullResourceTopology);
 
 export default FullResource;

@@ -1,44 +1,36 @@
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
-import { ReactNode } from 'react';
+import { useTopologyProvider } from 'link-redux';
+import React from 'react';
+import { createStyles, makeStyles } from '@mui/styles';
+import clsx from 'clsx';
 
 import { LibroTheme, Margin } from '../../themes/themes';
 import { tableHeaderCellTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-const styles = (theme: LibroTheme) => createStyles({
+const useStyles = makeStyles((theme: LibroTheme) => createStyles({
   tableHeaderCell: {
-    padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Small)}`,
+    padding: theme.spacing(Margin.Small),
     textAlign: 'left',
     wordBreak: 'normal',
   },
-});
+}));
 
-type TableHeaderCellProps = WithStyles<typeof styles> & {
-  children?: ReactNode;
-  title?: string;
+type TableHeaderCellProps = React.ThHTMLAttributes<HTMLTableCellElement>;
+
+const TableHeaderCell: TopologyFC<TableHeaderCellProps> = ({ children, className, ...elemProps }) => {
+  const [TableHeaderCellTopology] = useTopologyProvider(tableHeaderCellTopology);
+  const classes = useStyles();
+
+  return (
+    <TableHeaderCellTopology>
+      <th
+        className={clsx(classes.tableHeaderCell, className)}
+        {...elemProps}
+      >
+        {children}
+      </th>
+    </TableHeaderCellTopology>
+  );
 };
 
-class TableHeaderCell extends TopologyProvider<TableHeaderCellProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  constructor(props: TableHeaderCellProps) {
-    super(props);
-
-    this.className = this.getClassName();
-    this.elementType = 'th';
-    this.topology = tableHeaderCellTopology;
-  }
-
-  public getClassName(): string {
-    return this.props.classes.tableHeaderCell;
-  }
-}
-
-export default withStyles(styles)(TableHeaderCell);
+export default TableHeaderCell;

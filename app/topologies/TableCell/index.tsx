@@ -1,20 +1,19 @@
-import { TableCell, TableCellProps } from '@mui/material';
 import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
+  TableCell as MUITableCell,
+  TableCellProps as MUITableCellProps,
+} from '@mui/material';
 import clsx from 'clsx';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
+import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
+import { makeStyles } from '@mui/styles';
 
 import { headingCID } from '../../modules/Common/components/Heading';
 import HeadingContext from '../../modules/Common/components/Heading/HeadingContext';
 import { LibroTheme, Margin } from '../../themes/themes';
 import { tableCellTopology } from '../../topologies';
+import { TopologyFC } from '../Topology';
 
-const styles = (theme: LibroTheme) => createStyles({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   noBorder: {
     borderBottom: 'none',
   },
@@ -25,50 +24,41 @@ const styles = (theme: LibroTheme) => createStyles({
     },
     padding: `${theme.spacing(Margin.Small)} ${theme.spacing(Margin.Small)}`,
   },
-});
+}));
 
-type PropTypes = WithStyles<typeof styles> & TableCellProps & {
+type TableCellProps = MUITableCellProps & {
   noBorder?: boolean;
   children?: ReactNode;
   colSpan?: number;
 };
 
-class TableCellClass extends TopologyProvider<PropTypes> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+const TableCell: TopologyFC<TableCellProps> = ({
+  align,
+  colSpan,
+  children,
+  noBorder,
+}) => {
+  const [TableCellTopology] = useTopologyProvider(tableCellTopology);
+  const classes = useStyles();
 
-  constructor(props: PropTypes) {
-    super(props);
+  const className = clsx({
+    [classes.tableCell]: true,
+    [classes.noBorder]: noBorder,
+  });
 
-    this.topology = tableCellTopology;
-  }
-
-  public render() {
-    const {
-      align,
-      classes,
-      colSpan,
-      noBorder,
-      children,
-    } = this.props;
-
-    const className = clsx({
-      [classes.tableCell]: true,
-      [classes.noBorder]: noBorder,
-    });
-
-    return this.wrap((
+  return (
+    <TableCellTopology>
       <HeadingContext>
-        <TableCell
+        <MUITableCell
           align={align}
           className={className}
           colSpan={colSpan}
         >
           {children}
-        </TableCell>
-      </HeadingContext>));
-  }
-}
+        </MUITableCell>
+      </HeadingContext>
+    </TableCellTopology>
+  );
+};
 
-export default withStyles(styles)(TableCellClass);
+export default TableCell;

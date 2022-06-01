@@ -1,17 +1,13 @@
-import { Table, TableContainer } from '@mui/material';
-import {
-  WithStyles,
-  createStyles,
-  withStyles, 
-} from '@mui/styles';
-import { TopologyProvider } from 'link-redux';
-import PropTypes from 'prop-types';
-import React, { PropsWithChildren } from 'react';
+import { makeStyles } from '@mui/styles';
+import React from 'react';
+import { Table as MUITable, TableContainer } from '@mui/material';
+import { useTopologyProvider } from 'link-redux';
 
 import { LibroTheme, Margin } from '../../themes/themes';
+import { TopologyFC } from '../Topology';
 import { tableTopology } from '../../topologies';
 
-const styles = (theme: LibroTheme) => createStyles({
+const useStyles = makeStyles((theme: LibroTheme) => ({
   table: {
     '& td': {
       '& .fa': {
@@ -37,30 +33,21 @@ const styles = (theme: LibroTheme) => createStyles({
   tableWrapper: {
     maxWidth: '100%',
   },
-});
+}));
 
-type TableProps = PropsWithChildren<WithStyles<typeof styles>>;
+const Table: TopologyFC = ({ children }) => {
+  const [TableTopology] = useTopologyProvider(tableTopology);
+  const classes = useStyles();
 
-class TableClass extends TopologyProvider<TableProps> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  constructor(props: TableProps) {
-    super(props);
-
-    this.topology = tableTopology;
-  }
-
-  public render() {
-    return this.wrap((
-      <TableContainer className={this.props.classes.tableWrapper}>
-        <Table className={this.props.classes.table}>
-          {this.props.children}
-        </Table>
+  return (
+    <TableTopology>
+      <TableContainer className={classes.tableWrapper}>
+        <MUITable className={classes.table}>
+          {children}
+        </MUITable>
       </TableContainer>
-    ));
-  }
-}
+    </TableTopology>
+  );
+};
 
-export default withStyles(styles)(TableClass);
+export default Table;

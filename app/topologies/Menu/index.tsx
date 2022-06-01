@@ -1,30 +1,21 @@
 import React from 'react';
+import { useTopologyProvider } from 'link-redux';
 
 import DropdownMenu from '../../modules/Menu/components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../modules/Menu/components/DropdownMenu/TriggerButton';
 import { menuTopology } from '../../topologies';
-import Topology, { TopologyContent } from '../Topology';
+import { TopologyFC } from '../Topology';
 
-interface PropTypes {
+interface MenuProps {
   trigger: Trigger;
   title: string;
 }
 
-class Menu extends Topology<PropTypes> {
-  constructor(props: PropTypes) {
-    super(props);
+const Menu: TopologyFC<MenuProps> = ({ children, title, trigger }) => {
+  const [MenuTopology] = useTopologyProvider(menuTopology);
 
-    this.topology = menuTopology;
-  }
-
-  public renderContent(): TopologyContent {
-    const {
-      children,
-      title,
-      trigger,
-    } = this.props;
-
-    return this.wrap((
+  return (
+    <MenuTopology>
       <DropdownMenu
         className="Menu"
         title={title}
@@ -32,8 +23,8 @@ class Menu extends Topology<PropTypes> {
       >
         {children}
       </DropdownMenu>
-    ));
-  }
-}
+    </MenuTopology>
+  );
+};
 
 export default Menu;

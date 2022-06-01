@@ -35,7 +35,7 @@ const WebSiteContainer: FC<OrganizationContainerProps> = () => {
   };
 
   return (
-    <Card about={url?.value}>
+    <Card>
       <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
         <Heading size={HeadingSize.LG}>

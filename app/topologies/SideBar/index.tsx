@@ -1,40 +1,30 @@
-import { WithStyles, withStyles } from '@mui/styles';
 import React from 'react';
+import { makeStyles } from '@mui/styles';
+import { useTopologyProvider } from 'link-redux';
 
 import { sideBarTopology } from '../../topologies';
-import Topology from '../Topology';
+import { TopologyFC } from '../Topology';
 
-const styles = {
+const useStyles = makeStyles({
   wrapper: {
     flex: 0,
   },
+});
+
+const SideBar: TopologyFC = ({ children }) => {
+  const [SideBarTopology] = useTopologyProvider(sideBarTopology);
+  const classes = useStyles();
+
+  return (
+    <nav
+      className={classes.wrapper}
+      role="navigation"
+    >
+      <SideBarTopology>
+        {children}
+      </SideBarTopology>
+    </nav>
+  );
 };
 
-type SideBarProps = WithStyles<typeof styles>;
-
-class SideBar extends Topology<SideBarProps> {
-  constructor(props: SideBarProps) {
-    super(props);
-
-    this.className = this.getClassName();
-    this.elementType = 'div';
-    this.topology = sideBarTopology;
-  }
-
-  public getClassName(): string {
-    return this.props.classes.wrapper;
-  }
-
-  render() {
-    return (
-      <nav
-        className={this.getClassName()}
-        role="navigation"
-      >
-        {this.wrap(this.props.children)}
-      </nav>
-    );
-  }
-}
-
-export default withStyles(styles)(SideBar);
+export default SideBar;
