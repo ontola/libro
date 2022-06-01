@@ -59,7 +59,9 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
   loadingCardFloat: {
     borderRadius: '999px !important',
+    display: 'inline-block',
     height: '2em',
+    verticalAlign: 'middle',
     width: '2em',
   },
   loadingCellRow: {
