@@ -9,13 +9,15 @@ import { LoadingHidden } from '../Loading';
 
 export interface AccountHelpersCardAppendixProps {
   currentSubject: Node;
+  onClick: React.MouseEventHandler;
 }
 
 const AccountHelpersCardAppendix = ({
   currentSubject,
+  onClick,
 }: AccountHelpersCardAppendixProps): JSX.Element => {
   const isActive = React.useCallback<IsActiveCheck>(
-    (to: string) => () => new URL(to).pathname === new URL(currentSubject.value).pathname,
+    (to: string) => new URL(to).pathname === new URL(currentSubject.value).pathname,
     [currentSubject.value],
   );
 
@@ -25,6 +27,7 @@ const AccountHelpersCardAppendix = ({
         currentSubject={currentSubject}
         isActive={isActive}
         subject={app.ns('menus/sign_in')}
+        onClick={onClick}
         onLoad={LoadingHidden}
       />
     </CardAppendix>

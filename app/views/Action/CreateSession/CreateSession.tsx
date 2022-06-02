@@ -1,7 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import rdf, { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
-import { originStr } from '@rdfdev/iri';
 import {
   FC,
   Resource,
@@ -10,14 +9,12 @@ import {
 } from 'link-redux';
 import { TopologyContextType } from 'link-redux/dist-types/types';
 import React, { ReactChild } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import AccountHelpersCardAppendix from '../../../components/SignInForm/AccountHelpersCardAppendix';
 import { isDifferentWebsite, retrievePath } from '../../../helpers/iris';
-import { absoluteRouterLocation } from '../../../helpers/paths';
 import { serializeForStorage } from '../../../helpers/persistence';
 import { useCurrentActor } from '../../../hooks/useCurrentActor';
-import { useWebsiteIRI } from '../../../hooks/useWebsiteIRI';
 import { website } from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import { actionsBarTopology, allTopologiesExcept } from '../../../topologies';
@@ -43,11 +40,8 @@ const CreateSession: FC<CreateSessionProps> = ({
   const { actorType } = useCurrentActor();
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const websiteIRI = useWebsiteIRI();
-  const origin = originStr(websiteIRI.value);
-  const currentSubject = rdf.namedNode(absoluteRouterLocation(location, origin));
 
+  const [currentSubject, setSubject] = React.useState(subject);
   const [email, setEmail] = React.useState<null | string>(null);
 
   const getRedirectLocation = () => new URL(subject.value).searchParams.get('redirect_url') || website;
@@ -82,18 +76,26 @@ const CreateSession: FC<CreateSessionProps> = ({
   }), [email]);
 
   const onCancelHandler = React.useCallback(
-    () => navigate(-1),
-    [navigate],
+    () => currentSubject === subject ? navigate(-1) : setSubject(subject),
+    [setSubject, subject, currentSubject],
   );
-
-  const onDoneHandler = React.useCallback((doneLocation: NamedNode) => {
-    if (isDifferentWebsite(doneLocation)) {
+  const onDoneHandler = React.useCallback((location: NamedNode) => {
+    if (isDifferentWebsite(location)) {
       lrs.actions.ontola.hideDialog();
-      lrs.actions.ontola.navigate(doneLocation, true);
+      lrs.actions.ontola.navigate(location, true);
     } else {
-      navigate(retrievePath(doneLocation.value));
+      setSubject(location);
     }
-  }, [lrs]);
+  }, [lrs, setSubject]);
+  const appendix = React.useCallback(() => (
+    <AccountHelpersCardAppendix
+      currentSubject={currentSubject}
+      onClick={(e) => {
+        e.preventDefault();
+        setSubject(rdf.namedNode((e.target as HTMLAnchorElement).href));
+      }}
+    />
+  ), [currentSubject]);
 
   if (redirectLocation && actorType && ['ConfirmedUser', 'UnconfirmedUser'].includes(actorType?.value)) {
     navigate(retrievePath(redirectLocation)!, { replace: true });
@@ -102,12 +104,6 @@ const CreateSession: FC<CreateSessionProps> = ({
   }
 
   const ActionComponent = lrs.getComponentForType(schema.Action, topologyCtx);
-
-  const appendix = () => (
-    <AccountHelpersCardAppendix
-      currentSubject={currentSubject}
-    />
-  );
 
   if (!ActionComponent) {
     return null;

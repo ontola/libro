@@ -1,7 +1,6 @@
 import rdf from '@ontologies/core';
 import clsx from 'clsx';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Location } from 'history';
 import { useLRS } from 'link-redux';
 import React, {
   CSSProperties,
@@ -10,6 +9,7 @@ import React, {
   MouseEventHandler,
   Ref,
 } from 'react';
+import { useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -43,7 +43,7 @@ export enum LinkFeature {
   Subtle = 'subtle',
 }
 
-export type IsActiveCheck = (to: string) => (locationMatch: any | null, location: Location) => boolean;
+export type IsActiveCheck = (to: string) => boolean;
 
 export interface LinkProps {
   activeClassName?: string;
@@ -70,6 +70,19 @@ interface PropTypesWithRef extends LinkProps {
   innerRef: Ref<HTMLAnchorElement>;
 }
 
+const useIsActive = (to: string, isActiveCheck?: IsActiveCheck) => {
+  const location = useLocation();
+
+  if (isActiveCheck) {
+    return isActiveCheck(to);
+  }
+
+  const relative = retrievePath(to);
+  const sameOrigin = !isDifferentWebsite(to);
+
+  return sameOrigin && relative === location.pathname + location.search + location.hash;
+};
+
 const Link = ({
   activeClassName,
   allowExternal = true,
@@ -78,6 +91,7 @@ const Link = ({
   disabled,
   features = [],
   innerRef,
+  isActive: isActiveCheck,
   isIndex = true,
   onClick,
   target,
@@ -89,6 +103,7 @@ const Link = ({
   const lrs = useLRS();
   const featureClasses = featureStyles();
   const themeClasses = themeStyles();
+  const active = useIsActive(to, isActiveCheck);
 
   const baseClassName = clsx(
     className,
@@ -96,10 +111,10 @@ const Link = ({
     ...features.map((f) => featureClasses[f]),
   );
 
-  const linkClassName = React.useCallback(({ isActive }: { isActive: boolean; }): string => clsx({
+  const linkClassName = clsx({
     [baseClassName]: true,
-    [activeClassName || linkActiveCID]: isActive,
-  }), [baseClassName]);
+    [activeClassName || linkActiveCID]: active,
+  });
 
   if (disabled) {
     return (
