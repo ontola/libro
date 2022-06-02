@@ -1,6 +1,5 @@
 import { ClickAwayListener, IconButton } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   Property,
   Resource,
@@ -56,7 +55,6 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
     return buttons;
   }
 
-  const hoverCapable = useMediaQuery('(hover: hover)');
   const [renderButtons, setRenderButtons] = React.useState(false);
 
   const handleClickAway = React.useCallback(() => {
@@ -65,12 +63,7 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
-      <span
-        onMouseEnter={() => { if (hoverCapable) {
-          setRenderButtons(true);
-        }}}
-        onMouseLeave={() => setRenderButtons(false)}
-      >
+      <span>
         {renderButtons && buttons}
         {!renderButtons && (
           <IconButton
