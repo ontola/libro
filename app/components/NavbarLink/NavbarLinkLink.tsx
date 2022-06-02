@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
+import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
@@ -29,6 +30,13 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
     fontSize: theme.navBarFontSize,
     minWidth: 'unset',
+  },
+  imageButton: {
+    '&:first-child': {
+      paddingLeft: 0,
+    },
+    paddingBottom: 0,
+    paddingTop: 0,
   },
 }));
 
@@ -100,6 +108,10 @@ const NavbarLinkLink = React.forwardRef<HTMLElement, NavbarLinkLinkProps>(({
         {child}
       </Button>
     );
+  }
+
+  if (!children && image) {
+    baseProps.className = clsx(baseProps.className, classes.imageButton);
   }
 
   return (
