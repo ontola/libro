@@ -3,12 +3,13 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {
   Property,
   Resource,
-  useIds,
-  useValues, 
+  useGlobalIds,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { useEnabledActions } from '../../hooks/useEnabledActions';
 import ontola from '../../ontology/ontola';
 import { collectionMessages } from '../../translations/messages';
 import { useFilterOptions } from '../FilterComboInput/lib/useFilterOptions';
@@ -23,13 +24,19 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   const intl = useIntl();
   const [filterOptions] = useFilterOptions();
   const [sortOptions] = useValues(ontola.sortOptions);
-  const [createOptions] = useIds(ontola.createAction);
+  const [createOptions] = useEnabledActions(useGlobalIds(ontola.createAction));
 
   const {
     hidePagination,
     originalCollection,
   } = useCollectionOptions();
   const renderPagination = !hidePagination;
+
+  const [renderButtons, setRenderButtons] = React.useState(false);
+
+  const handleClickAway = React.useCallback(() => {
+    setRenderButtons(false);
+  }, [setRenderButtons]);
 
   const buttonCount = [
     renderPagination && !!filterOptions,
@@ -54,12 +61,6 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   if (buttonCount === 1) {
     return buttons;
   }
-
-  const [renderButtons, setRenderButtons] = React.useState(false);
-
-  const handleClickAway = React.useCallback(() => {
-    setRenderButtons(false);
-  }, [setRenderButtons]);
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>

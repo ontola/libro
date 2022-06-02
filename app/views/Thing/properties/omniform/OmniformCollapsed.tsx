@@ -33,10 +33,7 @@ import {
   containerTopology,
 } from '../../../../topologies';
 
-import {
-  actionsAreAllDisabled,
-  useActions,
-} from './helpers';
+import { actionsAreAllDisabled, useOmniformActions } from './helpers';
 
 const ESCAPE_KEY = 27;
 
@@ -64,7 +61,7 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
 
   const opened = useOmniformOpenedState(props.subject);
 
-  const items = useActions(potentialAction);
+  const items = useOmniformActions(potentialAction);
 
   const closeForm = useOmniformClose(props.subject);
   const openForm = useOmniformOpenAction(props.subject, items[0]);

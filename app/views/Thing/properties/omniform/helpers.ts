@@ -1,14 +1,12 @@
 import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
-import * as schema from '@ontologies/schema';
-import { SomeNode } from 'link-lib';
-import {
-  LinkReduxLRSType,
-  useDataFetching,
-  useLRS,
-} from 'link-redux';
+import { LinkReduxLRSType } from 'link-redux';
 
 import { allowSort } from '../../../../helpers/data';
-import ontola from '../../../../ontology/ontola';
+import {
+  actionIsAllowed,
+  invalidStatusIds,
+  useEnabledActions,
+} from '../../../../hooks/useEnabledActions';
 
 const OMNIFORM_FILTER = [
   /\/m\/new/,
@@ -28,26 +26,7 @@ const OMNIFORM_ORDER = [
   '/cons/new',
 ];
 
-export const invalidStatusIds = [
-  schema.CompletedActionStatus,
-  ontola.DisabledActionStatus,
-  ontola.ExpiredActionStatus,
-].map((s) => rdf.id(s));
-
-const actionIsAllowed = (lrs: LinkReduxLRSType, action: SomeNode) => {
-  const actionStatus = lrs.getResourceProperty(action, schema.actionStatus);
-
-  return !isInvalidActionStatus(actionStatus);
-};
-
-export const useActions = (items: NamedNode[]): NamedNode[] => {
-  const lrs = useLRS();
-  const filteredItems = allowSort(items, OMNIFORM_FILTER, OMNIFORM_ORDER);
-
-  useDataFetching(filteredItems);
-
-  return filteredItems.filter((action) => actionIsAllowed(lrs, action));
-};
+export const useOmniformActions = (items: NamedNode[]): NamedNode[] => useEnabledActions(allowSort(items, OMNIFORM_FILTER, OMNIFORM_ORDER));
 
 export const actionsAreAllDisabled = (items: NamedNode[], lrs: LinkReduxLRSType): boolean => (
   items.every((action) => !actionIsAllowed(lrs, action))
