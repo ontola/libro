@@ -103,7 +103,9 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }),
     new webpack.DefinePlugin({
       __LEGACY__: false,
     }),
