@@ -9,8 +9,7 @@ import {
   TDescendant,
 } from '@udecode/plate';
 import { PlateStoreState } from '@udecode/plate-core/dist/types/PlateStore';
-import { SomeNode } from 'link-lib';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord, SomeNode } from 'link-lib';
 
 import elements from '../../../../ontology/elements';
 import ontola from '../../../../ontology/ontola';

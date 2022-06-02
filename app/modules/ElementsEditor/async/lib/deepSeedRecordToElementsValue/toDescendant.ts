@@ -5,21 +5,24 @@ import {
 } from '@udecode/plate';
 
 import { elementsMap } from '../mapping';
+import { use } from '../use';
 
 import {
   AnyElementsElement,
   ElementsDeepRecord,
   isAElement,
   isActionItemElement,
+  isButtonElement,
   isGridElement,
   isImgElement,
   isInnerText,
   isPElement,
+  isRowElement,
 } from './toElementsDeepRecord';
 
-const use = <T>(v: T | undefined, cb: (it: T) => void) => {
-  if (v !== undefined) {
-    cb(v);
+const ensureChildTextNode = (element: TElement, text = '') => {
+  if (element.children.length === 0) {
+    element.children.push({ text });
   }
 };
 
@@ -82,6 +85,28 @@ export const toDescendant = (record: ElementsDeepRecord | AnyElementsElement): T
     });
   }
 
+  if (isButtonElement(record)) {
+    use(record['http://schema.org/image'], (it) => {
+      element.image = it.value;
+    });
+    use(record['https://ns.ontola.io/elements#variant'], (it) => {
+      element.variant = it.value;
+    });
+    use(record['https://ns.ontola.io/elements#iconPosition'], (it) => {
+      element.iconPosition = it.value;
+    });
+    use(record['https://ns.ontola.io/elements#color'], (it) => {
+      element.color = it.value;
+    });
+    use(record['https://ns.ontola.io/elements#href'], (it) => {
+      element.href = it.value;
+    });
+    use(record['https://argu.co/ns/core#trackingId'], (it) => {
+      element.trackingId = it.value;
+    });
+    ensureChildTextNode(element, record['http://schema.org/text']?.value ?? '');
+  }
+
   if (isGridElement(record)) {
     use(record['https://ns.ontola.io/elements#gap'], (it) => {
       element.gap = it.value;
@@ -90,6 +115,20 @@ export const toDescendant = (record: ElementsDeepRecord | AnyElementsElement): T
     use(record['https://ns.ontola.io/elements#minWidth'], (it) => {
       element.minWidth = it.value;
     });
+
+    ensureChildTextNode(element);
+  }
+
+  if (isRowElement(record)) {
+    use(record['https://ns.ontola.io/elements#gap'], (it) => {
+      element.gap = it.value;
+    });
+
+    use(record['https://ns.ontola.io/elements#alignment'], (it) => {
+      element.alignment = it.value;
+    });
+
+    ensureChildTextNode(element);
   }
 
   if (isImgElement(record)) {
@@ -140,9 +179,7 @@ export const toDescendant = (record: ElementsDeepRecord | AnyElementsElement): T
       element.caption = it.value;
     });
 
-    if (element.children.length === 0) {
-      element.children.push({ text: '' });
-    }
+    ensureChildTextNode(element);
   }
 
   return element;

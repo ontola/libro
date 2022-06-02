@@ -86,6 +86,8 @@ import {
   usePlateEditorRef,
 } from '@udecode/plate';
 
+import { ButtonToolbarButton } from './plugins/button';
+import { GridToolbarButton } from './plugins/grid';
 import { ELEMENT_NOTE } from './plugins/note';
 import { ELEMENT_TIP } from './plugins/tip';
 
@@ -126,6 +128,7 @@ export const BasicElementToolbarButtons = (): JSX.Element => {
         icon={<Code />}
         type={getPluginType(editor, ELEMENT_CODE_BLOCK)}
       />
+      <ButtonToolbarButton editor={editor} />
       <BlockToolbarButton
         icon={<Lightbulb />}
         type={getPluginType(editor, ELEMENT_TIP)}
@@ -134,6 +137,7 @@ export const BasicElementToolbarButtons = (): JSX.Element => {
         icon={<Note />}
         type={getPluginType(editor, ELEMENT_NOTE)}
       />
+      <GridToolbarButton editor={editor} />
       <BlockToolbarButton
         icon={<CheckBox />}
         type={getPluginType(editor, ELEMENT_TODO_LI)}

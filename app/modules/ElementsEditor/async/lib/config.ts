@@ -27,6 +27,7 @@ import {
   isSelectionAtBlockStart,
 } from '@udecode/plate';
 
+import { ELEMENT_GRID } from '../components/plugins/grid';
 import { ELEMENT_TIP } from '../components/plugins/tip';
 
 const resetBlockTypesCommonRule = {
@@ -196,6 +197,7 @@ export const config: ElementsConfig = {
               ELEMENT_BLOCKQUOTE,
               ELEMENT_TD,
               ELEMENT_TIP,
+              ELEMENT_GRID,
             ],
           },
         },

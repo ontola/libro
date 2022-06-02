@@ -28,7 +28,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   },
 }));
 
-const Row: FC = () => {
+const Row: FC = (props) => {
   const [gap] = useStrings(elements.gap);
   const [alignment] = useStrings(elements.align);
 
@@ -39,7 +39,7 @@ const Row: FC = () => {
 
   return (
     <div className={classes.row}>
-      <Property label={elements.children} />
+      {props.children ?? <Property label={elements.children} />}
     </div>
   );
 };

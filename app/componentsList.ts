@@ -39,6 +39,7 @@ export const components = {
   ElementH6: elements.H6,
   ElementInnerText: elements.InnerText,
   ElementLi: elements.Li,
+  ElementLic: elements.Lic,
   ElementNote: elements.Note,
   ElementOl: elements.Ol,
   ElementP: elements.P,

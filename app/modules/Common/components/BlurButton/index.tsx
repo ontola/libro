@@ -28,6 +28,7 @@ const BlurButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<B
   ...props
 }, ref) => (
   <ButtonBase
+    TouchRippleProps={{ contentEditable: false }}
     ref={ref}
     type="button"
     {...props}

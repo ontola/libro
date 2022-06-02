@@ -1,6 +1,7 @@
 import * as schema from '@ontologies/schema';
 import {
   FC,
+  Resource,
   register,
   useIds,
   useStrings,
@@ -13,7 +14,7 @@ import argu from '../../Argu/ontology/argu';
 import Button, { ButtonVariant } from '../../Common/components/Button';
 import elements from '../ontology/elements';
 
-const ElementsButton: FC = () => {
+const ElementsButton: FC = (props) => {
   const [text] = useStrings(schema.text);
   const [trackingId] = useStrings(argu.trackingId);
   const [variant] = useStrings(elements.variant);
@@ -21,6 +22,7 @@ const ElementsButton: FC = () => {
   const [icon] = useStrings(schema.image);
   const [iconPosition] = useStrings(elements.iconPosition);
   const [href] = useIds(elements.href);
+  const [children] = useIds(elements.children);
 
   const endIcon = React.useMemo(() => iconPosition !== 'end' ?
     null : (
@@ -38,8 +40,9 @@ const ElementsButton: FC = () => {
       icon={iconPosition === 'start' ? icon : undefined}
       variant={variant as ButtonVariant}
       {...(trackingId ? { id: trackingId } : {})}
+      ref={props.innerRef}
     >
-      {text}
+      {props.children ?? (children ? <Resource subject={children} /> : text)}
     </Button>
   );
 };

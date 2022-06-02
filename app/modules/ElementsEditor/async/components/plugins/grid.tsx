@@ -1,38 +1,89 @@
-import rdf from '@ontologies/core';
-import { createPluginFactory } from '@udecode/plate-core';
-import { PlatePluginComponent } from '@udecode/plate-core/dist/types/plugins/PlatePluginComponent';
-import { FieldSet } from 'link-lib/dist-types/store/StructuredStore';
-import { Resource, useLRS } from 'link-redux';
+import { Grid4x4 } from '@mui/icons-material';
+import {
+  ELEMENT_DEFAULT,
+  PlateEditor,
+  ToolbarButton,
+} from '@udecode/plate';
+import {
+  createPluginFactory,
+  getPluginType,
+  insertNodes,
+} from '@udecode/plate-core';
+import type { PlatePluginComponent } from '@udecode/plate-core/dist/types/plugins/PlatePluginComponent';
+import {
+  Resource,
+  Type,
+  useLRS,
+  useTempRecord,
+} from 'link-redux';
 import React from 'react';
 
-export const ELEMENT_GRID = 'grid'
-  + '';
+import elements from '../../../../../ontology/elements';
+import { EditWrapper } from '../EditWrapper';
+import { SetSubject } from '../SetSubject';
 
-const useTempRecord = <T extends Record<string, unknown>>(fields: FieldSet): (props: React.PropsWithChildren<T>) => JSX.Element => {
-  const lrs = useLRS();
-
-  const [id, _] = React.useState(() => rdf.blankNode());
-
-  React.useEffect(() => {
-    const store = lrs.store.getInternalStore().store;
-    store.setRecord(id.value, fields);
-
-    return () => store.deleteRecord(id.value);
-  }, [id.value, fields]);
-
-  return () => <Resource subject={id} />;
-};
+export const ELEMENT_GRID = 'grid';
 
 const Grid: PlatePluginComponent = (props): JSX.Element => {
-  const fields = React.useMemo(() => ({}), []);
-  const Record = useTempRecord(fields);
+  const lrs = useLRS();
+
+  const { ref, ...attributes } = props.attributes;
+
+  const id = useTempRecord(elements.Grid, (set) => {
+    set(elements.minWidth, props.attributes.minWidth);
+    set(elements.gap, props.attributes.gap);
+  }, []);
 
   return (
-    <Record>
-      {props.children}
-    </Record>
+    <EditWrapper
+      attributes={props.attributes}
+      onClick={() => lrs.actions.ontola.showSnackbar('Clicked the grid edit icon!')}
+    >
+      <SetSubject
+        subject={id}
+        {...attributes}
+      >
+        <Resource subject={id}>
+          <Type ref={ref}>
+            {props.children}
+          </Type>
+        </Resource>
+      </SetSubject>
+    </EditWrapper>
   );
 };
+
+const insertGrid = (editor: PlateEditor, label: string) => {
+  const text = {
+    children: [
+      {
+        text: label,
+      },
+    ],
+    type: ELEMENT_DEFAULT,
+  };
+  const grid = {
+    children: [text],
+    type: getPluginType(editor, ELEMENT_GRID),
+  };
+
+  insertNodes(editor, grid);
+};
+
+export const GridToolbarButton = ({ editor }: { editor: PlateEditor }): JSX.Element => (
+  <ToolbarButton
+    icon={<Grid4x4 />}
+    type={getPluginType(editor, ELEMENT_GRID)}
+    onMouseDown={async (event) => {
+      if (!editor) return;
+      event.preventDefault();
+      const label = window.prompt('Enter the first Grid element');
+
+      if (!label) return;
+      insertGrid(editor, label);
+    }}
+  />
+);
 
 export const createGridPlugin = createPluginFactory({
   component: Grid,

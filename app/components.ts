@@ -133,7 +133,7 @@ export const componentMap: ComponentMap = {
   [rdf.id(components.BreadcrumbsBreadcrumb)]: [CompBreadcrumbsBreadcrumb],
   [rdf.id(components.Button)]: [CompButton, {
     action: argu.ns('action'),
-    children: value(schema.text),
+    children: elements.children,
     icon: schema.image,
   }],
   [rdf.id(components.ButtonWithFeedback)]: [CompButtonWithFeedback],
@@ -159,6 +159,7 @@ export const componentMap: ComponentMap = {
   [rdf.id(components.ElementA)]: [createFertileComponent('a'), childLinkMap],
   [rdf.id(components.ElementOl)]: [createFertileComponent('ol'), childElementMap],
   [rdf.id(components.ElementLi)]: [createFertileComponent('li'), childLiMap],
+  [rdf.id(components.ElementLic)]: [createFertileComponent('span'), childElementMap],
   [rdf.id(components.ElementUl)]: [createFertileComponent('ul'), childElementMap],
   [rdf.id(components.ElementH1)]: [createTypographyComponent('h1'), childTypographyMap],
   [rdf.id(components.ElementH2)]: [createTypographyComponent('h2'), childTypographyMap],

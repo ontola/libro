@@ -42,8 +42,10 @@ import {
   createUnderlinePlugin,
 } from '@udecode/plate';
 
+import { createButtonPlugin } from '../components/plugins/button';
 import { createGridPlugin } from '../components/plugins/grid';
 import { createNotePlugin } from '../components/plugins/note';
+import { createRowPlugin } from '../components/plugins/row';
 import { createTipPlugin } from '../components/plugins/tip';
 // import { withStyledDraggables } from '../components/withStyledDraggables';
 import { withStyledPlaceHolders } from '../components/withStyledPlaceholders';
@@ -65,9 +67,11 @@ export const plugins = createPlugins([
   createLinkPlugin(),
   createListPlugin(),
   createTablePlugin(),
+  createButtonPlugin(),
   createTipPlugin(),
   createNotePlugin(),
   createGridPlugin(),
+  createRowPlugin(),
   createMediaEmbedPlugin(),
   createCodeBlockPlugin(),
   createAlignPlugin(config.align),

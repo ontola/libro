@@ -19,8 +19,10 @@ import {
 
 import elements from '../../../../ontology/elements';
 import ontola from '../../../../ontology/ontola';
+import { ELEMENT_BUTTON } from '../components/plugins/button';
 import { ELEMENT_GRID } from '../components/plugins/grid';
 import { ELEMENT_NOTE } from '../components/plugins/note';
+import { ELEMENT_ROW } from '../components/plugins/row';
 import { ELEMENT_TIP } from '../components/plugins/tip';
 
 /**
@@ -54,8 +56,10 @@ const plateElementsCustomDataRepresentation = {
 export const elementsMap = {
   ...plateElements,
   ...plateElementsCustomDataRepresentation,
+  [elements.Button.value]: ELEMENT_BUTTON,
   [elements.Grid.value]: ELEMENT_GRID,
   [elements.Note.value]: ELEMENT_NOTE,
+  [elements.Row.value]: ELEMENT_ROW,
   [elements.Tip.value]: ELEMENT_TIP,
   ['component:Button']: 'component:Button',
 };
@@ -83,8 +87,10 @@ const plateElementsInverseMapCustomDataRepresentation = {
 export const elementsInverseMap = {
   ...plateElementsInverseMap,
   ...plateElementsInverseMapCustomDataRepresentation,
+  [ELEMENT_BUTTON]: elements.Button,
   [ELEMENT_GRID]: elements.Grid,
   [ELEMENT_NOTE]: elements.Note,
+  [ELEMENT_ROW]: elements.Row,
   [ELEMENT_TIP]: elements.Tip,
   'component:Button': rdf.namedNode('component:Button'),
 };

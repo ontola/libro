@@ -29,7 +29,7 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
   },
 }));
 
-const ElementsGrid: FC = () => {
+const ElementsGrid: FC = (props) => {
   const [minWidth] = useStrings(elements.minWidth);
   const [gap] = useStrings(elements.gap);
 
@@ -40,7 +40,7 @@ const ElementsGrid: FC = () => {
 
   return (
     <div className={classes.grid}>
-      <Property label={elements.children} />
+      {props.children ?? <Property label={elements.children} />}
     </div>
   );
 };

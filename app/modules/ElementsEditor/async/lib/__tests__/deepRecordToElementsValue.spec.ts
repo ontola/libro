@@ -2,19 +2,29 @@ import rdf, { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import {
-  ELEMENT_DEFAULT,
   ELEMENT_IMAGE,
   ELEMENT_LINK,
   ELEMENT_PARAGRAPH,
 } from '@udecode/plate';
-import { SomeNode } from 'link-lib';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord, SomeNode } from 'link-lib';
 
 import elements from '../../../../../ontology/elements';
 import ontola from '../../../../../ontology/ontola';
-import sales from '../../../../../ontology/sales';
 import { deepRecordToDeepSeed } from '../../../../Studio/async/lib/deepRecordToDeepSeed';
+import { ELEMENT_GRID } from '../../components/plugins/grid';
 import { deepSeedRecordToElementsValue } from '../deepSeedRecordToElementsValue';
+
+const text = (contents: string) => ({
+  _id: rdf.blankNode(),
+  [s(rdfx.type)]: elements.P,
+  [s(elements.children)]: seq([
+    {
+      _id: rdf.blankNode(),
+      [s(rdfx.type)]: elements.InnerText,
+      [s(schema.text)]: rdf.literal(contents),
+    },
+  ]),
+});
 
 const seq = (arr: any[], id?: SomeNode) => {
   const base = {
@@ -34,10 +44,10 @@ type Opts = {
 };
 
 const createElement = (
-  text: string,
+  contents: string,
   { type = ELEMENT_PARAGRAPH, mark = undefined, attributes = {} }: Opts = {},
 ) => {
-  const leaf: any = { text };
+  const leaf: any = { text: contents };
 
   if (mark) {
     leaf[mark] = true;
@@ -152,61 +162,11 @@ describe('deepRecordToElementsValue', () => {
         [s(elements.minWidth)]: rdf.literal('20rem'),
         [s(elements.gap)]: rdf.literal('xxl'),
         [s(elements.children)]: seq([
-          {
-            _id: rdf.blankNode(),
-            [s(rdfx.type)]: sales.SellingPoint,
-            [s(schema.text)]: rdf.literal('Verzamel ideeën'),
-            [s(schema.image)]: {
-              _id: rdf.blankNode(),
-              [s(rdfx.type)]: ontola.PictureSet,
-              [s(ontola['format/svg'])]: rdf.namedNode('https://dptr8y9slmfgv.cloudfront.net/sales/images/circle_bulb_icon.svg'),
-            },
-            [s(ontola.href)]: rdf.literal('https://argu.co/info/functionaliteiten'),
-          },
-          {
-            _id: rdf.blankNode(),
-            [s(rdfx.type)]: sales.SellingPoint,
-            [s(schema.text)]: rdf.literal('Stemmen en waarderen'),
-            [s(schema.image)]: {
-              _id: rdf.blankNode(),
-              [s(rdfx.type)]: ontola.PictureSet,
-              [s(ontola['format/svg'])]: rdf.namedNode('https://dptr8y9slmfgv.cloudfront.net/sales/images/circle_thumbsup_icon.svg'),
-            },
-            [s(ontola.href)]: rdf.literal('https://argu.co/info/functionaliteiten'),
-          },
-          {
-            _id: rdf.blankNode(),
-            [s(rdfx.type)]: sales.SellingPoint,
-            [s(schema.text)]: rdf.literal('Enquêtes'),
-            [s(schema.image)]: {
-              _id: rdf.blankNode(),
-              [s(rdfx.type)]: ontola.PictureSet,
-              [s(ontola['format/svg'])]: rdf.namedNode('https://dptr8y9slmfgv.cloudfront.net/sales/images/circle_list_icon.svg'),
-            },
-            [s(ontola.href)]: rdf.literal('https://argu.co/info/functionaliteiten'),
-          },
-          {
-            _id: rdf.blankNode(),
-            [s(rdfx.type)]: sales.SellingPoint,
-            [s(schema.text)]: rdf.literal('Participatief begroten'),
-            [s(schema.image)]: {
-              _id: rdf.blankNode(),
-              [s(rdfx.type)]: ontola.PictureSet,
-              [s(ontola['format/svg'])]: rdf.namedNode('https://dptr8y9slmfgv.cloudfront.net/sales/images/circle_euro_icon.svg'),
-            },
-            [s(ontola.href)]: rdf.literal('https://argu.co/info/functionaliteiten'),
-          },
-          {
-            _id: rdf.blankNode(),
-            [s(rdfx.type)]: sales.SellingPoint,
-            [s(schema.text)]: rdf.literal('Swipetool'),
-            [s(schema.image)]: {
-              _id: rdf.blankNode(),
-              [s(rdfx.type)]: ontola.PictureSet,
-              [s(ontola['format/svg'])]: rdf.namedNode('https://dptr8y9slmfgv.cloudfront.net/sales/images/circle_swipe_icon.svg'),
-            },
-            [s(ontola.href)]: rdf.literal('https://argu.co/info/functionaliteiten'),
-          },
+          text('Verzamel ideeën'),
+          text('Stemmen en waarderen'),
+          text('Enquêtes'),
+          text('Participatief begroten'),
+          text('Swipetool'),
         ]),
       },
     ]));
@@ -214,9 +174,15 @@ describe('deepRecordToElementsValue', () => {
     expect(deepSeedRecordToElementsValue(document, '', mapping)).toEqual([
       {
         children: [
-          createElement('paragraph'),
+          createElement('Verzamel ideeën'),
+          createElement('Stemmen en waarderen'),
+          createElement('Enquêtes'),
+          createElement('Participatief begroten'),
+          createElement('Swipetool'),
         ],
-        type: ELEMENT_DEFAULT,
+        gap: 'xxl',
+        minWidth: '20rem',
+        type: ELEMENT_GRID,
       },
     ]);
   });

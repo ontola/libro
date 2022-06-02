@@ -48,10 +48,29 @@ export interface ActionItemElement extends ElementsDeepRecord {
   'https://ns.ontola.io/elements#checked': Literal;
 }
 
+export interface ButtonElement extends ElementsDeepRecord {
+  type: typeof elements.Button;
+  'http://schema.org/text': Literal;
+  'http://schema.org/image': Literal;
+
+  'https://ns.ontola.io/elements#variant': Literal;
+  'https://ns.ontola.io/elements#iconPosition': Literal;
+  'https://ns.ontola.io/elements#color': Literal;
+  'https://ns.ontola.io/elements#href': Literal;
+
+  'https://argu.co/ns/core#trackingId': Literal;
+}
+
 export interface GridElement extends ElementsDeepRecord {
   type: typeof elements.Grid;
   'https://ns.ontola.io/elements#gap': Literal;
   'https://ns.ontola.io/elements#minWidth': Literal;
+}
+
+export interface RowElement extends ElementsDeepRecord {
+  type: typeof elements.Grid;
+  'https://ns.ontola.io/elements#gap': Literal;
+  'https://ns.ontola.io/elements#alignment': Literal;
 }
 
 export interface NoteElement extends ElementsDeepRecord {
@@ -92,6 +111,7 @@ export type AnyElementsElement = InnerText
   | PElement
   | ActionItemElement
   | GridElement
+  | RowElement
   | NoteElement
   | TipElement
   | PictureSetElement;
@@ -108,8 +128,14 @@ export const isPElement = (value: ElementsDeepRecord): value is PElement =>
 export const isActionItemElement = (value: ElementsDeepRecord): value is ActionItemElement =>
   value.type === elements.ActionItem;
 
+export const isButtonElement = (value: ElementsDeepRecord): value is ButtonElement =>
+  value.type === elements.Button;
+
 export const isGridElement = (value: ElementsDeepRecord): value is GridElement =>
   value.type === elements.Grid;
+
+export const isRowElement = (value: ElementsDeepRecord): value is RowElement =>
+  value.type === elements.Row;
 
 export const isImgElement = (value: ElementsDeepRecord): value is PictureSetElement =>
   value.type === ontola.PictureSet;
@@ -169,6 +195,26 @@ export const toElementsDeepRecord = (deepRecord: DeepRecord): ElementsDeepRecord
   if (isGridElement(record)) {
     assignIfLiteral('https://ns.ontola.io/elements#gap');
     assignIfLiteral('https://ns.ontola.io/elements#minWidth');
+  }
+
+  if (isButtonElement(record)) {
+    assignIfLiteral('http://schema.org/text');
+    assignIfLiteral('http://schema.org/image');
+    assignIfLiteral('https://ns.ontola.io/elements#variant');
+    assignIfLiteral('https://ns.ontola.io/elements#iconPosition');
+    assignIfLiteral('https://ns.ontola.io/elements#color');
+    assignIfLiteral('https://ns.ontola.io/elements#href');
+    assignIfLiteral('https://argu.co/ns/core#trackingId');
+  }
+
+  if (isGridElement(record)) {
+    assignIfLiteral('https://ns.ontola.io/elements#gap');
+    assignIfLiteral('https://ns.ontola.io/elements#minWidth');
+  }
+
+  if (isRowElement(record)) {
+    assignIfLiteral('https://ns.ontola.io/elements#alignment');
+    assignIfLiteral('https://ns.ontola.io/elements#gap');
   }
 
   if (isImgElement(record)) {
