@@ -1,5 +1,6 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { makeStyles } from '@mui/styles';
+import { Node } from '@ontologies/core';
 import clsx from 'clsx';
 import {
   Property,
@@ -18,6 +19,13 @@ import { Trigger } from '../DropdownMenu/TriggerButton';
 import { TriggerButtonNavBar } from '../DropdownMenu/TriggerButtonNavBar';
 
 export const navBarContentItemsCID = 'CID-NavBarContentItems';
+
+export type AddItemCallback = (iri: Node, ref: HTMLElement) => void;
+
+type Observable = {
+  domNode: HTMLElement;
+  isVisible: boolean;
+};
 
 interface NavbarNavigationsMenuProps {
   navBarRef: React.RefObject<HTMLDivElement>;
@@ -56,46 +64,59 @@ const createTrigger: (classes: ReturnType<typeof useStyles>) => Trigger = (class
   );
 };
 
-const observeElements = (elements: HTMLElement[], observer: IntersectionObserver) => {
-  elements.forEach((element) => {
-    if (element) {
-      observer.observe(element);
+const usePriorityNavigation = (navBarRef: HTMLElement | null, menuItems: Node[]) => {
+  const [observedItems, setObservedItems] = React.useState<Map<Node, Observable>>(new Map());
+  const [_, forceUpdate] = React.useReducer((x) => x + 1, 0);
+
+  const addObservedItem = React.useCallback((iri: Node, ref: HTMLElement) =>
+    setObservedItems((current) => new Map(current.set(iri, {
+      domNode: ref,
+      isVisible: false,
+    }))),
+  []);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((changedEntries) => {
+      for (const entry of changedEntries) {
+        for (const [key, value] of observedItems) {
+          if (value.domNode === entry.target) {
+            observedItems.set(key, {
+              domNode: value.domNode,
+              isVisible: entry.isIntersecting,
+            });
+          }
+        }
+      }
+
+      forceUpdate();
+    }, {
+      root: navBarRef,
+      threshold: 0.5,
+    });
+
+    for (const [_key, value] of observedItems) {
+      if (value.domNode) {
+        observer.observe(value.domNode);
+      }
     }
-  });
+
+    return () => observer.disconnect();
+  }, [observedItems]);
+
+  const hiddenItems = menuItems.filter((iri: Node) => !observedItems.get(iri)?.isVisible);
+
+  return {
+    addObservedItem,
+    hiddenItems,
+  };
 };
 
 const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.Element => {
   const classes = useStyles();
   const [navigationsMenu] = useIds(frontendIRI, ontola.navigationsMenu);
   const menuItems = useIds(navigationsMenu, array(ontola.menuItems));
-  const menuItemRefs = React.useRef<HTMLElement[]>([]);
-  const [visibleItemRefs, setVisibleItemRefs] = React.useState<Set<Element>>(new Set(menuItemRefs.current));
 
-  const observer = React.useMemo(() => new IntersectionObserver((changedEntries) => {
-    for (const entry of changedEntries) {
-      setVisibleItemRefs((prevRefs) => {
-        if (entry.isIntersecting) {
-          prevRefs.add(entry.target);
-        }
-        else {
-          prevRefs.delete(entry.target);
-        }
-
-        return new Set(prevRefs);
-      });
-    }
-  }, { root: navBarRef.current }), [navBarRef.current]);
-
-  React.useEffect(() => {
-    observeElements(menuItemRefs.current, observer);
-
-    return () => {
-      observer.disconnect();
-      setVisibleItemRefs(new Set());
-    };
-  }, [menuItems]);
-
-  const hiddenItems = menuItems.filter((_, index) => !visibleItemRefs.has(menuItemRefs.current[index]));
+  const { addObservedItem, hiddenItems } = usePriorityNavigation(navBarRef.current, menuItems);
 
   return (
     <Resource
@@ -109,17 +130,17 @@ const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.E
             classes.navBarContentItems,
           )}
         >
-          {menuItems?.map((iri, index) => (
+          {menuItems?.map((iri) => (
             <Resource
+              addObservedItem={addObservedItem}
               key={iri.value}
-              menuItemRef={(element: HTMLElement) => menuItemRefs.current[index] = element}
               subject={iri}
             />
           ))}
         </div>
         {(hiddenItems.length > 0) && (
           <AppMenu trigger={createTrigger(classes)}>
-            {({ handleClose }) => hiddenItems?.map((iri) => (
+            {({ handleClose }) => hiddenItems.map((iri) => (
               <Resource
                 hideIcon
                 childProps={{

@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
-import React, { AriaAttributes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import { LibroTheme } from '../../themes/themes';
 import Image from '../Image';
 import ExternalLink from '../Link/ExternalLink';
 
-export interface NavbarLinkLinkProps extends Pick<AriaAttributes, 'aria-controls' | 'aria-expanded' | 'aria-haspopup'> {
+export interface NavbarLinkLinkProps extends Pick<React.AriaAttributes, 'aria-controls' | 'aria-expanded' | 'aria-haspopup'> {
   children?: React.ReactNode;
   icon?: string | JSX.Element;
   image?: Node;
@@ -32,7 +32,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(({
+const NavbarLinkLink = React.forwardRef<HTMLElement, NavbarLinkLinkProps>(({
   children,
   icon,
   image,
@@ -72,6 +72,7 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
     className: classes.button,
     color: 'inherit' as const as 'inherit',
     onClick,
+    ref: ref as React.ForwardedRef<HTMLAnchorElement & HTMLButtonElement>,
     startIcon: !hideLabel && iconCom,
     title: title,
   };
@@ -83,7 +84,6 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
       <Button
         {...baseProps}
         component="button"
-        ref={ref}
       >
         {child}
       </Button>

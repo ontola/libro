@@ -8,7 +8,7 @@ import * as schema from '@ontologies/schema';
 import {
   fireEvent,
   waitFor,
-  within, 
+  within,
 } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { wait } from '@testing-library/user-event/dist/utils';

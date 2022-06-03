@@ -1,3 +1,4 @@
+import { Node } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   register,
@@ -7,6 +8,7 @@ import {
 import React from 'react';
 
 import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
+import { AddItemCallback } from '../../components/NavBarContent/NavbarNavigationsMenu';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import argu from '../../ontology/argu';
@@ -14,14 +16,19 @@ import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies';
 
 interface MenuItemNavbarProps {
-  menuItemRef: React.ForwardedRef<HTMLButtonElement>,
+  subject: Node,
+  addObservedItem: AddItemCallback,
 }
 
-const MenuItemNavbar = ({ menuItemRef }: MenuItemNavbarProps) => {
+const MenuItemNavbar = ({ subject, addObservedItem }: MenuItemNavbarProps) => {
   const [href] = useProperty(ontola.href);
   const [image] = useIds(schema.image);
   const [menuItems] = useProperty(ontola.menuItems);
   const [name] = useProperty(schema.name);
+
+  const setRef = React.useCallback((ref) => {
+    addObservedItem(subject, ref);
+  }, []);
 
   const icon = (image && isFontAwesomeIRI(image.value))
     ? normalizeFontAwesomeIRI(image)
@@ -36,8 +43,8 @@ const MenuItemNavbar = ({ menuItemRef }: MenuItemNavbarProps) => {
       icon={icon}
       image={icon ? undefined : image}
       label={name?.value}
-      ref={menuItemRef}
-      title={name.value}
+      ref={setRef}
+      title={name?.value}
       to={href?.value}
     />
   );
