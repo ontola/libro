@@ -46,7 +46,7 @@ class TableCellClass extends TopologyProvider<PropTypes> {
   }
 
   public render() {
-    const { classes, noBorder, ...filterProps } = this.props;
+    const { classes, noBorder, children } = this.props;
 
     const className = clsx({
       [classes.tableCell]: true,
@@ -55,10 +55,9 @@ class TableCellClass extends TopologyProvider<PropTypes> {
 
     return this.wrap((
       <HeadingContext>
-        <TableCell
-          className={className}
-          {...filterProps}
-        />
+        <TableCell className={className}>
+          {children}
+        </TableCell>
       </HeadingContext>));
   }
 }

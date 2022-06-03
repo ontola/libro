@@ -65,13 +65,15 @@ const NavbarLinkLink = React.forwardRef<HTMLButtonElement, NavbarLinkLinkProps>(
   );
 
   const baseProps = {
+    'aria-controls': ariaProps['aria-controls'],
+    'aria-expanded': ariaProps['aria-expanded'],
+    'aria-haspopup': ariaProps['aria-haspopup'],
     'aria-label': title,
     className: classes.button,
-    title: title,
-    ...ariaProps,
     color: 'inherit' as const as 'inherit',
     onClick,
     startIcon: !hideLabel && iconCom,
+    title: title,
   };
 
   const child = (hideLabel && iconCom) ? iconCom : (children || label);
