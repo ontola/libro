@@ -8,9 +8,9 @@ import {
 import React from 'react';
 
 import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
-import { AddItemCallback } from '../../components/NavBarContent/NavbarNavigationsMenu';
 import { NavbarLinkLink } from '../../components/NavbarLink';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { AddItemCallback } from '../../hooks/usePriorityNavigation';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies';

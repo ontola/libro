@@ -1,6 +1,5 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { makeStyles } from '@mui/styles';
-import { Node } from '@ontologies/core';
 import clsx from 'clsx';
 import {
   Property,
@@ -11,6 +10,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { usePriorityNavigation } from '../../hooks/usePriorityNavigation';
 import { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import AppMenu from '../../topologies/AppMenu';
@@ -19,13 +19,6 @@ import { Trigger } from '../DropdownMenu/TriggerButton';
 import { TriggerButtonNavBar } from '../DropdownMenu/TriggerButtonNavBar';
 
 export const navBarContentItemsCID = 'CID-NavBarContentItems';
-
-export type AddItemCallback = (iri: Node, ref: HTMLElement) => void;
-
-type Observable = {
-  domNode: HTMLElement;
-  isVisible: boolean;
-};
 
 interface NavbarNavigationsMenuProps {
   navBarRef: React.RefObject<HTMLDivElement>;
@@ -62,53 +55,6 @@ const createTrigger: (classes: ReturnType<typeof useStyles>) => Trigger = (class
       <FormattedMessage {...navBarMessages.moreDropdownButton} />
     </TriggerButtonNavBar>
   );
-};
-
-const usePriorityNavigation = (navBarRef: HTMLElement | null, menuItems: Node[]) => {
-  const [observedItems, setObservedItems] = React.useState<Map<Node, Observable>>(new Map());
-  const [_, forceUpdate] = React.useReducer((x) => x + 1, 0);
-
-  const addObservedItem = React.useCallback((iri: Node, ref: HTMLElement) =>
-    setObservedItems((current) => new Map(current.set(iri, {
-      domNode: ref,
-      isVisible: false,
-    }))),
-  []);
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver((changedEntries) => {
-      for (const entry of changedEntries) {
-        for (const [key, value] of observedItems) {
-          if (value.domNode === entry.target) {
-            observedItems.set(key, {
-              domNode: value.domNode,
-              isVisible: entry.isIntersecting,
-            });
-          }
-        }
-      }
-
-      forceUpdate();
-    }, {
-      root: navBarRef,
-      threshold: 0.5,
-    });
-
-    for (const [_key, value] of observedItems) {
-      if (value.domNode) {
-        observer.observe(value.domNode);
-      }
-    }
-
-    return () => observer.disconnect();
-  }, [observedItems]);
-
-  const hiddenItems = menuItems.filter((iri: Node) => !observedItems.get(iri)?.isVisible);
-
-  return {
-    addObservedItem,
-    hiddenItems,
-  };
 };
 
 const NavbarNavigationsMenu = ({ navBarRef }: NavbarNavigationsMenuProps): JSX.Element => {
