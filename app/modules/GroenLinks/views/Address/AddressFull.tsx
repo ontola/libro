@@ -21,8 +21,8 @@ const AddressFull: FC = () => {
   return (
     <Property
       label={ontola.createAction}
-      responseCallback={lrs.actions.ontola.hideDialog}
       onCancel={goToStreet}
+      onDone={lrs.actions.ontola.hideDialog}
     />
   );
 };

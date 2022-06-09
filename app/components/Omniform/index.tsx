@@ -27,6 +27,8 @@ import {
 import { BreakPoints, LibroTheme } from '../../themes/themes';
 import FormFooter from '../../topologies/FormFooter';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
+import { OnDoneHandler } from '../../views/Action/helpers';
+import { SubmitSuccessHandler } from '../../views/EntryPoint/useSubmitHandler';
 import { FormFooterRight } from '../Form';
 import { FormFieldError } from '../FormField/FormFieldTypes';
 
@@ -37,7 +39,7 @@ export interface OmniformProps {
   error?: FormFieldError;
   formInstance?: FormApi<any, Partial<any>>;
   onCancel?: () => void;
-  onDone?: () => void;
+  onDone?: OnDoneHandler;
   onKeyUp?: KeyboardEventHandler;
   parentIRI: string;
   sessionStore?: Record<string, unknown>;
@@ -116,9 +118,13 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
     ))
   ), [props.actions, props.parentIRI, action]);
 
-  const responseCallback = React.useCallback((response) => {
+  const onDone = React.useCallback<SubmitSuccessHandler>((response) => {
+    if (props.onDone) {
+      props.onDone(response.iri);
+    }
+
     if (response.iri) {
-      setHighlightState(response.iri);
+      setHighlightState(response.iri.value);
     }
   }, [highlightState]);
 
@@ -157,11 +163,10 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
           label={schema.target}
           object={object}
           parentIRI={props.parentIRI}
-          responseCallback={responseCallback}
           sessionStore={props.sessionStore}
           whitelist={PROPS_WHITELIST}
           onCancel={props.onCancel}
-          onDone={props.onDone}
+          onDone={onDone}
           onKeyUp={props.onKeyUp}
           onStatusForbidden={onStatusForbidden}
         />

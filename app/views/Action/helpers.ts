@@ -10,12 +10,13 @@ import { useNavigate } from 'react-router';
 
 import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { redirectPage } from '../../middleware/reloading';
+import { SubmitSuccessHandler } from '../EntryPoint/useSubmitHandler';
 
 export type CardListOnClick = (e: SyntheticEvent<any>) => Promise<[any, any]>;
 
-export type OnDoneHandler = (iri: string, method: string) => void;
+export type OnDoneHandler = (iri: NamedNode | null, method?: string) => void;
 
-export const useDoneHandler = (onDone?: OnDoneHandler): (response: any) => void => {
+export const useDoneHandler = (onDone?: OnDoneHandler): SubmitSuccessHandler => {
   const navigate = useNavigate();
   const lrs = useLRS();
   const [method] = useValues(dig(schema.target, schema.httpMethod));
@@ -39,9 +40,8 @@ export const useDoneHandler = (onDone?: OnDoneHandler): (response: any) => void 
 
 export interface ActionProps {
   appendix?: React.FC;
-  onDone?: (iri: string) => void;
+  onDone?: OnDoneHandler;
   sessionStore?: Storage;
   onCancel?: () => void;
-  responseCallback?: (response: Response) => void;
   topology?: NamedNode;
 }

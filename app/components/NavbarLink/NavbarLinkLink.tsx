@@ -58,12 +58,12 @@ const NavbarLinkLink = React.forwardRef<HTMLElement, NavbarLinkLinkProps>(({
   if (to === undefined && !onClick) {
     return (
       <div>
-        {children || label}
+        {children ?? label}
       </div>
     );
   }
 
-  const hideLabel = image || (icon && !screenIsWide);
+  const hideLabel = image ?? (icon && !screenIsWide);
 
   const iconCom = typeof icon !== 'string' ? icon : (
     <FontAwesome
@@ -85,7 +85,7 @@ const NavbarLinkLink = React.forwardRef<HTMLElement, NavbarLinkLinkProps>(({
     title: title,
   };
 
-  const child = (hideLabel && iconCom) ? iconCom : (children || label);
+  const child = (hideLabel && iconCom) ? iconCom : (children ?? label);
 
   if (!to) {
     return (

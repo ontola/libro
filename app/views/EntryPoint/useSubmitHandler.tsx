@@ -2,7 +2,11 @@ import { Quadruple, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import HttpStatus from 'http-status-codes';
-import { SomeNode, anyRDFValue } from 'link-lib';
+import {
+  LinkedActionResponse,
+  SomeNode,
+  anyRDFValue,
+} from 'link-lib';
 import {
   useLRS,
   useResourceLink,
@@ -22,9 +26,8 @@ export interface SubmitHandlerProps {
   entryPoint: SomeNode;
   formID: string;
   modal?: boolean;
-  onDone?: (response: Response) => void;
+  onDone?: SubmitSuccessHandler;
   onStatusForbidden?: () => Promise<void>;
-  responseCallback?: (response: Response) => void;
 }
 
 export interface FormValues {
@@ -33,12 +36,12 @@ export interface FormValues {
 export type RetrySubmitHandler = () => Promise<void>;
 export type SubmitHandler = (formData: FormValues, formApi?: FormApi<FormValues>, retrySubmit?: RetrySubmitHandler) =>
   Promise<void>;
+export type SubmitSuccessHandler = (response: LinkedActionResponse) => void;
 
 const useSubmitHandler = ({
   entryPoint,
   formID,
   modal,
-  responseCallback,
   onDone,
   onStatusForbidden,
 }: SubmitHandlerProps): SubmitHandler => {
@@ -72,15 +75,11 @@ const useSubmitHandler = ({
       return Promise.reject();
     }
 
-    return lrs.exec(action, formData).then((response) => {
+    return lrs.exec(action, formData).then((response: LinkedActionResponse) => {
       if (formApi) {
         clearFormStorage(formID);
 
         window.setTimeout(() => formApi?.reset(), 0);
-      }
-
-      if (responseCallback) {
-        responseCallback(response);
       }
 
       if (onDone) {
@@ -124,7 +123,6 @@ const useSubmitHandler = ({
     entryPoint,
     httpMethod,
     modal,
-    responseCallback,
     url,
     onDone,
     onStatusForbidden,

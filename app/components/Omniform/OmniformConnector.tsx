@@ -1,13 +1,15 @@
 import { SomeNode } from 'link-lib';
 import React, { KeyboardEventHandler } from 'react';
 
+import { OnDoneHandler } from '../../views/Action/helpers';
+
 import Omniform from './index';
 
 export interface OmniformConnectorProps {
   autofocusForm: boolean;
   closeForm?: () => void;
   items: SomeNode[];
-  onDone: () => void;
+  onDone: OnDoneHandler;
   onKeyUp: KeyboardEventHandler;
   subject: SomeNode;
 }

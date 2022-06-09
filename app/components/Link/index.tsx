@@ -83,6 +83,38 @@ const useIsActive = (to: string, isActiveCheck?: IsActiveCheck) => {
   return sameOrigin && relative === location.pathname + location.search + location.hash;
 };
 
+const useClickHandler = (to: string, target?: LinkTarget, onClick?: MouseEventHandler): MouseEventHandler => {
+  const lrs = useLRS();
+
+  return React.useCallback((e: MouseEvent): void => {
+    switch (target) {
+    case 'modal':
+      e.preventDefault();
+      lrs.actions.ontola.showDialog(rdf.namedNode(to));
+
+      if (isFunction(onClick)) {
+        onClick(e);
+      }
+
+      break;
+    case '_top':
+      e.preventDefault();
+      lrs.actions.ontola.navigate(rdf.namedNode(to));
+
+      if (isFunction(onClick)) {
+        onClick(e);
+      }
+
+      break;
+    default:
+      if (onClick) {
+        onClick(e);
+      }
+
+      break;
+    }}, [to, target, onClick]);
+};
+
 const Link = ({
   activeClassName,
   allowExternal = true,
@@ -100,10 +132,10 @@ const Link = ({
   to,
   ...other
 }: PropTypesWithRef): JSX.Element => {
-  const lrs = useLRS();
   const featureClasses = featureStyles();
   const themeClasses = themeStyles();
   const active = useIsActive(to, isActiveCheck);
+  const clickHandler = useClickHandler(to, target, onClick);
 
   const baseClassName = clsx(
     className,
@@ -152,17 +184,6 @@ const Link = ({
   } else {
     path = retrievePath(to);
   }
-
-  const clickHandler = target !== 'modal'
-    ? onClick
-    : (e: MouseEvent): (void | undefined) => {
-      e.preventDefault();
-      lrs.actions.ontola.showDialog(rdf.namedNode(to));
-
-      if (isFunction(onClick)) {
-        onClick(e);
-      }
-    };
 
   return (
     <NavLink

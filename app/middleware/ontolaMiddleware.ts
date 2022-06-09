@@ -164,7 +164,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ];
 
-  const showDialog = (value: string, size?: DialogSize | null, opener?: string | null) => [
+  const showDialog = (value: string, size?: DialogSize | null) => [
     quadruple(
       dialogManager,
       libro.ns('dialog/resource'),
@@ -177,24 +177,24 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       rdf.literal(size || DialogSize.Lg),
       ld.replace,
     ),
-    quadruple(
-      dialogManager,
-      libro.ns('dialog/opener'),
-      opener ? rdf.namedNode(opener) : app.ns(currentPath().slice(1)),
-      ld.replace,
-    ),
   ];
 
-  (store as any).actions.ontola.showDialog = (resource: NamedNode, size?: string | null, opener?: NamedNode) => {
+  (store as any).actions.ontola.showDialog = (resource: NamedNode, size?: string | null) => {
     const resourceValue = encodeURIComponent(resource.value);
-    const openerValue = opener ? encodeURIComponent(opener.value) : '';
     const sizeValue = size ? encodeURIComponent(size) : '';
 
-    return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}&size=${sizeValue}`));
+    return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&size=${sizeValue}`));
   };
 
-  (store as any).actions.ontola.hideDialog = () =>
-    store.exec(libro.actions.dialog.close);
+  (store as any).actions.ontola.hideDialog = (resource?: NamedNode, done?: boolean) => {
+    const query = resource ? `?resource=${encodeURIComponent(resource.value)}` : undefined;
+    const opts = done ? { done } : undefined;
+
+    store.exec(
+      rdf.namedNode(`${libro.actions.dialog.close.value}${query}`),
+      opts,
+    );
+  };
 
   (store as any).actions.ontola.navigate = (resource: NamedNode, reload = false) => {
     let query = `location=${encodeURIComponent(resource.value)}`;
@@ -221,9 +221,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   const closeOldDialogs = () => {
     const dialog = store.getResourceProperty(dialogManager, libro.ns('dialog/resource'));
-    const opener = store.getResourceProperty(dialogManager, libro.ns('dialog/opener'));
 
-    if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
+    if (dialog) {
       store.exec(libro.actions.dialog.close);
     }
   };
@@ -270,14 +269,10 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
 
     case rdf.id(libro.actions.navigation.push): {
-      closeOldDialogs();
-
       return next(iri, opts);
     }
 
     case rdf.id(libro.actions.navigation.pop): {
-      closeOldDialogs();
-
       return next(iri, opts);
     }
 
@@ -326,6 +321,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       const value = new URL(iri.value).searchParams.get('location');
       const reload = new URL(iri.value).searchParams.get('reload');
 
+      closeOldDialogs();
+
       if (!value) {
         throw new Error('No redirect path was given in action');
       }
@@ -344,11 +341,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.dialog.close.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
-      const dialog = store.getResourceProperty(dialogManager, libro.ns('dialog/resource'));
-
-      if (!resource || (dialog && resource === dialog.value)) {
-        store.processDelta(hideDialog(), true);
-      }
+      store.processDelta(hideDialog(), true);
 
       if (resource && opts && opts.done) {
         const onDone = onDoneHandlers[resource];
@@ -363,20 +356,23 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
     if (iri.value.startsWith(libro.actions.dialog.alert.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
-      const opener = new URL(iri.value).searchParams.get('opener');
       const size = new URL(iri.value).searchParams.get('size');
 
       if (resource && opts && opts.onDone) {
         onDoneHandlers[resource] = opts.onDone;
       }
 
-      history.push(currentPath());
+      const dialog = store.getResourceProperty(dialogManager, libro.ns('dialog/resource'));
+
+      if (!dialog || dialog === libro.ns('dialog/closed')) {
+        history.push(currentPath());
+      }
 
       if (!resource) {
         throw new Error("Argument 'value' was missing.");
       }
 
-      store.processDelta(showDialog(resource, isDialogSize(size) ? size : undefined, opener), true);
+      store.processDelta(showDialog(resource, isDialogSize(size) ? size : undefined), true);
 
       return Promise.resolve();
     }

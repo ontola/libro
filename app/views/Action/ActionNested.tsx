@@ -24,7 +24,6 @@ const ActionNested: FC<ActionProps> = ({
   appendix,
   onCancel,
   onDone,
-  responseCallback,
   sessionStore,
 }) => {
   const topology = useTopology();
@@ -62,7 +61,6 @@ const ActionNested: FC<ActionProps> = ({
             <Property
               header
               label={schema.target}
-              responseCallback={responseCallback}
               sessionStore={sessionStore}
               onCancel={onCancel ?? closeModal}
               onDone={onDoneHandler}

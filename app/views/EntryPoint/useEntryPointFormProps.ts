@@ -6,13 +6,12 @@ import React from 'react';
 import { EntryPointFormProps, ProvidedEntryPointProps } from '../../components/Form/EntryPointForm';
 import ll from '../../ontology/ll';
 
-import useSubmitHandler from './useSubmitHandler';
+import useSubmitHandler, { SubmitSuccessHandler } from './useSubmitHandler';
 
 export interface EntryPointProps extends Partial<ProvidedEntryPointProps> {
   modal?: boolean;
-  onDone?: (response: Response) => void;
+  onDone?: SubmitSuccessHandler;
   onStatusForbidden?: () => Promise<void>;
-  responseCallback?: (response: Response) => void;
 }
 
 const useEntryPointFormProps = (entryPoint: SomeNode, props: Partial<EntryPointProps>): EntryPointFormProps => {
@@ -30,7 +29,6 @@ const useEntryPointFormProps = (entryPoint: SomeNode, props: Partial<EntryPointP
     modal,
     onDone,
     onStatusForbidden,
-    responseCallback,
   } = props;
 
   const onSubmit = useSubmitHandler({
@@ -39,7 +37,6 @@ const useEntryPointFormProps = (entryPoint: SomeNode, props: Partial<EntryPointP
     modal,
     onDone,
     onStatusForbidden,
-    responseCallback,
   });
 
   return {

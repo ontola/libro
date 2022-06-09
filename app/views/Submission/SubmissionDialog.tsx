@@ -18,11 +18,12 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { alertDialogTopology } from '../../topologies';
 import { surveyMessages } from '../../translations/messages';
+import { OnDoneHandler } from '../Action/helpers';
 
 const style = { padding: '0.5rem 0' };
 
 export interface SubmissionDialogProps {
-  onDone: () => void;
+  onDone: OnDoneHandler;
 }
 
 const SubmissionDialog: FC<SubmissionDialogProps> = ({
@@ -31,6 +32,12 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
 }) => {
   const [submitAction, submitActionStatus] = useActionStatus(subject, ontola.submitAction);
   const [externalIRI] = useIds(dig(schema.isPartOf, argu.externalIRI));
+
+  React.useEffect(() => {
+    if (submitActionStatus === schema.CompletedActionStatus) {
+      onDone(null);
+    }
+  }, [submitActionStatus]);
 
   if (submitActionStatus === schema.CompletedActionStatus) {
     return (
@@ -67,8 +74,8 @@ const SubmissionDialog: FC<SubmissionDialogProps> = ({
   return (
     <Flow>
       <Resource
-        responseCallback={onDone}
         subject={submitAction}
+        onDone={onDone}
       />
     </Flow>
   );

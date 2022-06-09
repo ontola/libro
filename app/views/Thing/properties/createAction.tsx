@@ -12,18 +12,19 @@ import { ButtonVariant } from '../../../components/Button';
 import link from '../../../ontology/link';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
+import { OnDoneHandler } from '../../Action/helpers';
 
 interface PropTypes {
   linkedProp: SomeNode;
+  onDone?: OnDoneHandler;
   onLoad: () => void;
-  responseCallback?: (response: Response) => void;
   variant: ButtonVariant;
 }
 
 const CreateAction: FC<PropTypes> = ({
   linkedProp,
+  onDone,
   onLoad,
-  responseCallback,
   variant,
 }) => {
   const [isPartOf] = useProperty(schema.isPartOf);
@@ -31,9 +32,9 @@ const CreateAction: FC<PropTypes> = ({
   return(
     <Resource
       isPartOf={isPartOf}
-      responseCallback={responseCallback}
       subject={linkedProp}
       variant={variant}
+      onDone={onDone}
       onLoad={onLoad}
     />
   );

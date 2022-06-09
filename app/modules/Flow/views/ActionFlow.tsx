@@ -39,7 +39,6 @@ const ActionFlow: FC<ActionProps> = ({
   appendix: Appendix,
   onCancel,
   onDone,
-  responseCallback,
   sessionStore,
 }) => {
   const lrs = useLRS();
@@ -72,7 +71,6 @@ const ActionFlow: FC<ActionProps> = ({
       <Property
         header
         label={schema.target}
-        responseCallback={responseCallback}
         sessionStore={sessionStore}
         onCancel={onCancel ?? closeModal}
         onDone={onDoneHandler}

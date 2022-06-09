@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Link from '../../../components/Link';
+import Link, { LinkTarget } from '../../../components/Link';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { cardAppendixTopology } from '../../../topologies';
@@ -33,7 +33,10 @@ const TopComment = (): JSX.Element => {
         <Resource subject={topComment}>
           {showAll && (
             <CardMicroRow>
-              <Link to={showAll.value}>
+              <Link
+                target={LinkTarget.Top}
+                to={showAll.value}
+              >
                 <FormattedMessage
                   {...thingMessages.showAllLabel}
                   values={{ count }}
