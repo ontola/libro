@@ -18,14 +18,11 @@ import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
+import { highlightContext } from '../../state/highlight';
 import { alertDialogTopology, containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import DetailsBar from '../../topologies/DetailsBar';
-
-export interface ArgumentContainerProps {
-  highlighted: boolean;
-}
 
 const useStyles = makeStyles({
   content: {
@@ -33,14 +30,15 @@ const useStyles = makeStyles({
   },
 });
 
-const ArgumentContainer: FC<ArgumentContainerProps> = ({ highlighted, subject }): JSX.Element => {
+const ArgumentContainer: FC = ({ subject }): JSX.Element => {
   const classes = useStyles();
   const topology = useTopology();
+  const { highlightState } = React.useContext(highlightContext);
 
   return (
     <Card
       about={subject.value}
-      shine={highlighted}
+      shine={subject.value === highlightState}
     >
       <HeadingContext>
         <Property label={ontola.coverPhoto} />

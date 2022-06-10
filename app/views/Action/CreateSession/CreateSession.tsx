@@ -97,9 +97,15 @@ const CreateSession: FC<CreateSessionProps> = ({
     />
   ), [currentSubject]);
 
-  if (redirectLocation && actorType && ['ConfirmedUser', 'UnconfirmedUser'].includes(actorType?.value)) {
-    navigate(retrievePath(redirectLocation)!, { replace: true });
+  const redirectUser = redirectLocation && actorType && ['ConfirmedUser', 'UnconfirmedUser'].includes(actorType?.value);
 
+  React.useEffect(() => {
+    if (redirectUser) {
+      navigate(retrievePath(redirectLocation)!, { replace: true });
+    }
+  }, [redirectUser]);
+
+  if (redirectUser) {
     return null;
   }
 

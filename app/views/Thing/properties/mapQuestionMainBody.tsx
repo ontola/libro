@@ -23,10 +23,7 @@ const MapQuestionLocation: FC<MapQuestionLocationProps> = () => {
   }
 
   return (
-    <Property
-      topol
-      label={schema.location}
-    />
+    <Property label={schema.location} />
   );
 };
 
