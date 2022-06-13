@@ -2,7 +2,7 @@ import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
 import ArguLocationTabPane from './properties/arguLocationTabPane';
 import Arguments from './properties/arguments';
-import Attachments from './properties/attachments';
+import Attachments from './properties/attachmentsCardRow';
 import AttachmentsMainBody from './properties/attachmentsMainBody';
 import BlogPosts from './properties/blogPosts';
 import ContentUrl from './properties/contentUrl';
