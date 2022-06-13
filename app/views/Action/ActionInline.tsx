@@ -16,10 +16,10 @@ import React from 'react';
 
 import { ButtonVariant } from '../../components/Button';
 import { bestType } from '../../helpers/data';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import teamGL from '../../ontology/teamGL';
 import { LibroTheme } from '../../themes/themes';
 import { actionsBarTopology, listTopology } from '../../topologies';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';
 

@@ -7,10 +7,10 @@ import Dropzone from 'react-dropzone';
 
 import DropzoneOverlay from '../../../components/Dropzone/DropzoneOverlay';
 import UploadProgress from '../../../components/Input/FileInput/UploadProgress';
+import { isInvalidActionStatus } from '../../../hooks/useEnabledActions';
 import { useFileUpload } from '../../../hooks/useFileUpload';
 import { convertKeysAtoB } from '../../../helpers/data';
 import { handle } from '../../../helpers/logging';
-import { isInvalidActionStatus } from '../../Thing/properties/omniform/helpers';
 
 interface UploadTargetProps {
   children: JSX.Element | JSX.Element[];

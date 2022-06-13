@@ -22,12 +22,12 @@ import CollectionPreview from '../../components/Collection/CollectionPreview';
 import { tryParseInt } from '../../helpers/numbers';
 import useActionStatus from '../../hooks/useActionStatus';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import { useListToArr } from '../../hooks/useListToArr';
 import { useSorting } from '../../hooks/useSorting';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { useCollectionStyles } from '../../views/Collection/useCollectionStyles';
-import { isInvalidActionStatus } from '../../views/Thing/properties/omniform/helpers';
 import ResourceBoundary from '../ResourceBoundary';
 
 import { CollectionContext, collectionContext } from './CollectionContext';

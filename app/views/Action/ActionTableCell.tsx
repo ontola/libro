@@ -9,10 +9,10 @@ import FontAwesome from 'react-fontawesome';
 
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import useOneClickProps from '../../hooks/useOneClickProps';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import { tableCellTopology } from '../../topologies';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 const ActionTableCell: FC = ({
   subject,

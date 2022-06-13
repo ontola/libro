@@ -10,6 +10,7 @@ import React from 'react';
 
 import LDLink from '../../../components/LDLink';
 import { LinkFeature, LinkTarget } from '../../../components/Link';
+import { isInvalidActionStatus } from '../../../hooks/useEnabledActions';
 import libro from '../../../ontology/libro';
 import {
   actionsBarTopology,
@@ -31,7 +32,6 @@ import {
   tableFooterCellTopology,
   tableRowTopology,
 } from '../../../topologies';
-import { isInvalidActionStatus } from '../../Thing/properties/omniform/helpers';
 
 export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (
   !!prop && Object.values(LinkTarget as any).includes(prop)

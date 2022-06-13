@@ -11,10 +11,10 @@ import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import Metadata from '../../components/Metadata';
 import { SignInFormLink } from '../../components/SignInForm';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import { fullResourceTopology } from '../../topologies';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';
 

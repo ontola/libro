@@ -1,10 +1,9 @@
-import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { allowSort } from '../../../../helpers/data';
 import {
   actionIsAllowed,
-  invalidStatusIds,
   useEnabledActions,
 } from '../../../../hooks/useEnabledActions';
 
@@ -32,4 +31,3 @@ export const actionsAreAllDisabled = (items: NamedNode[], lrs: LinkReduxLRSType)
   items.every((action) => !actionIsAllowed(lrs, action))
 );
 
-export const isInvalidActionStatus = (actionStatus: SomeTerm | undefined): boolean => invalidStatusIds.includes(rdf.id(actionStatus));

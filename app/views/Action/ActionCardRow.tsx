@@ -9,12 +9,12 @@ import React from 'react';
 
 import Button from '../../components/Button';
 import { SignInFormLink } from '../../components/SignInForm';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import {
   cardMainTopology,
   cardRowTopology,
   cardTopology,
 } from '../../topologies';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps, useDoneHandler } from './helpers';
 

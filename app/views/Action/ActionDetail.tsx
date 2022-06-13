@@ -8,12 +8,12 @@ import React from 'react';
 
 import LDLink from '../../components/LDLink';
 import { LinkTarget } from '../../components/Link';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import {
   cardFloatTopology,
   contentDetailsTopology,
   detailsBarTopology,
 } from '../../topologies';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 const ActionDetail = () => {
   const [actionStatus] = useProperty(schema.actionStatus);

@@ -12,11 +12,11 @@ import FontAwesome from 'react-fontawesome';
 
 import LDLink from '../../components/LDLink';
 import { LinkFeature, LinkTarget } from '../../components/Link';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import useOneClickProps from '../../hooks/useOneClickProps';
 import libro from '../../ontology/libro';
 import { LibroTheme } from '../../themes/themes';
 import { containerHeaderTopology } from '../../topologies';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { ActionProps } from './helpers';
 

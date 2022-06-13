@@ -1,4 +1,4 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -8,7 +8,6 @@ import {
 } from 'link-redux';
 
 import ontola from '../ontology/ontola';
-import { isInvalidActionStatus } from '../views/Thing/properties/omniform/helpers';
 
 export const invalidStatusIds = [
   schema.CompletedActionStatus,
@@ -21,6 +20,8 @@ export const actionIsAllowed = (lrs: LinkReduxLRSType, action: SomeNode): boolea
 
   return !isInvalidActionStatus(actionStatus);
 };
+
+export const isInvalidActionStatus = (actionStatus: SomeTerm | undefined): boolean => invalidStatusIds.includes(rdf.id(actionStatus));
 
 export const useEnabledActions = (items: NamedNode[]): NamedNode[] => {
   const lrs = useLRS();

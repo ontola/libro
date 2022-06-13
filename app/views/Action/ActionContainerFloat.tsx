@@ -12,9 +12,9 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import { containerFloatTopology } from '../../topologies';
-import { isInvalidActionStatus } from '../Thing/properties/omniform/helpers';
 
 import { CardListOnClick } from './helpers';
 
