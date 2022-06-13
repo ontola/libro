@@ -9,7 +9,6 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import CollectionCreateButton from '../../components/Collection/CollectionCreateButton';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
 import OmniformTrigger from '../../components/Omniform/OmniformTrigger';
 import ontola from '../../ontology/ontola';
@@ -57,11 +56,7 @@ const CollectionSection: FC<CollectionSectionProps> = ({
           label={as.totalItems}
           to={to}
         />
-        {omniform ? (
-          <OmniformTrigger />
-        ) : (
-          <CollectionCreateButton />
-        )}
+        {omniform && <OmniformTrigger />}
       </List>
     </CardContent>
   );
