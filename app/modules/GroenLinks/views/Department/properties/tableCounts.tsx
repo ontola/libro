@@ -19,7 +19,7 @@ const TableCounts = ({
   label,
   linkedProp,
 }: TableCounts) => (
-  <TableCell elementProps={{ property: label?.value }}>
+  <TableCell>
     <div style={{ whiteSpace: 'nowrap' }}>
       {linkedProp.value}
       <TrendIndicator property={label} />

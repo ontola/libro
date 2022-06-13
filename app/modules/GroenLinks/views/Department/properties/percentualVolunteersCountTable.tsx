@@ -20,7 +20,7 @@ const PercentualVolunteersCountTable = ({
   label,
   linkedProp,
 }: PercentualVolunteersCountTable) => (
-  <TableCell elementProps={{ property: label?.value }}>
+  <TableCell>
     <div style={{ whiteSpace: 'nowrap' }}>
       {`${Math.round((tryParseFloat(linkedProp) || 0) * 100)}%`}
       <TrendIndicator property={label} />

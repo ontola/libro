@@ -14,7 +14,7 @@ const MeasurePropertyTableRow = () => {
   const [text] = useProperty(contentsProps);
 
   return(
-    <TableHeaderCell elementProps={{ title: text?.value }}>
+    <TableHeaderCell title={text?.value}>
       {name?.value}
     </TableHeaderCell>
   );

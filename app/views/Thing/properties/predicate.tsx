@@ -1,4 +1,3 @@
-import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
@@ -9,11 +8,10 @@ import TableCell from '../../../topologies/TableCell';
 
 interface ThingPredicateTableRowProps {
   children: React.ReactNode;
-  label: NamedNode;
 }
 
-const ThingPredicateTableRow = ({ children, label }: ThingPredicateTableRowProps): JSX.Element => (
-  <TableCell elementProps={{ property: label?.value }}>
+const ThingPredicateTableRow = ({ children }: ThingPredicateTableRowProps): JSX.Element => (
+  <TableCell>
     {children}
   </TableCell>
 );
