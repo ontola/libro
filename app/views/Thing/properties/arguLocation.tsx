@@ -15,11 +15,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import MapView, {
+import PlacementsMap from '../../../modules/Maps/components/PlacementsMap';
+import {
   FeatureSelectCallback,
   MapVariant,
   NavigateCallback,
-} from '../../../modules/MapView/components/MapView';
+} from '../../../modules/Maps/components/ControlledMap';
 import { isResource } from '../../../helpers/types';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
@@ -97,7 +98,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   if (childrenLoading) {
     return (
       <div className={wrapperClass}>
-        <MapView
+        <PlacementsMap
           key="loading-map"
           placements={[linkedProp]}
           variant={variant}
@@ -108,11 +109,11 @@ const ArguLocation: FC<ArguLocationProps> = ({
 
   return (
     <div className={wrapperClass}>
-      <MapView
+      <PlacementsMap
         navigate={handleNavigate}
         placements={placements}
         variant={variant}
-        onMapClick={onMapClick}
+        onInteraction={onMapClick}
         onSelect={onSelect}
       />
     </div>

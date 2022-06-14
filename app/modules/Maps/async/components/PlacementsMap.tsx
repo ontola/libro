@@ -1,32 +1,22 @@
 import { Coordinate } from 'ol/coordinate';
-import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
 import { LoadingCard } from '../../../../components/Loading';
-import {
+import ControlledMap, {
   FeatureSelectCallback,
   Layer,
-  MapViewChangeCallback,
-  MapViewProps,
   ViewProps,
-} from '../../components/MapView';
-import {
-  DEFAULT_LAT,
-  DEFAULT_LON,
-  DEFAULT_ZOOM,
-} from '../../lib/settings';
+} from '../../components/ControlledMap';
+import { PlacementsMapProps } from '../../components/PlacementsMap';
 import { useFeatures } from '../hooks/useFeatures';
 import { usePlacementIds } from '../hooks/usePlacementIds';
 
-import MapCanvas from './MapCanvas';
-
-export const MapView: React.FC<MapViewProps> = ({
+const PlacementsMap: React.FC<PlacementsMapProps> = ({
   initialLat,
   initialLon,
   initialZoom,
-  mapboxTileURL,
   navigate,
-  onMapClick,
+  onInteraction,
   onMove,
   onSelect,
   onZoom,
@@ -37,12 +27,7 @@ export const MapView: React.FC<MapViewProps> = ({
   const [placements, loading] = usePlacementIds(placementIds);
   const [placementFeatures, resolvedCenter] = useFeatures(placements);
 
-  const initialView: ViewProps | undefined = (initialLat && initialLon && initialZoom) ? {
-    center: fromLonLat([initialLon, initialLat]),
-    zoom: initialZoom,
-  } : undefined;
-
-  const [view, setView] = React.useState<ViewProps | undefined>(initialView);
+  const [view, setView] = React.useState<ViewProps | undefined>(undefined);
 
   React.useEffect(() => {
     if (resolvedCenter) {
@@ -81,37 +66,28 @@ export const MapView: React.FC<MapViewProps> = ({
     }]
   ), [placementFeatures]);
 
-  const handleViewChange = React.useCallback<MapViewChangeCallback>((newCenter, newZoom) => {
-    setView({
-      center: newCenter,
-      zoom: newZoom,
-    });
-  }, [setView]);
-
-  if (loading || !mapboxTileURL || (resolvedCenter && !view)) {
+  if (loading || (resolvedCenter && !view)) {
     return <LoadingCard />;
   }
 
-  const defaultView = {
-    center: fromLonLat([DEFAULT_LON, DEFAULT_LAT]),
-    zoom: DEFAULT_ZOOM,
-  };
-
   return (
-    <MapCanvas
+    <ControlledMap
       overlayPadding
+      initialLat={initialLat}
+      initialLon={initialLon}
+      initialZoom={initialZoom}
       layers={layers}
-      mapboxTileURL={mapboxTileURL}
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
       variant={variant}
-      view={view ?? defaultView}
-      onMapClick={onMapClick}
+      view={view}
+      onInteraction={onInteraction}
       onMove={onMove}
       onSelect={handleSelect}
-      onViewChange={handleViewChange}
       onZoom={onZoom}
     />
   );
 };
+
+export default PlacementsMap;

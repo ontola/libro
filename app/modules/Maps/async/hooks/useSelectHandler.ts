@@ -7,7 +7,7 @@ import {
 import { Point } from 'ol/geom';
 import { useCallback } from 'react';
 
-import { ClusterSelectCallback, FeatureSelectCallback } from '../../components/MapView';
+import { ClusterSelectCallback, FeatureSelectCallback } from '../../components/ControlledMap';
 
 const CLUSTER_PADDING = 0.5;
 

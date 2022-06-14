@@ -4,7 +4,7 @@
 import { Coordinate } from 'ol/coordinate';
 import { SetStateAction } from 'react';
 
-import { makeViewUpdater } from '../useMap';
+import { makeViewUpdater } from '../useViewHandlers';
 
 describe('useMap', () => {
   describe('viewUpdater', () => {

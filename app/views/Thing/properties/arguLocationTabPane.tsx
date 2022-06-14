@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { MapVariant } from '../../../modules/MapView/components/MapView';
+import { MapVariant } from '../../../modules/Maps/components/ControlledMap';
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';
 import { fullResourceTopology, tabPaneTopology } from '../../../topologies';

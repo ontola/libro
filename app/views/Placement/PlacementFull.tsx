@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import MapView from '../../modules/MapView/components/MapView';
+import PlacementsMap from '../../modules/Maps/components/PlacementsMap';
 import argu from '../../ontology/argu';
 import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';
@@ -13,7 +13,7 @@ const PlacementAlertDialog: FC = ({
 
   return (
     <Container>
-      <MapView placements={placements} />
+      <PlacementsMap placements={placements} />
     </Container>
   );
 };

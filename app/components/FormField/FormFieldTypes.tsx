@@ -62,6 +62,8 @@ export interface PermittedFormField {
   whitelisted?: true;
 }
 
+export type FormField = PermittedFormField | ForbiddenFormField;
+
 export type InputChangeHandler = (newValue: InputValue) => void;
 
 export interface InputComponentProps {

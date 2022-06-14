@@ -18,10 +18,9 @@ import { useField } from 'react-final-form';
 
 import { formContext } from '../components/Form/FormContext';
 import {
-  ForbiddenFormField,
+  FormField,
   InputValue,
   ItemFactory,
-  PermittedFormField,
 } from '../components/FormField/FormFieldTypes';
 import {
   fieldActiveCID,
@@ -150,7 +149,7 @@ const stringToRegex = (string: string) =>
     'u',
   );
 
-const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): PermittedFormField | ForbiddenFormField => {
+const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): FormField => {
   const props = {
     ...defaultProps,
     ...componentProps,

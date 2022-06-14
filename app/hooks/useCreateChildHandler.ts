@@ -8,16 +8,17 @@ import {
   useLRS,
   useResourceLinks,
 } from 'link-redux';
+import GeometryType from 'ol/geom/GeometryType';
 import React from 'react';
 
-import { MapClickCallback } from '../modules/MapView/components/MapView';
+import { MapInteractionCallback } from '../modules/Maps/components/ControlledMap';
 import { conditionalFormFieldsPath, formFieldsPath } from '../helpers/diggers';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 
 import { useEnabledActions } from './useEnabledActions';
 
-const useCreateChildHandler = (): MapClickCallback | undefined => {
+const useCreateChildHandler = (): MapInteractionCallback | undefined => {
   const lrs = useLRS();
   const createActions = useEnabledActions(useGlobalIds(ontola.createAction));
   const entryPoints = useIds(createActions, schema.target).map((values) => values[0]);
@@ -40,8 +41,9 @@ const useCreateChildHandler = (): MapClickCallback | undefined => {
     )).map(({ action }) => action)
   ), [entryPointsProps]);
 
-  const createChildHandler = React.useCallback((lon, lat, zoom) => {
-    if (locationActions.length > 0) {
+  const createChildHandler = React.useCallback<MapInteractionCallback>((newGeometry, zoom) => {
+    if (newGeometry.type === GeometryType.POINT && locationActions.length > 0) {
+      const { lat, lon } = newGeometry.points[0];
       const action = locationActions[0];
       let location = action?.value || '';
       location += `?filter%5B%5D=http%253A%252F%252Fschema.org%252Flatitude%3D${lat}`;

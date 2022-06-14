@@ -33,6 +33,15 @@ export default makeStyles<LibroTheme>((theme) => ({
         left: 'auto',
         right: 2,
       },
+      '&.interaction-type': {
+        '&-1': {
+          left: 46,
+        },
+        '&-2': {
+          left: 90,
+        },
+        top: 0,
+      },
       '&:hover': {
         backgroundColor: 'rgba(0,0,0,0)',
       },

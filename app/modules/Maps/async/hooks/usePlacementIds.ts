@@ -13,11 +13,11 @@ import {
 import React from 'react';
 import * as schema from '@ontologies/schema';
 
-import { Placement } from '../../components/MapView';
 import { entityIsLoaded } from '../../../../helpers/data';
 import { tryParseFloat } from '../../../../helpers/numbers';
 import fa4 from '../../../../ontology/fa4';
 import ontola from '../../../../ontology/ontola';
+import { Placement } from '../../components/ControlledMap';
 
 const imageForPlacement = (node: SomeNode, lrs: LinkReduxLRSType): NamedNode =>
   lrs.getResourceProperty(node, schema.image) ?? fa4.ns('map-marker');

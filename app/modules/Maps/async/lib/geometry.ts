@@ -1,14 +1,17 @@
 import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
-import { Circle, Polygon } from 'ol/geom';
+import {
+  Circle,
+  Polygon,
+} from 'ol/geom';
+import GeometryType from 'ol/geom/GeometryType';
 import { fromLonLat } from 'ol/proj';
 
 import { InputValue } from '../../../../components/FormField/FormFieldTypes';
 import {
   Geometry,
-  GeometryType,
   Point,
-} from '../../components/MapView';
+} from '../../components/ControlledMap';
 import { tryParseFloat } from '../../../../helpers/numbers';
 
 const roundToTwo = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
@@ -27,7 +30,7 @@ const toOLCoords = (p: Point): Coordinate => fromLonLat([p.lon, p.lat]);
 
 export const toFeature = (geometry: Geometry): Feature<Circle | Polygon> => {
   switch (geometry.type) {
-  case GeometryType.Circle:
+  case GeometryType.CIRCLE:
     /* eslint-disable no-case-declarations */
     const center = toOLCoords(geometry.points[0]);
     const edge = toOLCoords(geometry.points[1]);
@@ -35,13 +38,16 @@ export const toFeature = (geometry: Geometry): Feature<Circle | Polygon> => {
 
     return new Feature(new Circle(center, radius));
 
-  case GeometryType.Polygon:
+  case GeometryType.POLYGON:
     return new Feature(new Polygon([geometry.points.map(toOLCoords)]));
+
+  default:
+    throw new Error(`undefined geometry type: ${geometry.type}`);
   }
 };
 
-export const toPoint = (s: InputValue): Point | undefined => {
-  const [lon, lat] = s.value.split(',').map(tryParseFloat);
+export const toPoint = (s: InputValue[]): Point | undefined => {
+  const [lon, lat] = s.map(tryParseFloat);
 
   return (lon && lat)? {
     lat,

@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
+import GeometryType from 'ol/geom/GeometryType';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -12,7 +13,7 @@ import ErrorButtonWithFeedback from '../../../../components/Error/ErrorButtonWit
 import LinkLoader from '../../../../components/Loading/LinkLoader';
 import OverlayContainer from '../../../../components/OverlayContainer';
 import { alertDialogTopology } from '../../../../topologies';
-import { MapVariant, NavigateCallback } from '../../components/MapView';
+import { MapVariant, NavigateCallback } from '../../components/ControlledMap';
 import useMap, { UseMapProps } from '../hooks/useMap';
 import useMapStyles from '../hooks/useMapStyles';
 import useOverlay from '../hooks/useOverlay';
@@ -124,6 +125,11 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
       </OverlayContainer>
     </div>
   );
+};
+
+MapCanvas.defaultProps = {
+  // GeometryType.CIRCLE and GeometryType.POLYGON are not yet supported by the backend
+  availableInteractionTypes: [GeometryType.POINT],
 };
 
 export default MapCanvas;
