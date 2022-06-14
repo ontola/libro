@@ -1,4 +1,4 @@
-import { KeyboardEvent } from 'react';
+import React, { KeyboardEvent } from 'react';
 
 const SPACE_KEY = 32;
 const ENTER_KEY = 13;
@@ -25,8 +25,10 @@ export const devKeymap = {
   ...defaultKeymap,
 };
 
-export const convertOnClick = (e: KeyboardEvent<unknown>, onAction: (e: any) => void): void => {
-  if ([SPACE_KEY, ENTER_KEY].includes(e.keyCode) && onAction) {
-    onAction(e);
-  }
-};
+export const useOnClickToOnKeyUp = (onAction: (e: any) => void): (e: KeyboardEvent<unknown>) => void => (
+  React.useCallback((e) => {
+    if ([SPACE_KEY, ENTER_KEY].includes(e.keyCode) && onAction) {
+      onAction(e);
+    }
+  }, [onAction])
+);

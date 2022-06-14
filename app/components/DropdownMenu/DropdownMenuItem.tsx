@@ -124,7 +124,7 @@ const DropdownMenuItem = ({
     <MenuItem
       action={childProps.onClose}
       allowExternal={false}
-      url={(action ?? href)?.value}
+      url={href?.value}
       {...sharedProps}
     >
       {name?.value}
