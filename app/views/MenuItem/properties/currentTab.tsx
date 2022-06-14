@@ -22,6 +22,7 @@ const CurrentTab = () => {
   return (
     <Resource subject={currentTab}>
       <TabPane>
+        <Property label={schema.text} />
         <Property
           key={currentTab.value}
           label={ontola.href}

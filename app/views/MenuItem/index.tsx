@@ -18,6 +18,7 @@ import LabelHeader from './properties/labelHeader';
 import LabelTableRow from './properties/labelTableRow';
 import MenuItemsComp from './properties/menuItems';
 import MenuTabs from './properties/menuTabs';
+import Text from './properties/text';
 
 export default [
   CurrentTab,
@@ -40,4 +41,5 @@ export default [
   MenuItemsComp,
   MenuItemTableCell,
   MenuTabs,
+  Text,
 ];
