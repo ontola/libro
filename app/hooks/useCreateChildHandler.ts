@@ -1,8 +1,9 @@
-import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import {
   useDataFetching,
+  useGlobalIds,
   useIds,
   useLRS,
   useResourceLinks,
@@ -14,40 +15,29 @@ import { conditionalFormFieldsPath, formFieldsPath } from '../helpers/diggers';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 
+import { useEnabledActions } from './useEnabledActions';
+
 const useCreateChildHandler = (): MapClickCallback | undefined => {
   const lrs = useLRS();
-  const createActions = useIds(ontola.createAction);
-  const actionProps = useResourceLinks(createActions, {
-    entryPoint: schema.target,
-    status: schema.actionStatus,
-  }).filter(({ status }) => status === schema.PotentialActionStatus);
-  const entryPoints = React.useMemo(() => (
-    actionProps
-      .map(({ entryPoint }) => entryPoint)
-      .filter(isNamedNode)
-  ), [actionProps]);
+  const createActions = useEnabledActions(useGlobalIds(ontola.createAction));
+  const entryPoints = useIds(createActions, schema.target).map((values) => values[0]);
+  const forms = useIds(entryPoints, ll.actionBody).map((values) => values[0]);
+  useDataFetching([...entryPoints, ...forms]);
   const entryPointsProps = useResourceLinks(
-    entryPoints ?? [],
+    entryPoints,
     {
       action: schema.isPartOf,
       form: ll.actionBody,
     },
   );
-  const forms = React.useMemo(() => (
-    entryPointsProps.map(({ form }) => form).filter(isNode)
-  ), [entryPointsProps]);
-
-  useDataFetching(entryPoints);
-  useDataFetching(forms);
-
   const locationActions = React.useMemo(() => (
-    entryPointsProps
-      .filter(({ form }) => (
-        isNamedNode(form)
-      && (lrs.dig(form, [...formFieldsPath, sh.path]).concat(
-        lrs.dig(form, [...conditionalFormFieldsPath, sh.path]),
-      )).includes(schema.location)
-      )).map(({ action }) => action)
+    entryPointsProps.filter(({ form }) => (
+      isNamedNode(form) && (
+        lrs.dig(form, [...formFieldsPath, sh.path]).concat(
+          lrs.dig(form, [...conditionalFormFieldsPath, sh.path]),
+        )
+      ).includes(schema.location)
+    )).map(({ action }) => action)
   ), [entryPointsProps]);
 
   const createChildHandler = React.useCallback((lon, lat, zoom) => {

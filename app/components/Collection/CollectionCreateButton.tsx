@@ -2,8 +2,7 @@ import * as schema from '@ontologies/schema';
 import {
   Resource,
   dig,
-  useDataFetching,
-  useDataInvalidation,
+  useGlobalIds,
   useIds,
   useLRS,
 } from 'link-redux';
@@ -13,6 +12,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { entityIsLoaded } from '../../helpers/data';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { useEnabledActions } from '../../hooks/useEnabledActions';
 import { useShowDialog } from '../../hooks/useShowDialog';
 import ontola from '../../ontology/ontola';
 import { collectionMessages, formMessages } from '../../translations/messages';
@@ -21,7 +21,6 @@ import TriggerButton, { Trigger } from '../DropdownMenu/TriggerButton';
 
 import CollectionCreateDropdown from './CollectionCreateDropdown';
 import { useFavoriteActions } from './lib/useFavoriteActions';
-import { useValidActions } from './lib/useValidActions';
 
 export enum TriggerType {
   Icon = 'icon',
@@ -70,12 +69,10 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
 }) => {
   const lrs = useLRS();
   const intl = useIntl();
-  const createActions = useIds(ontola.createAction);
+  const createActions = useGlobalIds(ontola.createAction);
   const [actionDialog] = useIds(ontola.actionDialog);
-  const validActions = useValidActions(createActions);
+  const validActions = useEnabledActions(createActions);
   const renderedActions = useFavoriteActions(validActions, false);
-  useDataInvalidation(createActions);
-  useDataFetching(createActions);
   const showDialog = useShowDialog(actionDialog ?? renderedActions[0]);
   const TriggerComponent = getTrigger(trigger);
 
