@@ -70,6 +70,16 @@ interface PropTypesWithRef extends LinkProps {
   innerRef: Ref<HTMLAnchorElement>;
 }
 
+export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (
+  !!prop && Object.values(LinkTarget as any).includes(prop)
+);
+
+export const normalizeTarget = (target: string | undefined): LinkTarget | undefined => {
+  const value = target?.split('/')?.pop();
+
+  return isLinkTarget(value) ? value : undefined;
+};
+
 const useIsActive = (to: string, isActiveCheck?: IsActiveCheck) => {
   const location = useLocation();
 

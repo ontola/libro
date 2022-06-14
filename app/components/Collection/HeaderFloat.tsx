@@ -1,5 +1,6 @@
-import { ClickAwayListener, IconButton } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { ClickAwayListener, IconButton } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Property,
   Resource,
@@ -15,13 +16,20 @@ import { collectionMessages } from '../../translations/messages';
 import { useFilterOptions } from '../FilterComboInput/lib/useFilterOptions';
 
 import { useCollectionOptions } from './CollectionContext';
-import CollectionCreateButton from './CollectionCreateButton';
+import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';
 import CollectionFilterToggle, { CollectionFilterProps } from './CollectionFilterToggle';
+
+const useStyles = makeStyles(() => ({
+  wrapper: {
+    display: 'flex',
+  },
+}));
 
 export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   filterContainerRef,
 }) => {
   const intl = useIntl();
+  const classes = useStyles();
   const [filterOptions] = useFilterOptions();
   const [sortOptions] = useValues(ontola.sortOptions);
   const [createOptions] = useEnabledActions(useGlobalIds(ontola.createAction));
@@ -45,35 +53,39 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   ].filter((value) => value).length;
 
   if (buttonCount === 0) {
-    return null;
+    return (
+      <Resource subject={originalCollection}>
+        <CollectionCreateButton trigger={TriggerType.TextWithIcon} />
+      </Resource>
+    );
   }
 
   const buttons = (
     <React.Fragment>
       {renderPagination && <CollectionFilterToggle filterContainerRef={filterContainerRef} />}
       {renderPagination && <Property label={ontola.sortOptions} />}
-      <Resource subject={originalCollection}>
-        <CollectionCreateButton />
-      </Resource>
     </React.Fragment>
   );
 
-  if (buttonCount === 1) {
-    return buttons;
-  }
-
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
-      <span>
-        {renderButtons && buttons}
-        {!renderButtons && (
-          <IconButton
-            aria-label={intl.formatMessage(collectionMessages.collectionActionsAriaLabel)}
-            size="small"
-            onClick={() => setRenderButtons(true)}
-          >
-            <MoreHorizIcon />
-          </IconButton>
+      <span className={classes.wrapper}>
+        <Resource subject={originalCollection}>
+          <CollectionCreateButton trigger={TriggerType.TextWithIcon} />
+        </Resource>
+        {(buttonCount === 1) ? buttons : (
+          <React.Fragment>
+            {renderButtons && buttons}
+            {!renderButtons && (
+              <IconButton
+                aria-label={intl.formatMessage(collectionMessages.collectionActionsAriaLabel)}
+                size="small"
+                onClick={() => setRenderButtons(true)}
+              >
+                <MoreHorizIcon />
+              </IconButton>
+            )}
+          </React.Fragment>
         )}
       </span>
     </ClickAwayListener>

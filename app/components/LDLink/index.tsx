@@ -1,6 +1,6 @@
 import * as schema from '@ontologies/schema';
 import { useLinkRenderContext, useValues } from 'link-redux';
-import React from 'react';
+import React, { Ref } from 'react';
 
 import { handle } from '../../helpers/logging';
 import Link, { LinkProps } from '../Link';
@@ -9,7 +9,11 @@ export interface LDLinkProps extends Omit<LinkProps, 'to'> {
   to?: string;
 }
 
-const LDLink: React.FC<LDLinkProps> = (props) => {
+interface PropTypesWithRef extends LDLinkProps {
+  innerRef: Ref<HTMLAnchorElement | HTMLButtonElement>;
+}
+
+const LDLink: React.FC<PropTypesWithRef> = (props) => {
   const { subject } = useLinkRenderContext();
   const [url] = useValues(schema.url);
 
@@ -29,4 +33,9 @@ const LDLink: React.FC<LDLinkProps> = (props) => {
   );
 };
 
-export default LDLink;
+export default React.forwardRef<HTMLAnchorElement | HTMLButtonElement, LDLinkProps>((props, ref) => (
+  <LDLink
+    innerRef={ref}
+    {...props}
+  />
+));

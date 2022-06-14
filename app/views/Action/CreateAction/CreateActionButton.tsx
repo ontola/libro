@@ -1,15 +1,14 @@
-import { Literal } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useLiterals,
   useProperty,
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import LDLink from '../../../components/LDLink';
-import { LinkFeature, LinkTarget } from '../../../components/Link';
+import { LinkFeature, normalizeTarget } from '../../../components/Link';
 import { isInvalidActionStatus } from '../../../hooks/useEnabledActions';
 import libro from '../../../ontology/libro';
 import {
@@ -33,21 +32,11 @@ import {
   tableRowTopology,
 } from '../../../topologies';
 
-export const isLinkTarget = (prop: string | undefined): prop is LinkTarget => (
-  !!prop && Object.values(LinkTarget as any).includes(prop)
-);
-
-const normalizeTarget = (targetLiteral: Literal) => {
-  const target = targetLiteral?.value?.split('/')?.pop();
-
-  return isLinkTarget(target) ? target : undefined;
-};
-
 const CreateActionButton: FC = ({ children }) => {
   const [actionStatus] = useProperty(schema.actionStatus);
   const [error] = useProperty(schema.error);
   const [name] = useProperty(schema.name);
-  const [target] = useLiterals(libro.target);
+  const [target] = useStrings(libro.target);
 
   if (children) {
     return (

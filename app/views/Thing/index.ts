@@ -17,6 +17,7 @@ import Description from './properties/description';
 import DownloadUrl from './properties/downloadUrl';
 import ExpiresAt from './properties/expiresAt';
 import FavoriteAction from './properties/favoriteAction';
+import FollowMenu from './properties/followMenu';
 import FollowsCount from './properties/followsCount';
 import GrantedGroups from './properties/grantedGroups';
 import Image from './properties/image';
@@ -104,6 +105,7 @@ export default [
   Description,
   DownloadUrl,
   ExpiresAt,
+  FollowMenu,
   FollowsCount,
   ...GrantedGroups,
   IsPrimaryTopicOf,

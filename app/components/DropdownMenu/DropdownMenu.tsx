@@ -78,7 +78,9 @@ const DropdownMenu = ({
     setLoaded,
   }), [loaded, setLoaded]);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     setOpen(!open);
   };
 
