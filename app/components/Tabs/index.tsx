@@ -42,7 +42,7 @@ const useSubSectionStyles = makeStyles<LibroTheme>((theme) => ({
   },
   scroller: {
     flexGrow: 0,
-    maxWidth: theme.breakpoints.values.lg,
+    maxWidth: theme.breakpoints.values.xl,
     width: '100%',
   },
 }));

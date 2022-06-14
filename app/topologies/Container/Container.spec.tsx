@@ -19,14 +19,14 @@ describe('Container component', () => {
 
     expect(getByTestId('container-root')).toBeVisible();
     expect(getByTestId('container-root')).toHaveTextContent('Content');
-    expect(getByTestId('container-root')).toHaveClass('MuiContainer-maxWidthLg');
+    expect(getByTestId('container-root')).toHaveClass('MuiContainer-maxWidthXl');
 
     rerender((
-      <Container size={Size.Large}>
+      <Container size={Size.Medium}>
         Content
       </Container>
     ));
 
-    expect(getByTestId('container-root')).toHaveClass('MuiContainer-maxWidthXl');
+    expect(getByTestId('container-root')).toHaveClass('MuiContainer-maxWidthLg');
   });
 });

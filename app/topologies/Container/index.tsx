@@ -19,7 +19,7 @@ export interface ContainerProps {
  */
 class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
   public static defaultProps = {
-    size: 'medium',
+    size: Size.Large,
   };
 
   constructor(props: P) {

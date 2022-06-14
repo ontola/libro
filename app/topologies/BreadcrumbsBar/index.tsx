@@ -47,7 +47,7 @@ class BreadcrumbsBar extends Topology<BreadcrumbsBarProps> {
     return this.wrap((
       <div className={this.props.classes.breadcrumbsBar}>
         <MUIContainer
-          maxWidth="lg"
+          maxWidth="xl"
         >
           <div className={this.props.classes.flex}>
             {this.props.children}

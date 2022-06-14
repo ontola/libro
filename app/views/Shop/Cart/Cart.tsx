@@ -45,7 +45,7 @@ const Cart = () => {
         display="card"
         label={argu.cartDetails}
       />
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {!!budgetMaxInt && (
           <Progress
             endSpacing

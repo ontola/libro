@@ -35,7 +35,7 @@ class MainBody extends TopologyProvider<MainBodyProps> {
       <div className={this.props.classes.wrapper}>
         <MUIContainer
           className={this.props.classes.paper}
-          maxWidth="lg"
+          maxWidth="xl"
         >
           {this.wrap(this.props.children)}
         </MUIContainer>
