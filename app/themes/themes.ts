@@ -85,7 +85,7 @@ export interface IndexablePalette {
 }
 
 export type CSSPropertiesMap = { [key: string]: CSSProperties };
-export type MaterialStyleMap = { [key: string]: CSSPropertiesMap };
+export type MaterialStyleMap = { [key: string]: { styleOverrides: CSSPropertiesMap} };
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export enum Margin {

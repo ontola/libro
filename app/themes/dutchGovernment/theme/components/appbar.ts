@@ -3,8 +3,8 @@ import { LibroTheme, MaterialStyleMap } from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => {
   const customAppBar = appbar(theme);
-  customAppBar.MuiAppBar.root = {
-    ...customAppBar.MuiAppBar.root,
+  customAppBar.MuiAppBar.styleOverrides.root = {
+    ...customAppBar.MuiAppBar.styleOverrides.root,
     '& .MuiButton-root': {
       borderRadius: 0,
       height: '100%',
