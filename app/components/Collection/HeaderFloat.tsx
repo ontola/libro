@@ -4,13 +4,11 @@ import makeStyles from '@mui/styles/makeStyles';
 import {
   Property,
   Resource,
-  useGlobalIds,
   useValues,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { useEnabledActions } from '../../hooks/useEnabledActions';
 import ontola from '../../ontology/ontola';
 import { collectionMessages } from '../../translations/messages';
 import { useFilterOptions } from '../FilterComboInput/lib/useFilterOptions';
@@ -32,7 +30,6 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   const classes = useStyles();
   const [filterOptions] = useFilterOptions();
   const [sortOptions] = useValues(ontola.sortOptions);
-  const [createOptions] = useEnabledActions(useGlobalIds(ontola.createAction));
 
   const {
     hidePagination,
@@ -49,7 +46,6 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   const buttonCount = [
     renderPagination && !!filterOptions,
     renderPagination && !!sortOptions,
-    !!createOptions,
   ].filter((value) => value).length;
 
   if (buttonCount === 0) {

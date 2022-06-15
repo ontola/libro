@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/de';
 import 'dayjs/locale/en';
 import 'dayjs/locale/nl';
+import type { History } from 'history';
 import {
   RenderStoreProvider,
   Resource,
@@ -18,6 +19,7 @@ import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
 import libro from '../ontology/libro';
 import AppFrame from '../routes/App';
+import ScrollMemory from '../routes/App/ScrollMemory';
 import { highlightContext } from '../state/highlight';
 import { OmniformState, omniformContext } from '../state/omniform';
 import themes from '../themes';
@@ -29,6 +31,7 @@ export interface RouterProps {
 
 export interface IndexContainerProps {
   Router: FunctionComponent<RouterProps>;
+  history: History,
   manifest: WebManifest,
 }
 
@@ -79,6 +82,7 @@ const getThemeVariables = (manifest: WebManifest) => {
 
 const IndexContainer = ({
   Router,
+  history,
   manifest,
 }: IndexContainerProps): JSX.Element => {
   const { lrs, theme: themeName } = React.useContext(appContext);
@@ -132,6 +136,7 @@ const IndexContainer = ({
                   <CssBaseline />
                   <Router>
                     <AppFrame />
+                    <ScrollMemory history={history} />
                   </Router>
                   <Resource subject={libro.ns('dialog/manager')} />
                 </ThemeProvider>

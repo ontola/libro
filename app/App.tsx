@@ -75,6 +75,7 @@ const App = ({
         <HelmetProvider>
           <IndexContainer
             Router={router}
+            history={history}
             manifest={manifestValue}
           />
         </HelmetProvider>
