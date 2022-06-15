@@ -1,19 +1,19 @@
+import { makeStyles } from '@mui/styles';
 import * as as from '@ontologies/as';
 import rdf, { Node } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React, { MouseEvent } from 'react';
 import { useKey } from 'rooks';
 
-import { expandPath } from '../../helpers/iris';
-import argu from '../../ontology/argu';
-import dexes from '../../ontology/dexes';
-import elements from '../../ontology/elements';
+import { expandPath } from '../../modules/Common/lib/iris';
+import argu from '../../modules/Argu/ontology/argu';
+import dexes from '../../modules/Dexes/ontology/dexes';
+import elements from '../../modules/Elements/ontology/elements';
 import ontola from '../../ontology/ontola';
-import sales from '../../ontology/sales';
-import teamGL from '../../ontology/teamGL';
+import sales from '../../modules/SalesWebsite/ontology/sales';
+import teamGL from '../../modules/GroenLinks/ontology/teamGL';
 
 const TRIGGER_KEY = 'r';
 

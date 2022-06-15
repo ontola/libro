@@ -8,11 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { formContext } from '../../../../components/Form/FormContext';
-import { useContainerToArr } from '../../../../hooks/useContainerToArr';
-import useShapeValidation from '../../../../hooks/useShapeValidation';
-import form from '../../../../ontology/form';
+import form from '../../../Form/ontology/form';
 import ontola from '../../../../ontology/ontola';
+import { useContainerToArr } from '../../../Common/hooks/useContainerToArr';
+import { formContext } from '../../../Form/components/Form/FormContext';
+import useShapeValidation from '../../../Form/hooks/useShapeValidation';
 
 export const useFlowFields = (): [SomeNode[], boolean] => {
   const { object } = React.useContext(formContext);

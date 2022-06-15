@@ -13,26 +13,26 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CollectionCreateButton, { TriggerType } from '../../../components/Collection/CollectionCreateButton';
-import Heading from '../../../components/Heading';
-import OmniformConnector from '../components/OmniformConnector';
-import OmniformPreview from '../components/OmniformPreview';
-import { entityIsLoaded } from '../../../helpers/data';
 import app from '../../../ontology/app';
 import link from '../../../ontology/link';
 import ontola from '../../../ontology/ontola';
-import {
-  useOmniformClose,
-  useOmniformOpenAction,
-  useOmniformOpenedState,
-} from '../lib/hooks';
 import {
   cardAppendixTopology,
   cardMainTopology,
   cardTopology,
   containerTopology,
 } from '../../../topologies';
+import CollectionCreateButton, { TriggerType } from '../../Collection/components/CollectionCreateButton';
+import Heading from '../../Common/components/Heading';
+import { entityIsLoaded } from '../../Core/lib/data';
+import OmniformConnector from '../components/OmniformConnector';
+import OmniformPreview from '../components/OmniformPreview';
 import { actionsAreAllDisabled, useOmniformActions } from '../lib/helpers';
+import {
+  useOmniformClose,
+  useOmniformOpenAction,
+  useOmniformOpenedState,
+} from '../lib/hooks';
 
 const ESCAPE_KEY = 27;
 

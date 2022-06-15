@@ -1,0 +1,83 @@
+import * as as from '@ontologies/as';
+import { SomeNode } from 'link-lib';
+import { Property, Resource } from 'link-redux';
+import React, { ReactNode } from 'react';
+
+import ontola from '../../../../../ontology/ontola';
+import {
+  allTopologiesExcept,
+  cardTopology,
+  pageTopology,
+} from '../../../../../topologies';
+import ContainerHeader from '../../../../../topologies/Container/ContainerHeader';
+import CardHeader from '../../../../Common/components/Card/CardHeader';
+import { buildRegister } from '../../../../Common/lib/buildRegister';
+import { LoadingHidden } from '../../../../Core/components/Loading';
+import { useCollectionOptions } from '../../../components/CollectionContext';
+import { HeaderFloat } from '../../../components/HeaderFloat';
+import { CollectionTypes } from '../types';
+
+interface HeaderProps {
+  children?: ReactNode;
+  topologyCtx: SomeNode;
+}
+
+const cardCollectionHeader = (): JSX.Element | null => {
+  const { hideHeader } = useCollectionOptions();
+
+  if (hideHeader) {
+    return null;
+  }
+
+  const filterRef = React.useRef(null);
+
+  return (
+    <CardHeader float={<HeaderFloat filterContainerRef={filterRef} />}>
+      <Property label={as.name} />
+      <div ref={filterRef} />
+    </CardHeader>
+  );
+};
+
+const containerCollectionHeader = (): JSX.Element | null => {
+  const {
+    headerButtons,
+    hideHeader,
+    originalCollection,
+  } = useCollectionOptions();
+  const filterRef = React.useRef(null);
+
+  if (hideHeader) {
+    return null;
+  }
+
+  return (
+    <React.Fragment>
+      <ContainerHeader
+        float={<HeaderFloat filterContainerRef={filterRef} />}
+      >
+        {headerButtons}
+        <Property label={as.name} />
+        <Resource subject={originalCollection}>
+          <Property
+            label={ontola.favoriteAction}
+            onLoad={LoadingHidden}
+          />
+        </Resource>
+      </ContainerHeader>
+      <div ref={filterRef} />
+    </React.Fragment>
+  );
+};
+
+const registerHeader = buildRegister<HeaderProps>({
+  property: ontola.header,
+  type: CollectionTypes,
+});
+
+export default [
+  registerHeader(cardCollectionHeader, { topology: cardTopology }),
+  registerHeader(containerCollectionHeader, {
+    topology: allTopologiesExcept(cardTopology, pageTopology),
+  }),
+];

@@ -2,7 +2,7 @@ import { LinkReduxLRSType } from 'link-redux';
 
 import { CONTAINER_ELEMENT } from '../config';
 import { handle } from '../helpers/logging';
-import spinner from '../helpers/spinner';
+import spinner from '../modules/Common/lib/spinner';
 
 function showSpinner() {
   try {

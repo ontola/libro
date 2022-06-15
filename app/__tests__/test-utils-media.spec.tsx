@@ -3,15 +3,15 @@
  */
 
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 
 import {
   ScreenWidth,
   hoverCapable,
   mockMedia,
-  screenWidth,
-} from '../test-utils-media';
+  screenWidth, 
+} from '../../tests/test-utils-media';
 
 enum Result {
   Match = 'true',

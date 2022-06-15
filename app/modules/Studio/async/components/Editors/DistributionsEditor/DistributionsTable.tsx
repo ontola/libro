@@ -1,3 +1,4 @@
+import AddIcon from '@mui/icons-material/Add';
 import {
   IconButton,
   Table,
@@ -7,7 +8,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';

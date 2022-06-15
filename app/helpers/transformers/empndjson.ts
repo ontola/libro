@@ -7,7 +7,7 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { Slice, seedToSlice } from '../seed';
+import { Slice, seedToSlice } from '../../modules/Common/lib/seed';
 
 export class NdEmpJsonParser {
   public parseString(text: string, websiteIRI: string, mapping: Record<string, string>): Slice[] {

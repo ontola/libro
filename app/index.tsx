@@ -1,19 +1,19 @@
 import './helpers/polyfills';
+import './modules/Common/lib/typescript';
 import './useFactory';
 
 import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { AppContextProvider } from './AppContextProvider';
+import App from './components/App';
 import { APP_ELEMENT } from './config';
 import { defaultManifest } from './helpers/defaultManifest';
-import './helpers/typescript';
 import generateLRS from './helpers/generateLRS';
 import { log } from './helpers/logging';
-import App from './App';
 import patchRequestInitGenerator from './helpers/monkey';
-import { seedToSlice } from './helpers/seed';
+import { seedToSlice } from './modules/Common/lib/seed';
+import { AppContextProvider } from './modules/Core/components/AppContext/AppContextProvider';
 import { WebManifest } from './WebManifest';
 
 const getWebsiteManifest = (): WebManifest => {

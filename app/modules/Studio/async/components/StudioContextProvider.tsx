@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Spinner from '../../../../components/Spinner';
-import { studioContext } from '../context/StudioContext';
+import Spinner from '../../../Core/components/Loading/Spinner';
 import { editorStateContext } from '../context/EditorStateContext';
 import { serverDocumentsContext } from '../context/ServerDocumentsContext';
+import { studioContext } from '../context/StudioContext';
 import { useEditorStateContext } from '../hooks/useEditorStateContext';
-import { useStudio } from '../hooks/useStudio';
 import { useServerDocumentsContext } from '../hooks/useServerDocumentsContext';
+import { useStudio } from '../hooks/useStudio';
 
 export const StudioContextProvider: React.FC = ({ children }) => {
   const editorStateCtx = useEditorStateContext();

@@ -1,18 +1,12 @@
 import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
-import {
-  Circle,
-  Polygon,
-} from 'ol/geom';
+import { Circle, Polygon } from 'ol/geom';
 import GeometryType from 'ol/geom/GeometryType';
 import { fromLonLat } from 'ol/proj';
 
-import { InputValue } from '../../../../components/FormField/FormFieldTypes';
-import {
-  Geometry,
-  Point,
-} from '../../components/ControlledMap';
-import { tryParseFloat } from '../../../../helpers/numbers';
+import { tryParseFloat } from '../../../Common/lib/numbers';
+import { InputValue } from '../../../Form/components/FormField/FormFieldTypes';
+import { Geometry, Point } from '../../components/ControlledMap';
 
 const roundToTwo = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 

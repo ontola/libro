@@ -4,7 +4,7 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PropsWithChildren } from 'react';
 
-import argu from '../../ontology/argu';
+import argu from '../../modules/Argu/ontology/argu';
 import { LibroTheme } from '../../themes/themes';
 
 export const tableHeadTopology = argu.ns('tableHead');

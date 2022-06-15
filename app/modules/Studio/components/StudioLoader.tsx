@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-  useLocation,
-  useNavigate,
-} from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
-import Suspense from '../../../components/Suspense';
+import Suspense from '../../Core/components/Suspense';
 
 export interface LibroDocument {
   manifestOverride: string;

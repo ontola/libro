@@ -2,8 +2,7 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../../../components/Card/CardContent';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import {
   allTopologiesExcept,
   pageTopology,
@@ -11,6 +10,7 @@ import {
 } from '../../../../topologies';
 import { CardMain } from '../../../../topologies/Card';
 import Container from '../../../../topologies/Container';
+import CardContent from '../../../Common/components/Card/CardContent';
 
 import SearchPostalForm from './SearchPostalForm';
 

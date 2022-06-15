@@ -7,16 +7,16 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../../../components/Card/CardContent';
-import HeaderWithMenu from '../../../../components/HeaderWithMenu';
-import LinkedDetailDate from '../../../../components/LinkedDetailDate';
-import argu from '../../../../ontology/argu';
+import argu from '../../../Argu/ontology/argu';
 import ontola from '../../../../ontology/ontola';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { fullResourceTopology } from '../../../../topologies';
 import CardMain from '../../../../topologies/Card/CardMain';
 import Container from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
+import CardContent from '../../../Common/components/Card/CardContent';
+import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
 
 const DepartmentFull = () => {
   const postalRanges = useProperty(teamGL.postalRanges, { returnType: ReturnType.AllLiterals });

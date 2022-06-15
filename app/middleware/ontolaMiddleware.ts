@@ -2,7 +2,7 @@ import rdf, {
   Literal,
   NamedNode,
   Node,
-  Quadruple,
+  Quadruple, 
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -18,12 +18,12 @@ import {
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
 
-import { safeCredentials } from '../helpers/dom';
-import { retrievePath } from '../helpers/iris';
+import ServiceWorkerCommunicator from '../components/ServiceWorkerCommunicator';
 import { handle } from '../helpers/logging';
-import { quadruple } from '../helpers/quadruple';
-import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
 import hexjson from '../helpers/transformers/hexjson';
+import { safeCredentials } from '../modules/Common/lib/dom';
+import { retrievePath } from '../modules/Common/lib/iris';
+import { quadruple } from '../modules/Common/lib/quadruple';
 import app from '../ontology/app';
 import ld from '../ontology/ld';
 import libro from '../ontology/libro';

@@ -8,8 +8,8 @@ import deepmerge from 'deepmerge';
 import common from './common/theme';
 import dutchGovernment from './dutchGovernment/theme';
 import groenLinks from './groenLinks/theme';
-import salesWebsite from './salesWebsite/theme';
 import { LIBRO_THEMES } from './LibroThemes';
+import salesWebsite from './salesWebsite/theme';
 import { LibroTheme, MaterialStyleMap } from './themes';
 
 type ComponentStyle = (theme: LibroTheme) => MaterialStyleMap;

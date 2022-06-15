@@ -1,0 +1,19 @@
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
+import React from 'react';
+
+import ontola from '../../../../ontology/ontola';
+import { gridTopology } from '../../../../topologies';
+
+export const SearchResultGrid: FC = () => (
+  <Property label={ontola.query} />
+);
+
+SearchResultGrid.type = ontola.SearchResult;
+
+SearchResultGrid.topology = gridTopology;
+
+export default register(SearchResultGrid);

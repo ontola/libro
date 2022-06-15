@@ -18,7 +18,7 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { SearchObject, useChapterSearch } from '../../../hooks/Academy/useChapterSearch';
+import { SearchObject, useChapterSearch } from '../../../modules/Academy/hooks/useChapterSearch';
 import app from '../../../ontology/app';
 import Select from '../../../topologies/Select';
 import { academyMessages } from '../../../translations/messages';

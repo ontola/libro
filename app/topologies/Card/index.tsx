@@ -1,7 +1,7 @@
 import {
   WithStyles,
   createStyles,
-  withStyles,
+  withStyles, 
 } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
@@ -13,7 +13,7 @@ import Topology from '../Topology';
 import {
   cardClassIdentifier,
   cardStyles,
-  shineStyles,
+  shineStyles, 
 } from './sharedCardStyles';
 
 type CardElementProps = {

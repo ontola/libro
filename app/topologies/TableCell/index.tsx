@@ -2,15 +2,15 @@ import { TableCell, TableCellProps } from '@mui/material';
 import {
   WithStyles,
   createStyles,
-  withStyles,
+  withStyles, 
 } from '@mui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { ReactNode } from 'react';
 
-import { headingCID } from '../../components/Heading';
-import HeadingContext from '../../components/Heading/HeadingContext';
+import { headingCID } from '../../modules/Common/components/Heading';
+import HeadingContext from '../../modules/Common/components/Heading/HeadingContext';
 import { LibroTheme, Margin } from '../../themes/themes';
 import { tableCellTopology } from '../../topologies';
 

@@ -5,9 +5,9 @@
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 
-import CardActions from '../../components/Card/CardActions';
-import CardContent from '../../components/Card/CardContent';
-import { render } from '../../test-utils';
+import { render } from '../../../tests/test-utils';
+import CardActions from '../../modules/Common/components/Card/CardActions';
+import CardContent from '../../modules/Common/components/Card/CardContent';
 import themes from '../../themes';
 
 import CardRow, { cardRowBackdropClassIdentifier } from './CardRow';

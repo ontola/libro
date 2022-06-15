@@ -3,11 +3,11 @@ import { Property, Resource } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import retrievePath from '../../../helpers/iris';
+import retrievePath from '../../../modules/Common/lib/iris';
+import { useWebsiteIRI } from '../../../modules/Core/hooks/useWebsiteIRI';
 import ontola from '../../../ontology/ontola';
 import Navbar from '../../../topologies/Navbar';
 import { LibroTheme } from '../../themes';
-import { useWebsiteIRI } from '../../../hooks/useWebsiteIRI';
 
 import { ChapterSearch } from './ChapterSearch';
 

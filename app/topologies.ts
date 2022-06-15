@@ -1,9 +1,9 @@
 import rdf, { NamedNode } from '@ontologies/core';
 
 import app from './ontology/app';
-import argu from './ontology/argu';
+import argu from './modules/Argu/ontology/argu';
 import ontola from './ontology/ontola';
-import sales from './ontology/sales';
+import sales from './modules/SalesWebsite/ontology/sales';
 
 export const actionsBarTopology = argu.actionsBar;
 export const alertDialogTopology = ontola.ns('dialog/alert');
@@ -108,12 +108,16 @@ export const allTopologies: NamedNode[] = [
   tabBarTopology,
 ];
 
-export const formFieldTopologies = [
+export const formTopologies = [
   cardMainTopology,
   cardTopology,
   formFooterTopology,
   mainBodyTopology,
   omniformFieldsTopology,
+];
+
+export const formFieldTopologies = [
+  ...formTopologies,
   flowTopology,
 ];
 

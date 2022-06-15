@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
+import PageError from '../../modules/Common/components/Error/PageError';
 import Routes from '../index';
 
 import ContentFrame from './ContentFrame';

@@ -9,8 +9,8 @@ import rdf, {
 import { doc } from '@rdfdev/iri';
 import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
 
-import { sliceToQuads } from '../../../../helpers/seed';
 import { NdEmpJsonParser } from '../../../../helpers/transformers/empndjson';
+import { sliceToQuads } from '../../../Common/lib/seed';
 
 import { websiteRelativePath } from './iri';
 import { toWrappedDataDocument } from './quadsToDataObject';

@@ -5,9 +5,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Link from '../../../../../components/Link';
-import teamGL from '../../../../../ontology/teamGL';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
+import Link from '../../../../Common/components/Link';
 import { postalCodeIri } from '../../Glapp/helpers';
 
 const PostalDigits: FC<PropertyProps> = ({ linkedProp }) => (

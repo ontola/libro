@@ -1,18 +1,17 @@
-import 'ol/ol.css';
-
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
 import GeometryType from 'ol/geom/GeometryType';
+import 'ol/ol.css';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { ButtonVariant } from '../../../../components/Button';
-import ErrorButtonWithFeedback from '../../../../components/Error/ErrorButtonWithFeedback';
-import LinkLoader from '../../../../components/Loading/LinkLoader';
-import OverlayContainer from '../../../../components/OverlayContainer';
 import { alertDialogTopology } from '../../../../topologies';
+import { ButtonVariant } from '../../../Common/components/Button';
+import ErrorButtonWithFeedback from '../../../Common/components/Error/ErrorButtonWithFeedback';
+import OverlayContainer from '../../../Common/components/OverlayContainer';
+import LinkLoader from '../../../Core/components/Loading/LinkLoader';
 import { MapVariant, NavigateCallback } from '../../components/ControlledMap';
 import useMap, { UseMapProps } from '../hooks/useMap';
 import useMapStyles from '../hooks/useMapStyles';

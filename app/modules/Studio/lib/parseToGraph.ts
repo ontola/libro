@@ -1,6 +1,4 @@
 /* eslint-disable unused-imports/no-unused-vars */
-import '../../../useFactory';
-
 import * as ontAs from '@ontologies/as';
 import rdf, {
   Literal,
@@ -32,15 +30,15 @@ import { ParsedObject } from 'link-lib/dist-types/types';
 
 import { createAppNS } from '../../../ontology/app';
 import ontAppSlashless from '../../../ontology/appSlashless';
-import ontArgu from '../../../ontology/argu';
+import ontArgu from '../../Argu/ontology/argu';
 import ontDbo from '../../../ontology/dbo';
-import ontDexes from '../../../ontology/dexes';
-import ontElements from '../../../ontology/elements';
+import ontDexes from '../../Dexes/ontology/dexes';
+import ontElements from '../../Elements/ontology/elements';
 import ontEx from '../../../ontology/ex';
 import ontExample from '../../../ontology/example';
 import ontFa4 from '../../../ontology/fa4';
 import ontFhir from '../../../ontology/fhir';
-import ontForm from '../../../ontology/form';
+import ontForm from '../../Form/ontology/form';
 import ontHttp from '../../../ontology/http';
 import ontHttph from '../../../ontology/httph';
 import ontHydra from '../../../ontology/hydra';
@@ -54,11 +52,12 @@ import ontOpengov from '../../../ontology/opengov';
 import ontOrg from '../../../ontology/org';
 import ontPerson from '../../../ontology/person';
 import ontQb from '../../../ontology/qb';
-import ontSales from '../../../ontology/sales';
+import ontSales from '../../SalesWebsite/ontology/sales';
 import ontSp from '../../../ontology/sp';
-import ontTeamGL from '../../../ontology/teamGL';
+import ontTeamGL from '../../GroenLinks/ontology/teamGL';
 import ontWdt from '../../../ontology/wdt';
-import { toEmpJson } from '../../../helpers/empjsonSerializer';
+import '../../../useFactory';
+import { toEmpJson } from '../../Common/lib/empjsonSerializer';
 
 const isSerializablePrimitive = (obj: any): obj is Exclude<SerializableDataTypes, DataObject> => {
   if (obj === undefined || obj === null) {

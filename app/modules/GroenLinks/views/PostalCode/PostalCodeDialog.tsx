@@ -10,16 +10,16 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import AttributeListItem from '../../../../components/AttributeListItem';
-import Button from '../../../../components/Button';
-import CardContent from '../../../../components/Card/CardContent';
-import HeaderWithMenu from '../../../../components/HeaderWithMenu';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { alertDialogTopology } from '../../../../topologies';
 import AttributeList from '../../../../topologies/AttributeList';
 import Card from '../../../../topologies/Card';
 import ContentDetails from '../../../../topologies/ContentDetails';
 import { formMessages } from '../../../../translations/messages';
+import AttributeListItem from '../../../Common/components/AttributeListItem';
+import Button from '../../../Common/components/Button';
+import CardContent from '../../../Common/components/Card/CardContent';
+import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
 import { useVisitPostalCode } from '../Glapp/helpers';
 
 interface PostalCodeDialogProps {

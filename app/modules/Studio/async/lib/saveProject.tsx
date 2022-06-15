@@ -8,15 +8,16 @@ import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import App from '../../../../App';
-import { AppContext } from '../../../../appContext';
-import { AppContextProvider } from '../../../../AppContextProvider';
-import { WebsiteCtx } from '../../../../helpers/app';
+import App from '../../../../components/App';
 import generateLRS from '../../../../helpers/generateLRS';
-import { quadruplesToDataSlice } from '../../../../helpers/quadruplesToDataSlice';
 import { trailing } from '../../../../ontology/app';
 import { sliceIRI } from '../../../../ontology/appSlashless';
 import { WebManifest } from '../../../../WebManifest';
+import { toEmpJson } from '../../../Common/lib/empjsonSerializer';
+import { quadruplesToDataSlice } from '../../../Common/lib/quadruplesToDataSlice';
+import { AppContext } from '../../../Core/components/AppContext/appContext';
+import { AppContextProvider } from '../../../Core/components/AppContext/AppContextProvider';
+import { WebsiteCtx } from '../../../Core/components/WebsiteContext/websiteContext';
 import {
   ProjectContext,
   ServerData,
@@ -24,7 +25,6 @@ import {
 } from '../context/ProjectContext';
 import { parseSource } from '../hooks/useGenerateLRSFromSource';
 import { filterNodes, nodesToSitemap } from '../hooks/useSitemap';
-import { toEmpJson } from '../../../../helpers/empjsonSerializer';
 
 import { projectToSource } from './projectToSource';
 import { RenderedPage } from './types';

@@ -1,7 +1,7 @@
 import { Coordinate } from 'ol/coordinate';
 import React from 'react';
 
-import { LoadingCard } from '../../../../components/Loading';
+import { LoadingCard } from '../../../Core/components/Loading';
 import ControlledMap, {
   FeatureSelectCallback,
   Layer,

@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import SalesNavBarContent from '../../../components/SalesWebsite/SalesNavBarContent';
+import SalesNavBarContent from '../../../modules/SalesWebsite/components/SalesNavBarContent';
 import Navbar from '../../../topologies/Navbar';
 
 const useAppBarOverrides = makeStyles({

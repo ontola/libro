@@ -1,3 +1,5 @@
+import LinkOffIcon from '@mui/icons-material/LinkOff';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import {
   Button,
   Grid,
@@ -5,14 +7,12 @@ import {
   TableCell,
   TableRow,
 } from '@mui/material';
-import LinkOffIcon from '@mui/icons-material/LinkOff';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import useJSON from '../../../../../../hooks/useJSON';
 import { studioDistributionMessages } from '../../../../../../translations/messages';
+import useJSON from '../../../../../Common/hooks/useJSON';
 import {
   DistributionMeta,
   Publication,

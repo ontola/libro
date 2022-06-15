@@ -5,8 +5,8 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { act, render } from '../../test-utils';
-import { hoverCapable, mockMedia } from '../../test-utils-media';
+import { act, render } from '../../../tests/test-utils';
+import { hoverCapable, mockMedia } from '../../../tests/test-utils-media';
 
 import { HoverBoxProps } from './HoverBoxImpl';
 

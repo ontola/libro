@@ -12,12 +12,11 @@ import React, {
   useCallback,
   useEffect,
   useRef,
-  useState,
+  useState, 
 } from 'react';
 import { useIntl } from 'react-intl';
 
 import { handle } from '../../../../helpers/logging';
-import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../../../hooks/useMapAccessToken';
 import { mapMessages } from '../../../../translations/messages';
 import {
   ClusterSelectCallback,
@@ -29,6 +28,7 @@ import {
   MapZoomCallback,
   ViewProps,
 } from '../../components/ControlledMap';
+import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
 import CurrentLocationControl from '../components/CurrentLocationControl';
 import InteractionTypeControl from '../components/InteractionTypeControl';
 

@@ -1,8 +1,8 @@
 import { MaterialStyleMap } from '../../../themes';
-
-import '../../fonts/RijksoverheidSansText-Regular_2_0.otf';
 import '../../fonts/RijksoverheidSansText-Bold_2_0.otf';
 import '../../fonts/RijksoverheidSansText-Italic_2_0.otf';
+
+import '../../fonts/RijksoverheidSansText-Regular_2_0.otf';
 
 const fontFaces = [
   {

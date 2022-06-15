@@ -170,6 +170,7 @@ export default {
   updateAction: ontola('updateAction'),
   view: ontola('view'),
   visible: ontola('visible'),
+  void: ontola('void'),
   widgetResource: ontola('widgetResource'),
   widgetSize: ontola('widgetSize'),
   widgets: ontola('widgets'),

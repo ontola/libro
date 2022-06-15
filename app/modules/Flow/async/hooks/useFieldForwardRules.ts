@@ -4,7 +4,7 @@ import * as rdf from '@ontologies/rdf';
 import { LaxIdentifier, useIds } from 'link-redux';
 import React from 'react';
 
-import form from '../../../../ontology/form';
+import form from '../../../Form/ontology/form';
 
 interface FieldForwardRules {
   isAutoForwardField: boolean;

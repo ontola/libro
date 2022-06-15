@@ -2,10 +2,7 @@ import { Grid, Skeleton } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
-import {
-  ProjectContextProps,
-  currentComponent,
-} from '../context/ProjectContext';
+import { ProjectContextProps, currentComponent } from '../context/ProjectContext';
 import { useMonacoWithBundle } from '../hooks/useMonacoWithBundle';
 import { ResourceType } from '../lib/types';
 

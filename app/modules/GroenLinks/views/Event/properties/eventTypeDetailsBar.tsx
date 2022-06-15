@@ -9,10 +9,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Detail from '../../../../../components/Detail';
-import { normalizeFontAwesomeIRI } from '../../../../../helpers/iris';
-import teamGL from '../../../../../ontology/teamGL';
+import teamGL from '../../../ontology/teamGL';
 import { contentDetailsTopology, detailsBarTopology } from '../../../../../topologies';
+import Detail from '../../../../Common/components/Detail';
+import { normalizeFontAwesomeIRI } from '../../../../Common/lib/iris';
 
 const EventTypeDetailsBar = ({ linkedProp }: PropertyProps) => {
   const [image] = useProperty(schema.image);

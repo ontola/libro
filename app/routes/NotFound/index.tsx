@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import CardContent from '../../components/Card/CardContent';
-import Heading from '../../components/Heading';
+import CardContent from '../../modules/Common/components/Card/CardContent';
+import Heading from '../../modules/Common/components/Heading';
 import { Size } from '../../themes/themes';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';

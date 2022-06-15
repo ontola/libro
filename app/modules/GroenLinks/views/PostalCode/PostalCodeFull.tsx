@@ -8,13 +8,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import AttributeListItem from '../../../../components/AttributeListItem';
-import CardContent from '../../../../components/Card/CardContent';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { fullResourceTopology } from '../../../../topologies';
 import AttributeList from '../../../../topologies/AttributeList';
 import CardMain from '../../../../topologies/Card/CardMain';
 import Container from '../../../../topologies/Container';
+import AttributeListItem from '../../../Common/components/AttributeListItem';
+import CardContent from '../../../Common/components/Card/CardContent';
 
 export const usePartialResourceCheck = (subject: SomeNode): boolean => {
   const lrs = useLRS();

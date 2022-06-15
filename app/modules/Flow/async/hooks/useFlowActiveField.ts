@@ -4,8 +4,8 @@ import { SomeNode } from 'link-lib';
 import { LaxNode, useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import { formContext } from '../../../../components/Form/FormContext';
-import { inputValueFromStorage } from '../../../../helpers/persistence';
+import { inputValueFromStorage } from '../../../Common/lib/persistence';
+import { formContext } from '../../../Form/components/Form/FormContext';
 
 type FlowActiveField = [
   activeField: LaxNode,

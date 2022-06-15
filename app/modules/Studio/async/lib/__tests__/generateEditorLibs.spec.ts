@@ -1,7 +1,7 @@
 import { createNS } from '@ontologies/core';
 
-import { generateEditorLibs } from '../generateEditorLibs/index';
 import { OntologyMap, generateOntologyDeclerations } from '../generateEditorLibs/generateOntologyDeclerations';
+import { generateEditorLibs } from '../generateEditorLibs/index';
 
 const ns = createNS('https://fuckblockchain.com/ns#');
 

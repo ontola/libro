@@ -1,16 +1,16 @@
+import { Quadruple } from '@ontologies/core';
+import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import { LinkReduxLRSType, useLRS } from 'link-redux';
-import { Quadruple } from '@ontologies/core';
 
+import { handle } from '../../../../helpers/logging';
 import { WebManifest } from '../../../../WebManifest';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
+import { PageViewerState } from '../../lib/PageViewerState';
 import parseToGraph from '../../lib/parseToGraph';
 import { ProjectContext, subResource } from '../context/ProjectContext';
-import { PageViewerState } from '../../lib/PageViewerState';
 import { graphToSeed } from '../lib/graphToSeed';
 import { projectToSource } from '../lib/projectToSource';
-import { handle } from '../../../../helpers/logging';
 
 import { useNewDialogHandle } from './useDialogHandle';
 

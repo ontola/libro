@@ -2,8 +2,8 @@ import { GridTypeMap, Grid as MaterialGrid } from '@mui/material';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LoadingFullResource } from '../../components/Loading';
-import Suspense from '../../components/Suspense';
+import { LoadingFullResource } from '../../modules/Core/components/Loading';
+import Suspense from '../../modules/Core/components/Suspense';
 import { gridTopology } from '../../topologies';
 
 type GridProps = GridTypeMap['props'] & { className?: string };

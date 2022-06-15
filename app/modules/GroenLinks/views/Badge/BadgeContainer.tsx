@@ -9,11 +9,7 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import CardContent from '../../../../components/Card/CardContent';
-import FormFooterRight from '../../../../components/Form/FooterRight';
-import Heading from '../../../../components/Heading';
-import Image from '../../../../components/Image';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import {
   alertDialogTopology,
   containerTopology,
@@ -22,6 +18,10 @@ import {
 import Card from '../../../../topologies/Card';
 import FormFooter from '../../../../topologies/FormFooter';
 import { badgeMessages } from '../../../../translations/messages';
+import CardContent from '../../../Common/components/Card/CardContent';
+import Heading from '../../../Common/components/Heading';
+import Image from '../../../Common/components/Image';
+import FormFooterRight from '../../../Form/components/Form/FooterRight';
 
 const BadgeContainer: FC = ({ subject }) => {
   const { formatMessage } = useIntl();

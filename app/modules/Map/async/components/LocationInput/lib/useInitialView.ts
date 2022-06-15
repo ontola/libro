@@ -3,12 +3,12 @@ import {
   ReturnType,
   dig,
   useIds,
-  useResourceLink,
+  useResourceLink, 
 } from 'link-redux';
 import React from 'react';
 
 import ontola from '../../../../../../ontology/ontola';
-import { formContext } from '../../../../../../components/Form/FormContext';
+import { formContext } from '../../../../../Form/components/Form/FormContext';
 
 const viewMapping = {
   lat: schema.latitude,

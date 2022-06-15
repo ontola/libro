@@ -1,8 +1,5 @@
 import AppBar from '@mui/material/AppBar';
-import rdf, {
-  Literal,
-  isNode,
-} from '@ontologies/core';
+import rdf, { Literal, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -16,17 +13,17 @@ import {
 } from 'link-redux';
 import React, { useState } from 'react';
 
-import CardContent from '../../../../components/Card/CardContent';
-import CardDivider from '../../../../components/Card/CardDivider';
-import { iriFromTemplate } from '../../../../helpers/uriTemplate';
 import app from '../../../../ontology/app';
 import ontola from '../../../../ontology/ontola';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { fullResourceTopology } from '../../../../topologies';
 import { CardMain } from '../../../../topologies/Card';
 import Container from '../../../../topologies/Container';
 import TabBar from '../../../../topologies/TabBar';
 import TabPane from '../../../../topologies/TabPane';
+import CardContent from '../../../Common/components/Card/CardContent';
+import CardDivider from '../../../Common/components/Card/CardDivider';
+import { iriFromTemplate } from '../../../Common/lib/uriTemplate';
 
 import DashboardTabBar from './DashboardTabBar';
 import DateRangeFilter, { DATE_SIZE } from './DateRangeFilter';

@@ -5,11 +5,11 @@ import { Coordinate } from 'ol/coordinate';
 import GeometryType from 'ol/geom/GeometryType';
 import React, { useMemo } from 'react';
 
-import { FormTheme } from '../../../components/Form/FormContext';
-import LinkLoader from '../../../components/Loading/LinkLoader';
-import Suspense from '../../../components/Suspense';
-import { getMetaContent } from '../../../helpers/dom';
-import useFontsChecker from '../../../hooks/useFontsChecker';
+import useFontsChecker from '../../Common/hooks/useFontsChecker';
+import { getMetaContent } from '../../Common/lib/dom';
+import LinkLoader from '../../Core/components/Loading/LinkLoader';
+import Suspense from '../../Core/components/Suspense';
+import { FormTheme } from '../../Form/components/Form/FormContext';
 
 const ControlledMap = React.lazy(
   // eslint-disable-next-line no-inline-comments

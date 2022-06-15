@@ -1,20 +1,17 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import {
-  Property,
-  register,
-} from 'link-redux';
+import { Property, register } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../../../components/Card/CardContent';
-import HeaderWithMenu from '../../../../components/HeaderWithMenu';
 import ontola from '../../../../ontology/ontola';
 import org from '../../../../ontology/org';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
 import CardMain from '../../../../topologies/Card/CardMain';
+import Container from '../../../../topologies/Container';
 import ContentDetails from '../../../../topologies/ContentDetails';
+import CardContent from '../../../Common/components/Card/CardContent';
+import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
 
 import { useContactOptionStyles } from './useContactOptionStyles';
 

@@ -1,4 +1,3 @@
-
 import { NodeProperty, NodeType } from './types';
 
 const INDENTATION_SIZE = 2;

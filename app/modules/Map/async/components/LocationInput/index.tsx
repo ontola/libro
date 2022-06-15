@@ -5,16 +5,16 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { SHADOW_LIGHT } from '../../../../../helpers/flow';
-import { useFormFieldForPath } from '../../../../../hooks/useFormFieldForPath';
-import ControlledMap, { MapVariant } from '../../../components/ControlledMap';
 import ontola from '../../../../../ontology/ontola';
 import { BreakPoints, LibroTheme } from '../../../../../themes/themes';
 import { hiddenRequiredInputErrors } from '../../../../../translations/messages';
-import { FormTheme, formContext } from '../../../../../components/Form/FormContext';
-import { formFieldContext } from '../../../../../components/FormField/FormFieldContext';
-import { InputComponentProps } from '../../../../../components/FormField/FormFieldTypes';
-import HiddenRequiredInput from '../../../../../components/Input/HiddenRequiredInput';
+import { SHADOW_LIGHT } from '../../../../Common/lib/flow';
+import { FormTheme, formContext } from '../../../../Form/components/Form/FormContext';
+import { formFieldContext } from '../../../../Form/components/FormField/FormFieldContext';
+import { InputComponentProps } from '../../../../Form/components/FormField/FormFieldTypes';
+import HiddenRequiredInput from '../../../../Form/components/Input/HiddenRequiredInput';
+import { useFormFieldForPath } from '../../../../Form/hooks/useFormFieldForPath';
+import ControlledMap, { MapVariant } from '../../../components/ControlledMap';
 
 import { useGeometryInput } from './lib/useGeometryInput';
 import { useIntialView } from './lib/useInitialView';

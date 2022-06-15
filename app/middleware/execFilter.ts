@@ -8,7 +8,7 @@ import rdf from '@ontologies/core';
 import {
   MiddlewareActionHandler,
   MiddlewareWithBoundLRS,
-  SomeNode,
+  SomeNode, 
 } from 'link-lib';
 
 const execFilter = (websiteIRI: string) => (): MiddlewareWithBoundLRS => {

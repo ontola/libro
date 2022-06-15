@@ -1,16 +1,16 @@
+import PublishIcon from '@mui/icons-material/Publish';
 import {
   Button,
   Chip,
   TableCell,
   TableRow,
 } from '@mui/material';
-import PublishIcon from '@mui/icons-material/Publish';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import useJSON from '../../../../../../hooks/useJSON';
 import { studioDistributionMessages } from '../../../../../../translations/messages';
+import useJSON from '../../../../../Common/hooks/useJSON';
 import { Action, ProjectAction } from '../../../context/ProjectContext';
 import { DistributionMeta } from '../../../lib/distributionAgent';
 

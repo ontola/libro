@@ -1,6 +1,6 @@
 import { createNS } from '@ontologies/core';
 
-import elements from './ontology/elements';
+import elements from './modules/Elements/ontology/elements';
 
 export const component = createNS('component:');
 

@@ -1,14 +1,11 @@
 import { NamedNode } from '@ontologies/core';
-import {
-  PropertyProps,
-  register,
-} from 'link-redux';
+import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
-import { tryParseFloat } from '../../../../../helpers/numbers';
-import teamGL from '../../../../../ontology/teamGL';
+import teamGL from '../../../ontology/teamGL';
 import { tableRowTopology } from '../../../../../topologies';
 import TableCell from '../../../../../topologies/TableCell';
+import { tryParseFloat } from '../../../../Common/lib/numbers';
 
 import TrendIndicator from './trendIndicator';
 

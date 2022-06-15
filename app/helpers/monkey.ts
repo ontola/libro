@@ -4,7 +4,7 @@ import {
   getAuthenticityToken,
   getLinkContent,
   getMetaContent,
-} from './dom';
+} from '../modules/Common/lib/dom';
 
 function patchRequestInitGenerator(lrs: LinkReduxLRSType): void {
   (lrs as any).api.requestInitGenerator.constructor.prototype.authenticityHeader =

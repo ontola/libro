@@ -1,7 +1,7 @@
 import React from 'react';
 
-import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
-import { Trigger } from '../../components/DropdownMenu/TriggerButton';
+import DropdownMenu from '../../modules/Menu/components/DropdownMenu/DropdownMenu';
+import { Trigger } from '../../modules/Menu/components/DropdownMenu/TriggerButton';
 import { menuTopology } from '../../topologies';
 import Topology, { TopologyContent } from '../Topology';
 

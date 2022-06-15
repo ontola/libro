@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useJSON from '../../../../hooks/useJSON';
+import useJSON from '../../../Common/hooks/useJSON';
 import { ServerDocumentsContext } from '../context/ServerDocumentsContext';
 
 export const useServerDocumentsContext = (): ServerDocumentsContext => {

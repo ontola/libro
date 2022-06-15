@@ -7,16 +7,16 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import { tryParseFloat } from '../../../../../../helpers/numbers';
-import { getStyles } from '../../../lib/helpers';
+import fa4 from '../../../../../../ontology/fa4';
+import { LibroTheme } from '../../../../../../themes/themes';
+import { tryParseFloat } from '../../../../../Common/lib/numbers';
+import { FormField } from '../../../../../Form/components/FormField/FormFieldTypes';
 import {
   Geometry,
   Layer,
   MapInteractionCallback,
 } from '../../../../components/ControlledMap';
-import fa4 from '../../../../../../ontology/fa4';
-import { LibroTheme } from '../../../../../../themes/themes';
-import { FormField } from '../../../../../../components/FormField/FormFieldTypes';
+import { getStyles } from '../../../lib/helpers';
 
 const buildFeature = (geometry: Geometry, theme: LibroTheme) => {
   const { hoverStyle, style } = getStyles(fa4.ns('map-marker').value, theme);

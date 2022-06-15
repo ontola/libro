@@ -3,7 +3,7 @@ import { PropertyProps } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import teamGL from '../../../../../ontology/teamGL';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologiesExcept, tableRowTopology } from '../../../../../topologies';
 import { useContactOptionStyles } from '../useContactOptionStyles';
 

@@ -10,8 +10,9 @@ import GroupMembership from './GroupMembership';
 import Participant from './Participant';
 import PostalCode from './PostalCode';
 import Street from './Street';
-import Volunteer from './Volunteer';
 import TargetProgress from './TargetProgress';
+import User from './User';
+import Volunteer from './Volunteer';
 
 export default [
   ...Action,
@@ -27,5 +28,6 @@ export default [
   ...PostalCode,
   ...Street,
   ...TargetProgress,
+  ...User,
   ...Volunteer,
 ];

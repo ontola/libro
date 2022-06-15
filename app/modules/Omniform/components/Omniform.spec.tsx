@@ -4,24 +4,21 @@
 
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
-import * as sh from '@ontologies/shacl';
 import * as schema from '@ontologies/schema';
+import * as sh from '@ontologies/shacl';
 import * as xsd from '@ontologies/xsd';
 import { act } from '@testing-library/react';
 import { createForm } from 'final-form';
 import React from 'react';
 
-import { calculateFormFieldName } from '../../../helpers/forms';
-import argu from '../../../ontology/argu';
+import { fireEvent, renderLinked } from '../../../../tests/test-utils';
+import argu from '../../Argu/ontology/argu';
 import ex from '../../../ontology/ex';
 import example from '../../../ontology/example';
-import form from '../../../ontology/form';
+import form from '../../Form/ontology/form';
 import ll from '../../../ontology/ll';
-import {
-  fireEvent,
-  renderLinked,
-} from '../../../test-utils';
 import Card from '../../../topologies/Card';
+import { calculateFormFieldName } from '../../Form/lib/helpers';
 
 import Omniform from './Omniform';
 

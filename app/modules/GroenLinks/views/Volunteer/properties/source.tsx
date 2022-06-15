@@ -1,14 +1,11 @@
-import {
-  PropertyProps,
-  register,
-} from 'link-redux';
+import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import Detail from '../../../../../components/Detail';
 import app from '../../../../../ontology/app';
-import teamGL from '../../../../../ontology/teamGL';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
+import Detail from '../../../../Common/components/Detail';
 
 const Source = ({ linkedProp }: PropertyProps) => {
   if (linkedProp === app.ns('enums/volunteers/source#glapp')) {

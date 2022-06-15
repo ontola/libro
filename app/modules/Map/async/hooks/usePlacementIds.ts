@@ -3,6 +3,7 @@ import {
   Node,
   isNode,
 } from '@ontologies/core';
+import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
   LinkReduxLRSType,
@@ -11,12 +12,11 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import * as schema from '@ontologies/schema';
 
-import { entityIsLoaded } from '../../../../helpers/data';
-import { tryParseFloat } from '../../../../helpers/numbers';
 import fa4 from '../../../../ontology/fa4';
 import ontola from '../../../../ontology/ontola';
+import { tryParseFloat } from '../../../Common/lib/numbers';
+import { entityIsLoaded } from '../../../Core/lib/data';
 import { Placement } from '../../components/ControlledMap';
 
 const imageForPlacement = (node: SomeNode, lrs: LinkReduxLRSType): NamedNode =>

@@ -1,7 +1,4 @@
-import {
-  Property,
-  register,
-} from 'link-redux';
+import { Property, register } from 'link-redux';
 import React from 'react';
 
 import org from '../../../../ontology/org';

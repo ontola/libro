@@ -4,10 +4,10 @@ import { Resource } from 'link-redux';
 import React from 'react';
 import { useLocation } from 'react-router';
 
-import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
-import { currentLocationControl } from '../../helpers/paths';
-import { WithWebsiteCtx, withWebsiteCtx } from '../../location';
+import PageError from '../../modules/Common/components/Error/PageError';
+import { currentLocationControl } from '../../modules/Common/lib/paths';
+import { WebsiteContext, WebsiteCtx } from '../../modules/Core/components/WebsiteContext/websiteContext';
 import { Page } from '../../topologies/Page';
 
 const wildcardMap = new Map();
@@ -117,6 +117,23 @@ function withLocation<P>(Component: React.ComponentType<P & WithLocation>) {
       <Component
         {...props}
         location={location}
+      />
+    );
+  };
+}
+
+interface WithWebsiteCtx {
+  websiteCtx?: WebsiteCtx;
+}
+
+function withWebsiteCtx<P>(Component: React.ComponentType<WithWebsiteCtx & P>) {
+  return (props: P): JSX.Element => {
+    const websiteCtx = React.useContext(WebsiteContext);
+
+    return (
+      <Component
+        {...props}
+        websiteCtx={websiteCtx}
       />
     );
   };

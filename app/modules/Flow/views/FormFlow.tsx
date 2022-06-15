@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import form from '../../../ontology/form';
+import form from '../../Form/ontology/form';
 import { flowTopology } from '../../../topologies';
 import FlowForm from '../components/FlowForm';
 

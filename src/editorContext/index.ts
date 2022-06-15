@@ -11,14 +11,14 @@ import * as ontXsd from '@ontologies/xsd';
 
 import ontApp from '../../app/ontology/app';
 import ontAppSlashless from '../../app/ontology/appSlashless';
-import ontArgu from '../../app/ontology/argu';
+import ontArgu from '../../app/modules/Argu/ontology/argu';
 import ontDbo from '../../app/ontology/dbo';
-import ontDexes from '../../app/ontology/dexes';
+import ontDexes from '../../app/modules/Dexes/ontology/dexes';
 import ontEx from '../../app/ontology/ex';
 import ontExample from '../../app/ontology/example';
 import ontFa4 from '../../app/ontology/fa4';
 import ontFhir from '../../app/ontology/fhir';
-import ontForm from '../../app/ontology/form';
+import ontForm from '../../app/modules/Form/ontology/form';
 import ontHttp from '../../app/ontology/http';
 import ontHttph from '../../app/ontology/httph';
 import ontHydra from '../../app/ontology/hydra';
@@ -33,7 +33,7 @@ import ontOrg from '../../app/ontology/org';
 import ontPerson from '../../app/ontology/person';
 import ontQb from '../../app/ontology/qb';
 import ontSp from '../../app/ontology/sp';
-import ontTeamGL from '../../app/ontology/teamGL';
+import ontTeamGL from '../../app/modules/GroenLinks/ontology/teamGL';
 import ontWdt from '../../app/ontology/wdt';
 
 /* eslint-disable unused-imports/no-unused-vars */

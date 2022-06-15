@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import VerticalScroller from '../../components/VerticalScroller';
+import VerticalScroller from '../../modules/Common/components/VerticalScroller';
 import { detailsBarTopology } from '../../topologies';
 import { CardFloat } from '../Card';
 

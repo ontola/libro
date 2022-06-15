@@ -1,7 +1,7 @@
 import React, { Dispatch } from 'react';
 
-import { Seed } from '../../../../helpers/seed';
 import { WebManifest } from '../../../../WebManifest';
+import { Seed } from '../../../Common/lib/seed';
 import { sourceToSlice } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';

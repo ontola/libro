@@ -2,8 +2,8 @@ import { NamedNode } from '@ontologies/core';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { retrievePath } from '../../../../helpers/iris';
 import app from '../../../../ontology/app';
+import { retrievePath } from '../../../Common/lib/iris';
 
 const MAX_IN_STORAGE = 5;
 

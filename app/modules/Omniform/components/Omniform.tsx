@@ -1,10 +1,6 @@
-
 import { useMediaQuery, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import rdf, {
-  Node,
-  isNamedNode,
-} from '@ontologies/core';
+import rdf, { Node, isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import {
@@ -17,17 +13,17 @@ import {
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { useHighlight } from '../../../components/HighlightProvider';
-import argu from '../../../ontology/argu';
+import argu from '../../Argu/ontology/argu';
 import ll from '../../../ontology/ll';
 import ontola from '../../../ontology/ontola';
 import { BreakPoints, LibroTheme } from '../../../themes/themes';
 import FormFooter from '../../../topologies/FormFooter';
 import OmniformFields from '../../../topologies/OmniformFields/OmniformFields';
-import { FormFooterRight } from '../../../components/Form';
-import { FormFieldError } from '../../../components/FormField/FormFieldTypes';
-import { OnDoneHandler } from '../../../views/Action/helpers';
-import { SubmitSuccessHandler } from '../../../views/EntryPoint/useSubmitHandler';
+import { SubmitSuccessHandler } from '../../Action/views/EntryPoint/useSubmitHandler';
+import { OnDoneHandler } from '../../Action/views/helpers';
+import { useHighlight } from '../../Core/components/HighlightProvider/HighlightProvider';
+import { FormFooterRight } from '../../Form/components/Form';
+import { FormFieldError } from '../../Form/components/FormField/FormFieldTypes';
 import { useOmniformActiveAction, useOmniformChangeFactory } from '../lib/hooks';
 
 export interface OmniformProps {

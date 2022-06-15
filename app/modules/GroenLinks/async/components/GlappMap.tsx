@@ -4,20 +4,20 @@ import { Coordinate } from 'ol/coordinate';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
+import app from '../../../../ontology/app';
+import teamGL from '../../ontology/teamGL';
+import useJSON from '../../../Common/hooks/useJSON';
+import { getMetaContent } from '../../../Common/lib/dom';
+import { tryParseFloat } from '../../../Common/lib/numbers';
+import { LoadingCard } from '../../../Core/components/Loading';
 import MapCanvas from '../../../Map/async/components/MapCanvas';
 import { FOCUS_ZOOM } from '../../../Map/async/hooks/useMap';
-import { LoadingCard } from '../../../../components/Loading';
 import {
   ClusterSelectCallback,
   FeatureSelectCallback,
   MapVariant,
   ViewProps,
 } from '../../../Map/components/ControlledMap';
-import { getMetaContent } from '../../../../helpers/dom';
-import { tryParseFloat } from '../../../../helpers/numbers';
-import useJSON from '../../../../hooks/useJSON';
-import app from '../../../../ontology/app';
-import teamGL from '../../../../ontology/teamGL';
 import { GlappMapProps, PostalStats } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
 import useEventsLayer from '../hooks/useEventsLayer';

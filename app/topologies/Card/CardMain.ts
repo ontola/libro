@@ -10,7 +10,7 @@ import {
   cardClassIdentifier,
   cardFixedClassIdentifier,
   cardFixedStyles,
-  cardStyles,
+  cardStyles, 
 } from './sharedCardStyles';
 
 const styles = (theme: LibroTheme) => ({

@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import ErrorBoundary from '../../../../Common/components/ErrorBoundary';
 import { DialogType, ProjectContextProps } from '../../context/ProjectContext';
 import { usePopoutViewer } from '../../hooks/usePopoutViewer';
 import { Content } from '../Content';

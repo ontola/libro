@@ -1,9 +1,9 @@
 import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
-import Detail from '../../../../../components/Detail';
-import teamGL from '../../../../../ontology/teamGL';
+import teamGL from '../../../ontology/teamGL';
 import { contentDetailsTopology, detailsBarTopology } from '../../../../../topologies';
+import Detail from '../../../../Common/components/Detail';
 
 const SignedUp = ({ linkedProp }: PropertyProps) => {
   if (linkedProp.value === 'true') {

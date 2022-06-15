@@ -9,15 +9,15 @@ import {
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import CardContent from '../../../../components/Card/CardContent';
-import CardError from '../../../../components/Error/CardError';
-import useMapAccessToken from '../../../../hooks/useMapAccessToken';
 import app from '../../../../ontology/app';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { BreakPoints } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
 import Card from '../../../../topologies/Card';
 import { cardClassIdentifier } from '../../../../topologies/Card/sharedCardStyles';
+import CardContent from '../../../Common/components/Card/CardContent';
+import CardError from '../../../Common/components/Error/CardError';
+import useMapAccessToken from '../../../Map/hooks/useMapAccessToken';
 import GlappMap from '../../components/GlappMap';
 
 import SearchPostalForm from './SearchPostalForm';

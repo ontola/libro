@@ -7,10 +7,10 @@ import {
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import Detail from '../../../../components/Detail';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { contentDetailsTopology, detailsBarTopology } from '../../../../topologies';
-import { retrievePath } from '../../../../helpers/iris';
+import Detail from '../../../Common/components/Detail';
+import { retrievePath } from '../../../Common/lib/iris';
 
 const DepartmentDetailsBar: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);

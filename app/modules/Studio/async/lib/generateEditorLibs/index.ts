@@ -1,19 +1,19 @@
-import * as schema from '@ontologies/schema';
+import * as as from '@ontologies/as';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
-import * as as from '@ontologies/as';
+import * as schema from '@ontologies/schema';
 
-import sales from '../../../../../ontology/sales';
-import ontola from '../../../../../ontology/ontola';
-import argu from '../../../../../ontology/argu';
-import elements from '../../../../../ontology/elements';
-import dbo from '../../../../../ontology/dbo';
-import fa4 from '../../../../../ontology/fa4';
 import appSlashless from '../../../../../ontology/appSlashless';
-import form from '../../../../../ontology/form';
+import argu from '../../../../Argu/ontology/argu';
+import dbo from '../../../../../ontology/dbo';
+import elements from '../../../../Elements/ontology/elements';
+import fa4 from '../../../../../ontology/fa4';
+import form from '../../../../Form/ontology/form';
 import libro from '../../../../../ontology/libro';
 import link from '../../../../../ontology/link';
 import meeting from '../../../../../ontology/meeting';
+import ontola from '../../../../../ontology/ontola';
+import sales from '../../../../SalesWebsite/ontology/sales';
 
 import { OntologyMap, generateOntologyDeclerations } from './generateOntologyDeclerations';
 

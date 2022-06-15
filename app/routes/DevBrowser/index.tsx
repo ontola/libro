@@ -3,13 +3,10 @@ import { term } from '@rdfdev/iri';
 import { useLRS } from 'link-redux';
 import React, { ChangeEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import app from '../../ontology/app';
-import argu from '../../ontology/argu';
+import argu from '../../modules/Argu/ontology/argu';
 import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';

@@ -2,8 +2,8 @@ import AcademyHeader from './academy/header';
 import CommonHeader from './common/header';
 import DutchGovernmentHeader from './dutchGovernment/header';
 import GroenLinksHeader from './groenLinks/header';
-import SalesHeader from './salesWebsite/header';
 import { LIBRO_THEMES } from './LibroThemes';
+import SalesHeader from './salesWebsite/header';
 
 export default {
   [LIBRO_THEMES.ACADEMY]: AcademyHeader,

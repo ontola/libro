@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { InputComponentProps } from '../../../components/FormField/FormFieldTypes';
-import LinkLoader from '../../../components/Loading/LinkLoader';
-import Suspense from '../../../components/Suspense';
+import LinkLoader from '../../Core/components/Loading/LinkLoader';
+import Suspense from '../../Core/components/Suspense';
+import { InputComponentProps } from '../../Form/components/FormField/FormFieldTypes';
 
 const LocationInput = React.lazy(
   // eslint-disable-next-line no-inline-comments

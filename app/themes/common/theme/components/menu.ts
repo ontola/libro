@@ -1,9 +1,9 @@
-import { loadingParagraphCID } from '../../../../components/Loading';
+import { loadingParagraphCID } from '../../../../modules/Core/components/Loading';
 import { appMenuCID } from '../../../../topologies/AppMenu';
 import {
   BreakPoints,
   LibroTheme,
-  MaterialStyleMap,
+  MaterialStyleMap, 
 } from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({

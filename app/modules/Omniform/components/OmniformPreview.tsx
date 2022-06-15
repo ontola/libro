@@ -10,10 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import {
-  FormattedMessage,
-  useIntl,
-} from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { LibroTheme } from '../../../themes/themes';
 import { containerTopology } from '../../../topologies';

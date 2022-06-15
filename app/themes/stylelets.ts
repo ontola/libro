@@ -1,4 +1,4 @@
-import { checkLuminance, hexToRgb } from '../helpers/color';
+import { checkLuminance, hexToRgb } from '../modules/Common/lib/color';
 
 import { CSSPropertiesMap, LibroTheme } from './themes';
 

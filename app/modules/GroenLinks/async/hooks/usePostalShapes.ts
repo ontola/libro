@@ -7,9 +7,9 @@ import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import React from 'react';
 
-import { tryParseFloat } from '../../../../helpers/numbers';
 import app from '../../../../ontology/app';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
+import { tryParseFloat } from '../../../Common/lib/numbers';
 import { Priorities } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
 

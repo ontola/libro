@@ -15,7 +15,7 @@ import {
   Seed,
   SeedDataRecord,
   Value,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 const toId = (t: Term): GlobalId | LocalId => {
   if (isNamedNode(t)) {

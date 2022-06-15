@@ -1,13 +1,13 @@
 import {
   WithStyles,
   createStyles,
-  withStyles,
+  withStyles, 
 } from '@mui/styles';
 import clsx from 'clsx';
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { loadingButtonCID } from '../../components/Loading';
+import { loadingButtonCID } from '../../modules/Core/components/Loading';
 import { actionsBarTopology } from '../../topologies';
 
 const styles = createStyles({

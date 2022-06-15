@@ -1,6 +1,6 @@
-import ActiveVolunteersRatio from './properties/activeVolunteersRatio';
 import DepartmentDetailsBar from './DepartmentDetailsBar';
 import DepartmentPage from './DepartmentFull';
+import ActiveVolunteersRatio from './properties/activeVolunteersRatio';
 import EventsCount from './properties/eventsCount';
 import GroupsCount from './properties/groupsCount';
 import InactiveVolunteersRatio from './properties/inactiveVolunteersRatio';

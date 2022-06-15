@@ -17,6 +17,7 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
+import ServiceWorkerCommunicator from '../components/ServiceWorkerCommunicator';
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
 import { appMiddleware } from '../middleware/app';
@@ -24,25 +25,24 @@ import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
 import { searchMiddleware } from '../middleware/searchMiddleware';
+import { getMetaContent } from '../modules/Common/lib/dom';
+import ontolaDeltaProcessor from '../modules/Common/lib/ontolaDeltaProcessor';
+import { quadruple } from '../modules/Common/lib/quadruple';
+import transformers from '../modules/Common/lib/transformers';
+import { initializeCable, subscribeDeltaChannel } from '../modules/Common/lib/websockets';
 import { appOntology, website } from '../ontology/app';
-import argu from '../ontology/argu';
-import form from '../ontology/form';
+import argu from '../modules/Argu/ontology/argu';
+import form from '../modules/Form/ontology/form';
 import ll from '../ontology/ll';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
 import opengov from '../ontology/opengov';
-import teamGL from '../ontology/teamGL';
+import teamGL from '../modules/GroenLinks/ontology/teamGL';
 import { WebManifest } from '../WebManifest';
 
-import arguDeltaProcessor from './arguDeltaProcessor';
-import { getMetaContent } from './dom';
 import { handle } from './logging';
-import { quadruple } from './quadruple';
-import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
-import transformers from './transformers';
-import hexjson from './transformers/hexjson';
 import empndjson from './transformers/empndjson';
-import { initializeCable, subscribeDeltaChannel } from './websockets';
+import hexjson from './transformers/hexjson';
 
 export interface LRSBundle {
   history: History;
@@ -91,7 +91,7 @@ export default async function generateLRS(
   serviceWorkerCommunicator.linkedRenderStore = lrs;
   (lrs as any).bulkFetch = true;
 
-  lrs.deltaProcessors.unshift(arguDeltaProcessor(lrs));
+  lrs.deltaProcessors.unshift(ontolaDeltaProcessor(lrs));
 
   lrs.api.registerTransformer(empndjson.transformer(lrs, manifest.ontola.website_iri, mapping), empndjson.mediaTypes, empndjson.acceptValue);
   lrs.api.registerTransformer(hexjson.transformer(lrs), hexjson.mediaTypes, hexjson.acceptValue);

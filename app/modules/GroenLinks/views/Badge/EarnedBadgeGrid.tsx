@@ -11,11 +11,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Heading, { HeadingSize } from '../../../../components/Heading';
-import Image from '../../../../components/Image';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { BreakPoints } from '../../../../themes/themes';
 import { gridTopology } from '../../../../topologies';
+import Heading, { HeadingSize } from '../../../Common/components/Heading';
+import Image from '../../../Common/components/Image';
 
 const PENDING_BADGE_OPACITY = 0.2;
 

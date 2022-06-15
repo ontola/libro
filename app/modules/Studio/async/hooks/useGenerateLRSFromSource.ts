@@ -1,7 +1,4 @@
-import {
-  Node,
-  Quadruple,
-} from '@ontologies/core';
+import { Node, Quadruple } from '@ontologies/core';
 
 import parseToGraph from '../../lib/parseToGraph';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useStoredState from '../../../../hooks/useStoredState';
+import useStoredState from '../../../Common/hooks/useStoredState';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
 
 const CLOSE_UPDATE_TIMEOUT = 10;

@@ -1,7 +1,7 @@
 import rdf, {
   NamedNode,
   Namespace,
-  createNS,
+  createNS, 
 } from '@ontologies/core';
 import * as dcterms from '@ontologies/dcterms';
 import * as foaf from '@ontologies/foaf';
@@ -9,7 +9,7 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 import { arrayToSeqQuads } from '@rdfdev/collections';
 
-import { getMetaContent } from '../helpers/dom';
+import { getMetaContent } from '../modules/Common/lib/dom';
 
 import dbo from './dbo';
 import wdt from './wdt';

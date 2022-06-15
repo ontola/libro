@@ -1,7 +1,7 @@
 import { SomeNode } from 'link-lib';
 import React, { KeyboardEventHandler } from 'react';
 
-import { OnDoneHandler } from '../../../views/Action/helpers';
+import { OnDoneHandler } from '../../Action/views/helpers';
 
 import Omniform from './Omniform';
 

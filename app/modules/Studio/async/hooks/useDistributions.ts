@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useJSON from '../../../../hooks/useJSON';
+import useJSON from '../../../Common/hooks/useJSON';
 import { buildDistributionIri } from '../lib/distributionAgent';
 
 export const useDistributions = (projectIri: string): [string[], () => void] => {

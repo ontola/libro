@@ -1,15 +1,12 @@
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
-import {
-  FC,
-  register,
-} from 'link-redux';
+import { FC, register } from 'link-redux';
 import React from 'react';
 
-import EntryPointForm from '../../../components/Form/EntryPointForm';
-import { FormTheme } from '../../../components/Form/FormContext';
 import { flowTopology } from '../../../topologies';
-import useEntryPointFormProps, { EntryPointProps } from '../../../views/EntryPoint/useEntryPointFormProps';
+import useEntryPointFormProps, { EntryPointProps } from '../../Action/views/EntryPoint/useEntryPointFormProps';
+import EntryPointForm from '../../Form/components/Form/EntryPointForm';
+import { FormTheme } from '../../Form/components/Form/FormContext';
 
 const useStyles = makeStyles({
   form: {

@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router';
 import PopoutViewer from '../modules/Studio/components/PopoutViewerLoader';
 import RDFStudio from '../modules/Studio/components/StudioLoader';
 
-import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
+import LinkedObject from './LinkedObject';
 import Sandbox from './Sandbox';
 
 const shouldRenderPopoutViewerRoute = () => __CLIENT__ && window.location.pathname.startsWith('/d/studio/viewer');

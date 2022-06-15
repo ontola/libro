@@ -1,4 +1,3 @@
-
 import { isNamedNode } from '@ontologies/core';
 
 import { validVariableRegex } from './validVariableNameRegex';

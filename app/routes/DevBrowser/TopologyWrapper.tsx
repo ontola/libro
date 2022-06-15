@@ -1,11 +1,11 @@
 import { makeStyles } from '@mui/styles';
 import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import React from 'react';
 import { Resource } from 'link-redux';
+import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
-import Heading, { HeadingSize } from '../../components/Heading';
+import CardContent from '../../modules/Common/components/Card/CardContent';
+import Heading, { HeadingSize } from '../../modules/Common/components/Heading';
 import {
   BreakPoints,
   LibroTheme,

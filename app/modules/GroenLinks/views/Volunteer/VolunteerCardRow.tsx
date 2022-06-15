@@ -1,15 +1,12 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
-import {
-  Property,
-  register,
-} from 'link-redux';
+import { Property, register } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../../../components/Card/CardContent';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { cardRowTopology } from '../../../../topologies';
 import ContentDetails from '../../../../topologies/ContentDetails';
+import CardContent from '../../../Common/components/Card/CardContent';
 
 const VolunteerCardRow = () => (
   <CardContent>

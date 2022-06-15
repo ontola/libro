@@ -1,3 +1,9 @@
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CloseIcon from '@mui/icons-material/Close';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import LaunchIcon from '@mui/icons-material/Launch';
+import SaveIcon from '@mui/icons-material/Save';
 import {
   Badge,
   Button,
@@ -10,12 +16,6 @@ import {
   Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import CloseIcon from '@mui/icons-material/Close';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import LaunchIcon from '@mui/icons-material/Launch';
-import SaveIcon from '@mui/icons-material/Save';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';

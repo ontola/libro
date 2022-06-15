@@ -1,5 +1,5 @@
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
@@ -11,14 +11,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Button from '../../../components/Button';
-import CardContent from '../../../components/Card/CardContent';
-import { SignInFormLink } from '../../../components/SignInForm';
-import { isInvalidActionStatus } from '../../../hooks/useEnabledActions';
 import { flowTopology } from '../../../topologies';
 import CardMain from '../../../topologies/Card/CardMain';
 import Container from '../../../topologies/Container';
-import { ActionProps, useDoneHandler } from '../../../views/Action/helpers';
+import { isInvalidActionStatus } from '../../Action/hooks/useEnabledActions';
+import { ActionProps, useDoneHandler } from '../../Action/views/helpers';
+import { SignInFormLink } from '../../Auth/components/SignInForm';
+import Button from '../../Common/components/Button';
+import CardContent from '../../Common/components/Card/CardContent';
 
 const useStyles = makeStyles({
   controlStrip: {

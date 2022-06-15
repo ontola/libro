@@ -1,10 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import React, { Dispatch } from 'react';
 
-import {
-  Action,
-  ProjectAction,
-} from '../../context/ProjectContext';
+import { Action, ProjectAction } from '../../context/ProjectContext';
 import { DocumentList } from '../DocumentList';
 
 interface NoProjectScreenProps {

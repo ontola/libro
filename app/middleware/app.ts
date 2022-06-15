@@ -5,7 +5,7 @@
 import rdf, {
   NamedNode,
   Node,
-  Quadruple,
+  Quadruple, 
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
@@ -13,11 +13,11 @@ import HttpStatus from 'http-status-codes';
 import {
   MiddlewareActionHandler,
   MiddlewareWithBoundLRS,
-  SomeNode,
+  SomeNode, 
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { quadruple } from '../helpers/quadruple';
+import { quadruple } from '../modules/Common/lib/quadruple';
 import app from '../ontology/app';
 import http from '../ontology/http';
 import libro from '../ontology/libro';

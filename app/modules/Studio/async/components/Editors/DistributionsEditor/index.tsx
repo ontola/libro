@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import useJSON from '../../../../../../hooks/useJSON';
+import useJSON from '../../../../../Common/hooks/useJSON';
 import {
   DialogType,
   ProjectAction,

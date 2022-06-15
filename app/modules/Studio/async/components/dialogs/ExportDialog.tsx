@@ -1,3 +1,4 @@
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
   Dialog,
   DialogContent,
@@ -6,16 +7,15 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { makeStyles } from '@mui/styles';
 import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { LibroTheme } from '../../../../../themes/themes';
 import { actionMessages, studioExportMessages } from '../../../../../translations/messages';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
 import { useHasUnsavedChanges } from '../../hooks/useHasUnsavedChanges';
-import { LibroTheme } from '../../../../../themes/themes';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {

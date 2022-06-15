@@ -1,8 +1,8 @@
 import { SomeNode } from 'link-lib';
 import React from 'react';
 
-import LinkLoader from '../../../components/Loading/LinkLoader';
-import Suspense from '../../../components/Suspense';
+import LinkLoader from '../../Core/components/Loading/LinkLoader';
+import Suspense from '../../Core/components/Suspense';
 
 import { Placement, SharedMapProps } from './ControlledMap';
 

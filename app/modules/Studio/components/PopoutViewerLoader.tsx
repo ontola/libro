@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Suspense from '../../../components/Suspense';
+import Suspense from '../../Core/components/Suspense';
 
 const PopoutViewer = React.lazy(
   // eslint-disable-next-line no-inline-comments

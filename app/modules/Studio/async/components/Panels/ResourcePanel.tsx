@@ -9,11 +9,7 @@ import { makeStyles } from '@mui/styles';
 import { termStr } from '@rdfdev/iri';
 import React from 'react';
 
-import {
-  ProjectAction,
-  ProjectContextProps,
-
-} from '../../context/ProjectContext';
+import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
 import { SubResource } from '../../lib/types';
 
 const useStyles = makeStyles({

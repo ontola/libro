@@ -1,7 +1,7 @@
 import deepmerge from 'deepmerge';
 
-import { navBarContentMenusCID } from '../../../../components/NavBarContent';
-import { navBarContentItemsCID } from '../../../../components/NavBarContent/NavbarNavigationsMenu';
+import { navBarContentMenusCID } from '../../../../modules/NavBar/components/NavBarContent';
+import { navBarContentItemsCID } from '../../../../modules/NavBar/components/NavBarContent/NavbarNavigationsMenu';
 import appbar from '../../../common/theme/components/appbar';
 import { LibroTheme, MaterialStyleMap } from '../../../themes';
 

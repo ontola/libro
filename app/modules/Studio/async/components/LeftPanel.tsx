@@ -1,4 +1,3 @@
-import { Grid, Tab } from '@mui/material';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -8,6 +7,7 @@ import {
   TabList,
   TabPanel,
 } from '@mui/lab';
+import { Grid, Tab } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 

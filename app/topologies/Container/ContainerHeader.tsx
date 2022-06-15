@@ -1,7 +1,7 @@
 import { WithStyles, withStyles } from '@mui/styles';
 import React from 'react';
 
-import { headingCID } from '../../components/Heading';
+import { headingCID } from '../../modules/Common/components/Heading';
 import { LibroTheme } from '../../themes/themes';
 import { containerHeaderTopology } from '../../topologies';
 import Topology from '../Topology';

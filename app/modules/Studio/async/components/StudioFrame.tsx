@@ -4,9 +4,9 @@ import React from 'react';
 import { LibroTheme } from '../../../../themes/themes';
 import { ProjectContext, useProjectStateReducer } from '../context/ProjectContext';
 
+import { LoadingScreen } from './screens/LoadingScreen';
 import { NoProjectScreen } from './screens/NoProjectScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
-import { LoadingScreen } from './screens/LoadingScreen';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   windowOverlay: {

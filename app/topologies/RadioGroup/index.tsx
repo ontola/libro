@@ -1,25 +1,25 @@
-import {
-  FormControlLabel,
-  RadioGroup as MaterialRadioGroup,
-  Radio,
-} from '@mui/material';
-import { darken } from '@mui/material/styles';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import {
+  FormControlLabel,
+  RadioGroup as MaterialRadioGroup,
+  Radio, 
+} from '@mui/material';
+import { darken } from '@mui/material/styles';
+import {
   WithStyles,
   createStyles,
-  withStyles,
+  withStyles, 
 } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 
-import { FormTheme } from '../../components/Form/FormContext';
-import { InputValue } from '../../components/FormField/FormFieldTypes';
-import { SHADOW } from '../../helpers/flow';
-import { isResource } from '../../helpers/types';
+import { SHADOW } from '../../modules/Common/lib/flow';
+import { isResource } from '../../modules/Common/lib/typeCheckers';
+import { FormTheme } from '../../modules/Form/components/Form/FormContext';
+import { InputValue } from '../../modules/Form/components/FormField/FormFieldTypes';
 import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { radioGroupTopology } from '../../topologies';
 import Topology from '../Topology';

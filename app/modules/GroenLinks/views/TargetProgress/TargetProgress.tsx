@@ -1,13 +1,10 @@
-import {
-  register,
-  useProperty,
-} from 'link-redux';
+import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import Progress from '../../../../components/Progress';
-import { tryParseInt } from '../../../../helpers/numbers';
-import teamGL from '../../../../ontology/teamGL';
+import teamGL from '../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
+import Progress from '../../../Common/components/Progress';
+import { tryParseInt } from '../../../Common/lib/numbers';
 
 const TargetProgress = () => {
   const [current] = useProperty(teamGL.current);

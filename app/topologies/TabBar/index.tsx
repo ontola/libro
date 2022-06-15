@@ -1,8 +1,8 @@
+import type { Location } from 'history';
 import React, { ChildrenProp } from 'react';
 import { useLocation } from 'react-router';
-import type { Location } from 'history';
 
-import { TabVariant, Tabs } from '../../components/Tabs';
+import { TabVariant, Tabs } from '../../modules/Common/components/Tabs';
 import { tabBarTopology } from '../../topologies';
 import TopologyProvider from '../Topology';
 

@@ -4,9 +4,9 @@ import { Node } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { gridHeaderCID } from '../../components/Grid/GridHeader';
-import { headingCID } from '../../components/Heading';
-import HeadingContext from '../../components/Heading/HeadingContext';
+import { gridHeaderCID } from '../../modules/Common/components/Grid/GridHeader';
+import { headingCID } from '../../modules/Common/components/Heading';
+import HeadingContext from '../../modules/Common/components/Heading/HeadingContext';
 import { IndexablePalette, LibroTheme } from '../../themes/themes';
 import { footerTopology } from '../../topologies';
 import Topology from '../Topology';

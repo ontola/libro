@@ -1,11 +1,11 @@
+import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../../../components/Input/PostalRangeInput';
-import { tryParseInt } from '../../../../helpers/numbers';
+import { tryParseInt } from '../../../Common/lib/numbers';
+import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../../Form/components/Input/PostalRangeInput';
 
 import { useVisitPostalCode } from './helpers';
 

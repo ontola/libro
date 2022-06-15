@@ -3,7 +3,7 @@ import type { Location } from 'history';
 import React from 'react';
 import { useLocation } from 'react-router';
 
-import { appContext } from '../../../../appContext';
+import { appContext } from '../../../Core/components/AppContext/appContext';
 
 export const pageViewerRelativeIRI = (
   website: string,

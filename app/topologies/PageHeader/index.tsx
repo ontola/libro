@@ -1,20 +1,17 @@
 import {
   WithStyles,
   createStyles,
-  withStyles,
+  withStyles, 
 } from '@mui/styles';
 import clsx from 'clsx';
-import {
-  TopologyProvider,
-  Type,
-} from 'link-redux';
+import { TopologyProvider, Type } from 'link-redux';
 import React from 'react';
 
 import {
   BreakPoints,
   LibroTheme,
   Margin,
-  Size,
+  Size, 
 } from '../../themes/themes';
 import { pageHeaderTopology } from '../../topologies';
 import Container from '../Container';

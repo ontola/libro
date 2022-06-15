@@ -5,14 +5,14 @@ import { NamedNode } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
 import { waitFor } from '@testing-library/react';
 
-import example from '../../../../../ontology/example';
-import form from '../../../../../ontology/form';
-import { renderLinkedHook } from '../../../../../test-utils-hooks';
+import { renderLinkedHook } from '../../../../../../tests/test-utils-hooks';
 import {
   PointerType,
   mockMedia,
   pointerQuery,
-} from '../../../../../test-utils-media';
+} from '../../../../../../tests/test-utils-media';
+import example from '../../../../../ontology/example';
+import form from '../../../../Form/ontology/form';
 import { useFieldForwardRules } from '../useFieldForwardRules';
 
 const createField = (...fieldTypes: NamedNode[]) => fieldTypes.map((fieldType, index) => ({

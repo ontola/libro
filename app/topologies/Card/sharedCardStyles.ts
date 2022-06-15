@@ -1,7 +1,7 @@
 import { createStyles } from '@mui/styles';
 
-import { cardContentClassIdentifier } from '../../components/Card/CardContent';
-import { headingCID } from '../../components/Heading';
+import { cardContentClassIdentifier } from '../../modules/Common/components/Card/CardContent';
+import { headingCID } from '../../modules/Common/components/Heading';
 import { LibroTheme } from '../../themes/themes';
 
 const CARD_BOTTOM_MARGIN = 5;

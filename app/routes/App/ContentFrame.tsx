@@ -4,11 +4,11 @@ import { Resource } from 'link-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { appContext } from '../../appContext';
-import Banners from '../../components/Banners';
-import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
-import SkipNavigation from '../../components/SkipNavigation';
 import { CONTAINER_ELEMENT } from '../../config';
+import Banners from '../../modules/Common/components/Banners';
+import { appContext } from '../../modules/Core/components/AppContext/appContext';
+import NetworkStatusIndicator from '../../modules/Core/components/NetworkStatusIndicator';
+import SkipNavigation from '../../modules/Core/components/SkipNavigation';
 import libro from '../../ontology/libro';
 import headers from '../../themes/headers';
 import { LibroTheme } from '../../themes/themes';

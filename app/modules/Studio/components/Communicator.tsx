@@ -2,12 +2,12 @@ import rdf, { Quadruple } from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
 import React from 'react';
 
-import { appContextEditor } from '../../../appContext';
 import generateLRS from '../../../helpers/generateLRS';
-import { seedToSlice } from '../../../helpers/seed';
 import http from '../../../ontology/http';
 import ll from '../../../ontology/ll';
 import register from '../../../views';
+import { seedToSlice } from '../../Common/lib/seed';
+import { appContextEditor } from '../../Core/components/AppContext/appContext';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
 import { PageViewerState } from '../lib/PageViewerState';
 

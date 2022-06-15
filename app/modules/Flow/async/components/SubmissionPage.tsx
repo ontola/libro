@@ -1,13 +1,13 @@
+import { ArrowBack } from '@mui/icons-material';
 import MUIButton from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { ArrowBack } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
-import Button, { ButtonVariant } from '../../../../components/Button';
-import { formContext } from '../../../../components/Form/FormContext';
+import Button, { ButtonVariant } from '../../../Common/components/Button';
+import { formContext } from '../../../Form/components/Form/FormContext';
 import { flowMessages } from '../../lib/messages';
 
 export interface SubmissionPageProps {

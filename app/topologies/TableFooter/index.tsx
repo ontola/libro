@@ -2,7 +2,7 @@ import { WithStyles, withStyles } from '@mui/styles';
 import PropTypes from 'prop-types';
 import { PropsWithChildren } from 'react';
 
-import argu from '../../ontology/argu';
+import argu from '../../modules/Argu/ontology/argu';
 import { LibroTheme, Margin } from '../../themes/themes';
 import { tableFooterCellCID } from '../TableFooterCell';
 import Topology from '../Topology';

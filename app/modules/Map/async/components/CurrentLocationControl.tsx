@@ -1,5 +1,5 @@
-import CircularProgress from '@mui/material/CircularProgress';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import CircularProgress from '@mui/material/CircularProgress';
 import clsx from 'clsx';
 import { Geolocation, Map } from 'ol';
 import { Control } from 'ol/control';
