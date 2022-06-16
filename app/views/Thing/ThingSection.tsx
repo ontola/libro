@@ -5,7 +5,7 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import { highlightContext } from '../../state/highlight';
+import { useHighlight } from '../../components/HighlightProvider';
 import { cardRowTopology, listTopology } from '../../topologies';
 import HoverBox from '../../topologies/HoverBox';
 
@@ -14,7 +14,7 @@ const ThingHoverBoxHidden = (): JSX.Element => (
 );
 
 const ThingSection = ({ subject }: SubjectProp): JSX.Element => {
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   return (
     <HoverBox

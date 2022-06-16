@@ -5,9 +5,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../ontology/ontola';
-import { useOmniformOpenAction } from '../../state/omniform';
-import ActionButton from '../ActionButton';
+import ontola from '../../../ontology/ontola';
+import ActionButton from '../../../components/ActionButton';
+import { useOmniformOpenAction } from '../lib/hooks';
 
 const OmniformTrigger = (): JSX.Element => {
   const [isPartOf] = useIds(schema.isPartOf);

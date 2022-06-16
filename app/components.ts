@@ -64,8 +64,8 @@ import CompNavbarLinkNavbarLinkImage from './components/NavbarLink/NavbarLinkIma
 import CompNavbarLinkNavbarLinkLabel from './components/NavbarLink/NavbarLinkLabel';
 import CompNavbarLinkNavbarLinkLink from './components/NavbarLink/NavbarLinkLink';
 import CompNetworkStatusIndicator from './components/NetworkStatusIndicator';
-import CompOmniform from './components/Omniform';
-import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
+import CompOmniform from './modules/Omniform/components/Omniform';
+import CompOmniformOmniformPreview from './modules/Omniform/components/OmniformPreview';
 import CompOverlayContainer from './components/OverlayContainer';
 import { PageHeader as CompPageHeader } from './components/PageHeader';
 import CompPageRow from './components/PageRow';

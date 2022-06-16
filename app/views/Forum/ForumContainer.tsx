@@ -8,16 +8,16 @@ import {
 } from 'link-redux';
 
 import CardContent from '../../components/Card/CardContent';
+import { useHighlight } from '../../components/HighlightProvider';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
-import { highlightContext } from '../../state/highlight';
 import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
 
 const ForumContainer: FC = ({ subject }) => {
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   return (
     <Card

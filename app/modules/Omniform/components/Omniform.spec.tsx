@@ -11,19 +11,19 @@ import { act } from '@testing-library/react';
 import { createForm } from 'final-form';
 import React from 'react';
 
-import { calculateFormFieldName } from '../../helpers/forms';
-import argu from '../../ontology/argu';
-import ex from '../../ontology/ex';
-import example from '../../ontology/example';
-import form from '../../ontology/form';
-import ll from '../../ontology/ll';
+import { calculateFormFieldName } from '../../../helpers/forms';
+import argu from '../../../ontology/argu';
+import ex from '../../../ontology/ex';
+import example from '../../../ontology/example';
+import form from '../../../ontology/form';
+import ll from '../../../ontology/ll';
 import {
   fireEvent,
   renderLinked,
-} from '../../test-utils';
-import Card from '../../topologies/Card';
+} from '../../../test-utils';
+import Card from '../../../topologies/Card';
 
-import Omniform from './index';
+import Omniform from './Omniform';
 
 describe('Omniform', () => {
   const schemaText = calculateFormFieldName(schema.text);

@@ -1,11 +1,11 @@
 import { NamedNode } from '@ontologies/core';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { allowSort } from '../../../../helpers/data';
+import { allowSort } from '../../../helpers/data';
 import {
   actionIsAllowed,
   useEnabledActions,
-} from '../../../../hooks/useEnabledActions';
+} from '../../../hooks/useEnabledActions';
 
 const OMNIFORM_FILTER = [
   /\/m\/new/,

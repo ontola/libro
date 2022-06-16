@@ -10,18 +10,18 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import { useHighlight } from '../../components/HighlightProvider';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
-import { highlightContext } from '../../state/highlight';
 import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
 
 const ThingContainer: FC = ({ subject }) => {
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   return (
     <Card

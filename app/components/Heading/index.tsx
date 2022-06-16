@@ -2,8 +2,9 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { headingContext } from '../../state/headings';
 import { BreakPoints, LibroTheme } from '../../themes/themes';
+
+import { headingContext } from './HeadingContext';
 
 export enum HeadingSize {
   XL = 1,

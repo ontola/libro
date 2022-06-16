@@ -8,21 +8,14 @@ import {
 } from 'link-redux';
 import React, { SyntheticEvent } from 'react';
 
-interface OmniformRecordType {
-  action?: SomeNode;
-  inlineOpened?: boolean;
-  parentIRI?: string;
-}
-
-export type OmniformState = Record<string, OmniformRecordType>;
-
-interface omniformContextType {
-  omniformState: OmniformState;
-  setOmniformState: React.Dispatch<React.SetStateAction<OmniformState>>;
-}
+import {
+  OmniformRecordType,
+  OmniformState,
+  omniformContext,
+} from '../components/OmniformProvider';
 
 // Reducer
-export const omniformCloseInline = (payload: string) => (state: OmniformState): OmniformState => ({
+const omniformCloseInline = (payload: string) => (state: OmniformState): OmniformState => ({
   ...state,
   [payload]: {
     ...state[payload],
@@ -30,7 +23,7 @@ export const omniformCloseInline = (payload: string) => (state: OmniformState): 
   },
 });
 
-export const omniformOpenInline = (payload: string) => (state: OmniformState): OmniformState => ({
+const omniformOpenInline = (payload: string) => (state: OmniformState): OmniformState => ({
   ...state,
   [payload]: {
     ...state[payload],
@@ -38,7 +31,7 @@ export const omniformOpenInline = (payload: string) => (state: OmniformState): O
   },
 });
 
-export const omniformSetAction = (payload: OmniformRecordType) => (state: OmniformState): OmniformState => (
+const omniformSetAction = (payload: OmniformRecordType) => (state: OmniformState): OmniformState => (
   payload.parentIRI ? {
     ...state,
     [payload.parentIRI]: {
@@ -48,12 +41,10 @@ export const omniformSetAction = (payload: OmniformRecordType) => (state: Omnifo
   } : state);
 
 // Selectors
-export const getOmniformAction = (state: OmniformState, parentIRI: string): SomeNode | undefined =>
+const getOmniformAction = (state: OmniformState, parentIRI: string): SomeNode | undefined =>
   state[parentIRI]?.action;
-export const getOmniformOpenState = (state: OmniformState, parentIRI: string): boolean =>
+const getOmniformOpenState = (state: OmniformState, parentIRI: string): boolean =>
   state[parentIRI]?.inlineOpened ?? false;
-
-export const omniformContext = React.createContext<omniformContextType>(undefined as any);
 
 export const useOmniformClose = (parent: SomeNode): () => void => {
   const { setOmniformState } = React.useContext(omniformContext);

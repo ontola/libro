@@ -1,3 +1,4 @@
+
 import { useMediaQuery, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import rdf, {
@@ -16,21 +17,18 @@ import {
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import argu from '../../ontology/argu';
-import ll from '../../ontology/ll';
-import ontola from '../../ontology/ontola';
-import { highlightContext } from '../../state/highlight';
-import {
-  useOmniformActiveAction,
-  useOmniformChangeFactory,
-} from '../../state/omniform';
-import { BreakPoints, LibroTheme } from '../../themes/themes';
-import FormFooter from '../../topologies/FormFooter';
-import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
-import { OnDoneHandler } from '../../views/Action/helpers';
-import { SubmitSuccessHandler } from '../../views/EntryPoint/useSubmitHandler';
-import { FormFooterRight } from '../Form';
-import { FormFieldError } from '../FormField/FormFieldTypes';
+import { useHighlight } from '../../../components/HighlightProvider';
+import argu from '../../../ontology/argu';
+import ll from '../../../ontology/ll';
+import ontola from '../../../ontology/ontola';
+import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import FormFooter from '../../../topologies/FormFooter';
+import OmniformFields from '../../../topologies/OmniformFields/OmniformFields';
+import { FormFooterRight } from '../../../components/Form';
+import { FormFieldError } from '../../../components/FormField/FormFieldTypes';
+import { OnDoneHandler } from '../../../views/Action/helpers';
+import { SubmitSuccessHandler } from '../../../views/EntryPoint/useSubmitHandler';
+import { useOmniformActiveAction, useOmniformChangeFactory } from '../lib/hooks';
 
 export interface OmniformProps {
   actions: Set<Node>;
@@ -84,7 +82,7 @@ const convertFieldContext = (parentIRI: string, actionIRI: Node) => {
 const Omniform = (props: OmniformProps): JSX.Element | null => {
   const theme = useTheme<LibroTheme>();
   const lrs = useLRS();
-  const { highlightState, setHighlightState } = React.useContext(highlightContext);
+  const { highlightState, setHighlightState } = useHighlight();
 
   const action = useOmniformActiveAction(props.parentIRI) ?? props.actions.values().next().value;
   const onActionChange = useOmniformChangeFactory(props.parentIRI);

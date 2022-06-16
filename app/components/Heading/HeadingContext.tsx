@@ -1,6 +1,6 @@
 import React, { ChildrenProp } from 'react';
 
-import { headingContext } from '../../state/headings';
+export const headingContext = React.createContext(0);
 
 export interface HeadingContextProps {
   overrideStartLevel?: number;

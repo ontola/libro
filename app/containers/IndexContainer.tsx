@@ -14,14 +14,14 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
 
 import { appContext } from '../appContext';
+import HighlightProvider from '../components/HighlightProvider';
 import germanMessages from '../lang/de.json';
 import englishMessages from '../lang/en.json';
 import dutchMessages from '../lang/nl.json';
+import OmniformProvider from '../modules/Omniform/components/OmniformProvider';
 import libro from '../ontology/libro';
 import AppFrame from '../routes/App';
 import ScrollMemory from '../routes/App/ScrollMemory';
-import { highlightContext } from '../state/highlight';
-import { OmniformState, omniformContext } from '../state/omniform';
 import themes from '../themes';
 import { WebManifest } from '../WebManifest';
 
@@ -108,28 +108,14 @@ const IndexContainer = ({
   const themeVariables = getThemeVariables(manifest);
   const theme = (themes[themeName ?? ''] ?? themes.common)(themeVariables);
 
-  const [omniformState, setOmniformState] = React.useState<OmniformState>({});
-
-  const omniformStateMemo = React.useMemo(() => ({
-    omniformState,
-    setOmniformState,
-  }), [omniformState, setOmniformState]);
-
-  const [highlightState, setHighlightState] = React.useState<string | undefined>(undefined);
-
-  const highlightStateMemo = React.useMemo(() => ({
-    highlightState,
-    setHighlightState,
-  }), [highlightState, setHighlightState]);
-
   return (
     <IntlProvider
       locale={selectedLang}
       messages={messages}
     >
       <RenderStoreProvider value={lrs}>
-        <omniformContext.Provider value={omniformStateMemo}>
-          <highlightContext.Provider value={highlightStateMemo}>
+        <OmniformProvider>
+          <HighlightProvider>
             <UpdateLRSIntl>
               <StyledEngineProvider injectFirst>
                 <ThemeProvider theme={theme}>
@@ -142,8 +128,8 @@ const IndexContainer = ({
                 </ThemeProvider>
               </StyledEngineProvider>
             </UpdateLRSIntl>
-          </highlightContext.Provider>
-        </omniformContext.Provider>
+          </HighlightProvider>
+        </OmniformProvider>
       </RenderStoreProvider>
     </IntlProvider>
   );

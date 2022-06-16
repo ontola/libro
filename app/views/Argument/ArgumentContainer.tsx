@@ -13,12 +13,12 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import CardHeader from '../../components/Card/CardHeader';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import { useHighlight } from '../../components/HighlightProvider';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
-import { highlightContext } from '../../state/highlight';
 import { alertDialogTopology, containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 const ArgumentContainer: FC = ({ subject }): JSX.Element => {
   const classes = useStyles();
   const topology = useTopology();
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   return (
     <Card

@@ -10,7 +10,7 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { useHasInteraction } from '../../components/Collection/CollectionProvider';
-import OmniformTrigger from '../../components/Omniform/OmniformTrigger';
+import OmniformTrigger from '../../modules/Omniform/components/OmniformTrigger';
 import ontola from '../../ontology/ontola';
 import { cardFixedTopology, cardRowTopology } from '../../topologies';
 import List, { ListDirection } from '../../topologies/List';

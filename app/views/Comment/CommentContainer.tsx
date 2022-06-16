@@ -10,12 +10,12 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { handleErrorStatuses } from '../../components/Error';
+import { useHighlight } from '../../components/HighlightProvider';
 import { LoadingHidden, LoadingOpinion } from '../../components/Loading';
-import OmniformTrigger from '../../components/Omniform/OmniformTrigger';
+import OmniformTrigger from '../../modules/Omniform/components/OmniformTrigger';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { highlightContext } from '../../state/highlight';
 import {
   alertDialogTopology,
   containerTopology,
@@ -36,7 +36,7 @@ const CommentContainer: FC<CommentContainerProps> = ({
   onItemClick,
   subject,
 }) => {
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   const onClick = React.useCallback(() => {
     if (onItemClick && subject) {

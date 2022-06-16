@@ -15,9 +15,9 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { LibroTheme } from '../../themes/themes';
-import { containerTopology } from '../../topologies';
-import { formMessages } from '../../translations/messages';
+import { LibroTheme } from '../../../themes/themes';
+import { containerTopology } from '../../../topologies';
+import { formMessages } from '../../../translations/messages';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   omniformPreview: {

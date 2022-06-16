@@ -10,9 +10,9 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
+import { useHighlight } from '../../components/HighlightProvider';
 import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
-import { highlightContext } from '../../state/highlight';
 import {
   cardAppendixTopology,
   cardMicroRowTopology,
@@ -24,7 +24,7 @@ import CardMicroRow from '../../topologies/Card/CardMicroRow';
 const CommentSection = ({ subject }: SubjectProp): JSX.Element => {
   const lrs = useLRS();
   const [creator] = useIds(schema.creator);
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   useDataInvalidation([creator, subject]);
 

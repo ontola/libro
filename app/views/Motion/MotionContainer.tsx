@@ -9,13 +9,13 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import { useHighlight } from '../../components/HighlightProvider';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import opengov from '../../ontology/opengov';
-import { highlightContext } from '../../state/highlight';
 import {
   alertDialogTopology,
   containerTopology,
@@ -26,7 +26,7 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
 
 const MotionContainer: FC = ({ subject }) => {
-  const { highlightState } = React.useContext(highlightContext);
+  const { highlightState } = useHighlight();
 
   return (
     <Card

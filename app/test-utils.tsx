@@ -36,6 +36,8 @@ import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import { AppContextProvider } from './AppContextProvider';
 import { componentRegistrations } from './components';
+import HighlightProvider from './components/HighlightProvider';
+import OmniformProvider from './modules/Omniform/components/OmniformProvider';
 import { getWebsiteContextFromWebsite } from './helpers/app';
 import { defaultManifest } from './helpers/defaultManifest';
 import { retrievePath } from './helpers/iris';
@@ -43,8 +45,6 @@ import { generateCtx } from './helpers/link-redux/fixtures';
 import { isFunction } from './helpers/types';
 import englishMessages from './lang/en.json';
 import { WebsiteContext } from './location';
-import { highlightContext } from './state/highlight';
-import { OmniformState, omniformContext } from './state/omniform';
 import themes from './themes';
 import { getViews } from './views';
 
@@ -86,20 +86,6 @@ const wrapProviders = ({
       </HistoryRouter>
     ) : children;
 
-    const [omniformState, setOmniformState] = React.useState<OmniformState>({});
-
-    const omniformStateMemo = React.useMemo(() => ({
-      omniformState,
-      setOmniformState,
-    }), [omniformState, setOmniformState]);
-
-    const [highlightState, setHighlightState] = React.useState<string | undefined>(undefined);
-
-    const highlightStateMemo = React.useMemo(() => ({
-      highlightState,
-      setHighlightState,
-    }), [highlightState, setHighlightState]);
-
     return (
       <WebsiteContext.Provider value={websiteContext}>
         <AppContextProvider
@@ -108,8 +94,8 @@ const wrapProviders = ({
         >
           <HelmetProvider context={{}}>
             <RenderStoreProvider value={lrs}>
-              <omniformContext.Provider value={omniformStateMemo}>
-                <highlightContext.Provider value={highlightStateMemo}>
+              <OmniformProvider>
+                <HighlightProvider>
                   <IntlProvider
                     locale="en"
                     messages={englishMessages}
@@ -120,8 +106,8 @@ const wrapProviders = ({
                       </ThemeProvider>
                     </StyledEngineProvider>
                   </IntlProvider>
-                </highlightContext.Provider>
-              </omniformContext.Provider>
+                </HighlightProvider>
+              </OmniformProvider>
             </RenderStoreProvider>
           </HelmetProvider>
         </AppContextProvider>

@@ -13,31 +13,30 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CollectionCreateButton, { TriggerType } from '../../../../components/Collection/CollectionCreateButton';
-import Heading from '../../../../components/Heading';
-import OmniformConnector from '../../../../components/Omniform/OmniformConnector';
-import OmniformPreview from '../../../../components/Omniform/OmniformPreview';
-import { entityIsLoaded } from '../../../../helpers/data';
-import app from '../../../../ontology/app';
-import link from '../../../../ontology/link';
-import ontola from '../../../../ontology/ontola';
+import CollectionCreateButton, { TriggerType } from '../../../components/Collection/CollectionCreateButton';
+import Heading from '../../../components/Heading';
+import OmniformConnector from '../components/OmniformConnector';
+import OmniformPreview from '../components/OmniformPreview';
+import { entityIsLoaded } from '../../../helpers/data';
+import app from '../../../ontology/app';
+import link from '../../../ontology/link';
+import ontola from '../../../ontology/ontola';
 import {
   useOmniformClose,
   useOmniformOpenAction,
   useOmniformOpenedState,
-} from '../../../../state/omniform';
+} from '../lib/hooks';
 import {
   cardAppendixTopology,
   cardMainTopology,
   cardTopology,
   containerTopology,
-} from '../../../../topologies';
-
-import { actionsAreAllDisabled, useOmniformActions } from './helpers';
+} from '../../../topologies';
+import { actionsAreAllDisabled, useOmniformActions } from '../lib/helpers';
 
 const ESCAPE_KEY = 27;
 
-export interface CollapsedOmniformProps {
+export interface OmniformProps {
   clickToOpen?: boolean;
   header?: string;
   linkedProp: SomeTerm;
@@ -52,7 +51,7 @@ const useStyles = makeStyles({
 
 const cardTopologies = new Set<TopologyType>([cardAppendixTopology, cardMainTopology, cardTopology]);
 
-const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
+const OmniformProp: FC<OmniformProps> = (props) => {
   const classes = useStyles();
   const lrs = useLRS();
   const topology = useTopology();
@@ -131,19 +130,19 @@ const CollapsedOmniformProp: FC<CollapsedOmniformProps> = (props) => {
   );
 };
 
-CollapsedOmniformProp.type = [schema.Thing, link.Document];
+OmniformProp.type = [schema.Thing, link.Document];
 
-CollapsedOmniformProp.property = app.omniform;
+OmniformProp.property = app.omniform;
 
-CollapsedOmniformProp.topology = [
+OmniformProp.topology = [
   cardAppendixTopology,
   cardMainTopology,
   cardTopology,
   containerTopology,
 ];
 
-CollapsedOmniformProp.defaultProps = {
+OmniformProp.defaultProps = {
   clickToOpen: true,
 };
 
-export default register(CollapsedOmniformProp);
+export default register(OmniformProp);
