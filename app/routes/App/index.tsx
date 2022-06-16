@@ -1,6 +1,5 @@
 import React from 'react';
 
-import '../../components/shared/init.scss';
 import PageError from '../../components/Error/PageError';
 import { handle } from '../../helpers/logging';
 import Routes from '../index';

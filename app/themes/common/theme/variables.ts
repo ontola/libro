@@ -14,10 +14,6 @@ export const SCREENSIZE = {
 };
 /* eslint-enable sort-keys */
 
-/**
- * These values (the default theme variables) should map to /components/shared/_config.scss
- */
-
 const colorBaseGrey = 'rgb(128, 128, 128)';
 const colorBaseBrown = 'rgb(134, 61, 61)';
 const colorBaseGreen = 'rgb(84, 127, 75)';

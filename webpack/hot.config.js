@@ -86,14 +86,6 @@ module.exports = merge(common, {
             loader: 'resolve-url-loader',
             options: { sourceMap: true },
           },
-          {
-            loader: 'postcss-loader',
-            options: { sourceMap: true },
-          },
-          {
-            loader: 'sass-loader',
-            options: { sourceMap: true },
-          },
         ],
       },
     ],

@@ -11,7 +11,6 @@ Front-end application for [Argu](https://argu.co).
 All tests and linters will be run automatically as a pre-commit hook.
 - `yarn run build` to generate all the build files under `/dist`
 - `yarn run lint` to run the ES linter. See .eslintrc for the plugins and exceptions to the recommended set used.
-- `yarn run lint:style` to run the SASS linter.
 - `yarn run test` to run all tests.
 - `yarn run secure` to run security test.
 

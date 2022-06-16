@@ -80,9 +80,7 @@
     "import/extensions": [
       "error",
       {
-        "css": "always",
         "json": "always",
-        "scss": "always",
         "ts": "never",
         "tsx": "never"
       }

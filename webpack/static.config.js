@@ -3,8 +3,6 @@ const path = require('path');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -39,22 +37,8 @@ function createConfig(options) {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                publicPath: '/',
-              },
-            },
             'css-loader',
             'resolve-url-loader',
-            {
-              loader: 'postcss-loader',
-              options: { sourceMap: true },
-            },
-            {
-              loader: 'sass-loader',
-              options: { sourceMap: true },
-            },
           ],
         },
         {
@@ -92,7 +76,6 @@ function createConfig(options) {
           legalComments: 'none',
           target: 'es2018',
         }),
-        new OptimizeCSSAssetsPlugin({}),
       ],
     },
 
@@ -103,10 +86,6 @@ function createConfig(options) {
     },
 
     plugins: [
-      new MiniCssExtractPlugin({
-        chunkFilename: `f_assets/[name]-[id]-[contenthash].${options.buildName}.css`,
-        filename: `f_assets/[name]-[contenthash].${options.buildName}.css`,
-      }),
       new webpack.DefinePlugin({
         __LEGACY__: options.bundle === bundles.legacy,
         'process.env.NODE_ENV': JSON.stringify('production'),
