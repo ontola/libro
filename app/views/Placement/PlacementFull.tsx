@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import PlacementsMap from '../../modules/Maps/components/PlacementsMap';
+import PlacementsMap from '../../modules/Map/components/PlacementsMap';
 import argu from '../../ontology/argu';
 import { fullResourceTopology } from '../../topologies';
 import Container from '../../topologies/Container';

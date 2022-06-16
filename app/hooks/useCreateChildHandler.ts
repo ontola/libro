@@ -11,7 +11,7 @@ import {
 import GeometryType from 'ol/geom/GeometryType';
 import React from 'react';
 
-import { MapInteractionCallback } from '../modules/Maps/components/ControlledMap';
+import { MapInteractionCallback } from '../modules/Map/components/ControlledMap';
 import { conditionalFormFieldsPath, formFieldsPath } from '../helpers/diggers';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';

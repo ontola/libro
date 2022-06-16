@@ -2,7 +2,7 @@ import { register } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import PlacementsMap from '../../modules/Maps/components/PlacementsMap';
+import PlacementsMap from '../../modules/Map/components/PlacementsMap';
 import argu from '../../ontology/argu';
 import { alertDialogTopology } from '../../topologies';
 

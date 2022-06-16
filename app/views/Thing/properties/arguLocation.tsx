@@ -15,15 +15,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import PlacementsMap from '../../../modules/Maps/components/PlacementsMap';
+import { isResource } from '../../../helpers/types';
+import { useContainerToArr } from '../../../hooks/useContainerToArr';
+import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
 import {
   FeatureSelectCallback,
   MapVariant,
   NavigateCallback,
-} from '../../../modules/Maps/components/ControlledMap';
-import { isResource } from '../../../helpers/types';
-import { useContainerToArr } from '../../../hooks/useContainerToArr';
-import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
+} from '../../../modules/Map/components/ControlledMap';
+import PlacementsMap from '../../../modules/Map/components/PlacementsMap';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../themes/themes';

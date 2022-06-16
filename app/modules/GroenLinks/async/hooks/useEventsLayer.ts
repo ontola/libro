@@ -5,10 +5,10 @@ import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
 import { MAX_POSTAL_DIGITS, MIN_POSTAL_DIGITS } from '../../../../components/Input/PostalRangeInput';
-import { Layer } from '../../../Maps/components/ControlledMap';
+import { Layer } from '../../../Map/components/ControlledMap';
 import { Events } from '../../components/GlappMap';
 import { postalCodeIri } from '../../views/Glapp/helpers';
-import { getStyles } from '../../../Maps/async/lib/helpers';
+import { getStyles } from '../../../Map/async/lib/helpers';
 
 const useEventsLayer = (eventsData?: Events): Layer => {
   const [eventsFeatures, setEventsFeatures] = React.useState<Feature[]>([]);
