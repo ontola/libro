@@ -7,7 +7,7 @@ import ontola from '../ontology/ontola';
 
 type Param = string | string[];
 
-export interface Params { [key: string]: Param; }
+export type Params = Record<string, Param>;
 
 export interface IRITemplate {
   add(key: string, value: string): NamedNode | null;
@@ -52,7 +52,7 @@ export const useIRITemplate = (resource?: Node): IRITemplate => {
     return iriFromTemplate(iriTemplate.value, {
       ...currentIriOpts,
       ...sanitizedOpts,
-    });
+    } as any);
   }, [iriTemplate, currentIriOpts]);
 
   const replace = useCallback(
