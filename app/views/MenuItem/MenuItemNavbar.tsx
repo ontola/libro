@@ -17,7 +17,7 @@ import { navbarTopology } from '../../topologies';
 
 interface MenuItemNavbarProps {
   subject: Node,
-  addObservedItem: AddItemCallback,
+  addObservedItem?: AddItemCallback,
 }
 
 const MenuItemNavbar = ({ subject, addObservedItem }: MenuItemNavbarProps) => {
@@ -27,7 +27,9 @@ const MenuItemNavbar = ({ subject, addObservedItem }: MenuItemNavbarProps) => {
   const [name] = useProperty(schema.name);
 
   const setRef = React.useCallback((ref) => {
-    addObservedItem(subject, ref);
+    if (addObservedItem) {
+      addObservedItem(subject, ref);
+    }
   }, []);
 
   const icon = (image && isFontAwesomeIRI(image.value))
