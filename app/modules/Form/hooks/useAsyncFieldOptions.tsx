@@ -56,23 +56,21 @@ const useAsyncFieldOptions = (shIn: SomeNode | undefined, inputValue: string): A
   }, [inputValue]);
 
   React.useEffect(() => {
-    if (searchInputValue === '') {
-      setCurrentShIn(shIn);
-    } else if (searchTemplate) {
+    if (searchTemplate) {
       const compareValue = searchInputValue && normalizedLower(searchInputValue);
       const searchResultOpts = {} as any;
 
-      if (compareValue?.length > 0) {
-        const filter = shIn ? new URL(shIn.value).searchParams.getAll('filter[]') : null;
-        searchResultOpts.match = 'partial';
-        searchResultOpts.page = 1;
-        searchResultOpts.q = compareValue;
-        searchResultOpts.fragment = 'members';
-        searchResultOpts['filter%5B%5D'] = filter;
-      }
+      const filter = shIn ? new URL(shIn.value).searchParams.getAll('filter[]') : null;
+      searchResultOpts.match = 'partial';
+      searchResultOpts.page = 1;
+      searchResultOpts.q = compareValue?.length > 0 ? compareValue : '*';
+      searchResultOpts.fragment = 'members';
+      searchResultOpts['filter%5B%5D'] = filter;
 
       const searchResult = iriFromTemplate(searchTemplate.value, searchResultOpts);
       setCurrentShIn(searchResult);
+    } else if (searchInputValue === '') {
+      setCurrentShIn(shIn);
     }
   }, [searchInputValue, searchTemplate]);
 
