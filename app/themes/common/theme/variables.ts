@@ -4,6 +4,8 @@ import {
   lighten,
 } from '@mui/material/styles';
 
+import { Size } from '../../themes';
+
 /* eslint-disable sort-keys */
 export const SCREENSIZE = {
   xl: 1120,
@@ -122,6 +124,7 @@ const theme = {
   breakpoints: {
     values: SCREENSIZE,
   },
+  containerDefaultSize: Size.Large,
   containerWidth: {
     large: '70rem',
     medium: '50rem',

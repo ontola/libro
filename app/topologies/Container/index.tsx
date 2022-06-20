@@ -1,7 +1,8 @@
 import { Container as MaterialContainer } from '@mui/material';
+import { useTheme, withTheme } from '@mui/styles';
 import React from 'react';
 
-import { Size } from '../../themes/themes';
+import { LibroTheme, Size } from '../../themes/themes';
 import { containerTopology } from '../../topologies';
 import Topology, { TopologyContent } from '../Topology';
 
@@ -11,6 +12,7 @@ export interface ContainerProps {
   disableGutters?: boolean;
   fixed?: boolean;
   size?: Size;
+  theme: LibroTheme;
 }
 
 /**
@@ -18,10 +20,6 @@ export interface ContainerProps {
  * @returns {component} Container with children
  */
 class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
-  public static defaultProps = {
-    size: Size.Large,
-  };
-
   constructor(props: P) {
     super(props);
 
@@ -29,25 +27,27 @@ class Container<P extends ContainerProps = ContainerProps> extends Topology<P> {
   }
 
   public renderContent(): TopologyContent {
+    const { size, theme, ...otherProps } = this.props;
+
     return this.wrap((
       <MaterialContainer
         data-testid="container-root"
-        maxWidth={this.maxWidth()}
-        {...this.props}
+        maxWidth={this.maxWidth(size ?? theme.containerDefaultSize ?? Size.Large)}
+        {...otherProps}
       />
     ));
   }
 
-  protected maxWidth(): 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false {
-    if (this.props.size === Size.Large) {
+  protected maxWidth(size: Size): 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false {
+    if (size === Size.Large) {
       return 'xl';
     }
 
-    if (this.props.size === Size.Small) {
+    if (size === Size.Small) {
       return 'md';
     }
 
-    if (this.props.size === Size.XSmall) {
+    if (size === Size.XSmall) {
       return 'sm';
     }
 
@@ -59,10 +59,17 @@ export interface LargeContainerProps {
   children: NonNullable<React.ReactNode>;
 }
 
-export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => (
-  <Container size={Size.Large}>
-    {children}
-  </Container>
-);
+export const LargeContainer = ({ children }: LargeContainerProps): JSX.Element => {
+  const theme = useTheme<LibroTheme>();
 
-export default Container;
+  return (
+    <Container
+      size={Size.Large}
+      theme={theme}
+    >
+      {children}
+    </Container>
+  );
+};
+
+export default withTheme<LibroTheme, React.JSXElementConstructor<ContainerProps>>(Container);
