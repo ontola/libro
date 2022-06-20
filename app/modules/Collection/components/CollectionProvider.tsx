@@ -109,7 +109,7 @@ const CollectionProvider = ({
     className: clsx({
       [classes.collection]: depth,
     }),
-  }), [depth]);
+  }), [depth, classes.collection]);
 
   const hasInteraction = useHasInteraction(originalCollection);
   const sortOptions = useSorting(currentCollection);

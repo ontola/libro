@@ -37,7 +37,7 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({
       [classes.collection]: depth,
     }),
     size: 5,
-  }), [depth]);
+  }), [classes.collection, depth]);
 
   return (
     <ResourceBoundary
