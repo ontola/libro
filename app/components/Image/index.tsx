@@ -1,5 +1,9 @@
 import * as schema from '@ontologies/schema';
-import { SomeTerm, isNamedNode } from '@ontologies/core';
+import {
+  SomeTerm,
+  isNamedNode,
+  isNode,
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import {
   Resource,
@@ -14,6 +18,7 @@ import {
   isFontAwesomeIRI,
   normalizeFontAwesomeIRI,
 } from '../../helpers/iris';
+import ontola from '../../ontology/ontola';
 
 export interface ImageBaseProps {
   alt?: string,
@@ -42,7 +47,7 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
     linkedProp,
   } = overrideProps;
   useDataFetching(isNamedNode(linkedProp) && !isDifferentWebsite(linkedProp) ? linkedProp : undefined);
-  const types = useGlobalIds(isNamedNode(linkedProp) ? linkedProp : undefined, rdfx.type);
+  const types = useGlobalIds(isNode(linkedProp) ? linkedProp : undefined, rdfx.type);
 
   if (linkedProp && isFontAwesomeIRI(linkedProp.value)) {
     return (
@@ -61,7 +66,7 @@ const Image = <T extends ImageBaseProps>(props: ImageProps<T>): JSX.Element => {
     return override(overrideProps as T);
   }
 
-  if (types.includes(schema.MediaObject) || types.includes(schema.ImageObject)) {
+  if (types.includes(schema.MediaObject) || types.includes(schema.ImageObject) || types.includes(ontola.PictureSet)) {
     return <Resource subject={linkedProp} />;
   }
 
