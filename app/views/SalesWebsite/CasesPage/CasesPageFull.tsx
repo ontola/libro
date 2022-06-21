@@ -54,19 +54,21 @@ const CasesPageFull: FC = ({ subject }) => {
         <FilterableArticleCollection
           articlePropertyPath={[as.items, rdfs.member]}
           renderArticles={(articles) => (
-            <Grid
-              container
-              spacing={GRID_ITEM_SPACING}
-              wrap="wrap"
-            >
-              {articles.map((article) => (
-                <Resource
-                  headingLevel="h2"
-                  key={article.value}
-                  subject={article}
-                />
-              ))}
-            </Grid>
+            <div>
+              <Grid
+                container
+                spacing={GRID_ITEM_SPACING}
+                wrap="wrap"
+              >
+                {articles.map((article) => (
+                  <Resource
+                    headingLevel="h2"
+                    key={article.value}
+                    subject={article}
+                  />
+                ))}
+              </Grid>
+            </div>
           )}
           subject={subject}
         />
