@@ -8,8 +8,8 @@ import { handle } from '../../../../helpers/logging';
 import { errorMessages } from '../../../../translations/messages';
 import { ERROR_STATUS_CODES } from '../../lib/metaData';
 
-export function bodyDescriptorForStatus(statusCode: number): undefined | MessageDescriptor {
-  if (statusCode < HttpStatus.MULTIPLE_CHOICES) {
+export function bodyDescriptorForStatus(statusCode?: number): undefined | MessageDescriptor {
+  if (!statusCode || statusCode < HttpStatus.MULTIPLE_CHOICES) {
     return undefined;
   }
 
@@ -24,8 +24,8 @@ export function bodyDescriptorForStatus(statusCode: number): undefined | Message
   return descriptor;
 }
 
-export function headerDescriptorForStatus(statusCode: number): undefined | MessageDescriptor {
-  if (statusCode < HttpStatus.MULTIPLE_CHOICES) {
+export function headerDescriptorForStatus(statusCode?: number): undefined | MessageDescriptor {
+  if (!statusCode || statusCode < HttpStatus.MULTIPLE_CHOICES) {
     return undefined;
   }
 
@@ -40,17 +40,17 @@ export function headerDescriptorForStatus(statusCode: number): undefined | Messa
   return descriptor;
 }
 
-export const useErrorStatus = (linkRequestStatus?: RequestStatus):number =>  {
+export const useErrorStatus = (linkRequestStatus?: RequestStatus): number | undefined =>  {
   const [errorType] = useIds(rdfx.type);
 
   if (linkRequestStatus?.status) {
     return linkRequestStatus.status;
   }
 
-  return ERROR_STATUS_CODES[errorType.value] ?? HttpStatus.BAD_REQUEST;
+  return ERROR_STATUS_CODES[errorType?.value];
 };
 
-export function useTitleForStatus(statusCode: number): undefined | string {
+export function useTitleForStatus(statusCode: number | undefined): undefined | string {
   const intl = useIntl();
   const header = headerDescriptorForStatus(statusCode);
   const body = bodyDescriptorForStatus(statusCode);

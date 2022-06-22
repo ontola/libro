@@ -72,10 +72,14 @@ const GlappHome: FC = () => {
 
   if (mapToken.error) {
     return (
-      <CardError
-        caughtError={mapToken.error}
-        reloadLinkedObject={requestMapToken}
-      />
+      <Card>
+        <CardContent endSpacing>
+          <CardError
+            caughtError={mapToken.error}
+            reloadLinkedObject={requestMapToken}
+          />
+        </CardContent>
+      </Card>
     );
   }
 

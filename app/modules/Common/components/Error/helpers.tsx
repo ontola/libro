@@ -8,7 +8,7 @@ import { ReloadLinkedObject } from '../../hooks/useErrorReload';
 export type RequestStatus = EmptyRequestStatus | FulfilledRequestStatus;
 
 export interface ErrorComponentProps extends Partial<ErrorProps> {
-  caughtError: Error,
+  caughtError?: Error,
   children?: React.ReactNode;
   reloadLinkedObject: ReloadLinkedObject;
 }

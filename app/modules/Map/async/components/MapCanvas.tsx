@@ -86,7 +86,6 @@ const MapCanvas = (props: MapCanvasProps): JSX.Element => {
           <FontAwesome name="map-o" />
           {currentError && (
             <ErrorButtonWithFeedback
-              caughtError={currentError}
               reloadLinkedObject={requestMapToken}
               variant={ButtonVariant.Box}
             />

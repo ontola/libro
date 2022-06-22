@@ -1,9 +1,15 @@
+import { DataProcessor } from 'link-lib';
+import { LinkedRenderStore } from 'link-lib/dist-types/LinkedRenderStore';
 import { LRSCtx } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
-import { TopologyState, renderErrorComp } from '../../../../topologies/Topology';
+import { TopologyState } from '../../../../topologies/Topology';
 
-class ErrorBoundary<P> extends React.Component<P, TopologyState> {
+import ErrorRenderer from './ErrorRenderer';
+
+class ErrorBoundary<P extends ChildrenProp> extends React.Component<P, TopologyState> {
+  static contextType = LRSCtx;
+
   constructor(props: P) {
     super(props);
 
@@ -15,17 +21,23 @@ class ErrorBoundary<P> extends React.Component<P, TopologyState> {
     this.setState({ error });
   }
 
+  context!: LinkedRenderStore<any, DataProcessor>;
+
   public render(): any {
     const { children } = this.props;
 
     if (this.state.error) {
-      return renderErrorComp(this)();
+      return (
+        <ErrorRenderer
+          error={this.state.error}
+          props={this.props}
+          reset={() => this.setState({ error: undefined })}
+        />
+      );
     }
 
     return children;
   }
 }
-
-ErrorBoundary.contextType = LRSCtx;
 
 export default ErrorBoundary;

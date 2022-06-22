@@ -1,33 +1,23 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import {
-  alertDialogTopology,
-  containerTopology,
-  listTopology,
-  menuTopology,
-} from '../../../../topologies';
-import Card from '../../../../topologies/Card';
+import { gridTopology } from '../../../../topologies';
+import CardFixed from '../../../../topologies/Card/CardFixed';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardError from '../../../Common/components/Error/CardError';
 import { ErrorComponentProps } from '../../../Common/components/Error/helpers';
 import { ERROR_CLASSES } from '../../../Common/lib/metaData';
 
 const ErrorContainer: FC<ErrorComponentProps> = (props) => (
-  <Card>
+  <CardFixed>
     <CardContent>
       <CardError {...props} />
     </CardContent>
-  </Card>
+  </CardFixed>
 );
 
 ErrorContainer.type = ERROR_CLASSES;
 
-ErrorContainer.topology = [
-  alertDialogTopology,
-  containerTopology,
-  menuTopology,
-  listTopology,
-];
+ErrorContainer.topology = gridTopology;
 
 export default register(ErrorContainer);
