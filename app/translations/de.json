@@ -251,6 +251,27 @@
   "https://app.argu.co/i18n/footer/privacy": {
     "defaultMessage": "Datenschutz"
   },
+  "https://app.argu.co/i18n/formValidation/invalidEmail": {
+    "defaultMessage": "Ungültige E-Mail-Adresse"
+  },
+  "https://app.argu.co/i18n/formValidation/maxCount": {
+    "defaultMessage": "maximal {max}"
+  },
+  "https://app.argu.co/i18n/formValidation/maxLength": {
+    "defaultMessage": "Max. {max} Zeichen, jetzt: {count}"
+  },
+  "https://app.argu.co/i18n/formValidation/minCount": {
+    "defaultMessage": "Wählen Sie mindestens {min}"
+  },
+  "https://app.argu.co/i18n/formValidation/minLength": {
+    "defaultMessage": "Mindestens {min} Zeichen"
+  },
+  "https://app.argu.co/i18n/formValidation/pattern": {
+    "defaultMessage": "Wert ist nicht zulässig"
+  },
+  "https://app.argu.co/i18n/formValidation/required": {
+    "defaultMessage": "*Erforderlich"
+  },
   "https://app.argu.co/i18n/forms/actions/cancel": {
     "defaultMessage": "kündigen"
   },

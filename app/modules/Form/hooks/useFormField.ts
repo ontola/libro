@@ -16,6 +16,7 @@ import {
 import React from 'react';
 import { useField } from 'react-final-form';
 
+import useValidators from '../lib/validators';
 import form from '../ontology/form';
 import ld from '../../../ontology/ld';
 import ontola from '../../../ontology/ontola';
@@ -26,7 +27,6 @@ import { quadruple } from '../../Common/lib/quadruple';
 import {
   isJSONLDObject,
   isNumber,
-  isString,
 } from '../../Common/lib/typeCheckers';
 import { formContext } from '../components/Form/FormContext';
 import {
@@ -44,7 +44,6 @@ import {
   destroyFieldName,
   retrieveIdFromValue,
 } from '../lib/helpers';
-import validators, { combineValidators } from '../lib/validators';
 import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
 
 import useAddFormValue from './useAddFormValue';
@@ -139,16 +138,6 @@ const defaultProps = {
   storage: true,
 };
 
-const stringToRegex = (string: string) =>
-  new RegExp(
-    string
-      .replace('\\A', '^')
-      .replace('\\z', '$')
-      .replace('?x-mi:', '')
-      .replace(/\s/g, ''),
-    'u',
-  );
-
 const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): FormField => {
   const props = {
     ...defaultProps,
@@ -196,14 +185,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
   const fieldShape = useFieldShape(field, alwaysVisible);
   const storeKey = getStorageKey(formID || '', formSection ? object : undefined, fieldProps.path);
 
-  const validate = combineValidators([
-    isNumber(fieldShape.maxCount) ? validators.maxCount(fieldShape.maxCount) : undefined,
-    isNumber(fieldShape.maxLength) ? validators.maxLength(fieldShape.maxLength) : undefined,
-    isNumber(fieldShape.minCount) ? validators.minCount(fieldShape.minCount) : undefined,
-    isNumber(fieldShape.minLength) ? validators.minLength(fieldShape.minLength) : undefined,
-    isString(fieldShape.pattern) ? validators.pattern(stringToRegex(fieldShape.pattern)) : undefined,
-    fieldShape.required ? validators.required : undefined,
-  ]);
+  const validate = useValidators(fieldShape);
 
   const setDefaultValue = React.useCallback(
     storage

@@ -1,61 +1,144 @@
 import { isTerm } from '@ontologies/core';
+import React from 'react';
+import {
+  IntlShape,
+  MessageDescriptor,
+  useIntl,
+} from 'react-intl';
 
+import { isNumber, isString } from '../../Common/lib/typeCheckers';
 import { InputValue } from '../components/FormField/FormFieldTypes';
+import { ResolvedShapeForm } from '../hooks/useFieldShape';
 
 import { isMarkedForRemove } from './helpers';
-
-const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+import { validationMessages } from './messages';
 
 type ValidatorValues = InputValue[];
-type ArrayValidator = (values: ValidatorValues) => string | false;
-type ValueValidator = (value: string) => string | false;
-type Validator = (values: ValidatorValues) => ValidationResult | Array<ValidationResult | undefined> | undefined;
+type ArrayValidator = (values: ValidatorValues) => boolean;
+type ValueValidator = (value: string) => boolean;
+type Validator = (values: ValidatorValues) => ValidationResult[];
+type CombinedValidator = (values: ValidatorValues) => ValidationResult[] | undefined;
+interface ValidatorFactory {
+  arrayValidator?: ArrayValidator;
+  valueValidator?: ValueValidator;
+  message: MessageDescriptor,
+  messageArgs?: (args: any) => Record<string, string | number>
+}
 
 interface ValidationResult {
     error: string;
     index?: number;
 }
 
-const arrayValidation = (validator: ArrayValidator) => (
-  (values: ValidatorValues): ValidationResult | undefined => {
-    const error = validator(values);
-
-    return error ? { error } : undefined;
-  }
-);
-
-const valueValidation = (validator: ValueValidator) => (
-  (values: ValidatorValues): Array<ValidationResult | undefined> | undefined => (
-    values?.map((value, index) => {
-      const error = isTerm(value) ? validator(value.value) : undefined;
-
-      return error ? {
-        error,
-        index,
-      } : undefined;
-    })
-  )
-);
-
-const validatorMap = {
-  isEmail: valueValidation((value) => value && !emailRegex.test(value) && 'Ongeldig e-mailadres'),
-  maxCount: (max: number): Validator => arrayValidation((values) => values && values.length > max && `Maximaal ${max}`),
-  maxLength: (max: number): Validator => valueValidation((value) => value && value.length > max && `Maximaal ${max} tekens, nu ${value.length}`),
-  minCount: (min: number): Validator => arrayValidation((values) => values && values.length < min && `Minimaal ${min}`),
-  minLength: (min: number): Validator => valueValidation((value) => value && value.length < min && `Minimaal ${min} tekens`),
-  pattern: (pattern: RegExp): Validator => valueValidation((value) => (!value || pattern.test(value)) ? false : 'Waarde is niet toegestaan'),
-  required: valueValidation((value) => !value && '*Vereist'),
+export const validatorMap: Record<string, (args?: any) => ValidatorFactory> = {
+  maxCount: (max: number) => ({
+    arrayValidator: (values) => values ? values.length <= max : true,
+    message: validationMessages.maxCount,
+    messageArgs: () => ({ max }),
+  }),
+  maxLength: (max: number) => ({
+    message: validationMessages.maxLength,
+    messageArgs: (value) => ({
+      count: value.length,
+      max,
+    }),
+    valueValidator: (value) => value ? value.length <= max : true,
+  }),
+  minCount: (min: number) => ({
+    arrayValidator: (values) => values ? values.length >= min : true,
+    message: validationMessages.minCount,
+    messageArgs: () => ({ min }),
+  }),
+  minLength: (min: number) => ({
+    message: validationMessages.minLength,
+    messageArgs: (value) => ({
+      count: value.length,
+      min,
+    }),
+    valueValidator: (value) => value ? value.length >= min : true,
+  }),
+  pattern: (pattern: RegExp) => ({
+    message: validationMessages.pattern,
+    valueValidator: (value) => value ? pattern.test(value) : true,
+  }),
+  required: () => ({
+    message: validationMessages.required,
+    valueValidator: (value) => value ? true : false,
+  }),
 };
 
-export const combineValidators = (validators: Array<Validator | undefined>) => (
-  (values: ValidatorValues): Array<ValidationResult | undefined> | ValidationResult | undefined => {
-    const activeValues = values?.filter((val) => !isMarkedForRemove(val));
-    const results = validators
-      .flatMap((validator) => validator && validator(activeValues))
-      .filter((validationRes) => !!validationRes?.error);
+const arrayValidation = (intl: IntlShape, validatorFactory: ValidatorFactory) => (
+  (values: ValidatorValues): ValidationResult[] => {
+    const valid = validatorFactory.arrayValidator!(values);
 
-    return results.length > 0 ? results : undefined;
+    return valid ? [] : [{
+      error: intl.formatMessage(
+        validatorFactory.message,
+        validatorFactory.messageArgs ? validatorFactory.messageArgs(values) : {},
+      ),
+    }];
   }
 );
 
-export default validatorMap;
+const valueValidation = (intl: IntlShape, validatorFactory: ValidatorFactory) => (
+  (values: ValidatorValues): ValidationResult[] => (
+    values.map((value, index) => {
+      const valid = isTerm(value) ? validatorFactory.valueValidator!(value.value) : true;
+
+      return valid ? undefined : {
+        error: intl.formatMessage(
+          validatorFactory.message,
+          validatorFactory.messageArgs ? validatorFactory.messageArgs(values) : {},
+        ),
+        index,
+      };
+    }).filter(Boolean)
+  ) as ValidationResult[]
+);
+
+const stringToRegex = (string: string) => new RegExp(
+  string
+    .replace('\\A', '^')
+    .replace('\\z', '$')
+    .replace('?x-mi:', '')
+    .replace(/\s/g, ''),
+  'u',
+);
+
+export const createValidator = (intl: IntlShape, validatorFactory: ValidatorFactory): Validator => (
+  validatorFactory?.arrayValidator
+    ? arrayValidation(intl, validatorFactory)
+    : valueValidation(intl, validatorFactory!)
+);
+
+export const combineValidators = (intl: IntlShape, validatorFactories: Array<ValidatorFactory | undefined>): CombinedValidator => {
+  const validators = validatorFactories
+    .filter(Boolean)
+    .map((validatorFactory) => createValidator(intl, validatorFactory!));
+
+  return (
+    (values: ValidatorValues): ValidationResult[] | undefined => {
+      const activeValues = values?.filter((val) => !isMarkedForRemove(val)) ?? [];
+      const results = validators
+        .flatMap((validator) => validator(activeValues))
+        .filter((validationRes) => !!validationRes?.error);
+
+      return results.length > 0 ? results : undefined;
+    }
+  );
+};
+
+const useValidators = (fieldShape: ResolvedShapeForm): CombinedValidator => {
+  const intl = useIntl();
+
+  return React.useMemo(() => combineValidators(intl, [
+    isNumber(fieldShape.maxCount) ? validatorMap.maxCount(fieldShape.maxCount) : undefined,
+    isNumber(fieldShape.maxLength) ? validatorMap.maxLength(fieldShape.maxLength) : undefined,
+    isNumber(fieldShape.minCount) ? validatorMap.minCount(fieldShape.minCount) : undefined,
+    isNumber(fieldShape.minLength) ? validatorMap.minLength(fieldShape.minLength) : undefined,
+    isString(fieldShape.pattern) ? validatorMap.pattern(stringToRegex(fieldShape.pattern)) : undefined,
+    fieldShape.required ? validatorMap.required() : undefined,
+  ]), [intl, fieldShape]);
+};
+
+export default useValidators;

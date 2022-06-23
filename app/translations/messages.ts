@@ -1,6 +1,6 @@
 import { MessageDescriptor, defineMessages } from 'react-intl';
 
-type Messages = { [key: string]: MessageDescriptor };
+export type Messages = { [key: string]: MessageDescriptor };
 
 export const academyMessages: Messages = defineMessages({
   chapterNavigationAriaLabel: {
