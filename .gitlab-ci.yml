@@ -13,8 +13,6 @@ default:
 stages:
   - build
   - manualTag
-  - devProxy
-  - bake
   - tag
 
 build:
@@ -39,13 +37,13 @@ test:
   coverage: '/Lines.+\d+.\d+%/'
 
 bake:
-  stage: bake
+  stage: build
   image: docker:18.09.8
   services:
     - docker:18.09.8-dind
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
-  dependencies:
+  needs:
     - build
   script:
     - apk add git
@@ -79,6 +77,8 @@ stagingTagManual:
     - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:staging
     - docker push $CI_REGISTRY_IMAGE:staging
   when: manual
+  needs:
+    - bake
 
 autoTagProduction:
   stage: tag
@@ -107,19 +107,3 @@ autoTagStaging:
     - docker push $CI_REGISTRY_IMAGE:staging
   only:
     - develop
-
-productionDevProxy:
-  stage: devProxy
-  before_script:
-    - ''
-  script:
-    - eval $PRODUCTION_PIPELINE_TRIGGER
-  when: manual
-
-stagingDevProxy:
-  stage: devProxy
-  before_script:
-    - ''
-  script:
-    - eval $STAGING_PIPELINE_TRIGGER
-  when: manual
