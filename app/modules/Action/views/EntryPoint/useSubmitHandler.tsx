@@ -9,7 +9,9 @@ import {
 } from 'link-lib';
 import { useLRS, useResourceLink } from 'link-redux';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
+import { errorMessages } from '../../../../translations/messages';
 import {
   HTTP_RETRY_WITH,
   SubmitDataProcessor,
@@ -43,6 +45,8 @@ const useSubmitHandler = ({
   onStatusForbidden,
 }: SubmitHandlerProps): SubmitHandler => {
   const lrs = useLRS<unknown, SubmitDataProcessor>();
+  const intl = useIntl();
+
   const {
     action,
     httpMethod,
@@ -102,6 +106,8 @@ const useSubmitHandler = ({
       }
 
       if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
+        lrs.actions.ontola.showSnackbar(intl.formatMessage(errorMessages['500/body']));
+
         throw e;
       }
 
