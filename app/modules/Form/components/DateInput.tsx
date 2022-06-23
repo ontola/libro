@@ -7,12 +7,21 @@ import { InputComponentProps } from './FormField/FormFieldTypes';
 import { fieldInputCID, useFormStyles } from './FormField/UseFormStyles';
 import { Input } from './Input';
 
-const DateTimePicker = React.lazy(
+export enum DateInputType {
+  Date = 'date',
+  DateTime = 'dateTime',
+}
+
+export interface DateInputProps extends InputComponentProps {
+  type: DateInputType;
+}
+
+const DateInput = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: "Forms" */ '../async/DateTimePicker'),
+  () => import(/* webpackChunkName: "Forms" */ '../async/DateInput'),
 );
 
-const DateTimePickerLoader = (props: InputComponentProps): JSX.Element => {
+const DateInputLoader = (props: DateInputProps): JSX.Element => {
   const classes = useFormStyles();
 
   if (!__CLIENT__) {
@@ -28,9 +37,9 @@ const DateTimePickerLoader = (props: InputComponentProps): JSX.Element => {
 
   return (
     <Suspense fallback={<input />}>
-      <DateTimePicker {...props} />
+      <DateInput {...props} />
     </Suspense>
   );
 };
 
-export default DateTimePickerLoader;
+export default DateInputLoader;

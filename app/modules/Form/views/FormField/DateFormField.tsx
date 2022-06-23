@@ -6,12 +6,25 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
 import { formFieldTopologies } from '../../../../topologies';
-import DatePicker from '../../components/DatePicker';
-import DateTimePicker from '../../components/DateTimePicker';
+import DateInput, { DateInputType } from '../../components/DateInput';
 import FormField from '../../components/FormField/FormField';
+import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import useFormField from '../../hooks/useFormField';
+import form from '../../ontology/form';
+
+const DatePicker = (props: InputComponentProps) => (
+  <DateInput
+    type={DateInputType.Date}
+    {...props}
+  />
+);
+const DateTimePicker = (props: InputComponentProps) => (
+  <DateInput
+    type={DateInputType.DateTime}
+    {...props}
+  />
+);
 
 const DateFormField: FC = ({
   subject,

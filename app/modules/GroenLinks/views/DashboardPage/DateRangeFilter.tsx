@@ -1,9 +1,9 @@
 import rdf from '@ontologies/core';
 import React from 'react';
 
-import DatePicker from '../../../Form/components/DatePicker';
+import DateInput, { DateInputType } from '../../../Form/components/DateInput';
 import FormField from '../../../Form/components/FormField/FormField';
-import { InputValue } from '../../../Form/components/FormField/FormFieldTypes';
+import { InputComponentProps, InputValue } from '../../../Form/components/FormField/FormFieldTypes';
 
 export const DATE_SIZE = 2;
 
@@ -22,6 +22,13 @@ const dateToLiteral = (date: Date) => {
 
   return rdf.literal([yyyy, mm, dd].join('-'));
 };
+
+const DatePicker = (props: InputComponentProps) => (
+  <DateInput
+    type={DateInputType.Date}
+    {...props}
+  />
+);
 
 const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
   dateRange,

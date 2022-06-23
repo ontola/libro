@@ -1,10 +1,15 @@
-import { LocalizationProvider, MobileDateTimePicker } from '@mui/lab';
+import {
+  LocalizationProvider,
+  MobileDatePicker,
+  MobileDateTimePicker,
+} from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import {
   TextField,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { TextFieldProps as MuiTextFieldPropsType } from '@mui/material/TextField/TextField';
 import { makeStyles } from '@mui/styles';
 import rdf from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
@@ -15,9 +20,9 @@ import { useIntl } from 'react-intl';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import { formMessages } from '../../../../translations/messages';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
+import { DateInputProps, DateInputType } from '../../components/DateInput';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
-import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -33,7 +38,15 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const DateTimePickerComponent: React.FC<InputComponentProps> = ({
+const renderInput = (params: MuiTextFieldPropsType) => (
+  <TextField
+    {...params}
+    fullWidth
+  />
+);
+
+const DateInput: React.FC<DateInputProps> = ({
+  type,
   inputValue,
   onChange,
 }) => {
@@ -47,11 +60,23 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
     name,
   } = React.useContext(formFieldContext);
 
+  const dataType = type === DateInputType.Date ? xsd.date : xsd.dateTime;
+  const handleChange = React.useCallback(
+    (newValue) => onChange(newValue === null ? null : rdf.literal(newValue, dataType)),
+    [],
+  );
+
   const showStatic = formTheme === FormTheme.Flow && screenIsWide;
   const value = inputValue.value?.length > 0 ? inputValue.value : null;
   const className = clsx({
     [classes.flowDatePicker]: showStatic,
   });
+  const Component = type === DateInputType.Date ? MobileDatePicker : MobileDateTimePicker;
+  const props =  type === DateInputType.Date ? {
+    format: 'd MMMM yyyy',
+  } : {
+    format: 'd MMMM yyyy HH:mm',
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -62,28 +87,23 @@ const DateTimePickerComponent: React.FC<InputComponentProps> = ({
         />
       )}
       <div className={className}>
-        <MobileDateTimePicker
+        <Component
           disableMaskedInput
           showTodayButton
-          ampm={false}
           cancelText={intl.formatMessage(formMessages.cancelLabel)}
           clearText={intl.formatMessage(formMessages.clearLabel)}
           clearable={!!inputValue.value}
-          inputFormat="d MMMM yyyy HH:mm"
           okText={intl.formatMessage(formMessages.okLabel)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              fullWidth
-            />
-          )}
+          orientation={showStatic ? 'landscape' : 'portrait'}
+          renderInput={renderInput}
           todayText={intl.formatMessage(formMessages.todayLabel)}
           value={value}
-          onChange={(newDateTime) => onChange(newDateTime === null ? null : rdf.literal(newDateTime, xsd.dateTime))}
+          onChange={handleChange}
+          {...props}
         />
       </div>
     </LocalizationProvider>
   );
 };
 
-export default DateTimePickerComponent;
+export default DateInput;
