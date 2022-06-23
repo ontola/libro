@@ -3,7 +3,7 @@ import React, {
   HTMLAttributes,
   ReactElement,
 } from 'react';
-import VirtualList from 'react-tiny-virtual-list';
+import VirtualList, { ItemInfo } from 'react-tiny-virtual-list';
 
 import Select from '../../../../topologies/Select';
 
@@ -19,7 +19,7 @@ const VirtualizedSelect = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
   ({ children, ...otherProps }, ref) => {
     const items = React.useMemo(() => React.Children.toArray(children) as ReactElement[], [children]);
     const itemCount = items.length;
-    const renderRow = React.useCallback((props) => {
+    const renderRow = React.useCallback<(itemInfo: ItemInfo) => React.ReactNode>((props) => {
       const { index, style } = props;
 
       return React.cloneElement(items[index], {

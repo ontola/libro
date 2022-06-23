@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { useLRS } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import ReactDropzone, { FileRejection } from 'react-dropzone';
 
 import { LibroTheme, Margin } from '../../../../themes/themes';
@@ -54,7 +54,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
 }) => {
   const lrs = useLRS();
   const classes = useStyles();
-  const onClear = React.useCallback((e) => {
+  const onClear = React.useCallback<MouseEventHandler>((e) => {
     e.preventDefault();
 
     onChange(undefined);

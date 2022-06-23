@@ -7,8 +7,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useFields } from 'link-redux';
-import { SubjectProp } from 'link-redux/dist-types/types';
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 
 import libro from '../../../../ontology/libro';
 import { LibroTheme } from '../../../../themes/themes';
@@ -17,10 +16,11 @@ import { isFunction } from '../../../Common/lib/typeCheckers';
 import { DropdownMenuContext } from './DropdownMenuContext';
 import { Trigger } from './TriggerButton';
 
-export interface Test2 extends SubjectProp {
+export interface MenuChildProps {
   handleClose: () => void;
+  ref: ForwardedRef<unknown>;
 }
-export type RenderProp = (props: Test2) => JSX.Element;
+export type RenderProp = (props: MenuChildProps) => (JSX.Element);
 
 export interface DropdownMenuProps {
   children: React.ReactNode | RenderProp;
@@ -47,7 +47,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
-const childComponent = (children: React.ReactNode | ((props: any) => any), handleClose: (props: any) => any) => {
+const childComponent = (children: React.ReactNode | RenderProp, handleClose: () => void) => {
   if (isFunction(children)) {
     const Comp = React.forwardRef((_, ref) => children({
       handleClose,

@@ -3,7 +3,7 @@ import {
   FC,
   Property,
   register,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
@@ -31,7 +31,7 @@ const EntryPointMainBody: FC<EntryPointMainBodyProps> = ({
   const handleCancel = useFormCancel(entryPointFormProps.formID, onCancel);
   const [name] = useStrings(schema.name);
 
-  const footer = (loading: boolean) => (
+  const footer = (loading: boolean | undefined) => (
     <FormFooter>
       <Property label={ll.actionBody} />
       <FormFooterRight

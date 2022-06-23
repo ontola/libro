@@ -12,7 +12,7 @@ import {
   useResourceLinks,
   value,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import argu from '../../ontology/argu';
@@ -54,7 +54,7 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
   useDataInvalidation(comments);
   const commentProps = useResourceLinks(comments, commentPropMap) as CommentProps[];
   const [pageNumber, setPageNumber] = React.useState(1);
-  const handleCommentClick = React.useCallback((comment) => {
+  const handleCommentClick = React.useCallback<MouseEventHandler>((comment) => {
     const commentPage = commentProps.find(({ subject: subj }) => rdf.equals(subj, comment))?.page;
 
     if (commentPage) {

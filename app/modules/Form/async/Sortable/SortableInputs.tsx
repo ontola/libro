@@ -1,4 +1,5 @@
 import { DndContext } from '@dnd-kit/core';
+import { DragOverEvent } from '@dnd-kit/core/dist/types';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import rdf from '@ontologies/core';
 import React from 'react';
@@ -38,7 +39,7 @@ const SortableInputs = (): JSX.Element | null => {
     setItems(currentItems);
   }, [values]);
 
-  const handleDragDrop = React.useCallback((event) => {
+  const handleDragDrop = React.useCallback<(event: DragOverEvent) => void>((event) => {
     const { active, over } = event;
 
     if (active && over && active.id !== over.id) {

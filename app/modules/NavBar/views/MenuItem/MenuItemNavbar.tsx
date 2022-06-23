@@ -26,8 +26,8 @@ const MenuItemNavbar = ({ subject, addObservedItem }: MenuItemNavbarProps) => {
   const [menuItems] = useProperty(ontola.menuItems);
   const [name] = useProperty(schema.name);
 
-  const setRef = React.useCallback((ref) => {
-    if (addObservedItem) {
+  const setRef = React.useCallback<React.RefCallback<HTMLElement>>((ref) => {
+    if (addObservedItem && ref) {
       addObservedItem(subject, ref);
     }
   }, []);

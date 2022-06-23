@@ -14,7 +14,7 @@ import { InputComponentProps } from '../FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputCheckboxCID,
-  useFormStyles, 
+  useFormStyles,
 } from '../FormField/UseFormStyles';
 
 export const useCheckboxStyles = makeStyles<LibroTheme>((theme) => ({
@@ -64,9 +64,9 @@ const CheckboxInput = ({
     [classes.checkBoxWrapper]: true,
     [classes.flowCheckBox]: theme === FormTheme.Flow,
   });
-  const handleChange = React.useCallback(
-    (e) => onChange([rdf.literal(e.target.checked)]),
-    [onChange],
+  const handleChange = React.useCallback<(event: React.SyntheticEvent, checked: boolean) => void>(
+    (_, checked) => onChange([rdf.literal(checked)]),
+  [onChange],
   );
 
   return (

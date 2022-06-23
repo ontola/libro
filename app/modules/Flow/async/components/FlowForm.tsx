@@ -70,7 +70,7 @@ const FlowForm = (): JSX.Element | null => {
 
   const onStepClick = React.useCallback((a: LaxIdentifier) => activateField(a), [currentIndex]);
 
-  const handleSubmitBack = React.useCallback((key) => {
+  const handleSubmitBack = React.useCallback<(key: string) => void>((key) => {
     activateField(hashedFieldMap.get(key));
   }, [hashedFieldMap]);
 

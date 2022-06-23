@@ -6,14 +6,14 @@ import {
 } from '@mui/material';
 import { NamedNode, isNamedNode } from '@ontologies/core';
 import clsx from 'clsx';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import SelectedValue from '../../../../topologies/SelectedValue';
 import { fontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
-import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
+import { InputComponentProps, InputValue } from '../../components/FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputSelectCID,
@@ -51,10 +51,12 @@ const IconInputField: React.FC<InputComponentProps> = ({
   } = React.useContext(formFieldContext);
   const classes = useSelectStyles();
   const formClasses = useFormStyles();
-  const handleChange = React.useCallback((e, v) => {
+  const handleChange = React.useCallback<(e: SyntheticEvent<Element, Event>, v: InputValue | null) => void>((e, v) => {
     e.preventDefault();
 
-    onChange(v);
+    if (v) {
+      onChange(v);
+    }
   }, [onChange]);
   const renderInput = React.useCallback((params: AutocompleteRenderInputParams) => {
     const selectedIcon = isNamedNode(inputValue) ? normalizeFontAwesomeIRI(inputValue) : null;

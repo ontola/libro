@@ -1,7 +1,7 @@
 import equal from 'fast-deep-equal';
 import { FormApi, MutableState } from 'final-form';
 import { SomeNode } from 'link-lib';
-import React, { ChildrenProp, EventHandler } from 'react';
+import React, { EventHandler } from 'react';
 import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 
 import { error } from '../../../../helpers/logging';
@@ -10,7 +10,7 @@ import { convertKeysAtoB } from '../../../Common/lib/data';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { InputValue, SubmissionErrors } from '../FormField/FormFieldTypes';
 
-import FormBody from './FormBody';
+import FormBody, { FormBodyRenderer } from './FormBody';
 import { FormTheme } from './FormContext';
 
 export interface FormProps {
@@ -18,6 +18,7 @@ export interface FormProps {
   autofocusForm?: boolean;
   autoSubmit?: boolean;
   blacklist?: number[];
+  children?: FormBodyRenderer;
   className?: string;
   form?: any;
   formID?: string;
@@ -72,7 +73,7 @@ const formDataFromValues = (values?: FormValues, formApi?: FormApi<FormValues>) 
   return formData;
 };
 
-const Form: React.FC<FormProps & ChildrenProp> = (props) => {
+const Form: React.FC<FormProps> = (props) => {
   const {
     autoSubmit,
     form,

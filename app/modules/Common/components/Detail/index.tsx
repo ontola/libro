@@ -59,7 +59,7 @@ const Detail = ({
 }: DetailProps): JSX.Element => {
   const styles = useStyles();
   const navigate = useNavigate();
-  const handleExternalClick = React.useCallback((e) => {
+  const handleExternalClick = React.useCallback<MouseEventHandler>((e) => {
     e.preventDefault();
 
     if (url) {

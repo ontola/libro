@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 import { LibroTheme } from '../../../../themes/themes';
+import { isString } from '../../../Common/lib/typeCheckers';
 import { useFieldErrorStyles } from '../../../Core/views/ErrorResponse';
 import { formContext } from '../Form/FormContext';
 
@@ -52,7 +53,7 @@ const FieldHelper: React.FC<PropTypes> = ({
 
   const err = error && (
     <span className={errorClassName.fieldError}>
-      {error.error || error}
+      {isString(error) ? error : error.error}
     </span>
   );
 

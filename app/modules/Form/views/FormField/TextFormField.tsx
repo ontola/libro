@@ -5,8 +5,10 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
+import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
+import { InputType } from '../../components/Input/Input';
 import form from '../../ontology/form';
 import { formFieldTopologies } from '../../../../topologies';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
@@ -14,20 +16,20 @@ import FormField from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 
-const getInputType = (theme: FormTheme | undefined, type: SomeTerm) => {
+const getInputType = (theme: FormTheme | undefined, type: SomeTerm): InputType => {
   if (type === form.EmailInput) {
-    return 'email';
+    return InputType.Email;
   }
 
   if (type === form.TextAreaInput) {
-    return 'textarea';
+    return InputType.Textarea;
   }
 
   if (type === form.MarkdownInput) {
-    return theme === FormTheme.Preview ? 'textarea' : 'markdown';
+    return theme === FormTheme.Preview ? InputType.Textarea : InputType.Markdown;
   }
 
-  return 'text';
+  return InputType.Text;
 };
 
 const TextFormField: FC = ({
@@ -38,7 +40,7 @@ const TextFormField: FC = ({
   });
   const { theme } = React.useContext(formContext);
   const [type] = useProperty(rdfx.type);
-  const TextInput = React.useCallback((inputProps) => (
+  const TextInput = React.useCallback<FunctionComponent<InputComponentProps>>((inputProps) => (
     <InputElement
       {...inputProps}
       type={getInputType(theme, type)}

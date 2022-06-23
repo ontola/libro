@@ -5,24 +5,26 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
+import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
+import { InputType } from '../../components/Input/Input';
 import form from '../../ontology/form';
 import { formFieldTopologies } from '../../../../topologies';
 import FormField from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
 
-const getInputType = (type: SomeTerm) => {
+const getInputType = (type: SomeTerm): InputType => {
   if (type === form.ColorInput) {
-    return 'color';
+    return InputType.Color;
   }
 
   if (type === form.NumberInput) {
-    return 'number';
+    return InputType.Number;
   }
 
-  return 'text';
+  return InputType.Text;
 };
 
 const DelayedFormField: FC = ({
@@ -33,7 +35,7 @@ const DelayedFormField: FC = ({
   });
 
   const [type] = useProperty(rdfx.type);
-  const DelayedInput = React.useCallback((inputProps) => (
+  const DelayedInput = React.useCallback<FunctionComponent<InputComponentProps>>((inputProps) => (
     <InputElement
       {...inputProps}
       type={getInputType(type)}

@@ -12,7 +12,7 @@ import {
   useDataInvalidation,
   useLRS,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import ontola from '../../../../ontology/ontola';
 import MenuItem from '../MenuItem';
@@ -45,14 +45,14 @@ const DropdownMenuItem = ({
   const lrs = useLRS();
   const [open, setOpen] = React.useState(menuItems ? false : null);
 
-  const handleClick = React.useCallback((e) => {
+  const handleClick = React.useCallback<MouseEventHandler>((e) => {
     e.preventDefault();
 
     if (open !== null) {
       setOpen(!open);
     }
   }, [open, setOpen]);
-  const actionFunc = React.useCallback((e) => {
+  const actionFunc = React.useCallback<MouseEventHandler>((e) => {
     if (e !== undefined) {
       e.preventDefault();
     }

@@ -3,6 +3,7 @@ import { Map, Overlay } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import OverlayPositioning from 'ol/OverlayPositioning';
 import {
+  MouseEventHandler,
   MutableRefObject,
   useCallback,
   useEffect,
@@ -27,7 +28,7 @@ const useOverlay = ({
   overlayPosition,
   overlayResource,
 }: PropTypes): {
-  handleOverlayClick: (e: any) => false | void;
+  handleOverlayClick: MouseEventHandler<HTMLDivElement>;
   overlayRef: MutableRefObject<HTMLDivElement | null>;
 } => {
   const overlayRef = useRef(document.createElement('div'));
@@ -55,8 +56,8 @@ const useOverlay = ({
     }
   }, [overlay, overlayPosition]);
 
-  const handleOverlayClick = useCallback((e) => (
-    e.target.className !== 'click-ignore' && navigate && overlayResource && navigate(overlayResource)
+  const handleOverlayClick = useCallback<MouseEventHandler<HTMLDivElement>>((e) => (
+    e.target instanceof HTMLElement && e.target.className !== 'click-ignore' && navigate && overlayResource && navigate(overlayResource)
   ), [overlayResource]);
 
   return {

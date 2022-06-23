@@ -99,7 +99,7 @@ const RadioGroup: TopologyFC<RadioGroupProps> = ({
     [classes.wrapperFlow]: theme === FormTheme.Flow,
   });
 
-  const onChangeMemo = React.useCallback((_, v) => (
+  const onChangeMemo = React.useCallback<(event: React.ChangeEvent<HTMLInputElement>, value: string) => void>((_, v) => (
     onChange(options.find((option) => option.value === v))
   ), [onChange, options]);
 

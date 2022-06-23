@@ -11,7 +11,7 @@ import {
   useLRS,
   useTopology,
 } from 'link-redux';
-import React from 'react';
+import React, { KeyboardEventHandler } from 'react';
 
 import app from '../../../ontology/app';
 import link from '../../../ontology/link';
@@ -65,7 +65,7 @@ const OmniformProp: FC<OmniformProps> = (props) => {
   const closeForm = useOmniformClose(props.subject);
   const openForm = useOmniformOpenAction(props.subject, items[0]);
 
-  const handleKey = React.useCallback((e) => {
+  const handleKey = React.useCallback<KeyboardEventHandler>((e) => {
     if (e.keyCode === ESCAPE_KEY) {
       closeForm();
     }

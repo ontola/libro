@@ -34,7 +34,7 @@ const EntryPointCardMain: FC<EntryPointCardMainProps> = ({
   const theme = useTheme<LibroTheme>();
   const screenIsNarrow = useMediaQuery(theme.breakpoints.down('md'));
 
-  const footer = (loading: boolean) => (
+  const footer = (loading: boolean | undefined) => (
     <FormFooter>
       <Property label={ll.actionBody} />
       <FormFooterRight

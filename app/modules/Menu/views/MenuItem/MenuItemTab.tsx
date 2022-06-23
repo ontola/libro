@@ -9,7 +9,7 @@ import {
   useLRS,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { FormEventHandler } from 'react';
 
 import ontola from '../../../../ontology/ontola';
 import { LibroTheme } from '../../../../themes/themes';
@@ -20,7 +20,7 @@ import { isDifferentWebsite } from '../../../Common/lib/iris';
 import { MenuTypes } from './types';
 
 interface MenuItemTabProps {
-  onClick: React.EventHandler<any>;
+  onClick: FormEventHandler<HTMLAnchorElement>;
   variant?: TabVariant;
   selected?: boolean;
 }
@@ -57,7 +57,7 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
 
   const lrs = useLRS();
   const classes = useStyles();
-  const openWindow = React.useCallback((e) => {
+  const openWindow = React.useCallback<FormEventHandler<HTMLAnchorElement>>((e) => {
     e.preventDefault();
 
     lrs.actions.ontola.openWindow(href!.value);
@@ -77,6 +77,7 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
       classes={{
         root: tabClass,
       }}
+      href={subject.value}
       icon={<Property label={schema.image} />}
       iconPosition="start"
       key={subject.value}

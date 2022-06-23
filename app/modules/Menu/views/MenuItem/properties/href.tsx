@@ -5,7 +5,7 @@ import {
   useGlobalIds,
   useLRS,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
 import ontola from '../../../../../ontology/ontola';
@@ -30,7 +30,7 @@ const Href: FC<HrefProps> = ({
 }) => {
   const lrs = useLRS();
   const [action] = useGlobalIds(ontola.action);
-  const actionHandler = React.useCallback((e) => {
+  const actionHandler = React.useCallback<MouseEventHandler>((e) => {
     if (e) {
       e.preventDefault();
     }

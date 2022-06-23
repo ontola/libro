@@ -3,20 +3,16 @@ import {
   Resource,
   useFields,
   useIds,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
-import React, { ForwardedRef } from 'react';
+import React from 'react';
 
 import ontola from '../../../../ontology/ontola';
 import Menu from '../../../../topologies/Menu';
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
+import { MenuChildProps } from '../DropdownMenu/DropdownMenu';
 import { TriggerButtonProps } from '../DropdownMenu/TriggerButton';
-
-interface MenuChildProps {
-  handleClose: () => void;
-  ref: ForwardedRef<unknown>;
-}
 
 const LinkedMenuTrigger = (): JSX.Element | null => {
   const [menuItems] = useIds(ontola.menuItems);

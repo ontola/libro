@@ -15,9 +15,9 @@ const useStoredState = <T = string, I = undefined>(
 
   const [stored, setValueRaw] = React.useState<T | I>(getValueRaw);
 
-  const setValue = React.useCallback((value) => {
+  const setValue = React.useCallback<Dispatch<SetStateAction<T | I>>>((value) => {
     if (value !== undefined) {
-      storage.setItem(key, parseToString(value));
+      storage.setItem(key, parseToString(value as T));
     } else {
       storage.removeItem(key);
     }

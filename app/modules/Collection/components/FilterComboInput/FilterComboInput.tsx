@@ -4,6 +4,7 @@ import {
   TextField,
   createFilterOptions,
 } from '@mui/material';
+import { AutocompleteRenderInputParams } from '@mui/material/Autocomplete/Autocomplete';
 import { makeStyles } from '@mui/styles';
 import { SomeNode } from 'link-lib';
 import { useLRS } from 'link-redux';
@@ -84,7 +85,7 @@ export const FilterComboInput = ({
     ),
     [lrs, intl, classes],
   );
-  const renderInput = React.useCallback((params) => (
+  const renderInput = React.useCallback((params: AutocompleteRenderInputParams) => (
     <TextField
       {...params}
       inputRef={inputRef}
@@ -94,7 +95,7 @@ export const FilterComboInput = ({
     />
   ), [inputRef, intl]);
   const groupBy = React.useCallback(
-    (option) => filterToLabel(lrs, intl, option.key) ?? '',
+    (option: FilterValue) => filterToLabel(lrs, intl, option.key) ?? '',
     [lrs, intl, filterToLabel],
   );
   const handleChange = React.useCallback((_: ChangeEvent<unknown>, value: FilterValue[]) => {

@@ -7,7 +7,7 @@ import {
 import { SomeNode } from 'link-lib';
 import React, {
   HTMLAttributes,
-  MouseEvent,
+  MouseEventHandler,
   PropsWithChildren,
 } from 'react';
 import { NavLinkProps } from 'react-router-dom';
@@ -16,7 +16,7 @@ import Image from '../../../Common/components/Image';
 import Link, { LinkProps } from '../../../Common/components/Link';
 
 interface MenuItemProps {
-  action?: (e: MouseEvent<any>) => void;
+  action?: MouseEventHandler;
   allowExternal?: boolean;
   expandOpen: boolean | null;
   icon?: SomeNode;

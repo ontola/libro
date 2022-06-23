@@ -6,7 +6,7 @@ import {
   Property,
   register,
   useProperty,
-  useTopology, 
+  useTopology,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,7 +15,7 @@ import ontola from '../../../../ontology/ontola';
 import {
   footerTopology,
   gridTopology,
-  navbarTopology, 
+  navbarTopology,
 } from '../../../../topologies';
 import FormFooter from '../../../../topologies/FormFooter';
 import Button from '../../../Common/components/Button';
@@ -53,7 +53,7 @@ const EntryPointGrid: FC<PropTypes> = ({
   const entryPointFormProps = useEntryPointFormProps(subject!, otherProps);
   const [name] = useProperty(schema.name);
 
-  const footer = React.useCallback((loading: boolean) => (
+  const footer = React.useCallback((loading: boolean | undefined) => (
     <FormFooter>
       <Button
         loading={loading}

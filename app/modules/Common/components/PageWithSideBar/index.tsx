@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import { ReactNodeLike } from 'prop-types';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import SideBar from '../../../../topologies/SideBar';
 
@@ -14,8 +13,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 export interface PageWithSideBarProps {
-  children: ReactNodeLike,
-  sidebar: ReactNodeLike,
+  children: ReactNode,
+  sidebar: ReactNode,
 }
 
 const PageWithSideBar = ({

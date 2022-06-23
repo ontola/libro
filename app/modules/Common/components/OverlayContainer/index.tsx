@@ -7,7 +7,7 @@ import { cardClassIdentifier } from '../../../../topologies/Card/sharedCardStyle
 
 interface PropTypes {
   children: React.ReactNode;
-  clickHandler: MouseEventHandler;
+  clickHandler: MouseEventHandler<HTMLDivElement>;
   overlayRef: HTMLElement | null;
 }
 

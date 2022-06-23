@@ -9,8 +9,9 @@ import Input, { InputType } from '../Input/Input';
 import { FormProps } from './Form';
 import { FormContext, formContext } from './FormContext';
 
+export type FormBodyRenderer = (submitting: boolean | undefined) => React.ReactNode;
+
 interface FormBodyProps extends FormProps {
-  children?: React.ReactNode;
   handleSubmit?: FormEventHandler<HTMLFormElement>;
   submitting?: boolean;
 }

@@ -16,6 +16,7 @@ import {
   ClusterSelectCallback,
   FeatureSelectCallback,
   MapVariant,
+  MapViewChangeCallback,
   ViewProps,
 } from '../../../Map/components/ControlledMap';
 import { GlappMapProps, PostalStats } from '../../components/GlappMap';
@@ -97,7 +98,7 @@ const GlappMap: React.FC<GlappMapProps> = ({
       setSelectedPostalCode(undefined);
     }
   }, [setSelectedPostalCode, view.zoom]);
-  const handleViewChange = React.useCallback((newCenter, newZoom) => {
+  const handleViewChange = React.useCallback<MapViewChangeCallback>((newCenter, newZoom) => {
     setView({
       center: newCenter,
       zoom: newZoom,

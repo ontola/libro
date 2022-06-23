@@ -5,7 +5,7 @@ import React from 'react';
 import { LibroTheme } from '../../../../themes/themes';
 
 export interface PageRowProps {
-  children: React.ComponentType;
+  children: React.ReactNode;
   white?: boolean;
 }
 

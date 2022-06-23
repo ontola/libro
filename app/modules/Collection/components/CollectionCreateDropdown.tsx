@@ -30,14 +30,17 @@ const CollectionCreateDropdown = ({
       trigger={TriggerComponent}
     >
       {() => (
-        renderedActions
-          .sort(sort(ORDER))
-          .map((action) => (
-            <Resource
-              key={action?.value}
-              subject={action}
-            />
-          )))}
+        <React.Fragment>
+          {renderedActions
+            .sort(sort(ORDER))
+            .map((action) => (
+              <Resource
+                key={action?.value}
+                subject={action}
+              />
+            ))}
+        </React.Fragment>
+      )}
     </Menu>
   );
 };

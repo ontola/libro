@@ -18,6 +18,7 @@ import { LoadingGridContent } from '../../../Core/components/Loading';
 import useInitialValues from '../../hooks/useInitialValues';
 
 import Form from './Form';
+import { FormBodyRenderer } from './FormBody';
 import { FormTheme } from './FormContext';
 
 const subscription = {
@@ -41,7 +42,7 @@ export interface ProvidedEntryPointProps {
   className?: string;
   Wrapper: React.ElementType;
   formID: string;
-  footer?: (submitting: boolean) => React.ReactNode;
+  footer?: (submitting: boolean | undefined) => React.ReactNode;
   formInstance?: FormApi;
   onKeyUp?: EventHandler<SyntheticEvent<unknown>>;
   onLoad?: () => React.ReactNode;
@@ -91,7 +92,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
 
     return onSubmit(formData, formApi, retrySubmit);
   }, [clearErrors]);
-  const renderBody = React.useCallback((submitting) => (
+  const renderBody = React.useCallback<FormBodyRenderer>((submitting) => (
     <React.Fragment>
       <Wrapper>
         <Property

@@ -11,7 +11,7 @@ import {
   Property,
 } from 'link-redux';
 import { PropertyPropTypes } from 'link-redux/dist-types/components/Property';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import * as ReactIs from 'react-is';
 
 export interface PropertyProps {
@@ -34,6 +34,8 @@ export function withoutLoading(label: NamedNode | NamedNode[]): PropertyPropType
 }
 
 const isElement = (p: any): p is React.ReactElement<any, any> => ReactIs.isElement(p);
+
+const propsAreChildren = (props: any): props is ReactElement => ReactIs.isElement(props) || ReactIs.isValidElementType(props);
 
 const getPropertyProps = (
   lrs: LinkReduxLRSType | undefined,
@@ -65,11 +67,10 @@ export const property = (lrs?: LinkReduxLRSType) => (
     return label;
   }
 
-  const propsAreChildren = ReactIs.isElement(props) || ReactIs.isValidElementType(props);
-  const childProps = propsAreChildren ? {} : props || {};
-  const childrenNormalized = propsAreChildren
-    ? props : (!children || children.length === 0)
-      ? undefined : children;
+  const childProps = propsAreChildren(props) ? {} : props || {};
+  const childrenNormalized = propsAreChildren(props)
+    ? props
+    : ((!children || children.length === 0) ? undefined : children);
 
   if (ReactIs.isValidElementType(label)) {
     return React.createElement(label, null, childrenNormalized || null);

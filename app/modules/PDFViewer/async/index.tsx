@@ -1,13 +1,13 @@
 import IconButton from '@mui/material/IconButton';
 import * as schema from '@ontologies/schema';
 import { Property, useLRS } from 'link-redux';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 import {
   Document,
   Page,
-  pdfjs, 
+  pdfjs,
 } from 'react-pdf';
 import { useKey } from 'rooks';
 
@@ -55,13 +55,13 @@ const PDFViewer = ({
     width: 500,
   };
 
-  const wrappedOnClick = React.useCallback((e) => {
+  const wrappedOnClick = React.useCallback<EventHandler<any>>((e) => {
     if (onClick) {
       onClick(e, docRef);
     }
   }, [docRef, onClick]);
 
-  const handlePreviousPage = React.useCallback(() => {
+  const handlePreviousPage = React.useCallback<EventHandler<any>>(() => {
     if (pageNumber === 1) {
       return;
     }

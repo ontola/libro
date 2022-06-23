@@ -4,7 +4,7 @@ import {
   register,
   useLRS,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import teamGL from '../../ontology/teamGL';
 import { tableTopology } from '../../../../topologies';
@@ -21,7 +21,7 @@ const StreetTable: FC<StreetTableProps> = ({
 }) => {
   const lrs = useLRS();
   const { actorType } = useCurrentActor();
-  const onClick = React.useCallback((e) => {
+  const onClick = React.useCallback<MouseEventHandler>((e) => {
     e.preventDefault();
 
     if (actorType?.value === 'GuestUser') {

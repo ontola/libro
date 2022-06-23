@@ -1,5 +1,7 @@
 import { Map as OLMap, View as OLView } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
+import { ListenerFunction } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 import GeometryType from 'ol/geom/GeometryType';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
@@ -12,7 +14,7 @@ import React, {
   useCallback,
   useEffect,
   useRef,
-  useState, 
+  useState,
 } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -148,7 +150,7 @@ const toTileSource = (accessToken: string, URL: string): TileSource =>
 
 const useMap = (props: UseMapProps): {
   deselect: (() => void) | undefined;
-  error: Error | undefined;
+  error: BaseEvent | Event | undefined;
   map: OLMap | undefined;
   mapRef: React.RefObject<HTMLDivElement>;
   mapToken: MapAccessToken;
@@ -172,7 +174,7 @@ const useMap = (props: UseMapProps): {
 
   const [layerSources, setLayerSources] = useState<Array<Cluster | VectorSource> | undefined>(undefined);
   const [tileSource, setTileSource] = useState<TileSource | undefined>(undefined);
-  const [error, setError] = useState<Error | undefined>(undefined);
+  const [error, setError] = useState<BaseEvent | Event | undefined>(undefined);
   const [map, setMap] = useState<OLMap | undefined>(undefined);
   const zoom = useViewHandlers(
     view,
@@ -189,14 +191,14 @@ const useMap = (props: UseMapProps): {
     }
   }, [mapToken.token]);
 
-  const handleError = useCallback((e) => {
+  const handleError = useCallback<ListenerFunction>((e) => {
     handle(e);
     setError(e);
 
     return true;
   }, []);
 
-  const handleLoad = useCallback(() => {
+  const handleLoad = useCallback<ListenerFunction>(() => {
     setError(undefined);
 
     return true;

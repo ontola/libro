@@ -8,7 +8,7 @@ import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import Container from '../../../../topologies/Container';
@@ -93,7 +93,7 @@ interface HeaderProductPagesProps extends Omit<HeaderProps, 'subtitle'> {
 }
 
 /** Full page with a branded header */
-export const HeaderProductPages: React.FC<HeaderProductPagesProps> = ({
+export const HeaderProductPages: React.FC<HeaderProductPagesProps & ChildrenProp> = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
   buttonLink,

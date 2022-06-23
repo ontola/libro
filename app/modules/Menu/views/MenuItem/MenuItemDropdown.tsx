@@ -7,16 +7,16 @@ import {
   useGlobalIds,
   useIds,
   useLRS,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import ontola from '../../../../ontology/ontola';
 import {
   cardFloatTopology,
   containerFloatTopology,
-  contentDetailsTopology, 
+  contentDetailsTopology,
 } from '../../../../topologies';
 import Menu from '../../../../topologies/Menu';
 import ResourceBoundary from '../../../Core/components/ResourceBoundary';
@@ -36,7 +36,7 @@ const MenuItemDropdown = () => {
   const [action] = useGlobalIds(ontola.action);
   const [name] = useStrings(schema.name);
   const [loading, setLoading] = React.useState(false);
-  const actionHandler = React.useCallback((e) => {
+  const actionHandler = React.useCallback<MouseEventHandler>((e) => {
     if (e) {
       e.preventDefault();
     }

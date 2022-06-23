@@ -7,16 +7,16 @@ import { retrievePath } from '../../../Common/lib/iris';
 
 const MAX_IN_STORAGE = 5;
 
-export const postalCodeIri = (postalDigits: string): NamedNode => app.ns(`postal_codes/${postalDigits}`);
+export const postalCodeIri = (postalDigits: string | number): NamedNode => app.ns(`postal_codes/${postalDigits}`);
 
-type VisitPostalCode = [string[], (digits: number) => void];
+export type VisitPostalCode = (digits: string | number) => void;
 
 export const useVisitPostalCode = (): {
   recentPostalCodes: string[];
   visitPostalCode: (digits: string | number) => void;
 } => {
   const navigate = useNavigate();
-  const [recentPostalCodes, addRecentPostalCode] = React.useMemo<VisitPostalCode>(() => {
+  const [recentPostalCodes, addRecentPostalCode] = React.useMemo<[string[], VisitPostalCode]>(() => {
     if (!__CLIENT__) {
       return [[], () => null];
     }
@@ -34,7 +34,7 @@ export const useVisitPostalCode = (): {
     return [current, add];
   }, []);
 
-  const visitPostalCode = React.useCallback((digits) => {
+  const visitPostalCode = React.useCallback<VisitPostalCode>((digits) => {
     addRecentPostalCode(digits);
     navigate(retrievePath(postalCodeIri(digits)) ?? '#');
   }, []);

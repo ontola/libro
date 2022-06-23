@@ -78,7 +78,7 @@ const DialogManager = () => {
     }
   }, [resource]);
 
-  const close = React.useCallback((done = false) => {
+  const close = React.useCallback<(event?: any, reason?: string) => void>((done = false) => {
     const currentResource = lrs.getResourceProperty(libro.ns('dialog/manager'), libro.ns('dialog/resource'));
 
     if (resource == currentResource) {

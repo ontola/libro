@@ -1,5 +1,6 @@
 import {
   Autocomplete,
+  AutocompleteInputChangeReason,
   AutocompleteRenderInputParams,
   InputAdornment,
   TextField,
@@ -19,9 +20,10 @@ import {
   useDataInvalidation,
   useLRS,
 } from 'link-redux';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
+import { InputValue } from '../../components/FormField/FormFieldTypes';
 import form from '../../ontology/form';
 import ontola from '../../../../ontology/ontola';
 import { selectTopology } from '../../../../topologies';
@@ -109,9 +111,10 @@ const SelectInputField: React.FC = () => {
       <CollectionCreateButton />
     </Resource>
   ), [fieldShape.shIn]);
-  const handleInputValueChange = React.useCallback((_, newValue) => {
-    setInputValue(newValue);
-  }, [setInputValue]);
+  const handleInputValueChange = React.useCallback<(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => void>(
+    (_, newValue) => {
+      setInputValue(newValue);
+    }, [setInputValue]);
 
   useDataInvalidation(options.filter(isResource));
   const groupBy = React.useCallback((option: SomeTerm) => {
@@ -134,12 +137,12 @@ const SelectInputField: React.FC = () => {
     };
   }, [multiple, values]);
 
-  const handleChange = React.useCallback((e, v) => {
+  const handleChange = React.useCallback<(e: SyntheticEvent<Element, Event>, v: InputValue | InputValue[] | null) => void>((e, v) => {
     e.preventDefault();
     setInputValue('');
 
     if (multiple) {
-      onChange(v.filter(isSomeTerm));
+      onChange((v as InputValue[]).filter(isSomeTerm));
     } else {
       onChange(isSomeTerm(v) ? [v] : []);
     }
@@ -192,7 +195,7 @@ const SelectInputField: React.FC = () => {
   }, [createButton, multiple, valueProps.value]);
   React.useEffect(() => {
     if (open) {
-      handleInputValueChange(null, '');
+      handleInputValueChange(null as unknown as SyntheticEvent, '', 'reset');
     }
   }, [open]);
 

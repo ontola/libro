@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { isNode } from '@ontologies/core';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -110,7 +111,7 @@ export const HeaderHomePage: React.FC<HeaderProps> = ({
               component="p"
               variant="subtitle1"
             >
-              {subtitle}
+              {isNode(subtitle) ? subtitle.value : subtitle}
             </Typography>
             <Property label={sales.callToAction} />
           </div>

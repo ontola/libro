@@ -4,7 +4,7 @@ import {
   Resource,
   register,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
@@ -13,6 +13,7 @@ import { allTopologies } from '../../../../../topologies';
 import Menu from '../../../../../topologies/Menu';
 import { collectionMessages } from '../../../../../translations/messages';
 import { retrievePath } from '../../../../Common/lib/iris';
+import { RenderProp } from '../../../../Menu/components/DropdownMenu/DropdownMenu';
 import TriggerButton, { Trigger } from '../../../../Menu/components/DropdownMenu/TriggerButton';
 import MenuItem from '../../../../Menu/components/MenuItem';
 import { useCollectionOptions } from '../../../components/CollectionContext';
@@ -43,7 +44,7 @@ const SortOption = ({
   selected,
 }: SortOptionProps) => {
   const { setCollectionResource } = useCollectionOptions();
-  const action = React.useCallback((e) => {
+  const action = React.useCallback<MouseEventHandler>((e) => {
     e.preventDefault();
     handleClose();
     setCollectionResource(rdf.namedNode(url));
@@ -69,16 +70,16 @@ const SortOptions: FC<SortOptionsProps> = () => {
   const { currentCollection } = useCollectionOptions();
   const sortOptions = useSorting(currentCollection);
 
-  const menuItems = React.useCallback(({ handleClose }: MenuItemsProps) => (
-    sortOptions
-      .filter((option) => option.direction && option.url)
-      .map((option) => (
+  const menuItems = React.useCallback<RenderProp>(({ handleClose }) => (
+    <React.Fragment>
+      {sortOptions.filter((option) => option.direction && option.url).map((option) => (
         <SortOption
           {...option}
           handleClose={handleClose}
           key={option.url}
         />
-      ))
+      ))}
+    </React.Fragment>
   ), [sortOptions]);
 
   return (

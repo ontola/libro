@@ -6,7 +6,7 @@ import {
   useLinkRenderContext,
   useLiterals,
 } from 'link-redux';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import { handle } from '../../../helpers/logging';
 import ontola from '../../../ontology/ontola';
@@ -33,7 +33,7 @@ const useOneClickProps = (onDone?: OnDoneHandler): OneClickProps => {
   const onDoneHandler = useDoneHandler(onDone ?? ignoreOnDone);
   const actionIcon = image ? normalizeFontAwesomeIRI(image.value) : 'plus';
 
-  const handleClick = React.useCallback(
+  const handleClick = React.useCallback<MouseEventHandler>(
     (e) => {
       e.preventDefault();
 
