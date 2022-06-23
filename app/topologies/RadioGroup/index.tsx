@@ -18,7 +18,7 @@ import React, { EventHandler } from 'react';
 import { SHADOW } from '../../modules/Common/lib/flow';
 import { isResource } from '../../modules/Common/lib/typeCheckers';
 import { FormTheme } from '../../modules/Form/components/Form/FormContext';
-import { InputValue } from '../../modules/Form/components/FormField/FormFieldTypes';
+import { FocusRelatedEventHandler, InputValue } from '../../modules/Form/components/FormField/FormFieldTypes';
 import { BreakPoints, LibroTheme } from '../../themes/themes';
 import { radioGroupTopology } from '../../topologies';
 import { TopologyFC } from '../Topology';
@@ -26,7 +26,9 @@ import { TopologyFC } from '../Topology';
 interface RadioGroupProps {
   loading?: boolean;
   name?: string;
+  onBlur: FocusRelatedEventHandler;
   onChange: EventHandler<any>;
+  onFocus: FocusRelatedEventHandler;
   options: SomeTerm[];
   required?: boolean;
   theme?: FormTheme;
@@ -78,7 +80,14 @@ const useStyles = makeStyles<LibroTheme>((theme) => createStyles({
 }));
 
 const RadioGroup: TopologyFC<RadioGroupProps> = ({
-  theme, options, required, name, value, onChange,
+  theme,
+  options,
+  required,
+  name,
+  value,
+  onBlur,
+  onChange,
+  onFocus,
 }) => {
   const [RadioGroupTopology] = useTopologyProvider(radioGroupTopology);
   const classes = useStyles();
@@ -120,6 +129,8 @@ const RadioGroup: TopologyFC<RadioGroupProps> = ({
                   icon={<RadioButtonUncheckedIcon fontSize="small" />}
                   name={name}
                   required={required}
+                  onBlur={onBlur}
+                  onFocusVisible={onFocus}
                 />
               )}
               key={option.value}

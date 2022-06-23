@@ -18,6 +18,8 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
   const { theme } = React.useContext(formContext);
   const {
     fieldShape,
+    onFocus,
+    onBlur,
     name,
   } = React.useContext(formFieldContext);
   const {
@@ -46,7 +48,9 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
         required={fieldShape.required}
         theme={theme}
         value={inputValue}
+        onBlur={onBlur}
         onChange={onChange}
+        onFocus={onFocus}
       />
       <Resource
         subject={shIn}
