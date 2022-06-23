@@ -17,7 +17,7 @@ import { actionsBarTopology, allTopologiesExcept } from '../../../../topologies'
 import AccountHelpersCardAppendix from '../../../Auth/components/SignInForm/AccountHelpersCardAppendix';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { isDifferentWebsite, retrievePath } from '../../../Common/lib/iris';
-import { serializeForStorage } from '../../../Common/lib/persistence';
+import useMemoryStore from '../../hooks/useMemoryStore';
 
 interface CreateSessionProps {
   reason: ReactChild;
@@ -42,38 +42,11 @@ const CreateSession: FC<CreateSessionProps> = ({
   const navigate = useNavigate();
 
   const [currentSubject, setSubject] = React.useState(subject);
-  const [email, setEmail] = React.useState<null | string>(null);
 
-  const getRedirectLocation = () => new URL(subject.value).searchParams.get('redirect_url') || website;
-  const redirectLocation = getRedirectLocation();
-
-  const redirectURL = React.useMemo(() => (
-    redirectLocation ? serializeForStorage([rdf.literal(redirectLocation)]) : null
-  ), [redirectLocation]);
-
-  const fieldName = React.useCallback((key: string) => (key.split('.').slice(-1).pop()), []);
-
-  const emailFieldName = btoa(schema.email.value);
-  const redirectURLFieldName = btoa(ontola.redirectUrl.value);
-
-  const sessionStore = React.useMemo<Partial<Storage>>(() => ({
-    getItem: (key) => {
-      switch (fieldName(key)) {
-      case emailFieldName:
-        return email;
-      case redirectURLFieldName:
-        return redirectURL;
-      default:
-        return null;
-      }
-    },
-
-    setItem: (key, value) => {
-      if (fieldName(key) === emailFieldName) {
-        setEmail(value);
-      }
-    },
-  }), [email]);
+  const redirectLocation = new URL(subject.value).searchParams.get('redirect_url') || website;
+  const sessionStore = useMemoryStore({
+    [ontola.redirectUrl.value]: redirectLocation ? [rdf.literal(redirectLocation)] : [],
+  });
 
   const onCancelHandler = React.useCallback(
     () => currentSubject === subject ? navigate(-1) : setSubject(subject),
