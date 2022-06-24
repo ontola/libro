@@ -56,10 +56,12 @@ const VIRTUALIZATION_THRESHOLD = 10;
 const getRenderOption = (className: string) => (props: unknown, option: SomeTerm) => {
   if (isLiteral(option.termType)) {
     return (
-      <li {...props}>
+      <li
+        {...props}
+        key={option.value}
+      >
         <option
           className={className}
-          key={option.value}
           value={option.value}
         >
           {option.value}
@@ -69,10 +71,12 @@ const getRenderOption = (className: string) => (props: unknown, option: SomeTerm
   }
 
   return (
-    <li {...props}>
+    <li
+      {...props}
+      key={option.value}
+    >
       <Resource
         element="div"
-        key={option.value}
         subject={option}
       />
     </li>

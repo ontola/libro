@@ -19,17 +19,15 @@ const VirtualizedSelect = React.forwardRef<any, HTMLAttributes<HTMLElement>>(
   ({ children, ...otherProps }, ref) => {
     const items = React.useMemo(() => React.Children.toArray(children) as ReactElement[], [children]);
     const itemCount = items.length;
-    const renderRow = React.useCallback<(itemInfo: ItemInfo) => React.ReactNode>((props) => {
-      const { index, style } = props;
-
-      return React.cloneElement(items[index], {
+    const renderRow = React.useCallback<(itemInfo: ItemInfo) => React.ReactNode>(({ index, style }) => (
+      React.cloneElement(items[index], {
         className: 'MuiAutocomplete-option',
         style: {
           ...style,
           top: style.top,
         },
-      });
-    }, [items]);
+      })
+    ), [items]);
     const height = Math.min(MIN_ITEM_COUNT, itemCount) * ITEM_HEIGHT;
 
     return (
