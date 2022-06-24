@@ -368,6 +368,10 @@ export const formMessages = defineMessages({
     defaultMessage: 'What do you think?',
     id: 'https://app.argu.co/i18n/forms/omniform/header',
   },
+  radioNoOptions: {
+    defaultMessage: 'No options available',
+    id: 'https://app.argu.co/i18n/forms/radioGroup/noOptions',
+  },
   showMarkdownInstructions: {
     defaultMessage: 'Text formatting instructions',
     id: 'https://app.argu.co/i18n/forms/showMarkdownInstructions',

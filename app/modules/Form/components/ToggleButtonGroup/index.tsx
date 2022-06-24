@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { LibroTheme } from '../../../../themes/themes';
 import { inlineTopology } from '../../../../topologies';
+import { formMessages } from '../../../../translations/messages';
 import { isResource } from '../../../Common/lib/typeCheckers';
 import { LoadingRow } from '../../../Core/components/Loading';
 import useFieldOptions from '../../hooks/useFieldOptions';
@@ -58,10 +59,7 @@ const ToggleButtonGroup: React.FC<InputComponentProps> = ({
 
   if (options.length === 0) {
     return (
-      <FormattedMessage
-        defaultMessage="No options available"
-        id="https://app.argu.co/i18n/forms/radioGroup/noOptions"
-      />
+      <FormattedMessage {...formMessages.radioNoOptions} />
     );
   }
 

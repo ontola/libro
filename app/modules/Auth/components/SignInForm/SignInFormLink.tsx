@@ -7,6 +7,7 @@ import { useLocation } from 'react-router';
 import Link from '../../../Common/components/Link';
 import path, { currentLocationControl } from '../../../Common/lib/paths';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
+import { authMessages } from '../../lib/messages';
 
 interface SignInFormLinkProps {
   Component: any;
@@ -38,10 +39,7 @@ const SignInFormLink: React.FC<SignInFormLinkProps> = ({
       }}
     >
       {children || label || (
-        <FormattedMessage
-          defaultMessage="Log in / sign up"
-          id="https://app.argu.co/i18n/auth/newSessionLink"
-        />
+        <FormattedMessage {...authMessages.newSessionLink} />
       )}
     </Component>
   );

@@ -54,7 +54,7 @@ const FieldLabel: React.FC<PropTypes> = ({
         <span className={`${fieldLabelCID}-optional`}>
           (
           <FormattedMessage
-            defaultMessage="Optional"
+            defaultMessage="optional"
             id="https://app.argu.co/i18n/forms/optional/helperText"
           />
           )

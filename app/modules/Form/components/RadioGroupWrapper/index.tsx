@@ -3,6 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import RadioGroup from '../../../../topologies/RadioGroup';
+import { formMessages } from '../../../../translations/messages';
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
 import { LoadingHidden, LoadingRow } from '../../../Core/components/Loading';
 import useFieldOptions from '../../hooks/useFieldOptions';
@@ -33,10 +34,7 @@ const RadioGroupWrapper: React.FC<InputComponentProps> = ({
 
   if (options.length === 0) {
     return (
-      <FormattedMessage
-        defaultMessage="No options available"
-        id="https://app.argu.co/i18n/forms/radioGroup/noOptions"
-      />
+      <FormattedMessage {...formMessages.radioNoOptions} />
     );
   }
 
