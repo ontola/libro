@@ -13,6 +13,9 @@ import form from '../../ontology/form';
 import ontola from '../../../../ontology/ontola';
 import { isResource } from '../../../Common/lib/typeCheckers';
 import {
+  formFieldSeqPath,
+  formFieldsPath,
+  formGroupsPath,
   nestedConditionalFormsPath,
   nestedConditionalIfInPath,
   nestedConditionalUnlessInPath,
@@ -24,6 +27,10 @@ import { getFormFields, rawFormObjectValue } from './helpers';
 
 const formDependencies = (lrs: LinkReduxLRSType, parentForm: SomeNode): SomeNode[] => [
   parentForm,
+  ...lrs.dig(parentForm, [form.pages]),
+  ...lrs.dig(parentForm, formGroupsPath),
+  ...lrs.dig(parentForm, formFieldSeqPath),
+  ...lrs.dig(parentForm, formFieldsPath),
   ...lrs.dig(parentForm, nestedFormsPath),
   ...lrs.dig(parentForm, nestedConditionalFormsPath),
   ...lrs.dig(parentForm, nestedConditionalIfInPath),

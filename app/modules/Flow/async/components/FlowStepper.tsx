@@ -3,11 +3,10 @@ import {
   Step,
   StepConnector,
   StepLabel,
-  Stepper, 
+  Stepper,
 } from '@mui/material';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
-import { LaxNode } from 'link-redux';
 import React from 'react';
 
 import { useFlowStepperStyles } from '../hooks/useFlowStyles';
@@ -15,15 +14,15 @@ import { useFlowStepperStyles } from '../hooks/useFlowStyles';
 import FlowStep from './FlowStep';
 
 export interface FlowStepperProps {
+  activateIndex: (index: number) => void;
   currentIndex: number;
   hashedFields: Map<string, SomeNode>;
-  onStepClick: (field: LaxNode) => void;
 }
 
 export const FlowStepper = ({
   currentIndex,
   hashedFields,
-  onStepClick,
+  activateIndex,
 }: FlowStepperProps): JSX.Element => {
   const hashes = Array.from(hashedFields.keys());
 
@@ -37,31 +36,27 @@ export const FlowStepper = ({
     [classes.submitStepActive]: currentIndex === hashes.length,
   });
 
-  const handleClick = React.useCallback((hash: string) => {
-    const field = hashedFields.get(hash);
-    onStepClick(field);
-  }, [hashedFields]);
-
-  const onFlagClick = () => onStepClick(undefined);
-
   return (
     <Stepper
       activeStep={currentIndex}
       classes={stepperClasses}
       connector={<StepConnector classes={connectorClasses} />}
+      data-testid="flow-stepper"
       orientation="vertical"
     >
-      {hashes.map((fieldHash) => (
+      {hashes.map((fieldHash, index) => (
         <FlowStep
+          activateIndex={activateIndex}
           fieldHash={fieldHash}
+          fieldIndex={index}
           key={fieldHash}
           pageCount={hashes.length}
-          onStepClick={handleClick}
         />
       ))}
       <Step
         classes={{ root: classes.step }}
-        onClick={onFlagClick}
+        data-testid="step-flag"
+        onClick={() => activateIndex(hashes.length)}
       >
         <StepLabel
           StepIconComponent={Flag}

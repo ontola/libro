@@ -4,11 +4,10 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { makeStyles, useTheme } from '@mui/styles';
-import { LaxIdentifier } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import { calcPercentage } from '../../../Common/lib/numbers';
+import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import { useAutoForward } from '../hooks/useAutoForward';
 import { useFieldForwardRules } from '../hooks/useFieldForwardRules';
 import { useFieldHashes } from '../hooks/useFieldHashes';
@@ -50,29 +49,31 @@ const FlowForm = (): JSX.Element | null => {
   const theme = useTheme<LibroTheme>();
   const screenIsWide = useMediaQuery(theme.breakpoints.up(BreakPoints.Medium));
 
-  const [fields, loading] = useFlowFields();
+  const fields = useFlowFields();
   const [
     activeField,
-    activateField,
+    activateIndex,
     currentIndex,
-  ] = useFlowActiveField(fields, loading);
+  ] = useFlowActiveField(fields);
 
   const hashedFieldMap = useFieldHashes(fields);
 
   const { isAutoForwardField, isForwardedByEnter } = useFieldForwardRules(activeField);
 
   const activateNextField = React.useCallback(() => {
-    activateField(fields[currentIndex + 1]);
+    activateIndex(currentIndex + 1);
   }, [fields.length, currentIndex]);
 
   const activatePreviousField = React.useCallback(() => {
-    activateField(fields[currentIndex - 1]);
+    activateIndex(currentIndex - 1);
   }, [fields.length, currentIndex]);
 
-  const onStepClick = React.useCallback((a: LaxIdentifier) => activateField(a), [currentIndex]);
+  const handleSubmitBack = React.useCallback((key: string) => {
+    const backTo = hashedFieldMap.get(key);
 
-  const handleSubmitBack = React.useCallback<(key: string) => void>((key) => {
-    activateField(hashedFieldMap.get(key));
+    if (backTo) {
+      activateIndex(fields.indexOf(backTo));
+    }
   }, [hashedFieldMap]);
 
   useAutoForward(activeField, hashedFieldMap, isAutoForwardField, activateNextField);
@@ -81,12 +82,11 @@ const FlowForm = (): JSX.Element | null => {
 
   useSetFocusToActiveField(Array.from(hashedFieldMap.keys())[currentIndex]);
 
-  if (loading) {
-    return null;
-  }
-
   return (
-    <div className={classes.surveyWrapper}>
+    <div
+      className={classes.surveyWrapper}
+      data-testid="flow-form"
+    >
       {screenIsWide && (
         <FlowBackground
           progress={calcPercentage(currentIndex, fields.length) ?? 0}
@@ -103,9 +103,9 @@ const FlowForm = (): JSX.Element | null => {
             md={1}
           >
             <FlowStepper
+              activateIndex={activateIndex}
               currentIndex={currentIndex}
               hashedFields={hashedFieldMap}
-              onStepClick={onStepClick}
             />
           </Grid>
         )}

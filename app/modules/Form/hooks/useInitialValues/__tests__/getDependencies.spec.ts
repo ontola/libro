@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+import { isNamedNode } from '@ontologies/core';
 import { useLRS } from 'link-redux';
 
 import { mockStorage } from '../../../../../../tests/test-utils';
@@ -77,7 +78,7 @@ const testGetDependencies = () => {
   const lrs = useLRS();
   const [_, storage] = mockStorage({});
 
-  return getDependencies(lrs, storage, actionBody, object, formID, false).sort();
+  return getDependencies(lrs, storage, actionBody, object, formID, false).filter(isNamedNode).sort();
 };
 
 describe('getDependencies', () => {

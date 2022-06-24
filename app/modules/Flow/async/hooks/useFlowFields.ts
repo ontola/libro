@@ -3,25 +3,20 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import {
   ReturnType,
+  dig,
   useIds,
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
 
-import form from '../../../Form/ontology/form';
+import { formFieldsPath } from '../../../Form/lib/diggers';
 import ontola from '../../../../ontology/ontola';
-import { useContainerToArr } from '../../../Common/hooks/useContainerToArr';
 import { formContext } from '../../../Form/components/Form/FormContext';
 import useShapeValidation from '../../../Form/hooks/useShapeValidation';
 
-export const useFlowFields = (): [SomeNode[], boolean] => {
+export const useFlowFields = (): SomeNode[] => {
   const { object } = React.useContext(formContext);
-  const [pageCollection] = useIds(form.pages);
-  const [pages] = useContainerToArr<SomeNode>(pageCollection);
-  const [groupCollection] = useIds(pages?.[0], form.groups);
-  const [groups] = useContainerToArr<SomeNode>(groupCollection);
-  const [fieldsCollection] = useIds(groups?.[0], form.fields);
-  const [fields, loading] = useContainerToArr<SomeNode>(fieldsCollection);
+  const fields = useIds(dig(...formFieldsPath));
 
   const fieldsProps = useResourceLinks(
     fields,
@@ -50,9 +45,5 @@ export const useFlowFields = (): [SomeNode[], boolean] => {
     });
   }, [fields.length]);
 
-  if (loading) {
-    return [fields, loading];
-  }
-
-  return [filteredFields, loading];
+  return filteredFields;
 };

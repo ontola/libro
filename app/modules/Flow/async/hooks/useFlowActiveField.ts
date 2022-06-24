@@ -6,10 +6,11 @@ import React from 'react';
 
 import { inputValueFromStorage } from '../../../Common/lib/persistence';
 import { formContext } from '../../../Form/components/Form/FormContext';
+import form from '../../../Form/ontology/form';
 
 type FlowActiveField = [
   activeField: LaxNode,
-  setActiveField: (field: LaxNode) => void,
+  setActiveField: (index: number) => void,
   currentIndex: number,
 ];
 
@@ -34,29 +35,42 @@ const findInitialIndex = (
   return 0;
 };
 
-export const useFlowActiveField = (fields: SomeNode[], loading: boolean): FlowActiveField => {
+export const useFlowActiveField = (fields: SomeNode[]): FlowActiveField => {
   const {
     formID,
     object,
     sessionStore,
   } = React.useContext(formContext);
 
-  const [activeField, setActiveField] = React.useState<LaxNode>(fields[0]);
+  const [activeField, setActiveField] = React.useState<LaxNode>(undefined);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const activateIndex = React.useCallback((nextIndex: number) => {
+    if (nextIndex === fields.length) {
+      setActiveField(form.ns('Flow/SubmissionScreen'));
+    } else {
+      setActiveField(fields[nextIndex]);
+    }
+  }, [fields, setActiveField]);
 
   const fieldPaths = useGlobalIds(fields, sh.path);
 
-  const currentIndex = fields.findIndex((field) => field === activeField);
-
   React.useEffect(() => {
-    if (!loading) {
+    if (activeField === undefined) {
       const initialIndex = findInitialIndex(sessionStore, object, formID, fieldPaths);
-      const initialField = fields[initialIndex];
+      activateIndex(initialIndex);
 
-      if (initialField !== activeField) {
-        setActiveField(initialField);
-      }
+      return;
     }
-  }, [loading]);
 
-  return [activeField, setActiveField, currentIndex === -1 ? fields.length : currentIndex];
+    if (activeField.value === form.ns('Flow/SubmissionScreen').value) {
+      setCurrentIndex(fields.length);
+
+      return;
+    }
+
+    const index = fields.findIndex((field) => field === activeField);
+    setCurrentIndex(index < 0 ? fields.length : index);
+  }, [activeField]);
+
+  return [activeField, activateIndex, currentIndex];
 };

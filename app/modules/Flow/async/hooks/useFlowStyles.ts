@@ -14,6 +14,9 @@ export const useFlowStepperStyles = makeStyles<LibroTheme, { pageCount: number }
     transform: ({ pageCount }) => `scale(${pageCount <= STEPPER_SCALE_THRESHOLD ? 1 : STEPPER_SCALE_SMALL})`,
   },
   submitStep: {
+    '& svg': {
+      cursor: 'pointer !important',
+    },
     backgroundColor: '#4c4c4c',
     borderRadius: '50%',
     color: 'white',

@@ -8,12 +8,18 @@ import * as sh from '@ontologies/shacl';
 import form from '../ontology/form';
 import ontola from '../../../ontology/ontola';
 
-export const formFieldsPath = [
+export const formGroupsPath = [
   form.pages,
   rdfs.member,
   form.groups,
+];
+export const formFieldSeqPath = [
+  ...formGroupsPath,
   rdfs.member,
   form.fields,
+];
+export const formFieldsPath = [
+  ...formFieldSeqPath,
   rdfs.member,
 ];
 export const conditionalFormFieldsPath = [...formFieldsPath, ontola.pass];

@@ -58,6 +58,7 @@ export const SubmissionPage = ({ onBack }: SubmissionPageProps): JSX.Element => 
         </Button>
       ) : (
         <MUIButton
+          data-testid="to-invalid-field-button"
           startIcon={<ArrowBack />}
           onClick={() => errors && onBack(Object.keys(errors)[0])}
         >

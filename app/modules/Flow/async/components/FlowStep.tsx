@@ -11,13 +11,15 @@ import { useFlowStepStyles } from '../hooks/useFlowStyles';
 
 interface FlowStepProps extends StepProps {
   fieldHash: string;
-  onStepClick: (hash: string) => void;
+  fieldIndex: number;
+  activateIndex: (index: number) => void;
   pageCount: number;
 }
 
 const FlowStep = ({
+  activateIndex,
   fieldHash,
-  onStepClick,
+  fieldIndex,
   pageCount,
   ...otherProps
 }: FlowStepProps): JSX.Element | null => {
@@ -31,8 +33,8 @@ const FlowStep = ({
   });
 
   const handleClick = React.useCallback(() => {
-    onStepClick(fieldHash);
-  }, [fieldHash]);
+    activateIndex(fieldIndex);
+  }, [activateIndex, fieldIndex]);
 
   const { valid, touched } = fieldState.meta;
 
@@ -42,6 +44,8 @@ const FlowStep = ({
     [classes.stepValid]: valid,
   });
 
+  const completed = valid && touched;
+
   return (
     <Step
       {...otherProps}
@@ -49,7 +53,8 @@ const FlowStep = ({
         completed: stepClassName,
         root: stepClassName,
       }}
-      completed={valid && touched}
+      completed={completed}
+      data-testid={completed ? `completed-step-${fieldHash}` : `step-${fieldHash}`}
       onClick={handleClick}
     >
       <StepLabel>
