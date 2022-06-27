@@ -31,6 +31,8 @@ import {
 import { formContext } from '../components/Form/FormContext';
 import {
   FormField,
+  FormFieldError,
+  InputMeta,
   InputValue,
   ItemFactory,
 } from '../components/FormField/FormFieldTypes';
@@ -106,6 +108,28 @@ const changeDelta = (object: SomeNode, path: NamedNode, nextValue: InputValue[])
   ));
 };
 
+const useRenderedErrors = (name: string, meta: InputMeta) => {
+  const { submissionErrors } = React.useContext(formContext);
+
+  return React.useMemo<FormFieldError[]>(() => {
+    const {
+      error,
+      dirtySinceLastSubmit,
+      touched,
+    } = meta;
+
+    if (submissionErrors?.[name] && !dirtySinceLastSubmit) {
+      return submissionErrors[name];
+    }
+
+    if (touched) {
+      return error ?? [];
+    }
+
+    return [];
+  }, [meta, submissionErrors]);
+};
+
 const useInputValues = (
   input: InputProps,
   alwaysVisible: boolean,
@@ -161,7 +185,6 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
     formSection,
     object,
     sessionStore,
-    submissionErrors,
     theme,
     whitelist,
   } = React.useContext(formContext);
@@ -294,15 +317,9 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
     input.onChange(newValue);
   }, [values, input.onChange]);
 
-  const {
-    active,
-    dirtySinceLastSubmit,
-    error,
-  } = meta;
+  const inputErrors = useRenderedErrors(input.name, memoizedMeta);
 
-  const submissionError = dirtySinceLastSubmit ? undefined : submissionErrors?.[input.name];
-  const inputErrors = submissionError || error;
-
+  const { active } = meta;
   const className = clsx({
     [classes.field]: true,
     [fieldActiveCID]: active,

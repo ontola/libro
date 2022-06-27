@@ -37,12 +37,9 @@ const FormFieldTrailer: React.FC<PropTypes> = ({
     fieldShape: { maxLength },
     meta,
   } = React.useContext(formFieldContext);
-  const {
-    invalid,
-    touched,
-  } = meta;
+  const { invalid } = meta;
 
-  if (errors && errors.length > 0 && invalid && touched) {
+  if (errors && errors.length > 0 && invalid) {
     return (
       <span
         className={clsx(classes.fieldInputTrailingIcon, 'fa', 'fa-exclamation-circle', classes.error)}

@@ -25,7 +25,6 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
   const {
     fieldShape,
     helperText,
-    meta: { touched },
   } = React.useContext(formFieldContext);
   const {
     maxLength,
@@ -41,7 +40,7 @@ const FormFieldHelper: React.FC<ErrorHelper | ValueHelper> = ({
 
   return (
     <FieldHelper
-      error={touched ? error : undefined}
+      error={error}
       helperText={renderHelperText ? helperText : ''}
       right={renderCharCounter && maxLength && value && !isJSONLDObject(value) ? (
         <CharCounter

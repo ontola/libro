@@ -19,7 +19,7 @@ export interface SubmissionErrors {
   [key: string]: FormFieldError[];
 }
 
-interface InputMeta {
+export interface InputMeta {
   active?: boolean;
   dirty?: boolean;
   dirtySinceLastSubmit?: boolean;
