@@ -109,7 +109,6 @@ export default {
   geometryType: ontola('geometryType'),
   groupBy: ontola('groupBy'),
   header: ontola('header'),
-  helperText: ontola('helperText'),
   hideHeader: ontola('hideHeader'),
   href: ontola('href'),
   imagePositionY: ontola('imagePositionY'),

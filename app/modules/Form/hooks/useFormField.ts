@@ -53,7 +53,7 @@ import useFieldShape from './useFieldShape';
 
 const mapFieldProps = {
   description: literal(schema.text),
-  helperText: literal(ontola.helperText),
+  helperText: literal(form.helperText),
   label: literal(schema.name),
   path: sh.path,
   placeholder: literal(form.placeholder),

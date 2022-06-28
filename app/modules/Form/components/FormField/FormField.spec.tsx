@@ -18,7 +18,6 @@ import { renderLinked } from '../../../../../tests/test-utils';
 import argu from '../../../Argu/ontology/argu';
 import example from '../../../../ontology/example';
 import form from '../../ontology/form';
-import ontola from '../../../../ontology/ontola';
 import { CardMain } from '../../../../topologies/Card';
 import { calculateFormFieldName } from '../../lib/helpers';
 import { UnwrappedForm as Form } from '../Form/Form';
@@ -67,7 +66,7 @@ describe('FormField', () => {
     [sh.maxLength.toString()]: 110,
     [sh.minCount.toString()]: 1,
     [sh.path.toString()]: schema.name,
-    [ontola.helperText.toString()]: '',
+    [form.helperText.toString()]: '',
   };
 
   const checkboxField: DataObject = {
@@ -78,7 +77,7 @@ describe('FormField', () => {
     [sh.datatype.toString()]: xsd.xsdboolean,
     [sh.maxCount.toString()]: 1,
     [sh.path.toString()]: argu.pinned,
-    [ontola.helperText.toString()]: '',
+    [form.helperText.toString()]: '',
   };
 
   const schemaName = calculateFormFieldName(schema.name);
