@@ -67,9 +67,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   loadingCellRow: {
     height: '1em',
   },
-  loadingFullResource: {
-    maxWidth: 'unset',
-  },
   loadingHeader: {
     height: '2em',
     marginBottom: '1em',
@@ -292,17 +289,13 @@ export const LoadingPage = (): JSX.Element => (
   </FullResourceTopology>
 );
 
-export const LoadingFullResource = (): JSX.Element => {
-  const classes = useStyles();
-
-  return (
-    <FullResourceTopology>
-      <Container className={classes.loadingFullResource}>
-        <LoadingCard />
-      </Container>
-    </FullResourceTopology>
-  );
-};
+export const LoadingFullResource = (): JSX.Element => (
+  <FullResourceTopology>
+    <Container>
+      <LoadingCard />
+    </Container>
+  </FullResourceTopology>
+);
 
 export const LoadingDetail = (): JSX.Element => {
   const classes = useStyles();
