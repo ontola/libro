@@ -57,6 +57,7 @@ const mapFieldProps = {
   label: literal(schema.name),
   path: sh.path,
   placeholder: literal(form.placeholder),
+  startAdornment: literal(form.startAdornment),
 };
 
 interface MapFieldPropsShape {
@@ -65,6 +66,7 @@ interface MapFieldPropsShape {
   label?: string;
   path: NamedNode;
   placeholder?: string;
+  startAdornment?: string;
 }
 
 export interface UseFormFieldProps {

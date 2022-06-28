@@ -52,4 +52,5 @@ export default {
   maxFileSize: form('maxFileSize'),
   pages: form('pages'),
   placeholder: form('placeholder'),
+  startAdornment: form('startAdornment'),
 };

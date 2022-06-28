@@ -54,6 +54,9 @@ const useStyles = makeStyles<LibroTheme, StyleProps>((theme) => ({
     boxShadow: SHADOW_LIGHT,
     padding: theme.spacing(FLOW_INPUT_PADDING),
   },
+  startAdornment: {
+    fontWeight: 'bold',
+  },
 }));
 
 const InputElement = ({
@@ -72,6 +75,7 @@ const InputElement = ({
     fieldShape,
     meta,
     name,
+    startAdornment,
     onBlur,
     onFocus,
     placeholder,
@@ -154,6 +158,11 @@ const InputElement = ({
 
   return (
     <div className={className}>
+      {startAdornment && (
+        <div className={classes.startAdornment}>
+          {startAdornment}
+        </div>
+      )}
       <Input
         {...sharedProps}
         autoFocus={focus}

@@ -45,16 +45,13 @@ export const useFormStyles = makeStyles<LibroTheme>((theme) => ({
         '& ul': {
           width: '100%',
         },
-        '&& input': {
-          width: '100%',
-        },
         MozAppearance: 'menulist-button',
         WebkitAppearance: 'menulist-button',
         minWidth: '3em',
         padding: 0,
         width: 'auto',
       },
-      width: '100%',
+      flexGrow: 1,
     },
     [`& .${fieldInputCheckboxCID}`]: {
       '& > input': {

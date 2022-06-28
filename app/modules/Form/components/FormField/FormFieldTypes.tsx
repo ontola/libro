@@ -57,6 +57,7 @@ export interface PermittedFormField {
   sortable?: boolean;
   path?: NamedNode;
   placeholder?: string;
+  startAdornment?: string;
   storeKey?: string;
   values: InputValue[];
   whitelisted?: true;
