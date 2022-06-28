@@ -72,7 +72,7 @@ const originToTree = (seed: Seed, origin: string, paths: string[]): Path => {
 
 export const sliceToWebsiteTree = (slice: DeepSeed): WebsiteTree => {
   const flat = flattenSeed(slice);
-  const ids = Object.keys(flat).filter((id) => id.includes('://') || id.startsWith('/') || id.startsWith('#'));
+  const ids = Object.keys(flat).filter((id) => (!id.startsWith('_:') && id.includes('://')) || id.startsWith('/') || id.startsWith('#'));
   const maps = ids.reduce((acc: ByOrigin, id) => {
     const isAbsoluteFragment = id.startsWith('#');
     const isAbsolute = id.startsWith('/') || isAbsoluteFragment;
