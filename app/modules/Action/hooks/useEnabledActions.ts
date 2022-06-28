@@ -23,10 +23,12 @@ export const actionIsAllowed = (lrs: LinkReduxLRSType, action: SomeNode): boolea
 
 export const isInvalidActionStatus = (actionStatus: SomeTerm | undefined): boolean => invalidStatusIds.includes(rdf.id(actionStatus));
 
-export const useEnabledActions = (items: NamedNode[]): NamedNode[] => {
+export function useEnabledActions(items: NamedNode[]): NamedNode[];
+export function useEnabledActions(items: SomeNode[]): SomeNode[];
+export function useEnabledActions(items: SomeNode[]): SomeNode[] {
   const lrs = useLRS();
 
   useDataFetching(items);
 
   return items.filter((action) => actionIsAllowed(lrs, action));
-};
+}
