@@ -18,19 +18,22 @@ import usePhases, { phaseIRI } from '../../hooks/usePhases';
 const PhasePage: FC = ({ subject }) => {
   const lrs = useLRS();
   const [isPartOf] = useGlobalIds(schema.isPartOf);
-  const [phases, loading] = usePhases(isPartOf);
+  const [phases, loadingPhases] = usePhases(isPartOf);
   const navigate = useNavigate();
-
-  if (loading || (__CLIENT__ && !entityIsLoaded(lrs, isPartOf))) {
-    return <LinkLoader />;
-  }
 
   const index = phases.indexOf(subject);
   const location = phaseIRI(isPartOf, index);
+  const loading = loadingPhases || (__CLIENT__ && !entityIsLoaded(lrs, isPartOf));
 
   React.useEffect(() => {
-    navigate(retrievePath(location)!, { replace: true });
-  }, [location]);
+    if (!loading) {
+      navigate(retrievePath(location)!, { replace: true });
+    }
+  }, [loading, location]);
+
+  if (loading) {
+    return <LinkLoader />;
+  }
 
   return null;
 };
