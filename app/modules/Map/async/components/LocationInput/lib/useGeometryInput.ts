@@ -2,7 +2,6 @@ import { useTheme } from '@mui/material/styles';
 import rdf from '@ontologies/core';
 import { Feature } from 'ol';
 import { default as OlGeometry } from 'ol/geom/Geometry';
-import GeometryType from 'ol/geom/GeometryType';
 import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
@@ -16,6 +15,7 @@ import {
   Layer,
   MapInteractionCallback,
 } from '../../../../components/ControlledMap';
+import { GeometryType } from '../../../../lib/geometry';
 import { getStyles } from '../../../lib/helpers';
 
 const buildFeature = (geometry: Geometry, theme: LibroTheme) => {

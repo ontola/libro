@@ -5,9 +5,10 @@ import { SvgIconTypeMap } from '@mui/material/SvgIcon/SvgIcon';
 import clsx from 'clsx';
 import { Control } from 'ol/control';
 import { CLASS_CONTROL, CLASS_UNSELECTABLE } from 'ol/css';
-import GeometryType from 'ol/geom/GeometryType';
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { GeometryType } from '../../lib/geometry';
 
 interface CurrentLocationButtonProps {
   index: number;

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import rdf from '@ontologies/core';
-import GeometryType from 'ol/geom/GeometryType';
 import { toLonLat } from 'ol/proj';
 
+import { GeometryType } from '../../../lib/geometry';
 import {
   distance,
   toFeature,
@@ -107,11 +107,11 @@ describe('geometry', () => {
       });
 
       it('has length', () => {
-        expect(feature.getGeometry()!.getCoordinates()[0].length).toBe(5);
+        expect(feature.getGeometry()!.getCoordinates()![0].length).toBe(5);
       });
 
       it('is closed', () => {
-        const coordinates = feature.getGeometry()!.getCoordinates()[0];
+        const coordinates = feature.getGeometry()!.getCoordinates()![0];
         expect(coordinates[coordinates.length-1]).toStrictEqual(coordinates[0]);
       });
     });

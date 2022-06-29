@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import { Coordinate } from 'ol/coordinate';
-import GeometryType from 'ol/geom/GeometryType';
 import 'ol/ol.css';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -13,6 +12,7 @@ import ErrorButtonWithFeedback from '../../../Common/components/Error/ErrorButto
 import OverlayContainer from '../../../Common/components/OverlayContainer';
 import LinkLoader from '../../../Core/components/Loading/LinkLoader';
 import { MapVariant, NavigateCallback } from '../../components/ControlledMap';
+import { GeometryType } from '../../lib/geometry';
 import useMap, { UseMapProps } from '../hooks/useMap';
 import useMapStyles from '../hooks/useMapStyles';
 import useOverlay from '../hooks/useOverlay';

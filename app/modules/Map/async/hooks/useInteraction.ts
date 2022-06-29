@@ -3,7 +3,6 @@ import { Coordinate } from 'ol/coordinate';
 import { pointerMove, singleClick } from 'ol/events/condition';
 import { FeatureLike } from 'ol/Feature';
 import { Circle, Polygon } from 'ol/geom';
-import GeometryType from 'ol/geom/GeometryType';
 import { Draw } from 'ol/interaction';
 import Select from 'ol/interaction/Select';
 import { Vector } from 'ol/layer';
@@ -23,12 +22,13 @@ import {
   FeatureSelectCallback,
   MapInteractionCallback,
 } from '../../components/ControlledMap';
+import { GeometryType } from '../../lib/geometry';
 
 import { useSelectHandler } from './useSelectHandler';
 
 const GEOMETRY_NAME = 'userDrawing';
 
-type MapClickHandler = (e: MapBrowserEvent) => boolean;
+type MapClickHandler = (e: MapBrowserEvent<UIEvent>) => boolean;
 
 const defaultStyleFunction = new Vector().getStyleFunction() ?? (() => null);
 
@@ -70,7 +70,7 @@ export const getSelect = (
 const handleMapClick = (
   onInteraction: MapInteractionCallback,
   zoom: number,
-): MapClickHandler => (e: MapBrowserEvent) => {
+): MapClickHandler => (e: MapBrowserEvent<UIEvent>) => {
   const features = e.map.getFeaturesAtPixel(e.pixel);
 
   // if there are any features the click is handled by the select handler instead

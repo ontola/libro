@@ -2,7 +2,6 @@ import { Map as OLMap, View as OLView } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
 import { ListenerFunction } from 'ol/events';
 import BaseEvent from 'ol/events/Event';
-import GeometryType from 'ol/geom/GeometryType';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import Cluster from 'ol/source/Cluster';
@@ -31,6 +30,7 @@ import {
   ViewProps,
 } from '../../components/ControlledMap';
 import useMapAccessToken, { MapAccessToken, RequestMapAccessToken } from '../../hooks/useMapAccessToken';
+import { GeometryType } from '../../lib/geometry';
 import CurrentLocationControl from '../components/CurrentLocationControl';
 import InteractionTypeControl from '../components/InteractionTypeControl';
 
@@ -71,8 +71,8 @@ const updateFeatures = (layerSources: Array<VectorSource | Cluster> | undefined,
       const layer = layers[index];
 
       if (layer.clustered) {
-        (source as Cluster).getSource().clear(true);
-        (source as Cluster).getSource().addFeatures(layer.features.slice() || []);
+        (source as Cluster).getSource()?.clear(true);
+        (source as Cluster).getSource()?.addFeatures(layer.features.slice() || []);
       } else {
         source.clear(true);
         source.addFeatures(layer.features.slice() || []);

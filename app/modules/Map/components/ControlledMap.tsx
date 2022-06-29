@@ -2,7 +2,6 @@ import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { Feature } from 'ol';
 import { Coordinate } from 'ol/coordinate';
-import GeometryType from 'ol/geom/GeometryType';
 import React, { useMemo } from 'react';
 
 import useFontsChecker from '../../Common/hooks/useFontsChecker';
@@ -10,6 +9,7 @@ import { getMetaContent } from '../../Common/lib/dom';
 import LinkLoader from '../../Core/components/Loading/LinkLoader';
 import Suspense from '../../Core/components/Suspense';
 import { FormTheme } from '../../Form/components/Form/FormContext';
+import { GeometryType } from '../lib/geometry';
 
 const ControlledMap = React.lazy(
   // eslint-disable-next-line no-inline-comments

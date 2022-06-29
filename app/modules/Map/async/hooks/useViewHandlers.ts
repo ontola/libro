@@ -1,5 +1,6 @@
 import { MapBrowserEvent, Map as OLMap } from 'ol';
 import { Coordinate } from 'ol/coordinate';
+import BaseEvent from 'ol/events/Event';
 import React, { Dispatch, SetStateAction } from 'react';
 
 import {
@@ -10,7 +11,7 @@ import {
 } from '../../components/ControlledMap';
 
 export type ViewUpdater = (newCenter: Coordinate | undefined, newZoom: number | undefined) => void;
-export type ViewChangeHandler = (e: MapBrowserEvent) => void;
+export type ViewChangeHandler = (e: MapBrowserEvent<UIEvent>) => void;
 
 export const makeViewUpdater = (
   center: Coordinate,
@@ -42,7 +43,7 @@ export const makeViewUpdater = (
   }
 };
 
-const createViewChangeHandler = (updateView: ViewUpdater): ViewChangeHandler => (e: MapBrowserEvent) => {
+const createViewChangeHandler = (updateView: ViewUpdater): ViewChangeHandler => (e: MapBrowserEvent<UIEvent>) => {
   const newCenter = e.map.getView().getCenter();
   const newZoom = e.map.getView().getZoom();
 
@@ -71,12 +72,12 @@ const useViewHandlers = (
     ));
 
     if (map && viewChangeHandler) {
-      map.on('moveend', viewChangeHandler);
+      map.on(['moveend'], viewChangeHandler as (event: Event | BaseEvent) => unknown);
     }
 
     return () => {
       if (map && viewChangeHandler) {
-        map.un('moveend', viewChangeHandler);
+        map.un(['moveend'], viewChangeHandler as (event: Event | BaseEvent) => unknown);
       }
     };
   }, [!!map, center, zoom, onMove, onViewChange, onZoom, setCenter, setZoom]);

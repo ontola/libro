@@ -8,7 +8,6 @@ import {
   useLRS,
   useResourceLinks,
 } from 'link-redux';
-import GeometryType from 'ol/geom/GeometryType';
 import React from 'react';
 
 import ll from '../../../ontology/ll';
@@ -16,6 +15,7 @@ import ontola from '../../../ontology/ontola';
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../Form/lib/diggers';
 import { MapInteractionCallback } from '../../Map/components/ControlledMap';
+import { GeometryType } from '../../Map/lib/geometry';
 
 const useCreateChildHandler = (): MapInteractionCallback | undefined => {
   const lrs = useLRS();
