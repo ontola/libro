@@ -1,5 +1,6 @@
 import { makeStyles } from '@mui/styles';
-import rdf, { isNamedNode } from '@ontologies/core';
+import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
@@ -45,6 +46,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   },
 }));
 
+const openFullTypes = [argu.Project];
+
 const ArguLocation: FC<ArguLocationProps> = ({
   linkedProp,
   gutterTop,
@@ -63,12 +66,18 @@ const ArguLocation: FC<ArguLocationProps> = ({
     const id = feature?.getId();
 
     if (id) {
-      const partOf = lrs.getResourceProperty(
-        isResource(id) ? id : rdf.namedNode(id), schema.isPartOf,
-      );
+      const iri = isResource(id) ? id : rdf.namedNode(id);
 
-      if (partOf) {
-        lrs.actions.ontola.showDialog(partOf);
+      const partOf = lrs.getResourceProperty(iri, schema.isPartOf);
+
+      if (isNode(partOf)) {
+        const partOfType = lrs.getResourceProperty(partOf, rdfx.type);
+
+        if (isNamedNode(partOfType) && openFullTypes.includes(partOfType)) {
+          lrs.actions.ontola.navigate(partOf);
+        } else {
+          lrs.actions.ontola.showDialog(partOf);
+        }
       }
     }
   }, []);
