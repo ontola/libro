@@ -41,7 +41,7 @@ const useCreateChildHandler = (): MapInteractionCallback | undefined => {
   ), [entryPointsProps]);
 
   const createChildHandler = React.useCallback<MapInteractionCallback>((newGeometry, zoom) => {
-    if (newGeometry.type === GeometryType.POINT && locationActions.length > 0) {
+    if (newGeometry.type === GeometryType.POINT && locationActions.length === 1) {
       const { lat, lon } = newGeometry.points[0];
       const action = locationActions[0];
       let location = action?.value || '';

@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
@@ -57,7 +57,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const onMapClick = useCreateChildHandler();
 
   useDataFetching(childrenPlacements);
-  const [children, childrenLoading] = useContainerToArr(childrenPlacements);
+  const [children, childrenLoading] = useContainerToArr<SomeNode>(childrenPlacements);
 
   const onSelect = React.useCallback<FeatureSelectCallback>((feature) => {
     const id = feature?.getId();
@@ -77,12 +77,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
     lrs.actions.ontola.navigate(isNamedNode(resource) ? resource : app.ns('#'))
   ), [lrs]);
 
-  const placements = React.useMemo(() => (
-    [
-      linkedProp,
-      ...children.filter(isNode).filter((child) => child !== linkedProp),
-    ].filter(Boolean)
-  ), [linkedProp, children]);
+  const placements = children.length > 0 ? children : [linkedProp];
 
   const wrapperClass = clsx({
     [classes.gutterTop]: gutterTop,

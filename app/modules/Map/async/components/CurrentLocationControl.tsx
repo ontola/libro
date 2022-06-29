@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 const DEFAULT_ZOOM = 13;
 
 interface CurrentLocationButtonProps {
-  getMap: () => Map,
+  getMap: () => Map | null,
   tooltip: string,
 }
 
