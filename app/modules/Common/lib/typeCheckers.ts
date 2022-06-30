@@ -5,7 +5,7 @@ import {
 } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 
-import argu from '../../Argu/ontology/argu';
+import argu from '../../Argu/lib/argu';
 import { InputValue } from '../../Form/components/FormField/FormFieldTypes';
 import { JSONLDObject } from '../../Form/lib/helpers';
 

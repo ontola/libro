@@ -4,9 +4,10 @@ import { Resource, register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { cardMainTopology, cardTopology } from '../../../../../topologies';
-import CardRow from '../../../../../topologies/Card/CardRow';
 import CardContent from '../../../components/Card/CardContent';
+import { cardTopology } from '../../../topologies/Card';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import CardRow from '../../../topologies/Card/CardRow';
 
 interface SuperEventCardProps {
   linkedProp: Node;

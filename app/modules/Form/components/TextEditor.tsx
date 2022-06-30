@@ -30,6 +30,7 @@ export interface TextEditorProps {
   rows: number;
   value: string;
 }
+
 const TextEditor = React.lazy(
   // eslint-disable-next-line no-inline-comments
   () => import(/* webpackChunkName: "Forms" */ '../async/TextEditor'),

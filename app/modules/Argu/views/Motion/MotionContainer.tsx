@@ -7,23 +7,21 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
-import argu from '../../ontology/argu';
 import dbo from '../../../../ontology/dbo';
 import meeting from '../../../../ontology/meeting';
-import ontola from '../../../../ontology/ontola';
 import opengov from '../../../../ontology/opengov';
-import {
-  alertDialogTopology,
-  containerTopology,
-  fullResourceTopology,
-} from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import CardAppendix from '../../../../topologies/Card/CardAppendix';
-import CardRow from '../../../../topologies/Card/CardRow';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
+import Card from '../../../Common/topologies/Card';
+import CardAppendix from '../../../Common/topologies/Card/CardAppendix';
+import CardRow from '../../../Common/topologies/Card/CardRow';
+import { containerTopology } from '../../../Common/topologies/Container';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const MotionContainer: FC = ({ subject }) => {
   const { highlightState } = useHighlight();

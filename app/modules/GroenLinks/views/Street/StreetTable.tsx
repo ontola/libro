@@ -6,11 +6,11 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import teamGL from '../../ontology/teamGL';
-import { tableTopology } from '../../../../topologies';
-import TableRow from '../../../../topologies/TableRow';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
-import TableCells from '../../../Common/components/TableCells';
+import TableCells from '../../../Table/components/TableCells';
+import { tableTopology } from '../../../Table/topologies/Table';
+import TableRow from '../../../Table/topologies/TableRow';
+import teamGL from '../../ontology/teamGL';
 
 interface StreetTableProps {
   subject: SomeNode;

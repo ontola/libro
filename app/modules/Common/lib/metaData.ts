@@ -8,9 +8,9 @@ import * as sh from '@ontologies/shacl';
 import HttpStatus from 'http-status-codes';
 
 import dbo from '../../../ontology/dbo';
-import ll from '../../../ontology/ll';
-import ontola from '../../../ontology/ontola';
 import { Icon, WebManifest } from '../../../WebManifest';
+import ll from '../../Core/ontology/ll';
+import ontola from '../../Core/ontology/ontola';
 
 import { stripMarkdown } from './markdownHelper';
 

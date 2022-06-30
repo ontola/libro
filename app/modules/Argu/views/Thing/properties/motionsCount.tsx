@@ -3,11 +3,11 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import argu from '../../../ontology/argu';
-import { detailsBarTopology } from '../../../../../topologies';
 import { motionMessages } from '../../../../../translations/messages';
 import Detail from '../../../../Common/components/Detail';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import argu from '../../../lib/argu';
 
 const MotionsCount = ({ linkedProp }: PropertyProps): JSX.Element | null => {
   const { formatMessage } = useIntl();

@@ -3,9 +3,9 @@ import { isNamedNode, isNode } from '@ontologies/core';
 import { useIds } from 'link-redux';
 import React from 'react';
 
-import form from '../../../ontology/form';
 import { LibroTheme } from '../../../../../themes/themes';
 import { isJSONLDObject } from '../../../../Common/lib/typeCheckers';
+import form from '../../../ontology/form';
 import { FormSection } from '../../Form';
 import { formFieldContext } from '../../FormField/FormFieldContext';
 import { InputComponentProps } from '../../FormField/FormFieldTypes';

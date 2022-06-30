@@ -112,7 +112,7 @@ describe('geometry', () => {
 
       it('is closed', () => {
         const coordinates = feature.getGeometry()!.getCoordinates()![0];
-        expect(coordinates[coordinates.length-1]).toStrictEqual(coordinates[0]);
+        expect(coordinates[coordinates.length - 1]).toStrictEqual(coordinates[0]);
       });
     });
   });

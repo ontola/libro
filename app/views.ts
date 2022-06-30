@@ -22,25 +22,39 @@ import Menu from './modules/Menu/views';
 import NavBar from './modules/NavBar/views';
 import Omniform from './modules/Omniform/views';
 import SalesWebsite from './modules/SalesWebsite/views';
+import Table from './modules/Table/views';
 
 export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
-  return [
-    ...Academy,
-    ...Auth,
+  const base = [
     ...Core,
-    ...Action,
-    ...Argu,
-    ...Collection,
     ...Common,
-    ...Dexes,
+  ];
+
+  const modules = [
+    ...Auth,
+    ...Action,
+    ...Collection,
     ...Element,
     ...Flow,
     ...Form,
-    ...GroenLinks,
     ...Menu,
     ...NavBar,
     ...Omniform,
+    ...Table,
+  ];
+
+  const apps = [
+    ...Academy,
+    ...Argu,
+    ...Dexes,
+    ...GroenLinks,
     ...SalesWebsite,
+  ];
+
+  return [
+    ...base,
+    ...modules,
+    ...apps,
   ];
 }
 

@@ -8,15 +8,15 @@ import {
   Resource,
   register,
   useIds,
-  useLiterals,
+  useLiterals, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
 import { LibroTheme } from '../../../../themes/themes';
-import { footerTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
+import { footerTopology } from '../../../Common/topologies/Footer';
 import ResourceBoundary from '../../../Core/components/ResourceBoundary';
+import ontola from '../../../Core/ontology/ontola';
 
 const ITEM_SPACING = 3;
 
@@ -24,6 +24,7 @@ interface MenuItemFooterProps {
   nested?: boolean;
   onClick?: () => void;
 }
+
 interface MenuItemLabelProps extends MenuItemFooterProps {
   id: string;
   image?: SomeNode;

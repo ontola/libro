@@ -4,8 +4,8 @@ import rdf from '@ontologies/core';
 import * as PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { tryParseInt } from '../../../Common/lib/numbers';
+import ontola from '../../../Core/ontology/ontola';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 
 const CENTER_Y = 50;

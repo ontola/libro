@@ -4,7 +4,7 @@ import {
   dig,
   useFields,
   useIds,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 

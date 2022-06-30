@@ -8,10 +8,10 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import argu from '../../Argu/ontology/argu';
-import elements from '../ontology/elements';
 import { allTopologies } from '../../../topologies';
+import argu from '../../Argu/lib/argu';
 import Button, { ButtonVariant } from '../../Common/components/Button';
+import elements from '../ontology/elements';
 
 const ElementsButton: FC = () => {
   const [text] = useStrings(schema.text);

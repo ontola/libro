@@ -9,10 +9,10 @@ import * as rdfs from '@ontologies/rdfs';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import ontola from '../../../../ontology/ontola';
 import { collectionMembers } from '../../../Collection/lib/diggers';
 import { resourceHasType } from '../../../Common/lib/data';
 import { entityIsLoaded } from '../../../Core/lib/data';
+import ontola from '../../../Core/ontology/ontola';
 
 const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
   const firstValue = value[0];

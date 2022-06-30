@@ -5,10 +5,10 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 import { useIntl } from 'react-intl';
 
-import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
 import Detail, { DetailVariant } from '../../../../Common/components/Detail';
 import { groenlinksMessages } from '../../../lib/messages';
+import teamGL from '../../../ontology/teamGL';
 
 interface VolunteerCreatedAtProps {
   linkedProp: SomeTerm;

@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import { pageTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
 import Metadata from '../../../Common/components/Metadata';
+import { pageTopology } from '../../../Common/topologies/Page';
 
 const FullPageChapter: FC = ({ subject }) => {
   const [book] = useProperty(schema.isPartOf);

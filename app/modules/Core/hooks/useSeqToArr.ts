@@ -12,7 +12,7 @@ import { entityIsLoaded, seqToArr } from '../lib/data';
 
 import { ResolvedArray } from './useContainerToArr';
 
-export function useSeqToArr<I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I>  {
+export function useSeqToArr<I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I> {
   const lrs = useLRS();
   const lastUpdate = useDataFetching(isNode(subject) ? subject : []);
 

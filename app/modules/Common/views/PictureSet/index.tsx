@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { allTopologies } from '../../../../topologies';
+import ontola from '../../../Core/ontology/ontola';
 import Image from '../../components/Image';
 
 interface PictureSetProps {

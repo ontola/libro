@@ -6,16 +6,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import {
-  allTopologiesExcept,
-  cardAppendixTopology,
-  pageTopology,
-  tabPaneTopology,
-} from '../../../../../topologies';
-import CardRow from '../../../../../topologies/Card/CardRow';
-import Container from '../../../../../topologies/Container';
+import { allTopologiesExcept } from '../../../../../topologies';
+import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
+import CardRow from '../../../../Common/topologies/Card/CardRow';
+import Container from '../../../../Common/topologies/Container';
+import { pageTopology } from '../../../../Common/topologies/Page';
+import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 import ArgumentColumns from '../../../components/Arguments/ArgumentColumns';
+import argu from '../../../lib/argu';
 
 const Arguments: FC<PropertyProps> = () =>
   <ArgumentColumns />;

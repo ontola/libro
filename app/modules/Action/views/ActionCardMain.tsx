@@ -8,8 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { cardMainTopology } from '../../../topologies';
 import Link, { LinkTarget } from '../../Common/components/Link';
+import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
 
 interface ActionCardMainProps {
   actionStatus?: SomeTerm;

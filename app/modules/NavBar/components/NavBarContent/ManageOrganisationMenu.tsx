@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { frontendIRI } from '../../../../ontology/app';
-import ontola from '../../../../ontology/ontola';
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { NAME_PREDICATES } from '../../../Common/lib/metaData';
+import { frontendIRI } from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import { NavbarLinkLink } from '../NavbarLink';
 
 export const ManageOrganisationMenu = (): JSX.Element | null => {

@@ -1,30 +1,26 @@
 import * as schema from '@ontologies/schema';
-import HttpStatus from 'http-status-codes';
 import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
-  register,
+  register, 
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import {
-  alertDialogTopology,
-  containerTopology,
-  sideBarTopology,
-} from '../../../../topologies';
-import ActionsBar from '../../../../topologies/ActionsBar';
-import Card from '../../../../topologies/Card';
-import CardAppendix from '../../../../topologies/Card/CardAppendix';
-import DetailsBar from '../../../../topologies/DetailsBar';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
-import { handleErrorStatuses } from '../../../Common/components/Error';
+import Card from '../../../Common/topologies/Card';
+import CardAppendix from '../../../Common/topologies/Card/CardAppendix';
+import { containerTopology } from '../../../Common/topologies/Container';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { sideBarTopology } from '../../../Common/topologies/SideBar';
 import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
-import { LoadingHidden, LoadingOpinion } from '../../../Core/components/Loading';
+import { LoadingHidden } from '../../../Core/components/Loading';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import OmniformTrigger from '../../../Omniform/components/OmniformTrigger';
+import argu from '../../lib/argu';
 
 export interface CommentContainerProps {
   depth?: number;
@@ -59,11 +55,6 @@ const CommentContainer: FC<CommentContainerProps> = ({
           <Property label={schema.dateCreated} />
         </DetailsBar>
         <CardContent>
-          <Property
-            label={argu.opinion}
-            onError={handleErrorStatuses([HttpStatus.FORBIDDEN])}
-            onLoad={LoadingOpinion}
-          />
           <Property label={schema.text} />
         </CardContent>
         <ActionsBar small>

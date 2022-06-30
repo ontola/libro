@@ -8,7 +8,7 @@ import type { History } from 'history';
 import {
   RenderStoreProvider,
   Resource,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import React, { ReactNode } from 'react';
 import { IntlProvider, useIntl } from 'react-intl';
@@ -21,8 +21,8 @@ import dutchMessages from '../lang/nl.json';
 import { appContext } from '../modules/Core/components/AppContext/appContext';
 import HighlightProvider from '../modules/Core/components/HighlightProvider/HighlightProvider';
 import { WebsiteContext, WebsiteCtx } from '../modules/Core/components/WebsiteContext/websiteContext';
+import libro from '../modules/Core/ontology/libro';
 import OmniformProvider from '../modules/Omniform/components/OmniformProvider';
-import libro from '../ontology/libro';
 import AppFrame from '../routes/App';
 import ScrollMemory from '../routes/App/ScrollMemory';
 import themes from '../themes';

@@ -4,15 +4,13 @@ import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import {
-  allTopologiesExcept,
-  containerTopology,
-  parentTopology,
-} from '../../../../../topologies';
+import { allTopologiesExcept } from '../../../../../topologies';
 import Collection from '../../../../Collection/components';
 import Progress from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import { parentTopology } from '../../../../Common/topologies/BreadcrumbsBar';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import argu from '../../../lib/argu';
 
 import { useCartProgressFormatter } from './helpers';
 

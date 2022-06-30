@@ -9,10 +9,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { parentProps } from '../../../../ontology/app';
-import { parentTopology } from '../../../../topologies';
+import { parentProps } from '../../../Core/ontology/app';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { namePredicates } from '../../lib/predicates';
+import { parentTopology } from '../../topologies/BreadcrumbsBar';
 
 interface ThingParent {
   first?: boolean;

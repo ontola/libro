@@ -1,8 +1,9 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import { allTopologiesExcept } from '../../../../topologies';
 import form from '../../ontology/form';
-import { allTopologiesExcept, formFooterTopology } from '../../../../topologies';
+import { formFooterTopology } from '../../topologies/FormFooter';
 
 import FormGroupProvider from './FormGroupProvider';
 
@@ -12,7 +13,7 @@ const FooterGroup = () => (
   />
 );
 
-const WrappedFooterGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => (
+const WrappedFooterGroup = ({ sequenceIndex, ...props }: { sequenceIndex: number }) => (
   <FormGroupProvider sequenceIndex={sequenceIndex}>
     <FooterGroup {...props} />
   </FormGroupProvider>

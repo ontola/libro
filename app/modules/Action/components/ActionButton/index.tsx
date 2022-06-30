@@ -2,9 +2,9 @@ import rdf from '@ontologies/core';
 import { useLinkRenderContext } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import { listTopology } from '../../../../topologies';
 import Button from '../../../Common/components/Button';
 import { countInParentheses } from '../../../Common/lib/numbers';
+import { listTopology } from '../../../Common/topologies/List';
 
 interface ActionButtonProps {
   count?: number;

@@ -5,13 +5,13 @@ import {
   Resource,
   array,
   register,
-  useIds,
+  useIds, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import sales from '../../ontology/sales';
 
 const SECTION_BOTTOM_MARGIN = 30;
 

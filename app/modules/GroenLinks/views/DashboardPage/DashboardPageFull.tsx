@@ -9,21 +9,21 @@ import {
   register,
   useDataFetching,
   useFields,
-  useIds,
+  useIds, 
 } from 'link-redux';
 import React, { useState } from 'react';
 
-import app from '../../../../ontology/app';
-import ontola from '../../../../ontology/ontola';
-import teamGL from '../../ontology/teamGL';
-import { fullResourceTopology } from '../../../../topologies';
-import { CardMain } from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
-import TabBar from '../../../../topologies/TabBar';
-import TabPane from '../../../../topologies/TabPane';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardDivider from '../../../Common/components/Card/CardDivider';
 import { iriFromTemplate } from '../../../Common/lib/uriTemplate';
+import { CardMain } from '../../../Common/topologies/Card';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import TabBar from '../../../Common/topologies/TabBar';
+import TabPane from '../../../Common/topologies/TabPane';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 
 import DashboardTabBar from './DashboardTabBar';
 import DateRangeFilter, { DATE_SIZE } from './DateRangeFilter';

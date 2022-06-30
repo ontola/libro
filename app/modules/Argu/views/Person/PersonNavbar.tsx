@@ -11,14 +11,14 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import app from '../../../../ontology/app';
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { navbarTopology } from '../../../../topologies';
 import { navBarMessages } from '../../../../translations/messages';
 import Link from '../../../Common/components/Link';
 import { NAME_PREDICATES } from '../../../Common/lib/metaData';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import { NavbarLinkIcon, NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
+import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import argu from '../../lib/argu';
 
 export interface PersonNavbarProps {
   onClick: () => void;

@@ -8,9 +8,9 @@ import {
 import React from 'react';
 import { FormattedNumber } from 'react-intl';
 
-import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../../../topologies';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import argu from '../../../lib/argu';
 
 interface PriceProps {
   linkedProp: SomeTerm;

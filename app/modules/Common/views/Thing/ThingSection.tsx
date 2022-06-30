@@ -4,10 +4,11 @@ import { Property } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import { cardRowTopology, listTopology } from '../../../../topologies';
-import HoverBox from '../../../../topologies/HoverBox';
 import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
 import CardContent from '../../components/Card/CardContent';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
+import HoverBox from '../../topologies/HoverBox';
+import { listTopology } from '../../topologies/List';
 
 const ThingHoverBoxHidden = (): JSX.Element => (
   <Property label={schema.text} />

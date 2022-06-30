@@ -2,11 +2,11 @@ import { Literal } from '@ontologies/core';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
-import teamGL from '../../../ontology/teamGL';
-import { tableRowTopology } from '../../../../../topologies';
-import TableCell from '../../../../../topologies/TableCell';
+import argu from '../../../../Argu/lib/argu';
 import RelativeDate from '../../../../Common/components/RelativeDate';
+import TableCell from '../../../../Table/topologies/TableCell';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import teamGL from '../../../ontology/teamGL';
 
 interface LastActivityAtTableRowProps {
   linkedProp: Literal;

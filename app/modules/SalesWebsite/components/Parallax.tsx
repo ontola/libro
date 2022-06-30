@@ -9,8 +9,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { BreakPoints, LibroTheme } from '../../../themes/themes';
-import Container from '../../../topologies/Container';
 import retrievePath from '../../Common/lib/iris';
+import Container from '../../Common/topologies/Container';
 
 interface StyleProps {
   backgroundImageUrl: string;

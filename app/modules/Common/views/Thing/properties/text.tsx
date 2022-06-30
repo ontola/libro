@@ -6,20 +6,18 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  cardMainTopology,
-  cardMicroRowTopology,
-  cardRowTopology,
-  cardTopology,
-  containerTopology,
-  fullResourceTopology,
-  gridTopology,
-  listTopology,
-  mainBodyTopology,
-} from '../../../../../topologies';
 import CollapseText from '../../../components/CollapseText';
 import Markdown from '../../../components/Markdown';
 import { useStrippedMarkdown } from '../../../lib/useStrippedMarkdown';
+import { cardTopology } from '../../../topologies/Card';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { cardMicroRowTopology } from '../../../topologies/Card/CardMicroRow';
+import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { containerTopology } from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
+import { gridTopology } from '../../../topologies/Grid';
+import { listTopology } from '../../../topologies/List';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 
 const textProperties = [
   schema.text,

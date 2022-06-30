@@ -10,9 +10,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { appMenuTopology, menuTopology } from '../../../../topologies';
+import ontola from '../../../Core/ontology/ontola';
 import DropdownMenuItem from '../../components/DropdownMenu/DropdownMenuItem';
+import { appMenuTopology } from '../../topologies/AppMenu';
+import { menuTopology } from '../../topologies/Menu';
 
 interface MenuItemDropdownContentProps {
   hideIcon?: boolean;
@@ -28,7 +29,7 @@ const MenuItemDropdownContent = React.forwardRef<FC, MenuItemDropdownContentProp
     const [menuItems] = useIds(ontola.menuItems);
     const [name] = useLiterals(schema.name);
 
-    return(
+    return (
       <DropdownMenuItem
         innerRef={ref}
         {...props}

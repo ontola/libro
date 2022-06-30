@@ -1,7 +1,7 @@
 import {
   DeprecatedThemeOptions,
   PaletteColor,
-  createTheme,
+  createTheme, 
 } from '@mui/material/styles';
 import deepmerge from 'deepmerge';
 

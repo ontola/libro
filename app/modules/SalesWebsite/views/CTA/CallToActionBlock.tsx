@@ -8,9 +8,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { allTopologies } from '../../../../topologies';
 import { CallToAction } from '../../components/CallToAction';
+import sales from '../../ontology/sales';
 
 export interface CallToActionBlockProps {
   trackingId?: string;

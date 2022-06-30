@@ -20,8 +20,8 @@ import { LinkedDataObject, TermOpts } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { arraysEqual } from '../../Common/lib/data';
-import { containerToArr } from '../../Core/lib/data';
 import { isPromise } from '../../Common/lib/typeCheckers';
+import { containerToArr } from '../../Core/lib/data';
 
 import useShapeValues from './useShapeValues';
 
@@ -43,6 +43,7 @@ type RawNodeShape = LinkedDataObject<typeof shapePropsMap, TermOpts>;
 export interface NodeShape extends RawNodeShape {
   shInValues: SomeTerm[];
 }
+
 export type ValuesFor = (subject: SomeNode) => SomeTerm[] | undefined;
 
 const hasMaxCount = (maxCount: ToJSOutputTypes | undefined, values: SomeTerm[]) => (

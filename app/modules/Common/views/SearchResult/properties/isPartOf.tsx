@@ -11,9 +11,10 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import argu from '../../../../Argu/ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import { inlineTopology } from '../../../../../topologies';
+import argu from '../../../../Argu/lib/argu';
+import libro from '../../../../Core/ontology/libro';
+import ontola from '../../../../Core/ontology/ontola';
+import { inlineTopology } from '../../../topologies';
 
 const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {
   const [parentType] = useFields(linkedProp as NamedNode, rdfx.type);
@@ -40,6 +41,6 @@ IsPartOfPage.type = ontola.SearchResult;
 
 IsPartOfPage.property = schema.isPartOf;
 
-IsPartOfPage.topology = argu.container;
+IsPartOfPage.topology = libro.topologies.container;
 
 export default register(IsPartOfPage);

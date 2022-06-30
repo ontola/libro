@@ -11,10 +11,10 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import app from '../../../../ontology/app';
-import example from '../../../../ontology/example';
-import ontola from '../../../../ontology/ontola';
-import { Page } from '../../../../topologies/Page';
+import Page from '../../../Common/topologies/Page';
+import app from '../../../Core/ontology/app';
+import example from '../../../Core/ontology/example';
+import ontola from '../../../Core/ontology/ontola';
 
 const ITEMS = 10;
 

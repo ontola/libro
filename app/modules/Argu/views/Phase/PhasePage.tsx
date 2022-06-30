@@ -3,17 +3,17 @@ import {
   FC,
   register,
   useGlobalIds,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import argu from '../../ontology/argu';
-import { pageTopology } from '../../../../topologies';
-import { entityIsLoaded } from '../../../Core/lib/data';
 import retrievePath from '../../../Common/lib/iris';
+import { pageTopology } from '../../../Common/topologies/Page';
 import LinkLoader from '../../../Core/components/Loading/LinkLoader';
+import { entityIsLoaded } from '../../../Core/lib/data';
 import usePhases, { phaseIRI } from '../../hooks/usePhases';
+import argu from '../../lib/argu';
 
 const PhasePage: FC = ({ subject }) => {
   const lrs = useLRS();

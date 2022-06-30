@@ -7,12 +7,12 @@ import { SomeNode } from 'link-lib';
 import { useDataFetching, useLRS } from 'link-redux';
 import React from 'react';
 
-import { containerToArr } from '../lib/data';
 import { isPromise } from '../../Common/lib/typeCheckers';
+import { containerToArr } from '../lib/data';
 
 export type ResolvedArray<I> = [array: I[], loading: boolean];
 
-export const useContainerToArr = <I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I>  => {
+export const useContainerToArr = <I extends Term = SomeTerm>(subject?: SomeNode | I[]): ResolvedArray<I> => {
   const lrs = useLRS();
   const lastUpdate = useDataFetching(isNode(subject) ? subject : []);
   const [version, setVersion] = React.useState(0);

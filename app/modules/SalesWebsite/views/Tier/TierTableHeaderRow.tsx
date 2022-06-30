@@ -3,12 +3,12 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
+import { tableHeaderRowTopology } from '../../../Table/topologies/TableHeaderRow';
 import sales from '../../ontology/sales';
-import { tableHeaderRowTopology } from '../../../../topologies';
 
 interface StyleProps {
   color: string;

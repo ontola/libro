@@ -2,17 +2,17 @@ import {
   Grid,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme, 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import { useProperty } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { containerTopology } from '../../../../topologies';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
+import { containerTopology } from '../../../Common/topologies/Container';
+import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {

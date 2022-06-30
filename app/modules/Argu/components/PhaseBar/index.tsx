@@ -6,14 +6,14 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { detailsBarTopology } from '../../../../topologies';
 import { phaseMessages } from '../../../../translations/messages';
 import { CreateStepOnClick } from '../../../Common/components/Stepper/Stepper';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
+import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
 import { LoadingHidden } from '../../../Core/components/Loading';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 export const TOP_SPACING = 6;
 

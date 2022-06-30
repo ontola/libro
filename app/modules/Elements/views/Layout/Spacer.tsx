@@ -6,9 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import elements from '../../ontology/elements';
 import { LibroTheme } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
+import elements from '../../ontology/elements';
 
 interface StyleProps {
   gap: number;

@@ -7,17 +7,15 @@ import {
 } from 'link-redux';
 
 import { components } from '../../../../components';
-import app from '../../../../ontology/app';
-import argu from '../../../Argu/ontology/argu';
 import meeting from '../../../../ontology/meeting';
-import ontola from '../../../../ontology/ontola';
-import {
-  actionsBarTopology,
-  fullResourceTopology,
-  mainBodyTopology,
-} from '../../../../topologies';
+import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
+import argu from '../../../Argu/lib/argu';
 import component from '../../../Core/lib/component';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import { property, withoutLoading } from '../../lib/properties';
+import { fullResourceTopology } from '../../topologies/FullResource';
+import { mainBodyTopology } from '../../topologies/MainBody';
 
 const ThingFull: FC = () => {
   const lrs = useLRS();

@@ -5,9 +5,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { mainBodyTopology } from '../../../../topologies';
-import ActionsBar from '../../../../topologies/ActionsBar';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
+import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import argu from '../../lib/argu';
 
 const VoteEventMainBody: FC = () => (
   <div itemScope>

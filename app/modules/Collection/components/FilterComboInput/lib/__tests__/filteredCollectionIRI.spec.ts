@@ -6,8 +6,8 @@ import rdf from '@ontologies/core';
 import { useLRS } from 'link-redux';
 
 import { renderLinkedHook } from '../../../../../../../tests/test-utils-hooks';
-import ontola from '../../../../../../ontology/ontola';
 import { useIRITemplate } from '../../../../../Common/hooks/useIRITemplate';
+import ontola from '../../../../../Core/ontology/ontola';
 import { filteredCollectionIRI } from '../filteredCollectionIRI';
 import { FilterValue } from '../FilterValue';
 

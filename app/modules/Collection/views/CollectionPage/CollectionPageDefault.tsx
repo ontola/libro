@@ -1,12 +1,10 @@
 import { register } from 'link-redux';
 
-import {
-  alertDialogTopology,
-  allTopologiesExcept,
-  fullResourceTopology,
-  inlineTopology,
-  pageTopology,
-} from '../../../../topologies';
+import { allTopologiesExcept } from '../../../../topologies';
+import { inlineTopology } from '../../../Common/topologies';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { pageTopology } from '../../../Common/topologies/Page';
 
 import getCollectionPage from './getCollectionPage';
 

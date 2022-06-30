@@ -9,15 +9,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import dbo from '../../../../ontology/dbo';
-import ontola from '../../../../ontology/ontola';
-import { gridTopology } from '../../../../topologies';
-import CardFixed from '../../../../topologies/Card/CardFixed';
-import DetailsBar from '../../../../topologies/DetailsBar';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import LDLink from '../../components/LDLink';
+import CardFixed from '../../topologies/Card/CardFixed';
+import DetailsBar from '../../topologies/DetailsBar';
+import { gridTopology } from '../../topologies/Grid';
 
 const ThingGrid: FC = () => {
   const [name] = useStrings([schema.name, rdfs.label, foaf.name]);

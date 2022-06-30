@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import { tableRowTopology } from '../../../../../topologies';
+import argu from '../../../../Argu/lib/argu';
 import Heading, { HeadingSize, HeadingVariant } from '../../../../Common/components/Heading';
+import ontola from '../../../../Core/ontology/ontola';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 
 const MenuItemLabelTableRow: FC<PropertyProps> = ({ linkedProp }) => (
   <Heading

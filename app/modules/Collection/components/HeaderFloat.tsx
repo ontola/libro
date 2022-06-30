@@ -4,13 +4,13 @@ import makeStyles from '@mui/styles/makeStyles';
 import {
   Property,
   Resource,
-  useValues, 
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import ontola from '../../../ontology/ontola';
 import { collectionMessages } from '../../../translations/messages';
+import ontola from '../../Core/ontology/ontola';
 
 import { useCollectionOptions } from './CollectionContext';
 import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';

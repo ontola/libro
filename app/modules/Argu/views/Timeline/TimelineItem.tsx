@@ -18,9 +18,9 @@ import {
 } from 'link-redux';
 import React, { ReactChildren } from 'react';
 
-import argu from '../../ontology/argu';
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
+import argu from '../../lib/argu';
 
 const useStyles = makeStyles(() => ({
   content: {
@@ -47,7 +47,7 @@ const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
   const [color] = useFields(legendType, schema.color);
   const styleDot = color ? { backgroundColor: color.value } : {};
   const nameWrapper = url
-    ? ({ children }: {children: ReactChildren}) => (
+    ? ({ children }: { children: ReactChildren }) => (
       <Link
         allowExternal={false}
         to={url.value}

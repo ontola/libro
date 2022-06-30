@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
 import Link from '../../../../Common/components/Link';
+import ontola from '../../../../Core/ontology/ontola';
 import { CollectionViewTypes } from '../types';
 
 interface CollectionPageNameProps {

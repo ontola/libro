@@ -9,7 +9,6 @@ import clsx from 'clsx';
 import React, { SyntheticEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import SelectedValue from '../../../../topologies/SelectedValue';
 import { fontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
@@ -20,6 +19,7 @@ import {
   useFormStyles,
 } from '../../components/FormField/UseFormStyles';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
+import SelectedValue from '../../topologies/SelectedValue';
 import useSelectStyles from '../SelectInput/useSelectStyles';
 
 import fontAwesomeIcons from './helpers/fontAwesomeIcons';

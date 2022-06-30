@@ -12,10 +12,10 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import example from '../../../../ontology/example';
-import ontola from '../../../../ontology/ontola';
+import Container from '../../../Common/topologies/Container';
+import example from '../../../Core/ontology/example';
+import ontola from '../../../Core/ontology/ontola';
 import sales from '../../ontology/sales';
-import Container from '../../../../topologies/Container';
 
 const s = (x: NamedNode) => x.toString();
 const seq = (...args: Array<Record<string, unknown>>) => libSeq(args);

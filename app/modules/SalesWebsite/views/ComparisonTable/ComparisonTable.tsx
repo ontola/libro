@@ -4,7 +4,7 @@ import {
   Collapse,
   IconButton,
   Typography,
-  useMediaQuery,
+  useMediaQuery, 
 } from '@mui/material';
 import { makeStyles, useTheme } from '@mui/styles';
 import * as schema from '@ontologies/schema';
@@ -13,19 +13,19 @@ import {
   Resource,
   register,
   useIds,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
-import TableHeaderRow from '../../../../topologies/TableHeaderRow';
 import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
+import TableHeaderRow from '../../../Table/topologies/TableHeaderRow';
+import sales from '../../ontology/sales';
 
 interface StyleProps {
   animating: boolean;

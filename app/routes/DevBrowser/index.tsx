@@ -5,18 +5,18 @@ import React, { ChangeEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import app from '../../ontology/app';
-import argu from '../../modules/Argu/ontology/argu';
+import app from '../../modules/Core/ontology/app';
+import libro from '../../modules/Core/ontology/libro';
 import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';
 
 const specialTopologies = [
   undefined,
-  argu.container,
-  argu.grid,
-  argu.card,
-  argu.inline,
+  libro.topologies.container,
+  libro.topologies.grid,
+  libro.topologies.card,
+  libro.topologies.inline,
 ];
 
 const usePropsFromURL = () => {

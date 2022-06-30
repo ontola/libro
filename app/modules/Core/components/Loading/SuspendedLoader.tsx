@@ -15,6 +15,7 @@ class SuspendedLoader extends React.Component {
       this.resolve();
     }
   }
+
   private resolve: ((value: void | PromiseLike<void>) => void) | undefined;
   private promise: Promise<void> | undefined;
 

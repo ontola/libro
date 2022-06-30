@@ -5,10 +5,10 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { LibroTheme } from '../../../../themes/themes';
-import { collapseTextToggleCID } from '../../../../topologies/Card/sharedCardStyles';
 import { collapsibleMessages } from '../../../../translations/messages';
 import useStoredState from '../../hooks/useStoredState';
 import { parseBoolean } from '../../lib/persistence';
+import { collapseTextToggleCID } from '../../topologies/Card/sharedCardStyles';
 import Button, { ButtonLabelIdentifierClass } from '../Button';
 import Collapsible from '../Collapsible';
 import Markdown from '../Markdown';

@@ -6,9 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { cardRowTopology } from '../../../../topologies';
 import Link, { IsActiveCheck } from '../../../Common/components/Link';
+import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import ontola from '../../../Core/ontology/ontola';
 
 import { MenuTypes } from './types';
 
@@ -24,7 +24,7 @@ const MenuItemCardRow: FC<MenuItemCardRowProps> = ({
   const [href] = useProperty(ontola.href);
   const [name] = useProperty(schema.name);
 
-  return(
+  return (
     <li>
       <Link
         isActive={isActive}

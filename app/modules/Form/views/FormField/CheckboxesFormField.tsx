@@ -1,11 +1,11 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
-import { formFieldTopologies } from '../../../../topologies';
 import FormField from '../../components/FormField/FormField';
 import CheckboxesInput from '../../components/Input/CheckboxesInput';
 import useFormField from '../../hooks/useFormField';
+import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const CheckboxesFormField: FC = ({
   subject,

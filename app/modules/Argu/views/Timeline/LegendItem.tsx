@@ -10,9 +10,9 @@ import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import { allTopologies } from '../../../../topologies';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
+import argu from '../../lib/argu';
 
 const useStyles = makeStyles(() => ({
   content: {

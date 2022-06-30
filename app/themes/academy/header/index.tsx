@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../modules/Common/lib/iris';
 import { useWebsiteIRI } from '../../../modules/Core/hooks/useWebsiteIRI';
-import ontola from '../../../ontology/ontola';
-import Navbar from '../../../topologies/Navbar';
+import ontola from '../../../modules/Core/ontology/ontola';
+import Navbar from '../../../modules/NavBar/topologies/Navbar';
 import { LibroTheme } from '../../themes';
 
 import { ChapterSearch } from './ChapterSearch';

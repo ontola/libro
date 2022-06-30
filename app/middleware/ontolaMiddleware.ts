@@ -2,7 +2,7 @@ import rdf, {
   Literal,
   NamedNode,
   Node,
-  Quadruple, 
+  Quadruple,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -24,10 +24,10 @@ import hexjson from '../helpers/transformers/hexjson';
 import { safeCredentials } from '../modules/Common/lib/dom';
 import { retrievePath } from '../modules/Common/lib/iris';
 import { quadruple } from '../modules/Common/lib/quadruple';
-import app from '../ontology/app';
+import app from '../modules/Core/ontology/app';
+import libro from '../modules/Core/ontology/libro';
+import ontola from '../modules/Core/ontology/ontola';
 import ld from '../ontology/ld';
-import libro from '../ontology/libro';
-import ontola from '../ontology/ontola';
 import { actionMessages } from '../translations/messages';
 
 import { redirectPage, reloadPage } from './reloading';

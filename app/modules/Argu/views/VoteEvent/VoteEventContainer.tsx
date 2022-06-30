@@ -1,18 +1,16 @@
 import {
   FC,
   Property,
-  register,
+  register, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import {
-  cardAppendixTopology,
-  cardTopology,
-  containerTopology,
-} from '../../../../topologies';
-import ActionsBar from '../../../../topologies/ActionsBar';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
+import { cardTopology } from '../../../Common/topologies/Card';
+import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
+import { containerTopology } from '../../../Common/topologies/Container';
+import argu from '../../lib/argu';
 
 const VoteEventContainer: FC = () => (
   <CardContent>

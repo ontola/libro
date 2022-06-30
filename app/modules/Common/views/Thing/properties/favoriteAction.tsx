@@ -11,8 +11,8 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
+import ontola from '../../../../Core/ontology/ontola';
 import { ButtonVariant } from '../../../components/Button';
 import { sort } from '../../../lib/data';
 

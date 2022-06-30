@@ -1,8 +1,8 @@
 import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
 
-import argu from '../../../Argu/ontology/argu';
-import { parentTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
+import { parentTopology } from '../../topologies/BreadcrumbsBar';
 
 const WebSiteParent = () => null;
 

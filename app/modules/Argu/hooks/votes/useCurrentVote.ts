@@ -7,7 +7,7 @@ import {
   useIds,
 } from 'link-redux';
 
-import argu from '../../ontology/argu';
+import argu from '../../lib/argu';
 
 type UseCurrentVote = [vote: NamedNode, option: SomeNode];
 

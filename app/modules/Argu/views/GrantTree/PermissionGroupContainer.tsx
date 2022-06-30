@@ -1,9 +1,9 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import org from '../../../../ontology/org';
-import { containerTopology } from '../../../../topologies';
+import { containerTopology } from '../../../Common/topologies/Container';
+import argu from '../../lib/argu';
 
 const PermissionGroupContainer = () => (
   <React.Fragment>

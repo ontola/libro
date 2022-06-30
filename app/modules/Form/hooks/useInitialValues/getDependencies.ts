@@ -9,9 +9,8 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import form from '../../ontology/form';
-import ontola from '../../../../ontology/ontola';
 import { isResource } from '../../../Common/lib/typeCheckers';
+import ontola from '../../../Core/ontology/ontola';
 import {
   formFieldSeqPath,
   formFieldsPath,
@@ -21,6 +20,7 @@ import {
   nestedConditionalUnlessInPath,
   nestedFormsPath,
 } from '../../lib/diggers';
+import form from '../../ontology/form';
 
 import { getNestedObjects } from './getNestedObjects';
 import { getFormFields, rawFormObjectValue } from './helpers';

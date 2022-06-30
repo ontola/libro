@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { allTopologies } from '../../../../topologies';
+import ontola from '../../../Core/ontology/ontola';
 import { formContext } from '../../components/Form/FormContext';
 import useShapeValidation from '../../hooks/useShapeValidation';
 

@@ -10,7 +10,7 @@ import {
   ScreenWidth,
   hoverCapable,
   mockMedia,
-  screenWidth, 
+  screenWidth,
 } from '../../tests/test-utils-media';
 
 enum Result {

@@ -1,9 +1,10 @@
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { contentDetailsTopology, detailsBarTopology } from '../../../../topologies';
 import Detail from '../../../Common/components/Detail';
+import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
+import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
+import argu from '../../lib/argu';
 
 const GroupDetail = (): JSX.Element => {
   const [name] = useProperty(argu.nameSingular);

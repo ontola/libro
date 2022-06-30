@@ -8,14 +8,15 @@ import {
   register,
   useIds,
   useLRS,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { allTopologies, inlineTopology } from '../../../../topologies';
+import { allTopologies } from '../../../../topologies';
 import { useIRITemplate } from '../../../Common/hooks/useIRITemplate';
 import { isResource } from '../../../Common/lib/typeCheckers';
+import { inlineTopology } from '../../../Common/topologies';
+import ontola from '../../../Core/ontology/ontola';
 import { useCollectionOptions } from '../../components/CollectionContext';
 
 const Value = ({ prop }: { prop: SomeTerm }) => {

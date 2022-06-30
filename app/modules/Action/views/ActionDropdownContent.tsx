@@ -6,9 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { menuTopology } from '../../../topologies';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import MenuItem from '../../Menu/components/MenuItem';
+import { menuTopology } from '../../Menu/topologies/Menu';
 
 const ActionDropdownContent: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);

@@ -7,16 +7,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import {
-  allTopologiesExcept,
-  navbarTopology,
-  pageTopology,
-  parentTopology,
-  tableRowTopology,
-} from '../../../../../topologies';
+import { allTopologiesExcept } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
 import Link from '../../../../Common/components/Link';
+import { parentTopology } from '../../../../Common/topologies/BreadcrumbsBar';
+import { pageTopology } from '../../../../Common/topologies/Page';
+import ontola from '../../../../Core/ontology/ontola';
+import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 import { CollectionTypes } from '../types';
 
 interface CollectionNameProps {

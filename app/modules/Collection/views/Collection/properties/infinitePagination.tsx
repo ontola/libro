@@ -8,13 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import {
-  allTopologiesExcept,
-  cardAppendixTopology,
-  pageTopology,
-} from '../../../../../topologies';
-import CardRow from '../../../../../topologies/Card/CardRow';
+import { allTopologiesExcept } from '../../../../../topologies';
+import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
+import CardRow from '../../../../Common/topologies/Card/CardRow';
+import { pageTopology } from '../../../../Common/topologies/Page';
+import ontola from '../../../../Core/ontology/ontola';
 import { CollectionTypes } from '../types';
 
 const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {

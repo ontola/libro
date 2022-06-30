@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Card from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
-import PageHeader from '../../../../topologies/PageHeader';
+import Card from '../../topologies/Card';
+import Container from '../../topologies/Container';
+import PageHeader from '../../topologies/PageHeader';
 import CardContent from '../Card/CardContent';
 
 import { useErrorStatus } from './errorMessages';

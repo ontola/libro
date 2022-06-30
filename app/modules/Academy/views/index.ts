@@ -1,13 +1,9 @@
 import Book from './Book';
-import Chapter from './Chapter/Chapter';
-import ChapterSelect from './Chapter/ChapterSelect';
-import FullPageChapter from './Chapter/FullPageChapter';
-import SideBarChapter from './Chapter/SideBarChapter';
+import Chapter from './Chapter';
+import MediaObject from './MediaObject';
 
 export default [
   Book,
-  FullPageChapter,
-  Chapter,
-  SideBarChapter,
-  ChapterSelect,
+  ...Chapter,
+  ...MediaObject,
 ];

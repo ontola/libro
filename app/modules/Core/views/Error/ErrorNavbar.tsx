@@ -3,7 +3,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { navbarTopology } from '../../../../topologies';
 import { errorMessages } from '../../../../translations/messages';
 import BlurButton from '../../../Common/components/BlurButton';
 import { bodyDescriptorForStatus, useErrorStatus } from '../../../Common/components/Error/errorMessages';
@@ -13,6 +12,7 @@ import { ERROR_CLASSES } from '../../../Common/lib/metaData';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
 import NavbarLinkIcon from '../../../NavBar/components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../../NavBar/components/NavbarLink/NavbarLinkLabel';
+import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 
 const ErrorNavbar: FC<ErrorComponentProps> = (props) => {
   const {

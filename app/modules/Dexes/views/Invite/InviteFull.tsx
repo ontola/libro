@@ -11,18 +11,18 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import dexes from '../../ontology/dexes';
-import ontola from '../../../../ontology/ontola';
-import { fullResourceTopology } from '../../../../topologies';
-import ActionsBar from '../../../../topologies/ActionsBar';
-import CardMain from '../../../../topologies/Card/CardMain';
-import Container from '../../../../topologies/Container';
-import DetailsBar from '../../../../topologies/DetailsBar';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
+import argu from '../../../Argu/lib/argu';
 import CardContent from '../../../Common/components/Card/CardContent';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
 import { defaultMenus } from '../../../Common/lib/viewHelpers';
+import CardMain from '../../../Common/topologies/Card/CardMain';
+import Container from '../../../Common/topologies/Container';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { LoadingHidden } from '../../../Core/components/Loading';
+import ontola from '../../../Core/ontology/ontola';
+import dexes from '../../ontology/dexes';
 
 const InviteFull: FC = () => {
   const [assigner] = useProperty(dexes.assigner);

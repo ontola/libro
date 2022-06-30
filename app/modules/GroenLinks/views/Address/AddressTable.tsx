@@ -2,17 +2,17 @@ import {
   FC,
   register,
   useGlobalIds,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import teamGL from '../../ontology/teamGL';
-import { tableTopology } from '../../../../topologies';
-import TableRow from '../../../../topologies/TableRow';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
-import TableCells from '../../../Common/components/TableCells';
 import { entityIsLoaded } from '../../../Core/lib/data';
+import ontola from '../../../Core/ontology/ontola';
+import TableCells from '../../../Table/components/TableCells';
+import { tableTopology } from '../../../Table/topologies/Table';
+import TableRow from '../../../Table/topologies/TableRow';
+import teamGL from '../../ontology/teamGL';
 
 const AddressTable: FC = ({ subject }) => {
   const lrs = useLRS();

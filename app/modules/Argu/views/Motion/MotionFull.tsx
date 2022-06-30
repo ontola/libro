@@ -6,17 +6,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import dbo from '../../../../ontology/dbo';
 import meeting from '../../../../ontology/meeting';
-import ontola from '../../../../ontology/ontola';
 import opengov from '../../../../ontology/opengov';
 import wdt from '../../../../ontology/wdt';
-import { fullResourceTopology } from '../../../../topologies';
-import MainBody from '../../../../topologies/MainBody';
 import { PageHeader } from '../../../Common/components/PageHeader';
 import SubSection from '../../../Common/components/SubSection';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import MainBody from '../../../Common/topologies/MainBody';
 import { LoadingHidden } from '../../../Core/components/Loading';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const MotionFull: FC = () => (
   <React.Fragment>

@@ -2,15 +2,16 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import teamGL from '../../ontology/teamGL';
-import { contentDetailsTopology, detailsBarTopology } from '../../../../topologies';
 import Detail from '../../../Common/components/Detail';
 import { retrievePath } from '../../../Common/lib/iris';
+import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
+import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
+import teamGL from '../../ontology/teamGL';
 
 const DepartmentDetailsBar: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);

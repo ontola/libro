@@ -12,15 +12,13 @@ import {
 import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import ontola from '../../../../ontology/ontola';
-import {
-  cardFloatTopology,
-  containerFloatTopology,
-  contentDetailsTopology,
-} from '../../../../topologies';
-import Menu from '../../../../topologies/Menu';
+import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
+import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
+import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
 import ResourceBoundary from '../../../Core/components/ResourceBoundary';
+import ontola from '../../../Core/ontology/ontola';
 import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';
+import Menu from '../../topologies/Menu';
 
 import { MenuTypes } from './types';
 
@@ -62,7 +60,7 @@ const MenuItemDropdown = () => {
     );
   }
 
-  return(
+  return (
     <ResourceBoundary>
       <Menu
         title={name}

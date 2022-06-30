@@ -9,27 +9,25 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import {
-  actionsBarTopology,
-  alertDialogTopology,
-  allTopologiesExcept,
-  parentTopology,
-  tableCellTopology,
-  tableRowTopology,
-  tableTopology,
-} from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
-import FormFooter from '../../../../topologies/FormFooter';
+import { allTopologiesExcept } from '../../../../topologies';
 import { surveyMessages } from '../../../../translations/messages';
 import useActionStatus from '../../../Action/hooks/useActionStatus';
+import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
 import { ButtonVariant } from '../../../Common/components/Button';
 import CardContent from '../../../Common/components/Card/CardContent';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
+import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import Card from '../../../Common/topologies/Card';
+import Container from '../../../Common/topologies/Container';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import LinkLoader from '../../../Core/components/Loading/LinkLoader';
+import ontola from '../../../Core/ontology/ontola';
 import { FormFooterRight } from '../../../Form/components/Form';
+import FormFooter from '../../../Form/topologies/FormFooter';
+import { tableTopology } from '../../../Table/topologies/Table';
+import { tableCellTopology } from '../../../Table/topologies/TableCell';
+import { tableRowTopology } from '../../../Table/topologies/TableRow';
+import argu from '../../lib/argu';
 
 const useStyles = makeStyles(() => ({
   buttonWrapper: {

@@ -4,12 +4,12 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
+import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import sales from '../../ontology/sales';
-import { tableCellTopology } from '../../../../topologies';
 
 interface StyleProps {
   color: string;

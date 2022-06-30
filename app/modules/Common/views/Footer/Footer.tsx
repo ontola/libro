@@ -9,9 +9,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
 import HeadingContext from '../../components/Heading/HeadingContext';
 
 const DESKTOP_PADDING = 30;

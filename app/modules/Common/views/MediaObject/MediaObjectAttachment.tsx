@@ -6,20 +6,18 @@ import {
   register,
   useDataFetching,
   useIds,
-  useValues,
+  useValues, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import dbo from '../../../../ontology/dbo';
 import { LibroTheme } from '../../../../themes/themes';
-import {
-  cardMainTopology,
-  cardRowTopology,
-  cardTopology,
-} from '../../../../topologies';
 import LDLink from '../../components/LDLink';
 import { tryParseInt } from '../../lib/numbers';
+import { cardTopology } from '../../topologies/Card';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 const attachmentIconCID = 'CID-AttachmentIcon';
 

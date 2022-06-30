@@ -40,7 +40,7 @@ export function headerDescriptorForStatus(statusCode?: number): undefined | Mess
   return descriptor;
 }
 
-export const useErrorStatus = (linkRequestStatus?: RequestStatus): number | undefined =>  {
+export const useErrorStatus = (linkRequestStatus?: RequestStatus): number | undefined => {
   const [errorType] = useIds(rdfx.type);
 
   if (linkRequestStatus?.status) {

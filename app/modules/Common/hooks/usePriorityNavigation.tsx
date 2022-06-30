@@ -18,7 +18,7 @@ interface UsePriorityNavigation {
  * then returns a list of items that are not visible.
  * Also returns a callback function to start observing the items.
  */
-export const usePriorityNavigation = (navBarRef: HTMLElement | null, menuItems: Node[]): UsePriorityNavigation  => {
+export const usePriorityNavigation = (navBarRef: HTMLElement | null, menuItems: Node[]): UsePriorityNavigation => {
   const [observedItems, setObservedItems] = React.useState<Map<Node, Observable>>(new Map());
   const [_, forceUpdate] = React.useReducer((x) => x + 1, 0);
 
@@ -27,7 +27,8 @@ export const usePriorityNavigation = (navBarRef: HTMLElement | null, menuItems: 
       domNode: ref,
       isVisible: false,
     }))),
-  []);
+  [],
+  );
 
   React.useEffect(() => {
     const observer = new IntersectionObserver((changedEntries) => {

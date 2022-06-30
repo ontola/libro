@@ -9,9 +9,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
+import sales from '../../ontology/sales';
 
 interface StyleProps {
   count: number;

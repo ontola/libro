@@ -20,10 +20,10 @@ const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
 
 const ActivityName = () => {
-  const [actor] = useProperty(as.actor) ;
-  const [name] = useProperty(schema.name) ;
-  const [object] = useProperty(as.object) ;
-  const [target] = useProperty(as.target) ;
+  const [actor] = useProperty(as.actor);
+  const [name] = useProperty(schema.name);
+  const [object] = useProperty(as.object);
+  const [target] = useProperty(as.target);
   const iriMap: Record<string, SomeTerm> = {
     actor,
     name,

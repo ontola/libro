@@ -9,8 +9,8 @@ import {
 import React from 'react';
 import parser from 'uri-template';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 
 import { DocumentAttachmentPreview } from './DocumentAttachmentPreview';
 import { ImageAttachmentPreview } from './ImageAttachmentPreview';

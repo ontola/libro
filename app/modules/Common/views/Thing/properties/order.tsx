@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import { tableRowTopology } from '../../../../../topologies';
+import argu from '../../../../Argu/lib/argu';
 import { LoadingHidden } from '../../../../Core/components/Loading';
+import ontola from '../../../../Core/ontology/ontola';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 
 const Order: FC<PropertyProps> = () => (
   <React.Fragment>

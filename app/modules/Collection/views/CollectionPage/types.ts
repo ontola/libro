@@ -1,6 +1,6 @@
 import * as as from '@ontologies/as';
 
-import ontola from '../../../../ontology/ontola';
+import ontola from '../../../Core/ontology/ontola';
 
 export const CollectionViewTypes = [
   as.CollectionPage,

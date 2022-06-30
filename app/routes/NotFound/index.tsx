@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 
 import CardContent from '../../modules/Common/components/Card/CardContent';
 import Heading from '../../modules/Common/components/Heading';
+import Card from '../../modules/Common/topologies/Card';
+import Container from '../../modules/Common/topologies/Container';
 import { Size } from '../../themes/themes';
-import Card from '../../topologies/Card';
-import Container from '../../topologies/Container';
 
 const NotFound = (): JSX.Element => (
   <Container size={Size.Small}>

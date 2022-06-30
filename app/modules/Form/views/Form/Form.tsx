@@ -2,7 +2,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import form from '../../ontology/form';
-import { formTopologies } from '../../../../topologies';
+import { formTopologies } from '../../topologies';
 
 const Form = () => (
   <Property label={form.pages} />

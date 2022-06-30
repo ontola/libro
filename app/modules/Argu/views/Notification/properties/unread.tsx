@@ -2,20 +2,18 @@ import {
   FC,
   Property,
   PropertyProps,
-  register,
+  register, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import {
-  cardFixedTopology,
-  cardMainTopology,
-  cardTopology,
-  containerTopology,
-  fullResourceTopology,
-  navbarTopology,
-} from '../../../../../topologies';
+import { cardTopology } from '../../../../Common/topologies/Card';
+import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import ontola from '../../../../Core/ontology/ontola';
+import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import argu from '../../../lib/argu';
 
 const Unread: FC<PropertyProps> = ({
   linkedProp,

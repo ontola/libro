@@ -7,13 +7,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
 import { LibroTheme, Margin } from '../../../../../themes/themes';
-import { fullResourceTopology } from '../../../../../topologies';
-import Card from '../../../../../topologies/Card';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import Progress from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import Card from '../../../../Common/topologies/Card';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import argu from '../../../lib/argu';
 
 import { useCartProgressFormatter } from './helpers';
 

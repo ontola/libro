@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { mainBodyTopology } from '../../../../topologies';
+import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import argu from '../../lib/argu';
 
 const PhaseMainBody: FC = () => <Property label={schema.text} />;
 

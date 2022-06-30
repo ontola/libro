@@ -7,14 +7,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import form from '../../ontology/form';
-import { formFieldTopologies } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
 import FormField from '../../components/FormField/FormField';
 import AssociationInput from '../../components/Input/AssociationInput';
 import { useItemFactory } from '../../components/Input/AssociationInput/lib/useItemFactory';
 import useFormField from '../../hooks/useFormField';
 import { formFieldsPath } from '../../lib/diggers';
+import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const AssociationFormField: FC = ({
   subject,

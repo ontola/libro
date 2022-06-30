@@ -10,9 +10,9 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { pageTopology } from '../../../../../topologies';
-import FullResource from '../../../../../topologies/FullResource';
 import { retrievePath } from '../../../../Common/lib/iris';
+import FullResource from '../../../../Common/topologies/FullResource';
+import { pageTopology } from '../../../../Common/topologies/Page';
 
 const OfferPage: FC = ({
   subject,

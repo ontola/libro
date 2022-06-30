@@ -8,14 +8,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import dbo from '../../../../ontology/dbo';
-import { fullResourceTopology, tabPaneTopology } from '../../../../topologies';
-import CardMain from '../../../../topologies/Card/CardMain';
-import Container from '../../../../topologies/Container';
-import DetailsBar from '../../../../topologies/DetailsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
 import { defaultMenus } from '../../../Common/lib/viewHelpers';
+import CardMain from '../../../Common/topologies/Card/CardMain';
+import Container from '../../../Common/topologies/Container';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { tabPaneTopology } from '../../../Common/topologies/TabPane';
+import argu from '../../lib/argu';
 
 const CustomFormFull: FC = () => (
   <React.Fragment>

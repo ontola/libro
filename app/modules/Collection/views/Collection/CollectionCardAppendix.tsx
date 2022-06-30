@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { cardAppendixTopology } from '../../../../topologies';
 import { tryParseInt } from '../../../Common/lib/numbers';
+import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
 import ResourceBoundary from '../../../Core/components/ResourceBoundary';
+import ontola from '../../../Core/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

@@ -4,12 +4,12 @@ import {
   register,
   useActionById,
   useIds,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 
 import httph from '../../../../ontology/httph';
 import link from '../../../../ontology/link';
-import { fullResourceTopology } from '../../../../topologies';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 /**
  * Renders documents which don't have another type.

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import React, { ReactNode } from 'react';
 import { Collapse, UnmountClosed } from 'react-collapse';
 
-import { cardMicroRowClassIdentifier } from '../../../../topologies/Card/CardMicroRow';
+import { cardMicroRowClassIdentifier } from '../../topologies/Card/CardMicroRow';
 
 interface CollapsibleProps {
   /** Mount children if closed. */

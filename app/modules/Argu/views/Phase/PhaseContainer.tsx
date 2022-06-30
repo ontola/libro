@@ -6,13 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import ContentDetails from '../../../../topologies/ContentDetails';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import Card from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const PhaseContainer: FC = () => (
   <Card>

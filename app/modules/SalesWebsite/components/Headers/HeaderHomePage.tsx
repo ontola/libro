@@ -4,14 +4,14 @@ import { isNode } from '@ontologies/core';
 import { Property } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
-import Container from '../../../../topologies/Container';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
+import Container from '../../../Common/topologies/Container';
+import sales from '../../ontology/sales';
 
 import type { HeaderProps } from './HeaderProps';
 

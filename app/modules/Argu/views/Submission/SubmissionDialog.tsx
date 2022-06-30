@@ -11,14 +11,14 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { alertDialogTopology } from '../../../../topologies';
 import { surveyMessages } from '../../../../translations/messages';
 import useActionStatus from '../../../Action/hooks/useActionStatus';
 import { OnDoneHandler } from '../../../Action/views/helpers';
 import Button from '../../../Common/components/Button';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import ontola from '../../../Core/ontology/ontola';
 import Flow from '../../../Flow/topologies/Flow';
+import argu from '../../lib/argu';
 
 const style = { padding: '0.5rem 0' };
 

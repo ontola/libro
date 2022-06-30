@@ -1,9 +1,9 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
-import { formFooterTopology } from '../../../../topologies';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
+import form from '../../ontology/form';
+import { formFooterTopology } from '../../topologies/FormFooter';
 
 const FormPageFooter = () => {
   const formContextProps = React.useContext(formContext);

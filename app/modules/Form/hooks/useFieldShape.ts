@@ -10,8 +10,8 @@ import {
 } from 'link-redux';
 import React, { useState } from 'react';
 
-import ontola from '../../../ontology/ontola';
 import { isNumber } from '../../Common/lib/typeCheckers';
+import ontola from '../../Core/ontology/ontola';
 import { formContext } from '../components/Form/FormContext';
 
 const shapePropsFromObject = [

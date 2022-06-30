@@ -11,9 +11,9 @@ import {
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import ll from '../../../../../../ontology/ll';
-import ontola from '../../../../../../ontology/ontola';
 import { SubmitDataProcessor } from '../../../../../Common/lib/errorHandling';
+import ll from '../../../../../Core/ontology/ll';
+import ontola from '../../../../../Core/ontology/ontola';
 import { ClonedLRS } from '../../../../hooks/useFormLRS';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../../../lib/diggers';
 import { JSONLDObject } from '../../../../lib/helpers';

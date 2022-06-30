@@ -3,10 +3,10 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../ontology/teamGL';
-import { cardRowTopology } from '../../../../topologies';
-import ContentDetails from '../../../../topologies/ContentDetails';
 import CardContent from '../../../Common/components/Card/CardContent';
+import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import teamGL from '../../ontology/teamGL';
 
 const VolunteerCardRow = () => (
   <CardContent>

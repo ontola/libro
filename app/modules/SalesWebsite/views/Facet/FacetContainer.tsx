@@ -14,13 +14,11 @@ import {
 import type { LottieRefCurrentProps } from 'lottie-react';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
   Margin,
 } from '../../../../themes/themes';
-import { containerTopology } from '../../../../topologies';
 import {
   StateMachine,
   any,
@@ -29,7 +27,9 @@ import {
 import { tryParseInt } from '../../../Common/lib/numbers';
 import { timeoutEffect } from '../../../Common/lib/timeoutEffect';
 import type { ResourceLink } from '../../../Common/lib/types';
+import { containerTopology } from '../../../Common/topologies/Container';
 import { Facet, FacetType } from '../../components/Facet';
+import sales from '../../ontology/sales';
 
 type Direction = 'forward' | 'reverse';
 

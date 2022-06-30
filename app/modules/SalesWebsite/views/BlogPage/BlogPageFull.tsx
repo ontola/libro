@@ -9,17 +9,17 @@ import {
   term,
   useProperty,
   useResourceLink,
-  value,
+  value, 
 } from 'link-redux';
 import React from 'react';
 import { FormattedDate, FormattedMessage } from 'react-intl';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
 import { blogMessages } from '../../../../translations/messages';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { ArticleContent, ShareBlog } from '../../components';
+import sales from '../../ontology/sales';
 
 const CREATOR_IMAGE_SIZE = '4rem';
 

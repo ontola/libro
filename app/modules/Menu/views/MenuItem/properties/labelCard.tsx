@@ -7,10 +7,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import { cardFloatTopology, containerFloatTopology } from '../../../../../topologies';
+import argu from '../../../../Argu/lib/argu';
 import Image from '../../../../Common/components/Image';
+import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
+import { containerFloatTopology } from '../../../../Common/topologies/Container/ContainerFloat';
+import ontola from '../../../../Core/ontology/ontola';
 
 interface MenuItemLabelCardProps {
   linkedProp: Literal;

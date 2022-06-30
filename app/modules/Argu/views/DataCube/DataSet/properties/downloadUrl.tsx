@@ -9,7 +9,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import qb from '../../../../../../ontology/qb';
-import { cardFloatTopology } from '../../../../../../topologies';
+import { cardFloatTopology } from '../../../../../Common/topologies/Card/CardFloat';
 
 const DownloadUrl: FC<PropertyProps> = ({ linkedProp }) => (
   <IconButton

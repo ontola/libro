@@ -4,21 +4,22 @@ import {
   FC,
   register,
   useProperty,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { allTopologies } from '../../../../topologies';
 import { Header } from '../../components/Headers/Header';
 import { HeaderHomePage } from '../../components/Headers/HeaderHomePage';
 import type { HeaderProps } from '../../components/Headers/HeaderProps';
+import sales from '../../ontology/sales';
 
 export enum HeaderTheme {
   Default = 1,
   HomePage,
   ProductPage,
 }
+
 export interface SalesHeaderProps {
   subComponent: React.ReactNode;
   theme?: HeaderTheme;

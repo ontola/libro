@@ -2,14 +2,14 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import type { LottieRef } from 'lottie-react';
 import React, { Suspense } from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { allTopologies } from '../../../../topologies';
 import useJSON from '../../../Common/hooks/useJSON';
+import ontola from '../../../Core/ontology/ontola';
 
 const Lottie = React.lazy(
   // eslint-disable-next-line no-inline-comments

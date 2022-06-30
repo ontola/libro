@@ -4,12 +4,12 @@ import {
   FC,
   Resource,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../../themes/themes';
-import { footerTopology } from '../../../../topologies';
+import { footerTopology } from '../../../Common/topologies/Footer';
 
 const SPACING = 4;
 

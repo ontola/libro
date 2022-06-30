@@ -6,15 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import {
-  cardFixedTopology,
-  cardMainTopology,
-  cardTopology,
-  containerTopology,
-  fullResourceTopology,
-} from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
+import { cardTopology } from '../../../../Common/topologies/Card';
+import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import argu from '../../../lib/argu';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Heading size={HeadingSize.MD}>

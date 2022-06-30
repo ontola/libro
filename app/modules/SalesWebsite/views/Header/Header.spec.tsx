@@ -10,8 +10,8 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
+import example from '../../../Core/ontology/example';
 import elements from '../../../Elements/ontology/elements';
-import example from '../../../../ontology/example';
 import sales from '../../ontology/sales';
 
 import { HeaderTheme } from './index';

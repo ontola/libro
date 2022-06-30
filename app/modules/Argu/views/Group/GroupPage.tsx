@@ -1,10 +1,10 @@
 import { register, useProperty } from 'link-redux';
 import { useNavigate } from 'react-router';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { pageTopology } from '../../../../topologies';
 import { retrievePath } from '../../../Common/lib/iris';
+import { pageTopology } from '../../../Common/topologies/Page';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const GroupPage = () => {
   const [settingsMenu] = useProperty(ontola.settingsMenu);

@@ -8,15 +8,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
-import teamGL from '../../ontology/teamGL';
-import { fullResourceTopology } from '../../../../topologies';
-import CardMain from '../../../../topologies/Card/CardMain';
-import Container from '../../../../topologies/Container';
 import Collection from '../../../Collection/components';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
 import CardContent from '../../../Common/components/Card/CardContent';
+import CardMain from '../../../Common/topologies/Card/CardMain';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { entityIsLoaded } from '../../../Core/lib/data';
+import app from '../../../Core/ontology/app';
+import teamGL from '../../ontology/teamGL';
 
 const PRELOAD_IRIS = [
   app.ns('enums/surveys/did_vote'),

@@ -17,11 +17,11 @@ import { renderLinked } from '../../../../tests/test-utils';
 import {
   ScreenWidth,
   mockMedia,
-  screenWidth, 
+  screenWidth,
 } from '../../../../tests/test-utils-media';
 import Flow from '../../../modules/Flow/topologies/Flow';
 import ex from '../../../ontology/ex';
-import ll from '../../../ontology/ll';
+import ll from '../../Core/ontology/ll';
 import form from '../../Form/ontology/form';
 
 const s = (node: NamedNode) => node.toString();

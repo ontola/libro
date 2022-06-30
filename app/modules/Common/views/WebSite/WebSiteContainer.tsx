@@ -10,13 +10,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import dbo from '../../../../ontology/dbo';
-import ontola from '../../../../ontology/ontola';
-import { containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
+import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 
 interface OrganizationContainerProps {
   hideHeader?: Literal;

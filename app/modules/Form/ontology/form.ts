@@ -53,4 +53,10 @@ export default {
   pages: form('pages'),
   placeholder: form('placeholder'),
   startAdornment: form('startAdornment'),
+  topologies: {
+    footer: form('topologies/form'),
+    radioGroup: form('topologies/radioGroup'),
+    select: form('topologies/select'),
+    selectedValue: form('topologies/selectedValue'),
+  },
 };

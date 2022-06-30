@@ -7,16 +7,16 @@ import {
   FC,
   Property,
   Resource,
-  register,
+  register, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import Grid from '../../../../topologies/Grid';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import Grid from '../../../Common/topologies/Grid';
 import { FilterableArticleCollection } from '../../components/FilterableArticleCollection';
+import sales from '../../ontology/sales';
 
 const SECTION_SPACING = 10;
 const GRID_ITEM_SPACING = 10;

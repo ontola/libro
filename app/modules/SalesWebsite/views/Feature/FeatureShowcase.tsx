@@ -4,10 +4,10 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
-import { showcaseTopology } from '../../../../topologies';
 import Image from '../../../Common/components/Image';
+import sales from '../../ontology/sales';
+import { showcaseTopology } from '../../topologies/Showcase';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {

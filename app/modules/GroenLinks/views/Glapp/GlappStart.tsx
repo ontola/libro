@@ -2,15 +2,13 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../ontology/teamGL';
-import {
-  allTopologiesExcept,
-  pageTopology,
-  parentTopology,
-} from '../../../../topologies';
-import { CardMain } from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
+import { allTopologiesExcept } from '../../../../topologies';
 import CardContent from '../../../Common/components/Card/CardContent';
+import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { CardMain } from '../../../Common/topologies/Card';
+import Container from '../../../Common/topologies/Container';
+import { pageTopology } from '../../../Common/topologies/Page';
+import teamGL from '../../ontology/teamGL';
 
 import SearchPostalForm from './SearchPostalForm';
 

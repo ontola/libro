@@ -5,7 +5,7 @@
 import {
   authenticityHeader,
   jsonHeader,
-  safeCredentials, 
+  safeCredentials,
 } from '../dom';
 
 describe('helpers', () => {

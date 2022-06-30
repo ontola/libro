@@ -6,18 +6,18 @@ import {
   FC,
   Property,
   register,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import elements from '../../../Elements/ontology/elements';
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
+import elements from '../../../Elements/ontology/elements';
+import sales from '../../ontology/sales';
 
 interface StyleProps {
   reverse: boolean;

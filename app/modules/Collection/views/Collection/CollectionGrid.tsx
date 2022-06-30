@@ -6,13 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { gridTopology } from '../../../../topologies';
-import { CardFixed } from '../../../../topologies/Card';
-import DetailsBar from '../../../../topologies/DetailsBar';
-import List, { ListDirection } from '../../../../topologies/List';
 import CardContent from '../../../Common/components/Card/CardContent';
 import LDLink from '../../../Common/components/LDLink';
+import { CardFixed } from '../../../Common/topologies/Card';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { gridTopology } from '../../../Common/topologies/Grid';
+import List, { ListDirection } from '../../../Common/topologies/List';
+import ontola from '../../../Core/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

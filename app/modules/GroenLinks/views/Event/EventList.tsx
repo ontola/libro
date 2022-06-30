@@ -3,14 +3,14 @@ import {
   FC,
   Property,
   register,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import HoverBox from '../../../Common/topologies/HoverBox';
+import { listTopology } from '../../../Common/topologies/List';
 import teamGL from '../../ontology/teamGL';
-import { listTopology } from '../../../../topologies';
-import ContentDetails from '../../../../topologies/ContentDetails';
-import HoverBox from '../../../../topologies/HoverBox';
 
 const EventList: FC = ({
   subject,

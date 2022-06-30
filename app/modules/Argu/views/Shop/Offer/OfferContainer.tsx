@@ -8,20 +8,18 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
 import dbo from '../../../../../ontology/dbo';
 import meeting from '../../../../../ontology/meeting';
-import ontola from '../../../../../ontology/ontola';
-import {
-  alertDialogTopology,
-  containerTopology,
-  fullResourceTopology,
-} from '../../../../../topologies';
-import Card from '../../../../../topologies/Card';
-import CardRow from '../../../../../topologies/Card/CardRow';
-import DetailsBar, { DetailsBarVariant } from '../../../../../topologies/DetailsBar';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import CardHeader from '../../../../Common/components/Card/CardHeader';
+import Card from '../../../../Common/topologies/Card';
+import CardRow from '../../../../Common/topologies/Card/CardRow';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import DetailsBar, { DetailsBarVariant } from '../../../../Common/topologies/DetailsBar';
+import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import ontola from '../../../../Core/ontology/ontola';
+import argu from '../../../lib/argu';
 
 import OfferActionButtons from './OfferActionButtons';
 

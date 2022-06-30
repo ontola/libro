@@ -1,10 +1,10 @@
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../ontology/teamGL';
 import { allTopologies } from '../../../../topologies';
 import Progress from '../../../Common/components/Progress';
 import { tryParseInt } from '../../../Common/lib/numbers';
+import teamGL from '../../ontology/teamGL';
 
 const TargetProgress = () => {
   const [current] = useProperty(teamGL.current);
@@ -16,7 +16,7 @@ const TargetProgress = () => {
     return null;
   }
 
-  return(
+  return (
     <Progress
       progressLabel
       height="15px"

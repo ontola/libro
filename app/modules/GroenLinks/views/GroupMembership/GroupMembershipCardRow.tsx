@@ -2,7 +2,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import org from '../../../../ontology/org';
-import { cardRowTopology } from '../../../../topologies';
+import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
 
 const GroupMembershipCardRow = () => (
   <Property label={org.organization} />

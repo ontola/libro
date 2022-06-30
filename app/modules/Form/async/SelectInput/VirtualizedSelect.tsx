@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import VirtualList, { ItemInfo } from 'react-tiny-virtual-list';
 
-import Select from '../../../../topologies/Select';
+import Select from '../../topologies/Select';
 
 const ITEM_HEIGHT = 42;
 const MIN_ITEM_COUNT = 8;

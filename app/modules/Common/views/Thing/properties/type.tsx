@@ -7,8 +7,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { detailsBarTopology } from '../../../../../topologies';
 import { bestType } from '../../../lib/data';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const TypeDetail = () => {
   const type = useGlobalIds(rdfx.type);

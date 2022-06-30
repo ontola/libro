@@ -10,7 +10,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import libro from '../../../../ontology/libro';
+import libro from '../../../Core/ontology/libro';
 
 describe('SnackbarManager', () => {
   it('renders nothing if queue is empty', async () => {
@@ -28,7 +28,7 @@ describe('SnackbarManager', () => {
     expect(await queryByTestId('current-snackbar')).toBeNull();
   });
 
-  it('renders snackbar if item in queue',  async () => {
+  it('renders snackbar if item in queue', async () => {
     const iri = libro.ns('snackbar/manager');
     const resources = {
       '@id': iri.value,

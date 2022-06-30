@@ -6,16 +6,16 @@ import {
   FC,
   Property,
   Resource,
-  register,
+  register, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import Showcase from '../../../../topologies/Showcase';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { FilterableArticleCollection } from '../../components/FilterableArticleCollection';
+import sales from '../../ontology/sales';
+import Showcase from '../../topologies/Showcase';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   blogGrid: {

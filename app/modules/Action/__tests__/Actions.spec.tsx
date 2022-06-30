@@ -14,13 +14,13 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { fireEvent, renderLinked } from '../../../../tests/test-utils';
-import argu from '../../Argu/ontology/argu';
 import ex from '../../../ontology/ex';
-import example from '../../../ontology/example';
-import form from '../../Form/ontology/form';
-import ll from '../../../ontology/ll';
-import { Page } from '../../../topologies/Page';
+import argu from '../../Argu/lib/argu';
 import { headingCID } from '../../Common/components/Heading';
+import Page from '../../Common/topologies/Page';
+import example from '../../Core/ontology/example';
+import ll from '../../Core/ontology/ll';
+import form from '../../Form/ontology/form';
 
 describe('Actions', () => {
   const testIRI = ex.ns('test');

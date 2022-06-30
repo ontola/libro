@@ -13,15 +13,15 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import app from '../../../../../ontology/app';
-import ontola from '../../../../../ontology/ontola';
 import { LibroTheme } from '../../../../../themes/themes';
-import { allTopologies, containerTopology } from '../../../../../topologies';
-import Container from '../../../../../topologies/Container';
-import TableCell from '../../../../../topologies/TableCell';
-import TableRow from '../../../../../topologies/TableRow';
+import { allTopologies } from '../../../../../topologies';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import GridItem from '../../../../Common/components/Grid/GridItem';
+import Container, { containerTopology } from '../../../../Common/topologies/Container';
+import app from '../../../../Core/ontology/app';
+import ontola from '../../../../Core/ontology/ontola';
+import TableCell from '../../../../Table/topologies/TableCell';
+import TableRow from '../../../../Table/topologies/TableRow';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { useHasInteraction } from '../../../components/CollectionProvider';
 import { isTableDisplay } from '../../../lib/displayTypes';

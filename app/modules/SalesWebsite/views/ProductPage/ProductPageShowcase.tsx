@@ -4,11 +4,11 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { showcaseTopology } from '../../../../topologies';
 import Button from '../../../Common/components/Button';
 import { ReadMoreButton } from '../../components';
+import sales from '../../ontology/sales';
+import { showcaseTopology } from '../../topologies/Showcase';
 
 const INNER_CONTAINER_GAP = 3;
 const INNER_CONTAINER_PADDING = 2;

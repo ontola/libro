@@ -7,16 +7,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import {
-  cardMainTopology,
-  cardTopology,
-  containerTopology,
-  detailsBarTopology,
-  fullResourceTopology,
-  navbarTopology,
-} from '../../../../../topologies';
 import LDDetail from '../../../../Common/components/LDDetail';
+import { cardTopology } from '../../../../Common/topologies/Card';
+import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import argu from '../../../lib/argu';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Resource

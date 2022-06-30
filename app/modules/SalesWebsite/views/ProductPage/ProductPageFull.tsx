@@ -5,20 +5,20 @@ import {
   FC,
   Property,
   useIds,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Size,
+  Size, 
 } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import BlueBlock from '../../../../topologies/SalesWebsite/BlueBlock';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { ArticleContent, HeaderProductPages } from '../../components';
+import sales from '../../ontology/sales';
+import BlueBlock from '../../topologies/BlueBlock';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   articleContent: {

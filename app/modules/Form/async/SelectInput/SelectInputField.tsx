@@ -23,17 +23,14 @@ import {
 import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
-import { InputValue } from '../../components/FormField/FormFieldTypes';
-import form from '../../ontology/form';
-import ontola from '../../../../ontology/ontola';
-import { selectTopology } from '../../../../topologies';
-import SelectedValue from '../../../../topologies/SelectedValue';
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
-import { entityIsLoaded } from '../../../Core/lib/data';
 import { isResource } from '../../../Common/lib/typeCheckers';
 import { LoadingHidden, LoadingRow } from '../../../Core/components/Loading';
+import { entityIsLoaded } from '../../../Core/lib/data';
+import ontola from '../../../Core/ontology/ontola';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
+import { InputValue } from '../../components/FormField/FormFieldTypes';
 import {
   fieldInputCID,
   fieldInputSelectCID,
@@ -41,6 +38,9 @@ import {
 } from '../../components/FormField/UseFormStyles';
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
+import form from '../../ontology/form';
+import { selectTopology } from '../../topologies/Select';
+import SelectedValue from '../../topologies/SelectedValue';
 
 import FullWidthPopper from './FullWidthPopper';
 import { formatEmptyMessage } from './lib/emptyMessage';

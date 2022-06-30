@@ -13,8 +13,7 @@ import * as rdfs from '@ontologies/rdfs';
 import { RecordState } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import ontola from '../../../ontology/ontola';
-import argu from '../../Argu/ontology/argu';
+import ontola from '../ontology/ontola';
 
 const sequenceFilter = /^http:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns#_[\d]+$/;
 const seqBase = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
@@ -131,7 +130,7 @@ export function containerToArr<I extends Term = SomeTerm>(
     return seqToArr<I>(lrs, acc, items);
   }
 
-  const terms = lrs.getResourceProperty<NamedNode>(rest, argu.terms);
+  const terms = lrs.getResourceProperty<NamedNode>(rest, ontola.terms);
 
   if (terms) {
     return containerToArr<I>(lrs, acc, terms);

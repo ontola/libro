@@ -9,12 +9,13 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
-import ll from '../../../../ontology/ll';
 import { LibroTheme } from '../../../../themes/themes';
-import { cardMainTopology, cardTopology } from '../../../../topologies';
-import FormFooter from '../../../../topologies/FormFooter';
+import { cardTopology } from '../../../Common/topologies/Card';
+import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import ll from '../../../Core/ontology/ll';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';
+import FormFooter from '../../../Form/topologies/FormFooter';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 import { useFormCancel } from './useFormCancel';

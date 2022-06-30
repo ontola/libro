@@ -8,8 +8,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
@@ -17,6 +15,8 @@ import {
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
+import ontola from '../../../Core/ontology/ontola';
+import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   card: {

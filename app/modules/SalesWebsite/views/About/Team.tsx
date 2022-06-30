@@ -7,14 +7,14 @@ import {
   array,
   register,
   useIds,
-  useValues,
+  useValues, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
-import Showcase from '../../../../topologies/Showcase';
+import sales from '../../ontology/sales';
+import Showcase from '../../topologies/Showcase';
 
 const CONTAINER_PADDING = 10;
 const GRID_GAP = 20;

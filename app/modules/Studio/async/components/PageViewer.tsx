@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Page } from '../../../../topologies/Page';
 import ErrorBoundary from '../../../Common/components/ErrorBoundary';
 import { useDev } from '../../../Common/hooks/useDev';
+import Page from '../../../Common/topologies/Page';
 import { useCurrentResource } from '../hooks/useCurrentResource';
 
 const PageViewer = (): JSX.Element => {

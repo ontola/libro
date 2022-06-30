@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import libro from '../../../ontology/libro';
-import { containerHeaderTopology } from '../../../topologies';
 import HeaderButton from '../../Common/components/Button/HeaderButton';
+import { containerHeaderTopology } from '../../Common/topologies/Container/ContainerHeader';
+import libro from '../../Core/ontology/libro';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 import useOneClickProps from '../hooks/useOneClickProps';
 

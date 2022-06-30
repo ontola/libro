@@ -9,12 +9,12 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { CardMain } from '../../../../topologies/Card';
-import DetailsBar from '../../../../topologies/DetailsBar';
-import FormFooter from '../../../../topologies/FormFooter';
-import Navbar from '../../../../topologies/Navbar';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
+import FormFooter from '../../../Form/topologies/FormFooter';
+import Navbar from '../../../NavBar/topologies/Navbar';
+import { CardMain } from '../../topologies/Card';
+import DetailsBar from '../../topologies/DetailsBar';
 
 import views from './index';
 

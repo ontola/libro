@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../Argu/ontology/argu';
-import elements from '../ontology/elements';
-import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
+import argu from '../../Argu/lib/argu';
+import ontola from '../../Core/ontology/ontola';
+import elements from '../ontology/elements';
 
 const useStyles = makeStyles({
   video: {

@@ -11,7 +11,6 @@ import Group from './Group';
 import LinkedRecord from './LinkedRecord';
 import Motion from './Motion';
 import Notification from './Notification';
-import Opinion from './Opinion';
 import Person from './Person';
 import Phase from './Phase';
 import Placement from './Placement';
@@ -40,7 +39,6 @@ export default [
   ...GrantTree,
   ...Group,
   ...LinkedRecord,
-  ...Opinion,
   ...Motion,
   ...Notification,
   ...Person,

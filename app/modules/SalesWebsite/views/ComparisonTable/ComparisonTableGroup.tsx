@@ -12,7 +12,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
@@ -20,6 +19,7 @@ import {
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
 import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
+import sales from '../../ontology/sales';
 
 const THE_NUMBER_TWO = 2;
 const WIDE_SCREEN_COLUMN_COUNT = 4;

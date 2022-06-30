@@ -10,13 +10,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../ontology/ontola';
 import { LibroTheme } from '../../../themes/themes';
-import { footerTopology, gridTopology } from '../../../topologies';
 import Heading, { HeadingSize } from '../../Common/components/Heading';
 import Link from '../../Common/components/Link';
 import { NAME_PREDICATES } from '../../Common/lib/metaData';
+import { footerTopology } from '../../Common/topologies/Footer';
+import { gridTopology } from '../../Common/topologies/Grid';
 import { LoadingHidden } from '../../Core/components/Loading';
+import ontola from '../../Core/ontology/ontola';
 import SVG from '../../SVG/components';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
@@ -44,7 +45,7 @@ const ActionGrid: FC = ({ subject }) => {
   const [actionName] = useStrings(schema.name);
   const [className] = useStrings(dig(schema.result, NAME_PREDICATES));
 
-  return(
+  return (
     <Link
       className={classes.link}
       to={subject.value}

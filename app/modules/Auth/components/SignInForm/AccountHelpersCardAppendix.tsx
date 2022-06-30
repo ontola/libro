@@ -2,10 +2,10 @@ import { Node } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
-import { CardAppendix } from '../../../../topologies/Card';
 import { IsActiveCheck } from '../../../Common/components/Link';
+import { CardAppendix } from '../../../Common/topologies/Card';
 import { LoadingHidden } from '../../../Core/components/Loading';
+import app from '../../../Core/ontology/app';
 
 export interface AccountHelpersCardAppendixProps {
   currentSubject: Node;

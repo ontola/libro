@@ -7,9 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import ontola from '../../../Core/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
-import { alertDialogTopology, fullResourceTopology } from '../../../../topologies';
 
 const AddressFull: FC = () => {
   const lrs = useLRS();

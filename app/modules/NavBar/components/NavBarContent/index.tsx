@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
+import app from '../../../Core/ontology/app';
 
 import { ManageOrganisationMenu } from './ManageOrganisationMenu';
 import NavbarNavigationsMenu from './NavbarNavigationsMenu';

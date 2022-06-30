@@ -11,14 +11,14 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import ontola from '../../../ontology/ontola';
 import { collectionMessages, formMessages } from '../../../translations/messages';
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
 import Button from '../../Common/components/Button';
 import HeaderButton from '../../Common/components/Button/HeaderButton';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
-import { entityIsLoaded } from '../../Core/lib/data';
 import { normalizeFontAwesomeIRI } from '../../Common/lib/iris';
+import { entityIsLoaded } from '../../Core/lib/data';
+import ontola from '../../Core/ontology/ontola';
 import TriggerButton, { Trigger } from '../../Menu/components/DropdownMenu/TriggerButton';
 import { useFavoriteActions } from '../hooks/useFavoriteActions';
 

@@ -10,10 +10,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
-import { formFieldTopologies } from '../../../../topologies';
 import { formContext } from '../../components/Form/FormContext';
 import { useFormStyles } from '../../components/FormField/UseFormStyles';
+import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
 const ResourceField = () => {

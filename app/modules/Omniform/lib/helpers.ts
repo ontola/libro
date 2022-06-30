@@ -9,13 +9,9 @@ const OMNIFORM_FILTER = [
   /\/c\/new/,
   /\/pros\/new/,
   /\/cons\/new/,
-  /\/actions\/create_opinion/,
-  /\/actions\/update_opinion/,
 ];
 
 const OMNIFORM_ORDER = [
-  '/actions/create_opinion',
-  '/actions/update_opinion',
   '/m/new',
   '/c/new',
   '/pros/new',

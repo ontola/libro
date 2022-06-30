@@ -7,7 +7,7 @@ import {
   useLRS,
 } from 'link-redux';
 
-import ontola from '../../../ontology/ontola';
+import ontola from '../../Core/ontology/ontola';
 
 export const invalidStatusIds = [
   schema.CompletedActionStatus,

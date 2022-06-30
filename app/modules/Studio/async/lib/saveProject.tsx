@@ -10,7 +10,6 @@ import ReactDOMServer from 'react-dom/server';
 
 import App from '../../../../components/App';
 import generateLRS from '../../../../helpers/generateLRS';
-import { trailing } from '../../../../ontology/app';
 import { sliceIRI } from '../../../../ontology/appSlashless';
 import { WebManifest } from '../../../../WebManifest';
 import { toEmpJson } from '../../../Common/lib/empjsonSerializer';
@@ -18,6 +17,7 @@ import { quadruplesToDataSlice } from '../../../Common/lib/quadruplesToDataSlice
 import { AppContext } from '../../../Core/components/AppContext/appContext';
 import { AppContextProvider } from '../../../Core/components/AppContext/AppContextProvider';
 import { WebsiteCtx } from '../../../Core/components/WebsiteContext/websiteContext';
+import { trailing } from '../../../Core/ontology/app';
 import {
   ProjectContext,
   ServerData,

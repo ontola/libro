@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import { useIds, useValues } from 'link-redux';
 import React from 'react';
 
-import ll from '../../../../ontology/ll';
+import ll from '../../../Core/ontology/ll';
 import { EntryPointFormProps, ProvidedEntryPointProps } from '../../../Form/components/Form/EntryPointForm';
 
 import useSubmitHandler, { SubmitSuccessHandler } from './useSubmitHandler';

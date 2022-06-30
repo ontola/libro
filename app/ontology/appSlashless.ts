@@ -1,6 +1,6 @@
 import { createNS } from '@ontologies/core';
 
-import { frontendIRIStr } from './app';
+import { frontendIRIStr } from '../modules/Core/ontology/app';
 
 export const sliceIRI = (iri: string): string => iri.slice(0, iri.endsWith('/') ? -1 : undefined);
 

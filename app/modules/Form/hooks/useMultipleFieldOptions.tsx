@@ -3,8 +3,8 @@ import { SomeNode } from 'link-lib';
 import { useDataFetching, useLRS } from 'link-redux';
 import React from 'react';
 
-import { containerToArr, entityIsLoaded } from '../../Core/lib/data';
 import { isPromise } from '../../Common/lib/typeCheckers';
+import { containerToArr, entityIsLoaded } from '../../Core/lib/data';
 
 export interface FieldOptions {
   loading: boolean;

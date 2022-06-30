@@ -82,11 +82,12 @@ export type LibroTheme = Theme;
 
 export interface IndexablePalette {
   [key: string]: Color;
+
   [key: number]: Color;
 }
 
 export type CSSPropertiesMap = { [key: string]: CSSProperties };
-export type MaterialStyleMap = { [key: string]: { styleOverrides: CSSPropertiesMap} };
+export type MaterialStyleMap = { [key: string]: { styleOverrides: CSSPropertiesMap } };
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export enum Margin {
@@ -96,6 +97,7 @@ export enum Margin {
   'XL' = 12,
   'XXL' = 20,
 }
+
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 
 export enum Size {

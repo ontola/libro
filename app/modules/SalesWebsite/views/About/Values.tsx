@@ -8,13 +8,13 @@ import {
   array,
   register,
   useIds,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
+import sales from '../../ontology/sales';
 
 const ITEM_PADDING = 10;
 const ITEM_BOTTOM_PADDING = 20;

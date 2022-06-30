@@ -12,13 +12,13 @@ import { createForm } from 'final-form';
 import React from 'react';
 
 import { fireEvent, renderLinked } from '../../../../tests/test-utils';
-import argu from '../../Argu/ontology/argu';
 import ex from '../../../ontology/ex';
-import example from '../../../ontology/example';
-import form from '../../Form/ontology/form';
-import ll from '../../../ontology/ll';
-import Card from '../../../topologies/Card';
+import argu from '../../Argu/lib/argu';
+import Card from '../../Common/topologies/Card';
+import example from '../../Core/ontology/example';
+import ll from '../../Core/ontology/ll';
 import { calculateFormFieldName } from '../../Form/lib/helpers';
+import form from '../../Form/ontology/form';
 
 import Omniform from './Omniform';
 

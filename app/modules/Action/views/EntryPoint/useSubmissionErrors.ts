@@ -2,7 +2,7 @@ import { QuadPosition, isNode } from '@ontologies/core';
 import {
   LaxNode,
   useDataInvalidation,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 

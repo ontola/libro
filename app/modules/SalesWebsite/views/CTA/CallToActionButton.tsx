@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import sales from '../../ontology/sales';
 import { allTopologies } from '../../../../topologies';
+import ontola from '../../../Core/ontology/ontola';
 import { CallToActionButton as CallToActionButtonComponent } from '../../components/CallToActionButton';
+import sales from '../../ontology/sales';
 
 export interface CallToActionButtonProps {
   size?: 'small' | 'medium' | 'large';

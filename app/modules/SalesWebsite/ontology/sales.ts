@@ -114,11 +114,11 @@ export default {
   textTitle: sales('textTitle'),
   theme: sales('theme'),
   tiers: sales('tiers'),
+  topologies: {
+    blueBlock: sales('topologies/blueBlock'),
+    showcase: sales('topologies/showcase'),
+  },
   values: sales('values'),
   website: sales('website'),
   websiteUrl: sales('websiteUrl'),
-
-  /* Topologies */
-  // eslint-disable-next-line sort-keys
-  blueBlock: sales('topologies/blueBlock'),
 };

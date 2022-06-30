@@ -18,6 +18,7 @@ type ArrayValidator = (values: ValidatorValues) => boolean;
 type ValueValidator = (value: string) => boolean;
 type Validator = (values: ValidatorValues) => ValidationResult[];
 type CombinedValidator = (values: ValidatorValues) => ValidationResult[] | undefined;
+
 interface ValidatorFactory {
   arrayValidator?: ArrayValidator;
   valueValidator?: ValueValidator;

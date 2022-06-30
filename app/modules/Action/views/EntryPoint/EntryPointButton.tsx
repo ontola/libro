@@ -6,8 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { actionsBarTopology, listTopology } from '../../../../topologies';
+import { listTopology } from '../../../Common/topologies/List';
 import ActionButton from '../../components/ActionButton';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
 
 interface EntryPointButton {
   count?: number;

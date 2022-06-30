@@ -9,13 +9,14 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import argu from '../../ontology/argu';
 import person from '../../../../ontology/person';
-import { detailsBarTopology, tableCellTopology } from '../../../../topologies';
 import { personMessages } from '../../../../translations/messages';
 import LDDetail from '../../../Common/components/LDDetail';
 import LDLink from '../../../Common/components/LDLink';
 import { LinkFeature, LinkTheme } from '../../../Common/components/Link';
+import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
+import { tableCellTopology } from '../../../Table/topologies/TableCell';
+import argu from '../../lib/argu';
 
 interface PersonDetailProps {
   hideName: boolean;

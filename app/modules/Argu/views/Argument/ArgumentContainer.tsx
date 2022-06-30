@@ -10,19 +10,20 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
-import argu from '../../ontology/argu';
 import dbo from '../../../../ontology/dbo';
-import ontola from '../../../../ontology/ontola';
-import { alertDialogTopology, containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import CardAppendix from '../../../../topologies/Card/CardAppendix';
-import DetailsBar from '../../../../topologies/DetailsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardHeader from '../../../Common/components/Card/CardHeader';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
+import Card from '../../../Common/topologies/Card';
+import CardAppendix from '../../../Common/topologies/Card/CardAppendix';
+import { containerTopology } from '../../../Common/topologies/Container';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const useStyles = makeStyles({
   content: {

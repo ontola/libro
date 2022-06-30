@@ -10,12 +10,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
 import meeting from '../../../../../ontology/meeting';
-import ontola from '../../../../../ontology/ontola';
-import { mainBodyTopology } from '../../../../../topologies';
-import List from '../../../../../topologies/List';
+import argu from '../../../../Argu/lib/argu';
+import ontola from '../../../../Core/ontology/ontola';
 import UploadTarget from '../../../../Dexes/views/Folder/UploadTarget';
+import List from '../../../topologies/List';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 
 const AttachmentsMainBody: FC<PropertyProps> = ({
   linkedProp,

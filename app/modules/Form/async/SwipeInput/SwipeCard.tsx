@@ -2,7 +2,7 @@ import {
   Card,
   CardContent,
   Divider,
-  Typography, 
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { animated } from '@react-spring/web';

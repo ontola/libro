@@ -11,14 +11,14 @@ import {
 } from 'link-redux';
 import React, { CSSProperties, ElementType } from 'react';
 
-import app from '../../../../../ontology/app';
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
-import CardRow from '../../../../../topologies/Card/CardRow';
 import GridItem from '../../../../Common/components/Grid/GridItem';
 import useViewByIRI from '../../../../Common/hooks/useViewByIRI';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import CardRow from '../../../../Common/topologies/Card/CardRow';
 import { LoadingCardFixed } from '../../../../Core/components/Loading';
+import app from '../../../../Core/ontology/app';
+import ontola from '../../../../Core/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { CollectionViewTypes } from '../types';
 

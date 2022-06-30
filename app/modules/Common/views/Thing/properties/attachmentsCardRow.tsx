@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
 import meeting from '../../../../../ontology/meeting';
-import { cardRowTopology } from '../../../../../topologies';
+import argu from '../../../../Argu/lib/argu';
+import { cardRowTopology } from '../../../topologies/Card/CardRow';
 
 interface AttatchmentsProps {
   linkedProp: SomeNode;

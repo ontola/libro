@@ -9,10 +9,10 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import example from '../../../../ontology/example';
-import ontola from '../../../../ontology/ontola';
-import { CardRow } from '../../../../topologies/Card';
+import { CardRow } from '../../../Common/topologies/Card';
 import menuItemCardRowViews from '../../../Menu/views/MenuItem/MenuItemCardRow';
+import example from '../../ontology/example';
+import ontola from '../../ontology/ontola';
 
 import views from './index';
 

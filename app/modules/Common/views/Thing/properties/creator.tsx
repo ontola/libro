@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { detailsBarTopology } from '../../../../../topologies';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 interface CreatorProps extends PropertyProps {
   children: React.ReactNode,

@@ -2,9 +2,9 @@ import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import { mainBodyTopology } from '../../../../../topologies';
 import Collection from '../../../../Collection/components';
+import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
+import argu from '../../../lib/argu';
 
 const noLoading = () => null;
 

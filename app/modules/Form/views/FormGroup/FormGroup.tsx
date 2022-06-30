@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import {
   Property,
   register,
-  useBooleans,
+  useBooleans, 
 } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
 import { allTopologies } from '../../../../topologies';
+import form from '../../ontology/form';
 
 import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 import useStyles from './FormGroupStyles';
@@ -39,10 +39,10 @@ const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
   );
 };
 
-const WrappedFormGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => {
+const WrappedFormGroup = ({ sequenceIndex, ...props }: { sequenceIndex: number }) => {
   const [hidden] = useBooleans(form.hidden);
 
-  return(
+  return (
     <FormGroupProvider sequenceIndex={sequenceIndex}>
       <FormGroup
         {...props}

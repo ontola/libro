@@ -10,11 +10,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
 import { LibroTheme } from '../../../../themes/themes';
-import DetailsBar from '../../../../topologies/DetailsBar';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 import { defaultMenus } from '../../lib/viewHelpers';
+import DetailsBar from '../../topologies/DetailsBar';
 import LinkedDetailDate from '../LinkedDetailDate';
 
 import { CoverPhoto } from './coverPhoto';

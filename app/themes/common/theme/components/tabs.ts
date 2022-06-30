@@ -1,7 +1,7 @@
 import {
   BreakPoints,
   LibroTheme,
-  MaterialStyleMap,
+  MaterialStyleMap, 
 } from '../../../themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({

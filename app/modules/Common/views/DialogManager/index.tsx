@@ -8,20 +8,20 @@ import {
   register,
   useIds,
   useLRS,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 import { useLocation } from 'react-router';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import { DialogSize, isDialogSize } from '../../../../middleware/ontolaMiddleware';
-import libro from '../../../../ontology/libro';
 import { BreakPoints } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
-import DialogTopology from '../../../../topologies/Dialog';
 import { OnDoneHandler } from '../../../Action/views/helpers';
-import retrievePath from '../../lib/iris';
 import { frontendOrigin } from '../../../Core/lib/frontendIRIComponents';
+import libro from '../../../Core/ontology/libro';
+import retrievePath from '../../lib/iris';
+import DialogTopology from '../../topologies/Dialog';
 
 import { DialogContainer } from './DialogContainer';
 import { useBackdropStyles, useDialogStyles } from './dialogStyles';

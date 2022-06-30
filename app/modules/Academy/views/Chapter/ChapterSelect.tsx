@@ -8,9 +8,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import { LibroTheme } from '../../../../themes/themes';
-import { selectTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
+import { selectTopology } from '../../../Form/topologies/Select';
 import { SearchText } from '../../components/SearchText';
 
 export interface ChapterSelectProps {

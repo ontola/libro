@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { navbarTopology } from '../../../../topologies';
 import { PersonNavbarProps } from '../../../Argu/views/Person/PersonNavbar';
 import ResourceBoundary from '../../../Core/components/ResourceBoundary';
+import ontola from '../../../Core/ontology/ontola';
+import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 
 import { RegisteredTypes } from './types';
 

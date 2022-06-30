@@ -2,9 +2,9 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
-import { containerTopology } from '../../../../topologies';
+import { containerTopology } from '../../../Common/topologies/Container';
 import Proposition from '../../components/Proposition';
+import sales from '../../ontology/sales';
 
 const PropositionContainer: FC = () => {
   const [name] = useProperty(schema.name);

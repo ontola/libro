@@ -3,24 +3,24 @@ import rdf from '@ontologies/core';
 import {
   Property,
   Resource,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../ontology/app';
-import ontola from '../../../ontology/ontola';
-import Card from '../../../topologies/Card';
-import CardAppendix from '../../../topologies/Card/CardAppendix';
-import Grid from '../../../topologies/Grid';
-import Table from '../../../topologies/Table';
-import TableFooter from '../../../topologies/TableFooter';
-import TableFooterCell from '../../../topologies/TableFooterCell';
-import TableFooterRow from '../../../topologies/TableFooterRow';
-import TableHead from '../../../topologies/TableHead';
-import TableHeaderRow from '../../../topologies/TableHeaderRow';
-import TableHeadCells from '../../Common/components/TableHeadCells';
+import Card from '../../Common/topologies/Card';
+import CardAppendix from '../../Common/topologies/Card/CardAppendix';
+import Grid from '../../Common/topologies/Grid';
 import { LoadingCardFixed } from '../../Core/components/Loading';
 import Suspense from '../../Core/components/Suspense';
+import app from '../../Core/ontology/app';
+import ontola from '../../Core/ontology/ontola';
+import TableHeadCells from '../../Table/components/TableHeadCells';
+import Table from '../../Table/topologies/Table';
+import TableFooter from '../../Table/topologies/TableFooter';
+import TableFooterCell from '../../Table/topologies/TableFooterCell';
+import TableFooterRow from '../../Table/topologies/TableFooterRow';
+import TableHead from '../../Table/topologies/TableHead';
+import TableHeaderRow from '../../Table/topologies/TableHeaderRow';
 
 import { useCollectionOptions } from './CollectionContext';
 import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';

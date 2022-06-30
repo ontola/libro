@@ -8,9 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { cardFloatTopology, containerFloatTopology } from '../../../../topologies';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
+import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
+import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
 
 interface EntryPointCardFloatProps extends ButtonWithFeedbackProps {
   count: number;

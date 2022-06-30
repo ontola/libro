@@ -2,11 +2,11 @@ import { Resource } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import RadioGroup from '../../../../topologies/RadioGroup';
 import { formMessages } from '../../../../translations/messages';
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
 import { LoadingHidden, LoadingRow } from '../../../Core/components/Loading';
 import useFieldOptions from '../../hooks/useFieldOptions';
+import RadioGroup from '../../topologies/RadioGroup';
 import { formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/FormFieldTypes';

@@ -6,8 +6,8 @@ import {
 import { makeStyles, useTheme } from '@mui/styles';
 import React from 'react';
 
-import { calcPercentage } from '../../../Common/lib/numbers';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { calcPercentage } from '../../../Common/lib/numbers';
 import { useAutoForward } from '../hooks/useAutoForward';
 import { useFieldForwardRules } from '../hooks/useFieldForwardRules';
 import { useFieldHashes } from '../hooks/useFieldHashes';

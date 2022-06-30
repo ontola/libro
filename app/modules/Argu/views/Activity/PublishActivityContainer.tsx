@@ -3,10 +3,11 @@ import { DEFAULT_TOPOLOGY } from 'link-lib';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import Card from '../../../../topologies/Card';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
+import Card from '../../../Common/topologies/Card';
 import Suspense from '../../../Core/components/Suspense';
+import libro from '../../../Core/ontology/libro';
+import argu from '../../lib/argu';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 
@@ -25,7 +26,7 @@ PublishActivityContainer.type = argu.PublishActivity;
 
 PublishActivityContainer.topology = [
   DEFAULT_TOPOLOGY,
-  argu.container,
+  libro.topologies.container,
 ];
 
 export default register(PublishActivityContainer);

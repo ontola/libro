@@ -6,9 +6,9 @@ import { Property, useGlobalIds } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import app from '../../../../ontology/app';
-import ontola from '../../../../ontology/ontola';
-import Container from '../../../../topologies/Container';
+import app from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
+import Container from '../../topologies/Container';
 import { landmarkMessages } from '../../../../translations/messages';
 import TabbarProvider from '../TabbarProvider';
 import { TabVariant } from '../Tabs';

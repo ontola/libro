@@ -3,10 +3,10 @@ import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { flowTopology } from '../../../topologies';
 import useEntryPointFormProps, { EntryPointProps } from '../../Action/views/EntryPoint/useEntryPointFormProps';
 import EntryPointForm from '../../Form/components/Form/EntryPointForm';
 import { FormTheme } from '../../Form/components/Form/FormContext';
+import { flowTopology } from '../topologies/Flow';
 
 const useStyles = makeStyles({
   form: {

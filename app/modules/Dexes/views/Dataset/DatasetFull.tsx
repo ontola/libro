@@ -10,13 +10,6 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import dcat from '../../ontology/dcat';
-import dexes from '../../ontology/dexes';
-import { fullResourceTopology } from '../../../../topologies';
-import AttributeList from '../../../../topologies/AttributeList';
-import CardMain from '../../../../topologies/Card/CardMain';
-import Container from '../../../../topologies/Container';
-import DetailsBar from '../../../../topologies/DetailsBar';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
 import AttributeListItem from '../../../Common/components/AttributeListItem';
 import Button from '../../../Common/components/Button';
@@ -24,6 +17,13 @@ import CardContent from '../../../Common/components/Card/CardContent';
 import Heading from '../../../Common/components/Heading';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
 import { defaultMenus } from '../../../Common/lib/viewHelpers';
+import AttributeList from '../../../Common/topologies/AttributeList';
+import CardMain from '../../../Common/topologies/Card/CardMain';
+import Container from '../../../Common/topologies/Container';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import dcat from '../../ontology/dcat';
+import dexes from '../../ontology/dexes';
 import { messages } from '../messages';
 
 const DatasetFull: FC = ({

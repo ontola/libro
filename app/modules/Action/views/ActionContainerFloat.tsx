@@ -11,9 +11,9 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { containerFloatTopology } from '../../../topologies';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import { normalizeFontAwesomeIRI } from '../../Common/lib/iris';
+import { containerFloatTopology } from '../../Common/topologies/Container/ContainerFloat';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 import { CardListOnClick } from './helpers';

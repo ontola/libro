@@ -6,7 +6,7 @@ import { WebManifest } from '../../../../../WebManifest';
 import {
   ProjectAction,
   ProjectContextProps,
-  ServerData, 
+  ServerData,
 } from '../../context/ProjectContext';
 import { ResourceType } from '../../lib/types';
 

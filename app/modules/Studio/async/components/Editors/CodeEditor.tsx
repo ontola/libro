@@ -4,7 +4,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import {
   ProjectAction,
   ProjectContextProps,
-  currentComponent, 
+  currentComponent,
 } from '../../context/ProjectContext';
 
 import { DataEditor } from './DataEditor';

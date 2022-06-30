@@ -5,6 +5,7 @@ import FormField from './FormField';
 import FormGroup from './FormGroup';
 import FormOption from './FormOption';
 import FormPage from './FormPage';
+import Thing from './Thing';
 
 export default [
   ...Condition,
@@ -14,4 +15,5 @@ export default [
   ...FormGroup,
   ...FormOption,
   ...FormPage,
+  ...Thing,
 ];

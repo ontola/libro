@@ -7,13 +7,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { fullResourceTopology } from '../../../topologies';
-import CardMain from '../../../topologies/Card/CardMain';
-import Container from '../../../topologies/Container';
 import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';
 import CardContent from '../../Common/components/Card/CardContent';
 import Metadata from '../../Common/components/Metadata';
+import CardMain from '../../Common/topologies/Card/CardMain';
+import Container from '../../Common/topologies/Container';
+import { fullResourceTopology } from '../../Common/topologies/FullResource';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 import { ActionProps, useDoneHandler } from './helpers';

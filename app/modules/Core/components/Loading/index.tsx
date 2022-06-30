@@ -1,28 +1,40 @@
 import Tab from '@mui/material/Tab';
 import { makeStyles } from '@mui/styles';
+import { CSSProperties } from '@mui/styles/withStyles/withStyles';
 import clsx from 'clsx';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { LibroTheme } from '../../../../themes/themes';
-import BreadcrumbsBar from '../../../../topologies/BreadcrumbsBar';
-import Card, {
-  CardFixed,
-  CardMicroRow,
-  CardRow,
-} from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
-import FullResourceTopology from '../../../../topologies/FullResource';
-import TableCell from '../../../../topologies/TableCell';
-import TableRow from '../../../../topologies/TableRow';
 import { Breadcrumb } from '../../../Common/components/Breadcrumbs';
 import CardContent from '../../../Common/components/Card/CardContent';
 import { useCoverImageStyles } from '../../../Common/components/CoverImage';
 import { coverImageChildCID } from '../../../Common/components/OverlayContainer';
+import BreadcrumbsBar from '../../../Common/topologies/BreadcrumbsBar';
+import Card, {
+  CardFixed,
+  CardMicroRow,
+  CardRow,
+} from '../../../Common/topologies/Card';
+import Container from '../../../Common/topologies/Container';
+import FullResourceTopology from '../../../Common/topologies/FullResource';
 
 export const loadingParagraphCID = 'CID-LoadingParagraph';
 export const loadingButtonCID = 'CID-LoadingButton';
+
+export const loadingBackground = (theme: LibroTheme): CSSProperties => ({
+  animationDuration: '1s',
+  animationFillMode: 'forwards',
+  animationIterationCount: 'infinite',
+  animationName: '$loadingBackgroundAnimation',
+  animationTimingFunction: 'linear',
+  backgroundImage: `linear-gradient(to right, ${theme.palette.transparent.dark} 8%, ${theme.palette.transparent.midDark} 18%, ${theme.palette.transparent.dark} 33%)`,
+  backgroundSize: 400,
+  borderRadius: theme.shape.borderRadius,
+  color: 'transparent',
+  position: 'relative',
+});
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   '@keyframes loadingBackgroundAnimation': {
@@ -34,18 +46,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
       backgroundPosition: '200px 0',
     },
   },
-  loadingBackground: {
-    animationDuration: '1s',
-    animationFillMode: 'forwards',
-    animationIterationCount: 'infinite',
-    animationName: '$loadingBackgroundAnimation',
-    animationTimingFunction: 'linear',
-    backgroundImage: `linear-gradient(to right, ${theme.palette.transparent.dark} 8%, ${theme.palette.transparent.midDark} 18%, ${theme.palette.transparent.dark} 33%)`,
-    backgroundSize: 400,
-    borderRadius: theme.shape.borderRadius,
-    color: 'transparent',
-    position: 'relative',
-  },
+  loadingBackground: loadingBackground(theme),
   loadingBackgroundInverse: {
     backgroundImage: `linear-gradient(to right, ${theme.palette.transparent.xLight} 8%, ${theme.palette.transparent.midLight} 18%, ${theme.palette.transparent.light} 33%)`,
   },
@@ -63,9 +64,6 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
     height: '2em',
     verticalAlign: 'middle',
     width: '2em',
-  },
-  loadingCellRow: {
-    height: '1em',
   },
   loadingHeader: {
     height: '2em',
@@ -261,23 +259,6 @@ export const LoadingCardFixed = ({ fill }: LoadingCardFixedProps): JSX.Element =
   );
 };
 
-export const LoadingCellRow = (): JSX.Element => {
-  const classes = useStyles();
-
-  return(
-    <TableRow>
-      <TableCell colSpan={100}>
-        <div
-          className={clsx(
-            classes.loadingCellRow,
-            classes.loadingBackground,
-          )}
-        />
-      </TableCell>
-    </TableRow>
-  );
-};
-
 export const LoadingPage = (): JSX.Element => (
   <FullResourceTopology>
     <BreadcrumbsBar>
@@ -321,19 +302,6 @@ export const LoadingCardFloat = (): JSX.Element => {
       className={clsx(
         classes.loadingBackground,
         classes.loadingCardFloat,
-      )}
-    />
-  );
-};
-
-export const LoadingOpinion = (): JSX.Element => {
-  const classes = useStyles();
-
-  return (
-    <div
-      className={clsx(
-        'Opinion--icon',
-        classes.loadingBackground,
       )}
     />
   );

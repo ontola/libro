@@ -2,8 +2,8 @@ import * as schema from '@ontologies/schema';
 import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import { tableRowTopology } from '../../../../../topologies';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import argu from '../../../lib/argu';
 
 const ApplyLink = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp?.value) {

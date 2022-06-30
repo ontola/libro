@@ -6,17 +6,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
 import Progress from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import teamGL from '../../../ontology/teamGL';
 
 interface ParticipantsCountProps {
   linkedProp: SomeTerm;
 }
 
-const ParticipantsCount: FC<ParticipantsCountProps> = ({  linkedProp }) => {
+const ParticipantsCount: FC<ParticipantsCountProps> = ({ linkedProp }) => {
   const [desiredCount] = useProperty(teamGL.desiredCount);
   const desired = tryParseInt(desiredCount) || 0;
   const current = tryParseInt(linkedProp) || 0;

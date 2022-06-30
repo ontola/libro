@@ -5,9 +5,9 @@ import { register, useValues } from 'link-redux';
 import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
-import libro from '../../../../ontology/libro';
 import { allTopologies } from '../../../../topologies';
 import { formMessages } from '../../../../translations/messages';
+import libro from '../../../Core/ontology/libro';
 
 const AVERAGE_DUTCH_WORDS_PER_MINUTE = 202;
 const MIN_SNACKBAR_TIMEOUT = 2750;

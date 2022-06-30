@@ -3,7 +3,7 @@ import * as schema from '@ontologies/schema';
 import {
   useDataFetching,
   useGlobalIds,
-  useLink, 
+  useLink,
 } from 'link-redux';
 import React from 'react';
 

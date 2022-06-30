@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 
-import ContainerFloat from '../../../../topologies/Container/ContainerFloat';
+import ContainerFloat from '../../topologies/Container/ContainerFloat';
 
 export const gridHeaderCID = 'CID-GridHeader';
 

@@ -7,9 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import { menuTopology, navbarTopology } from '../../../../../topologies';
+import argu from '../../../../Argu/lib/argu';
+import ontola from '../../../../Core/ontology/ontola';
+import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import { menuTopology } from '../../../topologies/Menu';
 
 interface MenuItemsProps {
   childProps: any;

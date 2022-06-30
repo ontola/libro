@@ -2,10 +2,10 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import app from '../../../../../ontology/app';
-import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
+import app from '../../../../Core/ontology/app';
+import teamGL from '../../../ontology/teamGL';
 
 const Source = ({ linkedProp }: PropertyProps) => {
   if (linkedProp === app.ns('enums/volunteers/source#glapp')) {

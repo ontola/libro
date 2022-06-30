@@ -6,9 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { gridTopology } from '../../../../topologies';
-import CardFixed from '../../../../topologies/Card/CardFixed';
 import CardContent from '../../components/Card/CardContent';
+import CardFixed from '../../topologies/Card/CardFixed';
+import { gridTopology } from '../../topologies/Grid';
 
 const MediaObjectGrid: FC = () => (
   <CardFixed>

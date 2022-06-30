@@ -14,9 +14,9 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import argu from '../../../Argu/ontology/argu';
 import { LibroTheme } from '../../../../themes/themes';
-import { sideBarTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
+import { sideBarTopology } from '../../../Common/topologies/SideBar';
 
 const ICON_PADDING = 3;
 

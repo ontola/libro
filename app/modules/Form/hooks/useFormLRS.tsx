@@ -17,7 +17,7 @@ export interface ClonedLRS extends LinkReduxLRSType {
   originalLRS: LinkReduxLRSType
 }
 
-const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) =>  {
+const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) => {
   const { lrs: next } = await generateLRS(
     manifest,
     undefined,

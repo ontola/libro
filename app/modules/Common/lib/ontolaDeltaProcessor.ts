@@ -8,8 +8,8 @@ import { RecordState, equals } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ld from '../../../ontology/ld';
-import ontola from '../../../ontology/ontola';
 import sp from '../../../ontology/sp';
+import ontola from '../../Core/ontology/ontola';
 
 export interface DeltaProcessors {
   deltas: Quadruple[][];

@@ -49,9 +49,7 @@ export const useSelectHandler = (
     } else {
       zoomOnCluster(e.mapBrowserEvent.map.getView(), [left, top, right, bottom]);
     }
-  }
-
-  else if (selectedFeature && onSelect) {
+  } else if (selectedFeature && onSelect) {
     const geometry = selectedFeature.getGeometry();
     const selectCenter = (geometry.getType() === 'Point')
       ? geometry.getCoordinates()

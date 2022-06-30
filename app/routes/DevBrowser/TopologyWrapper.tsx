@@ -6,30 +6,21 @@ import React from 'react';
 
 import CardContent from '../../modules/Common/components/Card/CardContent';
 import Heading, { HeadingSize } from '../../modules/Common/components/Heading';
+import { inlineTopology } from '../../modules/Common/topologies';
+import { parentTopology } from '../../modules/Common/topologies/BreadcrumbsBar';
+import Card, { cardTopology } from '../../modules/Common/topologies/Card';
+import CardFixed, { cardFixedTopology } from '../../modules/Common/topologies/Card/CardFixed';
+import CardMain, { cardMainTopology } from '../../modules/Common/topologies/Card/CardMain';
+import CardRow, { cardRowTopology } from '../../modules/Common/topologies/Card/CardRow';
+import Container, { containerTopology } from '../../modules/Common/topologies/Container';
+import DetailsBar, { detailsBarTopology } from '../../modules/Common/topologies/DetailsBar';
+import Grid, { gridTopology } from '../../modules/Common/topologies/Grid';
+import { navbarTopology } from '../../modules/NavBar/topologies/Navbar';
 import {
   BreakPoints,
   LibroTheme,
   Margin,
 } from '../../themes/themes';
-import {
-  cardFixedTopology,
-  cardMainTopology,
-  cardRowTopology,
-  cardTopology,
-  containerTopology,
-  detailsBarTopology,
-  gridTopology,
-  inlineTopology,
-  navbarTopology,
-  parentTopology,
-} from '../../topologies';
-import Card from '../../topologies/Card';
-import CardFixed from '../../topologies/Card/CardFixed';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import Grid from '../../topologies/Grid';
 
 export interface TopologyWrapperProps {
   pure: boolean;

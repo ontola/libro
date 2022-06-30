@@ -1,13 +1,10 @@
 import {
   NamedNode,
   Node,
-  SomeTerm,
+  SomeTerm, 
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import {
-  LazyNNArgument,
-  normalizeType,
-} from 'link-lib';
+import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 function filterFind(op: Node) {

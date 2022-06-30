@@ -1,7 +1,7 @@
 import * as as from '@ontologies/as';
 
 import hydra from '../../../../ontology/hydra';
-import ontola from '../../../../ontology/ontola';
+import ontola from '../../../Core/ontology/ontola';
 
 export const CollectionTypes = [
   ontola.Collection,

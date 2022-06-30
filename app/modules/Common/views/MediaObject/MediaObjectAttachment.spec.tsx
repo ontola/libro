@@ -11,7 +11,7 @@ import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import dbo from '../../../../ontology/dbo';
-import Card from '../../../../topologies/Card';
+import Card from '../../topologies/Card';
 
 describe('MediaObject', () => {
   const resource = rdf.namedNode('http://example.com/media_objects/1');

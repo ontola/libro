@@ -5,15 +5,15 @@ import {
   MiddlewareActionHandler,
   MiddlewareFn,
   MiddlewareWithBoundLRS,
-  SomeNode, 
+  SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { quadruple } from '../modules/Common/lib/quadruple';
-import app from '../ontology/app';
+import app from '../modules/Core/ontology/app';
+import ll from '../modules/Core/ontology/ll';
 import http from '../ontology/http';
 import ld from '../ontology/ld';
-import ll from '../ontology/ll';
 
 interface SearchActionMap {
   target: Node

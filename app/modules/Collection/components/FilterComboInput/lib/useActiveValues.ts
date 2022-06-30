@@ -1,12 +1,12 @@
 import {
   LinkReduxLRSType,
   useIds,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 
-import ontola from '../../../../../ontology/ontola';
+import ontola from '../../../../Core/ontology/ontola';
 
 import { filterToLabel } from './filterToLabel';
 import { FilterValue } from './FilterValue';

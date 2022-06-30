@@ -6,7 +6,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import {
   StateMachine,
   any,
-  useStateMachine, 
+  useStateMachine,
 } from '../useStateMachine';
 
 enum Human {

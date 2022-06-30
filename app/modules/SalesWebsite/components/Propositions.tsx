@@ -3,8 +3,8 @@ import { makeStyles } from '@mui/styles';
 import { Property } from 'link-redux';
 import React from 'react';
 
+import Container from '../../Common/topologies/Container';
 import sales from '../ontology/sales';
-import Container from '../../../topologies/Container';
 
 const useStyles = makeStyles({
   propositionContainer: {

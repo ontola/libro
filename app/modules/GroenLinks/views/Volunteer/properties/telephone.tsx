@@ -3,8 +3,9 @@ import { PropertyProps } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
+import { allTopologiesExcept } from '../../../../../topologies';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 import teamGL from '../../../ontology/teamGL';
-import { allTopologiesExcept, tableRowTopology } from '../../../../../topologies';
 import { useContactOptionStyles } from '../useContactOptionStyles';
 
 const Telephone = ({ linkedProp }: PropertyProps) => {

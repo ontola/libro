@@ -2,12 +2,12 @@ import * as schema from '@ontologies/schema';
 import {
   Resource,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import { containerTopology } from '../../../../../topologies';
+import ontola from '../../../../Core/ontology/ontola';
+import { containerTopology } from '../../../topologies/Container';
 
 const PublishAction = () => {
   const [datePublished] = useProperty(schema.datePublished);

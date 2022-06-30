@@ -2,7 +2,7 @@ import { isNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { ReturnType, useResourceLinks } from 'link-redux';
 
-import ontola from '../../../ontology/ontola';
+import ontola from '../../Core/ontology/ontola';
 
 export const useFavoriteActions = (actions: SomeNode[], favorite: boolean): SomeNode[] => {
   const favoriteStatuses = useResourceLinks(

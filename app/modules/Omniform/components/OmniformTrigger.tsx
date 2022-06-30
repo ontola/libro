@@ -2,9 +2,9 @@ import * as schema from '@ontologies/schema';
 import { useIds, useStrings } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../ontology/ontola';
 import ActionButton from '../../Action/components/ActionButton';
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
+import ontola from '../../Core/ontology/ontola';
 import { useOmniformOpenAction } from '../lib/hooks';
 
 const OmniformTrigger = (): JSX.Element | null => {

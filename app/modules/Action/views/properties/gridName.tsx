@@ -6,9 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import { gridTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
+import { gridTopology } from '../../../Common/topologies/Grid';
 
 const GridActionName: FC<PropertyProps> = ({ linkedProp }) => (
   <Heading size={HeadingSize.MD}>

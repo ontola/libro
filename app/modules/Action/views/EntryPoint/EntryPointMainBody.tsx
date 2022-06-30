@@ -7,11 +7,11 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
-import ll from '../../../../ontology/ll';
-import { mainBodyTopology } from '../../../../topologies';
-import FormFooter from '../../../../topologies/FormFooter';
+import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import ll from '../../../Core/ontology/ll';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';
+import FormFooter from '../../../Form/topologies/FormFooter';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 import { useFormCancel } from './useFormCancel';

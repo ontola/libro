@@ -4,10 +4,10 @@ import { useProperty } from 'link-redux';
 import React from 'react';
 import { FormattedNumber } from 'react-intl';
 
-import argu from '../../../ontology/argu';
 import { LibroTheme, Margin } from '../../../../../themes/themes';
 import { LabelFormatter } from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import argu from '../../../lib/argu';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   totalPrice: {

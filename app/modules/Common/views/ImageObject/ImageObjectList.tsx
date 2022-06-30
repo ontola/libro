@@ -8,8 +8,8 @@ import {
 import React from 'react';
 
 import dbo from '../../../../ontology/dbo';
-import { listTopology } from '../../../../topologies';
 import AttachmentPreview from '../../components/AttachmentPreview';
+import { listTopology } from '../../topologies/List';
 
 interface ImageObjectList {
   sequenceIndex: number;

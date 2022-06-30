@@ -1,12 +1,12 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { gridTopology } from '../../../../topologies';
-import CardFixed from '../../../../topologies/Card/CardFixed';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardError from '../../../Common/components/Error/CardError';
 import { ErrorComponentProps } from '../../../Common/components/Error/helpers';
 import { ERROR_CLASSES } from '../../../Common/lib/metaData';
+import CardFixed from '../../../Common/topologies/Card/CardFixed';
+import { gridTopology } from '../../../Common/topologies/Grid';
 
 const ErrorContainer: FC<ErrorComponentProps> = (props) => (
   <CardFixed>

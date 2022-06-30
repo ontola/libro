@@ -10,13 +10,13 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import BreadcrumbsBar from '../../../../topologies/BreadcrumbsBar';
-import Card from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
-import List from '../../../../topologies/List';
-import { Page } from '../../../../topologies/Page';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
+import BreadcrumbsBar from '../../topologies/BreadcrumbsBar';
+import Card from '../../topologies/Card';
+import Container from '../../topologies/Container';
+import List from '../../topologies/List';
+import Page from '../../topologies/Page';
 
 describe('Thing', () => {
   const parent = rdf.namedNode('http://example.com/page/1');

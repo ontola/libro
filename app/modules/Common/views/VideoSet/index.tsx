@@ -1,13 +1,13 @@
 import {
   FC,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React, { VideoHTMLAttributes } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import ontola from '../../../../ontology/ontola';
 import { allTopologies } from '../../../../topologies';
+import ontola from '../../../Core/ontology/ontola';
 
 export interface VideoSetProps extends VideoHTMLAttributes<HTMLVideoElement> {
   className: string,

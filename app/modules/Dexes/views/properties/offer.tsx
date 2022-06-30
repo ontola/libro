@@ -9,14 +9,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dexes from '../../ontology/dexes';
-import {
-  cardFixedTopology,
-  cardMainTopology,
-  cardTopology,
-} from '../../../../topologies';
 import Button from '../../../Common/components/Button';
 import { namePredicates } from '../../../Common/lib/predicates';
+import { cardTopology } from '../../../Common/topologies/Card';
+import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import dexes from '../../ontology/dexes';
 
 const Offer: FC<PropertyProps> = ({
   linkedProp,

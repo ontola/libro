@@ -6,14 +6,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { gridTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import FullResource from '../../../../topologies/FullResource';
 import { handleErrorStatuses } from '../../../Common/components/Error';
 import GridItem from '../../../Common/components/Grid/GridItem';
 import { tryParseInt } from '../../../Common/lib/numbers';
+import Container from '../../../Common/topologies/Container';
+import FullResource from '../../../Common/topologies/FullResource';
+import { gridTopology } from '../../../Common/topologies/Grid';
+import libro from '../../../Core/ontology/libro';
+import ontola from '../../../Core/ontology/ontola';
 
 const Widget = () => {
   const [changeTopology] = useProperty(ontola.topology);
@@ -27,10 +27,10 @@ const Widget = () => {
   let Wrapper: React.ElementType;
 
   switch (changeTopology) {
-  case argu.grid:
+  case libro.topologies.grid:
     Wrapper = React.Fragment;
     break;
-  case argu.container:
+  case libro.topologies.container:
     Wrapper = Container;
     break;
   default:

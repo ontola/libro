@@ -4,7 +4,7 @@ import {
   StepClasskey,
   StepIconProps,
   StepLabel,
-  StepLabelClasskey, 
+  StepLabelClasskey,
 } from '@mui/material';
 import { ClassNameMap } from '@mui/styles';
 import React from 'react';

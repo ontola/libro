@@ -1,10 +1,10 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import PlacementsMap from '../../../Map/components/PlacementsMap';
+import argu from '../../lib/argu';
 
 const PlacementAlertDialog: FC = ({
   subject,

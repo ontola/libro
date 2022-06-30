@@ -13,18 +13,18 @@ import {
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import argu from '../../Argu/ontology/argu';
-import ll from '../../../ontology/ll';
-import ontola from '../../../ontology/ontola';
 import { BreakPoints, LibroTheme } from '../../../themes/themes';
-import FormFooter from '../../../topologies/FormFooter';
-import OmniformFields from '../../../topologies/OmniformFields/OmniformFields';
 import { SubmitSuccessHandler } from '../../Action/views/EntryPoint/useSubmitHandler';
 import { OnDoneHandler } from '../../Action/views/helpers';
+import argu from '../../Argu/lib/argu';
 import { useHighlight } from '../../Core/components/HighlightProvider/HighlightProvider';
+import ll from '../../Core/ontology/ll';
+import ontola from '../../Core/ontology/ontola';
 import { FormFooterRight } from '../../Form/components/Form';
 import { FormFieldError } from '../../Form/components/FormField/FormFieldTypes';
+import FormFooter from '../../Form/topologies/FormFooter';
 import { useOmniformActiveAction, useOmniformChangeFactory } from '../lib/hooks';
+import OmniformFields from '../topologies/OmniformFields/OmniformFields';
 
 export interface OmniformProps {
   actions: Set<Node>;
@@ -46,7 +46,6 @@ const PROPS_WHITELIST = [
   ontola.coverPhoto,
   schema.location,
   argu.attachments,
-  argu.isOpinion,
   ontola.coverPhoto,
 ].map((t) => rdf.id(t));
 

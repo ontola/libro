@@ -113,7 +113,7 @@ export function stepperBuilder<T>(): ((props: StepperProps<T>) => JSX.Element) {
         connector={<StepConnector classes={stepConnectorOverrideClasses} />}
       >
         {items.map(renderStep)}
-        {showNewStepButton ? renderNewStep(): null}
+        {showNewStepButton ? renderNewStep() : null}
       </MUIStepper>
     );
   };

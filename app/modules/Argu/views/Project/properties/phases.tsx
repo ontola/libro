@@ -15,18 +15,19 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import ontola from '../../../../../ontology/ontola';
 import { LibroTheme } from '../../../../../themes/themes';
-import { allTopologies, containerTopology } from '../../../../../topologies';
+import { allTopologies } from '../../../../../topologies';
 import useActionStatus from '../../../../Action/hooks/useActionStatus';
 import { stepperBuilder } from '../../../../Common/components/Stepper/Stepper';
+import { NAME_PREDICATES } from '../../../../Common/lib/metaData';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import LoadingInline from '../../../../Core/components/Loading';
 import { useContainerToArr } from '../../../../Core/hooks/useContainerToArr';
 import { entityIsLoaded } from '../../../../Core/lib/data';
-import { NAME_PREDICATES } from '../../../../Common/lib/metaData';
-import LoadingInline from '../../../../Core/components/Loading';
+import ontola from '../../../../Core/ontology/ontola';
 import PhaseBar, { TOP_SPACING } from '../../../components/PhaseBar';
 import { phaseIRI } from '../../../hooks/usePhases';
+import argu from '../../../lib/argu';
 
 export interface PhasesProps {
   linkedProp: Node,

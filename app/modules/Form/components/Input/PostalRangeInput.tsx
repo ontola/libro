@@ -10,7 +10,7 @@ import { fieldInputCID, useFormStyles } from '../FormField/UseFormStyles';
 export const MAX_POSTAL_DIGITS = 9999;
 export const MIN_POSTAL_DIGITS = 1000;
 
-interface SingleInputProps extends InputComponentProps{
+interface SingleInputProps extends InputComponentProps {
   className: string;
   rangeIndex: number;
 }

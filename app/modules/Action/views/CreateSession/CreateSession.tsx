@@ -11,13 +11,14 @@ import { TopologyContextType } from 'link-redux/dist-types/types';
 import React, { ReactChild } from 'react';
 import { useNavigate } from 'react-router';
 
-import { website } from '../../../../ontology/app';
-import ontola from '../../../../ontology/ontola';
-import { actionsBarTopology, allTopologiesExcept } from '../../../../topologies';
+import { allTopologiesExcept } from '../../../../topologies';
 import AccountHelpersCardAppendix from '../../../Auth/components/SignInForm/AccountHelpersCardAppendix';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { isDifferentWebsite, retrievePath } from '../../../Common/lib/iris';
+import { website } from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import useMemoryStore from '../../hooks/useMemoryStore';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
 
 interface CreateSessionProps {
   reason: ReactChild;

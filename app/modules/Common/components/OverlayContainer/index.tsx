@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { MouseEvent, MouseEventHandler } from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { cardClassIdentifier } from '../../../../topologies/Card/sharedCardStyles';
+import { cardClassIdentifier } from '../../topologies/Card/sharedCardStyles';
 
 interface PropTypes {
   children: React.ReactNode;

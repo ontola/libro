@@ -3,14 +3,14 @@ import { makeStyles } from '@mui/styles';
 import { FC, Property } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import sales from '../../ontology/sales';
 import { HeaderTheme } from '../Header';
 
 const TWO = 2;

@@ -2,8 +2,8 @@ import { makeStyles } from '@mui/styles';
 import React, { ReactNode } from 'react';
 
 import { LibroTheme } from '../../../../themes/themes';
-import CardFloat from '../../../../topologies/Card/CardFloat';
-import { cardClassIdentifier } from '../../../../topologies/Card/sharedCardStyles';
+import CardFloat from '../../topologies/Card/CardFloat';
+import { cardClassIdentifier } from '../../topologies/Card/sharedCardStyles';
 
 export interface CardHeaderProps {
   /** The float content floats to the top right */

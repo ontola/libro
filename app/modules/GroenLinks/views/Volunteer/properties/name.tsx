@@ -3,14 +3,12 @@ import LinkedRenderStore from 'link-lib';
 import { PropertyProps } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../../ontology/teamGL';
-import {
-  allTopologiesExcept,
-  pageTopology,
-  selectTopology,
-} from '../../../../../topologies';
+import { allTopologiesExcept } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
 import LDLink from '../../../../Common/components/LDLink';
+import { pageTopology } from '../../../../Common/topologies/Page';
+import { selectTopology } from '../../../../Form/topologies/Select';
+import teamGL from '../../../ontology/teamGL';
 
 const Name = ({ linkedProp }: PropertyProps) => (
   <LDLink>

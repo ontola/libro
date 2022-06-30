@@ -7,10 +7,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
 import { LibroTheme } from '../../../../../themes/themes';
-import { fullResourceTopology, tabPaneTopology } from '../../../../../topologies';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 import { MapVariant } from '../../../../Map/components/ControlledMap';
+import argu from '../../../lib/argu';
 
 import { ArguLocationProps } from './arguLocation';
 

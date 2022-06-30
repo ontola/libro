@@ -2,12 +2,12 @@ import {
   FC,
   PropertyProps,
   register,
-  useNumbers,
+  useNumbers, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import { tableRowTopology } from '../../../../../topologies';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import argu from '../../../lib/argu';
 
 const UsagesTableCell: FC<PropertyProps> = () => {
   const [usages] = useNumbers(argu.usages);

@@ -16,10 +16,10 @@ import {
   fireEvent,
   renderLinked,
 } from '../../../../../tests/test-utils';
-import argu from '../../ontology/argu';
 import hydra from '../../../../ontology/hydra';
-import ontola from '../../../../ontology/ontola';
-import Container from '../../../../topologies/Container';
+import Container from '../../../Common/topologies/Container';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 describe('Notification', () => {
   afterEach(fetchMock.resetMocks);

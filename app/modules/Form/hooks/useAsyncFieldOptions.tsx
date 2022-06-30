@@ -5,9 +5,9 @@ import React from 'react';
 import parser from 'uri-template';
 import { useDebouncedCallback } from 'use-debounce';
 
-import ontola from '../../../ontology/ontola';
 import normalizedLower from '../../Common/lib/i18n';
 import { iriFromTemplate } from '../../Common/lib/uriTemplate';
+import ontola from '../../Core/ontology/ontola';
 
 import useFieldOptions from './useFieldOptions';
 

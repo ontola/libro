@@ -5,11 +5,11 @@ import * as schema from '@ontologies/schema';
 import * as xsd from '@ontologies/xsd';
 import HttpStatus from 'http-status-codes';
 
-import { createAppNS } from '../../../../../ontology/app';
 import ex from '../../../../../ontology/ex';
-import example from '../../../../../ontology/example';
 import http from '../../../../../ontology/http';
-import ontola from '../../../../../ontology/ontola';
+import { createAppNS } from '../../../../Core/ontology/app';
+import example from '../../../../Core/ontology/example';
+import ontola from '../../../../Core/ontology/ontola';
 import { toDataDocument, toDataObject } from '../quadsToDataObject';
 
 const websiteIRI = 'https://mysite.example.com/';

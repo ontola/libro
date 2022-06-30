@@ -3,8 +3,8 @@ import { SomeNode } from 'link-lib';
 import { useDataFetching, useLRS } from 'link-redux';
 import React from 'react';
 
-import { useContainerToArr } from '../../Core/hooks/useContainerToArr';
 import { arraysEqual } from '../../Common/lib/data';
+import { useContainerToArr } from '../../Core/hooks/useContainerToArr';
 
 export interface FieldOptions {
   loading: boolean;

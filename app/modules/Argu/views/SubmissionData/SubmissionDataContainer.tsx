@@ -8,16 +8,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import {
-  alertDialogTopology,
-  containerTopology,
-  fullResourceTopology,
-} from '../../../../topologies';
-import AttributeList from '../../../../topologies/AttributeList';
-import Card from '../../../../topologies/Card';
 import AttributeListItem from '../../../Common/components/AttributeListItem';
 import CardContent from '../../../Common/components/Card/CardContent';
+import AttributeList from '../../../Common/topologies/AttributeList';
+import Card from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import argu from '../../lib/argu';
 
 const SubmissionDataContainer: FC = () => {
   const properties = useQuadruples(except(rdfx.type));

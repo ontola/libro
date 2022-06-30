@@ -6,13 +6,13 @@ import { Helmet } from 'react-helmet-async';
 
 import { CONTAINER_ELEMENT } from '../../config';
 import Banners from '../../modules/Common/components/Banners';
+import Footer from '../../modules/Common/topologies/Footer';
 import { appContext } from '../../modules/Core/components/AppContext/appContext';
 import NetworkStatusIndicator from '../../modules/Core/components/NetworkStatusIndicator';
 import SkipNavigation from '../../modules/Core/components/SkipNavigation';
-import libro from '../../ontology/libro';
+import libro from '../../modules/Core/ontology/libro';
 import headers from '../../themes/headers';
 import { LibroTheme } from '../../themes/themes';
-import Footer from '../../topologies/Footer';
 import HoverHelper from '../DevBrowser/HoverHelper';
 
 export interface ContentFrameProps {

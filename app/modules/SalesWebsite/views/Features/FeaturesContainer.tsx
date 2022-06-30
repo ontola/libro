@@ -4,20 +4,20 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Size,
+  Size, 
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import Showcase from '../../../../topologies/Showcase';
+import Container from '../../../Common/topologies/Container';
 import { Parallax } from '../../components';
+import sales from '../../ontology/sales';
+import Showcase from '../../topologies/Showcase';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   propositionSelector: {

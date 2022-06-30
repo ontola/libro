@@ -6,13 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { Size } from '../../../../themes/themes';
-import { tabPaneTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import Grid from '../../../../topologies/Grid';
+import ontola from '../../../Core/ontology/ontola';
 import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';
+import Container from '../../topologies/Container';
+import Grid from '../../topologies/Grid';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
 const WebPageTabPane = () => {
   const [name] = useValues(schema.name);

@@ -2,9 +2,9 @@ import { register } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { alertDialogTopology } from '../../../../topologies';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import PlacementsMap from '../../../Map/components/PlacementsMap';
+import argu from '../../lib/argu';
 
 const PlacementAlertDialog = ({ subject }: SubjectProp): JSX.Element => {
   const placements = React.useMemo(() => [subject], [subject]);

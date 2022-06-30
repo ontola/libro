@@ -1,13 +1,13 @@
 import {
   LocalizationProvider,
   MobileDatePicker,
-  MobileDateTimePicker,
+  MobileDateTimePicker, 
 } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import {
   TextField,
   useMediaQuery,
-  useTheme,
+  useTheme, 
 } from '@mui/material';
 import { TextFieldProps as MuiTextFieldPropsType } from '@mui/material/TextField/TextField';
 import { makeStyles } from '@mui/styles';
@@ -72,7 +72,7 @@ const DateInput: React.FC<DateInputProps> = ({
     [classes.flowDatePicker]: showStatic,
   });
   const Component = type === DateInputType.Date ? MobileDatePicker : MobileDateTimePicker;
-  const props =  type === DateInputType.Date ? {
+  const props = type === DateInputType.Date ? {
     format: 'd MMMM yyyy',
   } : {
     format: 'd MMMM yyyy HH:mm',

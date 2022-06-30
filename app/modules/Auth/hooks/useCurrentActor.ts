@@ -9,13 +9,13 @@ import {
   useResourceLink,
 } from 'link-redux';
 
-import app from '../../../ontology/app';
-import argu from '../../Argu/ontology/argu';
-import ontola from '../../../ontology/ontola';
+import argu from '../../Argu/lib/argu';
+import app from '../../Core/ontology/app';
+import ontola from '../../Core/ontology/ontola';
 
 export const useCurrentActor = (): LinkedDataObject<{
-    actorType: Literal;
-    primaryEmail: NamedNode;
+  actorType: Literal;
+  primaryEmail: NamedNode;
 }, TermOpts | undefined, NamedNode | BlankNode | Literal | undefined> => {
   // Might be changed later with a context value
   const actorIRI = app.c_a;

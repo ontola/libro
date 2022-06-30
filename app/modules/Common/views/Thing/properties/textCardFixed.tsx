@@ -7,9 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import { cardFixedTopology, hoverBoxTopology } from '../../../../../topologies';
+import ontola from '../../../../Core/ontology/ontola';
 import { useStrippedMarkdown } from '../../../lib/useStrippedMarkdown';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { hoverBoxTopology } from '../../../topologies/HoverBox';
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 const useStyles = makeStyles(() => ({

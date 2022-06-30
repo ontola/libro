@@ -2,7 +2,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import React from 'react';
 
 import NavBarContent from '../../../modules/NavBar/components/NavBarContent';
-import Navbar from '../../../topologies/Navbar';
+import Navbar from '../../../modules/NavBar/topologies/Navbar';
 
 const CommonHeader = (): JSX.Element => {
   const trigger = useScrollTrigger({

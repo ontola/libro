@@ -9,14 +9,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { gridTopology } from '../../../../topologies';
-import CardFixed from '../../../../topologies/Card/CardFixed';
-import DetailsBar from '../../../../topologies/DetailsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
 import LDLink from '../../../Common/components/LDLink';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
+import CardFixed from '../../../Common/topologies/Card/CardFixed';
+import DetailsBar from '../../../Common/topologies/DetailsBar';
+import { gridTopology } from '../../../Common/topologies/Grid';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const TermGrid: FC = () => {
   const [name] = useProperty(NAME_PREDICATES);

@@ -8,10 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { cardFixedTopology, cardRowTopology } from '../../../../topologies';
-import List, { ListDirection } from '../../../../topologies/List';
 import CardContent from '../../../Common/components/Card/CardContent';
+import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
+import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import List, { ListDirection } from '../../../Common/topologies/List';
+import ontola from '../../../Core/ontology/ontola';
 import OmniformTrigger from '../../../Omniform/components/OmniformTrigger';
 import { useHasInteraction } from '../../components/CollectionProvider';
 

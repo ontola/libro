@@ -5,7 +5,7 @@ import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 
 import { renderLinkedHook } from '../../../../../../tests/test-utils-hooks';
-import example from '../../../../../ontology/example';
+import example from '../../../../Core/ontology/example';
 import { useFieldHashes } from '../useFieldHashes';
 
 const shapeWithSingleField = (id: string) => ({

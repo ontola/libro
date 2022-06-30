@@ -10,9 +10,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import { actionsBarTopology } from '../../../../../topologies';
+import { actionsBarTopology } from '../../../../Action/topologies/ActionsBar';
 import { ButtonVariant } from '../../../../Common/components/Button';
+import ontola from '../../../../Core/ontology/ontola';
 
 interface PropTypes {
   createAction: SomeNode;

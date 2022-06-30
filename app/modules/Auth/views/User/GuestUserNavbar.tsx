@@ -2,9 +2,9 @@ import { register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import ontola from '../../../../ontology/ontola';
-import { navbarTopology } from '../../../../topologies';
+import ontola from '../../../Core/ontology/ontola';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
+import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 import { SignInFormLink } from '../../components/SignInForm';
 import { authMessages } from '../../lib/messages';
 

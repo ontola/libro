@@ -1,9 +1,11 @@
 import { createStyles, makeStyles } from '@mui/styles';
-import React from 'react';
 import { useTopologyProvider } from 'link-redux';
+import React from 'react';
 
-import { flowTopology } from '../../../topologies';
-import { TopologyFC } from '../../../topologies/Topology';
+import { TopologyFC } from '../../Core/lib/topology';
+import libro from '../../Core/ontology/libro';
+
+export const flowTopology = libro.topologies.flow;
 
 export type FlowProps = Record<string, unknown> & {
   className?: string;

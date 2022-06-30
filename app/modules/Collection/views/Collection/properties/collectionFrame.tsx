@@ -2,17 +2,14 @@ import rdf, { SomeTerm } from '@ontologies/core';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import {
-  alertDialogTopology,
-  allTopologiesExcept,
-  containerTopology,
-  gridTopology,
-  mainBodyTopology,
-  pageTopology,
-  sideBarTopology,
-} from '../../../../../topologies';
-import Container, { LargeContainer } from '../../../../../topologies/Container';
+import { allTopologiesExcept } from '../../../../../topologies';
+import Container, { LargeContainer, containerTopology } from '../../../../Common/topologies/Container';
+import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
+import { gridTopology } from '../../../../Common/topologies/Grid';
+import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
+import { pageTopology } from '../../../../Common/topologies/Page';
+import { sideBarTopology } from '../../../../Common/topologies/SideBar';
+import ontola from '../../../../Core/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import CollectionFrame from '../../../components/CollectionFrame';
 import { CollectionTypes } from '../types';

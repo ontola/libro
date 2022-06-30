@@ -9,9 +9,9 @@ import {
 import React from 'react';
 
 import link from '../../../../../ontology/link';
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
 import { OnDoneHandler } from '../../../../Action/views/helpers';
+import ontola from '../../../../Core/ontology/ontola';
 import { ButtonVariant } from '../../../components/Button';
 
 interface PropTypes {
@@ -29,7 +29,7 @@ const CreateAction: FC<PropTypes> = ({
 }) => {
   const [isPartOf] = useProperty(schema.isPartOf);
 
-  return(
+  return (
     <Resource
       isPartOf={isPartOf}
       subject={linkedProp}

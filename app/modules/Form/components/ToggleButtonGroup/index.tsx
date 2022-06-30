@@ -7,9 +7,9 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { LibroTheme } from '../../../../themes/themes';
-import { inlineTopology } from '../../../../topologies';
 import { formMessages } from '../../../../translations/messages';
 import { isResource } from '../../../Common/lib/typeCheckers';
+import { inlineTopology } from '../../../Common/topologies';
 import { LoadingRow } from '../../../Core/components/Loading';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { formFieldContext } from '../FormField/FormFieldContext';

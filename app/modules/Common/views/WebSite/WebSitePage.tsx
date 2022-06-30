@@ -8,15 +8,15 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { pageTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
-import PageHeader from '../../../../topologies/PageHeader';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HomepageError from '../../components/Error/HomepageError';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import Card from '../../topologies/Card';
+import Container from '../../topologies/Container';
+import { pageTopology } from '../../topologies/Page';
+import PageHeader from '../../topologies/PageHeader';
 
 const WebSitePage = () => {
   const [hideHeader] = useProperty(ontola.hideHeader);

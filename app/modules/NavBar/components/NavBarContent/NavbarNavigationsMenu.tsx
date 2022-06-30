@@ -10,13 +10,13 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { frontendIRI } from '../../../../ontology/app';
-import ontola from '../../../../ontology/ontola';
-import AppMenu, { AppMenuChildProps } from '../../../../topologies/AppMenu';
 import { navBarMessages } from '../../../../translations/messages';
 import { usePriorityNavigation } from '../../../Common/hooks/usePriorityNavigation';
+import { frontendIRI } from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import { Trigger } from '../../../Menu/components/DropdownMenu/TriggerButton';
 import { TriggerButtonNavBar } from '../../../Menu/components/DropdownMenu/TriggerButtonNavBar';
+import AppMenu, { AppMenuChildProps } from '../../../Menu/topologies/AppMenu';
 
 export const navBarContentItemsCID = 'CID-NavBarContentItems';
 

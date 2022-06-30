@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import elements from '../ontology/elements';
 import { allTopologies } from '../../../topologies';
+import elements from '../ontology/elements';
 
 const Document: FC = () => (
   <Property label={elements.children} />

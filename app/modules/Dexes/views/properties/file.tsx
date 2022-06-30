@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dexes from '../../ontology/dexes';
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
 import { isDifferentWebsite } from '../../../Common/lib/iris';
+import dexes from '../../ontology/dexes';
 
 const File: FC<PropertyProps> = ({
   children,

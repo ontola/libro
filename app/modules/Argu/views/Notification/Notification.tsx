@@ -8,11 +8,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { containerTopology, fullResourceTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
 import CardContent from '../../../Common/components/Card/CardContent';
+import Card from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const style = { width: '100%' };
 

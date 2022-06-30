@@ -4,7 +4,7 @@ import { SomeNode } from 'link-lib';
 import { handle } from '../../../helpers/logging';
 import { calculateFormFieldName } from '../../Form/lib/helpers';
 
-export const serializeForStorage = (value: SomeTerm[] ): string => JSON.stringify(value);
+export const serializeForStorage = (value: SomeTerm[]): string => JSON.stringify(value);
 
 export const parseBoolean = (val: string | null): boolean => val === 'true';
 
@@ -26,7 +26,7 @@ export const parseValue = (plain: Record<string, any> | any): SomeTerm => {
   }
 };
 
-export const parseForStorage = (valueFromStorage: string | null): SomeTerm[] | undefined  => {
+export const parseForStorage = (valueFromStorage: string | null): SomeTerm[] | undefined => {
   if (!valueFromStorage) {
     return undefined;
   }

@@ -4,7 +4,7 @@ import {
   hexToRgb,
   isRGB,
   percentageToRedOrGreen,
-  rgbToArray,
+  rgbToArray, 
 } from '../color';
 
 const rgbInput = 'rgb(230, 48, 205)';

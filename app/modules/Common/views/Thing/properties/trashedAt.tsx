@@ -10,14 +10,12 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import argu from '../../../../Argu/ontology/argu';
-import {
-  containerTopology,
-  inlineTopology,
-  mainBodyTopology,
-} from '../../../../../topologies';
-import Card from '../../../../../topologies/Card';
+import argu from '../../../../Argu/lib/argu';
 import CardContent from '../../../components/Card/CardContent';
+import { inlineTopology } from '../../../topologies';
+import Card from '../../../topologies/Card';
+import { containerTopology } from '../../../topologies/Container';
+import { mainBodyTopology } from '../../../topologies/MainBody';
 
 interface TrashedAtProps {
   linkedProp: NamedNode;

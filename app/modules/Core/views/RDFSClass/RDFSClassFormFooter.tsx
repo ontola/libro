@@ -10,9 +10,9 @@ import {
 import React from 'react';
 
 import { BreakPoints } from '../../../../themes/themes';
-import { formFooterTopology } from '../../../../topologies';
 import Button, { ButtonVariant } from '../../../Common/components/Button';
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
+import { formFooterTopology } from '../../../Form/topologies/FormFooter';
 
 interface RDFSClassFormFooterProps {
   current?: boolean;

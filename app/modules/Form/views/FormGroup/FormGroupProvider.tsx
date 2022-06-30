@@ -51,7 +51,7 @@ const FormGroupProvider: React.FC<PropTypes> = ({
     <FormGroupContext.Provider value={formGroup}>
       {children}
     </FormGroupContext.Provider>
-  ) ;
+  );
 };
 
 export default FormGroupProvider;

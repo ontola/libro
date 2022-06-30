@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { inlineTopology } from '../../../../topologies';
+import { inlineTopology } from '../../../Common/topologies';
 
 import { CollectionViewTypes } from './types';
 

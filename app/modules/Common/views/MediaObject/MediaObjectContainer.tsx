@@ -2,13 +2,13 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 
-import { containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
+import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 
 const MediaObjectContainer: FC = () => (
   <Card>

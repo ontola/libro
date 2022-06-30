@@ -1,6 +1,6 @@
 /**
-* @jest-environment jsdom
-*/
+ * @jest-environment jsdom
+ */
 import rdf, { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -10,10 +10,10 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked, waitFor } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/ontology/argu';
+import argu from '../../../Argu/lib/argu';
+import Container from '../../../Common/topologies/Container';
+import example from '../../../Core/ontology/example';
 import elements from '../../ontology/elements';
-import example from '../../../../ontology/example';
-import Container from '../../../../topologies/Container';
 
 const s = (x: NamedNode) => x.toString();
 

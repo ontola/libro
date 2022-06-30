@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import Menu from '../../../../topologies/Menu';
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
+import ontola from '../../../Core/ontology/ontola';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
+import Menu from '../../topologies/Menu';
 import { MenuChildProps } from '../DropdownMenu/DropdownMenu';
 import { TriggerButtonProps } from '../DropdownMenu/TriggerButton';
 

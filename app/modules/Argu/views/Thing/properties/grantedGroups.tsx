@@ -6,23 +6,20 @@ import {
   PropertyProps,
   register,
   useDataFetching,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import argu from '../../../ontology/argu';
-import {
-  allTopologiesExcept,
-  contentDetailsTopology,
-  detailsBarTopology,
-} from '../../../../../topologies';
-import ContentDetails from '../../../../../topologies/ContentDetails';
+import { allTopologiesExcept } from '../../../../../topologies';
 import { grantedGroupMessages } from '../../../../../translations/messages';
 import Detail from '../../../../Common/components/Detail';
-import { useContainerToArr } from '../../../../Core/hooks/useContainerToArr';
+import ContentDetails, { contentDetailsTopology } from '../../../../Common/topologies/ContentDetails';
+import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
 import { LoadingDetail } from '../../../../Core/components/Loading';
+import { useContainerToArr } from '../../../../Core/hooks/useContainerToArr';
+import argu from '../../../lib/argu';
 
 const publicGroupID = '/g/-1';
 

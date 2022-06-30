@@ -13,8 +13,8 @@ import { SomeNode, getTermBestLang } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import { IntlShape } from 'react-intl';
 
-import ontola from '../../../../../ontology/ontola';
 import { booleanTranslation } from '../../../../../translations/messages';
+import ontola from '../../../../Core/ontology/ontola';
 
 const filterKeyToName = (lrs: LinkReduxLRSType, filter: SomeNode): string => {
   const name = lrs.dig(filter, [ontola.filterKey, rdfs.label]);

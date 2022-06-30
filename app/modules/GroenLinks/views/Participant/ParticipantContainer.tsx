@@ -3,14 +3,14 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import teamGL from '../../ontology/teamGL';
-import { containerTopology } from '../../../../topologies';
-import ActionsBar from '../../../../topologies/ActionsBar';
-import Card from '../../../../topologies/Card';
-import ContentDetails from '../../../../topologies/ContentDetails';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import Card from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import ontola from '../../../Core/ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 import { useContactOptionStyles } from '../Volunteer/useContactOptionStyles';
 
 const ParticipantContainer = () => {

@@ -6,7 +6,7 @@ import { validationMessages } from '../messages';
 import {
   combineValidators,
   createValidator,
-  validatorMap,
+  validatorMap, 
 } from '../validators';
 
 const errorMap = new Map([

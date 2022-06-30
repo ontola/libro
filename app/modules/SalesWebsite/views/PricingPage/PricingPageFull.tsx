@@ -5,21 +5,21 @@ import {
   Property,
   Resource,
   register,
-  useIds,
+  useIds, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import Grid from '../../../../topologies/Grid';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import Grid from '../../../Common/topologies/Grid';
 import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
 import { IntervalSwitcher } from '../../components/IntervalSwitcher';
+import sales from '../../ontology/sales';
 import { PricingInterval } from '../Tier/Price';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

@@ -4,14 +4,14 @@ import {
   FC,
   Resource,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
 import { Size } from '../../../../../themes/themes';
-import { tabPaneTopology } from '../../../../../topologies';
-import Container from '../../../../../topologies/Container';
+import Container from '../../../../Common/topologies/Container';
+import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 
 export interface DataSetTabPaneProps {
   nextPage?: () => void;
@@ -26,7 +26,7 @@ const DataSetTabPane: FC<DataSetTabPaneProps> = ({
   const [next] = useProperty(as.next);
   const [previous] = useProperty(as.prev);
 
-  return(
+  return (
     <Container size={Size.Large}>
       <Resource subject={subject} />
       {nextPage && previous && (

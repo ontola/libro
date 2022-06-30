@@ -4,18 +4,18 @@ import {
   FC,
   register,
   useIds,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
 import { PipedriveForm as PipedriveFormComp } from '../../components/PipedriveForm';
+import sales from '../../ontology/sales';
 
 interface StyleProps {
   approximateHeight: string;

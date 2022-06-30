@@ -1,4 +1,4 @@
-import ontola from '../../../ontology/ontola';
+import ontola from '../../Core/ontology/ontola';
 
 import { properties } from './properties';
 

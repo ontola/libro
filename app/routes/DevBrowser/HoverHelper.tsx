@@ -7,13 +7,13 @@ import clsx from 'clsx';
 import React, { MouseEvent } from 'react';
 import { useKey } from 'rooks';
 
+import argu from '../../modules/Argu/lib/argu';
 import { expandPath } from '../../modules/Common/lib/iris';
-import argu from '../../modules/Argu/ontology/argu';
+import ontola from '../../modules/Core/ontology/ontola';
 import dexes from '../../modules/Dexes/ontology/dexes';
 import elements from '../../modules/Elements/ontology/elements';
-import ontola from '../../ontology/ontola';
-import sales from '../../modules/SalesWebsite/ontology/sales';
 import teamGL from '../../modules/GroenLinks/ontology/teamGL';
+import sales from '../../modules/SalesWebsite/ontology/sales';
 
 const TRIGGER_KEY = 'r';
 

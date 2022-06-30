@@ -2,8 +2,8 @@ import rdf, { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import ontola from '../../../../../ontology/ontola';
 import { IRITemplate } from '../../../../Common/hooks/useIRITemplate';
+import ontola from '../../../../Core/ontology/ontola';
 
 import { FilterValue } from './FilterValue';
 

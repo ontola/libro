@@ -5,10 +5,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
 import Progress from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import teamGL from '../../../ontology/teamGL';
 
 interface PriorityProps extends PropertyProps {
   endSpacing: boolean;

@@ -7,14 +7,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import dbo from '../../../../ontology/dbo';
-import ontola from '../../../../ontology/ontola';
-import { containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import CardRow from '../../../../topologies/Card/CardRow';
 import CardContent from '../../../Common/components/Card/CardContent';
+import Card from '../../../Common/topologies/Card';
+import CardRow from '../../../Common/topologies/Card/CardRow';
+import { containerTopology } from '../../../Common/topologies/Container';
 import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
+import ontola from '../../../Core/ontology/ontola';
+import argu from '../../lib/argu';
 
 const ForumContainer: FC = ({ subject }) => {
   const { highlightState } = useHighlight();

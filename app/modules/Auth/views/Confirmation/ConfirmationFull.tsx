@@ -2,10 +2,10 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { fullResourceTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import Container from '../../../../topologies/Container';
+import Card from '../../../Common/topologies/Card';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import ontola from '../../../Core/ontology/ontola';
 
 const ConfirmationFull = () => (
   <Container>

@@ -4,8 +4,8 @@ import * as schema from '@ontologies/schema';
 import { Property } from 'link-redux';
 import React from 'react';
 
-import DetailsBar from '../../../../../topologies/DetailsBar';
 import { defaultMenus } from '../../../../Common/lib/viewHelpers';
+import DetailsBar from '../../../../Common/topologies/DetailsBar';
 import SuspendedLoader from '../../../../Core/components/Loading/SuspendedLoader';
 
 const useStyles = makeStyles(() => ({
@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 const ActivityDetailsBar = (): JSX.Element => {
   const classes = useStyles();
 
-  return  (
+  return (
     <DetailsBar
       className={classes.activityDetail}
       right={(

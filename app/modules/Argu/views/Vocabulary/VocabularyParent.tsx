@@ -7,14 +7,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { parentTopology } from '../../../../topologies';
 import Breadcrumb from '../../../Common/components/Breadcrumbs/Breadcrumb';
+import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import argu from '../../lib/argu';
 
 const VocabularyParent = () => {
   const [name] = useProperty([schema.name, as.name]);
 
-  return(
+  return (
     <Breadcrumb
       data-test="Thing-parent"
       label={<Property label={[schema.name, as.name]} />}

@@ -3,8 +3,8 @@ import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType, useLRS } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
 import { arraysEqual } from '../../../../Common/lib/data';
+import ontola from '../../../../Core/ontology/ontola';
 import useMultipleFieldOptions from '../../../../Form/hooks/useMultipleFieldOptions';
 import { useVisibleFilters } from '../../../hooks/useVisibleFilters';
 

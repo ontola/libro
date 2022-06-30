@@ -11,9 +11,9 @@ import { seq } from 'link-lib';
 
 import { mockStorage } from '../../../../../../tests/test-utils';
 import { renderLinkedHook } from '../../../../../../tests/test-utils-hooks';
-import example from '../../../../../ontology/example';
+import example from '../../../../Core/ontology/example';
+import ontola from '../../../../Core/ontology/ontola';
 import form from '../../../ontology/form';
-import ontola from '../../../../../ontology/ontola';
 import useInitialValues from '../index';
 
 export const actionBody = example.ns('form');

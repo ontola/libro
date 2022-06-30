@@ -2,8 +2,8 @@ import { makeStyles } from '@mui/styles';
 import React from 'react';
 
 import { LibroTheme, Margin } from '../../../../themes/themes';
-import { cardClassIdentifier, cardFixedClassIdentifier } from '../../../../topologies/Card/sharedCardStyles';
-import { PAGE_CID } from '../../../../topologies/Page';
+import { cardClassIdentifier, cardFixedClassIdentifier } from '../../topologies/Card/sharedCardStyles';
+import { PAGE_CID } from '../../topologies/Page';
 
 interface PropTypes {
   positionY: number | string;

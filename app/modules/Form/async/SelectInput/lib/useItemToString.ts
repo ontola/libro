@@ -5,10 +5,10 @@ import { SomeNode } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import { entityIsLoaded } from '../../../../Core/lib/data';
 import { namePredicates } from '../../../../Common/lib/predicates';
 import { isResource } from '../../../../Common/lib/typeCheckers';
+import { entityIsLoaded } from '../../../../Core/lib/data';
+import ontola from '../../../../Core/ontology/ontola';
 
 export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) => {
   const lrs = useLRS();

@@ -4,9 +4,10 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { attributeListTopology, inlineTopology } from '../../../../topologies';
 import LDLink from '../../components/LDLink';
 import { LinkFeature } from '../../components/Link';
+import { inlineTopology } from '../../topologies';
+import { attributeListTopology } from '../../topologies/AttributeList';
 
 const ThingInline = () => (
   <LDLink features={[LinkFeature.Bold]}>

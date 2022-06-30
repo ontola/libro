@@ -5,8 +5,9 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { allTopologies } from '../../../../topologies';
+import { inlineTopology } from '../../../Common/topologies';
 import form from '../../ontology/form';
-import { allTopologies, inlineTopology } from '../../../../topologies';
 
 import FormGroupErrorCount from './FormGroupErrorCount';
 import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
@@ -65,7 +66,7 @@ const CollapsibleGroup = () => {
   );
 };
 
-const WrappedCollapsibleGroup = ({ sequenceIndex, ...props }: {sequenceIndex: number}) => (
+const WrappedCollapsibleGroup = ({ sequenceIndex, ...props }: { sequenceIndex: number }) => (
   <FormGroupProvider sequenceIndex={sequenceIndex}>
     <CollapsibleGroup {...props} />
   </FormGroupProvider>

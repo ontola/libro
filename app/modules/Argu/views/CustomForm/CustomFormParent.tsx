@@ -5,9 +5,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { parentProps } from '../../../../ontology/app';
-import argu from '../../ontology/argu';
-import { parentTopology } from '../../../../topologies';
+import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { parentProps } from '../../../Core/ontology/app';
+import argu from '../../lib/argu';
 
 interface CustomFormParent {
   first?: boolean;

@@ -6,7 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { alertDialogTopology, containerTopology } from '../../../../topologies';
+import { containerTopology } from '../../topologies/Container';
+import { alertDialogTopology } from '../../topologies/Dialog';
 
 const ThingAlertDialog: FC = (props) => (
   <Resource

@@ -4,7 +4,7 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { tableRowTopology } from '../../../../../topologies';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 
 const DownloadUrl = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp) {

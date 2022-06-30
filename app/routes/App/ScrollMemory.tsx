@@ -41,7 +41,7 @@ const useScrollMemory = (history: History): void => {
   const currentLocation = useLocation();
   const urlMap = React.useRef<UrlMap>(new Map());
 
-  const handleChange = React.useCallback<Listener>(({ action, location: newLocation  }) => {
+  const handleChange = React.useCallback<Listener>(({ action, location: newLocation }) => {
     if (!__CLIENT__) {
       return;
     }

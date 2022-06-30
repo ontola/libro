@@ -1,13 +1,13 @@
 import {
   BlankNode,
   NamedNode,
-  isNamedNode,
+  isNamedNode, 
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   LaxNode,
   useDataFetching,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 
@@ -21,7 +21,7 @@ const useInitialValues = (
   actionBody: LaxNode,
   object: SomeNode | undefined,
   formID: string,
-): [boolean | NamedNode | BlankNode | undefined,  Record<string, unknown> | undefined, number | null] => {
+): [boolean | NamedNode | BlankNode | undefined, Record<string, unknown> | undefined, number | null] => {
   const lrs = useLRS();
   const [timestamp, setTimestamp] = React.useState<null | number>(null);
   const [loading, setLoading] = React.useState<boolean | SomeNode | undefined>(true);

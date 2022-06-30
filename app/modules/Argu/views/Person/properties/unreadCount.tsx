@@ -4,11 +4,11 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import argu from '../../../ontology/argu';
-import { navbarTopology } from '../../../../../topologies';
 import { notificationMessages } from '../../../../../translations/messages';
 import { tryParseInt } from '../../../../Common/lib/numbers';
 import NavbarLinkCount from '../../../../NavBar/components/NavbarLink/NavbarLinkCount';
+import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import argu from '../../../lib/argu';
 
 interface UnreadCountProps {
   linkedProp: SomeTerm;

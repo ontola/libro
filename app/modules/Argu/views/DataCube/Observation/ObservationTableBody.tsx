@@ -3,14 +3,14 @@ import { SomeNode } from 'link-lib';
 import {
   FC,
   register,
-  useLink, 
+  useLink,
 } from 'link-redux';
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
-import { tableBodyTopology } from '../../../../../topologies';
-import TableCell from '../../../../../topologies/TableCell';
-import TableRow from '../../../../../topologies/TableRow';
+import { tableBodyTopology } from '../../../../Table/topologies/TableBody';
+import TableCell from '../../../../Table/topologies/TableCell';
+import TableRow from '../../../../Table/topologies/TableRow';
 
 export interface ObservationTableBodyProps {
   measures: SomeNode[];

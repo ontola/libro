@@ -5,16 +5,17 @@ import {
   FC,
   PropertyProps,
   register,
-  useIds,
+  useIds, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import { actionsBarTopology, cardFloatTopology } from '../../../../../topologies';
-import { useContainerToArr } from '../../../../Core/hooks/useContainerToArr';
+import { actionsBarTopology } from '../../../../Action/topologies/ActionsBar';
+import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
 import LinkLoader from '../../../../Core/components/Loading/LinkLoader';
+import { useContainerToArr } from '../../../../Core/hooks/useContainerToArr';
 import VoteButton from '../../../components/VoteButton/VoteButton';
 import useCurrentVote from '../../../hooks/votes/useCurrentVote';
+import argu from '../../../lib/argu';
 
 const VoteOptions: FC<PropertyProps> = ({
   linkedProp,

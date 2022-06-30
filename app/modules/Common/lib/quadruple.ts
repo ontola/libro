@@ -1,7 +1,7 @@
 import rdf, {
   NamedNode,
   Quadruple,
-  SomeTerm, 
+  SomeTerm,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 

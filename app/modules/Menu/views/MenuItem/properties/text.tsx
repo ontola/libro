@@ -6,9 +6,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import { tabPaneTopology } from '../../../../../topologies';
-import { LargeContainer } from '../../../../../topologies/Container';
+import { LargeContainer } from '../../../../Common/topologies/Container';
+import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
+import ontola from '../../../../Core/ontology/ontola';
 
 const Text: FC<PropertyProps> = ({
   linkedProp,

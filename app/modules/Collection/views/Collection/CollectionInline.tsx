@@ -2,8 +2,8 @@ import * as as from '@ontologies/as';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { inlineTopology } from '../../../../topologies';
+import { inlineTopology } from '../../../Common/topologies';
+import ontola from '../../../Core/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

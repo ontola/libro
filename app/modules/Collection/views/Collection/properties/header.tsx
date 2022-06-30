@@ -3,16 +3,14 @@ import { SomeNode } from 'link-lib';
 import { Property, Resource } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import ontola from '../../../../../ontology/ontola';
-import {
-  allTopologiesExcept,
-  cardTopology,
-  pageTopology,
-} from '../../../../../topologies';
-import ContainerHeader from '../../../../../topologies/Container/ContainerHeader';
+import { allTopologiesExcept } from '../../../../../topologies';
 import CardHeader from '../../../../Common/components/Card/CardHeader';
 import { buildRegister } from '../../../../Common/lib/buildRegister';
+import { cardTopology } from '../../../../Common/topologies/Card';
+import ContainerHeader from '../../../../Common/topologies/Container/ContainerHeader';
+import { pageTopology } from '../../../../Common/topologies/Page';
 import { LoadingHidden } from '../../../../Core/components/Loading';
+import ontola from '../../../../Core/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { HeaderFloat } from '../../../components/HeaderFloat';
 import { CollectionTypes } from '../types';

@@ -16,8 +16,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { containerToArr } from '../../Core/lib/data';
 import { isPromise } from '../../Common/lib/typeCheckers';
+import { containerToArr } from '../../Core/lib/data';
 
 import { NodeShape, ValuesFor } from './useShapeValidation';
 

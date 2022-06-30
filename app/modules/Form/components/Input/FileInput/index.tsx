@@ -3,10 +3,10 @@ import { useNumbers } from 'link-redux';
 import React from 'react';
 
 import dbo from '../../../../../ontology/dbo';
-import form from '../../../ontology/form';
 import { useListToArr } from '../../../../Core/hooks/useListToArr';
 import { useFileInput } from '../../../hooks/useFileInput';
 import { useFormFieldForPath } from '../../../hooks/useFormFieldForPath';
+import form from '../../../ontology/form';
 import Dropzone from '../../Dropzone';
 import { formFieldContext } from '../../FormField/FormFieldContext';
 import { InputComponentProps } from '../../FormField/FormFieldTypes';

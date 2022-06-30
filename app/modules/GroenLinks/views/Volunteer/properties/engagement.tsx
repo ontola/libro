@@ -3,11 +3,11 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 import { useIntl } from 'react-intl';
 
-import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
 import { tryParseInt } from '../../../../Common/lib/numbers';
 import { groenlinksMessages } from '../../../lib/messages';
+import teamGL from '../../../ontology/teamGL';
 
 const Engagement = ({ linkedProp }: PropertyProps) => {
   const { formatMessage } = useIntl();

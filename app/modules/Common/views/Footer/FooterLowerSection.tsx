@@ -12,10 +12,10 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import argu from '../../../Argu/ontology/argu';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { footerTopology } from '../../../../topologies';
 import { footerMessages, imageAltMessages } from '../../../../translations/messages';
+import argu from '../../../Argu/lib/argu';
+import { footerTopology } from '../../topologies/Footer';
 
 const STACKED_GRID_GAP = 5;
 

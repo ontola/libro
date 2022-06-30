@@ -8,20 +8,20 @@ import {
   Resource,
   register,
   useIds,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
-import TableCell from '../../../../topologies/TableCell';
 import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
+import TableCell from '../../../Table/topologies/TableCell';
 import { CollapsibleComparisonTitle } from '../../components/CollapsibleComparisonTitle';
+import sales from '../../ontology/sales';
 
 const TWO_SMALL_COLUMNS = 2;
 const ONE_BIG_COLUMN = 1;

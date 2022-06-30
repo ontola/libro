@@ -2,11 +2,12 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import sales from '../../ontology/sales';
-import { chapterContentTopology, containerTopology } from '../../../../topologies';
+import { chapterContentTopology } from '../../../Academy/topologies/ChapterContent';
+import argu from '../../../Argu/lib/argu';
+import { containerTopology } from '../../../Common/topologies/Container';
+import ontola from '../../../Core/ontology/ontola';
 import Step from '../../components/Step';
+import sales from '../../ontology/sales';
 
 interface StepperContainerProps {
   count: number;

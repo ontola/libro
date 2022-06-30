@@ -2,24 +2,24 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   Button,
   Grid,
-  Typography,
+  Typography, 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { containerTopology, fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
-import Showcase from '../../../../topologies/Showcase';
 import retrievePath from '../../../Common/lib/iris';
+import Container, { containerTopology } from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import sales from '../../ontology/sales';
+import Showcase from '../../topologies/Showcase';
 
 export interface CaseContainerProps {
   noBackdrop?: boolean;

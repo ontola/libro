@@ -1,7 +1,7 @@
 import { LinkReduxLRSType } from 'link-redux';
 
-import app from '../../../ontology/app';
-import ontola from '../../../ontology/ontola';
+import app from '../../Core/ontology/app';
+import ontola from '../../Core/ontology/ontola';
 
 export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: string): Promise<void> {
   const websocketAddress = app.ns(websocketPath).value.replace('https://', 'wss://');

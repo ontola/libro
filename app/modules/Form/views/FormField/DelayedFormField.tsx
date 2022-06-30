@@ -7,13 +7,13 @@ import {
 } from 'link-redux';
 import React, { FunctionComponent } from 'react';
 
+import FormField from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import { InputType } from '../../components/Input/Input';
-import form from '../../ontology/form';
-import { formFieldTopologies } from '../../../../topologies';
-import FormField from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
+import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const getInputType = (type: SomeTerm): InputType => {
   if (type === form.ColorInput) {

@@ -3,10 +3,10 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import argu from '../../../ontology/argu';
-import { detailsBarTopology } from '../../../../../topologies';
 import { statusMessages } from '../../../../../translations/messages';
 import Detail from '../../../../Common/components/Detail';
+import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import argu from '../../../lib/argu';
 
 const PinnedAt = ({ linkedProp }: PropertyProps): JSX.Element => {
   const { formatDate, formatMessage } = useIntl();

@@ -6,19 +6,19 @@ import {
   array,
   register,
   useIds,
-  useNumbers,
+  useNumbers, 
 } from 'link-redux';
 import type { LottieRefCurrentProps } from 'lottie-react';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { allTopologies } from '../../../../topologies';
 import {
   StateMachine,
   any,
-  useStateMachine,
+  useStateMachine, 
 } from '../../../Common/hooks/useStateMachine';
 import { timeoutEffect } from '../../../Common/lib/timeoutEffect';
+import sales from '../../ontology/sales';
 
 enum State {
   LoadingAnimation,

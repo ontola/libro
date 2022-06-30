@@ -1,48 +1,42 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 
-import ll from '../../../../ontology/ll';
-import {
-  actionsBarTopology,
-  alertDialogTopology,
-  appMenuTopology,
-  attributeListTopology,
-  cardAppendixTopology,
-  cardFixedTopology,
-  cardFloatTopology,
-  cardMainTopology,
-  cardMicroRowTopology,
-  cardRowTopology,
-  cardTopology,
-  containerFloatTopology,
-  containerTopology,
-  contentDetailsTopology,
-  detailsBarTopology,
-  flowTopology,
-  formFooterTopology,
-  fullResourceTopology,
-  gridTopology,
-  hoverBoxTopology,
-  inlineTopology,
-  listTopology,
-  mainBodyTopology,
-  menuTopology,
-  navbarTopology,
-  omniformFieldsTopology,
-  pageTopology,
-  parentTopology,
-  selectTopology,
-  selectedValueTopology,
-  tabBarTopology,
-  tabPaneTopology,
-  tableCellTopology,
-  tableTopology,
-} from '../../../../topologies';
+import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
+import { inlineTopology } from '../../../Common/topologies';
+import { attributeListTopology } from '../../../Common/topologies/AttributeList';
+import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { cardTopology } from '../../../Common/topologies/Card';
+import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
+import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
+import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
+import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import { cardMicroRowTopology } from '../../../Common/topologies/Card/CardMicroRow';
+import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import { containerTopology } from '../../../Common/topologies/Container';
+import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
+import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
+import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { gridTopology } from '../../../Common/topologies/Grid';
+import { hoverBoxTopology } from '../../../Common/topologies/HoverBox';
+import { listTopology } from '../../../Common/topologies/List';
+import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import { pageTopology } from '../../../Common/topologies/Page';
+import { tabBarTopology } from '../../../Common/topologies/TabBar';
+import { tabPaneTopology } from '../../../Common/topologies/TabPane';
+import { flowTopology } from '../../../Flow/topologies/Flow';
+import { formFooterTopology } from '../../../Form/topologies/FormFooter';
+import { selectTopology } from '../../../Form/topologies/Select';
+import { selectedValueTopology } from '../../../Form/topologies/SelectedValue';
+import { appMenuTopology } from '../../../Menu/topologies/AppMenu';
+import { menuTopology } from '../../../Menu/topologies/Menu';
+import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';
 import Loading, {
   LoadingButton,
   LoadingCard,
   LoadingCardFloat,
   LoadingCardRowAppendix,
-  LoadingCellRow,
   LoadingDetail,
   LoadingFullResource,
   LoadingGridContent,
@@ -56,6 +50,7 @@ import Loading, {
 } from '../../components/Loading';
 import Spinner from '../../components/Loading/Spinner';
 import SuspendedLoader from '../../components/Loading/SuspendedLoader';
+import ll from '../../ontology/ll';
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -138,14 +133,6 @@ export default [
     ],
   ),
   LinkedRenderStore.registerRenderer(
-    LoadingCellRow,
-    ll.LoadingResource,
-    RENDER_CLASS_NAME,
-    [
-      tableTopology,
-    ],
-  ),
-  LinkedRenderStore.registerRenderer(
     LoadingNavbarLink,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -158,7 +145,6 @@ export default [
     [
       detailsBarTopology,
       contentDetailsTopology,
-      tableCellTopology,
     ],
   ),
   LinkedRenderStore.registerRenderer(

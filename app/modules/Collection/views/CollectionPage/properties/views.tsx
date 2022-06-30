@@ -11,9 +11,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
 import Columns from '../../../../Common/components/Columns';
+import ontola from '../../../../Core/ontology/ontola';
 import { CollectionViewTypes } from '../types';
 
 interface ViewsProps {

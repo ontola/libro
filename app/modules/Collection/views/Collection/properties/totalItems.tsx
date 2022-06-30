@@ -4,14 +4,7 @@ import { useProperty } from 'link-redux';
 import React, { ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import {
-  allTopologiesExcept,
-  cardAppendixTopology,
-  detailsBarTopology,
-  pageTopology,
-  tableCellTopology,
-} from '../../../../../topologies';
-import CardRow from '../../../../../topologies/Card/CardRow';
+import { allTopologiesExcept } from '../../../../../topologies';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import Detail from '../../../../Common/components/Detail';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
@@ -19,6 +12,11 @@ import LDLink from '../../../../Common/components/LDLink';
 import { buildRegister } from '../../../../Common/lib/buildRegister';
 import retrievePath from '../../../../Common/lib/iris';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
+import CardRow from '../../../../Common/topologies/Card/CardRow';
+import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import { pageTopology } from '../../../../Common/topologies/Page';
+import { tableCellTopology } from '../../../../Table/topologies/TableCell';
 import { CollectionTypes } from '../types';
 
 const useIsSinglePage = () => {

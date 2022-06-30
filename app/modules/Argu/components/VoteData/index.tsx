@@ -5,9 +5,9 @@ import { SomeNode } from 'link-lib';
 import { useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import { useContainerToArr } from '../../../Core/hooks/useContainerToArr';
 import useCounts from '../../hooks/votes/useCounts';
+import argu from '../../lib/argu';
 
 import VotePercentage, { voteDataVoteBarPartCID } from './VotePercentage';
 
@@ -16,7 +16,7 @@ export interface VoteDataProps {
   hover?: boolean;
 }
 
-const useStyles = makeStyles( {
+const useStyles = makeStyles({
   voteDataVoteBar: {
     display: 'flex',
     flexWrap: 'nowrap',

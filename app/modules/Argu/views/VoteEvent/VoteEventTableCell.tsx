@@ -1,9 +1,9 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { tableCellTopology } from '../../../../topologies';
+import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import VoteData from '../../components/VoteData';
+import argu from '../../lib/argu';
 
 const VoteEventTableCell: FC = () => (
   <VoteData />

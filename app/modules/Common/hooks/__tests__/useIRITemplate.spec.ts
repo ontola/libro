@@ -5,7 +5,7 @@
 import rdf from '@ontologies/core';
 
 import { renderLinkedHook } from '../../../../../tests/test-utils-hooks';
-import ontola from '../../../../ontology/ontola';
+import ontola from '../../../Core/ontology/ontola';
 import { useIRITemplate } from '../useIRITemplate';
 
 describe('iriTemplate', () => {

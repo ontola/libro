@@ -12,11 +12,11 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import ontola from '../../../../../ontology/ontola';
 import { LibroTheme, Margin } from '../../../../../themes/themes';
 import { allTopologies } from '../../../../../topologies';
 import ButtonWithFeedback from '../../../../Common/components/ButtonWithFeedback';
 import { quadruple } from '../../../../Common/lib/quadruple';
+import ontola from '../../../../Core/ontology/ontola';
 
 interface InfiniteCollectionNextProps extends SubjectProp, PropertyProps {}
 

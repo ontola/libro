@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
-import { actionsBarTopology } from '../../../../topologies';
+import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
+import app from '../../../Core/ontology/app';
 import { SignOutFormLink } from '../../components/SignOutForm';
 
 const AppSignOutActionsBar = (): JSX.Element => {

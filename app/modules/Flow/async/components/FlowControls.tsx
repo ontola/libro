@@ -2,7 +2,7 @@ import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import {
   Button,
   Fade,
-  IconButton, 
+  IconButton,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
@@ -11,10 +11,10 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { frontendIRI } from '../../../../ontology/app';
-import ontola from '../../../../ontology/ontola';
 import { LibroTheme } from '../../../../themes/themes';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
+import { frontendIRI } from '../../../Core/ontology/app';
+import ontola from '../../../Core/ontology/ontola';
 import { flowMessages } from '../../lib/messages';
 
 export interface FlowControlsProps {

@@ -6,16 +6,16 @@ import {
   FC,
   Property,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import ontola from '../../../../ontology/ontola';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { showcaseTopology } from '../../../../topologies';
 import { personeShowcaseMessages } from '../../../../translations/messages';
+import ontola from '../../../Core/ontology/ontola';
+import { showcaseTopology } from '../../../SalesWebsite/topologies/Showcase';
 
 const CONTAINER_PADDING = 5;
 const ICON_LINK_GAP = 4;

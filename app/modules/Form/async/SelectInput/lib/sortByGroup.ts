@@ -1,7 +1,7 @@
 import { SomeTerm, isNamedNode } from '@ontologies/core';
 import { LinkReduxLRSType } from 'link-redux';
 
-import ontola from '../../../../../ontology/ontola';
+import ontola from '../../../../Core/ontology/ontola';
 
 export const sortByGroup = (lrs: LinkReduxLRSType) => (a: SomeTerm, b: SomeTerm): -1 | 0 | 1 => {
   const groupA = isNamedNode(a) ? lrs.getResourceProperty(a, ontola.groupBy)?.value : undefined;

@@ -22,12 +22,12 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
-import argu from '../../Argu/ontology/argu';
 import { BreakPoints, LibroTheme } from '../../../themes/themes';
-import { fullResourceTopology } from '../../../topologies';
-import SideBar from '../../../topologies/SideBar';
 import { academyMessages } from '../../../translations/messages';
+import argu from '../../Argu/lib/argu';
 import retrievePath from '../../Common/lib/iris';
+import { fullResourceTopology } from '../../Common/topologies/FullResource';
+import SideBar from '../../Common/topologies/SideBar';
 import { useChapterNavigation } from '../hooks/useChapterNavigation';
 
 export interface BookProps {

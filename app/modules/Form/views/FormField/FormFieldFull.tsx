@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
-import { fullResourceTopology } from '../../../../topologies';
-import MainBody from '../../../../topologies/MainBody';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import MainBody from '../../../Common/topologies/MainBody';
 import { UnwrappedForm } from '../../components/Form/Form';
+import form from '../../ontology/form';
 
 const FormFieldFull: FC = ({
   subject,

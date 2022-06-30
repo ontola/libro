@@ -13,18 +13,16 @@ import {
 } from 'link-redux';
 import React, { KeyboardEventHandler } from 'react';
 
-import app from '../../../ontology/app';
 import link from '../../../ontology/link';
-import ontola from '../../../ontology/ontola';
-import {
-  cardAppendixTopology,
-  cardMainTopology,
-  cardTopology,
-  containerTopology,
-} from '../../../topologies';
 import CollectionCreateButton, { TriggerType } from '../../Collection/components/CollectionCreateButton';
 import Heading from '../../Common/components/Heading';
+import { cardTopology } from '../../Common/topologies/Card';
+import { cardAppendixTopology } from '../../Common/topologies/Card/CardAppendix';
+import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
+import { containerTopology } from '../../Common/topologies/Container';
 import { entityIsLoaded } from '../../Core/lib/data';
+import app from '../../Core/ontology/app';
+import ontola from '../../Core/ontology/ontola';
 import OmniformConnector from '../components/OmniformConnector';
 import OmniformPreview from '../components/OmniformPreview';
 import { actionsAreAllDisabled, useOmniformActions } from '../lib/helpers';

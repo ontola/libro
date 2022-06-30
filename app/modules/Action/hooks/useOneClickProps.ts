@@ -9,8 +9,8 @@ import {
 import React, { MouseEventHandler } from 'react';
 
 import { handle } from '../../../helpers/logging';
-import ontola from '../../../ontology/ontola';
 import { normalizeFontAwesomeIRI } from '../../Common/lib/iris';
+import ontola from '../../Core/ontology/ontola';
 import { OnDoneHandler, useDoneHandler } from '../views/helpers';
 
 export interface OneClickProps {

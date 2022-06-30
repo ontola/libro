@@ -7,13 +7,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
-import { navbarTopology } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
 import { AddItemCallback } from '../../../Common/hooks/usePriorityNavigation';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
+import ontola from '../../../Core/ontology/ontola';
 import LinkedMenuTrigger from '../../../Menu/components/Menu/LinkedMenuTrigger';
 import { NavbarLinkLink } from '../../components/NavbarLink';
+import { navbarTopology } from '../../topologies/Navbar';
 
 interface MenuItemNavbarProps {
   subject: Node,

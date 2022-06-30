@@ -8,17 +8,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import dbo from '../../../../ontology/dbo';
 import meeting from '../../../../ontology/meeting';
-import ontola from '../../../../ontology/ontola';
-import { containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import CardAppendix from '../../../../topologies/Card/CardAppendix';
-import CardRow from '../../../../topologies/Card/CardRow';
+import argu from '../../../Argu/lib/argu';
 import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
+import ontola from '../../../Core/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import Card from '../../topologies/Card';
+import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardRow from '../../topologies/Card/CardRow';
+import { containerTopology } from '../../topologies/Container';
 
 const ThingContainer: FC = ({ subject }) => {
   const { highlightState } = useHighlight();

@@ -7,13 +7,11 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import dexes from '../../ontology/dexes';
-import {
-  cardFixedTopology,
-  cardMainTopology,
-  cardTopology,
-} from '../../../../topologies';
 import Button from '../../../Common/components/Button';
+import { cardTopology } from '../../../Common/topologies/Card';
+import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import dexes from '../../ontology/dexes';
 import { messages } from '../messages';
 
 const BrokerUrl: FC<PropertyProps> = ({

@@ -7,17 +7,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import form from '../../ontology/form';
-import ontola from '../../../../ontology/ontola';
-import {
-  alertDialogTopology,
-  containerTopology,
-  fullResourceTopology,
-} from '../../../../topologies';
-import { CardMain } from '../../../../topologies/Card';
-import ContentDetails from '../../../../topologies/ContentDetails';
 import CardContent from '../../../Common/components/Card/CardContent';
+import { CardMain } from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import ontola from '../../../Core/ontology/ontola';
 import { UnwrappedForm } from '../../components/Form/Form';
+import form from '../../ontology/form';
 
 const FormFieldContainer: FC = ({
   subject,

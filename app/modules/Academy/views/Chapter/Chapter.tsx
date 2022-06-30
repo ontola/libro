@@ -4,18 +4,16 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  register,
+  register, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import { LibroTheme } from '../../../../themes/themes';
-import {
-  allTopologiesExcept,
-  pageTopology,
-  sideBarTopology,
-} from '../../../../topologies';
-import { ChapterContent } from '../../../../topologies/ChapterContent';
+import { allTopologiesExcept } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
+import { pageTopology } from '../../../Common/topologies/Page';
+import { sideBarTopology } from '../../../Common/topologies/SideBar';
+import { ChapterContent } from '../../topologies/ChapterContent';
 
 const H1_BOTTOM_MARGIN = 5;
 

@@ -1,10 +1,10 @@
 import { Resource, register } from 'link-redux';
 import React from 'react';
 
-import { pageTopology } from '../../../../topologies';
-import FullResource from '../../../../topologies/FullResource';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import Metadata from '../../../Common/components/Metadata';
+import FullResource from '../../../Common/topologies/FullResource';
+import { pageTopology } from '../../../Common/topologies/Page';
 
 import { MenuTypes } from './types';
 

@@ -11,14 +11,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { flowTopology } from '../../../topologies';
-import CardMain from '../../../topologies/Card/CardMain';
-import Container from '../../../topologies/Container';
 import { isInvalidActionStatus } from '../../Action/hooks/useEnabledActions';
 import { ActionProps, useDoneHandler } from '../../Action/views/helpers';
 import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';
 import CardContent from '../../Common/components/Card/CardContent';
+import CardMain from '../../Common/topologies/Card/CardMain';
+import Container from '../../Common/topologies/Container';
+import { flowTopology } from '../topologies/Flow';
 
 const useStyles = makeStyles({
   controlStrip: {

@@ -8,9 +8,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../../ontology/app';
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
+import app from '../../../../Core/ontology/app';
+import ontola from '../../../../Core/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { CollectionTypes } from '../types';
 

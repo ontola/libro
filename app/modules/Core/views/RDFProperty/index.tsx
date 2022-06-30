@@ -11,19 +11,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  allTopologiesExcept,
-  attributeListTopology,
-  pageTopology,
-  tableHeaderRowTopology,
-} from '../../../../topologies';
+import { allTopologiesExcept } from '../../../../topologies';
+import { attributeListTopology } from '../../../Common/topologies/AttributeList';
+import { pageTopology } from '../../../Common/topologies/Page';
+import { tableHeaderRowTopology } from '../../../Table/topologies/TableHeaderRow';
 
 import RDFPropertyAttributeList from './RDFPropertyAttributeList';
 
 const RDFProperty: FC = ({ subject }) => {
   const [name] = useProperty([schema.name, rdfs.label]);
 
-  return(
+  return (
     <span>
       <Property label={schema.image} />
       {name ? name.value : term(subject as NamedNode)}

@@ -3,7 +3,7 @@ import {
   Grid,
   List,
   ListItem,
-  Typography,
+  Typography, 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
@@ -16,20 +16,20 @@ import {
   useFields,
   useIds,
   useProperty,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import sales from '../../ontology/sales';
 import {
   BreakPoints,
   LibroTheme,
-  Margin,
+  Margin, 
 } from '../../../../themes/themes';
-import { gridTopology } from '../../../../topologies';
 import { salesMessages } from '../../../../translations/messages';
+import { gridTopology } from '../../../Common/topologies/Grid';
 import { CallToActionButton } from '../../components';
+import sales from '../../ontology/sales';
 
 import { PricingInterval } from './Price';
 

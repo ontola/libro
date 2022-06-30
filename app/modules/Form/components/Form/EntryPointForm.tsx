@@ -10,11 +10,11 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
-import ll from '../../../../ontology/ll';
 import useSubmissionErrors from '../../../Action/views/EntryPoint/useSubmissionErrors';
 import { SubmitHandler } from '../../../Action/views/EntryPoint/useSubmitHandler';
-import { entityIsLoaded } from '../../../Core/lib/data';
 import { LoadingGridContent } from '../../../Core/components/Loading';
+import { entityIsLoaded } from '../../../Core/lib/data';
+import ll from '../../../Core/ontology/ll';
 import useInitialValues from '../../hooks/useInitialValues';
 
 import Form from './Form';

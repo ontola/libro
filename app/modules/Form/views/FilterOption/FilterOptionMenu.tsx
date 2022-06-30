@@ -11,12 +11,12 @@ import {
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import ontola from '../../../../ontology/ontola';
-import { menuTopology } from '../../../../topologies';
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
 import { useIRITemplate } from '../../../Common/hooks/useIRITemplate';
 import { retrievePath } from '../../../Common/lib/iris';
+import ontola from '../../../Core/ontology/ontola';
 import MenuItem from '../../../Menu/components/MenuItem';
+import { menuTopology } from '../../../Menu/topologies/Menu';
 
 interface FilterOptionMenuCompProps {
   activeFilters: SomeNode[];
@@ -75,7 +75,7 @@ const FilterOptionMenu = React.forwardRef<FC, FilterOptionMenuCompProps>(
     const [filterValue] = useProperty(ontola.filterValue);
     const [partOf] = useIds(schema.isPartOf);
 
-    return(
+    return (
       <FilterOptionMenuComp
         innerRef={ref}
         {...props}

@@ -6,15 +6,15 @@ import React from 'react';
 import {
   FormattedMessage,
   FormattedRelativeTime,
-  useIntl,
+  useIntl, 
 } from 'react-intl';
 
-import argu from '../../../../Argu/ontology/argu';
-import { detailsBarTopology } from '../../../../../topologies';
 import { statusMessages } from '../../../../../translations/messages';
+import argu from '../../../../Argu/lib/argu';
 import Detail from '../../../components/Detail';
 import { filterUpdateInterval, useDateUpdateInterval } from '../../../hooks/useDateUpdateInterval';
 import isPastDate from '../../../lib/date';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 interface PropTypes {
   linkedProp: Literal;

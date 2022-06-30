@@ -6,12 +6,12 @@ import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import Select from '../../../../topologies/Select';
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
 import { parseForStorage } from '../../../Common/lib/persistence';
 import { LoadingHidden } from '../../../Core/components/Loading';
 import Spinner from '../../../Core/components/Loading/Spinner';
 import useFieldOptions from '../../hooks/useFieldOptions';
+import Select from '../../topologies/Select';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputValue } from '../FormField/FormFieldTypes';

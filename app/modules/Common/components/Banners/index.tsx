@@ -2,8 +2,8 @@ import { makeStyles } from '@mui/styles';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../ontology/app';
 import { LibroTheme } from '../../../../themes/themes';
+import app from '../../../Core/ontology/app';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   wrapper: {

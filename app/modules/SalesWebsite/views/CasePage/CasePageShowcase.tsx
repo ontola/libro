@@ -1,7 +1,7 @@
 import {
   Button,
   Grid,
-  Typography,
+  Typography, 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { NamedNode } from '@ontologies/core';
@@ -10,11 +10,12 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { gridTopology, showcaseTopology } from '../../../../topologies';
 import retrievePath from '../../../Common/lib/iris';
+import { gridTopology } from '../../../Common/topologies/Grid';
 import { ReadMoreButton } from '../../components';
+import sales from '../../ontology/sales';
+import { showcaseTopology } from '../../topologies/Showcase';
 
 export interface CasePageShowcaseProps {
   noBackdrop?: boolean;

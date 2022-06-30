@@ -15,18 +15,18 @@ import {
   mockStorage,
   renderLinked,
 } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/ontology/argu';
-import example from '../../../../ontology/example';
-import form from '../../ontology/form';
-import ll from '../../../../ontology/ll';
-import ontola from '../../../../ontology/ontola';
-import { Page } from '../../../../topologies/Page';
+import argu from '../../../Argu/lib/argu';
 import {
   getStorageKey,
   parseForStorage,
   serializeForStorage,
 } from '../../../Common/lib/persistence';
+import Page from '../../../Common/topologies/Page';
+import example from '../../../Core/ontology/example';
+import ll from '../../../Core/ontology/ll';
+import ontola from '../../../Core/ontology/ontola';
 import { calculateFormFieldName } from '../../lib/helpers';
+import form from '../../ontology/form';
 
 const action = example.ns('new');
 const entryPoint = example.ns('new#EntryPoint');

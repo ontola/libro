@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { CardFloat } from '../../../../topologies/Card';
+import { CardFloat } from '../../topologies/Card';
 
 interface PropTypes {
   menu: React.ReactNode;

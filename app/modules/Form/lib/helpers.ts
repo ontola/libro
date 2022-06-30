@@ -5,12 +5,13 @@ import rdf, {
   isNode,
 } from '@ontologies/core';
 
-import ontola from '../../../ontology/ontola';
 import { isJSONLDObject } from '../../Common/lib/typeCheckers';
+import ontola from '../../Core/ontology/ontola';
 
 export interface JSONLDObject {
-    '@id': Node;
-    [key: string]: any;
+  '@id': Node;
+
+  [key: string]: any;
 }
 
 export const destroyFieldName = btoa(ontola._destroy.value);

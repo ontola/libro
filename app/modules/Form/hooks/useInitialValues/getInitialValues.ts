@@ -3,9 +3,9 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import form from '../../ontology/form';
 import { InputValue } from '../../components/FormField/FormFieldTypes';
 import { JSONLDObject, calculateFormFieldName } from '../../lib/helpers';
+import form from '../../ontology/form';
 
 import { getNestedObjects } from './getNestedObjects';
 import { getFormFields, rawFormObjectValue } from './helpers';

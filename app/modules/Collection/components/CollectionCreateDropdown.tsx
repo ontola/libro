@@ -3,10 +3,10 @@ import { Resource } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Menu from '../../../topologies/Menu';
 import { collectionMessages } from '../../../translations/messages';
 import { sort } from '../../Common/lib/data';
 import { Trigger } from '../../Menu/components/DropdownMenu/TriggerButton';
+import Menu from '../../Menu/topologies/Menu';
 
 const ORDER = [
   '/participants/add_all',

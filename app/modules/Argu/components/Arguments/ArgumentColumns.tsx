@@ -1,10 +1,10 @@
 import { useLinkRenderContext } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { ListDirection } from '../../../../topologies/List';
 import Collection from '../../../Collection/components';
 import Columns from '../../../Common/components/Columns';
+import { ListDirection } from '../../../Common/topologies/List';
+import argu from '../../lib/argu';
 
 interface ArgumentColumns {
   omniform?: boolean;

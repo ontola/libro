@@ -4,15 +4,15 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
+import argu from '../../../Argu/lib/argu';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import sales from '../../ontology/sales';
 
 const LOWER_SECTION_BOTTOM_MARGIN = 40;
 

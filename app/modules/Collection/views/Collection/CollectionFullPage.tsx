@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { pageTopology } from '../../../../topologies';
-import FullResource from '../../../../topologies/FullResource';
 import Metadata from '../../../Common/components/Metadata';
+import FullResource from '../../../Common/topologies/FullResource';
+import { pageTopology } from '../../../Common/topologies/Page';
 import { CollectionViewTypes } from '../CollectionPage/types';
 
 import { CollectionTypes } from './types';

@@ -2,10 +2,10 @@ import * as schema from '@ontologies/schema';
 import { Resource, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { pageTopology } from '../../../../topologies';
-import FullResource from '../../../../topologies/FullResource';
 import Metadata from '../../../Common/components/Metadata';
+import FullResource from '../../../Common/topologies/FullResource';
+import { pageTopology } from '../../../Common/topologies/Page';
+import argu from '../../lib/argu';
 
 const ForumPage = (props: any): JSX.Element => (
   <React.Fragment>

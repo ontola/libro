@@ -5,9 +5,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
 import { allTopologies } from '../../../../topologies';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 import Image from '../../components/Image';
 
 const SocialButton: FC = () => {

@@ -7,10 +7,10 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import argu from '../../../ontology/argu';
-import { tableRowTopology } from '../../../../../topologies';
 import LDLink from '../../../../Common/components/LDLink';
 import { LinkTarget } from '../../../../Common/components/Link';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import argu from '../../../lib/argu';
 
 const SubmissionDataTableRow: FC<PropertyProps> = ({
   linkedProp,

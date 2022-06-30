@@ -2,11 +2,11 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import teamGL from '../../ontology/teamGL';
-import { containerTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
-import ContentDetails from '../../../../topologies/ContentDetails';
 import CardContent from '../../../Common/components/Card/CardContent';
+import Card from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import teamGL from '../../ontology/teamGL';
 
 const GroupContainer = () => (
   <Card>

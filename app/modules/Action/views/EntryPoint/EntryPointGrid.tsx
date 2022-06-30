@@ -11,18 +11,16 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import {
-  footerTopology,
-  gridTopology,
-  navbarTopology,
-} from '../../../../topologies';
-import FormFooter from '../../../../topologies/FormFooter';
 import Button from '../../../Common/components/Button';
 import GridHeader from '../../../Common/components/Grid/GridHeader';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
+import { footerTopology } from '../../../Common/topologies/Footer';
+import { gridTopology } from '../../../Common/topologies/Grid';
 import { LoadingHidden } from '../../../Core/components/Loading';
+import ontola from '../../../Core/ontology/ontola';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
+import FormFooter from '../../../Form/topologies/FormFooter';
+import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 

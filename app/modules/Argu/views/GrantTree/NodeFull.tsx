@@ -1,11 +1,11 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import { fullResourceTopology } from '../../../../topologies';
-import MainBody from '../../../../topologies/MainBody';
 import SubSection from '../../../Common/components/SubSection';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import MainBody from '../../../Common/topologies/MainBody';
+import argu from '../../lib/argu';
 
 const NodeFull = () => (
   <React.Fragment>

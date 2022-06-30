@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import NavBarContent from '../../../modules/NavBar/components/NavBarContent';
-import Navbar from '../../../topologies/Navbar';
+import Navbar from '../../../modules/NavBar/topologies/Navbar';
 import { BreakPoints } from '../../themes';
 
 const useStyles = makeStyles(() => ({

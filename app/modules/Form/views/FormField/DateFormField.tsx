@@ -6,12 +6,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { formFieldTopologies } from '../../../../topologies';
 import DateInput, { DateInputType } from '../../components/DateInput';
 import FormField from '../../components/FormField/FormField';
 import { InputComponentProps } from '../../components/FormField/FormFieldTypes';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
+import { formFieldTopologies } from '../../topologies';
 
 const DatePicker = (props: InputComponentProps) => (
   <DateInput

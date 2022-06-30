@@ -9,10 +9,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import { tableRowTopology } from '../../../../../topologies';
 import { namePredicates } from '../../../../Common/lib/predicates';
+import ontola from '../../../../Core/ontology/ontola';
+import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import argu from '../../../lib/argu';
 
 const ResourceTable: FC<PropertyProps> = () => {
   const subjects = useIds(dig(ontola.widgetResource, rdfs.member, rdfs.member));

@@ -7,18 +7,18 @@ import {
   FC,
   Property,
   register,
-  useGlobalIds,
+  useGlobalIds, 
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import org from '../../../../ontology/org';
 import { LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import ContentDetails from '../../../../topologies/ContentDetails';
-import MainBody from '../../../../topologies/MainBody';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
 import SubSection from '../../../Common/components/SubSection';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import MainBody from '../../../Common/topologies/MainBody';
+import ontola from '../../../Core/ontology/ontola';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   image: {

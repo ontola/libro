@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import { MiddlewareActionHandler, SomeNode } from 'link-lib';
 
-import libro from '../ontology/libro';
+import libro from '../modules/Core/ontology/libro';
 
 declare global {
   interface Window {

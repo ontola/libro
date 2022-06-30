@@ -8,16 +8,19 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { pageHeaderTopology } from '../../../../topologies';
-import { CardMain } from '../../../../topologies/Card';
-import ContentDetails from '../../../../topologies/ContentDetails';
-import { PageHeaderImageAndTextWrapper, PageHeaderText } from '../../../../topologies/PageHeader';
+import argu from '../../../Argu/lib/argu';
 import CardContent from '../../components/Card/CardContent';
 import CollapseText from '../../components/CollapseText';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import { defaultMenus } from '../../lib/viewHelpers';
+import { CardMain } from '../../topologies/Card';
+import ContentDetails from '../../topologies/ContentDetails';
+import {
+  PageHeaderImageAndTextWrapper,
+  PageHeaderText,
+  pageHeaderTopology,
+} from '../../topologies/PageHeader';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   thingPageHeader: {

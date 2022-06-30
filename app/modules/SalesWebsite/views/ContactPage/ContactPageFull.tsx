@@ -4,7 +4,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import {
   Grid,
   Link,
-  Typography,
+  Typography, 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
@@ -14,16 +14,16 @@ import {
   Resource,
   register,
   useIds,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/ontology/argu';
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
+import argu from '../../../Argu/lib/argu';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { Propositions } from '../../components/Propositions';
+import sales from '../../ontology/sales';
 
 const BOTTOM_MARGIN = 35;
 const PIPEDRIVE_CARD_TOP_MARGIN = 5;

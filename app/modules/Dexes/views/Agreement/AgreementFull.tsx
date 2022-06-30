@@ -5,14 +5,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dexes from '../../ontology/dexes';
-import { fullResourceTopology } from '../../../../topologies';
-import AttributeList from '../../../../topologies/AttributeList';
-import CardMain from '../../../../topologies/Card/CardMain';
-import Container from '../../../../topologies/Container';
 import AttributeListItem from '../../../Common/components/AttributeListItem';
 import CardContent from '../../../Common/components/Card/CardContent';
 import { namePredicates } from '../../../Common/lib/predicates';
+import AttributeList from '../../../Common/topologies/AttributeList';
+import CardMain from '../../../Common/topologies/Card/CardMain';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import dexes from '../../ontology/dexes';
 
 const AgreementFull: FC = () => (
   <Container>

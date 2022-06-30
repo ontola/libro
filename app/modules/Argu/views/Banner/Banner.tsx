@@ -8,13 +8,13 @@ import {
 } from 'link-redux';
 import React, { useEffect, useState } from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { Size } from '../../../../themes/themes';
-import { gridTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
 import CardContent from '../../../Common/components/Card/CardContent';
+import Container from '../../../Common/topologies/Container';
+import { gridTopology } from '../../../Common/topologies/Grid';
 import { LoadingHidden } from '../../../Core/components/Loading';
 import Suspense from '../../../Core/components/Suspense';
+import ontola from '../../../Core/ontology/ontola';
 
 const useStyles = makeStyles(() => ({
   banner: {

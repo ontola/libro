@@ -4,13 +4,13 @@ import {
   FC,
   Property,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { fullResourceTopology } from '../../../../topologies';
-import MainBody from '../../../../topologies/MainBody';
 import SubSection from '../../../Common/components/SubSection';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import MainBody from '../../../Common/topologies/MainBody';
 
 import { MenuTypes } from './types';
 

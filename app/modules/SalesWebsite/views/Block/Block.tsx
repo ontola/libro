@@ -5,14 +5,15 @@ import {
   Resource,
   register,
   useIds,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { LibroTheme, Margin } from '../../../../themes/themes';
-import { allTopologiesExcept, showcaseTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
+import { allTopologiesExcept } from '../../../../topologies';
+import Container from '../../../Common/topologies/Container';
+import sales from '../../ontology/sales';
+import { showcaseTopology } from '../../topologies/Showcase';
 
 interface StyleProps {
   color: string;

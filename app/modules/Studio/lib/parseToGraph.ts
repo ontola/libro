@@ -28,36 +28,36 @@ import {
 } from 'link-lib';
 import { ParsedObject } from 'link-lib/dist-types/types';
 
-import { createAppNS } from '../../../ontology/app';
 import ontAppSlashless from '../../../ontology/appSlashless';
-import ontArgu from '../../Argu/ontology/argu';
 import ontDbo from '../../../ontology/dbo';
-import ontDexes from '../../Dexes/ontology/dexes';
-import ontElements from '../../Elements/ontology/elements';
 import ontEx from '../../../ontology/ex';
-import ontExample from '../../../ontology/example';
 import ontFa4 from '../../../ontology/fa4';
 import ontFhir from '../../../ontology/fhir';
-import ontForm from '../../Form/ontology/form';
 import ontHttp from '../../../ontology/http';
 import ontHttph from '../../../ontology/httph';
 import ontHydra from '../../../ontology/hydra';
 import ontLd from '../../../ontology/ld';
-import ontLibro from '../../../ontology/libro';
 import ontLink from '../../../ontology/link';
-import ontLl from '../../../ontology/ll';
 import ontMeeting from '../../../ontology/meeting';
-import ontOntola from '../../../ontology/ontola';
 import ontOpengov from '../../../ontology/opengov';
 import ontOrg from '../../../ontology/org';
 import ontPerson from '../../../ontology/person';
 import ontQb from '../../../ontology/qb';
-import ontSales from '../../SalesWebsite/ontology/sales';
 import ontSp from '../../../ontology/sp';
-import ontTeamGL from '../../GroenLinks/ontology/teamGL';
 import ontWdt from '../../../ontology/wdt';
 import '../../../useFactory';
+import ontArgu from '../../Argu/lib/argu';
 import { toEmpJson } from '../../Common/lib/empjsonSerializer';
+import { createAppNS } from '../../Core/ontology/app';
+import ontExample from '../../Core/ontology/example';
+import ontLibro from '../../Core/ontology/libro';
+import ontLl from '../../Core/ontology/ll';
+import ontOntola from '../../Core/ontology/ontola';
+import ontDexes from '../../Dexes/ontology/dexes';
+import ontElements from '../../Elements/ontology/elements';
+import ontForm from '../../Form/ontology/form';
+import ontTeamGL from '../../GroenLinks/ontology/teamGL';
+import ontSales from '../../SalesWebsite/ontology/sales';
 
 const isSerializablePrimitive = (obj: any): obj is Exclude<SerializableDataTypes, DataObject> => {
   if (obj === undefined || obj === null) {

@@ -74,7 +74,7 @@ const UploadTarget = ({ children, uploadAction }: UploadTargetProps): JSX.Elemen
           setSubmitting(false);
           handle(error);
         });
-      } ;
+      };
 
       uploadFile(nextFile, handleUploadFinished);
     }

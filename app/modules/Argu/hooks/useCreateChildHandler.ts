@@ -10,9 +10,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ll from '../../../ontology/ll';
-import ontola from '../../../ontology/ontola';
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
+import ll from '../../Core/ontology/ll';
+import ontola from '../../Core/ontology/ontola';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../Form/lib/diggers';
 import { MapInteractionCallback } from '../../Map/components/ControlledMap';
 import { GeometryType } from '../../Map/lib/geometry';

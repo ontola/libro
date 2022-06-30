@@ -15,13 +15,13 @@ import {
 } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import ll from '../../../ontology/ll';
-import ontola from '../../../ontology/ontola';
 import useActionStatus from '../../Action/hooks/useActionStatus';
 import { isInvalidActionStatus } from '../../Action/hooks/useEnabledActions';
-import { useListToArr } from '../../Core/hooks/useListToArr';
 import { tryParseInt } from '../../Common/lib/numbers';
 import ResourceBoundary from '../../Core/components/ResourceBoundary';
+import { useListToArr } from '../../Core/hooks/useListToArr';
+import ll from '../../Core/ontology/ll';
+import ontola from '../../Core/ontology/ontola';
 import { useCurrentCollectionResource } from '../hooks/useCurrentCollectionResource';
 import { useSorting } from '../hooks/useSorting';
 import { useCollectionStyles } from '../views/Collection/useCollectionStyles';

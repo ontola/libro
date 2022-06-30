@@ -2,15 +2,15 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import teamGL from '../../ontology/teamGL';
-import { fullResourceTopology } from '../../../../topologies';
-import ActionsBar from '../../../../topologies/ActionsBar';
-import CardMain from '../../../../topologies/Card/CardMain';
-import Container from '../../../../topologies/Container';
-import ContentDetails from '../../../../topologies/ContentDetails';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import CardMain from '../../../Common/topologies/Card/CardMain';
+import Container from '../../../Common/topologies/Container';
+import ContentDetails from '../../../Common/topologies/ContentDetails';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import ontola from '../../../Core/ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 
 const EventFull = () => (
   <React.Fragment>

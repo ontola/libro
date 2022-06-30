@@ -2,23 +2,23 @@ import { ChevronRight, MailRounded } from '@mui/icons-material';
 import {
   Button,
   TextField,
-  Typography,
+  Typography, 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import ontola from '../../../../ontology/ontola';
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
 import { allTopologies } from '../../../../topologies';
 import { mailchimpFormMessages } from '../../../../translations/messages';
+import ontola from '../../../Core/ontology/ontola';
+import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   emailIcon: {

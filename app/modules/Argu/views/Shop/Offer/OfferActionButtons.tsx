@@ -1,10 +1,10 @@
 import { Property } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import ontola from '../../../../../ontology/ontola';
-import ActionsBar from '../../../../../topologies/ActionsBar';
+import ActionsBar from '../../../../Action/topologies/ActionsBar';
 import { ButtonVariant } from '../../../../Common/components/Button';
+import ontola from '../../../../Core/ontology/ontola';
+import argu from '../../../lib/argu';
 
 const OfferActionButtons: React.FC = () => (
   <ActionsBar>

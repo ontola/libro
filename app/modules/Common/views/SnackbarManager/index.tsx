@@ -9,8 +9,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import libro from '../../../../ontology/libro';
 import { allTopologies } from '../../../../topologies';
+import libro from '../../../Core/ontology/libro';
 
 export const SnackbarManager = (): JSX.Element | null => {
   const finishSnackbar = useActionById(libro.actions.snackbar.finished);

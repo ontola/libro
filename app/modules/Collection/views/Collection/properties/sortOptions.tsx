@@ -8,14 +8,14 @@ import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
-import Menu from '../../../../../topologies/Menu';
 import { collectionMessages } from '../../../../../translations/messages';
 import { retrievePath } from '../../../../Common/lib/iris';
+import ontola from '../../../../Core/ontology/ontola';
 import { RenderProp } from '../../../../Menu/components/DropdownMenu/DropdownMenu';
 import TriggerButton, { Trigger } from '../../../../Menu/components/DropdownMenu/TriggerButton';
 import MenuItem from '../../../../Menu/components/MenuItem';
+import Menu from '../../../../Menu/topologies/Menu';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { SortProps, useSorting } from '../../../hooks/useSorting';
 import { CollectionTypes } from '../types';

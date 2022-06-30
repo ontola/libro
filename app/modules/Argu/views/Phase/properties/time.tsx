@@ -2,9 +2,9 @@ import { SomeTerm } from '@ontologies/core';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
+import argu from '../../../lib/argu';
 
 export interface TimeProps {
   linkedProp: SomeTerm;

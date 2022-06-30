@@ -10,18 +10,18 @@ import {
   term,
   useProperty,
   useResourceLink,
-  value,
+  value, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import ontola from '../../../../ontology/ontola';
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
 import { blogMessages, caseMessages } from '../../../../translations/messages';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import ontola from '../../../Core/ontology/ontola';
 import { ArticleContent } from '../../components';
+import sales from '../../ontology/sales';
 
 const ARTICLE_PADDING = 4;
 const CONTACT_PERSON_GAP = 6;

@@ -7,14 +7,14 @@ import {
   Resource,
   array,
   useIds,
-  useValues,
+  useValues, 
 } from 'link-redux';
 import React from 'react';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
-import { containerTopology } from '../../../../topologies';
-import Showcase from '../../../../topologies/Showcase';
+import { containerTopology } from '../../../Common/topologies/Container';
+import sales from '../../ontology/sales';
+import Showcase from '../../topologies/Showcase';
 
 const BLOG_SPACING = 8;
 

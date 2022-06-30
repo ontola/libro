@@ -6,11 +6,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../../../ontology/app';
-import ontola from '../../../../../ontology/ontola';
 import { allTopologies } from '../../../../../topologies';
-import TabPane from '../../../../../topologies/TabPane';
 import { useTabbar } from '../../../../Common/components/TabbarProvider';
+import TabPane from '../../../../Common/topologies/TabPane';
+import app from '../../../../Core/ontology/app';
+import ontola from '../../../../Core/ontology/ontola';
 
 const CurrentTab = () => {
   const { currentTab } = useTabbar();

@@ -1,10 +1,10 @@
 import { register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { actionsBarTopology } from '../../../../topologies';
 import { SignInFormLink } from '../../../Auth/components/SignInForm';
 import Button from '../../../Common/components/Button';
+import ontola from '../../../Core/ontology/ontola';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
 
 const CreateSessionActionsBar = () => (
   <SignInFormLink Component={Button} />

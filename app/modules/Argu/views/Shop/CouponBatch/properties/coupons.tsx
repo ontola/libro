@@ -9,10 +9,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../ontology/argu';
 import { allTopologies } from '../../../../../../topologies';
-import { useContainerToArr } from '../../../../../Core/hooks/useContainerToArr';
 import LinkLoader from '../../../../../Core/components/Loading/LinkLoader';
+import { useContainerToArr } from '../../../../../Core/hooks/useContainerToArr';
+import argu from '../../../../lib/argu';
 
 export interface CouponsProps {
   linkedProp: SomeTerm;

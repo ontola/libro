@@ -8,13 +8,13 @@ import {
   register,
   useBooleans,
   useGlobalIds,
-  useIds, 
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
-import ll from '../../../../ontology/ll';
-import ontola from '../../../../ontology/ontola';
 import { allTopologies } from '../../../../topologies';
+import ll from '../../ontology/ll';
+import ontola from '../../ontology/ontola';
 
 const PropertyQuery: FC = () => {
   const properties = useGlobalIds(array(sh.path));

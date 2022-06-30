@@ -4,16 +4,16 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import sales from '../../ontology/sales';
 import { BreakPoints, LibroTheme } from '../../../../themes/themes';
-import { fullResourceTopology } from '../../../../topologies';
-import Container from '../../../../topologies/Container';
 import retrievePath from '../../../Common/lib/iris';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   callToPricing: {

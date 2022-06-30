@@ -1,5 +1,5 @@
-import argu from '../../../Argu/ontology/argu';
-import ontola from '../../../../ontology/ontola';
+import argu from '../../../Argu/lib/argu';
+import ontola from '../../../Core/ontology/ontola';
 
 export const MenuTypes = [
   ontola.MenuItem,

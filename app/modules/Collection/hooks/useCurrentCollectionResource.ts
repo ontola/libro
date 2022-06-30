@@ -9,11 +9,11 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import app from '../../../ontology/app';
-import ontola from '../../../ontology/ontola';
 import { resourceHasType } from '../../Common/lib/data';
-import { entityIsLoaded } from '../../Core/lib/data';
 import { retrievePath } from '../../Common/lib/iris';
+import { entityIsLoaded } from '../../Core/lib/data';
+import app from '../../Core/ontology/app';
+import ontola from '../../Core/ontology/ontola';
 import CollectionTypes from '../views/Collection/types';
 
 /**

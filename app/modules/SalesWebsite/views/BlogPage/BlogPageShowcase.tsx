@@ -18,10 +18,10 @@ import {
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import sales from '../../ontology/sales';
 import { LibroTheme } from '../../../../themes/themes';
-import { showcaseTopology } from '../../../../topologies';
 import retrievePath from '../../../Common/lib/iris';
+import sales from '../../ontology/sales';
+import { showcaseTopology } from '../../topologies/Showcase';
 
 export interface BlogPageShowcaseProps {
   headingLevel?: React.ElementType;

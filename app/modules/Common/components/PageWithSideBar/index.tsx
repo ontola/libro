@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React, { ReactNode } from 'react';
 
-import SideBar from '../../../../topologies/SideBar';
+import SideBar from '../../topologies/SideBar';
 
 const useStyles = makeStyles(() => ({
   children: {

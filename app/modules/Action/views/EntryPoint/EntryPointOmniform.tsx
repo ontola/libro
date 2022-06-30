@@ -2,12 +2,12 @@ import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { omniformFieldsTopology } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
 import CardContent from '../../../Common/components/Card/CardContent';
+import Card from '../../../Common/topologies/Card';
 import { LoadingGridContent } from '../../../Core/components/Loading';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import { FormTheme } from '../../../Form/components/Form/FormContext';
+import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 

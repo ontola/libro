@@ -2,10 +2,10 @@ import { makeStyles } from '@mui/styles';
 import rdf from '@ontologies/core';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
 import { LibroTheme } from '../../../../themes/themes';
 import Image from '../../../Common/components/Image';
 import { imageRepresentationUrl } from '../../../Common/lib/attachments';
+import ontola from '../../../Core/ontology/ontola';
 import useInputId from '../../hooks/useInputId';
 
 import DropzoneInnerPositionY from './DropzoneInnerPositionY';

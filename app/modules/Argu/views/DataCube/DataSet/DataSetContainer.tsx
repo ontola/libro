@@ -12,16 +12,17 @@ import {
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
-import { alertDialogTopology, containerTopology } from '../../../../../topologies';
-import Card from '../../../../../topologies/Card';
-import Table from '../../../../../topologies/Table';
-import TableBody from '../../../../../topologies/TableBody';
-import TableHead from '../../../../../topologies/TableHead';
-import TableRow from '../../../../../topologies/TableRow';
 import AllWithProperty from '../../../../Common/components/AllWithProperty';
 import HeaderWithMenu from '../../../../Common/components/HeaderWithMenu';
 import ScrollContainer from '../../../../Common/components/ScrollContainer';
 import { tryParseInt } from '../../../../Common/lib/numbers';
+import Card from '../../../../Common/topologies/Card';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
+import Table from '../../../../Table/topologies/Table';
+import TableBody from '../../../../Table/topologies/TableBody';
+import TableHead from '../../../../Table/topologies/TableHead';
+import TableRow from '../../../../Table/topologies/TableRow';
 
 interface Component {
   measure: SomeNode;

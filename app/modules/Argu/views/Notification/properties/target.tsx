@@ -6,17 +6,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
-import {
-  cardFixedTopology,
-  cardMainTopology,
-  cardTopology,
-  containerTopology,
-  fullResourceTopology,
-  navbarTopology,
-} from '../../../../../topologies';
 import Link from '../../../../Common/components/Link';
 import { retrievePath } from '../../../../Common/lib/iris';
+import { cardTopology } from '../../../../Common/topologies/Card';
+import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
+import { containerTopology } from '../../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import argu from '../../../lib/argu';
 
 interface TargetProps extends PropertyProps {
   onClick: () => void;

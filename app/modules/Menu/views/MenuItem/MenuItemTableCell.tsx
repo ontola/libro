@@ -9,9 +9,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../ontology/ontola';
-import { tableCellTopology } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
+import ontola from '../../../Core/ontology/ontola';
+import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
 
 import { MenuTypes } from './types';

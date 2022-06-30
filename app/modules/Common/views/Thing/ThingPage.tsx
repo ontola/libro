@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { pageTopology } from '../../../../topologies';
-import FullResource from '../../../../topologies/FullResource';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import Metadata from '../../components/Metadata';
+import FullResource from '../../topologies/FullResource';
+import { pageTopology } from '../../topologies/Page';
 
 const ThingPage = (props: any): JSX.Element => (
   <HeadingContext>

@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../ontology/argu';
 import { allTopologies } from '../../../../topologies';
+import argu from '../../lib/argu';
 
 const LinkedRecord: FC = () => <Property label={argu.linkedRecord} />;
 
