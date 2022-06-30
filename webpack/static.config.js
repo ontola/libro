@@ -5,7 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const webpack = require('webpack');
 const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ManifestPlugin = require('webpack-assets-manifest');
 const { merge } = require('webpack-merge');
 
@@ -108,7 +108,7 @@ function createConfig(options) {
         threshold: 0,
       }),
       new BrotliPlugin(),
-      // new BundleAnalyzerPlugin(),
+      process.env.ANALYZE_BUNDLE ? new BundleAnalyzerPlugin() : undefined,
       bugsnagPlugin,
     ].filter((p) => typeof p !== 'undefined'),
 

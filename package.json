@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "build": "rimraf ./dist/* && yarn t10s:extract && yarn run build:bundle && yarn run build:metaData",
-    "build:analyze": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --progress --config ./webpack/static.config.js --profile --json > stats.json",
+    "build:analyze": "cross-env TEST_BUILD=true ANALYZE_BUNDLE=true NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --progress --config ./webpack/static.config.js --profile --json > stats.json",
     "build:bundle": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --progress --config ./webpack/static.config.js",
     "build:shared": "yarn run build:metaData && yarn run build:parseToGraph",
     "build:metaData": "esbuild --bundle --format=esm --outfile=./dist/metaData.js app/modules/Common/lib/metaData.ts",
