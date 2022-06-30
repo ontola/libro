@@ -69,7 +69,6 @@ export const components = {
   LinkedDetailDate: component('LinkedDetailDate'),
   Loading: component('Loading'),
   MenuItem: component('MenuItem'),
-  MenuSectionLabel: component('MenuSectionLabel'),
   Metadata: component('Metadata'),
   NavBarContent: component('NavBarContent'),
   NavbarLinkNavbarLinkCount: component('NavbarLink/NavbarLinkCount'),

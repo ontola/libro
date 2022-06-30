@@ -39,7 +39,6 @@ const MenuItems: FC<MenuItemsProps> = ({ childProps }) => {
 MenuItems.type = [
   ontola.MenuItem,
   argu.SubMenu,
-  argu.MenuSection,
 ];
 
 MenuItems.property = ontola.menuItems;

@@ -77,7 +77,6 @@ import CompInputInput from './modules/Form/components/Input/Input';
 import SelectInputSelectInputField from './modules/Form/components/SelectInputField';
 import CompDropdownMenu from './modules/Menu/components/DropdownMenu/DropdownMenu';
 import CompMenuItem from './modules/Menu/components/MenuItem';
-import CompMenuSectionLabel from './modules/Menu/components/MenuSectionLabel';
 import CompNavBarContent from './modules/NavBar/components/NavBarContent';
 import CompNavbarLinkNavbarLinkCount from './modules/NavBar/components/NavbarLink/NavbarLinkCount';
 import CompNavbarLinkNavbarLinkIcon from './modules/NavBar/components/NavbarLink/NavbarLinkIcon';
@@ -195,7 +194,6 @@ export const componentMap: ComponentMap = {
   [rdf.id(components.LinkedDetailDate)]: [CompLinkedDetailDate],
   [rdf.id(components.Loading)]: [CompLoading],
   [rdf.id(components.MenuItem)]: [CompMenuItem],
-  [rdf.id(components.MenuSectionLabel)]: [CompMenuSectionLabel],
   [rdf.id(components.Metadata)]: [CompMetadata],
   [rdf.id(components.NavBarContent)]: [CompNavBarContent],
   [rdf.id(components.NavbarLinkNavbarLinkCount)]: [CompNavbarLinkNavbarLinkCount],
