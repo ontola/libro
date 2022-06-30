@@ -82,7 +82,7 @@ export const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<
       return rdf.namedNode(websiteIRI);
     }
 
-    if (v.v.startsWith('/')) {
+    if (v.v.startsWith('/') || v.v.startsWith('#')) {
       return rdf.namedNode(websiteIRI + v.v);
     }
 
@@ -121,7 +121,7 @@ const keyOverride = (key: string, value: any, websiteIRI: string, mapping: Recor
     return websiteIRI;
   }
 
-  if (key.startsWith('/')) {
+  if (key.startsWith('/') || key.startsWith('#')) {
     return `${websiteIRI}${key}`;
   }
 

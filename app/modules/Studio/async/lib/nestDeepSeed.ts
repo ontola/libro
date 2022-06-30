@@ -41,7 +41,7 @@ const nestRecord = (seed: DeepSeed, record: DeepSeedDataRecord): DeepSeedDataRec
 export const nestDeepSeed = (deepSeed: DeepSeed): DeepSeed => Object
   .entries(deepSeed)
   .reduce((acc, [id, record]) => {
-    if (id.startsWith('_:') || (!id.includes(':') && !id.startsWith('/'))) {
+    if (id.startsWith('_:') || (!id.includes(':') && !(id.startsWith('/') || id.startsWith('#')))) {
       return acc;
     }
 

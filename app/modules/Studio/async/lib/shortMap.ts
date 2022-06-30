@@ -231,7 +231,7 @@ export const shortenGlobalId = (iri: string, websiteIRI: string): NodeProperty =
 
     return {
       type: NodeType.LocalPath,
-      value: value.slice(value.startsWith('/') ? 1 : 0),
+      value: value.slice((value.startsWith('/') || value.startsWith('#')) ? 1 : 0),
     };
   }
 

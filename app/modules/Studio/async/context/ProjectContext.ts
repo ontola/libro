@@ -237,11 +237,19 @@ export const projectContext = React.createContext<ProjectState>([
   () => undefined,
 ]);
 
+const selectedToId = (selected: { origin: string, path: string }) => {
+  if (origin === '/' && selected.path.startsWith('#')) {
+    return selected.path;
+  }
+
+  return selected.origin + selected.path;
+};
+
 export const currentComponent = (project: ProjectContext): Component | WebManifest =>
   project[project.current];
 
 export const selectedRecord = (project: ProjectContext): DeepSeedDataRecord | undefined =>
-  project.data[project.selected.origin + project.selected.path];
+  project.data[selectedToId(project.selected)];
 
 const importActionToDataSlice = (action: ImportDataAction, websiteIRI: string): DataSlice => {
   switch (action.dataType) {
@@ -348,7 +356,7 @@ const appendToSelected = (selected: { origin: string, path: string }, name: stri
 };
 
 const idToSelected = (id: string): { origin: string, path: string } => {
-  if (id.startsWith('/')) {
+  if (id.startsWith('/') || id.startsWith('#')) {
     return {
       origin: '/',
       path: id.slice(1),
@@ -448,7 +456,7 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
       ...state,
       data: {
         ...state.data,
-        [state.selected.origin + state.selected.path]: action.record,
+        [selectedToId(state.selected)]: action.record,
       },
     };
   }
@@ -474,7 +482,7 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   }
 
   case ProjectAction.RenameResource: {
-    const id = action.id ?? state.selected.origin + state.selected.path;
+    const id = action.id ?? selectedToId(state.selected);
     const { _id, ...fields } = state.data[id];
 
     const next = {
@@ -493,7 +501,7 @@ const reducer = (state: ProjectContext, action: Action): ProjectContext => {
   }
 
   case ProjectAction.DeleteResource: {
-    const id = action.id ?? state.selected.origin + state.selected.path;
+    const id = action.id ?? selectedToId(state.selected);
 
     const {
       [id]: _discarded,

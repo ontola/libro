@@ -45,6 +45,10 @@ const nameIdempotently = <T extends DataObject | SerializableDataTypes>(obj: T, 
     ) as T;
 };
 
-export const normalize = (data: DataObject[], idempotentNaming = true): DataObject[] => idempotentNaming
-  ? data.map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
-  : data;
+export const normalize = (data: DataObject[] | DataObject[][], idempotentNaming = true): DataObject[] => {
+  const flattened: DataObject[] = data.flat();
+
+  return idempotentNaming
+    ? flattened.map((obj) => nameIdempotently(obj, (obj['@id'] as string) ?? rdf.blankNode().value))
+    : flattened;
+};

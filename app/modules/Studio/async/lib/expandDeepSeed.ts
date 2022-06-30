@@ -12,7 +12,11 @@ const expandId = (id: string, websiteIRI: string) => {
     return websiteIRI;
   }
 
-  if (id.startsWith('/')) {
+  if (id.startsWith('/#')) {
+    return `${websiteIRI}${id.slice(1)}`;
+  }
+
+  if (id.startsWith('/') || id.startsWith('#')) {
     return `${websiteIRI}${id}`;
   }
 
