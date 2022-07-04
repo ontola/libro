@@ -5,9 +5,12 @@ import {
   Resource,
   dig,
   register,
+  useDataFetching,
   useIds,
-  useStrings, 
+  useLRS,
+  useStrings,
 } from 'link-redux';
+import * as rdfx from '@ontologies/rdf';
 import React from 'react';
 import { useLocation } from 'react-router';
 
@@ -27,6 +30,7 @@ import argu from '../../lib/argu';
 const ProjectFull: FC = ({
   subject,
 }) => {
+  const lrs = useLRS();
   const location = useLocation();
 
   const [currentPhase] = useIds(argu.currentPhase);
@@ -37,6 +41,12 @@ const ProjectFull: FC = ({
   const renderPhase = selectedPhase ?? currentPhase ?? phases[0];
   const [phaseTitle] = useStrings(renderPhase, NAME_PREDICATES);
   const [phaseResourceTitle] = useStrings(renderPhase, dig(argu.resource, NAME_PREDICATES));
+
+  const [phaseResource] = useIds(renderPhase, argu.resource);
+  const timestamp = useDataFetching(phaseResource);
+  const resourceForbidden = React.useMemo(() => (
+    lrs.getResourceProperty(phaseResource, rdfx.type) === ontola.ns('errors/ForbiddenError')
+  ), [timestamp]);
 
   return (
     <React.Fragment>
@@ -59,32 +69,33 @@ const ProjectFull: FC = ({
           label={argu.phases}
           selectedPhase={renderPhase}
         />
-        <Resource
-          subject={renderPhase}
-          onLoad={LoadingHidden}
-        >
-          <Property
-            label={argu.resource}
-            onError={LoadingHidden}
+        {!resourceForbidden && (
+          <Resource
+            subject={renderPhase}
             onLoad={LoadingHidden}
           >
             <Property
-              label={ontola.publishAction}
+              label={argu.resource}
               onLoad={LoadingHidden}
-            />
-            {phaseTitle !== phaseResourceTitle && (
+            >
               <Property
-                label={NAME_PREDICATES}
+                label={ontola.publishAction}
                 onLoad={LoadingHidden}
               />
-            )}
-            <Property
-              label={schema.text}
-              onLoad={LoadingHidden}
-            />
-            <AllWithProperty label={[argu.attachments, meeting.attachment]} />
-          </Property>
-        </Resource>
+              {phaseTitle !== phaseResourceTitle && (
+                <Property
+                  label={NAME_PREDICATES}
+                  onLoad={LoadingHidden}
+                />
+              )}
+              <Property
+                label={schema.text}
+                onLoad={LoadingHidden}
+              />
+              <AllWithProperty label={[argu.attachments, meeting.attachment]} />
+            </Property>
+          </Resource>
+        )}
       </MainBody>
       {renderPhase && (
         <Resource
