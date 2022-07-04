@@ -1,6 +1,6 @@
 import { createStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import { cardContentClassIdentifier } from '../../components/Card/CardContent';
 import { headingCID } from '../../components/Heading';
 

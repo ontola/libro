@@ -6,15 +6,15 @@ import {
   FC,
   Property,
   register,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import {
   BreakPoints,
   LibroTheme,
-  Margin, 
-} from '../../../../themes/themes';
+  Margin,
+} from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import elements from '../../../Elements/ontology/elements';
 import sales from '../../ontology/sales';

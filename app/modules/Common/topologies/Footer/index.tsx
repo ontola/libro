@@ -4,7 +4,7 @@ import { Node } from '@ontologies/core';
 import { Resource, useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { IndexablePalette, LibroTheme } from '../../../../themes/themes';
+import { IndexablePalette, LibroTheme } from '../../theme/types';
 import { TopologyFC } from '../../../Core/lib/topology';
 import libro from '../../../Core/ontology/libro';
 import { gridHeaderCID } from '../../components/Grid/GridHeader';

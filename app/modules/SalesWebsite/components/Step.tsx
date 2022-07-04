@@ -4,7 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../Common/theme/types';
 import Link from '../../Common/components/Link';
 
 interface StepProps {

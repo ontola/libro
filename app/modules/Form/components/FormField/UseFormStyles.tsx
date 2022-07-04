@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { calculateFormFieldName } from '../../lib/helpers';
 import { fieldLabelCID } from '../FieldLabel';
 

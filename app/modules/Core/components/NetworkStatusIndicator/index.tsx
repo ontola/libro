@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   networkStatusIndicator: {

@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React, { ReactNode } from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import CardFloat from '../../topologies/Card/CardFloat';
 import { cardClassIdentifier } from '../../topologies/Card/sharedCardStyles';
 

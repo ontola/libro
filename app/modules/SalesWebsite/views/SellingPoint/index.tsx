@@ -12,7 +12,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../../themes/themes';
+} from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
 import ontola from '../../../Core/ontology/ontola';

@@ -12,7 +12,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../themes/themes';
+import { LibroTheme } from '../../Common/theme/types';
 import { formMessages } from '../../../translations/messages';
 import { containerTopology } from '../../Common/topologies/Container';
 

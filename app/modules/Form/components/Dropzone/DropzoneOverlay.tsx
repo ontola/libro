@@ -4,7 +4,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 interface Props {
   isDragActive: boolean;

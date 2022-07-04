@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { swipeInputMessages } from '../../../../translations/messages';
 import { Dispatcher, State } from '../../../Common/hooks/useStateMachine';
 

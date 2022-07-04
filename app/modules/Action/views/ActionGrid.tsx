@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../themes/themes';
+import { LibroTheme } from '../../Common/theme/types';
 import Heading, { HeadingSize } from '../../Common/components/Heading';
 import Link from '../../Common/components/Link';
 import { NAME_PREDICATES } from '../../Common/lib/metaData';

@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { isString } from '../../../Common/lib/typeCheckers';
 import { useFieldErrorStyles } from '../../../Core/views/ErrorResponse';
 import { formContext } from '../Form/FormContext';

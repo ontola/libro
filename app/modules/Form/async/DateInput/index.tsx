@@ -1,13 +1,13 @@
 import {
   LocalizationProvider,
   MobileDatePicker,
-  MobileDateTimePicker, 
+  MobileDateTimePicker,
 } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import {
   TextField,
   useMediaQuery,
-  useTheme, 
+  useTheme,
 } from '@mui/material';
 import { TextFieldProps as MuiTextFieldPropsType } from '@mui/material/TextField/TextField';
 import { makeStyles } from '@mui/styles';
@@ -17,7 +17,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import { formMessages } from '../../../../translations/messages';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { DateInputProps, DateInputType } from '../../components/DateInput';

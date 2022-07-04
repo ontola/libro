@@ -3,7 +3,7 @@ import { isNamedNode, isNode } from '@ontologies/core';
 import { useIds } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../../themes/themes';
+import { LibroTheme } from '../../../../Common/theme/types';
 import { isJSONLDObject } from '../../../../Common/lib/typeCheckers';
 import form from '../../../ontology/form';
 import { FormSection } from '../../Form';

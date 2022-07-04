@@ -3,7 +3,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import {
   FormControlLabel,
   RadioGroup as MaterialRadioGroup,
-  Radio, 
+  Radio,
 } from '@mui/material';
 import { darken } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import { Resource, useTopologyProvider } from 'link-redux';
 import React, { EventHandler } from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import { SHADOW } from '../../../Common/lib/flow';
 import { isResource } from '../../../Common/lib/typeCheckers';
 import { TopologyFC } from '../../../Core/lib/topology';

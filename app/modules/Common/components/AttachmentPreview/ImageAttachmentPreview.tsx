@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import Image from '../Image';
 
 const ATTACHMENT_PREVIEW_TITLE_ALPHA = 0.5;

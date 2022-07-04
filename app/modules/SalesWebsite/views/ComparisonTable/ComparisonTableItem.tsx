@@ -8,15 +8,15 @@ import {
   Resource,
   register,
   useIds,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import {
   BreakPoints,
   LibroTheme,
-  Margin, 
-} from '../../../../themes/themes';
+  Margin,
+} from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
 import TableCell from '../../../Table/topologies/TableCell';

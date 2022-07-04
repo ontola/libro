@@ -1,6 +1,6 @@
 import { CSSProperties } from '@mui/styles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import { detailBarsOverlap, scrollBoxCID } from '../../components/VerticalScroller';
 
 interface Styles {

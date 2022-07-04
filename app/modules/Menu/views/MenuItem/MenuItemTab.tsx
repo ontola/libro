@@ -11,7 +11,7 @@ import {
 } from 'link-redux';
 import React, { FormEventHandler } from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { TabVariant } from '../../../Common/components/Tabs';
 import { isDifferentWebsite } from '../../../Common/lib/iris';
 import { tabBarTopology } from '../../../Common/topologies/TabBar';

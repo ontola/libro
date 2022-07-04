@@ -3,7 +3,7 @@ import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import Image from '../Image';
 
 const ATTACHMENT_PREVIEW_IMAGE_SPACING = 3;

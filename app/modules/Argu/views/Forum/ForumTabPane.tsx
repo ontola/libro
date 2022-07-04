@@ -1,7 +1,7 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { Size } from '../../../../themes/themes';
+import { Size } from '../../../Common/theme/types';
 import Container from '../../../Common/topologies/Container';
 import Grid from '../../../Common/topologies/Grid';
 import { tabPaneTopology } from '../../../Common/topologies/TabPane';

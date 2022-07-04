@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 export const useContactOptionStyles = makeStyles<LibroTheme>((theme) => ({
   volunteerContactOption: {

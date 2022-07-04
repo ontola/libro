@@ -6,7 +6,7 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import retrievePath from '../../../Common/lib/iris';
 import sales from '../../ontology/sales';

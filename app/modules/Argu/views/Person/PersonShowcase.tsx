@@ -12,7 +12,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import { personeShowcaseMessages } from '../../../../translations/messages';
 import ontola from '../../../Core/ontology/ontola';
 import { showcaseTopology } from '../../../SalesWebsite/topologies/Showcase';

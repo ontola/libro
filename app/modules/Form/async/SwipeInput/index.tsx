@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import { dig, useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import { useStateMachine } from '../../../Common/hooks/useStateMachine';
 import ontola from '../../../Core/ontology/ontola';
 import { PermittedFormField } from '../../components/FormField/FormFieldTypes';

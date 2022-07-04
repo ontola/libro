@@ -6,13 +6,13 @@ import {
   register,
   useDataFetching,
   useIds,
-  useValues, 
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import dbo from '../../../../ontology/dbo';
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import LDLink from '../../components/LDLink';
 import { tryParseInt } from '../../lib/numbers';
 import { cardTopology } from '../../topologies/Card';

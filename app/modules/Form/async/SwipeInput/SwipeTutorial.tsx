@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { swipeInputMessages } from '../../../../translations/messages';
 import { State } from '../../../Common/hooks/useStateMachine';
 import useStoredState from '../../../Common/hooks/useStoredState';

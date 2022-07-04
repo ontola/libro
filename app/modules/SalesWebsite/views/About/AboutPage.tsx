@@ -5,11 +5,11 @@ import {
   Resource,
   array,
   register,
-  useIds, 
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import sales from '../../ontology/sales';
 

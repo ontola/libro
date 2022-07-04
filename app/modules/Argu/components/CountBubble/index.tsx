@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 export interface CountBubbleProps {
   /** The number displayed in the bubble */

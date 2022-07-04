@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import argu from '../../../Argu/lib/argu';
 import ontola from '../../../Core/ontology/ontola';
 import { defaultMenus } from '../../lib/viewHelpers';

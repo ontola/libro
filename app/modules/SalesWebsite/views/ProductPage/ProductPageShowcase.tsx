@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import Button from '../../../Common/components/Button';
 import { ReadMoreButton } from '../../components';
 import sales from '../../ontology/sales';

@@ -6,7 +6,7 @@ import React from 'react';
 import { Field, Form } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme, Margin } from '../../../../themes/themes';
+import { LibroTheme, Margin } from '../../theme/types';
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 import Button from '../Button';

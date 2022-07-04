@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints } from '../../../../themes/themes';
+import { BreakPoints } from '../../../Common/theme/types';
 import Button, { ButtonVariant } from '../../../Common/components/Button';
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { formFooterTopology } from '../../../Form/topologies/FormFooter';

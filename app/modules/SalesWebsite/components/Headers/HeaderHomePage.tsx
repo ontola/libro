@@ -7,8 +7,8 @@ import React from 'react';
 import {
   BreakPoints,
   LibroTheme,
-  Margin, 
-} from '../../../../themes/themes';
+  Margin,
+} from '../../../Common/theme/types';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
 import Container from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';

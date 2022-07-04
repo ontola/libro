@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../../themes/themes';
+import { LibroTheme } from '../../../../Common/theme/types';
 import { allTopologies } from '../../../../../topologies';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import GridItem from '../../../../Common/components/Grid/GridItem';

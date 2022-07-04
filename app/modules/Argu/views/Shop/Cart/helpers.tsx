@@ -4,7 +4,7 @@ import { useProperty } from 'link-redux';
 import React from 'react';
 import { FormattedNumber } from 'react-intl';
 
-import { LibroTheme, Margin } from '../../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../../Common/theme/types';
 import { LabelFormatter } from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
 import argu from '../../../lib/argu';

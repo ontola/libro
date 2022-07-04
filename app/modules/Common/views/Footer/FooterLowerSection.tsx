@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../theme/types';
 import { footerMessages, imageAltMessages } from '../../../../translations/messages';
 import argu from '../../../Argu/lib/argu';
 import { footerTopology } from '../../topologies/Footer';

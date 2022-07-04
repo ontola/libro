@@ -8,14 +8,14 @@ import {
   register,
   useIds,
   useLRS,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 import { useLocation } from 'react-router';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import { DialogSize, isDialogSize } from '../../../../middleware/ontolaMiddleware';
-import { BreakPoints } from '../../../../themes/themes';
+import { BreakPoints } from '../../theme/types';
 import { allTopologies } from '../../../../topologies';
 import { OnDoneHandler } from '../../../Action/views/helpers';
 import { frontendOrigin } from '../../../Core/lib/frontendIRIComponents';

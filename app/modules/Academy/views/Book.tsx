@@ -22,7 +22,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../Common/theme/types';
 import { academyMessages } from '../../../translations/messages';
 import argu from '../../Argu/lib/argu';
 import retrievePath from '../../Common/lib/iris';

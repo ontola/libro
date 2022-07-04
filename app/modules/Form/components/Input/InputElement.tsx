@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { FormTheme, formContext } from '../Form/FormContext';
 import { formFieldContext } from '../FormField/FormFieldContext';

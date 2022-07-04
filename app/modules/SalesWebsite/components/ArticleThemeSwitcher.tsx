@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../themes/themes';
+import { LibroTheme } from '../../Common/theme/types';
 import { salesMessages } from '../../../translations/messages';
 
 export interface ArticleThemeSwitcherProps {

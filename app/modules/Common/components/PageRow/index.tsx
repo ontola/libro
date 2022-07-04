@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 
 export interface PageRowProps {
   children: React.ReactNode;

@@ -4,7 +4,7 @@ import { NamedNode, SomeTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import React from 'react';
 
-import { LibroTheme } from '../../../themes/themes';
+import { LibroTheme } from '../../Common/theme/types';
 import { useSalesArticles } from '../hooks/useSalesArticles';
 
 import { ArticleThemeSwitcher } from './ArticleThemeSwitcher';

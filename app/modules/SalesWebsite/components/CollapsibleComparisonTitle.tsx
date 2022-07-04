@@ -4,7 +4,7 @@ import { Collapse, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../themes/themes';
+import { LibroTheme, Margin } from '../../Common/theme/types';
 
 export interface CollapsibleComparisonTitleProps {
   title: string;

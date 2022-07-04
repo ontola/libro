@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React, { ChildrenProp } from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   pageHeaderMenuItems: {

@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { cardTopology } from '../../../Common/topologies/Card';
 import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
 import ll from '../../../Core/ontology/ll';

@@ -4,12 +4,12 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import retrievePath from '../../../Common/lib/iris';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';

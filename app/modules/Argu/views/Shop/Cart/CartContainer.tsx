@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../../Common/theme/types';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import Progress from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';

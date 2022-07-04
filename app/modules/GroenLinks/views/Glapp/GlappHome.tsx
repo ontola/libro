@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import { BreakPoints } from '../../../../themes/themes';
+import { BreakPoints } from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardError from '../../../Common/components/Error/CardError';

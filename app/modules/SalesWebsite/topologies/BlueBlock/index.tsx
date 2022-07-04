@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Size } from '../../../../themes/themes';
+import { LibroTheme, Size } from '../../../Common/theme/types';
 import { ContainerProps, maxWidth } from '../../../Common/topologies/Container';
 import { TopologyFC } from '../../../Core/lib/topology';
 import sales from '../../ontology/sales';

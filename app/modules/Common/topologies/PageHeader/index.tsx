@@ -7,8 +7,8 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-  Size, 
-} from '../../../../themes/themes';
+  Size,
+} from '../../theme/types';
 import { TopologyFC } from '../../../Core/lib/topology';
 import libro from '../../../Core/ontology/libro';
 import Container from '../Container';

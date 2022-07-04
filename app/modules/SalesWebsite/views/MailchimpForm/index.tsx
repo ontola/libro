@@ -2,19 +2,19 @@ import { ChevronRight, MailRounded } from '@mui/icons-material';
 import {
   Button,
   TextField,
-  Typography, 
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import { mailchimpFormMessages } from '../../../../translations/messages';
 import ontola from '../../../Core/ontology/ontola';

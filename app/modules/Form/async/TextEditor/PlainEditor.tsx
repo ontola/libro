@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import Textarea from 'react-autosize-textarea';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { formMessages } from '../../../../translations/messages';
 import Button, { ButtonVariant } from '../../../Common/components/Button';
 import CardDivider from '../../../Common/components/Card/CardDivider';

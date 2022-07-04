@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../theme/types';
 import argu from '../../../Argu/lib/argu';
 import CardContent from '../../components/Card/CardContent';
 import CollapseText from '../../components/CollapseText';

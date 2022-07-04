@@ -9,7 +9,7 @@ import { makeStyles } from '@mui/styles';
 import { useFields } from 'link-redux';
 import React, { ForwardedRef } from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { isFunction } from '../../../Common/lib/typeCheckers';
 import libro from '../../../Core/ontology/libro';
 

@@ -2,11 +2,11 @@ import * as schema from '@ontologies/schema';
 import {
   Property,
   register,
-  useValues, 
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
-import { Size } from '../../../../themes/themes';
+import { Size } from '../../theme/types';
 import ontola from '../../../Core/ontology/ontola';
 import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';

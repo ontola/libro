@@ -1,7 +1,7 @@
 import { darken } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import { headingCID } from '../Heading';
 
 export const HOVER_COEFFICIENT = 0.3;

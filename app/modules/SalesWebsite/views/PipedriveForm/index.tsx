@@ -4,15 +4,15 @@ import {
   FC,
   register,
   useIds,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import {
   BreakPoints,
   LibroTheme,
-  Margin, 
-} from '../../../../themes/themes';
+  Margin,
+} from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import { PipedriveForm as PipedriveFormComp } from '../../components/PipedriveForm';
 import sales from '../../ontology/sales';

@@ -5,11 +5,11 @@ import {
   Resource,
   register,
   useIds,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../Common/theme/types';
 import { allTopologiesExcept } from '../../../../topologies';
 import Container from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';

@@ -5,12 +5,12 @@ import {
   FC,
   register,
   useNumbers,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme, Margin } from '../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import { salesMessages } from '../../../../translations/messages';
 import sales from '../../ontology/sales';

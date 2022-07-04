@@ -7,7 +7,7 @@ import { ClassNameMap, makeStyles } from '@mui/styles';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../theme/types';
 
 import { createStep } from './createStep';
 

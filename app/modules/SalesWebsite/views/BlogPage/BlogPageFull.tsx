@@ -9,12 +9,12 @@ import {
   term,
   useProperty,
   useResourceLink,
-  value, 
+  value,
 } from 'link-redux';
 import React from 'react';
 import { FormattedDate, FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { blogMessages } from '../../../../translations/messages';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';

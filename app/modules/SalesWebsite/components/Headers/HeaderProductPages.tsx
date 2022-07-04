@@ -2,7 +2,7 @@ import {
   Grid,
   Typography,
   useMediaQuery,
-  useTheme, 
+  useTheme,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
@@ -10,7 +10,7 @@ import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React, { ChildrenProp } from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import Container from '../../../Common/topologies/Container';
 import { ArticleContent } from '../ArticleContent';
 import { CallToActionButton } from '../CallToActionButton';

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 export const fieldLabelCID = 'CID-FieldLabel';
 

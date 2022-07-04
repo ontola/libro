@@ -5,15 +5,15 @@ import {
   FC,
   Property,
   useIds,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import {
   BreakPoints,
   LibroTheme,
-  Size, 
-} from '../../../../themes/themes';
+  Size,
+} from '../../../Common/theme/types';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { ArticleContent, HeaderProductPages } from '../../components';

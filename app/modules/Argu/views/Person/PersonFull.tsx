@@ -7,12 +7,12 @@ import {
   FC,
   Property,
   register,
-  useGlobalIds, 
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
 import org from '../../../../ontology/org';
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
 import SubSection from '../../../Common/components/SubSection';
 import ContentDetails from '../../../Common/topologies/ContentDetails';

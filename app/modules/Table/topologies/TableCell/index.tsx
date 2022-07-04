@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import { LibroTheme, Margin } from '../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../Common/theme/types';
 import { headingCID } from '../../../Common/components/Heading';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import { TopologyFC } from '../../../Core/lib/topology';

@@ -2,7 +2,7 @@ import {
   Autocomplete,
   AutocompleteRenderOptionState,
   TextField,
-  createFilterOptions, 
+  createFilterOptions,
 } from '@mui/material';
 import { AutocompleteRenderInputParams } from '@mui/material/Autocomplete/Autocomplete';
 import { makeStyles } from '@mui/styles';
@@ -12,7 +12,7 @@ import React, { ChangeEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { collectionMessages } from '../../../../translations/messages';
 import { useIRITemplate } from '../../../Common/hooks/useIRITemplate';
 import { useCollectionOptions } from '../CollectionContext';

@@ -3,7 +3,7 @@ import { makeStyles, useTheme } from '@mui/styles';
 import React from 'react';
 import { FormSpy } from 'react-final-form';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 export interface FlowBackgroundProps {
   progress: number;

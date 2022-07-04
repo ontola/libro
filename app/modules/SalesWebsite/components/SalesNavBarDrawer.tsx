@@ -4,7 +4,7 @@ import { makeStyles, useTheme } from '@mui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../Common/theme/types';
 import { useWebsiteIRI } from '../../Core/hooks/useWebsiteIRI';
 import ontola from '../../Core/ontology/ontola';
 import sales from '../ontology/sales';

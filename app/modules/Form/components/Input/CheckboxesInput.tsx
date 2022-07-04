@@ -5,7 +5,7 @@ import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
 import { parseForStorage } from '../../../Common/lib/persistence';
 import { LoadingHidden } from '../../../Core/components/Loading';

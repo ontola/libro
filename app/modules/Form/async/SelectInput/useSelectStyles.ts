@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { fieldVariantPreviewCID } from '../../components/FormField/UseFormStyles';
 

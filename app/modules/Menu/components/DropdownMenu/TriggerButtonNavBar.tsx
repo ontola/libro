@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import Button, { ButtonVariant } from '../../../Common/components/Button';
 
 import { TriggerButtonProps } from './TriggerButton';

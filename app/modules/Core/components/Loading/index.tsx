@@ -6,7 +6,7 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { Breadcrumb } from '../../../Common/components/Breadcrumbs';
 import CardContent from '../../../Common/components/Card/CardContent';
 import { useCoverImageStyles } from '../../../Common/components/CoverImage';

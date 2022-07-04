@@ -4,7 +4,7 @@ import { useLRS } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 export interface CommentProps {
   subject: NamedNode;

@@ -2,19 +2,19 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   Button,
   Grid,
-  Typography, 
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import retrievePath from '../../../Common/lib/iris';
 import sales from '../../ontology/sales';
 import { showcaseTopology } from '../../topologies/Showcase';

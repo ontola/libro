@@ -4,11 +4,11 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { allTopologiesExcept } from '../../../../topologies';
 import argu from '../../../Argu/lib/argu';
 import { pageTopology } from '../../../Common/topologies/Page';

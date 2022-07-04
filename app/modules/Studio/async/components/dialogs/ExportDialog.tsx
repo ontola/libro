@@ -12,7 +12,7 @@ import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../../../themes/themes';
+import { LibroTheme } from '../../../../Common/theme/types';
 import { actionMessages, studioExportMessages } from '../../../../../translations/messages';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
 import { useHasUnsavedChanges } from '../../hooks/useHasUnsavedChanges';

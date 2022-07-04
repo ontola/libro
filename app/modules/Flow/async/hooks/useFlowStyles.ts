@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 
 const STEPPER_SCALE_THRESHOLD = 10;
 const STEPPER_SCALE_SMALL = 0.7;

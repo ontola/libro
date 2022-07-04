@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import elements from '../../ontology/elements';
 

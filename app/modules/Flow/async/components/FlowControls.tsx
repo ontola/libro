@@ -11,7 +11,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { frontendIRI } from '../../../Core/ontology/app';
 import ontola from '../../../Core/ontology/ontola';

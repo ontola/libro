@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 
 import { FlowAnimation } from './FlowAnimation';
 import { SubmissionPage } from './SubmissionPage';

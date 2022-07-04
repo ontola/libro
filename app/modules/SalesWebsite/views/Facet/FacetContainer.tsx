@@ -18,7 +18,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../../themes/themes';
+} from '../../../Common/theme/types';
 import {
   StateMachine,
   any,

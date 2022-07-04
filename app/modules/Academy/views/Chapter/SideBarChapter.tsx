@@ -14,7 +14,7 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import argu from '../../../Argu/lib/argu';
 import { sideBarTopology } from '../../../Common/topologies/SideBar';
 

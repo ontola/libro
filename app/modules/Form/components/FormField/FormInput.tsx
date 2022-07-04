@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import Button from '../../../Common/components/Button';
 import { isMarkedForRemove } from '../../lib/helpers';
 import { SortableProps } from '../Sortable';

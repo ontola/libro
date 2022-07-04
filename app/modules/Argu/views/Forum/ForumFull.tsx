@@ -12,7 +12,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Size } from '../../../../themes/themes';
+import { LibroTheme, Size } from '../../../Common/theme/types';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';

@@ -8,11 +8,11 @@ import {
   Resource,
   register,
   useIds,
-  useLiterals, 
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import argu from '../../../Argu/lib/argu';
 import { footerTopology } from '../../../Common/topologies/Footer';
 import ResourceBoundary from '../../../Core/components/ResourceBoundary';

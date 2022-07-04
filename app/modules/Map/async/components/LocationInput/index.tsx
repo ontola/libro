@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../../Common/theme/types';
 import { hiddenRequiredInputErrors } from '../../../../../translations/messages';
 import { SHADOW_LIGHT } from '../../../../Common/lib/flow';
 import ontola from '../../../../Core/ontology/ontola';

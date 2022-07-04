@@ -4,7 +4,7 @@ import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../themes/themes';
+import { LibroTheme, Margin } from '../../Common/theme/types';
 
 const TWO = 2;
 

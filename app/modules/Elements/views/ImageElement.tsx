@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../Common/theme/types';
 import { allTopologies } from '../../../topologies';
 import Image from '../../Common/components/Image';
 import ontola from '../../Core/ontology/ontola';

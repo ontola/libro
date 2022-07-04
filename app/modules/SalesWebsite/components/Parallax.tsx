@@ -2,13 +2,13 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   Button,
   Grid,
-  Typography, 
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../Common/theme/types';
 import retrievePath from '../../Common/lib/iris';
 import Container from '../../Common/topologies/Container';
 

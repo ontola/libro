@@ -12,7 +12,7 @@ import { SubjectProp } from 'link-redux/dist-types/types';
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme, Margin } from '../../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../../Common/theme/types';
 import { allTopologies } from '../../../../../topologies';
 import ButtonWithFeedback from '../../../../Common/components/ButtonWithFeedback';
 import { quadruple } from '../../../../Common/lib/quadruple';

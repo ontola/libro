@@ -13,7 +13,7 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { landmarkMessages } from '../../../../translations/messages';
 import { TopologyFC } from '../../../Core/lib/topology';
 import libro from '../../../Core/ontology/libro';

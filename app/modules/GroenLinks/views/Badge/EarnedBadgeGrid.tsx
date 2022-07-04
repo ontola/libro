@@ -11,7 +11,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints } from '../../../../themes/themes';
+import { BreakPoints } from '../../../Common/theme/types';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
 import Image from '../../../Common/components/Image';
 import { gridTopology } from '../../../Common/topologies/Grid';

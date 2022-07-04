@@ -6,7 +6,7 @@ import { Property, Resource } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { formMessages } from '../../../../translations/messages';
 import { isResource } from '../../../Common/lib/typeCheckers';
 import { inlineTopology } from '../../../Common/topologies';

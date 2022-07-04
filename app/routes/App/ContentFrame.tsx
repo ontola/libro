@@ -11,8 +11,8 @@ import { appContext } from '../../modules/Core/components/AppContext/appContext'
 import NetworkStatusIndicator from '../../modules/Core/components/NetworkStatusIndicator';
 import SkipNavigation from '../../modules/Core/components/SkipNavigation';
 import libro from '../../modules/Core/ontology/libro';
-import headers from '../../themes/headers';
-import { LibroTheme } from '../../themes/themes';
+import headers from '../../headers';
+import { LibroTheme } from '../../modules/Common/theme/types';
 import HoverHelper from '../DevBrowser/HoverHelper';
 
 export interface ContentFrameProps {

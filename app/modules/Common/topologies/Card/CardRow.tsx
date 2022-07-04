@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import { TopologyFC } from '../../../Core/lib/topology';
 import libro from '../../../Core/ontology/libro';
 

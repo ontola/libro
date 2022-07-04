@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import rdf from '@ontologies/core';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import Image from '../../../Common/components/Image';
 import { imageRepresentationUrl } from '../../../Common/lib/attachments';
 import ontola from '../../../Core/ontology/ontola';

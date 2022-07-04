@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import CardContentProps from 'prop-types';
 import React, { ChildrenProp } from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import { headingCID } from '../Heading';
 import { HOVER_COEFFICIENT } from '../Link/ThemeStyles';
 

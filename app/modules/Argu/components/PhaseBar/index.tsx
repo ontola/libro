@@ -6,7 +6,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import { phaseMessages } from '../../../../translations/messages';
 import { CreateStepOnClick } from '../../../Common/components/Stepper/Stepper';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';

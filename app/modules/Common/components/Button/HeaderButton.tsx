@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import LDLink from '../LDLink';
 import { normalizeTarget } from '../Link';
 

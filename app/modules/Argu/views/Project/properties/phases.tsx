@@ -15,7 +15,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../../themes/themes';
+import { LibroTheme } from '../../../../Common/theme/types';
 import { allTopologies } from '../../../../../topologies';
 import useActionStatus from '../../../../Action/hooks/useActionStatus';
 import { stepperBuilder } from '../../../../Common/components/Stepper/Stepper';

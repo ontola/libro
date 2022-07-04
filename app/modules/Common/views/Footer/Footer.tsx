@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../theme/types';
 import { allTopologies } from '../../../../topologies';
 import argu from '../../../Argu/lib/argu';
 import HeadingContext from '../../components/Heading/HeadingContext';

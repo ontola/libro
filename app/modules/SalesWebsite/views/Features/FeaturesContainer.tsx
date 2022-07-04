@@ -4,15 +4,15 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   Property,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import {
   BreakPoints,
   LibroTheme,
-  Size, 
-} from '../../../../themes/themes';
+  Size,
+} from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import Container from '../../../Common/topologies/Container';
 import { Parallax } from '../../components';

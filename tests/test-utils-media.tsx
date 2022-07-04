@@ -1,6 +1,6 @@
 import mediaQuery from 'css-mediaquery';
 
-import { SCREENSIZE } from '../app/themes/common/theme/variables';
+import { SCREENSIZE } from '../app/modules/Common/theme/variables';
 
 export enum ScreenWidth {
   XS = 'xs',

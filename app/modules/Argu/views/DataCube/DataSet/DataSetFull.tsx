@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
-import { Size } from '../../../../../themes/themes';
+import { Size } from '../../../../Common/theme/types';
 import Container from '../../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
 

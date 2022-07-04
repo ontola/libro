@@ -4,7 +4,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import {
   Grid,
   Link,
-  Typography, 
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import * as schema from '@ontologies/schema';
@@ -14,11 +14,11 @@ import {
   Resource,
   register,
   useIds,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import argu from '../../../Argu/lib/argu';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';

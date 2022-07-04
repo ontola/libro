@@ -4,12 +4,12 @@ import {
   FC,
   Resource,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
-import { Size } from '../../../../../themes/themes';
+import { Size } from '../../../../Common/theme/types';
 import Container from '../../../../Common/topologies/Container';
 import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 

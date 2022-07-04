@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { allTopologies } from '../../../../topologies';
 import { useContainerToArr } from '../../hooks/useContainerToArr';
 import ll from '../../ontology/ll';

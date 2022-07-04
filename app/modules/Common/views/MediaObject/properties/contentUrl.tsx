@@ -18,7 +18,7 @@ import React from 'react';
 import { FormattedNumber } from 'react-intl';
 
 import dbo from '../../../../../ontology/dbo';
-import { LibroTheme, Margin } from '../../../../../themes/themes';
+import { LibroTheme, Margin } from '../../../theme/types';
 import { allTopologies } from '../../../../../topologies';
 import AnnotatedPDFViewer from '../../../../Argu/components/AnnotatedPDFViewer';
 import SheetViewer from '../../../../SheetViewer/components';

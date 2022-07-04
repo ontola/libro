@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React, { useEffect, useState } from 'react';
 
-import { Size } from '../../../../themes/themes';
+import { Size } from '../../../Common/theme/types';
 import CardContent from '../../../Common/components/Card/CardContent';
 import Container from '../../../Common/topologies/Container';
 import { gridTopology } from '../../../Common/topologies/Grid';

@@ -1,7 +1,7 @@
 import {
   Button,
   Grid,
-  Typography, 
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { NamedNode } from '@ontologies/core';
@@ -10,7 +10,7 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
 import retrievePath from '../../../Common/lib/iris';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import { ReadMoreButton } from '../../components';

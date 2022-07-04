@@ -1,7 +1,7 @@
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { ProjectContext, useProjectStateReducer } from '../context/ProjectContext';
 
 import { LoadingScreen } from './screens/LoadingScreen';

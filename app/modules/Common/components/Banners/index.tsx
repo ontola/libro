@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../theme/types';
 import app from '../../../Core/ontology/app';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({

@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { formMessages } from '../../../../translations/messages';
 import Button, { ButtonVariant } from '../../../Common/components/Button';
 import Markdown from '../../../Common/components/Markdown';

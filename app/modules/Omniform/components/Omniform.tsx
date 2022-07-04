@@ -13,7 +13,7 @@ import {
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { BreakPoints, LibroTheme } from '../../../themes/themes';
+import { BreakPoints, LibroTheme } from '../../Common/theme/types';
 import { SubmitSuccessHandler } from '../../Action/views/EntryPoint/useSubmitHandler';
 import { OnDoneHandler } from '../../Action/views/helpers';
 import argu from '../../Argu/lib/argu';

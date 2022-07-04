@@ -10,13 +10,13 @@ import {
   term,
   useProperty,
   useResourceLink,
-  value, 
+  value,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../themes/themes';
+import { LibroTheme } from '../../../Common/theme/types';
 import { blogMessages, caseMessages } from '../../../../translations/messages';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Core/ontology/ontola';
