@@ -26,6 +26,7 @@ import ProductPage from './ProductPage';
 import Proposition from './Propositions';
 import SellingPoint from './SellingPoint';
 import StackedImages from './StackedImages';
+import Step from './Step';
 import Stepper from './Stepper';
 import Tier from './Tier';
 import TrialPage from './TrialPage';
@@ -54,6 +55,7 @@ const views: ViewRegistrations = [
   ...ProcessPage,
   ...ProductPage,
   ...Proposition,
+  ...Step,
   ...Stepper,
   ...SellingPoint,
   ...SalesHeader,
