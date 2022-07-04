@@ -8,8 +8,8 @@ import {
 } from '@udecode/plate';
 import { DeepRecord, SomeNode } from 'link-lib';
 
-import elements from '../../../../../ontology/elements';
-import ontola from '../../../../../ontology/ontola';
+import elements from '../../../../Elements/ontology/elements';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { deepRecordToDeepSeed } from '../../../../Studio/async/lib/deepRecordToDeepSeed';
 import { ELEMENT_GRID } from '../../components/plugins/grid';
 import { deepSeedRecordToElementsValue } from '../deepSeedRecordToElementsValue';

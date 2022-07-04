@@ -3,7 +3,7 @@ import * as owl from '@ontologies/owl';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import * as xsd from '@ontologies/xsd';
-import type { DeepRecord } from 'link-lib';
+import { DeepRecord } from 'link-lib';
 
 import ex from '../../../../../ontology/ex';
 import { createAppNS } from '../../../../Common/ontology/app';

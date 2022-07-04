@@ -8,8 +8,8 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { DeepRecord, SomeNode } from 'link-lib';
 
-import elements from '../../../../../ontology/elements';
-import ontola from '../../../../../ontology/ontola';
+import elements from '../../../../Elements/ontology/elements';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { use } from '../use';
 
 import { elementsChildren } from './elementsChildren';

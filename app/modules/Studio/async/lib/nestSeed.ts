@@ -3,7 +3,7 @@ import {
   DeepSeedDataRecord,
   Seed,
   SeedDataRecord,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 const nestRecord = (seed: Seed, record: SeedDataRecord): DeepSeedDataRecord => {
   const { _id, ...fields } = record;

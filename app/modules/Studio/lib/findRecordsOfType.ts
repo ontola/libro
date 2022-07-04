@@ -3,7 +3,7 @@ import * as rdfx from '@ontologies/rdf';
 import {
   DeepSeedDataRecord,
   Value,
-} from '../../../helpers/seed';
+} from '../../Common/lib/seed';
 
 const isDataObject = (value: any): value is DeepSeedDataRecord =>
   typeof value === 'object' && Object.prototype.hasOwnProperty.call(value, '_id');

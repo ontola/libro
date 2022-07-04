@@ -5,7 +5,7 @@ import React from 'react';
 import {
   FertileComponentVariant,
   createComponentWrapper,
-} from '../../../../../components/RichText/FertileComponent';
+} from '../../../../Elements/components/FertileComponent';
 
 export const ELEMENT_TIP = 'tip';
 

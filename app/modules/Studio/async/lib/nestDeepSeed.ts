@@ -4,7 +4,7 @@ import {
   DeepSeedFieldValue,
   Value,
   isValue,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 const unpackSingularFieldValue = (seed: DeepSeed, value: Value | DeepSeedDataRecord) => {
   if (value.type === 'lid') {

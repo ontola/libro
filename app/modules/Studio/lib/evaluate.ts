@@ -17,34 +17,34 @@ import {
   normalizeType,
 } from 'link-lib';
 
-import { createAppNS } from '../../../ontology/app';
+import { createAppNS } from '../../Common/ontology/app';
 import ontAppSlashless from '../../../ontology/appSlashless';
-import ontArgu from '../../../ontology/argu';
-import ontDbo from '../../../ontology/dbo';
-import ontDexes from '../../../ontology/dexes';
-import ontElements from '../../../ontology/elements';
+import ontArgu from '../../Argu/ontology/argu';
+import ontDbo from '../../Common/ontology/dbo';
+import ontDexes from '../../Dexes/ontology/dexes';
+import ontElements from '../../Elements/ontology/elements';
 import ontEx from '../../../ontology/ex';
-import ontExample from '../../../ontology/example';
+import ontExample from '../../Kernel/ontology/example';
 import ontFa4 from '../../../ontology/fa4';
 import ontFhir from '../../../ontology/fhir';
-import ontForm from '../../../ontology/form';
+import ontForm from '../../Form/ontology/form';
 import ontHttp from '../../../ontology/http';
 import ontHttph from '../../../ontology/httph';
 import ontHydra from '../../../ontology/hydra';
-import ontLd from '../../../ontology/ld';
-import ontLibro from '../../../ontology/libro';
+import ontLd from '../../Kernel/ontology/ld';
+import ontLibro from '../../Kernel/ontology/libro';
 import ontLink from '../../../ontology/link';
-import ontLl from '../../../ontology/ll';
+import ontLl from '../../Kernel/ontology/ll';
 import ontMeeting from '../../../ontology/meeting';
-import ontOntola from '../../../ontology/ontola';
+import ontOntola from '../../Kernel/ontology/ontola';
 import ontOpengov from '../../../ontology/opengov';
 import ontOrg from '../../../ontology/org';
 import ontPerson from '../../../ontology/person';
 import ontQb from '../../../ontology/qb';
-import ontSales from '../../../ontology/sales';
-import ontSp from '../../../ontology/sp';
-import ontTeamGL from '../../../ontology/teamGL';
-import ontWdt from '../../../ontology/wdt';
+import ontSales from '../../SalesWebsite/ontology/sales';
+import ontSp from '../../Kernel/ontology/sp';
+import ontTeamGL from '../../GroenLinks/ontology/teamGL';
+import ontWdt from '../../Common/ontology/wdt';
 
 export const evaluate = (source: string, websiteIRI: string): DataObject[] => {
   // @ts-ignore

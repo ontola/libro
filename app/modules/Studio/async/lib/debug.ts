@@ -1,4 +1,4 @@
-import { quadruplesToDataSlice } from '../../../../helpers/quadruplesToDataSlice';
+import { quadruplesToDataSlice } from '../../../Kernel/lib/quadruplesToDataSlice';
 import parseToGraph from '../../lib/parseToGraph';
 
 import { compactDeepSeed } from './compactDeepSeed';

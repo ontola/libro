@@ -1,4 +1,4 @@
-import { DeepSeed, Slice } from '../../../../helpers/seed';
+import { DeepSeed, Slice } from '../../../Common/lib/seed';
 
 import { deepRecordToDeepSeed } from './deepRecordToDeepSeed';
 

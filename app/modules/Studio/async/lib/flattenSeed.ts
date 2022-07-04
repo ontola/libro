@@ -1,4 +1,3 @@
-
 import {
   DeepSeed,
   DeepSeedDataRecord,
@@ -6,7 +5,7 @@ import {
   LocalId,
   Seed,
   isValue,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 const walkChildren = (seed: Seed, deepSeed: DeepSeedDataRecord): GlobalId | LocalId => {
   const { _id, ...fields } = deepSeed;

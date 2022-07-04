@@ -1,8 +1,8 @@
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 import React from 'react';
 
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { DeepSeedDataRecord } from '../../../../../helpers/seed';
+import ErrorBoundary from '../../../../Common/components/ErrorBoundary';
+import { DeepSeedDataRecord } from '../../../../Common/lib/seed';
 import ElementsEditorLoader from '../../../../ElementsEditor/components/ElementsEditorLoader';
 
 interface DataEditorProps {

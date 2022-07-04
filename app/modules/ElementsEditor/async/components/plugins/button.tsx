@@ -14,8 +14,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../../ontology/argu';
-import elements from '../../../../../ontology/elements';
+import argu from '../../../../Argu/ontology/argu';
+import elements from '../../../../Elements/ontology/elements';
 import { EditWrapper } from '../EditWrapper';
 import { SetSubject } from '../SetSubject';
 

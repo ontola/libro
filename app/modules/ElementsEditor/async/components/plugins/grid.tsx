@@ -18,7 +18,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import elements from '../../../../../ontology/elements';
+import elements from '../../../../Elements/ontology/elements';
 import { EditWrapper } from '../EditWrapper';
 import { SetSubject } from '../SetSubject';
 

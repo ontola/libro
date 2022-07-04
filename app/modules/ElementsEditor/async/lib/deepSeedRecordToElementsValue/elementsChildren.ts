@@ -1,7 +1,7 @@
 import * as rdfx from '@ontologies/rdf';
 import { DeepRecord } from 'link-lib';
 
-import elements from '../../../../../ontology/elements';
+import elements from '../../../../Elements/ontology/elements';
 
 const memberPrefix = rdfx.ns('_').value;
 

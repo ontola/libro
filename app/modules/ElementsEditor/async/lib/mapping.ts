@@ -17,8 +17,8 @@ import {
   ELEMENT_UL,
 } from '@udecode/plate';
 
-import elements from '../../../../ontology/elements';
-import ontola from '../../../../ontology/ontola';
+import elements from '../../../Elements/ontology/elements';
+import ontola from '../../../Kernel/ontology/ontola';
 import { ELEMENT_BUTTON } from '../components/plugins/button';
 import { ELEMENT_GRID } from '../components/plugins/grid';
 import { ELEMENT_NOTE } from '../components/plugins/note';

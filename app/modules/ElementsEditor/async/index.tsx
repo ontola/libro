@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import React from 'react';
 
-import { GlobalId, LocalId } from '../../../helpers/seed';
+import { GlobalId, LocalId } from '../../Common/lib/seed';
 import { ElementsWrapperProps } from '../lib/ElementsWrapperProps';
 
 import { ElementsEditor } from './components';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../Common/components/Loading/Spinner';
 import { ElementsWrapperProps } from '../lib/ElementsWrapperProps';
 
 const ElementsEditor = React.lazy(

@@ -1,7 +1,7 @@
 import { TElement } from '@udecode/plate';
 import { PlateStoreState } from '@udecode/plate-core/dist/types/PlateStore';
 
-import { DeepSeedDataRecord } from '../../../../helpers/seed';
+import { DeepSeedDataRecord } from '../../../Common/lib/seed';
 import { deepSeedRecordToDeepRecord } from '../../../Studio/async/lib/deepSeedRecordToDeepRecord';
 
 import { toDescendant } from './deepSeedRecordToElementsValue/toDescendant';

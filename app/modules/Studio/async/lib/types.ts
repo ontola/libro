@@ -1,4 +1,4 @@
-import type { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 
 export type ToDataObject = (
   record: DeepRecord,

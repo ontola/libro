@@ -1,12 +1,12 @@
 import { originStr } from '@rdfdev/iri';
 import * as schema from '@ontologies/schema';
 
+import argu from '../../../Argu/ontology/argu';
 import {
   DeepSeed,
   Seed,
-  Value,
-} from '../../../../helpers/seed';
-import argu from '../../../../ontology/argu';
+  Value, 
+} from '../../../Common/lib/seed';
 
 import { flattenSeed } from './flattenSeed';
 

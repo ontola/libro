@@ -7,7 +7,7 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { handle } from '../../../../../helpers/logging';
-import elements from '../../../../../ontology/elements';
+import elements from '../../../../Elements/ontology/elements';
 import { findNestedRecordsOfType } from '../../../lib/findRecordsOfType';
 import { sourceToDeepSlice } from '../../../lib/sourceToDeepSlice';
 import {

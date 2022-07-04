@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 
-import { empJsonId } from '../../../../../helpers/empjsonSerializer';
-import example from '../../../../../ontology/example';
+import { empJsonId } from '../../../../Kernel/lib/empjsonSerializer';
+import example from '../../../../Kernel/ontology/example';
 import { sliceToWebsiteTree } from '../sliceToWebsiteTree';
 
 describe('sliceToWebsiteTree', () => {

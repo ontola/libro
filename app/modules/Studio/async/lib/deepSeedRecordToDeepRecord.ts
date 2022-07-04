@@ -5,7 +5,7 @@ import {
   DeepSeedDataRecord,
   DeepSeedFieldValue,
   valueToStoreValue,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 const isDeepValue = (value: DeepSeedFieldValue): value is DeepSeedDataRecord | DeepSeedDataRecord[] => {
   const toTest = Array.isArray(value) ? value[0] : value;

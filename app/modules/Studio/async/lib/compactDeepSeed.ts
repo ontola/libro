@@ -5,7 +5,7 @@ import {
   GlobalId,
   Value,
   isValue,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 const absolutiseId = (id: string, websiteIRI: string) => {
   if (id === websiteIRI) {

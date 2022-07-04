@@ -1,6 +1,6 @@
 import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
 
-import { DeepSeedDataRecord } from '../../../helpers/seed';
+import { DeepSeedDataRecord } from '../../Common/lib/seed';
 
 export interface ElementsWrapperProps {
   onChange: (e: DeepRecord) => void;

@@ -3,9 +3,9 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
 
-import argu from '../../../../../ontology/argu';
-import elements from '../../../../../ontology/elements';
-import example from '../../../../../ontology/example';
+import argu from '../../../../Argu/ontology/argu';
+import elements from '../../../../Elements/ontology/elements';
+import example from '../../../../Kernel/ontology/example';
 import { DeepSlice } from '../../../lib/dataObjectsToDeepSlice';
 import { deepSliceToSource } from '../deepSliceToSource';
 

@@ -11,8 +11,8 @@ import {
 import { PlateStoreState } from '@udecode/plate-core/dist/types/PlateStore';
 import { DeepRecord, SomeNode } from 'link-lib';
 
-import elements from '../../../../ontology/elements';
-import ontola from '../../../../ontology/ontola';
+import elements from '../../../Elements/ontology/elements';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { elementsInverseMap } from './mapping';
 

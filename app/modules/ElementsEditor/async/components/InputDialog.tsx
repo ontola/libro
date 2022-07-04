@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 
-import DropzoneLoader from '../../../../containers/Dropzone';
+import DropzoneLoader from '../../../Form/components/Dropzone';
 
 const KEY_ENTER = 13;
 

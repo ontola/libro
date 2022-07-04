@@ -2,7 +2,7 @@ import { isBlankNode, isTerm } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
 
-import { Slice } from '../../../../helpers/seed';
+import { Slice } from '../../../Common/lib/seed';
 import { DeepSlice } from '../../lib/dataObjectsToDeepSlice';
 
 const toSliceId = (v: SomeNode): string => isBlankNode(v) ? `_:${v.value}` : v.value;

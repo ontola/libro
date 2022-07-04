@@ -1,4 +1,4 @@
-import { toEmpJson } from '../../../helpers/empjsonSerializer';
+import { toEmpJson } from '../../Kernel/lib/empjsonSerializer';
 
 import parseToGraph from './parseToGraph';
 

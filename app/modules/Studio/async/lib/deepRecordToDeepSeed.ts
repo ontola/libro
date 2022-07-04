@@ -5,7 +5,7 @@ import {
   DeepSeedDataRecord,
   DeepSeedFieldValue,
   Value,
-} from '../../../../helpers/seed';
+} from '../../../Common/lib/seed';
 
 import { toId, toValue } from './graphToSeed';
 
