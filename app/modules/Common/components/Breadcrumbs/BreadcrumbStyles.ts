@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { headingCID } from '../Heading';
 
 const hoverBorderColor = '#c8c8c8';

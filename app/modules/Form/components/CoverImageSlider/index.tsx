@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import { tryParseInt } from '../../../Common/lib/numbers';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { useFormFieldForPath } from '../../hooks/useFormFieldForPath';
 
 const CENTER_Y = 50;

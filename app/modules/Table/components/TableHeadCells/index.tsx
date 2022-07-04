@@ -2,7 +2,7 @@ import { Resource, useLRS } from 'link-redux';
 import React from 'react';
 
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
-import { entityIsLoaded } from '../../../Core/lib/data';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
 
 const TableHeadCells = (): JSX.Element => {

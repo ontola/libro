@@ -4,7 +4,7 @@ import React from 'react';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import PlacementsMap from '../../../Map/components/PlacementsMap';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const PlacementAlertDialog: FC = ({
   subject,

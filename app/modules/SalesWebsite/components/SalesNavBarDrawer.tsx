@@ -4,9 +4,9 @@ import { makeStyles, useTheme } from '@mui/styles';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../Common/theme/types';
-import { useWebsiteIRI } from '../../Core/hooks/useWebsiteIRI';
-import ontola from '../../Core/ontology/ontola';
+import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
+import { useWebsiteIRI } from '../../Kernel/hooks/useWebsiteIRI';
+import ontola from '../../Kernel/ontology/ontola';
 import sales from '../ontology/sales';
 
 const DRAWER_PADDING = 5;

@@ -17,7 +17,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { formMessages } from '../../../../translations/messages';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { DateInputProps, DateInputType } from '../../components/DateInput';

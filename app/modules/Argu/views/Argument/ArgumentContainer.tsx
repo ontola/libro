@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../../Common/ontology/dbo';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardHeader from '../../../Common/components/Card/CardHeader';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
@@ -20,10 +20,10 @@ import CardAppendix from '../../../Common/topologies/Card/CardAppendix';
 import { containerTopology } from '../../../Common/topologies/Container';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles({
   content: {

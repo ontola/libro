@@ -4,7 +4,7 @@ import {
   lighten,
 } from '@mui/material/styles';
 
-import { Size } from './types';
+import { Size } from '../../Kernel/lib/themes';
 
 /* eslint-disable sort-keys */
 export const SCREENSIZE = {

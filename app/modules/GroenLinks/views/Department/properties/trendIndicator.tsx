@@ -3,7 +3,7 @@ import { useNumbers } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { isNumber } from '../../../../Common/lib/typeCheckers';
+import { isNumber } from '../../../../Kernel/lib/typeCheckers';
 import teamGL from '../../../ontology/teamGL';
 
 const largeDelta = 0.1;

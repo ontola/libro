@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Size } from '../../../Common/theme/types';
+import { LibroTheme, Size } from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import Container from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';

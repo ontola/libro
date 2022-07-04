@@ -2,7 +2,7 @@ import { TypographyOptions } from '@mui/material/styles/createTypography';
 import deepmerge from 'deepmerge';
 
 import variables from '../../Common/theme/variables';
-import { Size } from '../../Common/theme/types';
+import { Size } from '../../Kernel/lib/themes';
 
 const SIX_PX = 0.1875;
 

@@ -5,7 +5,7 @@ import React from 'react';
 
 import { inlineTopology } from '../../../Common/topologies';
 import { attributeListTopology } from '../../../Common/topologies/AttributeList';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
 
 const FormOptionInline = (): JSX.Element => (

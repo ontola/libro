@@ -3,7 +3,7 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const ApplyLink = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp?.value) {

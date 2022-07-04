@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import SortableInputs from '../Sortable/SortableInputs';
 
 import { formFieldContext } from './FormFieldContext';

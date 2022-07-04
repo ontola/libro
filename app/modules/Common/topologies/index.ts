@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 
-import { TopologyMap } from '../../Core/lib/ontology';
-import libro from '../../Core/ontology/libro';
+import { TopologyMap } from '../../Kernel/lib/ontology';
+import libro from '../../Kernel/ontology/libro';
 
 import attributeListTopologyComponent, { attributeListTopology } from './AttributeList';
 import breadcrumbTopologyComponent, { parentTopology } from './BreadcrumbsBar';

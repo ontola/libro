@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../theme/types';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { cardClassIdentifier, cardFixedClassIdentifier } from '../../topologies/Card/sharedCardStyles';
 import { PAGE_CID } from '../../topologies/Page';
 

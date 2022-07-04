@@ -7,7 +7,7 @@ import React from 'react';
 
 import ActionsBar from '../../../Action/topologies/ActionsBar';
 import { mainBodyTopology } from '../../../Common/topologies/MainBody';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const VoteEventMainBody: FC = () => (
   <div itemScope>

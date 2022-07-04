@@ -13,9 +13,9 @@ import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import Page from '../../../Common/topologies/Page';
-import app from '../../../Core/ontology/app';
-import example from '../../../Core/ontology/example';
-import ontola from '../../../Core/ontology/ontola';
+import app from '../../../Common/ontology/app';
+import example from '../../../Kernel/ontology/example';
+import ontola from '../../../Kernel/ontology/ontola';
 
 describe('Collection', () => {
   const ITEMS = 10;

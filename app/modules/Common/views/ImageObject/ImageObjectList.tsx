@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../ontology/dbo';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { listTopology } from '../../topologies/List';
 

@@ -3,7 +3,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import type { Location } from 'history';
 import React from 'react';
 
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { currentLocationControl } from '../../lib/paths';
 
 export enum TabVariant {

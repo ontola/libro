@@ -12,7 +12,7 @@ import React from 'react';
 
 import { actionsBarTopology } from '../../../../Action/topologies/ActionsBar';
 import { ButtonVariant } from '../../../../Common/components/Button';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 
 interface PropTypes {
   createAction: SomeNode;

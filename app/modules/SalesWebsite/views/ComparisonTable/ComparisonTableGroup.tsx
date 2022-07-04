@@ -16,9 +16,9 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
-import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
+import { useSeqToArr } from '../../../Kernel/hooks/useSeqToArr';
 import sales from '../../ontology/sales';
 
 const THE_NUMBER_TWO = 2;

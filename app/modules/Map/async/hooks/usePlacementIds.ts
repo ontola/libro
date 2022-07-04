@@ -15,8 +15,8 @@ import React from 'react';
 
 import fa4 from '../../../../ontology/fa4';
 import { tryParseFloat } from '../../../Common/lib/numbers';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import ontola from '../../../Core/ontology/ontola';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import ontola from '../../../Kernel/ontology/ontola';
 import { Placement } from '../../components/ControlledMap';
 
 const imageForPlacement = (node: SomeNode, lrs: LinkReduxLRSType): NamedNode =>

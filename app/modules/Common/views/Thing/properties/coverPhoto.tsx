@@ -12,8 +12,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LoadingCoverPhoto } from '../../../../Core/components/Loading';
-import ontola from '../../../../Core/ontology/ontola';
+import { LoadingCoverPhoto } from '../../../components/Loading';
+import ontola from '../../../../Kernel/ontology/ontola';
 import CoverImage from '../../../components/CoverImage';
 import LDLink from '../../../components/LDLink';
 import { tryParseInt } from '../../../lib/numbers';

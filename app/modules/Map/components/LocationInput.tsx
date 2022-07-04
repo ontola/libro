@@ -1,7 +1,7 @@
 import React from 'react';
 
-import LinkLoader from '../../Core/components/Loading/LinkLoader';
-import Suspense from '../../Core/components/Suspense';
+import LinkLoader from '../../Kernel/components/LinkLoader';
+import Suspense from '../../Kernel/components/Suspense';
 import { InputComponentProps } from '../../Form/components/FormField/FormFieldTypes';
 
 const LocationInput = React.lazy(

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import FormField from '../../components/FormField/FormField';
 import AssociationInput from '../../components/Input/AssociationInput';
 import { useItemFactory } from '../../components/Input/AssociationInput/lib/useItemFactory';

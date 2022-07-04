@@ -14,8 +14,8 @@ import CardContent from '../../../Common/components/Card/CardContent';
 import CardMain from '../../../Common/topologies/Card/CardMain';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import app from '../../../Core/ontology/app';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import app from '../../../Common/ontology/app';
 import teamGL from '../../ontology/teamGL';
 
 const PRELOAD_IRIS = [

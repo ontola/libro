@@ -11,11 +11,11 @@ import {
 } from 'link-redux';
 import React, { FormEventHandler } from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TabVariant } from '../../../Common/components/Tabs';
 import { isDifferentWebsite } from '../../../Common/lib/iris';
 import { tabBarTopology } from '../../../Common/topologies/TabBar';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { MenuTypes } from './types';
 

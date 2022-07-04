@@ -4,7 +4,7 @@ import { useLRS } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 import ReactDropzone, { FileRejection } from 'react-dropzone';
 
-import { LibroTheme, Margin } from '../../../Common/theme/types';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { DropzoneProps } from '../../components/Dropzone';
 import DropzoneClear from '../../components/Dropzone/DropzoneClear';
 import DropzoneInner from '../../components/Dropzone/DropzoneInner';

@@ -2,7 +2,7 @@ import {
   BreakPoints,
   LibroTheme,
   MaterialStyleMap,
-} from '../types';
+} from '../../../Kernel/lib/themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiTab: {

@@ -10,7 +10,7 @@ import { ButtonVariant } from '../../../Common/components/Button';
 import ErrorButtonWithFeedback from '../../../Common/components/Error/ErrorButtonWithFeedback';
 import OverlayContainer from '../../../Common/components/OverlayContainer';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import LinkLoader from '../../../Core/components/Loading/LinkLoader';
+import LinkLoader from '../../../Kernel/components/LinkLoader';
 import { MapVariant, NavigateCallback } from '../../components/ControlledMap';
 import { GeometryType } from '../../lib/geometry';
 import useMap, { UseMapProps } from '../hooks/useMap';

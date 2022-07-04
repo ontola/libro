@@ -3,8 +3,8 @@ import LinkedRenderStore from 'link-lib';
 import { PropertyProps, Resource } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../../ontology/dbo';
-import wdt from '../../../../../ontology/wdt';
+import dbo from '../../../../Common/ontology/dbo';
+import wdt from '../../../../Common/ontology/wdt';
 import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
 import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
 

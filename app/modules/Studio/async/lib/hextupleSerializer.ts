@@ -10,7 +10,7 @@ import {
   isNamedNode,
 } from '@ontologies/core';
 
-import ld from '../../../../ontology/ld';
+import ld from '../../../Kernel/ontology/ld';
 
 const hexJSONSubject = (subject: Node): string => (isBlankNode(subject)
   ? `_:${subject.value}`

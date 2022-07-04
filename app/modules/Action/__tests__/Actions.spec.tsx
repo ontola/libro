@@ -15,11 +15,11 @@ import React from 'react';
 
 import { fireEvent, renderLinked } from '../../../../tests/test-utils';
 import ex from '../../../ontology/ex';
-import argu from '../../Argu/lib/argu';
+import argu from '../../Argu/ontology/argu';
 import { headingCID } from '../../Common/components/Heading';
 import Page from '../../Common/topologies/Page';
-import example from '../../Core/ontology/example';
-import ll from '../../Core/ontology/ll';
+import example from '../../Kernel/ontology/example';
+import ll from '../../Kernel/ontology/ll';
 import form from '../../Form/ontology/form';
 
 describe('Actions', () => {

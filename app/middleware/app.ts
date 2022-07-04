@@ -17,11 +17,11 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { quadruple } from '../modules/Common/lib/quadruple';
-import app from '../modules/Core/ontology/app';
-import libro from '../modules/Core/ontology/libro';
-import ll from '../modules/Core/ontology/ll';
-import ontola from '../modules/Core/ontology/ontola';
+import { quadruple } from '../modules/Kernel/lib/quadruple';
+import app from '../modules/Common/ontology/app';
+import libro from '../modules/Kernel/ontology/libro';
+import ll from '../modules/Kernel/ontology/ll';
+import ontola from '../modules/Kernel/ontology/ontola';
 import http from '../ontology/http';
 
 import { DialogSize } from './ontolaMiddleware';

@@ -9,7 +9,7 @@ import React from 'react';
 
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 
 const AddressFull: FC = () => {

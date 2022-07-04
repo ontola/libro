@@ -8,11 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../ontology/dbo';
 import meeting from '../../../../ontology/meeting';
-import argu from '../../../Argu/lib/argu';
-import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
-import ontola from '../../../Core/ontology/ontola';
+import argu from '../../../Argu/ontology/argu';
+import { useHighlight } from '../../components/HighlightProvider/HighlightProvider';
+import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import Card from '../../topologies/Card';

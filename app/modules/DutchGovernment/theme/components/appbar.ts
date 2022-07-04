@@ -1,5 +1,5 @@
 import appbar from '../../../Common/theme/components/appbar';
-import { LibroTheme, MaterialStyleMap } from '../../../Common/theme/types';
+import { LibroTheme, MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => {
   const customAppBar = appbar(theme);

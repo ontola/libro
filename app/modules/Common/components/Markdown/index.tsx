@@ -14,8 +14,8 @@ import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
 import { handle } from '../../../../helpers/logging';
-import { LibroTheme } from '../../theme/types';
-import { entityIsLoaded } from '../../../Core/lib/data';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
 import { hasDataExtension } from '../../lib/dataExtensions';
 import {
   expandPath,

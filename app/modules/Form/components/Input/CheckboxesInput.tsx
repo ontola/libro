@@ -5,11 +5,11 @@ import { Resource } from 'link-redux';
 import React, { EventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
 import { parseForStorage } from '../../../Common/lib/persistence';
-import { LoadingHidden } from '../../../Core/components/Loading';
-import Spinner from '../../../Core/components/Loading/Spinner';
+import { LoadingHidden } from '../../../Common/components/Loading';
+import Spinner from '../../../Common/components/Loading/Spinner';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import Select from '../../topologies/Select';
 import { FormTheme, formContext } from '../Form/FormContext';

@@ -34,14 +34,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
-import { AppContextProvider } from '../app/modules/Core/components/AppContext/AppContextProvider';
+import { AppContextProvider } from '../app/modules/Kernel/components/AppContext/AppContextProvider';
 import { componentRegistrations } from '../app/components';
-import HighlightProvider from '../app/modules/Core/components/HighlightProvider/HighlightProvider';
-import WebsiteContextProvider, { getWebsiteContextFromWebsite } from '../app/modules/Core/components/WebsiteContext/WebsiteContextProvider';
+import HighlightProvider from '../app/modules/Common/components/HighlightProvider/HighlightProvider';
+import WebsiteContextProvider, { getWebsiteContextFromWebsite } from '../app/modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
 import OmniformProvider from '../app/modules/Omniform/components/OmniformProvider';
 import { defaultManifest } from '../app/helpers/defaultManifest';
 import { retrievePath } from '../app/modules/Common/lib/iris';
-import { isFunction } from '../app/modules/Common/lib/typeCheckers';
+import { isFunction } from '../app/modules/Kernel/lib/typeCheckers';
 import englishMessages from '../app/lang/en.json';
 import themes from '../app/themes';
 import { getViews } from '../app/views';

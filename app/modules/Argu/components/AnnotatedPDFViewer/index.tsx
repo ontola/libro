@@ -18,9 +18,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { pdfMessages } from '../../../../translations/messages';
 import { collectionMembers } from '../../../Collection/lib/diggers';
 import PageWithSideBar from '../../../Common/components/PageWithSideBar';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import PDFViewer from '../../../PDFViewer/components';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 import { CommentProps } from './PDFComment';
 import PDFComments from './PDFComments';

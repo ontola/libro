@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 
 import { formFooterTopology } from '../../../Form/topologies/FormFooter';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const CustomFormFull: FC = () => null;
 

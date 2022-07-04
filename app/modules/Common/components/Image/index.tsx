@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import {
   isDifferentWebsite,
   isFontAwesomeIRI,

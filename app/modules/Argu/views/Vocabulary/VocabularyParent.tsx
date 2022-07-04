@@ -9,7 +9,7 @@ import React from 'react';
 
 import Breadcrumb from '../../../Common/components/Breadcrumbs/Breadcrumb';
 import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const VocabularyParent = () => {
   const [name] = useProperty([schema.name, as.name]);

@@ -11,8 +11,8 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import dbo from '../../../../ontology/dbo';
-import { LibroTheme } from '../../theme/types';
+import dbo from '../../ontology/dbo';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import LDLink from '../../components/LDLink';
 import { tryParseInt } from '../../lib/numbers';
 import { cardTopology } from '../../topologies/Card';

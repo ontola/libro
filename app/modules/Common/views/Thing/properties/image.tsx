@@ -10,8 +10,8 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import dbo from '../../../../../ontology/dbo';
-import wdt from '../../../../../ontology/wdt';
+import dbo from '../../../ontology/dbo';
+import wdt from '../../../ontology/wdt';
 import { allTopologies } from '../../../../../topologies';
 import Image from '../../../components/Image';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../lib/iris';

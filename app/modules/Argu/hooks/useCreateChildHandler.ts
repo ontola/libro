@@ -11,8 +11,8 @@ import {
 import React from 'react';
 
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
-import ll from '../../Core/ontology/ll';
-import ontola from '../../Core/ontology/ontola';
+import ll from '../../Kernel/ontology/ll';
+import ontola from '../../Kernel/ontology/ontola';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../Form/lib/diggers';
 import { MapInteractionCallback } from '../../Map/components/ControlledMap';
 import { GeometryType } from '../../Map/lib/geometry';

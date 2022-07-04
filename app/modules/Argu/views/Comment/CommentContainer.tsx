@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,12 +15,12 @@ import { containerTopology } from '../../../Common/topologies/Container';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { sideBarTopology } from '../../../Common/topologies/SideBar';
-import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
-import { LoadingHidden } from '../../../Core/components/Loading';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
+import { LoadingHidden } from '../../../Common/components/Loading';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
 import OmniformTrigger from '../../../Omniform/components/OmniformTrigger';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 export interface CommentContainerProps {
   depth?: number;

@@ -3,7 +3,7 @@ import {
   Property,
   array,
   register,
-  useIds, 
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,7 +12,7 @@ import { IsActiveCheck } from '../../../Common/components/Link';
 import UnorderedList from '../../../Common/components/UnorderedList';
 import { CardRow } from '../../../Common/topologies/Card';
 import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { MenuTypes } from './types';
 

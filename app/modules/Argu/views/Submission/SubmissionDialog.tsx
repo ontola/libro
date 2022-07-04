@@ -16,9 +16,9 @@ import useActionStatus from '../../../Action/hooks/useActionStatus';
 import { OnDoneHandler } from '../../../Action/views/helpers';
 import Button from '../../../Common/components/Button';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import Flow from '../../../Flow/topologies/Flow';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const style = { padding: '0.5rem 0' };
 

@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../Common/theme/types';
-import { TopologyFC } from '../../../Core/lib/topology';
-import ontola from '../../../Core/ontology/ontola';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import ontola from '../../../Kernel/ontology/ontola';
 
 export const tableHeaderCellTopology = ontola.ns('tableHeaderCell');
 

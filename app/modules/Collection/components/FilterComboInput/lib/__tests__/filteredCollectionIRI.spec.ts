@@ -7,7 +7,7 @@ import { useLRS } from 'link-redux';
 
 import { renderLinkedHook } from '../../../../../../../tests/test-utils-hooks';
 import { useIRITemplate } from '../../../../../Common/hooks/useIRITemplate';
-import ontola from '../../../../../Core/ontology/ontola';
+import ontola from '../../../../../Kernel/ontology/ontola';
 import { filteredCollectionIRI } from '../filteredCollectionIRI';
 import { FilterValue } from '../FilterValue';
 

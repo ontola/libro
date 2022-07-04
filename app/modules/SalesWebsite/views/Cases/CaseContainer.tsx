@@ -14,7 +14,7 @@ import {
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import retrievePath from '../../../Common/lib/iris';
 import Container, { containerTopology } from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';

@@ -5,7 +5,7 @@
 import React from 'react';
 
 import { render } from '../../../../../tests/test-utils';
-import { Size } from '../../theme/types';
+import { Size } from '../../../Kernel/lib/themes';
 
 import Container from './index';
 

@@ -6,11 +6,11 @@ import { Property, Resource } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { formMessages } from '../../../../translations/messages';
-import { isResource } from '../../../Common/lib/typeCheckers';
+import { isResource } from '../../../Kernel/lib/typeCheckers';
 import { inlineTopology } from '../../../Common/topologies';
-import { LoadingRow } from '../../../Core/components/Loading';
+import { LoadingRow } from '../../../Common/components/Loading';
 import useFieldOptions from '../../hooks/useFieldOptions';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/FormFieldTypes';

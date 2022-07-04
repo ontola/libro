@@ -12,7 +12,7 @@ import React, { ChangeEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { collectionMessages } from '../../../../translations/messages';
 import { useIRITemplate } from '../../../Common/hooks/useIRITemplate';
 import { useCollectionOptions } from '../CollectionContext';

@@ -5,7 +5,7 @@
 import * as rdfs from '@ontologies/rdfs';
 import * as sh from '@ontologies/shacl';
 
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 import form from '../ontology/form';
 
 export const formGroupsPath = [

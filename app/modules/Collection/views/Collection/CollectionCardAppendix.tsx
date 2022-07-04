@@ -8,8 +8,8 @@ import React from 'react';
 
 import { tryParseInt } from '../../../Common/lib/numbers';
 import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import ontola from '../../../Core/ontology/ontola';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

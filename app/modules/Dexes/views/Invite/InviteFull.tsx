@@ -12,7 +12,7 @@ import {
 import React from 'react';
 
 import ActionsBar from '../../../Action/topologies/ActionsBar';
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import CardContent from '../../../Common/components/Card/CardContent';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
 import { defaultMenus } from '../../../Common/lib/viewHelpers';
@@ -20,8 +20,8 @@ import CardMain from '../../../Common/topologies/Card/CardMain';
 import Container from '../../../Common/topologies/Container';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import { LoadingHidden } from '../../../Core/components/Loading';
-import ontola from '../../../Core/ontology/ontola';
+import { LoadingHidden } from '../../../Common/components/Loading';
+import ontola from '../../../Kernel/ontology/ontola';
 import dexes from '../../ontology/dexes';
 
 const InviteFull: FC = () => {

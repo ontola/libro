@@ -10,7 +10,7 @@ import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React, { ChildrenProp } from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import Container from '../../../Common/topologies/Container';
 import { ArticleContent } from '../ArticleContent';
 import { CallToActionButton } from '../CallToActionButton';

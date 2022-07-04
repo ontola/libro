@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { statusMessages } from '../../../../../translations/messages';
 import Detail from '../../../../Common/components/Detail';
 import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const PinnedAt = ({ linkedProp }: PropertyProps): JSX.Element => {
   const { formatDate, formatMessage } = useIntl();

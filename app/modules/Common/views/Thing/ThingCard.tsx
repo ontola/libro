@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../ontology/dbo';
 import meeting from '../../../../ontology/meeting';
 import AllWithProperty from '../../components/AllWithProperty';
 import CardContent from '../../components/Card/CardContent';

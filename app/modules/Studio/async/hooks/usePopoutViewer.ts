@@ -4,7 +4,7 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { handle } from '../../../../helpers/logging';
-import { WebManifest } from '../../../../WebManifest';
+import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { EditorEvents, EditorUpdateEvent } from '../../lib/EditorUpdateEvent';
 import { PageViewerState } from '../../lib/PageViewerState';
 import parseToGraph from '../../lib/parseToGraph';

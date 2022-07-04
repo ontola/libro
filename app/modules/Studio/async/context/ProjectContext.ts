@@ -1,6 +1,6 @@
 import React, { Dispatch } from 'react';
 
-import { WebManifest } from '../../../../WebManifest';
+import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { Seed } from '../../../Common/lib/seed';
 import { sourceToSlice } from '../../lib/parseToGraph';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';

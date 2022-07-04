@@ -12,9 +12,9 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { personeShowcaseMessages } from '../../../../translations/messages';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { showcaseTopology } from '../../../SalesWebsite/topologies/Showcase';
 
 const CONTAINER_PADDING = 5;

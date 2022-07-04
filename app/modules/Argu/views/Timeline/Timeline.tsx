@@ -14,7 +14,7 @@ import { allTopologies } from '../../../../topologies';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
 import CardContent from '../../../Common/components/Card/CardContent';
 import Card from '../../../Common/topologies/Card';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles(() => ({
   timelineWrapper: {

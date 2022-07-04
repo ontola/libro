@@ -18,8 +18,8 @@ import {
 } from '../../../../../tests/test-utils';
 import hydra from '../../../../ontology/hydra';
 import Container from '../../../Common/topologies/Container';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 describe('Notification', () => {
   afterEach(fetchMock.resetMocks);

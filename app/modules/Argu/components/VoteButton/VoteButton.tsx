@@ -6,7 +6,7 @@ import {
   useDataFetching,
   useIds,
   useLRS,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,10 +15,10 @@ import { ButtonVariant } from '../../../Common/components/Button';
 import {
   HTTP_RETRY_WITH,
   SubmitDataProcessor,
-  handleHTTPRetry, 
+  handleHTTPRetry,
 } from '../../../Common/lib/errorHandling';
 import { countInParentheses } from '../../../Common/lib/numbers';
-import { entityIsLoaded } from '../../../Core/lib/data';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
 import useCounts from '../../hooks/votes/useCounts';
 import useVoteAction from '../../hooks/votes/useVoteAction';
 

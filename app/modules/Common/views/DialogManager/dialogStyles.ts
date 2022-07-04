@@ -2,7 +2,7 @@ import { alpha } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 import { DialogSize } from '../../../../middleware/ontolaMiddleware';
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 
 const backdropAlphaCoefficient = 0.90;
 const backdropAlphaCoefficientNoBlur = 0.95;

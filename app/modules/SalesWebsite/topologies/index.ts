@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 
-import { TopologyMap } from '../../Core/lib/ontology';
+import { TopologyMap } from '../../Kernel/lib/ontology';
 
 import BlueBlock, { blueBlockTopology } from './BlueBlock';
 import Showcase, { showcaseTopology } from './Showcase';

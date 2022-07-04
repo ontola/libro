@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import { listTopology } from '../../../Common/topologies/List';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

@@ -10,9 +10,9 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked, waitFor } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import Container from '../../../Common/topologies/Container';
-import example from '../../../Core/ontology/example';
+import example from '../../../Kernel/ontology/example';
 import elements from '../../ontology/elements';
 
 const s = (x: NamedNode) => x.toString();

@@ -11,7 +11,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../Common/theme/types';
+import { LibroTheme } from '../../Kernel/lib/themes';
 import { ButtonVariant } from '../../Common/components/Button';
 import { bestType } from '../../Common/lib/data';
 import { listTopology } from '../../Common/topologies/List';

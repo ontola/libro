@@ -3,7 +3,7 @@ import { LinkedRenderStore } from 'link-lib/dist-types/LinkedRenderStore';
 import { LRSCtx } from 'link-redux';
 import React, { ChildrenProp } from 'react';
 
-import { TopologyState } from '../../../Core/lib/topology';
+import { TopologyState } from '../../../Kernel/lib/topology';
 
 import ErrorRenderer from './ErrorRenderer';
 

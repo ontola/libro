@@ -12,8 +12,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { navBarMessages } from '../../../../translations/messages';
 import { usePriorityNavigation } from '../../../Common/hooks/usePriorityNavigation';
-import { frontendIRI } from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import { frontendIRI } from '../../../Kernel/lib/frontendIRIComponents';
+import ontola from '../../../Kernel/ontology/ontola';
 import { Trigger } from '../../../Menu/components/DropdownMenu/TriggerButton';
 import { TriggerButtonNavBar } from '../../../Menu/components/DropdownMenu/TriggerButtonNavBar';
 import AppMenu, { AppMenuChildProps } from '../../../Menu/topologies/AppMenu';

@@ -9,8 +9,8 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/lib/argu';
-import ontola from '../../../Core/ontology/ontola';
+import argu from '../../../Argu/ontology/argu';
+import ontola from '../../../Kernel/ontology/ontola';
 import FormFooter from '../../../Form/topologies/FormFooter';
 import Navbar from '../../../NavBar/topologies/Navbar';
 import { CardMain } from '../../topologies/Card';

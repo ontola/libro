@@ -13,7 +13,7 @@ import {
   BreakPoints,
   LibroTheme,
   Size,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { ArticleContent, HeaderProductPages } from '../../components';

@@ -7,9 +7,9 @@ import HttpStatus from 'http-status-codes';
 
 import ex from '../../../../../ontology/ex';
 import http from '../../../../../ontology/http';
-import { createAppNS } from '../../../../Core/ontology/app';
-import example from '../../../../Core/ontology/example';
-import ontola from '../../../../Core/ontology/ontola';
+import { createAppNS } from '../../../../Common/ontology/app';
+import example from '../../../../Kernel/ontology/example';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { toDataDocument, toDataObject } from '../quadsToDataObject';
 
 const websiteIRI = 'https://mysite.example.com/';

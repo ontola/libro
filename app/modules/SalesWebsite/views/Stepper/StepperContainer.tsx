@@ -3,9 +3,9 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
 import { chapterContentTopology } from '../../../Academy/topologies/ChapterContent';
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import { containerTopology } from '../../../Common/topologies/Container';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import Step from '../../components/Step';
 import sales from '../../ontology/sales';
 

@@ -1,7 +1,7 @@
 import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
-import { LoadingCard } from '../../../Core/components/Loading';
+import { LoadingCard } from '../../../Common/components/Loading';
 import {
   ControlledMapProps,
   MapViewChangeCallback,

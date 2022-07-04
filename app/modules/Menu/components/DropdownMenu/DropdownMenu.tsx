@@ -9,9 +9,9 @@ import { makeStyles } from '@mui/styles';
 import { useFields } from 'link-redux';
 import React, { ForwardedRef } from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
-import { isFunction } from '../../../Common/lib/typeCheckers';
-import libro from '../../../Core/ontology/libro';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import { isFunction } from '../../../Kernel/lib/typeCheckers';
+import libro from '../../../Kernel/ontology/libro';
 
 import { DropdownMenuContext } from './DropdownMenuContext';
 import { Trigger } from './TriggerButton';

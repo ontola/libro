@@ -2,8 +2,8 @@ import { SomeNode } from 'link-lib';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { isFunction } from '../../../Common/lib/typeCheckers';
-import libro from '../../../Core/ontology/libro';
+import { isFunction } from '../../../Kernel/lib/typeCheckers';
+import libro from '../../../Kernel/ontology/libro';
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 

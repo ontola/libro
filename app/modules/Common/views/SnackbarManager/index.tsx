@@ -10,7 +10,7 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../topologies';
-import libro from '../../../Core/ontology/libro';
+import libro from '../../../Kernel/ontology/libro';
 
 export const SnackbarManager = (): JSX.Element | null => {
   const finishSnackbar = useActionById(libro.actions.snackbar.finished);

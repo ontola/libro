@@ -10,7 +10,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import libro from '../../../Core/ontology/libro';
+import libro from '../../../Kernel/ontology/libro';
 
 describe('SnackbarManager', () => {
   it('renders nothing if queue is empty', async () => {

@@ -3,7 +3,7 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
 import Link from '../../../../Common/components/Link';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 
 const RedirectUrlTable = ({ linkedProp }: PropertyProps): JSX.Element | null => {

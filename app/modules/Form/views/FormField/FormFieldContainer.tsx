@@ -13,7 +13,7 @@ import { containerTopology } from '../../../Common/topologies/Container';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { UnwrappedForm } from '../../components/Form/Form';
 import form from '../../ontology/form';
 

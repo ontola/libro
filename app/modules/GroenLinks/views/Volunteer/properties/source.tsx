@@ -4,7 +4,7 @@ import emoji from 'react-easy-emoji';
 
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
-import app from '../../../../Core/ontology/app';
+import app from '../../../../Common/ontology/app';
 import teamGL from '../../../ontology/teamGL';
 
 const Source = ({ linkedProp }: PropertyProps) => {

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../../Common/ontology/dbo';
 import meeting from '../../../../ontology/meeting';
 import ActionsBar from '../../../Action/topologies/ActionsBar';
 import { PageHeader } from '../../../Common/components/PageHeader';
@@ -15,10 +15,10 @@ import SubSection from '../../../Common/components/SubSection';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import MainBody from '../../../Common/topologies/MainBody';
 import { tabPaneTopology } from '../../../Common/topologies/TabPane';
-import { LoadingHidden } from '../../../Core/components/Loading';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import { LoadingHidden } from '../../../Common/components/Loading';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 const ShopFull: FC = (): JSX.Element => (
   <React.Fragment>

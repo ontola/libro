@@ -1,4 +1,4 @@
-import { Margin } from '../../../Common/theme/types';
+import { Margin } from '../../../Kernel/lib/themes';
 
 export const marginMap = new Map<string, Margin>([
   ['small', Margin.Small],

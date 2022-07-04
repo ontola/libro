@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme, Margin } from '../../../Common/theme/types';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import { salesMessages } from '../../../../translations/messages';
 import sales from '../../ontology/sales';

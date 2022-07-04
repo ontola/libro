@@ -1,7 +1,7 @@
 import { register } from 'link-redux';
 
 import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 const GuestUserParent = () => null;
 

@@ -4,7 +4,7 @@ import { isNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { CallToActionButton } from '../CallToActionButton';
 
 import type { HeaderProps } from './HeaderProps';

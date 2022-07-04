@@ -3,7 +3,7 @@ import React from 'react';
 
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import VoteData from '../../components/VoteData';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const VoteEventTableCell: FC = () => (
   <VoteData />

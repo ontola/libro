@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../../Common/lib/iris';
 import { pageTopology } from '../../../Common/topologies/Page';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 const GroupPage = () => {
   const [settingsMenu] = useProperty(ontola.settingsMenu);

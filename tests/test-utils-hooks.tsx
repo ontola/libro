@@ -5,8 +5,8 @@ import React from 'react';
 
 import { defaultManifest } from '../app/helpers/defaultManifest';
 import generateLRS from '../app/helpers/generateLRS';
-import { quadruplesToDataSlice } from '../app/modules/Common/lib/quadruplesToDataSlice';
-import { getWebsiteContextFromWebsite } from '../app/modules/Core/components/WebsiteContext/WebsiteContextProvider';
+import { quadruplesToDataSlice } from '../app/modules/Kernel/lib/quadruplesToDataSlice';
+import { getWebsiteContextFromWebsite } from '../app/modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
 
 import { resourcesToGraph } from './test-utils';
 

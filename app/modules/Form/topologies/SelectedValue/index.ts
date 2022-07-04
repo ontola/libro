@@ -1,4 +1,4 @@
-import { createBasicTopologyProvider } from '../../../Core/lib/topology';
+import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
 import form from '../../ontology/form';
 
 export const selectedValueTopology = form.topologies.selectedValue;

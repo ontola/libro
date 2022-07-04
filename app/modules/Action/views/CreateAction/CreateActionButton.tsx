@@ -22,7 +22,7 @@ import { gridTopology } from '../../../Common/topologies/Grid';
 import { listTopology } from '../../../Common/topologies/List';
 import { pageTopology } from '../../../Common/topologies/Page';
 import { tabPaneTopology } from '../../../Common/topologies/TabPane';
-import libro from '../../../Core/ontology/libro';
+import libro from '../../../Kernel/ontology/libro';
 import { menuTopology } from '../../../Menu/topologies/Menu';
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import { tableFooterCellTopology } from '../../../Table/topologies/TableFooterCell';

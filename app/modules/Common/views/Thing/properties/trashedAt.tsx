@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import argu from '../../../../Argu/lib/argu';
+import argu from '../../../../Argu/ontology/argu';
 import CardContent from '../../../components/Card/CardContent';
 import { inlineTopology } from '../../../topologies';
 import Card from '../../../topologies/Card';

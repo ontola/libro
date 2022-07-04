@@ -11,9 +11,9 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/lib/argu';
-import example from '../../../Core/ontology/example';
-import ontola from '../../../Core/ontology/ontola';
+import argu from '../../../Argu/ontology/argu';
+import example from '../../../Kernel/ontology/example';
+import ontola from '../../../Kernel/ontology/ontola';
 import Page from '../../topologies/Page';
 
 describe('Search', () => {

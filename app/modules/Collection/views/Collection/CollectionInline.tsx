@@ -3,7 +3,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { inlineTopology } from '../../../Common/topologies';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

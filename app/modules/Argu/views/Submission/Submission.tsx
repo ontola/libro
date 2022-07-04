@@ -20,14 +20,14 @@ import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
 import Card from '../../../Common/topologies/Card';
 import Container from '../../../Common/topologies/Container';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import LinkLoader from '../../../Core/components/Loading/LinkLoader';
-import ontola from '../../../Core/ontology/ontola';
+import LinkLoader from '../../../Kernel/components/LinkLoader';
+import ontola from '../../../Kernel/ontology/ontola';
 import { FormFooterRight } from '../../../Form/components/Form';
 import FormFooter from '../../../Form/topologies/FormFooter';
 import { tableTopology } from '../../../Table/topologies/Table';
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import { tableRowTopology } from '../../../Table/topologies/TableRow';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles(() => ({
   buttonWrapper: {

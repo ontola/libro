@@ -10,9 +10,9 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../../../topologies';
-import LinkLoader from '../../../../../Core/components/Loading/LinkLoader';
-import { useContainerToArr } from '../../../../../Core/hooks/useContainerToArr';
-import argu from '../../../../lib/argu';
+import LinkLoader from '../../../../../Kernel/components/LinkLoader';
+import { useContainerToArr } from '../../../../../Kernel/hooks/useContainerToArr';
+import argu from '../../../../ontology/argu';
 
 export interface CouponsProps {
   linkedProp: SomeTerm;

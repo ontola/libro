@@ -1,12 +1,12 @@
 import {
   dig,
   useLinkRenderContext,
-  useValues, 
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { appContext } from '../../../Core/components/AppContext/appContext';
+import { appContext } from '../../../Kernel/components/AppContext/appContext';
 import {
   COVER_PREDICATES,
   COVER_URL_PREDICATES,

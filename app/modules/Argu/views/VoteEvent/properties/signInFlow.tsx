@@ -17,7 +17,7 @@ import { signInMessages } from '../../../../../translations/messages';
 import { useCurrentActor } from '../../../../Auth/hooks/useCurrentActor';
 import CloseableContainer from '../../../../Common/components/CloseableContainer';
 import path, { currentLocationControl } from '../../../../Common/lib/paths';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const useStyles = makeStyles({
   paragraphMargin: {

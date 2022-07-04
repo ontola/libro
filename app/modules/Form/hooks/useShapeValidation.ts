@@ -20,8 +20,8 @@ import { LinkedDataObject, TermOpts } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { arraysEqual } from '../../Common/lib/data';
-import { isPromise } from '../../Common/lib/typeCheckers';
-import { containerToArr } from '../../Core/lib/data';
+import { isPromise } from '../../Kernel/lib/typeCheckers';
+import { containerToArr } from '../../Kernel/lib/data';
 
 import useShapeValues from './useShapeValues';
 

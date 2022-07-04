@@ -5,8 +5,8 @@ import React, { ChangeEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import app from '../../modules/Core/ontology/app';
-import libro from '../../modules/Core/ontology/libro';
+import app from '../../modules/Common/ontology/app';
+import libro from '../../modules/Kernel/ontology/libro';
 import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';

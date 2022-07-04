@@ -2,14 +2,14 @@ import { isNamedNode } from '@ontologies/core';
 import {
   FC,
   Property,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 
 import TabbarProvider from '../../../Common/components/TabbarProvider';
 import { CardMain } from '../../../Common/topologies/Card';
 import Container, { containerTopology } from '../../../Common/topologies/Container';
-import app from '../../../Core/ontology/app';
+import app from '../../../Common/ontology/app';
 
 import { MenuTypes } from './types';
 

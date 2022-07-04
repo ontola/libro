@@ -14,6 +14,7 @@ import ActionTableCell from './ActionTableCell';
 import CreateAction from './CreateAction';
 import CreateSession from './CreateSession';
 import EntryPoint from './EntryPoint';
+import Loading from './Loading';
 import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
 import ReadAction from './ReadAction';
@@ -37,5 +38,6 @@ export default [
   ...EntryPoint,
   ...ReadAction,
   FollowUpName,
+  ...Loading,
   WidgetName,
 ];

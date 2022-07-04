@@ -2,7 +2,7 @@ import rdf, { NamedNode } from '@ontologies/core';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-import { useContainerToArr } from '../../Core/hooks/useContainerToArr';
+import { useContainerToArr } from '../../Kernel/hooks/useContainerToArr';
 
 export type ChangeMenuTab = (e: Event, url: string) => void;
 

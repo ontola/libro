@@ -16,7 +16,7 @@ import LDLink from '../../../Common/components/LDLink';
 import { LinkFeature, LinkTheme } from '../../../Common/components/Link';
 import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 interface PersonDetailProps {
   hideName: boolean;

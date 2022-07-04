@@ -17,8 +17,8 @@ import Button from '../../Common/components/Button';
 import HeaderButton from '../../Common/components/Button/HeaderButton';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import { normalizeFontAwesomeIRI } from '../../Common/lib/iris';
-import { entityIsLoaded } from '../../Core/lib/data';
-import ontola from '../../Core/ontology/ontola';
+import { entityIsLoaded } from '../../Kernel/lib/data';
+import ontola from '../../Kernel/ontology/ontola';
 import TriggerButton, { Trigger } from '../../Menu/components/DropdownMenu/TriggerButton';
 import { useFavoriteActions } from '../hooks/useFavoriteActions';
 

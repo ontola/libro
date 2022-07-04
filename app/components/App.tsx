@@ -2,11 +2,11 @@ import type { History } from 'history';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
-import { appContext } from '../modules/Core/components/AppContext/appContext';
-import { WebsiteCtx } from '../modules/Core/components/WebsiteContext/websiteContext';
-import WebsiteContextProvider from '../modules/Core/components/WebsiteContext/WebsiteContextProvider';
+import { appContext } from '../modules/Kernel/components/AppContext/appContext';
+import { WebsiteCtx } from '../modules/Kernel/components/WebsiteContext/websiteContext';
+import WebsiteContextProvider from '../modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
 import register from '../views';
-import { WebManifest } from '../WebManifest';
+import { WebManifest } from '../modules/Kernel/components/AppContext/WebManifest';
 
 import IndexContainer from './IndexContainer';
 

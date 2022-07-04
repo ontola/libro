@@ -11,7 +11,7 @@ import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import Container from '../../../Common/topologies/Container';
-import example from '../../../Core/ontology/example';
+import example from '../../../Kernel/ontology/example';
 import elements from '../../ontology/elements';
 
 type Heading = 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6';

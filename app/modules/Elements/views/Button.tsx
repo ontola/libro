@@ -9,7 +9,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { allTopologies } from '../../../topologies';
-import argu from '../../Argu/lib/argu';
+import argu from '../../Argu/ontology/argu';
 import Button, { ButtonVariant } from '../../Common/components/Button';
 import elements from '../ontology/elements';
 

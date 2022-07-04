@@ -10,9 +10,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../theme/types';
-import argu from '../../../Argu/lib/argu';
-import ontola from '../../../Core/ontology/ontola';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import argu from '../../../Argu/ontology/argu';
+import ontola from '../../../Kernel/ontology/ontola';
 import { defaultMenus } from '../../lib/viewHelpers';
 import DetailsBar from '../../topologies/DetailsBar';
 import LinkedDetailDate from '../LinkedDetailDate';

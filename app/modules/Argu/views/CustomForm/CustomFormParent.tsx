@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
-import { parentProps } from '../../../Core/ontology/app';
-import argu from '../../lib/argu';
+import { parentProps } from '../../../Common/ontology/app';
+import argu from '../../ontology/argu';
 
 interface CustomFormParent {
   first?: boolean;

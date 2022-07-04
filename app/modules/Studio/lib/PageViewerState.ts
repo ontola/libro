@@ -1,4 +1,4 @@
-import { WebManifest } from '../../../WebManifest';
+import { WebManifest } from '../../Kernel/components/AppContext/WebManifest';
 import { LibroDocument } from '../components/StudioLoader';
 
 export interface PageViewerState {

@@ -1,4 +1,4 @@
-import { WebManifest } from '../WebManifest';
+import { WebManifest } from '../modules/Kernel/components/AppContext/WebManifest';
 
 export const defaultManifest = (websiteIRI: string): WebManifest => {
   const t = new URL(websiteIRI);

@@ -13,8 +13,8 @@ import generateLRS from './helpers/generateLRS';
 import { log } from './helpers/logging';
 import patchRequestInitGenerator from './helpers/monkey';
 import { seedToSlice } from './modules/Common/lib/seed';
-import { AppContextProvider } from './modules/Core/components/AppContext/AppContextProvider';
-import { WebManifest } from './WebManifest';
+import { WebManifest } from './modules/Kernel/components/AppContext/WebManifest';
+import { AppContextEditor } from './modules/Studio/components/AppContextEditor';
 
 const getWebsiteManifest = (): WebManifest => {
   if (!__CLIENT__
@@ -49,12 +49,12 @@ const getWebsiteManifest = (): WebManifest => {
     log('Mounting app');
 
     render(
-      <AppContextProvider
+      <AppContextEditor
         lrs={lrs}
         manifest={manifest}
       >
         <App history={history} />
-      </AppContextProvider>,
+      </AppContextEditor>,
       document.getElementById(APP_ELEMENT),
     );
   }

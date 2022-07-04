@@ -2,7 +2,7 @@ import { register, useProperty } from 'link-redux';
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
-import { contentsProps, titleProps } from '../../../../Core/ontology/app';
+import { contentsProps, titleProps } from '../../../../Common/ontology/app';
 import TableHeaderCell from '../../../../Table/topologies/TableHeaderCell';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 

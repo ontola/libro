@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
-import Suspense from '../../Core/components/Suspense';
+import Suspense from '../../Kernel/components/Suspense';
 
 import { InputComponentProps } from './FormField/FormFieldTypes';
 import { fieldInputCID, useFormStyles } from './FormField/UseFormStyles';

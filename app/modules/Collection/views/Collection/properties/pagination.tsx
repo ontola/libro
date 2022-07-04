@@ -9,8 +9,8 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
-import app from '../../../../Core/ontology/app';
-import ontola from '../../../../Core/ontology/ontola';
+import app from '../../../../Common/ontology/app';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { CollectionTypes } from '../types';
 

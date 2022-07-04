@@ -14,7 +14,7 @@ import FontAwesome from 'react-fontawesome';
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
 import { useIRITemplate } from '../../../Common/hooks/useIRITemplate';
 import { retrievePath } from '../../../Common/lib/iris';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import MenuItem from '../../../Menu/components/MenuItem';
 import { menuTopology } from '../../../Menu/topologies/Menu';
 

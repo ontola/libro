@@ -2,7 +2,7 @@ import { StepIconProps } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 
 export interface CustomStepIconProps extends StepIconProps {
   totalSteps: number;

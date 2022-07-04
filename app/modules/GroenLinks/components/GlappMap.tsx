@@ -1,7 +1,7 @@
 import React from 'react';
 
 import useFontsChecker from '../../Common/hooks/useFontsChecker';
-import LinkLoader from '../../Core/components/Loading/LinkLoader';
+import LinkLoader from '../../Kernel/components/LinkLoader';
 
 const GlappMap = React.lazy(
   // eslint-disable-next-line no-inline-comments

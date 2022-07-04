@@ -8,8 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
-import argu from '../../../Argu/lib/argu';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
+import argu from '../../../Argu/ontology/argu';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import sales from '../../ontology/sales';

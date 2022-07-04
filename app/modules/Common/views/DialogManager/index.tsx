@@ -15,11 +15,11 @@ import { useLocation } from 'react-router';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import { DialogSize, isDialogSize } from '../../../../middleware/ontolaMiddleware';
-import { BreakPoints } from '../../theme/types';
+import { BreakPoints } from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import { OnDoneHandler } from '../../../Action/views/helpers';
-import { frontendOrigin } from '../../../Core/lib/frontendIRIComponents';
-import libro from '../../../Core/ontology/libro';
+import { frontendOrigin } from '../../../Kernel/lib/frontendIRIComponents';
+import libro from '../../../Kernel/ontology/libro';
 import retrievePath from '../../lib/iris';
 import DialogTopology from '../../topologies/Dialog';
 

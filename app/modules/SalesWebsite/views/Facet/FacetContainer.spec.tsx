@@ -13,8 +13,8 @@ import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import Container from '../../../Common/topologies/Container';
-import example from '../../../Core/ontology/example';
-import ontola from '../../../Core/ontology/ontola';
+import example from '../../../Kernel/ontology/example';
+import ontola from '../../../Kernel/ontology/ontola';
 import sales from '../../ontology/sales';
 
 const s = (x: NamedNode) => x.toString();

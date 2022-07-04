@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { handle } from '../../../helpers/logging';
 import { formMessages } from '../../../translations/messages';
-import { appContext } from '../../Core/components/AppContext/appContext';
+import { appContext } from '../../Kernel/components/AppContext/appContext';
 import Uploader from '../components/Input/FileInput/Uploader';
 
 type UploadFile = (newFile: File, handleUploadFinished: (signedId: SomeTerm) => void) => void;

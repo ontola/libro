@@ -12,8 +12,8 @@ import CardContent from '../../../Common/components/Card/CardContent';
 import Card from '../../../Common/topologies/Card';
 import { containerTopology } from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 const style = { width: '100%' };
 

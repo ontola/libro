@@ -7,7 +7,7 @@ import {
   register,
   useIds,
   useLinkRenderContext,
-  useNumbers, 
+  useNumbers,
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -19,7 +19,7 @@ import CardContent from '../../../../Common/components/Card/CardContent';
 import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
 import { pageTopology } from '../../../../Common/topologies/Page';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { CollectionTypes } from '../types';
 

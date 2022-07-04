@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import meeting from '../../../../../ontology/meeting';
-import argu from '../../../../Argu/lib/argu';
+import argu from '../../../../Argu/ontology/argu';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 
 interface AttatchmentsProps {

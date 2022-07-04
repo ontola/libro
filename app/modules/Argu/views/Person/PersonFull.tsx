@@ -12,13 +12,13 @@ import {
 import React from 'react';
 
 import org from '../../../../ontology/org';
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
 import SubSection from '../../../Common/components/SubSection';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import MainBody from '../../../Common/topologies/MainBody';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   image: {

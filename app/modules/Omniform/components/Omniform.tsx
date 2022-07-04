@@ -13,13 +13,13 @@ import {
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { BreakPoints, LibroTheme } from '../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 import { SubmitSuccessHandler } from '../../Action/views/EntryPoint/useSubmitHandler';
 import { OnDoneHandler } from '../../Action/views/helpers';
-import argu from '../../Argu/lib/argu';
-import { useHighlight } from '../../Core/components/HighlightProvider/HighlightProvider';
-import ll from '../../Core/ontology/ll';
-import ontola from '../../Core/ontology/ontola';
+import argu from '../../Argu/ontology/argu';
+import { useHighlight } from '../../Common/components/HighlightProvider/HighlightProvider';
+import ll from '../../Kernel/ontology/ll';
+import ontola from '../../Kernel/ontology/ontola';
 import { FormFooterRight } from '../../Form/components/Form';
 import { FormFieldError } from '../../Form/components/FormField/FormFieldTypes';
 import FormFooter from '../../Form/topologies/FormFooter';

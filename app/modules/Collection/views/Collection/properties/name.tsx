@@ -12,7 +12,7 @@ import Heading, { HeadingSize } from '../../../../Common/components/Heading';
 import Link from '../../../../Common/components/Link';
 import { parentTopology } from '../../../../Common/topologies/BreadcrumbsBar';
 import { pageTopology } from '../../../../Common/topologies/Page';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 import { CollectionTypes } from '../types';

@@ -4,7 +4,7 @@ import { FC, useGlobalIds } from 'link-redux';
 import React from 'react';
 
 import AllWithProperty from '../../../Common/components/AllWithProperty';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import CollectionProvider from '../../components/CollectionProvider';
 
 import { CollectionViewTypes } from './types';

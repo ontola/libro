@@ -8,7 +8,7 @@ import Style from 'ol/style/Style';
 import React from 'react';
 
 import { tryParseFloat } from '../../../Common/lib/numbers';
-import app from '../../../Core/ontology/app';
+import app from '../../../Common/ontology/app';
 import { Priorities } from '../../components/GlappMap';
 import teamGL from '../../ontology/teamGL';
 import { postalCodeIri } from '../../views/Glapp/helpers';

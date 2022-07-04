@@ -7,10 +7,10 @@ import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import HttpStatus from 'http-status-codes';
 
-import dbo from '../../../ontology/dbo';
-import { Icon, WebManifest } from '../../../WebManifest';
-import ll from '../../Core/ontology/ll';
-import ontola from '../../Core/ontology/ontola';
+import dbo from '../ontology/dbo';
+import { Icon, WebManifest } from '../../Kernel/components/AppContext/WebManifest';
+import ll from '../../Kernel/ontology/ll';
+import ontola from '../../Kernel/ontology/ontola';
 
 import { stripMarkdown } from './markdownHelper';
 

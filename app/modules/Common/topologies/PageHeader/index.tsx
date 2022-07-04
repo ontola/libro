@@ -8,9 +8,9 @@ import {
   LibroTheme,
   Margin,
   Size,
-} from '../../theme/types';
-import { TopologyFC } from '../../../Core/lib/topology';
-import libro from '../../../Core/ontology/libro';
+} from '../../../Kernel/lib/themes';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import libro from '../../../Kernel/ontology/libro';
 import Container from '../Container';
 
 export { default as PageHeaderImage } from './PageHeaderImage';

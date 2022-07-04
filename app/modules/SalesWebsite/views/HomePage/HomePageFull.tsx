@@ -7,7 +7,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import sales from '../../ontology/sales';

@@ -12,9 +12,9 @@ import React, { EventHandler, SyntheticEvent } from 'react';
 
 import useSubmissionErrors from '../../../Action/views/EntryPoint/useSubmissionErrors';
 import { SubmitHandler } from '../../../Action/views/EntryPoint/useSubmitHandler';
-import { LoadingGridContent } from '../../../Core/components/Loading';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import ll from '../../../Core/ontology/ll';
+import { LoadingGridContent } from '../../../Common/components/Loading';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import ll from '../../../Kernel/ontology/ll';
 import useInitialValues from '../../hooks/useInitialValues';
 
 import Form from './Form';

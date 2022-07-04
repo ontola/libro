@@ -9,12 +9,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../Common/theme/types';
+import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../../topologies';
 import { useTabbar } from '../../../../Common/components/TabbarProvider';
 import { TabVariant } from '../../../../Common/components/Tabs';
 import TabBar from '../../../../Common/topologies/TabBar';
-import app from '../../../../Core/ontology/app';
+import app from '../../../../Common/ontology/app';
 
 export interface MenuTabsProp {
   variant?: TabVariant;

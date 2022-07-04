@@ -12,8 +12,8 @@ import { tryParseInt } from '../../../Common/lib/numbers';
 import Container from '../../../Common/topologies/Container';
 import FullResource from '../../../Common/topologies/FullResource';
 import { gridTopology } from '../../../Common/topologies/Grid';
-import libro from '../../../Core/ontology/libro';
-import ontola from '../../../Core/ontology/ontola';
+import libro from '../../../Kernel/ontology/libro';
+import ontola from '../../../Kernel/ontology/ontola';
 
 const Widget = () => {
   const [changeTopology] = useProperty(ontola.topology);

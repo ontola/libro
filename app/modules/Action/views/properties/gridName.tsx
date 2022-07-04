@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
 import { gridTopology } from '../../../Common/topologies/Grid';
 

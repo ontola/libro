@@ -14,7 +14,7 @@ import React, { ReactElement } from 'react';
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
 import { LinkFeature } from '../../../../Common/components/Link';
-import SuspendedLoader from '../../../../Core/components/Loading/SuspendedLoader';
+import SuspendedLoader from '../../../../Common/components/Loading/SuspendedLoader';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;

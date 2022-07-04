@@ -8,8 +8,8 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import argu from '../../../Argu/lib/argu';
-import ontola from '../../../Core/ontology/ontola';
+import argu from '../../../Argu/ontology/argu';
+import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HomepageError from '../../components/Error/HomepageError';
 import HeadingContext from '../../components/Heading/HeadingContext';

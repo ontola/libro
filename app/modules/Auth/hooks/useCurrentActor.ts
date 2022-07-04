@@ -9,9 +9,9 @@ import {
   useResourceLink,
 } from 'link-redux';
 
-import argu from '../../Argu/lib/argu';
-import app from '../../Core/ontology/app';
-import ontola from '../../Core/ontology/ontola';
+import argu from '../../Argu/ontology/argu';
+import app from '../../Common/ontology/app';
+import ontola from '../../Kernel/ontology/ontola';
 
 export const useCurrentActor = (): LinkedDataObject<{
   actorType: Literal;

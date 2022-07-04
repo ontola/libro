@@ -1,7 +1,7 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import parser, { Vars } from 'uri-template';
 
-import app from '../../Core/ontology/app';
+import app from '../ontology/app';
 
 export const iriFromTemplate = (iriTemplate: string, iriOpts: Vars): NamedNode => {
   const tmpl = parser.parse(iriTemplate);

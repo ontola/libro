@@ -1,17 +1,17 @@
 import {
   BlankNode,
   NamedNode,
-  isNamedNode, 
+  isNamedNode,
 } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   LaxNode,
   useDataFetching,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
-import { entityIsLoaded } from '../../../Core/lib/data';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
 
 import { getDependencies } from './getDependencies';
 import { getInitialValues } from './getInitialValues';

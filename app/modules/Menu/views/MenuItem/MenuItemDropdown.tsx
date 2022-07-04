@@ -15,8 +15,8 @@ import FontAwesome from 'react-fontawesome';
 import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import ontola from '../../../Core/ontology/ontola';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import ontola from '../../../Kernel/ontology/ontola';
 import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';
 import Menu from '../../topologies/Menu';
 

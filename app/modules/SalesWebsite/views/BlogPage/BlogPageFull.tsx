@@ -14,7 +14,7 @@ import {
 import React from 'react';
 import { FormattedDate, FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { blogMessages } from '../../../../translations/messages';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';

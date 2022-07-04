@@ -4,7 +4,7 @@ import React from 'react';
 
 import { cardMicroRowTopology } from '../../../Common/topologies/Card/CardMicroRow';
 import { listTopology } from '../../../Common/topologies/List';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const PersonSection = () => {
   const [name] = useProperty(schema.name);

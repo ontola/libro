@@ -10,9 +10,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
-import argu from '../../../Argu/lib/argu';
-import ontola from '../../../Core/ontology/ontola';
+import dbo from '../../ontology/dbo';
+import argu from '../../../Argu/ontology/argu';
+import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
 import Card from '../../topologies/Card';

@@ -5,7 +5,7 @@ import {
   register,
   useDataInvalidation,
   useIds,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
@@ -14,9 +14,9 @@ import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppend
 import CardMicroRow, { cardMicroRowTopology } from '../../../Common/topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
 import { listTopology } from '../../../Common/topologies/List';
-import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import argu from '../../lib/argu';
+import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import argu from '../../ontology/argu';
 
 const CommentSection = ({ subject }: SubjectProp): JSX.Element => {
   const lrs = useLRS();

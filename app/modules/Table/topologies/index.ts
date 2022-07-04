@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 
 import tabBarTopologyComponent from '../../Common/topologies/TabBar';
-import { TopologyMap } from '../../Core/lib/ontology';
+import { TopologyMap } from '../../Kernel/lib/ontology';
 
 import tableTopologyComponent, { tableTopology } from './Table';
 import tableBodyComponent, { tableBodyTopology } from './TableBody';

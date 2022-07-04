@@ -5,9 +5,9 @@ import { SomeNode } from 'link-lib';
 import { useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import { useContainerToArr } from '../../../Core/hooks/useContainerToArr';
+import { useContainerToArr } from '../../../Kernel/hooks/useContainerToArr';
 import useCounts from '../../hooks/votes/useCounts';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 import VotePercentage, { voteDataVoteBarPartCID } from './VotePercentage';
 

@@ -13,7 +13,7 @@ import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
 import Columns from '../../../../Common/components/Columns';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { CollectionViewTypes } from '../types';
 
 interface ViewsProps {

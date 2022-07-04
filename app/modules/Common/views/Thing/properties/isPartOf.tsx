@@ -7,7 +7,7 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import { parentProps } from '../../../../Core/ontology/app';
+import { parentProps } from '../../../ontology/app';
 import BreadcrumbsBar from '../../../topologies/BreadcrumbsBar';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';

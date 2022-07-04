@@ -5,7 +5,7 @@ import CardContent from '../../modules/Common/components/Card/CardContent';
 import Heading from '../../modules/Common/components/Heading';
 import Card from '../../modules/Common/topologies/Card';
 import Container from '../../modules/Common/topologies/Container';
-import { Size } from '../../modules/Common/theme/types';
+import { Size } from '../../modules/Kernel/lib/themes';
 
 const NotFound = (): JSX.Element => (
   <Container size={Size.Small}>

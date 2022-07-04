@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../../Common/lib/iris';
-import app from '../../../Core/ontology/app';
+import app from '../../../Common/ontology/app';
 
 const MAX_IN_STORAGE = 5;
 

@@ -3,7 +3,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkImageWrapper } from '../../../NavBar/components/NavbarLink';
 import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 

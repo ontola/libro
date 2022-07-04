@@ -4,7 +4,7 @@ import React from 'react';
 import Collection from '../../../Collection/components';
 import Columns from '../../../Common/components/Columns';
 import { ListDirection } from '../../../Common/topologies/List';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 interface ArgumentColumns {
   omniform?: boolean;

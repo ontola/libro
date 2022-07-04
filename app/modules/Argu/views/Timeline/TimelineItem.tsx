@@ -20,7 +20,7 @@ import React, { ReactChildren } from 'react';
 
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles(() => ({
   content: {

@@ -7,7 +7,7 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import normalizedLower from '../../Common/lib/i18n';
 import { iriFromTemplate } from '../../Common/lib/uriTemplate';
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 
 import useFieldOptions from './useFieldOptions';
 

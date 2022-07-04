@@ -8,7 +8,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
 import Container from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';

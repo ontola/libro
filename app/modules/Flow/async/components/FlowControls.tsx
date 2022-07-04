@@ -11,10 +11,10 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { frontendIRI } from '../../../Kernel/lib/frontendIRIComponents';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
-import { frontendIRI } from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { flowMessages } from '../../lib/messages';
 
 export interface FlowControlsProps {

@@ -14,8 +14,8 @@ import Link, { LinkTarget } from '../../../../Common/components/Link';
 import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
 import CardMicroRow from '../../../../Common/topologies/Card/CardMicroRow';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
-import ontola from '../../../../Core/ontology/ontola';
-import argu from '../../../lib/argu';
+import ontola from '../../../../Kernel/ontology/ontola';
+import argu from '../../../ontology/argu';
 
 const TopComment = (): JSX.Element => {
   const [count] = useNumbers(argu.commentsCount);

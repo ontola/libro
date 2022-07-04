@@ -10,7 +10,7 @@ import { FormattedNumber } from 'react-intl';
 
 import { allTopologies } from '../../../../../topologies';
 import { tryParseInt } from '../../../../Common/lib/numbers';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 interface PriceProps {
   linkedProp: SomeTerm;

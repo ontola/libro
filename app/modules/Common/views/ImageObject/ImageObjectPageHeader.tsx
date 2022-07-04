@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { register, useValues } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { PageHeaderImage, pageHeaderTopology } from '../../topologies/PageHeader';
 
 const ImageObjectPageHeader = () => {

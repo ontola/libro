@@ -2,13 +2,13 @@ import {
   FC,
   register,
   useGlobalIds,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import ontola from '../../../Core/ontology/ontola';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import ontola from '../../../Kernel/ontology/ontola';
 import TableCells from '../../../Table/components/TableCells';
 import { tableTopology } from '../../../Table/topologies/Table';
 import TableRow from '../../../Table/topologies/TableRow';

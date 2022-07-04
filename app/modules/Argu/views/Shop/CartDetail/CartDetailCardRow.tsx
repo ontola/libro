@@ -9,7 +9,7 @@ import React from 'react';
 
 import { CardMicroRow } from '../../../../Common/topologies/Card';
 import { cardRowTopology } from '../../../../Common/topologies/Card/CardRow';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const useStyle = makeStyles(() => ({
   wrapper: {

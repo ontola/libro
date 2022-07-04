@@ -10,7 +10,7 @@ import {
 import React from 'react';
 
 import Link from '../../../Common/components/Link';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
 import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
 

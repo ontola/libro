@@ -6,13 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
-import wdt from '../../../../ontology/wdt';
+import dbo from '../../../Common/ontology/dbo';
+import wdt from '../../../Common/ontology/wdt';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
 import { PageHeader } from '../../../Common/components/PageHeader';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import MainBody from '../../../Common/topologies/MainBody';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const TermFull: FC = () => (
   <React.Fragment>

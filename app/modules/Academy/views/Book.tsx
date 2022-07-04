@@ -22,9 +22,9 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 import { academyMessages } from '../../../translations/messages';
-import argu from '../../Argu/lib/argu';
+import argu from '../../Argu/ontology/argu';
 import retrievePath from '../../Common/lib/iris';
 import { fullResourceTopology } from '../../Common/topologies/FullResource';
 import SideBar from '../../Common/topologies/SideBar';

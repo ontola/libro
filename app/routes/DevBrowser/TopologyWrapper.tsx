@@ -20,7 +20,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../modules/Common/theme/types';
+} from '../../modules/Kernel/lib/themes';
 
 export interface TopologyWrapperProps {
   pure: boolean;

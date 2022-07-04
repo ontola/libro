@@ -14,11 +14,11 @@ import { useIntl } from 'react-intl';
 import { navBarMessages } from '../../../../translations/messages';
 import Link from '../../../Common/components/Link';
 import { NAME_PREDICATES } from '../../../Common/lib/metaData';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkIcon, NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
 import { navbarTopology } from '../../../NavBar/topologies/Navbar';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 export interface PersonNavbarProps {
   onClick: () => void;

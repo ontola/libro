@@ -1,7 +1,7 @@
 import deepmerge from 'deepmerge';
 
 import button from '../../../Common/theme/components/button';
-import { MaterialStyleMap } from '../../../Common/theme/types';
+import { MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 export default (): MaterialStyleMap => (
   deepmerge(button(), {

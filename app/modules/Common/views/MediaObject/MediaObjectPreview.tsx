@@ -5,11 +5,11 @@ import {
   useFields,
   useGlobalIds,
   useIds,
-  useLiterals, 
+  useLiterals,
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../ontology/dbo';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { imageRepresentationUrl, isPDF } from '../../lib/attachments';
 import { listTopology } from '../../topologies/List';

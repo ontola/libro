@@ -10,11 +10,11 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import Detail from '../../../components/Detail';
 import { useShowDialog } from '../../../hooks/useShowDialog';
 import { retrievePath } from '../../../lib/iris';
-import { isResource } from '../../../lib/typeCheckers';
+import { isResource } from '../../../../Kernel/lib/typeCheckers';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 

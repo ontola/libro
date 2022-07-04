@@ -9,8 +9,8 @@ import React from 'react';
 
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { NAME_PREDICATES } from '../../../Common/lib/metaData';
-import { frontendIRI } from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import { frontendIRI } from '../../../Kernel/lib/frontendIRIComponents';
+import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkLink } from '../NavbarLink';
 
 export const ManageOrganisationMenu = (): JSX.Element | null => {

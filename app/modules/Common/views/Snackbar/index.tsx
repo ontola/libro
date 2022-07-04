@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 
 import { allTopologies } from '../../../../topologies';
 import { formMessages } from '../../../../translations/messages';
-import libro from '../../../Core/ontology/libro';
+import libro from '../../../Kernel/ontology/libro';
 
 const AVERAGE_DUTCH_WORDS_PER_MINUTE = 202;
 const MIN_SNACKBAR_TIMEOUT = 2750;

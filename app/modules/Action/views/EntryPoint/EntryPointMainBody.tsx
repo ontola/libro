@@ -8,7 +8,7 @@ import {
 import React, { EventHandler, SyntheticEvent } from 'react';
 
 import { mainBodyTopology } from '../../../Common/topologies/MainBody';
-import ll from '../../../Core/ontology/ll';
+import ll from '../../../Kernel/ontology/ll';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';
 import FormFooter from '../../../Form/topologies/FormFooter';

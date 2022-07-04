@@ -19,10 +19,10 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { SearchObject, useChapterSearch } from '../../hooks/useChapterSearch';
-import app from '../../../Core/ontology/app';
+import app from '../../../Common/ontology/app';
 import Select from '../../../Form/topologies/Select';
 import { academyMessages } from '../../../../translations/messages';
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 
 const SHADOW_ELEVATION = 2;
 

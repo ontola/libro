@@ -18,7 +18,7 @@ import {
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import retrievePath from '../../../Common/lib/iris';
 import sales from '../../ontology/sales';
 import { showcaseTopology } from '../../topologies/Showcase';

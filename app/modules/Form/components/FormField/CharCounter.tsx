@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
-import { isString } from '../../../Common/lib/typeCheckers';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import { isString } from '../../../Kernel/lib/typeCheckers';
 
 export const CHAR_COUNTER_THRESHOLD = 0.8;
 

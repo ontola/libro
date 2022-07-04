@@ -4,11 +4,11 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import rdf from '@ontologies/core';
 import React from 'react';
 
-import argu from '../../../Argu/lib/argu';
-import { isJSONLDObject } from '../../../Common/lib/typeCheckers';
+import argu from '../../../Argu/ontology/argu';
 import FormFieldAddButton from '../../components/FormField/FormFieldAddButton';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
 import { InputValue } from '../../components/FormField/FormFieldTypes';
+import { isJSONLDObject } from '../../lib/helpers';
 
 import SortableInput from './SortableInput';
 

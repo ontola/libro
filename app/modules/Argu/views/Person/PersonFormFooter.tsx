@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { formFooterTopology } from '../../../Form/topologies/FormFooter';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const PersonFooter = () => {
   const [name] = useValues(schema.name);

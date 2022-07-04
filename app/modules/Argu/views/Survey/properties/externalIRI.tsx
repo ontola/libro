@@ -8,7 +8,7 @@ import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
 import Typeform from '../../../../Typeform/components';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 export interface ExternalIRIProps {
   linkedProp: NamedNode;

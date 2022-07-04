@@ -3,12 +3,12 @@ import {
   LaxNode,
   useFields,
   useIds,
-  useResourceLinks, 
+  useResourceLinks,
 } from 'link-redux';
 import React from 'react';
 
 import { useIRITemplate } from '../../Common/hooks/useIRITemplate';
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 
 const sortDirections = ['asc', 'desc', null];
 

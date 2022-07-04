@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import form from '../../../../Form/ontology/form';
 import SearchForm from '../../../components/SearchForm';
 

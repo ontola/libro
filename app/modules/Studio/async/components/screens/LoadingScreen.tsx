@@ -2,7 +2,7 @@ import { Grow, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { WebManifest } from '../../../../../WebManifest';
+import { WebManifest } from '../../../../Kernel/components/AppContext/WebManifest';
 import {
   ProjectAction,
   ProjectContextProps,

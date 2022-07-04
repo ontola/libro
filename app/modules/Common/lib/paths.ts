@@ -3,9 +3,9 @@ import type { Location } from 'history';
 import { NamespaceMap } from 'link-lib';
 
 import appSlashless from '../../../ontology/appSlashless';
-import { WebsiteCtx } from '../../Core/components/WebsiteContext/websiteContext';
-import { frontendPathname } from '../../Core/lib/frontendIRIComponents';
-import app from '../../Core/ontology/app';
+import { WebsiteCtx } from '../../Kernel/components/WebsiteContext/websiteContext';
+import { frontendPathname } from '../../Kernel/lib/frontendIRIComponents';
+import app from '../ontology/app';
 
 export function currentLocationControl(
   location: Location,

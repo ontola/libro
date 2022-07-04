@@ -12,9 +12,9 @@ import React, {
 import { useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
-import app from '../../../Core/ontology/app';
+import app from '../../ontology/app';
 import { isDifferentWebsite, retrievePath } from '../../lib/iris';
-import { isFunction } from '../../lib/typeCheckers';
+import { isFunction } from '../../../Kernel/lib/typeCheckers';
 
 import ExternalLink from './ExternalLink';
 // tslint:disable ordered-imports

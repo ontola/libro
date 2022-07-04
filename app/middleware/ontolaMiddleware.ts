@@ -23,11 +23,11 @@ import { handle } from '../helpers/logging';
 import hexjson from '../helpers/transformers/hexjson';
 import { safeCredentials } from '../modules/Common/lib/dom';
 import { retrievePath } from '../modules/Common/lib/iris';
-import { quadruple } from '../modules/Common/lib/quadruple';
-import app from '../modules/Core/ontology/app';
-import libro from '../modules/Core/ontology/libro';
-import ontola from '../modules/Core/ontology/ontola';
-import ld from '../ontology/ld';
+import { quadruple } from '../modules/Kernel/lib/quadruple';
+import app from '../modules/Common/ontology/app';
+import libro from '../modules/Kernel/ontology/libro';
+import ontola from '../modules/Kernel/ontology/ontola';
+import ld from '../modules/Kernel/ontology/ld';
 import { actionMessages } from '../translations/messages';
 
 import { redirectPage, reloadPage } from './reloading';

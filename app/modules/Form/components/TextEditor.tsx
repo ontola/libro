@@ -1,7 +1,7 @@
 import React, { EventHandler } from 'react';
 
-import Spinner from '../../Core/components/Loading/Spinner';
-import Suspense from '../../Core/components/Suspense';
+import Spinner from '../../Common/components/Loading/Spinner';
+import Suspense from '../../Kernel/components/Suspense';
 
 export interface PlainEditorProps {
   autoFocus?: boolean;

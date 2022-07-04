@@ -2,8 +2,8 @@ import { TableCell } from '@mui/material';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Core/lib/topology';
-import ontola from '../../../Core/ontology/ontola';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import ontola from '../../../Kernel/ontology/ontola';
 
 export const tableFooterCellTopology = ontola.ns('tableFooterCell');
 export const tableFooterCellCID = 'CID-TableFooterCell';

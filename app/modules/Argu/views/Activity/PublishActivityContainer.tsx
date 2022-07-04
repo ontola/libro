@@ -5,9 +5,9 @@ import React from 'react';
 
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import Card from '../../../Common/topologies/Card';
-import Suspense from '../../../Core/components/Suspense';
-import libro from '../../../Core/ontology/libro';
-import argu from '../../lib/argu';
+import Suspense from '../../../Kernel/components/Suspense';
+import libro from '../../../Kernel/ontology/libro';
+import argu from '../../ontology/argu';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 

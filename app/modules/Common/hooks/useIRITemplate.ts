@@ -2,7 +2,7 @@ import { NamedNode, Node } from '@ontologies/core';
 import { useFields } from 'link-redux';
 import { useCallback, useMemo } from 'react';
 
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 import { iriFromTemplate } from '../lib/uriTemplate';
 
 type Param = string | string[];

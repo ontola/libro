@@ -11,9 +11,9 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import argu from '../../../../Argu/lib/argu';
-import libro from '../../../../Core/ontology/libro';
-import ontola from '../../../../Core/ontology/ontola';
+import argu from '../../../../Argu/ontology/argu';
+import libro from '../../../../Kernel/ontology/libro';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { inlineTopology } from '../../../topologies';
 
 const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {

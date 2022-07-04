@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import DropdownMenuItem from '../../components/DropdownMenu/DropdownMenuItem';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';

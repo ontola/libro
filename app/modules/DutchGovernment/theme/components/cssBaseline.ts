@@ -1,4 +1,4 @@
-import { MaterialStyleMap } from '../../../Common/theme/types';
+import { MaterialStyleMap } from '../../../Kernel/lib/themes';
 import '../fonts/RijksoverheidSansText-Bold_2_0.otf';
 import '../fonts/RijksoverheidSansText-Italic_2_0.otf';
 

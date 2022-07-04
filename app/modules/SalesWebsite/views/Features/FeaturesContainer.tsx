@@ -12,7 +12,7 @@ import {
   BreakPoints,
   LibroTheme,
   Size,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import Container from '../../../Common/topologies/Container';
 import { Parallax } from '../../components';

@@ -4,7 +4,7 @@ import { useSpring } from '@react-spring/web';
 import { ReactDOMAttributes, useDrag } from '@use-gesture/react';
 import React from 'react';
 
-import { BreakPoints } from '../../../../Common/theme/types';
+import { BreakPoints } from '../../../../Kernel/lib/themes';
 import { Dispatcher, State } from '../../../../Common/hooks/useStateMachine';
 import {
   CardAction,

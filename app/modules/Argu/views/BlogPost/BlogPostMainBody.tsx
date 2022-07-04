@@ -10,13 +10,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../../Common/ontology/dbo';
 import meeting from '../../../../ontology/meeting';
 import CollapseText from '../../../Common/components/CollapseText';
 import LDLink from '../../../Common/components/LDLink';
 import { mainBodyTopology } from '../../../Common/topologies/MainBody';
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import argu from '../../lib/argu';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles(() => ({
   wrapper: {

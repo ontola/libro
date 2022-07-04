@@ -13,10 +13,10 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import ontola from '../../../Core/ontology/ontola';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import ontola from '../../../Kernel/ontology/ontola';
 import { selectTopology, useSelectItemStyles } from '../../../Form/topologies/Select';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 interface PersonSelectProps {
   'aria-selected': boolean;

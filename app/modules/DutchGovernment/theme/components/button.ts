@@ -1,5 +1,5 @@
 import button from '../../../Common/theme/components/button';
-import { LibroTheme, MaterialStyleMap } from '../../../Common/theme/types';
+import { LibroTheme, MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => {
   const customButton = button();

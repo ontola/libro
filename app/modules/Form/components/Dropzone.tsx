@@ -4,7 +4,7 @@ import React, {
   SyntheticEvent,
 } from 'react';
 
-import Suspense from '../../Core/components/Suspense';
+import Suspense from '../../Kernel/components/Suspense';
 import { HandleFileChange } from '../hooks/useFileInput';
 
 const Dropzone = React.lazy(

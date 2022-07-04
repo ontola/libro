@@ -10,7 +10,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import Image from '../../../Common/components/Image';
 import ExternalLink from '../../../Common/components/Link/ExternalLink';
 import { isDifferentWebsite, retrievePath } from '../../../Common/lib/iris';

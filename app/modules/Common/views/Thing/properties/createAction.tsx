@@ -11,7 +11,7 @@ import React from 'react';
 import link from '../../../../../ontology/link';
 import { allTopologies } from '../../../../../topologies';
 import { OnDoneHandler } from '../../../../Action/views/helpers';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { ButtonVariant } from '../../../components/Button';
 
 interface PropTypes {

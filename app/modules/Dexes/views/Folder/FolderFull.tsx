@@ -16,8 +16,8 @@ import { property } from '../../../Common/lib/properties';
 import { containerTopology } from '../../../Common/topologies/Container';
 import { containerHeaderTopology } from '../../../Common/topologies/Container/ContainerHeader';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import component from '../../../Core/lib/component';
-import ontola from '../../../Core/ontology/ontola';
+import component from '../../../Common/lib/component';
+import ontola from '../../../Kernel/ontology/ontola';
 import dexes from '../../ontology/dexes';
 
 import UploadTarget from './UploadTarget';

@@ -10,8 +10,8 @@ import {
 } from 'link-redux';
 
 import { LRS, SubmitDataProcessor } from '../../../Common/lib/errorHandling';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import ontola from '../../../Core/ontology/ontola';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import ontola from '../../../Kernel/ontology/ontola';
 
 interface UseVoteAction {
   action: LaxNode;

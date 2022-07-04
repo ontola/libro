@@ -1,10 +1,10 @@
-import { loadingParagraphCID } from '../../../Core/components/Loading';
+import { loadingParagraphCID } from '../../components/Loading';
 import { appMenuCID } from '../../../Menu/topologies/AppMenu';
 import {
   BreakPoints,
   LibroTheme,
   MaterialStyleMap,
-} from '../types';
+} from '../../../Kernel/lib/themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiListItem: {

@@ -6,10 +6,11 @@ import generateLRS from '../../../helpers/generateLRS';
 import http from '../../../ontology/http';
 import register from '../../../views';
 import { seedToSlice } from '../../Common/lib/seed';
-import { appContextEditor } from '../../Core/components/AppContext/appContext';
-import ll from '../../Core/ontology/ll';
+import ll from '../../Kernel/ontology/ll';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';
 import { PageViewerState } from '../lib/PageViewerState';
+
+import { appContextEditor } from './AppContextEditor';
 
 const Communicator = (): null => {
   const updateCtx = React.useContext(appContextEditor);

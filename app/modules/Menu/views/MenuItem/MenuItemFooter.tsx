@@ -12,11 +12,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
-import argu from '../../../Argu/lib/argu';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import argu from '../../../Argu/ontology/argu';
 import { footerTopology } from '../../../Common/topologies/Footer';
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import ontola from '../../../Core/ontology/ontola';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import ontola from '../../../Kernel/ontology/ontola';
 
 const ITEM_SPACING = 3;
 

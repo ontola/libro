@@ -4,7 +4,7 @@ import React from 'react';
 
 import ActionButton from '../../Action/components/ActionButton';
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 import { useOmniformOpenAction } from '../lib/hooks';
 
 const OmniformTrigger = (): JSX.Element | null => {

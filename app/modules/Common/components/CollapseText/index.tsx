@@ -4,7 +4,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { collapsibleMessages } from '../../../../translations/messages';
 import useStoredState from '../../hooks/useStoredState';
 import { parseBoolean } from '../../lib/persistence';

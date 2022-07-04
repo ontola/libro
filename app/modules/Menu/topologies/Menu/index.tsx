@@ -1,8 +1,8 @@
 import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import { TopologyFC } from '../../../Core/lib/topology';
-import libro from '../../../Core/ontology/libro';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import libro from '../../../Kernel/ontology/libro';
 import DropdownMenu, { RenderProp } from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
 

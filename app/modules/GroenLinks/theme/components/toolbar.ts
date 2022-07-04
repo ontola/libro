@@ -1,4 +1,4 @@
-import { MaterialStyleMap } from '../../../Common/theme/types';
+import { MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 export default (): MaterialStyleMap => ({
   MuiToolbar: {

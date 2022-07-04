@@ -5,8 +5,7 @@ import rdf, {
   isNode,
 } from '@ontologies/core';
 
-import { isJSONLDObject } from '../../Common/lib/typeCheckers';
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 
 export interface JSONLDObject {
   '@id': Node;
@@ -42,6 +41,10 @@ export function clearFormStorage(formID: string): void {
     Object.keys(sessionStorage).forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
   }
 }
+
+export const isJSONLDObject = (value: unknown): value is JSONLDObject => (
+  Object.prototype.hasOwnProperty.call(value, '@id')
+);
 
 export function retrieveIdFromValue(value: JSONLDObject | Node | Literal | undefined): Node | undefined {
   if (typeof value === 'undefined' || isNode(value)) {

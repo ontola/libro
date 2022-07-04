@@ -5,7 +5,7 @@ import rdf, {
   isNamedNode,
 } from '@ontologies/core';
 
-import { frontendOrigin, frontendPathname } from '../../Core/lib/frontendIRIComponents';
+import { frontendOrigin, frontendPathname } from '../../Kernel/lib/frontendIRIComponents';
 
 export const FABase = 'http://fontawesome.io/icon/';
 

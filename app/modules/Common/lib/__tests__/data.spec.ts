@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ex from '../../../../ontology/ex';
-import { entityIsLoaded } from '../../../Core/lib/data';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
 import {
   allow,
   convertKeysAtoB,

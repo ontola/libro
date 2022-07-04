@@ -14,7 +14,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import elements from '../../../Elements/ontology/elements';
 import sales from '../../ontology/sales';

@@ -9,7 +9,7 @@ import { gridTopology } from '../../../../Common/topologies/Grid';
 import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
 import { pageTopology } from '../../../../Common/topologies/Page';
 import { sideBarTopology } from '../../../../Common/topologies/SideBar';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import CollectionFrame from '../../../components/CollectionFrame';
 import { CollectionTypes } from '../types';

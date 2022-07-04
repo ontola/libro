@@ -3,7 +3,7 @@ import * as schema from '@ontologies/schema';
 import { Resource, register } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
 
 interface ThingMenusProp {

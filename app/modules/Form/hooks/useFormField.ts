@@ -16,13 +16,13 @@ import {
 import React from 'react';
 import { useField } from 'react-final-form';
 
-import ld from '../../../ontology/ld';
-import sp from '../../../ontology/sp';
+import ld from '../../Kernel/ontology/ld';
+import sp from '../../Kernel/ontology/sp';
 import { arraysEqual } from '../../Common/lib/data';
 import { getStorageKey, storageSet } from '../../Common/lib/persistence';
-import { quadruple } from '../../Common/lib/quadruple';
-import { isJSONLDObject, isNumber } from '../../Common/lib/typeCheckers';
-import ontola from '../../Core/ontology/ontola';
+import { quadruple } from '../../Kernel/lib/quadruple';
+import { isNumber } from '../../Kernel/lib/typeCheckers';
+import ontola from '../../Kernel/ontology/ontola';
 import { formContext } from '../components/Form/FormContext';
 import {
   FormField,
@@ -39,6 +39,7 @@ import {
 import {
   calculateFormFieldName,
   destroyFieldName,
+  isJSONLDObject,
   retrieveIdFromValue,
 } from '../lib/helpers';
 import useValidators from '../lib/validators';

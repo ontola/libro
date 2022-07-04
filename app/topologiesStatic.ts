@@ -1,7 +1,7 @@
 import { topologyMap as academyTopologyMap } from './modules/Academy/topologies';
 import { topologyMap as actionTopologyMap } from './modules/Action/topologies';
 import { topologyMap as commonTopologyMap } from './modules/Common/topologies';
-import { TopologyMap } from './modules/Core/lib/ontology';
+import { TopologyMap } from './modules/Kernel/lib/ontology';
 import { topologyMap as flowTopologyMap } from './modules/Flow/topologies';
 import { topologyMap as formTopologyMap } from './modules/Form/topologies';
 import { topologyMap as menuTopologyMap } from './modules/Menu/topologies';

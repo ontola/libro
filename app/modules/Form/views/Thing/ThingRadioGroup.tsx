@@ -6,12 +6,12 @@ import {
   Property,
   register,
   useGlobalIds,
-  useIds, 
+  useIds,
 } from 'link-redux';
 import React from 'react';
 
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import ontola from '../../../Core/ontology/ontola';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import ontola from '../../../Kernel/ontology/ontola';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 
 interface ThingRadioGroupProps {

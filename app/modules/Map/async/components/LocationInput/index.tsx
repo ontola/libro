@@ -5,10 +5,10 @@ import clsx from 'clsx';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { BreakPoints, LibroTheme } from '../../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../../Kernel/lib/themes';
 import { hiddenRequiredInputErrors } from '../../../../../translations/messages';
 import { SHADOW_LIGHT } from '../../../../Common/lib/flow';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { FormTheme, formContext } from '../../../../Form/components/Form/FormContext';
 import { formFieldContext } from '../../../../Form/components/FormField/FormFieldContext';
 import { InputComponentProps } from '../../../../Form/components/FormField/FormFieldTypes';

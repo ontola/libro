@@ -5,7 +5,7 @@ import SubSection from '../../../Common/components/SubSection';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import MainBody from '../../../Common/topologies/MainBody';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const NodeFull = () => (
   <React.Fragment>

@@ -12,7 +12,7 @@ import { allTopologiesExcept } from '../../../../../topologies';
 import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
 import { pageTopology } from '../../../../Common/topologies/Page';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { CollectionTypes } from '../types';
 
 const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNode[]) => {

@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { linkActiveCID } from '../Link/LinkLabel';
 
 export interface UnorderedListProps {

@@ -9,11 +9,11 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { quadruple } from '../modules/Common/lib/quadruple';
-import app from '../modules/Core/ontology/app';
-import ll from '../modules/Core/ontology/ll';
+import { quadruple } from '../modules/Kernel/lib/quadruple';
+import app from '../modules/Common/ontology/app';
+import ll from '../modules/Kernel/ontology/ll';
 import http from '../ontology/http';
-import ld from '../ontology/ld';
+import ld from '../modules/Kernel/ontology/ld';
 
 interface SearchActionMap {
   target: Node

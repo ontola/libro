@@ -15,9 +15,9 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import { CardMain } from '../../../Common/topologies/Card';
-import example from '../../../Core/ontology/example';
+import example from '../../../Kernel/ontology/example';
 import { calculateFormFieldName } from '../../lib/helpers';
 import form from '../../ontology/form';
 import { UnwrappedForm as Form } from '../Form/Form';

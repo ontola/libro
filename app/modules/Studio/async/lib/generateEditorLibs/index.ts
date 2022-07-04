@@ -4,13 +4,13 @@ import * as rdfs from '@ontologies/rdfs';
 import * as schema from '@ontologies/schema';
 
 import appSlashless from '../../../../../ontology/appSlashless';
-import dbo from '../../../../../ontology/dbo';
+import dbo from '../../../../Common/ontology/dbo';
 import fa4 from '../../../../../ontology/fa4';
 import link from '../../../../../ontology/link';
 import meeting from '../../../../../ontology/meeting';
-import argu from '../../../../Argu/lib/argu';
-import libro from '../../../../Core/ontology/libro';
-import ontola from '../../../../Core/ontology/ontola';
+import argu from '../../../../Argu/ontology/argu';
+import libro from '../../../../Kernel/ontology/libro';
+import ontola from '../../../../Kernel/ontology/ontola';
 import elements from '../../../../Elements/ontology/elements';
 import form from '../../../../Form/ontology/form';
 import sales from '../../../../SalesWebsite/ontology/sales';

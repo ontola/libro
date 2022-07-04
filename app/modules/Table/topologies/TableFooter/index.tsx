@@ -2,9 +2,9 @@ import { makeStyles } from '@mui/styles';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Margin } from '../../../Common/theme/types';
-import { TopologyFC } from '../../../Core/lib/topology';
-import ontola from '../../../Core/ontology/ontola';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import ontola from '../../../Kernel/ontology/ontola';
 import { tableFooterCellCID } from '../TableFooterCell';
 
 export const tableFooterTopology = ontola.ns('tableFooter');

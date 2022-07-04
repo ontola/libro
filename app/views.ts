@@ -12,7 +12,6 @@ import Argu from './modules/Argu/views';
 import Auth from './modules/Auth/views';
 import Collection from './modules/Collection/views';
 import Common from './modules/Common/views';
-import Core from './modules/Core/views';
 import Dexes from './modules/Dexes/views';
 import Element from './modules/Elements/views';
 import Flow from './modules/Flow/views';
@@ -25,11 +24,6 @@ import SalesWebsite from './modules/SalesWebsite/views';
 import Table from './modules/Table/views';
 
 export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
-  const base = [
-    ...Core,
-    ...Common,
-  ];
-
   const modules = [
     ...Auth,
     ...Action,
@@ -52,7 +46,7 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
   ];
 
   return [
-    ...base,
+    ...Common,
     ...modules,
     ...apps,
   ];

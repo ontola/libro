@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import NavBarContent from '../../../NavBar/components/NavBarContent';
 import Navbar from '../../../NavBar/topologies/Navbar';
-import { BreakPoints } from '../../../Common/theme/types';
+import { BreakPoints } from '../../../Kernel/lib/themes';
 
 const useStyles = makeStyles(() => ({
   logo: {

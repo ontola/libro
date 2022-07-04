@@ -3,8 +3,8 @@ import * as schema from '@ontologies/schema';
 import React from 'react';
 import parser, { Template } from 'uri-template';
 
-import dbo from '../../../ontology/dbo';
-import { appContext } from '../../Core/components/AppContext/appContext';
+import dbo from '../../Common/ontology/dbo';
+import { appContext } from '../../Kernel/components/AppContext/appContext';
 import { InputChangeHandler, InputValue } from '../components/FormField/FormFieldTypes';
 
 import { useFileUpload } from './useFileUpload';

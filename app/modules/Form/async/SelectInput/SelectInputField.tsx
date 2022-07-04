@@ -24,10 +24,10 @@ import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
 import CollectionCreateButton from '../../../Collection/components/CollectionCreateButton';
-import { isResource } from '../../../Common/lib/typeCheckers';
-import { LoadingHidden, LoadingRow } from '../../../Core/components/Loading';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import ontola from '../../../Core/ontology/ontola';
+import { isResource } from '../../../Kernel/lib/typeCheckers';
+import { LoadingHidden, LoadingRow } from '../../../Common/components/Loading';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import ontola from '../../../Kernel/ontology/ontola';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
 import { InputValue } from '../../components/FormField/FormFieldTypes';

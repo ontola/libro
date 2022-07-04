@@ -14,7 +14,7 @@ import { LinkReduxLRSType } from 'link-redux';
 import { IntlShape } from 'react-intl';
 
 import { booleanTranslation } from '../../../../../translations/messages';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 
 const filterKeyToName = (lrs: LinkReduxLRSType, filter: SomeNode): string => {
   const name = lrs.dig(filter, [ontola.filterKey, rdfs.label]);

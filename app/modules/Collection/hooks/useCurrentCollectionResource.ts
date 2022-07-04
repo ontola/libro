@@ -11,9 +11,9 @@ import { useNavigate } from 'react-router';
 
 import { resourceHasType } from '../../Common/lib/data';
 import { retrievePath } from '../../Common/lib/iris';
-import { entityIsLoaded } from '../../Core/lib/data';
-import app from '../../Core/ontology/app';
-import ontola from '../../Core/ontology/ontola';
+import { entityIsLoaded } from '../../Kernel/lib/data';
+import app from '../../Common/ontology/app';
+import ontola from '../../Kernel/ontology/ontola';
 import CollectionTypes from '../views/Collection/types';
 
 /**

@@ -12,14 +12,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Size } from '../../../Common/theme/types';
+import { LibroTheme, Size } from '../../../Kernel/lib/themes';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import Grid from '../../../Common/topologies/Grid';
 import PageHeader from '../../../Common/topologies/PageHeader';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   pageBackground: {

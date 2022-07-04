@@ -2,7 +2,7 @@ import { NamedNode, isNamedNode } from '@ontologies/core';
 import { useDataFetching, useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import useMenuItems, { MenuItems } from '../../../Menu/hooks/useMenuItems';
 
 const TabbarContext = React.createContext<MenuItems>({} as MenuItems);

@@ -3,7 +3,7 @@ import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { IRITemplate } from '../../../../Common/hooks/useIRITemplate';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 
 import { FilterValue } from './FilterValue';
 

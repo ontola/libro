@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import argu from '../../../../Argu/lib/argu';
+import argu from '../../../../Argu/ontology/argu';
 import Link, { LinkFeature } from '../../../../Common/components/Link';
 import { footerTopology } from '../../../../Common/topologies/Footer';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
 
 interface HrefProps {

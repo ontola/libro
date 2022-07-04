@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 
 const mapQuestionBoxShadow = 3;
 

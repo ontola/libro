@@ -3,17 +3,17 @@ import rdf from '@ontologies/core';
 import {
   Property,
   Resource,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 
 import Card from '../../Common/topologies/Card';
 import CardAppendix from '../../Common/topologies/Card/CardAppendix';
 import Grid from '../../Common/topologies/Grid';
-import { LoadingCardFixed } from '../../Core/components/Loading';
-import Suspense from '../../Core/components/Suspense';
-import app from '../../Core/ontology/app';
-import ontola from '../../Core/ontology/ontola';
+import { LoadingCardFixed } from '../../Common/components/Loading';
+import Suspense from '../../Kernel/components/Suspense';
+import app from '../../Common/ontology/app';
+import ontola from '../../Kernel/ontology/ontola';
 import TableHeadCells from '../../Table/components/TableHeadCells';
 import Table from '../../Table/topologies/Table';
 import TableFooter from '../../Table/topologies/TableFooter';

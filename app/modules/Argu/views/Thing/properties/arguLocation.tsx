@@ -13,14 +13,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../../Common/theme/types';
-import { isResource } from '../../../../Common/lib/typeCheckers';
+import { LibroTheme } from '../../../../Kernel/lib/themes';
+import { isResource } from '../../../../Kernel/lib/typeCheckers';
 import { containerTopology } from '../../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
 import { gridTopology } from '../../../../Common/topologies/Grid';
 import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
-import { useContainerToArr } from '../../../../Core/hooks/useContainerToArr';
-import app from '../../../../Core/ontology/app';
+import { useContainerToArr } from '../../../../Kernel/hooks/useContainerToArr';
+import app from '../../../../Common/ontology/app';
 import {
   FeatureSelectCallback,
   MapVariant,
@@ -28,7 +28,7 @@ import {
 } from '../../../../Map/components/ControlledMap';
 import PlacementsMap from '../../../../Map/components/PlacementsMap';
 import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 export interface ArguLocationProps {
   linkedProp: SomeNode;

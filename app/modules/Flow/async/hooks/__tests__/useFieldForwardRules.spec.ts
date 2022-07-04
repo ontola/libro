@@ -11,7 +11,7 @@ import {
   mockMedia,
   pointerQuery,
 } from '../../../../../../tests/test-utils-media';
-import example from '../../../../Core/ontology/example';
+import example from '../../../../Kernel/ontology/example';
 import form from '../../../../Form/ontology/form';
 import { useFieldForwardRules } from '../useFieldForwardRules';
 

@@ -7,7 +7,7 @@ import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
 import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import { useContactOptionStyles } from '../Volunteer/useContactOptionStyles';
 

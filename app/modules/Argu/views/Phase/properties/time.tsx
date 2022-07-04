@@ -4,7 +4,7 @@ import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 export interface TimeProps {
   linkedProp: SomeTerm;

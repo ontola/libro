@@ -11,8 +11,8 @@ import { LinkReduxLRSType } from 'link-redux';
 
 import { collectionMembers } from '../../../Collection/lib/diggers';
 import { resourceHasType } from '../../../Common/lib/data';
-import { entityIsLoaded } from '../../../Core/lib/data';
-import ontola from '../../../Core/ontology/ontola';
+import { entityIsLoaded } from '../../../Kernel/lib/data';
+import ontola from '../../../Kernel/ontology/ontola';
 
 const isCollection = (lrs: LinkReduxLRSType, value: Term[]) => {
   const firstValue = value[0];

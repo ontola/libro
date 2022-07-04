@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme, Margin } from '../../Common/theme/types';
+import { LibroTheme, Margin } from '../../Kernel/lib/themes';
 import { salesMessages } from '../../../translations/messages';
 import { PricingInterval } from '../views/Tier/Price';
 

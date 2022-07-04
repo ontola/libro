@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 import { allTopologies } from '../../../../../topologies';
 import { collectionMessages } from '../../../../../translations/messages';
 import { retrievePath } from '../../../../Common/lib/iris';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { RenderProp } from '../../../../Menu/components/DropdownMenu/DropdownMenu';
 import TriggerButton, { Trigger } from '../../../../Menu/components/DropdownMenu/TriggerButton';
 import MenuItem from '../../../../Menu/components/MenuItem';

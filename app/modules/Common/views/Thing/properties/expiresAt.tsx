@@ -6,11 +6,11 @@ import React from 'react';
 import {
   FormattedMessage,
   FormattedRelativeTime,
-  useIntl, 
+  useIntl,
 } from 'react-intl';
 
 import { statusMessages } from '../../../../../translations/messages';
-import argu from '../../../../Argu/lib/argu';
+import argu from '../../../../Argu/ontology/argu';
 import Detail from '../../../components/Detail';
 import { filterUpdateInterval, useDateUpdateInterval } from '../../../hooks/useDateUpdateInterval';
 import isPastDate from '../../../lib/date';

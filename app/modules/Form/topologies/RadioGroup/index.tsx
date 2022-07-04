@@ -12,10 +12,10 @@ import clsx from 'clsx';
 import { Resource, useTopologyProvider } from 'link-redux';
 import React, { EventHandler } from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { SHADOW } from '../../../Common/lib/flow';
-import { isResource } from '../../../Common/lib/typeCheckers';
-import { TopologyFC } from '../../../Core/lib/topology';
+import { isResource } from '../../../Kernel/lib/typeCheckers';
+import { TopologyFC } from '../../../Kernel/lib/topology';
 import { FormTheme } from '../../components/Form/FormContext';
 import { FocusRelatedEventHandler, InputValue } from '../../components/FormField/FormFieldTypes';
 import form from '../../ontology/form';

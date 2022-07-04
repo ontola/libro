@@ -12,7 +12,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import sales from '../../ontology/sales';
 

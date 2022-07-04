@@ -7,7 +7,7 @@ import { motionMessages } from '../../../../../translations/messages';
 import Detail from '../../../../Common/components/Detail';
 import { tryParseInt } from '../../../../Common/lib/numbers';
 import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const MotionsCount = ({ linkedProp }: PropertyProps): JSX.Element | null => {
   const { formatMessage } = useIntl();

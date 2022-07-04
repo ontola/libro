@@ -1,5 +1,5 @@
-import { createBasicTopologyProvider } from '../../../Core/lib/topology';
-import libro from '../../../Core/ontology/libro';
+import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
+import libro from '../../../Kernel/ontology/libro';
 
 export const fullResourceTopology = libro.topologies.fullResource;
 

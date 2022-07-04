@@ -4,7 +4,7 @@ import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
 import Card from '../../../Common/topologies/Card';
-import { LoadingGridContent } from '../../../Core/components/Loading';
+import { LoadingGridContent } from '../../../Common/components/Loading';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import { FormTheme } from '../../../Form/components/Form/FormContext';
 import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';

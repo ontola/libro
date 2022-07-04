@@ -5,7 +5,7 @@ import {
 } from '@mui/material/styles';
 import deepmerge from 'deepmerge';
 
-import { LibroTheme, MaterialStyleMap } from './types';
+import { LibroTheme, MaterialStyleMap } from '../../Kernel/lib/themes';
 
 type ComponentStyle = (theme: LibroTheme) => MaterialStyleMap;
 

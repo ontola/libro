@@ -2,7 +2,7 @@ import { Node, SomeTerm } from '@ontologies/core';
 import * as rdfs from '@ontologies/rdfs';
 import { LinkReduxLRSType } from 'link-redux';
 
-import argu from '../../Argu/lib/argu';
+import argu from '../../Argu/ontology/argu';
 
 export const createFlattenFunction = (lrs: LinkReduxLRSType): (leaf: SomeTerm, top?: boolean) => SomeTerm[] => {
   const flattenChapters = (leaf: SomeTerm, top = true): SomeTerm[] => {

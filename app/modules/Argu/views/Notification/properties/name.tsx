@@ -12,7 +12,7 @@ import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed'
 import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
 import { containerTopology } from '../../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Heading size={HeadingSize.MD}>

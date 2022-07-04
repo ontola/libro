@@ -9,10 +9,10 @@ import {
 import { components } from '../../../../components';
 import meeting from '../../../../ontology/meeting';
 import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
-import argu from '../../../Argu/lib/argu';
-import component from '../../../Core/lib/component';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import argu from '../../../Argu/ontology/argu';
+import component from '../../lib/component';
+import app from '../../ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
 import { property, withoutLoading } from '../../lib/properties';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { mainBodyTopology } from '../../topologies/MainBody';

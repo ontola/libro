@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../../ontology/dbo';
+import dbo from '../../../../Common/ontology/dbo';
 import meeting from '../../../../../ontology/meeting';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import CardHeader from '../../../../Common/components/Card/CardHeader';
@@ -18,8 +18,8 @@ import { containerTopology } from '../../../../Common/topologies/Container';
 import DetailsBar, { DetailsBarVariant } from '../../../../Common/topologies/DetailsBar';
 import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
 import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
-import ontola from '../../../../Core/ontology/ontola';
-import argu from '../../../lib/argu';
+import ontola from '../../../../Kernel/ontology/ontola';
+import argu from '../../../ontology/argu';
 
 import OfferActionButtons from './OfferActionButtons';
 

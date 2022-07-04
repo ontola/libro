@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import { LibroTheme, Margin } from '../../../Common/theme/types';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { headingCID } from '../../../Common/components/Heading';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
-import { TopologyFC } from '../../../Core/lib/topology';
-import ontola from '../../../Core/ontology/ontola';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import ontola from '../../../Kernel/ontology/ontola';
 
 export const tableCellTopology = ontola.ns('tableCell');
 

@@ -1,4 +1,4 @@
-import { LibroTheme, MaterialStyleMap } from '../types';
+import { LibroTheme, MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 const DIALOG_BREAKPOINT = 400;
 

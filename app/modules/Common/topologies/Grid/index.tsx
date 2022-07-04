@@ -2,10 +2,10 @@ import { GridTypeMap, Grid as MaterialGrid } from '@mui/material';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LoadingFullResource } from '../../../Core/components/Loading';
-import Suspense from '../../../Core/components/Suspense';
-import { TopologyFC } from '../../../Core/lib/topology';
-import libro from '../../../Core/ontology/libro';
+import { LoadingFullResource } from '../../components/Loading';
+import Suspense from '../../../Kernel/components/Suspense';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import libro from '../../../Kernel/ontology/libro';
 
 export const gridTopology = libro.topologies.grid;
 

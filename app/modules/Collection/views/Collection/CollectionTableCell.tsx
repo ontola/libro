@@ -3,7 +3,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import LDLink from '../../../Common/components/LDLink';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { tableCellTopology } from '../../../Table/topologies/TableCell';
 
 import { CollectionTypes } from './types';

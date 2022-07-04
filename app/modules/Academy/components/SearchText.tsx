@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { LibroTheme } from '../../Common/theme/types';
+import { LibroTheme } from '../../Kernel/lib/themes';
 
 export interface SearchTextProps {
   text: string;

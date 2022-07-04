@@ -1,4 +1,4 @@
-import { MaterialStyleMap } from '../types';
+import { MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 export default (): MaterialStyleMap => ({
   MuiIcon: {

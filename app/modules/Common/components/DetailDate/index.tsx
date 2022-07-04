@@ -8,7 +8,7 @@ import {
 
 import { dateMessages } from '../../../../translations/messages';
 import { relativeTimeDestructure } from '../../lib/date';
-import { isDateOrDateTime } from '../../lib/typeCheckers';
+import { isDateOrDateTime } from '../../../Kernel/lib/typeCheckers';
 import Detail from '../Detail';
 import RelativeDate from '../RelativeDate';
 

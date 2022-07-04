@@ -9,7 +9,7 @@ import { animated } from '@react-spring/web';
 import clsx from 'clsx';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { Dispatcher, State } from '../../../Common/hooks/useStateMachine';
 import { mapRange } from '../../../Common/lib/numbers';
 

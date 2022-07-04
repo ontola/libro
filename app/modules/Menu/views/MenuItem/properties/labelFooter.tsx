@@ -3,10 +3,10 @@ import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/lib/argu';
+import argu from '../../../../Argu/ontology/argu';
 import Heading, { HeadingSize, HeadingVariant } from '../../../../Common/components/Heading';
 import { footerTopology } from '../../../../Common/topologies/Footer';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 
 interface MenuItemLabelFooterProps {
   linkedProp: Literal;

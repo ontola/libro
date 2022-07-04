@@ -9,13 +9,13 @@ import {
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import { BreakPoints } from '../../../Common/theme/types';
+import { BreakPoints } from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardError from '../../../Common/components/Error/CardError';
 import Card from '../../../Common/topologies/Card';
 import { cardClassIdentifier } from '../../../Common/topologies/Card/sharedCardStyles';
-import app from '../../../Core/ontology/app';
+import app from '../../../Common/ontology/app';
 import useMapAccessToken from '../../../Map/hooks/useMapAccessToken';
 import GlappMap from '../../components/GlappMap';
 import teamGL from '../../ontology/teamGL';

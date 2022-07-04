@@ -7,7 +7,7 @@ import {
   IndexablePalette,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 
 const LIGHTEN = 0.7;
 

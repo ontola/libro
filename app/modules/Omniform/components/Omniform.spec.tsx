@@ -13,10 +13,10 @@ import React from 'react';
 
 import { fireEvent, renderLinked } from '../../../../tests/test-utils';
 import ex from '../../../ontology/ex';
-import argu from '../../Argu/lib/argu';
+import argu from '../../Argu/ontology/argu';
 import Card from '../../Common/topologies/Card';
-import example from '../../Core/ontology/example';
-import ll from '../../Core/ontology/ll';
+import example from '../../Kernel/ontology/example';
+import ll from '../../Kernel/ontology/ll';
 import { calculateFormFieldName } from '../../Form/lib/helpers';
 import form from '../../Form/ontology/form';
 

@@ -9,9 +9,9 @@ import generateLRS from '../../../helpers/generateLRS';
 import { ontolaActionPrefix } from '../../../middleware/ontolaMiddleware';
 // @ts-ignore
 import register from '../../../views';
-import { WebManifest } from '../../../WebManifest';
-import { appContext } from '../../Core/components/AppContext/appContext';
-import LinkLoader from '../../Core/components/Loading/LinkLoader';
+import { WebManifest } from '../../Kernel/components/AppContext/WebManifest';
+import { appContext } from '../../Kernel/components/AppContext/appContext';
+import LinkLoader from '../../Kernel/components/LinkLoader';
 
 export interface ClonedLRS extends LinkReduxLRSType {
   originalLRS: LinkReduxLRSType

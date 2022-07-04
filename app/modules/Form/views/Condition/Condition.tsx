@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../topologies';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { formContext } from '../../components/Form/FormContext';
 import useShapeValidation from '../../hooks/useShapeValidation';
 

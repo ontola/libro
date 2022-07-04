@@ -4,7 +4,7 @@ import { Property } from 'link-redux';
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
+import { useHighlight } from '../../components/HighlightProvider/HighlightProvider';
 import CardContent from '../../components/Card/CardContent';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import HoverBox from '../../topologies/HoverBox';

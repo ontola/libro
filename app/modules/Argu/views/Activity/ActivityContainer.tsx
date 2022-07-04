@@ -6,8 +6,8 @@ import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
 import Card, { CardRow } from '../../../Common/topologies/Card';
-import Suspense from '../../../Core/components/Suspense';
-import libro from '../../../Core/ontology/libro';
+import Suspense from '../../../Kernel/components/Suspense';
+import libro from '../../../Kernel/ontology/libro';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 

@@ -5,7 +5,7 @@ import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 
 import { renderLinkedHook } from '../../../../../tests/test-utils-hooks';
-import { useListToArr } from '../../../Core/hooks/useListToArr';
+import { useListToArr } from '../../../Kernel/hooks/useListToArr';
 
 describe('useListToArr', () => {
   it('converts a list', async () => {

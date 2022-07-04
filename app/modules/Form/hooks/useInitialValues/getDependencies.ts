@@ -9,8 +9,8 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { isResource } from '../../../Common/lib/typeCheckers';
-import ontola from '../../../Core/ontology/ontola';
+import { isResource } from '../../../Kernel/lib/typeCheckers';
+import ontola from '../../../Kernel/ontology/ontola';
 import {
   formFieldSeqPath,
   formFieldsPath,

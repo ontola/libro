@@ -8,7 +8,7 @@ import React from 'react';
 
 import { LargeContainer } from '../../../../Common/topologies/Container';
 import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 
 const Text: FC<PropertyProps> = ({
   linkedProp,

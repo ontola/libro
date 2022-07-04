@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { formContext } from '../../../Form/components/Form/FormContext';
 import useShapeValidation from '../../../Form/hooks/useShapeValidation';
 import { formFieldsPath } from '../../../Form/lib/diggers';

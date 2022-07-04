@@ -10,7 +10,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { collectionMessages } from '../../../translations/messages';
-import ontola from '../../Core/ontology/ontola';
+import ontola from '../../Kernel/ontology/ontola';
 
 import { useCollectionOptions } from './CollectionContext';
 import CollectionCreateButton, { TriggerType } from './CollectionCreateButton';

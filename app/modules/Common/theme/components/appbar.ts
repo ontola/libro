@@ -1,4 +1,4 @@
-import { LibroTheme, MaterialStyleMap } from '../types';
+import { LibroTheme, MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 export default (theme: LibroTheme): MaterialStyleMap => ({
   MuiAppBar: {

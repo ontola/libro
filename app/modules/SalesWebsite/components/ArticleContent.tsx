@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 
 export interface ArticleContentProps {
   classes?: ClassNameMap<string>;

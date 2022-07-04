@@ -7,7 +7,7 @@ import { SomeNode } from 'link-lib';
 import { useDataFetching, useStrings } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import useDisplayPercentage from '../../../Common/hooks/useDisplayPercentage';
 import { NAME_PREDICATES } from '../../../Common/lib/metaData';
 

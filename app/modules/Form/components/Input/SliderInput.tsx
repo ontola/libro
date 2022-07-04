@@ -3,10 +3,10 @@ import { makeStyles } from '@mui/styles';
 import { useProperty } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { tryParseInt } from '../../../Common/lib/numbers';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { formFieldContext } from '../FormField/FormFieldContext';
 import { InputComponentProps } from '../FormField/FormFieldTypes';
 

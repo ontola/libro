@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 
-import { TopologyMap } from '../../Core/lib/ontology';
+import { TopologyMap } from '../../Kernel/lib/ontology';
 
 import omniformFieldsTopologyComponent, { omniformFieldsTopology } from './OmniformFields/OmniformFields';
 import omniformSupplementBarTopologyComponent, { omniformSupplementBarTopology } from './OmniformSupplementBar/OmniformSupplementBar';

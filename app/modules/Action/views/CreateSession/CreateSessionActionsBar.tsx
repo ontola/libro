@@ -3,7 +3,7 @@ import React from 'react';
 
 import { SignInFormLink } from '../../../Auth/components/SignInForm';
 import Button from '../../../Common/components/Button';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 
 const CreateSessionActionsBar = () => (

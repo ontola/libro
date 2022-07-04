@@ -2,8 +2,8 @@ import { register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import app from '../../ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
 import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 

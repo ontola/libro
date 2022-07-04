@@ -5,7 +5,7 @@ import React from 'react';
 import Metadata from '../../../Common/components/Metadata';
 import FullResource from '../../../Common/topologies/FullResource';
 import { pageTopology } from '../../../Common/topologies/Page';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const ForumPage = (props: any): JSX.Element => (
   <React.Fragment>

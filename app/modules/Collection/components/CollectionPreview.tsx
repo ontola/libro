@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import Heading from '../../Common/components/Heading';
 import LinkDuo from '../../Common/components/LinkDuo';
 import { tryParseInt } from '../../Common/lib/numbers';
-import ResourceBoundary from '../../Core/components/ResourceBoundary';
+import ResourceBoundary from '../../Common/components/ResourceBoundary';
 import { useCollectionStyles } from '../views/Collection/useCollectionStyles';
 
 interface CollectionPreviewProps {

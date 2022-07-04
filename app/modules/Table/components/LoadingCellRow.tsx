@@ -2,13 +2,13 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../Common/theme/types';
-import { loadingBackground } from '../../Core/components/Loading';
+import { LibroTheme } from '../../Kernel/lib/themes';
+import { loadingStyles } from '../../Common/components/Loading';
 import TableCell from '../topologies/TableCell';
 import TableRow from '../topologies/TableRow';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
-  loadingBackground: loadingBackground(theme),
+  ...loadingStyles(theme),
   loadingCellRow: {
     height: '1em',
   },

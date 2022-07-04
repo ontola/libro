@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { animated } from '@react-spring/web';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 
 import { HoverSide } from './CardState';
 import { IconAnimationProps, OverlayAnimationProps } from './hooks/Animator';

@@ -1,6 +1,6 @@
 import makeStyles from '@mui/styles/makeStyles';
 
-import { LibroTheme, Margin } from '../../theme/types';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 
 export enum ButtonVariant {
   AsCard = 'asCard',

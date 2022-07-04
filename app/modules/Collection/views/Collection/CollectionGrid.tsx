@@ -12,7 +12,7 @@ import { CardFixed } from '../../../Common/topologies/Card';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import List, { ListDirection } from '../../../Common/topologies/List';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 import { CollectionTypes } from './types';
 

@@ -15,8 +15,8 @@ import { allTopologiesExcept } from '../../../../topologies';
 import AccountHelpersCardAppendix from '../../../Auth/components/SignInForm/AccountHelpersCardAppendix';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { isDifferentWebsite, retrievePath } from '../../../Common/lib/iris';
-import { website } from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import { website } from '../../../Kernel/lib/frontendIRIComponents';
+import ontola from '../../../Kernel/ontology/ontola';
 import useMemoryStore from '../../hooks/useMemoryStore';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 

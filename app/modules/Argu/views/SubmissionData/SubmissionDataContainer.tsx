@@ -15,7 +15,7 @@ import Card from '../../../Common/topologies/Card';
 import { containerTopology } from '../../../Common/topologies/Container';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const SubmissionDataContainer: FC = () => {
   const properties = useQuadruples(except(rdfx.type));

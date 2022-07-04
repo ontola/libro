@@ -2,8 +2,8 @@ import { makeStyles } from '@mui/styles';
 import equal from 'fast-deep-equal';
 import React, { FormEventHandler } from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
-import { isFunction } from '../../../Common/lib/typeCheckers';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import { isFunction } from '../../../Kernel/lib/typeCheckers';
 import Input, { InputType } from '../Input/Input';
 
 import { FormProps } from './Form';

@@ -2,7 +2,7 @@ import { Literal } from '@ontologies/core';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/lib/argu';
+import argu from '../../../../Argu/ontology/argu';
 import RelativeDate from '../../../../Common/components/RelativeDate';
 import TableCell from '../../../../Table/topologies/TableCell';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';

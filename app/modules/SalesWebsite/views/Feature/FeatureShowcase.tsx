@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import Image from '../../../Common/components/Image';
 import sales from '../../ontology/sales';
 import { showcaseTopology } from '../../topologies/Showcase';

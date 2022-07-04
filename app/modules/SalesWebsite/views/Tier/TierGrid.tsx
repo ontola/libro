@@ -25,7 +25,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { salesMessages } from '../../../../translations/messages';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import { CallToActionButton } from '../../components';

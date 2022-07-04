@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 interface VoteEventProps {
   linkedProp: Node;

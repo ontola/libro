@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 interface MapQuestionLocationProps {
   linkedProp: SomeNode;

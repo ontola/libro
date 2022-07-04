@@ -4,7 +4,7 @@ import { cardTopology } from '../../Common/topologies/Card';
 import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
 import fullResourceTopologyComponent from '../../Common/topologies/FullResource';
 import { mainBodyTopology } from '../../Common/topologies/MainBody';
-import { TopologyMap } from '../../Core/lib/ontology';
+import { TopologyMap } from '../../Kernel/lib/ontology';
 import { flowTopology } from '../../Flow/topologies/Flow';
 import { omniformFieldsTopology } from '../../Omniform/topologies/OmniformFields/OmniformFields';
 

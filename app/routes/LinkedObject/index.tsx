@@ -8,7 +8,7 @@ import { handle } from '../../helpers/logging';
 import PageError from '../../modules/Common/components/Error/PageError';
 import { currentLocationControl } from '../../modules/Common/lib/paths';
 import Page from '../../modules/Common/topologies/Page';
-import { WebsiteContext, WebsiteCtx } from '../../modules/Core/components/WebsiteContext/websiteContext';
+import { WebsiteContext, WebsiteCtx } from '../../modules/Kernel/components/WebsiteContext/websiteContext';
 
 const wildcardMap = new Map();
 wildcardMap.set('/media_objects/', ['page']);

@@ -37,7 +37,7 @@ import 'SuisseIntl-Ultralight-WebS.woff';
 import 'SuisseIntl-Ultralight-WebS.woff2';
 import 'SuisseIntl-UltralightItalic-WebS.woff';
 import 'SuisseIntl-UltralightItalic-WebS.woff2';
-import { LibroTheme, MaterialStyleMap } from '../../../Common/theme/types';
+import { LibroTheme, MaterialStyleMap } from '../../../Kernel/lib/themes';
 
 const fontFaces = [
   {

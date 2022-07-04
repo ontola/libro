@@ -2,8 +2,8 @@ import { SubjectType } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../Common/components/Card/CardContent';
-import { LoadingGridContent } from '../../Core/components/Loading';
-import Suspense from '../../Core/components/Suspense';
+import { LoadingGridContent } from '../../Common/components/Loading';
+import Suspense from '../../Kernel/components/Suspense';
 
 export interface PDFViewerProps {
   AdditionalButtons?: React.ElementType;

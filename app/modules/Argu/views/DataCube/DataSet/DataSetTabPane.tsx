@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import qb from '../../../../../ontology/qb';
-import { Size } from '../../../../Common/theme/types';
+import { Size } from '../../../../Kernel/lib/themes';
 import Container from '../../../../Common/topologies/Container';
 import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 

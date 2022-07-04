@@ -3,8 +3,8 @@ import React from 'react';
 
 import ActionsBar from '../../../../Action/topologies/ActionsBar';
 import { ButtonVariant } from '../../../../Common/components/Button';
-import ontola from '../../../../Core/ontology/ontola';
-import argu from '../../../lib/argu';
+import ontola from '../../../../Kernel/ontology/ontola';
+import argu from '../../../ontology/argu';
 
 const OfferActionButtons: React.FC = () => (
   <ActionsBar>

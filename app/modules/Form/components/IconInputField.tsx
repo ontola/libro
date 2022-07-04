@@ -1,8 +1,8 @@
 import React from 'react';
 
 import useFontsChecker from '../../Common/hooks/useFontsChecker';
-import LinkLoader from '../../Core/components/Loading/LinkLoader';
-import Suspense from '../../Core/components/Suspense';
+import LinkLoader from '../../Kernel/components/LinkLoader';
+import Suspense from '../../Kernel/components/Suspense';
 
 import { InputComponentProps } from './FormField/FormFieldTypes';
 

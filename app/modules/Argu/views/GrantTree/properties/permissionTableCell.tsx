@@ -4,16 +4,16 @@ import {
   FC,
   PropertyProps,
   register,
-  useStrings, 
+  useStrings,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import { permissionMessages } from '../../../../../translations/messages';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const PermissionTableCell: FC<PropertyProps> = ({
   linkedProp,

@@ -6,7 +6,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { BreakPoints, LibroTheme } from '../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 import Link from '../../Common/components/Link';
 
 const LIST_LEFT_MARGIN = 14;

@@ -21,9 +21,9 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
-import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
+import { useSeqToArr } from '../../../Kernel/hooks/useSeqToArr';
 import TableHeaderRow from '../../../Table/topologies/TableHeaderRow';
 import sales from '../../ontology/sales';
 

@@ -9,8 +9,8 @@ import React from 'react';
 import { allTopologies } from '../../../../../topologies';
 import { useTabbar } from '../../../../Common/components/TabbarProvider';
 import TabPane from '../../../../Common/topologies/TabPane';
-import app from '../../../../Core/ontology/app';
-import ontola from '../../../../Core/ontology/ontola';
+import app from '../../../../Common/ontology/app';
+import ontola from '../../../../Kernel/ontology/ontola';
 
 const CurrentTab = () => {
   const { currentTab } = useTabbar();

@@ -4,10 +4,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import retrievePath from '../../../Common/lib/iris';
-import { useWebsiteIRI } from '../../../Core/hooks/useWebsiteIRI';
-import ontola from '../../../Core/ontology/ontola';
+import { useWebsiteIRI } from '../../../Kernel/hooks/useWebsiteIRI';
+import ontola from '../../../Kernel/ontology/ontola';
 import Navbar from '../../../NavBar/topologies/Navbar';
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 
 import { ChapterSearch } from './ChapterSearch';
 

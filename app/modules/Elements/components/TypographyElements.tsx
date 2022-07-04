@@ -5,7 +5,7 @@ import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../Common/theme/types';
+import { LibroTheme } from '../../Kernel/lib/themes';
 
 export interface TypographyElementProps {
   children?: SomeNode;

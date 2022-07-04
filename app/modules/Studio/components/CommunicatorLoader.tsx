@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Suspense from '../../Core/components/Suspense';
+import Suspense from '../../Kernel/components/Suspense';
 
 import Communicator from './Communicator';
 

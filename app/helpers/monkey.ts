@@ -3,8 +3,8 @@ import { LinkReduxLRSType } from 'link-redux';
 import {
   getAuthenticityToken,
   getLinkContent,
-  getMetaContent,
 } from '../modules/Common/lib/dom';
+import { getMetaContent } from '../modules/Kernel/lib/dom';
 
 function patchRequestInitGenerator(lrs: LinkReduxLRSType): void {
   (lrs as any).api.requestInitGenerator.constructor.prototype.authenticityHeader =

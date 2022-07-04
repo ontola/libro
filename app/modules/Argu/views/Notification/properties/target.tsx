@@ -14,7 +14,7 @@ import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
 import { containerTopology } from '../../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
 import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 interface TargetProps extends PropertyProps {
   onClick: () => void;

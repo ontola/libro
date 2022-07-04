@@ -5,7 +5,7 @@ import { register } from 'link-redux';
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import ontola from '../../../../Core/ontology/ontola';
+import ontola from '../../../../Kernel/ontology/ontola';
 import FormFooterImage from '../../../../Form/components/Form/FooterImage';
 import { formFooterTopology } from '../../../../Form/topologies/FormFooter';
 import { selectedValueTopology } from '../../../../Form/topologies/SelectedValue';

@@ -13,13 +13,13 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../../../Common/theme/types';
+import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../../topologies';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import GridItem from '../../../../Common/components/Grid/GridItem';
 import Container, { containerTopology } from '../../../../Common/topologies/Container';
-import app from '../../../../Core/ontology/app';
-import ontola from '../../../../Core/ontology/ontola';
+import app from '../../../../Common/ontology/app';
+import ontola from '../../../../Kernel/ontology/ontola';
 import TableCell from '../../../../Table/topologies/TableCell';
 import TableRow from '../../../../Table/topologies/TableRow';
 import { useCollectionOptions } from '../../../components/CollectionContext';

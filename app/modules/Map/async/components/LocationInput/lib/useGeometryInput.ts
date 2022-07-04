@@ -7,7 +7,7 @@ import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
 import fa4 from '../../../../../../ontology/fa4';
-import { LibroTheme } from '../../../../../Common/theme/types';
+import { LibroTheme } from '../../../../../Kernel/lib/themes';
 import { tryParseFloat } from '../../../../../Common/lib/numbers';
 import { FormField } from '../../../../../Form/components/FormField/FormFieldTypes';
 import {

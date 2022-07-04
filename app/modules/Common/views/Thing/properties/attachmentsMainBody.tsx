@@ -11,8 +11,8 @@ import {
 import React from 'react';
 
 import meeting from '../../../../../ontology/meeting';
-import argu from '../../../../Argu/lib/argu';
-import ontola from '../../../../Core/ontology/ontola';
+import argu from '../../../../Argu/ontology/argu';
+import ontola from '../../../../Kernel/ontology/ontola';
 import UploadTarget from '../../../../Dexes/views/Folder/UploadTarget';
 import List from '../../../topologies/List';
 import { mainBodyTopology } from '../../../topologies/MainBody';

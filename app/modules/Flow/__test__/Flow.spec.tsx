@@ -21,7 +21,7 @@ import {
 } from '../../../../tests/test-utils-media';
 import Flow from '../../../modules/Flow/topologies/Flow';
 import ex from '../../../ontology/ex';
-import ll from '../../Core/ontology/ll';
+import ll from '../../Kernel/ontology/ll';
 import form from '../../Form/ontology/form';
 
 const s = (node: NamedNode) => node.toString();

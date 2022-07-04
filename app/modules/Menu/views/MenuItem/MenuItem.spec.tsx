@@ -16,8 +16,8 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
 import AppMenu, { AppMenuChildProps } from '../../topologies/AppMenu';
 
 describe('MenuItem', () => {

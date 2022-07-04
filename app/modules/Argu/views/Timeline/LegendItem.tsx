@@ -12,7 +12,7 @@ import React from 'react';
 
 import { allTopologies } from '../../../../topologies';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const useStyles = makeStyles(() => ({
   content: {

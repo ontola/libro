@@ -7,7 +7,7 @@ import React, { VideoHTMLAttributes } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { allTopologies } from '../../../../topologies';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 export interface VideoSetProps extends VideoHTMLAttributes<HTMLVideoElement> {
   className: string,

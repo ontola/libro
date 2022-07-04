@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Size } from '../../theme/types';
-import ontola from '../../../Core/ontology/ontola';
+import { Size } from '../../../Kernel/lib/themes';
+import ontola from '../../../Kernel/ontology/ontola';
 import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';
 import Container from '../../topologies/Container';

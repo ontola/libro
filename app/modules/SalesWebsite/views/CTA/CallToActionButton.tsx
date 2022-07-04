@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../topologies';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { CallToActionButton as CallToActionButtonComponent } from '../../components/CallToActionButton';
 import sales from '../../ontology/sales';
 

@@ -12,10 +12,10 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

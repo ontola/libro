@@ -3,14 +3,14 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
 import { SortProps } from '../../../Collection/hooks/useSorting';
-import { titleProps } from '../../../Core/ontology/app';
+import { titleProps } from '../../../Common/ontology/app';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
 import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 

@@ -5,7 +5,7 @@ import React from 'react';
 import Card from '../../../Common/topologies/Card';
 import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 
 const ConfirmationFull = () => (
   <Container>

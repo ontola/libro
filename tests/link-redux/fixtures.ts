@@ -11,7 +11,7 @@ import { Store } from 'redux';
 
 import { defaultManifest } from '../../app/helpers/defaultManifest';
 import generateLRS from '../../app/helpers/generateLRS';
-import { quadruple } from '../../app/modules/Common/lib/quadruple';
+import { quadruple } from '../../app/modules/Kernel/lib/quadruple';
 import ServiceWorkerCommunicator from '../../app/components/ServiceWorkerCommunicator';
 
 import { TestContext, defaultContext } from './utilities';

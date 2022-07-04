@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LibroTheme } from '../../Common/theme/types';
+import { LibroTheme } from '../../Kernel/lib/themes';
 
 export interface ReadMoreButtonProps {
   className?: string

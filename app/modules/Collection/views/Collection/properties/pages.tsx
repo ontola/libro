@@ -3,14 +3,14 @@ import {
   FC,
   Resource,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
-import { LoadingGridContent } from '../../../../Core/components/Loading';
-import Suspense from '../../../../Core/components/Suspense';
-import ontola from '../../../../Core/ontology/ontola';
+import { LoadingGridContent } from '../../../../Common/components/Loading';
+import Suspense from '../../../../Kernel/components/Suspense';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { CollectionTypes } from '../types';
 
 interface PagesProps {

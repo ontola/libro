@@ -1,8 +1,8 @@
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Core/lib/topology';
-import ontola from '../../../Core/ontology/ontola';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import ontola from '../../../Kernel/ontology/ontola';
 
 export const tableFooterRowTopology = ontola.ns('tableFooterRow');
 export type TableFooterRowProps = React.HTMLAttributes<HTMLTableRowElement>;

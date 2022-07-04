@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../ontology/dbo';
+import dbo from '../../../Common/ontology/dbo';
 import meeting from '../../../../ontology/meeting';
 import opengov from '../../../../ontology/opengov';
 import CardContent from '../../../Common/components/Card/CardContent';
@@ -18,10 +18,10 @@ import CardRow from '../../../Common/topologies/Card/CardRow';
 import { containerTopology } from '../../../Common/topologies/Container';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import { useHighlight } from '../../../Core/components/HighlightProvider/HighlightProvider';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
-import argu from '../../lib/argu';
+import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
+import argu from '../../ontology/argu';
 
 const MotionContainer: FC = ({ subject }) => {
   const { highlightState } = useHighlight();

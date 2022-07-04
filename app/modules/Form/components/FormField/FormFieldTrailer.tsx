@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';

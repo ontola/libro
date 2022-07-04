@@ -10,7 +10,7 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import retrievePath from '../../../Common/lib/iris';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import { ReadMoreButton } from '../../components';

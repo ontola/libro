@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { useLiterals } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import DetailDate from '../DetailDate';
 
 interface PropTypes {

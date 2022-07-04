@@ -5,8 +5,8 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import LinkLoader from '../../../Core/components/Loading/LinkLoader';
-import Suspense from '../../../Core/components/Suspense';
+import LinkLoader from '../../../Kernel/components/LinkLoader';
+import Suspense from '../../../Kernel/components/Suspense';
 
 const GRID_FULL = 12;
 const LG_BASE = 12;

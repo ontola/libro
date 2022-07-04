@@ -6,7 +6,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import { parentTopology } from '../../../../Common/topologies/BreadcrumbsBar';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 interface ForumNameParent {
   linkedProp: Literal;

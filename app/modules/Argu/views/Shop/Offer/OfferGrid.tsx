@@ -8,15 +8,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import dbo from '../../../../../ontology/dbo';
+import dbo from '../../../../Common/ontology/dbo';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import LDLink from '../../../../Common/components/LDLink';
 import { LinkTarget } from '../../../../Common/components/Link';
 import CardFixed from '../../../../Common/topologies/Card/CardFixed';
 import DetailsBar, { DetailsBarVariant } from '../../../../Common/topologies/DetailsBar';
 import { gridTopology } from '../../../../Common/topologies/Grid';
-import ontola from '../../../../Core/ontology/ontola';
-import argu from '../../../lib/argu';
+import ontola from '../../../../Kernel/ontology/ontola';
+import argu from '../../../ontology/argu';
 
 import OfferActionButtons from './OfferActionButtons';
 

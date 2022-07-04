@@ -16,9 +16,9 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
-import { useSeqToArr } from '../../../Core/hooks/useSeqToArr';
+import { useSeqToArr } from '../../../Kernel/hooks/useSeqToArr';
 import TableCell from '../../../Table/topologies/TableCell';
 import { CollapsibleComparisonTitle } from '../../components/CollapsibleComparisonTitle';
 import sales from '../../ontology/sales';

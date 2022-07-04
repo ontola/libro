@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../theme/types';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 
 export interface CardActionsProps {
   alignRight?: boolean;

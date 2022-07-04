@@ -1,17 +1,11 @@
+import { getMetaContent } from '../../Kernel/lib/dom';
+
 export function getLinkContent(rel: string): string | null | undefined {
   const header = __CLIENT__
     ? document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`)
     : undefined;
 
   return header && header.href;
-}
-
-export function getMetaContent(name: string): string | undefined {
-  const header = __CLIENT__
-    ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`) || undefined
-    : undefined;
-
-  return header ? header.content : undefined;
 }
 
 export function getAuthenticityToken(): string | undefined {

@@ -9,7 +9,7 @@ import {
   register,
   useDataFetching,
   useFields,
-  useIds, 
+  useIds,
 } from 'link-redux';
 import React, { useState } from 'react';
 
@@ -21,8 +21,8 @@ import Container from '../../../Common/topologies/Container';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import TabBar from '../../../Common/topologies/TabBar';
 import TabPane from '../../../Common/topologies/TabPane';
-import app from '../../../Core/ontology/app';
-import ontola from '../../../Core/ontology/ontola';
+import app from '../../../Common/ontology/app';
+import ontola from '../../../Kernel/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 
 import DashboardTabBar from './DashboardTabBar';

@@ -14,7 +14,7 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import MenuItem from '../MenuItem';
 
 import { DropdownMenuContext } from './DropdownMenuContext';

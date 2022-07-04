@@ -22,10 +22,10 @@ import SubSection from '../../../Common/components/SubSection';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import MainBody from '../../../Common/topologies/MainBody';
-import { LoadingHidden } from '../../../Core/components/Loading';
-import ontola from '../../../Core/ontology/ontola';
+import { LoadingHidden } from '../../../Common/components/Loading';
+import ontola from '../../../Kernel/ontology/ontola';
 import usePhases from '../../hooks/usePhases';
-import argu from '../../lib/argu';
+import argu from '../../ontology/argu';
 
 const ProjectFull: FC = ({
   subject,

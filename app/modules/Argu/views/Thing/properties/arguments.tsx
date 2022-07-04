@@ -13,7 +13,7 @@ import Container from '../../../../Common/topologies/Container';
 import { pageTopology } from '../../../../Common/topologies/Page';
 import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 import ArgumentColumns from '../../../components/Arguments/ArgumentColumns';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const Arguments: FC<PropertyProps> = () =>
   <ArgumentColumns />;

@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import app from '../../../Core/ontology/app';
+import app from '../../../Common/ontology/app';
 import { Trigger } from '../../../Menu/components/DropdownMenu/TriggerButton';
 import AppMenu, { AppMenuChildProps } from '../../../Menu/topologies/AppMenu';
 import { navbarTopology } from '../../topologies/Navbar';

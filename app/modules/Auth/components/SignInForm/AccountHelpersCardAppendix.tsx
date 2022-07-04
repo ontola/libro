@@ -4,8 +4,8 @@ import React from 'react';
 
 import { IsActiveCheck } from '../../../Common/components/Link';
 import { CardAppendix } from '../../../Common/topologies/Card';
-import { LoadingHidden } from '../../../Core/components/Loading';
-import app from '../../../Core/ontology/app';
+import { LoadingHidden } from '../../../Common/components/Loading';
+import app from '../../../Common/ontology/app';
 
 export interface AccountHelpersCardAppendixProps {
   currentSubject: Node;

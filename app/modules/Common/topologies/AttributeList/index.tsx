@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme } from '../../theme/types';
-import { TopologyFC } from '../../../Core/lib/topology';
-import libro from '../../../Core/ontology/libro';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import { TopologyFC } from '../../../Kernel/lib/topology';
+import libro from '../../../Kernel/ontology/libro';
 
 export const attributeListTopology = libro.topologies.attributeList;
 

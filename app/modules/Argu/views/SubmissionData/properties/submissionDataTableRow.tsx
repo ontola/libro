@@ -10,7 +10,7 @@ import FontAwesome from 'react-fontawesome';
 import LDLink from '../../../../Common/components/LDLink';
 import { LinkTarget } from '../../../../Common/components/Link';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const SubmissionDataTableRow: FC<PropertyProps> = ({
   linkedProp,

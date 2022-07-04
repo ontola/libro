@@ -12,8 +12,8 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React, { CSSProperties } from 'react';
 
-import ResourceBoundary from '../../../Core/components/ResourceBoundary';
-import ontola from '../../../Core/ontology/ontola';
+import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import ontola from '../../../Kernel/ontology/ontola';
 import { selectTopology, useSelectItemStyles } from '../../topologies/Select';
 
 interface ThingSelectProps extends SubjectProp {

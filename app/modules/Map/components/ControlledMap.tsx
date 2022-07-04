@@ -5,9 +5,9 @@ import { Coordinate } from 'ol/coordinate';
 import React, { useMemo } from 'react';
 
 import useFontsChecker from '../../Common/hooks/useFontsChecker';
-import { getMetaContent } from '../../Common/lib/dom';
-import LinkLoader from '../../Core/components/Loading/LinkLoader';
-import Suspense from '../../Core/components/Suspense';
+import LinkLoader from '../../Kernel/components/LinkLoader';
+import Suspense from '../../Kernel/components/Suspense';
+import { getMetaContent } from '../../Kernel/lib/dom';
 import { FormTheme } from '../../Form/components/Form/FormContext';
 import { GeometryType } from '../lib/geometry';
 

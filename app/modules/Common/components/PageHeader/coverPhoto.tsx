@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 
 export interface CoverPhotoProps {
   url: string;

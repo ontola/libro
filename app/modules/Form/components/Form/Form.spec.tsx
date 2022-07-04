@@ -15,16 +15,16 @@ import {
   mockStorage,
   renderLinked,
 } from '../../../../../tests/test-utils';
-import argu from '../../../Argu/lib/argu';
+import argu from '../../../Argu/ontology/argu';
 import {
   getStorageKey,
   parseForStorage,
   serializeForStorage,
 } from '../../../Common/lib/persistence';
 import Page from '../../../Common/topologies/Page';
-import example from '../../../Core/ontology/example';
-import ll from '../../../Core/ontology/ll';
-import ontola from '../../../Core/ontology/ontola';
+import example from '../../../Kernel/ontology/example';
+import ll from '../../../Kernel/ontology/ll';
+import ontola from '../../../Kernel/ontology/ontola';
 import { calculateFormFieldName } from '../../lib/helpers';
 import form from '../../ontology/form';
 

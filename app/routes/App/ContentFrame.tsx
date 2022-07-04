@@ -7,12 +7,12 @@ import { Helmet } from 'react-helmet-async';
 import { CONTAINER_ELEMENT } from '../../config';
 import Banners from '../../modules/Common/components/Banners';
 import Footer from '../../modules/Common/topologies/Footer';
-import { appContext } from '../../modules/Core/components/AppContext/appContext';
-import NetworkStatusIndicator from '../../modules/Core/components/NetworkStatusIndicator';
-import SkipNavigation from '../../modules/Core/components/SkipNavigation';
-import libro from '../../modules/Core/ontology/libro';
+import { appContext } from '../../modules/Kernel/components/AppContext/appContext';
+import NetworkStatusIndicator from '../../modules/Common/components/NetworkStatusIndicator';
+import SkipNavigation from '../../modules/Common/components/SkipNavigation';
+import libro from '../../modules/Kernel/ontology/libro';
 import headers from '../../headers';
-import { LibroTheme } from '../../modules/Common/theme/types';
+import { LibroTheme } from '../../modules/Kernel/lib/themes';
 import HoverHelper from '../DevBrowser/HoverHelper';
 
 export interface ContentFrameProps {

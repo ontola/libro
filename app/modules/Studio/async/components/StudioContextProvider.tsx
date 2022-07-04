@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Spinner from '../../../Core/components/Loading/Spinner';
+import Spinner from '../../../Common/components/Loading/Spinner';
 import { editorStateContext } from '../context/EditorStateContext';
 import { serverDocumentsContext } from '../context/ServerDocumentsContext';
 import { studioContext } from '../context/StudioContext';

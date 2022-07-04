@@ -14,7 +14,7 @@ import { containerTopology } from '../../../../Common/topologies/Container';
 import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
 import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
 import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
-import argu from '../../../lib/argu';
+import argu from '../../../ontology/argu';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (
   <Resource

@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
 import Menu from '../../topologies/Menu';
 import { MenuChildProps } from '../DropdownMenu/DropdownMenu';

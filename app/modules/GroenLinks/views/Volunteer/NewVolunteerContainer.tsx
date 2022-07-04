@@ -8,7 +8,7 @@ import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
 import Card from '../../../Common/topologies/Card';
 import { containerTopology } from '../../../Common/topologies/Container';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
-import ontola from '../../../Core/ontology/ontola';
+import ontola from '../../../Kernel/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 
 import { useContactOptionStyles } from './useContactOptionStyles';

@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { Params, useIRITemplate } from '../../Common/hooks/useIRITemplate';
-import { entityIsLoaded } from '../../Core/lib/data';
+import { entityIsLoaded } from '../../Kernel/lib/data';
 import { CollectionSectionProps } from '../views/Collection/CollectionSection';
 
 import { CollectionProps } from './CollectionProvider';

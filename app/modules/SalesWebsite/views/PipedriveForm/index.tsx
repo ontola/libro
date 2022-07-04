@@ -12,7 +12,7 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-} from '../../../Common/theme/types';
+} from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import { PipedriveForm as PipedriveFormComp } from '../../components/PipedriveForm';
 import sales from '../../ontology/sales';

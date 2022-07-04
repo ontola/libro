@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../topologies';
-import argu from '../../../Argu/lib/argu';
-import ontola from '../../../Core/ontology/ontola';
+import argu from '../../../Argu/ontology/argu';
+import ontola from '../../../Kernel/ontology/ontola';
 import Image from '../../components/Image';
 
 const SocialButton: FC = () => {

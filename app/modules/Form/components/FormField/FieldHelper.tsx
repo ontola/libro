@@ -2,9 +2,9 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
-import { LibroTheme } from '../../../Common/theme/types';
-import { isString } from '../../../Common/lib/typeCheckers';
-import { useFieldErrorStyles } from '../../../Core/views/ErrorResponse';
+import { LibroTheme } from '../../../Kernel/lib/themes';
+import { isString } from '../../../Kernel/lib/typeCheckers';
+import { useFieldErrorStyles } from '../../views/ErrorResponse';
 import { formContext } from '../Form/FormContext';
 
 import { FormFieldError } from './FormFieldTypes';

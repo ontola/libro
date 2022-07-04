@@ -11,7 +11,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Common/theme/types';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { allTopologiesExcept } from '../../../../topologies';
 import { ButtonVariant } from '../../../Common/components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';

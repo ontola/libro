@@ -1,10 +1,17 @@
+import DataType from './DataType';
 import DialogManager from './DialogManager';
 import Document from './Document';
+import Error from './Error';
 import Footer from './Footer';
 import ImageObject from './ImageObject';
+import Loading from './Loading';
 import MediaObject from './MediaObject';
 import PictureSet from './PictureSet';
+import PropertyQuery from './PropertyQuery';
+import RDFProperty from './RDFProperty';
+import RDFSClass from './RDFSClass';
 import SearchResult from './SearchResult';
+import Seq from './Seq';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import SocialButton from './SocialButton';
@@ -14,13 +21,20 @@ import WebPageTabPane from './WebPage';
 import WebSite from './WebSite';
 
 export default [
+  ...DataType,
   ...DialogManager,
   ...Document,
+  ...Error,
   ...Footer,
   ...ImageObject,
+  ...Loading,
   ...MediaObject,
   ...PictureSet,
+  ...PropertyQuery,
+  ...RDFProperty,
+  ...RDFSClass,
   ...SearchResult,
+  ...Seq,
   ...Snackbar,
   ...SnackbarManager,
   ...SocialButton,

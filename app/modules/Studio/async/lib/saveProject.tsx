@@ -11,13 +11,13 @@ import ReactDOMServer from 'react-dom/server';
 import App from '../../../../components/App';
 import generateLRS from '../../../../helpers/generateLRS';
 import { sliceIRI } from '../../../../ontology/appSlashless';
-import { WebManifest } from '../../../../WebManifest';
-import { toEmpJson } from '../../../Common/lib/empjsonSerializer';
-import { quadruplesToDataSlice } from '../../../Common/lib/quadruplesToDataSlice';
-import { AppContext } from '../../../Core/components/AppContext/appContext';
-import { AppContextProvider } from '../../../Core/components/AppContext/AppContextProvider';
-import { WebsiteCtx } from '../../../Core/components/WebsiteContext/websiteContext';
-import { trailing } from '../../../Core/ontology/app';
+import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
+import { toEmpJson } from '../../../Kernel/lib/empjsonSerializer';
+import { quadruplesToDataSlice } from '../../../Kernel/lib/quadruplesToDataSlice';
+import { AppContext } from '../../../Kernel/components/AppContext/appContext';
+import { WebsiteCtx } from '../../../Kernel/components/WebsiteContext/websiteContext';
+import { trailing } from '../../../Common/ontology/app';
+import { AppContextEditor } from '../../components/AppContextEditor';
 import {
   ProjectContext,
   ServerData,
@@ -123,7 +123,7 @@ const renderResource = (
   const sheets = new ServerStyleSheets();
 
   const content = ReactDOMServer.renderToStaticMarkup(sheets.collect(
-    <AppContextProvider
+    <AppContextEditor
       appCtxOverrides={appCtx}
       lrs={lrs}
       manifest={manifest}
@@ -134,7 +134,7 @@ const renderResource = (
         history={history}
         websiteCtxOverride={websiteCtxValue}
       />
-    </AppContextProvider>,
+    </AppContextEditor>,
   ));
 
   return {

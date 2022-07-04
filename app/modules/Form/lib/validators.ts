@@ -6,7 +6,7 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { isNumber, isString } from '../../Common/lib/typeCheckers';
+import { isNumber, isString } from '../../Kernel/lib/typeCheckers';
 import { InputValue } from '../components/FormField/FormFieldTypes';
 import { ResolvedShapeForm } from '../hooks/useFieldShape';
 

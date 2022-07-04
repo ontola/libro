@@ -6,7 +6,7 @@ import React from 'react';
 
 import { defaultMenus } from '../../../../Common/lib/viewHelpers';
 import DetailsBar from '../../../../Common/topologies/DetailsBar';
-import SuspendedLoader from '../../../../Core/components/Loading/SuspendedLoader';
+import SuspendedLoader from '../../../../Common/components/Loading/SuspendedLoader';
 
 const useStyles = makeStyles(() => ({
   activityDetail: {

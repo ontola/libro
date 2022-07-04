@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import argu from '../../../../Argu/lib/argu';
-import { LoadingHidden } from '../../../../Core/components/Loading';
-import ontola from '../../../../Core/ontology/ontola';
+import argu from '../../../../Argu/ontology/argu';
+import { LoadingHidden } from '../../../components/Loading';
+import ontola from '../../../../Kernel/ontology/ontola';
 import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 
 const Order: FC<PropertyProps> = () => (

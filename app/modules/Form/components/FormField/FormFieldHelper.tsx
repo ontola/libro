@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isJSONLDObject } from '../../../Common/lib/typeCheckers';
+import { isJSONLDObject } from '../../lib/helpers';
 import { formContext } from '../Form/FormContext';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';

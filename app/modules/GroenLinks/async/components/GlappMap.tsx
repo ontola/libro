@@ -5,10 +5,10 @@ import { fromLonLat } from 'ol/proj';
 import React from 'react';
 
 import useJSON from '../../../Common/hooks/useJSON';
-import { getMetaContent } from '../../../Common/lib/dom';
 import { tryParseFloat } from '../../../Common/lib/numbers';
-import { LoadingCard } from '../../../Core/components/Loading';
-import app from '../../../Core/ontology/app';
+import { LoadingCard } from '../../../Common/components/Loading';
+import { getMetaContent } from '../../../Kernel/lib/dom';
+import app from '../../../Common/ontology/app';
 import MapCanvas from '../../../Map/async/components/MapCanvas';
 import { FOCUS_ZOOM } from '../../../Map/async/hooks/useMap';
 import {
