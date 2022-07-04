@@ -5,6 +5,7 @@ import {
   Property,
   register,
   useStrings,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 
@@ -56,7 +57,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const SellingPoint: FC = () => {
   const classes = useStyles();
   const [text] = useStrings(schema.text);
-  const [href] = useStrings(ontola.href);
+  const [href] = useValues(ontola.href);
 
   return (
     <Link
