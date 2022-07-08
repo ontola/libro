@@ -12,7 +12,10 @@ const RedirectUrlTable = ({ linkedProp }: PropertyProps): JSX.Element | null => 
   }
 
   return (
-    <Link to={linkedProp.value}>
+    <Link 
+      allowExternal={false}
+      to={linkedProp.value}
+    >
       {linkedProp.value}
     </Link>
   );
