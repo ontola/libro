@@ -1,10 +1,10 @@
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import qb from '../../../../../ontology/qb';
-import { contentsProps, titleProps } from '../../../../Common/ontology/app';
-import TableHeaderCell from '../../../../Table/topologies/TableHeaderCell';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import datacube from '../../ontology/datacube';
+import { contentsProps, titleProps } from '../../../Common/ontology/app';
+import TableHeaderCell from '../../../Table/topologies/TableHeaderCell';
+import { tableRowTopology } from '../../../Table/topologies/TableRow';
 
 const MeasurePropertyTableRow = () => {
   const [name] = useProperty(titleProps);
@@ -17,7 +17,7 @@ const MeasurePropertyTableRow = () => {
   );
 };
 
-MeasurePropertyTableRow.type = qb.MeasureProperty;
+MeasurePropertyTableRow.type = datacube.MeasureProperty;
 
 MeasurePropertyTableRow.topology = tableRowTopology;
 

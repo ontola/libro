@@ -40,7 +40,7 @@ import ontOntola from '../../Kernel/ontology/ontola';
 import ontOpengov from '../../../ontology/opengov';
 import ontOrg from '../../../ontology/org';
 import ontPerson from '../../../ontology/person';
-import ontQb from '../../../ontology/qb';
+import ontDatacube from '../../DataCube/ontology/datacube';
 import ontSales from '../../SalesWebsite/ontology/sales';
 import ontSp from '../../Kernel/ontology/sp';
 import ontTeamGL from '../../GroenLinks/ontology/teamGL';
@@ -113,7 +113,7 @@ export const evaluate = (source: string, websiteIRI: string): DataObject[] => {
   // @ts-ignore
   const person = ontPerson;
   // @ts-ignore
-  const qb = ontQb;
+  const datacube = ontDatacube;
   // @ts-ignore
   const sales = ontSales;
   // @ts-ignore

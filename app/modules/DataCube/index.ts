@@ -2,11 +2,11 @@ import { Module, ModuleType } from '../../Module';
 
 import views from './views';
 
-const Argu: Module = {
-  name: 'Argu',
+const DataCube: Module = {
+  name: 'DataCube',
   topologies: [],
-  type: ModuleType.App,
+  type: ModuleType.Library,
   views,
 };
 
-export default Argu;
+export default DataCube;

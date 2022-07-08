@@ -23,7 +23,7 @@ import ontMeeting from '../../../../ontology/meeting';
 import ontOpengov from '../../../../ontology/opengov';
 import ontOrg from '../../../../ontology/org';
 import ontPerson from '../../../../ontology/person';
-import ontQb from '../../../../ontology/qb';
+import ontDatacube from '../../../DataCube/ontology/datacube';
 import ontSp from '../../../Kernel/ontology/sp';
 import ontWdt from '../../../Common/ontology/wdt';
 import ontArgu from '../../../Argu/ontology/argu';
@@ -152,8 +152,8 @@ const staticMap: ShortMap = {
     prefix: ontPerson.ns('').value,
   },
   qb: {
-    map: ontQb as ExplicitNamespaceMap,
-    prefix: ontQb.ns('').value,
+    map: ontDatacube as ExplicitNamespaceMap,
+    prefix: ontDatacube.ns('').value,
   },
   rdfs: {
     map: ontRdfs as ExplicitNamespaceMap,

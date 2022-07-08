@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import qb from '../../../../../ontology/qb';
-import { tableBodyTopology } from '../../../../Table/topologies/TableBody';
-import TableCell from '../../../../Table/topologies/TableCell';
-import TableRow from '../../../../Table/topologies/TableRow';
+import datacube from '../../ontology/datacube';
+import { tableBodyTopology } from '../../../Table/topologies/TableBody';
+import TableCell from '../../../Table/topologies/TableCell';
+import TableRow from '../../../Table/topologies/TableRow';
 
 export interface ObservationTableBodyProps {
   measures: SomeNode[];
@@ -44,7 +44,7 @@ const ObservationTableBody: FC<ObservationTableBodyProps> = ({
   );
 };
 
-ObservationTableBody.type = qb.Observation;
+ObservationTableBody.type = datacube.Observation;
 
 ObservationTableBody.topology = tableBodyTopology;
 

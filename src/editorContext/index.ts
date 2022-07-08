@@ -31,7 +31,7 @@ import ontOntola from '../../app/modules/Kernel/ontology/ontola';
 import ontOpengov from '../../app/ontology/opengov';
 import ontOrg from '../../app/ontology/org';
 import ontPerson from '../../app/ontology/person';
-import ontQb from '../../app/ontology/qb';
+import ontQb from '../../app/modules/DataCube/ontology/qb';
 import ontSp from '../../app/modules/Kernel/ontology/sp';
 import ontTeamGL from '../../app/modules/GroenLinks/ontology/teamGL';
 import ontWdt from '../../app/modules/Common/ontology/wdt';

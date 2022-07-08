@@ -8,8 +8,8 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import qb from '../../../../../../ontology/qb';
-import { cardFloatTopology } from '../../../../../Common/topologies/Card/CardFloat';
+import datacube from '../../../ontology/datacube';
+import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
 
 const DownloadUrl: FC<PropertyProps> = ({ linkedProp }) => (
   <IconButton
@@ -22,7 +22,7 @@ const DownloadUrl: FC<PropertyProps> = ({ linkedProp }) => (
   </IconButton>
 );
 
-DownloadUrl.type = qb.DataSet;
+DownloadUrl.type = datacube.DataSet;
 
 DownloadUrl.topology = cardFloatTopology;
 

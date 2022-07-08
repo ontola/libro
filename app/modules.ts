@@ -5,6 +5,7 @@ import Argu from './modules/Argu';
 import Auth from './modules/Auth';
 import Collection from './modules/Collection';
 import Common from './modules/Common';
+import DataCube from './modules/DataCube';
 import Dexes from './modules/Dexes';
 import Elements from './modules/Elements';
 import Flow from './modules/Flow';
@@ -23,6 +24,7 @@ export const modules: Module[] = [
   Auth,
   Collection,
   Common,
+  DataCube,
   Dexes,
   Elements,
   Flow,

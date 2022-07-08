@@ -8,10 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import qb from '../../../../../ontology/qb';
-import { Size } from '../../../../Kernel/lib/themes';
-import Container from '../../../../Common/topologies/Container';
-import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
+import datacube from '../../ontology/datacube';
+import { Size } from '../../../Kernel/lib/themes';
+import Container from '../../../Common/topologies/Container';
+import { tabPaneTopology } from '../../../Common/topologies/TabPane';
 
 export interface DataSetTabPaneProps {
   nextPage?: () => void;
@@ -43,7 +43,7 @@ const DataSetTabPane: FC<DataSetTabPaneProps> = ({
   );
 };
 
-DataSetTabPane.type = qb.DataSet;
+DataSetTabPane.type = datacube.DataSet;
 
 DataSetTabPane.topology = tabPaneTopology;
 

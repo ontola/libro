@@ -11,18 +11,18 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import qb from '../../../../../ontology/qb';
-import AllWithProperty from '../../../../Common/components/AllWithProperty';
-import HeaderWithMenu from '../../../../Common/components/HeaderWithMenu';
-import ScrollContainer from '../../../../Common/components/ScrollContainer';
-import { tryParseInt } from '../../../../Common/lib/numbers';
-import Card from '../../../../Common/topologies/Card';
-import { containerTopology } from '../../../../Common/topologies/Container';
-import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
-import Table from '../../../../Table/topologies/Table';
-import TableBody from '../../../../Table/topologies/TableBody';
-import TableHead from '../../../../Table/topologies/TableHead';
-import TableRow from '../../../../Table/topologies/TableRow';
+import AllWithProperty from '../../../Common/components/AllWithProperty';
+import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import ScrollContainer from '../../../Common/components/ScrollContainer';
+import { tryParseInt } from '../../../Common/lib/numbers';
+import Card from '../../../Common/topologies/Card';
+import { containerTopology } from '../../../Common/topologies/Container';
+import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import Table from '../../../Table/topologies/Table';
+import TableBody from '../../../Table/topologies/TableBody';
+import TableHead from '../../../Table/topologies/TableHead';
+import TableRow from '../../../Table/topologies/TableRow';
+import datacube from '../../ontology/datacube';
 
 interface Component {
   measure: SomeNode;
@@ -43,10 +43,10 @@ const orderComponents = (components: Component[]) => components
   });
 
 const DataSetContainer = () => {
-  const componentIRIs = useIds(dig(qb.structure, qb.component));
+  const componentIRIs = useIds(dig(datacube.structure, datacube.component));
   const components = useResourceLinks(componentIRIs, {
-    measure: qb.measure,
-    order: qb.order,
+    measure: datacube.measure,
+    order: datacube.order,
   }) as Component[];
   const orderedComponents = orderComponents(components);
   const orderedMeasures = orderedComponents.map(({ measure }) => measure).filter(Boolean);
@@ -73,7 +73,7 @@ const DataSetContainer = () => {
           </TableHead>
           <TableBody>
             <AllWithProperty
-              label={qb.observation}
+              label={datacube.observation}
               measures={orderedMeasures}
             />
           </TableBody>
@@ -83,7 +83,7 @@ const DataSetContainer = () => {
   );
 };
 
-DataSetContainer.type = qb.DataSet;
+DataSetContainer.type = datacube.DataSet;
 
 DataSetContainer.topology = [
   alertDialogTopology,

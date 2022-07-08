@@ -1,20 +1,20 @@
 import { createNS } from '@ontologies/core';
 
-const qb = createNS('http://purl.org/linked-data/cube#');
+const datacube = createNS('http://purl.org/linked-data/cube#');
 
 export default {
-  ns: qb,
+  ns: datacube,
 
   /* classes */
   // eslint-disable-next-line sort-keys
-  DataSet: qb('DataSet'),
-  MeasureProperty: qb('MeasureProperty'),
-  Observation: qb('Observation'),
+  DataSet: datacube('DataSet'),
+  MeasureProperty: datacube('MeasureProperty'),
+  Observation: datacube('Observation'),
 
   /* properties */
-  component: qb('component'),
-  measure: qb('measure'),
-  observation: qb('observation'),
-  order: qb('order'),
-  structure: qb('structure'),
+  component: datacube('component'),
+  measure: datacube('measure'),
+  observation: datacube('observation'),
+  order: datacube('order'),
+  structure: datacube('structure'),
 };

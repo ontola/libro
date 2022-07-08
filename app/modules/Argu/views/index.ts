@@ -6,7 +6,6 @@ import Banner from './Banner/Banner';
 import BlogPost from './BlogPost';
 import Comment from './Comment';
 import CustomForm from './CustomForm';
-import DataCube from './DataCube';
 import Forum from './Forum/index';
 import GrantTree from './GrantTree';
 import Group from './Group';
@@ -36,7 +35,6 @@ const views: ViewRegistrations = [
   ...BlogPost,
   ...Comment,
   ...CustomForm,
-  ...DataCube,
   ...Forum,
   ...GrantTree,
   ...Group,

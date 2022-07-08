@@ -5,10 +5,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import qb from '../../../../../ontology/qb';
-import { Size } from '../../../../Kernel/lib/themes';
-import Container from '../../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import datacube from '../../ontology/datacube';
+import { Size } from '../../../Kernel/lib/themes';
+import Container from '../../../Common/topologies/Container';
+import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 
 const DataSetFull: FC = ({ subject }) => (
   <Container size={Size.Large}>
@@ -16,7 +16,7 @@ const DataSetFull: FC = ({ subject }) => (
   </Container>
 );
 
-DataSetFull.type = qb.DataSet;
+DataSetFull.type = datacube.DataSet;
 
 DataSetFull.topology = fullResourceTopology;
 
