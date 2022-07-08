@@ -38,14 +38,14 @@ const Widget = () => {
   }
 
   return (
-    <Wrapper>
-      <GridItem size={size}>
+    <GridItem size={size}>
+      <Wrapper>
         <Property
           childProps={childProps}
           label={ontola.widgetResource}
         />
-      </GridItem>
-    </Wrapper>
+      </Wrapper>
+    </GridItem>
   );
 };
 
