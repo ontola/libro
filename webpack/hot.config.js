@@ -1,10 +1,16 @@
 const path = require('path');
+const child_process = require('child_process');
 
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const common = require('./common.config');
+
+const version = child_process.execSync(
+  'git describe --always',
+  { encoding: 'utf-8' },
+).trim();
 
 module.exports = merge(common, {
   cache: true,
@@ -27,6 +33,11 @@ module.exports = merge(common, {
     proxy: [
       {
         context: (filePath) => filePath !== '/ws' && !filePath.startsWith('/static/'),
+        headers: {
+          'X-Client-Version': version,
+          'X-Forwarded-Proto': 'https',
+          'X-Forwarded-Ssl': 'on',
+        },
         logLevel: 'debug',
         onProxyReqWs: (proxyReq, req, socket) => {
           socket.on('error', (err) => {
