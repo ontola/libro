@@ -1,5 +1,3 @@
 import OfferFull from './OfferFull';
 
-export default [
-  OfferFull,
-];
+export default OfferFull;

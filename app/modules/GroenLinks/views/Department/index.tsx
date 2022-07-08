@@ -12,16 +12,16 @@ import VeryActiveVolunteersRatio from './properties/veryActiveVolunteersRatio';
 import VolunteersCount from './properties/volunteersCount';
 
 export default [
-  ActiveVolunteersRatio,
-  DepartmentDetailsBar,
-  DepartmentPage,
-  EventsCount,
-  GroupsCount,
-  InactiveVolunteersRatio,
-  LastActivityAtTableRow,
-  NewVolunteersCount,
-  PercentualVolunteersCountTable,
-  TableCounts,
-  VeryActiveVolunteersRatio,
-  VolunteersCount,
+  ...ActiveVolunteersRatio,
+  ...DepartmentDetailsBar,
+  ...DepartmentPage,
+  ...EventsCount,
+  ...GroupsCount,
+  ...InactiveVolunteersRatio,
+  ...LastActivityAtTableRow,
+  ...NewVolunteersCount,
+  ...PercentualVolunteersCountTable,
+  ...TableCounts,
+  ...VeryActiveVolunteersRatio,
+  ...VolunteersCount,
 ];

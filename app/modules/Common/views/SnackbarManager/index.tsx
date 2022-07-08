@@ -36,6 +36,4 @@ SnackbarManager.type = libro.ns('snackbar/Manager');
 
 SnackbarManager.topology = allTopologies;
 
-export default [
-  register(SnackbarManager),
-];
+export default register(SnackbarManager);

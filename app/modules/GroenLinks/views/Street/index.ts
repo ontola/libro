@@ -4,8 +4,8 @@ import StreetFull from './StreetFull';
 import StreetTable from './StreetTable';
 
 export default [
-  PostalDigits,
-  Priority,
-  StreetFull,
-  StreetTable,
+  ...PostalDigits,
+  ...Priority,
+  ...StreetFull,
+  ...StreetTable,
 ];

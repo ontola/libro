@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionDefault from './CollectionDefault';
 import CollectionDialog from './CollectionDialog';
@@ -19,25 +21,27 @@ import Pagination from './properties/pagination';
 import SortOptions from './properties/sortOptions';
 import TotalItems from './properties/totalItems';
 
-export default [
+const views: ViewRegistrations = [
   ...TotalItems,
-  CollectionCardAppendix,
-  CollectionDialog,
-  CollectionInline,
+  ...CollectionCardAppendix,
+  ...CollectionDialog,
+  ...CollectionInline,
   ...CollectionFrame,
-  CollectionFullPage,
-  CollectionGrid,
-  CollectionSection,
-  CollectionTabPane,
-  CollectionTableCell,
-  CollectionDefault,
-  CollectionList,
-  CreateAction,
+  ...CollectionFullPage,
+  ...CollectionGrid,
+  ...CollectionSection,
+  ...CollectionTabPane,
+  ...CollectionTableCell,
+  ...CollectionDefault,
+  ...CollectionList,
+  ...CreateAction,
   ...Header,
   ...Name,
   ...Pages,
-  Pagination,
-  SortOptions,
+  ...Pagination,
+  ...SortOptions,
   ...InfinitePagination,
   ...DefaultPagination,
 ];
+
+export default views;

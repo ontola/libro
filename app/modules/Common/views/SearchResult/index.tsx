@@ -4,8 +4,8 @@ import SearchResultGridReg from './SearchResultGrid';
 import SearchResultNavbar from './SearchResultNavbar';
 
 export default [
-  IsPartOf,
-  Query,
-  SearchResultNavbar,
-  SearchResultGridReg,
+  ...IsPartOf,
+  ...Query,
+  ...SearchResultNavbar,
+  ...SearchResultGridReg,
 ];

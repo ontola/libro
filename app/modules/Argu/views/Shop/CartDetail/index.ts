@@ -1,5 +1,3 @@
 import CartDetailCardRow from './CartDetailCardRow';
 
-export default [
-  CartDetailCardRow,
-];
+export default CartDetailCardRow;

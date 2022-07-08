@@ -66,7 +66,7 @@ const ColoredHeading = ({
 };
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     () => (
       <ColoredHeading
         data-test="Thing-name-small-title"
@@ -77,7 +77,7 @@ export default [
     namePredicates,
     fullResourceTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     () => (
       <LDLink target={LinkTarget.Modal}>
         <ColoredHeading
@@ -91,7 +91,7 @@ export default [
     namePredicates,
     hoverBoxTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ linkedProp }: PropertyProps) => (
       <Heading
         size={HeadingSize.MD}
@@ -104,7 +104,7 @@ export default [
     namePredicates,
     footerTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ size }: { size: HeadingSize }) => (
       <ColoredHeading
         data-test="Thing-name-card-main"
@@ -116,7 +116,7 @@ export default [
     namePredicates,
     [cardMainTopology, mainBodyTopology],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ wrapper }: WrapperProps) => {
       const Wrapper = wrapper || LDLink;
 
@@ -137,7 +137,7 @@ export default [
       cardRowTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ wrapper }: WrapperProps) => {
       const Wrapper = wrapper || LDLink;
 
@@ -158,7 +158,7 @@ export default [
       gridTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     () => (
       <ColoredHeading
         data-test="Thing-name-card-fixed"
@@ -170,7 +170,7 @@ export default [
     namePredicates,
     cardFixedTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ linkedProp }: PropertyProps) => (
       <span data-test="Thing-name-inline">
         {linkedProp.value}
@@ -187,7 +187,7 @@ export default [
       selectTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     () => (
       <LDLink>
         <ColoredHeading
@@ -200,7 +200,7 @@ export default [
     namePredicates,
     tableRowTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ({ linkedProp }: PropertyProps) => (
       <Heading
         data-test="Thing-name-header"

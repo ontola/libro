@@ -38,6 +38,6 @@ RDFProperty.topology = allTopologiesExcept(
 );
 
 export default [
-  register(RDFProperty),
-  RDFPropertyAttributeList,
+  ...register(RDFProperty),
+  ...RDFPropertyAttributeList,
 ];

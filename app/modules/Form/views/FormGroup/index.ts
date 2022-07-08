@@ -1,9 +1,13 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import CollapsibleGroup from './CollapsibleGroup';
 import FooterGroup from './FooterGroup';
 import FormGroup from './FormGroup';
 
-export default [
-  CollapsibleGroup,
+const views: ViewRegistrations = [
+  ...CollapsibleGroup,
   ...FooterGroup,
-  FormGroup,
+  ...FormGroup,
 ];
+
+export default views;

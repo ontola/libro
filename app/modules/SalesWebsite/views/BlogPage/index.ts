@@ -5,5 +5,5 @@ import BlogPageShowcase from './BlogPageShowcase';
 
 export default [
   ...register(BlogPageShowcase),
-  BlogPageFull,
+  ...BlogPageFull,
 ];

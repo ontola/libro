@@ -1,5 +1,3 @@
 import DistributionCard from './DistributionCard';
 
-export default [
-  DistributionCard,
-];
+export default DistributionCard;

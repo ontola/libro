@@ -5,9 +5,9 @@ import ForumTabPane from './ForumTabPane';
 import NameParent from './properties/nameParent';
 
 export default [
-  Forum,
-  ForumContainer,
-  ForumPage,
-  ForumTabPane,
-  NameParent,
+  ...Forum,
+  ...ForumContainer,
+  ...ForumPage,
+  ...ForumTabPane,
+  ...NameParent,
 ];

@@ -30,6 +30,6 @@ HiddenFooterGroup.type = form.FooterGroup;
 HiddenFooterGroup.topology = allTopologiesExcept(formFooterTopology);
 
 export default [
-  register(WrappedFooterGroup),
-  register(HiddenFooterGroup),
+  ...register(WrappedFooterGroup),
+  ...register(HiddenFooterGroup),
 ];

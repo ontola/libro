@@ -74,8 +74,8 @@ const registerHeader = buildRegister<HeaderProps>({
 });
 
 export default [
-  registerHeader(cardCollectionHeader, { topology: cardTopology }),
-  registerHeader(containerCollectionHeader, {
+  ...registerHeader(cardCollectionHeader, { topology: cardTopology }),
+  ...registerHeader(containerCollectionHeader, {
     topology: allTopologiesExcept(cardTopology, pageTopology),
   }),
 ];

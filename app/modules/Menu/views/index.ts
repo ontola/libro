@@ -1,9 +1,13 @@
+import { ViewRegistrations } from '../../../Module';
+
 import ErrorMenu from './ErrorMenu';
 import Loading from './Loading';
 import MenuItem from './MenuItem';
 
-export default [
+const views: ViewRegistrations = [
   ...ErrorMenu,
   ...MenuItem,
   ...Loading,
 ];
+
+export default views;

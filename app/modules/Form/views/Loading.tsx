@@ -47,13 +47,13 @@ export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => {
 };
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingSelect,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     selectTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     Loading,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -62,7 +62,7 @@ export default [
       selectedValueTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     Spinner,
     ll.LoadingResource,
     RENDER_CLASS_NAME,

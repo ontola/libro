@@ -68,6 +68,4 @@ VideoSet.type = ontola.VideoSet;
 
 VideoSet.topology = allTopologies;
 
-export default [
-  ...register(VideoSet),
-];
+export default register(VideoSet);

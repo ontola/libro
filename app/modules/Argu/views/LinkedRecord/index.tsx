@@ -14,6 +14,4 @@ LinkedRecord.type = argu.LinkedRecord;
 
 LinkedRecord.topology = allTopologies;
 
-export default [
-  register(LinkedRecord),
-];
+export default register(LinkedRecord);

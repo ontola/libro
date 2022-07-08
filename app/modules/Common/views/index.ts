@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import DataType from './DataType';
 import DialogManager from './DialogManager';
 import Document from './Document';
@@ -20,7 +22,7 @@ import VideoSet from './VideoSet';
 import WebPageTabPane from './WebPage';
 import WebSite from './WebSite';
 
-export default [
+const views: ViewRegistrations = [
   ...DataType,
   ...DialogManager,
   ...Document,
@@ -43,3 +45,5 @@ export default [
   ...WebPageTabPane,
   ...WebSite,
 ];
+
+export default views;

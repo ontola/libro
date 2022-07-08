@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import Button from './Button';
 import Document from './Document';
 import ImageElement from './ImageElement';
@@ -6,12 +8,14 @@ import Row from './Layout/Row';
 import Spacer from './Layout/Spacer';
 import VideoElement from './VideoElement';
 
-export default [
-  Button,
-  Document,
-  Grid,
-  ImageElement,
-  Row,
-  Spacer,
-  VideoElement,
+const views: ViewRegistrations = [
+  ...Button,
+  ...Document,
+  ...Grid,
+  ...ImageElement,
+  ...Row,
+  ...Spacer,
+  ...VideoElement,
 ];
+
+export default views;

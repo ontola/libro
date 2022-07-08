@@ -65,6 +65,6 @@ WrappedCollectionFrame.topology = [
 WrappedCollectionFrame.property = ontola.collectionFrame;
 
 export default [
-  register(DefaultCollectionFrame),
-  register(WrappedCollectionFrame),
+  ...register(DefaultCollectionFrame),
+  ...register(WrappedCollectionFrame),
 ];

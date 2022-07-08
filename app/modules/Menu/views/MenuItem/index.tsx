@@ -1,3 +1,4 @@
+import { ViewRegistrations } from '../../../../Module';
 import MenuItemHeader from '../../../NavBar/views/MenuItem/MenuItemNavbar';
 
 import MenuItemCardAppendix from './MenuItemCardAppendix';
@@ -21,26 +22,28 @@ import MenuItemsComp from './properties/menuItems';
 import MenuTabs from './properties/menuTabs';
 import Text from './properties/text';
 
-export default [
-  CurrentTab,
-  IsPartOfMain,
-  Href,
-  LabelCard,
-  LabelFooter,
-  LabelHeader,
-  LabelTableRow,
-  MenuItemCardAppendix,
-  MenuItemCardRow,
-  MenuItemDropdown,
-  MenuItemFull,
-  MenuItemPage,
-  MenuItemHeader,
-  MenuItemFooter,
-  MenuItemNested,
-  MenuItemTab,
-  MenuItemDropdownContent,
-  MenuItemsComp,
-  MenuItemTableCell,
-  MenuTabs,
-  Text,
+const views: ViewRegistrations = [
+  ...CurrentTab,
+  ...IsPartOfMain,
+  ...Href,
+  ...LabelCard,
+  ...LabelFooter,
+  ...LabelHeader,
+  ...LabelTableRow,
+  ...MenuItemCardAppendix,
+  ...MenuItemCardRow,
+  ...MenuItemDropdown,
+  ...MenuItemFull,
+  ...MenuItemPage,
+  ...MenuItemHeader,
+  ...MenuItemFooter,
+  ...MenuItemNested,
+  ...MenuItemTab,
+  ...MenuItemDropdownContent,
+  ...MenuItemsComp,
+  ...MenuItemTableCell,
+  ...MenuTabs,
+  ...Text,
 ];
+
+export default views;

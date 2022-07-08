@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import Activity from './Activity';
 import Argument from './Argument/index';
 import Banner from './Banner/Banner';
@@ -27,7 +29,7 @@ import Vocabulary from './Vocabulary';
 import VoteEvent from './VoteEvent';
 import Widget from './Widget';
 
-export default [
+const views: ViewRegistrations = [
   ...Activity,
   ...Argument,
   ...Banner,
@@ -57,3 +59,5 @@ export default [
   ...VoteEvent,
   ...Widget,
 ];
+
+export default views;

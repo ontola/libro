@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
 import ArguLocationTabPane from './properties/arguLocationTabPane';
@@ -14,20 +16,22 @@ import RedirectUrlTable from './properties/redirectUrlTable';
 import TopComment from './properties/topComment';
 import VoteEvents from './properties/voteEvents';
 
-export default [
-  ApplyLink,
-  ArguLocation,
-  ArguLocationTabPane,
+const views: ViewRegistrations = [
+  ...ApplyLink,
+  ...ArguLocation,
+  ...ArguLocationTabPane,
   ...Arguments,
-  BlogPosts,
-  FollowMenu,
-  FollowsCount,
+  ...BlogPosts,
+  ...FollowMenu,
+  ...FollowsCount,
   ...GrantedGroups,
-  MapQuestionMainBody,
-  MotionsCount,
-  PinnedAt,
-  Price,
-  RedirectUrlTable,
-  TopComment,
-  VoteEvents,
+  ...MapQuestionMainBody,
+  ...MotionsCount,
+  ...PinnedAt,
+  ...Price,
+  ...RedirectUrlTable,
+  ...TopComment,
+  ...VoteEvents,
 ];
+
+export default views;

@@ -7,11 +7,11 @@ import ContentUrl from './properties/contentUrl';
 import VideoContentUrl from './properties/videoContentUrl';
 
 export default [
-  ContentUrl,
-  MediaObjectAttachment,
-  MediaObjectContainer,
-  MediaObjectGrid,
-  MediaObjectPage,
-  MediaObjectPreview,
-  VideoContentUrl,
+  ...ContentUrl,
+  ...MediaObjectAttachment,
+  ...MediaObjectContainer,
+  ...MediaObjectGrid,
+  ...MediaObjectPage,
+  ...MediaObjectPreview,
+  ...VideoContentUrl,
 ];

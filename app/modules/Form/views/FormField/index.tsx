@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import AssociationFormField from './AssociationFormField';
 import CheckboxesFormField from './CheckboxesFormField';
 import CheckboxFormField from './CheckboxFormField';
@@ -21,27 +23,29 @@ import TextFormField from './TextFormField';
 import ToggleButtonGroupField from './ToggleButtonGroupField';
 import UrlFormField from './UrlFormField';
 
-export default [
-  AssociationFormField,
-  CheckboxesFormField,
-  CheckboxFormField,
-  DateFormField,
-  DelayedFormField,
-  FileFormField,
-  FormFieldContainer,
-  FormFieldFull,
-  IconFormField,
-  LocationFormField,
-  MoneyField,
-  MultipleEmailFormField,
-  PasswordFormField,
-  PostalRangeFormField,
-  RadioGroupFormField,
-  ResourceField,
-  SelectFormField,
-  SliderFormField,
-  SwipeFormField,
-  TextFormField,
-  ToggleButtonGroupField,
-  UrlFormField,
+const views: ViewRegistrations = [
+  ...AssociationFormField,
+  ...CheckboxesFormField,
+  ...CheckboxFormField,
+  ...DateFormField,
+  ...DelayedFormField,
+  ...FileFormField,
+  ...FormFieldContainer,
+  ...FormFieldFull,
+  ...IconFormField,
+  ...LocationFormField,
+  ...MoneyField,
+  ...MultipleEmailFormField,
+  ...PasswordFormField,
+  ...PostalRangeFormField,
+  ...RadioGroupFormField,
+  ...ResourceField,
+  ...SelectFormField,
+  ...SliderFormField,
+  ...SwipeFormField,
+  ...TextFormField,
+  ...ToggleButtonGroupField,
+  ...UrlFormField,
 ];
+
+export default views;

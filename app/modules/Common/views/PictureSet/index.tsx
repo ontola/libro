@@ -90,6 +90,4 @@ PictureSet.defaultProps = {
   element: 'picture',
 };
 
-export default [
-  ...register(PictureSet),
-];
+export default register(PictureSet);

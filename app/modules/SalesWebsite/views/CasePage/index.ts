@@ -5,5 +5,5 @@ import CasePageShowcase from './CasePageShowcase';
 
 export default [
   ...register(CasePageShowcase),
-  CasePageFull,
+  ...CasePageFull,
 ];

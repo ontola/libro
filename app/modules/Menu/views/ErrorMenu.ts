@@ -9,13 +9,13 @@ import { ErrorContainer } from '../../Common/views/Error/ErrorContainer';
 import { appMenuTopology } from '../topologies/AppMenu';
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ErrorButtonInline,
     ERROR_CLASSES,
     RENDER_CLASS_NAME,
     appMenuTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ErrorContainer,
     ERROR_CLASSES,
     RENDER_CLASS_NAME,

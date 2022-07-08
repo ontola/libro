@@ -6,9 +6,9 @@ import ErrorPrimaryResource from './ErrorFull';
 import ErrorGrid from './ErrorGrid';
 
 export default [
-  ErrorPrimaryResource,
-  ErrorCardReg,
-  ErrorGrid,
-  ErrorNavbar,
-  ErrorButtonInline,
+  ...ErrorPrimaryResource,
+  ...ErrorCardReg,
+  ...ErrorGrid,
+  ...ErrorNavbar,
+  ...ErrorButtonInline,
 ];

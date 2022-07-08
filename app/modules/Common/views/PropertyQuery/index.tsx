@@ -52,6 +52,4 @@ PropertyQuery.type = ontola.PropertyQuery;
 
 PropertyQuery.topology = allTopologies;
 
-export default [
-  register(PropertyQuery),
-];
+export default register(PropertyQuery);

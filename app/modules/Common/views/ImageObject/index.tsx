@@ -15,9 +15,9 @@ import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
 
 export default [
-  register(ImageObject),
-  ImageObjectPageHeader,
-  LinkedRenderStore.registerRenderer(
+  ...register(ImageObject),
+  ...ImageObjectPageHeader,
+  ...LinkedRenderStore.registerRenderer(
     () => (
       <NavbarLinkImageWrapper data-test="ImageObject-navbar">
         <Property label={ontola.imgUrl568x400} />
@@ -29,6 +29,6 @@ export default [
   ),
   ...boxImage,
   ...thumbnail,
-  ImageObjectCardMain,
-  ImageObjectList,
+  ...ImageObjectCardMain,
+  ...ImageObjectList,
 ];

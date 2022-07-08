@@ -1,7 +1,11 @@
+import { ViewRegistrations } from '../../../Module';
+
 import Loading from './Loading';
 import Thing from './Thing';
 
-export default [
+const views: ViewRegistrations = [
   ...Loading,
   ...Thing,
 ];
+
+export default views;

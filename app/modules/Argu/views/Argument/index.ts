@@ -1,5 +1,3 @@
 import ArgumentContainer from './ArgumentContainer';
 
-export default [
-  ArgumentContainer,
-];
+export default ArgumentContainer;

@@ -105,6 +105,4 @@ Seq.defaultProps = {
   itemWrapperOpts: {},
 };
 
-export default [
-  register(Seq),
-];
+export default register(Seq);

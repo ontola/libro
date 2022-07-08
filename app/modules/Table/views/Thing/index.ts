@@ -6,8 +6,8 @@ import ThingTableRow from './ThingTableRow';
 
 export default [
   ...properties,
-  ThingTable,
-  ThingTableCell,
-  ThingTableHeaderRow,
-  ThingTableRow,
+  ...ThingTable,
+  ...ThingTableCell,
+  ...ThingTableHeaderRow,
+  ...ThingTableRow,
 ];

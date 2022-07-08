@@ -41,13 +41,13 @@ import { tabBarTopology } from '../../topologies/TabBar';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingPage,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     pageTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingFullResource,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -56,13 +56,13 @@ export default [
       tabPaneTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingParent,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     parentTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingCard,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -71,7 +71,7 @@ export default [
       listTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingButton,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -79,7 +79,7 @@ export default [
       containerTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     SuspendedLoader,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -87,19 +87,19 @@ export default [
       gridTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingMicroRow,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     cardRowTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingCardRowAppendix,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     cardAppendixTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingRow,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -110,7 +110,7 @@ export default [
       hoverBoxTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingDetail,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -119,7 +119,7 @@ export default [
       contentDetailsTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingCardFloat,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
@@ -128,19 +128,19 @@ export default [
       cardFloatTopology,
     ],
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingGridContent,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     mainBodyTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingTabbar,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     tabBarTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     Loading,
     ll.LoadingResource,
     RENDER_CLASS_NAME,

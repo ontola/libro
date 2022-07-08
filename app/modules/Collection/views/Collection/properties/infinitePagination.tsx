@@ -52,6 +52,6 @@ export const CardAppendixContent: React.FC = ({ children }) => (
 );
 
 export default [
-  register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology, pageTopology))),
-  register(getPagination(CardAppendixContent, cardAppendixTopology)),
+  ...register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology, pageTopology))),
+  ...register(getPagination(CardAppendixContent, cardAppendixTopology)),
 ];

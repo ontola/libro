@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import EntryPoint from './EntryPoint';
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
@@ -8,14 +10,16 @@ import EntryPointWidget from './EntryPointGrid';
 import EntryPointMainBody from './EntryPointMainBody';
 import EntryPointOmniform from './EntryPointOmniform';
 
-export default [
-  EntryPointButton,
-  EntryPointCardFloat,
-  EntryPointCardMain,
-  EntryPointContainer,
-  EntryPointDetail,
-  EntryPointMainBody,
-  EntryPointOmniform,
-  EntryPointWidget,
-  EntryPoint,
+const views: ViewRegistrations = [
+  ...EntryPointButton,
+  ...EntryPointCardFloat,
+  ...EntryPointCardMain,
+  ...EntryPointContainer,
+  ...EntryPointDetail,
+  ...EntryPointMainBody,
+  ...EntryPointOmniform,
+  ...EntryPointWidget,
+  ...EntryPoint,
 ];
+
+export default views;

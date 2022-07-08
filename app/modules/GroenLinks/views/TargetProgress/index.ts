@@ -1,5 +1,3 @@
 import TargetProgress from './TargetProgress';
 
-export default [
-  TargetProgress,
-];
+export default TargetProgress;

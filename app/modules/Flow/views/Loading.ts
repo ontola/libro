@@ -5,7 +5,7 @@ import ll from '../../Kernel/ontology/ll';
 import { flowTopology } from '../topologies/Flow';
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     LoadingCard,
     ll.LoadingResource,
     RENDER_CLASS_NAME,

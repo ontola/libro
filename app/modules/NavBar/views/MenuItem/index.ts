@@ -1,5 +1,3 @@
 import MenuItemNavbar from './MenuItemNavbar';
 
-export default [
-  MenuItemNavbar,
-];
+export default MenuItemNavbar;

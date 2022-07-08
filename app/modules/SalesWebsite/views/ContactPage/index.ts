@@ -1,5 +1,3 @@
 import ContactPageFull from './ContactPageFull';
 
-export default [
-  ...ContactPageFull,
-];
+export default ContactPageFull;

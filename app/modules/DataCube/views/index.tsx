@@ -14,10 +14,10 @@ import MeasurePropertyTableRow from './MeasureProperty/MeasurePropertyTableRow';
 import ObservationTableBody from './Observation/ObservationTableBody';
 
 export default [
-  DataSetFull,
-  DataSetContainer,
-  DataSetTabPane,
-  DownloadUrl,
-  MeasurePropertyTableRow,
-  ObservationTableBody,
+  ...DataSetFull,
+  ...DataSetContainer,
+  ...DataSetTabPane,
+  ...DownloadUrl,
+  ...MeasurePropertyTableRow,
+  ...ObservationTableBody,
 ];

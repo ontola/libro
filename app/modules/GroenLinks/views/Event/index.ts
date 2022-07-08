@@ -7,11 +7,11 @@ import ParticipantsCount from './properties/participantsCountDetail';
 import StartDate from './properties/startDate';
 
 export default [
-  EventCardRow,
-  EventContainer,
-  EventList,
-  EventPage,
-  EventTypeDetailsBar,
-  ParticipantsCount,
-  StartDate,
+  ...EventCardRow,
+  ...EventContainer,
+  ...EventList,
+  ...EventPage,
+  ...EventTypeDetailsBar,
+  ...ParticipantsCount,
+  ...StartDate,
 ];

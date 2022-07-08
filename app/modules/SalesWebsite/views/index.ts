@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import About from './About';
 import AnimatedCarousel from './AnimatedCarousel';
 import Block from './Block';
@@ -28,7 +30,7 @@ import Stepper from './Stepper';
 import Tier from './Tier';
 import TrialPage from './TrialPage';
 
-export default [
+const views: ViewRegistrations = [
   ...About,
   ...AnimatedCarousel,
   ...Block,
@@ -54,8 +56,10 @@ export default [
   ...Proposition,
   ...Stepper,
   ...SellingPoint,
-  SalesHeader,
+  ...SalesHeader,
   ...StackedImages,
   ...Tier,
   ...TrialPage,
 ];
+
+export default views;

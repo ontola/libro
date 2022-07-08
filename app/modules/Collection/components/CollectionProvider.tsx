@@ -19,7 +19,7 @@ import useActionStatus from '../../Action/hooks/useActionStatus';
 import { isInvalidActionStatus } from '../../Action/hooks/useEnabledActions';
 import { tryParseInt } from '../../Common/lib/numbers';
 import ResourceBoundary from '../../Common/components/ResourceBoundary';
-import { useListToArr } from '../../Kernel/hooks/useListToArr';
+import { useContainerToArr } from '../../Kernel/hooks/useContainerToArr';
 import ll from '../../Kernel/ontology/ll';
 import ontola from '../../Kernel/ontology/ontola';
 import { useCurrentCollectionResource } from '../hooks/useCurrentCollectionResource';
@@ -100,7 +100,7 @@ const CollectionProvider = ({
   const [firstPageItems] = useFields(currentCollectionPages[0], as.totalItems);
 
   const [columnSequence] = useIds(originalCollection, ontola.columns);
-  const [columns] = useListToArr<NamedNode>(columnSequence);
+  const [columns] = useContainerToArr<NamedNode>(columnSequence);
   const [opened, setOpen] = React.useState(false);
   const resolvedCollectionDisplay = collectionDisplay ?? collectionDisplayFromData;
 

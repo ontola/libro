@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import Condition from './Condition';
 import ErrorResponse from './ErrorResponse';
 import FilterOption from './FilterOption';
@@ -9,7 +11,7 @@ import FormPage from './FormPage';
 import Loading from './Loading';
 import Thing from './Thing';
 
-export default [
+const views: ViewRegistrations = [
   ...Condition,
   ...ErrorResponse,
   ...FilterOption,
@@ -21,3 +23,5 @@ export default [
   ...Thing,
   ...Loading,
 ];
+
+export default views;

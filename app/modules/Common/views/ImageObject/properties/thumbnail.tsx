@@ -42,7 +42,7 @@ export function registerThumbnail<T extends ImageBaseProps = ImageBaseProps>(
 }
 
 export default [
-  registerThumbnail(
+  ...registerThumbnail(
     allTopologiesExcept(
       listTopology,
       formFooterTopology,
@@ -51,7 +51,7 @@ export default [
     ),
     NavbarLinkImage,
   ),
-  registerThumbnail(
+  ...registerThumbnail(
     [formFooterTopology, selectedValueTopology],
     FormFooterImage,
   ),

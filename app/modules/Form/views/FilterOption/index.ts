@@ -1,5 +1,3 @@
 import FilterOptionMenu from './FilterOptionMenu';
 
-export default [
-  FilterOptionMenu,
-];
+export default FilterOptionMenu;

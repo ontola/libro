@@ -1,5 +1,3 @@
 import BlogPostMainBody from './BlogPostMainBody';
 
-export default [
-  BlogPostMainBody,
-];
+export default BlogPostMainBody;

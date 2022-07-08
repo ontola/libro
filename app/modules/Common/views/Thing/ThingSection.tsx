@@ -28,13 +28,13 @@ const ThingSection = ({ subject }: SubjectProp): JSX.Element => {
 };
 
 export default [
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     ThingSection,
     schema.Thing,
     RENDER_CLASS_NAME,
     listTopology,
   ),
-  LinkedRenderStore.registerRenderer(
+  ...LinkedRenderStore.registerRenderer(
     (props: SubjectProp): JSX.Element => (
       <CardContent>
         <ThingSection {...props} />

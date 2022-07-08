@@ -8,12 +8,12 @@ import Name from './properties/name';
 import Views from './properties/views';
 
 export default [
-  CollectionPageAlert,
-  CollectionPageDefault,
-  PageCollectionFullResource,
-  CollectionPageInline,
-  Empty,
+  ...CollectionPageAlert,
+  ...CollectionPageDefault,
+  ...PageCollectionFullResource,
+  ...CollectionPageInline,
+  ...Empty,
   ...Items,
-  Name,
+  ...Name,
   ...Views,
 ];

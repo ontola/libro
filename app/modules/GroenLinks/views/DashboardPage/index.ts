@@ -1,5 +1,3 @@
 import DashboardPageFull from './DashboardPageFull';
 
-export default [
-  DashboardPageFull,
-];
+export default DashboardPageFull;

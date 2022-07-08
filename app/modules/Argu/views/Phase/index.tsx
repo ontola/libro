@@ -5,9 +5,9 @@ import NameCardRow from './properties/nameCardRow';
 import Time from './properties/time';
 
 export default [
-  NameCardRow,
-  PhaseMainBody,
-  PhaseContainer,
-  PhasePage,
-  Time,
+  ...NameCardRow,
+  ...PhaseMainBody,
+  ...PhaseContainer,
+  ...PhasePage,
+  ...Time,
 ];

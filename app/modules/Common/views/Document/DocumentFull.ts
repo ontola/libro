@@ -33,6 +33,4 @@ DocumentFull.type = link.Document;
 
 DocumentFull.topology = fullResourceTopology;
 
-export default [
-  register(DocumentFull),
-];
+export default register(DocumentFull);

@@ -4,8 +4,8 @@ import GroupFull from './GroupFull';
 import VolunteerCountDetailsBar from './properties/volunteerCountDetailsBar';
 
 export default [
-  GroupCardRow,
-  GroupContainer,
-  GroupFull,
-  VolunteerCountDetailsBar,
+  ...GroupCardRow,
+  ...GroupContainer,
+  ...GroupFull,
+  ...VolunteerCountDetailsBar,
 ];

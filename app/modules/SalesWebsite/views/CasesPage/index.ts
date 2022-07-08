@@ -1,5 +1,3 @@
 import CasesPageFull from './CasesPageFull';
 
-export default [
-  ...CasesPageFull,
-];
+export default CasesPageFull;

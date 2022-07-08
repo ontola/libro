@@ -1,5 +1,3 @@
 import Condition from './Condition';
 
-export default [
-  Condition,
-];
+export default Condition;

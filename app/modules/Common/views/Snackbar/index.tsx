@@ -74,6 +74,4 @@ SnackbarView.type = libro.ns('snackbar/Snackbar');
 
 SnackbarView.topology = allTopologies;
 
-export default [
-  register(SnackbarView),
-];
+export default register(SnackbarView);

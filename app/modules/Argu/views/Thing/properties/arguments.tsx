@@ -49,7 +49,7 @@ ArgumentsTabPane.property = argu.arguments;
 ArgumentsTabPane.topology = tabPaneTopology;
 
 export default [
-  register(Arguments),
-  register(ArgumentsCardAppendix),
-  register(ArgumentsTabPane),
+  ...register(Arguments),
+  ...register(ArgumentsCardAppendix),
+  ...register(ArgumentsTabPane),
 ];

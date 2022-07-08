@@ -89,7 +89,7 @@ TextCollapsed.topology = [
 ];
 
 export default [
-  register(Text),
-  register(TextCollapsed),
-  register(TextStripped),
+  ...register(Text),
+  ...register(TextCollapsed),
+  ...register(TextStripped),
 ];

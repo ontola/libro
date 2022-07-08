@@ -69,4 +69,4 @@ Pages.property = ontola.pages;
 
 Pages.topology = allTopologies;
 
-export default [register(Pages)];
+export default register(Pages);

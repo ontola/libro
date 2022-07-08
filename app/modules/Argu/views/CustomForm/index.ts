@@ -3,7 +3,7 @@ import CustomFormFull from './CustomFormFull';
 import CustomFormParent from './CustomFormParent';
 
 export default [
-  CustomFormFormFooter,
-  CustomFormFull,
-  CustomFormParent,
+  ...CustomFormFormFooter,
+  ...CustomFormFull,
+  ...CustomFormParent,
 ];

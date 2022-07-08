@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import Agreement from './Agreement';
 import Dataset from './Dataset';
 import Distribution from './Distribution';
@@ -6,7 +8,7 @@ import Invite from './Invite';
 import Offer from './Offer';
 import Properties from './properties';
 
-export default [
+const views: ViewRegistrations = [
   ...Agreement,
   ...Dataset,
   ...Distribution,
@@ -15,3 +17,5 @@ export default [
   ...Invite,
   ...Offer,
 ];
+
+export default views;

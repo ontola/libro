@@ -1,5 +1,3 @@
 import InviteFull from './InviteFull';
 
-export default [
-  InviteFull,
-];
+export default InviteFull;

@@ -75,6 +75,6 @@ CollectionNameTableRow.property = as.name;
 CollectionNameTableRow.topology = tableRowTopology;
 
 export default [
-  register(CollectionName),
-  register(CollectionNameTableRow),
+  ...register(CollectionName),
+  ...register(CollectionNameTableRow),
 ];

@@ -11,15 +11,15 @@ import VolunteerContainer from './VolunteerContainer';
 import VolunteerPage from './VolunteerFull';
 
 export default [
-  Email,
-  Engagement,
-  CreatedAt,
-  GlappUsedAt,
-  Name,
-  NewVolunteerContainer,
-  VolunteerCardRow,
-  VolunteerContainer,
-  VolunteerPage,
-  Source,
-  Telephone,
+  ...Email,
+  ...Engagement,
+  ...CreatedAt,
+  ...GlappUsedAt,
+  ...Name,
+  ...NewVolunteerContainer,
+  ...VolunteerCardRow,
+  ...VolunteerContainer,
+  ...VolunteerPage,
+  ...Source,
+  ...Telephone,
 ];

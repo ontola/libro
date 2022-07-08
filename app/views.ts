@@ -6,48 +6,20 @@ import { ComponentRegistration } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { componentRegistrations } from './components';
-import Academy from './modules/Academy/views';
-import Action from './modules/Action/views';
-import Argu from './modules/Argu/views';
-import Auth from './modules/Auth/views';
-import Collection from './modules/Collection/views';
-import Common from './modules/Common/views';
-import Dexes from './modules/Dexes/views';
-import Element from './modules/Elements/views';
-import Flow from './modules/Flow/views';
-import Form from './modules/Form/views';
-import GroenLinks from './modules/GroenLinks/views';
-import Menu from './modules/Menu/views';
-import NavBar from './modules/NavBar/views';
-import Omniform from './modules/Omniform/views';
-import SalesWebsite from './modules/SalesWebsite/views';
-import Table from './modules/Table/views';
+import { ModuleType } from './Module';
+import { modules } from './modules';
 
 export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
-  const modules = [
-    ...Auth,
-    ...Action,
-    ...Collection,
-    ...Element,
-    ...Flow,
-    ...Form,
-    ...Menu,
-    ...NavBar,
-    ...Omniform,
-    ...Table,
-  ];
+  const libraries = modules
+    .filter((it) => it.type === ModuleType.Library)
+    .map((it) => it.views);
 
-  const apps = [
-    ...Academy,
-    ...Argu,
-    ...Dexes,
-    ...GroenLinks,
-    ...SalesWebsite,
-  ];
+  const apps = modules
+    .filter((it) => it.type === ModuleType.App)
+    .map((it) => it.views);
 
   return [
-    ...Common,
-    ...modules,
+    ...libraries,
     ...apps,
   ];
 }

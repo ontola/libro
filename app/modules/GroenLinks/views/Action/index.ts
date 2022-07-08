@@ -1,5 +1,3 @@
 import SignUpActionsBar from './SignUpActionsBar';
 
-export default [
-  SignUpActionsBar,
-];
+export default SignUpActionsBar;

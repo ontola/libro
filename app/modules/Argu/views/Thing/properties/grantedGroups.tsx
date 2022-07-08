@@ -80,6 +80,6 @@ GrantedGroups.propTypes = {
 };
 
 export default [
-  register(GrantedGroups),
-  register(GrantedGroupsDetail),
+  ...register(GrantedGroups),
+  ...register(GrantedGroupsDetail),
 ];

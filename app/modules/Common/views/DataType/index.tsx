@@ -5,9 +5,9 @@ import DataTypeRenderer from './default/default';
 import TableCellStringRenderer from './table_cell/string';
 
 export default [
-  BooleanRenderer,
-  DataTypeRenderer,
-  DateRenderer,
-  DateTimeRenderer,
-  TableCellStringRenderer,
+  ...BooleanRenderer,
+  ...DataTypeRenderer,
+  ...DateRenderer,
+  ...DateTimeRenderer,
+  ...TableCellStringRenderer,
 ];

@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import ActionBodyMain from './ActionBodyMain';
 import ActionCardMain from './ActionCardMain';
 import ActionCardRow from './ActionCardRow';
@@ -19,25 +21,27 @@ import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
 import ReadAction from './ReadAction';
 
-export default [
+const views: ViewRegistrations = [
   ...CreateAction,
   ...CreateSession,
-  ActionBodyMain,
-  ActionCardMain,
-  ActionCardRow,
-  ActionContainer,
-  ActionContainerFloat,
-  ActionContainerHeader,
-  ActionDetail,
-  ActionDropdownContent,
-  ActionInline,
-  ActionNested,
-  ActionFull,
-  ActionTableCell,
-  ActionWidget,
+  ...ActionBodyMain,
+  ...ActionCardMain,
+  ...ActionCardRow,
+  ...ActionContainer,
+  ...ActionContainerFloat,
+  ...ActionContainerHeader,
+  ...ActionDetail,
+  ...ActionDropdownContent,
+  ...ActionInline,
+  ...ActionNested,
+  ...ActionFull,
+  ...ActionTableCell,
+  ...ActionWidget,
   ...EntryPoint,
   ...ReadAction,
-  FollowUpName,
+  ...FollowUpName,
   ...Loading,
-  WidgetName,
+  ...WidgetName,
 ];
+
+export default views;

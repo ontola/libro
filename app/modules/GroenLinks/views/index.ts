@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../Module';
+
 import Action from './Action';
 import Address from './Address';
 import Badge from './Badge';
@@ -14,7 +16,7 @@ import TargetProgress from './TargetProgress';
 import User from './User';
 import Volunteer from './Volunteer';
 
-export default [
+const views: ViewRegistrations = [
   ...Action,
   ...Address,
   ...Badge,
@@ -31,3 +33,5 @@ export default [
   ...User,
   ...Volunteer,
 ];
+
+export default views;

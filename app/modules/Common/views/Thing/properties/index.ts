@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../../../Module';
+
 import Attachments from './attachmentsCardRow';
 import AttachmentsMainBody from './attachmentsMainBody';
 import ContentUrl from './contentUrl';
@@ -27,33 +29,35 @@ import TextCardFixed from './textCardFixed';
 import TrashedAt from './trashedAt';
 import Type from './type';
 
-export default [
-  Attachments,
-  AttachmentsMainBody,
-  ContentUrl,
+const views: ViewRegistrations = [
+  ...Attachments,
+  ...AttachmentsMainBody,
+  ...ContentUrl,
   ...CoverPhoto,
-  CreateAction,
-  Creator,
-  DateCreated,
-  DateModified,
-  DatePublished,
-  DateSubmitted,
-  Description,
-  DownloadUrl,
-  ExpiresAt,
-  FavoriteAction,
-  Image,
-  IsPartOf,
-  IsPrimaryTopicOf,
-  Location,
-  Menus,
+  ...CreateAction,
+  ...Creator,
+  ...DateCreated,
+  ...DateModified,
+  ...DatePublished,
+  ...DateSubmitted,
+  ...Description,
+  ...DownloadUrl,
+  ...ExpiresAt,
+  ...FavoriteAction,
+  ...Image,
+  ...IsPartOf,
+  ...IsPrimaryTopicOf,
+  ...Location,
+  ...Menus,
   ...Name,
-  Order,
-  PublishAction,
-  StartDate,
-  SuperEvent,
+  ...Order,
+  ...PublishAction,
+  ...StartDate,
+  ...SuperEvent,
   ...Text,
-  TextCardFixed,
-  TrashedAt,
-  Type,
+  ...TextCardFixed,
+  ...TrashedAt,
+  ...Type,
 ];
+
+export default views;

@@ -3,7 +3,10 @@ import * as schema from '@ontologies/schema';
 import {
   Resource,
   register,
+  useDataInvalidation,
+  useIds,
   useProperty,
+  useValues,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -22,6 +25,10 @@ const WebSitePage = () => {
   const [hideHeader] = useProperty(ontola.hideHeader);
   const [homepage] = useProperty(foaf.homepage);
   const [name] = useProperty(schema.name);
+  const [coverPhoto] = useIds(ontola.coverPhoto);
+
+  useDataInvalidation(coverPhoto);
+  const [coverPhotoUrl] = useValues(coverPhoto, ontola.imgUrl1500x2000);
 
   if (homepage) {
     return (
@@ -36,7 +43,7 @@ const WebSitePage = () => {
     <React.Fragment>
       {hideHeader?.value !== 'true' && (
         <HeadingContext>
-          <PageHeader />
+          <PageHeader background={coverPhotoUrl} />
         </HeadingContext>
       )}
       <Container>

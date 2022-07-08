@@ -3,7 +3,7 @@ import PermissionGroupContainer from './PermissionGroupContainer';
 import PermissionTableCell from './properties/permissionTableCell';
 
 export default [
-  NodeFull,
-  PermissionGroupContainer,
-  PermissionTableCell,
+  ...NodeFull,
+  ...PermissionGroupContainer,
+  ...PermissionTableCell,
 ];

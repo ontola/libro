@@ -3,7 +3,7 @@ import Timeline from './Timeline';
 import TimelineItem from './TimelineItem';
 
 export default [
-  LegendItem,
-  Timeline,
-  TimelineItem,
+  ...LegendItem,
+  ...Timeline,
+  ...TimelineItem,
 ];

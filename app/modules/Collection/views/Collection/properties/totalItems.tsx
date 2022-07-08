@@ -112,7 +112,7 @@ const registerTotalItems = buildRegister<CollectionTotalItemsProps>({
 });
 
 export default [
-  registerTotalItems(DefaultCollectionTotalItems, {
+  ...registerTotalItems(DefaultCollectionTotalItems, {
     topology: allTopologiesExcept(
       cardAppendixTopology,
       detailsBarTopology,
@@ -120,10 +120,10 @@ export default [
       pageTopology,
     ),
   }),
-  registerTotalItems(CardAppendixCollectionTotalItems, {
+  ...registerTotalItems(CardAppendixCollectionTotalItems, {
     topology: cardAppendixTopology,
   }),
-  registerTotalItems(DetailsBarCollectionTotalItems, {
+  ...registerTotalItems(DetailsBarCollectionTotalItems, {
     topology: detailsBarTopology,
   }),
 ];

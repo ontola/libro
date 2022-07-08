@@ -4,8 +4,8 @@ import FullPageChapter from './FullPageChapter';
 import SideBarChapter from './SideBarChapter';
 
 export default [
-  Chapter,
-  ChapterSelect,
-  FullPageChapter,
-  SideBarChapter,
+  ...Chapter,
+  ...ChapterSelect,
+  ...FullPageChapter,
+  ...SideBarChapter,
 ];

@@ -1,13 +1,17 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import Cart from './Cart';
 import CartDetail from './CartDetail';
 import CouponBatch from './CouponBatch';
 import Offer from './Offer';
 import ShopFull from './ShopFull';
 
-export default [
+const views: ViewRegistrations = [
   ...Cart,
   ...CartDetail,
   ...CouponBatch,
   ...Offer,
-  ShopFull,
+  ...ShopFull,
 ];
+
+export default views;

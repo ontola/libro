@@ -6,10 +6,10 @@ import VoteEventMainBody from './VoteEventMainBody';
 import VoteEventTableCell from './VoteEventTableCell';
 
 export default [
-  VoteEventContainer,
-  VoteEventMainBody,
-  VoteEventFull,
-  VoteEventTableCell,
-  VoteOptions,
-  SignInFlow,
+  ...VoteEventContainer,
+  ...VoteEventMainBody,
+  ...VoteEventFull,
+  ...VoteEventTableCell,
+  ...VoteOptions,
+  ...SignInFlow,
 ];

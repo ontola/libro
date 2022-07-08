@@ -1,3 +1,5 @@
+import { ViewRegistrations } from '../../../../Module';
+
 import properties from './properties';
 import ThingAlertDialog from './ThingAlertDialog';
 import ThingCard from './ThingCard';
@@ -15,21 +17,23 @@ import ThingParent from './ThingParent';
 import ThingSection from './ThingSection';
 import ThingTabPane from './ThingTabPane';
 
-export default [
+const views: ViewRegistrations = [
   ...properties,
-  ThingAlertDialog,
-  ThingCard,
-  ThingContainer,
-  ThingDetailsBar,
-  ThingFooter,
-  ThingFullResource,
-  ThingGrid,
-  ThingMainBody,
-  ThingMenu,
-  ThingPage,
-  ThingPageHeader,
-  ThingTabPane,
-  ThingParent,
-  ThingInline,
+  ...ThingAlertDialog,
+  ...ThingCard,
+  ...ThingContainer,
+  ...ThingDetailsBar,
+  ...ThingFooter,
+  ...ThingFullResource,
+  ...ThingGrid,
+  ...ThingMainBody,
+  ...ThingMenu,
+  ...ThingPage,
+  ...ThingPageHeader,
+  ...ThingTabPane,
+  ...ThingParent,
+  ...ThingInline,
   ...ThingSection,
 ];
+
+export default views;

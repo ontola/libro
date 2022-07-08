@@ -5,5 +5,5 @@ import BlogsFull from './BlogsFull';
 
 export default [
   ...register(BlogsContainer),
-  BlogsFull,
+  ...BlogsFull,
 ];

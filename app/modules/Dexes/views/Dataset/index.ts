@@ -1,5 +1,3 @@
 import DatasetFull from './DatasetFull';
 
-export default [
-  DatasetFull,
-];
+export default DatasetFull;

@@ -1,5 +1,3 @@
 import VocabularyParent from './VocabularyParent';
 
-export default [
-  VocabularyParent,
-];
+export default VocabularyParent;
