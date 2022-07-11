@@ -11,6 +11,7 @@ import Elements from './modules/Elements';
 import Flow from './modules/Flow';
 import Form from './modules/Form';
 import GroenLinks from './modules/GroenLinks';
+import Libro from './modules/Libro';
 import Menu from './modules/Menu';
 import NavBar from './modules/NavBar';
 import Omniform from './modules/Omniform';
@@ -30,6 +31,7 @@ export const modules: Module[] = [
   Flow,
   Form,
   GroenLinks,
+  Libro,
   Menu,
   NavBar,
   Omniform,

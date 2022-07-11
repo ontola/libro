@@ -33,6 +33,7 @@ import { getMetaContent } from '../modules/Kernel/lib/dom';
 import ontolaDeltaProcessor from '../modules/Kernel/lib/ontolaDeltaProcessor';
 import { WebManifest } from '../modules/Kernel/components/AppContext/WebManifest';
 import { website } from '../modules/Kernel/lib/frontendIRIComponents';
+import { topologiesKey } from '../modules/Kernel/lib/topologiesKey';
 import transformers from '../modules/Kernel/lib/transformers';
 import ll from '../modules/Kernel/ontology/ll';
 import ontola from '../modules/Kernel/ontology/ontola';
@@ -40,6 +41,7 @@ import form from '../modules/Form/ontology/form';
 import teamGL from '../modules/GroenLinks/ontology/teamGL';
 import meeting from '../ontology/meeting';
 import opengov from '../ontology/opengov';
+import { allTopologies } from '../topologies';
 
 import { handle } from './logging';
 import empndjson from './transformers/empndjson';
@@ -91,6 +93,7 @@ export default async function generateLRS(
   const lrs = createStore<React.ComponentType>(storeOptions, middleware);
   serviceWorkerCommunicator.linkedRenderStore = lrs;
   (lrs as any).bulkFetch = true;
+  lrs.settings.set(topologiesKey, allTopologies);
 
   lrs.deltaProcessors.unshift(ontolaDeltaProcessor(lrs));
 

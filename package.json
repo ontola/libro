@@ -161,7 +161,7 @@
     "jest-fetch-mock": "^3.0.3",
     "jsdom": "^16.6.0",
     "link-lib": "4.0.0-4445b24e",
-    "link-redux": "4.0.0-29c4944b",
+    "link-redux": "4.0.0-37b23a4e",
     "lint-staged": "^10.5.4",
     "memoize-one": "^5.0.5",
     "monaco-editor": "^0.33.0",

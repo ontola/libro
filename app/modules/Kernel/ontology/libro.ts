@@ -31,6 +31,10 @@ export default {
       open: libro('actions/window/open'),
     },
   },
+  bootstrap: {
+    TopologiesList: libro('bootstrap/TopologiesList'),
+    ViewsList: libro('bootstrap/ViewsList'),
+  },
   target: libro('target'),
   targets: {
     _blank: libro('_blank'),
