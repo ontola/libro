@@ -32,8 +32,13 @@ export default {
     },
   },
   bootstrap: {
+    ModulesList: libro('bootstrap/ModulesList'),
     TopologiesList: libro('bootstrap/TopologiesList'),
-    ViewsList: libro('bootstrap/ViewsList'),
+  },
+  module: {
+    topologiesCount: libro('module/topologiesCount'),
+    type: libro('module/type'),
+    viewsCount: libro('module/viewsCount'),
   },
   target: libro('target'),
   targets: {

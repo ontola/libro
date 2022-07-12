@@ -7,8 +7,8 @@ import type { ComponentRegistration } from 'link-lib';
 export type ViewRegistrations = Array<ComponentRegistration<any>>;
 
 export enum ModuleType {
-  Library,
-  App,
+  Library = 'library',
+  App = 'app',
 }
 
 export interface Module {

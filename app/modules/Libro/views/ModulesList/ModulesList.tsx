@@ -10,21 +10,23 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { allTopologies } from '../../../../topologies';
 import app from '../../../Common/ontology/app';
 import Container from '../../../Common/topologies/Container';
-import { topologiesKey } from '../../../Kernel/lib/settings';
+import { gridTopology } from '../../../Common/topologies/Grid';
+import { modulesKey } from '../../../Kernel/lib/settings';
 import libro from '../../../Kernel/ontology/libro';
 import ontola from '../../../Kernel/ontology/ontola';
 
-const TopologiesList = () => {
-  const lrs = useLRS();
-  const topologies = lrs.settings.get(topologiesKey);
+const ModulesList = () => {  const lrs = useLRS();
+  const modules = lrs.settings.get(modulesKey);
 
-  const items = useTempRecords(topologies, (topology, set) => {
+  const items = useTempRecords(modules, (module, set) => {
     set(rdfx.type, schema.Thing);
-    set(schema.name, topology?.value ?? 'default (undefined)');
-  }, [topologies]);
+    set(schema.name, module.name ?? 'unnamed');
+    set(libro.module.topologiesCount, module.topologies.length.toString());
+    set(libro.module.type, module.type);
+    set(libro.module.viewsCount, module.views.length.toString());
+  }, [modules]);
 
   const itemsSeq = useTempRecord(rdfx.Seq, (set) => {
     items.forEach((it, i) => {
@@ -34,10 +36,13 @@ const TopologiesList = () => {
 
   const columns = useTempRecord(rdfx.Seq, (set) => {
     set(rdfx.ns('_0'), schema.name);
+    set(rdfx.ns('_1'), libro.module.type);
+    set(rdfx.ns('_2'), libro.module.topologiesCount);
+    set(rdfx.ns('_3'), libro.module.viewsCount);
   }, []);
 
-  const [collection] = React.useState(app.ns('home/widgets/bootstrap/topologies/collection'));
-  const [view] = React.useState(app.ns('home/widgets/bootstrap/topologies/collection?page=1'));
+  const [collection] = React.useState(app.ns('home/widgets/bootstrap/modules/collection'));
+  const [view] = React.useState(app.ns('home/widgets/bootstrap/modules/collection?page=1'));
 
   useTempRecord(ontola.PaginatedView, (set) => {
     set(schema.isPartOf, collection);
@@ -45,11 +50,11 @@ const TopologiesList = () => {
     set(ontola.baseCollection, collection);
     set(ontola.collectionDisplay, ontola['collectionDisplay/table']);
     set(as.items, itemsSeq);
-    set(as.totalItems, topologies.length.toString());
+    set(as.totalItems, modules.length.toString());
   }, [collection, itemsSeq], view);
 
   useTempRecord(ontola.Collection, (set) => {
-    set(as.name, `Topologies (${topologies.length})`);
+    set(as.name, `Modules (${modules.length})`);
     set(ontola.columns, columns);
     set(ontola.collectionDisplay, ontola['collectionDisplay/table']);
     set(ontola.defaultType, ontola['collectionType/paginated']);
@@ -57,7 +62,7 @@ const TopologiesList = () => {
     set(ontola.pages, view);
     set(as.first, view);
     set(as.last, view);
-    set(as.totalItems, topologies.length.toString());
+    set(as.totalItems, modules.length.toString());
   }, [view, columns], collection);
 
   return (
@@ -67,8 +72,8 @@ const TopologiesList = () => {
   );
 };
 
-TopologiesList.type = libro.bootstrap.TopologiesList;
+ModulesList.type = libro.bootstrap.ModulesList;
 
-TopologiesList.topology = allTopologies;
+ModulesList.topology = gridTopology;
 
-export default register(TopologiesList);
+export default register(ModulesList);
