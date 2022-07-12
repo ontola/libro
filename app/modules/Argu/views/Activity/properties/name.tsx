@@ -14,7 +14,6 @@ import React, { ReactElement } from 'react';
 import { allTopologies } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
 import { LinkFeature } from '../../../../Common/components/Link';
-import SuspendedLoader from '../../../../Common/components/Loading/SuspendedLoader';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
@@ -58,7 +57,6 @@ const ActivityName = () => {
             features={features}
             key={prop.value}
             subject={prop}
-            onLoad={SuspendedLoader}
           />
         )}
       </React.Fragment>,

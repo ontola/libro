@@ -5,21 +5,18 @@ import React from 'react';
 
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import Card from '../../../Common/topologies/Card';
-import Suspense from '../../../Kernel/components/Suspense';
 import libro from '../../../Kernel/ontology/libro';
 import argu from '../../ontology/argu';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 
 const PublishActivityContainer = () => (
-  <Suspense>
-    <HeadingContext>
-      <Card>
-        <ActivityDetailsBar />
-        <Property label={as.object} />
-      </Card>
-    </HeadingContext>
-  </Suspense>
+  <HeadingContext>
+    <Card>
+      <ActivityDetailsBar />
+      <Property label={as.object} />
+    </Card>
+  </HeadingContext>
 );
 
 PublishActivityContainer.type = argu.PublishActivity;

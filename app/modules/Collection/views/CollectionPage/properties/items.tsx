@@ -16,7 +16,6 @@ import GridItem from '../../../../Common/components/Grid/GridItem';
 import useViewByIRI from '../../../../Common/hooks/useViewByIRI';
 import { tryParseInt } from '../../../../Common/lib/numbers';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
-import { LoadingCardFixed } from '../../../../Common/components/Loading';
 import app from '../../../../Common/ontology/app';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
@@ -62,7 +61,6 @@ const ItemList = ({
     if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
       wrapper = GridItem;
       wrapperOpts = {
-        Fallback: LoadingCardFixed,
         maxColumns,
       };
     }

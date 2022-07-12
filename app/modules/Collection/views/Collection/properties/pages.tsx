@@ -8,8 +8,6 @@ import {
 import React from 'react';
 
 import { allTopologies } from '../../../../../topologies';
-import { LoadingGridContent } from '../../../../Common/components/Loading';
-import Suspense from '../../../../Kernel/components/Suspense';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { CollectionTypes } from '../types';
 
@@ -39,17 +37,12 @@ const Pages: FC<PagesProps> = ({
   }
 
   const obs = pages.map((iri) => (
-    <Suspense
-      fallback={<LoadingGridContent />}
-      key={`${iri.value}-loader`}
-    >
-      <Resource
-        insideCollection={insideCollection}
-        key={`pages-${iri.value}`}
-        renderWhenEmpty={renderWhenEmpty}
-        subject={iri}
-      />
-    </Suspense>
+    <Resource
+      insideCollection={insideCollection}
+      key={`pages-${iri.value}`}
+      renderWhenEmpty={renderWhenEmpty}
+      subject={iri}
+    />
   ));
 
   if (obs) {

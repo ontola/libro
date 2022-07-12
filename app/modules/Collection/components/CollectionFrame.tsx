@@ -10,8 +10,6 @@ import React from 'react';
 import Card from '../../Common/topologies/Card';
 import CardAppendix from '../../Common/topologies/Card/CardAppendix';
 import Grid from '../../Common/topologies/Grid';
-import { LoadingCardFixed } from '../../Common/components/Loading';
-import Suspense from '../../Kernel/components/Suspense';
 import app from '../../Common/ontology/app';
 import ontola from '../../Kernel/ontology/ontola';
 import TableHeadCells from '../../Table/components/TableHeadCells';
@@ -44,18 +42,16 @@ const CollectionFrame = ({
   const body = React.useMemo(() => (
     <React.Fragment>
       {currentCollectionPages?.map((collectionPage) => (
-        <Suspense
-          fallback={<LoadingCardFixed />}
+        <Resource
           key={collectionPage.value}
+          subject={collectionPage}
         >
-          <Resource subject={collectionPage}>
-            <Property
-              forceRender
-              label={as.items}
-              renderLimit={Infinity}
-            />
-          </Resource>
-        </Suspense>
+          <Property
+            forceRender
+            label={as.items}
+            renderLimit={Infinity}
+          />
+        </Resource>
       ))}
     </React.Fragment>
   ), [currentCollectionPages]);

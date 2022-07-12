@@ -5,9 +5,6 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import LinkLoader from '../../../Kernel/components/LinkLoader';
-import Suspense from '../../../Kernel/components/Suspense';
-
 const GRID_FULL = 12;
 const LG_BASE = 12;
 const MD_BASE = 9;
@@ -25,7 +22,6 @@ const columnWidth = (base: number, size: number, factor: number): GridSize => (
 );
 
 export interface GridItemProps extends GridProps {
-  Fallback?: React.ComponentType,
   children: React.ReactNode,
   maxColumns: number,
   size: number,
@@ -33,7 +29,6 @@ export interface GridItemProps extends GridProps {
 
 const GridItem = ({
   children,
-  Fallback,
   maxColumns,
   size,
   ...otherProps
@@ -52,9 +47,7 @@ const GridItem = ({
       xs={xs}
       {...otherProps}
     >
-      <Suspense fallback={Fallback ? <Fallback /> : <LinkLoader />}>
-        {children}
-      </Suspense>
+      {children}
     </MaterialGrid>
   );
 };

@@ -4,6 +4,7 @@ import ll from '../../../Kernel/ontology/ll';
 import Loading, {
   LoadingButton,
   LoadingCard,
+  LoadingCardFixed,
   LoadingCardFloat,
   LoadingCardRowAppendix,
   LoadingDetail,
@@ -15,7 +16,6 @@ import Loading, {
   LoadingRow,
   LoadingTabbar,
 } from '../../components/Loading';
-import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 import { inlineTopology } from '../../topologies';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { parentTopology } from '../../topologies/BreadcrumbsBar';
@@ -80,7 +80,7 @@ export default [
     ],
   ),
   ...LinkedRenderStore.registerRenderer(
-    SuspendedLoader,
+    LoadingCardFixed,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     [

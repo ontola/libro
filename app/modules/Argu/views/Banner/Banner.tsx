@@ -13,7 +13,6 @@ import CardContent from '../../../Common/components/Card/CardContent';
 import Container from '../../../Common/topologies/Container';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import { LoadingHidden } from '../../../Common/components/Loading';
-import Suspense from '../../../Kernel/components/Suspense';
 import ontola from '../../../Kernel/ontology/ontola';
 
 const useStyles = makeStyles(() => ({
@@ -57,13 +56,11 @@ const Banner = () => {
               label={ontola.dismissAction}
               onLoad={LoadingHidden}
             >
-              <Suspense>
-                <Property
-                  smallButton
-                  label={schema.target}
-                  topology={gridTopology}
-                />
-              </Suspense>
+              <Property
+                smallButton
+                label={schema.target}
+                topology={gridTopology}
+              />
             </Property>
           </CardContent>
         </Container>

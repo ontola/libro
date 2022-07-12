@@ -6,7 +6,6 @@ import React from 'react';
 
 import { defaultMenus } from '../../../../Common/lib/viewHelpers';
 import DetailsBar from '../../../../Common/topologies/DetailsBar';
-import SuspendedLoader from '../../../../Common/components/Loading/SuspendedLoader';
 
 const useStyles = makeStyles(() => ({
   activityDetail: {
@@ -25,10 +24,7 @@ const ActivityDetailsBar = (): JSX.Element => {
       right={(
         <React.Fragment>
           <Property label={schema.dateCreated} />
-          <Property
-            label={as.object}
-            onLoad={SuspendedLoader}
-          >
+          <Property label={as.object}>
             {defaultMenus}
           </Property>
         </React.Fragment>

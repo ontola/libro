@@ -6,7 +6,6 @@ import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
 import Card, { CardRow } from '../../../Common/topologies/Card';
-import Suspense from '../../../Kernel/components/Suspense';
 import libro from '../../../Kernel/ontology/libro';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
@@ -15,20 +14,18 @@ const ActivityContainer = (): JSX.Element => {
   const [text] = useStrings(schema.text);
 
   return (
-    <Suspense>
-      <Card>
-        <ActivityDetailsBar />
-        {text && (
-          <CardRow>
-            <CardContent>
-              <p>
-                {text}
-              </p>
-            </CardContent>
-          </CardRow>
-        )}
-      </Card>
-    </Suspense>
+    <Card>
+      <ActivityDetailsBar />
+      {text && (
+        <CardRow>
+          <CardContent>
+            <p>
+              {text}
+            </p>
+          </CardContent>
+        </CardRow>
+      )}
+    </Card>
   );
 };
 
