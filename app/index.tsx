@@ -4,7 +4,7 @@ import './useFactory';
 
 import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './components/App';
 import { APP_ELEMENT } from './config';
@@ -48,14 +48,14 @@ const getWebsiteManifest = (): WebManifest => {
   function mount() {
     log('Mounting app');
 
-    render(
+    const container = document.getElementById(APP_ELEMENT);
+    createRoot(container!).render(
       <AppContextEditor
         lrs={lrs}
         manifest={manifest}
       >
         <App history={history} />
       </AppContextEditor>,
-      document.getElementById(APP_ELEMENT),
     );
   }
 

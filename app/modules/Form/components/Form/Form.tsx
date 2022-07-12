@@ -90,6 +90,7 @@ const Form: React.FC<FormProps> = (props) => {
     subscription,
     validateOnBlur,
   } = props;
+  const [destroyOnUnregister, setDestroyOnUnregister] = React.useState(false);
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
   const submitHandler = React.useCallback((values?: FormValues, formApi?: FormApi<FormValues>): Promise<any> => {
     if (!onSubmit) {
@@ -106,6 +107,11 @@ const Form: React.FC<FormProps> = (props) => {
       submitHandler();
     }
   }, [autoSubmit, autoSubmitted]);
+  React.useEffect(() => {
+    setTimeout(() => {
+      setDestroyOnUnregister(true);
+    }, 0);
+  }, []);
 
   const render = ({ handleSubmit, submitting }: FormRenderProps<FormValues>) => (
     <FormBody
@@ -117,7 +123,7 @@ const Form: React.FC<FormProps> = (props) => {
 
   return (
     <FinalForm
-      destroyOnUnregister
+      destroyOnUnregister={destroyOnUnregister}
       form={form}
       initialValues={initialValues}
       initialValuesEqual={equal}
