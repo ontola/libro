@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { SomeNode } from 'link-lib';
 import { Resource } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { LibroTheme, Margin } from '../../Kernel/lib/themes';
 
@@ -48,7 +48,7 @@ export interface CallToActionProps {
 }
 
 /** Full page with a branded header */
-export const CallToAction: React.FC<CallToActionProps> = ({
+export const CallToAction: React.FC<CallToActionProps & ChildrenProp> = ({
   title,
   text,
   imageUrl,

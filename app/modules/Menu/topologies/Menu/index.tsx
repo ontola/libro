@@ -1,7 +1,6 @@
 import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import libro from '../../../Kernel/ontology/libro';
 import DropdownMenu, { RenderProp } from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
@@ -14,7 +13,7 @@ interface MenuProps {
   title: string;
 }
 
-const Menu: TopologyFC<MenuProps> = ({ children, title, trigger }) => {
+const Menu: React.FC<MenuProps> = ({ children, title, trigger }) => {
   const [MenuTopology] = useTopologyProvider(menuTopology);
 
   return (

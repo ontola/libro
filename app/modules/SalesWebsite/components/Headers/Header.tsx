@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { isNode } from '@ontologies/core';
 import { Resource } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { CallToActionButton } from '../CallToActionButton';
@@ -65,7 +65,7 @@ const useStyles = makeStyles<LibroTheme, Partial<HeaderProps>>((theme) => ({
   },
 }));
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header: React.FC<HeaderProps & ChildrenProp> = ({
   backgroundImageUrl,
   backgroundImageUrlMobile,
   backgroundImageXL,

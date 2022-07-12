@@ -5,7 +5,7 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { allTopologies } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
@@ -19,7 +19,7 @@ interface CollectionPageNameProps {
 
 const CollectionPageName: FC<CollectionPageNameProps> = ({ linkedProp }) => {
   const [href] = useProperty(ontola.href);
-  const Wrapper = React.useCallback(
+  const Wrapper = React.useCallback<(props: ChildrenProp) => JSX.Element>(
     ({ children }) => {
       if (typeof href === 'undefined') {
         return (
@@ -35,7 +35,7 @@ const CollectionPageName: FC<CollectionPageNameProps> = ({ linkedProp }) => {
         </Link>
       );
     },
-    [href],
+  [href],
   );
 
   return (

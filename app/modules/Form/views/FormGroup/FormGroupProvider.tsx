@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 interface FormGroupContext {
   addFieldName?: (fieldName: string) => void;
@@ -17,7 +17,7 @@ interface PropTypes {
   sequenceIndex: number;
 }
 
-const FormGroupProvider: React.FC<PropTypes> = ({
+const FormGroupProvider: React.FC<PropTypes & ChildrenProp> = ({
   children,
   sequenceIndex,
 }) => {

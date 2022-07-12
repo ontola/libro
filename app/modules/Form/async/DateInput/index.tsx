@@ -62,7 +62,7 @@ const DateInput: React.FC<DateInputProps> = ({
 
   const dataType = type === DateInputType.Date ? xsd.date : xsd.dateTime;
   const handleChange = React.useCallback(
-    (newValue) => onChange(newValue === null ? null : rdf.literal(newValue, dataType)),
+    (newValue: unknown) => onChange(newValue === null ? null : rdf.literal(newValue, dataType)),
     [],
   );
 

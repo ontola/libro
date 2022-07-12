@@ -23,7 +23,7 @@ export interface TestContext {
 }
 
 export const generateStore = (): Store => createStore(
-  (state) => state,
+  (state: unknown) => state,
   {},
 );
 

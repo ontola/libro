@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 export const linkActiveCID = 'CID-LinkActive';
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const LinkLabel: React.FC = ({ children }) => {
+const LinkLabel: React.FC<ChildrenProp> = ({ children }) => {
   const classes = useStyles();
 
   return (

@@ -7,6 +7,7 @@ import useStoredState from '../../hooks/useStoredState';
 import Button from '../Button';
 
 interface ClosableContainerProps {
+  children: React.ReactNode;
   id: string;
 }
 

@@ -13,6 +13,7 @@ export type FormBodyRenderer = (submitting: boolean | undefined) => React.ReactN
 
 interface FormBodyProps extends FormProps {
   handleSubmit?: FormEventHandler<HTMLFormElement>;
+  reset?: (initialValues?: Record<string, any>) => void;
   submitting?: boolean;
 }
 

@@ -1,9 +1,10 @@
 import { makeStyles } from '@mui/styles';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { CardFloat } from '../../topologies/Card';
 
 interface PropTypes {
+  children: ReactNode;
   menu: React.ReactNode;
   noMargin?: boolean;
 }

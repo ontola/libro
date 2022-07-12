@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import useStyles from './DetailTextStyles';
 
@@ -9,7 +9,7 @@ export interface DetailTextProps {
   variant?: DetailVariant;
 }
 
-const DetailText: React.FC<DetailTextProps> = ({
+const DetailText: React.FC<DetailTextProps & ChildrenProp> = ({
   children,
   variant,
 }) => {

@@ -1,7 +1,7 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 
@@ -68,7 +68,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => {
   };
 });
 
-export const HoverBoxImpl: React.FC<HoverBoxProps> = ({
+export const HoverBoxImpl: React.FC<HoverBoxProps & ChildrenProp> = ({
   children,
   hiddenChildren,
   onClick,

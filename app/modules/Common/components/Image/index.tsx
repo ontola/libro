@@ -10,7 +10,7 @@ import {
   useDataFetching,
   useGlobalIds,
 } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import ontola from '../../../Kernel/ontology/ontola';
@@ -20,7 +20,7 @@ import {
   normalizeFontAwesomeIRI,
 } from '../../lib/iris';
 
-export interface ImageBaseProps {
+export interface ImageBaseProps extends ChildrenProp {
   alt?: string,
   ariaLabel?: string,
   className?: string,

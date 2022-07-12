@@ -6,7 +6,7 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
 import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
@@ -42,7 +42,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
   return InfinitePagination;
 };
 
-export const CardAppendixContent: React.FC = ({ children }) => (
+export const CardAppendixContent: React.FC<ChildrenProp> = ({ children }) => (
   <CardRow
     backdrop
     borderTop

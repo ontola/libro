@@ -9,7 +9,7 @@ import {
   useLinkRenderContext,
   useNumbers,
 } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 import { useIntl } from 'react-intl';
 
 import { allTopologiesExcept } from '../../../../../topologies';
@@ -235,7 +235,7 @@ const getPagination = (Wrapper: React.ElementType, topology: NamedNode | NamedNo
   return DefaultPagination;
 };
 
-export const CardAppendixContent: React.FC = ({ children }) => (
+export const CardAppendixContent: React.FC<ChildrenProp> = ({ children }) => (
   <CardRow
     backdrop
     borderTop

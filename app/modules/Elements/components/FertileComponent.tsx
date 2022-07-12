@@ -24,7 +24,7 @@ export interface FertileComponentWrapperProps {
   trackingId?: string,
 }
 
-export interface FertileComponentProps extends FertileComponentWrapperProps{
+export interface FertileComponentProps extends Omit<FertileComponentWrapperProps, 'children'>{
   children: SomeNode,
 }
 

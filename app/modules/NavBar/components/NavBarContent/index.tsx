@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { Resource } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import app from '../../../Common/ontology/app';
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavBarContent: React.FC<NavBarContentProps> = ({ children, hideSearch, hideMenu }): JSX.Element => {
+const NavBarContent: React.FC<NavBarContentProps & ChildrenProp> = ({ children, hideSearch, hideMenu }): JSX.Element => {
   const classes = useStyles();
   const navBarRef = React.useRef<HTMLDivElement>(null);
 

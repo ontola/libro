@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 
@@ -104,7 +104,7 @@ export interface HeadingProps {
   variant?: HeadingVariant;
 }
 
-const Heading: React.FC<HeadingProps> = ({
+const Heading: React.FC<HeadingProps & ChildrenProp> = ({
   children,
   className,
   display,

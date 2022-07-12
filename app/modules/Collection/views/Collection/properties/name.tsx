@@ -5,7 +5,7 @@ import {
   register,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
@@ -23,7 +23,7 @@ interface CollectionNameProps {
 
 const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
   const [href] = useProperty(ontola.href);
-  const Wrapper = React.useCallback(
+  const Wrapper = React.useCallback<(props: ChildrenProp) => JSX.Element>(
     ({ children }) => {
       if (typeof href === 'undefined') {
         return (
@@ -39,7 +39,7 @@ const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
         </Link>
       );
     },
-    [href],
+  [href],
   );
 
   return (

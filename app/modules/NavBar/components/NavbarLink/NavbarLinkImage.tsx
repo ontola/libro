@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { ImageBaseProps } from '../../../Common/components/Image';
 
@@ -39,7 +39,7 @@ const NavbarLinkImage = ({ ariaLabel, linkedProp }: NavbarLinkImageProps): JSX.E
   );
 };
 
-export const NavbarLinkImageWrapper: React.FC<ImageBaseProps> = ({ children }) => {
+export const NavbarLinkImageWrapper: React.FC<ImageBaseProps> = ({ children }: ChildrenProp) => {
   const classes = useStyles();
 
   return (

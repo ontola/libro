@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button, { ButtonVariant } from '../../../Common/components/Button';
@@ -20,7 +20,7 @@ interface FormFooterRight {
   submitLabel?: string;
 }
 
-const FormFooterRight: React.FC<FormFooterRight> = ({
+const FormFooterRight: React.FC<FormFooterRight & ChildrenProp> = ({
   children,
   crammed,
   loading,

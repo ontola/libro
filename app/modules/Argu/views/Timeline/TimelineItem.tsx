@@ -16,7 +16,7 @@ import {
   useIds,
   useProperty,
 } from 'link-redux';
-import React, { ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 
 import { allTopologies } from '../../../../topologies';
 import Link from '../../../Common/components/Link';
@@ -47,7 +47,7 @@ const TimelineItem: FC<TimelineItemProps> = ({ lastItem }) => {
   const [color] = useFields(legendType, schema.color);
   const styleDot = color ? { backgroundColor: color.value } : {};
   const nameWrapper = url
-    ? ({ children }: { children: ReactChildren }) => (
+    ? ({ children }: { children: ReactNode }) => (
       <Link
         allowExternal={false}
         to={url.value}

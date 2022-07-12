@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import { SomeNode } from 'link-lib';
 import React, {
+  ChildrenProp,
   HTMLAttributes,
   MouseEventHandler,
   PropsWithChildren,
@@ -15,7 +16,7 @@ import { NavLinkProps } from 'react-router-dom';
 import Image from '../../../Common/components/Image';
 import Link, { LinkProps } from '../../../Common/components/Link';
 
-interface MenuItemProps {
+interface MenuItemProps extends ChildrenProp {
   action?: MouseEventHandler;
   allowExternal?: boolean;
   expandOpen: boolean | null;

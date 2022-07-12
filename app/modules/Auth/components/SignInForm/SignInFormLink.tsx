@@ -1,6 +1,10 @@
 import rdf from '@ontologies/core';
 import { useLRS } from 'link-redux';
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, {
+  ChildrenProp,
+  ReactElement,
+  SyntheticEvent, 
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 
@@ -14,7 +18,7 @@ interface SignInFormLinkProps {
   label?: string | ReactElement;
 }
 
-const SignInFormLink: React.FC<SignInFormLinkProps> = ({
+const SignInFormLink: React.FC<SignInFormLinkProps & ChildrenProp> = ({
   Component = Link,
   children,
   label,

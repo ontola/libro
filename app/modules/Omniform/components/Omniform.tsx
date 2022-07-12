@@ -192,7 +192,7 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
       {props.error && (
         <div className={classes.omniformError}>
           <FontAwesome name="exclamation-triangle" />
-          {props.error}
+          {props.error.error}
         </div>
       )}
       <OmniformFields>

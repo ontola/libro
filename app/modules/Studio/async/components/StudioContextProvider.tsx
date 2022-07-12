@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import Spinner from '../../../Common/components/Loading/Spinner';
 import { editorStateContext } from '../context/EditorStateContext';
@@ -8,7 +8,7 @@ import { useEditorStateContext } from '../hooks/useEditorStateContext';
 import { useServerDocumentsContext } from '../hooks/useServerDocumentsContext';
 import { useStudio } from '../hooks/useStudio';
 
-export const StudioContextProvider: React.FC = ({ children }) => {
+export const StudioContextProvider: React.FC<ChildrenProp> = ({ children }) => {
   const editorStateCtx = useEditorStateContext();
   const serverDocumentsCtx = useServerDocumentsContext();
   const [ctx] = useStudio();

@@ -6,7 +6,7 @@ import rdf, { Node } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import { Resource } from 'link-redux';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import argu from '../../../Argu/ontology/argu';
@@ -41,7 +41,7 @@ const resources = {
 };
 
 describe('ImageObject', () => {
-  const renderAs = async (subject: Node, TopologyProvider: React.ComponentType) => {
+  const renderAs = async (subject: Node, TopologyProvider: React.ComponentType<ChildrenProp>) => {
     const view = (
       <TopologyProvider>
         <Resource subject={subject} />

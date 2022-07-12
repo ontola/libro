@@ -1,6 +1,6 @@
 import { SomeNode } from 'link-lib';
 import { useLinkRenderContext } from 'link-redux';
-import React, { ComponentType } from 'react';
+import React, { ChildrenProp, ComponentType } from 'react';
 
 interface PropTypes {
   element?: string | ComponentType;
@@ -11,7 +11,7 @@ interface PropTypes {
 /**
  * Sets an RDFa resource tag using the subject from the context.
  */
-const ResourceBoundary: React.FC<PropTypes> = ({
+const ResourceBoundary: React.FC<PropTypes & ChildrenProp> = ({
   children,
   element: Element = 'div',
   subject,

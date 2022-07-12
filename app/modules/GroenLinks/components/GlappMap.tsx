@@ -45,7 +45,7 @@ const GlappMapLoader: React.FC<GlappMapProps> = (props) => {
   }
 
   return (
-    <React.Suspense fallback={() => null}>
+    <React.Suspense fallback={<React.Fragment />}>
       <GlappMap {...props} />
     </React.Suspense>
   );

@@ -25,6 +25,7 @@ export interface ButtonProps {
   list?: boolean;
   cardFloat?: boolean;
   centered?: boolean;
+  children?: React.ReactNode;
   /** Label of the button */
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling */
   /** and use the 'plain' prop. */

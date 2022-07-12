@@ -1,4 +1,4 @@
-import MonacoEditor, { Monaco } from '@monaco-editor/react';
+import MonacoEditor, { Monaco, OnMount } from '@monaco-editor/react';
 import { editor } from 'monaco-editor';
 import React from 'react';
 
@@ -54,7 +54,7 @@ export const DataEditor = ({
     }
   }, []);
 
-  const handleMount = React.useCallback((_, monaco) => {
+  const handleMount = React.useCallback<OnMount>((_, monaco) => {
     configureHighlighting(monaco);
     configureLibs(monaco);
 

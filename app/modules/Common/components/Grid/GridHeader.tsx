@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import React, { ChildrenProp, ReactElement } from 'react';
 
 import ContainerFloat from '../../topologies/Container/ContainerFloat';
 
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
  * Holds a header and menu items that float to the top right of the container
  * @returns {component} Component
  */
-const GridHeader: React.FC<PropTypes> = ({
+const GridHeader: React.FC<PropTypes & ChildrenProp> = ({
   children,
   header,
 }) => {

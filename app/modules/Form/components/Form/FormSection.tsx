@@ -1,6 +1,6 @@
 import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import React from 'react';
+import React, { ChildrenProp } from 'react';
 
 import { calculateFormFieldName } from '../../lib/helpers';
 
@@ -15,7 +15,7 @@ interface PropTypes {
   propertyIndex: number;
 }
 
-const FormSection: React.FC<PropTypes> = ({
+const FormSection: React.FC<PropTypes & ChildrenProp> = ({
   children,
   className,
   formIRI,
