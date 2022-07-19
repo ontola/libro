@@ -45,7 +45,7 @@ module.exports = merge(common, {
             console.log('Socket error using onProxyReqWs event', err);
           });
         },
-        target: 'http://localhost:3080',
+        target: 'http://libro.svc.cluster.localdev:3080',
         toProxy: true,
         ws: true,
         xfwd: false,
