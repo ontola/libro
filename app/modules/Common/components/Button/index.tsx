@@ -37,6 +37,8 @@ export interface ButtonProps {
   endIcon?: React.ReactNode;
   /** Shifts button left or right so it's content align with other content around it */
   edge?: 'start' | 'end';
+  /** Adjusts the target of a form */
+  formTarget?: string;
   /** Whether the button should fill it's container */
   grow?: boolean;
   /** If the button is actually just a link */

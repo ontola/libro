@@ -7,6 +7,7 @@ import {
   register,
   useProperty,
   useTopology,
+  useValues,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -17,6 +18,7 @@ import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import { footerTopology } from '../../../Common/topologies/Footer';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import { LoadingHidden } from '../../../Common/components/Loading';
+import libro from '../../../Kernel/ontology/libro';
 import ontola from '../../../Kernel/ontology/ontola';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooter from '../../../Form/topologies/FormFooter';
@@ -50,10 +52,12 @@ const EntryPointGrid: FC<PropTypes> = ({
   const topology = useTopology();
   const entryPointFormProps = useEntryPointFormProps(subject!, otherProps);
   const [name] = useProperty(schema.name);
+  const [formTarget] = useValues(libro.target);
 
   const footer = React.useCallback((loading: boolean | undefined) => (
     <FormFooter>
       <Button
+        formTarget={formTarget}
         loading={loading}
         small={smallButton}
         type="submit"

@@ -20,6 +20,7 @@ import {
 import { isDifferentWebsite } from '../../../Common/lib/iris';
 import { InputValue } from '../../../Form/components/FormField/FormFieldTypes';
 import { clearFormStorage } from '../../../Form/lib/helpers';
+import libro from '../../../Kernel/ontology/libro';
 
 export interface SubmitHandlerProps {
   entryPoint: SomeNode;
@@ -51,10 +52,12 @@ const useSubmitHandler = ({
   const {
     action,
     httpMethod,
+    target,
     url,
   } = useResourceLink(entryPoint, {
     action: schema.isPartOf,
     httpMethod: schema.httpMethod,
+    target: libro.target,
     url: schema.url,
   });
 
@@ -63,7 +66,7 @@ const useSubmitHandler = ({
       return new Promise<void>((resolve) => {
         if (modal) {
           lrs.actions.ontola.showDialog(url);
-        } else if (isDifferentWebsite(url.value)) {
+        } else if (target?.value == '_blank' || isDifferentWebsite(url.value)) {
           lrs.actions.ontola.openWindow(url.value);
         } else {
           lrs.actions.ontola.navigate(url);

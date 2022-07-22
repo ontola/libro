@@ -104,7 +104,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
           </RenderStoreProvider>
         )}
       </Wrapper>
-      {footer ? footer(submitting) : null}
+      {footer ? footer(httpMethod != 'GET' && submitting) : null}
     </React.Fragment>
   ), [footer, errorResponse]);
 
