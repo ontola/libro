@@ -33,6 +33,7 @@ export default {
     },
   },
   bootstrap: {
+    Browser: libro('bootstrap/Browser'),
     ModulesList: libro('bootstrap/ModulesList'),
     TopologiesList: libro('bootstrap/TopologiesList'),
   },
