@@ -7,7 +7,7 @@ import { InputValue } from '../../components/FormField/FormFieldTypes';
 import { JSONLDObject, calculateFormFieldName } from '../../lib/helpers';
 import form from '../../ontology/form';
 
-import { getNestedObjects } from './getNestedObjects';
+import { getNestedDependencies } from './getNestedDependencies';
 import { getFormFields, rawFormObjectValue } from './helpers';
 
 type InitialValues = { [index: string]: InputValue[]; };
@@ -31,7 +31,7 @@ export const getInitialValues = (
       const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
 
       if (nestedForm) {
-        values[fieldName] = getNestedObjects(lrs, value).map((nestedValue) => {
+        values[fieldName] = getNestedDependencies(lrs, value).map((nestedValue) => {
           const nestedObject = {
             '@id': nestedValue,
             ...getInitialValues(

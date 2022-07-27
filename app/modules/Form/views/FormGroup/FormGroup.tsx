@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import {
   Property,
   register,
-  useBooleans, 
+  useBooleans,
 } from 'link-redux';
 import React from 'react';
 

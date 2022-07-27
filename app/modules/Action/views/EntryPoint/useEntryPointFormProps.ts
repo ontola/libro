@@ -1,6 +1,9 @@
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
-import { useIds, useValues } from 'link-redux';
+import {
+  useIds,
+  useValues,
+} from 'link-redux';
 import React from 'react';
 
 import ll from '../../../Kernel/ontology/ll';

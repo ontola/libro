@@ -1,9 +1,14 @@
 import { makeStyles } from '@mui/styles';
-import { isNamedNode, isNode } from '@ontologies/core';
+import {
+  isBlankNode,
+  isNamedNode,
+  isNode,
+} from '@ontologies/core';
 import { useIds } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../../Kernel/lib/themes';
+import ll from '../../../../Kernel/ontology/ll';
 import { isJSONLDObject } from '../../../lib/helpers';
 import form from '../../../ontology/form';
 import { FormSection } from '../../Form';
@@ -35,6 +40,7 @@ const AssociationInput: React.FC<InputComponentProps> = ({
   } = React.useContext(formFieldContext);
   const multiple = fieldShape.maxCount && fieldShape.maxCount > 1;
   const nestedObject = isJSONLDObject(inputValue) ? inputValue['@id'] : undefined;
+  const [clonedFrom] = useIds(nestedObject, ll.clonedFrom);
   const [nestedFormIRI] = useIds(field, form.form);
 
   if (!nestedObject || !isNode(nestedFormIRI) || !isNamedNode(path) || !field) {
@@ -54,6 +60,13 @@ const AssociationInput: React.FC<InputComponentProps> = ({
       path={path}
       propertyIndex={inputIndex}
     >
+      {!clonedFrom && !isBlankNode(nestedObject) && __DEVELOPMENT__ && (
+        <span>
+          Object not cloned (
+          {nestedObject?.value}
+          )
+        </span>
+      )}
       <AssociationFields />
     </FormSection>
   );

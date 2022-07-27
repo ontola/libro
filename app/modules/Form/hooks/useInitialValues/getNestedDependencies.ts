@@ -1,5 +1,7 @@
 import * as as from '@ontologies/as';
 import {
+  QuadPosition,
+  Quadruple,
   SomeTerm,
   Term,
   isNode,
@@ -26,19 +28,32 @@ const isSequence = (lrs: LinkReduxLRSType, value: Term[]) => {
   return value?.length === 1 && isNode(firstValue) && resourceHasType(lrs, firstValue, rdfx.Seq);
 };
 
-export const getNestedObjects = (lrs: LinkReduxLRSType, value: SomeTerm[]): SomeNode[] => {
+export const getNestedDependencies = (lrs: LinkReduxLRSType, value: SomeTerm[]): SomeNode[] => {
   const firstValue = value.filter(isNode)[0];
 
   if (isCollection(lrs, value)) {
     const pages = lrs.getResourceProperties(firstValue, ontola.pages).filter(isNode);
 
     if (entityIsLoaded(lrs, pages[0])) {
-      return lrs.dig(firstValue, collectionMembers).filter(isNode);
+      const [quadruples, intermediates] = lrs.digDeeper(firstValue, collectionMembers).filter(isNode);
+
+      return [
+        firstValue,
+        ...pages,
+        ...(intermediates as SomeNode[]) ?? [],
+        ...(quadruples as Quadruple[])?.map((q) => q[QuadPosition.object])?.filter(isNode) ?? [],
+      ];
     }
 
-    return pages;
+    return [
+      firstValue,
+      ...pages,
+    ];
   } else if (isSequence(lrs, value)) {
-    return lrs.getResourceProperties(firstValue, rdfs.member).filter(isNode);
+    return [
+      firstValue,
+      ...lrs.getResourceProperties(firstValue, rdfs.member).filter(isNode),
+    ];
   }
 
   return value.filter(isNode);

@@ -1,5 +1,6 @@
 import {
   NamedNode,
+  QuadPosition,
   isNamedNode,
   isNode,
 } from '@ontologies/core';
@@ -22,20 +23,33 @@ import {
 } from '../../lib/diggers';
 import form from '../../ontology/form';
 
-import { getNestedObjects } from './getNestedObjects';
+import { getNestedDependencies } from './getNestedDependencies';
 import { getFormFields, rawFormObjectValue } from './helpers';
 
-const formDependencies = (lrs: LinkReduxLRSType, parentForm: SomeNode): SomeNode[] => [
-  parentForm,
-  ...lrs.dig(parentForm, [form.pages]),
-  ...lrs.dig(parentForm, formGroupsPath),
-  ...lrs.dig(parentForm, formFieldSeqPath),
-  ...lrs.dig(parentForm, formFieldsPath),
-  ...lrs.dig(parentForm, nestedFormsPath),
-  ...lrs.dig(parentForm, nestedConditionalFormsPath),
-  ...lrs.dig(parentForm, nestedConditionalIfInPath),
-  ...lrs.dig(parentForm, nestedConditionalUnlessInPath),
-].filter(isNode);
+const paths = [
+  [form.pages],
+  formGroupsPath,
+  formFieldSeqPath,
+  formFieldsPath,
+  nestedFormsPath,
+  nestedConditionalFormsPath,
+  nestedConditionalIfInPath,
+  nestedConditionalUnlessInPath,
+];
+
+const formDependencies = (lrs: LinkReduxLRSType, parentForm: SomeNode): SomeNode[] => {
+  const deps = [
+    parentForm,
+  ];
+
+  for (const path of paths) {
+    const [quadruples, intermediates] = lrs.digDeeper(parentForm, path);
+    deps.push(...intermediates);
+    deps.push(...quadruples.map((q) => q[QuadPosition.object]).filter(isNode));
+  }
+
+  return deps;
+};
 
 const renderedFieldValue = (lrs: LinkReduxLRSType, field?: SomeNode) => {
   const fieldType = lrs.getResourceProperty<NamedNode>(field, rdfx.type);
@@ -53,6 +67,12 @@ const renderedFieldValue = (lrs: LinkReduxLRSType, field?: SomeNode) => {
   );
 };
 
+/**
+ * Recursively calculates the set of records used by a form (including the form itself) from an {object}.
+ *
+ * Practically descending all (nested) fields taking note of `object[path]` values and intermediate
+ * records like collection records.
+ */
 export const getDependencies = (
   lrs: LinkReduxLRSType,
   sessionStore: Storage | undefined,
@@ -78,7 +98,7 @@ export const getDependencies = (
       const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
 
       if (nestedForm) {
-        getNestedObjects(lrs, value.filter(isNode)).forEach((nestedObject) => {
+        getNestedDependencies(lrs, value.filter(isNode)).forEach((nestedObject) => {
           getDependencies(
             lrs,
             sessionStore,

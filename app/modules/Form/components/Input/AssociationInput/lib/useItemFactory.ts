@@ -14,18 +14,19 @@ import { v4 as uuidv4 } from 'uuid';
 import { SubmitDataProcessor } from '../../../../../Common/lib/errorHandling';
 import ll from '../../../../../Kernel/ontology/ll';
 import ontola from '../../../../../Kernel/ontology/ontola';
-import { ClonedLRS } from '../../../../hooks/useFormLRS';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../../../lib/diggers';
 import { JSONLDObject } from '../../../../lib/helpers';
 import { formContext } from '../../../Form/FormContext';
 import { ItemFactory } from '../../../FormField/FormFieldTypes';
 
 export const useItemFactory = (): ItemFactory => {
-  const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
+  const lrs = useLRS<unknown, SubmitDataProcessor>();
   const { object } = React.useContext(formContext);
 
   const [path] = useGlobalIds(sh.path);
-  const association = lrs.originalLRS.getResourceProperty(object, path) as NamedNode;
+  // const association = lrs.originalLRS.getResourceProperty(object, path) as NamedNode;
+  const [clonedId] = useIds(object, ll.clonedFrom);
+  const association = lrs.getResourceProperty(clonedId, path) as NamedNode;
   useDataFetching(association);
 
   const formPaths = useIds(

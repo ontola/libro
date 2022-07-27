@@ -12005,9 +12005,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-redux@npm:4.0.0-116fe7bd":
-  version: 4.0.0-116fe7bd
-  resolution: "link-redux@npm:4.0.0-116fe7bd"
+"link-redux@npm:4.0.0-ff427c1c":
+  version: 4.0.0-ff427c1c
+  resolution: "link-redux@npm:4.0.0-ff427c1c"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -12016,7 +12016,7 @@ __metadata:
     link-lib: ">=3.0.0-5"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 54c478d8adbcd661b360fe7236c6e2ccfbada3c91bbbe45649961a85762602cf3009e37fd7655c0d56e71978205fffdaa6f6d49b9528aa95509646f1b148047b
+  checksum: 241a57954616708e45fd17213e3d5d89bc24e87c23302ded4eacdbe236ac353d7aafb097bfde6067d7dcdc8e187dd59d895b029c4a7e3a3ab64e9cc4fef691fa
   languageName: node
   linkType: hard
 
@@ -13428,7 +13428,7 @@ __metadata:
     jest-fetch-mock: ^3.0.3
     jsdom: ^16.6.0
     link-lib: 4.0.0-dev.461e68418215f7dc79d9bd210e3e7bc037a5c1a6.0
-    link-redux: 4.0.0-116fe7bd
+    link-redux: 4.0.0-ff427c1c
     lint-staged: ^10.5.4
     lottie-react: ^2.2.1
     memoize-one: ^5.0.5
