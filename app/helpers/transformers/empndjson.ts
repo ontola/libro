@@ -49,7 +49,10 @@ const parseResponse = async (
 
 export default {
   acceptValue: 1.0,
-  mediaTypes: ['application/empathy+x-ndjson'],
+  mediaTypes: [
+    'application/empathy+json',
+    'application/empathy+x-ndjson',
+  ],
 
   transformer: (
     store: LinkReduxLRSType,

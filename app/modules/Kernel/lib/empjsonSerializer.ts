@@ -10,6 +10,7 @@ import {
 import * as rdfx from '@ontologies/rdf';
 import * as xsd from '@ontologies/xsd';
 import { DataRecord } from 'link-lib';
+import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
 
 import {
   EmpBoolean,
@@ -28,12 +29,14 @@ import { quadruplesToDataSlice } from './quadruplesToDataSlice';
 export const toEmpJson = (quads: Quadruple[]): Seed => {
   const slice = quadruplesToDataSlice(quads);
 
-  return Object.entries(slice)
-    .reduce((acc, [k, v]) => ({
-      ...acc,
-      [k]: recordToEmpJson(v),
-    }), {} as Seed);
+  return sliceToEmpJson(slice);
 };
+
+export const sliceToEmpJson = (slice: DataSlice): Seed => Object.entries(slice)
+  .reduce((acc, [k, v]) => ({
+    ...acc,
+    [k]: recordToEmpJson(v),
+  }), {} as Seed);
 
 const recordToEmpJson = (record: DataRecord): SeedDataRecord => {
   const base: SeedDataRecord = {

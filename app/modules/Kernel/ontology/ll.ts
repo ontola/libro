@@ -17,6 +17,7 @@ export default {
   dataSubject: ll('dataSubject'),
   errorResponse: ll('errorResponse'),
   forceRender: ll('forceRender'),
+  graph: ll('graph'),
   loadingResource: ll('loadingResource'),
   meta: ll('meta'),
   view: ll('view'),

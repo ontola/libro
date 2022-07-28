@@ -43,6 +43,7 @@ import meeting from '../ontology/meeting';
 import opengov from '../ontology/opengov';
 import { allTopologies } from '../topologies';
 
+import { execActionByIRI } from './execActionByIRI';
 import { handle } from './logging';
 import empndjson from './transformers/empndjson';
 import hexjson from './transformers/hexjson';
@@ -106,6 +107,8 @@ export default async function generateLRS(
   if (!website) {
     handle(new Error('No website in head'));
   }
+
+  (lrs as any).execActionByIRI = execActionByIRI(lrs);
 
   // @ts-ignore TS2341
   lrs.api.accept.default = FRONTEND_ACCEPT;

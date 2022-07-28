@@ -2,4 +2,4 @@
 
 export const APP_ELEMENT = 'root';
 export const CONTAINER_ELEMENT = 'App__container';
-export const FRONTEND_ACCEPT = 'application/hex+x-ndjson';
+export const FRONTEND_ACCEPT = 'application/empathy+json';

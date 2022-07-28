@@ -1,9 +1,11 @@
+import { SomeNode } from 'link-lib';
+
 import {
   DeepSeed,
   DeepSeedDataRecord,
   Seed,
   SeedDataRecord,
-} from '../../../Common/lib/seed';
+} from './seed';
 
 const nestRecord = (seed: Seed, record: SeedDataRecord): DeepSeedDataRecord => {
   const { _id, ...fields } = record;
@@ -18,10 +20,10 @@ const nestRecord = (seed: Seed, record: SeedDataRecord): DeepSeedDataRecord => {
     }), { _id });
 };
 
-export const nestSeed = (seed: Seed): DeepSeed => Object
+export const nestSeed = (seed: Seed, keep?: SomeNode): DeepSeed => Object
   .entries(seed)
   .reduce((acc, [id, record]) => {
-    if (id.startsWith('_:') || (!id.includes(':') && !(id.startsWith('/') || id.startsWith('#')))) {
+    if ((id.startsWith('_:') && id !== keep?.value) || (!id.includes(':') && !(id.startsWith('/') || id.startsWith('#')))) {
       return acc;
     }
 

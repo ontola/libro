@@ -18,7 +18,7 @@ import { compactDeepSeed } from '../lib/compactDeepSeed';
 import { DistributionMetaWithIRI } from '../lib/distributionAgent';
 import { hashProjectData } from '../lib/hashProject';
 import { nestDeepSeed } from '../lib/nestDeepSeed';
-import { nestSeed } from '../lib/nestSeed';
+import { nestSeed } from '../../../Common/lib/nestSeed';
 import { sliceToDeepSeed } from '../lib/sliceToDeepSeed';
 import { sliceFromData } from '../lib/sliceFromData';
 import {
