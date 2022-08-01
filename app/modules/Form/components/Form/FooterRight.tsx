@@ -49,7 +49,7 @@ const FormFooterRight: React.FC<FormFooterRight> = ({
     <div className={classes.wrapper}>
       {onCancel && (
         <Button
-          icon={crammed ? 'trash' : ''}
+          icon={crammed ? 'close' : ''}
           variant={ButtonVariant.Transparent}
           onClick={onCancel}
         >
@@ -57,7 +57,7 @@ const FormFooterRight: React.FC<FormFooterRight> = ({
         </Button>
       )}
       <Button
-        icon={crammed ? 'send' : ''}
+        icon={crammed ? 'check' : ''}
         loading={loading}
         type="submit"
         onClick={onSubmit}
