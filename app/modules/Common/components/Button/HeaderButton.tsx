@@ -1,8 +1,10 @@
-import { makeStyles } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles, useTheme } from '@mui/styles';
 import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LibroTheme } from '../../../Kernel/lib/themes';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
+import TriggerButton from '../../../Menu/components/DropdownMenu/TriggerButton';
 import LDLink from '../LDLink';
 import { normalizeTarget } from '../Link';
 
@@ -40,6 +42,7 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
   text: {
     color: theme.palette.grey.main,
     paddingBottom: '2px',
+    wordBreak: 'normal',
   },
 }));
 
@@ -51,7 +54,25 @@ const HeaderButton = ({
   loading,
   onClick,
 }: HeaderButton): JSX.Element => {
+  const theme = useTheme<LibroTheme>();
   const classNames = useStyles();
+  const screenIsNarrow = useMediaQuery(theme.breakpoints.down(BreakPoints.Medium));
+
+  if (screenIsNarrow && onClick && icon) {
+    return (
+      <TriggerButton
+        anchorRef={anchorRef}
+        title={title}
+        onClick={onClick}
+      >
+        <FontAwesome
+          className={classNames.icon}
+          name={icon}
+          spin={loading}
+        />
+      </TriggerButton>
+    );
+  }
 
   return (
     <LDLink
