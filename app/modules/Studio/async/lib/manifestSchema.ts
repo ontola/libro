@@ -60,7 +60,6 @@ export const manifestSchemas = [
   {
     schema: {
       properties: {
-        css_class: { type: 'string' },
         header_background: { type: 'string' },
         header_text: { type: 'string' },
         preconnect: {

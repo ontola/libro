@@ -15,13 +15,10 @@ export const defaultManifest = (websiteIRI: string): WebManifest => {
     name: 'Libro',
     ontola: {
       allowed_external_sources: [],
-      css_class: 'default',
       header_background: 'primary',
       header_text: 'auto',
       preconnect: [],
-      preload: [
-        'https://argu.co/ns/core',
-      ],
+      preload: [],
       primary_color: '#475668',
       secondary_color: '#d96833',
       styled_headers: null,
