@@ -7,7 +7,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const common = require('./common.config');
 
-const version = child_process.execSync(
+const version = process.env.LIBRO_VERSION ?? child_process.execSync(
   'git describe --always',
   { encoding: 'utf-8' },
 ).trim();
@@ -45,7 +45,7 @@ module.exports = merge(common, {
             console.log('Socket error using onProxyReqWs event', err);
           });
         },
-        target: 'http://localhost:3080',
+        target: process.env.LIBRO_SERVER_URL ?? 'http://localhost:3080',
         toProxy: true,
         ws: true,
         xfwd: false,
