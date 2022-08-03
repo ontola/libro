@@ -1,7 +1,12 @@
 import { ButtonBase, Collapse } from '@mui/material';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
-import { Property, register } from 'link-redux';
+import {
+  FC,
+  Property,
+  register,
+} from 'link-redux';
+import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -13,7 +18,9 @@ import FormGroupErrorCount from './FormGroupErrorCount';
 import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 import useStyles from './FormGroupStyles';
 
-const CollapsibleGroup = () => {
+const CollapsibleGroup = ({
+  subject,
+}: SubjectProp) => {
   const [open, setOpen] = React.useState(false);
   const { hasContent } = useFormGroup();
   const classes = useStyles();
@@ -37,6 +44,8 @@ const CollapsibleGroup = () => {
       onInvalid={handleInvalid}
     >
       <ButtonBase
+        aria-controls={subject.value}
+        aria-expanded={open}
         className={classes.labelButton}
         onClick={handleClick}
       >
@@ -54,6 +63,7 @@ const CollapsibleGroup = () => {
         <FormGroupErrorCount className={classes.error} />
       </ButtonBase>
       <Collapse
+        id={subject.value}
         in={open}
         timeout={0}
       >
@@ -66,7 +76,7 @@ const CollapsibleGroup = () => {
   );
 };
 
-const WrappedCollapsibleGroup = ({ sequenceIndex, ...props }: { sequenceIndex: number }) => (
+const WrappedCollapsibleGroup: FC<{ sequenceIndex: number }> = ({ sequenceIndex, ...props }) => (
   <FormGroupProvider sequenceIndex={sequenceIndex}>
     <CollapsibleGroup {...props} />
   </FormGroupProvider>
