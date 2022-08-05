@@ -410,6 +410,9 @@
   "https://rdf.studio/i18n/importDialog/title": {
     "defaultMessage": "Data importeren"
   },
+  "https://rdf.studio/i18n/login": {
+    "defaultMessage": "Login"
+  },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Weet je zeker dat je het document wilt overschrijven: {docID}?"
   },
@@ -667,6 +670,9 @@
   },
   "https://rdf.studio/i18n/exportDialog/saveChanges": {
     "defaultMessage": "Sla wijzigingen op om inconsistente data te voorkomen."
+  },
+  "https://rdf.studio/i18n/forbiddenText": {
+    "defaultMessage": "Niet gemachtigd deze content te bekijken."
   },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Weet je zeker dat je het document wilt overschrijven: {docID}?"

@@ -632,6 +632,9 @@
   "https://rdf.studio/i18n/exportDialog/saveChanges": {
     "defaultMessage": "Save changes before exporting to prevent inconsistencies."
   },
+  "https://rdf.studio/i18n/forbiddenText": {
+    "defaultMessage": "Not allowed to view this content"
+  },
   "https://rdf.studio/i18n/importButtonLabel": {
     "defaultMessage": "Import"
   },
@@ -643,6 +646,10 @@
   },
   "https://rdf.studio/i18n/importDialog/title": {
     "defaultMessage": "Import data"
+  },
+  "https://rdf.studio/i18n/login": {
+    "defaultMessage": "Login",
+    "description": "Link to the page for signing in or registering"
   },
   "https://rdf.studio/i18n/override": {
     "defaultMessage": "Are you sure you want to overwrite: {docID}?"

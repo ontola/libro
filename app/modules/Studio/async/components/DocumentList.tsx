@@ -14,8 +14,11 @@ import {
   ListItemSecondaryAction,
   ListItemText,
 } from '@mui/material';
+import HttpStatus from 'http-status-codes';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
+import { studioMessages } from '../../lib/studioMessages';
 import { serverDocumentsContext } from '../context/ServerDocumentsContext';
 
 interface DocumentListProps {
@@ -23,7 +26,7 @@ interface DocumentListProps {
 }
 
 export const DocumentList = ({ onSelect }: DocumentListProps): JSX.Element => {
-  const { documents, reload } = React.useContext(serverDocumentsContext);
+  const { documents, reload, status } = React.useContext(serverDocumentsContext);
 
   const [deletionResource, setDeletionResource] = React.useState<string | undefined>(undefined);
 
@@ -42,6 +45,23 @@ export const DocumentList = ({ onSelect }: DocumentListProps): JSX.Element => {
         reload();
       });
   }, [deletionResource]);
+
+  if (status === HttpStatus.UNAUTHORIZED) {
+    return (
+      <Button
+        href="/libro/login"
+        variant="contained"
+      >
+        <FormattedMessage {...studioMessages.login} />
+      </Button>
+    );
+  } else if (status === HttpStatus.FORBIDDEN) {
+    return (
+      <div>
+        <FormattedMessage {...studioMessages.forbidden} />
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
