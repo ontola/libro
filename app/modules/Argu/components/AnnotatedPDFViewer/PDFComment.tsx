@@ -4,6 +4,7 @@ import { useLRS } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { ShowDialog } from '../../../Common/middleware/actions';
 import { LibroTheme } from '../../../Kernel/lib/themes';
 
 export interface CommentProps {
@@ -50,7 +51,7 @@ const PDFComment = ({
   const lrs = useLRS();
   const classes = useStyles();
   const showDialog = React.useCallback(
-    () => lrs.actions.ontola.showDialog(subject),
+    () => lrs.actions.get(ShowDialog)(subject),
     [lrs, subject],
   );
 

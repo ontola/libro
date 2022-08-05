@@ -12,6 +12,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { formMessages, studioDistributionMessages } from '../../../../../translations/messages';
+import { ShowSnackbar } from '../../../../Common/middleware/actions';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
 import { deployDistribution } from '../../lib/distributionAgent';
 
@@ -33,7 +34,7 @@ export const DeployDialog: React.FC<ProjectContextProps> = ({ dispatch, project 
     deployDistribution(project.distributionToDeploy!.iri, new URL(route)).then(() => {
       handleClose();
 
-      lrs.actions.ontola.showSnackbar(intl.formatMessage(studioDistributionMessages.deploySuccess, {
+      lrs.settings.get(ShowSnackbar)(intl.formatMessage(studioDistributionMessages.deploySuccess, {
         route,
         version: project.distributionToDeploy!.version,
       }));

@@ -3,6 +3,8 @@ import { SomeNode } from 'link-lib';
 import { useLRS } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
+import { ShowDialog } from '../middleware/actions';
+
 export const useShowDialog = (location: SomeNode): MouseEventHandler => {
   const lrs = useLRS();
 
@@ -10,7 +12,7 @@ export const useShowDialog = (location: SomeNode): MouseEventHandler => {
     e.preventDefault();
 
     if (isNamedNode(location)) {
-      lrs.actions.ontola.showDialog(location);
+      lrs.actions.get(ShowDialog)(location);
     }
   }, [location]);
 };

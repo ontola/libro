@@ -13,6 +13,7 @@ import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';
 import CardContent from '../../Common/components/Card/CardContent';
 import HeadingContext from '../../Common/components/Heading/HeadingContext';
+import { HideDialog } from '../../Common/middleware/actions';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
 import { alertDialogTopology } from '../../Common/topologies/Dialog';
@@ -51,7 +52,7 @@ const ActionNested: FC<ActionProps> = ({
   }
 
   const Appendix = appendix;
-  const closeModal = isModal ? (() => lrs.actions.ontola.hideDialog()) : undefined;
+  const closeModal = isModal ? (() => lrs.actions.get(HideDialog)()) : undefined;
 
   return (
     <Container>

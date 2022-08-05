@@ -1,8 +1,10 @@
 import { LinkReduxLRSType } from 'link-redux';
 
-import { CONTAINER_ELEMENT } from '../config';
-import { handle } from '../helpers/logging';
-import spinner from '../modules/Common/lib/spinner';
+import { CONTAINER_ELEMENT } from '../../../config';
+import { handle } from '../../../helpers/logging';
+import spinner from '../lib/spinner';
+
+import { HideDialog } from './actions';
 
 function showSpinner() {
   try {
@@ -21,7 +23,7 @@ function showSpinner() {
 
 function unloadPage(lrs: LinkReduxLRSType) {
   showSpinner();
-  lrs.actions.ontola.hideDialog();
+  lrs.actions.get(HideDialog)();
 
   if (lrs.api) {
     try {

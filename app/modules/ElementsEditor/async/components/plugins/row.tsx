@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { ShowSnackbar } from '../../../../Common/middleware/actions';
 import elements from '../../../../Elements/ontology/elements';
 import { EditWrapper } from '../EditWrapper';
 import { SetSubject } from '../SetSubject';
@@ -27,7 +28,7 @@ const Row: PlatePluginComponent = (props): JSX.Element => {
   return (
     <EditWrapper
       attributes={props.attributes}
-      onClick={() => lrs.actions.ontola.showSnackbar('Clicked the row edit icon!')}
+      onClick={() => lrs.actions.get(ShowSnackbar)('Clicked the row edit icon!')}
     >
       <SetSubject
         subject={id}

@@ -18,6 +18,7 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { Navigate } from '../../../Common/middleware/actions';
 import { SearchObject, useChapterSearch } from '../../hooks/useChapterSearch';
 import app from '../../../Common/ontology/app';
 import Select from '../../../Form/topologies/Select';
@@ -61,7 +62,7 @@ export const ChapterSearch = (): JSX.Element => {
       return;
     }
 
-    lrs.actions.ontola.navigate(rdf.namedNode(value.key));
+    lrs.actions.get(Navigate)(rdf.namedNode(value.key));
     setInputValue('');
   };
 

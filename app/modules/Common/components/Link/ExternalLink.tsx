@@ -2,6 +2,7 @@ import { useLRS } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
 import { useOnClickToOnKeyUp } from '../../lib/keyboard';
+import { OpenWindow } from '../../middleware/actions';
 
 export interface ExternalLinkProps {
   className?: string;
@@ -19,7 +20,7 @@ const ExternalLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren
   ): JSX.Element => {
     const lrs = useLRS();
     const onClick = React.useCallback(() => {
-      lrs.actions.ontola.openWindow(otherProps.href);
+      lrs.actions.get(OpenWindow)(otherProps.href!);
     }, [otherProps.href]);
     const onKeyUp = useOnClickToOnKeyUp(onClick);
 

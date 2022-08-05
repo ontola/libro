@@ -16,6 +16,7 @@ import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
 import { ButtonVariant } from '../../../Common/components/Button';
 import CardContent from '../../../Common/components/Card/CardContent';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
+import { ShowDialog } from '../../../Common/middleware/actions';
 import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
 import Card from '../../../Common/topologies/Card';
 import Container from '../../../Common/topologies/Container';
@@ -43,7 +44,7 @@ const Submission: FC = ({
   const styles = useStyles();
   const [_, submitActionStatus] = useActionStatus(subject, ontola.submitAction);
   const openModal = React.useCallback(() => {
-    lrs.actions.ontola.showDialog(subject);
+    lrs.actions.get(ShowDialog)(subject);
   }, [lrs, subject]);
 
   if (!submitActionStatus) {

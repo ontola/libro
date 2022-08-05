@@ -12,6 +12,7 @@ import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { ShowSnackbar } from '../../../../Common/middleware/actions';
 import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { actionMessages, studioExportMessages } from '../../../../../translations/messages';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
@@ -66,7 +67,7 @@ export const ExportDialog: React.FC<ProjectContextProps> = ({ dispatch, project 
 
   const copyText = React.useCallback(() => {
     navigator.clipboard.writeText(data).then(() => {
-      lrs.actions.ontola.showSnackbar(intl.formatMessage(actionMessages.copyFinished));
+      lrs.actions.get(ShowSnackbar)(intl.formatMessage(actionMessages.copyFinished));
     });
   }, [data]);
 

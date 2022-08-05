@@ -3,10 +3,11 @@ import {
   FC,
   Property,
   register,
-  useLRS, 
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
+import { ShowDialog } from '../../../Common/middleware/actions';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import HoverBox from '../../../Common/topologies/HoverBox';
 import { listTopology } from '../../../Common/topologies/List';
@@ -21,7 +22,7 @@ const EventList: FC = ({
     <HoverBox
       hiddenChildren={<Property label={schema.text} />}
       onClick={() => {
-        lrs.actions.ontola.showDialog(subject);
+        lrs.actions.get(ShowDialog)(subject);
       }}
     >
       <Property label={schema.name} />

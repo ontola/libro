@@ -1,5 +1,9 @@
 import { makeStyles } from '@mui/styles';
-import rdf, { isNamedNode, isNode } from '@ontologies/core';
+import rdf, {
+  NamedNode,
+  isNamedNode,
+  isNode, 
+} from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
@@ -13,6 +17,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { Navigate, ShowDialog } from '../../../../Common/middleware/actions';
 import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { isResource } from '../../../../Kernel/lib/typeCheckers';
 import { containerTopology } from '../../../../Common/topologies/Container';
@@ -72,16 +77,16 @@ const ArguLocation: FC<ArguLocationProps> = ({
         const partOfType = lrs.getResourceProperty(partOf, rdfx.type);
 
         if (isNamedNode(partOfType) && openFullTypes.includes(partOfType)) {
-          lrs.actions.ontola.navigate(partOf);
+          lrs.actions.get(Navigate)(partOf as NamedNode);
         } else {
-          lrs.actions.ontola.showDialog(partOf);
+          lrs.actions.get(ShowDialog)(partOf);
         }
       }
     }
   }, []);
 
   const handleNavigate = React.useCallback<NavigateCallback>((resource) => (
-    lrs.actions.ontola.navigate(isNamedNode(resource) ? resource : app.ns('#'))
+    lrs.actions.get(Navigate)(isNamedNode(resource) ? resource : app.ns('#'))
   ), [lrs]);
 
   const placements = children.length > 0 ? children : [linkedProp];

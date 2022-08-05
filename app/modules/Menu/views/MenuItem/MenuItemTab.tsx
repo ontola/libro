@@ -11,6 +11,7 @@ import {
 } from 'link-redux';
 import React, { FormEventHandler } from 'react';
 
+import { OpenWindow } from '../../../Common/middleware/actions';
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TabVariant } from '../../../Common/components/Tabs';
 import { isDifferentWebsite } from '../../../Common/lib/iris';
@@ -60,7 +61,7 @@ const MenuItemTab: FC<MenuItemTabProps> = ({
   const openWindow = React.useCallback<FormEventHandler<HTMLAnchorElement>>((e) => {
     e.preventDefault();
 
-    lrs.actions.ontola.openWindow(href!.value);
+    lrs.actions.get(OpenWindow)(href!.value);
   }, [lrs, href]);
   const handleClick = href && isDifferentWebsite(href.value)
     ? openWindow

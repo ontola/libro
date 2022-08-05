@@ -4,6 +4,7 @@ import { useLRS } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 import ReactDropzone, { FileRejection } from 'react-dropzone';
 
+import { ShowSnackbar } from '../../../Common/middleware/actions';
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { DropzoneProps } from '../../components/Dropzone';
 import DropzoneClear from '../../components/Dropzone/DropzoneClear';
@@ -64,7 +65,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
     const error = rejectedFiles?.[0]?.errors?.[0];
 
     if (error) {
-      lrs.actions.ontola.showSnackbar(error.message);
+      lrs.actions.get(ShowSnackbar)(error.message);
     }
 
     const [file] = acceptedFiles;

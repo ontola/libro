@@ -10,6 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { OpenWindow } from '../../middleware/actions';
 import dbo from '../../ontology/dbo';
 import argu from '../../../Argu/ontology/argu';
 import ontola from '../../../Kernel/ontology/ontola';
@@ -31,7 +32,7 @@ const WebSiteContainer: FC<OrganizationContainerProps> = () => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    lrs.actions.ontola.openWindow(url.value);
+    lrs.actions.get(OpenWindow)(url.value);
   };
 
   return (

@@ -6,9 +6,9 @@ import {
 import React from 'react';
 
 import generateLRS from '../../../helpers/generateLRS';
-import { ontolaActionPrefix } from '../../../middleware/ontolaMiddleware';
 // @ts-ignore
 import register from '../../../views';
+import { libroActionPrefix } from '../../Common/middleware/common';
 import { WebManifest } from '../../Kernel/components/AppContext/WebManifest';
 import { appContext } from '../../Kernel/components/AppContext/appContext';
 import LinkLoader from '../../Kernel/components/LinkLoader';
@@ -39,7 +39,7 @@ const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) => {
     (next as ClonedLRS).originalLRS = old;
 
     next.dispatch = (iri, ...args) => {
-      if (iri.value.startsWith(ontolaActionPrefix)) {
+      if (iri.value.startsWith(libroActionPrefix)) {
         return old.dispatch(iri, ...args);
       }
 

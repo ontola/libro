@@ -1,3 +1,4 @@
+import { NamedNode } from '@ontologies/core';
 import {
   FC,
   Property,
@@ -7,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { HideDialog, Navigate } from '../../../Common/middleware/actions';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Kernel/ontology/ontola';
@@ -16,14 +18,14 @@ const AddressFull: FC = () => {
   const lrs = useLRS();
   const [street] = useProperty(teamGL.street);
   const goToStreet = React.useCallback(() => {
-    lrs.actions.ontola.navigate(street);
+    lrs.actions.get(Navigate)(street as NamedNode);
   }, [lrs]);
 
   return (
     <Property
       label={ontola.createAction}
       onCancel={goToStreet}
-      onDone={lrs.actions.ontola.hideDialog}
+      onDone={lrs.actions.get(HideDialog)}
     />
   );
 };

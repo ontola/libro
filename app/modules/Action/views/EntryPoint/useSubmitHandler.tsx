@@ -1,4 +1,8 @@
-import { Quadruple, isNamedNode } from '@ontologies/core';
+import {
+  NamedNode,
+  Quadruple,
+  isNamedNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { FormApi } from 'final-form';
 import HttpStatus from 'http-status-codes';
@@ -11,6 +15,7 @@ import { useLRS, useResourceLink } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { StartSignIn } from '../../../../middleware/actions';
 import { errorMessages } from '../../../../translations/messages';
 import {
   HTTP_RETRY_WITH,
@@ -18,6 +23,12 @@ import {
   handleHTTPRetry,
 } from '../../../Common/lib/errorHandling';
 import { isDifferentWebsite } from '../../../Common/lib/iris';
+import {
+  Navigate,
+  OpenWindow,
+  ShowDialog,
+  ShowSnackbar,
+} from '../../../Common/middleware/actions';
 import { InputValue } from '../../../Form/components/FormField/FormFieldTypes';
 import { clearFormStorage } from '../../../Form/lib/helpers';
 import libro from '../../../Kernel/ontology/libro';
@@ -65,11 +76,11 @@ const useSubmitHandler = ({
     if (url && httpMethod?.value === 'GET') {
       return new Promise<void>((resolve) => {
         if (modal) {
-          lrs.actions.ontola.showDialog(url);
+          lrs.actions.get(ShowDialog)(url as SomeNode);
         } else if (target?.value == '_blank' || isDifferentWebsite(url.value)) {
-          lrs.actions.ontola.openWindow(url.value);
+          lrs.actions.get(OpenWindow)(url.value);
         } else {
-          lrs.actions.ontola.navigate(url);
+          lrs.actions.get(Navigate)(url as NamedNode);
         }
 
         resolve();
@@ -106,11 +117,11 @@ const useSubmitHandler = ({
           return onStatusForbidden();
         }
 
-        return lrs.actions.app.startSignIn(entryPoint).then(() => Promise.reject(e));
+        return lrs.actions.get(StartSignIn)(entryPoint as NamedNode).then(() => Promise.reject(e));
       }
 
       if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
-        lrs.actions.ontola.showSnackbar(intl.formatMessage(errorMessages['500/body']));
+        lrs.actions.get(ShowSnackbar)(intl.formatMessage(errorMessages['500/body']));
 
         throw e;
       }

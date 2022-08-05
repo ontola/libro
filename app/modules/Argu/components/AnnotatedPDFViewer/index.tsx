@@ -18,6 +18,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { pdfMessages } from '../../../../translations/messages';
 import { collectionMembers } from '../../../Collection/lib/diggers';
 import PageWithSideBar from '../../../Common/components/PageWithSideBar';
+import { ShowDialog, ShowSnackbar } from '../../../Common/middleware/actions';
 import ontola from '../../../Kernel/ontology/ontola';
 import PDFViewer from '../../../PDFViewer/components';
 import argu from '../../ontology/argu';
@@ -79,7 +80,7 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
     actionURI.searchParams.sort();
     const actionIRI = rdf.namedNode(actionURI.toString());
 
-    lrs.actions.ontola.showDialog(actionIRI);
+    lrs.actions.get(ShowDialog)(actionIRI);
     setCommentMode(false);
   }, [subject, pageNumber, createCommentAction]);
   const AdditionalButtons = React.useCallback(() => (
@@ -89,7 +90,7 @@ const AnnotatedPDFViewer: React.FC<AnnotatedPDFViewerProps> = ({
       variant="contained"
       onClick={() => {
         if (!commentMode) {
-          lrs.actions.ontola.showSnackbar(intl.formatMessage(pdfMessages.commentClickToAdd));
+          lrs.actions.get(ShowSnackbar)(intl.formatMessage(pdfMessages.commentClickToAdd));
         }
 
         setCommentMode(!commentMode);

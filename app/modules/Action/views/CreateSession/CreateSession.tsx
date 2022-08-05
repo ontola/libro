@@ -15,6 +15,7 @@ import { allTopologiesExcept } from '../../../../topologies';
 import AccountHelpersCardAppendix from '../../../Auth/components/SignInForm/AccountHelpersCardAppendix';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { isDifferentWebsite, retrievePath } from '../../../Common/lib/iris';
+import { HideDialog, Navigate } from '../../../Common/middleware/actions';
 import { website } from '../../../Kernel/lib/frontendIRIComponents';
 import ontola from '../../../Kernel/ontology/ontola';
 import useMemoryStore from '../../hooks/useMemoryStore';
@@ -55,8 +56,8 @@ const CreateSession: FC<CreateSessionProps> = ({
   );
   const onDoneHandler = React.useCallback((location: NamedNode) => {
     if (isDifferentWebsite(location)) {
-      lrs.actions.ontola.hideDialog();
-      lrs.actions.ontola.navigate(location, true);
+      lrs.actions.get(HideDialog)();
+      lrs.actions.get(Navigate)(location, true);
     } else {
       setSubject(location);
     }

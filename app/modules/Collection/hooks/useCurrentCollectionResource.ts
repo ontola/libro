@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router';
 
+import { ChangePage } from '../../../middleware/actions';
 import { resourceHasType } from '../../Common/lib/data';
 import { retrievePath } from '../../Common/lib/iris';
 import { entityIsLoaded } from '../../Kernel/lib/data';
@@ -50,7 +51,7 @@ export const useCurrentCollectionResource = (redirectPagination: boolean, origin
   ), [navigate]);
 
   const setCurrentPage = React.useCallback((newPage: NamedNode) => {
-    lrs.actions.app.changePage(originalCollectionResource, newPage);
+    lrs.actions.get(ChangePage)(originalCollectionResource, newPage);
   }, [originalCollectionResource, lrs]);
 
   const setCollectionResource = redirectPagination ? redirectPage : setCurrentPage;

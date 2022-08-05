@@ -5,7 +5,7 @@ import {
   Grid,
   Link,
   TableCell,
-  TableRow, 
+  TableRow,
 } from '@mui/material';
 import { useLRS } from 'link-redux';
 import React from 'react';
@@ -13,6 +13,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { studioDistributionMessages } from '../../../../../../translations/messages';
 import useJSON from '../../../../../Common/hooks/useJSON';
+import { ShowSnackbar } from '../../../../../Common/middleware/actions';
 import {
   DistributionMeta,
   Publication,
@@ -40,14 +41,14 @@ export const PublicationRow: React.FC<PublicationRowProps> = ({
   const handleUnMount = React.useCallback(() => {
     unMountDistribution(distributionIri, new URL(publication.startRoute)).then((success) => {
       if (!success) {
-        lrs.actions.ontola.showSnackbar(intl.formatMessage(studioDistributionMessages.unmountError, {
+        lrs.actions.get(ShowSnackbar)(intl.formatMessage(studioDistributionMessages.unmountError, {
           route: publication.startRoute,
         }));
 
         return;
       }
 
-      lrs.actions.ontola.showSnackbar(intl.formatMessage(studioDistributionMessages.unmountSuccess, {
+      lrs.actions.get(ShowSnackbar)(intl.formatMessage(studioDistributionMessages.unmountSuccess, {
         route: publication.startRoute,
       }));
 

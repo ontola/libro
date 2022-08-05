@@ -4,9 +4,10 @@ import {
   LinearProgress,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
+import { SomeNode } from 'link-lib';
 import {
   FC,
   Property,
@@ -22,6 +23,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
+import { SetSearchTarget } from '../../../middleware/actions';
 import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 import { academyMessages } from '../../../translations/messages';
 import argu from '../../Argu/ontology/argu';
@@ -31,7 +33,7 @@ import SideBar from '../../Common/topologies/SideBar';
 import { useChapterNavigation } from '../hooks/useChapterNavigation';
 
 export interface BookProps {
-  chapter?: SomeTerm;
+  chapter?: SomeNode;
 }
 
 interface StyleProps {
@@ -178,10 +180,10 @@ const Book: FC<BookProps> = ({ subject, chapter }) => {
   const pageText = chapter ? currentChapter : coverText;
 
   React.useEffect(() => {
-    lrs.actions.search.setTarget(subject);
+    lrs.actions.get(SetSearchTarget)(subject);
   }, [subject]);
 
-  const handleOnChapterChange = (clickedSubject: SomeTerm) => {
+  const handleOnChapterChange = (clickedSubject: NamedNode) => {
     completeChapter(currentChapter!);
     navigate(clickedSubject);
   };

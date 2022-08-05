@@ -14,13 +14,14 @@ import React from 'react';
 import { useLocation } from 'react-router';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
-import { DialogSize, isDialogSize } from '../../../../middleware/ontolaMiddleware';
 import { BreakPoints } from '../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../topologies';
 import { OnDoneHandler } from '../../../Action/views/helpers';
 import { frontendOrigin } from '../../../Kernel/lib/frontendIRIComponents';
 import libro from '../../../Kernel/ontology/libro';
+import { DialogSize, isDialogSize } from '../../lib/DialogSize';
 import retrievePath from '../../lib/iris';
+import { HideDialog, Navigate } from '../../middleware/actions';
 import DialogTopology from '../../topologies/Dialog';
 
 import { DialogContainer } from './DialogContainer';
@@ -82,7 +83,7 @@ const DialogManager = () => {
     const currentResource = lrs.getResourceProperty(libro.ns('dialog/manager'), libro.ns('dialog/resource'));
 
     if (resource == currentResource) {
-      lrs.actions.ontola.hideDialog(resource, done);
+      lrs.actions.get(HideDialog)(resource, done);
     }
   }, [resource]);
   const back = React.useCallback(() => {
@@ -94,7 +95,7 @@ const DialogManager = () => {
   }, [close, dialogHistory]);
   const onDone = React.useCallback<OnDoneHandler>((redirect, method) => {
     if (method === 'DELETE' && redirect) {
-      return lrs.actions.ontola.navigate(redirect);
+      return lrs.actions.get(Navigate)(redirect);
     }
 
     return close(true);

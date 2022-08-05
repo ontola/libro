@@ -18,38 +18,67 @@ import {
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
 
-import ServiceWorkerCommunicator from '../components/ServiceWorkerCommunicator';
-import { handle } from '../helpers/logging';
-import hexjson from '../helpers/transformers/hexjson';
-import { safeCredentials } from '../modules/Common/lib/dom';
-import { retrievePath } from '../modules/Common/lib/iris';
-import { quadruple } from '../modules/Kernel/lib/quadruple';
-import app from '../modules/Common/ontology/app';
-import libro from '../modules/Kernel/ontology/libro';
-import ontola from '../modules/Kernel/ontology/ontola';
-import ld from '../modules/Kernel/ontology/ld';
-import { actionMessages } from '../translations/messages';
+import ServiceWorkerCommunicator from '../../../components/ServiceWorkerCommunicator';
+import { handle } from '../../../helpers/logging';
+import hexjson from '../../../helpers/transformers/hexjson';
+import ld from '../../../modules/Kernel/ontology/ld';
+import libro from '../../../modules/Kernel/ontology/libro';
+import { actionMessages } from '../../../translations/messages';
+import { quadruple } from '../../Kernel/lib/quadruple';
+import { DialogSize, isDialogSize } from '../lib/DialogSize';
+import { safeCredentials } from '../lib/dom';
+import { retrievePath } from '../lib/iris';
+import app from '../ontology/app';
 
+import {
+  HideDialog,
+  Navigate,
+  OpenWindow,
+  PlayAudio,
+  PlayBeep,
+  ShowDialog,
+  ShowSnackbar,
+} from './actions';
 import { redirectPage, reloadPage } from './reloading';
 
 const onDoneHandlers: { [key: string]: () => Promise<any> } = {};
 
-export const ontolaActionPrefix = libro.ns('actions/').value;
-export const ontolaWebsocketsPrefix = ontola.ns('ws/').value;
-export enum DialogSize {
-  Xs = 'xs',
-  Sm = 'sm',
-  Md = 'md',
-  Lg = 'lg',
-  Xl = 'xl',
-}
+export const libroActionPrefix = libro.ns('actions/').value;
+export const libroWebsocketsPrefix = libro.ns('ws/').value;
 
-export const isDialogSize = (size?: string | null): size is DialogSize => ['xs', 'sm', 'md', 'lg', 'xl', false].includes(size ?? '');
+const A = 440;
+const DUAL = 2;
+const SHORT = .2;
 
-const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
-    MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+export const beep = (
+  time = SHORT,
+  frequency = A,
+  steps = DUAL,
+  type: OscillatorType = 'square',
+): void => {
+  // create web audio api context
+  const audioCtx = new AudioContext();
 
-  (store as any).actions.ontola = {};
+  // create Oscillator node
+  const oscillator = audioCtx.createOscillator();
+  oscillator.connect(audioCtx.destination);
+  oscillator.type = type;
+
+  for (let i = 0; i <= steps; i++) {
+    oscillator.frequency.setValueAtTime(
+      frequency * (i + 1),
+      audioCtx.currentTime + (time / steps) * i,
+    );
+  }
+
+  oscillator.start(0);
+  oscillator.stop(audioCtx.currentTime + time);
+};
+
+const commonMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
+  MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+
+  const innerStore = store.store.getInternalStore().store;
 
   const currentPath = (): string => {
     const l = history.location;
@@ -60,43 +89,18 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const deltaTransformer = hexjson.transformer(store);
 
   /**
-   * Ontola snackbar setup
+   * Libro snackbar setup
    */
 
   const snackbarQueue = rdf.blankNode();
 
-  store.processDelta([
-    [
-      libro.ns('snackbar/manager'),
-      rdfx.type,
-      libro.ns('snackbar/Manager'),
-      ld.add,
-    ],
-    [
-      libro.ns('snackbar/manager'),
-      libro.ns('snackbar/queue'),
-      snackbarQueue,
-      ld.add,
-    ],
-    [
-      libro.ns('snackbar/manager'),
-      libro.ns('snackbar/number'),
-      rdf.literal(0),
-      ld.add,
-    ],
-    [
-      libro.ns('snackbar/manager'),
-      libro.ns('snackbar/current'),
-      rdf.literal(0),
-      ld.add,
-    ],
-    [
-      snackbarQueue,
-      rdfx.type,
-      rdfx.Seq,
-      ld.add,
-    ],
-  ], true);
+  innerStore.setRecord(libro.ns('snackbar/manager').value, {
+    [rdfx.type.value]: libro.ns('snackbar/Manager'),
+    [libro.ns('snackbar/queue').value]: snackbarQueue,
+    [libro.ns('snackbar/number').value]: rdf.literal(0),
+    [libro.ns('snackbar/current').value]: rdf.literal(0),
+  });
+  innerStore.setField(snackbarQueue.value, rdfx.type.value, rdfx.Seq);
 
   const queueSnackbar = (text: string): Quadruple[] => {
     const s = rdf.blankNode();
@@ -137,23 +141,20 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ];
   };
 
-  (store as any).actions.ontola.showSnackbar = (message: Literal | string) =>
-    store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
+  store.actions.set(
+    ShowSnackbar,
+    (message: Literal | string) => store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`)),
+  );
 
   /**
-   * Ontola dialog setup
+   * Libro dialog setup
    */
 
   const dialogManager = libro.ns('dialog/manager');
 
-  store.processDelta([
-    quadruple(
-      dialogManager,
-      rdfx.type,
-      libro.ns('dialog/Manager'),
-      ld.add,
-    ),
-  ], true);
+  innerStore.setRecord(dialogManager.value, {
+    [rdfx.type.value]: libro.ns('dialog/Manager'),
+  });
 
   const hideDialog = () => [
     quadruple(
@@ -179,41 +180,65 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ];
 
-  (store as any).actions.ontola.showDialog = (resource: NamedNode, size?: string | null) => {
-    const resourceValue = encodeURIComponent(resource.value);
-    const sizeValue = size ? encodeURIComponent(size) : '';
+  store.actions.set(
+    ShowDialog,
+    (resource: SomeNode, size?: string | null) => {
+      const resourceValue = encodeURIComponent(resource.value);
+      const sizeValue = size ? encodeURIComponent(size) : '';
 
-    return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&size=${sizeValue}`));
-  };
+      return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&size=${sizeValue}`));
+    },
+  );
 
-  (store as any).actions.ontola.hideDialog = (resource?: NamedNode, done?: boolean) => {
-    const query = resource ? `?resource=${encodeURIComponent(resource.value)}` : undefined;
-    const opts = done ? { done } : undefined;
+  store.actions.set(
+    HideDialog,
+    (resource?: NamedNode, done?: boolean) => {
+      const query = resource ? `?resource=${encodeURIComponent(resource.value)}` : undefined;
+      const opts = done ? { done } : undefined;
 
-    store.exec(
-      rdf.namedNode(`${libro.actions.dialog.close.value}${query}`),
-      opts,
-    );
-  };
+      store.exec(
+        rdf.namedNode(`${libro.actions.dialog.close.value}${query}`),
+        opts,
+      );
+    },
+  );
 
-  (store as any).actions.ontola.navigate = (resource: NamedNode, reload = false) => {
-    let query = `location=${encodeURIComponent(resource.value)}`;
+  store.actions.set(
+    Navigate,
+    (resource: NamedNode, reload = false) => {
+      let query = `location=${encodeURIComponent(resource.value)}`;
 
-    if (reload) {
-      query += '&reload=true';
-    }
+      if (reload) {
+        query += '&reload=true';
+      }
 
-    return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
-  };
+      return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
+    },
+  );
 
-  (store as any).actions.ontola.openWindow = (url: string) => {
-    const query = `url=${encodeURIComponent(url)}`;
+  store.actions.set(
+    OpenWindow,
+    (url: string) => {
+      const query = `url=${encodeURIComponent(url)}`;
 
-    return store.exec(rdf.namedNode(`${libro.actions.window.open.value}?${query}`));
-  };
+      return store.exec(rdf.namedNode(`${libro.actions.window.open.value}?${query}`));
+    },
+  );
 
-  (store as any).actions.ontola.playAudio = (resource: NamedNode) =>
-    store.exec(rdf.namedNode(`${libro.actions.playAudio.value}?resource=${encodeURIComponent(resource.value)}`));
+  store.actions.set(
+    PlayAudio,
+    (resource: NamedNode) => store.exec(rdf.namedNode(`${libro.actions.playAudio.value}?resource=${encodeURIComponent(resource.value)}`)),
+  );
+
+  store.actions.set(
+    PlayBeep,
+    (opts: { time?: number, steps?: number, frequency?: number } = {}) => {
+      const params = new URLSearchParams();
+      Object.entries(opts).forEach(([k, v]) => params.set(k, v.toString()));
+
+      return store.exec(rdf.namedNode(`${libro.actions.playBeep.value}?${params.toString()}`));
+    },
+  );
 
   /**
    * Miscellaneous
@@ -242,14 +267,14 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   });
 
   return (next: MiddlewareActionHandler) => (iri: SomeNode, opts: any): Promise<any> => {
-    const isWSAction = iri.value.startsWith(ontolaWebsocketsPrefix);
+    const isWSAction = iri.value.startsWith(libroWebsocketsPrefix);
 
-    if (!iri.value.startsWith(ontolaActionPrefix) && !isWSAction) {
+    if (!iri.value.startsWith(libroActionPrefix) && !isWSAction) {
       return next(iri, opts);
     }
 
     if (isWSAction) {
-      if (iri.value.startsWith(`${ontolaWebsocketsPrefix}received`)) {
+      if (iri.value.startsWith(`${libroWebsocketsPrefix}received`)) {
         return deltaTransformer(new Response(opts));
       }
 
@@ -286,7 +311,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         throw new Error("Argument 'value' was missing.");
       }
 
-      (store as any).actions.ontola.showSnackbar(
+      store.actions.get(ShowSnackbar)(
         (store as any).intl.formatMessage(actionMessages.copyFinished),
       );
 
@@ -294,7 +319,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     if (iri.value.startsWith(libro.actions.logout.value) ||
-        iri.value.startsWith(libro.actions.expireSession.value)) {
+      iri.value.startsWith(libro.actions.expireSession.value)) {
       const location = new URL(iri.value).searchParams.get('location');
 
       return fetch(app.ns('logout').value, safeCredentials({
@@ -431,8 +456,22 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return audio.play();
     }
 
+    if (iri.value.startsWith(libro.actions.playBeep.value)) {
+      const time = new URL(iri.value).searchParams.get('time');
+      const frequency = new URL(iri.value).searchParams.get('frequency');
+      const steps = new URL(iri.value).searchParams.get('steps');
+
+      beep(
+        Number(time ?? SHORT),
+        Number(frequency ?? A),
+        Number(steps ?? DUAL),
+      );
+
+      return Promise.resolve();
+    }
+
     return next(iri, opts);
   };
 };
 
-export default ontolaMiddleware;
+export default commonMiddleware;

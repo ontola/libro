@@ -13,6 +13,8 @@ import {
 import React, { KeyboardEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { StartSignIn } from '../../../middleware/actions';
+import { Navigate } from '../../Common/middleware/actions';
 import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 import { SubmitSuccessHandler } from '../../Action/views/EntryPoint/useSubmitHandler';
 import { OnDoneHandler } from '../../Action/views/helpers';
@@ -84,12 +86,11 @@ const Omniform = (props: OmniformProps): JSX.Element | null => {
 
   const onStatusForbidden = React.useCallback((e: () => Promise<void>) => {
     convertFieldContext(props.parentIRI, action);
-    lrs.actions.ontola.navigate(action);
+    lrs.actions.get(Navigate)(action);
 
     return lrs
       .actions
-      .app
-      .startSignIn(action)
+      .get(StartSignIn)(action)
       .then(() => Promise.reject(e));
   }, [props.parentIRI, action]);
 

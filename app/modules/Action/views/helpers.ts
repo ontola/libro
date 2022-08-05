@@ -8,7 +8,7 @@ import {
 import React, { SyntheticEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
-import { redirectPage } from '../../../middleware/reloading';
+import { redirectPage } from '../../Common/middleware/reloading';
 import { isDifferentWebsite, retrievePath } from '../../Common/lib/iris';
 
 import { SubmitSuccessHandler } from './EntryPoint/useSubmitHandler';

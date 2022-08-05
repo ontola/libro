@@ -1,3 +1,4 @@
+import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
 import {
   FC,
@@ -6,7 +7,9 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
+import { StartSignIn } from '../../../../middleware/actions';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
+import { Navigate } from '../../../Common/middleware/actions';
 import TableCells from '../../../Table/components/TableCells';
 import { tableTopology } from '../../../Table/topologies/Table';
 import TableRow from '../../../Table/topologies/TableRow';
@@ -25,9 +28,9 @@ const StreetTable: FC<StreetTableProps> = ({
     e.preventDefault();
 
     if (actorType?.value === 'GuestUser') {
-      lrs.actions.app.startSignIn(subject);
+      lrs.actions.get(StartSignIn)(subject as NamedNode);
     } else {
-      lrs.actions.ontola.navigate(subject);
+      lrs.actions.get(Navigate)(subject as NamedNode);
     }
   }, [subject, actorType]);
 

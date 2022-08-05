@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
+import { Navigate } from '../../middleware/actions';
 import Button from '../Button';
 
 interface SearchFormProps {
@@ -92,7 +93,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
             return setCollectionResource(newPage);
           }
 
-          return lrs.actions.ontola.navigate(newPage);
+          return lrs.actions.get(Navigate)(newPage);
         }
       }}
     />

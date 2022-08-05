@@ -12,6 +12,7 @@ import React, {
 import { useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import { Navigate, ShowDialog } from '../../middleware/actions';
 import app from '../../ontology/app';
 import { isDifferentWebsite, retrievePath } from '../../lib/iris';
 import { isFunction } from '../../../Kernel/lib/typeCheckers';
@@ -97,7 +98,7 @@ const useClickHandler = (to: string, target?: LinkTarget, onClick?: MouseEventHa
     switch (target) {
     case 'modal':
       e.preventDefault();
-      lrs.actions.ontola.showDialog(rdf.namedNode(to));
+      lrs.actions.get(ShowDialog)(rdf.namedNode(to));
 
       if (isFunction(onClick)) {
         onClick(e);
@@ -106,7 +107,7 @@ const useClickHandler = (to: string, target?: LinkTarget, onClick?: MouseEventHa
       break;
     case '_top':
       e.preventDefault();
-      lrs.actions.ontola.navigate(rdf.namedNode(to));
+      lrs.actions.get(Navigate)(rdf.namedNode(to));
 
       if (isFunction(onClick)) {
         onClick(e);

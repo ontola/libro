@@ -22,6 +22,7 @@ import { useIntl } from 'react-intl';
 
 import { handle } from '../../../../helpers/logging';
 import { studioToolbarMessages } from '../../../../translations/messages';
+import { ShowSnackbar } from '../../../Common/middleware/actions';
 import {
   DialogType,
   ProjectAction,
@@ -74,7 +75,7 @@ const Toolbar = ({
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
 
-  const showMessage = (msg: string) => lrs.actions.ontola.showSnackbar(msg);
+  const showMessage = (msg: string) => lrs.actions.get(ShowSnackbar)(msg);
 
   const createHandler = (cb: (p: ProjectContext) => Promise<{ iri: string; }>) => async () => {
     try {

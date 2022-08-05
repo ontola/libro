@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { handle } from '../../../helpers/logging';
 import { formMessages } from '../../../translations/messages';
+import { ShowSnackbar } from '../../Common/middleware/actions';
 import { appContext } from '../../Kernel/components/AppContext/appContext';
 import Uploader from '../components/Input/FileInput/Uploader';
 
@@ -24,7 +25,7 @@ export const useFileUpload = (): UseFileUpload => {
 
   const handleError = (error: Error) => {
     setUploading(false);
-    lrs.actions.ontola.showSnackbar(intl.formatMessage(formMessages.fileUploadFailed));
+    lrs.actions.get(ShowSnackbar)(intl.formatMessage(formMessages.fileUploadFailed));
     handle(error);
   };
 

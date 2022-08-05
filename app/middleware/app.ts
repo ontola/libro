@@ -17,6 +17,8 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
+import { DialogSize } from '../modules/Common/lib/DialogSize';
+import { ShowDialog } from '../modules/Common/middleware/actions';
 import { quadruple } from '../modules/Kernel/lib/quadruple';
 import app from '../modules/Common/ontology/app';
 import libro from '../modules/Kernel/ontology/libro';
@@ -24,7 +26,11 @@ import ll from '../modules/Kernel/ontology/ll';
 import ontola from '../modules/Kernel/ontology/ontola';
 import http from '../ontology/http';
 
-import { DialogSize } from './ontolaMiddleware';
+import {
+  ChangePage,
+  StartSignIn,
+  StartSignOut,
+} from './actions';
 
 interface AppActionMap {
   newPage: Node;
@@ -32,9 +38,6 @@ interface AppActionMap {
 }
 
 export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
-
-  (store as any).actions.app = {};
-
   const { dispatch, parse } = createActionPair<AppActionMap>(app.ns, store);
 
   /**
@@ -55,32 +58,41 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     return app.ns('u/session/new' + postFix);
   };
 
-  (store as any).actions.app.startSignIn = (redirectUrl?: NamedNode) => {
-    const resourceIRI = signInLink(redirectUrl);
+  store.actions.set(
+    StartSignIn,
+    (redirectUrl?: NamedNode) => {
+      const resourceIRI = signInLink(redirectUrl);
 
-    return (store as any).actions.ontola.showDialog(resourceIRI, DialogSize.Sm);
-  };
+      return store.actions.get(ShowDialog)(resourceIRI, DialogSize.Sm);
+    },
+  );
 
   /**
    * App sign out
    */
-  (store as any).actions.app.startSignOut = (redirect?: NamedNode) => {
-    if (redirect) {
-      store.exec(rdf.namedNode(`${libro.actions.logout.value}?location=${encodeURIComponent(redirect.value)}`));
-    } else {
-      store.exec(libro.actions.logout);
-    }
-  };
+  store.actions.set(
+    StartSignOut,
+    (redirect?: NamedNode) => {
+      if (redirect) {
+        store.exec(rdf.namedNode(`${libro.actions.logout.value}?location=${encodeURIComponent(redirect.value)}`));
+      } else {
+        store.exec(libro.actions.logout);
+      }
+    },
+  );
 
   /**
    * Collections
    */
-  (store as any).actions.app.changePage = (subject: Node, newPage: Node) => dispatch(
-    'changePage',
-    {
-      newPage,
-      subject,
-    },
+  store.actions.set(
+    ChangePage,
+    (subject: Node, newPage: Node) => dispatch(
+      'changePage',
+      {
+        newPage,
+        subject,
+      },
+    ),
   );
 
   /**

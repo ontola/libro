@@ -21,12 +21,12 @@ import ServiceWorkerCommunicator from '../components/ServiceWorkerCommunicator';
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
 import { appMiddleware } from '../middleware/app';
-import execFilter from '../middleware/execFilter';
-import logging from '../middleware/logging';
-import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import execFilter from '../modules/Kernel/middleware/execFilter';
+import logging from '../modules/Kernel/middleware/logging';
 import { searchMiddleware } from '../middleware/searchMiddleware';
 import argu from '../modules/Argu/ontology/argu';
 import { initializeCable, subscribeDeltaChannel } from '../modules/Common/lib/websockets';
+import commonMiddleware from '../modules/Common/middleware/common';
 import { appOntology } from '../modules/Common/ontology/app';
 import { quadruple } from '../modules/Kernel/lib/quadruple';
 import { getMetaContent } from '../modules/Kernel/lib/dom';
@@ -75,8 +75,8 @@ export default async function generateLRS(
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
   const middleware: Array<MiddlewareFn<any>> = options.middleware ? [
-    logging(),
-    ontolaMiddleware(history, serviceWorkerCommunicator),
+    logging,
+    commonMiddleware(history, serviceWorkerCommunicator),
     analyticsMiddleware(),
     appMiddleware(),
     searchMiddleware(),
@@ -93,7 +93,7 @@ export default async function generateLRS(
 
   const lrs = createStore<React.ComponentType>(storeOptions, middleware);
   serviceWorkerCommunicator.linkedRenderStore = lrs;
-  (lrs as any).bulkFetch = true;
+  lrs.bulkFetch = true;
   lrs.settings.set(topologiesKey, allTopologies);
 
   lrs.deltaProcessors.unshift(ontolaDeltaProcessor(lrs));

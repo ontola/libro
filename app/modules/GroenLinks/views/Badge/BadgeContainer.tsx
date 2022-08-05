@@ -13,6 +13,7 @@ import { badgeMessages } from '../../../../translations/messages';
 import CardContent from '../../../Common/components/Card/CardContent';
 import Heading from '../../../Common/components/Heading';
 import Image from '../../../Common/components/Image';
+import { HideDialog } from '../../../Common/middleware/actions';
 import Card from '../../../Common/topologies/Card';
 import { containerTopology } from '../../../Common/topologies/Container';
 import { alertDialogTopology } from '../../../Common/topologies/Dialog';
@@ -51,7 +52,7 @@ const BadgeContainer: FC = () => {
       <FormFooter>
         <FormFooterRight
           submitLabel={formatMessage(badgeMessages.continue)}
-          onSubmit={() => lrs.actions.ontola.hideDialog()}
+          onSubmit={() => lrs.actions.get(HideDialog)()}
         />
       </FormFooter>
     </Card>

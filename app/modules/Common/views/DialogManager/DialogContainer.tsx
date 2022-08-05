@@ -6,9 +6,9 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { DialogSize } from '../../../../middleware/ontolaMiddleware';
 import { dialogMessages } from '../../../../translations/messages';
 import Button, { ButtonVariant } from '../../components/Button';
+import { DialogSize } from '../../lib/DialogSize';
 
 import { useDialogContainerStyles } from './dialogStyles';
 

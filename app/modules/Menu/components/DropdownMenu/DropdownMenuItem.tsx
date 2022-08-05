@@ -14,6 +14,7 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
+import { StartSignIn } from '../../../../middleware/actions';
 import ontola from '../../../Kernel/ontology/ontola';
 import MenuItem from '../MenuItem';
 
@@ -67,8 +68,7 @@ const DropdownMenuItem = ({
         if (error.response.status === HttpStatus.UNAUTHORIZED) {
           lrs
             .actions
-            .app
-            .startSignIn(action);
+            .get(StartSignIn)(action);
         }
       });
   }, [lrs, action]);

@@ -4,6 +4,7 @@ import React, { ReactElement, SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 
+import { StartSignIn } from '../../../../middleware/actions';
 import Link from '../../../Common/components/Link';
 import path, { currentLocationControl } from '../../../Common/lib/paths';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
@@ -35,7 +36,7 @@ const SignInFormLink: React.FC<SignInFormLinkProps> = ({
       to={path.signIn(redirectURL)}
       onClick={(e: SyntheticEvent<any>) => {
         e.preventDefault();
-        lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
+        lrs.actions.get(StartSignIn)(rdf.namedNode(redirectURL));
       }}
     >
       {children || label || (

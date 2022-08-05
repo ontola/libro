@@ -4,9 +4,9 @@ import { LinkReduxLRSType } from 'link-redux';
 
 import argu from '../../Argu/ontology/argu';
 
-export const createFlattenFunction = (lrs: LinkReduxLRSType): (leaf: SomeTerm, top?: boolean) => SomeTerm[] => {
-  const flattenChapters = (leaf: SomeTerm, top = true): SomeTerm[] => {
-    const members = lrs.dig(leaf as Node, [top ? argu.chapters : argu.subChapters, rdfs.member]);
+export const createFlattenFunction = (lrs: LinkReduxLRSType): <T extends SomeTerm>(leaf: T, top?: boolean) => T[] => {
+  const flattenChapters = <T extends SomeTerm>(leaf: T, top = true): T[] => {
+    const members = lrs.dig(leaf as Node, [top ? argu.chapters : argu.subChapters, rdfs.member]) as T[];
 
     return [
       ...(!top ? [leaf] : []),

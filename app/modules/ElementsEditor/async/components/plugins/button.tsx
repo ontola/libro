@@ -15,6 +15,7 @@ import {
 import React from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
+import { ShowSnackbar } from '../../../../Common/middleware/actions';
 import elements from '../../../../Elements/ontology/elements';
 import { EditWrapper } from '../EditWrapper';
 import { SetSubject } from '../SetSubject';
@@ -40,7 +41,7 @@ const Button: PlatePluginComponent = (props): JSX.Element => {
   return (
     <EditWrapper
       attributes={props.attributes}
-      onClick={() => lrs.actions.ontola.showSnackbar('Clicked the edit icon!')}
+      onClick={() => lrs.actions.get(ShowSnackbar)('Clicked the edit icon!')}
     >
       <SetSubject
         subject={id}

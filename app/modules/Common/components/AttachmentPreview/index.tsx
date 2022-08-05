@@ -9,8 +9,10 @@ import {
 import React from 'react';
 import parser from 'uri-template';
 
+import { ChangePage } from '../../../../middleware/actions';
 import argu from '../../../Argu/ontology/argu';
 import ontola from '../../../Kernel/ontology/ontola';
+import { ShowDialog } from '../../middleware/actions';
 
 import { DocumentAttachmentPreview } from './DocumentAttachmentPreview';
 import { ImageAttachmentPreview } from './ImageAttachmentPreview';
@@ -52,8 +54,8 @@ const usePreviewHandler = (isPartOf: SomeNode, sequenceIndex: number) => {
 
   return React.useCallback((e: React.MouseEvent) => {
     e.preventDefault();
-    lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
-    lrs.actions.ontola.showDialog(attachmentsPageIri);
+    lrs.actions.get(ChangePage)(attachmentsIri, attachmentsPageIri);
+    lrs.actions.get(ShowDialog)(attachmentsPageIri);
   }, [attachmentsIri, attachmentsPageIri]);
 };
 

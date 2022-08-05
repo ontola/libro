@@ -11,6 +11,7 @@ import {
 import React from 'react';
 
 import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
+import { ShowDialog } from '../../Common/middleware/actions';
 import ll from '../../Kernel/ontology/ll';
 import ontola from '../../Kernel/ontology/ontola';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../Form/lib/diggers';
@@ -48,7 +49,7 @@ const useCreateChildHandler = (): MapInteractionCallback | undefined => {
       location += `?filter%5B%5D=http%253A%252F%252Fschema.org%252Flatitude%3D${lat}`;
       location += `&filter%5B%5D=http%253A%252F%252Fschema.org%252Flongitude%3D${lon}`;
       location += `&filter%5B%5D=https%253A%252F%252Fns.ontola.io%252Fcore%2523zoomLevel%3D${zoom}`;
-      lrs.actions.ontola.showDialog(rdf.namedNode(location));
+      lrs.actions.get(ShowDialog)(rdf.namedNode(location));
     }
   }, [locationActions]);
 

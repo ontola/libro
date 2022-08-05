@@ -12,6 +12,7 @@ import {
 import { useKey } from 'rooks';
 
 import { pdfMessages } from '../../../translations/messages';
+import { OpenWindow } from '../../Common/middleware/actions';
 import { PDFViewerProps } from '../components';
 
 import { keyMap } from './keyMap';
@@ -121,7 +122,7 @@ const PDFViewer = ({
   ), [url]);
 
   const handleDownload = React.useCallback(
-    () => lrs.actions.ontola.openWindow(url),
+    () => lrs.actions.get(OpenWindow)(url),
     [lrs, url],
   );
 

@@ -19,6 +19,7 @@ export default {
       push: libro('actions/navigations/push'),
     },
     playAudio: libro('actions/playAudio'),
+    playBeep: libro('actions/playBeep'),
     redirect: libro('actions/redirect'),
     refresh: libro('actions/refresh'),
     reload: libro('actions/reload'),

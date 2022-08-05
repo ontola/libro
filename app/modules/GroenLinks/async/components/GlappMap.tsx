@@ -7,6 +7,7 @@ import React from 'react';
 import useJSON from '../../../Common/hooks/useJSON';
 import { tryParseFloat } from '../../../Common/lib/numbers';
 import { LoadingCard } from '../../../Common/components/Loading';
+import { ShowDialog } from '../../../Common/middleware/actions';
 import { getMetaContent } from '../../../Kernel/lib/dom';
 import app from '../../../Common/ontology/app';
 import MapCanvas from '../../../Map/async/components/MapCanvas';
@@ -71,7 +72,7 @@ const GlappMap: React.FC<GlappMapProps> = ({
     [],
   );
   const handleClusterSelect = React.useCallback<ClusterSelectCallback>((features, newCenter) => {
-    lrs.actions.ontola.showDialog(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
+    lrs.actions.get(ShowDialog)(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
     setSelectedPostalCode(undefined);
     setOverlayPosition(newCenter);
   }, [lrs, setSelectedPostalCode, setOverlayPosition]);
@@ -84,7 +85,7 @@ const GlappMap: React.FC<GlappMapProps> = ({
       const iri = feature?.getId() ? rdf.namedNode(feature.getId()) : null;
 
       if (iri) {
-        lrs.actions.ontola.showDialog(iri);
+        lrs.actions.get(ShowDialog)(iri);
       }
 
       if (newCenter) {

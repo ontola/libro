@@ -15,6 +15,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { Navigate, ShowDialog } from '../../../../Common/middleware/actions';
 import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../../topologies';
 import useActionStatus from '../../../../Action/hooks/useActionStatus';
@@ -96,13 +97,13 @@ const Phases: FC<PhasesProps> = ({
     (_: Node, index: number) => (e: React.MouseEvent) => {
       e.preventDefault();
       const iri = phaseIRI(subject, index);
-      lrs.actions.ontola.navigate(iri);
+      lrs.actions.get(Navigate)(iri);
     },
     [lrs, subject]);
 
   const onNewStepClick = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault();
-    lrs.actions.ontola.showDialog(createAction);
+    lrs.actions.get(ShowDialog)(createAction);
   }, [lrs, createAction]);
   const Stepper = stepperBuilder<Node>();
 

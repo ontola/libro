@@ -1,3 +1,4 @@
+import { NamedNode } from '@ontologies/core';
 import {
   FC,
   register,
@@ -6,7 +7,9 @@ import {
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
+import { StartSignIn } from '../../../../middleware/actions';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
+import { ShowDialog } from '../../../Common/middleware/actions';
 import { entityIsLoaded } from '../../../Kernel/lib/data';
 import ontola from '../../../Kernel/ontology/ontola';
 import TableCells from '../../../Table/components/TableCells';
@@ -22,7 +25,7 @@ const AddressTable: FC = ({ subject }) => {
   const onClick = (e: MouseEvent) => {
     if (actorType?.value === 'GuestUser') {
       e.preventDefault();
-      lrs.actions.app.startSignIn(subject);
+      lrs.actions.get(StartSignIn)(subject as NamedNode);
     } else {
       e.preventDefault();
 
@@ -30,7 +33,7 @@ const AddressTable: FC = ({ subject }) => {
         lrs.queueEntity(createAction);
       }
 
-      lrs.actions.ontola.showDialog(subject);
+      lrs.actions.get(ShowDialog)(subject);
     }
   };
 

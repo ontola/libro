@@ -16,6 +16,7 @@ import { ActionProps, useDoneHandler } from '../../Action/views/helpers';
 import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';
 import CardContent from '../../Common/components/Card/CardContent';
+import { HideDialog } from '../../Common/middleware/actions';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
 import { flowTopology } from '../topologies/Flow';
@@ -43,7 +44,7 @@ const ActionFlow: FC<ActionProps> = ({
 }) => {
   const lrs = useLRS();
   const onDoneHandler = useDoneHandler(onDone);
-  const closeModal = lrs.actions.ontola.hideDialog;
+  const closeModal = lrs.actions.get(HideDialog) as () => void;
   const classes = useStyles();
   const [actionStatus] = useProperty(schema.actionStatus);
 
