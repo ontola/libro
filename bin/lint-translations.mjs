@@ -30,7 +30,7 @@ const printDifference = (keys) => {
   }
 };
 
-const files = locales.map((l) => import(`../app/translations/${l}.json`));
+const files = locales.map((l) => import(`../app/translations/${l}.json`, { assert: { type: 'json' } }));
 
 const contents = await Promise.all(files);
 const keys = contents.map((c) => Object.keys(c.default));

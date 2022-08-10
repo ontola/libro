@@ -15,9 +15,9 @@ import { IntlProvider, useIntl } from 'react-intl';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 
-import germanMessages from '../lang/de.json';
-import englishMessages from '../lang/en.json';
-import dutchMessages from '../lang/nl.json';
+import germanMessages from '../lang/de.json' assert { type: 'json' };
+import englishMessages from '../lang/en.json' assert { type: 'json' };
+import dutchMessages from '../lang/nl.json' assert { type: 'json' };
 import HighlightProvider from '../modules/Common/components/HighlightProvider/HighlightProvider';
 import { appContext } from '../modules/Kernel/components/AppContext/appContext';
 import { WebsiteContext, WebsiteCtx } from '../modules/Kernel/components/WebsiteContext/websiteContext';

@@ -42,7 +42,7 @@ import OmniformProvider from '../app/modules/Omniform/components/OmniformProvide
 import { defaultManifest } from '../app/helpers/defaultManifest';
 import { retrievePath } from '../app/modules/Common/lib/iris';
 import { isFunction } from '../app/modules/Kernel/lib/typeCheckers';
-import englishMessages from '../app/lang/en.json';
+import englishMessages from '../app/lang/en.json' assert { type: 'json' };
 import themes from '../app/themes';
 import { getViews } from '../app/views';
 
