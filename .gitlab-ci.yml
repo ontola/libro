@@ -1,9 +1,14 @@
-image: node:14
+image: node:16
 
 cache:
   key: $CI_PROJECT_ID
   paths:
     - .yarn/cache
+    - tmp/
+
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://docker:2376
 
 default:
   before_script:
@@ -12,8 +17,12 @@ default:
 
 stages:
   - build
+  - bake
   - manualTag
   - tag
+
+services:
+  - docker:20.10.17-dind
 
 build:
   stage: build
@@ -37,10 +46,8 @@ test:
   coverage: '/Lines.+\d+.\d+%/'
 
 bake:
-  stage: build
-  image: docker:18.09.8
-  services:
-    - docker:18.09.8-dind
+  stage: bake
+  image: docker:20.10.17
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   needs:
@@ -48,15 +55,13 @@ bake:
   script:
     - apk add git
     - git describe --always > ./client_version.txt
-    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest --build-arg RAILS_ENV=production --build-arg NODE_ENV=production .
+    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
 
 productionTagManual:
   stage: manualTag
-  image: docker:18.09.8
-  services:
-    - docker:18.09.8-dind
+  image: docker:20.10.17
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:
@@ -67,9 +72,7 @@ productionTagManual:
 
 stagingTagManual:
   stage: manualTag
-  image: docker:18.09.8
-  services:
-    - docker:18.09.8-dind
+  image: docker:20.10.17
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:
@@ -82,9 +85,7 @@ stagingTagManual:
 
 autoTagProduction:
   stage: tag
-  image: docker:18.09.8
-  services:
-    - docker:18.09.8-dind
+  image: docker:20.10.17
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:
@@ -96,9 +97,7 @@ autoTagProduction:
 
 autoTagStaging:
   stage: tag
-  image: docker:18.09.8
-  services:
-    - docker:18.09.8-dind
+  image: docker:20.10.17
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:

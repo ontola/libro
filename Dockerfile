@@ -1,4 +1,5 @@
-FROM registry.gitlab.com/ontola/cache/master:latest
+FROM alpine
+
 WORKDIR /app
 
 COPY ./client_version.txt /app/client_version.txt

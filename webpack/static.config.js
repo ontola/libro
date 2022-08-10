@@ -26,6 +26,15 @@ if (process.env.BUGSNAG_KEY && process.env.CI_COMMIT_BRANCH === 'master') {
 
 function createConfig(options) {
   return {
+    cache: {
+      buildDependencies: {
+        // This makes all dependencies of this file - build dependencies
+        config: [__filename],
+      },
+      cacheDirectory: path.resolve(__dirname, '..', 'tmp', 'webpack'),
+      type: 'filesystem',
+    },
+
     devtool: options.devtool,
 
     entry: {
