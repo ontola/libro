@@ -1,9 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
-import dayjs from 'dayjs';
-import 'dayjs/locale/de';
-import 'dayjs/locale/en';
-import 'dayjs/locale/nl';
 import type { History } from 'history';
 import {
   RenderStoreProvider,
@@ -131,17 +127,14 @@ const IndexContainer = ({
   switch (selectedLang) {
   case 'nl':
     messages = dutchMessages;
-    dayjs.locale('nl');
     break;
 
   case 'de':
     messages = germanMessages;
-    dayjs.locale('de');
     break;
 
   default:
     messages = englishMessages;
-    dayjs.locale('en');
   }
 
   const themeVariables = getThemeVariables(manifest);
