@@ -29,9 +29,8 @@ import {
 import { salesMessages } from '../../../../translations/messages';
 import { gridTopology } from '../../../Common/topologies/Grid';
 import { CallToActionButton } from '../../components';
+import { PricingInterval } from '../../lib/PricingInterval';
 import sales from '../../ontology/sales';
-
-import { PricingInterval } from './Price';
 
 interface StyleProps {
   color: string,

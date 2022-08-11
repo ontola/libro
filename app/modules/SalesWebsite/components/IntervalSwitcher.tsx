@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { LibroTheme, Margin } from '../../Kernel/lib/themes';
 import { salesMessages } from '../../../translations/messages';
-import { PricingInterval } from '../views/Tier/Price';
+import { PricingInterval } from '../lib/PricingInterval';
 
 export interface IntervalSwitcherProps {
   currentInterval: PricingInterval;

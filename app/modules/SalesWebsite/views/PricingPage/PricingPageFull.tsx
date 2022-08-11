@@ -19,8 +19,8 @@ import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import Grid from '../../../Common/topologies/Grid';
 import { useSeqToArr } from '../../../Kernel/hooks/useSeqToArr';
 import { IntervalSwitcher } from '../../components/IntervalSwitcher';
+import { PricingInterval } from '../../lib/PricingInterval';
 import sales from '../../ontology/sales';
-import { PricingInterval } from '../Tier/Price';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   container: {
