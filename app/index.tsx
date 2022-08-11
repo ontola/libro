@@ -12,6 +12,7 @@ import { defaultManifest } from './helpers/defaultManifest';
 import generateLRS from './helpers/generateLRS';
 import { log } from './helpers/logging';
 import patchRequestInitGenerator from './helpers/monkey';
+import { modules } from './modules';
 import { seedToSlice } from './modules/Common/lib/seed';
 import { WebManifest } from './modules/Kernel/components/AppContext/WebManifest';
 import { AppContextEditor } from './modules/Studio/components/AppContextEditor';
@@ -36,6 +37,7 @@ const getWebsiteManifest = (): WebManifest => {
     lrs,
   } = await generateLRS(
     manifest,
+    modules,
     seedToSlice(window.INITIAL__DATA, manifest.ontola.website_iri, window.EMP_SYMBOL_MAP),
     window.EMP_SYMBOL_MAP,
   );
@@ -52,8 +54,12 @@ const getWebsiteManifest = (): WebManifest => {
       <AppContextEditor
         lrs={lrs}
         manifest={manifest}
+        modules={modules}
       >
-        <App history={history} />
+        <App
+          history={history}
+          modules={modules}
+        />
       </AppContextEditor>,
       document.getElementById(APP_ELEMENT),
     );

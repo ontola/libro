@@ -4,6 +4,7 @@ import views from './views';
 
 const Dexes: Module = {
   name: 'Dexes',
+  seed: [],
   topologies: [],
   type: ModuleType.App,
   views,

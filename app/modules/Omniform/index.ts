@@ -5,6 +5,7 @@ import views from './views';
 
 const Omniform: Module = {
   name: 'Omniform',
+  seed: [],
   topologies,
   type: ModuleType.Library,
   views,

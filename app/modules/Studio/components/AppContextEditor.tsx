@@ -6,6 +6,7 @@ import {
   appContext,
 } from '../../Kernel/components/AppContext/appContext';
 import { getMetaContent } from '../../Kernel/lib/dom';
+import { modulesKey } from '../../Kernel/lib/settings';
 import CommunicatorLoader from '../../Studio/components/CommunicatorLoader';
 
 export const appContextEditor = React.createContext<React.Dispatch<SetStateAction<AppContext>>>(undefined as any);
@@ -21,6 +22,7 @@ export const AppContextEditor = ({
   lrs,
   appCtxOverrides,
   manifest,
+  modules,
 }: AppContextProviderProps): JSX.Element => {
   const [ctx, setCtx] = React.useState<AppContext>(() => ({
     lrs,
@@ -35,7 +37,10 @@ export const AppContextEditor = ({
   return (
     <React.Fragment>
       <appContextEditor.Provider value={setCtx}>
-        <CommunicatorLoader websiteIRI={manifest.ontola.website_iri} />
+        <CommunicatorLoader
+          modules={modules ?? lrs.settings.get(modulesKey)}
+          websiteIRI={manifest.ontola.website_iri}
+        />
         <appContext.Provider value={ctx}>
           {children}
         </appContext.Provider>

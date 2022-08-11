@@ -5,6 +5,7 @@ import views from './views';
 
 const Academy: Module = {
   name: 'Academy',
+  seed: [],
   topologies,
   type: ModuleType.App,
   views,

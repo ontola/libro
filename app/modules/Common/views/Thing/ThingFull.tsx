@@ -2,46 +2,56 @@ import * as foaf from '@ontologies/foaf';
 import * as schema from '@ontologies/schema';
 import {
   FC,
+  Property,
   register,
-  useLRS,
 } from 'link-redux';
+import React from 'react';
 
-import { components } from '../../../../components';
 import meeting from '../../../../ontology/meeting';
-import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
+import ActionsBar from '../../../Action/topologies/ActionsBar';
 import argu from '../../../Argu/ontology/argu';
-import component from '../../lib/component';
-import app from '../../ontology/app';
+import { PageHeader } from '../../components/PageHeader';
+import ResourceBoundary from '../../components/ResourceBoundary';
+import SubSection from '../../components/SubSection';
+import { contentsProps, thumbnailProps } from '../../ontology/app';
 import ontola from '../../../Kernel/ontology/ontola';
-import { property, withoutLoading } from '../../lib/properties';
 import { fullResourceTopology } from '../../topologies/FullResource';
-import { mainBodyTopology } from '../../topologies/MainBody';
+import MainBody from '../../topologies/MainBody';
 
-const ThingFull: FC = () => {
-  const lrs = useLRS();
-  const c = component();
-  const p = property(lrs);
-
-  return (
-    c(components.ResourceBoundary, [
-      c(mainBodyTopology, { 'data-test': 'Thing-thing' }, [
-        p(argu.trashedAt),
-        p(withoutLoading(ontola.publishAction)),
-        c(components.PageHeader),
-        p(app.thumbnail),
-        p(app.contents),
-        p(withoutLoading(foaf.isPrimaryTopicOf)),
-        p(withoutLoading([argu.attachments, meeting.attachment])),
-        c(actionsBarTopology, [
-          p(withoutLoading(ontola.favoriteAction)),
-        ]),
-        p(withoutLoading([argu.mapQuestion, schema.location])),
-        p(argu.blogPosts),
-      ]),
-      c(components.SubSection),
-    ])
-  );
-};
+const ThingFull: FC = () => (
+  <ResourceBoundary>
+    <MainBody data-test="Thing-thing">
+      <Property label={argu.trashedAt} />
+      <Property
+        label={ontola.publishAction}
+        onLoad={() => null}
+      />
+      <PageHeader />
+      <Property label={thumbnailProps} />
+      <Property label={contentsProps} />
+      <Property
+        label={foaf.isPrimaryTopicOf}
+        onLoad={() => null}
+      />
+      <Property
+        label={[argu.attachments, meeting.attachment]}
+        onLoad={() => null}
+      />
+      <ActionsBar>
+        <Property
+          label={ontola.favoriteAction}
+          onLoad={() => null}
+        />
+      </ActionsBar>
+      <Property
+        label={[argu.mapQuestion, schema.location]}
+        onLoad={() => null}
+      />
+      <Property label={argu.blogPosts} />
+    </MainBody>
+    <SubSection />
+  </ResourceBoundary>
+);
 
 ThingFull.type = schema.Thing;
 

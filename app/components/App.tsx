@@ -2,6 +2,7 @@ import type { History } from 'history';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
+import { Module } from '../Module';
 import { appContext } from '../modules/Kernel/components/AppContext/appContext';
 import { WebsiteCtx } from '../modules/Kernel/components/WebsiteContext/websiteContext';
 import WebsiteContextProvider from '../modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
@@ -13,9 +14,10 @@ import IndexContainer from './IndexContainer';
 interface AppProps {
   history: History;
   location?: string;
-  manifestOverride?: WebManifest,
-  prerender?: boolean,
-  websiteCtxOverride?: WebsiteCtx,
+  manifestOverride?: WebManifest;
+  modules: Module[];
+  prerender?: boolean;
+  websiteCtxOverride?: WebsiteCtx;
 }
 
 const App = ({
@@ -23,6 +25,7 @@ const App = ({
   location,
   prerender,
   manifestOverride,
+  modules,
   websiteCtxOverride,
 }: AppProps): JSX.Element => {
   const {
@@ -30,7 +33,7 @@ const App = ({
     manifest,
   } = React.useContext(appContext);
 
-  register(lrs);
+  register(lrs, modules);
   const manifestValue = manifestOverride ?? manifest;
 
   return (

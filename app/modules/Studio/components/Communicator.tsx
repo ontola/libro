@@ -3,6 +3,7 @@ import HttpStatus from 'http-status-codes';
 import React from 'react';
 
 import generateLRS from '../../../helpers/generateLRS';
+import type { Module } from '../../../Module';
 import http from '../../../ontology/http';
 import register from '../../../views';
 import { seedToSlice } from '../../Common/lib/seed';
@@ -12,7 +13,11 @@ import { PageViewerState } from '../lib/PageViewerState';
 
 import { appContextEditor } from './AppContextEditor';
 
-const Communicator = (): null => {
+export interface CommunicatorProps {
+  modules: Module[];
+}
+
+const Communicator = ({ modules }: CommunicatorProps): null => {
   const updateCtx = React.useContext(appContextEditor);
 
   const [message, setMessage] = React.useState<PageViewerState | undefined>(undefined);
@@ -54,8 +59,6 @@ const Communicator = (): null => {
     const updateContext = async () => {
       try {
         const slice = seedToSlice(seed, message.manifest.ontola.website_iri, window.EMP_SYMBOL_MAP);
-        const next = await generateLRS(message.manifest, slice, window.EMP_SYMBOL_MAP);
-        const { lrs } = next;
         const records = Object.keys(slice);
 
         if (records.length === 0) {
@@ -71,6 +74,14 @@ const Communicator = (): null => {
           return;
         }
 
+        const next = await generateLRS(
+          message.manifest,
+          modules,
+          slice,
+          window.EMP_SYMBOL_MAP,
+        );
+        const { lrs } = next;
+
         const statusUpdate = records
           .map<Quadruple>((s) => [
             s.startsWith('_') ? rdf.blankNode(s) : rdf.namedNode(s),
@@ -80,7 +91,7 @@ const Communicator = (): null => {
           ]);
 
         lrs.processDelta(statusUpdate, true);
-        register(lrs);
+        register(lrs, modules);
 
         window.LRS = lrs;
         updateCtx((prev) => ({

@@ -11,6 +11,7 @@ import { Store } from 'redux';
 
 import { defaultManifest } from '../../app/helpers/defaultManifest';
 import generateLRS from '../../app/helpers/generateLRS';
+import { Module } from '../../app/Module';
 import { quadruple } from '../../app/modules/Kernel/lib/quadruple';
 import ServiceWorkerCommunicator from '../../app/components/ServiceWorkerCommunicator';
 
@@ -33,14 +34,19 @@ const context = (
   subject: iri,
 });
 
-async function chargeLRS(id: Node | string, obj: Quadruple[], store: Store | undefined = undefined): Promise<TestContext> {
+async function chargeLRS(
+  modules: Module[],
+  id: Node | string,
+  obj: Quadruple[],
+  store: Store | undefined = undefined,
+): Promise<TestContext> {
   const testManifest = defaultManifest('https://app.argu.co/freetown');
 
   const {
     lrs,
     history,
     serviceWorkerCommunicator,
-  } = await generateLRS(testManifest, {}, {});
+  } = await generateLRS(testManifest, modules, {}, {});
   await lrs.processDelta(obj, true);
   lrs.store.flush();
 
@@ -86,9 +92,11 @@ export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Q
 }
 
 export const generateCtx = (
+  modules: Module[],
   obj: RDFIndex | Record<string, DataObject>,
   subject: string | Node | null | undefined = null,
 ): Promise<TestContext> => chargeLRS(
+  modules,
   getSubject(obj, subject),
   toArr(obj),
 );

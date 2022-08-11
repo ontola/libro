@@ -5,6 +5,7 @@ import views from './views';
 
 const NavBar: Module = {
   name: 'NavBar',
+  seed: [],
   topologies,
   type: ModuleType.Library,
   views,

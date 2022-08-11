@@ -62,7 +62,7 @@ const useStyles = makeStyles<LibroTheme, PageHeaderProps>((theme) => createStyle
 
 /**
  * Page filler with title and nav items at the top of a page
- * Strechtes to big size when a background is present
+ * Stretches to big size when a background is present
  */
 const PageHeader: TopologyFC<PageHeaderProps> = ({ children, ...props }) => {
   const [PageHeaderTopology] = useTopologyProvider(pageHeaderTopology);

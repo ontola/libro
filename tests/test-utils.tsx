@@ -34,6 +34,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
+import { modules } from '../app/modules';
 import { AppContextProvider } from '../app/modules/Kernel/components/AppContext/AppContextProvider';
 import { componentRegistrations } from '../app/components';
 import HighlightProvider from '../app/modules/Common/components/HighlightProvider/HighlightProvider';
@@ -59,7 +60,7 @@ interface ChildrenProps {
   children: React.ReactElement;
 }
 
-const allViews = () => [...getViews(), ...componentRegistrations()];
+const allViews = () => [...getViews(modules), ...componentRegistrations()];
 
 const wrapProviders = ({
   ctx,
@@ -90,6 +91,7 @@ const wrapProviders = ({
       <AppContextProvider
         lrs={ctx?.lrs}
         manifest={manifest}
+        modules={modules}
       >
         <WebsiteContextProvider websiteCtxOverride={websiteContext}>
           <HelmetProvider context={{}}>
@@ -169,7 +171,7 @@ export const renderLinked = async <
   } = opts;
 
   const [iri, graph] = resourcesToGraph(resources);
-  const ctx = await generateCtx(graph, iri);
+  const ctx = await generateCtx(modules, graph, iri);
 
   const wrapper = wrapProviders({
     ctx,

@@ -5,6 +5,7 @@ import React from 'react';
 
 import { defaultManifest } from '../app/helpers/defaultManifest';
 import generateLRS from '../app/helpers/generateLRS';
+import { modules } from '../app/modules';
 import { quadruplesToDataSlice } from '../app/modules/Kernel/lib/quadruplesToDataSlice';
 import { getWebsiteContextFromWebsite } from '../app/modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
 
@@ -20,7 +21,7 @@ export async function createHookWrapper<TProps>(data: DataObject | DataObject[])
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
   const slice = quadruplesToDataSlice(graph.quads);
-  const { lrs } = await generateLRS(manifest, slice, {});
+  const { lrs } = await generateLRS(manifest, modules, slice, {});
   const wrapper: React.ComponentType<React.PropsWithChildren<TProps>> = ({ children }) => (
     <RenderStoreProvider value={lrs}>
       {children}

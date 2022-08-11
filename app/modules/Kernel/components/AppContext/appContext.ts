@@ -1,7 +1,9 @@
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
 
-import { WebManifest } from './WebManifest';
+import type { Module } from '../../../../Module';
+
+import type { WebManifest } from './WebManifest';
 
 export interface AppContext {
   lrs: LinkReduxLRSType;
@@ -18,6 +20,7 @@ export interface AppContextProviderProps {
   children: React.ReactNode;
   appCtxOverrides?: Partial<AppContext>;
   manifest: WebManifest;
+  modules?: Module[];
 }
 
 export const appContext = React.createContext<AppContext>(undefined as any);

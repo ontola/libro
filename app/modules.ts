@@ -11,6 +11,7 @@ import Elements from './modules/Elements';
 import Flow from './modules/Flow';
 import Form from './modules/Form';
 import GroenLinks from './modules/GroenLinks';
+import Kernel from './modules/Kernel';
 import Libro from './modules/Libro';
 import Menu from './modules/Menu';
 import NavBar from './modules/NavBar';
@@ -19,22 +20,25 @@ import SalesWebsite from './modules/SalesWebsite';
 import Table from './modules/Table';
 
 export const modules: Module[] = [
-  Academy,
+  Kernel,
+  Common,
+
   Action,
-  Argu,
   Auth,
   Collection,
-  Common,
   DataCube,
-  Dexes,
   Elements,
-  Flow,
   Form,
-  GroenLinks,
+  Flow,
   Libro,
   Menu,
   NavBar,
   Omniform,
-  SalesWebsite,
   Table,
+
+  Academy,
+  Argu,
+  Dexes,
+  GroenLinks,
+  SalesWebsite,
 ];

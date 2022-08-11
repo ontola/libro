@@ -6,11 +6,9 @@ import { ComponentRegistration } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { componentRegistrations } from './components';
-import { ModuleType } from './Module';
-import { modules } from './modules';
-import { modulesKey } from './modules/Kernel/lib/settings';
+import { Module, ModuleType } from './Module';
 
-export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
+export function getViews(modules: Module[]): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
   const libraries = modules
     .filter((it) => it.type === ModuleType.Library)
     .map((it) => it.views);
@@ -25,7 +23,6 @@ export function getViews(): Array<ComponentRegistration<any> | Array<ComponentRe
   ];
 }
 
-export default function register(lrs: LinkReduxLRSType): void {
-  lrs.settings.set(modulesKey, modules);
-  lrs.registerAll(...getViews(), ...componentRegistrations());
+export default function register(lrs: LinkReduxLRSType, modules: Module[]): void {
+  lrs.registerAll(...getViews(modules), ...componentRegistrations());
 }

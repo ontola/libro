@@ -12,6 +12,7 @@ import { libroActionPrefix } from '../../Common/middleware/common';
 import { WebManifest } from '../../Kernel/components/AppContext/WebManifest';
 import { appContext } from '../../Kernel/components/AppContext/appContext';
 import LinkLoader from '../../Kernel/components/LinkLoader';
+import { modulesKey } from '../../Kernel/lib/settings';
 
 export interface ClonedLRS extends LinkReduxLRSType {
   originalLRS: LinkReduxLRSType
@@ -20,12 +21,13 @@ export interface ClonedLRS extends LinkReduxLRSType {
 const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) => {
   const { lrs: next } = await generateLRS(
     manifest,
+    old.settings.get(modulesKey),
     undefined,
     window.EMP_SYMBOL_MAP,
     { middleware: false },
   );
 
-  register(next);
+  register(next, old.settings.get(modulesKey));
 
   if (old) {
     next.store.addQuadruples((old.store as any).store.quads);
