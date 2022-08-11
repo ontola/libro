@@ -1,4 +1,4 @@
-import bugsnag, { Client } from '@bugsnag/js';
+import type { Client } from '@bugsnag/js';
 
 const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -23,7 +23,7 @@ globalThis.logging = {
   logs: [],
 };
 
-function getClient() {
+async function getClient(): Promise<Client> {
   if (__TEST__) {
     return {
       notify(e: Error) {
@@ -49,7 +49,8 @@ function getClient() {
     if (raw) {
       const config = JSON.parse(decodeURIComponent(raw));
 
-      return bugsnag.createClient({
+      // eslint-disable-next-line no-inline-comments
+      return (await import(/* webpackChunkName: "bugsnag" */ '@bugsnag/js')).default.createClient({
         ...config,
         beforeSend(report: any) {
           globalThis.logging.errors.push(report);
@@ -64,8 +65,6 @@ function getClient() {
     return mockReporter;
   }
 }
-
-const client = getClient();
 
 if (!__TEST__) {
   // Prevent memory overflows
@@ -86,7 +85,7 @@ export function error(...msg: any[]): void {
 
 export function handle(exception: unknown): void {
   error(exception);
-  client.notify(exception as Error);
+  getClient().then((client) => client.notify(exception as Error));
 }
 
 export function log(...msg: any[]): void {
