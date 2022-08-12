@@ -1,7 +1,7 @@
 import { LinkReduxLRSType } from 'link-redux';
 
+import libro from '../../Kernel/ontology/libro';
 import app from '../ontology/app';
-import ontola from '../../Kernel/ontology/ontola';
 
 export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: string): Promise<void> {
   const websocketAddress = app.ns(websocketPath).value.replace('https://', 'wss://');
@@ -20,16 +20,16 @@ export function subscribeDeltaChannel(lrs: LinkReduxLRSType, channel: string): v
       channel,
       {
         connected: () => {
-          lrs.exec(ontola.ns(`ws/connected?channel=${channel}`));
+          lrs.exec(libro.ns(`ws/connected?channel=${channel}`));
         },
         disconnected: () => {
-          lrs.exec(ontola.ns(`ws/disconnected?channel=${channel}`));
+          lrs.exec(libro.ns(`ws/disconnected?channel=${channel}`));
         },
         received: (msg: any) => {
-          lrs.exec(ontola.ns(`ws/received?channel=${channel}`), msg);
+          lrs.exec(libro.ns(`ws/received?channel=${channel}`), msg);
         },
         rejected: () => {
-          lrs.exec(ontola.ns(`ws/rejected?channel=${channel}`));
+          lrs.exec(libro.ns(`ws/rejected?channel=${channel}`));
         },
       },
     );
