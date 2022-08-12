@@ -10,6 +10,7 @@ import { LibroTheme } from '../../../Kernel/lib/themes';
 import { swipeInputMessages } from '../../../../translations/messages';
 import { State } from '../../../Common/hooks/useStateMachine';
 import useStoredState from '../../../Common/hooks/useStoredState';
+import { formContext } from '../../components/Form/FormContext';
 
 import { CardState } from './CardState';
 
@@ -48,8 +49,10 @@ const useStyles = makeStyles<LibroTheme>((theme) => ({
 const parseFromString = (v: string): boolean => v === 'true';
 const parseToString = (v: boolean): string => v.toString();
 
-export const SwipeTutorial = ({ cardState }: SwipeTutorialProps): JSX.Element => {
+export const SwipeTutorial = ({ cardState }: SwipeTutorialProps): JSX.Element | null => {
   const classes = useStyles();
+
+  const { formID } = React.useContext(formContext);
 
   const [_, setShowTutorial, getRaw] = useStoredState<boolean>(
     'showSwipeTutorial',
@@ -66,6 +69,10 @@ export const SwipeTutorial = ({ cardState }: SwipeTutorialProps): JSX.Element =>
       setShowTutorial(false);
     }
   }, [triggerDismissTutorial]);
+
+  if (!formID) {
+    return null;
+  }
 
   return (
     <Fade

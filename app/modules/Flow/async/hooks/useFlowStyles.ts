@@ -11,6 +11,9 @@ export const useFlowStepperStyles = makeStyles<LibroTheme, { pageCount: number }
   },
   stepperRoot: {
     background: 'none',
+    maxHeight: 'calc(100vh - 15rem)',
+    overflowY: 'auto',
+    padding: '1em',
     transform: ({ pageCount }) => `scale(${pageCount <= STEPPER_SCALE_THRESHOLD ? 1 : STEPPER_SCALE_SMALL})`,
   },
   submitStep: {

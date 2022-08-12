@@ -3,6 +3,7 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import { LaxNode, useGlobalIds } from 'link-redux';
 import React from 'react';
+import { useForm } from 'react-final-form';
 
 import { inputValueFromStorage } from '../../../Common/lib/persistence';
 import { formContext } from '../../../Form/components/Form/FormContext';
@@ -41,6 +42,7 @@ export const useFlowActiveField = (fields: SomeNode[]): FlowActiveField => {
     object,
     sessionStore,
   } = React.useContext(formContext);
+  const { mutators } = useForm();
 
   const [activeField, setActiveField] = React.useState<LaxNode>(undefined);
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -58,6 +60,10 @@ export const useFlowActiveField = (fields: SomeNode[]): FlowActiveField => {
     if (activeField === undefined) {
       const initialIndex = findInitialIndex(sessionStore, object, formID, fieldPaths);
       activateIndex(initialIndex);
+
+      if (initialIndex > 0) {
+        mutators?.touchFields(btoa(fields[initialIndex - 1].value));
+      }
 
       return;
     }

@@ -43,16 +43,20 @@ const defaultProps = {
 };
 
 const mutators = {
-  focusField(key: string, state: MutableState<Record<string, any>, Record<string, any>>) {
+  focusField([key]: string[], state: MutableState<Record<string, any>, Record<string, any>>) {
     const field = state.fields[key];
 
     if (field) {
       field.active = true;
     }
   },
-  touchFields: (_: string, state: MutableState<Record<string, any>, Record<string, any>>) => {
-    for (const field of Object.values(state.fields)) {
-      field.touched = true;
+  touchFields: ([lastKey]: string[] | undefined[], state: MutableState<Record<string, any>, Record<string, any>>) => {
+    for (const field of Object.keys(state.fields)) {
+      state.fields[field].touched = true;
+
+      if (lastKey === field) {
+        break;
+      }
     }
   },
 };

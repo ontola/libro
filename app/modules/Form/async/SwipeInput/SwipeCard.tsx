@@ -12,6 +12,7 @@ import React from 'react';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { Dispatcher, State } from '../../../Common/hooks/useStateMachine';
 import { mapRange } from '../../../Common/lib/numbers';
+import { formContext } from '../../components/Form/FormContext';
 
 import { CardAction, CardState } from './CardState';
 import { useSwipeAnimations } from './hooks/useSwipeAnimations';
@@ -125,7 +126,9 @@ export const SwipeCard = ({
   image,
   label,
 }: React.PropsWithChildren<SwipeCardProps>): JSX.Element => {
+  const { formID } = React.useContext(formContext);
   const classes = useStyles({ image });
+  const animatedCard = !!formID;
 
   const {
     bind,
@@ -146,14 +149,14 @@ export const SwipeCard = ({
   });
 
   const animatedCardFrontClass = clsx({
-    [classes.animatedCardDiv]: true,
+    [classes.animatedCardDiv]: animatedCard,
     [classes.cardHeight]: true,
     [classes.grabable]: !cardState.is(CardState.ShowInfoFace),
     [classes.clickThrough]: cardState.is(CardState.ShowInfoFace),
   });
 
   const animatedCardBackClass = clsx({
-    [classes.animatedCardDiv]: true,
+    [classes.animatedCardDiv]: animatedCard,
     [classes.cardHeight]: true,
     [classes.grabable]: !image,
   });

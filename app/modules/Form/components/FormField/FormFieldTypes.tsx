@@ -50,7 +50,7 @@ export interface PermittedFormField {
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
-  onBlur: FocusRelatedEventHandler;
+  onBlur: (event?: (React.FocusEvent<HTMLElement> | undefined)) => void;
   onChange: OnInputChange;
   onFocus: FocusRelatedEventHandler;
   removeItem: (index: number) => void;

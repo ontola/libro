@@ -1,6 +1,7 @@
 import { StateMachine, any } from '../../../Common/hooks/useStateMachine';
 
 export enum CardState {
+  Null,
   Dragging,
   Idle,
   VotingYes,
@@ -39,10 +40,12 @@ export const cardStateMachine: StateMachine<CardState, CardAction> = [
 
   [CardState.Dragging, CardAction.ReleaseMiddle, CardState.Idle],
 
+  [CardState.Null, CardAction.VoteYesButton, CardState.VotingYes],
   [CardState.Idle, CardAction.VoteYesButton, CardState.VotingYes],
   [CardState.IdleNo, CardAction.VoteYesButton, CardState.VotingYes],
   [CardState.IdleYes, CardAction.VoteYesButton, CardState.Idle],
 
+  [CardState.Null, CardAction.VoteNoButton, CardState.VotingNo],
   [CardState.Idle, CardAction.VoteNoButton, CardState.VotingNo],
   [CardState.IdleYes, CardAction.VoteNoButton, CardState.VotingNo],
   [CardState.IdleNo, CardAction.VoteNoButton, CardState.Idle],

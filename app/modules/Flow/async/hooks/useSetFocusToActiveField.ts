@@ -5,6 +5,6 @@ export const useSetFocusToActiveField = (field: string): void => {
   const { mutators } = useForm();
 
   React.useEffect(() => {
-    mutators.focusField && mutators.focusField(field);
+    mutators?.focusField(field);
   }, [field]);
 };

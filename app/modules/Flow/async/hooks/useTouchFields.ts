@@ -10,7 +10,7 @@ export const useTouchFields = (currentIndex: number, fieldsAmount: number): void
     }
 
     if (currentIndex === fieldsAmount) {
-      mutators.touchFields && mutators.touchFields();
+      mutators?.touchFields();
     }
   }, [currentIndex, fieldsAmount]);
 };

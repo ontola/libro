@@ -4,10 +4,10 @@ import * as schema from '@ontologies/schema';
 import { dig, useGlobalIds } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { useStateMachine } from '../../../Common/hooks/useStateMachine';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import ontola from '../../../Kernel/ontology/ontola';
-import { PermittedFormField } from '../../components/FormField/FormFieldTypes';
+import { InputValue, PermittedFormField } from '../../components/FormField/FormFieldTypes';
 
 import {
   CardAction,
@@ -18,6 +18,8 @@ import { SwipeButtons } from './SwipeButtons';
 import { SwipeCard } from './SwipeCard';
 
 const IDLE_CARD_TIMEOUT = 1500;
+const YES = rdf.literal('yes');
+const NO= rdf.literal('no');
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   swipeInputWrapper: {
@@ -40,27 +42,52 @@ const startTimeout = (func: () => void) => {
   }, IDLE_CARD_TIMEOUT);
 };
 
+const initialValue = (values: InputValue[]) => {
+  switch (values[0]) {
+  case YES:
+    return CardState.IdleYes;
+  case NO:
+    return CardState.IdleNo;
+  default:
+    return CardState.Null;
+  }
+};
+
 const SwipeInput = ({
   description,
   label,
+  values,
   onChange,
+  onBlur,
 }: PermittedFormField): JSX.Element => {
   const classes = useStyles();
-  const [cardState, dispatch] = useStateMachine(cardStateMachine, CardState.Idle);
+  const [cardState, dispatch] = useStateMachine(cardStateMachine, initialValue(values));
 
   const [cover] = useGlobalIds(dig(ontola.coverPhoto, schema.contentUrl));
 
   React.useEffect(() => {
     switch (cardState.raw) {
     case (CardState.Idle):
+      if (onBlur) {
+        onBlur();
+      }
+
       onChange([]);
       break;
     case (CardState.VotingYes):
-      onChange([rdf.literal('yes')]);
+      if (onBlur) {
+        onBlur();
+      }
+
+      onChange([YES]);
       startTimeout(() => dispatch(CardAction.IdleTimeout));
       break;
     case (CardState.VotingNo):
-      onChange([rdf.literal('no')]);
+      if (onBlur) {
+        onBlur();
+      }
+
+      onChange([NO]);
       startTimeout(() => dispatch(CardAction.IdleTimeout));
       break;
     }
