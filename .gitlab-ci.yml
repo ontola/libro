@@ -40,7 +40,7 @@ codeQuality:
 test:
   stage: build
   script:
-    - ./node_modules/.bin/jest --coverage --coverageReporters="text-summary" --no-cache
+    - ./node_modules/.bin/jest -w 2 --coverage --coverageReporters="text-summary" --no-cache
   coverage: '/Lines.+\d+.\d+%/'
 
 bake:
