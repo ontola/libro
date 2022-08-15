@@ -36,7 +36,7 @@ describe('getInitialValues', () => {
     expect(result.current).toEqual({});
   });
 
-  it('should return emoty values when object is not is present', async () => {
+  it('should return empty values when object is not is present', async () => {
     const { result } = await renderLinkedHook(
       testGetInitialValues,
       [formData],

@@ -38,7 +38,6 @@ import { Module } from '../app/Module';
 import { AppContextProvider } from '../app/modules/Kernel/components/AppContext/AppContextProvider';
 import HighlightProvider from '../app/modules/Common/components/HighlightProvider/HighlightProvider';
 import WebsiteContextProvider, { getWebsiteContextFromWebsite } from '../app/modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
-import OmniformProvider from '../app/modules/Omniform/components/OmniformProvider';
 import { defaultManifest } from '../app/helpers/defaultManifest';
 import { retrievePath } from '../app/modules/Common/lib/iris';
 import { isFunction } from '../app/modules/Kernel/lib/typeCheckers';
@@ -67,12 +66,12 @@ const allViews = async (modules: Module[]) => {
   return [...getViews(modules), ...cr.componentRegistrations()];
 };
 
-const wrapProviders = ({
+const wrapProviders = async ({
   ctx,
   location,
   modules,
   views,
-}: WrapProvidersArgs): React.ComponentType<ChildrenProps> => {
+}: WrapProvidersArgs): Promise<React.ComponentType<ChildrenProps>> => {
   const isUnit = !ctx.lrs;
   const lrs = ctx.lrs ?? createStore();
 
@@ -85,6 +84,11 @@ const wrapProviders = ({
 
   const websiteContext = getWebsiteContextFromWebsite('https://example.com/');
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
+
+  const OFProvider = modules.find((m) => m.name === 'Omniform')
+    // eslint-disable-next-line import/dynamic-import-chunkname
+    ? (await import('../app/modules/Omniform/components/OmniformProvider')).default
+    : React.Fragment;
 
   const TestWrapper = ({ children }: ChildrenProps): JSX.Element => {
     const routerOrChildren = !isUnit ? (
@@ -102,7 +106,7 @@ const wrapProviders = ({
         <WebsiteContextProvider websiteCtxOverride={websiteContext}>
           <HelmetProvider context={{}}>
             <RenderStoreProvider value={lrs}>
-              <OmniformProvider>
+              <OFProvider>
                 <HighlightProvider>
                   <IntlProvider
                     locale="en"
@@ -115,7 +119,7 @@ const wrapProviders = ({
                     </StyledEngineProvider>
                   </IntlProvider>
                 </HighlightProvider>
-              </OmniformProvider>
+              </OFProvider>
             </RenderStoreProvider>
           </HelmetProvider>
         </WebsiteContextProvider>
@@ -154,12 +158,12 @@ export const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedOb
   return toGraph(resources);
 };
 
-interface TestRenderOpts {
+export interface TestRenderOpts {
   location?: any;
   modules?: Module[];
 }
 
-interface LinkedTestRenderOpts extends TestRenderOpts {
+export interface LinkedTestRenderOpts extends TestRenderOpts {
   resources?: any;
   views?: Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>>;
 }
@@ -182,7 +186,7 @@ export const renderLinked = async <
   const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
   const ctx = await generateCtx(modules, graph, iri);
 
-  const wrapper = wrapProviders({
+  const wrapper = await wrapProviders({
     ctx,
     location,
     modules,
@@ -218,7 +222,7 @@ const renderWithWrappers = async <
   // eslint-disable-next-line no-inline-comments
   const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
 
-  const wrapper = wrapProviders({
+  const wrapper = await wrapProviders({
     ctx: {
       history: createMemoryHistory({ initialEntries: [location || '/'] }),
     },

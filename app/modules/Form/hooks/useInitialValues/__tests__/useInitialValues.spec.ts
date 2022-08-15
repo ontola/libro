@@ -257,7 +257,7 @@ const testUseInitialValues = () => {
 
 describe('useInitialValues', () => {
   it('should return no values when form is not is present', async () => {
-    const { rerender, result } = await renderLinkedHook(
+    const { rerender, result, queueEntitySpy } = await renderLinkedHook(
       testUseInitialValues,
       [objectData],
     );
@@ -267,10 +267,16 @@ describe('useInitialValues', () => {
 
     expect(loading).toBe(true);
     expect(initialValues).toEqual({});
+
+    const requested = [actionBody];
+    expect(queueEntitySpy).toHaveBeenCalledTimes(requested.length);
+    requested.map((record, i) => {
+      expect(queueEntitySpy).toHaveBeenNthCalledWith(i + 1, record);
+    });
   });
 
-  it('should return emoty values when object is not is present', async () => {
-    const { rerender, result } = await renderLinkedHook(
+  it('should return empty values when object is not is present', async () => {
+    const { rerender, result, queueEntitySpy } = await renderLinkedHook(
       testUseInitialValues,
       [formData],
     );
@@ -280,10 +286,16 @@ describe('useInitialValues', () => {
 
     expect(loading).toBe(true);
     expect(initialValues).toEqual({});
+
+    const requested = [object, commentActionBody];
+    expect(queueEntitySpy).toHaveBeenCalledTimes(requested.length);
+    requested.map((record, i) => {
+      expect(queueEntitySpy).toHaveBeenNthCalledWith(i + 1, record);
+    });
   });
 
   it('should return all values when all resources are present', async () => {
-    const { rerender, result } = await renderLinkedHook(
+    const { rerender, result, queueEntitySpy } = await renderLinkedHook(
       testUseInitialValues,
       allResourcesData,
     );
@@ -292,6 +304,7 @@ describe('useInitialValues', () => {
     const [loading, initialValues] = result.current;
 
     expect(loading).toBe(false);
+    expect(queueEntitySpy).not.toHaveBeenCalled();
     expect(initialValues).toEqual(allValues);
   });
 });

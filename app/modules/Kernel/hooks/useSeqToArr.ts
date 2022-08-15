@@ -27,10 +27,6 @@ export function useSeqToArr<I extends Term = SomeTerm>(subject?: SomeNode | I[])
 
     const result = seqToArr<I>(lrs, [], subject);
 
-    if (Array.isArray(result)) {
-      return [result, false];
-    }
-
-    return [[], true];
+    return [result, false];
   }, [subject, lastUpdate]);
 }

@@ -19,6 +19,7 @@ import example from '../../Kernel/ontology/example';
 import ll from '../../Kernel/ontology/ll';
 import { calculateFormFieldName } from '../../Form/lib/helpers';
 import form from '../../Form/ontology/form';
+import dependencies from '../dependencies';
 
 import Omniform from './Omniform';
 
@@ -148,7 +149,10 @@ describe('Omniform', () => {
           parentIRI={btoa(subject.value)}
         />
       </Card>
-    ), { resources });
+    ), {
+      modules: dependencies,
+      resources,
+    });
 
     await findByTestId(btoa('http://schema.org/text'));
     expect(getByTestId(omniformSelector)).toHaveFormValues({

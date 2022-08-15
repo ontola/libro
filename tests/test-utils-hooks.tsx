@@ -1,27 +1,59 @@
-import { RenderHookOptions, renderHook } from '@testing-library/react-hooks';
+import {
+  RenderHookOptions,
+  RenderHookResult,
+  act,
+  renderHook,
+} from '@testing-library/react-hooks';
 import { DataObject } from 'link-lib';
+import { DataProcessorOpts } from 'link-lib/dist-types/types';
 import { LinkReduxLRSType, RenderStoreProvider } from 'link-redux';
 import React from 'react';
 
 import { defaultManifest } from '../app/helpers/defaultManifest';
 import generateLRS from '../app/helpers/generateLRS';
-import { modules } from '../app/modules';
+import { handle } from '../app/helpers/logging';
 import { quadruplesToDataSlice } from '../app/modules/Kernel/lib/quadruplesToDataSlice';
 import { getWebsiteContextFromWebsite } from '../app/modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
 
-import { resourcesToGraph } from './test-utils';
+import { TestRenderOpts, resourcesToGraph } from './test-utils';
+
+import SpyInstance = jest.SpyInstance;
+import ArgsType = jest.ArgsType;
+import Mock = jest.Mock;
+
+type QueueEntityType = LinkReduxLRSType['queueEntity'];
 
 export interface HookTestBundle<TProps> {
   lrs: LinkReduxLRSType;
   wrapper: React.ComponentType<React.PropsWithChildren<TProps>>;
 }
 
-export async function createHookWrapper<TProps>(data: DataObject | DataObject[]): Promise<HookTestBundle<TProps>> {
+type Fetch = Exclude<DataProcessorOpts['fetch'], undefined>;
+
+export interface LRSSpies {
+  fetch: Mock<ReturnType<Fetch>, ArgsType<Fetch>>;
+  queueEntitySpy?: SpyInstance<ReturnType<QueueEntityType>, ArgsType<QueueEntityType>>;
+}
+
+export async function createHookWrapper<TProps>(data: DataObject | DataObject[], opts: TestRenderOpts): Promise<HookTestBundle<TProps> & LRSSpies> {
   const websiteContext = getWebsiteContextFromWebsite('https://example.com/');
   const manifest = defaultManifest(websiteContext.websiteIRIStr);
   const [_, graph] = resourcesToGraph(data);
   const slice = quadruplesToDataSlice(graph.quads);
-  const { lrs } = await generateLRS(manifest, modules, slice, {});
+  const spies: LRSSpies = {
+    fetch: jest.fn().mockImplementation((a) => Promise.reject({ error: `No fetching during test (${a})` })),
+  };
+  // eslint-disable-next-line no-inline-comments
+  const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
+  const { lrs } = await generateLRS(manifest, modules, slice, {}, {
+    apiOpts: {
+      fetch: spies.fetch,
+    },
+    report: (e) => (e && typeof e === 'object' && 'error' in e) ? void (0) : handle(e),
+  });
+
+  spies.queueEntitySpy = jest.spyOn(lrs, 'queueEntity');
+
   const wrapper: React.ComponentType<React.PropsWithChildren<TProps>> = ({ children }) => (
     <RenderStoreProvider value={lrs}>
       {children}
@@ -29,21 +61,32 @@ export async function createHookWrapper<TProps>(data: DataObject | DataObject[])
   );
 
   return {
+    ...spies,
     lrs,
     wrapper,
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const renderLinkedHook = async <TProps, TResult>(
   callback: (props: TProps) => TResult,
   resources: DataObject | DataObject[],
-  options: RenderHookOptions<React.PropsWithChildren<TProps>> = {},
-) => {
-  const { wrapper } = await createHookWrapper<TProps>(resources);
+  options: TestRenderOpts & RenderHookOptions<React.PropsWithChildren<TProps>> = {},
+): Promise<RenderHookResult<TProps, TResult> & LRSSpies> => {
+  const { fetch, wrapper, queueEntitySpy } = await createHookWrapper<TProps>(resources, options);
+  let result: RenderHookResult<TProps, TResult>;
 
-  return renderHook(callback, {
-    ...options,
-    wrapper,
-  });
+  await act(() => new Promise<void>((resolve) => {
+    result = renderHook(callback, {
+      ...options,
+      wrapper,
+    });
+
+    resolve();
+  }));
+
+  return {
+    ...result!,
+    fetch,
+    queueEntitySpy,
+  };
 };

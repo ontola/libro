@@ -40,7 +40,7 @@ export interface LRSBundle {
   serviceWorkerCommunicator: ServiceWorkerCommunicator;
 }
 
-export interface GenerateLRSOpts {
+export interface GenerateLRSOpts extends LinkedRenderStoreOptions<React.ComponentType> {
   middleware?: boolean;
 }
 
@@ -72,6 +72,7 @@ export default async function generateLRS(
   const storeOptions: LinkedRenderStoreOptions<React.ComponentType> = {
     data: initialData,
     report: handle,
+    ...options,
   };
 
   if (!__CLIENT__) {
