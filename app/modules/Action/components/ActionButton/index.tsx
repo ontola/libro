@@ -4,7 +4,7 @@ import React, { MouseEventHandler } from 'react';
 
 import Button from '../../../Common/components/Button';
 import { countInParentheses } from '../../../Common/lib/numbers';
-import { listTopology } from '../../../Common/topologies/List';
+import { listTopology } from '../../../Common/topologies';
 
 interface ActionButtonProps {
   count?: number;

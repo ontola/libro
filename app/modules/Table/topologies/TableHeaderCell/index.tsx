@@ -5,9 +5,7 @@ import React from 'react';
 
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
-
-export const tableHeaderCellTopology = ontola.ns('tableHeaderCell');
+import { tableHeaderCellTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => createStyles({
   tableHeaderCell: {

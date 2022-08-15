@@ -7,8 +7,9 @@ import {
 import React from 'react';
 
 import TabbarProvider from '../../../Common/components/TabbarProvider';
+import { containerTopology } from '../../../Common/topologies';
 import { CardMain } from '../../../Common/topologies/Card';
-import Container, { containerTopology } from '../../../Common/topologies/Container';
+import Container from '../../../Common/topologies/Container';
 import app from '../../../Common/ontology/app';
 
 import { MenuTypes } from './types';

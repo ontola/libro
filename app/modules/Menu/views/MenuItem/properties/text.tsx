@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { tabPaneTopology } from '../../../../Common/topologies';
 import { LargeContainer } from '../../../../Common/topologies/Container';
-import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 import ontola from '../../../../Kernel/ontology/ontola';
 
 const Text: FC<PropertyProps> = ({

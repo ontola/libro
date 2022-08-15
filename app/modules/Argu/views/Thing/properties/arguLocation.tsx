@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import rdf, {
   NamedNode,
   isNamedNode,
-  isNode, 
+  isNode,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
@@ -18,12 +18,14 @@ import {
 import React from 'react';
 
 import { Navigate, ShowDialog } from '../../../../Common/middleware/actions';
+import {
+  containerTopology,
+  fullResourceTopology,
+  gridTopology,
+  mainBodyTopology,
+} from '../../../../Common/topologies';
 import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { isResource } from '../../../../Kernel/lib/typeCheckers';
-import { containerTopology } from '../../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
-import { gridTopology } from '../../../../Common/topologies/Grid';
-import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
 import { useContainerToArr } from '../../../../Kernel/hooks/useContainerToArr';
 import app from '../../../../Common/ontology/app';
 import {

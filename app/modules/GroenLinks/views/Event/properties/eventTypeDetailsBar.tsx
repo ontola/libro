@@ -11,8 +11,7 @@ import React from 'react';
 
 import Detail from '../../../../Common/components/Detail';
 import { normalizeFontAwesomeIRI } from '../../../../Common/lib/iris';
-import { contentDetailsTopology } from '../../../../Common/topologies/ContentDetails';
-import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../../../Common/topologies';
 import teamGL from '../../../ontology/teamGL';
 
 const EventTypeDetailsBar = ({ linkedProp }: PropertyProps) => {

@@ -10,7 +10,7 @@ import argu from '../../../Argu/ontology/argu';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import AllWithProperty from '../../components/AllWithProperty';
 import LDLink from '../../components/LDLink';
-import { mainBodyTopology } from '../../topologies/MainBody';
+import { mainBodyTopology } from '../../topologies';
 
 const ThingMainBody = () => (
   <ResourceBoundary>

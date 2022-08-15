@@ -10,8 +10,8 @@ import { Size } from '../../../Kernel/lib/themes';
 import Container from './index';
 
 describe('Container component', () => {
-  it('Container should render', () => {
-    const { getByTestId, rerender } = render((
+  it('Container should render', async () => {
+    const { getByTestId, rerender } = await render((
       <Container>
         Content
       </Container>

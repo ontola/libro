@@ -9,9 +9,8 @@ import {
 import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
+import { containerTopology, fullResourceTopology } from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Kernel/ontology/ontola';
 import argu from '../../ontology/argu';
 

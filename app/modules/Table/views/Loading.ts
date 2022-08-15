@@ -3,8 +3,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { LoadingDetail } from '../../Common/components/Loading';
 import ll from '../../Kernel/ontology/ll';
 import { LoadingCellRow } from '../components/LoadingCellRow';
-import { tableTopology } from '../topologies/Table';
-import { tableCellTopology } from '../topologies/TableCell';
+import { tableCellTopology, tableTopology } from '../topologies';
 
 export default [
   ...LinkedRenderStore.registerRenderer(

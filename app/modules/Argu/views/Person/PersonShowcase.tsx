@@ -15,7 +15,7 @@ import { useIntl } from 'react-intl';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { personeShowcaseMessages } from '../../../../translations/messages';
 import ontola from '../../../Kernel/ontology/ontola';
-import { showcaseTopology } from '../../../SalesWebsite/topologies/Showcase';
+import { showcaseTopology } from '../../../SalesWebsite/topologies';
 
 const CONTAINER_PADDING = 5;
 const ICON_LINK_GAP = 4;

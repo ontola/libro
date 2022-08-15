@@ -14,8 +14,9 @@ import {
 import React, { MouseEventHandler } from 'react';
 
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
+import { selectTopology } from '../../../Form/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
-import { selectTopology, useSelectItemStyles } from '../../../Form/topologies/Select';
+import { useSelectItemStyles } from '../../../Form/topologies/Select';
 import argu from '../../ontology/argu';
 
 interface PersonSelectProps {

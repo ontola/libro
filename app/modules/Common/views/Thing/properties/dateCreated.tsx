@@ -4,7 +4,7 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 import DetailDate from '../../../components/DetailDate';
 
 interface PropTypes {

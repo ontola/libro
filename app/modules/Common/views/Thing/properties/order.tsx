@@ -8,9 +8,9 @@ import {
 import React from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
+import { tableRowTopology } from '../../../../Table/topologies';
 import { LoadingHidden } from '../../../components/Loading';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 
 const Order: FC<PropertyProps> = () => (
   <React.Fragment>

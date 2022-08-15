@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import HeaderButton from '../../Common/components/Button/HeaderButton';
-import { containerHeaderTopology } from '../../Common/topologies/Container/ContainerHeader';
+import { containerHeaderTopology } from '../../Common/topologies';
 import libro from '../../Kernel/ontology/libro';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 import useOneClickProps from '../hooks/useOneClickProps';

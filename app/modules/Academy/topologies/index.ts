@@ -1,12 +1,6 @@
-import rdf from '@ontologies/core';
+import argu from '../../Argu/ontology/argu';
 
-import { TopologyMap } from '../../Kernel/lib/ontology';
-
-import { ChapterContent, chapterContentTopology } from './ChapterContent';
-
-export const topologyMap: TopologyMap = {
-  [rdf.id(chapterContentTopology)]: [ChapterContent, undefined],
-};
+export const chapterContentTopology = argu.ns('chapterContent');
 
 export default [
   chapterContentTopology,

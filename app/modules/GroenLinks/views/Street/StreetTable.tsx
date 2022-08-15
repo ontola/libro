@@ -11,7 +11,7 @@ import { StartSignIn } from '../../../../middleware/actions';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { Navigate } from '../../../Common/middleware/actions';
 import TableCells from '../../../Table/components/TableCells';
-import { tableTopology } from '../../../Table/topologies/Table';
+import { tableTopology } from '../../../Table/topologies';
 import TableRow from '../../../Table/topologies/TableRow';
 import teamGL from '../../ontology/teamGL';
 

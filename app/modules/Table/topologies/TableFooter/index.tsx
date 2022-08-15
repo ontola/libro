@@ -4,10 +4,8 @@ import React from 'react';
 
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
+import { tableFooterTopology } from '../index';
 import { tableFooterCellCID } from '../TableFooterCell';
-
-export const tableFooterTopology = ontola.ns('tableFooter');
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   tableFooter: {

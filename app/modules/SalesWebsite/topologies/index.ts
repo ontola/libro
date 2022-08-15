@@ -1,14 +1,7 @@
-import rdf from '@ontologies/core';
+import sales from '../ontology/sales';
 
-import { TopologyMap } from '../../Kernel/lib/ontology';
-
-import BlueBlock, { blueBlockTopology } from './BlueBlock';
-import Showcase, { showcaseTopology } from './Showcase';
-
-export const topologyMap: TopologyMap = {
-  [rdf.id(blueBlockTopology)]: [BlueBlock, undefined],
-  [rdf.id(showcaseTopology)]: [Showcase, undefined],
-};
+export const blueBlockTopology = sales.topologies.blueBlock;
+export const showcaseTopology = sales.topologies.showcase;
 
 export default [
   blueBlockTopology,

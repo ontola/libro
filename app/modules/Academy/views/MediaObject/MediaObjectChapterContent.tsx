@@ -10,7 +10,7 @@ import React from 'react';
 import dbo from '../../../Common/ontology/dbo';
 import { DocumentAttachmentPreview } from '../../../Common/components/AttachmentPreview/DocumentAttachmentPreview';
 import { imageRepresentationUrl } from '../../../Common/lib/attachments';
-import { chapterContentTopology } from '../../topologies/ChapterContent';
+import { chapterContentTopology } from '../../topologies';
 
 const emptyClickHandler = () => null;
 

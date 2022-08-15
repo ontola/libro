@@ -13,7 +13,7 @@ import FontAwesome from 'react-fontawesome';
 
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import { normalizeFontAwesomeIRI } from '../../Common/lib/iris';
-import { containerFloatTopology } from '../../Common/topologies/Container/ContainerFloat';
+import { containerFloatTopology } from '../../Common/topologies';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 import { CardListOnClick } from './helpers';

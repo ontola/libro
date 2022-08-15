@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import { containerTopology } from '../../../Common/topologies/Container';
+import { containerTopology } from '../../../Common/topologies';
 import Proposition from '../../components/Proposition';
 import sales from '../../ontology/sales';
 

@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { actionsBarTopology } from '../../../Action/topologies/ActionsBar';
+import { actionsBarTopology } from '../../../Action/topologies';
 import app from '../../../Common/ontology/app';
 import { SignOutFormLink } from '../../components/SignOutForm';
 

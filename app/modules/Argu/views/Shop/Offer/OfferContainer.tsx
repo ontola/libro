@@ -12,12 +12,14 @@ import dbo from '../../../../Common/ontology/dbo';
 import meeting from '../../../../../ontology/meeting';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import CardHeader from '../../../../Common/components/Card/CardHeader';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../../Common/topologies';
 import Card from '../../../../Common/topologies/Card';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
-import { containerTopology } from '../../../../Common/topologies/Container';
 import DetailsBar, { DetailsBarVariant } from '../../../../Common/topologies/DetailsBar';
-import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
 import ontola from '../../../../Kernel/ontology/ontola';
 import argu from '../../../ontology/argu';
 

@@ -8,12 +8,14 @@ import React from 'react';
 
 import Link from '../../../../Common/components/Link';
 import { retrievePath } from '../../../../Common/lib/iris';
-import { cardTopology } from '../../../../Common/topologies/Card';
-import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
-import { containerTopology } from '../../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../../Common/topologies';
+import { navbarTopology } from '../../../../NavBar/topologies';
 import argu from '../../../ontology/argu';
 
 interface TargetProps extends PropertyProps {

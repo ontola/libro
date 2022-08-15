@@ -9,7 +9,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import retrievePath from '../../../Common/lib/iris';
-import { pageTopology } from '../../../Common/topologies/Page';
+import { pageTopology } from '../../../Common/topologies';
 import LinkLoader from '../../../Kernel/components/LinkLoader';
 import { entityIsLoaded } from '../../../Kernel/lib/data';
 import usePhases, { phaseIRI } from '../../hooks/usePhases';

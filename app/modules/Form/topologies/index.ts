@@ -1,18 +1,13 @@
-import rdf from '@ontologies/core';
+import {
+  cardMainTopology,
+  cardTopology,
+  mainBodyTopology,
+} from '../../Common/topologies';
+import { flowTopology } from '../../Flow/topologies';
+import { omniformFieldsTopology } from '../../Omniform/topologies';
+import form from '../ontology/form';
 
-import { cardTopology } from '../../Common/topologies/Card';
-import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
-import fullResourceTopologyComponent from '../../Common/topologies/FullResource';
-import { mainBodyTopology } from '../../Common/topologies/MainBody';
-import { TopologyMap } from '../../Kernel/lib/ontology';
-import { flowTopology } from '../../Flow/topologies/Flow';
-import { omniformFieldsTopology } from '../../Omniform/topologies/OmniformFields/OmniformFields';
-
-import { formFooterTopology } from './FormFooter';
-import radioGroupTopologyComponent, { radioGroupTopology } from './RadioGroup';
-import selectTopologyComponent, { selectTopology } from './Select';
-import { selectedValueTopology } from './SelectedValue';
-
+export const formFooterTopology = form.topologies.footer;
 export const formTopologies = [
   cardMainTopology,
   cardTopology,
@@ -26,11 +21,9 @@ export const formFieldTopologies = [
   flowTopology,
 ];
 
-export const topologyMap: TopologyMap = {
-  [rdf.id(formFooterTopology)]: [fullResourceTopologyComponent, undefined],
-  [rdf.id(radioGroupTopology)]: [radioGroupTopologyComponent, undefined],
-  [rdf.id(selectTopology)]: [selectTopologyComponent, undefined],
-};
+export const radioGroupTopology = form.topologies.radioGroup;
+export const selectTopology = form.topologies.select;
+export const selectedValueTopology = form.topologies.selectedValue;
 
 export default [
   formFooterTopology,

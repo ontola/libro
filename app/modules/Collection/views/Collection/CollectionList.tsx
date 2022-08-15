@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { listTopology } from '../../../Common/topologies/List';
+import { listTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
 
 import { CollectionTypes } from './types';

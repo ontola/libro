@@ -11,11 +11,10 @@ import React from 'react';
 import dbo from '../../../Common/ontology/dbo';
 import CardContent from '../../../Common/components/Card/CardContent';
 import { defaultMenus } from '../../../Common/lib/viewHelpers';
+import { fullResourceTopology, tabPaneTopology } from '../../../Common/topologies';
 import CardMain from '../../../Common/topologies/Card/CardMain';
 import Container from '../../../Common/topologies/Container';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import { tabPaneTopology } from '../../../Common/topologies/TabPane';
 import argu from '../../ontology/argu';
 
 const CustomFormFull: FC = () => (

@@ -2,9 +2,9 @@ import * as schema from '@ontologies/schema';
 import { FC, useProperty } from 'link-redux';
 import React from 'react';
 
-import { chapterContentTopology } from '../../../Academy/topologies/ChapterContent';
+import { chapterContentTopology } from '../../../Academy/topologies';
 import argu from '../../../Argu/ontology/argu';
-import { containerTopology } from '../../../Common/topologies/Container';
+import { containerTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
 import Step from '../../components/Step';
 import sales from '../../ontology/sales';

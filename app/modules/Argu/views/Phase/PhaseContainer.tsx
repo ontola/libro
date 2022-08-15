@@ -8,8 +8,8 @@ import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import { containerTopology } from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import ontola from '../../../Kernel/ontology/ontola';
 import argu from '../../ontology/argu';

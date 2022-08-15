@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import Link, { LinkTarget } from '../../Common/components/Link';
-import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
+import { cardMainTopology } from '../../Common/topologies';
 
 interface ActionCardMainProps {
   actionStatus?: SomeTerm;

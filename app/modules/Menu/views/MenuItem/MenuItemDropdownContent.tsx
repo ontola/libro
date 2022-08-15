@@ -12,8 +12,7 @@ import React from 'react';
 
 import ontola from '../../../Kernel/ontology/ontola';
 import DropdownMenuItem from '../../components/DropdownMenu/DropdownMenuItem';
-import { appMenuTopology } from '../../topologies/AppMenu';
-import { menuTopology } from '../../topologies/Menu';
+import { appMenuTopology, menuTopology } from '../../topologies';
 
 interface MenuItemDropdownContentProps {
   hideIcon?: boolean;

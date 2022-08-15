@@ -5,7 +5,7 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 import teamGL from '../../../ontology/teamGL';
 import { useContactOptionStyles } from '../useContactOptionStyles';
 

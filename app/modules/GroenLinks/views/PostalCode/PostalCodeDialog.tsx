@@ -15,10 +15,10 @@ import AttributeListItem from '../../../Common/components/AttributeListItem';
 import Button from '../../../Common/components/Button';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
+import { alertDialogTopology } from '../../../Common/topologies';
 import AttributeList from '../../../Common/topologies/AttributeList';
 import Card from '../../../Common/topologies/Card';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
 import teamGL from '../../ontology/teamGL';
 import { useVisitPostalCode } from '../Glapp/helpers';
 

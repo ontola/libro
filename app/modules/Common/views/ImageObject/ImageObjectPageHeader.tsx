@@ -3,7 +3,8 @@ import { register, useValues } from 'link-redux';
 import React from 'react';
 
 import ontola from '../../../Kernel/ontology/ontola';
-import { PageHeaderImage, pageHeaderTopology } from '../../topologies/PageHeader';
+import { pageHeaderTopology } from '../../topologies';
+import { PageHeaderImage } from '../../topologies/PageHeader';
 
 const ImageObjectPageHeader = () => {
   const [description] = useValues(schema.description);

@@ -14,10 +14,12 @@ import CardContent from '../../../Common/components/Card/CardContent';
 import Heading from '../../../Common/components/Heading';
 import Image from '../../../Common/components/Image';
 import { HideDialog } from '../../../Common/middleware/actions';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';
 import FormFooter from '../../../Form/topologies/FormFooter';
 import teamGL from '../../ontology/teamGL';

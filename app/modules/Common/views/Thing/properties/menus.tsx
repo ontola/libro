@@ -4,7 +4,7 @@ import { Resource, register } from 'link-redux';
 import React from 'react';
 
 import ontola from '../../../../Kernel/ontology/ontola';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../../NavBar/topologies';
 
 interface ThingMenusProp {
   children: React.ReactNode;

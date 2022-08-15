@@ -10,7 +10,7 @@ import dbo from '../../../Common/ontology/dbo';
 import wdt from '../../../Common/ontology/wdt';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
 import { PageHeader } from '../../../Common/components/PageHeader';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { fullResourceTopology } from '../../../Common/topologies';
 import MainBody from '../../../Common/topologies/MainBody';
 import argu from '../../ontology/argu';
 

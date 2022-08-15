@@ -7,8 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { footerTopology } from '../../topologies/Footer';
+import { cardMainTopology, footerTopology } from '../../topologies';
 
 const ImageObjectCardMain: FC = () => {
   const [ariaLabel] = useStrings([schema.description, schema.caption]);

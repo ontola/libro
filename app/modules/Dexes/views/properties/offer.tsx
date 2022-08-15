@@ -11,9 +11,11 @@ import React from 'react';
 
 import Button from '../../../Common/components/Button';
 import { namePredicates } from '../../../Common/lib/predicates';
-import { cardTopology } from '../../../Common/topologies/Card';
-import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology, 
+} from '../../../Common/topologies';
 import dexes from '../../ontology/dexes';
 
 const Offer: FC<PropertyProps> = ({

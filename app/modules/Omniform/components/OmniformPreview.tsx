@@ -12,9 +12,9 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { containerTopology } from '../../Common/topologies';
 import { LibroTheme } from '../../Kernel/lib/themes';
 import { formMessages } from '../../../translations/messages';
-import { containerTopology } from '../../Common/topologies/Container';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   omniformPreview: {

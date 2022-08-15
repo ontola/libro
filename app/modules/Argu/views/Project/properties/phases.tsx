@@ -16,12 +16,12 @@ import {
 import React from 'react';
 
 import { Navigate, ShowDialog } from '../../../../Common/middleware/actions';
+import { containerTopology } from '../../../../Common/topologies';
 import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../../topologies';
 import useActionStatus from '../../../../Action/hooks/useActionStatus';
 import { stepperBuilder } from '../../../../Common/components/Stepper/Stepper';
 import { NAME_PREDICATES } from '../../../../Common/lib/metaData';
-import { containerTopology } from '../../../../Common/topologies/Container';
 import LoadingInline from '../../../../Common/components/Loading';
 import { useContainerToArr } from '../../../../Kernel/hooks/useContainerToArr';
 import { entityIsLoaded } from '../../../../Kernel/lib/data';

@@ -8,7 +8,7 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
-import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import { cardMainTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
 
 const FollowUpActionName: FC<PropertyProps> = ({ linkedProp }) => (

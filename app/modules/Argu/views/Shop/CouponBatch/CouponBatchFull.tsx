@@ -12,9 +12,9 @@ import AllWithProperty from '../../../../Common/components/AllWithProperty';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import CardDivider from '../../../../Common/components/Card/CardDivider';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
+import { fullResourceTopology } from '../../../../Common/topologies';
 import { CardMain } from '../../../../Common/topologies/Card';
 import Container from '../../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
 import argu from '../../../ontology/argu';
 
 const CouponBatchFull: FC = () => (

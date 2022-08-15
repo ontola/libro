@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 import argu from '../../../ontology/argu';
 
 const ApplyLink = ({ linkedProp }: PropertyProps) => {

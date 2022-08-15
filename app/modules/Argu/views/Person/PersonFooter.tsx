@@ -8,8 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { footerTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { footerTopology } from '../../../Common/topologies/Footer';
 
 const SPACING = 4;
 

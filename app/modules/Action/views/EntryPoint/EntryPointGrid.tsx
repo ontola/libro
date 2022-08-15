@@ -15,14 +15,13 @@ import React from 'react';
 import Button from '../../../Common/components/Button';
 import GridHeader from '../../../Common/components/Grid/GridHeader';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
-import { footerTopology } from '../../../Common/topologies/Footer';
-import { gridTopology } from '../../../Common/topologies/Grid';
+import { footerTopology, gridTopology } from '../../../Common/topologies';
 import { LoadingHidden } from '../../../Common/components/Loading';
 import libro from '../../../Kernel/ontology/libro';
 import ontola from '../../../Kernel/ontology/ontola';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooter from '../../../Form/topologies/FormFooter';
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../NavBar/topologies';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 

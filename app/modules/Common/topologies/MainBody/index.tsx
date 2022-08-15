@@ -5,9 +5,7 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const mainBodyTopology = libro.topologies.mainBody;
+import { mainBodyTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => createStyles({
   paper: {

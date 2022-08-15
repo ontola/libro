@@ -3,7 +3,7 @@ import React from 'react';
 
 import form from '../../Form/ontology/form';
 import FlowForm from '../components/FlowForm';
-import { flowTopology } from '../topologies/Flow';
+import { flowTopology } from '../topologies';
 
 const FormFlow: FC = () => (
   <FlowForm />

@@ -4,13 +4,11 @@ import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import VerticalScroller from '../../components/VerticalScroller';
 import { CardFloat } from '../Card';
+import { detailsBarTopology } from '../index';
 
 import detailsBarStyles from './DetailsBarStyles';
-
-export const detailsBarTopology = libro.topologies.detail;
 
 interface DetailsBarProps {
   borderBottom?: boolean;

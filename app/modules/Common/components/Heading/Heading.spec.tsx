@@ -11,8 +11,8 @@ import HeadingContext from './HeadingContext';
 import Heading, { HeadingSize } from './index';
 
 describe('Heading', () => {
-  it('defaults to h1', () => {
-    const { getByText } = render(
+  it('defaults to h1', async () => {
+    const { getByText } = await render(
       <Heading>
         headingText1
       </Heading>,
@@ -20,8 +20,8 @@ describe('Heading', () => {
     expect(getByText('headingText1').tagName).toEqual('H1');
   });
 
-  it('renders h1', () => {
-    const { getByText } = render(
+  it('renders h1', async () => {
+    const { getByText } = await render(
       <HeadingContext>
         <Heading>
           headingText2
@@ -34,8 +34,8 @@ describe('Heading', () => {
     expect(heading1.classList.value.includes('1')).toEqual(true);
   });
 
-  it('overrides level with size-tag', () => {
-    const { getByText } = render(
+  it('overrides level with size-tag', async () => {
+    const { getByText } = await render(
       <HeadingContext>
         <HeadingContext>
           <HeadingContext>

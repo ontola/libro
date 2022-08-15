@@ -10,12 +10,12 @@ import { FC, useProperty } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
+import { gridTopology } from '../../../Common/topologies';
 import retrievePath from '../../../Common/lib/iris';
-import { gridTopology } from '../../../Common/topologies/Grid';
 import { ReadMoreButton } from '../../components';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import sales from '../../ontology/sales';
-import { showcaseTopology } from '../../topologies/Showcase';
+import { showcaseTopology } from '../../topologies';
 
 export interface CasePageShowcaseProps {
   noBackdrop?: boolean;

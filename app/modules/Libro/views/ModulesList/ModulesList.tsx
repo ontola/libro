@@ -10,8 +10,8 @@ import React from 'react';
 
 import { useTempCollection } from '../../../Collection/hooks/useTempCollection';
 import app from '../../../Common/ontology/app';
+import { gridTopology } from '../../../Common/topologies';
 import Container from '../../../Common/topologies/Container';
-import { gridTopology } from '../../../Common/topologies/Grid';
 import { modulesKey } from '../../../Kernel/lib/settings';
 import libro from '../../../Kernel/ontology/libro';
 

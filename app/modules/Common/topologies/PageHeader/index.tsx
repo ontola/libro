@@ -7,18 +7,17 @@ import {
   BreakPoints,
   LibroTheme,
   Margin,
-  Size,
+  Size, 
 } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import Container from '../Container';
+import { pageHeaderTopology } from '../index';
 
 export { default as PageHeaderImage } from './PageHeaderImage';
 export { default as PageHeaderImageAndTextWrapper } from './PageHeaderImageAndTextWrapper';
 export { default as PageHeaderMenuItems } from './PageHeaderMenuItems';
 export { default as PageHeaderText } from './PageHeaderText';
 
-export const pageHeaderTopology = libro.topologies.pageHeader;
 const defaultPercentage = 50;
 
 interface PageHeaderProps {

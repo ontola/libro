@@ -1,7 +1,5 @@
 import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
-
-export const omniformSupplementBarTopology = ontola.ns('omniformSupplementBar');
+import { omniformSupplementBarTopology } from '../index';
 
 const OmniformSupplementBar = createBasicTopologyProvider(omniformSupplementBarTopology);
 

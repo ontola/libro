@@ -12,7 +12,7 @@ import React from 'react';
 import { parentProps } from '../../ontology/app';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { namePredicates } from '../../lib/predicates';
-import { parentTopology } from '../../topologies/BreadcrumbsBar';
+import { parentTopology } from '../../topologies';
 
 interface ThingParent {
   first?: boolean;

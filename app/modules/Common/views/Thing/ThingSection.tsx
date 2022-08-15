@@ -6,9 +6,8 @@ import React from 'react';
 
 import { useHighlight } from '../../components/HighlightProvider/HighlightProvider';
 import CardContent from '../../components/Card/CardContent';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardRowTopology, listTopology } from '../../topologies';
 import HoverBox from '../../topologies/HoverBox';
-import { listTopology } from '../../topologies/List';
 
 const ThingHoverBoxHidden = (): JSX.Element => (
   <Property label={schema.text} />

@@ -13,8 +13,7 @@ import React from 'react';
 
 import HeaderButton from '../../../../Common/components/Button/HeaderButton';
 import { normalizeFontAwesomeIRI } from '../../../../Common/lib/iris';
-import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
-import { containerFloatTopology } from '../../../../Common/topologies/Container/ContainerFloat';
+import { cardFloatTopology, containerFloatTopology } from '../../../../Common/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { Trigger } from '../../../../Menu/components/DropdownMenu/TriggerButton';
 import Menu from '../../../../Menu/topologies/Menu';

@@ -15,7 +15,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { footerMessages, imageAltMessages } from '../../../../translations/messages';
 import argu from '../../../Argu/ontology/argu';
-import { footerTopology } from '../../topologies/Footer';
+import { footerTopology } from '../../topologies';
 
 const STACKED_GRID_GAP = 5;
 

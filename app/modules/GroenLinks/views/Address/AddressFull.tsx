@@ -9,8 +9,7 @@ import {
 import React from 'react';
 
 import { HideDialog, Navigate } from '../../../Common/middleware/actions';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { alertDialogTopology, fullResourceTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 

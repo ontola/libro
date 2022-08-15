@@ -6,7 +6,7 @@ import { Module } from '../Module';
 import { appContext } from '../modules/Kernel/components/AppContext/appContext';
 import { WebsiteCtx } from '../modules/Kernel/components/WebsiteContext/websiteContext';
 import WebsiteContextProvider from '../modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
-import register from '../views';
+import register from '../register';
 import { WebManifest } from '../modules/Kernel/components/AppContext/WebManifest';
 
 import IndexContainer from './IndexContainer';

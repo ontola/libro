@@ -17,7 +17,7 @@ import { NavLink } from 'react-router-dom';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import retrievePath from '../../../Common/lib/iris';
 import sales from '../../ontology/sales';
-import { showcaseTopology } from '../../topologies/Showcase';
+import { showcaseTopology } from '../../topologies';
 
 const CONAINER_SPACING = 20;
 

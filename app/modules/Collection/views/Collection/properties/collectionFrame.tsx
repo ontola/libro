@@ -3,12 +3,15 @@ import { FC, register } from 'link-redux';
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import Container, { LargeContainer, containerTopology } from '../../../../Common/topologies/Container';
-import { alertDialogTopology } from '../../../../Common/topologies/Dialog';
-import { gridTopology } from '../../../../Common/topologies/Grid';
-import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
-import { pageTopology } from '../../../../Common/topologies/Page';
-import { sideBarTopology } from '../../../../Common/topologies/SideBar';
+import {
+  alertDialogTopology,
+  containerTopology,
+  gridTopology,
+  mainBodyTopology,
+  pageTopology,
+  sideBarTopology,
+} from '../../../../Common/topologies';
+import Container, { LargeContainer } from '../../../../Common/topologies/Container';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import CollectionFrame from '../../../components/CollectionFrame';

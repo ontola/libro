@@ -4,8 +4,8 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
+import { containerTopology } from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import teamGL from '../../ontology/teamGL';
 

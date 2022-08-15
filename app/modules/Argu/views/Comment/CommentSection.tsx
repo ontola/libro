@@ -10,10 +10,13 @@ import {
 import { SubjectProp } from 'link-redux/dist-types/types';
 import React from 'react';
 
-import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
-import CardMicroRow, { cardMicroRowTopology } from '../../../Common/topologies/Card/CardMicroRow';
-import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
-import { listTopology } from '../../../Common/topologies/List';
+import {
+  cardAppendixTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  listTopology,
+} from '../../../Common/topologies';
+import CardMicroRow from '../../../Common/topologies/Card/CardMicroRow';
 import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
 import { entityIsLoaded } from '../../../Kernel/lib/data';
 import argu from '../../ontology/argu';

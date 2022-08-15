@@ -8,9 +8,9 @@ import {
 import React from 'react';
 
 import { ShowDialog } from '../../../Common/middleware/actions';
+import { listTopology } from '../../../Common/topologies';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import HoverBox from '../../../Common/topologies/HoverBox';
-import { listTopology } from '../../../Common/topologies/List';
 import teamGL from '../../ontology/teamGL';
 
 const EventList: FC = ({

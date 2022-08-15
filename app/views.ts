@@ -3,9 +3,7 @@
  * Please properly include each file when access to the code is needed.
  */
 import { ComponentRegistration } from 'link-lib';
-import { LinkReduxLRSType } from 'link-redux';
 
-import { componentRegistrations } from './components';
 import { Module, ModuleType } from './Module';
 
 export function getViews(modules: Module[]): Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>> {
@@ -23,6 +21,3 @@ export function getViews(modules: Module[]): Array<ComponentRegistration<any> | 
   ];
 }
 
-export default function register(lrs: LinkReduxLRSType, modules: Module[]): void {
-  lrs.registerAll(...getViews(modules), ...componentRegistrations());
-}

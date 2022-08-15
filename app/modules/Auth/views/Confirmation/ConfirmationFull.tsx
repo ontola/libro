@@ -2,9 +2,9 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import { fullResourceTopology } from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
 import Container from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Kernel/ontology/ontola';
 
 const ConfirmationFull = () => (

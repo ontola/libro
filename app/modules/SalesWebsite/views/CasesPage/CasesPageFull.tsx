@@ -11,10 +11,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
+import { fullResourceTopology } from '../../../Common/topologies';
 import Container from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import Grid from '../../../Common/topologies/Grid';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { FilterableArticleCollection } from '../../components/FilterableArticleCollection';
 import sales from '../../ontology/sales';
 

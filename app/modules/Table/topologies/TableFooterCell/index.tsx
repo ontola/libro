@@ -3,9 +3,8 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
+import { tableFooterCellTopology } from '../index';
 
-export const tableFooterCellTopology = ontola.ns('tableFooterCell');
 export const tableFooterCellCID = 'CID-TableFooterCell';
 
 interface TableFooterCellProps {

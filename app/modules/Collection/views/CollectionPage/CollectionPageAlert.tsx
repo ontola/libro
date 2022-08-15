@@ -1,6 +1,6 @@
 import { register } from 'link-redux';
 
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { alertDialogTopology } from '../../../Common/topologies';
 
 import getCollectionPage from './getCollectionPage';
 

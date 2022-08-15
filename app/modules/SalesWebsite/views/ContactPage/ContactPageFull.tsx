@@ -18,10 +18,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { fullResourceTopology } from '../../../Common/topologies';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import argu from '../../../Argu/ontology/argu';
 import Container from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { Propositions } from '../../components/Propositions';
 import sales from '../../ontology/sales';
 

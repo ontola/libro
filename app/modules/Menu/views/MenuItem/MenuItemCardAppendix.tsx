@@ -10,8 +10,8 @@ import React from 'react';
 import CardContent from '../../../Common/components/Card/CardContent';
 import { IsActiveCheck } from '../../../Common/components/Link';
 import UnorderedList from '../../../Common/components/UnorderedList';
+import { cardAppendixTopology } from '../../../Common/topologies';
 import { CardRow } from '../../../Common/topologies/Card';
-import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
 import ontola from '../../../Kernel/ontology/ontola';
 
 import { MenuTypes } from './types';

@@ -9,8 +9,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { actionsBarTopology } from '../../../../Action/topologies/ActionsBar';
-import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
+import { actionsBarTopology } from '../../../../Action/topologies';
+import { cardFloatTopology } from '../../../../Common/topologies';
 import LinkLoader from '../../../../Kernel/components/LinkLoader';
 import { useContainerToArr } from '../../../../Kernel/hooks/useContainerToArr';
 import VoteButton from '../../../components/VoteButton/VoteButton';

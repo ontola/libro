@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { mainBodyTopology } from '../../Common/topologies/MainBody';
+import { mainBodyTopology } from '../../Common/topologies';
 
 import { ActionProps, useDoneHandler } from './helpers';
 

@@ -6,11 +6,9 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
+import { hoverBoxTopology } from '../index';
 
 import { HoverBoxTrigger } from './HoverBoxTrigger';
-
-export const hoverBoxTopology = libro.topologies.hoverBox;
 
 export interface HoverBoxProps {
   /** Only show when hovering over the trigger / children */

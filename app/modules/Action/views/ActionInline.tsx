@@ -11,13 +11,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { listTopology } from '../../Common/topologies';
 import { LibroTheme } from '../../Kernel/lib/themes';
 import { ButtonVariant } from '../../Common/components/Button';
 import { bestType } from '../../Common/lib/data';
-import { listTopology } from '../../Common/topologies/List';
 import teamGL from '../../GroenLinks/ontology/teamGL';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
-import { actionsBarTopology } from '../topologies/ActionsBar';
+import { actionsBarTopology } from '../topologies';
 
 import { CardListOnClick } from './helpers';
 

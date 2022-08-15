@@ -9,9 +9,8 @@ import {
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
+import { cardAppendixTopology, pageTopology } from '../../../../Common/topologies';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
-import { pageTopology } from '../../../../Common/topologies/Page';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { CollectionTypes } from '../types';
 

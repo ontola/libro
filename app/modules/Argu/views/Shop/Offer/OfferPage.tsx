@@ -11,8 +11,8 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../../../Common/lib/iris';
+import { pageTopology } from '../../../../Common/topologies';
 import FullResource from '../../../../Common/topologies/FullResource';
-import { pageTopology } from '../../../../Common/topologies/Page';
 
 const OfferPage: FC = ({
   subject,

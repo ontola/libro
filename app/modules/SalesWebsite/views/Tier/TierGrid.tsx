@@ -21,13 +21,13 @@ import {
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { gridTopology } from '../../../Common/topologies';
 import {
   BreakPoints,
   LibroTheme,
   Margin,
 } from '../../../Kernel/lib/themes';
 import { salesMessages } from '../../../../translations/messages';
-import { gridTopology } from '../../../Common/topologies/Grid';
 import { CallToActionButton } from '../../components';
 import { PricingInterval } from '../../lib/PricingInterval';
 import sales from '../../ontology/sales';

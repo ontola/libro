@@ -6,11 +6,11 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
+import { detailsBarTopology } from '../../../Common/topologies';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { phaseMessages } from '../../../../translations/messages';
 import { CreateStepOnClick } from '../../../Common/components/Stepper/Stepper';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
-import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
 import { LoadingHidden } from '../../../Common/components/Loading';
 import ontola from '../../../Kernel/ontology/ontola';
 import argu from '../../ontology/argu';

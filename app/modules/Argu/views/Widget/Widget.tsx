@@ -9,9 +9,9 @@ import React from 'react';
 import { handleErrorStatuses } from '../../../Common/components/Error';
 import GridItem from '../../../Common/components/Grid/GridItem';
 import { tryParseInt } from '../../../Common/lib/numbers';
+import { gridTopology } from '../../../Common/topologies';
 import Container from '../../../Common/topologies/Container';
 import FullResource from '../../../Common/topologies/FullResource';
-import { gridTopology } from '../../../Common/topologies/Grid';
 import libro from '../../../Kernel/ontology/libro';
 import ontola from '../../../Kernel/ontology/ontola';
 

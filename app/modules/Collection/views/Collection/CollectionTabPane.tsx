@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { tabPaneTopology } from '../../../Common/topologies/TabPane';
+import { tabPaneTopology } from '../../../Common/topologies';
 import CollectionProvider from '../../components/CollectionProvider';
 
 import { CollectionTypes } from './types';

@@ -11,8 +11,8 @@ import FontAwesome from 'react-fontawesome';
 import { useCollectionOptions } from '../../../Collection/components/CollectionContext';
 import { SortProps } from '../../../Collection/hooks/useSorting';
 import { titleProps } from '../../../Common/ontology/app';
+import { tableHeaderRowTopology } from '../../topologies';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
-import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
 interface ThingTableHeaderRowProps {
   name: SomeTerm;

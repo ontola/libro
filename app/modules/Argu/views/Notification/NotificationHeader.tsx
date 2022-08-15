@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../NavBar/topologies';
 import argu from '../../ontology/argu';
 
 const NotificationHeader = () => (

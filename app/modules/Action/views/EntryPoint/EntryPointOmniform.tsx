@@ -7,7 +7,7 @@ import Card from '../../../Common/topologies/Card';
 import { LoadingGridContent } from '../../../Common/components/Loading';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import { FormTheme } from '../../../Form/components/Form/FormContext';
-import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';
+import { omniformFieldsTopology } from '../../../Omniform/topologies';
 
 import useEntryPointFormProps, { EntryPointProps } from './useEntryPointFormProps';
 

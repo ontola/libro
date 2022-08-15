@@ -2,8 +2,7 @@ import * as schema from '@ontologies/schema';
 import { register, useProperty } from 'link-redux';
 import React from 'react';
 
-import { cardMicroRowTopology } from '../../../Common/topologies/Card/CardMicroRow';
-import { listTopology } from '../../../Common/topologies/List';
+import { cardMicroRowTopology, listTopology } from '../../../Common/topologies';
 import argu from '../../ontology/argu';
 
 const PersonSection = () => {

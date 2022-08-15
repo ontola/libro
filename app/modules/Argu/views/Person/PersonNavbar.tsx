@@ -17,7 +17,7 @@ import { NAME_PREDICATES } from '../../../Common/lib/metaData';
 import app from '../../../Common/ontology/app';
 import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkIcon, NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../NavBar/topologies';
 import argu from '../../ontology/argu';
 
 export interface PersonNavbarProps {

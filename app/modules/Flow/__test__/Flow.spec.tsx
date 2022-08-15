@@ -20,7 +20,8 @@ import {
   mockMedia,
   screenWidth,
 } from '../../../../tests/test-utils-media';
-import Flow from '../../../modules/Flow/topologies/Flow';
+import dependencies from '../dependencies';
+import Flow from '../topologies/Flow';
 import ex from '../../../ontology/ex';
 import ll from '../../Kernel/ontology/ll';
 import form from '../../Form/ontology/form';
@@ -85,6 +86,7 @@ const renderFlowWithInputs = (...inputs: Array<Record<string, unknown>>) => rend
     />
   </Flow>
 ), {
+  modules: dependencies,
   resources: flow(inputs),
 });
 
@@ -108,10 +110,6 @@ describe('Flows', () => {
     mockMedia(screenWidth());
     jest.runOnlyPendingTimers();
     jest.useRealTimers();
-  });
-
-  it('should render flow and input element', async () => {
-    expect(true).toBeTruthy();
   });
 
   it('should render flow and input element', async () => {
@@ -236,6 +234,10 @@ describe('Flows', () => {
 
     await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
     await userEvent.click(goBackButton, { advanceTimers: jest.advanceTimersByTime });
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
 
     expect(inputElement2).toBeVisible();
   });

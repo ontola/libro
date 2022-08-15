@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 import { notificationMessages } from '../../../../../translations/messages';
 import { tryParseInt } from '../../../../Common/lib/numbers';
 import NavbarLinkCount from '../../../../NavBar/components/NavbarLink/NavbarLinkCount';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../../NavBar/topologies';
 import argu from '../../../ontology/argu';
 
 interface UnreadCountProps {

@@ -6,9 +6,7 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
-
-export const tableRowTopology = ontola.ns('tableRow');
+import { tableRowTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   tableRowClickable: {

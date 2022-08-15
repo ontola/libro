@@ -11,25 +11,27 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import {
+  cardFloatTopology,
+  cardMainTopology,
+  cardTopology,
+  containerFloatTopology,
+  containerTopology,
+  contentDetailsTopology,
+  detailsBarTopology,
+  footerTopology,
+  gridTopology,
+  listTopology,
+  mainBodyTopology,
+  pageTopology,
+} from '../../../Common/topologies';
+import { flowTopology } from '../../../Flow/topologies';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { allTopologiesExcept } from '../../../../topologies';
 import { ButtonVariant } from '../../../Common/components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
-import { cardTopology } from '../../../Common/topologies/Card';
-import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
-import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
-import { containerTopology } from '../../../Common/topologies/Container';
-import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
-import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
-import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
-import { footerTopology } from '../../../Common/topologies/Footer';
-import { gridTopology } from '../../../Common/topologies/Grid';
-import { listTopology } from '../../../Common/topologies/List';
-import { mainBodyTopology } from '../../../Common/topologies/MainBody';
-import { pageTopology } from '../../../Common/topologies/Page';
-import { flowTopology } from '../../../Flow/topologies/Flow';
-import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';
+import { omniformFieldsTopology } from '../../../Omniform/topologies';
 
 import useEntryPointFormProps from './useEntryPointFormProps';
 

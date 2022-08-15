@@ -13,7 +13,7 @@ import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { allTopologiesExcept } from '../../../../topologies';
 import Container from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';
-import { showcaseTopology } from '../../topologies/Showcase';
+import { showcaseTopology } from '../../topologies';
 
 interface StyleProps {
   color: string;

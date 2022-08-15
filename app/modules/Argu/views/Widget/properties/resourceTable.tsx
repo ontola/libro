@@ -11,7 +11,7 @@ import React from 'react';
 
 import { namePredicates } from '../../../../Common/lib/predicates';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 import argu from '../../../ontology/argu';
 
 const ResourceTable: FC<PropertyProps> = () => {

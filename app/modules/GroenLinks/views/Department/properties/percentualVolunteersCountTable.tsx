@@ -3,8 +3,8 @@ import { PropertyProps, register } from 'link-redux';
 import React from 'react';
 
 import { tryParseFloat } from '../../../../Common/lib/numbers';
+import { tableRowTopology } from '../../../../Table/topologies';
 import TableCell from '../../../../Table/topologies/TableCell';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 import teamGL from '../../../ontology/teamGL';
 
 import TrendIndicator from './trendIndicator';

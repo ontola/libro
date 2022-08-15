@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { bestType } from '../../../lib/data';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 
 const TypeDetail = () => {
   const type = useGlobalIds(rdfx.type);

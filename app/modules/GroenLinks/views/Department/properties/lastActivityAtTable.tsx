@@ -4,8 +4,8 @@ import React from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
 import RelativeDate from '../../../../Common/components/RelativeDate';
+import { tableRowTopology } from '../../../../Table/topologies';
 import TableCell from '../../../../Table/topologies/TableCell';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
 import teamGL from '../../../ontology/teamGL';
 
 interface LastActivityAtTableRowProps {

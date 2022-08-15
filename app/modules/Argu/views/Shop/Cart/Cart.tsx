@@ -8,8 +8,7 @@ import { allTopologiesExcept } from '../../../../../topologies';
 import Collection from '../../../../Collection/components';
 import Progress from '../../../../Common/components/Progress';
 import { tryParseInt } from '../../../../Common/lib/numbers';
-import { parentTopology } from '../../../../Common/topologies/BreadcrumbsBar';
-import { containerTopology } from '../../../../Common/topologies/Container';
+import { containerTopology, parentTopology } from '../../../../Common/topologies';
 import argu from '../../../ontology/argu';
 
 import { useCartProgressFormatter } from './helpers';

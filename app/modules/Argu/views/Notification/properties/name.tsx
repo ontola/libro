@@ -7,11 +7,13 @@ import {
 import React from 'react';
 
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
-import { cardTopology } from '../../../../Common/topologies/Card';
-import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
-import { containerTopology } from '../../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../../Common/topologies';
 import argu from '../../../ontology/argu';
 
 const Creator: FC<PropertyProps> = ({ linkedProp }) => (

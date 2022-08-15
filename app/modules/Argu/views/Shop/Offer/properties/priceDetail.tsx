@@ -10,7 +10,7 @@ import { FormattedNumber } from 'react-intl';
 
 import Detail, { DetailVariant } from '../../../../../Common/components/Detail';
 import { tryParseInt } from '../../../../../Common/lib/numbers';
-import { detailsBarTopology } from '../../../../../Common/topologies/DetailsBar';
+import { detailsBarTopology } from '../../../../../Common/topologies';
 import argu from '../../../../ontology/argu';
 
 interface PriceProps {

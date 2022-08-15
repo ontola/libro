@@ -16,9 +16,9 @@ import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HomepageError from '../../components/Error/HomepageError';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import { pageTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
-import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 
 const WebSitePage = () => {

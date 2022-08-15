@@ -9,7 +9,7 @@ import FontAwesome from 'react-fontawesome';
 import { ButtonVariant } from '../../../Common/components/Button';
 import ErrorButtonWithFeedback from '../../../Common/components/Error/ErrorButtonWithFeedback';
 import OverlayContainer from '../../../Common/components/OverlayContainer';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { alertDialogTopology } from '../../../Common/topologies';
 import LinkLoader from '../../../Kernel/components/LinkLoader';
 import { MapVariant, NavigateCallback } from '../../components/ControlledMap';
 import { GeometryType } from '../../lib/geometry';

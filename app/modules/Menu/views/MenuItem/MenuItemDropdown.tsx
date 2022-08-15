@@ -12,9 +12,11 @@ import {
 import React, { MouseEventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
-import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
-import { contentDetailsTopology } from '../../../Common/topologies/ContentDetails';
+import {
+  cardFloatTopology,
+  containerFloatTopology,
+  contentDetailsTopology,
+} from '../../../Common/topologies';
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import ontola from '../../../Kernel/ontology/ontola';
 import TriggerButton, { Trigger } from '../../components/DropdownMenu/TriggerButton';

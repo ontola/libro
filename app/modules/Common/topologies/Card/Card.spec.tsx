@@ -15,8 +15,8 @@ import CardRow from './CardRow';
 import Card from './index';
 
 describe('Card component', () => {
-  it('Card should render', () => {
-    const { getByText } = render(
+  it('Card should render', async () => {
+    const { getByText } = await render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <Card>
@@ -28,8 +28,8 @@ describe('Card component', () => {
     expect(getByText('Content')).toBeVisible();
   });
 
-  it('CardActions should render', () => {
-    const { getByText } = render(
+  it('CardActions should render', async () => {
+    const { getByText } = await render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <CardActions>
@@ -42,8 +42,8 @@ describe('Card component', () => {
     expect(getByText('Content')).toBeVisible();
   });
 
-  it('CardContent should render', () => {
-    const { getByText } = render(
+  it('CardContent should render', async () => {
+    const { getByText } = await render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <CardContent>
@@ -56,8 +56,8 @@ describe('Card component', () => {
     expect(getByText('Content')).toBeVisible();
   });
 
-  it('CardRow should render', () => {
-    const { getByText } = render(
+  it('CardRow should render', async () => {
+    const { getByText } = await render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={themes.common({})}>
           <CardRow backdrop>

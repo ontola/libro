@@ -3,10 +3,9 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { inlineTopology } from '../../../Common/topologies';
-import { attributeListTopology } from '../../../Common/topologies/AttributeList';
+import { attributeListTopology, inlineTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
-import { tableCellTopology } from '../../../Table/topologies/TableCell';
+import { tableCellTopology } from '../../../Table/topologies';
 
 const FormOptionInline = (): JSX.Element => (
   <Property label={[schema.name, rdfs.label]} />

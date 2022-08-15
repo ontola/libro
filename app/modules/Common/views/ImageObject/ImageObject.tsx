@@ -6,15 +6,16 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import {
+  formFooterTopology,
+  selectTopology,
+  selectedValueTopology,
+} from '../../../Form/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
-import { formFooterTopology } from '../../../Form/topologies/FormFooter';
-import { selectTopology } from '../../../Form/topologies/Select';
-import { selectedValueTopology } from '../../../Form/topologies/SelectedValue';
-import { menuTopology } from '../../../Menu/topologies/Menu';
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
-import { tableCellTopology } from '../../../Table/topologies/TableCell';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { pageHeaderTopology } from '../../topologies/PageHeader';
+import { menuTopology } from '../../../Menu/topologies';
+import { navbarTopology } from '../../../NavBar/topologies';
+import { tableCellTopology } from '../../../Table/topologies';
+import { detailsBarTopology, pageHeaderTopology } from '../../topologies';
 
 interface ImageObjectProps {
   /** Hover text to display. */

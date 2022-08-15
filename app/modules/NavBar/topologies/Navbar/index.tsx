@@ -1,24 +1,22 @@
 import {
   AppBar,
   Container,
-  Toolbar,
+  Toolbar, 
 } from '@mui/material';
 import {
   createStyles,
   makeStyles,
-  useTheme,
+  useTheme, 
 } from '@mui/styles';
 import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { LibroTheme } from '../../../Kernel/lib/themes';
 import { landmarkMessages } from '../../../../translations/messages';
+import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const navbarTopology = libro.topologies.navbar;
+import { navbarTopology } from '../index';
 
 interface NavbarProps {
   classes?: Partial<ReturnType<typeof useStyles>>;

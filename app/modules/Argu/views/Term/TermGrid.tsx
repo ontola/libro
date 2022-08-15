@@ -12,9 +12,9 @@ import React from 'react';
 import CardContent from '../../../Common/components/Card/CardContent';
 import LDLink from '../../../Common/components/LDLink';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
+import { gridTopology } from '../../../Common/topologies';
 import CardFixed from '../../../Common/topologies/Card/CardFixed';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
-import { gridTopology } from '../../../Common/topologies/Grid';
 import ontola from '../../../Kernel/ontology/ontola';
 import argu from '../../ontology/argu';
 

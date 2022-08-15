@@ -26,29 +26,29 @@ describe('HoverBox', () => {
     mockMedia();
   });
 
-  it('should show the children', () => {
-    const { getAllByTestId } = renderComp(props);
+  it('should show the children', async () => {
+    const { getAllByTestId } = await renderComp(props);
     expect(getAllByTestId('always')[0]).toBeVisible();
   });
 
-  it('should not show the hidden children', () => {
+  it('should not show the hidden children', async () => {
     mockMedia(hoverCapable(true));
-    const { queryByTestId } = renderComp(props);
+    const { queryByTestId } = await renderComp(props);
     expect(queryByTestId('sometimes')).not.toBeInTheDocument();
   });
 
   describe('when focused', () => {
-    it('should show the children', () => {
+    it('should show the children', async () => {
       mockMedia(hoverCapable(true));
-      const { getByTestId, getAllByTestId } = renderComp(props);
+      const { getByTestId, getAllByTestId } = await renderComp(props);
       getByTestId('HoverBox-trigger').focus();
 
       expect(getAllByTestId('always')[0]).toBeVisible();
     });
 
-    it('should show the hidden children', () => {
+    it('should show the hidden children', async () => {
       mockMedia(hoverCapable(true));
-      const { getByTestId } = renderComp(props);
+      const { getByTestId } = await renderComp(props);
       getByTestId('HoverBox-trigger').focus();
 
       expect(getByTestId('sometimes')).toBeVisible();
@@ -58,31 +58,31 @@ describe('HoverBox', () => {
   describe('when hovering', () => {
     it('should show the children', async () => {
       mockMedia(hoverCapable(true));
-      const { getAllByTestId, getByTestId } = renderComp(props);
+      const { getAllByTestId, getByTestId } = await renderComp(props);
       await userEvent.hover(getByTestId('HoverBox-trigger'));
       expect(getAllByTestId('always')[0]).toBeVisible();
     });
 
     it('should show the hidden children', async () => {
       mockMedia(hoverCapable(true));
-      const { getByTestId } = renderComp(props);
+      const { getByTestId } = await renderComp(props);
       await userEvent.hover(getByTestId('HoverBox-trigger'));
       expect(getByTestId('sometimes')).toBeVisible();
     });
   });
 
   describe('when losing focus', () => {
-    it('should show the children', () => {
+    it('should show the children', async () => {
       mockMedia(hoverCapable(true));
-      const { getByTestId, getAllByTestId } = renderComp(props);
+      const { getByTestId, getAllByTestId } = await renderComp(props);
       getByTestId('HoverBox-trigger').focus();
 
       expect(getAllByTestId('always')[0]).toBeVisible();
     });
 
-    it('should show the hidden children', () => {
+    it('should show the hidden children', async () => {
       mockMedia(hoverCapable(true));
-      const { getByTestId } = renderComp(props);
+      const { getByTestId } = await renderComp(props);
       getByTestId('HoverBox-trigger').focus();
 
       expect(getByTestId('sometimes')).toBeVisible();
@@ -90,9 +90,9 @@ describe('HoverBox', () => {
   });
 
   describe('when losing focus', () => {
-    it('should show the children', () => {
+    it('should show the children', async () => {
       mockMedia(hoverCapable(true));
-      const { getAllByTestId, getByTestId } = renderComp(props);
+      const { getAllByTestId, getByTestId } = await renderComp(props);
       getByTestId('HoverBox-trigger').focus();
       expect(getAllByTestId('always')[0]).toBeVisible();
 
@@ -100,9 +100,9 @@ describe('HoverBox', () => {
       expect(getAllByTestId('always')[0]).toBeVisible();
     });
 
-    it('should show the hidden children', () => {
+    it('should show the hidden children', async () => {
       mockMedia(hoverCapable(true));
-      const { queryByTestId, getByTestId } = renderComp(props);
+      const { queryByTestId, getByTestId } = await renderComp(props);
       getByTestId('HoverBox-trigger').focus();
       expect(getByTestId('sometimes')).toBeVisible();
 
@@ -114,7 +114,7 @@ describe('HoverBox', () => {
   describe('when hover exited', () => {
     it('should show the children', async () => {
       mockMedia(hoverCapable(true));
-      const { getAllByTestId, getByTestId } = renderComp(props);
+      const { getAllByTestId, getByTestId } = await renderComp(props);
 
       await userEvent.unhover(getByTestId('HoverBox-trigger'));
 
@@ -123,7 +123,7 @@ describe('HoverBox', () => {
 
     it('should show the hidden children', async () => {
       mockMedia(hoverCapable(true));
-      const { getByTestId, queryByTestId } = renderComp(props);
+      const { getByTestId, queryByTestId } = await renderComp(props);
 
       await userEvent.unhover(getByTestId('HoverBox-trigger'));
 
@@ -132,9 +132,9 @@ describe('HoverBox', () => {
   });
 
   describe('non hover capable device', () => {
-    it('should show the hidden children', () => {
+    it('should show the hidden children', async () => {
       mockMedia(hoverCapable(false));
-      const { getByTestId, queryByTestId } = renderComp(props);
+      const { getByTestId, queryByTestId } = await renderComp(props);
       const triggerElement = getByTestId('HoverBox-trigger');
 
       expect(queryByTestId('sometimes')).not.toBeInTheDocument();

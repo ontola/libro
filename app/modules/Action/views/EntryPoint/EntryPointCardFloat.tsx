@@ -10,8 +10,7 @@ import React from 'react';
 
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
-import { cardFloatTopology } from '../../../Common/topologies/Card/CardFloat';
-import { containerFloatTopology } from '../../../Common/topologies/Container/ContainerFloat';
+import { cardFloatTopology, containerFloatTopology } from '../../../Common/topologies';
 
 interface EntryPointCardFloatProps extends ButtonWithFeedbackProps {
   count: number;

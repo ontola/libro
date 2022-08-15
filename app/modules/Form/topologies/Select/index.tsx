@@ -3,9 +3,7 @@ import { useTopologyProvider } from 'link-redux';
 import React, { MouseEventHandler, Ref } from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import form from '../../ontology/form';
-
-export const selectTopology = form.topologies.select;
+import { selectTopology } from '../index';
 
 export const useSelectItemStyles = makeStyles({
   image: {

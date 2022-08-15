@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { tableRowTopology } from '../../topologies/TableRow';
+import { tableRowTopology } from '../../topologies';
 
 const ThingTableRow: FC = () => (
   <Property label={[schema.name, as.name]} />

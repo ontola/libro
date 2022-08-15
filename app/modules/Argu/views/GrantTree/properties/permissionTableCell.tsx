@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 
 import { permissionMessages } from '../../../../../translations/messages';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 import argu from '../../../ontology/argu';
 
 const PermissionTableCell: FC<PropertyProps> = ({

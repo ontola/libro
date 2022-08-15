@@ -7,11 +7,13 @@ import {
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
+import {
+  cardAppendixTopology,
+  pageTopology,
+  tabPaneTopology, 
+} from '../../../../Common/topologies';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
 import Container from '../../../../Common/topologies/Container';
-import { pageTopology } from '../../../../Common/topologies/Page';
-import { tabPaneTopology } from '../../../../Common/topologies/TabPane';
 import ArgumentColumns from '../../../components/Arguments/ArgumentColumns';
 import argu from '../../../ontology/argu';
 

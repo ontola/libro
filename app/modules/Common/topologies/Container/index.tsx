@@ -5,9 +5,7 @@ import React from 'react';
 
 import { LibroTheme, Size } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const containerTopology = libro.topologies.container;
+import { containerTopology } from '../index';
 
 export interface ContainerProps {
   className?: string;

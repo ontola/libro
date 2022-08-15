@@ -9,7 +9,7 @@ import React from 'react';
 import argu from '../../../../Argu/ontology/argu';
 import Heading, { HeadingSize, HeadingVariant } from '../../../../Common/components/Heading';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 
 const MenuItemLabelTableRow: FC<PropertyProps> = ({ linkedProp }) => (
   <Heading

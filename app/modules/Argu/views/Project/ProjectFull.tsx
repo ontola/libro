@@ -20,7 +20,7 @@ import CardDivider from '../../../Common/components/Card/CardDivider';
 import { PageHeader } from '../../../Common/components/PageHeader';
 import SubSection from '../../../Common/components/SubSection';
 import { NAME_PREDICATES, TEXT_PREDICATES } from '../../../Common/lib/metaData';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { fullResourceTopology } from '../../../Common/topologies';
 import MainBody from '../../../Common/topologies/MainBody';
 import { LoadingHidden } from '../../../Common/components/Loading';
 import ontola from '../../../Kernel/ontology/ontola';

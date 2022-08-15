@@ -1,7 +1,7 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';
+import { omniformFieldsTopology } from '../../../Omniform/topologies';
 import form from '../../ontology/form';
 
 const FormPageOmniform = () => (

@@ -4,7 +4,7 @@ import React from 'react';
 
 import Link from '../../../../Common/components/Link';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 
 const RedirectUrlTable = ({ linkedProp }: PropertyProps): JSX.Element | null => {
   if (!linkedProp) {
@@ -12,7 +12,7 @@ const RedirectUrlTable = ({ linkedProp }: PropertyProps): JSX.Element | null => 
   }
 
   return (
-    <Link 
+    <Link
       allowExternal={false}
       to={linkedProp.value}
     >

@@ -1,7 +1,5 @@
 import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const alertDialogTopology = libro.ns('dialog/alert');
+import { alertDialogTopology } from '../index';
 
 /**
  * Sets a dialog topology.

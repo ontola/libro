@@ -8,10 +8,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { radioGroupTopology } from '../../../../Form/topologies/RadioGroup';
-import { selectTopology } from '../../../../Form/topologies/Select';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { radioGroupTopology, selectTopology } from '../../../../Form/topologies';
+import { navbarTopology } from '../../../../NavBar/topologies';
+import { tableRowTopology } from '../../../../Table/topologies';
 import Heading, {
   HeadingProps,
   HeadingSize,
@@ -20,21 +19,23 @@ import Heading, {
 import LDLink from '../../../components/LDLink';
 import { LinkTarget } from '../../../components/Link';
 import { namePredicates } from '../../../lib/predicates';
-import { inlineTopology } from '../../../topologies';
-import { attributeListTopology } from '../../../topologies/AttributeList';
-import { parentTopology } from '../../../topologies/BreadcrumbsBar';
-import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
-import { cardRowTopology } from '../../../topologies/Card/CardRow';
-import { containerTopology } from '../../../topologies/Container';
-import { containerHeaderTopology } from '../../../topologies/Container/ContainerHeader';
-import { footerTopology } from '../../../topologies/Footer';
-import { fullResourceTopology } from '../../../topologies/FullResource';
-import { gridTopology } from '../../../topologies/Grid';
-import { hoverBoxTopology } from '../../../topologies/HoverBox';
-import { mainBodyTopology } from '../../../topologies/MainBody';
-import { pageHeaderTopology } from '../../../topologies/PageHeader';
+import {
+  attributeListTopology,
+  cardFixedTopology,
+  cardMainTopology,
+  cardRowTopology,
+  cardTopology,
+  containerHeaderTopology,
+  containerTopology,
+  footerTopology,
+  fullResourceTopology,
+  gridTopology,
+  hoverBoxTopology,
+  inlineTopology,
+  mainBodyTopology,
+  pageHeaderTopology,
+  parentTopology,
+} from '../../../topologies';
 
 interface WrapperProps {
   wrapper: React.ElementType;

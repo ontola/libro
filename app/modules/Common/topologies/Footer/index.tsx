@@ -6,12 +6,10 @@ import React from 'react';
 
 import { IndexablePalette, LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import { gridHeaderCID } from '../../components/Grid/GridHeader';
 import { headingCID } from '../../components/Heading';
 import HeadingContext from '../../components/Heading/HeadingContext';
-
-export const footerTopology = libro.topologies.footer;
+import { footerTopology } from '../index';
 
 interface FooterProps {
   legacy?: boolean;

@@ -9,10 +9,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { formFooterTopology } from '../../../Form/topologies';
 import { BreakPoints } from '../../../Kernel/lib/themes';
 import Button, { ButtonVariant } from '../../components/Button';
 import { normalizeFontAwesomeIRI } from '../../lib/iris';
-import { formFooterTopology } from '../../../Form/topologies/FormFooter';
 
 interface RDFSClassFormFooterProps {
   current?: boolean;

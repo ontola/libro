@@ -14,12 +14,13 @@ import CardContent from '../../components/Card/CardContent';
 import CollapseText from '../../components/CollapseText';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import { defaultMenus } from '../../lib/viewHelpers';
+import { pageHeaderTopology } from '../../topologies';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
 import {
   PageHeaderImageAndTextWrapper,
   PageHeaderText,
-  pageHeaderTopology,
+
 } from '../../topologies/PageHeader';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

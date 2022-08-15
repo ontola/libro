@@ -11,10 +11,10 @@ import argu from '../../../Argu/ontology/argu';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeaderWithMenu from '../../../Common/components/HeaderWithMenu';
 import LinkedDetailDate from '../../../Common/components/LinkedDetailDate';
+import { fullResourceTopology } from '../../../Common/topologies';
 import CardMain from '../../../Common/topologies/Card/CardMain';
 import Container from '../../../Common/topologies/Container';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Kernel/ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 

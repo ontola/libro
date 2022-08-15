@@ -1,8 +1,8 @@
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import { formFooterTopology } from '../../../Form/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
-import { formFooterTopology } from '../../../Form/topologies/FormFooter';
 
 import { ActorTypes } from './types';
 

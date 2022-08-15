@@ -3,8 +3,8 @@ import * as schema from '@ontologies/schema';
 import { register } from 'link-redux';
 import React from 'react';
 
+import { tableRowTopology } from '../../../topologies';
 import TableCell from '../../../topologies/TableCell';
-import { tableRowTopology } from '../../../topologies/TableRow';
 
 interface ThingPredicateTableRowProps {
   children: React.ReactNode;

@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
+import { mainBodyTopology } from '../../../../Common/topologies';
 import { MenuTypes } from '../types';
 
 const IsPartOfMain: FC<PropertyProps> = ({

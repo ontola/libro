@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableRowTopology } from '../../../../Table/topologies';
 import argu from '../../../ontology/argu';
 
 const UsagesTableCell: FC<PropertyProps> = () => {

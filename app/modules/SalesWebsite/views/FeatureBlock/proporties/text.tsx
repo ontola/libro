@@ -3,11 +3,11 @@ import {
   FC,
   PropertyProps,
   Resource,
-  register, 
+  register,
 } from 'link-redux';
 import React from 'react';
 
-import { containerTopology } from '../../../../Common/topologies/Container';
+import { containerTopology } from '../../../../Common/topologies';
 import sales from '../../../ontology/sales';
 
 const FeatureBlockText: FC<PropertyProps> = ({ linkedProp }): JSX.Element => (

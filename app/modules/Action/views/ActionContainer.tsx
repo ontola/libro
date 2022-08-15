@@ -3,11 +3,11 @@ import {
   FC,
   Resource,
   register,
-  useProperty, 
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { containerTopology } from '../../Common/topologies/Container';
+import { containerTopology } from '../../Common/topologies';
 
 import { ActionProps, useDoneHandler } from './helpers';
 

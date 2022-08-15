@@ -5,7 +5,7 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
+import { cardMainTopology } from '../index';
 
 import {
   cardClassIdentifier,
@@ -13,8 +13,6 @@ import {
   cardFixedStyles,
   cardStyles,
 } from './sharedCardStyles';
-
-export const cardMainTopology = libro.topologies.cardMain;
 
 export interface CardMainProps {
   fixed?: boolean;

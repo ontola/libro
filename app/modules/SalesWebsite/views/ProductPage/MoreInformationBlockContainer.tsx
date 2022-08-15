@@ -9,9 +9,9 @@ import * as schema from '@ontologies/schema';
 import { useProperty } from 'link-redux';
 import React from 'react';
 
+import { containerTopology } from '../../../Common/topologies';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import AllWithProperty from '../../../Common/components/AllWithProperty';
-import { containerTopology } from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

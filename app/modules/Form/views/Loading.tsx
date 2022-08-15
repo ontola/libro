@@ -7,9 +7,11 @@ import Loading, { loadingParagraphCID, loadingStyles } from '../../Common/compon
 import Spinner from '../../Common/components/Loading/Spinner';
 import { LibroTheme } from '../../Kernel/lib/themes';
 import ll from '../../Kernel/ontology/ll';
-import { formFooterTopology } from '../topologies/FormFooter';
-import { selectTopology } from '../topologies/Select';
-import { selectedValueTopology } from '../topologies/SelectedValue';
+import {
+  formFooterTopology,
+  selectTopology,
+  selectedValueTopology, 
+} from '../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   ...loadingStyles(theme),

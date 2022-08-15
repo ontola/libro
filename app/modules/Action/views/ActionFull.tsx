@@ -11,9 +11,9 @@ import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';
 import CardContent from '../../Common/components/Card/CardContent';
 import Metadata from '../../Common/components/Metadata';
+import { fullResourceTopology } from '../../Common/topologies';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
-import { fullResourceTopology } from '../../Common/topologies/FullResource';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 import { ActionProps, useDoneHandler } from './helpers';

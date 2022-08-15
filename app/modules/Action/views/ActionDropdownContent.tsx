@@ -8,7 +8,7 @@ import React from 'react';
 
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import MenuItem from '../../Menu/components/MenuItem';
-import { menuTopology } from '../../Menu/topologies/Menu';
+import { menuTopology } from '../../Menu/topologies';
 
 const ActionDropdownContent: FC = ({ subject }) => {
   const [name] = useProperty(schema.name);

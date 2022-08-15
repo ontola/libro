@@ -11,7 +11,7 @@ import React from 'react';
 
 import Link from '../../../Common/components/Link';
 import ontola from '../../../Kernel/ontology/ontola';
-import { tableCellTopology } from '../../../Table/topologies/TableCell';
+import { tableCellTopology } from '../../../Table/topologies';
 import LinkedMenuTrigger from '../../components/Menu/LinkedMenuTrigger';
 
 import { MenuTypes } from './types';

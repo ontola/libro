@@ -4,7 +4,7 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { menuTopology } from '../../../Menu/topologies/Menu';
+import { menuTopology } from '../../../Menu/topologies';
 import LDLink from '../../components/LDLink';
 
 const ThingMenu = (): JSX.Element => (

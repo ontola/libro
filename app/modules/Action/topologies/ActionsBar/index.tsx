@@ -5,9 +5,7 @@ import React from 'react';
 
 import { loadingButtonCID } from '../../../Common/components/Loading';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const actionsBarTopology = libro.topologies.actionsBar;
+import { actionsBarTopology } from '../index';
 
 interface ActionsBarProps {
   small?: boolean;

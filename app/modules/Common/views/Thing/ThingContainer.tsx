@@ -15,10 +15,10 @@ import { useHighlight } from '../../components/HighlightProvider/HighlightProvid
 import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
 
 const ThingContainer: FC = ({ subject }) => {
   const { highlightState } = useHighlight();

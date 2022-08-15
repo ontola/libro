@@ -15,7 +15,7 @@ import ResourceBoundary from '../../components/ResourceBoundary';
 import SubSection from '../../components/SubSection';
 import { contentsProps, thumbnailProps } from '../../ontology/app';
 import ontola from '../../../Kernel/ontology/ontola';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { fullResourceTopology } from '../../topologies';
 import MainBody from '../../topologies/MainBody';
 
 const ThingFull: FC = () => (

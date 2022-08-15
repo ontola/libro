@@ -4,8 +4,7 @@ import emoji from 'react-easy-emoji';
 
 import Detail from '../../../../Common/components/Detail';
 import { tryParseFloat } from '../../../../Common/lib/numbers';
-import { contentDetailsTopology } from '../../../../Common/topologies/ContentDetails';
-import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../../../Common/topologies';
 import teamGL from '../../../ontology/teamGL';
 
 const VeryActiveVolunteersRatio = ({ linkedProp }: PropertyProps) => (

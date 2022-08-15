@@ -8,11 +8,13 @@ import {
 import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../Common/topologies';
 import { CardMain } from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Kernel/ontology/ontola';
 import { UnwrappedForm } from '../../components/Form/Form';
 import form from '../../ontology/form';

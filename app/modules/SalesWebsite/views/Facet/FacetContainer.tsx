@@ -14,6 +14,7 @@ import {
 import type { LottieRefCurrentProps } from 'lottie-react';
 import React from 'react';
 
+import { containerTopology } from '../../../Common/topologies';
 import {
   BreakPoints,
   LibroTheme,
@@ -27,7 +28,6 @@ import {
 import { tryParseInt } from '../../../Common/lib/numbers';
 import { timeoutEffect } from '../../../Common/lib/timeoutEffect';
 import type { ResourceLink } from '../../../Common/lib/types';
-import { containerTopology } from '../../../Common/topologies/Container';
 import { Facet, FacetType } from '../../components/Facet';
 import sales from '../../ontology/sales';
 

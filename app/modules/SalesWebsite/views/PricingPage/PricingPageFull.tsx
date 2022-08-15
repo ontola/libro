@@ -9,14 +9,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { fullResourceTopology } from '../../../Common/topologies';
+import Container from '../../../Common/topologies/Container';
+import Grid from '../../../Common/topologies/Grid';
 import {
   BreakPoints,
   LibroTheme,
   Margin,
 } from '../../../Kernel/lib/themes';
-import Container from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
-import Grid from '../../../Common/topologies/Grid';
 import { useSeqToArr } from '../../../Kernel/hooks/useSeqToArr';
 import { IntervalSwitcher } from '../../components/IntervalSwitcher';
 import { PricingInterval } from '../../lib/PricingInterval';

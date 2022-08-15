@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { tryParseInt } from '../../../Common/lib/numbers';
-import { cardAppendixTopology } from '../../../Common/topologies/Card/CardAppendix';
+import { cardAppendixTopology } from '../../../Common/topologies';
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import ontola from '../../../Kernel/ontology/ontola';
 

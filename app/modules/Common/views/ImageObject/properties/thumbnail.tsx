@@ -5,14 +5,12 @@ import { register } from 'link-redux';
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
+import { formFooterTopology, selectedValueTopology } from '../../../../Form/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
 import FormFooterImage from '../../../../Form/components/Form/FooterImage';
-import { formFooterTopology } from '../../../../Form/topologies/FormFooter';
-import { selectedValueTopology } from '../../../../Form/topologies/SelectedValue';
 import NavbarLinkImage from '../../../../NavBar/components/NavbarLink/NavbarLinkImage';
 import Image, { ImageBaseProps, ImageProps } from '../../../components/Image';
-import { listTopology } from '../../../topologies/List';
-import { pageTopology } from '../../../topologies/Page';
+import { listTopology, pageTopology } from '../../../topologies';
 
 const style = {
   height: '100%',

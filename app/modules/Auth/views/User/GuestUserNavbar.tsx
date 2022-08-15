@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../NavBar/topologies';
 import { SignInFormLink } from '../../components/SignInForm';
 import { authMessages } from '../../lib/messages';
 

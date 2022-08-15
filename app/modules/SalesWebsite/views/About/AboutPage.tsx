@@ -9,8 +9,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { fullResourceTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import sales from '../../ontology/sales';
 
 const SECTION_BOTTOM_MARGIN = 30;

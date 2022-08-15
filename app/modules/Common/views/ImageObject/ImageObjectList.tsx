@@ -9,7 +9,7 @@ import React from 'react';
 
 import dbo from '../../ontology/dbo';
 import AttachmentPreview from '../../components/AttachmentPreview';
-import { listTopology } from '../../topologies/List';
+import { listTopology } from '../../topologies';
 
 interface ImageObjectList {
   sequenceIndex: number;

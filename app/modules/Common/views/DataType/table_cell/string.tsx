@@ -4,8 +4,7 @@ import * as xsd from '@ontologies/xsd';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { tableCellTopology } from '../../../../Table/topologies/TableCell';
-import { tableRowTopology } from '../../../../Table/topologies/TableRow';
+import { tableCellTopology, tableRowTopology } from '../../../../Table/topologies';
 
 const style = {
   maxWidth: '20em',

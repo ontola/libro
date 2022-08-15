@@ -8,10 +8,10 @@ import {
 } from 'link-redux';
 import React, { useEffect, useState } from 'react';
 
+import { gridTopology } from '../../../Common/topologies';
 import { Size } from '../../../Kernel/lib/themes';
 import CardContent from '../../../Common/components/Card/CardContent';
 import Container from '../../../Common/topologies/Container';
-import { gridTopology } from '../../../Common/topologies/Grid';
 import { LoadingHidden } from '../../../Common/components/Loading';
 import Suspense from '../../../Kernel/components/Suspense';
 import ontola from '../../../Kernel/ontology/ontola';

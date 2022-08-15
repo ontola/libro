@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { thingMessages } from '../../../../../translations/messages';
 import Link, { LinkTarget } from '../../../../Common/components/Link';
-import { cardAppendixTopology } from '../../../../Common/topologies/Card/CardAppendix';
+import { cardAppendixTopology } from '../../../../Common/topologies';
 import CardMicroRow from '../../../../Common/topologies/Card/CardMicroRow';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
 import ontola from '../../../../Kernel/ontology/ontola';

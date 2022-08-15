@@ -3,8 +3,8 @@ import React from 'react';
 
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import Metadata from '../../../Common/components/Metadata';
+import { pageTopology } from '../../../Common/topologies';
 import FullResource from '../../../Common/topologies/FullResource';
-import { pageTopology } from '../../../Common/topologies/Page';
 
 import { MenuTypes } from './types';
 

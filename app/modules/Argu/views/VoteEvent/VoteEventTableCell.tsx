@@ -1,7 +1,7 @@
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { tableCellTopology } from '../../../Table/topologies/TableCell';
+import { tableCellTopology } from '../../../Table/topologies';
 import VoteData from '../../components/VoteData';
 import argu from '../../ontology/argu';
 

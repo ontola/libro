@@ -2,9 +2,7 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const cardAppendixTopology = libro.topologies.cardAppendix;
+import { cardAppendixTopology } from '../index';
 
 /**
  * Renders an empty CardAppendix

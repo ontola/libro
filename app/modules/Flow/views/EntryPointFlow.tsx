@@ -6,7 +6,7 @@ import React from 'react';
 import useEntryPointFormProps, { EntryPointProps } from '../../Action/views/EntryPoint/useEntryPointFormProps';
 import EntryPointForm from '../../Form/components/Form/EntryPointForm';
 import { FormTheme } from '../../Form/components/Form/FormContext';
-import { flowTopology } from '../topologies/Flow';
+import { flowTopology } from '../topologies';
 
 const useStyles = makeStyles({
   form: {

@@ -3,7 +3,7 @@ import { register } from 'link-redux';
 import React from 'react';
 
 import Collection from '../../../../Collection/components';
-import { mainBodyTopology } from '../../../../Common/topologies/MainBody';
+import { mainBodyTopology } from '../../../../Common/topologies';
 import argu from '../../../ontology/argu';
 
 const noLoading = () => null;

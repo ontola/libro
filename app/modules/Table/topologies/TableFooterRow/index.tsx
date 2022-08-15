@@ -2,9 +2,8 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
+import { tableFooterRowTopology } from '../index';
 
-export const tableFooterRowTopology = ontola.ns('tableFooterRow');
 export type TableFooterRowProps = React.HTMLAttributes<HTMLTableRowElement>;
 
 /** The same as {@link TableRow} but needed since headers are nearly always rendered differently. */

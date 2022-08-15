@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { formFooterTopology } from '../../../Form/topologies/FormFooter';
+import { formFooterTopology } from '../../../Form/topologies';
 import argu from '../../ontology/argu';
 
 const PersonFooter = () => {

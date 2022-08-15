@@ -3,9 +3,7 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import form from '../../ontology/form';
-
-export const formFooterTopology = form.topologies.footer;
+import { formFooterTopology } from '../index';
 
 const useStyles = makeStyles(() => createStyles({
   wrapper: {

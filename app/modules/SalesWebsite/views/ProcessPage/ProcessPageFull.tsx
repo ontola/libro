@@ -4,8 +4,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { fullResourceTopology } from '../../../Common/topologies';
 import Container from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import sales from '../../ontology/sales';
 
 const ProcessPageFull: FC = () => (

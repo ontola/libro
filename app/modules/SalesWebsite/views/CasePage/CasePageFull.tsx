@@ -16,9 +16,9 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
+import { fullResourceTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { blogMessages, caseMessages } from '../../../../translations/messages';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import ontola from '../../../Kernel/ontology/ontola';
 import { ArticleContent } from '../../components';
 import sales from '../../ontology/sales';

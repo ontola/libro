@@ -10,12 +10,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { footerTopology, gridTopology } from '../../Common/topologies';
 import { LibroTheme } from '../../Kernel/lib/themes';
 import Heading, { HeadingSize } from '../../Common/components/Heading';
 import Link from '../../Common/components/Link';
 import { NAME_PREDICATES } from '../../Common/lib/metaData';
-import { footerTopology } from '../../Common/topologies/Footer';
-import { gridTopology } from '../../Common/topologies/Grid';
 import { LoadingHidden } from '../../Common/components/Loading';
 import ontola from '../../Kernel/ontology/ontola';
 import SVG from '../../SVG/components';

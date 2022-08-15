@@ -6,8 +6,8 @@ import {
 import React from 'react';
 
 import generateLRS from '../../../helpers/generateLRS';
+import register from '../../../register';
 // @ts-ignore
-import register from '../../../views';
 import { libroActionPrefix } from '../../Common/middleware/common';
 import { WebManifest } from '../../Kernel/components/AppContext/WebManifest';
 import { appContext } from '../../Kernel/components/AppContext/appContext';

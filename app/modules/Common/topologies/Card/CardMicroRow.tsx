@@ -5,11 +5,9 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
+import { cardMicroRowTopology } from '../index';
 
 import { collapseTextToggleCID, shineStyles } from './sharedCardStyles';
-
-export const cardMicroRowTopology = libro.topologies.cardMicroRow;
 
 export const cardMicroRowClassIdentifier = 'CID-CardMicroRow';
 

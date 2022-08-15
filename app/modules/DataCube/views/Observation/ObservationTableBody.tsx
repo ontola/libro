@@ -7,8 +7,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { tableBodyTopology } from '../../../Table/topologies';
 import datacube from '../../ontology/datacube';
-import { tableBodyTopology } from '../../../Table/topologies/TableBody';
 import TableCell from '../../../Table/topologies/TableCell';
 import TableRow from '../../../Table/topologies/TableRow';
 

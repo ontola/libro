@@ -9,12 +9,14 @@ import React from 'react';
 
 import ActionsBar from '../../../Action/topologies/ActionsBar';
 import CardContent from '../../../Common/components/Card/CardContent';
+import {
+  alertDialogTopology,
+  containerTopology,
+  sideBarTopology,
+} from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
 import CardAppendix from '../../../Common/topologies/Card/CardAppendix';
-import { containerTopology } from '../../../Common/topologies/Container';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { sideBarTopology } from '../../../Common/topologies/SideBar';
 import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
 import { LoadingHidden } from '../../../Common/components/Loading';
 import app from '../../../Common/ontology/app';

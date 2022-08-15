@@ -1,7 +1,5 @@
-import argu from '../../../Argu/ontology/argu';
 import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
-
-export const chapterContentTopology = argu.ns('chapterContent');
+import { chapterContentTopology } from '../index';
 
 export const ChapterContent = createBasicTopologyProvider(chapterContentTopology);
 

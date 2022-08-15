@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import SubSection from '../../../Common/components/SubSection';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { fullResourceTopology } from '../../../Common/topologies';
 import MainBody from '../../../Common/topologies/MainBody';
 
 import { MenuTypes } from './types';

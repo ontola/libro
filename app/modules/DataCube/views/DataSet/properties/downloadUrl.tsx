@@ -8,8 +8,8 @@ import {
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { cardFloatTopology } from '../../../../Common/topologies';
 import datacube from '../../../ontology/datacube';
-import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
 
 const DownloadUrl: FC<PropertyProps> = ({ linkedProp }) => (
   <IconButton

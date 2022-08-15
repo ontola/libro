@@ -2,7 +2,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 
 import { LoadingCard } from '../../Common/components/Loading';
 import ll from '../../Kernel/ontology/ll';
-import { flowTopology } from '../topologies/Flow';
+import { flowTopology } from '../topologies';
 
 export default [
   ...LinkedRenderStore.registerRenderer(

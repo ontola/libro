@@ -3,11 +3,10 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { isFunction } from '../../../Kernel/lib/typeCheckers';
-import libro from '../../../Kernel/ontology/libro';
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
+import { appMenuTopology } from '../index';
 
-export const appMenuTopology = libro.topologies.appMenu;
 export const appMenuCID = 'CID-AppMenu';
 
 export interface AppMenuProps {

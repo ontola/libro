@@ -10,9 +10,9 @@ import { Size } from '../../../Kernel/lib/themes';
 import ontola from '../../../Kernel/ontology/ontola';
 import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';
+import { tabPaneTopology } from '../../topologies';
 import Container from '../../topologies/Container';
 import Grid from '../../topologies/Grid';
-import { tabPaneTopology } from '../../topologies/TabPane';
 
 const WebPageTabPane = () => {
   const [name] = useValues(schema.name);

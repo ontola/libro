@@ -4,8 +4,7 @@ import * as schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { inlineTopology } from '../../topologies';
-import { attributeListTopology } from '../../topologies/AttributeList';
+import { attributeListTopology, inlineTopology } from '../../topologies';
 
 const RDFPropertyAttributeList = () => (
   <label>

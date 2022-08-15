@@ -9,9 +9,8 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
+import { cardMainTopology, cardTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { cardTopology } from '../../../Common/topologies/Card';
-import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
 import ll from '../../../Kernel/ontology/ll';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';

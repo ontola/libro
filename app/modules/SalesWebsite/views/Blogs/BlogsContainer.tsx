@@ -11,8 +11,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { containerTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { containerTopology } from '../../../Common/topologies/Container';
 import sales from '../../ontology/sales';
 import Showcase from '../../topologies/Showcase';
 

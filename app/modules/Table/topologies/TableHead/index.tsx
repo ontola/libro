@@ -6,11 +6,9 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
+import { tableHeadTopology } from '../index';
 
 export type TableHeadProps = React.HTMLAttributes<HTMLElement>;
-
-export const tableHeadTopology = ontola.ns('tableHead');
 
 const useStyles = makeStyles<LibroTheme>((theme: LibroTheme) => ({
   tableHead: {

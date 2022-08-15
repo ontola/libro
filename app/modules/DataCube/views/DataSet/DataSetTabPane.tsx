@@ -8,10 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { tabPaneTopology } from '../../../Common/topologies';
 import datacube from '../../ontology/datacube';
 import { Size } from '../../../Kernel/lib/themes';
 import Container from '../../../Common/topologies/Container';
-import { tabPaneTopology } from '../../../Common/topologies/TabPane';
 
 export interface DataSetTabPaneProps {
   nextPage?: () => void;

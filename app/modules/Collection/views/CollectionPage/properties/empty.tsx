@@ -13,11 +13,12 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { containerTopology } from '../../../../Common/topologies';
 import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { allTopologies } from '../../../../../topologies';
 import CardContent from '../../../../Common/components/Card/CardContent';
 import GridItem from '../../../../Common/components/Grid/GridItem';
-import Container, { containerTopology } from '../../../../Common/topologies/Container';
+import Container from '../../../../Common/topologies/Container';
 import app from '../../../../Common/ontology/app';
 import ontola from '../../../../Kernel/ontology/ontola';
 import TableCell from '../../../../Table/topologies/TableCell';

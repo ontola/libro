@@ -16,8 +16,8 @@ import argu from '../../../Argu/ontology/argu';
 import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import Heading, { HeadingSize } from '../../components/Heading';
+import { containerTopology } from '../../topologies';
 import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 
 interface OrganizationContainerProps {
   hideHeader?: Literal;

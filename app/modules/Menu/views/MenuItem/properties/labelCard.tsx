@@ -9,8 +9,7 @@ import React from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
 import Image from '../../../../Common/components/Image';
-import { cardFloatTopology } from '../../../../Common/topologies/Card/CardFloat';
-import { containerFloatTopology } from '../../../../Common/topologies/Container/ContainerFloat';
+import { cardFloatTopology, containerFloatTopology } from '../../../../Common/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
 
 interface MenuItemLabelCardProps {

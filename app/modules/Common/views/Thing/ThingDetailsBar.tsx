@@ -15,7 +15,7 @@ import React from 'react';
 import Detail from '../../components/Detail';
 import LDLink from '../../components/LDLink';
 import { LinkFeature, LinkTheme } from '../../components/Link';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../topologies';
 
 interface ThingDetailsBarProps {
   features?: LinkFeature[];

@@ -8,7 +8,7 @@ import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import Button from '../../../Common/components/Button';
 import { ReadMoreButton } from '../../components';
 import sales from '../../ontology/sales';
-import { showcaseTopology } from '../../topologies/Showcase';
+import { showcaseTopology } from '../../topologies';
 
 const INNER_CONTAINER_GAP = 3;
 const INNER_CONTAINER_PADDING = 2;

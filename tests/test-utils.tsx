@@ -34,9 +34,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
-import { modules } from '../app/modules';
+import { Module } from '../app/Module';
 import { AppContextProvider } from '../app/modules/Kernel/components/AppContext/AppContextProvider';
-import { componentRegistrations } from '../app/components';
 import HighlightProvider from '../app/modules/Common/components/HighlightProvider/HighlightProvider';
 import WebsiteContextProvider, { getWebsiteContextFromWebsite } from '../app/modules/Kernel/components/WebsiteContext/WebsiteContextProvider';
 import OmniformProvider from '../app/modules/Omniform/components/OmniformProvider';
@@ -52,6 +51,7 @@ import { generateCtx } from './link-redux/fixtures';
 interface WrapProvidersArgs {
   ctx: any;
   location: any;
+  modules: Module[];
   viewPort?: any;
   views?: Array<ComponentRegistration<any> | Array<ComponentRegistration<any>>>;
 }
@@ -60,11 +60,17 @@ interface ChildrenProps {
   children: React.ReactElement;
 }
 
-const allViews = () => [...getViews(modules), ...componentRegistrations()];
+const allViews = async (modules: Module[]) => {
+  // eslint-disable-next-line no-inline-comments
+  const cr = await import(/* webpackChunkName: "TestModules" */'../app/components');
+
+  return [...getViews(modules), ...cr.componentRegistrations()];
+};
 
 const wrapProviders = ({
   ctx,
   location,
+  modules,
   views,
 }: WrapProvidersArgs): React.ComponentType<ChildrenProps> => {
   const isUnit = !ctx.lrs;
@@ -150,6 +156,7 @@ export const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedOb
 
 interface TestRenderOpts {
   location?: any;
+  modules?: Module[];
 }
 
 interface LinkedTestRenderOpts extends TestRenderOpts {
@@ -171,12 +178,15 @@ export const renderLinked = async <
   } = opts;
 
   const [iri, graph] = resourcesToGraph(resources);
+  // eslint-disable-next-line no-inline-comments
+  const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
   const ctx = await generateCtx(modules, graph, iri);
 
   const wrapper = wrapProviders({
     ctx,
     location,
-    views: opts.views ?? allViews(),
+    modules,
+    views: opts.views ?? await allViews(modules),
   });
 
   const result = render(
@@ -194,23 +204,26 @@ export const renderLinked = async <
   };
 };
 
-const renderWithWrappers = <
+const renderWithWrappers = async <
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
   >(
-    ui: React.ReactElement,
-    opts: TestRenderOpts & RenderOptions<Q, Container> = {},
-  ): RenderResult<Q, Container> => {
+  ui: React.ReactElement,
+  opts: TestRenderOpts & RenderOptions<Q, Container> = {},
+): Promise<RenderResult<Q, Container>> => {
   const {
     location,
     ...options
   } = opts;
+  // eslint-disable-next-line no-inline-comments
+  const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
 
   const wrapper = wrapProviders({
     ctx: {
       history: createMemoryHistory({ initialEntries: [location || '/'] }),
     },
     location,
+    modules,
     views: undefined,
   });
 

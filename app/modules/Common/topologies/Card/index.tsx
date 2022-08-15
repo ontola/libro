@@ -5,16 +5,14 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import { useConvertToKeyEvent } from '../../hooks/useConvertToKeyEvent';
+import { cardTopology } from '../index';
 
 import {
   cardClassIdentifier,
   cardStyles,
-  shineStyles,
+  shineStyles, 
 } from './sharedCardStyles';
-
-export const cardTopology = libro.topologies.card;
 
 interface CardProps {
   className?: string;

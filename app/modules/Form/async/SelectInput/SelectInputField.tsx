@@ -39,7 +39,7 @@ import {
 import HiddenRequiredInput from '../../components/Input/HiddenRequiredInput';
 import useAsyncFieldOptions from '../../hooks/useAsyncFieldOptions';
 import form from '../../ontology/form';
-import { selectTopology } from '../../topologies/Select';
+import { selectTopology } from '../../topologies';
 import SelectedValue from '../../topologies/SelectedValue';
 
 import FullWidthPopper from './FullWidthPopper';

@@ -4,7 +4,7 @@ import React from 'react';
 import { SignInFormLink } from '../../../Auth/components/SignInForm';
 import Button from '../../../Common/components/Button';
 import ontola from '../../../Kernel/ontology/ontola';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { actionsBarTopology } from '../../topologies';
 
 const CreateSessionActionsBar = () => (
   <SignInFormLink Component={Button} />

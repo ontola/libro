@@ -5,7 +5,7 @@ import * as schema from '@ontologies/schema';
 import { FC, register } from 'link-redux';
 import React from 'react';
 
-import { parentTopology } from '../../../../Common/topologies/BreadcrumbsBar';
+import { parentTopology } from '../../../../Common/topologies';
 import argu from '../../../ontology/argu';
 
 interface ForumNameParent {

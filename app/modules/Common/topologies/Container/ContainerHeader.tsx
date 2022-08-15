@@ -4,12 +4,10 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import { headingCID } from '../../components/Heading';
+import { containerHeaderTopology } from '../index';
 
 import ContainerFloat from './ContainerFloat';
-
-export const containerHeaderTopology = libro.topologies.containerHeader;
 
 export interface ContainerHeaderProps {
   /** The float content floats to the right */

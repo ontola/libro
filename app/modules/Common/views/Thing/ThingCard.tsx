@@ -8,9 +8,11 @@ import dbo from '../../ontology/dbo';
 import meeting from '../../../../ontology/meeting';
 import AllWithProperty from '../../components/AllWithProperty';
 import CardContent from '../../components/Card/CardContent';
-import { cardTopology } from '../../topologies/Card';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology, 
+} from '../../topologies';
 import CardRow from '../../topologies/Card/CardRow';
 
 const ThingCard = (): JSX.Element => (

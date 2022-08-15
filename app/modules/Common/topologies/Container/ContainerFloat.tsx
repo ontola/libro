@@ -3,9 +3,7 @@ import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const containerFloatTopology = libro.topologies.containerFloat;
+import { containerFloatTopology } from '../index';
 
 const useStyles = makeStyles({
   containerFloat: {

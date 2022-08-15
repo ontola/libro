@@ -6,7 +6,7 @@ import React from 'react';
 import { loadingStyles } from '../../Common/components/Loading';
 import { LibroTheme } from '../../Kernel/lib/themes';
 import ll from '../../Kernel/ontology/ll';
-import { navbarTopology } from '../topologies/Navbar';
+import { navbarTopology } from '../topologies';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   ...loadingStyles(theme),

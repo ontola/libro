@@ -4,13 +4,11 @@ import clsx from 'clsx';
 import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { headingCID } from '../../../Common/components/Heading';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
+import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
-
-export const tableCellTopology = ontola.ns('tableCell');
+import { tableCellTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   noBorder: {

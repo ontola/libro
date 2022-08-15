@@ -5,8 +5,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
-import { cardTopology } from '../../../topologies/Card';
-import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { cardMainTopology, cardTopology } from '../../../topologies';
 import CardRow from '../../../topologies/Card/CardRow';
 
 interface SuperEventCardProps {

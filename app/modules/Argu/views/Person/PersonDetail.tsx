@@ -14,8 +14,8 @@ import { personMessages } from '../../../../translations/messages';
 import LDDetail from '../../../Common/components/LDDetail';
 import LDLink from '../../../Common/components/LDLink';
 import { LinkFeature, LinkTheme } from '../../../Common/components/Link';
-import { detailsBarTopology } from '../../../Common/topologies/DetailsBar';
-import { tableCellTopology } from '../../../Table/topologies/TableCell';
+import { detailsBarTopology } from '../../../Common/topologies';
+import { tableCellTopology } from '../../../Table/topologies';
 import argu from '../../ontology/argu';
 
 interface PersonDetailProps {

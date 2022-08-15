@@ -8,11 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { pageTopology, sideBarTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { allTopologiesExcept } from '../../../../topologies';
 import argu from '../../../Argu/ontology/argu';
-import { pageTopology } from '../../../Common/topologies/Page';
-import { sideBarTopology } from '../../../Common/topologies/SideBar';
 import { ChapterContent } from '../../topologies/ChapterContent';
 
 const H1_BOTTOM_MARGIN = 5;

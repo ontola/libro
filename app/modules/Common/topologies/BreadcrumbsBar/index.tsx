@@ -5,9 +5,7 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
-
-export const parentTopology = libro.topologies.parent;
+import { parentTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
   breadcrumbsBar: {

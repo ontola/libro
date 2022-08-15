@@ -12,7 +12,7 @@ import React from 'react';
 
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import ontola from '../../../Kernel/ontology/ontola';
-import { radioGroupTopology } from '../../topologies/RadioGroup';
+import { radioGroupTopology } from '../../topologies';
 
 interface ThingRadioGroupProps {
   itemClass: unknown,

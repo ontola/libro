@@ -9,8 +9,7 @@ import {
 import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
-import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
-import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import { cardFixedTopology, cardRowTopology } from '../../../Common/topologies';
 import List, { ListDirection } from '../../../Common/topologies/List';
 import ontola from '../../../Kernel/ontology/ontola';
 import OmniformTrigger from '../../../Omniform/components/OmniformTrigger';

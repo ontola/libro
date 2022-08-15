@@ -2,9 +2,9 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../topologies';
-import { omniformFieldsTopology } from '../../../Omniform/topologies/OmniformFields/OmniformFields';
+import { omniformFieldsTopology } from '../../../Omniform/topologies';
 import form from '../../ontology/form';
-import { formFooterTopology } from '../../topologies/FormFooter';
+import { formFooterTopology } from '../../topologies';
 
 const FormPage = () => (
   <Property

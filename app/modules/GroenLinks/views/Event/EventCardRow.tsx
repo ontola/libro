@@ -3,7 +3,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../../Common/components/Card/CardContent';
-import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import { cardRowTopology } from '../../../Common/topologies';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import teamGL from '../../ontology/teamGL';
 

@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import Breadcrumb from '../../../Common/components/Breadcrumbs/Breadcrumb';
-import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { parentTopology } from '../../../Common/topologies';
 import argu from '../../ontology/argu';
 
 const VocabularyParent = () => {

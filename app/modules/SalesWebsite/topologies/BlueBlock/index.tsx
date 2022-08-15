@@ -3,12 +3,10 @@ import { makeStyles } from '@mui/styles';
 import { useTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LibroTheme, Size } from '../../../Kernel/lib/themes';
 import { ContainerProps, maxWidth } from '../../../Common/topologies/Container';
+import { LibroTheme, Size } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import sales from '../../ontology/sales';
-
-export const blueBlockTopology = sales.topologies.blueBlock;
+import { blueBlockTopology } from '../index';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   root: {

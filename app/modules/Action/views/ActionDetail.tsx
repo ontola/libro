@@ -8,9 +8,11 @@ import React from 'react';
 
 import LDLink from '../../Common/components/LDLink';
 import { LinkTarget } from '../../Common/components/Link';
-import { cardFloatTopology } from '../../Common/topologies/Card/CardFloat';
-import { contentDetailsTopology } from '../../Common/topologies/ContentDetails';
-import { detailsBarTopology } from '../../Common/topologies/DetailsBar';
+import {
+  cardFloatTopology,
+  contentDetailsTopology,
+  detailsBarTopology,
+} from '../../Common/topologies';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 const ActionDetail = () => {

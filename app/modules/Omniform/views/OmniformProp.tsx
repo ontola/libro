@@ -16,10 +16,12 @@ import React, { KeyboardEventHandler } from 'react';
 import link from '../../../ontology/link';
 import CollectionCreateButton, { TriggerType } from '../../Collection/components/CollectionCreateButton';
 import Heading from '../../Common/components/Heading';
-import { cardTopology } from '../../Common/topologies/Card';
-import { cardAppendixTopology } from '../../Common/topologies/Card/CardAppendix';
-import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
-import { containerTopology } from '../../Common/topologies/Container';
+import {
+  cardAppendixTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+} from '../../Common/topologies';
 import { entityIsLoaded } from '../../Kernel/lib/data';
 import app from '../../Common/ontology/app';
 import ontola from '../../Kernel/ontology/ontola';

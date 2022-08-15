@@ -6,13 +6,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { cardTopology } from '../../../../Common/topologies/Card';
-import { cardFixedTopology } from '../../../../Common/topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../../Common/topologies/Card/CardMain';
-import { containerTopology } from '../../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../../Common/topologies/FullResource';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../../Common/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../../NavBar/topologies';
 import argu from '../../../ontology/argu';
 
 const Unread: FC<PropertyProps> = ({

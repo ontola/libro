@@ -4,10 +4,9 @@ import React from 'react';
 
 import { allTopologiesExcept } from '../../../../topologies';
 import CardContent from '../../../Common/components/Card/CardContent';
-import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { pageTopology, parentTopology } from '../../../Common/topologies';
 import { CardMain } from '../../../Common/topologies/Card';
 import Container from '../../../Common/topologies/Container';
-import { pageTopology } from '../../../Common/topologies/Page';
 import teamGL from '../../ontology/teamGL';
 
 import SearchPostalForm from './SearchPostalForm';

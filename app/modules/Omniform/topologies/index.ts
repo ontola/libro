@@ -1,14 +1,7 @@
-import rdf from '@ontologies/core';
+import ontola from '../../Kernel/ontology/ontola';
 
-import { TopologyMap } from '../../Kernel/lib/ontology';
-
-import omniformFieldsTopologyComponent, { omniformFieldsTopology } from './OmniformFields/OmniformFields';
-import omniformSupplementBarTopologyComponent, { omniformSupplementBarTopology } from './OmniformSupplementBar/OmniformSupplementBar';
-
-export const topologyMap: TopologyMap = {
-  [rdf.id(omniformFieldsTopology)]: [omniformFieldsTopologyComponent, undefined],
-  [rdf.id(omniformSupplementBarTopology)]: [omniformSupplementBarTopologyComponent, undefined],
-};
+export const omniformFieldsTopology = ontola.ns('omniformFields');
+export const omniformSupplementBarTopology = ontola.ns('omniformSupplementBar');
 
 export default [
   omniformFieldsTopology,

@@ -10,7 +10,7 @@ import React from 'react';
 import { PersonNavbarProps } from '../../../Argu/views/Person/PersonNavbar';
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import ontola from '../../../Kernel/ontology/ontola';
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../NavBar/topologies';
 
 import { RegisteredTypes } from './types';
 

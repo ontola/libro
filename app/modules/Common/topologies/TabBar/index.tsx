@@ -3,10 +3,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import { TabVariant, Tabs } from '../../components/Tabs';
-
-export const tabBarTopology = libro.topologies.tabBar;
+import { tabBarTopology } from '../index';
 
 interface TabBarProps {
   value: any;

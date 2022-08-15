@@ -1,7 +1,5 @@
 import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
-import ontola from '../../../Kernel/ontology/ontola';
-
-export const omniformFieldsTopology = ontola.ns('omniformFields');
+import { omniformFieldsTopology } from '../index';
 
 const OmniformFields = createBasicTopologyProvider(omniformFieldsTopology);
 

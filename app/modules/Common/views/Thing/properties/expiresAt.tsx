@@ -14,7 +14,7 @@ import argu from '../../../../Argu/ontology/argu';
 import Detail from '../../../components/Detail';
 import { filterUpdateInterval, useDateUpdateInterval } from '../../../hooks/useDateUpdateInterval';
 import isPastDate from '../../../lib/date';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { detailsBarTopology } from '../../../topologies';
 
 interface PropTypes {
   linkedProp: Literal;

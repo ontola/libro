@@ -1,12 +1,6 @@
-import rdf from '@ontologies/core';
+import libro from '../../Kernel/ontology/libro';
 
-import { TopologyMap } from '../../Kernel/lib/ontology';
-
-import flowTopologyComponent, { flowTopology } from './Flow';
-
-export const topologyMap: TopologyMap = {
-  [rdf.id(flowTopology)]: [flowTopologyComponent, undefined],
-};
+export const flowTopology = libro.topologies.flow;
 
 export default [
   flowTopology,

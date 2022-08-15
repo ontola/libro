@@ -3,7 +3,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import {
   FormControlLabel,
   RadioGroup as MaterialRadioGroup,
-  Radio,
+  Radio, 
 } from '@mui/material';
 import { darken } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
@@ -12,15 +12,13 @@ import clsx from 'clsx';
 import { Resource, useTopologyProvider } from 'link-redux';
 import React, { EventHandler } from 'react';
 
-import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { SHADOW } from '../../../Common/lib/flow';
-import { isResource } from '../../../Kernel/lib/typeCheckers';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
+import { isResource } from '../../../Kernel/lib/typeCheckers';
 import { FormTheme } from '../../components/Form/FormContext';
 import { FocusRelatedEventHandler, InputValue } from '../../components/FormField/FormFieldTypes';
-import form from '../../ontology/form';
-
-export const radioGroupTopology = form.topologies.radioGroup;
+import { radioGroupTopology } from '../index';
 
 interface RadioGroupProps {
   loading?: boolean;

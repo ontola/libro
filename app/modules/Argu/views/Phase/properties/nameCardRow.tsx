@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { cardRowTopology } from '../../../../Common/topologies/Card/CardRow';
+import { cardRowTopology } from '../../../../Common/topologies';
 import argu from '../../../ontology/argu';
 
 const PhaseNameCardRow: FC<PropertyProps> = ({ linkedProp }) => (

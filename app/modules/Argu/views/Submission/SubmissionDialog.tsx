@@ -15,7 +15,7 @@ import { surveyMessages } from '../../../../translations/messages';
 import useActionStatus from '../../../Action/hooks/useActionStatus';
 import { OnDoneHandler } from '../../../Action/views/helpers';
 import Button from '../../../Common/components/Button';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
+import { alertDialogTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
 import Flow from '../../../Flow/topologies/Flow';
 import argu from '../../ontology/argu';

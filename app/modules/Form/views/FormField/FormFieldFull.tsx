@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { fullResourceTopology } from '../../../Common/topologies';
 import MainBody from '../../../Common/topologies/MainBody';
 import { UnwrappedForm } from '../../components/Form/Form';
 import form from '../../ontology/form';

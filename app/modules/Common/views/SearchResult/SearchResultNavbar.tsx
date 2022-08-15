@@ -2,10 +2,10 @@ import { register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { navbarTopology } from '../../../NavBar/topologies';
 import app from '../../ontology/app';
 import ontola from '../../../Kernel/ontology/ontola';
 import { NavbarLinkLink } from '../../../NavBar/components/NavbarLink';
-import { navbarTopology } from '../../../NavBar/topologies/Navbar';
 
 const SearchResultNavbar = (): JSX.Element => {
   const label = (

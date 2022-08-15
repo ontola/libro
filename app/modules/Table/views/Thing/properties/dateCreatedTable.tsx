@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import RelativeDate from '../../../../Common/components/RelativeDate';
-import { tableRowTopology } from '../../../topologies/TableRow';
+import { tableRowTopology } from '../../../topologies';
 
 const DateCreatedTable: FC<PropertyProps> = ({ linkedProp }) => (
   isLiteral(linkedProp) ? <RelativeDate date={linkedProp} /> : null

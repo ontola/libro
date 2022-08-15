@@ -9,8 +9,8 @@ import React from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
-import { menuTopology } from '../../../topologies/Menu';
+import { navbarTopology } from '../../../../NavBar/topologies';
+import { menuTopology } from '../../../topologies';
 
 interface MenuItemsProps {
   childProps: any;

@@ -8,7 +8,7 @@ import { ErrorComponentProps } from '../../Common/components/Error/helpers';
 import useErrorReload from '../../Common/hooks/useErrorReload';
 import { ERROR_CLASSES } from '../../Common/lib/metaData';
 import { NavbarLinkLink } from '../components/NavbarLink';
-import { navbarTopology } from '../topologies/Navbar';
+import { navbarTopology } from '../topologies';
 
 const ErrorNavbar: FC<ErrorComponentProps> = (props) => {
   const {

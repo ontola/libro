@@ -14,10 +14,9 @@ import Button from '../../Common/components/Button';
 import CardContent from '../../Common/components/Card/CardContent';
 import HeadingContext from '../../Common/components/Heading/HeadingContext';
 import { HideDialog } from '../../Common/middleware/actions';
+import { alertDialogTopology, tabPaneTopology } from '../../Common/topologies';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
-import { alertDialogTopology } from '../../Common/topologies/Dialog';
-import { tabPaneTopology } from '../../Common/topologies/TabPane';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 import { ActionProps, useDoneHandler } from './helpers';

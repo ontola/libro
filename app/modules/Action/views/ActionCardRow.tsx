@@ -9,9 +9,11 @@ import React from 'react';
 
 import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';
-import { cardTopology } from '../../Common/topologies/Card';
-import { cardMainTopology } from '../../Common/topologies/Card/CardMain';
-import { cardRowTopology } from '../../Common/topologies/Card/CardRow';
+import {
+  cardMainTopology,
+  cardRowTopology,
+  cardTopology, 
+} from '../../Common/topologies';
 import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 
 import { ActionProps, useDoneHandler } from './helpers';

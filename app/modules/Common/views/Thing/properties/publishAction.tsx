@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import ontola from '../../../../Kernel/ontology/ontola';
-import { containerTopology } from '../../../topologies/Container';
+import { containerTopology } from '../../../topologies';
 
 const PublishAction = () => {
   const [datePublished] = useProperty(schema.datePublished);

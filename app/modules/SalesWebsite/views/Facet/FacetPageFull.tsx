@@ -9,10 +9,10 @@ import {
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
+import { fullResourceTopology } from '../../../Common/topologies';
 import retrievePath from '../../../Common/lib/iris';
 import Container from '../../../Common/topologies/Container';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import sales from '../../ontology/sales';
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({

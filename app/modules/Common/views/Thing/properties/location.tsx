@@ -15,8 +15,7 @@ import Detail from '../../../components/Detail';
 import { useShowDialog } from '../../../hooks/useShowDialog';
 import { retrievePath } from '../../../lib/iris';
 import { isResource } from '../../../../Kernel/lib/typeCheckers';
-import { contentDetailsTopology } from '../../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { contentDetailsTopology, detailsBarTopology } from '../../../topologies';
 
 interface LocationDetailProps {
   linkedProp: Node;

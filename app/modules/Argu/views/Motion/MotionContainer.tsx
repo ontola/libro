@@ -12,12 +12,14 @@ import meeting from '../../../../ontology/meeting';
 import opengov from '../../../../ontology/opengov';
 import CardContent from '../../../Common/components/Card/CardContent';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
 import CardAppendix from '../../../Common/topologies/Card/CardAppendix';
 import CardRow from '../../../Common/topologies/Card/CardRow';
-import { containerTopology } from '../../../Common/topologies/Container';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import { useHighlight } from '../../../Common/components/HighlightProvider/HighlightProvider';
 import app from '../../../Common/ontology/app';
 import ontola from '../../../Kernel/ontology/ontola';

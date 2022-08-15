@@ -15,9 +15,9 @@ import ontola from '../../../Kernel/ontology/ontola';
 import CardContent from '../../components/Card/CardContent';
 import HeadingContext from '../../components/Heading/HeadingContext';
 import LDLink from '../../components/LDLink';
+import { gridTopology } from '../../topologies';
 import CardFixed from '../../topologies/Card/CardFixed';
 import DetailsBar from '../../topologies/DetailsBar';
-import { gridTopology } from '../../topologies/Grid';
 
 const ThingGrid: FC = () => {
   const [name] = useStrings([schema.name, rdfs.label, foaf.name]);

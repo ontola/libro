@@ -12,10 +12,10 @@ import {
 import React, { FormEventHandler } from 'react';
 
 import { OpenWindow } from '../../../Common/middleware/actions';
+import { tabBarTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TabVariant } from '../../../Common/components/Tabs';
 import { isDifferentWebsite } from '../../../Common/lib/iris';
-import { tabBarTopology } from '../../../Common/topologies/TabBar';
 import ontola from '../../../Kernel/ontology/ontola';
 
 import { MenuTypes } from './types';

@@ -7,18 +7,20 @@ import { useErrorStatus, useTitleForStatus } from '../../components/Error/errorM
 import { ErrorComponentProps } from '../../components/Error/helpers';
 import useErrorReload from '../../hooks/useErrorReload';
 import { ERROR_CLASSES } from '../../lib/metaData';
-import { inlineTopology } from '../../topologies';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { parentTopology } from '../../topologies/BreadcrumbsBar';
-import { cardTopology } from '../../topologies/Card';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { hoverBoxTopology } from '../../topologies/HoverBox';
+import {
+  attributeListTopology,
+  cardFixedTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  cardTopology,
+  containerFloatTopology,
+  detailsBarTopology,
+  hoverBoxTopology,
+  inlineTopology,
+  parentTopology,
+} from '../../topologies';
 
 export const ErrorButtonInline = ({
   linkRequestStatus,

@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import ActionsBar from '../../../Action/topologies/ActionsBar';
-import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import { mainBodyTopology } from '../../../Common/topologies';
 import argu from '../../ontology/argu';
 
 const VoteEventMainBody: FC = () => (

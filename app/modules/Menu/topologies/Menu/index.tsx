@@ -2,11 +2,9 @@ import { useTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
 import DropdownMenu, { RenderProp } from '../../components/DropdownMenu/DropdownMenu';
 import { Trigger } from '../../components/DropdownMenu/TriggerButton';
-
-export const menuTopology = libro.topologies.menu;
+import { menuTopology } from '../index';
 
 interface MenuProps {
   children: ReactNode | RenderProp,

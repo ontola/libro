@@ -5,7 +5,7 @@ import React from 'react';
 import generateLRS from '../../../helpers/generateLRS';
 import type { Module } from '../../../Module';
 import http from '../../../ontology/http';
-import register from '../../../views';
+import register from '../../../register';
 import { seedToSlice } from '../../Common/lib/seed';
 import ll from '../../Kernel/ontology/ll';
 import { EditorEvents, EditorUpdateEvent } from '../lib/EditorUpdateEvent';

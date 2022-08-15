@@ -5,11 +5,10 @@ import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import { TopologyFC } from '../../../Kernel/lib/topology';
-import libro from '../../../Kernel/ontology/libro';
+import { cardRowTopology } from '../index';
 
 import { cardClassIdentifier, collapseTextToggleCID } from './sharedCardStyles';
 
-export const cardRowTopology = libro.topologies.cardRow;
 export const cardRowClassIdentifier = 'CID-CardRow';
 export const cardRowBackdropClassIdentifier = 'CID-CardRowBackdrop';
 

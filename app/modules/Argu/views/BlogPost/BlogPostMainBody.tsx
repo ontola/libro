@@ -14,7 +14,7 @@ import dbo from '../../../Common/ontology/dbo';
 import meeting from '../../../../ontology/meeting';
 import CollapseText from '../../../Common/components/CollapseText';
 import LDLink from '../../../Common/components/LDLink';
-import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import { mainBodyTopology } from '../../../Common/topologies';
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import argu from '../../ontology/argu';
 

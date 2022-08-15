@@ -19,7 +19,7 @@ import CardContent from '../../Common/components/Card/CardContent';
 import { HideDialog } from '../../Common/middleware/actions';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
-import { flowTopology } from '../topologies/Flow';
+import { flowTopology } from '../topologies';
 
 const useStyles = makeStyles({
   controlStrip: {

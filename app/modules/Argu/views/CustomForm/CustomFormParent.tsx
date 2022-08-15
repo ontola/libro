@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { parentTopology } from '../../../Common/topologies';
 import { parentProps } from '../../../Common/ontology/app';
 import argu from '../../ontology/argu';
 

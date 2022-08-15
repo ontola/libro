@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
-import { mainBodyTopology } from '../../../Common/topologies/MainBody';
+import { mainBodyTopology } from '../../../Common/topologies';
 import ll from '../../../Kernel/ontology/ll';
 import EntryPointForm from '../../../Form/components/Form/EntryPointForm';
 import FormFooterRight from '../../../Form/components/Form/FooterRight';

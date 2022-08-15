@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import Link, { IsActiveCheck } from '../../../Common/components/Link';
-import { cardRowTopology } from '../../../Common/topologies/Card/CardRow';
+import { cardRowTopology } from '../../../Common/topologies';
 import ontola from '../../../Kernel/ontology/ontola';
 
 import { MenuTypes } from './types';

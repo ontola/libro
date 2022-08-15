@@ -5,10 +5,12 @@ import React from 'react';
 import CardContent from '../../../Common/components/Card/CardContent';
 import CardDivider from '../../../Common/components/Card/CardDivider';
 import Heading, { HeadingSize } from '../../../Common/components/Heading';
-import { inlineTopology } from '../../../Common/topologies';
-import { cardTopology } from '../../../Common/topologies/Card';
-import { cardFixedTopology } from '../../../Common/topologies/Card/CardFixed';
-import { cardMainTopology } from '../../../Common/topologies/Card/CardMain';
+import {
+  cardFixedTopology,
+  cardMainTopology,
+  cardTopology,
+  inlineTopology,
+} from '../../../Common/topologies';
 import dcat from '../../ontology/dcat';
 import dexes from '../../ontology/dexes';
 

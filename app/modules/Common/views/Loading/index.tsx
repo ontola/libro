@@ -16,29 +16,31 @@ import Loading, {
   LoadingTabbar,
 } from '../../components/Loading';
 import SuspendedLoader from '../../components/Loading/SuspendedLoader';
-import { inlineTopology } from '../../topologies';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { parentTopology } from '../../topologies/BreadcrumbsBar';
-import { cardTopology } from '../../topologies/Card';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
-import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { contentDetailsTopology } from '../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { alertDialogTopology } from '../../topologies/Dialog';
-import { fullResourceTopology } from '../../topologies/FullResource';
-import { gridTopology } from '../../topologies/Grid';
-import { hoverBoxTopology } from '../../topologies/HoverBox';
-import { listTopology } from '../../topologies/List';
-import { mainBodyTopology } from '../../topologies/MainBody';
-import { pageTopology } from '../../topologies/Page';
-import { tabBarTopology } from '../../topologies/TabBar';
-import { tabPaneTopology } from '../../topologies/TabPane';
+import {
+  alertDialogTopology,
+  attributeListTopology,
+  cardAppendixTopology,
+  cardFixedTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardMicroRowTopology,
+  cardRowTopology,
+  cardTopology,
+  containerFloatTopology,
+  containerTopology,
+  contentDetailsTopology,
+  detailsBarTopology,
+  fullResourceTopology,
+  gridTopology,
+  hoverBoxTopology,
+  inlineTopology,
+  listTopology,
+  mainBodyTopology,
+  pageTopology,
+  parentTopology,
+  tabBarTopology,
+  tabPaneTopology,
+} from '../../topologies';
 
 export default [
   ...LinkedRenderStore.registerRenderer(

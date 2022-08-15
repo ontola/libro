@@ -19,7 +19,7 @@ import { HideDialog, Navigate } from '../../../Common/middleware/actions';
 import { website } from '../../../Kernel/lib/frontendIRIComponents';
 import ontola from '../../../Kernel/ontology/ontola';
 import useMemoryStore from '../../hooks/useMemoryStore';
-import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { actionsBarTopology } from '../../topologies';
 
 interface CreateSessionProps {
   reason: ReactChild;

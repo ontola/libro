@@ -10,11 +10,13 @@ import React from 'react';
 
 import AttributeListItem from '../../../Common/components/AttributeListItem';
 import CardContent from '../../../Common/components/Card/CardContent';
+import {
+  alertDialogTopology,
+  containerTopology,
+  fullResourceTopology,
+} from '../../../Common/topologies';
 import AttributeList from '../../../Common/topologies/AttributeList';
 import Card from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
-import { alertDialogTopology } from '../../../Common/topologies/Dialog';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
 import argu from '../../ontology/argu';
 
 const SubmissionDataContainer: FC = () => {

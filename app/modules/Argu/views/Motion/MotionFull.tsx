@@ -12,7 +12,7 @@ import opengov from '../../../../ontology/opengov';
 import wdt from '../../../Common/ontology/wdt';
 import { PageHeader } from '../../../Common/components/PageHeader';
 import SubSection from '../../../Common/components/SubSection';
-import { fullResourceTopology } from '../../../Common/topologies/FullResource';
+import { fullResourceTopology } from '../../../Common/topologies';
 import MainBody from '../../../Common/topologies/MainBody';
 import { LoadingHidden } from '../../../Common/components/Loading';
 import ontola from '../../../Kernel/ontology/ontola';

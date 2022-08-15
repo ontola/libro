@@ -6,9 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { containerTopology, mainBodyTopology } from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
-import { containerTopology } from '../../../Common/topologies/Container';
-import { mainBodyTopology } from '../../../Common/topologies/MainBody';
 
 const EntryPointContainer: FC = (props) => (
   <Card>

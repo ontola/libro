@@ -7,8 +7,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { cardRowTopology } from '../../../../Common/topologies';
 import { CardMicroRow } from '../../../../Common/topologies/Card';
-import { cardRowTopology } from '../../../../Common/topologies/Card/CardRow';
 import argu from '../../../ontology/argu';
 
 const useStyle = makeStyles(() => ({

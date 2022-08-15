@@ -4,7 +4,7 @@ import React from 'react';
 
 import Detail from '../../../../Common/components/Detail';
 import { tryParseInt } from '../../../../Common/lib/numbers';
-import { detailsBarTopology } from '../../../../Common/topologies/DetailsBar';
+import { detailsBarTopology } from '../../../../Common/topologies';
 import argu from '../../../ontology/argu';
 
 const FollowsCount = ({ linkedProp }: PropertyProps): JSX.Element | null => {

@@ -12,9 +12,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { footerTopology } from '../../../Common/topologies';
 import { LibroTheme } from '../../../Kernel/lib/themes';
 import argu from '../../../Argu/ontology/argu';
-import { footerTopology } from '../../../Common/topologies/Footer';
 import ResourceBoundary from '../../../Common/components/ResourceBoundary';
 import ontola from '../../../Kernel/ontology/ontola';
 

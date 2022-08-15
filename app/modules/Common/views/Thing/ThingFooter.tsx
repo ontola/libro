@@ -5,7 +5,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import dbo from '../../ontology/dbo';
-import { footerTopology } from '../../topologies/Footer';
+import { footerTopology } from '../../topologies';
 
 const ThingFooter = (): JSX.Element => (
   <React.Fragment>

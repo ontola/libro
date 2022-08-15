@@ -12,9 +12,8 @@ import {
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../topologies';
-import { attributeListTopology } from '../../topologies/AttributeList';
-import { pageTopology } from '../../topologies/Page';
-import { tableHeaderRowTopology } from '../../../Table/topologies/TableHeaderRow';
+import { tableHeaderRowTopology } from '../../../Table/topologies';
+import { attributeListTopology, pageTopology } from '../../topologies';
 
 import RDFPropertyAttributeList from './RDFPropertyAttributeList';
 

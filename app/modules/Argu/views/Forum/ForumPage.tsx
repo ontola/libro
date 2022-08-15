@@ -3,8 +3,8 @@ import { Resource, register } from 'link-redux';
 import React from 'react';
 
 import Metadata from '../../../Common/components/Metadata';
+import { pageTopology } from '../../../Common/topologies';
 import FullResource from '../../../Common/topologies/FullResource';
-import { pageTopology } from '../../../Common/topologies/Page';
 import argu from '../../ontology/argu';
 
 const ForumPage = (props: any): JSX.Element => (

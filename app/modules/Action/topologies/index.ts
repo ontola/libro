@@ -1,12 +1,6 @@
-import rdf from '@ontologies/core';
+import libro from '../../Kernel/ontology/libro';
 
-import { TopologyMap } from '../../Kernel/lib/ontology';
-
-import actionsBarTopologyComponent, { actionsBarTopology } from './ActionsBar';
-
-export const topologyMap: TopologyMap = {
-  [rdf.id(actionsBarTopology)]: [actionsBarTopologyComponent, undefined],
-};
+export const actionsBarTopology = libro.topologies.actionsBar;
 
 export default [
   actionsBarTopology,

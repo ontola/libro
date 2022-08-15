@@ -13,7 +13,7 @@ import { ShowDialog } from '../../../Common/middleware/actions';
 import { entityIsLoaded } from '../../../Kernel/lib/data';
 import ontola from '../../../Kernel/ontology/ontola';
 import TableCells from '../../../Table/components/TableCells';
-import { tableTopology } from '../../../Table/topologies/Table';
+import { tableTopology } from '../../../Table/topologies';
 import TableRow from '../../../Table/topologies/TableRow';
 import teamGL from '../../ontology/teamGL';
 

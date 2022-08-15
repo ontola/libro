@@ -1,6 +1,6 @@
 import { register } from 'link-redux';
 
-import { parentTopology } from '../../../Common/topologies/BreadcrumbsBar';
+import { parentTopology } from '../../../Common/topologies';
 import teamGL from '../../../GroenLinks/ontology/teamGL';
 
 const UserBreadcrumb = () => null;

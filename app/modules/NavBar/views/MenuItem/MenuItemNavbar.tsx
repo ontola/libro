@@ -13,7 +13,7 @@ import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/i
 import ontola from '../../../Kernel/ontology/ontola';
 import LinkedMenuTrigger from '../../../Menu/components/Menu/LinkedMenuTrigger';
 import { NavbarLinkLink } from '../../components/NavbarLink';
-import { navbarTopology } from '../../topologies/Navbar';
+import { navbarTopology } from '../../topologies';
 
 interface MenuItemNavbarProps {
   subject: Node,

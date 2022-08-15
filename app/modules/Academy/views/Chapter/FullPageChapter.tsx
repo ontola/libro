@@ -9,7 +9,7 @@ import React from 'react';
 
 import argu from '../../../Argu/ontology/argu';
 import Metadata from '../../../Common/components/Metadata';
-import { pageTopology } from '../../../Common/topologies/Page';
+import { pageTopology } from '../../../Common/topologies';
 
 const FullPageChapter: FC = ({ subject }) => {
   const [book] = useProperty(schema.isPartOf);

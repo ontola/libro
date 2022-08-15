@@ -14,8 +14,8 @@ import meeting from '../../../../../ontology/meeting';
 import argu from '../../../../Argu/ontology/argu';
 import ontola from '../../../../Kernel/ontology/ontola';
 import UploadTarget from '../../../../Dexes/views/Folder/UploadTarget';
+import { mainBodyTopology } from '../../../topologies';
 import List from '../../../topologies/List';
-import { mainBodyTopology } from '../../../topologies/MainBody';
 
 const AttachmentsMainBody: FC<PropertyProps> = ({
   linkedProp,

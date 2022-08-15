@@ -9,9 +9,9 @@ import React, { MouseEventHandler } from 'react';
 
 import argu from '../../../../Argu/ontology/argu';
 import Link, { LinkFeature } from '../../../../Common/components/Link';
-import { footerTopology } from '../../../../Common/topologies/Footer';
+import { footerTopology } from '../../../../Common/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
-import { navbarTopology } from '../../../../NavBar/topologies/Navbar';
+import { navbarTopology } from '../../../../NavBar/topologies';
 
 interface HrefProps {
   component: React.FunctionComponent<any>;
