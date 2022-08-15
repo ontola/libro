@@ -1,6 +1,6 @@
 {
   "name": "ontola-libro",
-  "license": "All rights reserved. Copyright Argu B.V.",
+  "license": "MIT",
   "private": true,
   "moduleRoots": [
     "./app"
