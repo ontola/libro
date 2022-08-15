@@ -12,6 +12,7 @@ import React from 'react';
 import { renderLinked } from '../../../../../tests/test-utils';
 import argu from '../../../Argu/ontology/argu';
 import ontola from '../../../Kernel/ontology/ontola';
+import dependencies from '../../dependencies';
 import BreadcrumbsBar from '../../topologies/BreadcrumbsBar';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
@@ -67,7 +68,10 @@ describe('Thing', () => {
         />
       </TopologyComp>
     ),
-    { resources },
+    {
+      modules: dependencies,
+      resources,
+    },
   );
 
   it('renders as Page', async () => {

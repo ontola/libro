@@ -12,10 +12,12 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
+import Common from '../../../Common';
 import Page from '../../../Common/topologies/Page';
 import app from '../../../Common/ontology/app';
 import example from '../../../Kernel/ontology/example';
 import ontola from '../../../Kernel/ontology/ontola';
+import CollectionModule from '../../index';
 
 describe('Collection', () => {
   const ITEMS = 10;
@@ -70,7 +72,13 @@ describe('Collection', () => {
       <Page>
         <Resource subject={collectionWithPages} />
       </Page>
-    ), { resources });
+    ), {
+      modules: [
+        Common,
+        CollectionModule,
+      ],
+      resources,
+    });
 
     expect(getByText('Member name')).toBeVisible();
   });

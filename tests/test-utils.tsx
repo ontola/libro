@@ -183,7 +183,7 @@ export const renderLinked = async <
 
   const [iri, graph] = resourcesToGraph(resources);
   // eslint-disable-next-line no-inline-comments
-  const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
+  const modules = opts.modules ?? [];
   const ctx = await generateCtx(modules, graph, iri);
 
   const wrapper = await wrapProviders({
@@ -220,7 +220,7 @@ const renderWithWrappers = async <
     ...options
   } = opts;
   // eslint-disable-next-line no-inline-comments
-  const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
+  const modules = opts.modules ?? [];
 
   const wrapper = await wrapProviders({
     ctx: {

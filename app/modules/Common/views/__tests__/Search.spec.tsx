@@ -12,8 +12,10 @@ import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import argu from '../../../Argu/ontology/argu';
+import Collection from '../../../Collection';
 import example from '../../../Kernel/ontology/example';
 import ontola from '../../../Kernel/ontology/ontola';
+import Common from '../../index';
 import Page from '../../topologies/Page';
 
 describe('Search', () => {
@@ -77,7 +79,13 @@ describe('Search', () => {
             subject={iri}
           />
         </Page>
-      ), { resources });
+      ), {
+        modules: [
+          Common,
+          Collection,
+        ],
+        resources,
+      });
 
       const form = getByTestId('search-form');
 

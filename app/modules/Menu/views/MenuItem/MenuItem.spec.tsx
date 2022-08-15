@@ -18,6 +18,7 @@ import React from 'react';
 import { renderLinked } from '../../../../../tests/test-utils';
 import app from '../../../Common/ontology/app';
 import ontola from '../../../Kernel/ontology/ontola';
+import dependencies from '../../dependencies';
 import AppMenu, { AppMenuChildProps } from '../../topologies/AppMenu';
 
 describe('MenuItem', () => {
@@ -84,7 +85,10 @@ describe('MenuItem', () => {
         )}
       </AppMenu>
     </React.Fragment>
-  ), { resources });
+  ), {
+    modules: dependencies,
+    resources,
+  });
 
   it('opens the menu on click', async () => {
     const { getByText } = await renderMenu();

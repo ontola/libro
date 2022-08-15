@@ -21,6 +21,7 @@ import Page from '../../Common/topologies/Page';
 import example from '../../Kernel/ontology/example';
 import ll from '../../Kernel/ontology/ll';
 import form from '../../Form/ontology/form';
+import dependencies from '../dependencies';
 
 describe('Actions', () => {
   const testIRI = ex.ns('test');
@@ -111,7 +112,10 @@ describe('Actions', () => {
           subject={iri}
         />
       </Page>
-    ), { resources });
+    ), {
+      modules: dependencies,
+      resources,
+    });
 
     const fieldName = (prop: Node) => btoa(prop.value);
 

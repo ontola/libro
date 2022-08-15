@@ -25,6 +25,7 @@ import Page from '../../../Common/topologies/Page';
 import example from '../../../Kernel/ontology/example';
 import ll from '../../../Kernel/ontology/ll';
 import ontola from '../../../Kernel/ontology/ontola';
+import dependencies from '../../dependencies';
 import { calculateFormFieldName } from '../../lib/helpers';
 import form from '../../ontology/form';
 
@@ -100,7 +101,10 @@ describe('Form', () => {
             subject={iri}
           />
         </Page>
-      ), { resources });
+      ), {
+        modules: dependencies,
+        resources,
+      });
 
       await findByTestId(btoa('http://schema.org/text'));
 
@@ -123,7 +127,10 @@ describe('Form', () => {
             subject={iri}
           />
         </Page>
-      ), { resources });
+      ), {
+        modules: dependencies,
+        resources, 
+      });
 
       await findByTestId(btoa('http://schema.org/text'));
 

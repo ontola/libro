@@ -12,6 +12,7 @@ import { renderLinked } from '../../../../../tests/test-utils';
 import argu from '../../../Argu/ontology/argu';
 import Container from '../../../Common/topologies/Container';
 import example from '../../../Kernel/ontology/example';
+import dependencies from '../../dependencies';
 import elements from '../../ontology/elements';
 
 const s = (x: NamedNode) => x.toString();
@@ -68,7 +69,10 @@ const renderDoc = async (iri: NamedNode) => renderLinked((
   <Container>
     <Resource subject={iri} />
   </Container>
-), { resources });
+), {
+  modules: dependencies,
+  resources,
+});
 
 describe('Elements Button', () => {
   it('renders', async () => {

@@ -44,7 +44,7 @@ export async function createHookWrapper<TProps>(data: DataObject | DataObject[],
     fetch: jest.fn().mockImplementation((a) => Promise.reject({ error: `No fetching during test (${a})` })),
   };
   // eslint-disable-next-line no-inline-comments
-  const modules = opts.modules ?? (await import(/* webpackChunkName: "TestModules" */ '../app/modules')).modules;
+  const modules = opts.modules ?? [];
   const { lrs } = await generateLRS(manifest, modules, slice, {}, {
     apiOpts: {
       fetch: spies.fetch,

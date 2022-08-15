@@ -10,6 +10,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
+import dependencies from '../../dependencies';
 import dbo from '../../ontology/dbo';
 import Page from '../../topologies/Page';
 
@@ -50,7 +51,10 @@ describe('MediaObject', () => {
           />
         </Page>
       ),
-      { resources },
+      {
+        modules: dependencies,
+        resources, 
+      },
     );
 
     expect(queryByText(PARENT_NAME)).toBeVisible();

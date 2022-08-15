@@ -17,6 +17,7 @@ import hydra from '../../../../ontology/hydra';
 import Container from '../../../Common/topologies/Container';
 import ld from '../../../Kernel/ontology/ld';
 import ontola from '../../../Kernel/ontology/ontola';
+import dependencies from '../../dependencies';
 import argu from '../../ontology/argu';
 
 describe('Notification', () => {
@@ -94,7 +95,10 @@ describe('Notification', () => {
           />
         </Container>
       ),
-      { resources },
+      {
+        modules: dependencies,
+        resources,
+      },
     );
 
     it('renders', async () => {

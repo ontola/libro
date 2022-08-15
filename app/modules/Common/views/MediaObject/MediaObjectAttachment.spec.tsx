@@ -10,6 +10,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
+import dependencies from '../../dependencies';
 import dbo from '../../ontology/dbo';
 import Card from '../../topologies/Card';
 
@@ -51,7 +52,10 @@ describe('MediaObject', () => {
           />
         </Card>
       ),
-      { resources },
+      {
+        modules: dependencies,
+        resources,
+      },
     );
 
     expect(queryByText(PARENT_NAME)).toBeNull();

@@ -12,6 +12,7 @@ import React from 'react';
 import { renderLinked } from '../../../../../tests/test-utils';
 import example from '../../../Kernel/ontology/example';
 import elements from '../../../Elements/ontology/elements';
+import dependencies from '../../dependencies';
 import sales from '../../ontology/sales';
 
 import { HeaderTheme } from './index';
@@ -80,7 +81,10 @@ const render = (iri: NamedNode, theme: HeaderTheme = HeaderTheme.Default) => ren
     subject={iri}
     theme={theme}
   />
-), { resources });
+), {
+  modules: dependencies,
+  resources,
+});
 
 describe('Sales Header Test', () => {
   describe('Default Headers', () => {
@@ -130,7 +134,10 @@ describe('Sales Header Test', () => {
           )}
           subject={header1Iri}
         />
-      ), { resources });
+      ), {
+        modules: dependencies,
+        resources,
+      });
 
       const subComponent = getByText('subcomponent');
 

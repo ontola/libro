@@ -12,6 +12,7 @@ import React from 'react';
 import { renderLinked } from '../../../../../tests/test-utils';
 import Container from '../../../Common/topologies/Container';
 import example from '../../../Kernel/ontology/example';
+import dependencies from '../../dependencies';
 import elements from '../../ontology/elements';
 
 type Heading = 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6';
@@ -66,7 +67,10 @@ const renderDoc = async (iri: NamedNode) => renderLinked((
   <Container>
     <Resource subject={iri} />
   </Container>
-), { resources });
+), {
+  modules: dependencies,
+  resources, 
+});
 
 describe('Typography', () => {
   it('renders', async () => {

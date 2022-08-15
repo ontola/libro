@@ -11,6 +11,7 @@ import React from 'react';
 
 import { renderLinked } from '../../../../../tests/test-utils';
 import libro from '../../../Kernel/ontology/libro';
+import dependencies from '../../dependencies';
 
 describe('SnackbarManager', () => {
   it('renders nothing if queue is empty', async () => {
@@ -23,7 +24,10 @@ describe('SnackbarManager', () => {
 
     const { queryByTestId } = await renderLinked((
       <Resource subject={iri} />
-    ), { resources });
+    ), {
+      modules: dependencies,
+      resources, 
+    });
 
     expect(await queryByTestId('current-snackbar')).toBeNull();
   });
@@ -46,7 +50,10 @@ describe('SnackbarManager', () => {
 
     const { queryByTestId } = await renderLinked((
       <Resource subject={iri} />
-    ), { resources });
+    ), {
+      modules: dependencies,
+      resources,
+    });
 
     expect(await queryByTestId('current-snackbar')).not.toBeNull();
   });

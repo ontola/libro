@@ -15,6 +15,7 @@ import { renderLinked } from '../../../../../tests/test-utils';
 import Container from '../../../Common/topologies/Container';
 import example from '../../../Kernel/ontology/example';
 import ontola from '../../../Kernel/ontology/ontola';
+import dependencies from '../../dependencies';
 import sales from '../../ontology/sales';
 
 const s = (x: NamedNode) => x.toString();
@@ -60,7 +61,10 @@ const render = () => renderLinked((
       subject={facetIRI}
     />
   </Container>
-), { resources });
+), {
+  modules: dependencies,
+  resources,
+});
 
 describe('FacetContainer', () => {
   it('renders', async () => {
