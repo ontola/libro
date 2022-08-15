@@ -58,7 +58,7 @@ describe('useFieldForwardRules', () => {
         isAutoForwardField,
       } = result.current;
 
-      waitFor(() => expect(isAutoForwardField).toEqual(true));
+      await waitFor(() => expect(isAutoForwardField).toEqual(true));
     });
 
     it('should be false when a field is not an auto forward field.', async () => {
@@ -68,7 +68,7 @@ describe('useFieldForwardRules', () => {
         isAutoForwardField,
       } = result.current;
 
-      waitFor(() => expect(isAutoForwardField).toEqual(false));
+      await waitFor(() => expect(isAutoForwardField).toEqual(false));
     });
 
     it('should be false on desktop and true on mobile for mobile only autoforward fields', async () => {
@@ -113,13 +113,13 @@ describe('useFieldForwardRules', () => {
     it('should be false when the field is a manually forwarded field', async () => {
       const { result } = await createRenderer(form.TextAreaInput)();
 
-      waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
+      await waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
     });
 
     it('should be false when the field is an auto forwarded field', async () => {
       const { result } = await createRenderer(form.RadioGroup)();
 
-      waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
+      await waitFor(() => expect(result.current.isForwardedByEnter).toBe(false));
     });
 
     it('should be false when pointer is coarse', async () => {

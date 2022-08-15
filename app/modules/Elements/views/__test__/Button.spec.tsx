@@ -4,12 +4,11 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import userEvent from '@testing-library/user-event';
 import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { renderLinked, waitFor } from '../../../../../tests/test-utils';
+import { renderLinked } from '../../../../../tests/test-utils';
 import argu from '../../../Argu/ontology/argu';
 import Container from '../../../Common/topologies/Container';
 import example from '../../../Kernel/ontology/example';
@@ -105,14 +104,14 @@ describe('Elements Button', () => {
     expect(icon).toBeVisible();
   });
 
-  it('navigates when clicked on', async () => {
+  it('has appropriate attributes', async () => {
     const { getByRole } = await renderDoc(doc5);
     const button = getByRole('button');
 
     expect(button).toBeVisible();
-
-    userEvent.click(button);
-
-    waitFor(() => expect(window.location.href).toBe('http://example.com'));
+    expect(button).toHaveAttribute('href', 'http://example.com');
+    expect(button).toHaveAttribute('rel', 'nofollow noopener noreferrer');
+    expect(button).toHaveAttribute('role', 'button');
+    expect(button).toHaveAttribute('target', '_blank');
   });
 });

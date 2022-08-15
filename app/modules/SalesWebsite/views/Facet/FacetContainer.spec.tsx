@@ -86,7 +86,7 @@ describe('FacetContainer', () => {
 
     expect(facet1Text).toBeVisible();
 
-    userEvent.click(facet2Title);
+    await userEvent.click(facet2Title);
 
     const facet2Text = await findByText('De plek om aangifte te doen wanneer je geld betaald hebt voor gratis spullen.');
 

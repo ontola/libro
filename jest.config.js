@@ -31,6 +31,9 @@ module.exports = {
     '@testing-library/jest-dom/extend-expect',
   ],
   testEnvironment: 'node',
+  testEnvironmentOptions: {
+    url: 'https://argu.dev/o/1'
+  },
   testMatch: [
     '**/__tests__/**/*.ts?(x)',
     '**/?(*.)+(spec|test).ts?(x)'
@@ -41,7 +44,6 @@ module.exports = {
     'app/__tests__/link-redux/fixtures.js',
     'app/__tests__/link-redux/utilities.js',
   ],
-  testURL: 'https://argu.dev/o/1',
   transform: {
     '^.+\\.m?(j|t)sx?$': 'ts-jest',
   },

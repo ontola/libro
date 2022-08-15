@@ -5,19 +5,17 @@
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { waitForElementToBeRemoved } from '@testing-library/dom';
+import { act, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import fetchMock from 'jest-fetch-mock';
 import { DataObject } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import {
-  act,
-  fireEvent,
-  renderLinked,
-} from '../../../../../tests/test-utils';
+import { renderLinked } from '../../../../../tests/test-utils';
 import hydra from '../../../../ontology/hydra';
 import Container from '../../../Common/topologies/Container';
+import ld from '../../../Kernel/ontology/ld';
 import ontola from '../../../Kernel/ontology/ontola';
 import argu from '../../ontology/argu';
 
@@ -125,7 +123,7 @@ describe('Notification', () => {
         queryByTitle,
       } = await renderInContainer(unreadResources);
 
-      const delta = `${resource.toString()} ${argu.unread.toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${ontola.replace.toString()} .`;
+      const delta = `${resource.toString()} ${argu.unread.toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${ld.replace.toString()} .`;
       fetchMock.mockResponse(
         delta,
         {
@@ -139,12 +137,10 @@ describe('Notification', () => {
       expect(notificationText).toBeVisible();
       expect(getByTitle(MARK_AS_READ_TEXT)).toBeVisible();
 
-      act(() => {
-        fireEvent.click(notificationText);
+      await act(async () => {
+        await userEvent.click(notificationText);
       });
-
-      expect(fetchMock.mock.calls.length).toEqual(1);
-      await waitForElementToBeRemoved(() => getByTitle(MARK_AS_READ_TEXT));
+      await waitFor(() => expect(fetchMock.mock.calls.length).toEqual(1));
       expect(queryByTitle(MARK_AS_READ_TEXT)).toBeNull();
     });
   });

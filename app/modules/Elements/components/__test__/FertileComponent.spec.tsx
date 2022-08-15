@@ -4,8 +4,6 @@
 import { NamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { waitFor } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
 import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
@@ -126,9 +124,8 @@ describe('FertileComponent', () => {
     const link = getByText('Click here to download more ram');
     expect(link).toBeVisible();
 
-    userEvent.click(link);
-
-    waitFor(() => expect(window.location.href).toBe('http://example.com/more-ram'));
+    expect(link.parentElement).toHaveAttribute('href', example.ns('more-ram').value);
+    expect(link.parentElement).toHaveAttribute('target', '_blank');
   });
 
   it('renders a note', async () => {

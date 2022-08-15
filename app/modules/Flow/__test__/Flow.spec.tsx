@@ -6,7 +6,8 @@ import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import * as xsd from '@ontologies/xsd';
-import { fireEvent, waitFor } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/dom';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
@@ -23,6 +24,7 @@ import Flow from '../../../modules/Flow/topologies/Flow';
 import ex from '../../../ontology/ex';
 import ll from '../../Kernel/ontology/ll';
 import form from '../../Form/ontology/form';
+import ontola from '../../Kernel/ontology/ontola';
 
 const s = (node: NamedNode) => node.toString();
 const encode = (iri: NamedNode) => btoa(iri.value);
@@ -30,34 +32,42 @@ const encode = (iri: NamedNode) => btoa(iri.value);
 const entryPoint = ex.ns('entryPoint');
 const formIRI = ex.ns('form');
 
-const flow = (inputs: Array<Record<string, unknown>> = []) => ({
-  '@id': entryPoint.value,
-  [s(rdfx.type)]: schema.EntryPoint,
-  [s(schema.httpMethod)]: 'PUT',
-  [s(schema.name)]: 'Update',
-  [s(ll.actionBody)]: seq([
-    {
-      '@id': formIRI,
-      [s(rdfx.type)]: form.Form,
-      [s(form.pages)]: seq([
-        {
-          '@id': rdf.blankNode(),
-          [s(rdfx.type)]: form.Page,
-          [s(form.groups)]: seq([
-            {
-              '@id': rdf.blankNode(),
-              [s(rdfx.type)]: form.Group,
-              [s(form.fields)]: seq(inputs.map((inp, index) => ({
-                ...inp,
-                [s(sh.order)]: index,
-              }))),
-            },
-          ]),
-        },
-      ]),
+const flow = (inputs: Array<Record<string, unknown>> = []) => [
+  ({
+    '@id': entryPoint.value,
+    [s(rdfx.type)]: schema.EntryPoint,
+    [s(schema.httpMethod)]: 'PUT',
+    [s(schema.name)]: 'Update',
+    [s(ll.actionBody)]: seq([
+      {
+        '@id': formIRI,
+        [s(rdfx.type)]: form.Form,
+        [s(form.pages)]: seq([
+          {
+            '@id': rdf.blankNode(),
+            [s(rdfx.type)]: form.Page,
+            [s(form.groups)]: seq([
+              {
+                '@id': rdf.blankNode(),
+                [s(rdfx.type)]: form.Group,
+                [s(form.fields)]: seq(inputs.map((inp, index) => ({
+                  ...inp,
+                  [s(sh.order)]: index,
+                }))),
+              },
+            ]),
+          },
+        ]),
+      },
+    ]),
+  }),
+  {
+    '@id': 'https://app.argu.co/freetown',
+    [s(schema.image)]: {
+      [s(ontola.imgUrl256x256)]: ex.ns('icon'),
     },
-  ]),
-});
+  },
+];
 
 const input = (type: NamedNode, path: NamedNode, props: Record<string, unknown> = {}) => ({
   [s(rdfx.type)]: type,
@@ -78,11 +88,14 @@ const renderFlowWithInputs = (...inputs: Array<Record<string, unknown>>) => rend
   resources: flow(inputs),
 });
 
-const enterText = (target: HTMLElement, value: string, blur = true) => {
-  act(() => {
-    userEvent.type(target, value);
-    blur && fireEvent.blur(target);
-  });
+const enterText = async (target: HTMLElement, value: string, blur = true) => {
+  await userEvent.type(target, value, { advanceTimers: jest.advanceTimersByTime });
+
+  if (blur) {
+    act(() => {
+      fireEvent.blur(target);
+    });
+  }
 };
 
 describe('Flows', () => {
@@ -95,6 +108,10 @@ describe('Flows', () => {
     mockMedia(screenWidth());
     jest.runOnlyPendingTimers();
     jest.useRealTimers();
+  });
+
+  it('should render flow and input element', async () => {
+    expect(true).toBeTruthy();
   });
 
   it('should render flow and input element', async () => {
@@ -127,9 +144,7 @@ describe('Flows', () => {
 
     const nextButton = getByTestId('next-button');
 
-    act(() => {
-      fireEvent.click(nextButton);
-    });
+    await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(inputElement).not.toBeVisible());
 
@@ -152,16 +167,13 @@ describe('Flows', () => {
     const nextButton = await findByTestId('next-button');
     const backButton = await findByTestId('previous-button');
 
-    fireEvent.click(nextButton);
+    await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(inputElement1).not.toBeVisible());
 
-    act(() => {
-      fireEvent.click(backButton);
-    });
+    await userEvent.click(backButton, { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(inputElement1).toBeVisible());
-
   });
 
   it('shows the Done submission screen when all fields are valid', async () => {
@@ -177,7 +189,9 @@ describe('Flows', () => {
 
     const inputElement = await findByTestId(encode(schema.name));
 
-    enterText(inputElement, 'Something');
+    expect(inputElement).toBeVisible();
+
+    await enterText(inputElement, 'Something');
 
     const page = await findByText('Done! 🎉');
 
@@ -185,9 +199,7 @@ describe('Flows', () => {
 
     const nextButton = getByTestId('next-button');
 
-    act(() => {
-      fireEvent.click(nextButton);
-    });
+    await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(page).toBeVisible());
   });
@@ -215,19 +227,15 @@ describe('Flows', () => {
     const nextButton = getByTestId('next-button');
     const goBackButton = getByTestId('to-invalid-field-button');
 
-    enterText(inputElement1, 'Something');
+    await enterText(inputElement1, 'Something');
 
-    act(() => {
-      fireEvent.click(nextButton);
-      fireEvent.click(nextButton);
-    });
+    await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
+    await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
 
-    enterText(inputElement3, 'Something');
+    await enterText(inputElement3, 'Something');
 
-    act(() => {
-      fireEvent.click(nextButton);
-      fireEvent.click(goBackButton);
-    });
+    await userEvent.click(nextButton, { advanceTimers: jest.advanceTimersByTime });
+    await userEvent.click(goBackButton, { advanceTimers: jest.advanceTimersByTime });
 
     expect(inputElement2).toBeVisible();
   });
@@ -247,11 +255,9 @@ describe('Flows', () => {
 
     await waitFor(() => expect(inputElement2).not.toBeVisible());
 
-    enterText(inputElement1, 'Something', false);
+    await enterText(inputElement1, 'Something', false);
 
-    act(() => {
-      fireEvent.keyDown(inputElement1, { key: 'Enter' });
-    });
+    await userEvent.keyboard('{enter}', { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(inputElement2).toBeVisible());
   });
@@ -289,9 +295,7 @@ describe('Flows', () => {
       expect(step).toBeVisible();
       expect(inputElement3).not.toBeVisible();
 
-      act(() => {
-        fireEvent.click(step);
-      });
+      await userEvent.click(step, { advanceTimers: jest.advanceTimersByTime });
 
       await waitFor(() => expect(inputElement3).toBeVisible());
     });
@@ -318,14 +322,14 @@ describe('Flows', () => {
     act(() => {
       fireEvent.focus(inputElement);
     });
-    enterText(inputElement, 'Something', false);
+    await enterText(inputElement, 'Something', false);
 
     expect(step).toHaveAttribute('data-testid', `step-${inputName}`);
 
     act(() => {
       fireEvent.blur(inputElement);
-      fireEvent.click(getByTestId('next-button'));
     });
+    await userEvent.click(getByTestId('next-button'), { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(step).toHaveAttribute('data-testid', `completed-step-${inputName}`));
   });
@@ -348,9 +352,7 @@ describe('Flows', () => {
 
     const stepperFlagIcon = await findByTestId('step-flag');
 
-    act(() => {
-      fireEvent.click(stepperFlagIcon);
-    });
+    await userEvent.click(stepperFlagIcon, { advanceTimers: jest.advanceTimersByTime });
 
     await waitFor(() => expect(submissionElement).toBeVisible());
   });

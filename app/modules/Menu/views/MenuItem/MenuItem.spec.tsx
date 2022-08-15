@@ -10,8 +10,8 @@ import {
   waitFor,
   within,
 } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { wait } from '@testing-library/user-event/dist/utils';
 import { Resource } from 'link-redux';
 import React from 'react';
 
@@ -92,9 +92,8 @@ describe('MenuItem', () => {
     const trigger = getByText('Menu Trigger');
 
     fireEvent.click(trigger);
-    await wait();
 
-    expect(getByText('Gebruiker weergeven')).toBeVisible();
+    await waitFor(() => expect(getByText('Gebruiker weergeven')).toBeVisible());
   });
 
   it('closes the menu on click outside', async () => {
@@ -102,11 +101,10 @@ describe('MenuItem', () => {
 
     const trigger = screen.getByText('Menu Trigger');
 
-    fireEvent.click(trigger);
-    await wait();
+    await userEvent.click(trigger);
 
-    await waitFor(() => {
-      fireEvent.click(document.querySelector('div[data-test="outside"]')!);
+    await act(async () => {
+      await userEvent.click(document.querySelector('div[data-test="outside"]')!);
     });
 
     expect(screen.getByText('Gebruiker weergeven')).not.toBeVisible();
@@ -116,14 +114,11 @@ describe('MenuItem', () => {
     const { getByText, findByText } = await renderMenu();
 
     const trigger = getByText('Menu Trigger');
-    fireEvent.click(trigger);
-    await wait();
+    await userEvent.click(trigger);
 
-    await waitFor(() => {
-      findByText('Gebruiker weergeven')
-        .then((menuItem) => {
-          fireEvent.click(menuItem);
-        });
+    await waitFor(async () => {
+      const menuItem = await findByText('Gebruiker weergeven');
+      await userEvent.click(menuItem);
     });
 
     expect(getByText('Gebruiker weergeven')).not.toBeVisible();
@@ -135,7 +130,7 @@ describe('MenuItem', () => {
     const trigger = getByText('Menu Trigger');
     trigger.focus();
 
-    userEvent.keyboard('{enter}{arrowdown}{arrowdown}');
+    await userEvent.keyboard('{enter}{arrowdown}{arrowdown}');
 
     const menuItem = document.activeElement as HTMLElement;
 
