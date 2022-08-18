@@ -14,7 +14,7 @@ import DetailsBar from '../../../Common/topologies/DetailsBar';
 import List, { ListDirection } from '../../../Common/topologies/List';
 import ontola from '../../../Kernel/ontology/ontola';
 
-import { CollectionTypes } from './types';
+import { GenericCollectionTypes } from './types';
 
 const CollectionGrid: FC = () => (
   <CardFixed>
@@ -41,7 +41,7 @@ const CollectionGrid: FC = () => (
   </CardFixed>
 );
 
-CollectionGrid.type = CollectionTypes;
+CollectionGrid.type = GenericCollectionTypes;
 
 CollectionGrid.topology = gridTopology;
 

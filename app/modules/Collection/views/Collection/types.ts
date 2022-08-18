@@ -3,11 +3,13 @@ import * as as from '@ontologies/as';
 import hydra from '../../../../ontology/hydra';
 import ontola from '../../../Kernel/ontology/ontola';
 
-export const CollectionTypes = [
+export const GenericCollectionTypes = [
   ontola.Collection,
   as.Collection,
-  ontola.SearchResult,
   hydra.Collection,
 ];
 
-export default CollectionTypes;
+export const CollectionTypes = [
+  ...GenericCollectionTypes,
+  ontola.SearchResult,
+];

@@ -15,7 +15,7 @@ import { entityIsLoaded } from '../../Kernel/lib/data';
 import app from '../../Common/ontology/app';
 import ontola from '../../Kernel/ontology/ontola';
 import { ChangePage } from '../middleware/actions';
-import CollectionTypes from '../views/Collection/types';
+import { CollectionTypes } from '../views/Collection/types';
 
 /**
  * A callback to change the filters, sorting or page of a rendered collection.
