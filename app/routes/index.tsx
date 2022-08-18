@@ -24,7 +24,7 @@ export default (): JSX.Element => (
       key="linkedResources"
       path="*"
     />
-    <Route path="d">
+    <Route path="libro">
       <Route
         element={<RDFStudio />}
         key="studio"
@@ -32,7 +32,6 @@ export default (): JSX.Element => (
       />
       {__DEVELOPMENT__ && (
         <React.Fragment>
-
           <Route
             element={<DevBrowser />}
             key="devbrowser"
