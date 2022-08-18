@@ -9,12 +9,15 @@ import { darken } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import { SomeTerm } from '@ontologies/core';
 import clsx from 'clsx';
-import { Resource, useTopologyProvider } from 'link-redux';
+import {
+  Resource,
+  TopologyFC,
+  createTopologyProvider, 
+} from 'link-redux';
 import React, { EventHandler } from 'react';
 
 import { SHADOW } from '../../../Common/lib/flow';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { isResource } from '../../../Kernel/lib/typeCheckers';
 import { FormTheme } from '../../components/Form/FormContext';
 import { FocusRelatedEventHandler, InputValue } from '../../components/FormField/FormFieldTypes';
@@ -76,6 +79,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => createStyles({
   },
 }));
 
+const RadioGroupTopology = createTopologyProvider(radioGroupTopology);
+
 const RadioGroup: TopologyFC<RadioGroupProps> = ({
   theme,
   options,
@@ -86,7 +91,6 @@ const RadioGroup: TopologyFC<RadioGroupProps> = ({
   onChange,
   onFocus,
 }) => {
-  const [RadioGroupTopology] = useTopologyProvider(radioGroupTopology);
   const classes = useStyles();
 
   const radioClassName = clsx({

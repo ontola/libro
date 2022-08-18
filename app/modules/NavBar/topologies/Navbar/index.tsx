@@ -9,13 +9,16 @@ import {
   useTheme, 
 } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  createTopologyProvider,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { landmarkMessages } from '../../../../translations/messages';
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { navbarTopology } from '../index';
 
 interface NavbarProps {
@@ -40,10 +43,13 @@ const useStyles = makeStyles((theme: LibroTheme) => (createStyles({
   },
 })));
 
+const NavBarTopology = createTopologyProvider(navbarTopology);
+
 const Navbar: TopologyFC<NavbarProps> = ({
   children, elevated, fullWidth, classes,
 }) => {
   const ownClasses = useStyles();
+  const { subject } = useLinkRenderContext();
 
   const mergedClasses = {
     ...ownClasses,
@@ -51,7 +57,6 @@ const Navbar: TopologyFC<NavbarProps> = ({
   };
 
   const intl = useIntl();
-  const [NavBarTopology, subject] = useTopologyProvider(navbarTopology);
 
   const {
     appBar: {

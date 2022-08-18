@@ -1,10 +1,9 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { loadingButtonCID } from '../../../Common/components/Loading';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { actionsBarTopology } from '../index';
 
 interface ActionsBarProps {
@@ -34,8 +33,9 @@ const useStyles = makeStyles({
   },
 });
 
+const ActionsBarTopology = createTopologyProvider(actionsBarTopology);
+
 const ActionsBar: TopologyFC<ActionsBarProps> = ({ children, small }) => {
-  const [ActionsBarTopology] = useTopologyProvider(actionsBarTopology);
   const classes = useStyles();
 
   const className = clsx({

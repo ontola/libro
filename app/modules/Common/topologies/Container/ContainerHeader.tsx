@@ -1,9 +1,8 @@
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { headingCID } from '../../components/Heading';
 import { containerHeaderTopology } from '../index';
 
@@ -36,11 +35,12 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
 }));
 
+const ContainerHeaderTopology = createTopologyProvider(containerHeaderTopology);
+
 /**
  * Holds a header and menu items that float to the top right of the container
  */
 const ContainerHeader: TopologyFC<ContainerHeaderProps> = ({ children, float }) => {
-  const [ContainerHeaderTopology] = useTopologyProvider(containerHeaderTopology);
   const classes = useStyles();
 
   return (

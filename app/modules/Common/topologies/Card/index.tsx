@@ -1,10 +1,13 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  createTopologyProvider,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { useConvertToKeyEvent } from '../../hooks/useConvertToKeyEvent';
 import { cardTopology } from '../index';
 
@@ -31,13 +34,15 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   ...shineStyles,
 }));
 
+const CardTopology = createTopologyProvider(cardTopology);
+
 /**
  * Renders an empty Card without padding
  */
 const Card: TopologyFC<CardProps> = ({
   children, className, onClick, shine, warn,
 }) => {
-  const [CardTopology, subject] = useTopologyProvider(cardTopology);
+  const { subject } = useLinkRenderContext();
   const classes = useStyles();
 
   const onKeyDown = useConvertToKeyEvent(onClick);

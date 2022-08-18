@@ -1,10 +1,9 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { cardRowTopology } from '../index';
 
 import { cardClassIdentifier, collapseTextToggleCID } from './sharedCardStyles';
@@ -41,11 +40,12 @@ const useStyles = makeStyles((theme: LibroTheme) => createStyles({
   },
 }));
 
+const CardRowTopology = createTopologyProvider(cardRowTopology);
+
 /**
  * Used to divide a card in multiple rows
  */
 const CardRow: TopologyFC<CardRowProps> = ({ children, backdrop, borderTop }) => {
-  const [CardRowTopology] = useTopologyProvider(cardRowTopology);
   const classes = useStyles();
   const className = clsx({
     [cardRowBackdropClassIdentifier]: backdrop,

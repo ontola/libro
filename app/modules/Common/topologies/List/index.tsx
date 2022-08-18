@@ -1,9 +1,8 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { listTopology } from '../index';
 
 export enum ListDirection {
@@ -32,13 +31,14 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
+const ListTopology = createTopologyProvider(listTopology);
+
 /**
  * Sets the List topology
  */
 const List: TopologyFC<ListProps> = ({
   children, direction, overflow, wrap,
 }) => {
-  const [ListTopology] = useTopologyProvider(listTopology);
   const classes = useStyles();
 
   const className = clsx({

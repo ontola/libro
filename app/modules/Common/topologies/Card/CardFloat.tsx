@@ -1,8 +1,7 @@
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { cardFloatTopology } from '../index';
 
 const useStyles = makeStyles({
@@ -12,12 +11,13 @@ const useStyles = makeStyles({
   },
 });
 
+const CardFloatTopology = createTopologyProvider(cardFloatTopology);
+
 /**
  * In the top right corner of a card
  * Sets the cardFloat topology
  */
 const CardFloat: TopologyFC = ({ children }) => {
-  const [CardFloatTopology] = useTopologyProvider(cardFloatTopology);
   const classes = useStyles();
 
   return (

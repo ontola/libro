@@ -3,9 +3,11 @@ import { LinkedRenderStore } from 'link-lib/dist-types/LinkedRenderStore';
 import { LRSCtx } from 'link-redux';
 import React, { ChildrenProp } from 'react';
 
-import { TopologyState } from '../../../Kernel/lib/topology';
-
 import ErrorRenderer from './ErrorRenderer';
+
+interface TopologyState {
+  error?: Error;
+}
 
 class ErrorBoundary<P extends ChildrenProp> extends React.Component<P, TopologyState> {
   static contextType = LRSCtx;

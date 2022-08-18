@@ -1,13 +1,12 @@
 import { TableCell as MUITableCell, TableCellProps as MUITableCellProps } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
 import { headingCID } from '../../../Common/components/Heading';
 import HeadingContext from '../../../Common/components/Heading/HeadingContext';
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tableCellTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -28,6 +27,7 @@ type TableCellProps = MUITableCellProps & {
   children?: ReactNode;
   colSpan?: number;
 };
+const TableCellTopology = createTopologyProvider(tableCellTopology);
 
 const TableCell: TopologyFC<TableCellProps> = ({
   align,
@@ -35,7 +35,6 @@ const TableCell: TopologyFC<TableCellProps> = ({
   children,
   noBorder,
 }) => {
-  const [TableCellTopology] = useTopologyProvider(tableCellTopology);
   const classes = useStyles();
 
   const className = clsx({

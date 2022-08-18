@@ -1,10 +1,9 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tableHeaderCellTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => createStyles({
@@ -16,9 +15,9 @@ const useStyles = makeStyles((theme: LibroTheme) => createStyles({
 }));
 
 type TableHeaderCellProps = React.ThHTMLAttributes<HTMLTableCellElement>;
+const TableHeaderCellTopology = createTopologyProvider(tableHeaderCellTopology);
 
 const TableHeaderCell: TopologyFC<TableHeaderCellProps> = ({ children, className, ...elemProps }) => {
-  const [TableHeaderCellTopology] = useTopologyProvider(tableHeaderCellTopology);
   const classes = useStyles();
 
   return (

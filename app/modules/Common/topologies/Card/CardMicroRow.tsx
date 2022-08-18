@@ -1,10 +1,9 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { cardMicroRowTopology } from '../index';
 
 import { collapseTextToggleCID, shineStyles } from './sharedCardStyles';
@@ -34,11 +33,12 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   ...shineStyles,
 }));
 
+const CardMicroRowTopology = createTopologyProvider(cardMicroRowTopology);
+
 /**
  * Used to divide a card in multiple rows
  */
 const CardMicroRow: TopologyFC<CardMicroRowProps> = ({ children, highlighted }) => {
-  const [CardMicroRowTopology] = useTopologyProvider(cardMicroRowTopology);
   const classes = useStyles();
   const className = clsx({
     [cardMicroRowClassIdentifier]: true,

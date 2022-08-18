@@ -1,11 +1,10 @@
 import MUITableHead from '@mui/material/TableHead';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tableHeadTopology } from '../index';
 
 export type TableHeadProps = React.HTMLAttributes<HTMLElement>;
@@ -30,9 +29,9 @@ const useStyles = makeStyles<LibroTheme>((theme: LibroTheme) => ({
     color: theme.palette.grey.midDark,
   },
 }));
+const TableHeadTopology = createTopologyProvider(tableHeadTopology);
 
 const TableHead: TopologyFC<TableHeadProps> = ({ children, className, ...attr }) => {
-  const [TableHeadTopology] = useTopologyProvider(tableHeadTopology);
   const classes = useStyles();
 
   return (

@@ -1,6 +1,7 @@
-import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
+import { createTopologyProvider } from 'link-redux';
+
 import { omniformSupplementBarTopology } from '../index';
 
-const OmniformSupplementBar = createBasicTopologyProvider(omniformSupplementBarTopology);
+const OmniformSupplementBar = createTopologyProvider(omniformSupplementBarTopology);
 
 export default OmniformSupplementBar;
