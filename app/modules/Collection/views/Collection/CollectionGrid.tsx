@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import hydra from '../../../../ontology/hydra';
 import CardContent from '../../../Common/components/Card/CardContent';
 import LDLink from '../../../Common/components/LDLink';
 import { gridTopology } from '../../../Common/topologies';
@@ -13,8 +14,6 @@ import { CardFixed } from '../../../Common/topologies/Card';
 import DetailsBar from '../../../Common/topologies/DetailsBar';
 import List, { ListDirection } from '../../../Common/topologies/List';
 import ontola from '../../../Kernel/ontology/ontola';
-
-import { CollectionTypes } from './types';
 
 const CollectionGrid: FC = () => (
   <CardFixed>
@@ -41,7 +40,11 @@ const CollectionGrid: FC = () => (
   </CardFixed>
 );
 
-CollectionGrid.type = CollectionTypes;
+CollectionGrid.type = [
+  ontola.Collection,
+  as.Collection,
+  hydra.Collection,
+];
 
 CollectionGrid.topology = gridTopology;
 
