@@ -4,17 +4,17 @@ import {
   register,
   useGlobalIds,
   useIds,
-  useNumbers,
+  useNumbers, 
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { thingMessages } from '../../../../../translations/messages';
 import Link, { LinkTarget } from '../../../../Common/components/Link';
 import { cardAppendixTopology } from '../../../../Common/topologies';
 import CardMicroRow from '../../../../Common/topologies/Card/CardMicroRow';
 import CardRow from '../../../../Common/topologies/Card/CardRow';
 import ontola from '../../../../Kernel/ontology/ontola';
+import { commentMessages } from '../../../lib/messages';
 import argu from '../../../ontology/argu';
 
 const TopComment = (): JSX.Element => {
@@ -38,7 +38,7 @@ const TopComment = (): JSX.Element => {
                 to={showAll.value}
               >
                 <FormattedMessage
-                  {...thingMessages.showAllLabel}
+                  {...commentMessages.showAllLabel}
                   values={{ count }}
                 />
               </Link>

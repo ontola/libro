@@ -156,7 +156,7 @@ export const errorMessages: Messages = defineMessages({
     id: 'https://app.argu.co/i18n/errors/request/401/header',
   },
   '403/body': {
-    defaultMessage: "Maybe it's visible after logging in.",
+    defaultMessage: 'Maybe it\'s visible after logging in.',
     id: 'https://app.argu.co/i18n/errors/request/403/body',
   },
   '403/header': {
@@ -220,7 +220,7 @@ export const errorMessages: Messages = defineMessages({
     id: 'https://app.argu.co/i18n/errors/request/422/header',
   },
   '429/body': {
-    defaultMessage: "You're making too many request, try again in half a minute.",
+    defaultMessage: 'You\'re making too many request, try again in half a minute.',
     id: 'https://app.argu.co/i18n/errors/request/429/body',
   },
   '429/header': {
@@ -244,7 +244,7 @@ export const errorMessages: Messages = defineMessages({
     id: 'https://app.argu.co/i18n/errors/request/500/header',
   },
   '501/body': {
-    defaultMessage: "This feature isn't implemented, please try again later.",
+    defaultMessage: 'This feature isn\'t implemented, please try again later.',
     id: 'https://app.argu.co/i18n/errors/request/501/body',
   },
   '501/header': {
@@ -379,25 +379,6 @@ export const formMessages = defineMessages({
   },
 });
 
-export const grantedGroupMessages: Messages = defineMessages({
-  privateText: {
-    defaultMessage: 'Private',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/text',
-  },
-  privateTitle: {
-    defaultMessage: 'Visible for {groupNames}',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/title',
-  },
-  publicText: {
-    defaultMessage: 'Public',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/public/text',
-  },
-  publicTitle: {
-    defaultMessage: 'Visible for everyone',
-    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/public/title',
-  },
-});
-
 export const hiddenRequiredInputErrors: Messages = defineMessages({
   location: {
     defaultMessage: 'Please select a location',
@@ -446,31 +427,6 @@ export const navBarMessages: Messages = defineMessages({
   userSettings: {
     defaultMessage: 'User settings',
     id: 'https://app.argu.co/i18n/navBarMessages/userSettings',
-  },
-});
-
-export const motionMessages: Messages = defineMessages({
-  motionsCount: {
-    defaultMessage: '{count} ideas',
-    id: 'https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label',
-  },
-});
-
-export const notificationMessages: Messages = defineMessages({
-  tooltip: {
-    defaultMessage: 'Click to read your notifications',
-    id: 'https://app.argu.co/i18n/schema:Thing/argu:unreadCount/tooltip',
-  },
-});
-
-export const signInMessages: Messages = defineMessages({
-  guestUser: {
-    defaultMessage:'Confirm your vote via e-mail:',
-    id:'https://app.argu.co/i18n/forms/session/confirmViaEmail',
-  },
-  unconfirmedUser: {
-    defaultMessage:"Please confirm your vote by clicking the link we've sent to {email}",
-    id:'https://app.argu.co/i18n/forms/session/emailConfirmationReminder',
   },
 });
 
@@ -638,35 +594,10 @@ export const swipeInputMessages: Messages = defineMessages({
   },
 });
 
-export const personMessages: Messages = defineMessages({
-  postedBy: {
-    defaultMessage: 'Posted by {name}',
-    id: 'https://app.argu.co/i18n/schema:Person/postedByText',
-  },
-  showProfile: {
-    defaultMessage: "Show {name}'s profile",
-    id: 'https://app.argu.co/i18n/schema:Person/showProfileText',
-  },
-});
-
-export const personeShowcaseMessages: Messages = defineMessages({
-  ariaLabelLinkedIn: {
-    defaultMessage: 'LinkedIn profile of {name}',
-    id: 'https://app.argu.co/i18n/personShowcaseMessages/ariaLabelLinkedIn',
-  },
-});
-
 export const mapMessages: Messages = defineMessages({
   currentLocationTooltip: {
     defaultMessage: 'Move to current location',
     id: 'https://app.argu.co/i18n/map/currentLocationTooltip',
-  },
-});
-
-export const permissionMessages: Messages = defineMessages({
-  validForType: {
-    defaultMessage: 'Only for {parentType}',
-    id: 'https://app.argu.co/i18n/permissions/validForType',
   },
 });
 
@@ -698,13 +629,6 @@ export const pdfMessages: Messages = defineMessages({
   previousPage: {
     defaultMessage: 'Previous page (←)',
     id: 'https://app.argu.co/i18n/pdf/previousPage',
-  },
-});
-
-export const phaseMessages: Messages = defineMessages({
-  phaseStepperHeader: {
-    defaultMessage: 'Phase {number}: ',
-    id: 'https://app.argu.co/i18n/phases/stepper/header',
   },
 });
 
@@ -747,36 +671,6 @@ export const statusMessages: Messages = defineMessages({
   pinnedAtLabel: {
     defaultMessage: 'Pinned at {date}',
     id: 'https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel',
-  },
-});
-
-export const thingMessages: Messages = defineMessages({
-  showAllLabel: {
-    defaultMessage: 'View all {count} reactions...',
-    id: 'https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel',
-  },
-  showProfile: {
-    defaultMessage: "Show {name}'s profile",
-    id: 'https://app.argu.co/i18n/schema:Thing/showResourceText',
-  },
-});
-
-export const surveyMessages: Messages = defineMessages({
-  closedButtonText: {
-    defaultMessage: 'Survey Closed',
-    id: 'https://app.argu.co/i18n/survey/button/closed',
-  },
-  continueButtonText: {
-    defaultMessage: 'Continue',
-    id: 'https://app.argu.co/i18n/survey/button/continue',
-  },
-  startButtonText: {
-    defaultMessage: 'Fill in survey',
-    id: 'https://app.argu.co/i18n/survey/button/start',
-  },
-  thankyouMessage: {
-    defaultMessage: 'Thank you for your response.',
-    id: 'https://app.argu.co/i18n/survey/contribution',
   },
 });
 

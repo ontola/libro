@@ -4,18 +4,18 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import person from '../../../../ontology/person';
-import { personMessages } from '../../../../translations/messages';
 import LDDetail from '../../../Common/components/LDDetail';
 import LDLink from '../../../Common/components/LDLink';
 import { LinkFeature, LinkTheme } from '../../../Common/components/Link';
 import { detailsBarTopology } from '../../../Common/topologies';
 import { tableCellTopology } from '../../../Table/topologies';
+import { personMessages } from '../../lib/messages';
 import argu from '../../ontology/argu';
 
 interface PersonDetailProps {

@@ -6,16 +6,16 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
-import { personeShowcaseMessages } from '../../../../translations/messages';
 import ontola from '../../../Kernel/ontology/ontola';
 import { showcaseTopology } from '../../../SalesWebsite/topologies';
+import { personShowcaseMessages } from '../../lib/messages';
 
 const CONTAINER_PADDING = 5;
 const ICON_LINK_GAP = 4;
@@ -134,7 +134,7 @@ const PersonShowCase: FC = () => {
               name="linkedin"
             />
             <a
-              aria-label={intl.formatMessage(personeShowcaseMessages.ariaLabelLinkedIn, { name: name.value })}
+              aria-label={intl.formatMessage(personShowcaseMessages.ariaLabelLinkedIn, { name: name.value })}
               className={classes.linkedIn}
               href={linkedIn.value}
               rel="noreferrer"

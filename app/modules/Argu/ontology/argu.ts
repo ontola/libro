@@ -44,6 +44,7 @@ export default {
   Page: argu('Page'),
   Phase: argu('Phase'),
   Placement: argu('Placement'),
+  Poll: argu('Poll'),
   ProArgument: argu('ProArgument'),
   Project: argu('Project'),
   PublishActivity: argu('PublishActivity'),
