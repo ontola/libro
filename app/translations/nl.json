@@ -572,6 +572,9 @@
   "https://app.argu.co/i18n/trashable/deletedNotice": {
     "defaultMessage": " Dit item is verwijderd op {date}"
   },
+  "https://app.argu.co/i18n/votes/count": {
+    "defaultMessage": "{count, plural, =0 {} one {# stem} other {# stemmen}}"
+  },
   "https://app.argu.co/i18n/xsd:boolean/false": {
     "defaultMessage": "Nee"
   },

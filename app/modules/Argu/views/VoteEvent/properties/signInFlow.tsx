@@ -16,7 +16,7 @@ import { allTopologies } from '../../../../../topologies';
 import { useCurrentActor } from '../../../../Auth/hooks/useCurrentActor';
 import CloseableContainer from '../../../../Common/components/CloseableContainer';
 import path, { currentLocationControl } from '../../../../Common/lib/paths';
-import { signInMessages } from '../../../lib/messages';
+import { voteMessages } from '../../../lib/messages';
 import argu from '../../../ontology/argu';
 
 const useStyles = makeStyles({
@@ -46,7 +46,7 @@ const SignInFlow = () => {
       <CloseableContainer id="ConfirmEmail">
         <p className={classes.paragraphMargin}>
           <FormattedMessage
-            {...signInMessages.unconfirmedUser}
+            {...voteMessages.confirmUnconfirmedUser}
             values={{
               email: (
                 <b>
@@ -65,14 +65,14 @@ const SignInFlow = () => {
   return (
     <Resource
       reason={(
-        <FormattedMessage {...signInMessages.guestUser} />
+        <FormattedMessage {...voteMessages.confirmGuestUser} />
       )}
       subject={signInDetour}
     />
   );
 };
 
-SignInFlow.type = argu.VoteEvent;
+SignInFlow.type = [argu.VoteEvent, argu.Poll];
 
 SignInFlow.topology = allTopologies;
 
