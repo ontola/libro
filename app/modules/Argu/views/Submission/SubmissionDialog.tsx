@@ -6,18 +6,18 @@ import {
   Resource,
   dig,
   register,
-  useIds,
+  useIds, 
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { surveyMessages } from '../../../../translations/messages';
 import useActionStatus from '../../../Action/hooks/useActionStatus';
 import { OnDoneHandler } from '../../../Action/views/helpers';
 import Button from '../../../Common/components/Button';
 import { alertDialogTopology } from '../../../Common/topologies';
-import ontola from '../../../Kernel/ontology/ontola';
 import Flow from '../../../Flow/topologies/Flow';
+import ontola from '../../../Kernel/ontology/ontola';
+import { surveyMessages } from '../../lib/messages';
 import argu from '../../ontology/argu';
 
 const style = { padding: '0.5rem 0' };

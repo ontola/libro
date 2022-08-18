@@ -6,19 +6,19 @@ import {
   PropertyProps,
   register,
   useDataFetching,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { allTopologiesExcept } from '../../../../../topologies';
-import { grantedGroupMessages } from '../../../../../translations/messages';
 import Detail from '../../../../Common/components/Detail';
+import { LoadingDetail } from '../../../../Common/components/Loading';
 import { contentDetailsTopology, detailsBarTopology } from '../../../../Common/topologies';
 import ContentDetails from '../../../../Common/topologies/ContentDetails';
-import { LoadingDetail } from '../../../../Common/components/Loading';
 import { useContainerToArr } from '../../../../Kernel/hooks/useContainerToArr';
+import { grantedGroupMessages } from '../../../lib/messages';
 import argu from '../../../ontology/argu';
 
 const publicGroupID = '/g/-1';
@@ -28,9 +28,7 @@ const GrantedGroupsDetail: FC<PropertyProps> = ({ linkedProp }) => {
   useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
   const [groups, groupsLoading] = useContainerToArr<NamedNode>(isNamedNode(linkedProp) ? linkedProp : undefined);
   useDataFetching(groups);
-  const groupNames = useStrings(groups, schema.name)
-    .filter(Boolean)
-    .join(', ');
+  const groupNames = useStrings(groups, schema.name).filter(Boolean).join(', ');
 
   if (groupsLoading) {
     return <LoadingDetail />;

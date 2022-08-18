@@ -4,13 +4,12 @@ import {
   FC,
   Property,
   register,
-  useLRS,
+  useLRS, 
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { allTopologiesExcept } from '../../../../topologies';
-import { surveyMessages } from '../../../../translations/messages';
 import useActionStatus from '../../../Action/hooks/useActionStatus';
 import { actionsBarTopology } from '../../../Action/topologies';
 import { ButtonVariant } from '../../../Common/components/Button';
@@ -20,15 +19,16 @@ import { ShowDialog } from '../../../Common/middleware/actions';
 import { alertDialogTopology, parentTopology } from '../../../Common/topologies';
 import Card from '../../../Common/topologies/Card';
 import Container from '../../../Common/topologies/Container';
-import LinkLoader from '../../../Kernel/components/LinkLoader';
-import ontola from '../../../Kernel/ontology/ontola';
 import { FormFooterRight } from '../../../Form/components/Form';
 import FormFooter from '../../../Form/topologies/FormFooter';
+import LinkLoader from '../../../Kernel/components/LinkLoader';
+import ontola from '../../../Kernel/ontology/ontola';
 import {
   tableCellTopology,
   tableRowTopology,
   tableTopology, 
 } from '../../../Table/topologies';
+import { surveyMessages } from '../../lib/messages';
 import argu from '../../ontology/argu';
 
 const useStyles = makeStyles(() => ({

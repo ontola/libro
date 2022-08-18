@@ -4,15 +4,15 @@ import {
   FC,
   PropertyProps,
   register,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useIntl } from 'react-intl';
 
-import { permissionMessages } from '../../../../../translations/messages';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { tableRowTopology } from '../../../../Table/topologies';
+import { permissionMessages } from '../../../lib/messages';
 import argu from '../../../ontology/argu';
 
 const PermissionTableCell: FC<PropertyProps> = ({
@@ -26,7 +26,9 @@ const PermissionTableCell: FC<PropertyProps> = ({
   }
 
   const conditional = linkedProp !== schema.Thing;
-  const title = conditional && parentType ? intl.formatMessage(permissionMessages.validForType, { parentType }) : undefined;
+  const title = conditional && parentType ? intl.formatMessage(permissionMessages.validForType,
+    { parentType },
+  ) : undefined;
 
   return (
     <FontAwesome
