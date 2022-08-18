@@ -9,7 +9,7 @@ const highlightContext = React.createContext<highlightContextType>(undefined as 
 
 export const useHighlight = (): highlightContextType => React.useContext(highlightContext);
 
-const HightlightProvider = ({ children }: { children: React.ReactElement }): JSX.Element => {
+const HighlightProvider = ({ children }: { children: React.ReactElement }): JSX.Element => {
   const [highlightState, setHighlightState] = React.useState<string | undefined>(undefined);
 
   const highlightStateMemo = React.useMemo(() => ({
@@ -24,4 +24,4 @@ const HightlightProvider = ({ children }: { children: React.ReactElement }): JSX
   );
 };
 
-export default HightlightProvider;
+export default HighlightProvider;
