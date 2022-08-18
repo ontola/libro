@@ -1,11 +1,10 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { hoverBoxTopology } from '../index';
 
 import { HoverBoxTrigger } from './HoverBoxTrigger';
@@ -71,6 +70,8 @@ const useStyles = makeStyles<LibroTheme>((theme) => {
   };
 });
 
+const HoverBoxTopology = createTopologyProvider(hoverBoxTopology);
+
 /**
  * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
  * state, make sure to add functionality for touch users.
@@ -82,7 +83,6 @@ const HoverBox: TopologyFC<HoverBoxProps> = ({
   popout,
   shine,
 }) => {
-  const [HoverBoxTopology] = useTopologyProvider(hoverBoxTopology);
   const classes = useStyles();
 
   const [active, setActive] = React.useState(false);

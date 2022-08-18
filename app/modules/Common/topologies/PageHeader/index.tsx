@@ -1,6 +1,10 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { Type, useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  Type,
+  createTopologyProvider, 
+} from 'link-redux';
 import React from 'react';
 
 import {
@@ -9,7 +13,6 @@ import {
   Margin,
   Size, 
 } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import Container from '../Container';
 import { pageHeaderTopology } from '../index';
 
@@ -59,13 +62,13 @@ const useStyles = makeStyles<LibroTheme, PageHeaderProps>((theme) => createStyle
   },
 }));
 
+const PageHeaderTopology = createTopologyProvider(pageHeaderTopology);
+
 /**
  * Page filler with title and nav items at the top of a page
  * Stretches to big size when a background is present
  */
 const PageHeader: TopologyFC<PageHeaderProps> = ({ children, ...props }) => {
-  const [PageHeaderTopology] = useTopologyProvider(pageHeaderTopology);
-
   const classes = useStyles(props);
 
   const className = clsx({

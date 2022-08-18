@@ -1,5 +1,6 @@
-import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
+import { createTopologyProvider } from 'link-redux';
+
 import { chapterContentTopology } from '../index';
 
-export const ChapterContent = createBasicTopologyProvider(chapterContentTopology);
+export const ChapterContent = createTopologyProvider(chapterContentTopology);
 

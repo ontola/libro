@@ -1,10 +1,9 @@
 import { Table as MUITable, TableContainer } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tableTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -34,9 +33,9 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
     maxWidth: '100%',
   },
 }));
+const TableTopology = createTopologyProvider(tableTopology);
 
 const Table: TopologyFC = ({ children }) => {
-  const [TableTopology] = useTopologyProvider(tableTopology);
   const classes = useStyles();
 
   return (

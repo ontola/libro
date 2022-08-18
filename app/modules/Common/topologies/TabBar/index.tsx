@@ -1,8 +1,11 @@
-import { useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  createTopologyProvider,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { TabVariant, Tabs } from '../../components/Tabs';
 import { tabBarTopology } from '../index';
 
@@ -11,8 +14,10 @@ interface TabBarProps {
   variant?: TabVariant;
 }
 
+const TabBarTopology = createTopologyProvider(tabBarTopology);
+
 const TabBar: TopologyFC<TabBarProps> = ({ children, value, variant }) => {
-  const [TabBarTopology, subject] = useTopologyProvider(tabBarTopology);
+  const { subject } = useLinkRenderContext();
   const location = useLocation();
 
   return (

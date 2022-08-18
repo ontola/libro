@@ -1,17 +1,16 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { cardMainTopology } from '../index';
 
 import {
   cardClassIdentifier,
   cardFixedClassIdentifier,
   cardFixedStyles,
-  cardStyles,
+  cardStyles, 
 } from './sharedCardStyles';
 
 export interface CardMainProps {
@@ -23,11 +22,12 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   ...cardFixedStyles(theme),
 }));
 
+const CardMainTopology = createTopologyProvider(cardMainTopology);
+
 /**
  * Renders an empty Card without padding
  */
 const CardMain: TopologyFC<CardMainProps> = ({ children, fixed }) => {
-  const [CardMainTopology] = useTopologyProvider(cardMainTopology);
   const classes = useStyles();
 
   const className = clsx({

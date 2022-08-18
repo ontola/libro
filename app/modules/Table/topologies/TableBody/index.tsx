@@ -1,10 +1,9 @@
 import { TableBody as MUITableBody, TableBodyProps as MUITableBodyProps } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tableBodyTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -14,9 +13,9 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
     },
   },
 }));
+const TableBodyTopology = createTopologyProvider(tableBodyTopology);
 
 const TableBody: TopologyFC<MUITableBodyProps> = ({ children, ...muiProps }) => {
-  const [TableBodyTopology] = useTopologyProvider(tableBodyTopology);
   const classes = useStyles();
 
   return (

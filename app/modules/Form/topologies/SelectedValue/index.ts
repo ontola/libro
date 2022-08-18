@@ -1,6 +1,7 @@
-import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
+import { createTopologyProvider } from 'link-redux';
+
 import { selectedValueTopology } from '../index';
 
-const SelectedValue = createBasicTopologyProvider(selectedValueTopology);
+const SelectedValue = createTopologyProvider(selectedValueTopology);
 
 export default SelectedValue;

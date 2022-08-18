@@ -1,6 +1,7 @@
-import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
+import { createTopologyProvider } from 'link-redux';
+
 import { fullResourceTopology } from '../index';
 
-const FullResource = createBasicTopologyProvider(fullResourceTopology);
+const FullResource = createTopologyProvider(fullResourceTopology);
 
 export default FullResource;

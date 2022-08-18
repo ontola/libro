@@ -1,6 +1,7 @@
-import { createBasicTopologyProvider } from '../../../Kernel/lib/topology';
+import { createTopologyProvider } from 'link-redux';
+
 import { omniformFieldsTopology } from '../index';
 
-const OmniformFields = createBasicTopologyProvider(omniformFieldsTopology);
+const OmniformFields = createTopologyProvider(omniformFieldsTopology);
 
 export default OmniformFields;

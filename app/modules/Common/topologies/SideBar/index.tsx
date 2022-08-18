@@ -1,8 +1,7 @@
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { sideBarTopology } from '../index';
 
 const useStyles = makeStyles({
@@ -11,8 +10,9 @@ const useStyles = makeStyles({
   },
 });
 
+const SideBarTopology = createTopologyProvider(sideBarTopology);
+
 const SideBar: TopologyFC = ({ children }) => {
-  const [SideBarTopology] = useTopologyProvider(sideBarTopology);
   const classes = useStyles();
 
   return (

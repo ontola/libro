@@ -1,10 +1,9 @@
 import MUIContainer from '@mui/material/Container';
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { parentTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -25,8 +24,9 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
   },
 }));
 
+const BreadcrumbsBarTopology = createTopologyProvider(parentTopology);
+
 const BreadcrumbsBar: TopologyFC = ({ children }) => {
-  const [BreadcrumbsBarTopology] = useTopologyProvider(parentTopology);
   const classes = useStyles();
 
   return (

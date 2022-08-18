@@ -1,10 +1,13 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  createTopologyProvider,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 
 import { LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { attributeListTopology } from '../index';
 
 const useStyles = makeStyles((theme: LibroTheme) => ({
@@ -47,8 +50,10 @@ interface AttributeListProps {
   fullLabel?: boolean;
 }
 
+const AttributeListTopology = createTopologyProvider(attributeListTopology);
+
 const AttributeList: TopologyFC<AttributeListProps> = ({ children, fullLabel }) => {
-  const [AttributeListTopology, subject] = useTopologyProvider(attributeListTopology);
+  const { subject } = useLinkRenderContext();
   const classes = useStyles();
 
   const className = clsx({

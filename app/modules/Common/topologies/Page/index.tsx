@@ -1,21 +1,18 @@
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { pageTopology } from '../index';
 
 export const PAGE_CID = 'Page';
 
-const Page: TopologyFC = ({ children }) => {
-  const [PageTopology] = useTopologyProvider(pageTopology);
+const PageTopology = createTopologyProvider(pageTopology);
 
-  return (
-    <PageTopology>
-      <div className={PAGE_CID}>
-        {children}
-      </div>
-    </PageTopology>
-  );
-};
+const Page: TopologyFC = ({ children }) => (
+  <PageTopology>
+    <div className={PAGE_CID}>
+      {children}
+    </div>
+  </PageTopology>
+);
 
 export default Page;

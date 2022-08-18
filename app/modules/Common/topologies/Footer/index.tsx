@@ -1,11 +1,14 @@
 import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Node } from '@ontologies/core';
-import { Resource, useTopologyProvider } from 'link-redux';
+import {
+  Resource,
+  TopologyFC,
+  createTopologyProvider, 
+} from 'link-redux';
 import React from 'react';
 
 import { IndexablePalette, LibroTheme } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { gridHeaderCID } from '../../components/Grid/GridHeader';
 import { headingCID } from '../../components/Heading';
 import HeadingContext from '../../components/Heading/HeadingContext';
@@ -75,8 +78,9 @@ const lgSize = (itemCount: number): GridWidth => {
   return GridWidth.third;
 };
 
+const FooterTopology = createTopologyProvider(footerTopology);
+
 const Footer: TopologyFC<FooterProps> = ({ children, legacy, resources }) => {
-  const [FooterTopology] = useTopologyProvider(footerTopology);
   const classes = useStyles();
 
   if (legacy) {

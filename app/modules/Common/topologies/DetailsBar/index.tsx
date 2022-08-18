@@ -1,9 +1,8 @@
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import VerticalScroller from '../../components/VerticalScroller';
 import { CardFloat } from '../Card';
 import { detailsBarTopology } from '../index';
@@ -26,10 +25,11 @@ export enum DetailsBarVariant {
 
 const useStyles = makeStyles(detailsBarStyles);
 
+const DetailsBarTopology = createTopologyProvider(detailsBarTopology);
+
 const DetailsBar: TopologyFC<DetailsBarProps> = ({
   children, scrollable, className, variant, layoutOnly, borderBottom, right,
 }) => {
-  const [DetailsBarTopology] = useTopologyProvider(detailsBarTopology);
   const classes = useStyles();
   const wrapperClass = clsx({
     [classes.borderBottom]: borderBottom,

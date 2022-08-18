@@ -1,11 +1,16 @@
-import { useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  createTopologyProvider,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tabPaneTopology } from '../index';
 
+const TabPaneTopology = createTopologyProvider(tabPaneTopology);
+
 const TabPane: TopologyFC = ({ children }) => {
-  const [TabPaneTopology, subject] = useTopologyProvider(tabPaneTopology);
+  const { subject } = useLinkRenderContext();
 
   return (
     <TabPaneTopology>

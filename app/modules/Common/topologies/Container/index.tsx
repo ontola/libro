@@ -1,10 +1,13 @@
 import { Container as MaterialContainer } from '@mui/material';
 import { useTheme } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import {
+  TopologyFC,
+  createTopologyProvider,
+  useLinkRenderContext, 
+} from 'link-redux';
 import React from 'react';
 
 import { LibroTheme, Size } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { containerTopology } from '../index';
 
 export interface ContainerProps {
@@ -15,21 +18,27 @@ export interface ContainerProps {
   size?: Size;
 }
 
-export const maxWidth = (size: Size): false | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | undefined  => {
+export const maxWidth = (size: Size): false | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | undefined => {
   switch (size) {
-  case Size.Large: return 'xl';
-  case Size.Small: return 'md';
-  case Size.XSmall: return 'sm';
-  default: return 'lg';
+  case Size.Large:
+    return 'xl';
+  case Size.Small:
+    return 'md';
+  case Size.XSmall:
+    return 'sm';
+  default:
+    return 'lg';
   }
 };
+
+const ContainerTopology = createTopologyProvider(containerTopology);
 
 /**
  * Centers the content and defines a max width
  */
 const Container: TopologyFC<ContainerProps> = ({ children, ...props }) => {
+  const { subject } = useLinkRenderContext();
   const theme = useTheme<LibroTheme>();
-  const [ContainerTopology, subject] = useTopologyProvider(containerTopology);
   const {
     size,
     ...containerProps

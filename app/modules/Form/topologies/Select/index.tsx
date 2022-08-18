@@ -1,8 +1,7 @@
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React, { MouseEventHandler, Ref } from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { selectTopology } from '../index';
 
 export const useSelectItemStyles = makeStyles({
@@ -34,27 +33,25 @@ export interface SelectProps {
   onMouseDown?: MouseEventHandler;
 }
 
+const SelectTopology = createTopologyProvider(selectTopology);
+
 const Select: TopologyFC<SelectProps> = ({
   children,
   onMouseDown,
   innerRef,
   role,
-}) => {
-  const [SelectTopology] = useTopologyProvider(selectTopology);
-
-  return (
-    <SelectTopology>
-      <ul
-        ref={innerRef}
-        role="listbox"
-        onMouseDown={onMouseDown}
-      >
-        <ul role={role}>
-          {children}
-        </ul>
+}) => (
+  <SelectTopology>
+    <ul
+      ref={innerRef}
+      role="listbox"
+      onMouseDown={onMouseDown}
+    >
+      <ul role={role}>
+        {children}
       </ul>
-    </SelectTopology>
-  );
-};
+    </ul>
+  </SelectTopology>
+);
 
 export default Select;

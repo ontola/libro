@@ -1,9 +1,8 @@
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { LibroTheme, Margin } from '../../../Kernel/lib/themes';
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { tableFooterTopology } from '../index';
 import { tableFooterCellCID } from '../TableFooterCell';
 
@@ -29,9 +28,9 @@ const useStyles = makeStyles((theme: LibroTheme) => ({
     color: theme.palette.grey.midDark,
   },
 }));
+const TableFooterTopology = createTopologyProvider(tableFooterTopology);
 
 const TableFooter: TopologyFC = ({ children }) => {
-  const [TableFooterTopology] = useTopologyProvider(tableFooterTopology);
   const classes = useStyles();
 
   return (

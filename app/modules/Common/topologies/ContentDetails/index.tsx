@@ -1,8 +1,7 @@
 import { makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { TopologyFC } from '../../../Kernel/lib/topology';
 import { contentDetailsTopology } from '../index';
 
 const useStyles = makeStyles({
@@ -12,8 +11,9 @@ const useStyles = makeStyles({
   },
 });
 
+const ContentDetailsTopology = createTopologyProvider(contentDetailsTopology);
+
 const ContentDetails: TopologyFC = ({ children }) => {
-  const [ContentDetailsTopology] = useTopologyProvider(contentDetailsTopology);
   const classes = useStyles();
 
   return (

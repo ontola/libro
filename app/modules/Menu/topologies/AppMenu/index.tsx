@@ -1,5 +1,5 @@
 import { SomeNode } from 'link-lib';
-import { useTopologyProvider } from 'link-redux';
+import { createTopologyProvider, useLinkRenderContext } from 'link-redux';
 import React from 'react';
 
 import { isFunction } from '../../../Kernel/lib/typeCheckers';
@@ -20,8 +20,10 @@ export interface AppMenuChildProps {
   subject: SomeNode;
 }
 
+const AppMenuTopology = createTopologyProvider(appMenuTopology);
+
 const AppMenu: React.FC<AppMenuProps> = ({ children, title, trigger }) => {
-  const [AppMenuTopology, subject] = useTopologyProvider(appMenuTopology);
+  const { subject } = useLinkRenderContext();
 
   return (
     <DropdownMenu

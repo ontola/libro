@@ -1,8 +1,6 @@
 import { createStyles, makeStyles } from '@mui/styles';
-import { useTopologyProvider } from 'link-redux';
+import { TopologyFC, createTopologyProvider } from 'link-redux';
 import React from 'react';
-
-import { TopologyFC } from '../../Kernel/lib/topology';
 
 import { flowTopology } from './index';
 
@@ -23,8 +21,9 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
+const FlowTopology = createTopologyProvider(flowTopology);
+
 const Flow: TopologyFC<FlowProps> = ({ children }) => {
-  const [FlowTopology] = useTopologyProvider(flowTopology);
   const classes = useStyles();
 
   return (
