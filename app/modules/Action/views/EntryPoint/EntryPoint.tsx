@@ -29,7 +29,7 @@ import { flowTopology } from '../../../Flow/topologies';
 import { BreakPoints, LibroTheme } from '../../../Kernel/lib/themes';
 import { allTopologiesExcept } from '../../../../topologies';
 import { ButtonVariant } from '../../../Common/components/Button';
-import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';
+import ButtonWithFeedback, { ButtonWithFeedbackHandler, ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { omniformFieldsTopology } from '../../../Omniform/topologies';
 
@@ -65,6 +65,13 @@ const EntryPoint: FC<EntryPointProps> = ({
   const image = imageFromProp ?? imageFromData;
   const name = nameFromProp ?? nameFromData;
   const displayCount = count === 0 ? '' : count;
+  const handleSubmit = React.useCallback<ButtonWithFeedbackHandler>(() => {
+    if (onSubmit) {
+      return onSubmit({});
+    }
+
+    return Promise.resolve();
+  }, [onSubmit]);
 
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : undefined;
   const classes = clsx({
@@ -72,7 +79,7 @@ const EntryPoint: FC<EntryPointProps> = ({
     'Button--stretched': stretch,
   });
 
-  const handleOnClick = onClick || onSubmit;
+  const handleOnClick = onClick || handleSubmit;
 
   return (
     <ButtonWithFeedback

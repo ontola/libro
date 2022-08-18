@@ -15,6 +15,7 @@ import Notification from './Notification';
 import Person from './Person';
 import Phase from './Phase';
 import Placement from './Placement';
+import Poll from './Poll';
 import Project from './Project';
 import Shop from './Shop';
 import Submission from './Submission';
@@ -43,6 +44,7 @@ const views: ViewRegistrations = [
   ...Notification,
   ...Person,
   ...Phase,
+  ...Poll,
   ...Project,
   ...Placement,
   ...Shop,

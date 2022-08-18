@@ -8,11 +8,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import Button from '../../../Common/components/Button';
 import ButtonWithFeedback, { ButtonWithFeedbackProps } from '../../../Common/components/ButtonWithFeedback';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../Common/lib/iris';
 import { cardFloatTopology, containerFloatTopology } from '../../../Common/topologies';
 
-interface EntryPointCardFloatProps extends ButtonWithFeedbackProps {
+interface EntryPointCardFloatProps extends Partial<ButtonWithFeedbackProps> {
   count: number;
   image: SomeTerm;
   name: string;
@@ -37,21 +38,32 @@ const EntryPointCardFloat: FC<EntryPointCardFloatProps> = ({
   const parsedURL = new URL(subject.value);
   const href = parsedURL && parsedURL.pathname + parsedURL.search;
   const icon = image && isFontAwesomeIRI(image.value) ? normalizeFontAwesomeIRI(image.value) : 'plus';
+  const props = {
+    active,
+    cardFloat: true,
+    disabled,
+    href: httpMethod === 'GET' ? href : undefined,
+    icon,
+    plain: true,
+    title: title ?? name,
+    variant,
+  };
+
+  if (onClick) {
+    return (
+      <ButtonWithFeedback
+        {...props}
+        onClick={onClick}
+      >
+        {count?.toString()}
+      </ButtonWithFeedback>
+    );
+  }
 
   return (
-    <ButtonWithFeedback
-      cardFloat
-      plain
-      active={active}
-      disabled={disabled}
-      href={httpMethod === 'GET' ? href : undefined}
-      icon={icon}
-      title={title ?? name}
-      variant={variant}
-      onClick={onClick}
-    >
+    <Button {...props}>
       {count?.toString()}
-    </ButtonWithFeedback>
+    </Button>
   );
 };
 

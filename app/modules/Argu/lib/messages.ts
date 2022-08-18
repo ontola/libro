@@ -78,14 +78,18 @@ export const phaseMessages: Messages = defineMessages({
   },
 });
 
-export const signInMessages: Messages = defineMessages({
-  guestUser: {
+export const voteMessages: Messages = defineMessages({
+  confirmGuestUser: {
     defaultMessage: 'Confirm your vote via e-mail:',
     id: 'https://app.argu.co/i18n/forms/session/confirmViaEmail',
   },
-  unconfirmedUser: {
+  confirmUnconfirmedUser: {
     defaultMessage: 'Please confirm your vote by clicking the link we\'ve sent to {email}',
     id: 'https://app.argu.co/i18n/forms/session/emailConfirmationReminder',
+  },
+  voteCounts: {
+    defaultMessage: '{count, plural, =0 {} one {# vote} other {# votes}}',
+    id: 'https://app.argu.co/i18n/votes/count',
   },
 });
 
