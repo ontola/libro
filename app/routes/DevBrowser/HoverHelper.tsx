@@ -9,10 +9,9 @@ import { useKey } from 'rooks';
 
 import argu from '../../modules/Argu/ontology/argu';
 import { expandPath } from '../../modules/Common/lib/iris';
-import ontola from '../../modules/Kernel/ontology/ontola';
 import dexes from '../../modules/Dexes/ontology/dexes';
 import elements from '../../modules/Elements/ontology/elements';
-import teamGL from '../../modules/GroenLinks/ontology/teamGL';
+import ontola from '../../modules/Kernel/ontology/ontola';
 import sales from '../../modules/SalesWebsite/ontology/sales';
 
 const TRIGGER_KEY = 'r';
@@ -27,7 +26,6 @@ const getShort = (value: string): string => {
     rdf: rdfx,
     sales,
     schema,
-    teamGL,
   }).map(([key, val]) => ({
     key,
     prefix: val.ns('').value,

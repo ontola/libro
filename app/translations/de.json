@@ -38,9 +38,6 @@
   "https://app.argu.co/i18n/auth/newSessionLink": {
     "defaultMessage": "Anmelden / Registrieren"
   },
-  "https://app.argu.co/i18n/badges/continue": {
-    "defaultMessage": "Großartig!"
-  },
   "https://app.argu.co/i18n/blogs/category": {
     "defaultMessage": "Kategorie:"
   },
@@ -527,15 +524,6 @@
   "https://app.argu.co/i18n/swipeInput/voteYesButtonLabel": {
     "defaultMessage": "Vor"
   },
-  "https://app.argu.co/i18n/teamGL/glappNotUsed": {
-    "defaultMessage": "GLAPP nog niet gebruikt."
-  },
-  "https://app.argu.co/i18n/teamGL/glappUsedAt": {
-    "defaultMessage": "GLAPP wurde erst am {date} eingeführt."
-  },
-  "https://app.argu.co/i18n/teamGL/volunteersCount": {
-    "defaultMessage": "{volunteerCount, number} {volunteerCount, plural, ein {vrijwilliger} andere {vrijwilligers}}"
-  },
   "https://app.argu.co/i18n/trashable/deletedNotice": {
     "defaultMessage": "Diese Ressource wurde am {date} gelöscht"
   },
@@ -592,26 +580,5 @@
   },
   "https://rdf.studio/i18n/savedNotification": {
     "defaultMessage": "Dokument gespeichert."
-  },
-  "https://team.groenlinks.nl/i18n/engagement/active": {
-    "defaultMessage": "💪 actief"
-  },
-  "https://team.groenlinks.nl/i18n/engagement/inactive": {
-    "defaultMessage": "💤 inactief"
-  },
-  "https://team.groenlinks.nl/i18n/engagement/veryActive": {
-    "defaultMessage": "🔥 hyperactief"
-  },
-  "https://team.groenlinks.nl/i18n/waiting/long": {
-    "defaultMessage": "😞 Wacht al {diff} dagen"
-  },
-  "https://team.groenlinks.nl/i18n/waiting/short": {
-    "defaultMessage": "🤔 Wacht enkele dagen"
-  },
-  "https://team.groenlinks.nl/i18n/waiting/veryLong": {
-    "defaultMessage": "😱 Wacht al {diff} dagen"
-  },
-  "https://team.groenlinks.nl/i18n/waiting/veryShort": {
-    "defaultMessage": "😀 Net aangemeld"
   }
 }

@@ -90,7 +90,6 @@ export const manifestSchemas = [
             'academy',
             'dexTransfer',
             'dutchGovernment',
-            'groenLinks',
             'salesWebsite',
           ],
         },

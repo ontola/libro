@@ -10,32 +10,31 @@ import * as ontShacl from '@ontologies/shacl';
 import * as ontXsd from '@ontologies/xsd';
 
 import ontAppSlashless from '../../../../ontology/appSlashless';
-import ontDbo from '../../../Common/ontology/dbo';
 import ontEx from '../../../../ontology/ex';
 import ontFa4 from '../../../../ontology/fa4';
 import ontFhir from '../../../../ontology/fhir';
 import ontHttp from '../../../../ontology/http';
 import ontHttph from '../../../../ontology/httph';
 import ontHydra from '../../../../ontology/hydra';
-import ontLd from '../../../Kernel/ontology/ld';
 import ontLink from '../../../../ontology/link';
 import ontMeeting from '../../../../ontology/meeting';
 import ontOpengov from '../../../../ontology/opengov';
 import ontOrg from '../../../../ontology/org';
 import ontPerson from '../../../../ontology/person';
-import ontDatacube from '../../../DataCube/ontology/datacube';
-import ontSp from '../../../Kernel/ontology/sp';
-import ontWdt from '../../../Common/ontology/wdt';
 import ontArgu from '../../../Argu/ontology/argu';
 import { createAppNS } from '../../../Common/ontology/app';
-import ontExample from '../../../Kernel/ontology/example';
-import ontLibro from '../../../Kernel/ontology/libro';
-import ontLl from '../../../Kernel/ontology/ll';
-import ontOntola from '../../../Kernel/ontology/ontola';
+import ontDbo from '../../../Common/ontology/dbo';
+import ontWdt from '../../../Common/ontology/wdt';
+import ontDatacube from '../../../DataCube/ontology/datacube';
 import ontDexes from '../../../Dexes/ontology/dexes';
 import ontElements from '../../../Elements/ontology/elements';
 import ontForm from '../../../Form/ontology/form';
-import ontTeamGL from '../../../GroenLinks/ontology/teamGL';
+import ontExample from '../../../Kernel/ontology/example';
+import ontLd from '../../../Kernel/ontology/ld';
+import ontLibro from '../../../Kernel/ontology/libro';
+import ontLl from '../../../Kernel/ontology/ll';
+import ontOntola from '../../../Kernel/ontology/ontola';
+import ontSp from '../../../Kernel/ontology/sp';
 import ontSales from '../../../SalesWebsite/ontology/sales';
 
 import { quote } from './serialization';
@@ -178,10 +177,6 @@ const staticMap: ShortMap = {
   sp: {
     map: ontSp as ExplicitNamespaceMap,
     prefix: ontSp.ns('').value,
-  },
-  teamGL: {
-    map: ontTeamGL as ExplicitNamespaceMap,
-    prefix: ontTeamGL.ns('').value,
   },
   wdt: {
     map: ontWdt as ExplicitNamespaceMap,

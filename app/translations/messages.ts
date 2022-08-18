@@ -33,13 +33,6 @@ export const actionMessages = defineMessages({
   },
 });
 
-export const badgeMessages: Messages = defineMessages({
-  continue: {
-    defaultMessage: 'Great!',
-    id: 'https://app.argu.co/i18n/badges/continue',
-  },
-});
-
 export const blogMessages: Messages = defineMessages({
   category: {
     defaultMessage: 'Category:',
