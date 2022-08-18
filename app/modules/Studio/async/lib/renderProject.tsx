@@ -9,11 +9,11 @@ import ReactDOMServer from 'react-dom/server';
 
 import App from '../../../../components/App';
 import generateLRS from '../../../../helpers/generateLRS';
-import { sliceIRI } from '../../../../ontology/appSlashless';
 import { trailing } from '../../../Common/ontology/app';
 import { AppContext } from '../../../Kernel/components/AppContext/appContext';
 import { WebManifest } from '../../../Kernel/components/AppContext/WebManifest';
 import { WebsiteCtx } from '../../../Kernel/components/WebsiteContext/websiteContext';
+import { removeTrailingSlash } from '../../../Kernel/lib/id';
 import { quadruplesToDataSlice } from '../../../Kernel/lib/quadruplesToDataSlice';
 import { modulesKey } from '../../../Kernel/lib/settings';
 import { AppContextEditor } from '../../components/AppContextEditor';
@@ -43,7 +43,7 @@ const projectWebsiteContext = (website: string | undefined): WebsiteCtx => {
 
   return {
     app: { ns: createNS(trailing(website)) },
-    appSlashless: { ns: createNS(sliceIRI(website)) },
+    appSlashless: { ns: createNS(removeTrailingSlash(website)) },
 
     websiteIRI: rdf.namedNode(website),
     websiteIRIStr: website,

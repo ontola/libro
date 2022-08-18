@@ -1,10 +1,9 @@
 import { createNS } from '@ontologies/core';
 
 import { frontendIRIStr } from '../modules/Kernel/lib/frontendIRIComponents';
+import { removeTrailingSlash } from '../modules/Kernel/lib/id';
 
-export const sliceIRI = (iri: string): string => iri.slice(0, iri.endsWith('/') ? -1 : undefined);
-
-const appSlashless = createNS(sliceIRI(frontendIRIStr));
+const appSlashless = createNS(removeTrailingSlash(frontendIRIStr));
 
 export default {
   ns: appSlashless,

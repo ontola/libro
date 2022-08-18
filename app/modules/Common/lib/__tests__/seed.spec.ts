@@ -166,7 +166,7 @@ describe('seed', () => {
 
     seedTests(websiteIRI, {
       absolutePath: 'https://example.com/1',
-      root: 'https://example.com',
+      root: 'https://example.com/',
     });
   });
 

@@ -24,6 +24,7 @@ import ontDbo from '../../Common/ontology/dbo';
 import ontDexes from '../../Dexes/ontology/dexes';
 import ontElements from '../../Elements/ontology/elements';
 import ontEx from '../../../ontology/ex';
+import { appendPath } from '../../Kernel/lib/id';
 import ontExample from '../../Kernel/ontology/example';
 import ontFa4 from '../../../ontology/fa4';
 import ontFhir from '../../../ontology/fhir';
@@ -126,10 +127,10 @@ export const evaluate = (source: string, websiteIRI: string): DataObject[] => {
   // @ts-ignore
   const local = (s: string) => {
     if (s === '' || s.startsWith('#') || s.startsWith('/') || s.startsWith('?')) {
-      return rdf.namedNode(`${websiteIRI}${s}`);
+      return rdf.namedNode(appendPath(websiteIRI, s));
     }
 
-    return rdf.namedNode(`${websiteIRI}/${s}`);
+    return rdf.namedNode(appendPath(websiteIRI, `/${s}`));
   };
 
   interface LangMap { en: string | DataObject, nl: string | DataObject }

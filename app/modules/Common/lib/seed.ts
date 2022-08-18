@@ -2,7 +2,7 @@ import rdf, { Quad, SomeTerm } from '@ontologies/core';
 import * as xsd from '@ontologies/xsd';
 import { DataRecord, normalizeType } from 'link-lib';
 
-import { sliceIRI } from '../../../ontology/appSlashless';
+import { appendPath, normalizeTrailingSlash } from '../../Kernel/lib/id';
 
 export interface Value {
   type: 'id' | 'lid' | 'p' | 's' | 'dt' | 'b' | 'i' | 'l' | 'ls';
@@ -83,7 +83,7 @@ export const valueToStoreValue = (v: Value, websiteIRI: string, mapping: Record<
     }
 
     if (v.v.startsWith('/') || v.v.startsWith('#')) {
-      return rdf.namedNode(websiteIRI + v.v);
+      return rdf.namedNode(appendPath(websiteIRI, v.v));
     }
 
     return rdf.namedNode(mapping[v.v] ? mapping[v.v] : v.v);
@@ -122,7 +122,7 @@ const keyOverride = (key: string, value: any, websiteIRI: string, mapping: Recor
   }
 
   if (key.startsWith('/') || key.startsWith('#')) {
-    return `${websiteIRI}${key}`;
+    return appendPath(websiteIRI, key);
   }
 
   if (key === 'type' && dataTypes.includes(value)) {
@@ -141,7 +141,7 @@ export const seedToSlice = (
     return {};
   }
 
-  const normalizedWebsiteIRI = sliceIRI(websiteIRI);
+  const normalizedWebsiteIRI = normalizeTrailingSlash(websiteIRI);
 
   return JSON.parse(initialData, function(key: string, value: any) {
     const nextValue = getValue(value, normalizedWebsiteIRI, mapping);

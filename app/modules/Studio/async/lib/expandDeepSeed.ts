@@ -6,6 +6,7 @@ import {
   Value,
   isValue,
 } from '../../../Common/lib/seed';
+import { appendPath } from '../../../Kernel/lib/id';
 
 const expandId = (id: string, websiteIRI: string) => {
   if (id === '/') {
@@ -13,11 +14,11 @@ const expandId = (id: string, websiteIRI: string) => {
   }
 
   if (id.startsWith('/#')) {
-    return `${websiteIRI}${id.slice(1)}`;
+    return appendPath(websiteIRI, id.slice(1));
   }
 
   if (id.startsWith('/') || id.startsWith('#')) {
-    return `${websiteIRI}${id}`;
+    return appendPath(websiteIRI, id);
   }
 
   return id;
