@@ -2,37 +2,46 @@
 Front-end application for [Argu](https://argu.co).
 
 ## Usage
+Either use as part of [Argu](https://gitlab.com/ontola/argu), or as a standalone browser;
+
 - `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
 - Create a [.env file](https://www.npmjs.com/package/dotenv) by copying `.env.template`.
-- `yarn run start` to start the server with backend connection or `yarn run standalone` for RDF Studio only.
-- Visit [http://localhost:3001/](http://localhost:3001/) or [http://localhost:3001/d/studio](http://localhost:3001/d/builder)
+- `yarn run start` to start the hot reload enabled development build.
+- Visit [http://localhost:3001/](http://localhost:3001/)
 
 ## Contributing
-All tests and linters will be run automatically as a pre-commit hook.
-- `yarn run build` to generate all the build files under `/dist`
+Commit messages are automatically checked for compliance with [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary).
+Make sure that nodejs is available in the environment where modifying git commands (i.e. commit, rebase, etc) are executed.
+
+- `yarn run start` run the development server.
+- `yarn run build` to create production builds, stored in `/dist`.
 - `yarn run lint` to run the ES linter. See .eslintrc for the plugins and exceptions to the recommended set used.
 - `yarn run test` to run all tests.
-- `yarn run secure` to run security test.
 
-### Directory Structure
+### Structure
 * **app** - Code that runs in the browser
-  * **components** - 'Dumb' view-only components that do not know what kind of information they represent.
-  * **containers** - 'Smart' components that are connected to Redux. Preferably are not styled. Mostly deprecated by Link.
-  * **resources** - Link components that represent a certain resource, such as 'person' or 'motion'.
-  * **helpers** - Small, useful and re-usable pieces of code.
-  * **middleware** - Deals with the API.
-  * **models** - Contain models for resources that define its shape in the Redux store.
-  * **routes** - All routing logic rests in its index.js file. Create a folder with an index.jsx for page components. In the future, these will rest in the Link folder as Page components.
-  * **state** - Folders that contain all reducers, actions, selectors and respective tests.
-  * **translations** - Stores current translations. See the I18n chapter.
+  * **components** - React components needed to bootstrap Libro.
+  * **helpers** - Helpers for bootstrapping Libro.
+  * **modules** - Encapsulated modules of behaviour.
+    * **async** - Code which is to be loaded asynchronously, via `Suspense` or `import()` 
+      * Contains the module structure except for async.
+    * **components**
+    * **hooks**
+    * **lib**
+    * **middleware**
+    * **ontology**
+    * **theme**
+    * **topologies**
+    * **views**
+  * **routes** - The different routes in Libro, almost always routes to `LinkedObject`.
+  * **translations** - Stores translations. See the I18n chapter.
   * **views** - Link view components. Properties are stored in the parent resource.
 * **bin** - Binaries
-* **dev** - Helpers for developers, such as a nginx config and docker file.
 * **dist** - Generated and managed by the build scripts. Here are the distribution files stored, they aren't necessarily public.
-* **server** - Node server
-* **static** - Static files. Keep it to a minimum.
-* **tests** - Application wide tests only. Try to put tests in the folder of the respective module.
+* **tests** - Helpers related to testing.
 * **webpack** - Configuration for your favorite bundler.
+
+Tests are placed in `__tests__` folders and should end in `.spec.ts(x)`.
 
 ### Styling & theming
 We're migrating our styles to `@material/styles` objects, using the [makeStyles hook](https://material-ui.com/styles/basics/).
