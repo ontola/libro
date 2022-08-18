@@ -7,17 +7,16 @@ import {
   Resource,
   register,
   useIds,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React, { CSSProperties, ElementType } from 'react';
 
 import { allTopologies } from '../../../../../topologies';
 import GridItem from '../../../../Common/components/Grid/GridItem';
-import useViewByIRI from '../../../../Common/hooks/useViewByIRI';
-import { tryParseInt } from '../../../../Common/lib/numbers';
-import CardRow from '../../../../Common/topologies/Card/CardRow';
 import { LoadingCardFixed } from '../../../../Common/components/Loading';
+import { tryParseInt } from '../../../../Common/lib/numbers';
 import app from '../../../../Common/ontology/app';
+import CardRow from '../../../../Common/topologies/Card/CardRow';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { useCollectionOptions } from '../../../components/CollectionContext';
 import { CollectionViewTypes } from '../types';
@@ -45,9 +44,7 @@ const ItemList = ({
     depth,
     maxColumns,
     onItemClick,
-    view: viewIRI,
   } = useCollectionOptions();
-  const view = viewIRI && useViewByIRI(viewIRI);
   const [itemWrapper, itemWrapperOpts] = React.useMemo(() => {
     let wrapper: ElementType = React.Fragment;
     let wrapperOpts = {};
@@ -72,20 +69,17 @@ const ItemList = ({
 
   return (
     <React.Fragment>
-      {items
-        .slice(0, renderLimit)
-        .map((iri) => (
-          <Resource
-            childProps={{ onItemClick }}
-            depth={depth}
-            itemRenderer={view}
-            itemWrapper={itemWrapper}
-            itemWrapperOpts={itemWrapperOpts}
-            key={`${subject}:${iri.value}`}
-            separator={separator}
-            subject={iri}
-          />
-        ))}
+      {items.slice(0, renderLimit).map((iri) => (
+        <Resource
+          childProps={{ onItemClick }}
+          depth={depth}
+          itemWrapper={itemWrapper}
+          itemWrapperOpts={itemWrapperOpts}
+          key={`${subject}:${iri.value}`}
+          separator={separator}
+          subject={iri}
+        />
+      ))}
     </React.Fragment>
   );
 };

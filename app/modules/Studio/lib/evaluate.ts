@@ -17,35 +17,34 @@ import {
   normalizeType,
 } from 'link-lib';
 
-import { createAppNS } from '../../Common/ontology/app';
 import ontAppSlashless from '../../../ontology/appSlashless';
-import ontArgu from '../../Argu/ontology/argu';
-import ontDbo from '../../Common/ontology/dbo';
-import ontDexes from '../../Dexes/ontology/dexes';
-import ontElements from '../../Elements/ontology/elements';
 import ontEx from '../../../ontology/ex';
-import { appendPath } from '../../Kernel/lib/id';
-import ontExample from '../../Kernel/ontology/example';
 import ontFa4 from '../../../ontology/fa4';
 import ontFhir from '../../../ontology/fhir';
-import ontForm from '../../Form/ontology/form';
 import ontHttp from '../../../ontology/http';
 import ontHttph from '../../../ontology/httph';
 import ontHydra from '../../../ontology/hydra';
-import ontLd from '../../Kernel/ontology/ld';
-import ontLibro from '../../Kernel/ontology/libro';
 import ontLink from '../../../ontology/link';
-import ontLl from '../../Kernel/ontology/ll';
 import ontMeeting from '../../../ontology/meeting';
-import ontOntola from '../../Kernel/ontology/ontola';
 import ontOpengov from '../../../ontology/opengov';
 import ontOrg from '../../../ontology/org';
 import ontPerson from '../../../ontology/person';
-import ontDatacube from '../../DataCube/ontology/datacube';
-import ontSales from '../../SalesWebsite/ontology/sales';
-import ontSp from '../../Kernel/ontology/sp';
-import ontTeamGL from '../../GroenLinks/ontology/teamGL';
+import ontArgu from '../../Argu/ontology/argu';
+import { createAppNS } from '../../Common/ontology/app';
+import ontDbo from '../../Common/ontology/dbo';
 import ontWdt from '../../Common/ontology/wdt';
+import ontDatacube from '../../DataCube/ontology/datacube';
+import ontDexes from '../../Dexes/ontology/dexes';
+import ontElements from '../../Elements/ontology/elements';
+import ontForm from '../../Form/ontology/form';
+import { appendPath } from '../../Kernel/lib/id';
+import ontExample from '../../Kernel/ontology/example';
+import ontLd from '../../Kernel/ontology/ld';
+import ontLibro from '../../Kernel/ontology/libro';
+import ontLl from '../../Kernel/ontology/ll';
+import ontOntola from '../../Kernel/ontology/ontola';
+import ontSp from '../../Kernel/ontology/sp';
+import ontSales from '../../SalesWebsite/ontology/sales';
 
 export const evaluate = (source: string, websiteIRI: string): DataObject[] => {
   // @ts-ignore
@@ -120,8 +119,6 @@ export const evaluate = (source: string, websiteIRI: string): DataObject[] => {
   // @ts-ignore
   const sp = ontSp;
   // @ts-ignore
-  const teamGL = ontTeamGL;
-  // @ts-ignore
   const wdt = ontWdt;
 
   // @ts-ignore
@@ -133,7 +130,11 @@ export const evaluate = (source: string, websiteIRI: string): DataObject[] => {
     return rdf.namedNode(appendPath(websiteIRI, `/${s}`));
   };
 
-  interface LangMap { en: string | DataObject, nl: string | DataObject }
+  interface LangMap {
+    en: string | DataObject,
+    nl: string | DataObject
+  }
+
   // @ts-ignore
   const t = (langMap: LangMap): Array<Literal | DataObject> =>
     Object.entries(langMap).map(([k, v]) => {

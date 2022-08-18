@@ -10,7 +10,6 @@ import Dexes from './modules/Dexes';
 import Elements from './modules/Elements';
 import Flow from './modules/Flow';
 import Form from './modules/Form';
-import GroenLinks from './modules/GroenLinks';
 import Kernel from './modules/Kernel';
 import Libro from './modules/Libro';
 import Menu from './modules/Menu';
@@ -39,6 +38,5 @@ export const modules: Module[] = [
   Academy,
   Argu,
   Dexes,
-  GroenLinks,
   SalesWebsite,
 ];
