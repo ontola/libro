@@ -9,12 +9,12 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { ChangePage } from '../../../middleware/actions';
 import { resourceHasType } from '../../Common/lib/data';
 import { retrievePath } from '../../Common/lib/iris';
 import { entityIsLoaded } from '../../Kernel/lib/data';
 import app from '../../Common/ontology/app';
 import ontola from '../../Kernel/ontology/ontola';
+import { ChangePage } from '../middleware/actions';
 import CollectionTypes from '../views/Collection/types';
 
 /**

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React, { MouseEvent } from 'react';
 
-import { StartSignIn } from '../../../../middleware/actions';
+import { StartSignIn } from '../../../Auth/middleware/actions';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { ShowDialog } from '../../../Common/middleware/actions';
 import { entityIsLoaded } from '../../../Kernel/lib/data';

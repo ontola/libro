@@ -8,12 +8,13 @@ import {
   SomeNode,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+import type React from 'react';
 
-import { quadruple } from '../modules/Kernel/lib/quadruple';
-import app from '../modules/Common/ontology/app';
-import ll from '../modules/Kernel/ontology/ll';
-import http from '../ontology/http';
-import ld from '../modules/Kernel/ontology/ld';
+import { quadruple } from '../../Kernel/lib/quadruple';
+import app from '../../Common/ontology/app';
+import ll from '../../Kernel/ontology/ll';
+import http from '../../../ontology/http';
+import ld from '../../Kernel/ontology/ld';
 
 import { SetSearchTarget } from './actions';
 

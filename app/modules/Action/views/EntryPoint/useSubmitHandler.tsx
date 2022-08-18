@@ -15,7 +15,7 @@ import { useLRS, useResourceLink } from 'link-redux';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { StartSignIn } from '../../../../middleware/actions';
+import { StartSignIn } from '../../../Auth/middleware/actions';
 import { errorMessages } from '../../../../translations/messages';
 import {
   HTTP_RETRY_WITH,

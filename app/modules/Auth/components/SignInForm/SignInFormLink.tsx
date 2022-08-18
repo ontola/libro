@@ -4,7 +4,7 @@ import React, { ReactElement, SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 
-import { StartSignIn } from '../../../../middleware/actions';
+import { StartSignIn } from '../../middleware/actions';
 import Link from '../../../Common/components/Link';
 import path, { currentLocationControl } from '../../../Common/lib/paths';
 import { useCurrentActor } from '../../hooks/useCurrentActor';

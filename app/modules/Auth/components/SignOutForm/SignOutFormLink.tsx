@@ -3,7 +3,7 @@ import { useLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { StartSignOut } from '../../../../middleware/actions';
+import { StartSignOut } from '../../middleware/actions';
 import Button from '../../../Common/components/Button';
 import { authMessages } from '../../lib/messages';
 

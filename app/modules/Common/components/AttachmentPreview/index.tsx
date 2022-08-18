@@ -9,8 +9,8 @@ import {
 import React from 'react';
 import parser from 'uri-template';
 
-import { ChangePage } from '../../../../middleware/actions';
 import argu from '../../../Argu/ontology/argu';
+import { ChangePage } from '../../../Collection/middleware/actions';
 import ontola from '../../../Kernel/ontology/ontola';
 import { ShowDialog } from '../../middleware/actions';
 

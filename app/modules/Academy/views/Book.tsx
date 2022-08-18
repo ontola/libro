@@ -23,7 +23,6 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
-import { SetSearchTarget } from '../../../middleware/actions';
 import { fullResourceTopology } from '../../Common/topologies';
 import { BreakPoints, LibroTheme } from '../../Kernel/lib/themes';
 import { academyMessages } from '../../../translations/messages';
@@ -31,6 +30,7 @@ import argu from '../../Argu/ontology/argu';
 import retrievePath from '../../Common/lib/iris';
 import SideBar from '../../Common/topologies/SideBar';
 import { useChapterNavigation } from '../hooks/useChapterNavigation';
+import { SetSearchTarget } from '../middleware/actions';
 
 export interface BookProps {
   chapter?: SomeNode;

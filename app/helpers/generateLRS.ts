@@ -15,12 +15,13 @@ import type React from 'react';
 
 import ServiceWorkerCommunicator from '../components/ServiceWorkerCommunicator';
 import { FRONTEND_ACCEPT } from '../config';
-import analyticsMiddleware from '../middleware/analyticsMiddleware';
-import { appMiddleware } from '../middleware/app';
+import analyticsMiddleware from '../modules/Common/middleware/analyticsMiddleware';
+import { authMiddleware } from '../modules/Auth/middleware/authMiddleware';
 import type { Module } from '../Module';
+import { paginationMiddleware } from '../modules/Collection/middleware/paginationMiddleware';
 import execFilter from '../modules/Kernel/middleware/execFilter';
 import logging from '../modules/Kernel/middleware/logging';
-import { searchMiddleware } from '../middleware/searchMiddleware';
+import { searchMiddleware } from '../modules/Academy/middleware/searchMiddleware';
 import commonMiddleware from '../modules/Common/middleware/common';
 import ontolaDeltaProcessor from '../modules/Kernel/lib/ontolaDeltaProcessor';
 import { WebManifest } from '../modules/Kernel/components/AppContext/WebManifest';
@@ -65,7 +66,8 @@ export default async function generateLRS(
     logging,
     commonMiddleware(history, serviceWorkerCommunicator),
     analyticsMiddleware(),
-    appMiddleware(),
+    authMiddleware(),
+    paginationMiddleware(),
     searchMiddleware(),
     execFilter(manifest.ontola.website_iri),
   ] : [];

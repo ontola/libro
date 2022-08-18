@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import { StartSignIn } from '../../../../middleware/actions';
+import { StartSignIn } from '../../../Auth/middleware/actions';
 import { useCurrentActor } from '../../../Auth/hooks/useCurrentActor';
 import { Navigate } from '../../../Common/middleware/actions';
 import TableCells from '../../../Table/components/TableCells';

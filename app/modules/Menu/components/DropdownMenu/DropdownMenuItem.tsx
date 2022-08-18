@@ -14,7 +14,7 @@ import {
 } from 'link-redux';
 import React, { MouseEventHandler } from 'react';
 
-import { StartSignIn } from '../../../../middleware/actions';
+import { StartSignIn } from '../../../Auth/middleware/actions';
 import ontola from '../../../Kernel/ontology/ontola';
 import MenuItem from '../MenuItem';
 
