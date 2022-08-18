@@ -106,7 +106,7 @@ export default async function generateLRS(
   (lrs as any).broadcast_old = (lrs as any).broadcast;
   (lrs as any).broadcast = (_: boolean, __: number) => (lrs as any).broadcast_old(false, 0);
 
-  lrs.store.addQuadruples(modules.flatMap((it) => it.seed).filter(Boolean));
+  lrs.store.addQuads(modules.flatMap((it) => it.seed).filter(Boolean));
 
   for (const module of modules) {
     if (module.initialize !== undefined) {

@@ -30,7 +30,7 @@ const cloneLRS = async (old: LinkReduxLRSType, manifest: WebManifest) => {
   register(next, old.settings.get(modulesKey));
 
   if (old) {
-    next.store.addQuadruples((old.store as any).store.quads);
+    next.store.addQuads((old.store as any).store.quads);
     (next.store as any).langPrefs = (old.store as any).langPrefs;
     (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
     next.store.getInternalStore().store.journal = next.store.getInternalStore().store.journal.copy((next.store as any).handleChange.bind(next.store));

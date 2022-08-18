@@ -96,7 +96,7 @@ function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
     lrs.store.removeResource(s);
   }
 
-  lrs.store.addQuadruples(supplants);
+  lrs.store.addQuads(supplants);
 }
 
 function ontolaDeltaProcessor(lrs: LinkReduxLRSType): DeltaProcessors {
