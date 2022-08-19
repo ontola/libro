@@ -1,4 +1,4 @@
-image: node:16
+image: node:lts-slim
 
 cache:
   key: $CI_PROJECT_ID
@@ -12,15 +12,13 @@ variables:
 
 default:
   before_script:
+    - apt update && apt install -y git
     - yarn --immutable
     - yarn run t10s:compile
 
 stages:
   - build
   - bake
-
-services:
-  - docker:20.10.17-dind
 
 build:
   stage: build
@@ -41,12 +39,14 @@ codeQuality:
 test:
   stage: build
   script:
-    - ./node_modules/.bin/jest -w 2 --coverage --coverageReporters="text-summary" --no-cache
+    - ./node_modules/.bin/jest --coverage --coverageReporters="text-summary" --no-cache
   coverage: '/Lines.+\d+.\d+%/'
 
 bake:
   stage: bake
   image: docker:20.10.17
+  services:
+    - docker:20.10.17-dind
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   needs:
