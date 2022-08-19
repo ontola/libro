@@ -62,11 +62,9 @@ function createConfig(options) {
             path.resolve(__dirname, '../node_modules/ml-disjoint-set'),
             path.resolve(__dirname, '../node_modules/n-quads-parser'),
             path.resolve(__dirname, '../node_modules/react-intl'),
-            path.resolve(__dirname, '../node_modules/universal-url'),
-            path.resolve(__dirname, '../node_modules/whatwg-url'),
             path.resolve(__dirname, '../node_modules/webidl-conversions'),
           ],
-          test: /\.(m?(t|j)sx?)$/,
+          test: /\.(m?[tj]sx?)$/,
           use: {
             loader: 'esbuild-loader',
             options: {
@@ -96,14 +94,10 @@ function createConfig(options) {
 
     plugins: [
       new webpack.DefinePlugin({
-        __LEGACY__: options.bundle === bundles.legacy,
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
       new webpack.ProvidePlugin({
         xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
-      }),
-      new webpack.ProvidePlugin({
-        fetch: 'isomorphic-fetch',
       }),
       new ManifestPlugin({
         output: `manifest.${options.bundle}.json`,

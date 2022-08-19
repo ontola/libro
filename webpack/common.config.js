@@ -13,15 +13,7 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   externals: {
     URL: 'self.URL',
-    'any-promise': 'Promise',
     fetch: 'self.fetch',
-    'isomorphic-fetch': 'self.fetch',
-    jsonld: '{}',
-    'solid-auth-cli': 'null',
-    'solid-auth-client': 'self.fetch',
-    'universal-url': '{URL: self.URL}',
-    'whatwg-url': 'self.URL',
-    xmldom: '{}',
     xmlhttprequest: 'self.XMLHttpRequest',
   },
 
@@ -30,12 +22,6 @@ const common = {
   module: {
     rules: [
       {
-        test: /\.png$/,
-        use: 'file-loader?name=[name].[ext]',
-      }, {
-        test: /\.jpg$/,
-        use: 'file-loader?name=[name].[ext]',
-      }, {
         test: /\.(otf|ttf|woff|woff2)$/,
         use: 'file-loader?name=[name].[ext]&outputPath=f_assets/fonts/',
       }, {
@@ -65,7 +51,6 @@ const common = {
       './jsx-runtime.js': 'react/jsx-runtime',
       'react/jsx-dev-runtime.js': 'react/jsx-dev-runtime',
       'react/jsx-runtime.js': 'react/jsx-runtime',
-      xmlhttprequest: 'imports-loader?this=>global!exports-loader?global.XMLHttpRequest!global.XMLHttpRequest',
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,
@@ -90,9 +75,6 @@ const common = {
   ],
 
   resolve: {
-    alias: {
-      static: path.resolve('./static'),
-    },
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
     fallback: {
       path: require.resolve('path-browserify'),

@@ -1,7 +1,6 @@
 const path = require('path');
 const child_process = require('child_process');
 
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
@@ -13,8 +12,6 @@ const version = process.env.LIBRO_VERSION ?? child_process.execSync(
 ).trim();
 
 module.exports = merge(common, {
-  cache: true,
-
   devServer: {
     allowedHosts: 'all',
     client: {
@@ -75,7 +72,7 @@ module.exports = merge(common, {
           /node_modules/,
           /sw\/index\.js/
         ],
-        test: /\.(m?(t|j)sx?)$/,
+        test: /\.(m?[tj]sx?)$/,
         use: {
           loader: 'esbuild-loader',
           options: {
@@ -116,9 +113,6 @@ module.exports = merge(common, {
   plugins: [
     new ReactRefreshWebpackPlugin({
       overlay: false,
-    }),
-    new webpack.DefinePlugin({
-      __LEGACY__: false,
     }),
   ],
 

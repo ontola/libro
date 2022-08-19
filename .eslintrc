@@ -19,7 +19,6 @@
     "__CLIENT__": true,
     "__DEV__": true,
     "__DEVELOPMENT__": true,
-    "__LEGACY__": true,
     "__PRODUCTION__": true,
     "__TEST__": true,
     "__VERSION__": true
