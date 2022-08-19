@@ -16,7 +16,7 @@ const version = require('./version');
 
 let bugsnagPlugin;
 
-if (process.env.BUGSNAG_KEY && process.env.CI_COMMIT_BRANCH === 'master') {
+if (process.env.BUGSNAG_KEY && process.env.CI_COMMIT_BRANCH === process.env.CI_DEFAULT_BRANCH) {
   bugsnagPlugin = new BugsnagSourceMapUploaderPlugin({
     apiKey: process.env.BUGSNAG_KEY,
     appVersion: version,
