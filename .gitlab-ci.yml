@@ -34,6 +34,7 @@ build:
 codeQuality:
   stage: build
   script:
+    - echo "${CI_COMMIT_MESSAGE}" | npx commitlint
     - yarn run lint:code
     - yarn run t10s:lint
 
