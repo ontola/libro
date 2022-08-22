@@ -20,15 +20,18 @@ import { LinkedDataObject, TermOpts } from 'link-redux/dist-types/types';
 import React from 'react';
 
 import { arraysEqual } from '../../Common/lib/data';
-import { isPromise } from '../../Kernel/lib/typeCheckers';
+import { tryParseInt } from '../../Common/lib/numbers';
 import { containerToArr } from '../../Kernel/lib/data';
+import { isPromise } from '../../Kernel/lib/typeCheckers';
 
 import useShapeValues from './useShapeValues';
 
 const shapePropsMap = {
   hasValue: term(sh.hasValue),
   maxCount: literal(sh.maxCount),
+  maxInclusive: literal(sh.maxInclusive),
   minCount: literal(sh.minCount),
+  minInclusive: literal(sh.minInclusive),
   path: term(sh.path),
   shAnd: terms(sh.and),
   shIf: terms(sh.property),
@@ -53,6 +56,34 @@ const hasMaxCount = (maxCount: ToJSOutputTypes | undefined, values: SomeTerm[]) 
 const hasMinCount = (minCount: ToJSOutputTypes | undefined, values: SomeTerm[]) => (
   minCount === undefined || values.length >= minCount
 );
+
+const hasMaxInclusive = (maxInclusive: ToJSOutputTypes | undefined, values: SomeTerm[]) => {
+  const inclusive = tryParseInt(maxInclusive);
+
+  if (inclusive === undefined) {
+    return true;
+  }
+
+  return values.some((value) => {
+    const int = tryParseInt(value);
+
+    return int && int <= inclusive;
+  });
+};
+
+const hasMinInclusive = (minInclusive: ToJSOutputTypes | undefined, values: SomeTerm[]) => {
+  const inclusive = tryParseInt(minInclusive);
+
+  if (inclusive === undefined) {
+    return true;
+  }
+
+  return values.some((value) => {
+    const int = tryParseInt(value);
+
+    return int && int >= inclusive;
+  });
+};
 
 const hasValue = (value: SomeTerm | undefined, values: SomeTerm[]) => (
   value === undefined || values.includes(value)
@@ -89,6 +120,14 @@ const resolveCondition = (
   }
 
   if (!hasMinCount(props.minCount, values)) {
+    return false;
+  }
+
+  if (!hasMaxInclusive(props.maxInclusive, values)) {
+    return false;
+  }
+
+  if (!hasMinInclusive(props.minInclusive, values)) {
     return false;
   }
 
