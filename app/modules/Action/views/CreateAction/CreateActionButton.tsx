@@ -3,7 +3,7 @@ import {
   FC,
   register,
   useProperty,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
@@ -29,9 +29,9 @@ import { menuTopology } from '../../../Menu/topologies';
 import {
   tableCellTopology,
   tableFooterCellTopology,
-  tableRowTopology,
+  tableRowTopology, 
 } from '../../../Table/topologies';
-import { isInvalidActionStatus } from '../../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../../hooks/useValidActions';
 import { actionsBarTopology } from '../../topologies';
 
 const CreateActionButton: FC = ({ children }) => {

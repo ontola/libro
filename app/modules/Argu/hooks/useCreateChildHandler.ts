@@ -6,21 +6,21 @@ import {
   useGlobalIds,
   useIds,
   useLRS,
-  useResourceLinks,
+  useResourceLinks, 
 } from 'link-redux';
 import React from 'react';
 
-import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
+import { useValidActions } from '../../Action/hooks/useValidActions';
 import { ShowDialog } from '../../Common/middleware/actions';
+import { conditionalFormFieldsPath, formFieldsPath } from '../../Form/lib/diggers';
 import ll from '../../Kernel/ontology/ll';
 import ontola from '../../Kernel/ontology/ontola';
-import { conditionalFormFieldsPath, formFieldsPath } from '../../Form/lib/diggers';
 import { MapInteractionCallback } from '../../Map/components/ControlledMap';
 import { GeometryType } from '../../Map/lib/geometry';
 
 const useCreateChildHandler = (): MapInteractionCallback | undefined => {
   const lrs = useLRS();
-  const createActions = useEnabledActions(useGlobalIds(ontola.createAction));
+  const createActions = useValidActions(useGlobalIds(ontola.createAction));
   const entryPoints = useIds(createActions, schema.target).map((values) => values[0]);
   const forms = useIds(entryPoints, ll.actionBody).map((values) => values[0]);
   useDataFetching([...entryPoints, ...forms]);

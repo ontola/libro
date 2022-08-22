@@ -3,7 +3,7 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
@@ -14,7 +14,7 @@ import Metadata from '../../Common/components/Metadata';
 import { fullResourceTopology } from '../../Common/topologies';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 import { ActionProps, useDoneHandler } from './helpers';
 

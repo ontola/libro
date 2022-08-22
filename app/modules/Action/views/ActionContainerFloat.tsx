@@ -6,7 +6,7 @@ import {
   useDataFetching,
   useFields,
   useGlobalIds,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -14,7 +14,7 @@ import FontAwesome from 'react-fontawesome';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import { normalizeFontAwesomeIRI } from '../../Common/lib/iris';
 import { containerFloatTopology } from '../../Common/topologies';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 import { CardListOnClick } from './helpers';
 

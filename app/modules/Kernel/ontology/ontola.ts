@@ -35,6 +35,7 @@ export default {
   FormStep: ontola('FormStep'),
   GuestUser: ontola('GuestUser'),
   InfiniteView: ontola('InfiniteView'),
+  LockedActionStatus: ontola('LockedActionStatus'),
   LottieAnimation: ontola('LottieAnimation'),
   MenuItem: ontola('MenuItem'),
   Ontology: ontola('Ontology'),

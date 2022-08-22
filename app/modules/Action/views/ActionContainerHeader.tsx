@@ -3,15 +3,15 @@ import {
   FC,
   register,
   useProperty,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 
 import HeaderButton from '../../Common/components/Button/HeaderButton';
 import { containerHeaderTopology } from '../../Common/topologies';
 import libro from '../../Kernel/ontology/libro';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 import useOneClickProps from '../hooks/useOneClickProps';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 import { ActionProps } from './helpers';
 

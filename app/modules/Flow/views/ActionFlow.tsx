@@ -7,11 +7,11 @@ import {
   Property,
   register,
   useLRS,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
-import { isInvalidActionStatus } from '../../Action/hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../../Action/hooks/useValidActions';
 import { ActionProps, useDoneHandler } from '../../Action/views/helpers';
 import { SignInFormLink } from '../../Auth/components/SignInForm';
 import Button from '../../Common/components/Button';

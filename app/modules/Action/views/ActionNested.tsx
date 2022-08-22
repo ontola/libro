@@ -5,7 +5,7 @@ import {
   register,
   useLRS,
   useProperty,
-  useTopology,
+  useTopology, 
 } from 'link-redux';
 import React from 'react';
 
@@ -17,7 +17,7 @@ import { HideDialog } from '../../Common/middleware/actions';
 import { alertDialogTopology, tabPaneTopology } from '../../Common/topologies';
 import CardMain from '../../Common/topologies/Card/CardMain';
 import Container from '../../Common/topologies/Container';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 import { ActionProps, useDoneHandler } from './helpers';
 

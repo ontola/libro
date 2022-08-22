@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import {
   FC,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -11,8 +11,8 @@ import LDLink from '../../Common/components/LDLink';
 import { LinkFeature } from '../../Common/components/Link';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
 import { tableCellTopology } from '../../Table/topologies';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
 import useOneClickProps from '../hooks/useOneClickProps';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 const ActionTableCell: FC = ({
   subject,
