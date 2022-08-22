@@ -5,14 +5,14 @@ import {
   useGlobalIds,
   useIds,
   useLRS,
-  useStrings,
+  useStrings, 
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { collectionMessages, formMessages } from '../../../translations/messages';
-import { useEnabledActions } from '../../Action/hooks/useEnabledActions';
+import { useVisibleActions } from '../../Action/hooks/useVisibleActions';
 import Button from '../../Common/components/Button';
 import HeaderButton from '../../Common/components/Button/HeaderButton';
 import { useShowDialog } from '../../Common/hooks/useShowDialog';
@@ -92,7 +92,7 @@ const CollectionCreateButton: React.FC<CollectionCreateButtonProps> = ({
   const intl = useIntl();
   const createActions = useGlobalIds(ontola.createAction);
   const [actionDialog] = useIds(ontola.actionDialog);
-  const validActions = useEnabledActions(createActions);
+  const validActions = useVisibleActions(createActions);
   const renderedActions = useFavoriteActions(validActions, false);
   const [actionName] = useStrings(renderedActions[0], schema.name);
   const showDialog = useShowDialog(actionDialog ?? renderedActions[0]);

@@ -2,7 +2,7 @@ import * as schema from '@ontologies/schema';
 import {
   Property,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
@@ -11,9 +11,9 @@ import { LinkTarget } from '../../Common/components/Link';
 import {
   cardFloatTopology,
   contentDetailsTopology,
-  detailsBarTopology,
+  detailsBarTopology, 
 } from '../../Common/topologies';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 const ActionDetail = () => {
   const [actionStatus] = useProperty(schema.actionStatus);

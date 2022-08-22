@@ -10,7 +10,7 @@ import React from 'react';
 
 import { ButtonVariant } from '../../Common/components/Button';
 import { listTopology } from '../../Common/topologies';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 import { actionsBarTopology } from '../topologies';
 
 import { CardListOnClick } from './helpers';

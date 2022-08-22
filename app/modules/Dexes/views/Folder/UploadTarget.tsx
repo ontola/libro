@@ -6,7 +6,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 
 import { handle } from '../../../../helpers/logging';
-import { isInvalidActionStatus } from '../../../Action/hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../../../Action/hooks/useValidActions';
 import { convertKeysAtoB } from '../../../Common/lib/data';
 import DropzoneOverlay from '../../../Form/components/Dropzone/DropzoneOverlay';
 import UploadProgress from '../../../Form/components/Input/FileInput/UploadProgress';

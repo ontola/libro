@@ -1,12 +1,14 @@
 import * as as from '@ontologies/as';
 import { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
+import * as schema from '@ontologies/schema';
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
 import {
   LaxNode,
   Property,
   Resource,
+  useDataFetching,
   useFields,
   useGlobalIds,
   useIds,
@@ -15,10 +17,9 @@ import {
 } from 'link-redux';
 import React, { ReactNode } from 'react';
 
-import useActionStatus from '../../Action/hooks/useActionStatus';
-import { isInvalidActionStatus } from '../../Action/hooks/useEnabledActions';
-import { tryParseInt } from '../../Common/lib/numbers';
+import { isInvisibleActionStatus } from '../../Action/hooks/useVisibleActions';
 import ResourceBoundary from '../../Common/components/ResourceBoundary';
+import { tryParseInt } from '../../Common/lib/numbers';
 import { useContainerToArr } from '../../Kernel/hooks/useContainerToArr';
 import ll from '../../Kernel/ontology/ll';
 import ontola from '../../Kernel/ontology/ontola';
@@ -62,14 +63,17 @@ const propMap = {
 };
 
 export const useHasInteraction = (collectionResource: SomeNode): boolean => {
-  const [_, actionStatus] = useActionStatus(collectionResource, ontola.createAction);
+  const actions = useGlobalIds(collectionResource, ontola.createAction);
+  useDataFetching(actions);
+  const actionStatuses = useGlobalIds(actions, schema.actionStatus).map(([_, status]) => status);
+
   const [collectionResourceType] = useGlobalIds(collectionResource, rdfx.type);
 
   if (collectionResourceType === ontola.SearchResult) {
     return true;
   }
 
-  return actionStatus && !isInvalidActionStatus(actionStatus);
+  return actionStatuses.findIndex((actionStatus) => !isInvisibleActionStatus(actionStatus)) !== -1;
 };
 
 const CollectionProvider = ({

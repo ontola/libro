@@ -3,7 +3,7 @@ import {
   FC,
   Property,
   register,
-  useProperty,
+  useProperty, 
 } from 'link-redux';
 import React from 'react';
 
@@ -14,7 +14,7 @@ import {
   cardRowTopology,
   cardTopology, 
 } from '../../Common/topologies';
-import { isInvalidActionStatus } from '../hooks/useEnabledActions';
+import { isInvalidActionStatus } from '../hooks/useValidActions';
 
 import { ActionProps, useDoneHandler } from './helpers';
 
