@@ -1,15 +1,17 @@
-# Argu front-end
-Front-end application for [Argu](https://argu.co).
+# Libro client
+Linked data Browser, primarily for use with [linked_rails](https://github.com/ontola/linked_rails) backends.
 
-## Usage
+Also powers [Argu](https://argu.co).
+
+## Getting started
 Either use as part of [Argu](https://gitlab.com/ontola/argu), or as a standalone browser;
 
-- `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
-- Create a [.env file](https://www.npmjs.com/package/dotenv) by copying `.env.template`.
+- `npm install` or [`yarn`](https://yarnpkg.com/en/docs/install) to install dependencies.
+- When using Libro standalone, create a [.env file](https://www.npmjs.com/package/dotenv) by copying `.env.template`.
 - `yarn run start` to start the hot reload enabled development build.
 - Visit [http://localhost:3001/](http://localhost:3001/)
 
-## Contributing
+## Development
 Commit messages are automatically checked for compliance with [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 Make sure that nodejs is available in the environment where modifying git commands (i.e. commit, rebase, etc) are executed.
 
@@ -18,54 +20,57 @@ Make sure that nodejs is available in the environment where modifying git comman
 - `yarn run lint` to run the ES linter. See .eslintrc for the plugins and exceptions to the recommended set used.
 - `yarn run test` to run all tests.
 
-### Structure
+## Structure
+Tests are placed in `__tests__` folders and should end in `.spec.ts(x)`.
+Most of the actual runtime code of the app is divided into the various "modules".
+
 * **app** - Code that runs in the browser
   * **components** - React components needed to bootstrap Libro.
   * **helpers** - Helpers for bootstrapping Libro.
   * **modules** - Encapsulated modules of behaviour.
-    * **async** - Code which is to be loaded asynchronously, via `Suspense` or `import()` 
-      * Contains the module structure except for async.
-    * **components**
-    * **hooks**
-    * **lib**
-    * **middleware**
-    * **ontology**
-    * **theme**
-    * **topologies**
-    * **views**
+  * **ontology** - Shared ontology definitions which don't fit into a particular module.
   * **routes** - The different routes in Libro, almost always routes to `LinkedObject`.
   * **translations** - Stores translations. See the I18n chapter.
-  * **views** - Link view components. Properties are stored in the parent resource.
 * **bin** - Binaries
 * **dist** - Generated and managed by the build scripts. Here are the distribution files stored, they aren't necessarily public.
 * **tests** - Helpers related to testing.
 * **webpack** - Configuration for your favorite bundler.
 
-Tests are placed in `__tests__` folders and should end in `.spec.ts(x)`.
+### Modules
+Most of the code should be placed into the `async` submodule, so it can be loaded on-demand.
 
-### Styling & theming
-We're migrating our styles to `@material/styles` objects, using the [makeStyles hook](https://material-ui.com/styles/basics/).
-This enables us to use runtime-overwritable custom themes in combination with the Material-ui components.
-If you need to edit styles written in SCSS, convert them to `makeStyles` objects.
-If you need theme-dependent styles, use the theme object.
-Variables (colors, widths, spacing, font-size) should be taken from the `theme` object that is passed through `makeStyles`.
-These can be modified (for the default theme) in `app/themes/common/variables.js`.
+* **async** - Code which is to be loaded asynchronously, via `Suspense` or `import()`
+  * Contains the module structure (except for `async`).
+* **components** - Plain React components and suspense loaders for async components.
+* **hooks** - Custom React hooks.
+* **lib** - Other code which can't be properly categorized into the other folders
+* **middleware** - Link middlewares, use for processing custom actions.
+* **ontology** - Files containing ontology related to the module.
+* **theme** - Custom theme, only applicable to `App` modules.
+* **topologies** - Topology Provider components.
+  * index.ts - Default export should contain an array of all the topology IRIs this module defines.
+* **views** - Link components which are registered in the store, mounted by Libro automatically via the `Resource` component.
+* index.ts - The module definition.
+* dependencies.ts - A list of other modules the test suite of this module needs to run.
 
-### Testing
-Tests are written using jest and @testing-library/react. An enhanced version for views can be found in the test-utilities.
+## Styling & Theming
+Libro uses the [makeStyles hook](https://material-ui.com/styles/basics/) from `@material/styles` for styling.
+These can plug into the theming system to enable runtime (server provided) theming options.
+Themes and their settings can be found in the `theme` folder of `App` modules. Whenever writing
+components be sure to use the appropriate theme variables if applicable.
 
-Test which render react components need to declare their environment as `jsdom`
+## Testing
+Tests are written using [jest](https://jestjs.io/docs/getting-started) and [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/).
+An enhanced version for views can be found in the test-utilities.
 
-Some literature:
-* [Jest introduction chapters](https://facebook.github.io/jest/docs/en/getting-started.html)
-* [Testing introduction](https://blog.progressly.com/what-makes-a-good-test-dff3df6058a2)
+Test which render react components need to [declare their environment](https://jestjs.io/docs/configuration#testenvironment-string) as `jsdom`
 
-### I18n
+## I18n
 Internationalization is done via [react-intl](https://github.com/yahoo/react-intl).
 
 Do not touch the `en.json` and all `*.json` files in /app/lang, they are autogenerated from source.
 
-#### Adding a translation
+### Adding a translation
 1. Use the translation in code
 2. Run the `t10s:extract` script, take note of any warning or errors (esp. duplicates)
 3. Add the key and translation to the other locales.
@@ -75,76 +80,25 @@ Do not touch the `en.json` and all `*.json` files in /app/lang, they are autogen
 ***CAUTION:*** When deleting translations (e.g. removing a react-intl component), make sure to
 manually search/check and update the translations files to ensure consistency.
 
-#### Test structure
-Tests are written on three levels;
-1. Feature tests - These should cover the integration of multiple coupled views, e.g. entire features such as rendering the navbar or a motion page.
-2. View tests - These should cover the integration between data and (multiple tightly coupled) views, e.g. submenu rendering.
-3. Unit tests - These cover all the permutations of the base components, e.g. all the props and their output.
-
-The unit (components) tests generally consist of two components:
-- A general snapshot test to ensure all components are in order and the correct classes have been set
-- Many marker-based tests to ensure all functionality is present and switched according to the requirements (arguments/data).
-
-#### Golden tests
-Since the underlying architecture/structure is still in early development, the exact requirements of
-tests are still ill-defined, so the following files can be used for reference for the creation of
-additional specs;
-- Feature tests: TBD
-- View tests: `app/views/MenuItem/MenuItem.spec.js`
-- Unit tests: `app/components/Button/Button.spec.js`
-
-#### Harvesting data
-The feature and view tests require data to be feeded into the system, but since we don't have a
-factory system yet, the data needs to be harvested manually for the time being. Luckily,
-snapshot-testing compatible JS data can be obtained by running `dev.snapshot()` on the desired LOC
-in the browser console.
-
-### Async
-Components which are to be resolved via webpack async functionality. They shouldn't be loaded
-directly in the code, use their loaders instead, which should be in either components or containers.
-
-These may not contain all async-loaded components (e.g. The pdf component is loaded directly from
-the dependency).
-
-### Components
-- In this project, `components` are merely [presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) / display / UI components that should not represent any specific kind of concept. You can compare them to bootstrap components. Components should not fetch any data and should not be connected to redux. They also should not contain any components that fetch data. That's what Containers and Resources are responsible for.
-- Name them as abstract as possible. That makes the component more re-usable.
-- Use stateless functional components whenever possible to enhance performance.
-- Use PropTypes and add a comment above non-obvious props `/** like this */`.
-- Document components like all other functions with JSdoc.
-
-### Views (using Link)
-- Views represent real world concepts, such as a person, a document, an event or an organization.
-- They are rendered using `link-lib` and `link-redux`, which respectively deal with managing the data and making it accessible to use in React components.
-- Views should not contain any styling of themselves. Don't re-use classesnames from other components.They are composed of Components.
-- Views can be rendered in various context (i.e. in its own page, as a small list item or as a card in some list). We call such a context a **topology**. We have predefined a couple of topologies:
-  - **(default)** - The view that is used on the route / page. `LinkedObjectContainers` with an undefined topology render as default.
-  - **Container** - A large column, often with cards inside it. Used on the Question page, or the Argument columns.
-  - **Card** - Inside a card.
-  - **CardMain** - Inside the card of the resource from the current URL. Makes the title bigger.
-  - **CardFixed** - Inside a card with fixed dimensions.
-  - **Detail** - Shown in the DetailsBar, should be a small piece of metadata.
-  - **Parent** - Shown on top of a page to convey the hierarchy of the site.
-  - **Inline** - A text to appear in some other text. Can be a link.
-  - **Sidebar** - An item in the side menu.
-
-### Adding a new view
-- Create a folder in `app/views` with the name of your view (e.g. `Person` if it renders a `foaf:Person`). Add a `index.jsx` file.
-- When naming your component, name them as `propertyTopology` and `TypeTopology`. For example: `nameCard` or `MotionContainer`.
-
-### Debugging Link
+## Debugging
+When a component isn't rendering as expected.
 So, your Link View / Property isn't showing. Check the following:
-- Is the request handled correctly? Check the `network` tab in your browser's debugger view.
-- Is the data parsed correctly?
-- Is the component present in the virtual DOM? Use the react debugging tools to find the component. Does it contain the Property components that you expect it to have?
-- If there is a component, check its contents by clicking its LinkedObjectContainer in the debugging tools and running `dev.data` in the console.
-- Is the View or the Property being registered correctly? Use LRS.
+- Is the record in the store? 
+  - `LRS.collectRecord("insert record_id")` to see the data if present.
+  - `LRS.collectRecord($r.props.subject)` when having the Resource component selected in React Devtools component panel.
+- Is the record being fetched? 
+  - Check the `/bulk` requests in the `network` tab in your browser's debugger view.
+  - The requested records are in the `payload` panel.
+  - The retrieved records are in the `preview` or `response` panel.
+- Check if your view is actually registered, i.e. is the component properly exported and included?
+- Is the element present in the virtual DOM? Use the React debugging tools to find the component. Does it contain the Property components that you expect it to have?
+- If there is an element, check its data by selecting the `Resource` element in the React debugging tools and executing `dev.data` in the console.
 
-### Rendering external resources
+## Rendering external resources
 If you want to preview data from the web:
 
 - Run this in an apex Rails console:  `Page.argu.update(allowed_external_sources: ['https://myexternaldomain.com'])` 
 - Open the resource in libro using the `/org/resource?` endpoint: `https://argu.localdev/argu/resource?iri=externalresource`
 
-### Recommended Dev tools
+## Recommended Dev tools
 - Chrome plugins: [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
