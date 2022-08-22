@@ -54,6 +54,8 @@ function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
       && s.termType === 'NamedNode'
       && store.getField(s.value, rdf.type.value) === undefined) {
       lrs.queueEntity(s, { reload: true });
+
+      return false;
     }
 
     return isReplace;
