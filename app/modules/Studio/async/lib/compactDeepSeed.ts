@@ -6,6 +6,7 @@ import {
   Value,
   isValue,
 } from '../../../Common/lib/seed';
+import { removeTrailingSlash } from '../../../Kernel/lib/id';
 
 const absolutiseId = (id: string, websiteIRI: string) => {
   if (id === websiteIRI) {
@@ -13,7 +14,7 @@ const absolutiseId = (id: string, websiteIRI: string) => {
   }
 
   return id.indexOf(websiteIRI) === 0
-    ? id.slice(websiteIRI.length)
+    ? id.slice(removeTrailingSlash(websiteIRI).length)
     : id;
 };
 
