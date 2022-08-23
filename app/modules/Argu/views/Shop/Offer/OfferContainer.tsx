@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import HeadingContext from '../../../../Common/components/Heading/HeadingContext';
 import dbo from '../../../../Common/ontology/dbo';
 import meeting from '../../../../../ontology/meeting';
 import CardContent from '../../../../Common/components/Card/CardContent';
@@ -28,22 +29,24 @@ import OfferActionButtons from './OfferActionButtons';
 const OfferContainer: FC = () => (
   <Card>
     <Property label={ontola.coverPhoto} />
-    <CardContent noSpacing>
-      <CardHeader float={<Property label={ontola.destroyAction} />}>
-        <Property label={[schema.name, rdfs.label, foaf.name]} />
-      </CardHeader>
-      <Property label={[schema.text, schema.description, dbo.abstract]} />
-    </CardContent>
-    <CardRow>
-      <Property label={[argu.attachments, meeting.attachment]} />
-    </CardRow>
-    <DetailsBar
-      borderBottom={false}
-      right={<OfferActionButtons />}
-      variant={DetailsBarVariant.Wide}
-    >
-      <Property label={argu.price} />
-    </DetailsBar>
+    <HeadingContext>
+      <CardContent noSpacing>
+        <CardHeader float={<Property label={ontola.destroyAction} />}>
+          <Property label={[schema.name, rdfs.label, foaf.name]} />
+        </CardHeader>
+        <Property label={[schema.text, schema.description, dbo.abstract]} />
+      </CardContent>
+      <CardRow>
+        <Property label={[argu.attachments, meeting.attachment]} />
+      </CardRow>
+      <DetailsBar
+        borderBottom={false}
+        right={<OfferActionButtons />}
+        variant={DetailsBarVariant.Wide}
+      >
+        <Property label={argu.price} />
+      </DetailsBar>
+    </HeadingContext>
   </Card>
 );
 
