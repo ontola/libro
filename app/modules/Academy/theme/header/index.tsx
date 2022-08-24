@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import * as schema from '@ontologies/schema';
 import { Property, Resource } from 'link-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -75,10 +76,10 @@ const AcademyHeader = (): JSX.Element => {
             <Property label={ontola.navigationsMenu}>
               <Property label={ontola.menuItems} />
             </Property>
+            <span>
+              <Property label={schema.title} />
+            </span>
           </Resource>
-          <span>
-            Academy
-          </span>
         </NavLink>
         <span className={classes.searchWrapper}>
           <ChapterSearch />
