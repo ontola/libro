@@ -101,6 +101,7 @@ const useStyles = makeStyles<LibroTheme, Partial<FertileComponentProps>>((theme)
   note: {
     borderColor: ({ color }) => color ?? theme.palette.secondary.main,
     borderLeft: '5px solid',
+    whiteSpace: 'pre',
   },
 
   ol: {
