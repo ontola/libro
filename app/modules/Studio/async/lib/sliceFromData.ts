@@ -37,5 +37,6 @@ export const groupLocalIdsByGlobalIds = (documents: Map<NamedNode, Set<Node>>, d
 export const sliceFromData = (data: string, websiteIRI: string, mapping: Record<string, string>): Slice => {
   const parser = new NdEmpJsonParser();
 
-  return parser.parseString(data, websiteIRI, mapping)[0];
+  // @ts-ignore
+  return parser.parseString(data.replaceAll('\n', ' '), websiteIRI, mapping)[0];
 };
