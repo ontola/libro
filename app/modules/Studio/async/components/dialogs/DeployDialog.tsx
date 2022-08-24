@@ -34,7 +34,7 @@ export const DeployDialog: React.FC<ProjectContextProps> = ({ dispatch, project 
     deployDistribution(project.distributionToDeploy!.iri, new URL(route)).then(() => {
       handleClose();
 
-      lrs.settings.get(ShowSnackbar)(intl.formatMessage(studioDistributionMessages.deploySuccess, {
+      lrs.actions.get(ShowSnackbar)(intl.formatMessage(studioDistributionMessages.deploySuccess, {
         route,
         version: project.distributionToDeploy!.version,
       }));
