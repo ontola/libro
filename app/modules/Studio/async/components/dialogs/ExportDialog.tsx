@@ -4,6 +4,8 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  MenuItem,
+  Select,
   Tooltip,
   Typography,
 } from '@mui/material';
@@ -17,6 +19,8 @@ import { LibroTheme } from '../../../../Kernel/lib/themes';
 import { actionMessages, studioExportMessages } from '../../../../../translations/messages';
 import { ProjectAction, ProjectContextProps } from '../../context/ProjectContext';
 import { useHasUnsavedChanges } from '../../hooks/useHasUnsavedChanges';
+
+const INDENT = 2;
 
 const useStyles = makeStyles<LibroTheme>((theme) => ({
   button: {
@@ -51,11 +55,21 @@ export const ExportDialog: React.FC<ProjectContextProps> = ({ dispatch, project 
   const intl = useIntl();
   const classes = useStyles();
 
+  const [exportType, setExportType] = React.useState<'dataslice' | 'site'>('site');
   const hasUnsavedChanges = useHasUnsavedChanges(project);
 
   const data = React.useMemo(
-    () => JSON.stringify(project.data),
-    [project.website],
+    () => {
+      switch (exportType) {
+      case 'site': return JSON.stringify({
+        manifest: project.manifest,
+        // eslint-disable-next-line sort-keys
+        data: project.data,
+      }, null,  INDENT);
+      case 'dataslice': return JSON.stringify(project.data, null, INDENT);
+      }
+    },
+    [project.website, exportType],
   );
 
   const handleClose = React.useCallback(() => {
@@ -84,6 +98,20 @@ export const ExportDialog: React.FC<ProjectContextProps> = ({ dispatch, project 
         <FormattedMessage {...studioExportMessages.dialogTitle} />
       </DialogTitle>
       <DialogContent>
+        <Select
+          autoWidth
+          multiple={false}
+          native={false}
+          value={exportType}
+          onChange={(e) => setExportType(e.target.value as 'dataslice' | 'site')}
+        >
+          <MenuItem value="site">
+            Site
+          </MenuItem>
+          <MenuItem value="dataslice">
+            Data slice
+          </MenuItem>
+        </Select>
         {hasUnsavedChanges ? (
           <Typography
             color="error"
