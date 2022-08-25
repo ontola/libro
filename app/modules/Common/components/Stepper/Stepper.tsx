@@ -49,10 +49,6 @@ const useStepLabelOverrideStyles = makeStyles((theme: LibroTheme) => ({
     '&$active': {
       color: theme.palette.primary.main,
       fontWeight: 'bold',
-      height: '1.2em',
-      marginLeft: '-0.1em',
-      marginTop: '-0.1em',
-      width: '1.2em',
     },
   },
   labelContainer: {
