@@ -6,6 +6,7 @@ import rdf, {
 } from '@ontologies/core';
 
 import { frontendOrigin, frontendPathname } from '../../Kernel/lib/frontendIRIComponents';
+import app from '../ontology/app';
 
 export const FABase = 'http://fontawesome.io/icon/';
 
@@ -16,6 +17,14 @@ export const createCurrentURL = (_window?: Window) => (): string | undefined => 
 
   return _window.location.href;
 };
+
+export function externalResourceIRI(iri: string): NamedNode {
+  if (isDifferentWebsite(iri)) {
+    return app.ns(`resource?iri=${encodeURIComponent(iri)}`);
+  }
+
+  return rdf.namedNode(iri);
+}
 
 export function fontAwesomeIRI(icon: string): NamedNode {
   return rdf.namedNode(`${FABase}${icon}`);
