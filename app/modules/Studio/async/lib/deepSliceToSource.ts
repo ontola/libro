@@ -1,4 +1,4 @@
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 
 import { DeepSeedDataRecord } from '../../../Common/lib/seed';
 import { DeepSlice } from '../../lib/dataObjectsToDeepSlice';

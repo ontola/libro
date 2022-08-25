@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { hextupleStringParser } from 'hextuples';
-import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
+import { DataSlice } from 'link-lib';
 import React, { Dispatch } from 'react';
 
 import { defaultManifest } from '../../../../helpers/defaultManifest';

@@ -5,7 +5,7 @@ import rdf, {
   createNS,
 } from '@ontologies/core';
 import type { History } from 'history';
-import { DataObject, RDFIndex } from 'link-lib';
+import { DataObject, RDFAdapter } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import { Store } from 'redux';
 
@@ -59,9 +59,9 @@ function getSubject(obj: any, subject: string | Node | null): Node | string {
   return subject || keys?.pop();
 }
 
-const isRDFIndex = (v: unknown): v is RDFIndex => Array.isArray((v as RDFIndex).quads);
+const isRDFIndex = (v: unknown): v is RDFAdapter => Array.isArray((v as RDFAdapter).quads);
 
-export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Quadruple[] {
+export function toArr(obj: undefined | RDFAdapter | Record<string, DataObject>): Quadruple[] {
   if (typeof obj === 'undefined') {
     return [];
   }
@@ -93,7 +93,7 @@ export function toArr(obj: undefined | RDFIndex | Record<string, DataObject>): Q
 
 export const generateCtx = (
   modules: Module[],
-  obj: RDFIndex | Record<string, DataObject>,
+  obj: RDFAdapter | Record<string, DataObject>,
   subject: string | Node | null | undefined = null,
 ): Promise<TestContext> => chargeLRS(
   modules,

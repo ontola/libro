@@ -2,7 +2,7 @@ import { TabContext, TabPanel } from '@mui/lab';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { makeStyles } from '@mui/styles';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 

@@ -1,5 +1,8 @@
-import { SomeNode } from 'link-lib';
-import { DeepRecord, DeepRecordFieldValue } from 'link-lib/dist-types/store/StructuredStore';
+import {
+  DeepRecord,
+  DeepRecordFieldValue,
+  SomeNode, 
+} from 'link-lib';
 
 import {
   DeepSeedDataRecord,

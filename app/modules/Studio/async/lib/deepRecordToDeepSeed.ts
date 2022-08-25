@@ -1,5 +1,5 @@
 import { isTerm } from '@ontologies/core';
-import { DeepRecord, DeepRecordFieldValue } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord, DeepRecordFieldValue } from 'link-lib';
 
 import {
   DeepSeedDataRecord,

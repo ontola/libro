@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 
 import argu from '../../../../Argu/ontology/argu';
 import elements from '../../../../Elements/ontology/elements';

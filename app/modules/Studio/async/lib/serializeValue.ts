@@ -8,7 +8,7 @@ import {
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as xsd from '@ontologies/xsd';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 
 import {
   getBumps,
