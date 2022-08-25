@@ -13,8 +13,11 @@ import { useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 import { Navigate, ShowDialog } from '../../middleware/actions';
-import app from '../../ontology/app';
-import { isDifferentWebsite, retrievePath } from '../../lib/iris';
+import {
+  externalResourceIRI,
+  isDifferentWebsite,
+  retrievePath, 
+} from '../../lib/iris';
 import { isFunction } from '../../../Kernel/lib/typeCheckers';
 
 import ExternalLink from './ExternalLink';
@@ -188,7 +191,7 @@ const Link = ({
       );
     }
 
-    path = retrievePath(app.ns(`resource?iri=${encodeURIComponent(to)}`).value);
+    path = retrievePath(externalResourceIRI(to));
   } else {
     path = retrievePath(to);
   }
