@@ -2,10 +2,9 @@ import {
   Node,
   QuadPosition,
   Quadruple,
-  isNamedNode,
 } from '@ontologies/core';
 import * as rdf from '@ontologies/rdf';
-import { equals } from 'link-lib';
+import { RecordState, equals } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ld from '../ontology/ld';
@@ -73,23 +72,16 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
     const wildObject = equals(o, sp.Variable);
 
     if (!wildSubject && wildPredicate && wildObject) {
-      if (isNamedNode(s)) {
-        lrs.queueEntity(s, { reload: true });
-      }
+      lrs.store.removeResource(s);
+      lrs.store.getInternalStore().store.journal.transition(s.value, RecordState.Absent);
     } else {
-      const matches = lrs.store.match(
+      lrs.store.match(
         wildSubject ? null : s,
         wildPredicate ? null : p,
         wildObject ? null : o as Node,
-      );
-
-      for (const match of matches) {
-        const id = match[QuadPosition.subject];
-
-        if (isNamedNode(id)) {
-          lrs.queueEntity(id, { reload: true });
-        }
-      }
+      ).forEach((match: Quadruple) => {
+        lrs.store.removeResource(match[QuadPosition.subject]);
+      });
     }
   }
 }
