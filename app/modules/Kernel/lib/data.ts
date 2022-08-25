@@ -10,12 +10,8 @@ import rdf, {
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as rdfs from '@ontologies/rdfs';
-import { LinkedDataAPI } from 'link-lib';
-import {
-  LinkReduxLRSType,
-  isBackgroundLoading,
-  isFullyLoaded,
-} from 'link-redux';
+import { RecordState } from 'link-lib';
+import { LinkReduxLRSType } from 'link-redux';
 
 import ontola from '../ontology/ontola';
 
@@ -143,12 +139,11 @@ export function containerToArr<I extends Term = SomeTerm>(
   return acc;
 }
 
-export function entityIsLoaded<T extends LinkReduxLRSType<unknown, LinkedDataAPI>>(lrs: T, iri: Node | undefined): boolean {
+export function entityIsLoaded<T extends LinkReduxLRSType<unknown, any> = LinkReduxLRSType>(lrs: T, iri: Node | undefined): boolean {
   if (!iri) {
     return false;
   }
 
-  const status = lrs.getState(iri.value);
-
-  return isFullyLoaded(status) || isBackgroundLoading(status);
+  return lrs.getState(iri.value).current === RecordState.Present;
 }
+

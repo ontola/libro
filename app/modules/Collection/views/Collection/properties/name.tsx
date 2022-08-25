@@ -1,12 +1,9 @@
-import CircularProgress from '@mui/material/CircularProgress';
 import * as as from '@ontologies/as';
 import { SomeTerm } from '@ontologies/core';
 import {
   FC,
-  isFullyLoaded,
   register,
   useProperty,
-  useRecordStatus,
 } from 'link-redux';
 import React from 'react';
 
@@ -24,7 +21,6 @@ interface CollectionNameProps {
 }
 
 const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
-  const status = useRecordStatus();
   const [href] = useProperty(ontola.href);
   const Wrapper = React.useCallback(
     ({ children }) => {
@@ -49,9 +45,6 @@ const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
     <Wrapper>
       <Heading size={HeadingSize.LG}>
         {linkedProp.value}
-        {!isFullyLoaded(status) && (
-          <CircularProgress  />
-        )}
       </Heading>
     </Wrapper>
   );
