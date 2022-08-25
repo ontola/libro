@@ -70,6 +70,7 @@ export const MultipleEmailInput = (): JSX.Element => {
 
     if (options.length > 1) {
       updateValues((emails.concat(options.map((x: string) => x.trim()).filter(Boolean))));
+      setTextFieldValue('');
     } else {
       setTextFieldValue(newInputValue);
     }
