@@ -3,18 +3,19 @@
  */
 
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
-import { seq } from 'link-lib';
+import { SomeNode, seq } from 'link-lib';
+import { useLRS } from 'link-redux';
 
 import { mockStorage } from '../../../../../../tests/test-utils';
 import { renderLinkedHook } from '../../../../../../tests/test-utils-hooks';
 import example from '../../../../Kernel/ontology/example';
 import ontola from '../../../../Kernel/ontology/ontola';
 import form from '../../../ontology/form';
-import useInitialValues from '../index';
+import { addDependencies } from '../addDependencies';
 
 export const actionBody = example.ns('form');
 export const commentActionBody = example.ns('forms/comment');
@@ -244,67 +245,128 @@ export const allValues = {
   [btoa(schema.description.value)]: [rdf.literal('Description')],
 };
 
-const testUseInitialValues = () => {
+export const objectAndForm = [
+  object,
+  actionBody,
+].sort();
+
+export const objectFormAndNestedForm = [
+  ...objectAndForm,
+  commentActionBody,
+].sort();
+
+export const objectFormNestedFormAndCollection = [
+  ...objectFormAndNestedForm,
+  commentCollection,
+].sort();
+
+export const objectFormNestedFormsAndCollection = [
+  ...objectFormNestedFormAndCollection,
+  parentActionBody,
+  linkedURL,
+].sort();
+
+export const objectFormNestedFormsCollectionPage = [
+  ...objectFormAndNestedForm,
+  commentCollection,
+  commentCollectionPage,
+  parentActionBody,
+  linkedURL,
+].sort();
+
+export const objectFormNestedFormsAndCollectionItems = [
+  ...objectFormNestedFormsCollectionPage,
+  firstNestedObject,
+  secondNestedObject,
+].sort();
+
+export const allResources = [
+  ...objectFormNestedFormsAndCollectionItems,
+  publisherObject,
+  parentObject,
+].sort();
+
+const testGetDependencies = () => {
+  const lrs = useLRS();
   const [_, storage] = mockStorage({});
 
-  return useInitialValues(
-    storage,
-    actionBody,
-    object,
-    formID,
-  );
+  const dependentResources = new Set<SomeNode>();
+
+  addDependencies(dependentResources, lrs, storage, actionBody, [object], formID, false);
+
+  return [...dependentResources].filter(isNamedNode).sort();
 };
 
-describe('useInitialValues', () => {
-  it('should return no values when form is not is present', async () => {
-    const { rerender, result, queueEntitySpy } = await renderLinkedHook(
-      testUseInitialValues,
-      [objectData],
+describe('getDependencies', () => {
+  it('includes all dependencies with object', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      objectData,
     );
-    rerender();
 
-    const [loading, initialValues] = result.current;
-
-    expect(loading).toBe(true);
-    expect(initialValues).toEqual({});
-
-    const requested = [actionBody];
-    expect(queueEntitySpy).toHaveBeenCalledTimes(requested.length);
-    requested.map((record, i) => {
-      expect(queueEntitySpy).toHaveBeenNthCalledWith(i + 1, record);
-    });
+    expect(result.current).toEqual(objectAndForm);
   });
 
-  it('should return empty values when object is not is present', async () => {
-    const { rerender, result, queueEntitySpy } = await renderLinkedHook(
-      testUseInitialValues,
-      [formData],
+  it('includes all dependencies with form', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      formData,
     );
-    rerender();
 
-    const [loading, initialValues] = result.current;
-
-    expect(loading).toBe(true);
-    expect(initialValues).toEqual({});
-
-    const requested = [object, commentActionBody];
-    expect(queueEntitySpy).toHaveBeenCalledTimes(requested.length);
-    requested.map((record, i) => {
-      expect(queueEntitySpy).toHaveBeenNthCalledWith(i + 1, record);
-    });
+    expect(result.current).toEqual(objectFormAndNestedForm);
   });
 
-  it('should return all values when all resources are present', async () => {
-    const { rerender, result, queueEntitySpy } = await renderLinkedHook(
-      testUseInitialValues,
+  it('includes all dependencies with object and form', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      objectAndFormData,
+    );
+
+    expect(result.current).toEqual(objectFormNestedFormAndCollection);
+  });
+
+  it('includes all dependencies with object, form and nested form', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      objectFormsAndNestedFormData,
+    );
+
+    expect(result.current).toEqual(objectFormNestedFormsAndCollection);
+  });
+
+  it('includes all dependencies with object, form and collection', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      objectFormNestedFormAndCollectionData,
+    );
+
+    expect(result.current).toEqual(objectFormNestedFormsCollectionPage);
+  });
+
+  it('includes all dependencies with object, form, collection and page', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      objectFormNestedFormCollectionPageData,
+    );
+
+    expect(result.current).toEqual(objectFormNestedFormsAndCollectionItems);
+  });
+
+  it('includes all dependencies with object, form, collection, page and items', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
+      objectFormNestedFormCollectionItemsData,
+    );
+
+    expect(result.current).toEqual(allResources);
+  });
+
+  it('includes all dependencies with all resources', async () => {
+    const { result } = await renderLinkedHook(
+      testGetDependencies,
       allResourcesData,
     );
-    rerender();
 
-    const [loading, initialValues] = result.current;
-
-    expect(loading).toBe(false);
-    expect(queueEntitySpy).not.toHaveBeenCalled();
-    expect(initialValues).toEqual(allValues);
+    expect(result.current).toEqual(allResources);
   });
 });

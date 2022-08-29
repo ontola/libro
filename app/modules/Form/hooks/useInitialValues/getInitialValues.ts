@@ -3,14 +3,12 @@ import * as sh from '@ontologies/shacl';
 import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
-import { InputValue } from '../../components/FormField/FormFieldTypes';
 import { JSONLDObject, calculateFormFieldName } from '../../lib/helpers';
 import form from '../../ontology/form';
+import { getNestedDependencies } from '../useDependencies/getNestedDependencies';
+import { getFormFields, rawFormObjectValue } from '../useDependencies/helpers';
 
-import { getNestedObjects } from './getNestedObjects';
-import { getFormFields, rawFormObjectValue } from './helpers';
-
-type InitialValues = { [index: string]: InputValue[]; };
+import { InitialValues } from './index';
 
 export const getInitialValues = (
   lrs: LinkReduxLRSType,
@@ -28,10 +26,10 @@ export const getInitialValues = (
 
     if (path) {
       const fieldName = calculateFormFieldName(path);
-      const nestedForm = lrs.getResourceProperty(field, form.form) as SomeNode;
+      const nestedForm = lrs.getResourceProperty<SomeNode>(field, form.form);
 
       if (nestedForm) {
-        values[fieldName] = getNestedObjects(lrs, value).map((nestedValue) => {
+        values[fieldName] = getNestedDependencies(lrs, value, false).map((nestedValue) => {
           const nestedObject = {
             '@id': nestedValue,
             ...getInitialValues(

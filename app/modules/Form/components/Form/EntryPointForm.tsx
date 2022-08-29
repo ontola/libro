@@ -15,6 +15,7 @@ import { SubmitHandler } from '../../../Action/views/EntryPoint/useSubmitHandler
 import { LoadingGridContent } from '../../../Common/components/Loading';
 import { entityIsLoaded } from '../../../Kernel/lib/data';
 import ll from '../../../Kernel/ontology/ll';
+import { useDependencies } from '../../hooks/useDependencies';
 import useInitialValues from '../../hooks/useInitialValues';
 
 import Form from './Form';
@@ -75,7 +76,15 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   whitelist,
 }) => {
   const lrs = useLRS();
-  const [loading, initialValues, version] = useInitialValues(
+  const [loading, _dependencies] = useDependencies(
+    sessionStore,
+    actionBody,
+    object,
+    formID,
+  );
+
+  const initialValues = useInitialValues(
+    loading,
     sessionStore,
     actionBody,
     object,
@@ -140,7 +149,6 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
       formID={formID}
       formIRI={actionBody}
       initialValues={initialValues}
-      key={`version-${version}`}
       method={httpMethod}
       object={object}
       sessionStore={sessionStore}

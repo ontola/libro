@@ -7,7 +7,6 @@ import { useLRS } from 'link-redux';
 import { mockStorage } from '../../../../../../tests/test-utils';
 import { renderLinkedHook } from '../../../../../../tests/test-utils-hooks';
 import { getInitialValues } from '../getInitialValues';
-
 import {
   actionBody,
   allResourcesData,
@@ -17,7 +16,7 @@ import {
   formID,
   object,
   objectData,
-} from './useInitialValues.spec';
+} from '../../useDependencies/__tests__/getDependencies.spec';
 
 const testGetInitialValues = () => {
   const lrs = useLRS();
