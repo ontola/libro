@@ -16,6 +16,7 @@ import ActionTableCell from './ActionTableCell';
 import CreateAction from './CreateAction';
 import CreateSession from './CreateSession';
 import EntryPoint from './EntryPoint';
+import Error from './properties/error';
 import Loading from './Loading';
 import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
@@ -38,6 +39,7 @@ const views: ViewRegistrations = [
   ...ActionTableCell,
   ...ActionWidget,
   ...EntryPoint,
+  ...Error,
   ...ReadAction,
   ...FollowUpName,
   ...Loading,

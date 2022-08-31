@@ -10,6 +10,7 @@ import React from 'react';
 import { allTopologiesExcept } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
 import Link from '../../../../Common/components/Link';
+import Markdown from '../../../../Common/components/Markdown';
 import { pageTopology, parentTopology } from '../../../../Common/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { navbarTopology } from '../../../../NavBar/topologies';
@@ -44,7 +45,7 @@ const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
   return (
     <Wrapper>
       <Heading size={HeadingSize.LG}>
-        {linkedProp.value}
+        <Markdown text={linkedProp.value} />
       </Heading>
     </Wrapper>
   );

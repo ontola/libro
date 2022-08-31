@@ -1,13 +1,17 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, Snackbar } from '@mui/material';
 import * as schema from '@ontologies/schema';
-import { register, useValues } from 'link-redux';
+import {
+  register,
+  useStrings,
+} from 'link-redux';
 import React, { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 
 import { allTopologies } from '../../../../topologies';
 import { formMessages } from '../../../../translations/messages';
 import libro from '../../../Kernel/ontology/libro';
+import { useStrippedMarkdown } from '../../lib/useStrippedMarkdown';
 
 const AVERAGE_DUTCH_WORDS_PER_MINUTE = 202;
 const MIN_SNACKBAR_TIMEOUT = 2750;
@@ -32,7 +36,8 @@ const calcDuration = (text = '') => {
 
 const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
   const { formatMessage } = useIntl();
-  const [text] = useValues(schema.text);
+  const [text] = useStrings(schema.text);
+  const strippedText = useStrippedMarkdown(text);
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {
@@ -61,9 +66,9 @@ const SnackbarView = ({ close }: SnackbarViewProps): JSX.Element => {
           <CloseIcon />
         </IconButton>,
       ]}
-      autoHideDuration={calcDuration(text)}
+      autoHideDuration={calcDuration(strippedText)}
       data-testid="current-snackbar"
-      message={text}
+      message={strippedText}
       open={open}
       onClose={handleClose}
     />
