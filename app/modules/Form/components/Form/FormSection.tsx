@@ -4,15 +4,16 @@ import React from 'react';
 
 import { calculateFormFieldName } from '../../lib/helpers';
 
-import { formContext } from './FormContext';
+import { FormTheme, formContext } from './FormContext';
 
 interface PropTypes {
   className?: string;
   formIRI: SomeNode;
   name: string;
   object: SomeNode;
-  path: NamedNode;
+  path?: NamedNode;
   propertyIndex: number;
+  theme?: FormTheme;
 }
 
 const FormSection: React.FC<PropTypes> = ({
@@ -23,6 +24,7 @@ const FormSection: React.FC<PropTypes> = ({
   object,
   path,
   propertyIndex,
+  theme,
 }) => {
   const formContextProps = React.useContext(formContext);
   const formSection = calculateFormFieldName(name, propertyIndex);
@@ -32,8 +34,17 @@ const FormSection: React.FC<PropTypes> = ({
     formSection,
     object,
     parentObject: formContextProps.object,
+    theme,
     whitelist: undefined,
-  }), [formContextProps, formIRI, formSection, object]);
+  }), [formContextProps, formIRI, formSection, object, theme]);
+
+  if (!path) {
+    return (
+      <formContext.Provider value={sectionContext}>
+        {children}
+      </formContext.Provider>
+    );
+  }
 
   return (
     <formContext.Provider value={sectionContext}>

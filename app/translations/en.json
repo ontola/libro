@@ -81,6 +81,15 @@
   "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
     "defaultMessage": "Visible for everyone"
   },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/add": {
+    "defaultMessage": "Add"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/group": {
+    "defaultMessage": "Group"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/inherited": {
+    "defaultMessage": "Inherited"
+  },
   "https://app.argu.co/i18n/dialog/back": {
     "defaultMessage": "Go back"
   },

@@ -32,6 +32,21 @@ export const grantedGroupMessages: Messages = defineMessages({
   },
 });
 
+export const grantsInputMessages: Messages = defineMessages({
+  add: {
+    defaultMessage: 'Add',
+    id: 'https://app.argu.co/i18n/detail/argu:grantsInput/add',
+  },
+  group: {
+    defaultMessage: 'Group',
+    id: 'https://app.argu.co/i18n/detail/argu:grantsInput/group',
+  },
+  inherited: {
+    defaultMessage: 'Inherited',
+    id: 'https://app.argu.co/i18n/detail/argu:grantsInput/inherited',
+  },
+});
+
 export const motionMessages: Messages = defineMessages({
   motionsCount: {
     defaultMessage: '{count} ideas',

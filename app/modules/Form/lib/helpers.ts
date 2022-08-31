@@ -52,10 +52,14 @@ export function retrieveIdFromValue(value: JSONLDObject | Node | Literal | undef
   }
 
   if (isJSONLDObject(value)) {
-    return value['@id'];
+    return idFromJSONLDObject(value);
   }
 
   return undefined;
+}
+
+export function idFromJSONLDObject(value: JSONLDObject): Node {
+  return value['@id'];
 }
 
 export function isMarkedForRemove(value: Record<string, unknown> | any): boolean {

@@ -24,6 +24,7 @@ export interface InputMeta {
   dirty?: boolean;
   dirtySinceLastSubmit?: boolean;
   error?: FormFieldError[];
+  initial?: InputValue[];
   invalid?: boolean;
   pristine?: boolean;
   touched?: boolean;

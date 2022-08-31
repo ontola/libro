@@ -7,6 +7,7 @@ import Image from '../../../Common/components/Image';
 import { imageRepresentationUrl } from '../../../Common/lib/attachments';
 import ontola from '../../../Kernel/ontology/ontola';
 import useInputId from '../../hooks/useInputId';
+import { formContext } from '../Form/FormContext';
 
 import DropzoneInnerPositionY from './DropzoneInnerPositionY';
 import DropzoneOverlay from './DropzoneOverlay';
@@ -42,7 +43,8 @@ const DropzoneInner = ({
   isDragActive,
 }: DropzoneInnerProps): JSX.Element => {
   const classes = useStyles();
-  const imagePositionYShape = useInputId(ontola.imagePositionY);
+  const { formIRI } = React.useContext(formContext);
+  const imagePositionYShape = useInputId(formIRI, ontola.imagePositionY);
 
   if (preview && !encodingFormat?.startsWith('image/')) {
     const fileImage = imageRepresentationUrl({ encodingFormat: rdf.literal(encodingFormat) });

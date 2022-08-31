@@ -19,6 +19,7 @@ export default {
   FileInput: form('FileInput'),
   FooterGroup: form('FooterGroup'),
   Form: form('Form'),
+  GrantsInput: form('GrantsInput'),
   Group: form('Group'),
   HiddenGroup: form('HiddenGroup'),
   IconInput: form('IconInput'),

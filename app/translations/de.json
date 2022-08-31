@@ -80,6 +80,15 @@
   "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
     "defaultMessage": "Sichtbar für alle"
   },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/add": {
+    "defaultMessage": "Hinzufügen"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/group": {
+    "defaultMessage": "Gruppe"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/inherited": {
+    "defaultMessage": "Elternteil"
+  },
   "https://app.argu.co/i18n/dialog/back": {
     "defaultMessage": "Zurückgehen"
   },

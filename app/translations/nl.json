@@ -80,6 +80,15 @@
   "https://app.argu.co/i18n/detail/argu:grantedGroups/public/title": {
     "defaultMessage": "Zichtbaar voor iedereen"
   },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/add": {
+    "defaultMessage": "Toevoegen"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/group": {
+    "defaultMessage": "Groep"
+  },
+  "https://app.argu.co/i18n/detail/argu:grantsInput/inherited": {
+    "defaultMessage": "Bovenliggend"
+  },
   "https://app.argu.co/i18n/dialog/back": {
     "defaultMessage": "Ga terug"
   },
