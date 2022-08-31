@@ -7,7 +7,6 @@ import {
 } from '@mui/material';
 import {
   SomeTerm,
-  isLiteral,
   isNamedNode,
   isSomeTerm,
 } from '@ontologies/core';
@@ -27,6 +26,7 @@ import CollectionCreateButton from '../../../Collection/components/CollectionCre
 import { isResource } from '../../../Kernel/lib/typeCheckers';
 import { LoadingHidden, LoadingRow } from '../../../Common/components/Loading';
 import { entityIsLoaded } from '../../../Kernel/lib/data';
+import libro from '../../../Kernel/ontology/libro';
 import ontola from '../../../Kernel/ontology/ontola';
 import { FormTheme, formContext } from '../../components/Form/FormContext';
 import { formFieldContext } from '../../components/FormField/FormFieldContext';
@@ -45,6 +45,7 @@ import SelectedValue from '../../topologies/SelectedValue';
 import FullWidthPopper from './FullWidthPopper';
 import { formatEmptyMessage } from './lib/emptyMessage';
 import { filterOptions } from './lib/filterOptions';
+import useRenderOption from './lib/useRenderOption';
 import { sortByGroup } from './lib/sortByGroup';
 import { useItemToString } from './lib/useItemToString';
 import SelectList from './SelectList';
@@ -52,36 +53,6 @@ import useSelectStyles from './useSelectStyles';
 import VirtualizedSelect from './VirtualizedSelect';
 
 const VIRTUALIZATION_THRESHOLD = 10;
-
-const getRenderOption = (className: string) => (props: unknown, option: SomeTerm) => {
-  if (isLiteral(option.termType)) {
-    return (
-      <li
-        {...props}
-        key={option.value}
-      >
-        <option
-          className={className}
-          value={option.value}
-        >
-          {option.value}
-        </option>
-      </li>
-    );
-  }
-
-  return (
-    <li
-      {...props}
-      key={option.value}
-    >
-      <Resource
-        element="div"
-        subject={option}
-      />
-    </li>
-  );
-};
 
 const SelectInputField: React.FC = () => {
   const { theme } = React.useContext(formContext);
@@ -99,9 +70,15 @@ const SelectInputField: React.FC = () => {
   const formClasses = useFormStyles();
   const [open, setOpen] = React.useState(false);
   const itemToString = useItemToString();
+  const renderOption = useRenderOption(formClasses.fieldListElement);
   const [inputValue, setInputValue] = React.useState(multiple ? '' : itemToString(values[0]?.value));
   const [grouped] = useBooleans(form.groupedOptions);
-  const { loading, options, searchable } = useAsyncFieldOptions(fieldShape.shIn, inputValue);
+  const {
+    loading,
+    nullable,
+    options,
+    searchable,
+  } = useAsyncFieldOptions(fieldShape.shIn, inputValue);
 
   const sortedOptions = React.useMemo(() => (
     grouped ? options.sort(sortByGroup(lrs)) : options
@@ -148,9 +125,15 @@ const SelectInputField: React.FC = () => {
     if (multiple) {
       onChange((v as InputValue[]).filter(isSomeTerm));
     } else {
-      onChange(isSomeTerm(v) ? [v] : []);
+      if (isSomeTerm(v)) {
+        onChange([v]);
+      } else if (nullable) {
+        onChange([libro.null]);
+      }else {
+        onChange([]);
+      }
     }
-  }, [multiple, onChange]);
+  }, [multiple, nullable, onChange]);
 
   const renderInput = React.useCallback((params: AutocompleteRenderInputParams) => {
     const inputBaseClassName = clsx({
@@ -230,7 +213,7 @@ const SelectInputField: React.FC = () => {
           openOnFocus
           ListboxComponent={virtualized ? VirtualizedSelect : SelectList}
           PopperComponent={virtualized ? undefined : FullWidthPopper}
-          disableClearable={fieldShape.required}
+          disableClearable={fieldShape.required && !nullable}
           disabled={!fieldShape.shIn}
           filterOptions={searchable ? (opts: SomeTerm[]) => opts : filterOptions}
           getOptionLabel={itemToString}
@@ -241,7 +224,7 @@ const SelectInputField: React.FC = () => {
           noOptionsText={formatEmptyMessage(formatMessage, searchable, inputValue)}
           options={sortedOptions}
           renderInput={renderInput}
-          renderOption={getRenderOption(formClasses.fieldListElement)}
+          renderOption={renderOption}
           onChange={handleChange}
           onClose={() => {
             setOpen(false);

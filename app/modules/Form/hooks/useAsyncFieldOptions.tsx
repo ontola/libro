@@ -15,6 +15,7 @@ const DEBOUNCE_TIMEOUT = 500;
 
 export interface AsyncFieldOptions {
   loading: boolean;
+  nullable: boolean;
   options: SomeTerm[];
   searchable: boolean;
 }
@@ -40,7 +41,7 @@ const useIriTemplateFromCollection = (shIn: SomeNode | undefined) => {
 const useAsyncFieldOptions = (shIn: SomeNode | undefined, inputValue: string): AsyncFieldOptions => {
   const [currentShIn, setCurrentShIn] = React.useState(shIn);
   const searchTemplate = useIriTemplateFromCollection(shIn);
-  const { loading, options } = useFieldOptions(currentShIn);
+  const { loading, nullable, options } = useFieldOptions(currentShIn);
   const [searchInputValue, setSearchInputValue] = React.useState(inputValue);
   const [debouncedSearchInputChange] = useDebouncedCallback(
     (newValue) => {
@@ -76,6 +77,7 @@ const useAsyncFieldOptions = (shIn: SomeNode | undefined, inputValue: string): A
 
   return {
     loading,
+    nullable,
     options,
     searchable: !!searchTemplate,
   };

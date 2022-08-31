@@ -42,6 +42,7 @@ export default {
     type: libro('module/type'),
     viewsCount: libro('module/viewsCount'),
   },
+  null: libro('null'),
   target: libro('target'),
   targets: {
     _blank: libro('_blank'),

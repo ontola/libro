@@ -9,6 +9,7 @@ import { namePredicates } from '../../../../Common/lib/predicates';
 import { isResource } from '../../../../Kernel/lib/typeCheckers';
 import { entityIsLoaded } from '../../../../Kernel/lib/data';
 import ontola from '../../../../Kernel/ontology/ontola';
+import libro from '../../../../Kernel/ontology/libro';
 
 export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) => {
   const lrs = useLRS();
@@ -20,6 +21,10 @@ export const useItemToString = (): ((i: SomeTerm | undefined | null) => string) 
 
     if (!isResource(item)) {
       return item.value ?? '';
+    }
+
+    if (item === libro.null) {
+      return '';
     }
 
     if (!entityIsLoaded(lrs, item)) {

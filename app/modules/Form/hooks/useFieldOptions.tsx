@@ -5,9 +5,11 @@ import React from 'react';
 
 import { arraysEqual } from '../../Common/lib/data';
 import { useContainerToArr } from '../../Kernel/hooks/useContainerToArr';
+import libro from '../../Kernel/ontology/libro';
 
 export interface FieldOptions {
   loading: boolean;
+  nullable: boolean;
   options: SomeTerm[];
 }
 
@@ -15,6 +17,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
   const lrs = useLRS();
   const [options, setOptions] = React.useState<SomeTerm[]>(([]));
   const [loading, setLoading] = React.useState(true);
+  const [nullable, setNullable] = React.useState(false);
   React.useEffect(() => {
     setOptions([]);
     setLoading(true);
@@ -27,9 +30,18 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
   React.useEffect(() => {
     if (!optionsLoading) {
       setLoading(false);
+      let selectableOptions;
 
-      if (!arraysEqual(optionsArray, options)) {
-        setOptions(optionsArray);
+      if (optionsArray.includes(libro.null)) {
+        setNullable(true);
+        selectableOptions = optionsArray.filter((option) => option !== libro.null );
+      } else {
+        setNullable(false);
+        selectableOptions = optionsArray;
+      }
+
+      if (!arraysEqual(selectableOptions, options)) {
+        setOptions(selectableOptions);
       }
     } else {
       setLoading(!!shIn);
@@ -38,6 +50,7 @@ const useFieldOptions = (shIn: SomeNode | undefined): FieldOptions => {
 
   return {
     loading,
+    nullable,
     options,
   };
 };
