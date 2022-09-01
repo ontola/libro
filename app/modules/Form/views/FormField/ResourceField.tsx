@@ -6,7 +6,7 @@ import {
   Property,
   Resource,
   register,
-  useProperty,
+  useGlobalIds,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,14 +18,14 @@ import { useFormGroup } from '../FormGroup/FormGroupProvider';
 
 const ResourceField = () => {
   const classes = useFormStyles();
-  const [path] = useProperty(sh.path);
+  const [path] = useGlobalIds(sh.path);
   const { object, whitelist } = React.useContext(formContext);
   const { setHasContent } = useFormGroup();
   React.useLayoutEffect(() => {
     if (setHasContent) {
       setHasContent(true);
     }
-  });
+  }, [setHasContent]);
 
   const whitelisted = !whitelist || whitelist.includes(rdf.id(path));
 
@@ -41,7 +41,10 @@ const ResourceField = () => {
           size="3"
         />
         <Resource subject={object}>
-          <Property label={path} />
+          <Property
+            forceRender
+            label={path}
+          />
         </Resource>
         <Property label={[schema.text, sh.description]} />
       </React.Fragment>

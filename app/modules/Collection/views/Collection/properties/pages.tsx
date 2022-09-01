@@ -21,11 +21,21 @@ interface PagesProps {
 }
 
 const Pages: FC<PagesProps> = ({
+  children,
   insideCollection,
+  linkedProp,
   renderWhenEmpty,
   singlePage,
 }) => {
   const pages = useProperty(ontola.pages);
+
+  if (children) {
+    return (
+      <Resource subject={linkedProp}>
+        {children}
+      </Resource>
+    );
+  }
 
   if (singlePage || pages.length === 1) {
     return (

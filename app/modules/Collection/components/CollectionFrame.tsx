@@ -38,6 +38,7 @@ const CollectionFrame = ({
     currentCollectionPages,
     columns,
     depth,
+    hideCreateButton,
   } = useCollectionOptions();
   const [callToAction] = useStrings(ontola.callToAction);
 
@@ -99,9 +100,11 @@ const CollectionFrame = ({
             </tbody>
             <TableFooter>
               <TableFooterRow>
-                <TableFooterCell colSpan={1}>
-                  <CollectionCreateButton trigger={TriggerType.Text} />
-                </TableFooterCell>
+                {!hideCreateButton && (
+                  <TableFooterCell colSpan={1}>
+                    <CollectionCreateButton trigger={TriggerType.Text} />
+                  </TableFooterCell>
+                )}
                 <TableFooterCell colSpan={(columns?.length || 1) - 1}>
                   <Property
                     forceRender

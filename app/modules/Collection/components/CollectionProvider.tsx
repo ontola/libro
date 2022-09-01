@@ -35,6 +35,7 @@ export interface CollectionProps {
   collectionDisplay?: NamedNode;
   depth?: number;
   headerButtons?: ReactNode;
+  hideCreateButton?: boolean;
   hideHeader?: boolean;
   hidePagination?: boolean;
   onItemClick?: () => void;

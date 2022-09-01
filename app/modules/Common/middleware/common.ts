@@ -31,6 +31,7 @@ import { retrievePath } from '../lib/iris';
 import app from '../ontology/app';
 
 import {
+  CopyToClipboard,
   HideDialog,
   Navigate,
   OpenWindow,
@@ -223,6 +224,11 @@ const commonMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
       return store.exec(rdf.namedNode(`${libro.actions.window.open.value}?${query}`));
     },
+  );
+
+  store.actions.set(
+    CopyToClipboard,
+    (value: string) => store.exec(rdf.namedNode(`${libro.actions.copyToClipboard.value}?value=${encodeURIComponent(value)}`)),
   );
 
   store.actions.set(

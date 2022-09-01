@@ -10,6 +10,7 @@ import FormField from './FormField';
 import Forum from './Forum/index';
 import GrantTree from './GrantTree';
 import Group from './Group';
+import Invite from './Invite';
 import LinkedRecord from './LinkedRecord';
 import Motion from './Motion';
 import Notification from './Notification';
@@ -41,6 +42,7 @@ const views: ViewRegistrations = [
   ...Forum,
   ...GrantTree,
   ...Group,
+  ...Invite,
   ...LinkedRecord,
   ...Motion,
   ...Notification,

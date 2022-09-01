@@ -13,8 +13,11 @@ import { CollectionSectionProps } from '../views/Collection/CollectionSection';
 
 import { CollectionProps } from './CollectionProvider';
 
+type Filter = Record<string, string>;
+
 export interface CollectionComponentProps extends Partial<CollectionProps & CollectionSectionProps> {
   display?: string;
+  filter?: Filter;
   label: NamedNode;
   onLoad?: () => null;
   page?: number;
@@ -22,9 +25,16 @@ export interface CollectionComponentProps extends Partial<CollectionProps & Coll
   type?: string;
 }
 
+const serializeFilter = (filter: Filter): string[] => (
+  Object.keys(filter).map((key) => (
+    `${encodeURIComponent(key)}=${filter[key]}`
+  ))
+);
+
 const Collection: React.FC<CollectionComponentProps> = ({
   display,
   label,
+  filter,
   page,
   pageSize,
   type,
@@ -40,6 +50,10 @@ const Collection: React.FC<CollectionComponentProps> = ({
 
     if (display) {
       assignedOpts.display = display;
+    }
+
+    if (filter) {
+      assignedOpts['filter%5B%5D'] = serializeFilter(filter);
     }
 
     if (page) {

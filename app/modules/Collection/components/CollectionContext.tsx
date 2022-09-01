@@ -13,6 +13,7 @@ export interface CollectionContext {
   depth?: number;
   hasInteraction?: boolean;
   headerButtons?: ReactNode;
+  hideCreateButton?: boolean;
   hideHeader?: boolean;
   hidePagination?: boolean;
   maxColumns?: number;
