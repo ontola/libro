@@ -23,7 +23,7 @@ import execFilter from '../modules/Kernel/middleware/execFilter';
 import logging from '../modules/Kernel/middleware/logging';
 import { searchMiddleware } from '../modules/Academy/middleware/searchMiddleware';
 import commonMiddleware from '../modules/Common/middleware/common';
-import ontolaDeltaProcessor from '../modules/Kernel/lib/ontolaDeltaProcessor';
+import messageDeltaProcessor from '../modules/Kernel/lib/messageDeltaProcessor';
 import { WebManifest } from '../modules/Kernel/components/AppContext/WebManifest';
 import { website } from '../modules/Kernel/lib/frontendIRIComponents';
 import { modulesKey, topologiesKey } from '../modules/Kernel/lib/settings';
@@ -87,7 +87,7 @@ export default async function generateLRS(
   lrs.settings.set(modulesKey, modules);
   lrs.settings.set(topologiesKey, allTopologies);
 
-  lrs.deltaProcessors.unshift(ontolaDeltaProcessor(lrs));
+  lrs.deltaProcessors.unshift(messageDeltaProcessor(lrs));
 
   lrs.api.registerTransformer(empndjson.transformer(lrs, manifest.ontola.website_iri, mapping), empndjson.mediaTypes, empndjson.acceptValue);
   lrs.api.registerTransformer(hexjson.transformer(lrs), hexjson.mediaTypes, hexjson.acceptValue);
