@@ -48,12 +48,27 @@ bake:
   services:
     - docker:20.10.17-dind
   before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+    - echo "$HUB_TOKEN" | docker login -u "$HUB_USER" "docker.io" --password-stdin
   needs:
     - build
   script:
     - apk add git
     - git describe --always > ./client_version.txt
-    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker build --tag argu/libro-client:$CI_COMMIT_SHA .
+    - docker push argu/libro-client:$CI_COMMIT_SHA
+
+tag_latest:
+  stage: bake
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  needs:
+    - bake
+  services:
+    - 'docker:20.10.12-dind'
+  before_script:
+    - echo "$HUB_TOKEN" | docker login -u "$HUB_USER" "docker.io" --password-stdin
+  script:
+    - docker pull argu/libro-client:$CI_COMMIT_SHA
+    - docker tag argu/libro-client:$CI_COMMIT_SHA argu/libro-client:latest
+    - docker manifest push --purge argu/libro-client:latest
+
