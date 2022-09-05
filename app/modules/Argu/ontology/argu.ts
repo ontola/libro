@@ -115,6 +115,7 @@ export default {
   grantSets: argu('grantSets'),
   grantedGroups: argu('grantedGroups'),
   group: argu('group'),
+  groupType: argu('groupType'),
   icon: argu('icon'),
   invitee: argu('invitee'),
   isDraft: argu('isDraft'),

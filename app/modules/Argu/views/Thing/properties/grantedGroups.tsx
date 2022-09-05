@@ -6,7 +6,9 @@ import {
   PropertyProps,
   register,
   useDataFetching,
-  useStrings, 
+  useIds,
+  useLRS,
+  useStrings,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,40 +17,42 @@ import { useIntl } from 'react-intl';
 import { allTopologiesExcept } from '../../../../../topologies';
 import Detail from '../../../../Common/components/Detail';
 import { LoadingDetail } from '../../../../Common/components/Loading';
+import app from '../../../../Common/ontology/app';
 import { contentDetailsTopology, detailsBarTopology } from '../../../../Common/topologies';
 import ContentDetails from '../../../../Common/topologies/ContentDetails';
 import { useContainerToArr } from '../../../../Kernel/hooks/useContainerToArr';
+import { entityIsLoaded } from '../../../../Kernel/lib/data';
 import { grantedGroupMessages } from '../../../lib/messages';
 import argu from '../../../ontology/argu';
 
-const publicGroupID = '/g/-1';
-
 const GrantedGroupsDetail: FC<PropertyProps> = ({ linkedProp }) => {
+  const lrs = useLRS();
   const { formatMessage } = useIntl();
   useDataFetching(isNamedNode(linkedProp) ? linkedProp : []);
   const [groups, groupsLoading] = useContainerToArr<NamedNode>(isNamedNode(linkedProp) ? linkedProp : undefined);
   useDataFetching(groups);
   const groupNames = useStrings(groups, schema.name).filter(Boolean).join(', ');
+  const groupTypes = useIds(groups, argu.groupType);
 
-  if (groupsLoading) {
+  if (groupsLoading || groups.some((group) => !entityIsLoaded(lrs, group))) {
     return <LoadingDetail />;
   }
 
-  if (groups.findIndex((g) => g.value.endsWith(publicGroupID)) === -1) {
+  if (groupTypes.some((g) => g.includes(app.ns('enums/groups/group_type#users')))) {
     return (
       <Detail
-        icon="group"
-        text={formatMessage(grantedGroupMessages.privateText)}
-        title={formatMessage(grantedGroupMessages.privateTitle, { groupNames })}
+        icon="globe"
+        text={formatMessage(grantedGroupMessages.publicText)}
+        title={formatMessage(grantedGroupMessages.publicTitle)}
       />
     );
   }
 
   return (
     <Detail
-      icon="globe"
-      text={formatMessage(grantedGroupMessages.publicText)}
-      title={formatMessage(grantedGroupMessages.publicTitle)}
+      icon="group"
+      text={formatMessage(grantedGroupMessages.privateText)}
+      title={formatMessage(grantedGroupMessages.privateTitle, { groupNames })}
     />
   );
 };
