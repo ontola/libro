@@ -10,28 +10,32 @@ import { useDependencies } from '../index';
 
 import {
   actionBody,
-  allResources,
   allResourcesData,
   commentActionBody,
+  formAndNestedForm,
   formData,
   formID,
+  formNestedFormsAndShInProp,
   object,
-  objectAndForm,
+  objectCollectionItemsAndParent,
   objectData,
-  objectFormAndNestedForm,
 } from './getDependencies.spec';
 
 const testUseDependencies = () => {
   const [_, storage] = mockStorage({});
 
-  const [loading, dependencies] = useDependencies(
+  const [loading, objectDependencies, formDependencies] = useDependencies(
     storage,
     actionBody,
     object,
     formID,
   );
 
-  return [loading, dependencies.filter(isNamedNode).sort()];
+  return [
+    loading,
+    objectDependencies.filter(isNamedNode).sort(),
+    formDependencies.filter(isNamedNode).sort(),
+  ];
 };
 
 describe('useDependencies', () => {
@@ -42,10 +46,11 @@ describe('useDependencies', () => {
     );
     rerender();
 
-    const [loading, dependencies] = result.current;
+    const [loading, objectDependencies, formDependencies] = result.current;
 
     expect(loading).toBeTruthy();
-    expect(dependencies).toEqual(objectAndForm);
+    expect(objectDependencies).toEqual([object]);
+    expect(formDependencies).toEqual([actionBody]);
 
     const requested = [actionBody];
     expect(queueEntitySpy).toHaveBeenCalledTimes(requested.length);
@@ -61,12 +66,13 @@ describe('useDependencies', () => {
     );
     rerender();
 
-    const [loading, dependencies] = result.current;
+    const [loading, objectDependencies, formDependencies] = result.current;
 
     expect(loading).toBeTruthy();
-    expect(dependencies).toEqual(objectFormAndNestedForm);
+    expect(objectDependencies).toEqual([object]);
+    expect(formDependencies).toEqual(formAndNestedForm);
 
-    const requested = [commentActionBody, object];
+    const requested = [object, commentActionBody];
     expect(queueEntitySpy).toHaveBeenCalledTimes(requested.length);
     requested.map((record, i) => {
       expect(queueEntitySpy).toHaveBeenNthCalledWith(i + 1, record);
@@ -80,10 +86,11 @@ describe('useDependencies', () => {
     );
     rerender();
 
-    const [loading, dependencies] = result.current;
+    const [loading, objectDependencies, formDependencies] = result.current;
 
     expect(loading).toBeFalsy();
-    expect(dependencies).toEqual(allResources);
+    expect(objectDependencies).toEqual(objectCollectionItemsAndParent);
+    expect(formDependencies).toEqual(formNestedFormsAndShInProp);
     expect(queueEntitySpy).not.toHaveBeenCalled();
   });
 });
