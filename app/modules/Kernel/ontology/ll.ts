@@ -14,6 +14,7 @@ export default {
   /* properties */
   actionBody: ll('actionBody'),
   blob: ll('blob'),
+  clonedFrom: ll('clonedFrom'),
   dataSubject: ll('dataSubject'),
   errorResponse: ll('errorResponse'),
   forceRender: ll('forceRender'),

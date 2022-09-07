@@ -16,7 +16,7 @@ import {
 import { CardMain } from '../../../Common/topologies/Card';
 import ContentDetails from '../../../Common/topologies/ContentDetails';
 import ontola from '../../../Kernel/ontology/ontola';
-import { UnwrappedForm } from '../../components/Form/Form';
+import Form from '../../components/Form/Form';
 import form from '../../ontology/form';
 
 const FormFieldContainer: FC = ({
@@ -27,9 +27,9 @@ const FormFieldContainer: FC = ({
   return (
     <CardMain>
       <CardContent endSpacing>
-        <UnwrappedForm key={timestamp.toString()}>
+        <Form key={timestamp.toString()}>
           {() => <Resource subject={subject} />}
-        </UnwrappedForm>
+        </Form>
         <ContentDetails>
           <Property label={ontola.actionsMenu}>
             <Property label={ontola.menuItems} />

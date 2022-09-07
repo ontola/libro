@@ -7,7 +7,6 @@ import { Form as FinalForm, FormRenderProps } from 'react-final-form';
 import { error } from '../../../../helpers/logging';
 import { FormValues, SubmitHandler } from '../../../Action/views/EntryPoint/useSubmitHandler';
 import { convertKeysAtoB } from '../../../Common/lib/data';
-import { withFormLRS } from '../../hooks/useFormLRS';
 import { InputValue, SubmissionErrors } from '../FormField/FormFieldTypes';
 
 import FormBody, { FormBodyRenderer } from './FormBody';
@@ -137,6 +136,4 @@ const Form: React.FC<FormProps> = (props) => {
 
 Form.defaultProps = defaultProps;
 
-export { Form as UnwrappedForm };
-
-export default withFormLRS<FormProps>(Form);
+export default Form;

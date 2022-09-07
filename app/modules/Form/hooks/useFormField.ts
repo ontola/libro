@@ -2,6 +2,7 @@ import rdf, {
   NamedNode,
   SomeTerm,
   isNamedNode,
+  isNode,
 } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
@@ -45,6 +46,7 @@ import {
 import useValidators from '../lib/validators';
 import form from '../ontology/form';
 import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
+import ll from '../../Kernel/ontology/ll';
 
 import useAddFormValue from './useAddFormValue';
 import useFieldShape from './useFieldShape';
@@ -227,7 +229,14 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
 
   const saveToLocalStorage = React.useCallback((nextValue: InputValue[]) => {
     if (storeKey) {
-      setDefaultValue(nextValue.map((val) => isJSONLDObject(val) ? val['@id'] : val));
+      setDefaultValue(
+        nextValue.map((val) => {
+          const parsedValue = isJSONLDObject(val) ? val['@id'] : val;
+          const clonedFrom = isNode(parsedValue) ? lrs.getResourceProperty(parsedValue, ll.clonedFrom) : undefined;
+
+          return clonedFrom ?? parsedValue;
+        }),
+      );
     }
   }, [storeKey, setDefaultValue]);
 

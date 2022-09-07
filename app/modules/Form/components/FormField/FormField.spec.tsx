@@ -21,7 +21,7 @@ import example from '../../../Kernel/ontology/example';
 import dependencies from '../../dependencies';
 import { calculateFormFieldName } from '../../lib/helpers';
 import form from '../../ontology/form';
-import { UnwrappedForm as Form } from '../Form/Form';
+import Form from '../Form/Form';
 
 const field = example.ns('field');
 

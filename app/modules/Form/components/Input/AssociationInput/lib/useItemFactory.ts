@@ -1,4 +1,4 @@
-import rdf, { NamedNode, QuadPosition } from '@ontologies/core';
+import rdf, { QuadPosition } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import * as sh from '@ontologies/shacl';
 import {
@@ -14,18 +14,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { SubmitDataProcessor } from '../../../../../Common/lib/errorHandling';
 import ll from '../../../../../Kernel/ontology/ll';
 import ontola from '../../../../../Kernel/ontology/ontola';
-import { ClonedLRS } from '../../../../hooks/useFormLRS';
 import { conditionalFormFieldsPath, formFieldsPath } from '../../../../lib/diggers';
 import { JSONLDObject } from '../../../../lib/helpers';
 import { formContext } from '../../../Form/FormContext';
 import { ItemFactory } from '../../../FormField/FormFieldTypes';
 
 export const useItemFactory = (): ItemFactory => {
-  const lrs = useLRS<unknown, SubmitDataProcessor, ClonedLRS>();
+  const lrs = useLRS<unknown, SubmitDataProcessor>();
   const { object } = React.useContext(formContext);
 
   const [path] = useGlobalIds(sh.path);
-  const association = lrs.originalLRS.getResourceProperty(object, path) as NamedNode;
+  const [clonedId] = useIds(object, ll.clonedFrom);
+  const [association] = useIds(clonedId, path);
   useDataFetching(association);
 
   const formPaths = useIds(

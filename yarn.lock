@@ -13158,9 +13158,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"link-redux@npm:3.0.0-dev.4e98468e467db4a6984cfae42be6f1745df61081.0":
-  version: 3.0.0-dev.4e98468e467db4a6984cfae42be6f1745df61081.0
-  resolution: "link-redux@npm:3.0.0-dev.4e98468e467db4a6984cfae42be6f1745df61081.0"
+"link-redux@npm:3.0.0-dev.d7134b59efb9018b2eafc0931b4433da1cea2330.0":
+  version: 3.0.0-dev.d7134b59efb9018b2eafc0931b4433da1cea2330.0
+  resolution: "link-redux@npm:3.0.0-dev.d7134b59efb9018b2eafc0931b4433da1cea2330.0"
   peerDependencies:
     "@ontologies/core": ">= 2.0.0"
     base64-arraybuffer: ^1.0.1
@@ -13169,7 +13169,7 @@ __metadata:
     link-lib: ">=3.0.0-5"
     prop-types: ">= 15.x"
     react: ">= 16.10.x"
-  checksum: 10ee80b0bb56c5f28007dd0680b6c362582627c7f1c555ed44f02c02029301bb75efcc98aebaf227a8f72df97e63f8f0fbfd7e399d49211bce7f9658df8a2ad3
+  checksum: c8c244de6392ca02c5080c95475bae2593cd7df1818d3d5a1414d93785b4c3be74f9b34c398231e6857c648270fd0d8f9251bae3bfd77341a37678b8b8488496
   languageName: node
   linkType: hard
 
@@ -14611,7 +14611,7 @@ __metadata:
     jest-fetch-mock: ^3.0.3
     jsdom: ^19.0.0
     link-lib: 4.0.0-dev.461e68418215f7dc79d9bd210e3e7bc037a5c1a6.0
-    link-redux: 3.0.0-dev.4e98468e467db4a6984cfae42be6f1745df61081.0
+    link-redux: 3.0.0-dev.d7134b59efb9018b2eafc0931b4433da1cea2330.0
     lint-staged: ^10.5.4
     lottie-react: ^2.2.1
     memoize-one: ^5.0.5

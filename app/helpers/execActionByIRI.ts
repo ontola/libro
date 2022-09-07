@@ -1,15 +1,23 @@
-import rdfFactory, { NamedNode, TermType } from '@ontologies/core';
+import rdfFactory, {
+  NamedNode,
+  TermType,
+  isBlankNode,
+  isNamedNode,
+} from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { BAD_REQUEST } from 'http-status-codes';
 import {
   DataObject,
   LinkedRenderStore,
   ProcessorError,
+  SerializableDataTypes,
   SomeNode,
   toGraph,
 } from 'link-lib';
 
+import { isJSONLDObject, retrieveIdFromValue } from '../modules/Form/lib/helpers';
 import { sliceToEmpJson } from '../modules/Kernel/lib/empjsonSerializer';
+import ll from '../modules/Kernel/ontology/ll';
 
 import { renameRecords } from './renameRecords';
 
@@ -17,8 +25,6 @@ const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS', 'CONNECT', 'TRACE'];
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const execActionByIRI = (store: LinkedRenderStore<any>) => async (subject: SomeNode, data?: DataObject) => {
-  // const [graph, blobs = []] = dataTuple;
-
   if (store.store.getInternalStore().store.getRecord(subject.value) === undefined) {
     await store.getEntity(subject as NamedNode);
   }
@@ -50,7 +56,34 @@ export const execActionByIRI = (store: LinkedRenderStore<any>) => async (subject
     opts.headers['Content-Type'] = 'application/empathy+json';
 
     const [iri, index] = toGraph(data ?? {});
-    const renamed = renameRecords(index.store.data, [iri], [rdfFactory.namedNode('.')]);
+
+    const [original, updated] = Object.values(data).reduce(([from, to]) => {
+      const processValues = (values: SerializableDataTypes) => {
+        (Array.isArray(values) ? values : [values]).forEach((value) => {
+          if (isJSONLDObject(value)) {
+            Object.values(value).forEach((val) => processValues(val));
+            const id = retrieveIdFromValue(value);
+
+            if (isBlankNode(id)) {
+              const clonedFrom = store.getResourceProperty(id, ll.clonedFrom);
+
+              if (isNamedNode(clonedFrom)) {
+                from.push(id);
+                to.push(clonedFrom);
+              }
+            }
+          }
+        });
+      };
+
+      Object.values(data).forEach((values) => {
+        processValues(values);
+      });
+
+      return [from, to];
+    }, [[iri], [rdfFactory.namedNode('.')]]);
+
+    const renamed = renameRecords(index.store.data, original, updated);
     const prepared = sliceToEmpJson(renamed);
 
     opts.body = JSON.stringify(prepared);
