@@ -17,10 +17,11 @@ import { addDependencies } from './addDependencies';
 
 export type DependencyQuery = [
   loading: boolean | NamedNode | BlankNode | undefined,
-  dependencies: SomeNode[],
+  objectDependencies: SomeNode[],
+  formDependencies: SomeNode[],
 ];
 
-const EMPTY_STATE: DependencyQuery = [false, []];
+const EMPTY_STATE: DependencyQuery = [false, [], []];
 
 export const useDependencies = (
   sessionStore: Storage | undefined,
@@ -30,21 +31,22 @@ export const useDependencies = (
 ): DependencyQuery => {
   const lrs = useLRS();
   const [loading, setLoading] = React.useState<boolean | SomeNode | undefined>(true);
-  const [dependencies, setDependencies] = React.useState<SomeNode[]>([]);
+  const [resolvedObjectDependencies, setObjectDependencies] = React.useState<SomeNode[]>([]);
+  const [resolvedFormDependencies, setFormDependencies] = React.useState<SomeNode[]>([]);
 
-  const timestamp = useDataFetching(dependencies);
+  const timestamp = useDataFetching([...resolvedObjectDependencies, ...resolvedFormDependencies]);
 
   React.useEffect(() => {
     if (!actionBody || !object) {
       return;
     }
 
-    const dependentResources = new Set<SomeNode>();
+    const objectResources = new Set<SomeNode>();
+    const formResources = new Set<SomeNode>();
 
-    addDependencies(dependentResources, lrs, sessionStore, actionBody, [object], formID, false);
+    addDependencies(objectResources, formResources, lrs, sessionStore, actionBody, [object], formID, false);
 
-    const newDependencies = [...dependentResources];
-    const currentLoading = newDependencies.filter(isNamedNode).find((resource) => (
+    const currentLoading = [...objectResources, ...formResources].filter(isNamedNode).find((resource) => (
       !entityIsLoaded(lrs, resource)
     ));
 
@@ -52,12 +54,13 @@ export const useDependencies = (
       setLoading(false);
     }
 
-    setDependencies(newDependencies);
+    setObjectDependencies([...objectResources]);
+    setFormDependencies([...formResources]);
   }, [actionBody, object, formID, timestamp]);
 
   if (!actionBody || !object) {
     return EMPTY_STATE;
   }
 
-  return [loading, dependencies];
+  return [loading, resolvedObjectDependencies, resolvedFormDependencies];
 };

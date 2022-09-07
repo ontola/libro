@@ -30,6 +30,8 @@ export const textURL = example.ns('textURL');
 export const publisherObject = example.ns('publisher');
 export const linkedURL = example.ns('linkedURL');
 export const formID = 'FORM_ID';
+export const shInIRI = example.ns('shInIRI');
+export const shInPropIRI = example.ns('shInPropIRI');
 
 export const formData = {
   '@id': actionBody.value,
@@ -100,6 +102,16 @@ export const nestedFormData = {
               [rdfx.type.toString()]: form.ResourceField,
               [schema.url.toString()]: linkedURL,
             },
+            [rdfx.ns('_4').toString()]: {
+              [rdfx.type.toString()]: form.SelectInput,
+              [sh.path.toString()]: schema.acceptedAnswer,
+              [sh.shaclin.toString()]: shInIRI,
+            },
+            [rdfx.ns('_5').toString()]: {
+              [rdfx.type.toString()]: form.SelectInput,
+              [sh.path.toString()]: schema.acceptedPaymentMethod,
+              [ontola.shIn.toString()]: schema.contentUrl,
+            },
           },
         },
       },
@@ -158,6 +170,7 @@ export const firstNestedObjectData = {
   [rdfx.type.toString()]: schema.Thing,
   [schema.name.toString()]: 'Nested Object 1',
   [schema.isPartOf.toString()]: parentObject,
+  [schema.contentUrl.toString()]: shInPropIRI,
 };
 
 export const secondNestedObjectData = {
@@ -181,6 +194,16 @@ export const linkedURLData = {
 
 export const publisherData = {
   '@id': publisherObject.value,
+  [rdfx.type.toString()]: schema.Thing,
+};
+
+export const shInData = {
+  '@id': shInIRI.value,
+  [rdfx.type.toString()]: schema.Thing,
+};
+
+export const shInPropData = {
+  '@id': shInPropIRI.value,
   [rdfx.type.toString()]: schema.Thing,
 };
 
@@ -216,6 +239,8 @@ export const allResourcesData = [
   parentObjectData,
   linkedURLData,
   publisherData,
+  shInData,
+  shInPropData,
 ];
 
 export const emptyValues = {
@@ -232,11 +257,15 @@ export const allValues = {
       '@id': parentObject,
       [btoa(schema.name.value)]: [rdf.literal('Parent')],
     }],
+    [btoa(schema.acceptedAnswer.value)]: [],
+    [btoa(schema.acceptedPaymentMethod.value)]: [],
     [btoa(schema.publisher.value)]: [],
     [btoa(schema.url.value)]: [],
   }, {
     '@id': secondNestedObject,
     [btoa(schema.isPartOf.value)]: [],
+    [btoa(schema.acceptedAnswer.value)]: [],
+    [btoa(schema.acceptedPaymentMethod.value)]: [],
     [btoa(schema.publisher.value)]: [publisherObject],
     [btoa(schema.url.value)]: [textURL],
   }],
@@ -245,44 +274,42 @@ export const allValues = {
   [btoa(schema.description.value)]: [rdf.literal('Description')],
 };
 
-export const objectAndForm = [
-  object,
+export const formAndNestedForm = [
   actionBody,
-].sort();
-
-export const objectFormAndNestedForm = [
-  ...objectAndForm,
   commentActionBody,
 ].sort();
 
-export const objectFormNestedFormAndCollection = [
-  ...objectFormAndNestedForm,
+export const objectAndCollection = [
+  object,
   commentCollection,
 ].sort();
 
-export const objectFormNestedFormsAndCollection = [
-  ...objectFormNestedFormAndCollection,
+export const formAndNestedForms = [
+  ...formAndNestedForm,
   parentActionBody,
   linkedURL,
+  shInIRI,
 ].sort();
 
-export const objectFormNestedFormsCollectionPage = [
-  ...objectFormAndNestedForm,
-  commentCollection,
+export const formNestedFormsAndShInProp = [
+  ...formAndNestedForms,
+  shInPropIRI,
+  publisherObject,
+].sort();
+
+export const objectAndCollectionPage = [
+  ...objectAndCollection,
   commentCollectionPage,
-  parentActionBody,
-  linkedURL,
 ].sort();
 
-export const objectFormNestedFormsAndCollectionItems = [
-  ...objectFormNestedFormsCollectionPage,
+export const objectAndCollectionItems = [
+  ...objectAndCollectionPage,
   firstNestedObject,
   secondNestedObject,
 ].sort();
 
-export const allResources = [
-  ...objectFormNestedFormsAndCollectionItems,
-  publisherObject,
+export const objectCollectionItemsAndParent = [
+  ...objectAndCollectionItems,
   parentObject,
 ].sort();
 
@@ -290,11 +317,15 @@ const testGetDependencies = () => {
   const lrs = useLRS();
   const [_, storage] = mockStorage({});
 
-  const dependentResources = new Set<SomeNode>();
+  const objectResources = new Set<SomeNode>();
+  const formResources = new Set<SomeNode>();
 
-  addDependencies(dependentResources, lrs, storage, actionBody, [object], formID, false);
+  addDependencies(objectResources, formResources, lrs, storage, actionBody, [object], formID, false);
 
-  return [...dependentResources].filter(isNamedNode).sort();
+  return [
+    [...objectResources].filter(isNamedNode).sort(),
+    [...formResources].filter(isNamedNode).sort(),
+  ];
 };
 
 describe('getDependencies', () => {
@@ -304,7 +335,9 @@ describe('getDependencies', () => {
       objectData,
     );
 
-    expect(result.current).toEqual(objectAndForm);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual([object]);
+    expect(formDependencies).toEqual([actionBody]);
   });
 
   it('includes all dependencies with form', async () => {
@@ -313,7 +346,9 @@ describe('getDependencies', () => {
       formData,
     );
 
-    expect(result.current).toEqual(objectFormAndNestedForm);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual([object]);
+    expect(formDependencies).toEqual(formAndNestedForm);
   });
 
   it('includes all dependencies with object and form', async () => {
@@ -322,7 +357,9 @@ describe('getDependencies', () => {
       objectAndFormData,
     );
 
-    expect(result.current).toEqual(objectFormNestedFormAndCollection);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual(objectAndCollection);
+    expect(formDependencies).toEqual(formAndNestedForm);
   });
 
   it('includes all dependencies with object, form and nested form', async () => {
@@ -331,7 +368,9 @@ describe('getDependencies', () => {
       objectFormsAndNestedFormData,
     );
 
-    expect(result.current).toEqual(objectFormNestedFormsAndCollection);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual(objectAndCollection);
+    expect(formDependencies).toEqual(formAndNestedForms);
   });
 
   it('includes all dependencies with object, form and collection', async () => {
@@ -340,7 +379,9 @@ describe('getDependencies', () => {
       objectFormNestedFormAndCollectionData,
     );
 
-    expect(result.current).toEqual(objectFormNestedFormsCollectionPage);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual(objectAndCollectionPage);
+    expect(formDependencies).toEqual(formAndNestedForms);
   });
 
   it('includes all dependencies with object, form, collection and page', async () => {
@@ -349,7 +390,9 @@ describe('getDependencies', () => {
       objectFormNestedFormCollectionPageData,
     );
 
-    expect(result.current).toEqual(objectFormNestedFormsAndCollectionItems);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual(objectAndCollectionItems);
+    expect(formDependencies).toEqual(formAndNestedForms);
   });
 
   it('includes all dependencies with object, form, collection, page and items', async () => {
@@ -358,7 +401,9 @@ describe('getDependencies', () => {
       objectFormNestedFormCollectionItemsData,
     );
 
-    expect(result.current).toEqual(allResources);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual(objectCollectionItemsAndParent);
+    expect(formDependencies).toEqual(formNestedFormsAndShInProp);
   });
 
   it('includes all dependencies with all resources', async () => {
@@ -367,6 +412,8 @@ describe('getDependencies', () => {
       allResourcesData,
     );
 
-    expect(result.current).toEqual(allResources);
+    const [objectDependencies, formDependencies] = result.current;
+    expect(objectDependencies).toEqual(objectCollectionItemsAndParent);
+    expect(formDependencies).toEqual(formNestedFormsAndShInProp);
   });
 });

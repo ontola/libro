@@ -36,7 +36,7 @@ const paths = [
   nestedConditionalUnlessInPath,
 ];
 
-const formDependencies = (lrs: LinkReduxLRSType, parentForm: SomeNode): SomeNode[] => {
+const getFormDependencies = (lrs: LinkReduxLRSType, parentForm: SomeNode): SomeNode[] => {
   const deps = [
     parentForm,
   ];
@@ -67,20 +67,21 @@ const renderedFieldValue = (lrs: LinkReduxLRSType, field?: SomeNode) => {
 };
 
 const addFormDependencies = (
-  dependentResources: Set<SomeNode>,
+  formDependencies: Set<SomeNode>,
   lrs: LinkReduxLRSType,
   parentForm: SomeNode,
 ): void => {
-  formDependencies(lrs, parentForm).forEach(dependentResources.add, dependentResources);
+  getFormDependencies(lrs, parentForm).forEach(formDependencies.add, formDependencies);
 
   getFormFields(lrs, parentForm).forEach((field) => {
-    lrs.getResourceProperties(field, sh.shaclin).filter(isNode).forEach(dependentResources.add, dependentResources);
-    lrs.getResourceProperties(field, schema.url).filter(isNode).forEach(dependentResources.add, dependentResources);
+    lrs.getResourceProperties(field, sh.shaclin).filter(isNode).forEach(formDependencies.add, formDependencies);
+    lrs.getResourceProperties(field, schema.url).filter(isNode).forEach(formDependencies.add, formDependencies);
   });
 };
 
 const addObjectDependencies = (
-  dependentResources: Set<SomeNode>,
+  objectDependencies: Set<SomeNode>,
+  formDependencies: Set<SomeNode>,
   lrs: LinkReduxLRSType,
   sessionStore: Storage | undefined,
   parentForm: SomeNode,
@@ -88,7 +89,7 @@ const addObjectDependencies = (
   formID: string,
   nested: boolean,
 ): void => {
-  objects.forEach(dependentResources.add, dependentResources);
+  objects.forEach(objectDependencies.add, objectDependencies);
   getFormFields(lrs, parentForm).forEach((field) => {
     const shInProp = lrs.getResourceProperty<NamedNode>(field, ontola.shIn);
     const path = lrs.getResourceProperty<NamedNode>(field, sh.path);
@@ -96,7 +97,7 @@ const addObjectDependencies = (
     objects.forEach((object) => {
       if (path) {
         if (shInProp) {
-          lrs.getResourceProperties(object, shInProp).filter(isNode).forEach(dependentResources.add, dependentResources);
+          lrs.getResourceProperties(object, shInProp).filter(isNode).forEach(formDependencies.add, formDependencies);
         }
 
         const value = rawFormObjectValue(lrs, field, object, sessionStore, formID, nested);
@@ -106,7 +107,8 @@ const addObjectDependencies = (
           const nestedDependencies = getNestedDependencies(lrs, value.filter(isNode), true);
 
           addDependencies(
-            dependentResources,
+            objectDependencies,
+            formDependencies,
             lrs,
             sessionStore,
             nestedForm,
@@ -115,7 +117,7 @@ const addObjectDependencies = (
             true,
           );
         } else if (renderedFieldValue(lrs, field)) {
-          value.filter(isResource).forEach(dependentResources.add, dependentResources);
+          value.filter(isResource).forEach(formDependencies.add, formDependencies);
         }
       }
     });
@@ -129,7 +131,8 @@ const addObjectDependencies = (
  * records like collection records.
  */
 export const addDependencies = (
-  dependentResources: Set<SomeNode>,
+  objectDependencies: Set<SomeNode>,
+  formDependencies: Set<SomeNode>,
   lrs: LinkReduxLRSType,
   sessionStore: Storage | undefined,
   parentForm: SomeNode,
@@ -137,9 +140,9 @@ export const addDependencies = (
   formID: string,
   nested: boolean,
 ): void => {
-  addFormDependencies(dependentResources, lrs, parentForm);
   addObjectDependencies(
-    dependentResources,
+    objectDependencies,
+    formDependencies,
     lrs,
     sessionStore,
     parentForm,
@@ -147,5 +150,6 @@ export const addDependencies = (
     formID,
     nested,
   );
+  addFormDependencies(formDependencies, lrs, parentForm);
 };
 
