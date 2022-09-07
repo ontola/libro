@@ -8,7 +8,7 @@ import React from 'react';
 
 import { fullResourceTopology } from '../../../Common/topologies';
 import MainBody from '../../../Common/topologies/MainBody';
-import { UnwrappedForm } from '../../components/Form/Form';
+import Form from '../../components/Form/Form';
 import form from '../../ontology/form';
 
 const FormFieldFull: FC = ({
@@ -18,9 +18,9 @@ const FormFieldFull: FC = ({
 
   return (
     <MainBody>
-      <UnwrappedForm key={timestamp.toString()}>
+      <Form key={timestamp.toString()}>
         {() => <Resource subject={subject} />}
-      </UnwrappedForm>
+      </Form>
     </MainBody>
   );
 };

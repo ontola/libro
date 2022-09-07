@@ -7,6 +7,7 @@ import {
   Resource,
   useIds,
   useLRS,
+  useTempClones,
 } from 'link-redux';
 import React, { EventHandler, SyntheticEvent } from 'react';
 
@@ -76,22 +77,26 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   whitelist,
 }) => {
   const lrs = useLRS();
-  const [loading, _dependencies] = useDependencies(
+  const [loading, objectDependencies] = useDependencies(
     sessionStore,
     actionBody,
     object,
     formID,
   );
 
+  // Ensure we can modify the object to persist fields while editing, without changing global state.
+  const [clonedObject] = useTempClones(objectDependencies);
+
   const initialValues = useInitialValues(
     loading,
     sessionStore,
     actionBody,
-    object,
+    clonedObject,
     formID,
   );
   const [errorResponse] = useIds(action, ll.errorResponse);
   const [submissionErrors, clearErrors] = useSubmissionErrors(errorResponse);
+
   const handleSubmit = React.useCallback<SubmitHandler>((formData, formApi, retrySubmit) => {
     clearErrors();
 
@@ -150,7 +155,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
       formIRI={actionBody}
       initialValues={initialValues}
       method={httpMethod}
-      object={object}
+      object={clonedObject}
       sessionStore={sessionStore}
       submissionErrors={submissionErrors}
       subscription={subscription}
