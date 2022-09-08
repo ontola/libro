@@ -38,6 +38,7 @@ const DialogResource = ({
   return (
     <Resource
       forceRender
+      key={routerLocation.value}
       subject={routerLocation}
       onDone={onDone}
     />
