@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import { SomeTerm } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import {
   FC,
@@ -22,6 +23,7 @@ import argu from '../../ontology/argu';
 
 export interface PersonNavbarProps {
   onClick: () => void;
+  label?: SomeTerm,
   linkRef: React.Ref<HTMLButtonElement>
 }
 
@@ -37,6 +39,7 @@ const useStyles = makeStyles(() => ({
 
 const PersonNavbar: FC<PersonNavbarProps> = ({
   subject,
+  label: _,
   linkRef,
   ...navlinkProps
 }) => {
