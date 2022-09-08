@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FormTheme, formContext } from '../../components/Form/FormContext';
+
 interface FormGroupContext {
   addFieldName?: (fieldName: string) => void;
   buttonContainerRef?: React.MutableRefObject<HTMLDivElement>
@@ -21,6 +23,9 @@ const FormGroupProvider: React.FC<PropTypes> = ({
   children,
   sequenceIndex,
 }) => {
+  const {
+    theme,
+  } = React.useContext(formContext);
   const buttonContainerRef = React.useRef(document.createElement('div'));
   const [fieldNames, setFieldNames] = React.useState<string[]>([]);
   const [hasContent, setHasContent] = React.useState(false);
@@ -33,7 +38,7 @@ const FormGroupProvider: React.FC<PropTypes> = ({
   }, [fieldNames]);
   const formGroup = React.useMemo(() => ({
     addFieldName,
-    buttonContainerRef,
+    buttonContainerRef: theme === FormTheme.Preview ? buttonContainerRef : undefined,
     fieldNames,
     groupIndex: sequenceIndex,
     hasContent,

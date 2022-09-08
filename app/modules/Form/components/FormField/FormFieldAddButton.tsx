@@ -7,9 +7,7 @@ import {
   useStrings,
 } from 'link-redux';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import { formMessages } from '../../../../translations/messages';
 import Button, { ButtonVariant } from '../../../Common/components/Button';
 import { isMarkedForRemove } from '../../lib/helpers';
 import { useFormGroup } from '../../views/FormGroup/FormGroupProvider';
@@ -55,7 +53,7 @@ const FormFieldAddButton: React.FC = () => {
         variant={ButtonVariant.Transparent}
         onClick={addFormValue}
       >
-        <FormattedMessage {...formMessages.newLabel} />
+        {label}
       </Button>
     </div>
   );
