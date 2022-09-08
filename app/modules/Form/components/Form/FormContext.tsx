@@ -1,7 +1,7 @@
 import { SomeNode } from 'link-lib';
 import React, { EventHandler } from 'react';
 
-import { SubmissionErrors } from '../FormField/FormFieldTypes';
+import { OnInputChange, SubmissionErrors } from '../FormField/FormFieldTypes';
 
 export enum FormTheme {
   Default = 'default',
@@ -15,6 +15,7 @@ export interface FormContext {
   formID: string;
   formIRI: SomeNode;
   formSection?: string;
+  handleParentChange?: OnInputChange;
   object?: SomeNode;
   onKeyUp?: EventHandler<any>;
   parentObject?: SomeNode;

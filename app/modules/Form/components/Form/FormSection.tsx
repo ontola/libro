@@ -3,6 +3,7 @@ import { SomeNode } from 'link-lib';
 import React from 'react';
 
 import { calculateFormFieldName } from '../../lib/helpers';
+import { formFieldContext } from '../FormField/FormFieldContext';
 
 import { FormTheme, formContext } from './FormContext';
 
@@ -26,17 +27,19 @@ const FormSection: React.FC<PropTypes> = ({
   propertyIndex,
   theme,
 }) => {
+  const { onChange } = React.useContext(formFieldContext);
   const formContextProps = React.useContext(formContext);
   const formSection = calculateFormFieldName(name, propertyIndex);
   const sectionContext = React.useMemo(() => ({
     ...formContextProps,
     formIRI,
     formSection,
+    handleParentChange: onChange,
     object,
     parentObject: formContextProps.object,
     theme,
     whitelist: undefined,
-  }), [formContextProps, formIRI, formSection, object, theme]);
+  }), [formContextProps, formIRI, formSection, object, onChange, theme]);
 
   if (!path) {
     return (

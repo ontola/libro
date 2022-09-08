@@ -80,6 +80,8 @@ interface InputProps {
   value: InputValue[];
 }
 
+const INDEX_AND_NAME = 2;
+
 const valueChanged = (oldValue: InputValue[], newValue: InputValue[] | undefined) => {
   if (typeof newValue === 'undefined') {
     return true;
@@ -185,6 +187,7 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
     blacklist,
     formID,
     formSection,
+    handleParentChange,
     object,
     sessionStore,
     theme,
@@ -219,15 +222,15 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
     [storeKey],
   );
 
-  const saveToLRS = React.useCallback((nextValue: InputValue[]) => {
+  const saveToLRS = (nextValue: InputValue[]) => {
     const delta = object && fieldProps.path && changeDelta(object, fieldProps.path, nextValue);
 
     if (delta) {
       lrs.processDelta(delta, !delay);
     }
-  }, [object, fieldProps.path, delay]);
+  };
 
-  const saveToLocalStorage = React.useCallback((nextValue: InputValue[]) => {
+  const saveToLocalStorage = (nextValue: InputValue[]) => {
     if (storeKey) {
       setDefaultValue(
         nextValue.map((val) => {
@@ -238,10 +241,12 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
         }),
       );
     }
-  }, [storeKey, setDefaultValue]);
+  };
 
   const [memoizedMeta, setMemoizedMeta] = React.useState({});
 
+  const parentName = fieldName?.split('.')?.slice(0, -INDEX_AND_NAME)?.join('.');
+  const { input: parentInput } = useField((parentName && parentName.length > 0) ? parentName : 'undefined');
   const { input, meta } = useField(fieldName ?? 'undefined', {
     allowNull: true,
     format: (i) => i,
@@ -260,13 +265,19 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
       return;
     }
 
+    if (parentName && parentName.length > 0 && handleParentChange) {
+      if (!parentInput.value.some((val: InputValue) => retrieveIdFromValue(val) === object)) {
+        handleParentChange([...(parentInput.value ?? []), { '@id': object }]);
+      }
+    }
+
     if (meta.touched || valueChanged(nextValue, input.value)) {
       saveToLRS(nextValue);
       saveToLocalStorage(nextValue);
     }
 
     originalOnChange(nextValue);
-  }, [storeKey, meta.touched, input.value]);
+  }, [storeKey, meta.touched, input.value, parentInput]);
 
   React.useEffect(() => {
     if (input.value) {
@@ -316,8 +327,10 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
   const removeItem = React.useCallback((index: number) => {
     const newValue = values.slice();
     const currentValue = newValue[index];
+    const id = retrieveIdFromValue(currentValue);
+    const persisted = isNamedNode(id) || isNamedNode(lrs.getResourceProperty(id, ll.clonedFrom));
 
-    if (isJSONLDObject(currentValue) && isNamedNode(retrieveIdFromValue(currentValue))) {
+    if (isJSONLDObject(currentValue) && persisted) {
       currentValue[destroyFieldName] = rdf.literal(true);
     } else {
       newValue.splice(index, 1);
