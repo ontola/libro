@@ -79,7 +79,6 @@ const InputElement = ({
     onBlur,
     onFocus,
     placeholder,
-    storeKey,
   } = React.useContext(formFieldContext);
 
   const [focus, setFocus] = React.useState(autofocus);
@@ -148,7 +147,7 @@ const InputElement = ({
     break;
   case 'markdown':
     element = TextEditor;
-    sharedProps.id = storeKey;
+    sharedProps.id = name;
     sharedProps.rows = TEXTFIELD_MIN_ROWS;
     break;
 

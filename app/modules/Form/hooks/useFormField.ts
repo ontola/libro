@@ -365,7 +365,6 @@ const useFormField = (field: LaxNode, componentProps: UseFormFieldProps = {}): F
     onChange: input.onChange,
     onFocus: memoizedOnFocus,
     removeItem,
-    storeKey,
     values,
     whitelisted,
     ...fieldProps,
