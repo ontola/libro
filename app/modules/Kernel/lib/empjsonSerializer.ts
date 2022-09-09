@@ -9,8 +9,7 @@ import {
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as xsd from '@ontologies/xsd';
-import { DataRecord } from 'link-lib';
-import { DataSlice } from 'link-lib/dist-types/store/StructuredStore';
+import { DataRecord, DataSlice } from 'link-lib';
 
 import {
   EmpBoolean,

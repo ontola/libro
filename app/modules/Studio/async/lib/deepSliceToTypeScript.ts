@@ -5,7 +5,7 @@ import {
   isTerm,
 } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord } from 'link-lib';
 
 import { DeepSlice } from '../../lib/dataObjectsToDeepSlice';
 

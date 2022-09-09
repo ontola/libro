@@ -1,5 +1,5 @@
 import { SomeTerm } from '@ontologies/core';
-import { DeepRecord, DeepRecordFieldValue } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord, DeepRecordFieldValue } from 'link-lib';
 
 import { getBumps } from './serialization';
 import { serializeRecordOrValue } from './serializeValue';

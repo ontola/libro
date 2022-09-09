@@ -1,6 +1,5 @@
 import { isBlankNode, isTerm } from '@ontologies/core';
-import { SomeNode } from 'link-lib';
-import { DeepRecord } from 'link-lib/dist-types/store/StructuredStore';
+import { DeepRecord, SomeNode   } from 'link-lib';
 
 import { Slice } from '../../../Common/lib/seed';
 import { DeepSlice } from '../../lib/dataObjectsToDeepSlice';
