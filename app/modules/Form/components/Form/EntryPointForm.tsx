@@ -83,6 +83,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
     object,
     formID,
   );
+  const [submitCount, setSubmitCount] = React.useState(0);
 
   // Ensure we can modify the object to persist fields while editing, without changing global state.
   const [clonedObject] = useTempClones(objectDependencies);
@@ -93,6 +94,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
     actionBody,
     clonedObject,
     formID,
+    submitCount,
   );
   const [errorResponse] = useIds(action, ll.errorResponse);
   const [submissionErrors, clearErrors] = useSubmissionErrors(errorResponse);
@@ -104,7 +106,9 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
       throw new Error(`No submit handler provided for ${action?.value}`);
     }
 
-    return onSubmit(formData, formApi, retrySubmit);
+    return onSubmit(formData, formApi, retrySubmit).then(() => {
+      setSubmitCount((previous) => previous + 1);
+    });
   }, [clearErrors]);
   const renderBody = React.useCallback<FormBodyRenderer>((submitting) => (
     <React.Fragment>

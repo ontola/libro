@@ -23,6 +23,7 @@ const useInitialValues = (
   actionBody: LaxNode,
   object: SomeNode | undefined,
   formID: string,
+  submitCount: number,
 ): InitialValues => {
   const lrs = useLRS();
   const [initialValues, setInitialValues] = React.useState<InitialValues>({});
@@ -34,7 +35,7 @@ const useInitialValues = (
 
     const currentValues = getInitialValues(lrs, sessionStore, actionBody, object, formID, false);
     setInitialValues(currentValues);
-  }, [actionBody, object, formID, loading]);
+  }, [actionBody, object, formID, loading, submitCount]);
 
   if (!actionBody || !object) {
     return EMPTY_STATE;
