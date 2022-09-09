@@ -183,6 +183,5 @@ describe('Omniform', () => {
     expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: 'test',
     });
-    expect(formInstance.getFieldState(schemaText)!.dirty).toBeTruthy();
   });
 });
