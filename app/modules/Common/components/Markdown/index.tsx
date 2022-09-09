@@ -26,6 +26,13 @@ import Heading, { HeadingSize, HeadingVariant } from '../Heading';
 import Link from '../Link';
 
 const styles = (theme: LibroTheme) => createStyles({
+  displayDefault: {
+    // Disabled collapsing margins
+    display: 'flex',
+  },
+  displayInline: {
+    display: 'inline-block',
+  },
   markdown: {
     '& a': {
       '&:hover': {
@@ -119,8 +126,6 @@ const styles = (theme: LibroTheme) => createStyles({
       },
       display: 'inline',
     },
-    // Disabled collapsing margins
-    display: 'flex',
     flexDirection: 'column',
     wordWrap: 'break-word',
   },
@@ -178,6 +183,7 @@ const codePre = (link: any) => (
 );
 
 type PropTypes = WithStyles<typeof styles> & {
+  display?: MarkdownDisplay;
   highlightedText?: string;
   noLinks?: boolean;
   noSpacing?: boolean;
@@ -187,6 +193,11 @@ type PropTypes = WithStyles<typeof styles> & {
 
 interface MarkdownState {
   hasError: boolean;
+}
+
+export enum MarkdownDisplay {
+  Inline = 'inline',
+  Default = 'flex',
 }
 
 class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
@@ -236,6 +247,7 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
 
   public render() {
     const {
+      display,
       highlightedText,
       noLinks,
       noSpacing,
@@ -270,6 +282,8 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
     };
 
     const className = clsx({
+      [this.props.classes.displayInline]: display === MarkdownDisplay.Inline,
+      [this.props.classes.displayDefault]: !display || display === MarkdownDisplay.Default,
       [this.props.classes.markdown]: true,
       [this.props.classes.noSpacing]: noSpacing,
     });

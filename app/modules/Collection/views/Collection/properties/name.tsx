@@ -1,16 +1,19 @@
+import CircularProgress from '@mui/material/CircularProgress';
 import * as as from '@ontologies/as';
 import { SomeTerm } from '@ontologies/core';
 import {
   FC,
+  isFullyLoaded,
   register,
   useProperty,
+  useRecordStatus,
 } from 'link-redux';
 import React from 'react';
 
 import { allTopologiesExcept } from '../../../../../topologies';
 import Heading, { HeadingSize } from '../../../../Common/components/Heading';
 import Link from '../../../../Common/components/Link';
-import Markdown from '../../../../Common/components/Markdown';
+import Markdown, { MarkdownDisplay } from '../../../../Common/components/Markdown';
 import { pageTopology, parentTopology } from '../../../../Common/topologies';
 import ontola from '../../../../Kernel/ontology/ontola';
 import { navbarTopology } from '../../../../NavBar/topologies';
@@ -22,6 +25,7 @@ interface CollectionNameProps {
 }
 
 const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
+  const status = useRecordStatus();
   const [href] = useProperty(ontola.href);
   const Wrapper = React.useCallback(
     ({ children }) => {
@@ -45,7 +49,13 @@ const CollectionName: FC<CollectionNameProps> = ({ linkedProp }) => {
   return (
     <Wrapper>
       <Heading size={HeadingSize.LG}>
-        <Markdown text={linkedProp.value} />
+        <Markdown
+          display={MarkdownDisplay.Inline}
+          text={linkedProp.value}
+        />
+        {!isFullyLoaded(status) && (
+          <CircularProgress size="1em"  />
+        )}
       </Heading>
     </Wrapper>
   );
