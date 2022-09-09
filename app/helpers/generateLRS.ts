@@ -19,6 +19,7 @@ import analyticsMiddleware from '../modules/Common/middleware/analyticsMiddlewar
 import { authMiddleware } from '../modules/Auth/middleware/authMiddleware';
 import type { Module } from '../Module';
 import { paginationMiddleware } from '../modules/Collection/middleware/paginationMiddleware';
+import { appendPath } from '../modules/Kernel/lib/id';
 import execFilter from '../modules/Kernel/middleware/execFilter';
 import logging from '../modules/Kernel/middleware/logging';
 import { searchMiddleware } from '../modules/Academy/middleware/searchMiddleware';
@@ -79,6 +80,8 @@ export default async function generateLRS(
 
   if (!__CLIENT__) {
     storeOptions.apiOpts = { bulkEndpoint: 'http://localhost/link-lib/bulk' };
+  } else {
+    storeOptions.apiOpts = { bulkEndpoint: appendPath(manifest.ontola.website_iri, '/link-lib/bulk') };
   }
 
   const lrs = createStore<React.ComponentType>(storeOptions, middleware);
