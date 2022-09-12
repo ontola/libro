@@ -5,6 +5,10 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { tableRowTopology } from '../../../../Table/topologies';
+import {
+  cardFloatTopology,
+  containerFloatTopology,
+} from '../../../topologies';
 
 const DownloadUrl = ({ linkedProp }: PropertyProps) => {
   if (!linkedProp) {
@@ -27,6 +31,10 @@ DownloadUrl.type = schema.Thing;
 
 DownloadUrl.property = schema.downloadUrl;
 
-DownloadUrl.topology = tableRowTopology;
+DownloadUrl.topology = [
+  tableRowTopology,
+  cardFloatTopology,
+  containerFloatTopology,
+];
 
 export default register(DownloadUrl);

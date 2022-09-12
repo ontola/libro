@@ -1,9 +1,11 @@
+import * as schema from '@ontologies/schema';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { ClickAwayListener, IconButton } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import {
   Property,
   Resource,
+  useGlobalIds,
   useValues,
 } from 'link-redux';
 import React from 'react';
@@ -30,6 +32,7 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   const classes = useStyles();
   const [filterOptions] = useFilterOptions();
   const [sortOptions] = useValues(ontola.sortOptions);
+  const [downloadUrl] = useGlobalIds(schema.downloadUrl);
 
   const {
     hidePagination,
@@ -44,6 +47,7 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
   }, [setRenderButtons]);
 
   const buttonCount = [
+    renderPagination && !!downloadUrl,
     renderPagination && !!filterOptions,
     renderPagination && !!sortOptions,
   ].filter((value) => value).length;
@@ -60,6 +64,7 @@ export const HeaderFloat: React.FC<CollectionFilterProps> = ({
     <React.Fragment>
       {renderPagination && <CollectionFilterToggle filterContainerRef={filterContainerRef} />}
       {renderPagination && <Property label={ontola.sortOptions} />}
+      {downloadUrl && <Property label={schema.downloadUrl} />}
     </React.Fragment>
   );
 
