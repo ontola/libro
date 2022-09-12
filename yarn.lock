@@ -3845,33 +3845,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rdfdev/actions@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@rdfdev/actions@npm:1.1.1"
+"@rdfdev/actions@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@rdfdev/actions@npm:1.2.3"
   peerDependencies:
     "@ontologies/core": "*"
-  checksum: e479ad6d38a44b3848f50f295c49e9d488ca3ad8c4dd0793441198a9f3b69370a59c9406d6fe3a52d6d111b8b1428b003b638f5a39777817460280536d9fee80
+  checksum: 0d85f7f39eb9f319d4e93a15d224043d36bf2f17a5ca047ed421a016822fe0fb54ff56759d8fc0261ab098438132496805cc484d798f097b63499b3c9e5bd245
   languageName: node
   linkType: hard
 
-"@rdfdev/collections@npm:0.0.0-9ea75cda":
-  version: 0.0.0-9ea75cda
-  resolution: "@rdfdev/collections@npm:0.0.0-9ea75cda"
+"@rdfdev/collections@npm:^1.2.5":
+  version: 1.2.5
+  resolution: "@rdfdev/collections@npm:1.2.5"
   peerDependencies:
     "@ontologies/core": "*"
     "@ontologies/ld": "*"
     "@ontologies/rdf": "*"
     "@ontologies/rdfs": "*"
-  checksum: 3d040faaaaf6b923e7afedacda80d9171e21aab27681e880b804f9942f10d3d9a4ea0c248a49fd9265c06966b2af0464b6a1688440e12f86eaeb6cec7749d92d
+  checksum: 797c71701cb429e905f78c1a2386b07b60553939180d5473f9c04385df9a826623b0e2d020a76babed40bd6894bc899fea85178297cc0ca62d4d9b93661a0a47
   languageName: node
   linkType: hard
 
-"@rdfdev/iri@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@rdfdev/iri@npm:1.2.0"
+"@rdfdev/iri@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@rdfdev/iri@npm:1.2.3"
   peerDependencies:
     "@ontologies/core": "*"
-  checksum: b76afaef84d2cc31cef266e6a411b3d9ec27032126058de92d946f8873c2b043ce84c7e5d1edd6810f8f847eed957ff622aca54d7026bf8eda0c9dc002369ffd
+  checksum: 90a150203eb10f9c66ec82556d84c8268576b72294982f6a482c63a770858cdba2c387e77ba32d9f151d5d09be8996759474b4df5a29af9606acf2b4a535dd95
   languageName: node
   linkType: hard
 
@@ -14531,9 +14531,9 @@ __metadata:
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
     "@rails/actioncable": ^6.1.4-1
     "@rails/activestorage": ^7.0.1
-    "@rdfdev/actions": ^1.1.1
-    "@rdfdev/collections": 0.0.0-9ea75cda
-    "@rdfdev/iri": ^1.2.0
+    "@rdfdev/actions": ^1.2.3
+    "@rdfdev/collections": ^1.2.5
+    "@rdfdev/iri": ^1.2.3
     "@react-spring/web": ^9.3.1
     "@testing-library/dom": ^8.17.1
     "@testing-library/jest-dom": ^5.16.5

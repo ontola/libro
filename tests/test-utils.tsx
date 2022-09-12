@@ -18,7 +18,7 @@ import { History, createMemoryHistory } from 'history';
 import {
   ComponentRegistration,
   DataObject,
-  RDFIndex,
+  RDFAdapter,
   RDFStore,
   createStore,
   toGraph,
@@ -132,7 +132,7 @@ const wrapProviders = async ({
 
 export const resourcesToGraph = (resources: DataObject | DataObject[]): ParsedObject => {
   if (Array.isArray(resources)) {
-    const graphs = resources.map((r) => toGraph(r) as [SomeNode, RDFIndex, NamedBlobTuple[]]);
+    const graphs = resources.map((r) => toGraph(r) as [SomeNode, RDFAdapter, NamedBlobTuple[]]);
     const mainIRI = graphs[0][0];
     const store = new RDFStore().getInternalStore();
 
