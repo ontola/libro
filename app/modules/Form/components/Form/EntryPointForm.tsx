@@ -89,7 +89,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
   const [clonedObject] = useTempClones(objectDependencies);
 
   const initialValues = useInitialValues(
-    loading,
+    loading || ((actionBody && object) && !clonedObject),
     sessionStore,
     actionBody,
     clonedObject,
@@ -126,7 +126,7 @@ const EntryPointForm: React.FC<EntryPointFormProps> = ({
     </React.Fragment>
   ), [footer, errorResponse]);
 
-  if (loading) {
+  if (loading || !initialValues) {
     if (isNamedNode(loading) && !entityIsLoaded(lrs, loading)) {
       return (
         <Resource

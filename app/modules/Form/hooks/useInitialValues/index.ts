@@ -24,24 +24,22 @@ const useInitialValues = (
   object: SomeNode | undefined,
   formID: string,
   submitCount: number,
-): InitialValues => {
+): InitialValues | undefined => {
   const lrs = useLRS();
-  const [initialValues, setInitialValues] = React.useState<InitialValues>({});
 
-  React.useEffect(() => {
-    if (!actionBody || !object || loading) {
-      return;
+  return React.useMemo(() => {
+    if (loading) {
+      return undefined;
+    }
+
+    if (!actionBody || !object) {
+      return EMPTY_STATE;
     }
 
     const currentValues = getInitialValues(lrs, sessionStore, actionBody, object, formID, false);
-    setInitialValues(currentValues);
+
+    return currentValues;
   }, [actionBody, object, formID, loading, submitCount]);
-
-  if (!actionBody || !object) {
-    return EMPTY_STATE;
-  }
-
-  return initialValues;
 };
 
 export default useInitialValues;
