@@ -34,6 +34,10 @@ const entryPoint = example.ns('new#EntryPoint');
 const formSelector = action.value;
 const schemaText = calculateFormFieldName(schema.text);
 const arguPassword = calculateFormFieldName(ontola.password);
+const commentObject = calculateFormFieldName(schema.comment);
+const commentText = calculateFormFieldName(schema.comment, 0, schema.text);
+
+const storedValue = (store: Record<string, string>, fieldName: string) => parseForStorage(store[`${action.value}.${fieldName}`]);
 
 describe('Form', () => {
   const resources = {
@@ -74,6 +78,33 @@ describe('Form', () => {
                     [rdfx.type.toString()]: form.PasswordInput,
                     [sh.datatype.toString()]: xsd.string,
                     [sh.path.toString()]: ontola.password,
+                  },
+                  [rdfx.ns('_2').toString()]: {
+                    [rdfx.type.toString()]: form.AssociationInput,
+                    [sh.path.toString()]: schema.comment,
+                    [sh.minCount.toString()]: 1,
+                    [form.form.toString()]: {
+                      [rdfx.type.toString()]: form.Form,
+                      [form.pages.toString()]: {
+                        [rdfx.type.toString()]: rdfx.Seq,
+                        [rdfx.ns('_0').toString()]: {
+                          [rdfx.type.toString()]: form.Page,
+                          [form.groups.toString()]: {
+                            [rdfx.type.toString()]: rdfx.Seq,
+                            [rdfx.ns('_0').toString()]: {
+                              [rdfx.type.toString()]: form.Group,
+                              [form.fields.toString()]: {
+                                [rdfx.type.toString()]: rdfx.Seq,
+                                [rdfx.ns('_0').toString()]: {
+                                  [rdfx.type.toString()]: form.TextInput,
+                                  [sh.path.toString()]: schema.text,
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
                   },
                 },
               },
@@ -129,7 +160,7 @@ describe('Form', () => {
         </Page>
       ), {
         modules: dependencies,
-        resources, 
+        resources,
       });
 
       await findByTestId(btoa('http://schema.org/text'));
@@ -145,17 +176,25 @@ describe('Form', () => {
         [fieldName]: 'test',
       });
 
-      return store[`${action.value}.${fieldName}`];
+      return store;
     };
 
     it('stores values', async () => {
       const result = await testPersistence(schemaText, 'test');
-      expect(parseForStorage(result)!.map((val) => val.value)).toEqual(['test']);
+      expect(storedValue(result, schemaText)!.map((val) => val.value)).toEqual(['test']);
     });
 
     it("doesn't store passwords", async () => {
       const result = await testPersistence(arguPassword, 'test');
-      expect(result).toEqual(undefined);
+      expect(storedValue(result, arguPassword)).toEqual(undefined);
+    });
+
+    it('saves association when changing a nested value', async () => {
+      const result = await testPersistence(commentText, 'test');
+      const commentBody = storedValue(result, commentObject);
+      expect(commentBody).toBeDefined();
+      const textKey = calculateFormFieldName(commentBody![0], schema.text);
+      expect(storedValue(result, textKey)!.map((val) => val.value)).toEqual(['test']);
     });
   });
 });
