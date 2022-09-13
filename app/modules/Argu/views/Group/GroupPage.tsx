@@ -1,4 +1,5 @@
 import { register, useProperty } from 'link-redux';
+import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { retrievePath } from '../../../Common/lib/iris';
@@ -10,7 +11,9 @@ const GroupPage = () => {
   const [settingsMenu] = useProperty(ontola.settingsMenu);
   const navigate = useNavigate();
 
-  navigate(retrievePath(settingsMenu.value)!, { replace: true });
+  React.useEffect(() => {
+    navigate(retrievePath(settingsMenu.value)!, { replace: true });
+  }, [settingsMenu]);
 
   return null;
 };
