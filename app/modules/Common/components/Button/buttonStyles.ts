@@ -45,6 +45,7 @@ export default makeStyles<LibroTheme, ColorProps>((theme) => ({
       },
       cursor: 'not-allowed',
       opacity: 0.5,
+      pointerEvents: 'auto',
     },
     '--button-padding-horizontal': '1.3rem',
     '--button-padding-vertical': '.5rem',
