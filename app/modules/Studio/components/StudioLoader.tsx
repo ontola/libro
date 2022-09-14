@@ -23,7 +23,7 @@ const StudioLoader: React.FC = () => {
       || search.get('webpack-dev-server-hot') === null;
 
     if (hotNotDisabled) {
-      navigate('/d/studio?webpack-dev-server-hot=false&webpack-dev-server-live-reload=false');
+      navigate('/libro/studio?webpack-dev-server-hot=false&webpack-dev-server-live-reload=false');
     }
   }, [search]);
 
