@@ -1,10 +1,9 @@
 import { makeStyles } from '@mui/styles';
 
-import { LibroTheme } from '../../../Kernel/lib/themes';
 import { SHADOW_LIGHT } from '../../../Common/lib/flow';
 import { fieldVariantPreviewCID } from '../../components/FormField/UseFormStyles';
 
-const useSelectStyles = makeStyles((theme: LibroTheme) => ({
+const useSelectStyles = makeStyles(() => ({
   flow: {
     boxShadow: SHADOW_LIGHT,
   },
@@ -18,10 +17,6 @@ const useSelectStyles = makeStyles((theme: LibroTheme) => ({
   },
   inputBaseFlow: {
     height: '3rem',
-  },
-  popper: {
-    width: 'fit-content !important',
-    zIndex: theme.zIndex.drawer + 1,
   },
   wrapper: {
     '& input': {

@@ -212,7 +212,7 @@ const SelectInputField: React.FC = () => {
           disableListWrap
           openOnFocus
           ListboxComponent={virtualized ? VirtualizedSelect : SelectList}
-          PopperComponent={virtualized ? undefined : FullWidthPopper}
+          PopperComponent={FullWidthPopper}
           disableClearable={fieldShape.required && !nullable}
           disabled={!fieldShape.shIn}
           filterOptions={searchable ? (opts: SomeTerm[]) => opts : filterOptions}

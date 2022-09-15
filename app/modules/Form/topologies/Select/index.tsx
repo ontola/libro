@@ -39,7 +39,6 @@ const Select: TopologyFC<SelectProps> = ({
   children,
   onMouseDown,
   innerRef,
-  role,
 }) => (
   <SelectTopology>
     <ul
@@ -47,9 +46,7 @@ const Select: TopologyFC<SelectProps> = ({
       role="listbox"
       onMouseDown={onMouseDown}
     >
-      <ul role={role}>
-        {children}
-      </ul>
+      {children}
     </ul>
   </SelectTopology>
 );
